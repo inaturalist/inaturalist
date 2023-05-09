@@ -1,7 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
-include ApplicationHelper
-include UsersHelper
-include AuthenticatedTestHelper
+require 'spec_helper'
 
 describe UsersHelper do
   let(:user) { User.make! }
@@ -26,7 +23,7 @@ describe UsersHelper do
     end
     it "should use the name as link title with :title_method => :name" do
       # The test matcher gets confused with the name has an apostrophe, even though the HTML is fine
-      user.update_attributes( name: "Balthazar Brogdonovich" )
+      user.update( name: "Balthazar Brogdonovich" )
       expect( link_to_user( user , title_method: :name ) ).to have_tag( "a", with: { title: user.name } )
     end
     it "should have nickname as a class by default" do

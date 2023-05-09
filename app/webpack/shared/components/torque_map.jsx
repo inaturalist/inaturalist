@@ -34,7 +34,8 @@ class TorqueMap extends React.Component {
       scrollWheelZoom: false
     } );
     L.tileLayer( `https://cartodb-basemaps-{s}.global.ssl.fastly.net/${basemap}/{z}/{x}/{y}.png`, {
-      attribution: "CartoDB"
+      attribution: "&copy; <a href='https://www.openstreetmap.org/copyright/'>OpenStreetMap</a> "
+        + "contributors, &copy; <a href='https://carto.com/about-carto/'>CARTO</a>"
     } ).addTo( map );
     return map;
   }

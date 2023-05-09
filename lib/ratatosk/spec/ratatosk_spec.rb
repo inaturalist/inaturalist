@@ -105,14 +105,6 @@ describe Ratatosk, "searching" do
   it "should find 'horseshoe crab'" do
     expect( @ratatosk.find('horseshoe crab') ).not_to be_blank
   end
-  
-  it "should return a taxon with a unique name for Holodiscus discolor" do
-    tn = @ratatosk.find('Holodiscus discolor').first
-    tn.save
-    taxon = tn.taxon
-    taxon.reload
-    expect(taxon.unique_name).not_to be_nil
-  end
 
   it "should add names to existing taxa" do
     load_test_taxa
@@ -176,7 +168,7 @@ describe Ratatosk, "grafting" do
     anna = Taxon.find_by_name("Calypte anna")
     calypte = Taxon.find_by_name("Calypte")
     unless anna.grafted?
-      anna.update_attributes(:parent => calypte)
+      anna.update(:parent => calypte)
     end
     expect(anna).to be_grafted
     expect(@ratatosk.graft(anna)).to eq []
@@ -223,7 +215,7 @@ describe Ratatosk, "grafting" do
   
   describe "to a locked subtree" do
     it "should fail" do
-      @Amphibia.update_attributes(:locked => true)
+      @Amphibia.update(:locked => true)
       taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
       @ratatosk.graft(taxon)
       taxon.reload
@@ -232,7 +224,7 @@ describe Ratatosk, "grafting" do
     end
 
     it "should be idempotent" do
-      @Amphibia.update_attributes(:locked => true)
+      @Amphibia.update(:locked => true)
       taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
       @ratatosk.graft(taxon)
       taxon.reload
@@ -241,7 +233,7 @@ describe Ratatosk, "grafting" do
     end
 
     it "should flag taxa that could not be grafted" do
-      @Amphibia.update_attributes(:locked => true)
+      @Amphibia.update(:locked => true)
       expect(@Amphibia).to be_valid
       expect(@Amphibia).to be_locked
       taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
@@ -293,56 +285,56 @@ def load_test_taxa
   @Life = Taxon.make!( name: "Life", rank: Taxon::STATEOFMATTER )
 
   @Animalia = Taxon.make!(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
-  @Animalia.update_attributes(:parent => @Life)
+  @Animalia.update(:parent => @Life)
 
   @Chordata = Taxon.make!(:name => 'Chordata', :rank => "phylum")
-  @Chordata.update_attributes(:parent => @Animalia)
+  @Chordata.update(:parent => @Animalia)
 
   @Amphibia = Taxon.make!(:name => 'Amphibia', :rank => "class", :is_iconic => true)
-  @Amphibia.update_attributes(:parent => @Chordata)
+  @Amphibia.update(:parent => @Chordata)
 
   @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "order")
-  @Hylidae.update_attributes(:parent => @Amphibia)
+  @Hylidae.update(:parent => @Amphibia)
 
   @Pseudacris = Taxon.make!(:name => 'Pseudacris', :rank => "genus")
-  @Pseudacris.update_attributes(:parent => @Hylidae)
+  @Pseudacris.update(:parent => @Hylidae)
 
   @Pseudacris_regilla = Taxon.make!(:name => 'Pseudacris regilla', :rank => "species")
-  @Pseudacris_regilla.update_attributes(:parent => @Pseudacris)
+  @Pseudacris_regilla.update(:parent => @Pseudacris)
   
   @Caudata = Taxon.make!(:name => 'Caudata', :rank => "order")
-  @Caudata.update_attributes(:parent => @Amphibia)
+  @Caudata.update(:parent => @Amphibia)
   
   @Ensatina = Taxon.make!(:name => 'Ensatina', :rank => "genus")
-  @Ensatina.update_attributes(:parent => @Caudata)
+  @Ensatina.update(:parent => @Caudata)
 
   @Ensatina_eschscholtzii = Taxon.make!(:name => 'Ensatina eschscholtzii', :rank => "species")
-  @Ensatina_eschscholtzii.update_attributes(:parent => @Ensatina)
+  @Ensatina_eschscholtzii.update(:parent => @Ensatina)
   
   @Aves = Taxon.make!(:name => "Aves", :rank => "class", :is_iconic => true)
-  @Aves.update_attributes(:parent => @Chordata)
+  @Aves.update(:parent => @Chordata)
   
   @Apodiformes = Taxon.make!(:name => "Apodiformes", :rank => "order")
-  @Apodiformes.update_attributes(:parent => @Aves)
+  @Apodiformes.update(:parent => @Aves)
   
   @Trochilidae = Taxon.make!(:name => "Trochilidae", :rank => "family")
-  @Trochilidae.update_attributes(:parent => @Apodiformes)
+  @Trochilidae.update(:parent => @Apodiformes)
   
   @Calypte = Taxon.make!(:name => "Calypte", :rank => "genus")
-  @Calypte.update_attributes(:parent => @Trochilidae)
+  @Calypte.update(:parent => @Trochilidae)
   
   @Calypte_anna = Taxon.make!(:name => "Calypte anna", :rank => "species")
-  @Calypte_anna.update_attributes(:parent => @Calypte)
+  @Calypte_anna.update(:parent => @Calypte)
   
   @Calypte_anna.taxon_names << TaxonName.make!(:name => "Anna's Hummingbird", 
     :taxon => @Calypte_anna, 
     :lexicon => TaxonName::LEXICONS[:ENGLISH])
     
   @Arthropoda = Taxon.make!(:name => 'Arthropoda', :rank => "phylum")
-  @Arthropoda.update_attributes(:parent => @Animalia)
+  @Arthropoda.update(:parent => @Animalia)
 
   @Insecta = Taxon.make!(:name => 'Insecta', :rank => "class", :is_iconic => true)
-  @Insecta.update_attributes(:parent => @Arthropoda)
+  @Insecta.update(:parent => @Arthropoda)
 
   Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
 end

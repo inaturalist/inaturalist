@@ -15,13 +15,23 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
-const defaultObservationParams = state => ( {
-  verifiable: true,
-  taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-  place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
-  preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
-  locale: I18n.locale
-} );
+const defaultObservationParams = ( state, options = { } ) => {
+  const { config } = state;
+  const params = {
+    verifiable: true,
+    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
+    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
+    preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
+    locale: I18n.locale
+  };
+  if ( state.config.chosenPlace ) {
+    // TODO: explore should use integer IDs until the explore-apiv2 branch is merged
+    params.place_id = ( config.testingApiV2 && !options.forExplore )
+      ? state.config.chosenPlace.uuid
+      : state.config.chosenPlace.id;
+  }
+  return _.pickBy( params, v => !_.isNil( v ) );
+};
 
 const localizedPhotoAttribution = ( photo, options = { } ) => {
   const separator = options.separator || "";
@@ -83,11 +93,16 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
 };
 
 const commasAnd = items => {
+  const listWithNItems = I18n.t( "list_with_n_items", { one: "-ONE-", two: "-TWO-", three: "-THREE-" } );
+  const listWithTwoItems = I18n.t( "list_with_two_items", { one: "-ONE-", two: "-TWO-" } );
+  const separator = listWithNItems.match( /-ONE-(.*)-TWO-/ )[1];
+  const finalSeparator = listWithNItems.match( /-TWO-(.*)-THREE-/ )[1];
+  const twoItemSeparator = listWithTwoItems.match( /-ONE-(.*)-TWO-/ )[1];
   if ( items.length <= 2 ) {
-    return items.join( ` ${I18n.t( "and" )} ` );
+    return items.join( twoItemSeparator );
   }
   const last = items.pop( );
-  return `${items.join( ", " )}, ${I18n.t( "and" )} ${last}`;
+  return `${items.join( separator )}${finalSeparator}${last}`;
 };
 
 const windowStateForTaxon = taxon => {
@@ -124,7 +139,8 @@ const windowStateForTaxon = taxon => {
       iconic_taxon_name: taxon.iconic_taxon_name,
       rank_level: taxon.rank_level,
       rank: taxon.rank,
-      is_active: taxon.is_active
+      is_active: taxon.is_active,
+      ancestor_ids: taxon.ancestor_ids
     }
   };
   return {

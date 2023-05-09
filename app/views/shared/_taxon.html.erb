@@ -6,7 +6,13 @@
   exclude_rank ||= false
   no_common ||= false
   place ||= nil
-  comname ||= common_taxon_name(taxon, locale: I18n.locale, place: place || @site.try(:place)).try(:name) unless no_common
+  viewer ||= defined?( current_user ) ? current_user : nil
+  comname ||= common_taxon_name(
+    taxon,
+    locale: I18n.locale,
+    place: place || @site.try(:place),
+    user: viewer
+  ).try(:name) unless no_common
   comname = capitalize_name( comname ) if comname
   if taxon.species_or_lower?
     pieces = taxon.name.split.map{|piece| h( piece) }
@@ -48,7 +54,6 @@
   truncate ||= false
   trunclength = truncate ? 23 : 500
   comname_html = singular ? truncate( comname.singularize, length: trunclength ) : truncate( comname, length: trunclength )
-  viewer ||= defined?( current_user ) ? current_user : nil
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>

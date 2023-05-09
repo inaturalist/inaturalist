@@ -1,6 +1,6 @@
 class UserBlocksController < ApplicationController
   before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
+  before_action :authenticate_user!, unless: ->{ authenticated_with_oauth? }
 
   def create
     @user_block = UserBlock.new( params[:user_block] )

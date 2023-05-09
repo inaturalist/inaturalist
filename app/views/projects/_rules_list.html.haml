@@ -1,5 +1,13 @@
-- for rule in @project.project_observation_rules
-  %li= rule.terms
+- for operator, rules in @project.project_observation_rules.group_by(&:operator)
+  - next if rules.blank?
+  - if rules.size > 1
+    %li
+      =t :one_of_the_following_must_be_true
+      %ul.unstacked
+        - for rule in rules
+          %li= rule.terms
+  - else
+    %li= rules.first.terms
 - unless @project.prefers_rule_quality_grade.blank?
   %li=t :must_have_quality_grades, grades: @project.prefers_rule_quality_grade.split(",").map{|g| t( g, default: g )}.join(", ")
 - unless @project.prefers_rule_d1.blank?

@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      %h1=t :suspend_user_html, user: link_to_user( @user )
+      = form_for @moderator_action, builder: BootstrapFormBuilder do | f |
+        = f.text_area :reason, description: t( :suspend_user_reason_instructions_html, link_start_tag: "<a href=\"/pages/community+guidelines\">".html_safe, link_end_tag: "</a>".html_safe ), required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH
+        = f.hidden_field :user_id
+        = f.hidden_field :resource_type
+        = f.hidden_field :resource_id
+        = f.hidden_field :action
+        = f.submit t(:suspend_user), class: "btn btn-primary"
+        = link_to t(:cancel), :back, class: "btn btn-default"

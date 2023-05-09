@@ -39,8 +39,10 @@ end
 # optional exception_checker that is yet another callable to check whether the
 # exception should trigger partitioning. If that returns false, the exception
 # will be raised.
-def call_and_rescue_with_partitioner( callable, args, exceptions, options = {}, &block )
+def call_and_rescue_with_partitioner( callable, args, exceptions, options = {}, &partitioner )
   exceptions = [exceptions].flatten
+  options[:depth] ||= 0
+  debug = options[:debug]
   args = [args].flatten
   begin
     callable.call( *args )
@@ -48,16 +50,51 @@ def call_and_rescue_with_partitioner( callable, args, exceptions, options = {}, 
     if options[:exception_checker] && !options[:exception_checker].call( e )
       raise e
     end
-    block.call( args ).map {|partioned_args|
-      call_and_rescue_with_partitioner( callable, partioned_args, exceptions, options, &block )
-    }.flatten
+
+    arg_partitions = partitioner.call( args )
+    # If parallel operation was requested, we want to limit the amount of
+    # parallel workers so they don't scale out infinitely. If you request 4
+    # parallel workers with a binary partitioner, then the max depth for
+    # parallelization should be 2 (first recursion should generate 2 workers,
+    # next should generate a total of 4). Beyond that we should run subsequent
+    # recursions in sequence. This will save a bit of time regardless, but will
+    # work best when the partitions are relatively even. For the kinds of
+    # imbalanced data we generally work with, the heavier partitions will end
+    # up running in sequence in a single worker. Kind of wish we could do this
+    # with promises instead...
+    max_parallel_depth = ( options[:parallel].to_f / arg_partitions.size ).floor
+    puts "max_parallel_depth: #{max_parallel_depth}" if debug
+    puts "options[:depth]: #{options[:depth]}" if debug
+    if options[:parallel] && options[:depth].to_i < max_parallel_depth
+      puts "processing partitions in parallel for args: #{args}" if debug
+      Parallel.map( arg_partitions, in_threads: arg_partitions.size ) do | partitioned_args |
+        call_and_rescue_with_partitioner(
+          callable,
+          partitioned_args,
+          exceptions,
+          options.merge( depth: options[:depth] + 1 ),
+          &partitioner
+        )
+      end.flatten
+    else
+      puts "processing partitions in sequence for args: #{args}" if debug
+      arg_partitions.map do | partitioned_args |
+        call_and_rescue_with_partitioner(
+          callable,
+          partitioned_args,
+          exceptions,
+          options.merge( depth: options[:depth] + 1 ),
+          &partitioner
+        )
+      end.flatten
+    end
   end
 end
 
 def ratatosk(options = {})
   src = options[:src]
   site = options[:site] || Site.default
-  providers = ( options[:site] && options[:site].ratatosk_name_providers ) || [ "col", "eol" ]
+  providers = ( options[:site] && options[:site].ratatosk_name_providers ) || [ "col" ]
   if !providers.blank?
     if providers.include?(src.to_s.downcase)
       Ratatosk::Ratatosk.new(:name_providers => [src])
@@ -148,12 +185,16 @@ def lat_lon_distance_in_meters(lat1, lon1, lat2, lon2)
   d
 end
 
-def fetch_head(url)
+def fetch_head(url, follow_redirects = true)
   begin
     uri = URI(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = (url =~ /^https/)
-    return http.head(uri.request_uri)
+    rsp = http.head(uri.request_uri)
+    if rsp.is_a?( Net::HTTPRedirection ) && follow_redirects
+      return fetch_head( rsp["location"], false )
+    end
+    return rsp
   rescue
   end
   nil

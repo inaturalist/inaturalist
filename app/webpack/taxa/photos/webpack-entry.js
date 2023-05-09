@@ -1,4 +1,5 @@
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import _ from "lodash";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
@@ -26,13 +27,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {

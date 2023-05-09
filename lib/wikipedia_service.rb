@@ -43,6 +43,8 @@ class WikipediaService < MetaService
     hxml = Nokogiri::HTML(HTMLEntities.new.decode(parsed.at( "text" ).try( :inner_text )))
     hxml.search('table').remove
     hxml.search("//comment()").remove
+    # Remove all elements that aren't displayed
+    hxml.search( "//*[contains(@style,'display:none')]/text()" ).remove
     summary = ( hxml.search("//p").detect{|node| !node.inner_html.strip.blank?} || hxml ).inner_html.to_s.strip
     summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
     summary.gsub! /\[.*?\]/, ''
@@ -58,7 +60,7 @@ class WikipediaService < MetaService
   end
 
   def sanitizer
-    @sanitizer ||= HTML::WhiteListSanitizer.new
+    @sanitizer ||= Rails::Html::SafeListSanitizer.new
   end
 
 end

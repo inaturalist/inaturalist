@@ -19,7 +19,7 @@
   .about-observation {
     position: absolute;
     bottom: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     padding: 20px 30px;
     display: flex;
@@ -29,7 +29,7 @@
     .usericon {
       width: 76px;
       height: 76px;
-      margin-right: 20px;
+      margin-inline-end: 20px;
       background-size: cover;
       background-position: center;
       border-radius: 100px;
@@ -74,7 +74,7 @@
     background-color: #f8f8f8;
     color: #666;
     border-radius: 7px;
-    padding-left: 41.3px;
+    padding-inline-start: 41.3px;
     font-size: 15px;
     font-weight: 100;
   }
@@ -84,7 +84,7 @@
   .form-group.text-field:before {
     position: absolute; 
     top: 8px;
-    left: 13px;
+    inset-inline-start: 13px;
     font: normal normal normal 14px/1 FontAwesome;
     color: $inat-green;
     font-size: 18px;
@@ -130,7 +130,8 @@
     font-weight: normal;
     font-size: 15px;
     color: #666;
-    a {
+    a,
+    .btn-nostyle {
       font-weight: bold;
       color: #666;
     }
@@ -139,6 +140,7 @@
   .btn-primary.btn-inat {
     margin-top: 20px;
     padding-bottom: 7px;
+    white-space: inherit;
   }
 
   .btn-link {
@@ -166,6 +168,11 @@
     }
   }
 
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .provider-authorizations {
     margin-bottom: 30px;
     .extra {
@@ -184,10 +191,6 @@
       font-size: 32px;
       line-height: 32px;
       vertical-align: middle;
-    }
-    &.facebook {
-      background-color: $facebook-blue;
-      border-color: $facebook-blue;
     }
     &.google {
       background-color: $google-red;
@@ -223,23 +226,22 @@
     justify-content: space-between;
     padding: 16px;
     i {
-      margin-right: 10px;
+      margin-inline-end: 10px;
       font-size: 25px;
       line-height: 25px;
     }
-    img {
+    img,
+    .img {
       width: 25px;
       height: 25px;
-      margin-right: 10px;
+      margin-inline-end: 10px;
+      i {
+        margin: 0;
+      }
     }
     &.google {
       background-color: white;
       color: rgba(0,0,0,0.54);
-    }
-    &.facebook {
-      i {
-        margin-left: 4px;
-      }
     }
     .btntext {
       width: 100%;
@@ -260,7 +262,7 @@
       i {
         font-size: 26px;
         position: relative;
-        left: -1px;
+        inset-inline-start: -1px;
       }
     }
     &.yahoo {

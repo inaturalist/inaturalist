@@ -1,4 +1,5 @@
-= render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
+.row
+  = render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
 .row
   .col-sm-4
     - if @selected_user.icon.file?
@@ -36,7 +37,7 @@
                   = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
               - if is_curator_or_site_admin
                 %li.divider{:role => "separator"}
-                - unless is_me?(@user) || @user.is_admin?
+                - unless is_me?(@user) || @user.is_admin? || current_user.is_site_admin_of?( @user.site )
                   - unless @user.spammer?
                     %li
                       = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post
@@ -46,8 +47,7 @@
                 - if is_admin? || !is_me?( @user )
                   %li
                     = link_to t(:moderation_history), moderation_person_path( @user )
-                %li
-                  = link_to t(:flags_on_users_content, user: @user.login), flags_path( flagger_type: "any", resolved: "any", flags: ["spam", "copyright infringement", "inappropriate", "other"], user_id: @user.login )
+                %li= link_to t(:comments), comments_by_login_path( @user.login )
   .col-sm-8{:style => "background-color:white"}
     %h1
       = @user.name.blank? ? @user.login : @user.name
@@ -110,7 +110,7 @@
           .alert.alert-warning
             =t :profile_visibility_desc, site_name: @site.name
         - if @user.known_non_spammer? || is_curator? || is_me?( @user )
-          - description = formatted_user_text( @user.description, tags: ActionView::Base.sanitized_allowed_tags.to_a + %w(table thead tbody th tr td), attributes: %w(href rel target) )
+          - description = formatted_user_text( @user.description, tags: ActionView::Base.sanitized_allowed_tags.to_a + %w(table thead tbody th tr td), attributes: %w(href rel) )
           %p.lead
             = stripped_first_paragraph_of_text( description, "\n\n" )
           = remaining_paragraphs_of_text( description, "\n\n" )

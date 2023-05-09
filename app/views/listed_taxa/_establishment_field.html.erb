@@ -49,9 +49,9 @@
       <%= raw t(:establishment_means_describes_how) %> 
     </p>
     <dl>
-      <% for identifier, description in ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS %>
+      <% for identifier in ListedTaxon::ESTABLISHMENT_MEANS %>
         <dt><%=t "establishment.#{ identifier }", default: identifier %></dt>
-        <dd><%=t "establishment_means_descriptions.#{description.parameterize.underscore}", default: description %></dd>
+        <dd><%=t "establishment_means_descriptions.#{identifier}" %></dd>
       <% end %>
     </dl>
   </div>

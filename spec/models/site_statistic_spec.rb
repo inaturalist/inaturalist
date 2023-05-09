@@ -8,7 +8,7 @@ describe SiteStatistic do
     OauthApplication.make!(name: "iNaturalist iPhone App")
   end
 
-  elastic_models( Observation )
+  elastic_models( Observation, Identification, User, Project )
 
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do
@@ -40,26 +40,26 @@ describe SiteStatistic do
 
     it "should generate stats for today" do
       SiteStatistic.generate_stats_for_day
-      @stat = SiteStatistic.last.data
-      expect( @stat['identifications']['count'] ).to eq 3
-      expect( @stat['observations']['count'] ).to eq 2
-      expect( @stat['users']['count'] ).to eq 4
-      expect( @stat['projects']['count'] ).to eq 1
-      expect( @stat['taxa']['species_counts'] ).to eq 1
-      expect( @stat['identifier']['percent_id'] ).to eq 1
+      data = SiteStatistic.last.data
+      expect( data['identifications']['count'] ).to eq 3
+      expect( data['observations']['count'] ).to eq 2
+      expect( data['users']['count'] ).to eq 4
+      expect( data['projects']['count'] ).to eq 1
+      expect( data['taxa']['species_counts'] ).to eq 1
+      expect( data['identifier']['percent_id'] ).to eq 1
     end
 
     it "should generate stats for another day" do
       SiteStatistic.generate_stats_for_day(1.year.ago)
-      @stat = SiteStatistic.last.data
+      data = SiteStatistic.last.data
       # For earlier dates we will limit queries by created_at date
       # When looking one year in the past, there should be no data
-      expect( @stat['identifications']['count'] ).to eq 0
-      expect( @stat['observations']['count'] ).to eq 0
-      expect( @stat['users']['count'] ).to eq 0
-      expect( @stat['projects']['count'] ).to eq 0
-      expect( @stat['taxa']['species_counts'] ).to eq 0
-      expect( @stat['identifier']['percent_id'] ).to eq 0
+      expect( data['identifications']['count'] ).to eq 0
+      expect( data['observations']['count'] ).to eq 0
+      expect( data['users']['count'] ).to eq 0
+      expect( data['projects']['count'] ).to eq 0
+      expect( data['taxa']['species_counts'] ).to eq 0
+      expect( data['identifier']['percent_id'] ).to eq 0
     end
   end
 
@@ -68,7 +68,7 @@ describe SiteStatistic do
     first_stat = SiteStatistic.last
     Observation.make!
     SiteStatistic.generate_stats_for_day
-    expect( first_stat).to eq SiteStatistic.last
+    expect( first_stat ).to eq SiteStatistic.last
   end
 
 end

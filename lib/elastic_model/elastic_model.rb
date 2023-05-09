@@ -51,7 +51,7 @@ module ElasticModel
   # for autocomplete analyzers. Needs at least 2 letters (e.g. `P` doesn't find `Park`)
   EDGE_NGRAM_FILTER =  {
     edge_ngram_filter: {
-      type: "edgeNGram",
+      type: "edge_ngram",
       min_gram: 1,
       max_gram: 20
     }
@@ -262,7 +262,7 @@ module ElasticModel
   end
 
   def self.elasticsearch_url
-    url = Taxon.__elasticsearch__.client.transport.options[:host]
+    url = Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:host]
     unless url.starts_with?("http://")
       url = "http://" + url
     end

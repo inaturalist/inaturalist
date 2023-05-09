@@ -1,9 +1,9 @@
 class SubscriptionsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_subscription, :except => [:new, :create, :index, :edit, :subscribe]
-  before_filter :load_resource, only: [:subscribe]
-  before_filter :require_owner, :except => [:new, :create, :index, :edit, :subscribe]
-  before_filter :return_here, :only => [:index]
+  before_action :authenticate_user!
+  before_action :load_subscription, :except => [:new, :create, :index, :edit, :subscribe]
+  before_action :load_resource, only: [:subscribe]
+  before_action :require_owner, :except => [:new, :create, :index, :edit, :subscribe]
+  before_action :return_here, :only => [:index]
   
   def index
     @type = params[:type]
@@ -75,7 +75,7 @@ class SubscriptionsController < ApplicationController
   
   def update
     respond_to do |format|
-      if @subscription.update_attributes(params[:subscription])
+      if @subscription.update(params[:subscription])
         format.html do
           flash[:notice] = "Subscription updated."
           return redirect_back_or_default(@subscription.resource)

@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 # Add US states as places and boundaries from the US Census. Note that the US
 # Census may block access to this file from outside the US. You should be able
 # to adapt import_natural_earth_countries.rb to work with sub-national places,

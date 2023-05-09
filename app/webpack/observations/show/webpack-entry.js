@@ -1,5 +1,6 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -34,16 +35,16 @@ import currentObservationReducer from "../identify/reducers/current_observation_
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
 import textEditorReducer from "../shared/ducks/text_editors";
+import brightnessesReducer from "../identify/ducks/brightnesses";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
-const relativeTime = Object.assign(
-  {},
-  I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
-  shortRelativeTime
-);
+const relativeTime = {
+  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+  ...shortRelativeTime
+};
 moment.locale( I18n.locale );
-moment.updateLocale( moment.locale(), { relativeTime } );
+moment.updateLocale( moment.locale( ), { relativeTime } );
 
 const rootReducer = combineReducers( {
   commentIDPanel: commentIDPanelReducer,
@@ -67,18 +68,17 @@ const rootReducer = combineReducers( {
 
   // stuff from identify, where the "current observation" is the obs in a modal
   currentObservation: currentObservationReducer,
-  suggestions: suggestionsReducer
+  suggestions: suggestionsReducer,
+  brightnesses: brightnessesReducer
 } );
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
@@ -94,13 +94,15 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   } ) );
 }
 
+const urlParams = new URLSearchParams( window.location.search );
+
 /* global INITIAL_OBSERVATION_ID */
 let obsId = INITIAL_OBSERVATION_ID;
 if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
+  || urlParams.get( "test" ) === "apiv2"
 ) {
-  const element = document.querySelector( 'meta[name="config:inaturalist_api_url"]' );
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
   if ( defaultApiUrl ) {
     /* global INITIAL_OBSERVATION_UUID */
@@ -116,15 +118,16 @@ if (
   }
 }
 
-store.dispatch( fetchAnnotationsPanelPreferences( ) );
-
-if (
-  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "interpolation" ) )
-) {
+const threshold = Number( urlParams.get( "vision_threshold" ) );
+if ( threshold ) {
   store.dispatch( setConfig( {
-    testingInterpolationMitigation: true
+    visionThreshold: threshold,
+    visionThresholdType: urlParams.get( "vision_threshold_type" ) === "percentage"
+      ? "percentage" : "absolute"
   } ) );
 }
+
+store.dispatch( fetchAnnotationsPanelPreferences( ) );
 
 store.dispatch( fetchObservation( obsId, {
   fetchAll: true,

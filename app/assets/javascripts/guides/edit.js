@@ -607,7 +607,7 @@ function engageShades(msg) {
 $('#guide_users').bind('cocoon:after-insert', function(e, inserted_item) {
   $('.guide-user-chooser').chooser({
     queryParam: 'q',
-    collectionUrl: '/people/search.json',
+    collectionUrl: $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ) + "/search?sources=users",
     resourceUrl: '/people/{{id}}.json'
   })
 })

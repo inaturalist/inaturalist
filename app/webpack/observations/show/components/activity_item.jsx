@@ -67,6 +67,7 @@ class ActivityItem extends React.Component {
           textareaClassName="form-control"
           maxLength={5000}
           showCharsRemainingAt={4000}
+          mentions
         />
         <div className="btn-group edit-form-btns">
           <button
@@ -121,7 +122,6 @@ class ActivityItem extends React.Component {
       item,
       config,
       deleteComment,
-      deleteID,
       restoreID,
       setFlaggingModalState,
       currentUserID,
@@ -136,7 +136,8 @@ class ActivityItem extends React.Component {
       untrustUser,
       showHidden,
       hideContent,
-      unhideContent
+      unhideContent,
+      withdrawID
     } = this.props;
     const { editing } = this.state;
 
@@ -323,7 +324,10 @@ class ActivityItem extends React.Component {
     const headerItems = [];
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
     if ( item.hidden ) {
-      const moderatorAction = _.sortBy( _.filter( item.moderator_actions, ma => ma.action === "hide" ), ma => ma.id * -1 )[0];
+      const moderatorAction = _.sortBy(
+        _.filter( item.moderator_actions, ma => ma.action === "hide" ),
+        ma => ma.id * -1
+      )[0];
       const maUserLink = (
         <a
           href={`/people/${moderatorAction.user.login}`}
@@ -567,15 +571,13 @@ class ActivityItem extends React.Component {
       <time
         className="time"
         dateTime={item.created_at}
-        title={moment( item.created_at ).format( "LLL" )}
+        title={moment( item.created_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
       >
         <a href={itemURL} target={linkTarget}>{relativeTime}</a>
       </time>
     );
-    const { testingInterpolationMitigation } = config;
     if (
-      testingInterpolationMitigation
-      && observation
+      observation
       && observation.obscured
       && !observation.private_geojson
     ) {
@@ -602,7 +604,7 @@ class ActivityItem extends React.Component {
             <UserImage user={item.user} linkTarget={linkTarget} />
           )}
         </div>
-        <Panel className={panelClass}>
+        <Panel className={`${panelClass} ${item.api_status ? "loading" : ""}`}>
           <Panel.Heading>
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
@@ -615,7 +617,7 @@ class ActivityItem extends React.Component {
                 editing={editing}
                 config={config}
                 deleteComment={deleteComment}
-                deleteID={deleteID}
+                withdrawID={withdrawID}
                 restoreID={restoreID}
                 setFlaggingModalState={setFlaggingModalState}
                 linkTarget={linkTarget}
@@ -648,8 +650,8 @@ ActivityItem.propTypes = {
   addID: PropTypes.func,
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
-  deleteID: PropTypes.func,
   confirmDeleteID: PropTypes.func,
+  withdrawID: PropTypes.func,
   editID: PropTypes.func,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,

@@ -1,4 +1,4 @@
-class Assessment < ActiveRecord::Base
+class Assessment < ApplicationRecord
 	belongs_to :project
 	belongs_to :user
 	belongs_to :taxon

@@ -36,16 +36,17 @@
     <div class="stacked last column span-23">
       <div class="column span-12">
         <%= f.text_field :parent_id, value: taxon.parent_id, class: "text", disabled: !@protected_attributes_editable %><br/>
-
-        <%= label_tag t(:parent_name) %><br/>
-        <%= text_field_tag :parent_name, ( parent = taxon.parent rescue nil ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
         <% if @protected_attributes_editable %>
-          <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
+          <%= label_tag t(:parent_name) %><br/>
+          <%= text_field_tag :parent_name, ( parent = taxon.parent rescue nil ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
+          <%= link_to_function t( :browse_all_species ), "$('#taxonchooser').jqmShow();" %>
+          <div class="description">
+            <%= t( :this_is_more_convenient_way_find_parent ) %>
+          </div>
         <% end %>
-        <div class="description">
-          <%= t(:this_is_more_convenient_way_find_parent) %>
-        </div>
-
+      </div>
+      <div class="jqmWindow" id="dialog">
+        <div class="loading status">Loading...</div>
       </div>
       <% if !taxon.new_record? && @protected_attributes_editable -%>
         <div class="column span-5">
@@ -58,6 +59,13 @@
       <% end -%>
     </div>
     
+    <div class="column span-23 potential_clashes">
+      <span class="notice box">
+        <%= t( :changing_the_ancestry_to_that_parent ) %>
+        <%= link_to t( :analyze_clashes), "#", class: "potential_clashes_link" %>
+      </span>
+    </div>
+
     <div class="column span-23">
       <%= f.check_box :locked, :label_after => true %>
       <p class="description ui">
@@ -195,8 +203,8 @@
 
   <fieldset class="last column span-11">
     <legend><%= t :concept_status %></legend>
-    <%= f.radio_button :is_active, true, label_after: true, label: t(:active).titleize, disabled: !@protected_attributes_editable %>
-    <%= f.radio_button :is_active, false, label_after: true, label: t(:inactive).titleize, disabled: !@protected_attributes_editable %>
+    <%= f.radio_button :is_active, true, label_after: true, label: t(:active_taxon_status), disabled: !@protected_attributes_editable %>
+    <%= f.radio_button :is_active, false, label_after: true, label: t(:inactive_taxon_status), disabled: !@protected_attributes_editable %>
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>
@@ -226,15 +234,71 @@
       </div>
     <% end %>
     <div id="conservation_statuses">
-      <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
-        <%= render "conservation_status_fields", :f => cs %>
-      <% end -%>
-      <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
+      <%- cs_cols = %w(status iucn place authority geoprivacy description) -%>
+      <table class="table">
+        <thead>
+          <tr>
+            <%- for cs_col in cs_cols -%>
+              <th><%=t cs_col, scope: [:activerecord, :attributes, :conservation_status], default: t( cs_col, default: cs_col.humanize ) %></th>
+            <% end %>
+            <th><%=t :actions %></th>
+          </tr>
+        <% for conservation_status in @taxon.conservation_statuses %>
+          <tr>
+            <%- for cs_col in cs_cols -%>
+              <td>
+                <% if cs_col == "place" && conservation_status.place %>
+                  <%= link_to conservation_status.place.display_name, conservation_status.place %>
+                <% elsif cs_col == "iucn" %>
+                  <%=t conservation_status.iucn_status %>
+                  (<%= conservation_status.iucn_status_code %>)
+                <% elsif cs_col == "geoprivacy" %>
+                  <%= geoprivacy_with_consistent_case conservation_status.send( cs_col ) %>
+                <% elsif cs_col == "description" %>
+                  <% unless conservation_status.description.blank? %>
+                    <div class="stacked"><%= conservation_status.description %></div>
+                  <% end %>
+                  <% if conservation_status.user %>
+                    <div class="meta">
+                      <%=t :added_by_user_on_date_html, user: link_to_user( conservation_status.user ), date: l( conservation_status.created_at ) %>
+                    </div>
+                  <% end -%>
+                  <% if conservation_status.updater %>
+                    <div class="meta">
+                      <%=t :updated_by_user_on_date_html, user: link_to_user( conservation_status.updater ), date: l( conservation_status.updated_at ) %>
+                    </div>
+                  <% end -%>
+                <% else %>
+                  <%= conservation_status.send( cs_col ) %>
+                <% end %>
+              </td>
+            <% end %>
+            <td>
+              <%= link_to t(:edit), edit_conservation_status_path( conservation_status ), target: "_blank" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <% if @taxon.new_record? %>
+        <div class="quiet box">
+          <%=t :edit_this_taxon_after_you_create_it_to_add_conservation_statuses %>
+        </div>
+      <% else %>
+        <%= link_to t( :add_conservation_status ), new_taxon_conservation_status_path( taxon_id: @taxon.id ), class: "readmore", target: "_blank" %>
+      <% end %>
     </div>
   </fieldset>
+
+  <div class="clear">
+    <%= f.text_area :audit_comment, label: t(:note), placeholder: t(:why_are_you_making_this_change_optional) %>
+  </div>
   
   <div class="clear buttonrow">
-    <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
+    <% if @taxon.observose_warning_branch? -%>
+      <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving), confirm: t( :this_taxon_has_more_than_1000_alt ).gsub( /\s+/m, " " ) } %>
+    <% else %>
+      <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
+    <% end -%>
     <%= link_to t(:cancel), taxon, :class => 'button' %>
     <% if taxon.persisted? %>
       <%-

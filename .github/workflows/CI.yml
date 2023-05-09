@@ -8,7 +8,7 @@ on:
 
 jobs:
   pre_build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: fkirc/skip-duplicate-actions@master
         with:
@@ -17,13 +17,13 @@ jobs:
 
   build:
     needs: pre_build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     services:
       postgres:
-        image: postgis/postgis:11-2.5
+        image: postgis/postgis:12-2.5
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: inaturalist
+          POSTGRES_PASSWORD: inaturalist
           POSTGRES_DB: inaturalist_test
         ports:
           - 5432:5432
@@ -44,12 +44,13 @@ jobs:
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Use Ruby
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: '3.0'
+        bundler-cache: false
 
     - name: Configure sysctl limits
       run: |
@@ -61,7 +62,7 @@ jobs:
     - name: Runs Elasticsearch
       uses: miyataka/elastic-github-actions/elasticsearch@feature/plugin_support
       with:
-        stack-version: 7.6.0
+        stack-version: 7.17.1
         plugins: analysis-kuromoji
 
     - name: Ensure elasticsearch is reachable
@@ -69,11 +70,12 @@ jobs:
         curl --verbose --show-error http://localhost:9200
 
     - run: npm install
+    - run: npm run webpack
 
     - name: Install dependencies
       run: |
         sudo apt-get -qq update
-        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev ffmpeg
+        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
         gem install bundler
         bundle install --jobs 4 --retry 3
         echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
@@ -103,9 +105,9 @@ jobs:
     name: Notify Slack
     needs: build
     if: ${{ success() || failure() }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
-      - uses: iRoachie/slack-github-actions@v2.0.1
+      - uses: iRoachie/slack-github-actions@v2.3.2
         if: env.SLACK_WEBHOOK_URL != null
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}

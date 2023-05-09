@@ -1,4 +1,4 @@
-Inaturalist::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # In the development environment your application's code is reloaded on
@@ -27,7 +27,7 @@ Inaturalist::Application.configure do
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
-  config.cache_store = :dalli_store, CONFIG.memcached,
+  config.cache_store = :mem_cache_store, CONFIG.memcached,
     { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Raise an error on page load if there are pending migrations.
@@ -37,6 +37,8 @@ Inaturalist::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = false
+  config.assets.check_precompiled_asset = false
+
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -57,14 +59,8 @@ Inaturalist::Application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.log_level = :debug
 
-
-  Rails.logger = Logger.new(STDOUT)
-  Rails.logger.formatter = proc do |severity, datetime, progname, msg|
-    "[#{ datetime.to_formatted_s(:db) }] #{ msg }\n"
-  end
-
-  config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
-    return env['inat_ga_trackers'] if env['inat_ga_trackers']
-  }
+  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 end
 

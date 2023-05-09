@@ -25,3 +25,15 @@
 	margin-bottom: 20px;
 	margin-top: 20px;	
 }
+.truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.truncate-2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical; 
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

@@ -1,0 +1,155 @@
+- content_for(:title) do
+  = @title = is_me?( @selected_user ) ? t(:edit_observations) : t( :observations_by_user, user: h(@login) )
+
+- content_for(:extracss) do
+  = stylesheet_link_tag 'observations/by_login', 'observations/filters'
+  /[if lte IE 7]
+    = stylesheet_link_tag 'blueprint/ie', 'observations-ie'
+
+- content_for(:extrajs) do
+  = google_maps_js
+  :javascript
+    $(document).ready( function( ) {
+      // render map
+      $("#map").taxonMap({ appendMarkerToList: true, placement: "observations-login" });
+      window.map = $("#map").data("taxonMap");
+      // Reveal columns
+      $('.created_at').show();
+    });
+  = javascript_include_tag 'observations/by_login_bundle', 'map_bundle', 'observations/by_login'
+
+- content_for(:extrahead) do
+  %link{ rel: "alternate", type: "application/atom+xml",
+    title: t( :recent_atom_observations_by, :login => @login ),
+    href: url_for( controller: 'observations',
+    action: 'by_login', login: @login, format: 'atom' ) }
+  
+  %meta{ property: "og:title", content: t( :observations_by_user, user: @login ) }
+  %meta{ property: "og:url", content: request.original_url }
+  %meta{ property: "og:description", content: t( :users_latest_observations_on_site, user: @login, site: @site.name ) }
+  - photo_observations = (@observations || []).select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}[0..3]
+  - if photo_obs = photo_observations.last
+    - if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/}
+      %meta{ property: "og:image", content: @shareable_image_url = photo.medium_url }
+      %meta{ name: "twitter:image", content: @shareable_image_url }
+  - if @observer_provider_authorizations && twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"}
+    %meta{ name: "twitter:creator:id", content: twitter_pa.provider_uid }
+  - if photo_observations.size > 0
+    %meta{ name: "twitter:card", content: "gallery" }
+    - photo_observations.each_with_index do |o,i|
+      - next unless photo = o.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/}
+      %meta{ name: "twitter:image#{i}", content: photo.medium_url }
+  - else
+    %meta{ name: "twitter:card", content: "summary" }
+
+- unless @proj_obs_errors_obs.blank?
+  .error
+  %h3
+    = raw t(:the_following_observations_could, :link => link_to(@project.title, @project))
+    %ul
+      - for o in @proj_obs_errors_obs
+        %li.clear.stacked
+          = image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do
+            = link_to o.to_plain_s(:user => false), o
+            %div
+              = raw @proj_obs_errors[:errors][o.id].join("<br/>")
+
+.bootstrap
+  .container-fluid
+    .row
+      = render "shared/by_login_header_bootstrap", title: @title
+
+.tools-wrapper
+  #tools.buttonrow
+    - if is_me?(@selected_user)
+      = link_to t(:add_observations), upload_observations_path, :id => "newobsbutton", :class => "default button"
+      = link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button')
+      #batchcontrols.buttoncontainer{ style: "display: none" }
+        = link_to_function(t(:stop_editing), "batchEdit()", :id => "stop_batch_edit_button", :class => 'button')
+        = link_to_function(t(:edit_selected), "editSelected()", :id => "edit_selected_button", :class => 'button')
+        %span.inter.selectlinks
+          = t :select
+          = link_to_function(t(:all), "$('.observation .control input:checkbox').check()", :id => "select_all_button")
+          \|
+          = link_to_function(t(:today), "selectToday()", :id => "select_today_button")
+          \|
+          = link_to_function(t(:none), "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button")
+
+        = link_to_function t(:flickr_tagger), "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button", :title => t(:add_taxonomic_tags_to)
+        - unless @project_users.blank?
+          - link_to_toggle_menu( t(:add_to_project), 
+            :id => "add_to_project_button",
+            :class => "minor button", 
+            :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} ) do
+            %ul
+              - for project_user in @project_users
+                %li.inline.buttonrow
+                  = link_to_function( t(:add),
+                    "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})", 
+                    "data-loading-click" => t(:adding),
+                    :class => "glaucous button" )
+                  = link_to_function( t(:remove),
+                    "actOnSelected('#{remove_project_observation_batch_path(project_user.project)}', {method: 'post'})",
+                    "data-loading-click" => t(:removing),
+                    :class => "pale button" )
+                  = link_to h(project_user.project.title), project_user.project, :class => "inter"
+
+        = link_to_function(t(:delete_selected), "deleteSelected()", :id => "delete_selected_button", :class => 'minor button')
+    = link_to_function(t(:search), 'toggleFilters(this)', :id => 'filters_button', :class => "inter#{' open' if @filters_open} minor button")
+  #filters.clear{ @filters_open ? {} : { style: "display: none" } }
+    = form_tag observations_by_login_path(@login), :method => :get do
+      = render :partial => 'filter_fields', :locals => { :selected_taxa => @iconic_taxa }
+    
+#maincol
+  #listcol
+    .observations.table
+      = render :partial => 'observations_table_header'
+      = render(:partial => 'cached_component', :collection => @observations)
+    - if @observations.empty?
+      #no_obs_message.description
+        = t :no_matching_observations
+        %br
+        %br
+        - if logged_in? && current_user.login == @login
+          = link_to t(:add_observations), upload_observations_path, :class => 'default inline button'
+    #pagination
+      - if logged_in?
+        = form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f|
+          = hidden_fields_for_params(:without => [:per_page, :page, :preferences])
+          = f.label t(:per_page)
+          = f.select :per_page, ApplicationController::PER_PAGES, {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()"
+      = will_paginate @observations, renderer: INatLinkRenderer, skip_right: true
+
+  #mapcol
+    - map_attributes = setup_map_tag_attrs( { observations: @observations,
+      focus: "observations",
+      flag_letters: true,
+      min_y: params[:swlat],
+      min_x: params[:swlng],
+      max_y: params[:nelat],
+      max_x: params[:nelng],
+      gesture_handling: "auto" }.merge( @map_params || {} ) )
+    = content_tag("div", "", map_attributes.merge({ id: "map" }))
+    = link_to_function( t(:redo_search_in_map_area), "redoSearchInMapArea()", 
+      :id => 'redo_search_in_map_area_button', "data-loading-click" => t(:loading) )
+
+.clear
+  #feeds.small.ui.description
+    - if is_me?(@selected_user)
+      %span
+        = t :embed
+        \:
+        = link_to t(:widget), observations_widget_path
+    
+    %span.feeds
+      = t :feeds
+      \:
+      - feed_params = request.query_parameters.reject do |key,value|
+        - ObservationsController::REJECTED_FEED_PARAMS.include?(key)
+      = link_to(t(:atom), observations_by_login_feed_path(@login, :format => :atom, :params => feed_params), :class => 'atomlink')
+
+    - if is_me?(@selected_user)
+      %span.feeds
+        = t :export
+        \:
+        = link_to(t(:csv), export_observations_path(feed_params.merge(:user_id => @selected_user.login)), :class => 'csvlink', :rel => "nofollow")

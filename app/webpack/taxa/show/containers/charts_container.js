@@ -22,13 +22,15 @@ function mapStateToProps( state ) {
     || !Object.keys( state.observations.monthOfYearFrequency ).includes( "research" );
   const seasonalityKeys = _.keys(
     monthOfYearFrequencyVerifiable
-  ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
+  )
+    .map( monthNum => Number( monthNum ) )
+    .sort( ( monthNumA, monthNumB ) => monthNumA - monthNumB );
   const seasonalityColumns = [];
   const seriesNames = [
     "verifiable",
     "research"
   ];
-  const monthOfYearFrequencies = Object.assign( {}, state.observations.monthOfYearFrequency );
+  const monthOfYearFrequencies = { ...state.observations.monthOfYearFrequency };
   const chartedFieldValues = { };
   _.each( state.taxon.fieldValues, ( values, termID ) => {
     if ( !_.includes( TERMS_TO_CHART, values[0].controlled_attribute.label ) ) {

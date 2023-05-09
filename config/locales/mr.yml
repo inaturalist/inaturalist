@@ -1,15 +1,142 @@
 mr:
+  x_comments:
+    one: '%{count} टिप्पणी'
+    other: '%{count} टिप्पण्या'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> टिपण्णी'
+    other: '<span class="count">%{count}</span> टिप्पण्या'
+  x_faves:
+    one: '%{count} आवडते'
+    other: '%{count} आवडती'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> निशाण निरसन"
+    other: "<span class='count'>%{count}</span> निशाणे निरसन"
+  x_identifications:
+    one: '%{count} ओळख'
+    other: '%{count} ओळखी'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> ओळख'
+    other: '<span class="count">%{count}</span> ओळखी'
+  x_identifications_:
+    one: '%{count} ओळख'
+    other: '%{count} ओळखी'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> ओळखकर्ता'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ओळखकर्ता'
+  x_languages:
+    one: "%{count} भाषा"
+    other: "%{count} भाषा"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} जीवन यादी प्रथम"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} जीवन यादी प्रथम"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> नोंदवही नोंद'
+    other: '<span class="count">%{count}</span> नोंदवही नोंदी'
+  x_matching_taxa:
+    one: '%{count} मिळताजुळता वर्ग'
+    other: '%{count} मिळतेजुळते वर्ग'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> मिळताजुळता वर्ग'
+    other: '<span class="count">%{count}</span> मिळतेजुळते वर्ग'
+  x_misidentifications_of_this_species:
+    one: "%{count} } ह्या जातीची इथे चुकीची ओळख"
+    other: "%{count} } ह्या जातीच्या इथे चुकीच्या ओळखी"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} } ह्या जातीची इथे चुकीची ओळख"
+    other: "%{count} } ह्या वर्गातील जातीच्या इथे चुकीच्या ओळखी"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} } ह्या जातीची इथे चुकीची ओळख%{rank}"
+    other: "%{count} } ह्या जातीच्या इथे चुकीच्या ओळखी %{rank}"
+  x_observations:
+    one: "%{count} निरीक्षण"
+    other: "%{count} निरीक्षणे"
+  x_observations_:
+    one: "%{count} निरीक्षण"
+    other: "%{count} निरीक्षणे"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> निरीक्षण"
+    other: "<span class='count'>%{count}</span> निरीक्षणे"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} निरीक्षण</a>"
+    other: "<a href='%{url}'>%{count} निरीक्षणे</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> निरीक्षण समीक्षा"
+    other: "<span class='count'>%{count}</span> निरीक्षणे समीक्षा"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> निरीक्षक'
+    other: '<span class="count">%{count}</span> निरीक्षक'
+  x_others:
+    one: "%{count} इतर"
+    other: "%{count} इतर अनेक"
+  x_people:
+    one: "%{count} व्यक्ती"
+    other: "%{count} अनेक व्यक्ती"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}व्यक्ती </strong> मदत%{user} करणाऱ्या <strong>%{y} ओळखण्यासाठी</strong>"
+  x_photos:
+    one: "%{count} फोटो"
+    other: "%{count} छायाचित्रे"
+  x_new_species:
+    one: "%{count} नवीन प्रजाती"
+    other: "%{count} नवीन प्रजाती"
+  x_new_users:
+    one: '%{count} नवीन वापरकर्ता'
+    other: '%{count} नवीन वापरकर्ते'
+  x_species:
+    one: '%{count} प्रजाती'
+    other: '%{count} प्रजाती'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> जाती"
+    other: "<span class='count'>%{count}</span> प्रजाती"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} प्रजाती</a>"
+    other: "<a href='%{url}'>%{count} प्रजाती</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} चाळणी केलेले निरीक्षण"
+    other: "%{count} चाळणी केलेली निरीक्षणे"
+  x_taxa:
+    one: "%{count} वर्ग"
+    other: "%{count} वर्ग"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> पाहिलेला वर्ग"
+    other: "<span class='count'>%{count}</span> पाहिलेले वर्ग"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> संशोधन दर्जाप्राप्त निरीक्षण"
+    other: "<span class='count'>%{count}</span> संशोधन दर्जाप्राप्त निरीक्षणे"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> संशोधन दर्जाप्राप्त निरीक्षण प्रजाती किंवा त्यापेक्षा खालच्या पातळीपर्यंत ओळख"
+    other: "<span class='count'>%{count}</span> संशोधन दर्जाप्राप्त निरीक्षणे प्रजाती किंवा त्यापेक्षा खालच्या पातळीपर्यंत ओळख"
+  x_sounds:
+    one: "%{count} ध्वनी"
+    other: "%{count} ध्वनी"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> छाननी केलेला वर्ग"
+    other: "<span class='count'>%{count}</span> छाननी केलेले वर्ग"
+  x_taxa_matching_current_filters:
+    one: "%{count} सध्याच्या चाळणीशी सुसंगत वर्ग"
+    other: "%{count} सध्याच्या चाळणीशी सुसंगत वर्ग"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> वर्ग बदल जोडलेला"
+    other: "<span class='count'>%{count}</span> वर्ग बदल जोडलेले"
   _100_day_trends: १०० दिवसांचा कल
   _percent_ID_d: "% ओळख पटलेले"
   a_community_for_naturalist: एक समुदाय निसर्गवादींसाठी
+  a_default_taxon_name_will_automatically_created: |
+    मूलभूत वर्ग नाव आपोआप या वर्गाच्या वैज्ञानिक नावाच्या गुणधर्मावरून तयार केले जाईल.
+    जेव्हा तुम्ही हा नवीन वर्ग सेव्ह करता, तेव्हा तुम्ही इथे इतर नावे (सामान्य नावे, कालबाह्य वैज्ञानिक नावे इ.) जोडू शकाल.
   a_flag_for_x: "निशाण %{x} साठी"
   a_member_of_taxon_html: "%{taxon} चा सदस्य"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ते Z, वर्णमालेनुसार"
   about: च्या बाबत
-  about_blocking: प्रतिबंधाबाबत
   about_charts: तक्त्यांबाबत
   about_community_taxa: सामूहिक वर्गसहमतीबाबत
   about_complete_taxa: संपूर्ण वर्गांसंबंधी
@@ -19,16 +146,857 @@ mr:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: आस्थापना साधनांविषयी
+  about_license_options: परवाना पर्यायांविषयी
   about_licenses: परवानान्यांविषयी
-  about_muting: निःशब्दीकरणासंबंधी
   #Header for a section describing taxon names
   about_names: नावांविषयी
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "च्या विषयी %{place}"
   about_places: स्थानांविषयी
-  about_the_cc_licenses: '"क्रिएटिव्ह कॉमन्स लायसन्स" विषयी'
-  about_these_licenses: विविध परवानान्यांविषयी
+  about_taxon_ranges: वर्गमर्यादांविषयी
+  about_taxon_ranges_desc: |
+    वर्गमर्यादा एखाद्या वर्गाचे पृथ्वीवरील वितरण दर्शवितात. सामान्यतः वर्गमर्यादा IUCN रेड लिस्ट वरून निश्चित केल्या जातात.
+  about_the_network: नेटवर्कविषयी
   about_this_bioblitz: '"बायोब्लिट्झ" विषयी'
+  about_this_map: ह्या नकाशाविषयी
+  about_this_project: ह्या प्रकल्पाविषयी
+  about_trusting_projects: प्रकल्पांच्या विश्वसनीयतेविषयी
+  about_trusting_projects_options_any: ह्या प्रकल्पातील आपली सर्व निरीक्षणे
+  about_trusting_projects_options_any_desc: |-
+    यामध्ये आपण जिथे भौगोलिकता "अस्पष्ट" किंवा "खाजगी" अशी निवडलेली केली आहे अशा निरीक्षणांचा समावेश आहे, उदा. आपल्या परसदारातील किंवा आपल्याला इतर लोकांना माहिती होऊ नये अशी इच्छा आहे अशा ठिकाणांवरील निरीक्षणे.
+  about_trusting_projects_options_taxon: |-
+    या प्रकल्पामधील फक्त तुमची निरीक्षणे ज्यामध्ये वर्गांना असलेल्या धोक्यामुळे निर्देशांक अस्पष्ट आहेत
+  about_trusting_projects_options_taxon_desc: |-
+    बर्‍याच प्रकल्पांना फक्त अस्पष्ट निर्देशांकाबद्दल माहिती पुरेशी आहे कारण निरीक्षणामध्ये धोक्यात असलेल्या वर्गांचा समावेश आहे
+  about_trusting_projects_overview: |-
+    लपवलेले नकाशा-निर्देशांक बघण्याची परवानगी मंजूर केल्याने, तुमच्या निरीक्षणांचे खरे आणि निश्चित स्थान प्रकल्प व्यवस्थापकांना बघण्याची अनुमती मिळेल. शास्त्रज्ञ किंवा संसाधन व्यवस्थापकांना अधिक विश्लेषणासाठी आणि योग्य निर्णय घेण्यासाठी हि परवानगी अतिशय महत्वाची आहे.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    आपले गोपनीय निर्देशांक ज्यांना उबलब्ध आहेत असे प्रकल्प व्यवस्थापक:
+  about_trusting_projects_warning: |-
+    लक्षात घ्या की प्रकल्प व्यवस्थापक प्रकलपाचे मापदंड बदलू शकतात जेणेकरून तुमची निरीक्षणे समाविष्ट केली जातील, आणि ते कोणत्याही वेळी प्रकल्पात व्यवस्थापक जोडू किंवा घटवू शकतात. या बदलांविषयी आपल्याला वेळोवेळी सूचना प्राप्त होतील, परंतु आपण मूलत: आपल्या खाजगी स्थान माहितीबाबत या प्रकल्पावर विश्वास ठेवत आहात, तेव्हा सतर्क रहा.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    आपण आपले गोपनीय निर्देशांक जाहीर करण्याचे ठरवु शकता
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: अनपेक्षित मतभेदांबद्दल
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'अचूकता (मी)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: अचूकता च्यावर
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: अचूकता च्याखाली
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: अचूकता च्याखाली किंवा अज्ञात
+  account: खाते
+  account_creation: खातेनिर्मिती
+  account_settings: खाते सेटिंग्स
+  accept_community_identifications: सामुदायिक ओळख स्वीकारा
+  accuracy: अचूकता
+  accuracy_meters: अचूकता (मीटरमध्ये)
+  accuracy_of_the_coordinates: |
+    भौगोलिक निर्देशांकांची अचूकता मीटरमध्ये. आपण वर दिलेल्या "बदल करा" लिंक वर क्लिक करून किंवा नकाशातील खुणेवर क्लिक करून आणि हँडल ड्रॅग करून ह्यात बदल करू शकता. प्रयत्नपूर्वक वर्तुळ इतके मोठे बनवा की तुम्हाला खात्री असेल की तुम्ही त्याच्या आत कुठेतरी आहात.
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: कृती
+  actions: कृती
+  active: सक्रिय
+  #Status of a complete set that is available for use
+  active_complete_set_status: सक्रिय
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: सक्रिय
+  active_users: सक्रिय वापरकर्ते
+  activity: गतिविधी
+  adapted_by_name_from_a_work_by_original: "%{name} नी %{original} च्या कामातून घेतलेले"
+  add: जोडा
+  add_a_batch_of_observations: निरीक्षणांचा संच जोडा
+  add_a_batch_of_taxa: वर्गांचा संच जोडा
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: ठळक मुद्द्यांची यादी जोडा
+  add_a_comment: टिपण्णी जोडा
+  add_a_field: क्षेत्र जोडा
+  add_a_flag: निशाण जोडा
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: लिंक जोडा
+  add_a_name: नाव जोडा
+  add_a_note: टीप जोडा
+  add_a_new_change_group: नवीन समूहबदल जोडा
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: क्रमांकित यादी जोडा
+  add_a_single_observation: निरीक्षण जोडा
+  add_a_taxon: वर्ग जोडा
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    तुम्हाला नाव बदलायचे असल्यास <a target="_blank" href="%{url}">वर्ग अदलाबदल</a> जोडा
+  add_an_assessment: मूल्यांकन जोडा
+  add_an_identification: ओळख सुचवा
+  add_an_observation: निरीक्षण नोंदवा
+  add_an_observation_of: "%{taxon} चे निरीक्षण जोडा"
+  add_an_observation_to_project_html: '%{project} मध्ये निरीक्षण जोडा'
+  add_annotations_for_x: '"%{x}" च्या साठी टीप जोडा'
+  add_annotations_for_controlled_attribute:
+    sex: '"लिंग" च्या साठी टीप जोडा'
+    plant_phenology: '"वनस्पती फलोद्गदिकी" च्या साठी टीप जोडा'
+    life_stage: '"जीवनावस्था" च्या साठी टीप जोडा'
+    evidence_of_presence: '"उपस्थितीचा पुरावा" च्या साठी टीप जोडा'
+  add_another_flag: आणखी निशाण जोडा
+  add_another_photo: आणखी फोटो जोडा
+  add_another_section: आणखी विभाग जोडा
+  add_another_subscription: आणखी सदस्यता जोडा
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: प्रकल्प विशेष जोडा
+  add_batch: संच जोडा
+  add_blocked_users: प्रतिबंधित वापरकर्ते जोडा
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: ठळक मजकूर जोडा
+  add_comma_separated_tags: "कॉमा सेपरेटेड टॅग्स जोडा"
+  add_comment: टिपण्णी जोडा
+  add_conservation_status: संवर्धन स्थिती जोडा
+  add_custom_project_fields: स्वनिर्मित प्रकल्प क्षेत्र जोडा
+  add_edit_flags: निशाणे जोडा/बदला
+  add_editor: संपादक जोडा
+  add_description: "%{description_name} जोडा"
+  add_from_your_observations: आपल्या निरीक्षणांमधून जोडा
+  add_link: लिंक जोडा
+  add_higher_level_taxon: उच्चस्तरीय वर्ग जोडा (उदा. "पक्षी")
+  add_id: ओळख जोडा
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: इटॅलिक मजकूर जोडा
+  add_muted_users: मूक वापरकर्ते जोडा
+  add_new_lexicon: नवीन शब्दकोश जोडा
+  add_new_photos_by_their_ids: फ्लिकर आयडीद्वारे नवीन फोटो जोडा (क्रिएटिव्ह कॉमन्स असणे आवश्यक आहे!)
+  add_new_place: नवीन ठिकाण जोडा
+  add_new_rule: नवीन नियम जोडा
+  add_new_source: "नवीन स्रोत जोडा..."
+  add_new_taxon_name: नवीन वर्ग नाव जोडा
+  add_notes_about_this_taxon: या ठिकाणी या वर्गाबद्दल टीपा जोडा, उदा. कुठे आणि केव्हा सापडते.
+  add_obs_from_a_link: "सूचीमधून निरीक्षण जोडा: %{link}"
+  add_obs_from_a_list: सूचीमधून निरीक्षण जोडा
+  add_observations: निरीक्षणे जोडा
+  add_observations_by_checking_off: सूचीमधून प्रजाती वगळून निरीक्षणे जोडा.
+  add_observations_project: या प्रकल्पामध्ये निरीक्षणे जोडा
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>जोडा</span> <span>निरीक्षणे</span>"
+  #Prompt to add a new journal post
+  add_one: एक जोडा!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: आता एक जोडा
+  add_place: ठिकाण जोडा
+  add_alive_or_dead_alive_annotation: 'जोडा "जिवंत किंवा मृत: जिवंत" टीप'
+  add_alive_or_dead_cannot_be_determined_annotation: 'जोडा "जिवंत किंवा मृत: निश्चित केले जाऊ शकत नाही" टीप'
+  add_alive_or_dead_dead_annotation: 'जोडा "जिवंत किंवा मृत: मृत" टीप'
+  add_plant_phenology_budding_annotation: 'जोडा "वनस्पती फलोद्गदिकी: कलिका"'
+  add_plant_phenology_flower_budding_annotation: 'जोडा "वनस्पती फलोद्गदिकी: पुष्प कलिका" टीप'
+  add_plant_phenology_flowering_annotation: 'जोडा "वनस्पती फलोद्गदिकी: फुलोरा" टीप'
+  add_plant_phenology_fruiting_annotation: 'जोडा "वनस्पती फलोद्गदिकी: फळधारणा" टीप'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'जोडा "वनस्पती फलोद्गदिकी: फुलण्याचा कोणताही पुरावा नाही" टीप'
+  add_life_stage_adult_annotation: 'जोडा "जीवनावस्था: प्रौढ" टीप'
+  add_life_stage_teneral_annotation: 'जोडा "जीवनावस्था: अपरिपकव" टीप'
+  add_life_stage_subimago_annotation: 'जोडा "जीवनावस्था: अर्धविकसित" टीप'
+  add_life_stage_pupa_annotation: 'जोडा "जीवनावस्था: कोष" टीप'
+  add_life_stage_nymph_annotation: 'जोडा "जीवनावस्था: अविकसित" टीप'
+  add_life_stage_larva_annotation: 'जोडा "जीवनावस्था: अळी" टीप'
+  add_life_stage_juvenile_annotation: 'जोडा "जीवनावस्था: अल्पवयीन" टीप'
+  add_life_stage_egg_annotation: 'जोडा "जीवनावस्था: अंडे" टीप'
+  add_evidence_of_presence_organism_annotation: 'टिप्पणी जोडा "उपस्थितीचा पुरावा: जीव"'
+  add_evidence_of_presence_feather_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पीस"'
+  add_evidence_of_presence_scat_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: मल"'
+  add_evidence_of_presence_track_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पाऊलखुणा"'
+  add_evidence_of_presence_bone_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: अस्थी"'
+  add_evidence_of_presence_molt_annotation: 'टिप्पणी जोडा: उपस्थितीचा पुरावा: कात'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'नातेसंबध जोडा'
+  #As in a Guide Section
+  add_section: विभाग जोडा
+  add_several_observations_at_once: एकाच वेळी अनेक निरीक्षणे जोडा.
+  add_sex_female_annotation: 'जोडा "लिंग: मादी" टीप'
+  add_sex_male_annotation: 'जोडा "लिंग: नर" टीप'
+  add_sex_cannot_be_determined_annotation: 'जोडा "लिंग: निश्चित केले जाऊ शकत नाही" टीप'
+  add_some_now: आता काही जोडा
+  add_tag: टॅग जोडा
+  add_tags: टॅग्स जोडा
+  add_tags_to_selected_taxa: निवडलेल्या वर्गामध्ये टॅग जोडा
+  add_taxa: वर्ग जोडा
+  add_taxon_batch_to: "%{list} मध्ये वर्ग गट जोडा"
+  add_taxon_range: वर्ग श्रेणी जोडा
+  add_taxonomic_tags_to: "निवडक फ्लिकर फोटोंना वर्गीकरण टॅग्स जोडा &raquo;"
+  add_to_a_scheme: एखाद्या योजनेशी जोडा
+  add_to_a_project: एखाद्या प्रकल्पाशी जोडा
+  add_to_calendar: कॅलेंडरमध्ये जोडा
+  add_to_checklist: चेकलिस्टमध्ये जोडा
+  add_to_favorites: आवडीचे मध्‍ये जोडा
+  add_to_list: यादीमध्ये जोडा
+  add_to_project: प्रकल्पामध्ये जोडा
+  add_to_your_list: स्वतःच्या यादीमध्ये जोडा
+  add_your_email_to_get: |
+    आपल्या निरीक्षणाबद्दल समुदायाकडून अभिप्राय मिळवण्यासाठी आपला ई-मेल जोडा. जर आपण तो जाहीर करू शकत नसाल, तर काही काळाने पुन्हा भेट द्या.
+  add_your_own_observations_at: "आपली निरीक्षणे येथे %{site_name} जोडा"
+  added: जोडलेले
+  added!: जोडलेले!
+  added_as_a_part_of_a_taxon_change_html: |
+    चा भाग म्हणून जोडलेले
+    <a target="%{target}" class="%{class}" href="%{url}">taxon change</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    चा भाग म्हणून जोडलेले
+    <a target="%{target}" class="%{class}" href="%{url}">taxon merge</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    चा भाग म्हणून जोडलेले
+    <a target="%{target}" class="%{class}" href="%{url}">taxon split</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Added as part of a
+    <a target="%{target}" class="%{class}" href="%{url}">taxon swap</a>
+  added_by: नी जोडलेले
+  added_by_user_on_date_html: "नी जोडलेले %{user} ला %{date}"
+  added_on_datetime: "ला जोडलेले %{datetime}"
+  added_to_favorites_html: |
+    जोडलेले मध्ये <a href="%{url}">आवडीचे</a>
+  adding: "जोडले जात आहे..."
+  adjust_brightness: ब्राईटनेस नियंत्रित करा
+  admin: प्रशासक
+  admin_s: प्रशासक(अनेक)
+  admin_only: प्रशासक-राखीव
+  admin_tools: प्रशासक साधने
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: संलग्न संघटना
+  agree_: सहमत
+  agree?: सहमत ?
+  agree_with_current_taxon: सध्याच्या वर्गाशी सहमती दर्शवा
+  agreeing: सहमती दर्शवत आहे...
+  aka: उर्फ
+  #Noun, title of a popup alerting you to something
+  alert: इशारा
+  all: सर्व
+  all_comments: सर्व टिप्पण्या
+  all_flags_must_be_resolved: सर्व ध्वजांचे निराकरण करणे आवश्यक आहे
+  all_life: सर्व जीवन
+  all_names: सर्व नावे
+  all_observations: सर्व निरीक्षणे
+  all_photos: सर्व फोटोज
+  all_places: "सर्व ठिकाणे"
+  all_projects: सर्व प्रकल्प
+  all_rank_added_to_the_database:
+    phylum: डेटाबेसमध्ये जोडले गेले सर्व विभाग
+    subphylum: डेटाबेसमध्ये जोडले गेले सर्व उप-विभाग
+    superclass: डेटाबेसमध्ये जोडले गेले सर्व विभाग
+    class: डेटाबेसमध्ये सर्व वर्ग जोडले गेले
+    subclass: डेटाबेसमध्ये सर्व उपवर्ग जोडले गेले
+    infraclass: डेटाबेसमध्ये सर्व प्रतिवर्ग जोडले गेले
+    superorder: डेटाबेसमध्ये सर्व गण जोडले गेले
+    order: डेटाबेसमध्ये सर्व गण जोडले गेले
+    suborder: डेटाबेसमध्ये सर्व उपगण जोडले गेले
+    infraorder: डेटाबेसमध्ये सर्व प्रतिगण जोडले गेले
+    superfamily: डेटाबेसमध्ये सर्व कुळे जोडली गेली
+    epifamily: डेटाबेसमध्ये सर्व कुळे जोडली गेली
+    family: डेटाबेसमध्ये सर्व कुळे जोडली गेली
+    subfamily: डेटाबेसमध्ये सर्व उपकुळे जोडली गेली
+    species: डेटाबेसमध्ये सर्व जाती जोडल्या गेल्या
+    subspecies: डेटाबेसमध्ये सर्व उपजाती जोडल्या गेल्या
+  all_taxa:
+    amphibians: उभयचर
+    animals: प्राणी
+    arachnids: अष्टपाद
+    birds: पक्षी
+    fungi: कवक
+    fungi_including_lichens: कवक
+    insects: कीटक
+    mammals: सस्तन प्राणी
+    mollusks: मृदुकाय प्राणी
+    other_animals: इतर प्राणी
+    plants: वनस्पती
+    reptiles: सरपटणारे प्राणी
+    life: जीवन
+  all_taxa_: सर्व वर्गीकरणे
+  all_taxa_in_this_guide: ह्या मार्गदर्शकातली सर्व वर्गीकरणे
+  all_taxonomic_groups: "&laquo; वर्गीकरणातील सर्व समूह"
+  all_updates: सर्व अद्यतने
+  already_have_an_account_log_in_html: याआधीच खाते आहे? <strong>लॉग इन करा</strong>
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any: कोणत्याही
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: कोणत्याही
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: कोणत्याही
+  #Label for an option to show content with any annotation value
+  any_annotation_value: कोणत्याही
+  #Label for an option to show content from any date
+  any_date: कोणतीही
+  #Label for an option to show content with any establishment means
+  any_establishment: कोणतीही
+  #Label for an option to show/include content by any user
+  any_user: कोणतेही
+  anyone: कोणीही
+  app_owner_application_explanation_required: |
+    आपण काय तयार करू इच्छिता याचे अधिक तपशीलवार स्पष्टीकरण प्रदान करणे आवश्यक आहे.
+  apply_app_owner: लागू करा
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: लागू करा
+  apply_to_be_an_app_owner: अॅप मालक होण्यासाठी अर्ज करा
+  are_you_sure?: नक्की ?
+  are_you_sure_no_undo: तुमचं नक्की आहे? हे पूर्ववत केले जाऊ शकत नाही.
+  are_you_sure_delete_conservation_status: |
+    तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
+  are_you_sure_delete_post: आपण खरंच ही टिप्पणी हटवू इच्छिता?
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, ने अपलोड केले %{user}"
+  birthday: जन्मतारीख
+  block: प्रतिबंध
+  blocking_description: अवरोधित केल्याने तुमचा आणि दुसर्‍या वापरकर्त्यामधील कोणताही संवाद प्रतिबंधित होतो. काही विशिष्ट परिस्थितींमध्ये, जसे की तुमच्या व्यवहारांवर कोणी पाळत ठेऊन आढळल्यास किंवा तुमच्याबरोबर कोणी गैरवर्तन करीत असल्यास, तुमची सुरक्षितता लक्षात घेता, अशा प्रकारचा प्रतिबंध लावता येऊ शकतो.
+  calendar: दिनदर्शिका
+  #Plural noun, as in changes to a taxon record over time
+  changes: बदल
+  check_this_box_if_html: |
+    जर तुम्हाला अपलोड केलेल्या मजकुरास <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial license</a> हा परवाना लागू करायचा असेल तर पुढील बॉक्समध्ये खूण करा. याचा अर्थ इतर कोणीही परवानगी मागितल्याशिवाय तोपर्यंत तुमचे फोटो आणि/किंवा निरीक्षणांची प्रत काढू शकतो आणि पुनर्वापर करू शकतो, जोपर्यंत तुम्हाला त्याचे श्रेय दिले जाते आणि कामांचा व्यावसायिक वापर होत नाही. तुम्ही वेगळा परवाना निवडू शकता किंवा नंतर परवाना काढून टाकू शकता, परंतु आपली माहिती इतर संशोधकांसोबत सामायिक करण्यासाठी हा सर्वोत्तम परवाना आहे.
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: कोड योगदानकर्ते
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: टिपण्णी लपविलेली
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: टिपण्णी न लपविलेली
+  community: समुदाय
+  community_guidelines: समुदाय मार्गदर्शक तत्वे
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: संगणकीय दृश्य प्रतिमा
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: समाविष्ट
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: प्रलंबित
+  conservation_status_created: संवर्धन स्थिती निर्माण केली
+  conservation_status_deleted: संवर्धन स्थिती हटवली
+  conservation_status_updated: संवर्धन स्थिती अद्ययावत केली
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: कोणताही
+    pupa: कोष
+    larva: अळी
+    egg: अंडे
+    evidence_of_presence: उपस्थितीचा पुरावा
+    #As in the feather on a bird
+    feather: पीस
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: जीव
+    #Fecal matter, not regurgitated matter
+    scat: मल
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: पाऊलखुणा
+    #Endoskeletal remains, like a deer bone
+    bone: हाड
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: कात
+  controlled_term_definitions:
+    bone: |
+      प्रामुख्याने अस्थींचे अवशेष, याव्यतिरिक्त जीवाच्या अखंड शरीरावरील हाडांचा काही भाग प्रदर्शित झाल्यास तो "जीव" म्हणून निर्देशित करावा
+    feather: जीवापासून विलग झालेले पीस
+    molt: कात किंवा टाकून दिलेली त्वचा/बाह्यअस्थी
+    organism: संपूर्ण किंवा अर्धवट जीव
+    scat: विष्ठा
+    track: खुणा/पदचिन्हे
+  create_an_account: खाते उघडा
+  #Label for a custom boundary for an observation search
+  custom_boundary: स्वनिर्मित सीमारेषा
+  dashboard: मुख्यपटल
+  date_obscured_notice: वैयक्तिक किंवा सजीवाच्या गोपनीयतेच्या संरक्षणासाठी तारीख अनिश्चित ठेवली आहे
+  default_display_time_zone: सर्वसाधारण दृश्यमान वेळ क्षेत्र
+  default_time_zone_desc: |
+    हे सर्वसाधारण वेळ क्षेत्र आहे. अंतिम वेळ क्षेत्र निरीक्षणाच्या स्थानावर आधारित जेव्हा ते जतन केले जाते त्यानुसार नियुक्त केले जाईल.
+  devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
+    registrations:
+      updated_but_not_signed_in: "तुमचे खाते यशस्वीरित्या अपडेट केले गेले आहे, परंतु तुमचा पासवर्ड बदलला असल्याने, तुम्हाला पुन्हा साइन इन करणे आवश्यक आहे."
+  #Label for a button that dismisses an alert or popup
+  dismiss: बाद करा
+  download_caps: डाउनलोड करा
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: मसुदा द्वारे %{user}
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: वर्तुळाकार सीमारेषा रेखाटा
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: आयताकार सीमारेषा रेखाटा
+  edit_conservation_status: संवर्धन स्थिती बदला
+  edit_observations: निरीक्षणात बदल करा
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
+  email: ई-मेल
+  email_conf_banner_email_delivered_click_link: |
+    पुष्टीकरण ईमेल पाठवली आहे. कृपया ईमेलमधील लिंकवर क्लिक करा.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>तुमच्या संपर्कांच्या सूचीमध्ये <code>%{email}</code> जोडा आणि
+    <a href="%{url}">दुसऱ्या पुष्टीकरण ईमेलची विनंती करा</a>.</strong> जर तुमच्या ईमेल
+    प्रदात्याने पुष्टीकरण ईमेल अवरोधित केले असेल, तर कदाचित हे त्यांना पटवून देईल की तुम्हाला खरोखरच आमच्याकडून ईमेल हवा आहे.
+  email_conf_banner_check_your_spam_folder_html: <strong>तुमचे स्पॅम फोल्डर तपासा</strong>
+  email_conf_banner_contact_us_html: अद्याप काम करत नाही? आम्हाला %{email} वर ईमेल करा जेणेकरून आम्ही तुम्हाला मदत करू शकू.
+  email_conf_banner_please_click: |
+    तुमच्या ईमेल पत्त्याची पुष्टी करण्यासाठी कृपया तुमच्या ईमेलवर प्राप्त झालेल्या लिंकवर क्लिक करा.
+  email_conf_banner_search_for_emails_html: <strong>कडून आलेले ईमेल शोधा<code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    आम्ही आपल्याला %{date} रोजी पुष्टीकरण ईमेल पाठवले. आपल्याला जर ते मिळाले नसेल, तर आपण पुढील गोष्टी करू शकता:
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    इनपुट वर्गापैकी कोणती निरीक्षणे आऊटपुट वर्गात बदलली जातील आणि कोणती विभक्त झाल्यानंतर सामाईक पूर्वजापर्यंत सीमित केली जातील याचा अंदाज लावा. या संगणनास थोडा वेळ लागू शकतो. निरीक्षणांसाठीचे दुवे २०० च्या उपसंचांमध्ये विभागले आहेत.
+  explore: सर्वेक्षण
+  favorites: "आवडते"
+  #Button to show fewer places
+  fewer__context_places: कमी
+  find_a_post: पोस्ट शोधा
+  find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
+  forum: मंच
+  grid: ओळखलेली निरीक्षणे
+  guides: मार्गदर्शक
+  help: मदत
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "समायोजित करण्याचे तासः"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    तथापि, ते पुनर्वापरासाठी परवानाकृत नाही आणि परवाना निवडींचा आदर करणाऱ्या संग्रहांशी डेटासहित सामायिक केले जाणार नाही.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    तुम्ही तुमची परवाना प्राधान्ये बदलू शकता
+    <a class="linky" href="/users/edit#content">खाते सेटिंग्ज</a>.
+  identify: ओळखा
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: ओळख मजकूर लपविलेला नाही
+  identifications: ओळखलेली निरीक्षणे
+  inaturalist_global_year_in_review: "iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन"
+  #As in a reason to flag something
+  inappropriate: अयोग्य
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: निष्क्रिय
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: निष्क्रिय
+  inaturalist_is_a_joint_initiative: "%{site_name} हा कॅलिफोर्निया अकॅडमी ऑफ सायन्सेस आणि नॅशनल जिऑग्राफिक सोसायटी यांचा संयुक्त उपक्रम आहे."
+  join_the_largest_group_of_naturalists_in_the_world: जगातील निसर्गशास्त्रज्ञांच्या सर्वात मोठ्या गटात सामील व्हा!
+  journal: नोंदवही
+  journal_posts: नोंदवहीतील नोंदी
+  labels: खूण चिट्ठी
+  learn: जाणून घ्या
+  learn_more: अधिक जाणून घ्या
+  lexicons:
+    aou_4_letter_codes: AOU ४-अक्षरी कोड्स
+    aou_6_letter_codes: AOU ६-अक्षरी कोड्स
+    gujarati: गुजराती
+    hokkien: हाकीयन
+    marathi: मराठी
+    persian: पर्शियन
+    serbian: सर्बियन
+    swahili: स्वाहिली
+    uyghur: वीगर
+  #Button show less text
+  less__context_text: कमी
+  list: सूची
+  list_deleted: सूची हटवली.
+  list_saved: सूची जतन केली.
+  list_tooltip: सूची दृश्य दाखवा
+  list_updated: सूची अद्ययावत केली!
+  list_views:
+    plain: सामान्य
+    taxonomic: वर्गीकरणासंबधी
+    photo: फोटो
+  list_was_successfully_created: सूची यशस्वीरित्या तयार केली गेली.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, आणि %{three}"
+  list_with_two_items: "%{one} आणि %{two}"
+  lists: याद्या
+  locales:
+    en-GB: इंग्रजी (युके)
+    hr: क्रोएशिअन
+    mi: माओरी
+    mr: मराठी
+    sr: सर्बियन
+  log_in: लॉग इन करा
+  #Status message shown while logging in
+  logging_in: तुमचे खाते उघडत आहे
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: मॅक्रोस्ट्रॅट
+  managing_projects: प्रकल्प व्यवस्थापन
+  map: नकाशा
+  maps:
+    overlays:
+      gbif_network_description2: संग्रहालतील नोंदी आणि इतर घटना प्रदात्यांकडून जागतिक जैवविविधता माहिती सुविधेद्वारे वितरित
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: आणि
+  meet: भेटा
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: मासिक समर्थक
+  more: अधिक
+  #Button to show more observations
+  more__context_observations_caps: अधिक
+  #Button to show more places
+  more__context_places: अधिक
+  #Button to show more text
+  more__context_text: अधिक
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: अधिक
+  more_caps: अधिक
+  #Imperative verb, label for a button that lets you mute another user
+  mute: म्यूट करा
+  muting_description: एखाद्याला म्यूट करणे तुम्हाला त्यांच्या कोणत्याही गतिविधीबद्दल सूचित होण्यापासून प्रतिबंधित करते, ज्यामध्ये "@" उल्लेख, संदेश किंवा टिप्पण्या आणि तुमच्या निरीक्षणावरील ओळख यांचा समावेश आहे.
+  new_conservation_status: नवीन संवर्धन स्थिती
+  #Filter for observations not in a particular place
+  not_in_place: याठिकाणी नाही
+  #Basic observation export fields
+  observation_export_column_type_basic: सामान्य
+  #Geographic observation export fields
+  observation_export_column_type_geo: भौगोलिक
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: टॅक्सन
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: टॅक्सन व्यतिरिक्त
+  observer_prefers_addition_to_traditional_projects_joined: |
+    निरीक्षक इतर लोकांना त्याची निरीक्षणे फक्त अशा पारंपारिक प्रकल्पांमध्ये जोडण्याची परवानगी देतो ज्याचा तो स्वतः सदस्य आहे.
+  observer_prefers_no_traditional_project_addition: |
+    निरीक्षक इतर लोकांना त्याची निरीक्षणे पारंपारिक प्रकल्पांमध्ये जोडण्यास परवानगी देत नाही.
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "वेळेत सुधारणा"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: वेळेत सुधारणा
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    एक किंवा अधिक अंतर्भूत वर्ग १००० पेक्षा जास्त निरीक्षणांशी संबंधित आहेत, म्हणून निश्चिती प्रक्रियेसाठी काहीसा वेळ लागू शकतो. तुम्हाला खात्री आहे की हा वर्ग बदलला जाणे आवश्यक आहे? लक्षात ठेवा की वर्गातील बदल हे पूर्ववत केले जाऊ शकत नाहीत.
+  options: पर्याय
+  or: किंवा
+  password: परवलीचा शब्द (पासवर्ड)
+  password_confirmation: 'पासवर्ड पुष्टी'
+  password_change_description: तुमचा पासवर्ड बदलल्याने तुम्ही तुमच्या डिव्हाइसवरील सर्व सक्रिय iNaturalist सत्रांमधून लॉग आउट कराल
+  password_change_logout_warning: तुम्ही तुमचा पासवर्ड बदलल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्हाला तुमच्या नवीन पासवर्डने पुन्हा साइन इन करावे लागेल.
+  password_change_observations_warning: तुम्हाला iNaturalist मोबाइल ऍप्स आणि तुमच्या वतीने iNaturalist वर पोस्ट करणार्‍या इतर कोणत्याही ऍप्स किंवा वेबसाइटमधून साइन आउट केले जाईल, म्हणून तुम्ही हे करण्यापूर्वी कोणतीही प्रलंबित निरीक्षणे अपलोड केली आहेत याची खात्री करा. अपलोड न केलेली कोणतीही निरीक्षणे गमावली जातील.
+  people: लोक
+  pi_consent_desc_title: व्यक्तिगत माहितीच्या संदर्भात
+  pi_consent_desc_html: |
+    <p>
+    ह्या साईटवर आम्ही आपल्या खात्याच्या व्यवस्थापनासाठी आपले युजरनेम आणि ईमेल आयडी यांसारखी वैयक्तिक माहिती साठवतो, आणि गोपनीयता कायद्यांचे पालन करण्यासाठी, आपण आम्हांला या वापरासाठी सहमती देत असल्याचे दर्शविण्यासाठी आपल्याला हा बॉक्समध्ये खूण करणे आवश्यक आहे. आम्ही कोणती माहिती गोळा करतो आणि ती कशी वापरतो, हे जाणून घेण्यासाठी कृपया पुढील पानांना भेट द्या, आमचे 
+    <a href='%{privacy_url}' target='_blank'>गोपनीयता धोरण</a>
+    आणि आमच्या <a href='%{terms_url}' target='_blank'>सेवा अटी</a>.
+    </p>
+    <p>
+    वैयक्तिक माहिती संग्रहित केल्याशिवाय iNaturalist खाते ठेवण्याचा कोणताही मार्ग नाही, त्यामुळे ही संमती रद्द करण्याचा एकमेव मार्ग म्हणजे तुमचे अकाउंट डिलीट करणे. 
+    </p>
+  pi_consent_label: |
+    मी iNaturalist ला माझ्या खाते व्यवस्थापनासाठी लागणाऱ्या, मर्यादित स्वरूपात वैयक्तिक माहितीच्या साठवण आणि वापरासाठी सहमती देतो.
+  pi_consent_child_label: |
+    मी iNaturalist ला माझ्या पाल्याच्या खाते व्यवस्थापनासाठी लागणाऱ्या, मर्यादित स्वरूपात वैयक्तिक माहितीच्या साठवण आणि वापरासाठी सहमती देतो.
+  data_transfer_consent_desc_title: वैयक्तिक माहिती हस्तांतरण संमतीबद्दल
+  data_transfer_consent_desc_html: |
+    <p>
+    काही माहिती गोपनीयता कायद्यांनुसार, जसे की युरोपियन युनियनचा सामान्य डेटा
+    संरक्षण नियमन (GDPR), वैयक्तिक माहिती त्यांच्या अधिकारक्षेत्रातून इतर अधिकारक्षेत्रांपर्यंत हस्तांतरित करण्यासाठी स्पष्ट संमती आवश्यक आहे जेथे या माहितीचे कायदेशीर संरक्षण पुरेसे मानले जात नाही.
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    च्या नुसार युरोपियन युनियन यापुढे युनायटेड स्टेट्सला वैयक्तिक माहितीच्या कायदेशीर संरक्षणासाठी समाधानकारक अधिकारक्षेत्र मानत नाही, 
+    विशेषतः यूएस सरकारकडून यूएसमध्ये प्रवेश करणाऱ्या डेटाच्या सर्वेक्षणाच्या शक्यतेमुळे. इतर अधिकारक्षेत्रातही याच्याशी समान धारणा असणे शक्य आहे.
+    </p>
+    <p>
+    iNaturalist वापरण्यासाठी तुमच्या सारखी वैयक्तिक माहिती साठवणे आवश्यक आहे
+    तुमचा ईमेल पत्ता, सर्व iNaturalist डेटा युनायटेड स्टेट्स मध्ये संग्रहित आहे, आणि
+    तुम्ही iNaturalist वापरत असताना तुम्ही कोणत्या कायदेशीर अधिकारक्षेत्रात आहात याची आम्हाला खात्री असू शकत नाही, त्यामुळे GDPR सारख्या गोपनीयता कायद्यांचे पालन करण्यासाठी, तुम्ही तुमची वैयक्तिक माहिती iNaturalist च्या यूएस सर्व्हरवर हस्तांतरित करण्यात असणारी जोखीम आणि संमती जाणता आणि स्वीकारता हे मान्य केले पाहिजे.
+    </p>
+    <p>
+    आम्ही कोणती माहिती गोळा करतो आणि ती कशी वापरतो याबद्दल अधिक जाणून घेण्यासाठी,
+    कृपया आमचे पहा
+    <a href='%{privacy_url}' target='_blank'>गोपनीयता धोरण</a>
+    आणि आमच्या <a href='%{terms_url}' target='_blank'>वापराच्या अटी</a>.
+    </p>
+    <p>
+    वैयक्तिक संग्रहित केल्याशिवाय iNaturalist खाते ठेवण्याचा कोणताही मार्ग नाही
+    माहिती, त्यामुळे ही संमती रद्द करण्याचा एकमेव मार्ग म्हणजे तुमचे खाते डिलीट करणे
+    </p>
+  data_transfer_consent_label: |
+    मी माझी वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
+  data_transfer_consent_child_label: |
+    माझ्या मुलाची वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
+  places: ठिकाणे
+  places_warning_look_for_existing2_html: |
+    तुम्ही डुप्लिकेट स्थान तयार करत नाही आहात ना याची खात्री करण्यासाठी <a href="/search?source[]=places">विद्यमान ठिकाणे</a> शोधा. आमच्याकडे आधीपासूनच सर्व खंड, देश आणि इतर अनेक राजकीय सीमा इत्यादी स्थाने उपलब्ध आहेत.
+  places_warning_please_keep_in_mind: |
+    कृपया खालील निर्बंध लक्षात ठेवा:
+  play_first_sound: पहिला आवाज प्ले करा
+  #Shows the date a journal post was published
+  posted_on_date_html: पोस्ट केले रोजी %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: पोस्ट केले रोजी %{date} द्वारे %{user}
+  privacy: गोपनीयता
+  profile: प्रोफाइल
+  projects: प्रकल्प
+  radius_km: त्रिज्या (किमी)
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: नोंद
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: पुन्हा पहिल्यासारखे करा
+  result_window_too_large_error: |
+    पृष्‍ठसंख्या आणि प्रति पृष्‍ठ परिणामांची संख्‍या यांचा गुणाकार १०, ००० पेक्षा जास्त असू शकत नाही. परिणामांची संख्या कमी करण्यासाठी चाळणीचा वापर करा.
+  rules_types:
+    must_be_wild: वन्य असणे गरजेचे
+  satellite: उपग्रह प्रतिमा
+  search: शोधा
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: पाठवा आणि साइन आउट करा
+  send_confirmation_email: पुष्टीकरण ईमेल पाठवा
+  share_caps: शेअर करा
+  sign_out: साइन आउट करा
+  sign_up: साइन अप करा
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site} चे %{year} पुनरावलोकनाचे वर्ष"
+  site_stats: साइट आकडेवारी
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>उच्च-स्तरीय वर्गीकरणातून लागू करण्यात आलेला संवर्धन दर्जा:</strong>%{taxon}
+  store_caps: स्टोअर
+  suspend_user_html: निलंबित %{user}
+  taxa_show_obs_photo_search_tip: |
+    टीप: तुम्हाला विशिष्ट निरीक्षणातून फोटो निवडायचा असल्यास शोध क्षेत्रात निरीक्षणाचा अनुक्रमांक भरा.
+  taxa_info: वर्गांबद्दलची माहिती
+  taxon_change_commit_may_still_be_processing: |
+    वर्ग बदल निश्चिती प्रक्रिया चालू असल्याने कदाचित काही नोंदी अद्ययावत झालेल्या नसतील हे ध्यानात घ्या.
+  taxon_history_notice: वर्ग-इतिहास हा बदल फेब्रुवारी २०२२ पासून अमलात आणला गेला, त्यामुळे त्याआधीच्या तारखांसाठी वर्ग-इतिहास उपलब्ध नाही.
+  teachers_guide: शिक्षकांसाठी मार्गदर्शक
+  terrain: भूभाग
+  this_taxon_has_more_than_1000_alt: |
+    या वर्गाशी संबंधित १००० हून अधिक निरीक्षणे आहेत, म्हणून ह्या बदल प्रक्रियेसाठी काही वेळ लागू शकतो. तुम्हाला खात्री आहे की ते आवश्यक आहेत?
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: दक्षिण आफ्रिका वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: पूर्व आफ्रिका वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: अर्जेंटिना वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: कोलंबिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: मध्यवर्ती वेळ (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: पॅसिफिक वेळ (मेक्सिको)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: माउंटन टाइम (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: ग्वाटेमाला वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: अटलांटिक प्रमाण वेळ (कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: बोलिव्हिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: पेरू वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: पॅसिफिक वेळ (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: मध्यवर्ती वेळ (मेक्सिको)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: पूर्वीय वेळ (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: ऍरिझोना वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: कॉन्टिनेन्टल चिली वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: ब्राझिलिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: पॅसिफिक वेळ (मेक्सिको)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: अरेबिया प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: इंडोचायना वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: हाँगकाँग वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: पश्चिम इंडोनेशिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: इस्रायल प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: भारतीय प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnoyarsk Time
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: चीन प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: सिंगापूर प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: तैवान वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: जपान प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: येकातेरिनबर्ग वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: ऍडलेड वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: ब्रिस्बेन वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: मेलबर्न वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: पर्थ वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: सिडनी वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: जागतिक समन्वित वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: पूर्व युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: तुर्की वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: पूर्व युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: पश्चिम युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: पश्चिम युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: मॉस्को वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: पूर्व युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: सामोआ वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: न्यूझीलंड वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: हवाई-अलेउटियन वेळ
+  tos_privacy_guidelines_label: |
+    मी <a href="/terms" target="_blank">वापराच्या अटींना</a> सहमत आहे आणि
+    <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
+    <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
+  upload: अपलोड करा
+  user_faved_an_observation_by_you: "%{user} ला तुमचे निरीक्षण आवडले"
+  user_trusts_this_project_for_none: वापरकर्त्याचा गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास नाही.
+  user_trusts_this_project_for_any: |
+    कोणत्याही कारणास्तव अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत वापरकर्ता या प्रकल्पावर विश्वास ठेवतो.
+  user_trusts_this_project_for_taxon: |
+    वापरकर्ता केवळ धोक्यात असलेल्या वर्गांसाठी अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास ठेवतो.
+  username: वापरकर्ता नाव
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    कृपया तुमचा ईमेल पत्ता बरोबर असल्याची खात्री करा. आम्ही पुष्टीकरणासाठीची ईमेल लिंक पाठवण्यासाठीचा ईमेल पत्ता हा आहे:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    तुम्हाला ईमेल न मिळाल्यास, येथे काही सूचना आहेत:
+    </p>
+    <ul>
+    <li><p>तुमचे स्पॅम फोल्डर तपासा</p></li>
+    <li><p>तुमच्या इनबॉक्समधून आमचे ईमेल काढून टाकण्यासाठी तुम्ही तयार केलेले कोणतेही फिल्टर तपासा</p></li>
+    </ul>
+    <p>
+    तुम्हाला तरीही पुष्टीकरण ईमेल प्राप्त होत नसल्यास, कृपया आमच्याशी येथे संपर्क साधा
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    त्यामुळे आम्ही तुम्हाला मदत करू शकतो.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>तुम्ही साइन आउट करत आहात</h3>
+    <p>
+    तुम्ही पुष्टीकरण ईमेल पाठवल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्ही ईमेलमधील लिंक वर क्लिक करेपर्यंत तुमच्या खात्यात लॉग इन करू शकणार नाही, त्यामुळे <strong class="bg-warning">तुम्ही तुमचा ईमेल पत्ता अचूक प्रविष्ट केला आहे याची नीट खात्री करा
+    .</strong>
+    </p>
+    <p>
+    हा ईमेल पत्ता आहे ज्यावर आम्ही पुष्टीकरण पाठवू:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>तुम्ही सर्व ईमेलचे सदस्यत्व रद्द केले असल्यास...</h4>
+    <p>
+    तुम्ही आमच्याकडून <em>सर्व</em> ईमेलचे सदस्यत्व रद्द केले असल्यास, आम्ही तुम्हाला पुष्टीकरण ईमेलपाठवू शकत नाही. पुन्हा-सदस्यत्व घेण्यासाठी, तुम्हाला आमच्याकडून याआधी आलेले ईमेल शोधणे आवश्यक आहे, त्यातील सदस्यता रद्द करा ह्या दुव्यावर क्लिक करा आणि पुन्हा ईमेल प्राप्त करण्यासाठीचा पर्याय निवडा. आपण हे करू शकत नसल्यास, कृपया
+    ईमेल करा
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> आपण येथे प्रविष्ट केलेला ईमेल पत्यावरून ज्यायोगे आम्ही आपल्याला मदत करू शकू.
+    </p>
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user} चे %{year} %{site} पुनरावलोकनाचे वर्ष"
+  view_all_caps: सर्व पहा
+  view_all_fields: सर्व जागा पहा
+  view_inaturalist_global_year_in_review: iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन पहा
+  view_inaturalist_global_year_in_review_caps: iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन पहा
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} चे %{year} पुनरावलोकनाचे वर्ष पहा'
+  view_site_year_in_review_caps: '%{site} चे %{year} पुनरावलोकनाचे वर्ष पहा'
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
+  view_your_personal_year_in_review: "तुमचे वैयक्तिक %{year} पुनरावलोकनाचे वर्ष पहा"
+  view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
+  video_tutorials: माहितीपर व्हिडीओ
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
+  #Filter for observations not in a particular taxon
+  without_taxon: टॅक्सन मध्ये नसलेले
+  year_in_review2: "वार्षिक पुनरावलोकन %{year}"
+  yes_license_my_childs_observations: होय, माझ्या पाल्याची छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
+  yes_license_my_observations_so_scientists_can_use: होय, माझी छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
+  yir_code_contributors_desc_html: |
+    आमचे <a href="%{url}">सॉफ्टवेअर</a> जवळजवळ पूर्णपणे मुक्त-स्रोत आहे, याचा अर्थ
+    योग्य माहिती असल्यास कोणीही आपले योगदान देऊ शकते. येथे आहेत ते लोक
+    ज्यांनी ह्या वर्षी स्वयंसेवक म्हणून कोडिंगमध्ये योगदान दिले. धन्यवाद, कोडर्स!
+  yir_monthly_supporters_random_selection: |
+    येथे iNat च्या प्रेरणादायी समुदाय सदस्यांची एक अहेतुपूर्वक निवडलेली यादी आहे जे दरमहा देणगी देतात.
+  your_observations: माझी निरीक्षणे
+  your_recent_projects: माझे अलीकडील प्रकल्प
   views:
+    donate:
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist_caps: iNaturalist चे मासिक सहाय्यक व्हा
+        thank_you_for_being_a_monthly_supporter: मासिक सहाय्यक असल्याबद्दल धन्यवाद!
+        thank_you_for_being_a_monthly_supporter_caps: मासिक सहाय्यक असल्याबद्दल धन्यवाद!
+    observations:
+      field_descriptions:
+        user_name: |
+          निरीक्षकाचे नाव, सामान्यत: साइटवर श्रेय देण्यासाठी वापरले जाते.
+          हे एक ऐच्छिक क्षेत्र आहे आणि ते टोपणनाव असू शकते.
+      show:
+        ancestor_disagreements_desc2: |
+          टॅक्सनच्या पूर्वजांपैकी ओळखलेल्या टॅक्साची संख्या, परंतु वर्गीकरणाशी असहमत (म्हणजे "मला वाटते की ते वंशात आहे पण हीच ती प्रजाती आहे ह्याच्याशी मी असहमत आहे")
+    places:
+      kml_field_desc2: |
+        ठिकाणाच्या सीमारेषेसाथीचा KML. तुम्ही गूगल मॅप, गूगल अर्थ अथवा इतर GIS अनुप्रयोग वापरून एक बनवू शकता. किमान एक बहुभुज असणे आवश्यक, १ MB पर्यंत (साइट क्युरेटरसाठी ५ MB), आणि क्षेत्रफळ अमेरिकेचे टेक्सास राज्यापेक्षा लहान असण्याची मर्यादा.
     stats:
       year:
         compare_desc: |
@@ -48,6 +1016,59 @@ mr:
           रंग लॉगेरिथमिक स्केलवर (घातांक श्रेणी) दिवसांची संख्या दर्शवितो
         observation_streaks_desc2: |
           एखादी निरीक्षणाची मालिका म्हणजे कमीतकमी पाच दिवसांचा कालावधी जेव्हा एखादा निरीक्षक बाहेर पडला आणि त्याने दररोज नवीन, सत्यापित निरीक्षणे केली. आम्ही इथे या वर्षात सुरू झालेल्या किंवा जेव्हा ही आकडेवारी तयार केली गेली तेव्हा प्रगतीपथावर होत्या अशा प्रदीर्घ मालिका दर्शवित आहोत (वैयक्तिक वापरकर्त्यांसाठी, आम्ही या वर्षाअखेरीस समाप्त झालेल्या मालिकांचा देखील समावेश करीत आहोत).
+        stats_generation_schedule: डिसेंबरमध्ये दर रविवारी आणि १ जानेवारीला आकडेवारी तयार केली जाईल.
+    taxa:
+      show:
+        frequency:
+          "Plant Phenology=No Evidence of Flowering": फुलल्याचा पुरावा नाही
+          "Life Stage=Egg": अंडे
+          "Life Stage=Larva": अळी
+          "Life Stage=Pupa": कोष
+    welcome:
+      index:
+        connect_with_nature: निसर्गाशी संबंध जोडा
+        explore_and_share: नैसर्गिक जगातून तुमच्या निरीक्षणांचे अवलोकन करा आणि इतरांसोबत शेअर करा.
+        observations_to_date:
+          one: "आजपर्यंतचे निरीक्षण"
+          other: "आजपर्यंतची निरीक्षणे"
+        species_observed:
+          one: "नोंदवलेली प्रजाती"
+          other: "नोंदवलेल्या प्रजाती"
+        people_signed_up:
+          one: "नोंदणीकृत वापरकर्ता"
+          other: "नोंदणीकृत वापरकर्ते"
+        how_it_works: हे कसे कार्य करते
+        record_your_observations: तुमची निरीक्षणे नोंदवा
+        share_with_fellow_naturalists: सहकारी निसर्गवाद्यांसह सामायिक करा
+        discuss_your_findings: आपल्या निष्कर्षांवर चर्चा करा
+        contribute_to_science: विज्ञानासाठी योगदान द्या
+        science_desc_html: |
+          प्रत्येक निरीक्षण जैवविविधता विज्ञानासाठी योगदान देऊ शकते, अतिशय दुर्मिळ फुलपाखरापासून
+          ते सर्वसामान्य घराच्या अंगणातील तणापर्यंत. आम्ही आपले निष्कर्ष 
+          <a href='http://gbif.org' target='_blank'>जागतिक जैवविविधता माहिती सुविधा</a>
+          यांसारख्या वैज्ञानिक डेटा रिपॉझिटरीजमध्ये सामायिक करतो, शास्त्रज्ञांना तुमचा डेटा शोधण्यात आणि वापरण्यात मदत करण्यासाठी.
+          यासाठी तुम्हाला यासाठी फक्त निरीक्षण करायचे आहे.
+        nature_at_your_fingertips: निसर्ग आपल्या बोटांच्या टोकावर
+        keep_track: मागोवा घ्या
+        record_your_encounters: |
+          इतर जीवांसोबत तुमच्या भेटीची नोंद करा आणि जीवन सूची राखा,
+          सर्वकाही क्लाउड सर्वर द्वारे.
+        create_useful_data: उपयुक्त डेटा तयार करा
+        help_scientists: शास्त्रज्ञ आणि संसाधन व्यवस्थापकांना जीव कधी आणि कोठे सापडतात हे जाणून घेण्यासाठी मदत करा.
+        crowdsource_identifications: क्राउडसोर्स ओळख
+        connect_with_experts: तुम्ही निरीक्षण केलेले जीव ओळखू शकतील अशा तज्ञांशी संपर्क साधा.
+        become_a_citizen_scientist: नागरिक शास्त्रज्ञ व्हा
+        find_a_project: "तुमच्या आवडीनुसार उद्देश्य असणारा एखादा प्रकल्प शोधा किंवा स्वतःचा प्रकल्प सुरु करा."
+        learn_about_nature: निसर्गाबद्दल जाणून घ्या
+        build_your_knowledge: इतर निसर्गवाद्यांशी बोलून आणि इतरांना मदत करून तुमचे ज्ञान वाढवा.
+        run_a_bioblitz: बायोब्लिट्झ चालवा
+        hold_an_event: एक कार्यक्रम आयोजित करा जिथे लोक शक्य तितक्या प्रजाती शोधण्याचा प्रयत्न करतात.
+        works_on_all_your_devices: तुमच्या सर्व प्रकारच्या उपकरणांवर कार्य करते.
+        install_our_mobile_apps: |
+          आमचे मोबाइल ऍप्स इंस्टॉल करा, जेणेकरून तुम्ही सेलफोन रिसेप्शन किंवा वायफाय इंटरनेटशिवाय सुद्धा नेहमी निरीक्षण करू शकता.
+        who_uses_site_name: "%{site_name} कोण वापरते?"
+        what_are_you_waiting_for: कसली वाट पाहताय?
+        join_today: आजच सहभागी व्हा
   date:
     abbr_month_names:
       - 
@@ -82,3 +1103,77 @@ mr:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: जाहीर निवेदन
+    attributes:
+      announcement:
+        created_at: येथे तयार केले
+        updated_at: येथे अद्यतनित केले
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: वेबसाईट संकेतांक
+      flag:
+        #The person who resolved the flag
+        resolver_id: निराकरण करणारा
+      place_taxon_name:
+        position: स्थान
+      taxon_name:
+        is_valid: वैध आहे का?
+        lexicon: शब्दकोश
+        name: नाव
+        position: स्थान
+      taxon_link:
+        url: यूआरएल
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: साईट शीर्षक
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: संक्षिप्त शीर्षक
+        #Taxon this link is associated with
+        taxon: वर्ग
+        #Place this link is associated with
+        place: स्थान
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: वंशज टॅक्सासाठी दाखवा
+    errors:
+      messages:
+        equal_to:
+          one: '%{count} च्या समान असणे आवश्यक आहे'
+          other: '%{count} च्या समान असणे आवश्यक आहे'
+        greater_than:
+          one: '%{count} पेक्षा मोठा असणे आवश्यक आहे'
+          other: '%{count} पेक्षा मोठा असणे आवश्यक आहे'
+        greater_than_or_equal_to:
+          one: '%{count} पेक्षा जास्त किंवा समान असणे आवश्यक आहे'
+          other: '%{count} पेक्षा जास्त किंवा समान असणे आवश्यक आहे'
+        less_than:
+          one: '%{count} पेक्षा कमी असणे आवश्यक आहे'
+          other: '%{count} पेक्षा कमी असणे आवश्यक आहे'
+        less_than_or_equal_to:
+          one: '%{count} पेक्षा कमी किंवा समान असणे आवश्यक आहे'
+          other: '%{count} पेक्षा कमी किंवा समान असणे आवश्यक आहे'
+      models:
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: टिप्पण्या अक्षम केल्या आहेत
+        flag:
+          attributes:
+            flag:
+              not_about_duplicate: |
+                निरीक्षणाच्या हुबेहूब प्रतिबद्दल असू शकत नाही; फक्त मूळ निरीक्षक दुसरी प्रत काढून टाकू शकतो, त्यामुळे कृपया टिप्पणी मार्फत हि समस्या त्यांच्यापर्यंत पोहोचावा
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: रिक्त असू शकत नाही
+              invalid_point: एखादा अवैध निर्देशांक आहे, उदा. रेखांश १८० पेक्षा जास्त किंवा अक्षांश -९० पेक्षा कमी
+              must_have_more_than_three_points: ३ पेक्षा जास्त बिंदू असणे आवश्यक आहे
+              polygon_with_fewer_than_four_points: ४ पेक्षा कमी बिंदूंसह बहुभुज आहे

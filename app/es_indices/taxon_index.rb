@@ -1,4 +1,4 @@
-class Taxon < ActiveRecord::Base
+class Taxon < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -8,15 +8,22 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
-    :taxon_framework,
+    :taxon_framework, :flags,
     :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
-    { taxon_photos: { photo: [ :user, :flags ] } },
+    { taxon_photos: { photo: [
+      :user,
+      :flags,
+      :file_extension,
+      :file_prefix
+    ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :ancestor_ids, type: "integer"
+      indexes :ancestor_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :ancestry, type: "keyword"
       indexes :atlas_id, type: "integer"
       indexes :colors do
@@ -54,8 +61,12 @@ class Taxon < ActiveRecord::Base
         indexes :resolved, type: "short", index: false
         indexes :unresolved, type: "short", index: false
       end
-      indexes :iconic_taxon_id, type: "integer"
-      indexes :id, type: "integer"
+      indexes :iconic_taxon_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :is_active, type: "boolean"
       indexes :listed_taxa do
         indexes :establishment_means, type: "keyword", index: false
@@ -87,7 +98,9 @@ class Taxon < ActiveRecord::Base
         indexes :position, type: "short"
       end
       indexes :observations_count, type: "integer"
-      indexes :parent_id, type: "integer"
+      indexes :parent_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :photos_locked, type: "boolean", index: false
       indexes :place_ids, type: "integer"
       indexes :rank, type: "keyword"
@@ -137,8 +150,7 @@ class Taxon < ActiveRecord::Base
       end
       indexes :taxon_schemes_count, type: "byte"
       indexes :universal_search_rank, type: "integer"
-      # This will require rebuilding the index ~~kueda 2030-03-24
-      # indexes :uuid, type: "keyword"
+      indexes :uuid, type: "keyword"
       indexes :wikipedia_url, type: "keyword", index: false
     end
   end
@@ -189,7 +201,7 @@ class Taxon < ActiveRecord::Base
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
-      flag_counts = flags.group( :resolved ).count
+      flag_counts = Hash[flags.group_by{ |t| t.resolved }.map{ |k,v| [k, v.length] }]
       json.merge!({
         created_at: created_at,
         default_photo: default_photo ?

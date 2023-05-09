@@ -1,7 +1,9 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
+  include HasJournal
+
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -12,6 +14,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_spammable fields: [ :description ],
                     comment_type: "signup"
+  has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -19,11 +22,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  handle_asynchronously :send_devise_notification
-  
-  # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
-  attr_accessor :skip_email_validation
-  attr_accessor :skip_registration_email
+  # handle_asynchronously :send_devise_notification
   
   # licensing extras
   attr_accessor   :make_observation_licenses_same
@@ -32,6 +31,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :html
   attr_accessor :pi_consent
+  attr_accessor :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -127,6 +127,7 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :email_suppressions, dependent: :delete_all
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -156,7 +157,6 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
@@ -165,7 +165,6 @@ class User < ActiveRecord::Base
   has_many :project_user_invitations, :dependent => :nullify
   has_many :project_user_invitations_received, :dependent => :delete_all, :class_name => "ProjectUserInvitation"
   has_many :listed_taxa, :dependent => :nullify
-  has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
@@ -233,7 +232,7 @@ class User < ActiveRecord::Base
   end
 
   # Roles
-  has_and_belongs_to_many :roles, -> { uniq }
+  has_and_belongs_to_many :roles, -> { distinct }
   belongs_to :curator_sponsor, class_name: "User"
   belongs_to :suspended_by_user, class_name: "User"
   
@@ -249,11 +248,13 @@ class User < ActiveRecord::Base
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
+  before_save :set_data_transfer_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -263,12 +264,12 @@ class User < ActiveRecord::Base
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
+  after_update :send_welcome_email
   after_create :set_uri
-  after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -297,9 +298,9 @@ class User < ActiveRecord::Base
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern, on: :create
-  validate :validate_email_domain_exists, on: :create
-  
+  validate :validate_email_pattern
+  validate :validate_email_domain_exists
+
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
@@ -309,6 +310,7 @@ class User < ActiveRecord::Base
   scope :active, -> { where("suspended_at IS NULL") }
 
   def validate_email_pattern
+    return unless new_record? || email_changed?
     return if CONFIG.banned_emails.blank?
     return if self.email.blank?
     failed = false
@@ -326,8 +328,11 @@ class User < ActiveRecord::Base
   # this approach is probably going to have some false positives... but probably
   # not many
   def validate_email_domain_exists
+    return unless new_record? || email_changed?
     return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
-    return true if self.email.blank?
+    return true if email.blank?
+    return true unless email.include?( "@" )
+
     domain = email.split( "@" )[1].strip
     dns_response = begin
       r = nil
@@ -355,14 +360,6 @@ class User < ActiveRecord::Base
     end
     true
   end
-
-  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
-  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
-  # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  # This is not a normal validation b/c email validation happens in Devise, which looks for this method
-  def email_required?
-    !(skip_email_validation || provider_authorizations.count > 0)
-  end
   
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
@@ -370,35 +367,56 @@ class User < ActiveRecord::Base
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
     !suspended?
   end
 
+  def child?
+    !birthday.blank? && birthday > 13.years.ago
+  end
+
+  def child_without_permission?
+    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-07-01" )
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    # Temporary state to allow existing users to sign in. Probably redundant
+    # with the next grandparent exception
+    return true if confirmation_sent_at.blank?
+
+    # Temporary state to allow existing users to sign in
+    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+
+    super
   end
 
   def download_remote_icon
-    io = open(URI.parse(self.icon_url))
     Timeout::timeout(10) do
-      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.icon = URI( self.icon_url )
     end
     true
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
@@ -408,7 +426,7 @@ class User < ActiveRecord::Base
 
   def strip_name
     return true if name.blank?
-    self.name = FakeView.strip_tags( name ).to_s
+    self.name = ApplicationController.helpers.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end
@@ -417,6 +435,11 @@ class User < ActiveRecord::Base
     return true if login.blank?
     self.login = login.strip
     true
+  end
+
+  # Confirmation should be sent to the child *after* the parent has been verified
+  def skip_confirmation_if_child
+    skip_confirmation! if child?
   end
   
   def allow_some_licenses
@@ -450,7 +473,7 @@ class User < ActiveRecord::Base
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: 'facebook', 'twitter', 'google', 'yahoo'
+  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
@@ -497,6 +520,10 @@ class User < ActiveRecord::Base
   def is_curator?
     has_role?(:curator)
   end
+
+  def is_app_owner?
+    has_role?( Role::APP_OWNER )
+  end
   
   def is_admin?
     has_role?(:admin)
@@ -516,20 +543,28 @@ class User < ActiveRecord::Base
   def friends_with?(user)
     friends.exists?(user)
   end
+
+  def trusts?( user )
+    return false if user.blank?
+    return false unless user.id
+    return true if user.id == id
+
+    if friendships.loaded?
+      return friendships.any?{ |f| f.friend_id == user.id && f.trust == true }
+    end
+    friendships.where( friend_id: user, trust: true ).exists?
+  end
   
   def picasa_client
     return nil unless (pa = has_provider_auth('google'))
     @picasa_client ||= Picasa.new(pa.token)
   end
 
-  # returns a koala object to make (authenticated) facebook api calls
-  # e.g. @facebook_api.get_object('me')
-  # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
-    return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
+    # As of Spring 2023 we can no longer access the Facebook API on behalf of users
+    nil
   end
-  
+
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
     @facebook_identity ||= has_provider_auth('facebook')
@@ -589,7 +624,7 @@ class User < ActiveRecord::Base
       priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "User::update_observation_sites": id },
       queue: "throttled"
-    ).update_observation_sites if site_id_changed?
+    ).update_observation_sites if saved_change_to_site_id?
   end
 
   def update_observation_sites
@@ -635,6 +670,20 @@ class User < ActiveRecord::Base
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    # Conditions should match index_votes_on_unique_obs_fave
+    reject.votes
+          .joins( "JOIN votes AS keeper_votes USING (votable_type, votable_id)" )
+          .where(
+            keeper_votes: {
+              voter_type: self.class.polymorphic_name,
+              voter_id: id,
+              vote_scope: nil
+            },
+            votable_type: Observation.polymorphic_name,
+            vote_scope: nil
+          )
+          .destroy_all
     merge_has_many_associations(reject)
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
@@ -680,7 +729,7 @@ class User < ActiveRecord::Base
 
   def set_uri
     if uri.blank?
-      User.where(id: id).update_all(uri: FakeView.user_url(id))
+      User.where( id: id ).update_all( uri: UrlHelper.user_url( id ) )
     end
     true
   end
@@ -690,7 +739,7 @@ class User < ActiveRecord::Base
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    geoip_response = INatAPIService.geoip_lookup({ ip: last_ip })
+    geoip_response = INatAPIService.geoip_lookup( { ip: last_ip } )
     if geoip_response && geoip_response.results
       # don't set any location if the country is unknown
       if geoip_response.results.country
@@ -699,13 +748,13 @@ class User < ActiveRecord::Base
         longitude = ll[1]
         if geoip_response.results.city
           # also probably know the county
-          lat_lon_acc_admin_level = 2
+          lat_lon_acc_admin_level = Place::COUNTY_LEVEL
         elsif geoip_response.results.region
           # also probably know the state
-          lat_lon_acc_admin_level = 1
+          lat_lon_acc_admin_level = Place::STATE_LEVEL
         else
           # probably just know the country
-          lat_lon_acc_admin_level = 0
+          lat_lon_acc_admin_level = Place::COUNTRY_LEVEL
         end
       end
     end
@@ -713,7 +762,23 @@ class User < ActiveRecord::Base
     self.longitude = longitude
     self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
-  
+
+  def email_suppressed_in_group?( suppressed_groups )
+    unless suppressed_groups.is_a?( Array )
+      suppressed_groups = [suppressed_groups]
+    end
+    unsuppressed_groups = [
+      EmailSuppression::ACCOUNT_EMAILS,
+      EmailSuppression::DONATION_EMAILS,
+      EmailSuppression::NEWS_EMAILS,
+      EmailSuppression::TRANSACTIONAL_EMAILS
+    ].reject {| i | ( suppressed_groups.include? i ) }
+    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
+      email, unsuppressed_groups ).first
+
+    false
+  end
+
   def get_lat_lon_from_ip_if_last_ip_changed
     return true if last_ip.nil?
     if last_ip_changed? || latitude.nil?
@@ -773,6 +838,7 @@ class User < ActiveRecord::Base
     icon_url = auth_info["info"]["image"]
     # Don't bother if the icon URL looks like the default Google user icon
     icon_url = nil if icon_url =~ /4252rscbv5M/
+    icon_url = nil if icon_url =~ /s96-c/
     u = User.new(
       :login => autogen_login,
       :email => email,
@@ -781,8 +847,6 @@ class User < ActiveRecord::Base
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
-    u.skip_email_validation = true
-    u.skip_confirmation!
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
@@ -792,9 +856,9 @@ class User < ActiveRecord::Base
     unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-      u.update_attributes(:login => suggestion)
+      u.update(:login => suggestion)
     end
-    u.add_provider_auth(auth_info)
+    u.add_provider_auth(auth_info) if u.valid? && u.persisted?
     u
   end
 
@@ -872,7 +936,6 @@ class User < ActiveRecord::Base
         :flags
       ] },
       :project_observations,
-      :project_invitations,
       :quality_metrics,
       :observation_field_values,
       :observation_sounds,
@@ -943,16 +1006,11 @@ class User < ActiveRecord::Base
     end
 
     # transition ownership of projects with observations, delete the rest
-    Project.where(:user_id => id).find_each do |p|
-      if p.observations.exists?
-        if manager = p.project_users.managers.where("user_id != ?", id).first
-          p.user = manager.user
-          manager.role_will_change!
-          manager.save
-        else
-          pu = ProjectUser.create(:user => User.admins.first, :project => p)
-          p.user = pu.user
-        end
+    Project.where( user_id: id ).find_each do | p |
+      if p.observations.exists? && ( manager = p.project_users.managers.where( "user_id != ?", id ).first )
+        p.user = manager.user
+        manager.role_will_change!
+        manager.save
         p.save
       else
         p.destroy
@@ -986,6 +1044,10 @@ class User < ActiveRecord::Base
       user.sane_destroy
     end
 
+    if ( deleted_user = DeletedUser.where( user_id: user_id ).first ) && !deleted_user.email.blank?
+      EmailSuppression.where( email: deleted_user.email ).delete_all
+    end
+
     puts "Updating flags created by user..."
     Flag.where( user_id: user_id ).update_all( user_id: -1 )
 
@@ -1009,11 +1071,7 @@ class User < ActiveRecord::Base
       deleted_photos = DeletedPhoto.where( user_id: user_id )
       puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
       deleted_photos.find_each do |dp|
-        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-        if images.any?
-          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-        end
+        dp.remove_from_s3( s3_client: s3_client )
         dp.destroy
       end
 
@@ -1086,6 +1144,20 @@ class User < ActiveRecord::Base
     puts
     puts "Ensure all staging servers get synced"
     puts
+  end
+
+  def self.remove_icon_from_s3( user_id )
+    @s3_config ||= YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
+    @s3_client ||= ::Aws::S3::Client.new(
+      access_key_id: @s3_config["access_key_id"],
+      secret_access_key: @s3_config["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+    user_images = @s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
+    if user_images.any?
+      @s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
+    end
+    # Note that the images might remain in Cloudfront for 24 hours, but by the time this gets called they're probably already gone
   end
   
   def create_deleted_user
@@ -1172,7 +1244,7 @@ class User < ActiveRecord::Base
 
   def restore_access_tokens_by_suspended_user
     return true if suspended?
-    if suspended_at_changed?
+    if saved_change_to_suspended_at?
       # This is not an ideal solution because there are reasons to revoke a
       # token that are not related to suspension, like trying to deal with a
       # oauth app that's behaving badly for some reason, or a user's token is
@@ -1190,19 +1262,28 @@ class User < ActiveRecord::Base
     true
   end
 
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if login_changed?
-    changes[:native_realname] = name if name_changed?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
+  def send_welcome_email
+    if (
+      saved_change_to_confirmed_at? &&
+      confirmed? &&
+      # This might happen if an existing user successfully resets their
+      # password, i.e. they don't send themselves a confirmation email b/c
+      # they can't sign in, but they can request the reset password email,
+      # and successfully clicking that link also confirms the email address
+      !confirmation_sent_at.blank? &&
+      # This is for existing users who explicitly request a confirmation
+      # email, which sets confirmation_sent_at. This is imperfect, but it
+      # should prevent most actual users from receiving the welcome email
+      # again.
+      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
+    )
+      Emailer.welcome( self ).deliver_now
     end
-    true
   end
 
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
+  def revoke_authorizations_after_password_change
+    return unless encrypted_password_previously_changed?
+    Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
   end
 
   def recent_notifications(options={})
@@ -1215,22 +1296,20 @@ class User < ActiveRecord::Base
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_ids: id } }
-    ops = {
-      filters: options[:filters],
-      inverse_filters: options[:inverse_filters],
-      per_page: options[:per_page],
-      sort: { id: :desc }
-    }
+    options[:filters] << { term: { "subscriber_ids.keyword": id } }
     UpdateAction.elastic_paginate(
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
-      sort: { id: :desc })
+      sort: { created_at: :desc })
   end
 
   def blocked_by?( user )
     user_blocks_as_blocked_user.where( user_id: user ).exists?
+  end
+
+  def muted_by?( user )
+    user_mutes_as_muted_user.where( user_id: user ).exists?
   end
 
   def self.default_json_options
@@ -1276,7 +1355,7 @@ class User < ActiveRecord::Base
     return unless user = User.find_by_id(user_id)
     new_fields_result = Observation.elastic_search(
       filters: [
-        { term: { non_owner_identifier_user_ids: user_id } }
+        { term: { "non_owner_identifier_user_ids.keyword": user_id } }
       ],
       size: 0,
       track_total_hits: true
@@ -1291,7 +1370,7 @@ class User < ActiveRecord::Base
     result = Observation.elastic_search(
       filters: [
         { bool: { must: [
-          { term: { "user.id": user_id } },
+          { term: { "user.id.keyword": user_id } },
         ] } }
       ],
       size: 0,
@@ -1348,6 +1427,16 @@ class User < ActiveRecord::Base
     Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
+  def moderated_with( moderator_action )
+    if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
+      self.suspended_by_user = moderator_action.user
+      suspend!
+    elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.suspended_by_user = nil
+      unsuspend!
+    end
+  end
+
   def personal_lists
     lists.not_flagged_as_spam.
       where("type = 'List' OR type IS NULL")
@@ -1372,13 +1461,24 @@ class User < ActiveRecord::Base
 
   def set_pi_consent_at
     if pi_consent
-      self.pi_consent_at = Time.now
+      self.pi_consent_at ||= Time.now
+    end
+    true
+  end
+
+  def set_data_transfer_consent_at
+    if data_transfer_consent
+      self.data_transfer_consent_at ||= Time.now
     end
     true
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
+  end
+
+  def monthly_donor?
+    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
   end
 
   def display_donor_since
@@ -1397,8 +1497,8 @@ class User < ActiveRecord::Base
     taxon_counts = Observation.elastic_search(
       size: 0,
       filters: [
-        { term: { "user.id": id } },
-        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { term: { "user.id.keyword": id } },
+        { terms: { "taxon.ancestor_ids.keyword": taxa_plus_ancestor_ids } },
         { range: { "observed_on_details.date": { lt: date.to_s } } }
       ],
       aggregate: {
@@ -1416,6 +1516,16 @@ class User < ActiveRecord::Base
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
   end
 
+  def header_projects
+    project_users.joins(:project).includes(:project).limit(7).
+      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
+      map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+  end
+
+  def anonymous?
+    id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
+  end
+
   # this method will look at all this users photos and create separate delayed jobs
   # for each photo that should be moved to the other bucket
   def self.enqueue_photo_bucket_moving_jobs( user )
@@ -1425,7 +1535,9 @@ class User < ActiveRecord::Base
       u ||= User.find_by_login( user )
       user = u
     end
-    LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url, :user_id ).includes( :user ).each do |photo|
+    LocalPhoto.where( user_id: user.id ).
+      select( :id, :license, :user_id, :file_prefix_id, :file_extension_id ).
+      includes( :user, :file_prefix, :file_extension, :flags ).find_each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(
           queue: "photos",
@@ -1444,20 +1556,21 @@ class User < ActiveRecord::Base
     spammers = []
     num_checks = {}
     User.order( "id desc" ).limit( limit ).
-        where( "spammer is null " ).
-        where( "created_at < ? ", 12.hours.ago ). # half day grace period
-        where( "description is not null and description != '' and description ilike '%http%'" ).
-        where( "observations_count = 0 and identifications_count = 0" ).
-        pluck(:id).
-        in_groups_of( 10 ) do |ids|
+      where( "spammer is null " ).
+      where( "created_at < ? ", 12.hours.ago ). # half day grace period
+      where( "description is not null and description != '' and description ilike '%http%'" ).
+      where( "observations_count = 0 and identifications_count = 0" ).
+      pluck( :id ).
+      in_groups_of( 10 ) do | ids |
       puts
       puts "BATCH #{ids[0]}"
       puts
-      3.times do |i|
+      3.times do | i |
         batch = User.where( "id IN (?)", ids )
         puts "Try #{i}"
-        batch.each do |u|
+        batch.each do | u |
           next if spammers.include?( u.login )
+
           num_checks[u.login] ||= 0
           puts "#{u}, checked #{num_checks[u.login]} times already"
           num_checks[u.login] += 1
@@ -1478,11 +1591,12 @@ class User < ActiveRecord::Base
 
   def self.ip_address_is_often_suspended( ip )
     return false if ip.blank?
+
     count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
     count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
     total = count_suspended + count_active
     return false if total < 3
-    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
-  end
 
+    count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
 end

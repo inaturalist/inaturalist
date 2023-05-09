@@ -1,5 +1,14 @@
 /* eslint-disable */
-var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view', 'taxon_name']
+var REJECT_PARAMS = [
+  "filters_open",
+  "flow_task_id",
+  "order",
+  "order_by",
+  "taxon_name",
+  "utf8",
+  "view",
+  "without_taxon_name"
+];
 var MAX_OBSERVATIONS = 200000;
 function reloadPreview() {
   $( "#limit-alert" ).hide( );
@@ -34,6 +43,13 @@ function cleanQuery(q) {
         return
       }
     }
+    // the `spam` parameter can be present, but the only acceptable value is "false"
+    if ( k == "spam" ) {
+      if ( v === "false" ) {
+        newParams[k] = v;
+      }
+      return;
+    }
     if (v.length !== 0 && v.length != 0 && REJECT_PARAMS.indexOf(k) < 0) {
       newParams[k] = v
     }
@@ -65,7 +81,9 @@ function filtersToQuery() {
   $('#query').val(cleanQuery(query))
 }
 $(document).ready(function() {
-  showFilters()
+  // exports have a custom implementation of taxonAutocomplete, so disable
+  // the basic autocomplete initialization that showFilters() will perform
+  showFilters( undefined, { skipTaxonAutocomplete: true } );
   $('#query').change(queryChanged)
   $('#filters :input').change(function() {
     filtersToQuery()
@@ -89,6 +107,13 @@ $(document).ready(function() {
     alert(json.error)
   })
   $('#filters input[name=taxon_name]').taxonAutocomplete({
+    afterSelect: function( ) {
+      filtersToQuery( );
+      reloadPreview( );
+    }
+  } );
+  $( "#filters input[name=without_taxon_name]" ).taxonAutocomplete( {
+    idEl: $( "#without_taxon_id" ),
     afterSelect: function( ) {
       filtersToQuery( );
       reloadPreview( );

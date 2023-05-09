@@ -4,7 +4,7 @@ $.fn.universalAutocomplete = function( options ) {
   var field = this;
   var PLACE_TYPES = <%= Place::PLACE_TYPES.to_json.html_safe %>;
 
-  $( field ).on( "keyup", function( e ) {
+  $( field ).on( "keydown", function( e ) {
     // Don't bother if this wasn't the ENTER key
     if ( e.which !== 13 ) {
       return;

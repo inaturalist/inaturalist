@@ -40,17 +40,12 @@ const OTHER_OBSERVATION_FIELDS = {
   uuid: true
 };
 
-const TESTING_INTEPROLATION_MITIGATION = typeof ( CURRENT_USER ) === "object"
-  && CURRENT_USER.testGroups
-  && CURRENT_USER.testGroups.includes( "interpolation" );
-
 export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, action ) {
   if ( action.data && action.data.params && action.data.params.fields ) {
     delete action.data.params.fields;
   }
   const otherObsFilter = o => (
-    !TESTING_INTEPROLATION_MITIGATION
-    || !o.obscured
+    !o.obscured
     || o.private_geojson
   );
   switch ( action.type ) {
@@ -131,7 +126,7 @@ export function fetchNearby( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -167,7 +162,7 @@ export function fetchMoreFromClade( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -186,7 +181,7 @@ export function fetchMoreFromThisUser( ) {
       user_id: observation.user.id,
       order_by: "id",
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,

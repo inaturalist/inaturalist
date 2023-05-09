@@ -2,6 +2,14 @@ require File.expand_path("../../spec_helper", __FILE__)
 
 describe Comment do
   elastic_models( Observation )
+
+  it { is_expected.to belong_to :user }
+
+  it { is_expected.to validate_length_of(:body).is_at_least 1 }
+  it { is_expected.to validate_length_of(:body).is_at_most described_class::MAX_LENGTH }
+  it { is_expected.to validate_presence_of :parent }
+
+
   describe "creation" do
     it "should increment a counter cache on the parent if the column exists" do
       o = Observation.make!
@@ -103,22 +111,22 @@ describe Comment do
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
 
-      c.update_attributes(body: "hey @#{ u1.login }")
+      c.update(body: "hey @#{ u1.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq true
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
 
-      c.update_attributes(body: "hey @#{ u2.login }")
+      c.update(body: "hey @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq true
 
-      c.update_attributes(body: "hey @#{ u1.login }, @#{ u2.login }")
+      c.update(body: "hey @#{ u1.login }, @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq true
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq true
 
-      c.update_attributes(body: "hey")
+      c.update(body: "hey")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false

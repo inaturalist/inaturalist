@@ -1,8 +1,7 @@
 #encoding: utf-8
 class LocalPhoto < Photo
   include LogsDestruction
-  before_create :set_defaults
-  after_create :set_native_photo_id, :set_urls
+  after_create :set_urls
   after_update :change_photo_bucket_if_needed
   
   # only perform EXIF-based rotation on mobile app contributions
@@ -74,8 +73,8 @@ class LocalPhoto < Photo
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style.:content_type_extension",
     )
   end
 
@@ -88,7 +87,7 @@ class LocalPhoto < Photo
   # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
 
-  after_initialize :set_license, :set_s3_account
+  after_initialize :set_license
 
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
@@ -96,7 +95,7 @@ class LocalPhoto < Photo
   validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
     :message => "must be JPG, PNG, or GIF"
 
-  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation, :s3_account
+  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
 
   BRANDED_DESCRIPTIONS = [
     "OLYMPUS DIGITAL CAMERA",
@@ -153,13 +152,18 @@ class LocalPhoto < Photo
     LocalPhoto.s3_permissions( self.s3_account )
   end
 
-  def set_s3_account
-    self.s3_account = self.in_public_s3_bucket? ? "public" : nil
+  def in_public_s3_bucket?
+    file_prefix ? !! file_prefix.prefix.match( LocalPhoto.s3_bucket( true ) ) :
+      could_be_public
   end
 
-  def in_public_s3_bucket?
-    self.original_url ? !! self.original_url.match( LocalPhoto.s3_bucket( true ) ) :
-      could_be_public
+  def s3_account
+    return @s3_account if instance_variable_defined?( :@s3_account )
+    @s3_account = self.in_public_s3_bucket? ? "public" : nil
+  end
+
+  def s3_account=( account )
+    @s3_account = account
   end
 
   def could_be_public
@@ -175,7 +179,8 @@ class LocalPhoto < Photo
 
   def photo_bucket_should_be_changed?
     # must have a URL
-    return false unless original_url
+    return false unless file_prefix
+    return false unless CONFIG.usingS3
     # the code must be configured to use a public bucket
     return false unless LocalPhoto.odp_s3_bucket_enabled?
     # the LocalPhoto must be in a bucket other than what its license dictates
@@ -193,14 +198,6 @@ class LocalPhoto < Photo
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
   
-  def set_defaults
-    if user
-      self.native_username ||= user.login
-      self.native_realname ||= user.name
-    end
-    true
-  end
-
   def file=(data)
     self.file.assign(data)
     # uploaded photos need metadata immediately in order to
@@ -212,15 +209,11 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    metadata = self.metadata.to_h.clone || {}
-    metadata[:dimensions] ||= { }
+    extracted_metadata = metadata.to_h.clone || {}
     begin
-      file.styles.keys.each do |style|
-        metadata[:dimensions][style] = extract_dimensions(style)
-      end
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
-        metadata.merge!( exif_data )
+        extracted_metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
@@ -233,30 +226,26 @@ class LocalPhoto < Photo
     rescue ExifMetadata::ExtractionError => e
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
-    metadata = metadata.force_utf8
-    self.metadata = metadata
+    extracted_metadata = extracted_metadata.force_utf8
+    if dimensions = extract_dimensions( :original )
+      self.width = dimensions[:width]
+      self.height = dimensions[:height]
+    end
+    self.photo_metadata ||= PhotoMetadata.new( photo: self )
+    self.photo_metadata.metadata = extracted_metadata
   end
 
   def set_urls
-    styles = %w(original large medium small thumb square)
-    updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-    # the original_url will be blank when initially saving any file
-    # by URL (cached remote photos). We want them to have placeholder
-    # photos, so use a dummy LocalPhoto for initial photo URLs
-    blank_file = LocalPhoto.new.file
-    updates += styles.map do |s|
-      url = file.queued_for_write[s].blank? ? file.url(s) : blank_file.url(s)
-      url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
-    end
-    unless new_record?
-      updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
-    end
-    Photo.where(id: id).update_all(updates)
+    return if new_record?
+    updates = { }
+    updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
+    updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
+    Photo.where( id: id ).update_all( updates )
     true
   end
 
   def reset_file_from_original
-    interpolated_original_url = FakeView.image_url( self.file.url(:original) )
+    interpolated_original_url = ApplicationController.helpers.image_url( self.file.url(:original) )
     
     # If we're using local file storage and using some kind of development-ish
     # setup, it probably means we're running a single server process, which
@@ -275,7 +264,7 @@ class LocalPhoto < Photo
     else
       {}
     end
-    old_interpolated_original_url = FakeView.image_url(
+    old_interpolated_original_url = ApplicationController.helpers.image_url(
       Paperclip::Interpolations.interpolate( "photos/:id/:style.:extension", self.file, "original" ),
       image_url_opts
     )
@@ -284,16 +273,15 @@ class LocalPhoto < Photo
     
     # If it's not at the old path, use the cached original_url if it's not copyright infringement
     elsif original_url !~ /copyright/
-      FakeView.image_url( original_url )
+      ApplicationController.helpers.image_url( original_url )
 
     # If this is a copyright violation AND we don't have access to an original file, we're screwed.
     else
       raise Photo::MissingPhotoError.new( "We no longer have access to the original file" )
     end
 
-    io = open( URI.parse( url ) )
     Timeout::timeout(10) do
-      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.file = URI( url )
     end
   end
 
@@ -304,17 +292,22 @@ class LocalPhoto < Photo
   end
 
   def attribution
-    if user.blank? || [user.name, user.login].include?(native_realname)
-      super
-    else
-      "#{super}, uploaded by #{user.try_methods(:name, :login)}"
+    if user.blank? || [user.name, user.login].include?( native_realname )
+      # If this was imported from Flickr or Wikipedia and there's either no user
+      # we might attribute the photo to OR there is a user but they seem to be
+      # the person who the third party says took the photo, just do normal attribution
+      return super
     end
-  end
-  
-  def set_native_photo_id
-    if subtype.blank?
-      update_attribute(:native_photo_id, id)
-    end
+
+    # Otherwise, note that the user uploaded it, as opposed to specifying that
+    # they took it
+    uploader_name = attribution_name
+    I18n.t(
+      :attribution_uploaded_by_user,
+      attribution: super,
+      user: uploader_name,
+      vow_or_con: uploader_name[0].downcase
+    )
   end
 
   def source_title
@@ -362,6 +355,10 @@ class LocalPhoto < Photo
       if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
+        # Force the time to be in the time zone, b/c the value from EXIFR will
+        # be in the system time zone, regardless of what time zone info might
+        # be in the photo metadata. See
+        # https://github.com/MikeKovarik/exifr/issues/84#issuecomment-1004691190
         o.set_time_in_time_zone
         if o.time_observed_at
           o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")
@@ -446,10 +443,6 @@ class LocalPhoto < Photo
     self.save
   end
 
-  def processing?
-    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
-  end
-
   def extract_dimensions(style)
     if file? && tempfile = file.queued_for_write[style]
       if sizes = FastImage.size(tempfile)
@@ -459,45 +452,8 @@ class LocalPhoto < Photo
     end
   end
 
-  # this method was created for generating dimensions for
-  # all existing images in S3 in mass. It was designed for
-  # performance and not accuracy. It extrapolates the sizes of
-  # all the styles from the original to save on HTTP requests.
-  # Photo.extract_dimensions is the more exact method
-  def extrapolate_dimensions_from_original
-    return unless original_url
-    if original_dimensions = FastImage.size(original_url)
-      sizes = {
-        original: {
-          width: original_dimensions[0],
-          height: original_dimensions[1]
-        }
-      }
-      max_d = original_dimensions.max
-      # extrapolate the scaled dimensions of the other sizes
-      file.styles.each do |key, s|
-        next if key.to_sym == :original
-        if match = s.geometry.match(/([0-9]+)x([0-9]+)([^0-9])?/)
-          style_sizes = {
-            width: match[1].to_i,
-            height: match[2].to_i
-          }
-          modifier = match[3]
-          # the '#' modifier means the resulting image is exactly that size
-          unless modifier == "#"
-            ratio = (max_d < style_sizes[:width]) ?
-              1 : (style_sizes[:width] / max_d.to_f)
-            style_sizes[:width] = (sizes[:original][:width] * ratio).round
-            style_sizes[:height] = (sizes[:original][:height] * ratio).round
-          end
-          sizes[key] = style_sizes
-        end
-      end
-      sizes
-    end
-  end
-
   def s3_client
+    return unless CONFIG.usingS3
     s3_credentials = LocalPhoto.new.file.s3_credentials
     ::Aws::S3::Client.new(
       access_key_id: s3_credentials[:access_key_id],
@@ -509,6 +465,29 @@ class LocalPhoto < Photo
   def mark_observations_as_updated
     observations.each do |o|
       o.mark_as_updated
+    end
+  end
+
+  def prune_odp_duplicates( options = { } )
+    return unless in_public_s3_bucket?
+    client = options[:s3_client] || LocalPhoto.new.s3_client
+    static_bucket = LocalPhoto.s3_bucket
+    # check the static bucket for files for this photo
+    s3_objects = client.list_objects( bucket: static_bucket, prefix: "photos/#{ id }/" )
+    images = s3_objects.contents
+    return unless images.any?
+    puts "deleting photo #{id} [#{images.size} files] from S3"
+    # delete the duplicates in the static bucket
+    client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+  end
+
+  def self.prune_odp_duplicates_batch( min_id, max_id )
+    s3_client = LocalPhoto.new.s3_client
+    LocalPhoto.
+      where( "id >= ?", min_id ).
+      where( "id < ?", max_id ).
+      find_each( batch_size: 100 ) do |lp|
+      lp.prune_odp_duplicates( s3_client: s3_client )
     end
   end
 
@@ -531,7 +510,7 @@ class LocalPhoto < Photo
     # an additional check to make sure the photo URLs contain the expected domain.
     # Later there will be a string substitution replacing the source domain with
     # the target domain
-    return unless photo.original_url.include?( source_domain )
+    return unless photo.file_prefix && photo.file_prefix.prefix.include?( source_domain )
 
     # fetch list of files at the source
     images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
@@ -548,18 +527,7 @@ class LocalPhoto < Photo
 
       # override the photo s3_account so its URLs will point to the new bucket
       photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
-
-      # do a string substition to replace the source domain with the target domain.
-      # This is necessary for now because we switched how we determine image extensions
-      # in 2016 (see NOTE near the top of this file) and we cannot accurately recreate all
-      # actual file extensions using Paperclip or the `set_urls` method. Only the *_url
-      # attributes contain the accurate file names. So this is doing the minimal update
-      # to URLs which his just swap out domains
-      styles = %w(original large medium small thumb square)
-      url_updates = Hash[styles.map do |s|
-        ["#{s}_url", photo.send( "#{s}_url").sub( source_domain, target_domain )]
-      end]
-      photo.update_columns( url_updates )
+      photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
       photo.reload
 
       # if the photo is being removed as a result of a flag being applied,

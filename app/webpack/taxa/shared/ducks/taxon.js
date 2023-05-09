@@ -22,8 +22,20 @@ const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
 const SET_FIELD_VALUES = "taxa-show/taxon/SET_FIELD_VALUES";
 const SET_SPECIES = "taxa-show/taxon/SET_SPECIES";
 
+const CORE_TAXON_FIELDS = {
+  id: true,
+  name: true,
+  rank: true,
+  rank_level: true,
+  iconic_taxon_name: true,
+  preferred_common_name: true,
+  is_active: true,
+  extinct: true,
+  ancestor_ids: true
+};
+
 export default function reducer( state = { counts: {} }, action ) {
-  const newState = Object.assign( { }, state );
+  const newState = { ...state };
   switch ( action.type ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
@@ -205,14 +217,33 @@ export function showPhotoChooserIfSignedIn( ) {
 export function fetchTerms( options = { histograms: false } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
+    const { testingApiV2 } = s.config;
     const params = { taxon_id: s.taxon.taxon.id, per_page: 50 };
     if ( s.config.chosenPlace ) {
-      params.place_id = s.config.chosenPlace.id;
+      params.place_id = testingApiV2
+        ? s.config.chosenPlace.uuid
+        : s.config.chosenPlace.id;
     }
     if ( options.histograms ) {
       params.unannotated = true;
     } else {
       params.no_histograms = true;
+    }
+    if ( testingApiV2 ) {
+      params.fields = {
+        count: true,
+        month_of_year: "all",
+        controlled_attribute: {
+          id: true,
+          label: true,
+          taxon_ids: true
+        },
+        controlled_value: {
+          id: true,
+          label: true
+        },
+        unannotated: "all"
+      };
     }
     return inatjs.observations.popularFieldValues( params ).then( r => {
       const controlledAttributes = _.reduce( r.results, ( memo, result ) => {
@@ -228,16 +259,21 @@ export function fetchTerms( options = { histograms: false } ) {
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
-      if ( options.histograms ) {
-        _.each( r.unannotated, ( data, controlledAttributeId ) => {
-          fieldValues[Number( controlledAttributeId )].push( {
-            count: data.count,
-            month_of_year: data.month_of_year,
-            controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
-            controlled_value: {
-              label: "No Annotation"
-            }
-          } );
+      // If there's data about how many observations do *not* have annotations
+      // of these relevant attributes, add "No Annotation" data
+      if ( options.histograms && r.unannotated ) {
+        const usedAttributeIds = _.keys( fieldValues ).map( Number );
+        _.each( r.unannotated, ( data, unannotatedAttributeId ) => {
+          if ( usedAttributeIds.indexOf( Number( unannotatedAttributeId ) ) >= 0 ) {
+            fieldValues[Number( unannotatedAttributeId )].push( {
+              count: data.count,
+              month_of_year: data.month_of_year,
+              controlled_attribute: controlledAttributes[Number( unannotatedAttributeId )],
+              controlled_value: {
+                label: "No Annotation"
+              }
+            } );
+          }
         } );
       }
       dispatch( {
@@ -256,7 +292,8 @@ export function fetchSpecies( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const t = taxon || s.taxon.taxon;
-    const params = Object.assign( { }, options, {
+    const params = {
+      ...options,
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       taxon_id: t.id,
@@ -264,7 +301,7 @@ export function fetchSpecies( taxon, options = { } ) {
       verifiable: true,
       taxon_is_active: true,
       per_page: 0
-    } );
+    };
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setSpecies( response ) );
     } );
@@ -275,10 +312,51 @@ export function fetchTaxon( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const t = taxon || s.taxon.taxon;
-    const params = Object.assign( { }, options, {
+    const { testingApiV2 } = s.config;
+    const params = {
+      ...options,
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale
-    } );
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        ...CORE_TAXON_FIELDS,
+        complete_species_count: true,
+        observations_count: true,
+        complete_rank: true,
+        flag_counts: "all",
+        default_photo: {
+          url: true
+        },
+        ancestors: {
+          ...CORE_TAXON_FIELDS,
+          complete_species_count: true,
+          observations_count: true,
+          complete_rank: true
+        },
+        children: {
+          ...CORE_TAXON_FIELDS,
+          complete_species_count: true,
+          observations_count: true,
+          complete_rank: true
+        },
+        taxon_photos: {
+          photo: {
+            attribution: true,
+            id: true,
+            license_code: true,
+            small_url: true,
+            medium_url: true,
+            original_dimensions: {
+              width: true,
+              height: true
+            },
+            url: true
+          },
+          taxon: CORE_TAXON_FIELDS
+        }
+      };
+    }
     return inatjs.taxa.fetch( t.id, params ).then( response => {
       // make sure the charts revert back to the "Seasonality" tab
       // in case the incoming results have no data for the current tab
@@ -368,10 +446,24 @@ export function fetchInteractions( taxon ) {
 
 export function fetchTrending( ) {
   return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = {
+      ...defaultObservationParams( getState( ) ),
       d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" ),
       taxon_is_active: true
-    } );
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        count: true,
+        taxon: {
+          ...CORE_TAXON_FIELDS,
+          default_photo: {
+            url: true
+          }
+        }
+      };
+    }
     inatjs.observations.speciesCounts( params ).then(
       response => dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
       error => {
@@ -383,11 +475,25 @@ export function fetchTrending( ) {
 
 export function fetchRare( ) {
   return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = {
+      ...defaultObservationParams( getState( ) ),
       order: "asc",
       csi: "CR,EN",
       taxon_is_active: true
-    } );
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        count: true,
+        taxon: {
+          ...CORE_TAXON_FIELDS,
+          default_photo: {
+            url: true
+          }
+        }
+      };
+    }
     inatjs.observations.speciesCounts( params ).then(
       response => dispatch( setRare( response.results.map( r => r.taxon ) ) ),
       error => {
@@ -403,12 +509,24 @@ export function fetchRecent( ) {
     if ( state.observations && state.observations.recent ) {
       return;
     }
-    const params = Object.assign( { }, defaultObservationParams( state ), {
+    const { testingApiV2 } = state.config;
+    const params = {
+      ...defaultObservationParams( state ),
       quality_grade: "needs_id,research",
       rank: "species",
       category: "improving,leading",
       per_page: 12
-    } );
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        taxon: {
+          ...CORE_TAXON_FIELDS,
+          default_photo: {
+            url: true
+          }
+        }
+      };
+    }
     const endpoint = inatjs.identifications.recent_taxa;
     endpoint( params ).then(
       response => dispatch( setRecent( response ) ),
@@ -421,7 +539,9 @@ export function fetchRecent( ) {
 
 export function fetchWanted( ) {
   return ( dispatch, getState ) => {
-    const { observations } = getState( );
+    const state = getState( );
+    const { observations } = state;
+    const { testingApiV2 } = state.config;
     if ( observations && observations.wanted ) {
       return;
     }
@@ -429,6 +549,14 @@ export function fetchWanted( ) {
       id: getState( ).taxon.taxon.id,
       per_page: 12
     };
+    if ( testingApiV2 ) {
+      params.fields = {
+        ...CORE_TAXON_FIELDS,
+        default_photo: {
+          url: true
+        }
+      };
+    }
     inatjs.taxa.wanted( params ).then(
       response => dispatch( setWanted( response.results ) ),
       error => {
@@ -441,11 +569,24 @@ export function fetchWanted( ) {
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    const { testingApiV2 } = state.config;
     const { taxon } = state.taxon;
     const endpoint = inatjs.identifications.similar_species;
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+    const params = {
+      ...defaultObservationParams( getState( ) ),
       verifiable: "any"
-    } );
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        count: true,
+        taxon: {
+          ...CORE_TAXON_FIELDS,
+          default_photo: {
+            url: true
+          }
+        }
+      };
+    }
     endpoint( params ).then(
       response => {
         const withoutAncestors = response.results

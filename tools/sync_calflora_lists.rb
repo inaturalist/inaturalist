@@ -54,8 +54,8 @@ def work_on_place(place)
   # puts "Created list of #{taxon.name} for #{place.display_name} #{check_list}"
 
   place_name = place.name.gsub(/\s*county\s+/i, '').titleize
-  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&format=text"
-  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&format=text&where-native=f"
+  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{CGI.escape(place_name)}&format=text"
+  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{CGI.escape(place_name)}&format=text&where-native=f"
   puts "Requesting #{url}" if OPTS.debug
   page = RestClient.get(url)
   names = begin 
@@ -65,7 +65,12 @@ def work_on_place(place)
     page.body.force_encoding('ISO-8859-1').encode('UTF-8').split("\n")[1..-1]
   end
   page_introduced = RestClient.get(url_introduced)
-  names_introduced = page_introduced.body.split("\n")[1..-1]
+  names_introduced = begin
+    page_introduced.body.split("\n")[1..-1]
+  rescue ArgumentError => e
+    raise e unless e.message =~ /invalid byte sequence in UTF-8/
+    page_introduced.body.force_encoding( "ISO-8859-1" ).encode( "UTF-8" ).split("\n")[1..-1]
+  end
   puts "\t#{names.size} names, #{names_introduced.size} introduced"
   if names.blank?
     puts "\tERROR: no names for #{url}, skipping..."
@@ -113,7 +118,7 @@ def work_on_place(place)
     puts "\t\tEstablishment means: #{establishment_means}"
     if existing_lt = place.check_list.listed_taxa.where(:taxon_id => taxon.id).first
       puts "\t\tFound existing lt: #{existing_lt}, moving to new list"
-      existing_lt.update_attributes(:list => list, :establishment_means => establishment_means) unless OPTS[:test]
+      existing_lt.update(:list => list, :establishment_means => establishment_means) unless OPTS[:test]
     else
       puts "\t\tAdding #{taxon} to #{list}"
       lt = unless OPTS[:test]
@@ -229,15 +234,15 @@ end
 
 def make_list_comprehensive(list)
   puts "\tMaking #{list} comprehensive..."
-  list.update_attributes(:comprehensive => true) unless OPTS[:test]
+  list.update(:comprehensive => true) unless OPTS[:test]
 end
 
 california = Place.where(name: "California", admin_level: Place::STATE_LEVEL).first
 puts "Found state: #{california}" if OPTS.debug
 california.children.where(admin_level: Place::COUNTY_LEVEL).find_each do |county|
-  puts "Found county: #{county}" if OPTS.debug
   if OPTS.county
     next unless county.name.downcase == OPTS.county.downcase
+    puts "Found county: #{county}" if OPTS.debug
   end
   work_on_place(county)
 end

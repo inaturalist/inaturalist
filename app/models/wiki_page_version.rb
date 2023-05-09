@@ -1,4 +1,4 @@
-class WikiPageVersion < ActiveRecord::Base
+class WikiPageVersion < ApplicationRecord
 
   acts_as_wiki_page_version
 

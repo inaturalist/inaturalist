@@ -2,6 +2,7 @@
   <%= stylesheet_link_tag 'observations' %>
   <style type="text/css" media="screen">
     .field .text {width: 575px;}
+    #taxon_link_comments {margin: 1.5em 0 1.5em 0;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
@@ -61,6 +62,12 @@
       <%= t :on_day %> <%= l( @taxon_link.created_at.to_date, format: :long ) %>
     </div>
   <% end -%>
+  <% if @taxon_link.persisted? -%>
+    <div id="taxon_link_comments">
+      <hr/>
+      <%= render partial: "comments/comments", locals: { parent: @taxon_link } %>
+    </div>
+  <% end -%>
 </div>
 
 <div class="last column span-8">
@@ -72,22 +79,38 @@
       <dd>
         <p class="ui"><%= t(:the_name_of_the_taxon_including_space) %></p>
         <p class="ui"><strong><%=t :example %>:</strong></p>
-        <code>http://site.com/[NAME]</code> -> 
+        <code>http://site.com/[NAME]</code> ->
         <code>http://site.com/Homo%20sapiens</code>
+      </dd><br/>
+
+      <dt>[NAME_]</dt>
+      <dd>
+        <p class="ui"><%= t(:the_name_of_the_taxon_underscores) %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
+        <code>http://site.com/[NAME]</code> ->
+        <code>http://site.com/Homo_sapiens</code>
+      </dd><br/>
+
+      <dt>[NAME-]</dt>
+      <dd>
+        <p class="ui"><%= t(:the_name_of_the_taxon_dashes) %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
+        <code>http://site.com/[NAME]</code> ->
+        <code>http://site.com/Homo-sapiens</code>
       </dd><br/>
 
       <dt>[GENUS] / [SPECIES]</dt>
       <dd>
         <p class="ui"><%= t(:use_this_if_the_url_needs_genus_species_separated) %></p>
         <p class="ui"><strong><%=t :example %>:</strong></p>
-        <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> -> 
+        <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> ->
         <code>http://site.com/?g=Homo&amp;s=sapiens</code>
       </dd><br/>
 
       <dt>[RANK]</dt>
       <dd>
         <p class="ui"><strong><%=t :example %>:</strong></p>
-        <code>http://site.com/[RANK]/[NAME]</code> -> 
+        <code>http://site.com/[RANK]/[NAME]</code> ->
         <code>http://site.com/species/Homo%20sapiens</code>
       </dd><br/>
 
@@ -95,7 +118,7 @@
       <dd>
         <p class="ui"><%=t "views.taxon_links.form.name_with_rank_desc" %></p>
         <p class="ui"><strong><%=t :example %>:</strong></p>
-        <code>http://site.com/[NAME_WITH_RANK]</code> -> 
+        <code>http://site.com/[NAME_WITH_RANK]</code> ->
         <code>http://site.com/Homo%20sapiens%20ssp.%20inaturalensis</code>
       </dd>
     </dl>

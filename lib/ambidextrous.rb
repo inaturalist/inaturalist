@@ -62,7 +62,7 @@ module Ambidextrous
   def return_here
     ie_needs_return_to = false
     if request.user_agent =~ /msie/i && params[:format].blank? && 
-        ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
+        ![Mime[:js], Mime[:json], Mime[:xml], Mime[:kml], Mime[:atom]].map(&:to_s).include?(request.format.to_s)
       ie_needs_return_to = true
     end
     if (ie_needs_return_to || request.format.blank? || request.format.html?) && !params.keys.include?('partial')

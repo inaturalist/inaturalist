@@ -7,9 +7,10 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import UserImage from "../../../shared/components/user_image";
 import UserLink from "../../../shared/components/user_link";
 import FormattedDate from "../../shared/formatted_date";
+import ViewMoreFooter from "./view_more_footer";
 
 const ObservationsListView = ( {
-  config, observations, hasMore, loadMore, setObservationFilters
+  config, observations, hasMore, loadMore, setObservationFilters, showViewMoreLink, viewMoreUrl
 } ) => {
   const scrollIndex = config.observationsScrollIndex || 30;
   const filters = config.observationFilters;
@@ -176,6 +177,10 @@ const ObservationsListView = ( {
           </Col>
         </Row>
       </Grid>
+      <ViewMoreFooter
+          showViewMoreLink={showViewMoreLink}
+          viewMoreUrl={viewMoreUrl}
+      />
     </div>
   );
 };
@@ -185,7 +190,9 @@ ObservationsListView.propTypes = {
   setObservationFilters: PropTypes.func,
   hasMore: PropTypes.bool,
   loadMore: PropTypes.func,
-  observations: PropTypes.array
+  observations: PropTypes.array,
+  showViewMoreLink: PropTypes.bool,
+  viewMoreUrl: PropTypes.string
 };
 
 export default ObservationsListView;

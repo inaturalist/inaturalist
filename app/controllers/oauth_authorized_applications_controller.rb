@@ -1,9 +1,9 @@
 class OauthAuthorizedApplicationsController < Doorkeeper::AuthorizedApplicationsController
-  # In the doorkeeper parent class there's no `uness` so it just fails for every
+  # In the doorkeeper parent class there's no `unless` so it just fails for every
   # request that doesn't use CSRF. Since we need to support this via the API
   # with JWT-based auth, we need to skip this check if Devise / Warden have
   # already ok'd the user ~~kueda 20201103
-  protect_from_forgery with: :exception, unless: Proc.new {|c| current_user }
+  protect_from_forgery with: :exception, prepend: true, unless: -> { current_user }
 
   def destroy
     OauthApplication.revoke_tokens_and_grants_for(

@@ -1,4 +1,4 @@
-class Subscription < ActiveRecord::Base
+class Subscription < ApplicationRecord
   belongs_to :resource, :polymorphic => true, :inverse_of => :update_subscriptions
   belongs_to :user
   belongs_to :taxon # in case this subscription has taxonomic specifity
@@ -15,9 +15,6 @@ class Subscription < ActiveRecord::Base
 
   cattr_accessor :subscribable_classes
   @@subscribable_classes ||= []
-
-  scope :with_unsuspended_users, -> {
-    joins(:user).where(users: { subscriptions_suspended_at: nil }) }
 
   def to_s
     "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
@@ -53,8 +50,7 @@ class Subscription < ActiveRecord::Base
 
   def clear_caches
     ctrl = ActionController::Base.new
-    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: true )
-    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: false )
+    ctrl.send( :expire_action, UrlHelper.home_url( user_id: user_id, ssl: true ) )
+    ctrl.send( :expire_action, UrlHelper.home_url( user_id: user_id, ssl: false ) )
   end
-
 end

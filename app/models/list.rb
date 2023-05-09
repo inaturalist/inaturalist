@@ -3,7 +3,7 @@
 # they be lists of things they've seen, lists of things they'd like to see, or
 # just lists of taxa that interest them for some reason.
 #
-class List < ActiveRecord::Base
+class List < ApplicationRecord
   acts_as_spammable fields: [:title, :description],
                     comment_type: "item-description",
                     automated: false
@@ -93,8 +93,7 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv(options = {})
-    controller = options[:controller] || FakeView.new
-    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
+    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation
        last_observation url created_at updated_at taxon_common_name)
     ranks = Taxon::RANK_LEVELS.select{|r,l| (Taxon::COMPLEX_LEVEL..Taxon::KINGDOM_LEVEL).include?(l) }.keys - [Taxon::GENUSHYBRID]
     headers = options[:taxonomic] ? ranks + attrs : attrs
@@ -142,9 +141,9 @@ class List < ActiveRecord::Base
           when 'adding_user_login'
             lt.user_login
           when 'url'
-            controller.instance_eval { listed_taxon_url(lt) }
+            UrlHelper.listed_taxon_url(lt)
           when 'first_observation', 'last_observation' 
-            controller.instance_eval { observation_url(lt.send(h)) } if lt.send(h)
+            UrlHelper.observation_url(lt.send(h)) if lt.send(h)
           else
             lt.send(h)
           end
@@ -181,9 +180,8 @@ class List < ActiveRecord::Base
     key
   end
 
-  def self.icon_preview_cache_key(list)
-    list_id = list.is_a?(List) ? list.id : list
-    FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)
+  def self.icon_preview_cache_key( list )
+    list_id = list.is_a?( List ) ? list.id : list
+    UrlHelper.icon_preview_list_url( list_id, locale: I18n.locale )
   end
-
 end

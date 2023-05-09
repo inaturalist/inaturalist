@@ -1,9 +1,9 @@
 class GuideTaxaController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
   load_only = [ :show, :edit, :update, :destroy, :update_photos, :sync ]
-  before_filter :load_record, :only => load_only
-  before_filter :load_guide, :only => load_only
-  before_filter :only => [:edit, :update, :destroy, :update_photos, :sync] do |c|
+  before_action :load_record, :only => load_only
+  before_action :load_guide, :only => load_only
+  before_action :only => [:edit, :update, :destroy, :update_photos, :sync] do |c|
     require_guide_user
   end
   layout "bootstrap"
@@ -88,7 +88,7 @@ class GuideTaxaController < ApplicationController
   # PUT /guide_taxa/1.json
   def update
     respond_to do |format|
-      if @guide_taxon.update_attributes(params[:guide_taxon])
+      if @guide_taxon.update(params[:guide_taxon])
         format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
         format.json { render :json => @guide_taxon.as_json(:root => true, :methods => [:html]) }
       else
@@ -128,10 +128,6 @@ class GuideTaxaController < ApplicationController
   rescue Errno::ETIMEDOUT
     flash[:error] = "Request timed out!"
     redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
-  rescue Koala::Facebook::APIError => e
-    raise e unless e.message =~ /OAuthException/
-    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{@site.preferred_site_name_short}."
-    redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
   end
 
   def sync
@@ -155,7 +151,7 @@ class GuideTaxaController < ApplicationController
       param = photo_class.to_s.underscore.pluralize
       next if params[param].blank?
       params[param].reject {|i| i.blank?}.uniq.each do |photo_id|
-        if fp = photo_class.find_by_native_photo_id(photo_id)
+        if fp = LocalPhoto.where( subtype: photo_class.name, native_photo_id: photo_id )
           photos << fp 
         elsif photo_class != 'LocalPhoto'
           pp = photo_class.get_api_response(photo_id)

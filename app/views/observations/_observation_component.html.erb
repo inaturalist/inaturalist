@@ -44,8 +44,7 @@ Some notes:
   elsif observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
   end
-  testing_interpolation_mitigation = current_user && current_user.in_test_group?( "interpolation" )
-  coordinates_viewable ||= !testing_interpolation_mitigation || observation.coordinates_viewable_by?( current_user )
+  coordinates_viewable ||= observation.coordinates_viewable_by?( current_user )
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
     data-taxon-id=<%= observation.taxon_id %>
@@ -109,11 +108,10 @@ Some notes:
   <div class="readable species_guess attribute">
     <h4 class="label"><%=t :what %></h4>
     <% if observation.taxon %>
-      <%= render :partial => 'shared/taxon', 
-                 :locals => {
-                    :taxon => observation.taxon,
-                    :link_url => obs_url,
-                    :include_parens => false} %>
+      <%= render "shared/taxon",
+        taxon: observation.taxon,
+        link_url: obs_url,
+        include_parens: true %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
         <%= link_to observation.species_guess, obs_url %>
@@ -147,7 +145,7 @@ Some notes:
     </span>
     <% if observation.time_observed_at && coordinates_viewable %>
     <span class="time">
-      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z")  %>
+      <%=l observation.time_observed_at.in_time_zone(observation.time_zone), format: :observed_at  %>
     </span>
     <% end %>
   </div>
@@ -180,10 +178,10 @@ Some notes:
     <div class="created_at attribute" style="display:none">
       <h4 class="label"><%=t :date_added %></h4>
       <span class="date">
-        <%= l(observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), :format => :day_month_year) %>
+        <%= l(observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), format: :day_month_year) %>
       </span>
       <span class="time">
-        <%= observation.created_at.in_time_zone(observation.user.time_zone || 'UTC').strftime("%I:%M %p %Z") %>
+        <%=l observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), format: :observed_at %>
       </span>
     </div>
   <% end -%>

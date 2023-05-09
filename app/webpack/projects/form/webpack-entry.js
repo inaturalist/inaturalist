@@ -1,7 +1,9 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
+import moment from "moment";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import {
@@ -16,6 +18,8 @@ import controlledTermsReducer, { fetchAllControlledTerms }
 /* global CURRENT_PROJECT */
 /* global COPY_PROJECT */
 
+moment.locale( I18n.locale );
+
 const rootReducer = combineReducers( {
   confirmModal: confirmModalReducer,
   config: configReducer,
@@ -25,13 +29,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {

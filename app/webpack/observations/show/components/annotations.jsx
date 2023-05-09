@@ -115,28 +115,18 @@ class Annotations extends React.Component {
     );
     const attr = a.controlled_attribute;
     const value = a.controlled_value;
-    const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}`, {
-      defaultValue: term.label
-    } );
-    const attrLabel = I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, {
-      defaultValue: attr.label
-    } );
-    const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, {
-      defaultValue: value.label
-    } );
-    const termDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( term.label )}`, {
-      defaultValue: false
-    } );
-    const valueDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( value.label )}`, {
-      defaultValue: valueLabel
-    } );
+    const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}` );
+    const attrLabel = I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}` );
+    const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}` );
+    const termDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( term.label )}` );
+    const valueDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( value.label )}` );
     const termPopover = (
       <Popover
         id={`annotation-popover-${a.uuid}`}
         className="AnnotationPopover"
       >
         <div className="contents">
-          { termDefinition && <p>{ termDefinition }</p> }
+          { termDefinition && !termDefinition.match( /\[missing/ ) && <p>{ termDefinition }</p> }
           <div className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }</div>
           <div className="search">
             <a href={`/observations?term_id=${attr.id}&term_value_id=${value.id}`}>
@@ -393,14 +383,17 @@ class Annotations extends React.Component {
     const count = observationAnnotations.length > 0 ? `(${observationAnnotations.length})` : "";
     return (
       <div className="Annotations collapsible-section">
-        <h4
-          className="collapsible"
-          onClick={( ) => showAnnotationsPanel( !isOpen )}
-        >
-          <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
-          { I18n.t( "annotations" ) }
-          { " " }
-          { count }
+        <h4 className="collapsible">
+          <button
+            type="button"
+            onClick={( ) => showAnnotationsPanel( !isOpen )}
+            className="btn btn-nostyle"
+          >
+            <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
+            { I18n.t( "annotations" ) }
+            { " " }
+            { count }
+          </button>
         </h4>
         <Panel expanded={isOpen} onToggle={() => {}}>
           <Panel.Collapse>

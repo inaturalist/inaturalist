@@ -1,4 +1,4 @@
-class TaxonChange < ActiveRecord::Base
+class TaxonChange < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon_change, dependent: :destroy
   has_many :taxa, :through => :taxon_change_taxa
@@ -18,7 +18,6 @@ class TaxonChange < ActiveRecord::Base
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
   validate :uniqueness_of_output_taxa
-  validate :taxa_below_order
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -200,11 +199,11 @@ class TaxonChange < ActiveRecord::Base
       return
     end
     unless is_a?( TaxonSplit ) && is_branching?
-      input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+      input_taxa.each {|t| t.update!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
     end
     output_taxa.each do |t|
       next if is_a?( TaxonSplit ) && t.id == input_taxon.id && input_taxon.is_active
-      t.update_attributes!(
+      t.update!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
         skip_taxon_framework_checks: true
@@ -255,7 +254,7 @@ class TaxonChange < ActiveRecord::Base
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
         unless auto_updatable_records.blank?
-          update_records_of_class( reflection.klass, records: auto_updatable_records )
+          update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
         end
         if !batch_users_to_notify.empty?
           action_attrs = {
@@ -292,7 +291,7 @@ class TaxonChange < ActiveRecord::Base
     #   loop do
     #     results = Identification.elastic_paginate(
     #       filters: [
-    #         { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+    #         { terms: { "taxon.ancestor_ids.keyword" => input_taxon_ids } },
     #         { term: { current: true } }
     #       ],
     #       page: page,
@@ -340,7 +339,7 @@ class TaxonChange < ActiveRecord::Base
     end
     proc = Proc.new do |record|
       if taxon = options[:taxon] || output_taxon_for_record( record )
-        record.update_attributes( taxon: taxon )
+        record.update( taxon: taxon )
       end
       yield(record) if block_given?
     end
@@ -365,6 +364,9 @@ class TaxonChange < ActiveRecord::Base
     debug = options[:debug]
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting partial revert for #{self}"
+    if committed_on.nil? && !debug
+      raise "Reverting requires committed_on not to be nil"
+    end
     logger.info "[INFO #{Time.now}] Destroying identifications..."
     unless debug
       identifications.find_each(&:destroy)
@@ -387,11 +389,13 @@ class TaxonChange < ActiveRecord::Base
       ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
     end
     input_taxa.each do |input_taxon|
-      input_taxon.update_attributes( is_active: true ) unless debug
+      input_taxon.update( is_active: true ) unless debug
     end
     if options[:deactivate_output_taxa]
       output_taxa.each do |output_taxon|
-        output_taxon.update_attributes( is_active: false ) unless debug
+        unless input_taxa.include? output_taxon
+          output_taxon.update( is_active: false ) unless debug
+        end
       end
     end
     # output taxa may or may not need to be made inactive, impossible to say in code
@@ -402,10 +406,20 @@ class TaxonChange < ActiveRecord::Base
     output_taxa.size == 1
   end
 
+  def taxon_change_commit_records_unique_hash
+    { "TaxonSwap::commit_records": id }
+  end
+
   def commit_records_later
-    return true unless committed_on_changed? && committed?
-    delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
+    return true unless saved_change_to_committed_on? && committed?
+    delay( priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: taxon_change_commit_records_unique_hash ).
+      commit_records
     true
+  end
+
+  def commit_records_job
+    Delayed::Job.where( unique_hash: taxon_change_commit_records_unique_hash.to_s ).first
   end
 
   def editable_by?(u)
@@ -429,14 +443,6 @@ class TaxonChange < ActiveRecord::Base
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "output taxa must be unique")
     end
-  end
-
-  def taxa_below_order
-    return true if user && user.is_admin?
-    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level.to_i >= Taxon::ORDER_LEVEL }
-      errors.add(:base, "only admins can move around taxa at order-level and above")
-    end
-    true
   end
 
   def move_input_children_to_output( target_input_taxon )
@@ -471,7 +477,7 @@ class TaxonChange < ActiveRecord::Base
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
           source: source,
-          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}",
+          description: "Automatically generated change from #{UrlHelper.taxon_change_url( self )}",
           move_children: true
         )
         tc.add_input_taxon( child )
@@ -492,7 +498,7 @@ class TaxonChange < ActiveRecord::Base
             skip_locks: true
           )
           output_child.save!
-          output_child.update_attributes( parent: output_taxon, skip_locks: true )
+          output_child.update( parent: output_taxon, skip_locks: true )
         end
         tc.add_output_taxon( output_child )
         tc.save!

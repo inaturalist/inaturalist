@@ -1,4 +1,4 @@
-class ExternalTaxon < ActiveRecord::Base
+class ExternalTaxon < ApplicationRecord
   belongs_to :taxon_framework_relationship
   
   after_create :update_taxon_framework_relationship
@@ -26,7 +26,7 @@ class ExternalTaxon < ActiveRecord::Base
     taxon_framework_relationship.set_relationship if ( name_changed? || new_record? )
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
-    taxon_framework_relationship.update_attributes( attrs )
+    taxon_framework_relationship.update( attrs )
   end
   
   private

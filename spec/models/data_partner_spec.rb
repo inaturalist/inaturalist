@@ -1,7 +1,11 @@
-# encoding: UTF-8
-require File.dirname(__FILE__) + "/../spec_helper.rb"
+require "spec_helper.rb"
 
 describe DataPartner, "validation" do
+  it { is_expected.to validate_inclusion_of(:frequency).in_array(described_class::FREQUENCIES).allow_blank }
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_presence_of :url }
+  it { is_expected.to validate_presence_of :description }
+
   it "should pass if dwca_params freq is allowed" do
     dp = DataPartner.make( dwca_params: { freq: DataPartner::MONTHLY } )
     expect( dp ).to be_valid

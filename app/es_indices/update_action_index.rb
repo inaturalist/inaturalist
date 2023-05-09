@@ -1,20 +1,22 @@
-class UpdateAction < ActiveRecord::Base
+class UpdateAction < ApplicationRecord
 
   include ActsAsElasticModel
 
-  settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
+  settings index: { number_of_shards: Rails.env.production? ? 6 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :created_at, type: "date"
       indexes :id, type: "integer"
       indexes :notification, type: "keyword"
       indexes :notifier, type: "keyword"
-      indexes :notifier_id, type: "integer"
+      indexes :notifier_id, type: "keyword"
       indexes :notifier_type, type: "keyword"
-      indexes :resource_id, type: "integer"
-      indexes :resource_owner_id, type: "integer"
+      indexes :resource_id, type: "keyword"
+      indexes :resource_owner_id, type: "keyword"
       indexes :resource_type, type: "keyword"
-      indexes :subscriber_ids, type: "integer"
-      indexes :viewed_subscriber_ids, type: "integer"
+      indexes :subscriber_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :viewed_subscriber_ids, type: "keyword"
     end
   end
 

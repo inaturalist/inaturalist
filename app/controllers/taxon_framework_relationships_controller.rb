@@ -1,8 +1,8 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
-  before_filter :find_taxon_framework_relationship, only: [:show, :edit]
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :curator_required, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :taxon_curator_required, only: [:edit, :update, :destroy]
+  before_action :find_taxon_framework_relationship, only: [:show, :edit]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :curator_required, only: [:new, :create, :edit, :update, :destroy]
+  before_action :taxon_curator_required, only: [:edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"
@@ -193,7 +193,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     local_params = taxon_framework_relationship_params
     taxa_attributes = local_params["taxa_attributes"]
     local_params.delete( "taxa_attributes" )
-    local_params.update( updater_id: current_user.id )
+    local_params[:updater_id] = current_user.id
     @taxon_framework_relationship = TaxonFrameworkRelationship.find( params[:id] )
     
     if taxa_attributes
@@ -233,7 +233,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       end
     end
     
-    if @taxon_framework_relationship.update_attributes( local_params )
+    if @taxon_framework_relationship.update( local_params )
       if taxa_attributes
         taxa_attributes.values.each do |row|
           if taxon = Taxon.where( id: row["id"] ).first

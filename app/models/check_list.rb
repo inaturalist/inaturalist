@@ -55,6 +55,7 @@ class CheckList < List
   
   def set_title
     return true unless title.blank?
+    return unless taxon || place
     unless taxon
       self.title = "#{place.name} Check List"
       return true
@@ -141,8 +142,8 @@ class CheckList < List
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt && lt.taxon_id
-    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
-    filters << { term: { place_ids: lt.place.id } } if lt.place
+    filters = [ { term: { "taxon.ancestor_ids.keyword": lt.taxon_id } } ]
+    filters << { term: { "place_ids.keyword": lt.place.id } } if lt.place
     { filters: filters,
       earliest_sort_field: "id",
       range_filters: [ { term: { quality_grade: "research" } } ] }
@@ -196,7 +197,7 @@ class CheckList < List
         end
       end
       batch.map( &:taxon_id ).uniq.each do |taxon_id|
-        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
           unique_hash: { "Taxon::elastic_index": taxon_id }).
           elastic_index!(ids: [taxon_id])
       end
@@ -215,7 +216,7 @@ class CheckList < List
       if listed_taxon.primary_listing
         ListedTaxon.update_cache_columns_for(listed_taxon)
       else
-        listed_taxon.primary_listed_taxon.update_attributes_on_related_listed_taxa
+        listed_taxon.primary_listed_taxon.update_on_related_listed_taxa
       end
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
@@ -272,7 +273,7 @@ class CheckList < List
     unless listed_taxa.blank? || options[:new]
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 2.hours.from_now,
+        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 8.hours.from_now,
           unique_hash: { "CheckList::refresh_listed_taxon": lt.id }
         ).refresh_listed_taxon( lt.id )
       end
@@ -289,6 +290,9 @@ class CheckList < List
     return unless lt
     # save sets all observation associates, months stats, etc.
     lt.force_update_cache_columns = true
+    # these associations will get loaded during the model save callbacks. Forcing them to be
+    # loaded here, outside the save transaction, so the queries will be run on replica DBs
+    ListedTaxon.preload_associations( lt, [{ list: :rules }, :taxon, :place])
     unless lt.save
       Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
     end

@@ -1,4 +1,4 @@
-class PlaceDenormalizer < Denormalizer
+class PlaceDenormalizer < ::Denormalizer
 
   def self.denormalize
     min = Observation.minimum(:id)

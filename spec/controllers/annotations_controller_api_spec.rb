@@ -7,13 +7,13 @@ shared_examples_for "a AnnotationsController" do
   describe "create" do
     it "should return a UUID" do
       ctv = ControlledTermValue.make!
-      post :create, format: :json, annotation: {
+      post :create, format: :json, params: { annotation: {
         resource_type: "Observation",
         resource_id: observation.id,
         controlled_attribute_id: ctv.controlled_attribute.id,
         controlled_value_id: ctv.controlled_value.id
-      }
-      expect( response ).to be_success
+      } }
+      expect( response ).to be_successful
       json = JSON.parse( response.body )
       expect( json["uuid"] ).not_to be_blank
     end
@@ -31,5 +31,7 @@ describe AnnotationsController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a AnnotationsController"
 end

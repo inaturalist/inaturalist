@@ -11,7 +11,6 @@
   = stylesheet_link_tag "bootstrap"
   = stylesheet_link_tag "observations/uploader"
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
-  = javascript_include_tag "i18n"
 #app
 = google_maps_js libraries: %w(places geometry drawing)
 - content_for :delayed_js do

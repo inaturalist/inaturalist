@@ -1,0 +1,17 @@
+= content_for :extracss do
+  = stylesheet_link_tag "taxon_ranges/form"
+.container
+  .row
+    .col-md-12
+      %h2
+        - if @taxon_range.taxon
+          =t :label_colon, label: t(:new_taxon_range)
+          = render( "shared/taxon", taxon: @taxon_range.taxon, named_ancestor: true, link_url: @taxon_range.taxon )
+        - else
+          = t(:new_taxon_range)
+      = form_for(@taxon_range, :builder => BootstrapFormBuilder, :html => {:multipart => true}) do |f|
+        = f.error_messages
+        = render :partial => 'form_fields', :locals => {:f => f}
+        .clear.buttonrow.upstacked
+          = f.submit t(:create), :class => "default button"
+          = link_to t(:back), @taxon_range.taxon || taxa_path, :class => "button"

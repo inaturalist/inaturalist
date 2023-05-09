@@ -50,6 +50,7 @@ class SearchBar extends React.Component {
         </div>
         <span className="form-group">
           <TaxonAutocomplete
+            config={config}
             bootstrapClear
             searchExternal={false}
             resetOnChange={false}
@@ -72,13 +73,16 @@ class SearchBar extends React.Component {
 
         <span className="form-group">
           <PlaceAutocomplete
+            config={config}
             resetOnChange={false}
             initialPlaceID={
-              parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+              params.place_id && params.place_id !== "any" ? params.place_id : null
             }
             bootstrapClear
             afterSelect={result => {
-              updateSearchParams( { place_id: result.item.id } );
+              updateSearchParams( {
+                place_id: config.testingApiV2 ? result.item.uuid : result.item.id
+              } );
             }}
             afterUnselect={idWas => {
               if ( idWas ) {
@@ -118,7 +122,6 @@ class SearchBar extends React.Component {
     );
   }
 }
-
 
 SearchBar.propTypes = {
   params: PropTypes.object,

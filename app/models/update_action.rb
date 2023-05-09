@@ -1,4 +1,4 @@
-class UpdateAction < ActiveRecord::Base
+class UpdateAction < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -105,15 +105,16 @@ class UpdateAction < ActiveRecord::Base
     return if user.email.blank?
     User.preload_associations(user, :stored_preferences)
     return if user.prefers_no_email
+    return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return unless user.active? # email verified
     updates = UpdateAction.elastic_paginate(
       filters: [
-        { term: { subscriber_ids: user.id } },
+        { term: { "subscriber_ids.keyword": user.id } },
         { range: { created_at: { gte: start_time } } },
         { range: { created_at: { lte: end_time } } }
       ],
       per_page: 100,
-      sort: { id: :asc })
+      sort: { created_at: :asc })
     updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
@@ -159,7 +160,7 @@ class UpdateAction < ActiveRecord::Base
     end
     filters = [
       { term: { notification: "activity" } },
-      { term: { subscriber_ids: user_id } }
+      { term: { "subscriber_ids.keyword": user_id } }
     ]
     inverse_filters = { terms: { id: action_ids } }
     unless clauses.blank?
@@ -250,29 +251,44 @@ class UpdateAction < ActiveRecord::Base
       UpdateAction.elastic_delete_by_ids!( batch.map(&:id) )
     end
     # then delete them from Postgres
-    UpdateAction.delete_all(*args)
+    UpdateAction.where(*args).delete_all
   end
 
-  def self.first_with_attributes(attrs, options = {})
+  def self.first_with_attributes( attrs, options = { } )
     return if CONFIG.has_subscribers == :disabled
-    skip_validations = options.delete(:skip_validations)
+    skip_validations = options.delete( :skip_validations )
     filters = UpdateAction.arel_attributes_to_es_filters( attrs )
-    if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
-      return action
+    # first search for a doc in Elasticsearch with these attributes
+    if es_action = UpdateAction.elastic_paginate( filters: filters, keep_es_source: true ).first
+      return es_action
     end
+    # if none are found, see if one exists in the DB
+    if db_action = UpdateAction.where( attrs ).first
+      # use the primary key to GET the document from Elasticsearch
+      if es_action = UpdateAction.elastic_get( db_action.id )
+        # append the ES source to the ActiveRecord instance and return
+        db_action.es_source = es_action["_source"]
+        return db_action
+      end
+    end
+    # no match was found in Elasticsearch or the DB, so attempt to create it
     begin
-      action = UpdateAction.new(attrs.merge(created_at: Time.now, skip_indexing: true).merge(options))
-      if !action.save(validate: !skip_validations)
+      action = UpdateAction.new( attrs.merge(created_at: Time.now, skip_indexing: true ).merge( options ) )
+      if !action.save( validate: !skip_validations )
         return
       end
       action.created_but_not_indexed = true
       return action
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
       # caught a record not unique error. Try ES once more before returning
-      Logstasher.write_exception(e, reference: "UpdateAction.first_with_attributes RecordNotUnique")
-      UpdateAction.refresh_es_index
-      if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
-        return action
+      Logstasher.write_exception( e, reference: "UpdateAction.first_with_attributes RecordNotUnique" )
+      sleep( 1 )
+      10.times do |iteration|
+        if action = UpdateAction.elastic_paginate( filters: filters, keep_es_source: true ).first
+          return action
+        else
+          sleep( 1 )
+        end
       end
       return
     end
@@ -372,7 +388,7 @@ class UpdateAction < ActiveRecord::Base
     filters = UpdateAction.arel_attributes_to_es_filters( attrs )
     es_response = UpdateAction.elastic_search(
       filters: filters,
-      sort: { id: :desc }
+      sort: { created_at: :desc }
     ).per_page(100).page(1)
     if es_response && es_response.results
       subscriber_ids = []

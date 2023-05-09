@@ -1,5 +1,4 @@
 @import "../colors";
-@import "../c3";
 @import "../users/_user_image";
 @import "../shared/observations_grid_item";
 @import "../shared/loading_spinner";
@@ -7,9 +6,9 @@
 @import "../shared/user_with_icon";
 
 $background-color: #1A1A1A;
-$gray: #999999;
-$medium-gray: #666666;
-$dark-gray: #333333;
+$gray: #999;
+$medium-gray: #666;
+$dark-gray: #333;
 $user-image-size: 240px;
 $user-image-overhang: 0.25 * $user-image-size / 2;
 
@@ -19,1345 +18,1612 @@ $ribbon-backfold-width: 59px;
 $ribbon-backfold-x-offset: 2em;
 $ribbon-midfold-width: 40px;
 
-.flex-row {
-  display: flex;
-  justify-content: space-between;
-  > * {
-    flex-grow: 1;
-    margin-left: 20px;
-    &:first-child {
-      margin-left: 0px;
-    }
-  }
-}
-
-#logo {
-  text-align: center;
-  padding: 50px;
-  img {
-    max-height: 34px;
-  }
-}
-#bodywrapper:after {
-  height: 0;
-}
-#header {
-  margin-bottom: 0;
-}
-#app {
-  background-color: $background-color;
-  color: white;
-  padding-bottom: 50px;
-  box-shadow: 0 0 20px black;
-  min-height: 500px;
-  .loading_spinner {
-    border-right-color: $medium-gray;
-    border-bottom-color: $medium-gray;
-    border-left-color: $medium-gray;
-  }
-  #initial-loading .loading_spinner {
-    border-right: 15px solid $medium-gray;
-    border-bottom: 15px solid $medium-gray;
-    border-left: 15px solid $medium-gray;
-    margin-top: 200px;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    color: white;
-    a {
-      color: white;
-    }
-    a:hover {
-      opacity: 1;
-    }
-    font-weight: 100;
-  }
-  // Bump bootstrap header margins by 10px
-  h1,
-  .h1,
-  h2,
-  .h2,
-  h3,
-  .h3 {
-    margin-top: 30px;
-    margin-bottom: 20px;
-  }
-  h4,
-  .h4,
-  h5,
-  .h5,
-  h6,
-  .h6 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  text {
-    fill: white;
-  }
-  path.domain,
-  .tick line {
-    stroke: $gray;
-  }
-  .tick text {
-    fill: $gray;
-  }
-  .alert {
-    text-align: center;
-  }
-  .text-muted {
-    strong {
-      color: #eee;
-      font-weight: normal;
-    }
-  }
-
-  h1 {
-    text-align: center;
-    font-size: 46px;
-  }
-  h2, h3, h4 {
-    position: relative;
-    text-align: center;
-    z-index: 0;
-    span {
-      padding: 0 10px;
-      display: inline-block;
-      z-index: 1;
-      background-color: $background-color;
-    }
-  }
-  h2:after,
-  h3:after,
-  h4:after {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    display: block;
-    border-top: 1px solid #999;
-    opacity: 0.5;
-  }
-
-  .btn-bordered,
-  select {
-    background-color: $background-color;
-    color: white;
-    border: 2px solid darken( $inat-green, 10% );
-    border-radius: 100px;
-    text-transform: uppercase;
-    font-weight: 100;
-    i {
-      margin-right: 5px;
-    }
-    &.btn-primary {
-      background-color: $inat-green;
-      border-color: $inat-green;
-    }
-  }
-  .btn-bordered {
-    padding: 10px 20px;
-  }
-  .btn-bordered:hover {
-    border-color: $inat-green;
-  }
-
-  .btn-share {
-    margin-bottom: 20px;
-  }
-
-  #sharing {
-    h2 { margin-bottom: 20px; }
-    center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    a {
-      i {
-        margin-right: 5px;
-      }
-    }
-    .btn {
-      min-width: 97px;
-      margin-left: 20px;
-      &:first-child {
-        margin-left: 0px;
-      }
-    }
-    .btn-bordered {
-      padding: 6px 15px;
-      text-transform: none;
-    }
-    .facebook-share-button {
-      background-color: $facebook-blue;
-      border-color: $facebook-blue;
-      color: white;
-      img {
-        width: 16px;
-        height: 16px;
-        position: relative;
-        top: -1px;
-        margin-right: 5px;
-      }
-    }
-    .twitter-share-button {
-      vertical-align: top;
-      background-color: $twitter-blue;
-      border-color: $twitter-blue;
-      color: white;
-    }
-  }
-  .site-icon {
-    border: 5px solid white;
-    background-color: white;
-    border-radius: $user-image-size;
-    width: $user-image-size;
-    height: $user-image-size;
-    position: absolute;
-    bottom: $user-image-overhang * -1;
-    left: 50%;
-    margin-left: $user-image-size / -2;
-    overflow: hidden;
-    img {
-      width: $user-image-size * 0.8;
-      position: absolute;
-      left: 50%;
-      margin-left: ($user-image-size * 0.8) / -2;
-      top: 50%;
-      margin-top: ($user-image-size * 0.8) / -2;
-    }
-  }
-
-  .banner {
-    height: $user-image-size + $user-image-overhang;
-    position: relative;
-    margin-bottom: $user-image-overhang + 40;
-    &.for-user {
-      margin-bottom: $user-image-overhang + 60;
-    }
-    .UserImage {
-      line-height: $user-image-size * 0.8;
-      font-size: $user-image-size * 0.8;
-      border: 5px solid white;
-      width: $user-image-size;
-      height: $user-image-size;
-      position: absolute;
-      bottom: $user-image-overhang * -1;
-      left: 50%;
-      margin-left: $user-image-size / -2;
-    }
-    .UserImage:hover {
-      opacity: 1;
-    }
-
-    .montage {
-      overflow: hidden;
-      height: 260px;
-      .photos {
-        display: flex;
-        flex-wrap: wrap;
-        width: 120%;
-        position: relative;
-        top: -1px;
-        z-index: 0;
-        img {
-          opacity: 0.8;
-          margin: 1px;
-          flex-grow: 1;
-        }
-      }
-    }
-  }
-
-  .GenerateStatsButton.btn {
-    display: block;
-    margin: 0 auto;
-    i {
-      margin-right: 3px;
-    }
-  }
-
-  .site-link {
-    display: inline-block;
-    margin: 50px auto;
-  }
-
-  .updated-at {
-    margin-top: 50px
-  }
-
-  #view-stats-buttons {
-    margin-top: 20px;
-    text-align: center;
-    .btn {
-      margin-bottom: 20px;
-      white-space: normal;
-    }
-    .support {
-      .btn {
-        min-width: 120px;
-      }
-      .btn:last-child {
-        margin-left: 20px;
-      }
-    }
-  }
-
-  .Identifications {
-    .UserWithIcon {
-      margin-bottom: 10px;
-      .icon {
-        margin-right: 10px;
-      }
-      .title a {
-        color: white;
-        font-size: 120%;
-      }
-      .subtitle {
-        margin-top: 0;
-        font-size: 80%;
-        a {
-          color: $medium-gray;
-        }
-        i {
-          margin-right: 3px;
-        }
-        text-transform: uppercase;
-      }
-    }
-    .idents-users-helped {
-      .UserWithIcon {
-        flex-direction: row-reverse;
-      }
-      text-align: right;
-      h3 {
-        text-align: right;
-        span {
-          padding-right: 0;
-        }
-      }
-      .UserWithIcon {
-        .icon {
-          margin-right: 0px;
-          margin-left: 10px;
-        }
-      }
-    }
-    .idents-users-who-helped {
-      h3 {
-        text-align: left;
-        span {
-          padding-left: 0;
-        }
-      }
-    }
-  }
-}
-
-.chart svg {
-  width: 100%;
-  min-height: 50px;
-}
-
-.DateHistogram {
-  .chart svg {
-    min-height: 300px;
-  }
-  circle {
-    fill: rgba( 0, 0, 0, 0 );
-    stroke: rgba( 0, 0, 0, 0 ) !important;
-  }
-  .zoom {
-    cursor: move;
-    fill: none;
-    pointer-events: all;
-  }
-  rect:hover {
-    opacity: 0.8;
-  }
-}
-
-#accumulation.DateHistogram {
-  .chart {
-    svg {
-      height: 400px;
-    }
-  }
-}
+// d3-tips get rendered outside of the bootstrap element, so they need styles
+// outside of those definitions
 
 $tip-opacity: 1;
+
 .d3-tip {
+  background: rgba(0, 0, 0, $tip-opacity);
+  border-radius: 2px;
+  color: #FFF;
   line-height: 1;
   padding: 5px;
-  background: rgba(0, 0, 0, $tip-opacity);
-  color: #fff;
-  border-radius: 2px;
   pointer-events: none;
-}
 
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, $tip-opacity);
-  position: absolute;
-  pointer-events: none;
-}
-
-/* Northward tooltips */
-.d3-tip.n:after {
-  content: "\25BC";
-  margin: -2px 0 0 0;
-  top: 100%;
-  left: 0;
-  text-align: center;
-}
-
-/* Eastward tooltips */
-.d3-tip.e:after {
-  content: "\25C0";
-  margin: -4px 0 0 0;
-  top: 50%;
-  left: -8px;
-}
-
-/* Southward tooltips */
-.d3-tip.s:after {
-  content: "\25B2";
-  margin: 0 0 1px 0;
-  top: -8px;
-  left: 0;
-  text-align: center;
-}
-
-/* Westward tooltips */
-.d3-tip.w:after {
-  content: "\25B6";
-  margin: -4px 0 0 -1px;
-  top: 50%;
-  left: 100%;
-}
-
-.Summary {
-  .chart svg {
-    min-height: 400px;
-  }
-  .summary-panel {
-    width: 100%;
-    position: relative;
-    .main {
-      width: 100%;
-      position: absolute;
-      text-align: center;
-      top: 120px;
-      text-transform: uppercase;
-      font-weight: 100;
-      color: $gray;
-      .count {
-        display: block;
-        font-size: 200%;
-        margin-bottom: 10px;
-        font-weight: bold;
-        color: white;
-      }
-    }
-    .PieChart {
-      position: relative;
-    }
-  }
-}
-
-.TorqueMap {
-  position: relative;
-  .map {
-    height: 400px;
-  }
-  .legend {
+  // Creates a small triangle extender for the tooltip
+  &::after {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, $tip-opacity);
+    display: inline;
+    font-size: 10px;
+    line-height: 1;
+    pointer-events: none;
     position: absolute;
     width: 100%;
-    bottom: 25px;
-    z-index: 1000;
-    .date {
-      background: white;
-      color: black;
-      width: 150px;
-      margin-left: auto;
-      margin-right: auto;
+  }
+
+  // Northward tooltips
+  &.n {
+    &::after {
+      content: "\25BC";
+      left: 0;
+      margin: -2px 0 0;
       text-align: center;
-      font-size: 18px;
-      line-height: 30px;
+      top: 100%;
     }
   }
-  .leaflet-container {
-    .leaflet-control-layers {
-      display: none;
+
+  // Eastward tooltips
+  &.e {
+    &::after {
+      content: "\25C0";
+      left: -8px;
+      margin: -4px 0 0;
+      top: 50%;
     }
-    .leaflet-control-layers-expanded {
-      padding: 10px 14px 8px 14px;
-      label {
-        font-size: 1.2em;
-        font-weight: normal;
-        input {
-          margin-top: 2px;
-          vertical-align: text-top;
-        }
-      }
+  }
+
+  // Southward tooltips
+  &.s {
+    &::after {
+      content: "\25B2";
+      left: 0;
+      margin: 0 0 1px;
+      text-align: center;
+      top: -8px;
     }
-    .leaflet-control-layers-toggle {
-      cursor: pointer;
-      background-size: 20px 20px !important;
+  }
+
+  // Westward tooltips
+  &.w {
+    &::after {
+      content: "\25B6";
+      left: 100%;
+      margin: -4px 0 0 -1px;
+      top: 50%;
     }
   }
 }
 
-.TaxaSunburst {
-  .chart svg {
-    min-height: 700px;
-  }
-  .sunburst-tip {
-    background-color: $background-color;
-    padding: 5px 20px;
-    width: auto;
-    border-radius: 50px;
-  }
-  .clickable {
-    cursor: pointer;
-  }
-  .sunburst-arc {
-    stroke: $background-color;
-    stroke-width: 0.25;
-  }
-  text {
-    pointer-events: none;
-    font-size: 8px;
-  }
-  .center-arc {
-    pointer-events: none;
-  }
-  textPath.has-com-name {
-    &.genus,
-    &.species,
-    &.subspecies,
-    &.variety {
-      font-style: italic;
-    }
-  }
-}
-
-// https://css-tricks.com/snippets/css/ribbon/
-.ribbon-container {
-  margin: 0 auto;
-  max-width: 600px;
-  position: relative;
-  z-index: 1;
-}
-.ribbon {
-  font-size: 16px !important;
-  width: 50%;
-  text-transform: uppercase;
-  position: relative;
-  background: $inat-green;
-  color: #fff;
-  text-align: center;
-  padding: 0.5em 1em;
-  margin: 10px auto 3em;
-  a, a:hover, a:active {
-    color: white;
-  }
-  .ribbon-content {
-    max-height: 40px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-.ribbon:before, .ribbon:after {
-  content: "";
-  position: absolute;
-  display: block;
-  bottom: -1 * $ribbon-y-offset;
-  border: $ribbon-point-width solid darken( $inat-green, 5% );
-  z-index: -1;
-}
-.ribbon:before {
-  left: -1 * $ribbon-backfold-x-offset;
-  border-right-width: $ribbon-backfold-width;
-  border-left-color: transparent;
-  border-left-width: $ribbon-y-offset;
-}
-.ribbon:after {
-  right: -1 * $ribbon-backfold-x-offset;
-  border-left-width: $ribbon-backfold-width;
-  border-right-color: transparent;
-  border-right-width: $ribbon-y-offset;
-}
-.ribbon .ribbon-content:before,
-.ribbon .ribbon-content:after {
-  content: "";
-  position: absolute;
-  display: block;
-  border-style: solid;
-  border-color: darken( $inat-green, 10% ) transparent transparent transparent;
-  bottom: -1 * $ribbon-y-offset;
-}
-.ribbon .ribbon-content:before {
-  left: 0;
-  border-width: $ribbon-y-offset 0 0 $ribbon-midfold-width;
-}
-.ribbon .ribbon-content:after {
-  right: 0;
-  border-width: $ribbon-y-offset $ribbon-midfold-width 0 0;
-}
-
-.popular.for-user .UserImage {
-  display: none;
-}
-$obs-grid-photo-size: 210px;
-.ObservationsGridItem.borderless.thumbnail {
-  width: 100%;
-  border: 0 transparent;
-  background-color: $dark-gray;
-  border-radius: 0;
-  .taxon {
-    .display-name {
-      color: white;
-      font-weight: 100;
-    }
-    .sciname {
-      white-space: nowrap;
-    }
-  }
-  .media {
-    height: $obs-grid-photo-size;
-  }
-  .caption {
-    color: $gray;
-    .controls {
-      white-space: nowrap;
-    }
-    .activity {
-      color: $inat-green;
-      float: left;
-      .stat {
-        margin-right: 8px;
-      }
-      .icon-chatbubble {
-        position: relative;
-        bottom: 2px;
-      }
-    }
-  }
-}
-
-.Publications {
+@mixin green-links {
   a {
     color: $inat-green;
   }
   a:hover, a:active, a:focus {
     color: lighten( $inat-green, 10% );
   }
-  .publication {
-    display: flex;
-    flex-direction: column;
-    color: $text-grey;
-    .authors {
-      font-size: smaller;
-      line-height: 1.4;
-    }
-    a.title {
-      font-size: larger;
-      color: white;
-    }
-  }
-  .data-dois {
-    a {
-      display: inline-block;
-      font-size: 75%;
-      padding: 0px 5px;
-      color: #888;
-      background-color: #2D2D2D;
-      border-radius: 3px;
-      margin-right: 5px;
-      line-height: 18px;
-    }
-  }
-  p.lead {
-    margin: 30px 0;
-  }
-  .altmetric-embed {
-    a[rel="popover"] {
-      position: relative;
-      img {
-        position: relative;
-        z-index: 1;
-        max-width: 100% !important;
-        height: auto;
-      }
-    }
-    a[rel="popover"]:before {
-      content: "";
-      display: block;
-      width: 70%;
-      height: 70%;
-      background-color: white;
-      position: absolute;
-      top: 12%;
-      left: 12%;
-      z-index: 0;
-      border-radius: 100px;
-    }
-  }
-  .row {
-    margin-bottom: 10px;
-  }
 }
 
-.NewSpecies {
-  margin-bottom: 50px;
-  .ObservationsGridItem.borderless.thumbnail {
-    .media {
-      height: 131px;
+#bodywrapper:after {
+  height: 0px;
+}
+
+.bootstrap {
+  .flex-row {
+    display: flex;
+    justify-content: space-between;
+    > * {
+      flex-grow: 1;
+      margin-left: 20px;
+      &:first-child {
+        margin-left: 0px;
+      }
     }
   }
 
-  > .controls {
-    margin: 20px 0;
-    .btn-default {
-      border-color: $dark-gray;
-      background-color: $dark-gray;
-      color: #eee;
+  #logo {
+    text-align: center;
+    padding: 50px;
+    img {
+      max-height: 34px;
     }
-    .btn-primary {
-      background-color: $inat-green;
+  }
+  #bodywrapper:after {
+    height: 0;
+  }
+  #header {
+    margin-bottom: 0;
+  }
+  #app {
+    background-color: $background-color;
+    color: white;
+    padding-bottom: 50px;
+    box-shadow: 0 0 20px black;
+    min-height: 500px;
+    .loading_spinner {
+      border-right-color: $medium-gray;
+      border-bottom-color: $medium-gray;
+      border-left-color: $medium-gray;
+    }
+    #initial-loading .loading_spinner {
+      border-right: 15px solid $medium-gray;
+      border-bottom: 15px solid $medium-gray;
+      border-left: 15px solid $medium-gray;
+      margin-top: 200px;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: white;
+      a {
+        color: white;
+      }
+      a:hover {
+        opacity: 1;
+      }
+      font-weight: 100;
+    }
+    // Bump bootstrap header margins by 10px
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3 {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    text {
+      fill: white;
+    }
+    path.domain,
+    .tick line {
+      stroke: $gray;
+    }
+    .tick text {
+      fill: $gray;
+    }
+    .alert {
+      text-align: center;
+    }
+    .text-muted {
+      strong {
+        color: #eee;
+        font-weight: normal;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 46px;
+    }
+    h2, h3, h4 {
+      position: relative;
+      text-align: center;
+      z-index: 0;
+      span {
+        padding: 0 10px;
+        display: inline-block;
+        z-index: 1;
+        background-color: $background-color;
+      }
+    }
+    h2:after,
+    h3:after,
+    h4:after {
+      z-index: -1;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      display: block;
+      border-top: 1px solid #999;
+      opacity: 0.5;
+    }
+
+    p.text-muted {
+      @include green-links;
+    }
+
+    .btn-bordered,
+    select {
+      background-color: $background-color;
+      color: white;
+      border: 2px solid darken( $inat-green, 10% );
+      border-radius: 100px;
+      font-weight: 100;
+      i {
+        margin-right: 5px;
+      }
+      &.btn-primary {
+        background-color: $inat-green;
+        border-color: $inat-green;
+      }
+    }
+    .btn-bordered {
+      padding: 10px 20px;
+    }
+    .btn-bordered:hover {
       border-color: $inat-green;
     }
-  }
-}
 
-.Growth {
-  .DateHistogram {
-    .chart svg {
-      min-height: 200px;
-      height: 200px;
+    .btn-share {
+      margin-bottom: 20px;
     }
-  }
-  .CountryGrowth {
-    .chart svg {
-      height: 500px;
-      min-height: 500px;
-    }
-    .controls {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      select {
-        flex-grow: 5;
+
+    #sharing {
+      h2 { margin-bottom: 20px; }
+      center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    }
-    path {
-      stroke-width: 0;
-    }
-    .bars {
-      height: 500px;
-      overflow-x: visible;
-      overflow-y: scroll;
-      select { width: 100%; }
-    }
-    .bar {
-      border: 0 transparent;
-      padding: 2px 5px;
-      text-transform: uppercase;
-      font-size: 9px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      text-align: left;
-      display: flex;
-      position: relative;
-      min-width: 20px;
-      > * {
-        display: none;
+      a {
+        i {
+          margin-right: 5px;
+        }
       }
-      &:hover > *,
-      &.expand > * {
-        display: inline-block;
+      .btn {
+        min-width: 97px;
+        margin-left: 20px;
+        &:first-child {
+          margin-left: 0px;
+        }
       }
-      &:hover:before,
-      &.current:before {
-        content: "";
-        display: block;
-        border-radius: 50px;
-        width: 5px;
-        height: 5px;
-        position: absolute;
-        left: -15px;
-        top: 9px;
-        background-color: white;
+      .btn-bordered {
+        padding: 6px 15px;
+        text-transform: none;
       }
-      outline: none;
-      .rank {
-        width: 10px;
-        margin-right: 5px;
-        text-align: right;
+      .facebook-share-button {
+        background-color: $facebook-blue;
+        border-color: $facebook-blue;
+        color: white;
+        img {
+          width: 16px;
+          height: 16px;
+          position: relative;
+          top: -1px;
+          margin-right: 5px;
+        }
       }
-      .place-name {
-        flex: 1;
-      }
-      .outside {
-        position: absolute;
-        left: 100%;
-        margin-left: 10px;
+      .twitter-share-button {
+        vertical-align: top;
+        background-color: $twitter-blue;
+        border-color: $twitter-blue;
         color: white;
       }
     }
-  }
-}
+    .site-icon {
+      border: 5px solid white;
+      background-color: white;
+      border-radius: $user-image-size;
+      width: $user-image-size;
+      height: $user-image-size;
+      position: absolute;
+      bottom: $user-image-overhang * -1;
+      left: 50%;
+      margin-left: $user-image-size / -2;
+      overflow: hidden;
+      img {
+        width: $user-image-size * 0.8;
+        position: absolute;
+        left: 50%;
+        margin-left: ($user-image-size * 0.8) / -2;
+        top: 50%;
+        margin-top: ($user-image-size * 0.8) / -2;
+      }
+    }
 
-.Streaks {
-  $streak-height: 30px;
-  &.multiyear {
-    .tick {
-      font-size: 10px;
-      @media (max-width: 500px) {
-        color: rgba(0,0,0,0);
+    .banner {
+      height: $user-image-size + $user-image-overhang;
+      position: relative;
+      margin-bottom: $user-image-overhang + 40;
+      &.for-user {
+        margin-bottom: $user-image-overhang + 60;
+      }
+      .UserImage {
+        line-height: $user-image-size * 0.8;
+        font-size: $user-image-size * 0.8;
+        border: 5px solid white;
+        width: $user-image-size;
+        height: $user-image-size;
+        position: absolute;
+        bottom: $user-image-overhang * -1;
+        left: 50%;
+        margin-left: $user-image-size / -2;
+      }
+      .UserImage:hover {
+        opacity: 1;
+      }
+
+      .montage {
+        overflow: hidden;
+        height: 260px;
+        .photos {
+          display: flex;
+          flex-wrap: wrap;
+          width: 120%;
+          position: relative;
+          top: -1px;
+          z-index: 0;
+          img {
+            opacity: 0.8;
+            margin: 1px;
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+
+    .GenerateStatsButton.btn {
+      display: block;
+      margin: 0 auto;
+      i {
+        margin-right: 3px;
+      }
+    }
+
+    .site-link {
+      display: inline-block;
+      margin: 50px auto;
+    }
+
+    .updated-at, .update-schedule {
+      margin-top: 50px;
+    }
+    .updated-at + .update-schedule {
+      margin-top: 0px;
+    }
+
+    #view-stats-buttons {
+      margin-top: 20px;
+      text-align: center;
+      .btn {
+        margin-bottom: 20px;
+        white-space: normal;
+      }
+      .support {
+        .btn {
+          min-width: 120px;
+        }
+        .btn:last-child {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .Identifications {
+      .UserWithIcon {
+        margin-bottom: 10px;
+
+        .icon {
+          margin-right: 10px;
+        }
+
+        .title {
+          a {
+            color: white;
+            font-size: 120%;
+          }
+        }
+
+        .subtitle {
+          font-size: 80%;
+          margin-top: 0;
+          text-transform: uppercase;
+
+          a {
+            color: $medium-gray;
+          }
+
+          i {
+            margin-right: 3px;
+          }
+        }
+      }
+
+      @media (min-width: 501px) {
+        .idents-users-helped {
+          text-align: right;
+
+          h3 {
+            text-align: right;
+
+            span {
+              padding-right: 0;
+            }
+          }
+
+          .UserWithIcon {
+            flex-direction: row-reverse;
+
+            .icon {
+              margin-left: 10px;
+              margin-right: 0;
+            }
+          }
+        }
+      }
+
+      .idents-users-who-helped {
+        h3 {
+          @media (min-width: 501px) {
+            text-align: left;
+          }
+
+          span {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 500px) {
+      .Identifications {
+        .helped-row {
+          flex-direction: column;
+
+          &> * {
+            margin-left: 0;
+          }
+        }
       }
     }
   }
-  .streak {
-    display: flex;
-    width: "100%";
-    margin-bottom: 5px;
-    min-height: $streak-height;
-  }
-  a,
-  a:hover {
-    color: white;
-  }
-  .user {
-    width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 15px;
-    .UserImage {
-      margin-right: 10px;
-      border: 0 transparent;
-      width: $streak-height;
-      height: $streak-height;
-    }
-    .userlink {
-      line-height: $streak-height;
-    }
-  }
-  .background {
+
+  .chart svg {
     width: 100%;
-    position: relative;
-    display: flex;
+    min-height: 50px;
   }
-  .legend {
-    display: flex;
-    .tick {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      height: 50;
+
+  .DateHistogram {
+    .chart svg {
+      min-height: 300px;
     }
-    .line {
-      border-right: 1px solid white;
-      padding: 0 5px;
-      text-align: right;
-      font-size: 10px;
-      white-space: nowrap;
+    circle {
+      fill: rgba( 0, 0, 0, 0 );
+      stroke: rgba( 0, 0, 0, 0 ) !important;
+    }
+    .zoom {
+      cursor: move;
+      fill: none;
+      pointer-events: all;
+    }
+    rect:hover {
+      opacity: 0.8;
+    }
+  }
+
+  #accumulation.DateHistogram {
+    .chart {
+      svg {
+        height: 400px;
+      }
+    }
+  }
+
+  .Summary {
+    .chart svg {
+      min-height: 400px;
+    }
+    .summary-panel {
+      width: 100%;
+      position: relative;
+      .main {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        top: 115px;
+        text-transform: uppercase;
+        font-weight: 100;
+        color: $gray;
+        .count {
+          display: block;
+          font-size: 200%;
+          margin-bottom: 10px;
+          font-weight: bold;
+          color: white;
+        }
+      }
+      .PieChart {
+        position: relative;
+      }
+    }
+  }
+
+  .leaflet-safari .leaflet-tile-container {
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .TorqueMap {
+    position: relative;
+    .map {
+      height: 400px;
+    }
+    .legend {
+      position: absolute;
+      width: 100%;
+      bottom: 25px;
+      z-index: 1000;
+      .date {
+        background: white;
+        color: black;
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 18px;
+        line-height: 30px;
+      }
+    }
+    .leaflet-container {
+      .leaflet-control-layers {
+        display: none;
+      }
+      .leaflet-control-layers-expanded {
+        padding: 10px 14px 8px 14px;
+        label {
+          font-size: 1.2em;
+          font-weight: normal;
+          input {
+            margin-top: 2px;
+            vertical-align: text-top;
+          }
+        }
+      }
+      .leaflet-control-layers-toggle {
+        cursor: pointer;
+        background-size: 20px 20px !important;
+      }
+    }
+  }
+
+  .TaxaSunburst {
+    .chart svg {
+      min-height: 700px;
+    }
+    .sunburst-tip {
+      background-color: $background-color;
+      padding: 5px 20px;
+      width: auto;
+      border-radius: 50px;
+    }
+    .clickable {
+      cursor: pointer;
+    }
+    .sunburst-arc {
+      stroke: $background-color;
+      stroke-width: 0.25;
+    }
+    text {
+      pointer-events: none;
+      font-size: 8px;
+    }
+    .center-arc {
+      pointer-events: none;
+    }
+    textPath.has-com-name {
+      &.genus,
+      &.species,
+      &.subspecies,
+      &.variety {
+        font-style: italic;
+      }
+    }
+  }
+
+  // https://css-tricks.com/snippets/css/ribbon/
+  .ribbon-container {
+    margin: 0 auto;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+  .ribbon {
+    font-size: 16px !important;
+    width: 50%;
+    text-transform: uppercase;
+    position: relative;
+    background: $inat-green;
+    color: #fff;
+    text-align: center;
+    padding: 0.5em 1em;
+    margin: 10px auto 3em;
+    a, a:hover, a:active {
+      color: white;
+    }
+    .ribbon-content {
+      max-height: 40px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    @media (max-width: 500px) {
-      .line {
-        font-size: 8px;
+  }
+  .ribbon:before, .ribbon:after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: -1 * $ribbon-y-offset;
+    border: $ribbon-point-width solid darken( $inat-green, 5% );
+    z-index: -1;
+  }
+  .ribbon:before {
+    left: -1 * $ribbon-backfold-x-offset;
+    border-right-width: $ribbon-backfold-width;
+    border-left-color: transparent;
+    border-left-width: $ribbon-y-offset;
+  }
+  .ribbon:after {
+    right: -1 * $ribbon-backfold-x-offset;
+    border-left-width: $ribbon-backfold-width;
+    border-right-color: transparent;
+    border-right-width: $ribbon-y-offset;
+  }
+  .ribbon .ribbon-content:before,
+  .ribbon .ribbon-content:after {
+    content: "";
+    position: absolute;
+    display: block;
+    border-style: solid;
+    border-color: darken( $inat-green, 10% ) transparent transparent transparent;
+    bottom: -1 * $ribbon-y-offset;
+  }
+  .ribbon .ribbon-content:before {
+    left: 0;
+    border-width: $ribbon-y-offset 0 0 $ribbon-midfold-width;
+  }
+  .ribbon .ribbon-content:after {
+    right: 0;
+    border-width: $ribbon-y-offset $ribbon-midfold-width 0 0;
+  }
+
+  .popular.for-user .UserImage {
+    display: none;
+  }
+  $obs-grid-photo-size: 210px;
+  .ObservationsGridItem.borderless.thumbnail {
+    width: 100%;
+    border: 0 transparent;
+    background-color: $dark-gray;
+    border-radius: 0;
+    .taxon {
+      .display-name {
+        color: white;
+        font-weight: 100;
+      }
+      .sciname {
+        white-space: nowrap;
       }
     }
-    .bar {
-      height: 15px;
-      width: 100%;
+    .media {
+      height: $obs-grid-photo-size;
+    }
+    .caption {
+      color: $gray;
+      .controls {
+        white-space: nowrap;
+      }
+      .activity {
+        color: $inat-green;
+        float: left;
+        .stat {
+          margin-right: 8px;
+        }
+        .icon-chatbubble {
+          position: relative;
+          bottom: 2px;
+        }
+      }
     }
   }
-  @media (max-width: 500px) {
-    .legend {
+
+  .Publications {
+    .publication {
+      display: flex;
       flex-direction: column;
+      color: $text-grey;
+      .authors {
+        font-size: smaller;
+        line-height: 1.4;
+      }
+      a.title {
+        font-size: larger;
+        color: white;
+      }
+    }
+    .data-dois {
+      a {
+        display: inline-block;
+        font-size: 75%;
+        padding: 0px 5px;
+        color: #888;
+        background-color: #2D2D2D;
+        border-radius: 3px;
+        margin-right: 5px;
+        line-height: 18px;
+      }
+    }
+    p.lead {
+      margin: 30px 0;
+    }
+    .altmetric-embed {
+      a[rel="popover"] {
+        position: relative;
+        img {
+          position: relative;
+          z-index: 1;
+          max-width: 100% !important;
+          height: auto;
+        }
+      }
+      a[rel="popover"]:before {
+        content: "";
+        display: block;
+        width: 70%;
+        height: 70%;
+        background-color: white;
+        position: absolute;
+        top: 12%;
+        left: 12%;
+        z-index: 0;
+        border-radius: 100px;
+      }
+    }
+    .row {
+      margin-bottom: 10px;
     }
   }
-  .rows {
-    margin-bottom: 20px;
-    .ticks {
-      .background {
-        height: 35px;
+
+  .NewSpecies {
+    margin-bottom: 50px;
+    .ObservationsGridItem.borderless.thumbnail {
+      .media {
+        height: 131px;
       }
+    }
+
+    > .controls {
+      margin: 20px 0;
+      .btn-default {
+        border-color: $dark-gray;
+        background-color: $dark-gray;
+        color: #eee;
+      }
+      .btn-primary {
+        background-color: $inat-green;
+        border-color: $inat-green;
+      }
+    }
+  }
+
+  .Growth {
+    .DateHistogram {
+      .chart svg {
+        min-height: 200px;
+        height: 200px;
+      }
+    }
+    .CountryGrowth {
+      .map {
+        position: relative;
+        .btn {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          min-width: 200px;
+          margin-left: -100px;
+        }
+      }
+      .chart svg {
+        width: 100%;
+        height: 500px;
+        min-height: 500px;
+      }
+      .controls {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        select {
+          flex-grow: 5;
+        }
+      }
+      path {
+        stroke-width: 0;
+      }
+      .bars {
+        select { width: 100%; }
+        @media (min-width: 501px) {
+          height: 500px;
+          overflow-x: visible;
+          overflow-y: scroll;
+        }
+      }
+      .bar {
+        border: 0 transparent;
+        padding: 2px 5px;
+        text-transform: uppercase;
+        font-size: 9px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: left;
+        display: flex;
+        position: relative;
+        min-width: 20px;
+        > * {
+          display: none;
+        }
+        &:hover > *,
+        &.expand > * {
+          display: inline-block;
+        }
+        &:hover:before,
+        &.current:before {
+          content: "";
+          display: block;
+          border-radius: 50px;
+          width: 5px;
+          height: 5px;
+          position: absolute;
+          left: -15px;
+          top: 9px;
+          background-color: white;
+        }
+        outline: none;
+        .rank {
+          width: 10px;
+          margin-right: 5px;
+          text-align: right;
+        }
+        .place-name {
+          flex: 1;
+        }
+        .outside {
+          position: absolute;
+          left: 100%;
+          margin-left: 10px;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .Streaks {
+    $streak-height: 30px;
+    &.multiyear {
+      .tick {
+        font-size: 10px;
+        @media (max-width: 500px) {
+          color: rgba(0,0,0,0);
+        }
+      }
+    }
+    .streak {
+      display: flex;
+      width: "100%";
+      margin-bottom: 5px;
+      min-height: $streak-height;
+    }
+    a,
+    a:hover {
+      color: white;
+    }
+    .user {
+      width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 15px;
+      .UserImage {
+        margin-right: 10px;
+        border: 0 transparent;
+        width: $streak-height;
+        height: $streak-height;
+      }
+      .userlink {
+        line-height: $streak-height;
+      }
+    }
+    .background {
+      width: 100%;
+      position: relative;
+      display: flex;
+    }
+    .legend {
+      display: flex;
       .tick {
         position: absolute;
-        display: block;
-        &.alt {
-          background-color: $dark-gray;
-        }
-        text-align: center;
-        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        height: 50;
+      }
+      .line {
+        border-right: 1px solid white;
+        padding: 0 5px;
+        text-align: right;
+        font-size: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       @media (max-width: 500px) {
-        .tick {
+        .line {
           font-size: 8px;
         }
       }
-    }
-  }
-  .datum {
-    position: relative;
-    background-color: $inat-green;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    white-space: nowrap;
-    justify-content: space-between;
-    padding: 0px 10px;
-    font-size: 10px;
-    @media (max-width: 500px) {
-      .start,
-      .stop {
-        display: none;
+      .bar {
+        height: 15px;
+        width: 100%;
       }
     }
-
-    .triangle {
-      position: absolute;
-      left: -1 * ($streak-height / 2 - 5);
-      top: 0;
-      width: 0;
-      height: 0;
-      border-top: $streak-height / 2 solid transparent;
-      border-bottom: $streak-height / 2 solid transparent;
-      border-right: ($streak-height / 2) - 5 solid blue;
+    @media (max-width: 500px) {
+      .legend {
+        flex-direction: column;
+      }
     }
-  }
-}
-
-#app .Sites {
-  margin-bottom: 60px;
-  .visible-sites {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    $site-size: 100px;
-    .site {
-      width: $site-size;
-      height: $site-size + $user-image-overhang;
-      position: relative;
-      margin: 0 30px;
-      .site-icon {
-        width: $site_size;
-        height: $site_size;
-        position: relative;
-        margin-left: $site-size / -2;
-        overflow: hidden;
-        img {
-          padding: 5px;
-          width: $site-size * 0.8;
+    .rows {
+      margin-bottom: 20px;
+      .ticks {
+        .background {
+          height: 35px;
+        }
+        .tick {
           position: absolute;
-          margin-left: ($site-size * 0.8) / -2;
-          margin-top: ($site-size * 0.8) / -2;
+          display: block;
+          &.alt {
+            background-color: $dark-gray;
+          }
+          text-align: center;
+          padding: 10px 0;
+        }
+        @media (max-width: 500px) {
+          .tick {
+            font-size: 8px;
+          }
+        }
+      }
+    }
+    .datum {
+      position: relative;
+      background-color: $inat-green;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      white-space: nowrap;
+      justify-content: space-between;
+      padding: 0px 10px;
+      font-size: 10px;
+      @media (max-width: 500px) {
+        .start,
+        .stop {
+          display: none;
         }
       }
 
-      $ribbon-point-width: 8px;
-      $ribbon-point-hypotenuse: 18px;
-      $ribbon-y-offset: 12px;
-      $ribbon-backfold-width: 20px; // not counting the pointy ends
-      $ribbon-backfold-x-offset: 15px; // how far the outer edge is offset from the front fold of the ribbon, including point ends
-      $ribbon-midfold-width: $ribbon-point-width + $ribbon-backfold-width - $ribbon-backfold-x-offset;
-
-      .ribbon {
-        font-size: 10px !important;
-        width: 100%;
-        margin: 0 auto;
-        box-shadow: 0 0 10px $dark-gray;
-        display: block;
-        color: white;
-      }
-      a.ribbon:hover {
-        opacity: 1;
-      }
-      .ribbon:before, .ribbon:after {
-        content: "";
+      .triangle {
         position: absolute;
-        display: block;
-        top: -1 * $ribbon-y-offset;
-        bottom: $ribbon-y-offset;
-        border: $ribbon-point-hypotenuse solid darken( $inat-green, 5% );
-        z-index: -1;
-      }
-      .ribbon:before {
-        left: -1 * $ribbon-backfold-x-offset;
-        border-right-width: $ribbon-backfold-width;
-        border-left-color: transparent;
-        border-left-width: $ribbon-point-width;
-      }
-      .ribbon:after {
-        right: -1 * $ribbon-backfold-x-offset;
-        border-left-width: $ribbon-backfold-width;
-        border-right-color: transparent;
-        border-right-width: $ribbon-point-width;
-      }
-      .ribbon .ribbon-content:before,
-      .ribbon .ribbon-content:after {
-        content: "";
-        position: absolute;
-        display: block;
-        border-style: solid;
-        border-color: transparent darken( $inat-green, 10% ) transparent transparent;
-        top: -1 * $ribbon-y-offset;
-        bottom: $ribbon-y-offset;
-        height: $ribbon-y-offset;
-      }
-      .ribbon .ribbon-content:before {
-        left: 0;
-        border-width: $ribbon-y-offset $ribbon-midfold-width 0 0;
-      }
-      .ribbon .ribbon-content:after {
-        right: 0;
-        border-width: 0 $ribbon-midfold-width $ribbon-y-offset 0;
-        border-color: transparent transparent darken( $inat-green, 10% ) transparent;
+        left: -1 * ($streak-height / 2 - 5);
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: $streak-height / 2 solid transparent;
+        border-bottom: $streak-height / 2 solid transparent;
+        border-right: ($streak-height / 2) - 5 solid blue;
       }
     }
   }
-}
 
-.Donate {
-  .support-row {
-    margin-bottom: 20px;
-    @media (max-width: 500px) {
-      flex-direction: column; 
+  #app .Sites {
+    margin-bottom: 60px;
+    .visible-sites {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      $site-size: 150px;
+      .site {
+        width: $site-size;
+        height: $site-size + $user-image-overhang;
+        position: relative;
+        margin: 0 30px;
+        .site-icon {
+          width: $site_size;
+          height: $site_size;
+          position: relative;
+          margin-left: $site-size / -2;
+          overflow: hidden;
+          img {
+            padding: 5px;
+            width: $site-size * 0.8;
+            position: absolute;
+            margin-left: ($site-size * 0.8) / -2;
+            margin-top: ($site-size * 0.8) / -2;
+          }
+        }
+
+        $ribbon-point-width: 8px;
+        $ribbon-point-hypotenuse: 18px;
+        $ribbon-y-offset: 12px;
+        $ribbon-backfold-width: 20px; // not counting the pointy ends
+        $ribbon-backfold-x-offset: 15px; // how far the outer edge is offset from the front fold of the ribbon, including point ends
+        $ribbon-midfold-width: $ribbon-point-width + $ribbon-backfold-width - $ribbon-backfold-x-offset;
+
+        .ribbon {
+          font-size: 10px !important;
+          width: 100%;
+          margin: 0 auto;
+          box-shadow: 0 0 10px $dark-gray;
+          display: block;
+          color: white;
+
+          .ribbon-content {
+            max-height: none;
+            word-break: break-word;
+          }
+        }
+        a.ribbon:hover {
+          opacity: 1;
+        }
+        .ribbon:before, .ribbon:after {
+          content: "";
+          position: absolute;
+          display: block;
+          top: -1 * $ribbon-y-offset;
+          bottom: $ribbon-y-offset;
+          border: $ribbon-point-hypotenuse solid darken( $inat-green, 5% );
+          z-index: -1;
+        }
+        .ribbon:before {
+          left: -1 * $ribbon-backfold-x-offset;
+          border-right-width: $ribbon-backfold-width;
+          border-left-color: transparent;
+          border-left-width: $ribbon-point-width;
+        }
+        .ribbon:after {
+          right: -1 * $ribbon-backfold-x-offset;
+          border-left-width: $ribbon-backfold-width;
+          border-right-color: transparent;
+          border-right-width: $ribbon-point-width;
+        }
+        .ribbon .ribbon-content:before,
+        .ribbon .ribbon-content:after {
+          content: "";
+          position: absolute;
+          display: block;
+          border-style: solid;
+          border-color: transparent darken( $inat-green, 10% ) transparent transparent;
+          top: -1 * $ribbon-y-offset;
+          bottom: $ribbon-y-offset;
+          height: $ribbon-y-offset;
+        }
+        .ribbon .ribbon-content:before {
+          left: 0;
+          border-width: $ribbon-y-offset $ribbon-midfold-width 0 0;
+        }
+        .ribbon .ribbon-content:after {
+          right: 0;
+          border-width: 0 $ribbon-midfold-width $ribbon-y-offset 0;
+          border-color: transparent transparent darken( $inat-green, 10% ) transparent;
+        }
+      }
     }
   }
-  .support {
-    width: 30%;
-    @media (max-width: 500px) { width: 100%; }
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .btn {
-      margin: 10px 20px;
+
+  .Donate {
+    .support-row {
+      margin-bottom: 20px;
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
     }
-  }
-  .Donors {
-    margin-left: 20px;
-    width: 70%;
-    @media (max-width: 500px) {
-      width: 100%;
-      margin-left: 0px;
-    }
-    h4 {
-      margin-bottom: 0;
-    }
-  }
-  p {
-    a,
-    a:hover {
-      color: $inat-green;
-    }
-  }
-  .btn {
-    font-weight: bold !important;
-  }
-  .Donors .chart svg {
-    min-height: 200px;
-    height: 200px;
-  }
-  .store {
-    display: flex;
-    @media (max-width: 500px) {
-      display: block;
-    }
-    text-align: center;
-    p {
-      text-align: left;
-    }
-    .btn {
-      margin: 20px auto;
-    }
-    .prompt {
+    .support {
+      width: 30%;
+      @media (max-width: 500px) { width: 100%; }
+      text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 20%;
+      align-items: center;
+      .btn {
+        margin: 10px 20px;
+      }
+    }
+    .Donors {
+      margin-left: 20px;
+      width: 70%;
       @media (max-width: 500px) {
         width: 100%;
-        flex-direction: row;
+        margin-left: 0px;
+      }
+      h4 {
+        margin-bottom: 0;
+      }
+    }
+    .btn-donate {
+      font-weight: bold !important;
+    }
+    .Donors .chart svg {
+      min-height: 200px;
+      height: 200px;
+    }
+    .store {
+      display: flex;
+      @media (max-width: 500px) {
+        display: block;
+      }
+      text-align: center;
+      p {
+        text-align: left;
+      }
+      .btn {
+        margin: 20px auto;
+      }
+      .prompt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 20%;
+        @media (max-width: 500px) {
+          width: 100%;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+      .img-link {
+        width: 80%;
+        margin-right: 20px;
+      }
+    }
+
+    .StoreContent2021 {
+      margin-bottom: 20px;
+    }
+
+    .donate-content {
+      .flex-row {
         align-items: center;
-      }
-    }
-    .img-link {
-      width: 80%;
-      margin-right: 20px;
-    }
-  }
-}
 
-.Donor {
-  font-size: 16px;
-  i {
-    color: $inat-green;
-    font-size: 27px;
-    margin-right: 5px
-  }
-  a,
-  a:hover,
-  a:active,
-  a:focus {
-    color: white;
-  }
-}
+        p {
+          font-size: 19px;
+          font-weight: 100;
+        }
 
-.Translators {
-  a,
-  a:active,
-  a:focus,
-  a:hover {
-    color: $inat-green;
-  }
-  .badge {
-    margin-right: 5px;
-  }
-  .table {
-    border: 0 transparent;
-    font-size: smaller;
-    line-height: 12px;
-    th {
-      button,
-      button:hover,
-      button:active,
-      button:focus {
-        color: white;
-        padding: 0;
-        background: transparent;
-        border: 0 transparent;
+        > div {
+          width: 50%;
+        }
+
+        @media (max-width: 500px) {
+          flex-direction: column;
+          > div { width: 100%; }
+          > :first-child {
+            margin-bottom: 30px;
+          }
+          > :last-child {
+            ul {
+              padding: 0;
+            }
+            padding: 0 30px;
+          }
+          p {
+            font-size: 120%;
+          }
+        }
       }
-      i {
-        margin-left: 5px;
+
+      .donate-image {
+        background-image: url('https://static.inaturalist.org/misc/2021-yir/2021-yir-yucca.jpeg');
+        background-position: center;
+        background-size: cover;
+        border-radius: 50px;
+        min-height: 20em;
       }
     }
-  }
-  .table > tbody > tr > td {
-    border-top: 1px solid #333;
-    vertical-align: middle;
-    padding: 5px;
-  }
-  .number {
-    width: 15%;
-    white-space: nowrap;
+
     .bar {
-      color: white;
-      padding: 3px 0px;
-      display: inline-block;
+      background-color: $inat-green;
+      display: block;
+      margin: 40px 0 10px;
+      padding: 30px 10px;
+      text-align: center;
+
+      .btn-donate {
+        font-size: 25px;
+        @media (max-width: 500px) {
+          font-size: 138%;
+        }
+        line-height: normal;
+        padding-bottom: 14px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 17px;
+      }
     }
   }
-  td.badges {
-    line-height: 25px !important;
-  }
-  .badge,
-  .bar {
-    background-color: $dark-gray;
-  }
-}
 
-.Compare {
-  .legend-controls {
-    margin-bottom: 20px;
+  .Donor {
+    font-size: 16px;
+    i {
+      color: $inat-green;
+      font-size: 27px;
+      margin-right: 5px
+    }
+    a,
+    a:hover,
+    a:active,
+    a:focus {
+      color: white;
+    }
+  }
+
+  .Translators {
+    a,
+    a:active,
+    a:focus,
+    a:hover {
+      color: $inat-green;
+    }
+    .badge {
+      margin-right: 5px;
+    }
+    .table {
+      border: 0 transparent;
+      font-size: smaller;
+      line-height: 12px;
+      th {
+        button,
+        button:hover,
+        button:active,
+        button:focus {
+          color: white;
+          padding: 0;
+          background: transparent;
+          border: 0 transparent;
+        }
+        i {
+          margin-left: 5px;
+        }
+      }
+    }
+    .table > tbody > tr > td {
+      border-top: 1px solid #333;
+      vertical-align: middle;
+      padding: 5px;
+    }
+    .number {
+      width: 15%;
+      white-space: nowrap;
+      .bar {
+        color: white;
+        padding: 3px 0px;
+        display: inline-block;
+      }
+    }
+    td.badges {
+      line-height: 25px !important;
+    }
+    .badge,
+    .bar {
+      background-color: $dark-gray;
+    }
+  }
+
+  .Compare {
+    .legend-controls {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      .btn-inat {
+        background-color: #444;
+        border-color: #444;
+        border-width: 0;
+        &.active,
+        &:active,
+        &:hover {
+          background-color: #333;
+          border-color: #333;
+          box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+        }
+      }
+    }
+    .legend {
+      .legend-item {
+        display: inline-block;
+        margin-right: 15px;
+      }
+      .legend-mark {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 5px;
+        &.this-year {
+          width: 20px;
+          height: 5px;
+          background-color: $inat-green;
+        }
+        &.last-year {
+          width: 3px;
+          height: 15px;
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+
+  .BulletGraph {
+    $dim: 40px;
+    $bullet-color: #444;
+    $bullet-font-size: 9px;
+    $bullet-label-margin: 5px;
+    .high {
+      position: relative;
+      height: $dim;
+      background-color: $bullet-color;
+      .medium,
+      .low,
+      .performance,
+      .comparison {
+        position: absolute;
+        left: 0;
+        overflow: hidden;
+      }
+      .low-too-small {
+        position: absolute;
+        left: $bullet-label-margin;
+        top: 0;
+        font-size: $bullet-font-size;
+        opacity: 0.2;
+      }
+      .qual-label {
+        position: absolute;
+        top: $bullet-label-margin;
+        right: $bullet-label-margin;
+        font-size: $bullet-font-size;
+        line-height: $bullet-font-size;
+        opacity: 0.2;
+      }
+      .qual-label-extra {
+        position: absolute;
+        bottom: 4px;
+        right: $bullet-label-margin;
+        font-size: $bullet-font-size;
+        line-height: $bullet-font-size;
+        opacity: 0.2;
+      }
+      .medium {
+        height: $dim;
+        background-color: darken($bullet-color, 5%);
+      }
+      .low {
+        height: $dim;
+        background-color: darken($bullet-color, 10%);
+      }
+      .performance {
+        background-color: $inat-green;
+        height: 5px;
+        top: 50%;
+        margin-top: -2.5px;
+      }
+      .comparison {
+        border-right: 3px solid #ccc;
+        height: 12px;
+        top: 50%;
+        margin-top: -6px;
+      }
+    }
+    .ticks {
+      width: 100%;
+      position: relative;
+      height: 15px;
+      .tick {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-right: 1px solid $bullet-color;
+        height: 5px;
+        font-size: $bullet-font-size;
+        line-height: $bullet-font-size;
+        color: $bullet-color;
+        text-align: right;
+        height: 15px;
+        padding: 5px 3px 0 0;
+        &.zero {
+          padding-right: 0;
+          span {
+            position: relative;
+            right: -5px;
+            top: 0;
+          }
+        }
+      }
+      @media (max-width: 500px) {
+        .tick.odd {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .ObservedTaxaChanges {
+    .metrics {
+      display: flex;
+      justify-content: stretch;
+
+      > div {
+        width: 50%;
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+      .deltas-row {
+        display: flex;
+        margin-bottom: 5px;
+        // align-items: flex-start;
+        background-color: #111;
+        .delta-taxon {
+          width: 40%;
+        }
+        .delta {
+          width: 60%;
+          display: flex;
+          .delta-bar {
+            background-color: $inat-green;
+            padding: 3px 5px;
+          }
+        }
+      }
+      .fewer {
+        .delta {
+          justify-content: flex-end;
+          .delta-bar {
+            background-color: $fail-red;
+            text-align: end;
+          }
+        }
+      }
+      .more {
+        .deltas-row {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+    .metric-buttons {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .DonateBanner {
+    align-items: center;
+    background-color: $inat-green;
+    color: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    .btn-inat {
-      background-color: #444;
-      border-color: #444;
-      border-width: 0;
-      &.active,
-      &:active,
-      &:hover {
-        background-color: #333;
-        border-color: #333;
-        box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
-      }
-    }
-  }
-  .legend {
-    .legend-item {
-      display: inline-block;
-      margin-right: 15px;
-    }
-    .legend-mark {
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 5px;
-      &.this-year {
-        width: 20px;
-        height: 5px;
-        background-color: $inat-green;
-      }
-      &.last-year {
-        width: 3px;
-        height: 15px;
-        background-color: #ccc;
-      }
-    }
-  }
-}
-
-.BulletGraph {
-  $dim: 40px;
-  $bullet-color: #444;
-  $bullet-font-size: 9px;
-  $bullet-label-margin: 5px;
-  .high {
-    position: relative;
-    height: $dim;
-    background-color: $bullet-color;
-    .medium,
-    .low,
-    .performance,
-    .comparison {
-      position: absolute;
-      left: 0;
-      overflow: hidden;
-    }
-    .low-too-small {
-      position: absolute;
-      left: $bullet-label-margin;
-      top: 0;
-      font-size: $bullet-font-size;
-      opacity: 0.2;
-    }
-    .qual-label {
-      position: absolute;
-      top: $bullet-label-margin;
-      right: $bullet-label-margin;
-      font-size: $bullet-font-size;
-      line-height: $bullet-font-size;
-      opacity: 0.2;
-    }
-    .qual-label-extra {
-      position: absolute;
-      bottom: 4px;
-      right: $bullet-label-margin;
-      font-size: $bullet-font-size;
-      line-height: $bullet-font-size;
-      opacity: 0.2;
-    }
-    .medium {
-      height: $dim;
-      background-color: darken($bullet-color, 5%);
-    }
-    .low {
-      height: $dim;
-      background-color: darken($bullet-color, 10%);
-    }
-    .performance {
-      background-color: $inat-green;
-      height: 5px;
-      top: 50%;
-      margin-top: -2.5px;
-    }
-    .comparison {
-      border-right: 3px solid #ccc;
-      height: 12px;
-      top: 50%;
-      margin-top: -6px;
-    }
-  }
-  .ticks {
-    width: 100%;
-    position: relative;
-    height: 15px;
-    .tick {
-      position: absolute;
-      left: 0;
-      top: 0;
-      border-right: 1px solid $bullet-color;
-      height: 5px;
-      font-size: $bullet-font-size;
-      line-height: $bullet-font-size;
-      color: $bullet-color;
-      text-align: right;
-      height: 15px;
-      padding: 5px 3px 0 0;
-      &.zero {
-        padding-right: 0;
-        span {
-          position: relative;
-          right: -5px;
-          top: 0;
-        }
-      }
-    }
-    @media (max-width: 500px) {
-      .tick.odd {
-        display: none;
-      }
-    }
-  }
-}
-
-.ObservedTaxaChanges {
-  .metrics {
-    display: flex;
-    justify-content: stretch;
-
-    > div {
-      width: 50%;
-      margin-right: 20px;
-      &:last-child {
-        margin-right: 0px;
-      }
-    }
-    .deltas-row {
-      display: flex;
-      margin-bottom: 5px;
-      // align-items: flex-start;
-      background-color: #111;
-      .delta-taxon {
-        width: 40%;
-      }
-      .delta {
-        width: 60%;
-        display: flex;
-        .delta-bar {
-          background-color: $inat-green;
-          padding: 3px 5px;
-        }
-      }
-    }
-    .fewer {
-      .delta {
-        justify-content: flex-end;
-        .delta-bar {
-          background-color: $fail-red;
-          text-align: end;
-        }
-      }
-    }
-    .more {
-      .deltas-row {
-        flex-direction: row-reverse;
-      }
-    }
-  }
-  .metric-buttons {
-    margin: 20px auto;
-    display: flex;
+    font-size: 16px;
     justify-content: center;
+    padding: 26px;
+
+    > :first-child {
+      line-height: 23px;
+      margin-right: 50px;
+    }
+
+    strong {
+      letter-spacing: 1px;
+    }
+
+    &:hover,
+    &:focus,
+    &:visited {
+      color: white;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .DonateBanner {
+      flex-direction: column;
+      font-size: 14px;
+
+      > :first-child {
+        margin-bottom: 16px;
+        margin-right: inherit;
+      }
+    }
+  }
+
+
+  .btn {
+    &.btn-primary {
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    &.btn-donate {
+      background-color: white;
+      border-color: white;
+      color: $inat-green;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      padding-right: 20px;
+      white-space: normal;
+      word-break: break-word;
+
+      &:hover,
+      &:focus,
+      &:visited {
+        background-color: hsl(0, 0, 99%);
+        border-color: hsl(0, 0, 99%);
+        color: $inat-green;
+      }
+    }
+  }
+
+  .btn-link-underline {
+    margin-bottom: 20px;
+    text-decoration: underline;
+    color: $inat-green;
+  }
+
+  #app {
+    .CodeContributors {
+      p {
+        margin-bottom: 20px;
+      }
+
+      li {
+        @include green-links;
+      }
+
+      .UserImage {
+        width: 64px;
+        height: 64px;
+        border-width: 3px;
+      }
+      .flex-row > :last-child {
+        width: 100%;
+      }
+      h4 {
+        font-size: 14px;
+        margin-top: 0;
+      }
+    }
+  }
+
+  #app {
+    .MonthlySupporters {
+      $monthly-supporter-dim: 80px;
+      margin-bottom: 20px;
+      .supporters {
+        @include green-links;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .monthly-supporter {
+        text-align: center;
+        width: $monthly-supporter-dim;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        margin: 10px;
+      }
+      .UserImage {
+        width: $monthly-supporter-dim;
+        height: $monthly-supporter-dim;
+        margin-bottom: 10px;
+      }
+      .userlink {
+        display: block;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
   }
 }

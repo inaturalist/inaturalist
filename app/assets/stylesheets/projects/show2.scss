@@ -3,7 +3,6 @@
 @import "../users/user_image";
 @import "../users/user_popover";
 @import "../shared/taxon_photo";
-@import "../c3";
 @import "../shared/flash_message";
 @import "../shared/modals";
 @import "../shared/flag_an_item";
@@ -968,7 +967,7 @@ a {
     right: 0;
     width: 100%;
     text-align: center;
-    top: 85px;
+    top: 80px;
     font-size: 18px;
     font-weight: 700;
     pointer-events: none;
@@ -1103,7 +1102,6 @@ a {
       &.type {
         font-size: 18px;
         line-height: 20px;
-        text-transform: uppercase;
       }
     }
   }
@@ -1479,6 +1477,10 @@ $nav-btn-dim: 40px;
   margin-top: 10px;
 }
 
+.ViewMoreFooter {
+  margin-top: 15px;
+}
+
 .FlagAnItem {
   margin-top: 35px;
 }
@@ -1605,5 +1607,26 @@ $tip-opacity: 1;
   }
   .collapsible-content.open {
     display: block;
+  }
+}
+
+.project-membership {
+  .admin-user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .userimage {
+      width: 40px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .userlink {
+      text-overflow: ellipsis;
+      width: auto;
+      overflow: hidden;
+    }
   }
 }

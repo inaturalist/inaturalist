@@ -56,19 +56,19 @@ const Requirements = ( {
       </a>
     ) );
   let userRules;
-  if ( project.rule_members_only ) {
-    userRules = I18n.t( "project_members_only" );
-  } else if ( _.isEmpty( project.userRules ) ) {
-    userRules = I18n.t( "any_user" );
+  const projectUserRules = _.filter( project.userRules, "user" );
+  if ( _.isEmpty( projectUserRules ) ) {
+    userRules = project.rule_members_only ? I18n.t( "project_members_only" ) : I18n.t( "any_user" );
   } else {
-    userRules = _.map( _.sortBy( project.userRules, r => r.user.login ), r => (
+    userRules = _.map( _.sortBy( projectUserRules, r => r.user.login ), r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
   }
-  const exceptUserRules = !_.isEmpty( project.notUserRules )
-    && _.map( _.sortBy( project.notUserRules, r => r.user.login ), r => (
+  const projectNotUserRules = _.filter( project.notUserRules, "user" );
+  const exceptUserRules = !_.isEmpty( projectNotUserRules )
+    && _.map( _.sortBy( projectNotUserRules, r => r.user.login ), r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
@@ -96,7 +96,7 @@ const Requirements = ( {
     media.push( I18n.t( "sounds.sounds" ) );
   }
   const mediaRules = _.isEmpty( media ) ? I18n.t( "any_media" )
-    : media.join( ` ${I18n.t( "and" )} ` );
+    : media.join( ` ${I18n.t( "media_and" )} ` );
   let dateRules = I18n.t( "any_date" );
   if ( project.rule_d1 && project.rule_d2 ) {
     const spansYears = true;

@@ -1,4 +1,6 @@
-import "@babel/polyfill";
+import _ from "lodash";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -6,7 +8,7 @@ import { Provider } from "react-redux";
 import {
   createStore, compose, applyMiddleware, combineReducers
 } from "redux";
-import { Taxon } from "inaturalistjs";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon, setDescription } from "../shared/ducks/taxon";
@@ -15,6 +17,8 @@ import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import { fetchTaxonAssociates } from "./actions/taxon";
 import { windowStateForTaxon } from "../shared/util";
+
+const { Taxon } = inatjs;
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -26,13 +30,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
@@ -46,6 +48,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
+}
+
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ )
+) {
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
 }
 
 /* global SERVER_PAYLOAD */
@@ -90,7 +109,7 @@ history.replaceState( s.state, s.title, s.url );
 window.onpopstate = e => {
   // User returned from BACK
   if ( e.state && e.state.taxon ) {
-    store.dispatch( setTaxon( e.state.taxon ) );
+    store.dispatch( setTaxon( new inatjs.Taxon( e.state.taxon ) ) );
     store.dispatch( fetchTaxon( e.state.taxon ) );
     store.dispatch( fetchTaxonAssociates( e.state.taxon ) );
   }

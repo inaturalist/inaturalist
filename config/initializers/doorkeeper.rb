@@ -11,8 +11,12 @@ Doorkeeper.configure do
   resource_owner_from_credentials do |routes|
     username = params[:login] || params[:email] || params[:username]
     if username && params[:password]
-      user = User.find_for_authentication( email: username )
-      user && user.valid_password?( params[:password] ) ? user : nil
+      raise INat::Auth::BadUsernamePasswordError unless ( user = User.find_for_authentication( email: username ) )
+      raise INat::Auth::BadUsernamePasswordError unless user.valid_password?( params[:password] )
+      raise INat::Auth::SuspendedError if user.suspended?
+      raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
+      raise INat::Auth::UnconfirmedError if !user.confirmed? && !user.active_for_authentication?
+      user
     elsif defined?( warden )
       warden.authenticate!(auth_options)
     end
@@ -56,7 +60,7 @@ Doorkeeper.configure do
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
   # falls back to the `:access_token` or `:bearer_token` params from the `params` object.
   # Check out the wiki for mor information on customization
-  # access_token_methods :from_bearer_authorization, :from_access_token_param, :from_bearer_param
+  access_token_methods :from_bearer_authorization
 
   # Change the test redirect uri for client apps
   # When clients register with the following redirect uri, they won't be redirected to any server and the authorization code will be displayed within the provider

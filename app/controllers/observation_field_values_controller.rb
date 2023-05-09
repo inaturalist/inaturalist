@@ -1,61 +1,74 @@
 class ObservationFieldValuesController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_observation_field_value, :only => [:update, :destroy]
+  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :load_observation_field_value, :only => [:update, :destroy]
 
   def index
     per_page = params[:per_page].to_i
     per_page = 30 if (per_page <= 0 || per_page > 200)
-    @ofvs = ObservationFieldValue.page(params[:page]).per_page(per_page)
+    @ofvs = ObservationFieldValue.page( params[:page] ).per_page( per_page )
     @ofvs = @ofvs.datatype(params[:type]) unless params[:type].blank?
     @ofvs = @ofvs.field(params[:field]) unless params[:field].blank?
     @ofvs = @ofvs.license(params[:license]) unless params[:license].blank?
     @ofvs = @ofvs.quality_grade(params[:quality_grade]) unless params[:quality_grade].blank?
     ObservationFieldValue.preload_associations( @ofvs, {
       observation_field: {},
-      observation: [ { taxon: [:source] }, :user ]
+      observation: [ {
+        taxon: [
+          :source,
+          { taxon_scheme_taxa: :taxon_scheme }
+        ]
+      }, :user, :votes_for ]
     } )
+    unless params[:field]
+      params_key = params.to_h
+        .select{ |k| ["type", "license", "quality_grade"].include?( k ) }
+        .to_a.map{ |p| p.join( "=" ) }.join( ";" )
+      count_cache_key = "ObservationFieldValues::total_entries::#{params_key}"
+      @ofvs.total_entries = Rails.cache.fetch( count_cache_key, expires_in: 30.minutes ) do
+        @ofvs.total_entries
+      end
+    end
     pagination_headers_for(@ofvs)
     respond_to do |format|
       format.json do
         taxon_json_opts = {
-          :only => [:id, :name, :rank, :source_identifier], 
-          :include => [
-            {
-              :source => {
-                :only => [:id, :title, :in_text, :url]
-              } 
-            },
-            {
-              :taxon_scheme_taxa => {
-                :only => [:id, :taxon_scheme_id, :source_identifier],
-                :include => {
-                  :taxon_scheme => {
-                    :only => [:id, :title]
-                  }
+          only: [:id, :name, :rank, :source_identifier],
+          include: [ {
+            source: {
+              only: [:id, :title, :in_text, :url]
+            }
+          },{
+            taxon_scheme_taxa: {
+              only: [:id, :taxon_scheme_id, :source_identifier],
+              include: {
+                taxon_scheme: {
+                  only: [:id, :title]
                 }
               }
             }
-          ]
+          }]
         }
         if params[:type] == ObservationField::TAXON
-          taxa = Taxon.includes(:source, :taxon_scheme_taxa).where("id IN (?)", @ofvs.map{|ofv| ofv.value.to_i}.compact.uniq).index_by(&:id)
+          taxa = Taxon.includes( :source, { taxon_scheme_taxa: :taxon_scheme } ).where("id IN (?)", @ofvs.map{|ofv| ofv.value.to_i}.compact.uniq).index_by(&:id)
           @ofvs.each_with_index do |ofv,i| 
             @ofvs[i].taxon = taxa[@ofvs[i].value.to_i].as_json(taxon_json_opts)
           end
         end
-        render :json => @ofvs.to_json(
-          :methods => [:taxon],
-          :include => {
-            :observation_field => {
-              :only => [:id, :datatype, :name]
-            }, 
-            :observation => {
-              :only => [:id, :license, :latitude, :longitude, :positional_accuracy, :observed_on],
-              :methods => [:time_observed_at_utc, :coordinates_obscured],
-              :include => {
-                :taxon => taxon_json_opts, 
-                :user => {:only => [:id, :name, :login]}
+        render json: @ofvs.to_json(
+          methods: [:taxon],
+          include: {
+            observation_field: {
+              only: [:id, :datatype, :name]
+            },
+            observation: {
+              only: [:id, :license, :latitude, :longitude, :positional_accuracy, :observed_on],
+              methods: [:time_observed_at_utc, :coordinates_obscured],
+              include: {
+                taxon: taxon_json_opts,
+                user: {
+                  only: [:id, :name, :login]
+                }
               }
             }
           }
@@ -96,7 +109,7 @@ class ObservationFieldValuesController < ApplicationController
         update_params[:uuid] = update_params[:id]
         update_params.delete(:id)
       end
-      if @observation_field_value.update_attributes(update_params)
+      if @observation_field_value.update(update_params)
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -131,7 +144,7 @@ class ObservationFieldValuesController < ApplicationController
     end
     respond_to do |format|
       format.any do
-        render status: status, text: errors ? errors.join( ", " ) : nil
+        render status: status, plain: errors ? errors.join( ", " ) : nil
       end
       format.json do 
         render status: status, json: errors ? { errors: errors } : nil
@@ -151,13 +164,13 @@ class ObservationFieldValuesController < ApplicationController
     p = options.blank? ? params : options
     p = p[:observation_field_value] if p[:observation_field_value]
     p.delete(:id) if p[:id].to_i == 0
-    p[:updater_user_id] = current_user.id if logged_in?
+    p[:updater_id] = current_user.id if logged_in?
     p.permit(
       :id,
       :observation_id,
       :observation_field_id,
       :value,
-      :updater_user_id
+      :updater_id
     )
   end
 end

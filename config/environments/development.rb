@@ -1,4 +1,4 @@
-Inaturalist::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # In the development environment your application's code is reloaded on
@@ -9,7 +9,7 @@ Inaturalist::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -28,7 +28,7 @@ Inaturalist::Application.configure do
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
-  config.cache_store = :mem_cache_store, CONFIG.memcached
+  # config.cache_store = :mem_cache_store, CONFIG.memcached
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
@@ -37,6 +37,8 @@ Inaturalist::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  # https://stackoverflow.com/a/51898048
+  config.assets.check_precompiled_asset = false
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -49,11 +51,9 @@ Inaturalist::Application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.public_file_server.enabled = true
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
-    return env['inat_ga_trackers'] if env['inat_ga_trackers']
-  }
 end
 

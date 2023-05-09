@@ -58,7 +58,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description') || I18n.t("maps.overlays.every_publicly_visible_observation");
   options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label') || I18n.t('gbif_occurrences');
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
-  options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover') || I18n.t("maps.overlays.gbif_network_description");
+  options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover') || I18n.t("maps.overlays.gbif_network_description2");
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   options.gestureHandling = options.gestureHandling || $( elt ).data( "gesture-handling" );
@@ -92,6 +92,10 @@ inatTaxonMap.fit = function( elt ) {
 
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
+  if ( typeof ( google ) === "undefined" ) {
+    $( elt ).html( "<div class='alert alert-warning alert-inside text-center'>" + I18n.t( "google_maps_not_loaded_error" ) + "</div>" );
+    return;
+  }
   var map,
       mapOptions = $.extend( true, { }, {
         backgroundColor: '#E3EAF6',
@@ -293,7 +297,8 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       title: options.taxonRangeLayerLabel,
       description: options.taxonRangeLayerDescription,
       hover: options.taxonRangeLayerHover,
-      controlPosition: options.controlPosition
+      controlPosition: options.controlPosition,
+      link: "/taxa/" + layer.taxon.id + "/range.html"
     }));
   }
   if( layer.observations ) {
@@ -326,7 +331,8 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       title: options.gbifLayerLabel,
       description: options.gbifLayerDescription,
       hover: options.gbifLayerHover,
-      controlPosition: options.controlPosition
+      controlPosition: options.controlPosition,
+      link: "http://www.gbif.org/species/" + taxonData.gbif_id
     }));
   }
 };

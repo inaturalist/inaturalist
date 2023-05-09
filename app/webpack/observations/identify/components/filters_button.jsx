@@ -136,11 +136,11 @@ class FiltersButton extends React.Component {
       "infrahybrid"
     ];
     const orderByFields = [
-      { value: "observations.id", default: "date added", label: "date_added" },
-      { value: "observed_on", default: "date observed", label: "date_observed_" },
-      { value: "updated_at", default: "date updated", label: "date_updated" },
-      { value: "votes", default: "faves", label: "faves" },
-      { value: "random", default: "random", label: "random" }
+      { value: "id", label: "date_added" },
+      { value: "observed_on", label: "date_observed_" },
+      { value: "updated_at", label: "date_updated" },
+      { value: "votes", label: "faves" },
+      { value: "random", label: "random" }
     ];
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0
@@ -354,7 +354,7 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { I18n.t( field.label, { defaultValue: field.default } ) }
+                  { I18n.t( field.label ) }
                 </option>
               ) ) }
             </select>
@@ -499,6 +499,7 @@ class FiltersButton extends React.Component {
           <div className="input-group">
             <span className="input-group-addon icon-person" />
             <UserAutocomplete
+              config={config}
               resetOnChange={false}
               initialUserID={params.user_id}
               bootstrapClear
@@ -551,12 +552,14 @@ class FiltersButton extends React.Component {
             <PlaceAutocomplete
               resetOnChange={false}
               initialPlaceID={
-                parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+                params.place_id && params.place_id !== "any" ? params.place_id : null
               }
               bootstrapClear
               className={params.place_id ? "filter-changed" : ""}
               afterSelect={result => {
-                updateSearchParams( { place_id: result.item.id } );
+                updateSearchParams( {
+                  place_id: config.testingApiV2 ? result.item.uuid : result.item.id
+                } );
               }}
               afterUnselect={( ) => {
                 updateSearchParams( { place_id: null } );
@@ -596,7 +599,7 @@ class FiltersButton extends React.Component {
             </option>
             { terms.map( t => (
               <option value={t.id} key={`with-term-id-${t.id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
               </option>
             ) ) }
           </select>
@@ -614,7 +617,7 @@ class FiltersButton extends React.Component {
                 </option>
                 { chosenTerm.values.map( t => (
                   <option value={t.id} key={`annotation-term-value-id-${t.id}`}>
-                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
                   </option>
                 ) ) }
               </select>
@@ -640,7 +643,7 @@ class FiltersButton extends React.Component {
             </option>
             { terms.map( t => (
               <option value={t.id} key={`without-term-id-${t.id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
               </option>
             ) ) }
           </select>
@@ -658,7 +661,7 @@ class FiltersButton extends React.Component {
                 </option>
                 { ( rejectedTerm || chosenTerm ).values.map( t => (
                   <option value={t.id} key={`without-term-value-id-${t.id}`}>
-                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
                   </option>
                 ) ) }
               </select>

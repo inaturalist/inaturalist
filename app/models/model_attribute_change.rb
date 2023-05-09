@@ -1,4 +1,4 @@
-class ModelAttributeChange < ActiveRecord::Base
+class ModelAttributeChange < ApplicationRecord
 
   belongs_to :model, polymorphic: true
 

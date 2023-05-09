@@ -50,7 +50,7 @@ const Donations = ( {
   //   }
   // };
   const label = d => I18n.t( "bold_label_colon_value_html", {
-    label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+    label: moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) ),
     value: I18n.toNumber( d.value, { precision: 0 } )
   } );
   const donorBarSeries = {

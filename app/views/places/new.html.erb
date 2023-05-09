@@ -3,7 +3,6 @@
 
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "leaflet.fullscreen/Control.FullScreen.css" %>
   <style type="text/css" media="screen">
     #places {
       min-height: 100px;
@@ -49,58 +48,10 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= google_maps_js %>
-  <%= javascript_include_tag 'map_bundle' %>
-  <%= leaflet_js(:draw => true) %>
-  <%= javascript_include_tag "shramov-leaflet-plugins/Bing" %>
-  <%= javascript_include_tag "leaflet.fullscreen/Control.FullScreen.js" %>
   <script type="text/javascript" charset="utf-8">
-    var BING_KEY = <%= CONFIG.bing ? raw(CONFIG.bing.key.inspect) : "null" %>,
-        PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
+    var PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
         CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
     $(document).ready(function() {
-      window.map = L.map('drawingMap', { minZoom: 1 }).setView([0,0], 1)
-      var d = new Date()
-      var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
-      map.addLayer(bing);
-      var fullScreen = new L.Control.FullScreen();
-      map.addControl(fullScreen)
-      window.drawnItems = new L.FeatureGroup()
-      map.addLayer(drawnItems)
-      var drawControl = new L.Control.Draw({
-        draw: {
-          marker: false,
-          rectangle: false,
-          circle: false,
-          polyline: false,
-          polygon: {
-            allowIntersection: false,
-            drawError: {
-                color: '#e1e100', // Color the shape will turn when intersects
-                message: 'Illegal shape'
-            }
-          }
-        },
-        edit: {
-          featureGroup: drawnItems,
-          marker: false
-        }
-      })
-      map.addControl(drawControl)
-      map.on('draw:created', function(e) {
-        var type = e.layerType,
-            layer = e.layer
-        drawnItems.addLayer(layer)
-        map.addLayer(layer)
-        saveGeom()
-      })
-      map.on('draw:edited', function(e) {
-        var layers = e.layers
-        saveGeom()
-      })
-      map.on('draw:deleted', function(e) {
-        saveGeom()
-      })
 
       $('#place_parent_id').chooser({
         collectionUrl: '/places/autocomplete.json',
@@ -128,12 +79,6 @@
           }).join(' '))
         })
     })
-    function saveGeom() {
-      $(':input[name=geojson]').val(JSON.stringify(drawnItems.toGeoJSON()))
-      var c = drawnItems.getBounds().getCenter()
-      $('#place_latitude').val(c.lat)
-      $('#place_longitude').val(c.lng)
-    }
   </script>
 <%- end -%>
 <div id="pageheader">
@@ -143,46 +88,51 @@
   <h2><%= t(:create_a_new_place) %></h2>
 </div>
 
-<div class="column span-24">
+<% if @user_quota_reached %>
   <div class="notice box">
-    <h3><%=t :warning_title %></h3>
-    <p class="ui"><%=t :places_warning_new_places_are_slow_html %></p>
-    <ul>
-      <li>
-        <p class="ui"><%=t :places_warning_look_for_existing_html %></p>
-      </li>
-      <li>
-        <p class="ui"><%=t :places_warning_projects_can_have_multiple_places %></p>
-      </li>
-      <li>
-        <p class="ui"><%=t :places_warning_export_complex_boundary_html %></p>
-      </li>
-    </ul>
-    <p class="ui"><%=t :places_warning_the_future %></p>
+    <%= t(:place_create_quota_exceeded, quota: PlacesController::QUOTA) %>
   </div>
-</div>
-
-<div class="column span-15">
-  <h3>
-  	<%= t('views.places.new.map_instruction') %>
-    <span class="ui small description"><%= t :double_click_to_finish %></span>
-  </h3>
-  <div id="drawingMap"></div>
-</div>
-<div class="last column span-9">
-  <h3><%= t(:give_it_some_detail) %></h3>
-  <%= form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
-    <%= f.text_field :name, :class => 'text', :required => true %>
-    <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px" %>
-    <%= f.hidden_field :latitude %>
-    <%= f.hidden_field :longitude %>
-    <%= f.form_field :kml, :label => "#{t(:kml)} (#{t(:optional)})", :description => t('views.places.kml_field_desc') do %>
-      <%= file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml" %>
-    <% end -%>
-    <%= f.select :place_type, Place::PLACE_TYPE_CODES.map{|type, code| [t("place_geo.geo_planet_place_types.#{type.gsub(" ", "_")}"), code]}.sort,
-                 :include_blank => t(:unknown), :class => 'select' %>
-    <%= f.check_box :prefers_check_lists, :checked => false, :label_after => true, :description => t('views.places.new.check_list_note') %>
-    <input type="hidden" id="place_geometry" name="geojson"/>
-    <%= f.submit t(:save_place), :class => 'default button' %>
-  <% end %>
-</div>
+<% else %>
+  <div class="column span-24">
+    <div class="notice box">
+      <h3><%=t :warning_title %></h3>
+      <p class="ui"><%=t :places_warning_new_places_are_slow_html %></p>
+      <ul>
+        <li>
+          <p class="ui"><%=t :places_warning_look_for_existing2_html %></p>
+        </li>
+        <li>
+          <p class="ui"><%=t :places_warning_projects_can_have_multiple_places %></p>
+        </li>
+        <li>
+          <p class="ui"><%=t :places_warning_export_complex_boundary_html %></p>
+        </li>
+      </ul>
+      <p class="ui">
+        <%=t :places_warning_please_keep_in_mind %>
+      </p>
+      <ul>
+        <li>
+          <p class="ui"><%=t :places_warning_quota %></p>
+        </li>
+      </ul>
+      <p class="ui"><%=t :places_warning_the_future %></p>
+    </div>
+  </div>
+  <div class="last column span-24">
+    <%= form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+      <%= f.text_field :name, :class => 'text', :required => true %>
+      <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px", label: t(:parent) %>
+      <%= f.hidden_field :latitude %>
+      <%= f.hidden_field :longitude %>
+      <%= f.form_field :kml, :label => t(:kml), required: true, :description => t('views.places.kml_field_desc2') do %>
+        <%= file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml" %>
+      <% end -%>
+      <%= f.select :place_type, Place::PLACE_TYPE_CODES.map{|type, code| [t("place_geo.geo_planet_place_types.#{type.gsub(" ", "_")}"), code]}.sort,
+                   :include_blank => t(:unknown), :class => 'select' %>
+      <%= f.check_box :prefers_check_lists, :checked => false, :label_after => true, :description => t('views.places.new.check_list_note') %>
+      <input type="hidden" id="place_geometry" name="geojson"/>
+      <%= f.submit t(:save_place), :class => 'default button' %>
+    <% end %>
+  </div>
+<% end %>

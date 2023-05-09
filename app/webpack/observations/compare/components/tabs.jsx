@@ -25,6 +25,7 @@ class Tabs extends React.Component {
     // not visible
     if ( this.props.chosenTab === "map" && prevProps.chosenTab !== "map" ) {
       const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
+      if ( typeof ( google ) === "undefined" ) { return; }
       google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
       taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
     }

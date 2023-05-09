@@ -9,7 +9,7 @@ Place.find_each(:batch_size => 50, :conditions => ["id BETWEEN ? AND ?", start, 
     next
   end
   begin
-    wktfile = open(path)
+    wktfile = File.open( path )
     if wktfile
       place.save_geom(MultiPolygon.from_ewkt(wktfile.read))
       puts "Saved"

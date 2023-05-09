@@ -1,9 +1,13 @@
 :ruby
   @no_footer_gap = true
   @title = if @display_user
-    t( :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year )
+    t( :users_site_year_in_review, user: @display_user.login, site: @site.name, vow_or_con: @site.name[0].downcase, year: @year )
   else
-    t( :year_on_site, site: @site.name, year: @year )
+    if @site.id == Site.default.id
+      t( :inaturalist_global_year_in_review, year: @year )
+    else
+      t( :site_year_in_review, year: @year, site: @site.name, vow_or_con: @site.name[0].downcase )
+    end
   end
 - content_for :title do
   = @title.html_safe
@@ -17,8 +21,8 @@
       :
       "null"
     };
-    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id], methods: [:locale] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
-    var SITES = #{ Site.where( "NOT draft AND created_at <= '#{@year}-12-31'" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( s.logo_square.url ), logo_url: FakeView.asset_url( s.logo.url ) ) }.to_json.html_safe };
+    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id], methods: [:locale] ).merge( icon_url: asset_url( @site.logo_square.url ), logo_url: asset_url( @site.logo.url ) ).to_json.html_safe };
+    var SITES = #{ Site.where( "NOT draft AND created_at <= '#{@year}-12-31'" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: asset_url( s.logo_square.url ), logo_url: asset_url( s.logo.url ) ) }.to_json.html_safe };
     var DEFAULT_SITE_ID = #{ Site.default.id };
     var WORLD_ATLAS_50M_JSON_URL = "#{image_url( "50m.json" )}";
     var WORLD_ATLAS_50M_TSV_URL = "#{image_url( "50m.tsv" )}";
@@ -31,13 +35,16 @@
       }
     })
     window._.any = _.some; // Patch so torque won't miss underscore
-  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
+  = javascript_include_tag "https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  = javascript_include_tag "//unpkg.com/leaflet-gesture-handling"
+  / required for Altmetric badges
   = javascript_include_tag "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"
   = javascript_include_tag "torque.full.uncompressed"
   = javascript_include_tag "stats-year-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "stats/year"
-  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
+  = stylesheet_link_tag "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  = stylesheet_link_tag "//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css"
 - content_for :extrahead do
   - if ( ys = @year_statistic ) && ys.year == 2019 && ys.site.blank? && ys.user.blank?
     %meta{ name: "og:image", property: "og:image", content: "https://static.inaturalist.org/misc/yir2019-shareable-v3.png" }

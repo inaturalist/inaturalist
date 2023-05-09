@@ -1,8 +1,8 @@
-class ObservationFieldValue < ActiveRecord::Base
+class ObservationFieldValue < ApplicationRecord
 
   blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
   
-  belongs_to :observation, :inverse_of => :observation_field_values
+  belongs_to_with_uuid :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
   has_updater
@@ -41,8 +41,6 @@ class ObservationFieldValue < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|record, subscribable| 
     record.user_id != subscribable.user_id
   }
-
-  attr_accessor :updater_user_id
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -96,12 +94,11 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def set_user
-    if updater_user_id
-      self.user_id ||= updater_user_id
-      self.updater_id = updater_user_id
+    if updater
+      self.user ||= updater
     elsif observation
-      self.user_id ||= observation.user_id
-      self.updater_id ||= user_id
+      self.user ||= observation.user
+      self.updater ||= user
     end
     true
   end
@@ -152,9 +149,13 @@ class ObservationFieldValue < ActiveRecord::Base
   end
   
   def validate_observation_field_allowed_values
+    return true unless observation_field
+
     return true if observation_field.allowed_values.blank?
+
     return true unless observation_field.datatype === ObservationField::TEXT
-    values = observation_field.allowed_values.split('|').map(&:downcase)
+
+    values = observation_field.allowed_values.split( "|" ).map( &:downcase )
     unless values.include?(value.to_s.downcase)
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
@@ -183,7 +184,7 @@ class ObservationFieldValue < ActiveRecord::Base
   def update_observation_field_counts
     observation_field.delay(
       priority: USER_PRIORITY,
-      run_at: 30.minutes.from_now,
+      run_at: 2.hours.from_now,
       unique_hash: { "ObservationField::update_counts" => observation_field.id }
     ).update_counts
   end
@@ -330,7 +331,7 @@ class ObservationFieldValue < ActiveRecord::Base
     scope.find_each do |ofv|
       next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
       next if !taxon_change.automatable_for_output?( output_taxon.id )
-      ofv.update_attributes( value: output_taxon.id )
+      ofv.update( value: output_taxon.id )
       obs_ids << ofv.observation_id
     end
     Observation.elastic_index!( ids: obs_ids.to_a )

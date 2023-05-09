@@ -24,4 +24,7 @@ class Denormalizer
 
 end
 
-Dir["#{File.dirname(__FILE__)}/denormalizer/*.rb"].each { |f| load(f) }
+path = File.join( File.dirname( __FILE__ ), "denormalizer" )
+$LOAD_PATH << path
+ActiveSupport::Dependencies.autoload_paths << path
+ActiveSupport::Dependencies.autoload_once_paths.delete( path )

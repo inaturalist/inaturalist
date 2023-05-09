@@ -80,9 +80,9 @@ data.map{|a| a[:observation_id]}.each_slice(500) do | obs_ids |
 end
 obs_place_ids = obs_place_ids.flatten; nil
 
-continents = Place.where(admin_level: -1).pluck(:id)
-countries = Place.where(admin_level: 0).pluck(:id)
-states = Place.where(admin_level: 1).pluck(:id)
+continents = Place.where(admin_level: Place::CONTINENT_LEVEL).pluck(:id)
+countries = Place.where(admin_level: Place::COUNTRY_LEVEL).pluck(:id)
+states = Place.where(admin_level: Place::STATE_LEVEL).pluck(:id)
 obs_place_ids.each do |row|
   continent = row[:place_id] & continents
   country = row[:place_id] & countries

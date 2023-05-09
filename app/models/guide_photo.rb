@@ -1,5 +1,5 @@
 #encoding: utf-8
-class GuidePhoto < ActiveRecord::Base
+class GuidePhoto < ApplicationRecord
   belongs_to :guide_taxon, :inverse_of => :guide_photos
   belongs_to :photo, :inverse_of => :guide_photos
   has_one :guide, :through => :guide_taxon
@@ -10,6 +10,7 @@ class GuidePhoto < ActiveRecord::Base
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true) if r.guide}
 
   accepts_nested_attributes_for :photo
+  include HasGuideAsset
 
   acts_as_taggable
 
@@ -42,11 +43,28 @@ class GuidePhoto < ActiveRecord::Base
     return if photo # no updating
     if attributes[:id].blank? && attributes[:thumb_url].blank? && !attributes[:native_photo_id].blank?
       klass = Object.const_get(attributes[:type])
-      self.photo = if existing = klass.find_by_native_photo_id(attributes[:native_photo_id])
+      # attempt to lookup photo with native_photo_id
+      # look within the custom subclass
+      self.photo = if existing = Photo.where(
+        native_photo_id: attributes[:native_photo_id],
+        type: attributes[:type],
+        subtype: nil
+      ).first
+        existing
+      # look at LocalPhotos whose subtype is the custom subclass
+      elsif attributes[:type] != "LocalPhoto" && existing = Photo.where(
+        native_photo_id: attributes[:native_photo_id],
+        type: "LocalPhoto",
+        subtype: attributes[:type]
+      ).first
         existing
       else
         r = klass.get_api_response(attributes[:native_photo_id])
         klass.new_from_api_response(r)
+      end
+      unless self.photo.is_a?( LocalPhoto )
+        # turn all remote photos into LocalPhotos
+        self.photo = Photo.local_photo_from_remote_photo( self.photo )
       end
     else
       self.photo = LocalPhoto.new({:user_id => guide.user_id}.merge(attributes.symbolize_keys))

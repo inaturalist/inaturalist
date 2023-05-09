@@ -1,8 +1,8 @@
 class ModeratorNotesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :curator_required
-  before_filter :load_record, except: [:create]
-  before_filter :editor_required, except: [:create]
+  before_action :authenticate_user!
+  before_action :curator_required
+  before_action :load_record, except: [:create]
+  before_action :editor_required, except: [:create]
 
   layout "bootstrap"
 
@@ -21,7 +21,7 @@ class ModeratorNotesController < ApplicationController
   end
 
   def update
-    if @moderator_note.update_attributes( approved_update_params )
+    if @moderator_note.update( approved_update_params )
       flash[:notice] = t(:updated)
     else
       flash[:error] = t(:failed_to_save_record_with_errors, errors: @moderator_note.errors.full_messages.to_sentence )

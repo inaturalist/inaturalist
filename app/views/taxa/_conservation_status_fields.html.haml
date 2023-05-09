@@ -11,9 +11,12 @@
     :description => t('conservation_status_descriptions.place'),
     :placeholder => t(:type_place_name)
   = f.text_field :url, :description_after => true, :description => t('conservation_status_descriptions.url')
-  = f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open).downcase, :description => t('conservation_status_descriptions.geoprivacy'), :description_after => true
+  = f.select :geoprivacy,
+    Observation::GEOPRIVACY_DESCRIPTIONS.keys.map{| g | [t( g == "obscured" ? "obscured_" : g, default: g ), g] },
+    description: t( "conservation_status_descriptions.geoprivacy" ),
+    description_after: true
   = f.select :iucn, Taxon::IUCN_STATUSES_SELECT, :description_after => true, :description => t('conservation_status_descriptions.iucn')
-  - if f.object.user
+  - if f.object.user && f.object.persisted?
     = f.form_field :added_by, label: t(:date_added) do
       =t :added_by_user_on_date_html, user: link_to_user( f.object.user ), date: l( f.object.created_at )
   - if f.object.updater

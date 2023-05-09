@@ -1,16 +1,16 @@
 :ruby
   if @taxon
-    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+    @taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: @taxon)
   end
   @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-    taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+    taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon)
     taxon
   end
   if @user
-    @user.html = render(:partial => "users/chooser", :object => @user)
+    @user.html = render( partial: "users/chooser", object: @user)
   end
   @default_users = User.curators.limit(10).map do |user|
-    user.html = render(:partial => "users/chooser", :object => user)
+    user.html = render( partial: "users/chooser", object: user)
     user
   end
 - content_for(:title) do
@@ -19,11 +19,11 @@
     - if @taxon
       = t :label_colon, label: t(:taxon)
       %i= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id
-      (#{@taxon.is_active ? t(:active) : t(:inactive)})"
+      (#{@taxon.is_active ? t(:active_taxon_status) : t(:inactive_taxon_status)})"
     - if @ancestor_taxon
       = t :label_colon, label: t(:ancestor_taxon)
       %i= link_to @ancestor_taxon.name, taxon_path(@ancestor_taxon), "data-taxon-id" => @ancestor_taxon.id
-      (#{@ancestor_taxon.is_active ? t(:active) : t(:inactive)})"
+      (#{@ancestor_taxon.is_active ? t(:active_taxon_status) : t(:inactive_taxon_status)})"
   = strip_tags(@title)
 - content_for(:extracss) do
   = stylesheet_link_tag 'taxon_changes'
@@ -48,7 +48,7 @@
       
       $('#filters_user_id').chooser({
         queryParam: 'q',
-        collectionUrl: '/people/search.json',
+        collectionUrl: $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ) + "/search?sources=users",
         resourceUrl: '/people/{{id}}.json',
         chosen: user,
         defaultSources: defaultUsers

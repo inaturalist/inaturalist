@@ -31,19 +31,13 @@ base: &base
         # http://www.ubio.org/index.php?pagename=form
         key: 09af09af09af09af09af09af09af09af09af09af
 
-    yahoo_dev_network:
-        # first need Yahoo account: https://edit.yahoo.com/registration
-        # then need to sign up for Yahoo Developers Network app interface:
-        # https://developer.apps.yahoo.com/wsregapp/
-        app_id: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
         tilestache: 'http://localhost:8080'
-        elasticsearch: http://localhost:4000
+        elasticsearch: http://localhost:4000/v1
 
     google_webmaster:
         verification: abiglongkey
@@ -60,10 +54,6 @@ base: &base
       site_url: http://www.yoursite.com
 
     # facebook:
-    #     app_id: 00000000000
-    #     app_secret: 09af09af09af09af09af09af09af09af09af09af
-    #     # facebook user IDs of people who can admin pages on the site
-    #     admin_ids: [1,2]
     #     namespace: appname # your facebook app's namespace, used for open graph tags
 
     # twitter:
@@ -126,6 +116,11 @@ base: &base
     # same code running at CONFIG.tile_servers.elasticsearch
     node_api_url: http://localhost:4000/v1
 
+    # The secrets used to sign the JWT for authenticated requests to the
+    # iNaturalistAPI. These need to be same as in the API's config.js.
+    jwt_secret: secret
+    jwt_application_secret: application_secret
+
     # # Path to the CA .crt file
     # ca_file: "/path/to/certs/ca-bundle.crt"
     # # Path to the certificates directory
@@ -155,19 +150,26 @@ base: &base
     #             identifier: seek
     #             key: 4321
 
-    # # Sendgrid-specific options if using sendgrid.com to send email
-    # sendgrid:
-    #     # Unsubscribe groups configured on Sendgrid
-    #     asm_group_ids:
-    #         # The unsubscribe group used as a default for all emails sent from
-    #         # the web app
-    #         default: 1234
+    # Sendgrid-specific options if using sendgrid.com to send email
+    sendgrid:
+        api_key: some-api-key
+        # Unsubscribe groups configured on Sendgrid
+        asm_group_ids:
+            # The unsubscribe group used as a default for all emails sent from
+            # the web app
+            default: 1234
 
 development:
     <<: *base
 
 test:
     <<: *base
+    # We shouldn't assume a working instance of the node API is running in a
+    # test environment, so use different defaults to ensure we don't get fooled
+    # when a test passes in a development environment where the node API *is*
+    # running
+    node_api_host: "localhost:5000/v1"
+    node_api_url: http://localhost:5000/v1
 
 production:
     <<: *base

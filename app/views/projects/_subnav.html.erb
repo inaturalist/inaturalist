@@ -5,7 +5,7 @@
   <li>
     <%= link_to t(:project_observations), observations_path( project_id: @display_project ),
       :id => "observations_link", 
-      :class => "#{'active' if current_page?(:controller => :observations, :action => :by_login)}" %>
+      :class => "#{'active' if current_page?(controller: :observations)}" %>
   </li>
   <li>
     <%= link_to t(:project_post), project_journal_path(@display_project),

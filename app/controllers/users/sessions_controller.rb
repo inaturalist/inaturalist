@@ -1,8 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
+  include Users::CustomDeviseModule
 
-  before_filter :load_registration_form_data, only: [:new, :create]
-
-  layout "registrations"
+  protect_from_forgery with: :exception, prepend: true
 
   def create
     # attempt straight db auth first, then warden auth
@@ -12,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
     throw(:warden) unless resource
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    resource.update_attributes( last_ip: Logstasher.ip_from_request_env( request.env ) )
+    resource.update( last_ip: Logstasher.ip_from_request_env( request.env ) )
     respond_to do |format|
       format.html do
         flash.delete(:notice)
@@ -21,25 +20,6 @@ class Users::SessionsController < Devise::SessionsController
         else
           redirect_to after_sign_in_path_for(resource)
         end
-      end
-
-      # for reasons that are unclear iPhone requests for /sessions.json are 
-      # considered mobile, even though request.format is text/html, which also 
-      # makes no sense.
-      format.json do
-        render :json => current_user.to_json(:except => [
-          :encrypted_password, 
-          :password_salt,
-          :remember_token,
-          :remember_token_expires_at,
-          :confirmation_token,
-          :confirmed_at,
-          :state,
-          :deleted_at,
-          :old_preferences,
-          :icon_url,
-          :remember_created_at
-        ])
       end
     end
   end

@@ -1,14 +1,17 @@
-class Site < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Site < ApplicationRecord
+  include HasJournal
+
   has_many :observations, inverse_of: :site
   has_many :users, inverse_of: :site
   has_many :site_admins, inverse_of: :site
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_and_belongs_to_many :announcements
 
-  scope :live, -> { where(draft: false) }
-  scope :drafts, -> { where(draft: true) }
+  scope :live, -> { where( draft: false ) }
+  scope :drafts, -> { where( draft: true ) }
 
   # shortened version of the name
   preference :site_name_short, :string
@@ -44,7 +47,14 @@ class Site < ActiveRecord::Base
   # default place ID for place filters. Presently only used on /places, but use may be expanded
   belongs_to :place, inverse_of: :sites
 
-  belongs_to :extra_place, inverse_of: :extra_place_sites, class_name: "Place"
+  has_many :places_sites, dependent: :destroy
+  has_many :export_places_sites,
+    -> { where( scope: PlacesSite::EXPORTS ) },
+    class_name: "PlacesSite"
+  has_many :export_places,
+    through: :export_places_sites,
+    source: "place"
+  accepts_nested_attributes_for :export_places_sites, allow_destroy: true
 
   # header logo, should be at least 118x22
   if CONFIG.usingS3
@@ -65,15 +75,15 @@ class Site < ActiveRecord::Base
       url: "/attachments/sites/:id-logo.:extension",
       default_url: "logo-small.gif"
   end
-  validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+  validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/],
     message: "must be JPG, PNG, SVG, or GIF"
-  validate do |site|
-    if !site.errors.any? &&
+  validate do | site |
+    if site.errors.none? &&
         site.logo.queued_for_write[:original] &&
         site.logo.content_type.to_s !~ /svg/i
-      dimensions = Paperclip::Geometry.from_file(site.logo.queued_for_write[:original].path)
+      dimensions = Paperclip::Geometry.from_file( site.logo.queued_for_write[:original].path )
       if dimensions.height > 70
-        errors.add(:logo, "cannot have a height larger than 70px")
+        errors.add( :logo, "cannot have a height larger than 70px" )
       end
     end
     true
@@ -151,15 +161,15 @@ class Site < ActiveRecord::Base
       path: ":rails_root/public/attachments/sites/:id-logo_blog.:extension",
       url: "/attachments/sites/:id-logo_blog.:extension"
   end
-  validates_attachment_content_type :logo_blog, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+  validates_attachment_content_type :logo_blog, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/],
     message: "must be JPG, PNG, SVG, or GIF"
-  validate do |site|
-    if !site.errors.any? &&
+  validate do | site |
+    if site.errors.none? &&
         site.logo_blog.queued_for_write[:original] &&
         site.logo_blog.content_type.to_s !~ /svg/i
-      dimensions = Paperclip::Geometry.from_file(site.logo_blog.queued_for_write[:original].path)
+      dimensions = Paperclip::Geometry.from_file( site.logo_blog.queued_for_write[:original].path )
       if dimensions.height > 110 || dimensions.width > 110
-        errors.add(:logo_blog, "cannot have a height larger than 110x110px")
+        errors.add( :logo_blog, "cannot have a height larger than 110x110px" )
       end
     end
     true
@@ -212,7 +222,7 @@ class Site < ActiveRecord::Base
   validates_attachment_content_type :shareable_image,
     content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
-      
+
   # CSS file to override default styles
   if CONFIG.usingS3
     has_attached_file :stylesheet,
@@ -232,7 +242,7 @@ class Site < ActiveRecord::Base
   end
 
   validates_attachment_content_type :stylesheet, content_type: [
-    "text/css", 
+    "text/css",
     # Not great, but probably ok here where only site admins can add the file.
     # Underlying problem is that we force all validations to depend on the file
     # commant (see paperclip initializer) and it reads CSS as plain/text
@@ -244,7 +254,7 @@ class Site < ActiveRecord::Base
 
   # URL where visitors can get help using the site
   preference :help_url, :string, default: "/pages/help"
-  
+
   # URL where visitors can get started using the site
   preference :getting_started_url, :string, default: "/pages/getting+started"
 
@@ -258,6 +268,7 @@ class Site < ActiveRecord::Base
   preference :privacy_url, :string, default: "/pages/privacy"
   preference :developers_url, :string, default: "/pages/developers"
   preference :community_guidelines_url, :string, default: "/pages/community+guidelines"
+  preference :jobs_url, :string, default: "/pages/jobs"
   preference :twitter_url, :string
   preference :iphone_app_url, :string
   preference :android_app_url, :string
@@ -278,9 +289,9 @@ class Site < ActiveRecord::Base
   # site: only show obs added through this site
   # place: only show obs within the specified place's boundary
   # bounding_box: only show obs within the bounding box
-  OBSERVATIONS_FILTERS = %w(site place bounding_box)
-  OBSERVATIONS_FILTERS.each do |f|
-    const_set "OBSERVATIONS_FILTERS_#{f.upcase.gsub(/\-/, '_')}", f
+  OBSERVATIONS_FILTERS = %w(site place bounding_box).freeze
+  OBSERVATIONS_FILTERS.each do | f |
+    const_set "OBSERVATIONS_FILTERS_#{f.upcase.gsub( /-/, '_' )}", f
   end
   preference :site_observations_filter, :string, default: OBSERVATIONS_FILTERS_PLACE
 
@@ -331,23 +342,28 @@ class Site < ActiveRecord::Base
   # Whether this site prefers https
   preference :ssl, :boolean
 
+  preference :affiliated_organizations, :text
+
   STAFF_ONLY_PREFERENCES = [
     :google_webmaster_dns_verification,
     :google_webmaster_dns_verified,
     :twitter_sign_in
-  ]
+  ].freeze
 
   after_save :refresh_default_site
 
-  def self.default(options={})
+  def self.default( options = {} )
     if options[:refresh]
       Rails.cache.delete( "sites_default" )
     end
-    if cached = Rails.cache.read( "sites_default" )
+    if ( cached = Rails.cache.read( "sites_default" ) )
       return cached
     end
-    site = Site.includes( :stored_preferences ).first
-    return unless site
+
+    unless site = Site.includes( :stored_preferences ).first
+      site = Site.create!( name: "iNaturalist", url: "http://localhost:3000" )
+    end
+
     Rails.cache.fetch( "sites_default" ) do
       site
     end
@@ -357,6 +373,8 @@ class Site < ActiveRecord::Base
     "<Site #{id} #{name} #{url}>"
   end
 
+  # contact element for a DarwinCore Archive (DwC-A). This is supposed to be the
+  # person data consumers can contact with questions about the archive
   def contact
     {
       first_name: contact_first_name,
@@ -373,57 +391,90 @@ class Site < ActiveRecord::Base
     }
   end
 
-  def respond_to?(method, include_all=false)
-    preferences.keys.include?(method.to_s) ? true : super
+  # creator element for use in a DarwinCore Archive (DwC-A)
+  # According to the schema, "The creator is the person who created the
+  # resource (not necessarily the author of this metadata about the resource).
+  # This is the person or institution to contact with questions about the use,
+  # interpretation of a dataset." Since no collection of iNat records was
+  # created by a single person, we are using the name of the site itself as the
+  # creator
+  def dwc_creator
+    {
+      organization: name,
+      last_name: "#{name} contributors"
+    }
   end
 
-  def method_missing(method, *args, &block)
-    preferences.keys.include?(method.to_s) ? preferences[method.to_s] : super
+  # rubocop:disable Style/OptionalBooleanParameter
+  def respond_to?( method, include_all = false )
+    preferences.keys.include?( method.to_s ) ? true : super
+  end
+  # rubocop:enable Style/OptionalBooleanParameter
+
+  def respond_to_missing?( name, include_private )
+    preferences.keys.include?( name ) || super( name, include_private )
   end
 
-  def editable_by?(user)
+  def method_missing( method, *args, &block )
+    preferences.keys.include?( method.to_s ) ? preferences[method.to_s] : super
+  end
+
+  def editable_by?( user )
     user && ( user.is_admin? || user.is_site_admin_of?( self ) )
   end
 
   def icon_url
     return nil unless logo_square.file?
+
     logo_square.url
   end
 
   def home_page_wiki_path_by_locale( locale )
     return nil if preferred_home_page_wiki_path_by_locale.blank?
-    paths = JSON.parse( preferred_home_page_wiki_path_by_locale ) rescue {}
-    unless path = paths[ locale.to_s ]
-      path = paths[ locale.to_s.split("-")[0] ]
+
+    paths = begin
+      JSON.parse( preferred_home_page_wiki_path_by_locale )
+    rescue StandardError
+      {}
+    end
+    unless ( path = paths[locale.to_s] )
+      path = paths[locale.to_s.split( "-" )[0]]
     end
     path
   end
 
   def coordinate_systems
     return if coordinate_systems_json.blank?
-    systems = JSON.parse( coordinate_systems_json ) rescue { }
+
+    systems = begin
+      JSON.parse( coordinate_systems_json )
+    rescue StandardError
+      {}
+    end
     systems.blank? ? nil : systems
   end
 
   def bounds?
     !geo_swlat.blank? && !geo_swlng.blank? &&
-    !geo_nelat.blank? && !geo_nelng.blank?
+      !geo_nelat.blank? && !geo_nelng.blank?
   end
 
   def bounds
     return unless bounds?
+
     { swlat: geo_swlat.to_f, swlng: geo_swlng.to_f,
       nelat: geo_nelat.to_f, nelng: geo_nelng.to_f }
   end
 
   def ratatosk_name_providers
     return if ratatosk_name_providers_array.blank?
+
     ratatosk_name_providers_array.split( "," ).map( &:strip )
   end
 
-
   def taxon_describers
     return if taxon_describers_array.blank?
+
     taxon_describers_array.split( "," ).map( &:strip )
   end
 
@@ -432,13 +483,13 @@ class Site < ActiveRecord::Base
   end
 
   def refresh_default_site
-    if Site.default && self.id == Site.default.id
-      Site.default( refresh: true )
-    end
+    return unless id == Site.default&.id
+
+    Site.default( refresh: true )
   end
 
   def short_url
-    url.sub( /https?:\/\//, "" ).sub( /\/$/, "" )
+    url.sub( %r{https?://}, "" ).sub( %r{/$}, "" )
   end
 
   # We can't use OAuth to authenticate a user with Google unless our OAuth
@@ -454,6 +505,7 @@ class Site < ActiveRecord::Base
   def google_oauth_allowed?
     default_site_domain = URI.parse( Site.default.url ).host.to_s[/\.(.+)$/, 1]
     return true if default_site_domain.blank?
+
     prefers_google_webmaster_dns_verified? || URI.parse( url.to_s ).host.to_s.include?( default_site_domain )
   end
 
@@ -466,4 +518,38 @@ class Site < ActiveRecord::Base
     ) )
   end
 
+  def login_featured_observations
+    Rails.cache.fetch( "Site::#{id}::login_featured_observations", expires_in: 1.hour ) do
+      es_query = {
+        has: ["photos"],
+        per_page: 100,
+        order_by: "votes",
+        order: "desc",
+        place_id: try(:place_id).blank? ? nil : place_id,
+        projects: ["log-in-photos"]
+      }
+      observations = Observation.elastic_query( es_query ).to_a
+      if observations.blank?
+        es_query.delete(:projects)
+        observations = Observation.elastic_query( es_query ).to_a
+      end
+      if observations.blank?
+        es_query.delete(:place_id)
+        observations = Observation.elastic_query( es_query ).to_a
+      end
+      Observation.preload_associations( observations, [:user, {
+        observations_places: :place,
+        observation_photos: {
+          photo: [:flags, :file_prefix, :file_extension]
+        },
+        taxon: :taxon_names,
+      }] )
+      if es_query[:projects].blank?
+        observations = observations.select do |o|
+          photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+        end
+      end
+      observations
+    end
+  end
 end

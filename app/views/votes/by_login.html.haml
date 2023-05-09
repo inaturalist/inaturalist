@@ -16,20 +16,22 @@
       $('.observationcontrols').observationControls('medium')
     })
 
-.column.span-24
-  = render :partial => "shared/by_login_header", :locals => { title: observation_by_login_title }
-.columns.span-24
-  - if @votes.size == 0
-    .nocontent.meta
-      - if logged_in? && is_me?(@selected_user)
-        = t 'no_favorites_added.current_user'
+.container
+  .row
+    = render :partial => "shared/by_login_header_bootstrap", :locals => { title: observation_by_login_title }
+  .row
+    .col-md-12
+      - if @votes.size == 0
+        .nocontent.meta
+          - if logged_in? && is_me?(@selected_user)
+            = t 'no_favorites_added.current_user'
+          - else
+            = t 'no_favorites_added.user', user: @login.to_s
       - else
-        = t 'no_favorites_added.user', user: @login.to_s
-  - else
-    .stacked.observationcontrols
-    .observations.medium.grid
-      - compact do
-        - for vote in @votes
-          = render 'observations/observation_component', observation: vote.votable
+        .stacked.observationcontrols
+        .observations.medium.grid
+          - compact do
+            - for vote in @votes
+              = render 'observations/observation_component', observation: vote.votable
 
-  = will_paginate @votes
+      = will_paginate @votes

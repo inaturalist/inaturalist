@@ -6,7 +6,7 @@ module Rakismet
     attr_accessor :disabled
 
     def spammable_models
-      FlagsController::FLAG_MODELS.map(&:constantize).select{ |m| m.spammable? }
+      Flag::TYPES.map(&:constantize).select{ |m| m.spammable? }
     end
 
     def fake_environment_variables

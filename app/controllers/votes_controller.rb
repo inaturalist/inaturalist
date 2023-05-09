@@ -1,10 +1,12 @@
 class VotesController < ApplicationController
   before_action :doorkeeper_authorize!, :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }, except: [:by_login]
-  before_filter :load_votable, except: [:by_login, :destroy]
-  before_filter :load_user_by_login, only: :by_login
-  before_filter :load_vote, only: [:destroy]
-  before_filter :require_owner, only: [:destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }, except: [:by_login]
+  before_action :load_votable, except: [:by_login, :destroy]
+  before_action :load_user_by_login, only: :by_login
+  before_action :load_vote, only: [:destroy]
+  before_action :require_owner, only: [:destroy]
+
+  layout "bootstrap"
 
   def destroy
     votable = @vote.votable
@@ -30,6 +32,8 @@ class VotesController < ApplicationController
 
   def unvote
     @record.unvote voter: current_user, vote: params[:vote], vote_scope: params[:scope]
+    # ActsAsVotable uses delete_all, which bypasses after_destroy :run_votable_callback
+    @record.votable_callback if @record.respond_to?( :votable_callback )
     respond_to do |format|
       format.html do
         redirect_to @record
@@ -48,10 +52,10 @@ class VotesController < ApplicationController
         :quality_metrics,
         :projects,
         :flags,
-        { :photos => :flags },
-        { :user => :stored_preferences },
-        { :taxon => [:taxon_names, :taxon_descriptions] },
-        { :iconic_taxon => :taxon_descriptions }
+        { photos: [:flags, :file_prefix, :file_extension] },
+        { user: [:stored_preferences, :friendships] },
+        { taxon: [ { taxon_names: :place_taxon_names }, :taxon_descriptions] },
+        { iconic_taxon: :taxon_descriptions }
       ])
     respond_to do |format|
       format.html

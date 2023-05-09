@@ -1,4 +1,4 @@
-class ModeratorNote < ActiveRecord::Base
+class ModeratorNote < ApplicationRecord
   belongs_to :user
   belongs_to :subject_user, class_name: "User"
 
@@ -15,7 +15,7 @@ class ModeratorNote < ActiveRecord::Base
 
   private
   def author_is_curator
-    unless user.is_curator?
+    unless user && user.is_curator?
       errors.add(:user, :must_be_a_curator)
     end
   end

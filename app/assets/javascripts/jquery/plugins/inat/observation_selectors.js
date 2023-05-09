@@ -41,7 +41,7 @@
     
     // Append next & prev links
     var page = $('<input class="observationSelectorPage" type="hidden" value="1"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; ' + I18n.t('prev') + '</a>').click(function(e) {
+    var prev = $('<a href="#" class="prevlink button">&laquo; ' + I18n.t('previous_page_short') + '</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.observationSelectorPage').val());
       pagenum -= 1;
       if (pagenum < 1) pagenum = 1;
@@ -55,7 +55,7 @@
       $(wrapper).find('.observationSelectorPage').val(pagenum);
       return false;
     });
-    var next = $('<a href="#" class="nextlink button">' + I18n.t('next') + ' &raquo;</a>').click(function(e) {
+    var next = $('<a href="#" class="nextlink button">' + I18n.t('next_page_short') + ' &raquo;</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.observationSelectorPage').val());
       pagenum += 1;
       var nextOpts = $.extend({}, options);

@@ -1,5 +1,3 @@
-/* global history */
-
 import _ from "lodash";
 import {
   UPDATE_SEARCH_PARAMS,
@@ -15,7 +13,7 @@ const DEFAULT_PARAMS = {
   page: 1,
   per_page: 30,
   iconic_taxa: [],
-  order_by: "observations.id",
+  order_by: "id",
   order: "desc",
   dateType: "any",
   createdDateType: "any",
@@ -29,10 +27,10 @@ const normalizeParams = params => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
     // remove blank params
-    if (
+    if ( !_.startsWith( k, "field:" ) && (
       v === null
       || v === undefined
-      || ( typeof ( v ) === "string" && v.length === 0 )
+      || ( typeof ( v ) === "string" && v.length === 0 ) )
     ) {
       return;
     }
@@ -48,7 +46,7 @@ const normalizeParams = params => {
       newValue = parseInt( newValue, 10 );
     }
     // coerce arrayish strings to arrays
-    if ( k === "month" && !_.isArray( newValue ) ) {
+    if ( k === "month" && !Array.isArray( newValue ) ) {
       newValue = newValue.toString( ).split( "," ).map( m => parseInt( m, 10 ) );
     } else if ( typeof ( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
       newValue = newValue.split( "," );
@@ -87,6 +85,7 @@ const normalizeParams = params => {
   ) {
     delete newParams.without_term_id;
   }
+  delete newParams.test;
   return newParams;
 };
 
@@ -97,7 +96,7 @@ const paramsForSearch = params => {
     if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {
       return;
     }
-    if ( _.isArray( v ) && v.length === 0 ) {
+    if ( Array.isArray( v ) && v.length === 0 ) {
       return;
     }
     newParams[k] = v;
@@ -151,7 +150,7 @@ const setUrl = ( newParams, defaultParams ) => {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
-    if ( _.isArray( v ) ) {
+    if ( Array.isArray( v ) ) {
       urlState[k] = v.join( "," );
     } else {
       urlState[k] = v;
@@ -180,33 +179,43 @@ const searchParamsReducer = ( state = {
   let newState = state;
   switch ( action.type ) {
     case REPLACE_SEARCH_PARAMS:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, action.params )
-      } );
+      newState = {
+        default: { ...state.default },
+        params: { ...action.params }
+      };
       break;
     case UPDATE_SEARCH_PARAMS:
     case UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, action.params )
-      } );
+      newState = {
+        default: { ...state.default },
+        params: {
+          ...state.params,
+          ...action.params
+        }
+      };
       break;
     case RECEIVE_OBSERVATIONS:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, {
+      newState = {
+        default: { ...state.default },
+        params: {
+          ...state.params,
           page: action.page,
           per_page: action.perPage
-        } )
-      } );
+        }
+      };
       break;
     case UPDATE_DEFAULT_PARAMS: {
-      const newDefaults = Object.assign( {}, state.default, action.params );
-      newState = Object.assign( {}, {
+      const newDefaults = {
+        ...state.default,
+        ...action.params
+      };
+      newState = {
         default: newDefaults,
-        params: Object.assign( {}, newDefaults, state.params )
-      } );
+        params: {
+          ...newDefaults,
+          ...state.params
+        }
+      };
       break;
     }
     default:

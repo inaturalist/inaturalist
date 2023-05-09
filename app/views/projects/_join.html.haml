@@ -21,7 +21,7 @@
   .stacked.description
     = truncate_with_more formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500
 - unless @project.project_user_rules.blank?
-  %h3= t(:rules_for_becoming_memner)
+  %h3= t(:rules_for_becoming_a_member)
   %ul.stacked
     - for rule in @project.project_user_rules
       %li= rule.terms

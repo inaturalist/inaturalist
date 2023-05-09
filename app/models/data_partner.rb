@@ -1,4 +1,4 @@
-class DataPartner < ActiveRecord::Base
+class DataPartner < ApplicationRecord
   UNKNOWN = "unknown"
   DAILY = "daily"
   WEEKLY = "weekly"
@@ -46,7 +46,7 @@ class DataPartner < ActiveRecord::Base
     # them at the end
     if linker = DataPartnerLinkers.linker_for( self, options )
       linker.run
-      update_attributes!( last_sync_observation_links_at: Time.now )
+      update!( last_sync_observation_links_at: Time.now )
     end
   end
 
@@ -54,7 +54,7 @@ class DataPartner < ActiveRecord::Base
     params = dwca_params.clone
     params[:logger] = options[:logger] unless options[:logger].blank?
     DarwinCore::Archive.generate( params )
-    update_attributes!( dwca_last_export_at: Time.now )
+    update!( dwca_last_export_at: Time.now )
   end
 
   def self.sync_observation_links( options = {} )

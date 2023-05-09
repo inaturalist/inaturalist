@@ -37,7 +37,7 @@ const Taxa = ( {
               <div>
                 <SplitTaxon taxon={d.data} noInactive user={currentUser} />
                 <div className="text-muted small">
-                  { I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } ) }
+                  { I18n.t( "x_observations", { count: I18n.toNumber( d.data.count, { precision: 0 } ) } ) }
                 </div>
               </div>
             )

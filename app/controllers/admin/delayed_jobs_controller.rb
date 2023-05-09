@@ -1,8 +1,7 @@
-require_relative "../../models/delayed_job" if Rails.env.development?
 class Admin::DelayedJobsController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :admin_required
+  before_action :authenticate_user!
+  before_action :admin_required
 
   layout "admin"
 

@@ -1,6 +1,6 @@
 class TaxonSchemeTaxaController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :curator_required, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :curator_required, :except => [:index, :show]
     
   def new
     @taxon_schemes = TaxonScheme.limit(100).sort_by{|ts| ts.title}
@@ -34,7 +34,7 @@ class TaxonSchemeTaxaController < ApplicationController
   def update
     @taxon_scheme_taxon = TaxonSchemeTaxon.find(params[:id])
     respond_to do |format|
-      if @taxon_scheme_taxon.update_attributes(params[:taxon_scheme_taxon])
+      if @taxon_scheme_taxon.update(params[:taxon_scheme_taxon])
         flash[:notice] = 'Taxon scheme taxon was successfully updated.'
         format.html { redirect_to(taxon_schemes_path(@taxon_scheme_taxon.taxon)) }
       else

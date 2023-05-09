@@ -2,10 +2,10 @@ class MessagesController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :index, :create, :show, :destroy, :count ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
-  before_filter :load_message, :only => [:show, :destroy]
-  before_filter :require_owner, :only => [:show, :destroy]
-  before_filter :load_box, :only => [:show, :new, :index]
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }
+  before_action :load_message, :only => [:show, :destroy]
+  before_action :require_owner, :only => [:show, :destroy]
+  before_action :load_box, :only => [:show, :new, :index]
   check_spam only: [:create, :update], instance: :message
 
   requires_privilege :speech, only: [:new]
@@ -127,10 +127,10 @@ class MessagesController < ApplicationController
   end
 
   def new
-    # unless current_user.privileged_with?( UserPrivilege::SPEECH )
-    #   flash[:notice] = t( "errors.messages.requires_privilege_speech" )
-    #   redirect_back_or_default( messages_path )
-    # end
+    unless current_user.privileged_with?( UserPrivilege::SPEECH )
+      flash[:notice] = t( "activerecord.errors.messages.requires_privilege_speech" )
+      redirect_back_or_default( messages_path )
+    end
     @message = current_user.messages.build
     @contacts = User.
       select("DISTINCT ON (users.id) users.*").

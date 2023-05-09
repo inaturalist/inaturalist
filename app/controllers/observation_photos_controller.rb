@@ -1,11 +1,12 @@
 class ObservationPhotosController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:destroy]
-  before_filter :require_owner, :only => [:destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_action :load_record, :only => [:destroy]
+  before_action :require_owner, :only => [:destroy]
   
   def show
-    @observation_photo = ObservationPhoto.find_by_id(params[:id])
+    @observation_photo = ObservationPhoto.find_by_uuid( params[:id] ) ||
+      ObservationPhoto.find_by_id( params[:id] )
     respond_to do |format|
       format.json do
         render :json => @observation_photo.as_json(:include => {
@@ -16,7 +17,7 @@ class ObservationPhotosController < ApplicationController
   end
   
   def create
-    unless params[:observation_photo].is_a?( Hash )
+    unless params[:observation_photo].is_a?( ActionController::Parameters )
       respond_to do |format|
         format.json do
           render json: { errors: "No observation_photo specified" }, status: :unprocessable_entity
@@ -94,7 +95,8 @@ class ObservationPhotosController < ApplicationController
   end
   
   def update
-    unless @observation_photo = ObservationPhoto.find_by_id( params[:id] )
+    unless @observation_photo = ObservationPhoto.find_by_uuid( params[:id] ) ||
+      ObservationPhoto.find_by_id( params[:id] )
       return create
     end
     return unless require_owner
@@ -105,7 +107,7 @@ class ObservationPhotosController < ApplicationController
       @observation_photo.photo = @photo
     end
     respond_to do |format|
-      if @observation_photo.update_attributes( allowed_params )
+      if @observation_photo.update( allowed_params )
         @observation_photo.observation.elastic_index!
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else

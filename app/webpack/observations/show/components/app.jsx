@@ -48,7 +48,7 @@ import ObservationModalContainer from "../containers/observation_modal_container
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import FlashMessage from "./flash_message";
 
-moment.locale( "en", {
+moment.updateLocale( "en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
@@ -69,7 +69,6 @@ moment.locale( "en", {
 const App = ( {
   observation, config, controlledTerms, deleteObservation, setLicensingModalState
 } ) => {
-  const { testingInterpolationMitigation } = config;
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -101,12 +100,11 @@ const App = ( {
   );
   let isoDateAdded = createdAt.format( );
   if (
-    testingInterpolationMitigation
-    && observation.observed_on
+    observation.observed_on
     && observation.obscured
     && !observation.private_geojson
   ) {
-    formattedDateObserved = observedAt.format( "MMMM YYYY" );
+    formattedDateObserved = observedAt.format( I18n.t( "momentjs.month_year" ) );
     isoDateObserved = observedAt.format( "YYYY-MM" );
   } else if ( observation.time_observed_at ) {
     formattedDateObserved = formattedDateTimeInTimeZone(
@@ -118,11 +116,10 @@ const App = ( {
     formattedDateObserved = I18n.t( "missing_date" );
   }
   if (
-    testingInterpolationMitigation
-    && observation.obscured
+    observation.obscured
     && !observation.private_geojson
   ) {
-    formattedDateAdded = createdAt.format( "MMMM YYYY" );
+    formattedDateAdded = createdAt.format( I18n.t( "momentjs.month_year" ) );
     isoDateAdded = createdAt.format( "YYYY-MM" );
   }
   const description = observation.description ? (
@@ -149,13 +146,31 @@ const App = ( {
   } else {
     qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html" );
   }
+  // Custom lazyload component for the DQA, where we want lazy loading to apply
+  // inside of the collapsible element
+  const AssessmentLazyLoad = props => (
+    <LazyLoad
+      debounce={false}
+      height={
+        !config.currentUser || !config.currentUser.prefers_hide_obs_show_quality_metrics
+          ? 670
+          : 70
+      }
+      verticalOffset={500}
+    >
+      {
+        // eslint-disable-next-line react/prop-types
+        props.children
+      }
+    </LazyLoad>
+  );
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
         <FlashMessage
           key="testing_apiv2"
           title="Testing API V2"
-          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/obs-detail-on-api-v2-feedback/21215"
+          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/v2-feedback/21215"
           type="warning"
           html
         />
@@ -198,41 +213,51 @@ const App = ( {
                 </OverlayTrigger>
               </div>
             </Col>
-            { viewerIsObserver ? (
-              <Col xs={2} className="edit-button">
-                <SplitButton
-                  bsStyle="primary"
-                  className="edit"
-                  href={`/observations/${observation.id}/edit`}
-                  title={I18n.t( "edit" )}
-                  id="edit-dropdown"
-                  pullRight
-                  onSelect={key => {
-                    if ( key === "delete" ) {
-                      deleteObservation( );
-                    } else if ( key === "license" ) {
-                      setLicensingModalState( { show: true } );
-                    }
-                  }}
-                >
-                  <MenuItem eventKey="delete">
-                    <i className="fa fa-trash" />
-                    { I18n.t( "delete" ) }
-                  </MenuItem>
-                  <MenuItem
-                    eventKey="duplicate"
-                    href={`/observations/new?copy=${observation.id}`}
+            { viewerIsObserver
+              ? (
+                <Col xs={2} className="edit-button">
+                  <SplitButton
+                    bsStyle="primary"
+                    className="edit"
+                    href={`/observations/${observation.id}/edit`}
+                    title={I18n.t( "edit" )}
+                    id="edit-dropdown"
+                    pullRight
+                    onSelect={key => {
+                      if ( key === "delete" ) {
+                        deleteObservation( );
+                      } else if ( key === "license" ) {
+                        setLicensingModalState( { show: true } );
+                      }
+                    }}
                   >
-                    <i className="fa fa-files-o" />
-                    { I18n.t( "duplicate_verb" ) }
-                  </MenuItem>
-                  <MenuItem eventKey="license">
-                    <i className="fa fa-copyright" />
-                    { I18n.t( "edit_license" ) }
-                  </MenuItem>
-                </SplitButton>
-              </Col> ) : ( <FollowButtonContainer /> )
-            }
+                    <MenuItem
+                      eventKey="edit"
+                      href={`/observations/${observation.id}/edit`}
+                    >
+                      <i className="fa fa-pencil" />
+                      { I18n.t( "edit" ) }
+                    </MenuItem>
+                    <MenuItem
+                      eventKey="duplicate"
+                      href={`/observations/new?copy=${observation.id}`}
+                    >
+                      <i className="fa fa-files-o" />
+                      { I18n.t( "duplicate_verb" ) }
+                    </MenuItem>
+                    <MenuItem eventKey="license">
+                      <i className="fa fa-copyright" />
+                      { I18n.t( "edit_license" ) }
+                    </MenuItem>
+                    <li role="separator" className="divider" />
+                    <MenuItem eventKey="delete">
+                      <i className="fa fa-trash" />
+                      { I18n.t( "delete" ) }
+                    </MenuItem>
+                  </SplitButton>
+                </Col>
+              )
+              : ( <FollowButtonContainer /> ) }
           </Row>
           <Row>
             <Col xs={12}>
@@ -247,8 +272,7 @@ const App = ( {
                       <UserWithIcon
                         user={observation.user}
                         hideSubtitle={
-                          testingInterpolationMitigation
-                          && observation.obscured
+                          observation.obscured
                           && !observation.private_geojson
                         }
                       />
@@ -257,8 +281,7 @@ const App = ( {
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                         <span className="date" title={isoDateObserved}>
-                          { testingInterpolationMitigation
-                            && observation.observed_on
+                          { observation.observed_on
                             && observation.obscured
                             && !observation.private_geojson
                             && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
@@ -268,8 +291,7 @@ const App = ( {
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
                         <span className="date" title={isoDateAdded}>
-                          { testingInterpolationMitigation
-                            && observation.obscured
+                          { observation.obscured
                             && !observation.private_geojson
                             && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateAdded }
@@ -309,7 +331,7 @@ const App = ( {
                   height={30}
                 >
                   <Col xs={12}>
-                    <AnnotationsContainer />
+                    <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
                   </Col>
                 </LazyLoad>
               </Row>
@@ -347,12 +369,10 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <LazyLoad debounce={false} height={748} verticalOffset={500}>
-        <div className="data_quality_assessment">
-          <AssessmentContainer />
-        </div>
-      </LazyLoad>
-      { ( !testingInterpolationMitigation || !observation.obscured || observation.private_geojson ) && (
+      <div className="data_quality_assessment">
+        <AssessmentContainer innerWrapper={AssessmentLazyLoad} />
+      </div>
+      { ( !observation.obscured || observation.private_geojson ) && (
         <LazyLoad debounce={false} height={515} offset={500}>
           <div className="more_from">
             <Grid>
@@ -392,19 +412,17 @@ const App = ( {
           || config.currentUser.sites_admined.length > 0
         )
         && (
-          <div>
-            <TestGroupToggle
-              group="apiv2"
-              joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-              joinedStatus="Joined API V2 test"
-              user={config.currentUser}
-            />
-            <TestGroupToggle
-              group="interpolation"
-              joinPrompt="Help test some attempts to mitigate coordinate interpolation?"
-              joinedStatus="Joined interpolation mitigation test"
-              user={config.currentUser}
-            />
+          <div className="container upstacked">
+            <div className="row">
+              <div className="cols-xs-12">
+                <TestGroupToggle
+                  group="apiv2"
+                  joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+                  joinedStatus="Joined API V2 test"
+                  user={config.currentUser}
+                />
+              </div>
+            </div>
           </div>
         )
       }

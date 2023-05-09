@@ -38,6 +38,7 @@ const App = ( { taxon, config } ) => {
                   window.location = urlForTaxon( result.item );
                 }}
                 position={{ my: "right top", at: "right bottom", collision: "none" }}
+                config={config}
               />
             </div>
           </Col>

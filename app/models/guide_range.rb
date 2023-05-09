@@ -1,4 +1,4 @@
-class GuideRange < ActiveRecord::Base
+class GuideRange < ApplicationRecord
   belongs_to :guide_taxon, :inverse_of => :guide_ranges
   has_one :guide, :through => :guide_taxon
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
@@ -24,7 +24,9 @@ class GuideRange < ActiveRecord::Base
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_presence_of :thumb_url
-    
+
+  include HasGuideAsset
+
   def to_s
     "<GuideRange #{id}>"
   end

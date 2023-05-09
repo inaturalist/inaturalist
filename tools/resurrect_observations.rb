@@ -176,6 +176,23 @@ unless OPTS.skip.include?( "Photo" )
   puts "\t#{cmd}"
   system cmd
   resurrection_cmds << "psql #{OPTS.dbname} -c \"\\COPY photos (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
+
+  puts "Exporting from photo_metadata..."
+  fname = "resurrect_#{session_id}-photo_metadata.csv"
+  column_names = PhotoMetadata.column_names
+  sql = <<-SQL
+    SELECT DISTINCT
+      #{column_names.map{|cn| "photo_metadata.#{cn}"}.join( ", " )}
+    FROM photo_metadata
+      JOIN photos ON photo_metadata.photo_id = photos.id
+      JOIN observation_photos ON observation_photos.photo_id = photos.id
+      JOIN observations ON observations.id = observation_photos.observation_id
+    WHERE #{@where.join(' AND ')}
+  SQL
+  cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+  puts "\t#{cmd}"
+  system cmd
+  resurrection_cmds << "psql #{OPTS.dbname} -c \"\\COPY photo_metadata (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
 end
 
 unless OPTS.skip.include?( "ObservationPhoto" )
@@ -239,14 +256,18 @@ if @user
   puts <<-EOT
 bundle exec rails r "User.update_identifications_counter_cache(#{@user.id})"
 bundle exec rails r "User.update_observations_counter_cache(#{@user.id})"
-bundle exec rails r "User.elasic_index( ids: [#{@user.id}])"
+bundle exec rails r "User.elastic_index!( ids: [#{@user.id}])"
   EOT
 end
+
+# we could also delete deleted_photos for photos that are being resurrected
 
 if OPTS.from_user_resurrection && @user
   puts
   puts "Indexing commands for a resurrected users data"
   puts "  Observation.elastic_index!( scope: Observation.where( user_id: #{@user.id} ) )"
   puts "  Observation.elastic_index!( scope: Observation.joins( :identifications ).where( \"identifications.user_id=#{@user.id}\" ) )"
+  puts "  User.update_identifications_counter_cache( #{@user.id} )"
+  puts "  User.update_observations_counter_cache( #{@user.id} )"
   puts "  User.find( #{@user.id} ).elastic_index!"
 end

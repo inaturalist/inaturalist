@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_filter :set_homepage_wiki, only: :index
+  before_action :set_homepage_wiki, only: :index
 
   def index
     respond_to do |format|
@@ -15,9 +15,8 @@ class WelcomeController < ApplicationController
         @announcements = scope.in_locale( I18n.locale )
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
         if @announcements.blank?
-          @announcements = base_scope.where( "sites.id IS NULL AND locales IN (?)", [] )
-          @announcements << base_scope.in_locale( I18n.locale ).where( "sites.id IS NULL" )
-          @announcements = @announcements.flatten
+          @announcements = base_scope.where( "sites.id IS NULL AND locales IN (?)", [] ).to_a
+          @announcements += base_scope.in_locale( I18n.locale ).where( "sites.id IS NULL" ).to_a
         end
         @announcements = @announcements.sort_by {|a| [
           a.site_ids.include?( @site.try(:id) ) ? 0 : 1,

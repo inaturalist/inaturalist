@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Behavior for the observations filter widget ... thing.
 $(document).ready(function() {
   $('.iconic_taxon_filter input').change(function() {
@@ -38,15 +40,24 @@ function showFilters(link, options) {
     $(link).addClass('open')
   }
   $('#filters input[name=filters_open]').val(true)
-  if ($('#filters .simpleTaxonSelector').length == 0) {
+  if ( $('#filters .simpleTaxonSelector').length == 0 && !options.skipTaxonAutocomplete ) {
     $('#filters input[name=taxon_name]').taxonAutocomplete()
   }
-  if ($('#place_filter .ui-widget').length == 0) {
-    $('#filters input[name=place_id]').chooser({
-      collectionUrl: '/places/autocomplete.json',
-      resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
-      chosen: eval('(' + $('#filters input[name=place_id]').attr('data-json') + ')')
-    })
+  if ( $( "#place_filter .ui-widget" ).length === 0 ) {
+    var chosenPlaceJson = $( "#filters input[name=place_id]" ).attr( "data-json" );
+    $( "#filters input[name=place_id]" ).chooser( {
+      collectionUrl: "/places/autocomplete.json",
+      resourceUrl: "/places/{{id}}.json?partial=autocomplete_item",
+      chosen: chosenPlaceJson ? JSON.parse( chosenPlaceJson ) : null
+    } );
+  }
+  if ( $( "#not_in_place_filter .ui-widget" ).length === 0 ) {
+    var chosenNotInPlaceJson = $( "#filters input[name=not_in_place]" ).attr( "data-json" );
+    $( "#filters input[name=not_in_place]" ).chooser( {
+      collectionUrl: "/places/autocomplete.json",
+      resourceUrl: "/places/{{id}}.json?partial=autocomplete_item",
+      chosen: chosenNotInPlaceJson ? JSON.parse( chosenNotInPlaceJson ) : null
+    } );
   }
 }
 
@@ -83,8 +94,18 @@ function setFiltersFromQuery(query) {
     } else {
       $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v)
     }
-    if (k == 'place_id') {
-      $('#filters input[name=place_id]').chooser('selectId', v)
+    if ( k === "place_id" ) {
+      if ( v === "any" ) {
+        $('#filters input[name=place_id]').chooser( "clear" );
+      } else {
+        $('#filters input[name=place_id]').chooser( "selectId", v );
+      }
+    } else if ( k === "not_in_place" ) {
+      if ( v === "any" ) {
+        $('#filters input[name=not_in_place]').chooser( "clear" );
+      } else {
+        $('#filters input[name=not_in_place]').chooser( "selectId", v );
+      }
     } else if (k == 'taxon_id') {
       $.fn.simpleTaxonSelector.selectTaxonFromId('#filters .simpleTaxonSelector', v)
     } else if (k == 'iconic_taxa' || k == 'has' || k == 'month') {

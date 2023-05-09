@@ -6,6 +6,3 @@
     - for flag in flags
       %li
         = render partial: "flag", object: flag
-- if @object
-  %p.ui
-    = link_to t(:add_another_flag), send( "new_#{@object.class.name.underscore}_flag_path", @object ), i: "flag_this", class: "readmore"

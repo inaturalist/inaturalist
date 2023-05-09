@@ -7,18 +7,32 @@ module ActiveRecord
       has_many_reflections = self.class.reflections.select{|k,v| v.macro == :has_many}
       has_many_reflections.each do |k, reflection|
         # Avoid those pesky :through relats
-        next unless reflection.klass.column_names.include?(reflection.foreign_key)
-        
+        next unless reflection.klass.column_names.include?( reflection.foreign_key )
+
         # deal with polymorphism
+        foreign_key_column = reflection.klass.columns.detect do | c |
+          c.name == reflection.foreign_key
+        end
+        typed_reject_id = foreign_key_column.type == :integer ? reject.id : reject.id.to_s
         where = if reflection.type
-          ["#{reflection.type} = ? AND #{reflection.foreign_key} = ?", reject.class.name, reject.id]
+          [
+            "#{reflection.type} = ? AND #{reflection.foreign_key} = ?",
+            reject.class.name,
+            typed_reject_id
+          ]
         else
-          ["#{reflection.foreign_key} = ?", reject.id]
+          [
+            "#{reflection.foreign_key} = ?",
+            typed_reject_id
+          ]
         end
         Rails.logger.debug "[DEBUG] merging associates for #{k}"
         begin
           self.class.connection.transaction do
-            reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
+            reflection.klass.where( where ).update_all( [
+              "#{reflection.foreign_key} = ?",
+              foreign_key_column.type == :integer ? id : id.to_s
+            ] )
           end
         rescue ActiveRecord::RecordNotUnique => e
           raise e unless reflection.klass.respond_to?(:merge_future_duplicates)
@@ -137,7 +151,7 @@ module ActiveRecord
     end
   end
 
-  class ActiveRecord::ConnectionAdapters::PostGISAdapter::MainAdapter
+  class ActiveRecord::ConnectionAdapters::PostGISAdapter
     def active_queries
       User.connection.execute("SELECT *
         FROM pg_stat_activity

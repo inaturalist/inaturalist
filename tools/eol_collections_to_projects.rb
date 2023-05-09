@@ -119,8 +119,7 @@ def work_on_collection(eol_collection_id)
       :project_type => "contest")
     project.project_observation_rules.build(:operator => "on_list?")
     unless logo_url.blank?
-      io = open(URI.parse(logo_url))
-      project.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      project.icon = URI( logo_url )
     end
     if opts[:test]
       project.build_project_list
@@ -128,11 +127,11 @@ def work_on_collection(eol_collection_id)
       if !opts[:test] && project.save
         if opts[:header] || opts[:css]
           cp = project.build_custom_project
-          if opts[:header] && tpl = (open(opts[:header]).read rescue nil)
+          if opts[:header] && tpl = ( File.open( opts[:header] ).read rescue nil )
             cp.head = ERB.new(tpl).result(binding)
           end
           if opts[:css]
-            cp.css = open(opts[:css]).read rescue nil
+            cp.css = File.open( opts[:css] ).read rescue nil
           end
           cp.save
           project.reload
@@ -182,7 +181,7 @@ def work_on_collection(eol_collection_id)
     taxon_concepts.each do |node|
       name = node.at('name').text
       puts "\t #{name}"
-      list_item = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
+      list_item = TaxonName.strip_author(Taxon.remove_rank_from_name(ApplicationController.helpers.strip_tags(name)))
       puts "\t #{list_item}"
       object_id = node.at(:object_id).text
       collection_item_dwc_names << list_item
@@ -200,7 +199,7 @@ def work_on_collection(eol_collection_id)
         where("LOWER(taxon_names.name) = ?", list_item.strip.downcase).first
       if existing
         puts "\t\t#{list_item} already on #{the_list}, updating..."
-        existing.update_attributes(:description => annotation) unless opts[:test]
+        existing.update(:description => annotation) unless opts[:test]
         listed_taxa_taxon_ids.delete(existing.taxon_id)
       else
         #find the taxon to make a listed taxon

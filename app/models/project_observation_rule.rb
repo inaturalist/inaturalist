@@ -24,15 +24,17 @@ class ProjectObservationRule < Rule
   validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
 
   def operand_present
-    if OPERAND_OPERATORS.include?(operator)
-      if operand.blank? || !operand.is_a?(Object.const_get(OPERAND_OPERATORS_CLASSES[operator]))
-        errors[:base] << "Must select a " + 
-          OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase + 
-          " for that rule."
-      end
-    end
+    return unless OPERAND_OPERATORS.include?( operator )
+    return unless operand.blank? || !operand.is_a?( Object.const_get( OPERAND_OPERATORS_CLASSES[operator] ) )
+
+    msg = <<~MSG
+      Must select a
+      #{OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase}
+      for that rule.
+    MSG
+    errors.add( :base, msg )
   end
-  
+
   def clear_operand
     return true if OPERAND_OPERATORS.include?(operator)
     self.operand = nil
@@ -58,6 +60,8 @@ class ProjectObservationRule < Rule
       I18n.t( :must_be_in_taxon, taxon: operand.name )
     elsif operator == "not_in_taxon?" && operand
       I18n.t( :must_be_not_in_taxon, taxon: operand.name )
+    elsif operator == "in_project?" && operand
+      I18n.t( :must_be_in_project, project: operand.title )
     elsif operator =~ /has.+/
       thing_it_has = operator.split('_')[1..-1].join('_').gsub(/\?/, '')
       I18n.t(:must_have_x, :x => I18n.t(thing_it_has, :default => thing_it_has.humanize.downcase))
@@ -74,9 +78,9 @@ class ProjectObservationRule < Rule
 
   def touch_projects
     if ruler && ruler.is_a?( Project )
-      ruler.touch
+      ruler.touch unless ruler.saved_change_to_id?
       if operand && operand.is_a?( Project )
-        operand.touch
+        operand.touch unless operand.saved_change_to_id?
       end
     end
   end

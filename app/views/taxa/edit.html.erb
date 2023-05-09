@@ -2,6 +2,9 @@
 <%= t(:editing) %> <%= @taxon.name %>
 <% end %>
 
+<%= hidden_field_tag "taxon_ancestor_id", @taxon.ancestry, { :id => "taxon-ancestor-id" } %>
+<%= hidden_field_tag "taxon_id", @taxon.id, { :id => "taxon-id" } %>
+
 <%= render :partial => 'form_head' %>
 
 <div id="pageheader" class="last column span-24">
@@ -11,7 +14,7 @@
   </span>
   <h2><%= t :editing_taxon, taxon: @taxon.name %></h2>
   <div class="description">
-    <% if @taxon.creator -%>
+    <% if @taxon.creator && @taxon.persisted? -%>
       <%=t :created_by_user_on_date, :user => @taxon.creator.login, :date => l(@taxon.created_at) %>
     <% end -%>
   </div>
@@ -19,13 +22,13 @@
 
 <%= render :partial => "form" %>
 
-<% if @taxon.creator -%>
+<% if @taxon.creator && @taxon.persisted? -%>
   <div class="clear description">
     <%=raw t :created_by_user_on_date, user: link_to_user( @taxon.creator ), date: l( @taxon.created_at.to_date, format: :long ) %>
   </div>
 <% end -%>
 
-<% if @taxon.updater -%>
+<% if @taxon.updater && @taxon.persisted? -%>
   <div class="clear description">
     <%=t :updated_by_user_on_date_html, user: link_to_user( @taxon.updater ), date: l( @taxon.updated_at.to_date, format: :long ) %>
   </div>

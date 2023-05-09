@@ -128,24 +128,26 @@ class Compare extends Component {
               { year - 1 }
             </div>
           </div>
-          <div className="controls">
-            <div className="btn-group" data-toggle="buttons">
-              <button
-                className={`btn btn-inat ${this.state.dateField === "created_at" ? "active" : ""}`}
-                type="button"
-                onClick={() => this.setState( { dateField: "created_at" } )}
-              >
-                { I18n.t( "date_added" ) }
-              </button>
-              <button
-                className={`btn btn-inat ${this.state.dateField === "observed_on" ? "active" : ""}`}
-                type="button"
-                onClick={() => this.setState( { dateField: "observed_on" } )}
-              >
-                { I18n.t( "date_observed_" ) }
-              </button>
+          { data.taxa.accumulation_by_date_observed && (
+            <div className="controls">
+              <div className="btn-group" data-toggle="buttons">
+                <button
+                  className={`btn btn-inat ${this.state.dateField === "created_at" ? "active" : ""}`}
+                  type="button"
+                  onClick={() => this.setState( { dateField: "created_at" } )}
+                >
+                  { I18n.t( "date_added" ) }
+                </button>
+                <button
+                  className={`btn btn-inat ${this.state.dateField === "observed_on" ? "active" : ""}`}
+                  type="button"
+                  onClick={() => this.setState( { dateField: "observed_on" } )}
+                >
+                  { I18n.t( "date_observed_" ) }
+                </button>
+              </div>
             </div>
-          </div>
+          ) }
         </div>
         <div className="row stacked">
           <div className="col-xs-12 col-md-2">

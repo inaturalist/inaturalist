@@ -2,7 +2,7 @@ require "rubygems"
 require "optimist"
 
 # The official list of locales current supported by Seek can be found at:
-# https://github.com/inaturalist/SeekReactNative/blob/master/i18n.js
+# https://github.com/inaturalist/SeekReactNative/blob/main/i18n.js
 
 SEEK_LOCALES = [
   "af", "ar", "ca", "cs", "da", "de", "en", "es", "eu", 

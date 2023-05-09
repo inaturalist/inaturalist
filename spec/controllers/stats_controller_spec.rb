@@ -3,6 +3,7 @@ require "spec_helper"
 describe StatsController do
 
   before :all do
+    make_default_site
     OauthApplication.make!(name: "iNaturalist Android App")
     OauthApplication.make!(name: "iNaturalist iPhone App")
     [ Time.now, 1.day.ago, 1.week.ago ].each do |t|
@@ -18,7 +19,7 @@ describe StatsController do
     it "render the page HTML" do
       get :index
       expect( response.status ).to eq 200
-      expect( response.content_type ).to eq "text/html"
+      expect( response.content_type ).to include "text/html"
     end
 
     it "returns the latest stat by default" do
@@ -34,14 +35,14 @@ describe StatsController do
     end
 
     it "render the latest stat by default" do
-      get :index, format: :json, start_date: 1.day.ago.to_s
+      get :index, format: :json, params: { start_date: 1.day.ago.to_s }
       json = JSON.parse(response.body)
       expect( json[0]["created_at"] ).to eq Time.now.utc.beginning_of_day.as_json
       expect( json[1]["created_at"] ).to eq 1.day.ago.utc.beginning_of_day.as_json
     end
 
     it "accepts start and end dates" do
-      get :index, format: :json, start_date: 7.days.ago.to_s, end_date: 6.days.ago.to_s
+      get :index, format: :json, params: { start_date: 7.days.ago.to_s, end_date: 6.days.ago.to_s }
       json = JSON.parse(response.body)
       expect( json[0]["created_at"] ).to eq 6.days.ago.utc.beginning_of_day.as_json
       expect( json[1]["created_at"] ).to eq 7.day.ago.utc.beginning_of_day.as_json

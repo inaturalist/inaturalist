@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      %h1=t :unsuspend_user_html, user: link_to_user( @user )
+      = form_for @moderator_action, builder: BootstrapFormBuilder do | f |
+        = f.text_area :reason, description: t( :unsuspend_user_reason_instructions ), required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH - 5
+        = f.hidden_field :user_id
+        = f.hidden_field :resource_type
+        = f.hidden_field :resource_id
+        = f.hidden_field :action
+        = f.submit t(:unsuspend_user), class: "btn btn-primary"
+        = link_to t(:cancel), :back, class: "btn btn-default"

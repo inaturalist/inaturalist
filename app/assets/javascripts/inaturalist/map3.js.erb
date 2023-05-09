@@ -10,7 +10,10 @@
  */
 
 // requires GoogleMap classes
-if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
+if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
+  console.log( "The Google Maps libraries must be loaded to use the iNaturalist Map extensions." );
+  return;
+}
 
 var deselectText = function() {
   if (window.getSelection) {
@@ -410,25 +413,36 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
   }
 ], {name: "Map (no labels)"});
 
+iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
+  zoom: 1,
+  mapTypeId: google.maps.MapTypeId.TERRAIN,
+  streetViewControl: false,
+  rotateControl: false,
+  backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
+  clickableIcons: false,
+  gestureHandling: "greedy",
+  controlSize: 26,
+  scaleControl: true,
+  tilt: 0
+};
+
+iNaturalist.Map.API_PARAMS = function( ) {
+  return <%= INatAPIService::MAPPABLE_PARAMS.to_s %>;
+};
+
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
   var placement = options.placement;
   delete options.placement;
-  options = $.extend({}, {
-    div: 'map',
-    center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
-    zoom: 1,
-    mapTypeId: google.maps.MapTypeId.TERRAIN,
-    streetViewControl: false,
-    rotateControl: false,
-    backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
-    clickableIcons: false,
-    gestureHandling: "greedy",
-    controlSize: 26,
-    scaleControl: true,
-    tilt: 0
-  }, options);
+  options = $.extend(
+    {
+      div: "map",
+      center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
+    },
+    iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
+    options
+  );
   
   var map;
   iNaturalist.log( { "map-placement": placement || "unknown" } );
@@ -774,7 +788,7 @@ iNaturalist.OverlayControl.prototype.removeAll = function( ) {
 // in `layers` at the same time. If the overlay was not previously displayed
 // on the map, it will be added to the top-right corner of the map.
 iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( layers, options ) {
-  if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
+  if( ! Array.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
       title = iNaturalist.OverlayControl.safeTitle( options.title ) || "Layer",
@@ -812,10 +826,10 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     );
   }
   li.append( legendLeft, legendRight );
-  if( options.endpoint === "gbif" && options.gbif_id ) {
-     label.append(
-       " <a href='http://www.gbif.org/species/" + options.gbif_id + "' target='_blank'><i class='icon-link' /></a>"
-     );
+  if ( options.link ) {
+    label.append(
+      " <a href='" + options.link + "' target='_blank'><i class='icon-link' /></a>"
+    );
   }
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
@@ -1158,103 +1172,10 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     options.featured_observation_id = options.observation_id;
   }
   // these are the parameters that will be sent to the node API
-  var paramKeys = [
-    "acc",
-    "acc_above",
-    "acc_below",
-    "apply_project_rules_for",
-    "border_opacity",
-    "cache",
-    "captive",
-    "collection_preview",
-    "color",
-    "created_d1",
-    "created_d2",
-    "created_on",
-    "d1",
-    "d2",
-    "day",
-    "endemic",
-    "featured_observation_id",
-    "geo",
-    "geoprivacy",
-    "has",
-    "has",
-    "hrank",
-    "id_above",
-    "iconic_taxa",
-    "iconic_taxa",
-    "ident_taxon_id",
-    "ident_taxon_id_exclusive",
-    "ident_user_id",
-    "identifications",
-    "identified",
-    "introduced",
-    "lat",
-    "line_color",
-    "line_opacity",
-    "line_width",
-    "list_id",
-    "lng",
-    "lrank",
-    "members_of_project",
-    "month",
-    "native",
-    "nelat",
-    "nelng",
-    "not_in_place",
-    "not_in_project",
-    "not_matching_project_rules_for",
-    "not_user_id",
-    "oauth_application_id",
-    "on",
-    "opacity",
-    "photo_license",
-    "photos",
-    "place_id",
-    "popular",
-    "precision",
-    "precision_offset",
-    "project_id",
-    "project_ids",
-    "projects[]",
-    "q",
-    "quality_grade",
-    "radius",
-    "rank",
-    "reviewed",
-    "scaled",
-    "search_on",
-    "skip_top_hits",
-    "sounds",
-    "style",
-    "swlat",
-    "swlng",
-    "taxon_geoprivacy",
-    "taxon_id",
-    "taxon_ids",
-    "taxon_ids[]",
-    "term_id",
-    "term_value_id",
-    "threatened",
-    "tile_size",
-    "ttl",
-    "unobserved_by_user_id",
-    "user_after",
-    "user_before",
-    "user_id",
-    "verifiable",
-    "viewer_id",
-    "viewer_id",
-    "width",
-    "without_taxon_id",
-    "without_term_value_id",
-    "year"
-  ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
-    options, { validParams: paramKeys, endpoint: "grid" } ));
+    options, { validParams: iNaturalist.Map.API_PARAMS( ), endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
-    options, { validParams: paramKeys, endpoint: "points" } ));
+    options, { validParams: iNaturalist.Map.API_PARAMS( ), endpoint: "points" } ));
   // add a layer to the map for the grid
   gridLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + gridTileSuffix;
@@ -1382,20 +1303,31 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
         if (o.e.type == 'click') {
           // if a native infoWindow was just opened, don't let another one open
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
+            // console.log( "[DEBUG] skipping duplicate infowindow" );
             return false;
           }
           // this is ugly but works, until Google maps changes and breaks it.
-          // The main map div contains a div with z-index:0 that sets the cursor.
-          // The third element in that div (with z-index: 3) is the lowest level
-          // element that will capture any mouse events from the user.
-          // The main goal here is to only respond to clicks on the map and only
-          // on the map, and nothing that might be shown over the map, like
-          // another infowindow or other Google Maps, or custom map, UI.
-          // needs to be asynchronous so the selector resolves
+          // The main map div contains a div with z-index:0 that sets the
+          // cursor. A child of that div (generally with z-index: 3) is the
+          // lowest level element that will capture any mouse events from the
+          // user. The main goal here is to only respond to clicks on the map
+          // and only on the map, and nothing that might be shown over the
+          // map, like another infowindow or other Google Maps, or custom
+          // map, UI. needs to be asynchronous so the selector resolves. This
+          // will almost certainly break when Google changes things
+          // (symptom will be map markers that don't respond to clicks). When
+          // that happens, find the element that was clicked and look at its
+          // parents until you find a div that contains the map markers but
+          // not things like infowindows
           var googleMainMapDiv = $(map.div).find("div[style*='cursor'][style*='z-index: 0']");
-          var googleMapInteractionsDiv = $(googleMainMapDiv).children()[2];
-          if( !$.contains( googleMapInteractionsDiv, o.e.target ) &&
-            !$( googleMapInteractionsDiv ).is( o.e.target ) ) { return false; }
+          var googleMapInteractionsDiv = $(googleMainMapDiv).find( "div[style*='z-index: 3']");
+          if(
+            !$.contains( googleMapInteractionsDiv, o.e.target ) &&
+            !$( googleMapInteractionsDiv ).is( o.e.target )
+          ) {
+            // console.log( "[DEBUG] googleMapInteractionsDiv does not contain click target: ", o.e.target );
+            return false;
+          }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room

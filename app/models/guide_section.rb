@@ -1,4 +1,4 @@
-class GuideSection < ActiveRecord::Base
+class GuideSection < ApplicationRecord
   acts_as_spammable :fields => [ :title, :description ],
     checks_spam_unless: :is_imported
   attr_accessor :modified_on_create
@@ -146,7 +146,7 @@ class GuideSection < ActiveRecord::Base
   def reuse
     gs = clone
     gs.rights_holder = attribution_name
-    gs.source_url = FakeView.guide_taxon_url(guide_taxon_id)
+    gs.source_url = UrlHelper.guide_taxon_url( guide_taxon_id )
     gs
   end
 

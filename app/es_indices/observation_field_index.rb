@@ -1,4 +1,4 @@
-class ObservationField < ActiveRecord::Base
+class ObservationField < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -10,7 +10,9 @@ class ObservationField < ActiveRecord::Base
       indexes :description_autocomplete, type: "text",
         analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
-      indexes :id, type: "integer"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :name_autocomplete, type: "text",
         analyzer: "autocomplete_analyzer",

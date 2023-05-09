@@ -90,7 +90,7 @@
     .col-xs-12
       - if @results.blank?
         .upstacked.text-center.text-muted
-          %p=t :no_results
+          %p=t :no_results_found
       - else
         - for record in @results
           - matched_terms = @results_matched_terms["#{record.class.name}-#{record.id}"]
@@ -234,8 +234,5 @@
                 - if is_curator?
                   = link_to t(:create_new_taxon), new_taxon_path( name: @q ), class: "btn btn-default"
                 - else
-                  :ruby
-                    feedback_url = @site.discourse_url
-                    feedback_url = @site.feedback_url if feedback_url.blank?
-                    feedback_url = CONFIG.feedback_url if feedback_url.blank?
-                  =t "views.search.index.no_taxa_options_html", feedback_url: feedback_url, help_email: @site.email_help.blank? ? CONFIG.help_email : @site.email_help
+                  %strong=t "views.search.index.no_taxa_add_a_flag"
+                  %p=t "views.search.index.no_taxa_add_a_flag_desc"

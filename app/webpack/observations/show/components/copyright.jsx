@@ -25,12 +25,10 @@ class Copyright extends React.Component {
           { I18n.t( "this_observation_was_created_using" ) }
           <div className="application">
             <a href={observation.application.url}>
-              <span className="icon">
-                <img
-                  src={observation.application.icon}
-                  alt={observation.application.name}
-                />
-              </span>
+              <img
+                src={observation.application.icon}
+                alt={observation.application.name}
+              />
               <span className="name">
                 { observation.application.name }
               </span>

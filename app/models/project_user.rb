@@ -1,4 +1,4 @@
-class ProjectUser < ActiveRecord::Base
+class ProjectUser < ApplicationRecord
   
   belongs_to :project, inverse_of: :project_users, touch: true
   belongs_to :user, touch: true
@@ -72,7 +72,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def remove_updates
-    return true unless role_changed? && role.blank?
+    return true unless saved_change_to_role? && role.blank?
     UpdateAction.delete_and_purge(
       notifier_type: "ProjectUser",
       notifier_id: id,
@@ -82,7 +82,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def subscribe_to_assessment_sections_later
-    return true unless role_changed? && !role.blank?
+    return true unless saved_change_to_role? && !role.blank?
     delay(:priority => USER_INTEGRITY_PRIORITY).subscribe_to_assessment_sections
     true
   end
@@ -149,8 +149,9 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def check_role
-    return true unless role_changed?
-    if role_was.blank?
+    return true unless saved_change_to_role?
+    # TODO Rails 6: use role_previously_was?
+    if previous_changes[:role] && previous_changes[:role][0].blank?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_make_curator(project_id, id)
     elsif role.blank?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_remove_curator(project_id, id)
@@ -159,7 +160,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def index_project
-    project.elastic_index! if project
+    project.elastic_index! if project && !project.skip_indexing
   end
 
   def as_indexed_json

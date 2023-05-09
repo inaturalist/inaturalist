@@ -48,15 +48,18 @@ namespace :inaturalist do
 
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
-    min_id = UpdateAction.minimum(:id)
+    earliest_id = CONFIG.update_action_rollover_id || 1
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).where(["created_at < ?", 3.months.ago]).minimum( :id )
+    return unless min_id
     # using an ID clause to limit the number of rows in the query
-    last_id_to_delete = UpdateAction.where(["created_at < ?", 3.months.ago]).
-      where("id < #{ min_id + 1000000 }").maximum(:id)
-    UpdateAction.delete_and_purge("id <= #{ last_id_to_delete }")
+    last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
+      where("id >= #{min_id} AND id < #{ min_id + 2000000 }").maximum( :id )
+    return unless last_id_to_delete
+    UpdateAction.delete_and_purge("id >= #{ min_id } AND id <= #{ last_id_to_delete }")
     # delete anything that may be left in Elasticsearch
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-        body: { query: { range: { id: { lte: last_id_to_delete } } } })
+        body: { query: { range: { id: { gte: min_id, lte: last_id_to_delete } } } })
     end
 
     # # suspend subscriptions of users with no viewed updates
@@ -75,67 +78,28 @@ namespace :inaturalist do
 
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
-    S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
     client = LocalPhoto.new.s3_client
-    static_bucket = LocalPhoto.s3_bucket( false )
-
     fails = 0
     DeletedPhoto.still_in_s3.
       joins("LEFT JOIN photos ON (deleted_photos.photo_id = photos.id)").
       where("photos.id IS NULL").
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
-
-      s3_objects = nil
-      images = nil
-      found_in_odp_bucket = false
-      # first check to see if the photo has files in the ODP bucket
-      if LocalPhoto.odp_s3_bucket_enabled?
-        begin
-          odp_bucket = LocalPhoto.s3_bucket( true )
-          s3_objects = client.list_objects( bucket: odp_bucket, prefix: "photos/#{ p.photo_id }/" )
-          images = s3_objects.contents
-          found_in_odp_bucket = true unless images.blank?
-        rescue
-          fails += 1
-          break if fails >= 5
-        end
+        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |dp|
+      begin
+        dp.remove_from_s3( s3_client: client )
+      rescue
+        fails += 1
+        break if fails >= 5
       end
-
-      # if there are no ODP files, check the static bucket
-      if images.blank?
-        begin
-          s3_objects = client.list_objects( bucket: static_bucket, prefix: "photos/#{ p.photo_id }/" )
-          images = s3_objects.contents
-        rescue
-          fails += 1
-          break if fails >= 5
-        end
-      end
-
-      # there were files in either bucket
-      if s3_objects && s3_objects.data && s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput )
-        if images.any?
-          begin
-            if found_in_odp_bucket
-              # the photo has files in the OBP bucket, so delete them
-              odp_bucket = LocalPhoto.s3_bucket( true )
-              puts "deleting #{p.photo_id} from S3 ODP"
-              client.delete_objects( bucket: odp_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-            end
-            # the photo has files in either bucket, so attempt a delete from the static bucket
-            puts "deleting #{p.photo_id} from S3"
-            client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-            p.update_attributes(removed_from_s3: true)
-          rescue
-            fails += 1
-            break if fails >= 5
-          end
-        else
-          p.update_attributes(removed_from_s3: true)
-          puts "#{p.photo_id} has no photos in S3"
-        end
+    end
+    # Delete user profile pics for users that were deleted over a month ago
+    DeletedUser.where( "created_at < ?", 1.month.ago ).each do |du|
+      begin
+        User.remove_icon_from_s3( du.user_id )
+      rescue
+        fails += 1
+        break if fails >= 5
       end
     end
   end
@@ -177,7 +141,7 @@ namespace :inaturalist do
         pp sounds
         begin
           client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
-          s.update_attributes(removed_from_s3: true)
+          s.update(removed_from_s3: true)
         rescue
           fails += 1
           break if fails >= 5
@@ -268,7 +232,7 @@ namespace :inaturalist do
       next unless f =~ /\.(rb|erb|haml)$/
       # Ignore an existing translations file
       # next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/(I18n\.)?t[\(\s]*([\:"'])([A-z_\.\d\?\!]+)/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }
@@ -305,6 +269,8 @@ namespace :inaturalist do
       "date.formats.month_day_year",
       "date_added",
       "date_format.month",
+      "date_observed",
+      "date_observed_",
       "date_picker",
       "date_updated",
       "default_",
@@ -320,6 +286,7 @@ namespace :inaturalist do
       "green",
       "grey",
       "imperiled",
+      "inappropriate",
       "input_taxon",
       "insect_life_stage",
       "insects",
@@ -445,7 +412,7 @@ namespace :inaturalist do
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
     all_keys += ControlledTerm.attributes.map{|a|
-      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.parameterize.underscore}_annotation" }
     }.flatten
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
@@ -457,7 +424,7 @@ namespace :inaturalist do
       next if f =~ /\-webpack.js$/
       # Ignore an existing translations file
       next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/(I18n|shared|inatreact).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
@@ -471,7 +438,7 @@ namespace :inaturalist do
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
       # TODO make this work for I18n.l, I18n.localize, I18n.translate
       unless results.empty?
@@ -620,25 +587,6 @@ namespace :inaturalist do
     end
     ( all_keys - all_keys_in_use ).sort.each do |key|
       puts key
-    end
-
-  end
-
-  desc "Fetch missing image dimensions"
-  task :fetch_image_dimensions => :environment do
-    scope = LocalPhoto.where("original_url IS NOT NULL").
-      where("metadata IS NULL OR metadata !~ 'dimensions: *\n *:orig'")
-    batch_num = 0
-    batch_size = 100
-    total_batches = (scope.count / batch_size.to_f).ceil
-    scope.find_in_batches(batch_size: batch_size) do |batch|
-      batch_num += 1
-      puts "batch #{ batch_num } of #{ total_batches }"
-      batch.each do |photo|
-        photo.metadata ||= { }
-        photo.metadata[:dimensions] = photo.extrapolate_dimensions_from_original
-        photo.update_column(:metadata, photo.metadata)
-      end
     end
   end
 

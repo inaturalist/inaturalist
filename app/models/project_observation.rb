@@ -1,4 +1,4 @@
-class ProjectObservation < ActiveRecord::Base
+class ProjectObservation < ApplicationRecord
   blockable_by lambda {|po| po.observation.try(:user_id) }
 
   belongs_to :project
@@ -24,7 +24,7 @@ class ProjectObservation < ActiveRecord::Base
     :on_list?,
     :verifiable?,
     :wild?
-  ], :unless => "errors.any?"
+  ], unless: lambda {|po| po.errors.any? }
   validate :observed_in_bioblitz_time_range?
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
@@ -43,7 +43,7 @@ class ProjectObservation < ActiveRecord::Base
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
-        { term: { subscriber_ids: observation.user_id } }
+        { term: { "subscriber_ids.keyword": observation.user_id } }
       ],
       inverse_filters: [
         { term: { viewed_subscriber_ids: observation.user_id } }
@@ -96,7 +96,7 @@ class ProjectObservation < ActiveRecord::Base
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
 
-  after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
+  after_create  :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
   after_create :revisit_curator_identifications_later
@@ -231,16 +231,14 @@ class ProjectObservation < ActiveRecord::Base
 
   def expire_caches
     return true if project_id.blank?
-    begin
-      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
-    rescue ActionController::RoutingError, ActionController::UrlGenerationError
-      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
-    end
-    true
-  end
 
-  def destroy_project_invitations
-    observation.project_invitations.where(:project_id => project).each(&:destroy)
+    begin
+      FileUtils.rm( private_page_cache_path( UrlHelper.all_project_observations_path( project, format: "csv" ) ),
+        force: true )
+    rescue ActionController::RoutingError, ActionController::UrlGenerationError
+      FileUtils.rm( private_page_cache_path( UrlHelper.all_project_observations_path( project_id, format: "csv" ) ),
+        force: true )
+    end
     true
   end
 

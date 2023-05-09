@@ -3,12 +3,12 @@
     - @google_webmaster_verification.split( ";" ).each do |verification|
       %meta{content: verification.strip, name: "google-site-verification"}
   %meta{content: "website", property: "og:type"}
-  %meta{content: @site.name, property: "og:title"}
-  - if @site && @site.shareable_image?
+  %meta{content: @site&.name, property: "og:title"}
+  - if @site&.shareable_image?
     %meta{content: image_url(@site.shareable_image.url), property: "og:image"}
     %meta{content: image_url(@site.shareable_image.url), property: "twitter:image"}
   %meta{content: root_url, property: "og:url"}
-  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site.name), property: "og:description"}
+  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "og:description"}
 - content_for(:title) do
   = t(:a_community_for_naturalist)
 - announcements = @announcements.select{|a| a.placement == "welcome/index"}

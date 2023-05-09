@@ -18,8 +18,6 @@
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
-        <%= link_to t(:invite_someone_to, :name => @site.preferred_site_name_short), emailer_invite_path, :class => "inter" %>
-        <span class="meta inter"><%= t :or %></span>
         <%= form_tag( search_path, method: :get, class: "last" ) do %>
           <%= hidden_field_tag "source[]", "users" %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>

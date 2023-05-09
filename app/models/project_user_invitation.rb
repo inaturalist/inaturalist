@@ -1,5 +1,5 @@
 #encoding: utf-8
-class ProjectUserInvitation < ActiveRecord::Base
+class ProjectUserInvitation < ApplicationRecord
   belongs_to :user, :inverse_of => :project_user_invitations
   belongs_to :invited_user, :class_name => "User", :inverse_of => :project_user_invitations_received
   belongs_to :project, :inverse_of => :project_user_invitations

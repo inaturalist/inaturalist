@@ -40,7 +40,7 @@
                   %span.glyphicon.glyphicon-cog
               %span.time{ title: notifying_update.sort_by_date.iso8601 }
                 %i.glyphicon.glyphicon-time
-                = compact_date( notifying_update.sort_by_date )
+                = compact_date( notifying_update.sort_by_date, obscured: notifier.class.name == "Observation" && !notifier.coordinates_viewable_by?( current_user ) )
               = update_tagline_for( notifying_update, count: updates.size )
           - if notification == "activity" || is_mention
             .timeline-body
@@ -73,4 +73,4 @@
               = "#{resource_type} #{notification}"
   .pagination
     - unless @pagination_updates.blank? || @pagination_updates.next_page.blank?
-      = link_to t(:more), url_for_params( from: @pagination_updates.last.id ), data: { from: @pagination_updates.last.id }, id:"more_pagination", class: "btn btn-sm btn-default"
+      = link_to t(:more), url_for_params( from: @pagination_updates.last.created_at.to_i ), data: { from: @pagination_updates.last.created_at.to_i }, id:"more_pagination", class: "btn btn-sm btn-default"

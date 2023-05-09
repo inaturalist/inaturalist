@@ -1,0 +1,8 @@
+version: "2"
+services:
+  pg:
+    container_name: pg
+    image: postgis/postgis:12-3.0
+    environment:
+      POSTGRES_USER: inaturalist
+      POSTGRES_PASSWORD: inaturalist

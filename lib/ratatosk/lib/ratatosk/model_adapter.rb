@@ -20,7 +20,11 @@ module ModelAdapter
   
   def method_missing(method, *args)
     if @adaptee.respond_to? method
-      @adaptee.send(method, *args)
+      if args.length == 1 && args[0].is_a?( Hash )
+        @adaptee.send(method, **args[0])
+      else
+        @adaptee.send(method, *args)
+      end
     else
       raise NoMethodError, "#{self.class} hasn't implemented #{method}"
     end

@@ -189,7 +189,7 @@ Activity.propTypes = {
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
   deleteFlag: PropTypes.func,
-  deleteID: PropTypes.func,
+  withdrawID: PropTypes.func,
   confirmDeleteID: PropTypes.func,
   editID: PropTypes.func,
   restoreID: PropTypes.func,

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class FriendshipsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_record, only: [:update, :destroy]
-  before_filter :require_owner, only: [:update, :destroy]
+  before_action :authenticate_user!
+  before_action :load_record, only: [:update, :destroy]
+  before_action :require_owner, only: [:update, :destroy]
 
   layout "bootstrap"
 
@@ -14,14 +16,16 @@ class FriendshipsController < ApplicationController
     @trusted = "any" unless %w(yes no any).include?( @trusted )
     @following = params[:following]
     @following = "any" unless %w(yes no any).include?( @following )
-    if @following == "yes"
+    case @following
+    when "yes"
       @friendships = @friendships.where( "following" )
-    elsif @following == "no"
+    when "no"
       @friendships = @friendships.where( "NOT following" )
     end
-    if @trusted == "yes"
+    case @trusted
+    when "yes"
       @friendships = @friendships.where( "trust" )
-    elsif @trusted == "no"
+    when "no"
       @friendships = @friendships.where( "NOT trust" )
     end
     @order = params[:order]
@@ -29,23 +33,23 @@ class FriendshipsController < ApplicationController
     @order_by = params[:order_by]
     @order_by = "date" unless %w(date user).include?( @order_by )
     @friendships = if @order_by == "user"
-      @friendships.joins(:friend).order( "users.login #{@order}" )
+      @friendships.joins( :friend ).order( "users.login #{@order}" )
     else
       @friendships.order( "friendships.id #{@order}" )
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html
     end
   end
 
   def update
-    if @friendship.update_attributes( approved_params )
-      respond_to do |format|
+    if @friendship.update( approved_params )
+      respond_to do | format |
         format.html { redirect_back_or_default( person_path( current_user ) ) }
         format.json { render json: { friendship: @friendship } }
       end
     else
-      respond_to do |format|
+      respond_to do | format |
         format.html do
           flash[:error] = @friendship.errors.full_messages.to_sentence
           redirect_back_or_default( person_path( current_user ) )
@@ -57,16 +61,16 @@ class FriendshipsController < ApplicationController
 
   def destroy
     @friendship.destroy
-    respond_to do |format|
+    respond_to do | format |
       format.html { redirect_back_or_default( person_path( current_user ) ) }
       format.json { head :no_content }
     end
   end
 
   protected
-  
+
   def approved_params
-    params.require(:friendship).permit(
+    params.require( :friendship ).permit(
       :following,
       :trust
     )

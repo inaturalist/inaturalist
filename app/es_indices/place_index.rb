@@ -1,4 +1,4 @@
-class Place < ActiveRecord::Base
+class Place < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -23,7 +23,9 @@ class Place < ActiveRecord::Base
         analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
       indexes :geometry_geojson, type: "geo_shape"
-      indexes :id, type: "integer"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :location, type: "geo_point"
       indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :observations_count, type: "integer"

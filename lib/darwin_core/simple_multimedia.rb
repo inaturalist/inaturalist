@@ -64,8 +64,8 @@ module DarwinCore
       def references
         if !native_page_url.blank?
           native_page_url
-        elsif respond_to?( :observations ) && observations.first
-          FakeView.observation_url( observations.first )
+        else
+          FakeView.photo_url( self )
         end
       end
 

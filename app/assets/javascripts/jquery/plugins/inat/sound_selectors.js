@@ -10,9 +10,9 @@
 //                  Default is true.
 //   defaultQuery:  Default query to run on load
 //   afterQuerySounds(q, wrapper, options) : called after sounds queried
-//   defaultSource: the default source (e.g. 'flickr' or 'facebook')
+//   defaultSource: the default source (e.g. 'flickr')
 //   defaultContext:the default context (e.g. 'user' or 'friends')
-//   sources:       a data structure used to specify the available sound sources (flickr, facebook, etc)
+//   sources:       a data structure used to specify the available sound sources (flickr, etc)
 //                  and available sound contexts ('user', 'friends', 'public', etc) for each source
 //                  see below for example of this data structure
 //                  note: options also currently supports options.urls (via lots of try/catch), 
@@ -20,11 +20,7 @@
 //  
 //   example of options.sources:                  
 //
-//   options.sources = {
-//      facebook: {
-//        title: 'Facebook', 
-//        url: '/facebook/sound_fields', 
-//        contexts: [["Your sounds", 'user'], ["Your friends' sounds", 'friends']]},
+//   options.sources = 
 //      flickr: {
 //        title: 'Flickr', 
 //        url: '/flickr/sound_fields', 
@@ -110,7 +106,7 @@
 
     // Append next & prev links
     var offset = $('<input class="soundSelectorOffset" type="hidden" value="0"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>').click(function(e) {
+    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('previous_page_short')+'</a>').click(function(e) {
       var offsetnum = parseInt($(wrapper).find('.soundSelectorOffset').val());
       offsetnum -= options.limit;
       if (offsetnum < 0) offsetnum = 0;
@@ -121,7 +117,7 @@
       $(wrapper).find('.soundSelectorOffset').val(offsetnum);
       return false;
     });
-    var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>').click(function(e) {
+    var next = $('<a href="#" class="nextlink button">'+I18n.t('next_page_short')+' &raquo;</a>').click(function(e) {
       var offsetnum = parseInt($(wrapper).find('.soundSelectorOffset').val());
       offsetnum += options.limit;
       var nextOpts = $.extend({}, $(wrapper).data('soundSelectorOptions'), {offset: offsetnum});

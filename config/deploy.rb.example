@@ -8,7 +8,7 @@ default_run_options[:pty] = true
 set :repository,  "git@github.com:inaturalist/inaturalist.git"
 set :scm, "git"
 set :user, "inaturalist"
-set :branch, "master"
+set :branch, "main"
 set :deploy_via, :remote_cache
 
 # Don't use sudo, execute all commands as inaturalist

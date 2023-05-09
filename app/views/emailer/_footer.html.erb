@@ -3,6 +3,7 @@
   blog_url = @site.blog_url
   twitter_url = @site.twitter_url
   facebook_url = @site.facebook_url
+  instagram_url = @site.instagram_url
   android_app_url = @site.android_app_url
   iphone_app_url = @site.iphone_app_url
   custom_email_footer_leftside = @site.custom_email_footer_leftside
@@ -49,38 +50,42 @@
                             <td class="rightColumnContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 9px;padding-right: 0;padding-bottom: 20px;padding-left: 0;text-align: left;width: 300px">
                               <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
                                 <tr>
-                                  <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                                    <table border="0" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important; margin: 0 auto;">
+                                  <td style="padding: 0 0 0 45px">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tr>
-                                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                                          <%- unless facebook_url.blank? %>
-                                            <a href="<%= facebook_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
-                                              <img src="https://static.inaturalist.org/wiki_page_attachments/530-original.png" style="display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
-                                            </a>
-                                          <%- end %>  
-                                        </td>
-                                        <td style="font-size: 0;line-height: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;" width="10">&nbsp;</td>
-                                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                                          <%- unless twitter_url.blank? %>
-                                            <a href="<%= twitter_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #EB4102;font-weight: normal;text-decoration: underline;">
-                                              <img src="https://static.inaturalist.org/wiki_page_attachments/529-original.png" style="display: block;-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;max-width: 260px;" border="0">
-                                            </a>
-                                          <%- end %>
-                                        </td>
+                                        <%- unless blog_url.blank? -%>
+                                          <td align="right" width="25%" style="text-align: center; line-height: 1.2;">
+                                            <%= link_to blog_url, title: t(:our_blog), style: "color: black;" do %>
+                                              <%=t :our_blog %>
+                                            <% end %>
+                                          </td>
+                                        <% end %>
+                                        <%- unless facebook_url.blank? -%>
+                                          <td align="right" width="25%">
+                                            <%= link_to facebook_url, title: t(:facebook) do %>
+                                              <%= image_tag image_url( "social-facebook.png", host: @site.url ), width: 36, height: 36 %>
+                                            <% end %>
+                                          </td>
+                                        <% end %>
+                                        <%- unless twitter_url.blank? -%>
+                                          <td align="right" width="25%">
+                                            <%= link_to twitter_url, title: t(:twitter) do %>
+                                              <%= image_tag image_url( "social-twitter.png", host: @site.url ), width: 36, height: 36 %>
+                                            <% end %>
+                                          </td>
+                                        <% end %>
+                                        <%- unless instagram_url.blank? -%>
+                                          <td align="right" width="25%">
+                                            <%= link_to instagram_url, title: t(:instagram) do %>
+                                              <%= image_tag image_url( "social-instagram.png", host: @site.url ), width: 36, height: 36 %>
+                                            <% end %>
+                                          </td>
+                                        <% end %>
                                       </tr>
                                     </table>
                                   </td>
-                                  <td style="width: 155px; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;text-align: left;">
-                                    <%- if @site && Site.default && @site.id == Site.default.id %>
-                                      <a href="<%= donate_url( utm_medium: "email", utm_content: "footer-button", utm_campaign: "default", utm_source: @site.domain ) %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 13px; text-decoration: none; display: block; text-align: center; letter-spacing: 0.5px;">
-                                        <%=t :support_inaturalist %>
-                                      </a>
-                                    <%- elsif !blog_url.blank? %>
-                                      <a href="<%= blog_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline; margin: 20px;"><%= t(:check_out_our_blog) %></a>
-                                    <%- end %>
-                                  </td>
                                 </tr>
-                              </table>   
+                              </table>
                             </td>
                           </tr>
                         </table>
@@ -88,38 +93,40 @@
                     </tr>
                   </table>
                 </td>
-              </tr>              
+              </tr>
               <tr>
                 <td align="center" valign="top" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
                   <table border="0" cellpadding="20" cellspacing="0" width="100%" id="templateColumns" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #F4F4F4;border-top: 1px solid #FFFFFF;border-bottom: 1px solid #CCCCCC;border-collapse: collapse !important;">
                     <tr mc:repeatable>
-                      <td align="left" valign="top" style="padding-bottom: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="templateColumnContainer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline;width: 260px;border-collapse: collapse !important;">
-                          <tr>
-                            <td class="leftColumnContent footerContent" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;text-align: left;">
-                              <%= raw custom_email_footer_leftside %>
-                              <br>
-                              <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
-                              <br>
-                              <a href="<%= generic_edit_user_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
-                              <br/>
-                              <%-
-                                # Sendgrid unsubscribe template tag
-                                # https://sendgrid.com/docs/ui/sending-email/index-suppressions/
-                              -%>
-                              <a href="{{asm_group_unsubscribe_raw_url}}" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;">
-                                <%= t(:unsubscribe_from_emails_like_this) %>
-                              </a>
-                            </td>
-                          </tr>
-                        </table>
-                        <table align="right" border="0" cellpadding="0" cellspacing="0" class="templateColumnContainer" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline;width: 260px;border-collapse: collapse !important;">
-                          <tr>
-                            <td class="rightColumnContent" style="padding: 10px 10px 10px 10px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 14px;line-height: 150%;padding-top: 0;padding-right: 0;padding-bottom: 20px;padding-left: 0;text-align: right;" align="right">
-                              <%= raw custom_email_footer_rightside %>
-                            </td>
-                          </tr>
-                        </table>
+                      <td width="50%">
+                        <%= raw custom_email_footer_leftside %>
+                        <p>
+                          <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
+                          <br/>
+                          <a href="<%= generic_edit_user_url(notifications: true) %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
+                          <br/>
+                          <%-
+                            # Sendgrid unsubscribe template tag
+                            # https://sendgrid.com/docs/ui/sending-email/index-suppressions/
+                          -%>
+                          <a href="{{asm_group_unsubscribe_raw_url}}" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;">
+                            <%= t(:unsubscribe_from_emails_like_this) %>
+                          </a>
+                        </p>
+                      </td>
+                      <td>
+                        <% if @site && Site.default && @site.id == Site.default.id %>
+                          <table width="100%">
+                            <tr>
+                              <td align="right">
+                                <%= link_to t(:donate), donate_url( utm_content: "footer-button", utm_campaign: "default", utm_source: @site.domain, utm_medium: "email", utm_term: "donate" ), title: t(:donate), style: "width: auto; min-width: 50%; margin-bottom: 20px; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
+                                <%= link_to t(:store), "https://store.inaturalist.org", title: t(:store), style: "width: auto; min-width: 50%; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
+                              </td>
+                            </tr>
+                          </table>
+                        <% else %>
+                          <%= raw custom_email_footer_rightside %>
+                        <% end %>
                       </td>
                     </tr>
                   </table>

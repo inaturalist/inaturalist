@@ -22,6 +22,7 @@ module Shared::FiltersModule
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
     end
+    @rtl = params[:test] == "rtl" && ["ar", "fa", "he"].include?( I18n.locale.to_s )
     true
   end
 
@@ -57,5 +58,6 @@ module Shared::FiltersModule
     end
     @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
     @site ||= Site.default
+    @site
   end
 end

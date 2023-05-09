@@ -1,38 +1,304 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe ProjectObservation do
+  it { is_expected.to belong_to :project }
+  it { is_expected.to belong_to(:curator_identification).class_name "Identification" }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to validate_presence_of :project }
+  it { is_expected.to validate_presence_of :observation }
+
+  describe '#georeferenced?' do
+    subject { build :project_observation }
+
+    it 'should work' do
+      subject.observation.assign_attributes latitude: 0.5, longitude: 0.5
+      expect(subject).to be_georeferenced
+    end
+
+    it 'should be true if observation coordinates are private' do
+      subject.observation.assign_attributes latitude: 0.5, longitude: 0.5, geoprivacy: Observation::PRIVATE
+      expect(subject).to be_georeferenced
+    end
+  end
+
+  describe 'has photos and sounds' do
+    let(:observation) { build :observation }
+    let(:project) { build :project }
+    let(:project_user) { build :project_user, project: project, user: observation.user }
+    subject { build :project_observation, project: project, observation: observation, user: observation.user }
+
+    before {
+      allow(observation.observation_photos).to receive(:count).and_return observation.observation_photos.length
+      allow(observation.observation_sounds).to receive(:count).and_return observation.observation_sounds.length
+      allow(observation).to receive(:reload).and_return true
+    }
+
+    describe '#has_a_photo?' do
+      context 'with photo present' do
+        let(:observation) { build :observation, :research_grade, :with_photos }
+        it { expect(subject.has_a_photo?).to be true }
+      end
+
+      context 'with photo not present' do
+        it { expect(subject.has_a_photo?).to be false }
+      end
+    end
+
+    describe '#has_a_sound?' do
+      context 'with sound present' do
+        let(:observation) { build :observation, :research_grade, :with_sounds }
+        it { expect(subject.has_a_sound?).to be true }
+      end
+      context 'with sound not present' do
+        it { expect(subject.has_a_sound?).to be false }
+      end
+    end
+
+    describe '#has_media?' do
+      context 'with photo present' do
+        let(:observation) { build :observation, :research_grade, :with_photos }
+        it { expect(subject.has_media?).to be true }
+      end
+      context 'with sound present' do
+        let(:observation) { build :observation, :research_grade, :with_sounds }
+        it { expect(subject.has_media?).to be true }
+      end
+      context 'with photo and sound not present' do
+        it { expect(subject.has_media?).to_not be true }
+      end
+    end
+  end
+
+  describe '#identified?' do
+    subject { build_stubbed :project_observation, observation: build_stubbed(:observation, taxon: nil) }
+    it 'should work' do
+      expect(subject).not_to be_identified
+      subject.observation.assign_attributes taxon: build_stubbed(:taxon), editing_user_id: subject.observation.user_id
+      expect(subject).to be_identified
+    end
+  end
+
+  describe '#in_taxon?' do
+    let(:project_user) { build :project_user }
+    let(:project) { project_user.project }
+    let(:taxon) { build :taxon, :as_species }
+    let(:observation) { build :observation, user: project_user.user, taxon: taxon }
+
+    subject { build :project_observation, observation: observation, project: project, user: observation.user }
+
+    context 'for observations of target taxon' do
+      it { is_expected.to be_in_taxon(observation.taxon) }
+    end
+
+    context 'when taxon is blank' do
+      let(:observation) { build :observation, user: project_user.user, taxon: nil }
+
+      it { is_expected.not_to be_in_taxon(nil) }
+    end
+
+    context 'for observations of descendants if target taxon' do
+      let(:child) { build :taxon, :as_subspecies, parent: observation.taxon }
+      let(:child_obs) { build :observation, taxon: child, user: project_user.user }
+      subject { build :project_observation, observation: child_obs, project: project, user: child_obs.user }
+
+      it { is_expected.to be_in_taxon(observation.taxon) }
+    end
+
+    context 'for observations outside of target taxon' do
+      before { setup_project_and_user }
+      let(:other) { create :taxon }
+      let(:other_obs) { create :observation, taxon: other, user: @project_user.user }
+      subject { build :project_observation, observation: other_obs, project: @project, user: other_obs.user }
+
+      it { is_expected.not_to be_in_taxon @taxon }
+    end
+  end
+
+  describe '#project_allows_observations?' do
+    subject { build_stubbed :project_observation, project: project }
+    context 'for collection project' do
+      let(:project) { build :project, project_type: 'collection' }
+
+      it { is_expected.to_not be_valid }
+    end
+
+    context 'for umbrella project' do
+      let(:project) { build :project, project_type: 'umbrella' }
+
+      it { is_expected.to_not be_valid }
+    end
+  end
+
+  describe '#observed_in_bioblitz_time_range?' do
+    subject { build :project_observation, observation: observation, project: project }
+
+    let(:start_time) { Time.parse "2016-01-01T20:00:00-07:00" }
+    let(:end_time) { Time.parse "2016-01-01T20:00:00-07:00" }
+    let(:observed_on) { start_time.to_s }
+    let(:observation) { build :observation, observed_on_string: observed_on }
+    let(:prefers_range_by_date) { true }
+    let(:project) {
+      build :project,
+            project_type: Project::BIOBLITZ_TYPE,
+            start_time: start_time,
+            end_time: end_time,
+            prefers_range_by_date: prefers_range_by_date
+    }
+
+    it 'validates observed in bioblitz time range' do
+      expect(subject).to receive(:observed_in_bioblitz_time_range?)
+
+      subject.valid?
+    end
+
+    context 'project prefers range by time' do
+      let(:prefers_range_by_date) { false }
+
+      before { subject.observation.run_callbacks :validation }
+
+      context 'equal to start time' do
+        let(:observed_on) { start_time.to_s }
+
+        it { is_expected.to be_valid }
+      end
+      context 'equal to end time' do
+        let(:observed_on) { end_time.to_s }
+
+        it { is_expected.to be_valid }
+      end
+      context 'equal to one minute earlier' do
+        let(:observed_on) { (start_time - 1.minute).to_s }
+
+        it { is_expected.to_not be_valid }
+      end
+      context 'equal to one minute later' do
+        let(:observed_on) { (end_time + 1.minute).to_s }
+
+        it { is_expected.to_not be_valid }
+      end
+    end
+
+    context 'project prefers range by date'do
+      before { subject.observation.run_callbacks :validation }
+
+      context 'equal to start time' do
+        let(:observed_on) { start_time.to_s }
+
+        it { is_expected.to be_valid }
+      end
+      context 'equal to end time' do
+        let(:observed_on) { end_time.to_s }
+
+        it { is_expected.to be_valid }
+      end
+      context 'equal to one minute earlier' do
+        let(:observed_on) { (start_time - 1.minute).to_s }
+
+        it { is_expected.to be_valid }
+      end
+      context 'equal to one minute later' do
+        let(:observed_on) { (end_time + 1.minute).to_s }
+
+        it { is_expected.to be_valid }
+      end
+      context 'equal to one day earlier' do
+        let(:observed_on) { (start_time - 1.day).to_s }
+
+        it { is_expected.to_not be_valid }
+      end
+      context 'equal to one day later' do
+        let(:observed_on) { (end_time + 1.day).to_s }
+
+        it { is_expected.to_not be_valid }
+      end
+    end
+  end
+
+  describe '#set_curator_coordinate_access' do
+    subject { build :project_observation }
+    let(:access) { ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER }
+    let(:observation) { build_stubbed :observation, user: project_user.user }
+    let(:project_user) { build_stubbed :project_user, preferred_curator_coordinate_access: access }
+    let(:project) { project_user.project }
+    let(:user) { project_user.user }
+
+    it 'sets curator coordinate access before validation' do
+      expect(subject).to receive(:set_curator_coordinate_access)
+      subject.valid?
+    end
+
+    context 'with no user' do
+      before { subject.run_callbacks :validation }
+
+      it 'should set curator_coordinate_access to false' do
+        expect(subject.prefers_curator_coordinate_access).to be false
+      end
+    end
+
+    context 'preferring access for their own additions' do
+      let(:subject) { build_stubbed :project_observation, project: project, observation: observation, user: user }
+      before do
+        allow(subject).to receive(:project_user).and_return project_user
+        subject.run_callbacks :validation
+      end
+
+      it 'should set curator_coordinate_access to true' do
+        expect(subject.preferred_curator_coordinate_access).to be true
+      end
+    end
+
+    context 'preferring access for their own additions and added by someone else' do
+      let(:subject) { build_stubbed :project_observation, project: project, observation: observation }
+
+      before { subject.run_callbacks :validation }
+
+      it 'should set curator_coordinate_access to false' do
+        expect(subject.preferred_curator_coordinate_access).to be false
+      end
+    end
+
+    context 'preferring access for addition by others' do
+      let(:subject) { build_stubbed :project_observation, project: project, observation: observation }
+      let(:access) { ProjectUser::CURATOR_COORDINATE_ACCESS_ANY }
+
+      before do
+        allow(subject).to receive(:project_user).and_return project_user
+        subject.run_callbacks :validation
+      end
+
+      it 'should set curator_coordinate_access to true' do
+        expect(subject.preferred_curator_coordinate_access).to be true
+      end
+    end
+  end
+end
+
 describe ProjectObservation, "creation" do
   elastic_models( Observation, Place )
-  before(:each) do
-    setup_project_and_user
-  end
-  it "should not queue a DJ job for the list" do
-    stamp = Time.now
-    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).to be_blank
-  end
-  
+  before(:each) { |example| setup_project_and_user if example.metadata[:with_setup] }
+
+  let(:project_user) { build_stubbed :project_user }
+  let(:project) { project_user.project }
+  let(:taxon) { build_stubbed :taxon, :as_species }
+  let(:observation) { build_stubbed :observation, user: project_user.user, taxon: taxon }
+
+  subject { build_stubbed :project_observation, project: project, observation: observation, user: observation.user }
+
   it "should queue a DJ job to set project user counters" do
     stamp = Time.now
-    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
+    subject.run_callbacks :create
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}).not_to be_blank
     expect(jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}).not_to be_blank
   end
 
-  it "should destroy project invitations for its project and observation" do
-    pi = ProjectInvitation.make!(:project => @project, :observation => @observation)
-    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
-    expect(ProjectInvitation.find_by_id(pi.id)).to be_blank
-  end
-
-  it "should set curator id if observer is a curator" do
+  it "should set curator id if observer is a curator", :with_setup do
     o = Observation.make!(:user => @project.user, :taxon => Taxon.make!)
     po = without_delay {make_project_observation(:observation => o, :project => @project, :user => o.user)}
     expect(po.curator_identification_id).to eq(o.owners_identification.id)
   end
 
-  it "should set curator ID if observer is not a curator but a curator has identified the observation" do
+  it "should set curator ID if observer is not a curator but a curator has identified the observation", :with_setup do
     o = Observation.make!
     i = Identification.make!( observation: o, user: @project.user )
     expect( @project ).to be_curated_by i.user
@@ -42,14 +308,13 @@ describe ProjectObservation, "creation" do
     expect( i.project_observations.first ).to eq po
   end
 
-  it "should touch the observation" do
-    o = Observation.make!(:user => @project_user.user)
-    po = ProjectObservation.create(:observation => o, :project => @project)
-    o.reload
-    expect(o.updated_at).to be > o.created_at
+  it "should touch the observation"  do
+    subject.run_callbacks :create
+
+    expect(subject.observation.updated_at).to be > subject.observation.created_at
   end
 
-  it "should properly touch objects that had projects preloaded" do
+  it "should properly touch objects that had projects preloaded", :with_setup do
     o = Observation.make!(:user => @project_user.user)
     Observation.preload_associations(o, :project_observations)
     expect(Observation.elastic_search(where: { id: o.id }).
@@ -59,122 +324,21 @@ describe ProjectObservation, "creation" do
       results.results.first.project_ids).to eq [ @project.id ]
   end
 
-  it "should set curator_coordinate_access to false by default" do
-    po = ProjectObservation.make!
-    expect( po.project.project_users.where(user_id: po.observation.user_id) ).to be_blank
-    expect( po.prefers_curator_coordinate_access? ).to be false
-  end
-  
-  it "should set curator_coordinate_access to true if project observers prefers access for their own additions" do
-    pu = ProjectUser.make!(preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER)
-    expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
-    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user), user: pu.user)
-    expect( po.preferred_curator_coordinate_access ).to be true
-  end
-
-  it "should set curator_coordinate_access to false if project observers prefers access for their own additions and added by someone else" do
-    pu = ProjectUser.make!(preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER)
-    expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
-    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
-    expect( po.preferred_curator_coordinate_access ).to be false
-  end
-
-  it "should set curator_coordinate_access to true if project observers prefers access for addition by others" do
-    pu = ProjectUser.make!(preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY)
-    expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
-    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
-    expect( po.preferred_curator_coordinate_access ).to be true
-  end
-
   it "should be possible for any member of the project" do
-    pu = ProjectUser.make!
-    po = ProjectObservation.make(user: pu.user, project: pu.project)
-    expect( po ).to be_valid
-  end
-
-  it "should validates bioblitz time range" do
-    start_time = Time.parse("2016-01-01T20:00:00-07:00")
-    end_time = Time.parse("2016-01-01T20:00:00-07:00")
-    p = Project.make!(
-      project_type: Project::BIOBLITZ_TYPE,
-      start_time: start_time,
-      end_time: end_time,
-      prefers_range_by_date: false
-    )
-    # equal to start time
-    o = Observation.make!(observed_on_string: start_time.to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to be_valid
-    # equal to end time
-    o = Observation.make!(observed_on_string: end_time.to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to be_valid
-    # 1 minute earlier
-    o = Observation.make!(observed_on_string: (start_time - 1.minute).to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to_not be_valid
-    # 1 minute later
-    o = Observation.make!(observed_on_string: (end_time + 1.minute).to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to_not be_valid
-  end
-
-  it "should validates bioblitz date range" do
-    start_time = Time.parse("2016-01-01T20:00:00-07:00")
-    end_time = Time.parse("2016-01-01T20:00:00-07:00")
-    p = Project.make!(
-      project_type: Project::BIOBLITZ_TYPE,
-      start_time: start_time,
-      end_time: end_time,
-      prefers_range_by_date: true
-    )
-    # equal to start time
-    o = Observation.make!(observed_on_string: start_time.to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to be_valid
-    # equal to end time
-    o = Observation.make!(observed_on_string: end_time.to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to be_valid
-    # 1 minute earlier
-    o = Observation.make!(observed_on_string: (start_time - 1.minute).to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to be_valid
-    # 1 minute later
-    o = Observation.make!(observed_on_string: (end_time + 1.minute).to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to be_valid
-    # 1 day earlier
-    o = Observation.make!(observed_on_string: (start_time - 1.day).to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to_not be_valid
-    # 1 day later
-    o = Observation.make!(observed_on_string: (end_time + 1.day).to_s)
-    po = ProjectObservation.make(project: p, observation: o)
-    expect(po).to_not be_valid
-  end
-
-  it "does not allow creation for collection projects" do
-    collection_project = Project.make!(project_type: "collection")
-    pu = ProjectUser.make!(project: collection_project)
-    po = ProjectObservation.make(user: pu.user, project: collection_project)
-    expect( po ).to_not be_valid
-  end
-
-  it "does not allow creation for umbrella projects" do
-    collection_project = Project.make!(project_type: "umbrella")
-    pu = ProjectUser.make!(project: collection_project)
-    po = ProjectObservation.make(user: pu.user, project: collection_project)
-    expect( po ).to_not be_valid
+    expect(build(:project_observation, user: project_user.user, project: project_user.project)).to be_valid
   end
 
   describe "updates" do
+    let(:project_user) { build_stubbed :project_user, role: ProjectUser::CURATOR }
+    let(:user) { project_user.user }
+    let(:project) { project_user.project }
+    let(:observer) { build_stubbed :user }
+
     before { enable_has_subscribers }
     after { disable_has_subscribers }
 
     it "should be generated for the observer" do
-      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
-      po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+      po = without_delay { ProjectObservation.make!(user: user, project: project) }
       expect( UpdateAction.unviewed_by_user_from_query(po.observation.user_id, notifier: po) ).to eq true
     end
     it "should not be generated if the observer added to the project" do
@@ -187,17 +351,19 @@ describe ProjectObservation, "creation" do
       end
     end
     it "should generate updates on the project" do
-      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
-      po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+      po = without_delay { ProjectObservation.make!(user: user, project: project) }
       expect( UpdateAction.last.resource ).to eq po.project
     end
 
-    it "should not generate more than 30 updates" do
-      observer = User.make!
-      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
-      po = without_delay do
-        31.times do
-          ProjectObservation.make!(user: pu.user, project: pu.project, observation: Observation.make!(user: observer))
+    it "should not generate more than 15 updates" do
+      without_delay do
+        16.times do
+          build_stubbed(
+            :project_observation,
+            user: user,
+            project: project,
+            observation: build_stubbed(:observation, user: observer)
+          ).notify_observer(:observation)
         end
       end
       es_response = UpdateAction.elastic_search(
@@ -241,6 +407,7 @@ describe ProjectObservation, "creation" do
     ObservationFieldValue.make!( observation_field: pof2.observation_field, observation: obs_with_1_and_2 )
     obs_with_1_and_2.reload
     obs_without_1_and_2 = Observation.make!
+    proj.reload
 
     expect( ProjectObservation.make( project: proj, observation: obs_with_1 ) ).not_to be_valid
     expect( ProjectObservation.make( project: proj, observation: obs_with_2 ) ).not_to be_valid
@@ -298,7 +465,7 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
   it "should work" do
     setup_project_and_user
     place = make_place_with_geom(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
-    @observation.update_attributes(:latitude => 0.5, :longitude => 0.5)
+    @observation.update(:latitude => 0.5, :longitude => 0.5)
     project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(project_observation).to be_observed_in_bounding_box_of(place)
   end
@@ -312,140 +479,17 @@ describe ProjectObservation, "observed_in_place" do
     
     project_observation = make_project_observation
     observation = project_observation.observation
-    observation.update_attributes(:latitude => 37.8732, :longitude => -122.263)
+    observation.update(:latitude => 37.8732, :longitude => -122.263)
     project_observation.reload
 
     expect(project_observation).to be_observed_in_place(place)
-    observation.update_attributes(:latitude => 37, :longitude => -122)
+    observation.update(:latitude => 37, :longitude => -122)
     project_observation.reload
     expect(project_observation).not_to be_observed_in_place(place)
-    observation.update_attributes(:private_latitude => 37.8732, :private_longitude => -122.263)
+    observation.update(:private_latitude => 37.8732, :private_longitude => -122.263)
     observation.save
     project_observation.reload
     expect(project_observation).to be_observed_in_place(place)
-  end
-end
-
-describe ProjectObservation, "georeferenced?" do
-  
-  it "should work" do
-    project_observation = make_project_observation
-    o = project_observation.observation
-    o.update_attributes(:latitude => 0.5, :longitude => 0.5)
-    project_observation.reload
-    expect(project_observation).to be_georeferenced
-  end
-
-  it "should be true if observation coordinates are private" do
-    project_observation = make_project_observation
-    o = project_observation.observation
-    o.update_attributes(:latitude => 0.5, :longitude => 0.5, :geoprivacy => Observation::PRIVATE)
-    project_observation.reload
-    expect(project_observation).to be_georeferenced
-  end
-  
-end
-
-describe ProjectObservation, "identified?" do
-  
-  it "should work" do
-    project_observation = make_project_observation
-    observation = project_observation.observation
-    expect(project_observation).not_to be_identified
-    observation.update_attributes( taxon: Taxon.make!, editing_user_id: observation.user_id )
-    expect(project_observation).to be_identified
-  end
-  
-end
-
-describe ProjectObservation, "in_taxon?" do
-  before(:each) do
-    setup_project_and_user
-  end
-  
-  it "should be true for observations of target taxon" do
-    po = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
-    expect(po).to be_in_taxon(@observation.taxon)
-  end
-  
-  it "should be true for observations of descendants if target taxon" do
-    child = Taxon.make!(parent: @taxon, rank: Taxon::SUBSPECIES)
-    o = Observation.make!(:taxon => child, :user => @project_user.user)
-    po = make_project_observation(:observation => o, :project => @project, :user => o.user)
-    expect(po).to be_in_taxon(@taxon)
-  end
-  
-  it "should not be true for observations outside of target taxon" do
-    other = Taxon.make!
-    o = Observation.make!(:taxon => other, :user => @project_user.user)
-    po = make_project_observation(:observation => o, :project => @project, :user => o.user)
-    expect(po).not_to be_in_taxon(@taxon)
-  end
-  
-  it "should be false if taxon is blank" do
-    o = Observation.make!(:user => @project_user.user)
-    po = make_project_observation(:observation => o, :project => @project, :user => o.user)
-    expect(po).not_to be_in_taxon(nil)
-  end
-end
-
-describe ProjectObservation, "has_a_photo?" do
-  let(:p) { Project.make! }
-  elastic_models( Observation )
-  it "should be true if photo present" do
-    o = make_research_grade_observation
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o, :user => o.user)
-    expect(po.has_a_photo?).to be true
-  end
-  it "should be false if photo not present" do
-    o = Observation.make!
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o, :user => o.user)
-    expect(po.has_a_photo?).to_not be true
-  end
-end
-
-describe ProjectObservation, "has_a_sound?" do
-  let(:p) { Project.make! }
-  elastic_models( Observation )
-  it "should be true if sound present" do
-    os = ObservationSound.make!
-    o = os.observation
-    o.reload
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
-    expect(po.has_a_sound?).to be true
-  end
-  it "should be false if sound not present" do
-    o = Observation.make!
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
-    expect(po.has_a_sound?).to_not be true
-  end
-end
-
-describe ProjectObservation, "has_media?" do
-  let(:p) { Project.make! }
-  elastic_models( Observation )
-  it "should be true if photo present" do
-    o = make_research_grade_observation
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
-    expect(po.has_media?).to be true
-  end
-  it "should be true if sound present" do
-    os = ObservationSound.make!
-    o = os.observation
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
-    expect(po.has_media?).to be true
-  end
-  it "should be false if photo and sound not present" do
-    o = Observation.make!
-    pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
-    expect(po.has_media?).to_not be true
   end
 end
 
@@ -453,7 +497,7 @@ describe ProjectObservation, "wild?" do
   let(:p) { Project.make! }
   it "should be false if observation captive_cultivated" do
     po = make_project_observation
-    po.observation.update_attributes(:captive_flag => true)
+    po.observation.update(:captive_flag => true)
     po.reload
     expect(po).not_to be_wild
   end
@@ -467,7 +511,7 @@ describe ProjectObservation, "captive?" do
   let(:p) { Project.make! }
   it "should be true if observation captive_cultivated" do
     po = make_project_observation
-    po.observation.update_attributes(:captive_flag => true)
+    po.observation.update(:captive_flag => true)
     po.reload
     expect(po).to be_captive
   end
@@ -553,12 +597,12 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
   describe "when project observation allows curator coordinate access" do
     let(:pu) { ProjectUser.make!(project: p) }
     it "should be true when submitted by the observer" do
-      po_by_observer.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_observer.update( prefers_curator_coordinate_access: true )
       expect( po_by_observer ).to be_valid
       expect( po_by_observer ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by no one" do
-      po_by_no_one.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_no_one.update( prefers_curator_coordinate_access: true )
       unless po_by_no_one.valid?
         puts "po_by_no_one.errors: #{po_by_no_one.errors.full_messages.to_sentence}"
       end
@@ -566,12 +610,12 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
       expect( po_by_no_one ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by a project curator" do
-      po_by_curator.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_curator.update( prefers_curator_coordinate_access: true )
       expect( po_by_curator ).to be_valid
       expect( po_by_curator ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by a non-curator" do
-      po_by_non_curator.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_non_curator.update( prefers_curator_coordinate_access: true )
       expect( po_by_non_curator ).to be_valid
       expect( po_by_non_curator ).to be_coordinates_shareable_by_project_curators
     end

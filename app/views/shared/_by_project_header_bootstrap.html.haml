@@ -1,6 +1,6 @@
 :ruby
   model_name ||= controller.class.to_s.underscore.humanize.split.first
-  title ||= t(:x_project_journal, :project => strip_tags(@parent_display_name), :name => t(model_name.downcase, :default => model_name))
+  title ||= t(:x_project_journal, :project => strip_tags(project.journal_display_name), :name => t(model_name.downcase, :default => model_name))
   before ||= nil
   after ||= nil
   after_title ||= nil

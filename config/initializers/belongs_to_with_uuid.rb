@@ -16,8 +16,8 @@ module BelongsToWithUuid
   extend ActiveSupport::Concern
 
   class_methods do
-    def belongs_to_with_uuid( reflection_name, scope = nil, **options )
-      belongs_to( reflection_name, scope, options )
+    def belongs_to_with_uuid( reflection_name, **options )
+      belongs_to( reflection_name, **options )
       n, reflection = self.reflections.detect{ |n, reflection| n == reflection_name.to_s}
 
       if reflection.polymorphic?

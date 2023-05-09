@@ -5,6 +5,9 @@ mk:
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
+  x_languages:
+    one: "%{count} јазик"
+    other: "%{count} јазици"
   x_matching_taxa:
     one: '1 совпаднат таксон'
     other: '%{count} совпаднати таксони'
@@ -58,14 +61,11 @@ mk:
   a_flag_for_x: "обележувач за %{x}"
   a_member_of_taxon_html: "член на %{taxon}"
   about: За
-  about_blocking: За блокирањето
   about_community_taxa: За таксоните од заедницата
   about_licenses: За лиценците
   #Header for a section describing taxon names
   about_names: За имињата
   about_places: За местата
-  about_the_cc_licenses: За лиценците на Криејтив комонс
-  about_these_licenses: За овие лиценци
   about_this_map: За картава
   about_this_project: За проектов
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
@@ -75,18 +75,21 @@ mk:
   account: Сметка
   account_creation: Создавање на сметка
   account_settings: Нагодувања на сметката
-  accept: прифати
   accept_community_identifications: Прифати препознавања од заедницата
   accuracy: Уточнетост
   accuracy_meters: Уточнетост (метри)
   accuracy_of_the_coordinates: |
     Уточнетост на координатите во метри. Можете да го измените ова на „уреди“ погоре или стискајќи на бележникот на картата и повлекувајќи ги рачките. Потрудете се кружницата да биде доволно голема за да бидете сигурни дека сте некаде во неа.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Дејство
   actions: Дејства
   active: Активен
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активен
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активен
   active_users: Активни корисници
   activity: Активност
-  activity_settings: Поставки за активноста
   add: Додај
   add_a_batch_of_observations: Додај збир набљудувања
   add_a_batch_of_taxa: Додај збир таксони
@@ -98,7 +101,6 @@ mk:
   add_an_assessment: Додај оценка
   add_an_identification: Додај препознавање
   add_an_observation: Додај набљудување
-  add_an_observation?: Да додадам набљудување?
   add_an_observation_of: "Додај набљудување на %{taxon}"
   add_another_flag: Додај друг обележувач
   add_another_photo: Додај друга слика
@@ -110,7 +112,6 @@ mk:
   add_comma_separated_tags: "Додај ознаки одделени со запирки"
   add_comment: Додај коментар
   add_conservation_status: Додај заштитен статус
-  add_countries: Додај земји
   add_custom_project_fields: Додај свои проектни полиња
   add_editor: Додај уредник
   add_description: "Додај го %{description_name}"
@@ -125,7 +126,6 @@ mk:
   add_new_source: "Додај нов извор..."
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
-  add_photos: Додај слики
   #As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
   #As in a Guide Section
@@ -143,7 +143,6 @@ mk:
   add_to_favorites: Додај во омилени
   add_to_list: Додај во список
   add_to_project: Додај во проект
-  add_to_your_life_list: Додај во мојот животен список
   add_to_your_list: Додај во мојот список
   added: Додадено
   added!: Додадено!
@@ -238,7 +237,6 @@ mk:
   alphabetical: Азбучно
   alphabetical_order: Азбучен ред
   amphibians: водоземци
-  and: и
   and_other_taxa: "други таксони"
   android: Андроид
   animals: Животни
@@ -301,9 +299,9 @@ mk:
   back_to_your_journal: Назад на вашиот дневник
   back_to_your_observations: Назад на вашите набљудувања
   back_to_your_profile: Назад на вашиот профил
-  back_to_your_projects: Назад на вашите проекти
   batch: Збир
   batch_edit: Збирно уредување
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Збурно уредување на таксони за %{x}"
   batch_operations: Збирни постапки
   bg_color: заднинска боја
@@ -320,7 +318,6 @@ mk:
   browse_projects: Прелистај по проекти
   browse_species_that_occur_near_this_observation: Прелистај по сите видови што се јавуваат во близина на ова набљудување.
   built_with_site_guides_html: "Изработено со водичи од <a href='%{url}'>%{site_name}</a>"
-  by: од
   by_everyone: Од сите
   by_user: "од %{user}"
   by_you: Ваши
@@ -368,7 +365,6 @@ mk:
   comparing: споредба
   comparing_list_to_list: "Споредба на %{list1} со %{list2}"
   comparing_versions_x_and_y: "Споредба на верзиите %{x} и %{y}"
-  comparing_observations_from: "Споредба на набљудувањата на %{user} од %{dates}"
   compiled_by_name: "Составено од %{name}"
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
@@ -393,7 +389,6 @@ mk:
     no_known_copyright_restrictions: "%{name}, нема познати авторскоправни ограничувања (%{license_name})"
     public_domain: јавна сопственост
     copyright: авторски права
-  countries: Земји
   create: Создај
   create_a_guide: Создај водич
   create_a_new_field: Создај ново поле
@@ -448,7 +443,9 @@ mk:
   date_picker:
     closeText: Затвори
     currentText: Денес
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Прет
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: След
   date_time: Датум/време
   day: Ден
@@ -472,8 +469,6 @@ mk:
   details: Подробно
   did_you_mean: 'Дали мислевте на'
   disconnect_provider: "Отстрани ја врската со %{provider}"
-  dont_send_me_email: "Не ми испраќај пошта"
-  double_click_to_finish: (стиснете двапати за да довршите)
   download: Преземи
   download_csv: Преземи CSV
   download_kml: Преземи KML
@@ -501,7 +496,6 @@ mk:
   edit_your_account_and_profile_html: "Измени ја сметката и профилот"
   edit_your_default_settings: "Измени ги стандардните поставки"
   edited_by_name_html: "Изменето од %{name}"
-  editing_taxon_range: Уредување на Распространетост на таксонот
   establishment:
     endemic: ендемски
     introduced: доведен
@@ -509,7 +503,6 @@ mk:
     managed: контролиран
     native: домороден
     naturalised: одомаќинет
-  every_species_seen_by: Секој вид забележан од
   everyone: сите
   everywhere: насекаде
   exact_rank: Точен ранг
@@ -552,7 +545,6 @@ mk:
   flag_saved: Обележувачот е зачуван
   flag_this_observation: Обележи го набљудувањево
   flag_this_photo: Обележи ја сликава
-  flagged: обележано
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
   follow_user: "Следи го/ја %{user}"
@@ -568,6 +560,7 @@ mk:
   Genus: Род
   geoprivacy: Геоприватност
   georeferenced: Геоозначено?
+  getting_started_guide: Напатствие како да започнете
   grid: Решетка
   grid_tooltip: Дај решетест поглед
   group: Група
@@ -583,21 +576,20 @@ mk:
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
-  hi: Здраво,
   highest_rank: Највисок ранг
   home: Почетна
   icon_size: Големина на иконата
   iconic_taxon: Иконски таксон
+  #Notification when an identification has been deleted
   identification_deleted: Препознавањето е избришано.
   identification_saved: "Препознавањето е зачувано!"
+  #Notification when an identification has been updated
   identification_updated: Препознавањето е подновено!
   identifications: Препознавања
-  identifications_by: "Препознавања од %{user}"
   identotron: Идентотрон
   identotron_for: Идентотрон за
   identotron_help: Помош со Идентотрон
   ids_made_for_others: Препознавања направени за други
-  ignore: занемари
   import: Увези
   import_all_photos_as_observations: Увези ги сите слики како набљудувања
   import_as_an_observation: Увези како набљудување
@@ -617,9 +609,6 @@ mk:
   introduced: Доведен
   invitation: Покана
   invite: покани
-  invite_someone_to: "Поканете некого на %{name}!"
-  invite_your_friends: Поканете ги пријателите
-  invite_your_friends_description: "Помогнете ни %{site_name} да стане поголема и подобра заедница поканувајќи ги пријателите да ни се придружат!"
   #Type of project where people can only join after they have been invited
   inviteonly: само со покана
   join: Приклучи се
@@ -638,10 +627,10 @@ mk:
   least_concern: со најмала загриженост
   leave_a_comment: Напишете коментар
   leave_this_project: Напушти го проектов
+  #Terminal nodes in a taxonomic tree
   leaves: напушта
   lexicon: Лексикон
   lexicons:
-    scientific_names: Научни имиња
     afrikaans: африканс
     bengali: бенгалски
     cebuano: себуански
@@ -669,6 +658,7 @@ mk:
     portuguese: португалски
     romanian: романски
     russian: руски
+    scientific_names: Научни имиња
     spanish: шпански
     swedish: шведски
     tagalog: тагалошки
@@ -679,7 +669,6 @@ mk:
   less: Помалку
   life: Живот
   life_list: "Животниот список на %{user}"
-  life_list_updated: Списокот на животот е подновен!
   linked_facebook: "Вашата сметка на %{site_name} е врзана со вашата сметка на Facebook."
   list: Список
   list_deleted: Списокот е избришан.
@@ -700,7 +689,6 @@ mk:
   loading_tags: "Ги вчитувам ознаките..."
   loading_taxa_from_your: "Ги вчитувам таксоните од вашите набљудувања..."
   loading_wikipedia_description: "Го вчитувам описот од Википедија..."
-  locale_description: Во локалот се задава претпочитаниот јазик и датумски формат.
   locales:
     ca: каталонски
     en: англиски
@@ -713,7 +701,6 @@ mk:
   location: Местоположба
   location_is_exact: местоположбата е докрај уточнета
   log_in: Најава
-  login_slash_username: Најава/ корисничко име
   logo:
     logo: Лого
     white_bg_gif: GIF со бела заднина
@@ -732,7 +719,6 @@ mk:
   make_a_new_place: Направи ново место
   make_a_taxon_swap_instead?: А да го заменам таксонот?
   make_curator: Направи кустос
-  make_it_a_life_list?: Да го направиме животен список?
   make_manager: Назначи за раководител
   mammals: цицачи
   manager: Раководител
@@ -816,7 +802,6 @@ mk:
   next_page: Следна страница
   'no': 'Не'
   no_comments_yet: Засега нема коментари.
-  no_countries_added_yet: Засега нема додадени земји
   no_curators_set: Нема зададени кустоси
   no_curators_yet: Засега нема кустоси!
   no_flags: Овој пат нема обележувачи
@@ -824,7 +809,6 @@ mk:
   no_license_all_rights_reserved: Нема лиценца (сите права задржани)
   no_managers_set: Нема зададено раководители
   no_matching_article_from_x: "Нема соодветна статија од %{x}"
-  no_matching_invitations: Нема соодветни покани
   no_matching_observations: Нема соодветни набљудувања
   no_matching_places: Нема соодветни места
   no_matching_projects: Нема соодветни проекти
@@ -859,7 +843,6 @@ mk:
   observations_by: Набљудувања од
   observations_by_user: "Набљудувања од %{user}"
   observations_deleted: Набљудувањата се избришани.
-  observations_from: Набљудувања од %{date}
   observations_from_this_place: Набљудувања од ова место
   observations_from_this_project: Набљудувања од овој проект
   observations_map: Набљудувања  / Карта
@@ -908,12 +891,10 @@ mk:
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'
   paste: Вметни
-  paste_in_a_comma_separated_list: Тука пекопирајте список на земји, одделени со запирки
   people: Луѓе
   people_following_user: "Луѓе што го следат корисникот %{user}"
   people_user_follows: "Луѓе што ги следи %{user}"
   person: лице
-  personal_message: Лична порака
   per_page: "По страница"
   photo: Слика
   photo_attribution: "Слика: %{attribution}"
@@ -1050,15 +1031,12 @@ mk:
   please_add_a_citation_for_this_change: Додајте навод во страницава.
   position: Положба
   posted_by: Објавено од
-  posted_on: Објавено на
   posts: Објави
   powered_by: Овозможено од
   powered_by_inaturalist_open_source_software_html: 'Овозможено од <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> — програм со отворен код'
   present: присутен
   preview_of_synced_observation: "<strong>Преглед</strong> на усогласеното набљудување.  <a href=\"%{url}\">Да отповикам?</a>"
-  preview_your_message: Преглед на пораката
   previewing: "Давам преглед..."
-  previous: Претходно
   prev: Прет
   previous_page: Претходна страница
   privacy: Заштита на личните податоци
@@ -1075,8 +1053,8 @@ mk:
   projects: Проекти
   projects_description: |
     Проектите се начин да вашите набљудувања со другите на %{site_name}. Тие се корисни било да сте заинтересирани да почнете граѓански научен проект, или пак само да водите евиденција за птиците во месниот парк заедно со некое птичарско здружение.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проекти од %{place}"
-  projects_in_x: "Проекти во %{x}"
   projects_you_admin: Проекти што ги раководите
   protozoans: праживотни
   public_domain: Јавна сопственост
@@ -1085,7 +1063,6 @@ mk:
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
   rank: Ранг
-  rank_restrictions: Ранговски ограничувања
   ranks:
     kingdom: царство
     phylum: колено
@@ -1129,7 +1106,6 @@ mk:
   remove_selected: Отстрани го одбраното
   remove_tags: Отстрани ги ознаките
   resolve: Реши
-  results: ставки
   rules_types:
     must_be_in: мора да биде во таксон
   said: рече
@@ -1167,8 +1143,9 @@ mk:
   searching: "Пребарувам..."
   select: Избери
   select_all: Избери сè
-  select_one_or_more_photos: 'Изерете една или повеќе слики'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Ниедно
+  select_one_or_more_photos: 'Изерете една или повеќе слики'
   send: испрати
   sending: Испраќам...
   set_license: Задај лиценца
@@ -1272,7 +1249,6 @@ mk:
   taxon_map:
     data_url: Податочен URL
     overlays: Облоги
-  tell_everyone_a_little_about_you: Кажете им на останатите нешто за себе
   terms: Услови
   terms_and_rules_html: "Услови и правила"
   terms_service: Услови на употреба
@@ -1295,7 +1271,6 @@ mk:
   type_authority: Внесете орган...
   uicn_red_list_status: "Статус на Црвениот список на МСЗП:"
   unclassified: некласифициран
-  uninvite: повлечи покана
   unique_identifier_of_this_taxon: Единствена назнака на таксонов во изворната база.
   unique_observers: поединечни набљудувачи
   unknown: непознато
@@ -1311,7 +1286,6 @@ mk:
   updated_photo: Подновена слика
   upload: Подигни
   upload_a_csv_file: Подигни CSV
-  US_states: Сој. држави од САД
   use_this_form_to_create_a_new: |
     Образецов е предвиден за правење на нацрт за нова таксономска промена. Притоа опишете го предложеното одвојување, спојување или замена на активните таксони што треба подоцна да се спроведе.
   user: Корисник
@@ -1321,12 +1295,10 @@ mk:
   user_added_an_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_x_observations_html: "%{user} додаде %{x} набљудувања"
-  user_commented_on: "%{user} искоментира на вашето %{title} %{time}"
   users_profile: "Профилот на %{user}"
   view: Погл.
   view_all: Погл. сите
   view_all_members: Погл. сите членови
-  view_all_n: "Погл. сите %{n}"
   view_all_observations: Погл. сите набљудувања
   view_all_photocount_photos: "Погл. сите %{photo_count} слики"
   view_assessment: Погл. оценка
@@ -1336,7 +1308,6 @@ mk:
   view_flags: Погл. обележувачи
   view_flags_for_x_html: "Погл. обележувачи за %{x}"
   view_full_observation: Погл. целосно набљудување
-  view_invitation: Погл. покана
   view_journal: Погл. дневник
   view_leaderboard_from_last_month: Погл. предводници од минатиот месец
   view_leaderboard_from_last_year: Погл. предводници од лани
@@ -1381,8 +1352,6 @@ mk:
   when_did_you_see_it?: Кога го видовте?
   when_did_you_see_them?: <em>Кога</em> ги видовте?
   where: Каде
-  where_do_x_live: Каде живеат %{taxa}?
-  where_does_x_live: Каде живее %{taxa}?
   where_were_they?: Каде беа?
   where_were_you?: Каде бевте?
   white: бела
@@ -1480,13 +1449,13 @@ mk:
       6: пе
       7: са
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %j %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%j %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%j %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%j %B %Y'
     month_names:
       - 
@@ -1545,40 +1514,6 @@ mk:
       month: Месец
       second: Секунди
       year: Година
-  errors:
-    messages:
-      accepted: мора да се прифати
-      blank: не може да стои празно
-      confirmation: не се совпаѓа со лозинката
-      empty: не може да стои празно
-      equal_to: мора да е рамно на %{count}
-      even: мора да биде парен број
-      exclusion: е зафатена
-      greater_than: мора да е поголемо од %{count}
-      greater_than_or_equal_to: мора да е поголемо или еднакво на %{count}
-      inclusion: не фигурира на списокот
-      invalid: е неважечко
-      less_than: мора да е помало од %{count}
-      less_than_or_equal_to: мора да е помало или еднакво на %{count}
-      not_a_number: не е број
-      not_an_integer: мора да биде цел број
-      odd: мора да биде непарен број
-      record_invalid: 'Заверката не успеа: %{errors}'
-      taken: е веќе зафатено
-      too_long:
-        one: е предолго (највеќе 1 знак)
-        other: е предолго (највеќе %{count} знаци)
-      too_short:
-        one: е прекратко (барем 1 знак)
-        other: е прекратко (барем %{count} знаци)
-      wrong_length:
-        one: има погрешна должина (треба да има 1 знак)
-        other: има погрешна должина (треба да има %{count} знаци)
-    template:
-      body: 'Следниве полиња се проблематични:'
-      header:
-        one: "1 грешка му попречи на зачувувањето на овој %{model}"
-        other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   helpers:
     select:
       prompt: Одберете
@@ -1587,21 +1522,6 @@ mk:
       submit: Зачувај %{model}
       update: Поднови %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%n %u'
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
@@ -1636,55 +1556,17 @@ mk:
   time:
     am: претпладне
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%j %b. %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%j %B %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%j %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: 'во %I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%j %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%j %B %Y"
     pm: попладне
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: мора да се прифати
-        blank: не може да стои празно
-        confirmation: не се совпаѓа со лозинката
-        empty: не може да стои празно
-        equal_to: мора да е рамно на %{count}
-        even: мора да биде парен број
-        exclusion: е зафатено
-        greater_than: мора да е поголемо од %{count}
-        greater_than_or_equal_to: мора да е поголемо или еднакво на %{count}
-        inclusion: не фигурира на списокот
-        invalid: е неважечко
-        less_than: мора да е помало од %{count}
-        less_than_or_equal_to: мора да е помало или еднакво на %{count}
-        not_a_number: не е број
-        not_an_integer: мора да биде цел број
-        odd: мора да биде непарен број
-        record_invalid: 'Заверката не успеа: %{errors}'
-        taken: е веќе зафатено
-        too_long:
-          one: е предолго (највеќе 1 знак)
-          other: е предолго (највеќе %{count} знаци)
-        too_short:
-          one: е прекратко (барем 1 знак)
-          other: е прекратко (барем %{count} знаци)
-        wrong_length:
-          one: има погрешна должина (треба да има 1 знак)
-          other: има погрешна должина (треба да има %{count} знаци)
-      template:
-        body: 'Следниве полиња се проблематични:'
-        header:
-          one: Една грешка му попречи на зачувувањето на овој %{model}
-          other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
     attributes:
       assessment:
@@ -1700,6 +1582,7 @@ mk:
         geoprivacy: Геоприватност
         iucn: Истоветник во МСЗП
       flag:
+        #The reason the item was flagged
         reason: Причина
       guide:
         source_url: Изворен URL
@@ -1731,14 +1614,14 @@ mk:
         in_text: Во текстот
         citation: Наведување
       taxon:
+        auto_description: Авто. опис
+        auto_photos: Авто. слики
         name: Име
         rank: Ранг
-        auto_photos: Авто. слики
-        auto_description: Авто. опис
-        wikipedia_title: Наслов на Википедија
-        wikipedia_summary: Преглед од Википедија
         source_identifier: Назнака на изворот
         source_url: Изворен URL
+        wikipedia_summary: Преглед од Википедија
+        wikipedia_title: Наслов на Википедија
       taxon_name:
         name_provider: Добавувач на името
         source_url: Изворен URL

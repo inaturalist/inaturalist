@@ -4,6 +4,7 @@
   hide_title ||= false
   show_change_links ||= false
   show_commit_button ||= false
+  confirm_msg = @observose_taxon_warning ? t( :one_or_more_input_taxa_have_more_than_1000_alt ) : t( :are_you_sure_you_want_to_commit_this_change )
 .taxon_change
   - unless hide_buttons
     .pull-right.inline.buttonrow
@@ -14,7 +15,7 @@
         - if show_commit_button && !taxon_change.committed? && taxon_change.committable_by?( current_user )
           = link_to t(:commit), taxon_change_commit_path(taxon_change),    |
             :data => {                                                     |
-              :confirm => t(:are_you_sure_you_want_to_commit_this_change), |
+              :confirm => confirm_msg, |
               :loading_click => t(:committing)                             |
             },                                                             |
             :method => :put,                                               |

@@ -2,8 +2,7 @@
 - content_for(:title) do
   = t(:confirm_your_info)
 - content_for(:extrajs) do
-  = javascript_include_tag "moment/min/moment-with-locales.min"
-  = javascript_include_tag "moment-timezone/builds/moment-timezone-with-data-2010-2020.min"
+  = javascript_include_tag "moment_bundle"
 = form_for resource, url: person_path( resource ) do |f|
   %h1
     =t :almost_there_
@@ -20,6 +19,7 @@
       .error= formatted_error_sentence_for( resource, :login )
   = render "users/registrations/licensing", f: f, child: false
   = render "users/registrations/pi_consent", f: f, child: false
+  = render "users/registrations/data_transfer_consent", f: f, child: false
   = render "users/registrations/tos_privacy_guidelines", f: f
   .form-group.hidden
     = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { include_blank: true }, { class: "time_zone_select" }

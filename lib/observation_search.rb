@@ -1,7 +1,7 @@
 module ObservationSearch
 
   LIST_FILTER_SIZE_CAP = 5000
-  SEARCH_IN_BATCHES_BATCH_SIZE = 500
+  SEARCH_IN_BATCHES_BATCH_SIZE = 100
 
   def self.included(base)
     base.extend ClassMethods
@@ -38,7 +38,7 @@ module ObservationSearch
       search_params = Observation.get_search_params(raw_params, options)
       search_params.merge!(
         min_id: raw_params[:min_id] || 1,
-        per_page: SEARCH_IN_BATCHES_BATCH_SIZE,
+        per_page: raw_params[:per_page] || SEARCH_IN_BATCHES_BATCH_SIZE,
         preload: [ ],
         order_by: "id",
         order: "asc"
@@ -58,7 +58,7 @@ module ObservationSearch
     end
 
     def get_search_params(raw_params, options={})
-      raw_params = raw_params.clone.symbolize_keys
+      raw_params = raw_params.to_hash.symbolize_keys
       if options[:site] && options[:site].is_a?(Site)
         raw_params = Observation.site_search_params(options[:site], raw_params)
       end
@@ -76,7 +76,7 @@ module ObservationSearch
 
     def apply_pagination_options(params, options={})
       params ||= { }
-      search_params = params.clone.symbolize_keys
+      search_params = params.to_h.symbolize_keys
       search_params[:page] = search_params[:page].to_i
       # don't allow sub 0 page
       search_params[:page] = 1 if search_params[:page] <= 0
@@ -140,7 +140,7 @@ module ObservationSearch
         api_params.delete(:observations_taxon_ids)
       end
       unless api_params[:taxon_ids].blank?
-        api_params[:taxon_id] += params[:taxon_ids].map{ |id| id.split(",") }.flatten.map(&:to_i)
+        api_params[:taxon_id] += params[:taxon_ids].map{ |id| id.to_s.split(",") }.flatten.map(&:to_i)
         api_params[:taxon_id].uniq!
         api_params.delete(:taxon_ids)
       end
@@ -243,7 +243,7 @@ module ObservationSearch
     # normalizes them for use in our search methods like query (database) or
     # elastic_query (ES)
     def query_params(params)
-      p = params.clone.symbolize_keys
+      p = params.to_hash.symbolize_keys
       unless p[:apply_project_rules_for].blank?
         if proj = Project.find_by_id(p[:apply_project_rules_for])
           p.merge!(proj.observations_url_params(extended: true))
@@ -272,6 +272,15 @@ module ObservationSearch
           nil
         end
         p[:place_id] = p[:place].id if p[:place] && p[:place].is_a?( Place )
+      end
+      unless p[:not_in_place].blank?
+        not_in_place_record = begin
+          Place.find( p[:not_in_place] )
+        rescue ActiveRecord::RecordNotFound
+          nil
+        end
+        p[:not_in_place] = not_in_place_record&.id if not_in_place_record.is_a?( Place )
+        p[:not_in_place_record] = not_in_place_record
       end
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa
@@ -366,6 +375,15 @@ module ObservationSearch
       end
 
       p[:user_id] = p[:user_id] || p[:user]
+
+      # Handle multiple users in user_id
+      users = [p[:user_id].to_s.split( "," )].flatten.map do | user_id |
+        candidate = user_id.to_s.strip
+        User.find_by_id( candidate ) || User.find_by_login( candidate )
+      end.compact
+      p[:user_id] = users.blank? ? nil : users.map(&:id)
+      p[:user_id] = p[:user_id].first if p[:user_id].is_a?( Array ) && p[:user_id].size == 1
+
       unless p[:user_id].blank? || p[:user_id].is_a?(Array)
         p[:user] = User.find_by_id(p[:user_id])
         p[:user] ||= User.find_by_login(p[:user_id])
@@ -378,9 +396,10 @@ module ObservationSearch
         ident_users = p[:ident_user_id].is_a?( Array ) ?
           p[:ident_user_id] : [p[:ident_user_id].to_s.split( "," )].flatten
         ident_user_ids = []
-        ident_users.each do |id_or_login|
-          ident_user = User.find_by_id(p[:ident_user_id])
-          ident_user ||= User.find_by_login(p[:ident_user_id])
+        ident_users.each do | id_or_login |
+          id_or_login = id_or_login.strip
+          ident_user = User.find_by_id( id_or_login )
+          ident_user ||= User.find_by_login( id_or_login )
           ident_user_ids << ident_user.id if ident_user
         end
         p[:ident_user_id] = ident_user_ids.join( "," )
@@ -715,13 +734,24 @@ module ObservationSearch
 
     def elastic_user_taxon_counts_batch(elastic_params, options = {})
       options[:limit] ||= 500
-      species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+      aggregation = {
         user_taxa: {
           terms: {
-            field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc } },
+            field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc }
+          },
           aggs: {
             distinct_taxa: {
-              cardinality: { field: "taxon.id", precision_threshold: 100 }}}}})).response.aggregations
+              cardinality: { field: "taxon.id", precision_threshold: 100 }
+            }
+          }
+        }
+      }
+      if ( ( options[:limit] * 1.5 ) + 10 ) < 200
+        # attempting to account for inaccurate counts for queries with a small size
+        # see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html#search-aggregations-bucket-terms-aggregation-shard-size
+        aggregation[:user_taxa][:terms][:shard_size] = 200
+      end
+      species_counts = Observation.elastic_search( elastic_params.merge( size: 0, aggregate: aggregation ) ).response.aggregations
       species_counts.user_taxa.buckets.
         map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
     end

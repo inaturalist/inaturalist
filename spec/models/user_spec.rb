@@ -17,53 +17,107 @@ bad_logins = [
   "^foo"
 ]
 
+describe User, "associations" do
+  it { is_expected.to belong_to(:curator_sponsor).class_name "User" }
+  it { is_expected.to belong_to(:place).inverse_of :users }
+  it { is_expected.to belong_to(:search_place).inverse_of(:search_users).class_name "Place" }
+  it { is_expected.to belong_to(:site).inverse_of :users }
+  it { is_expected.to belong_to(:suspended_by_user).class_name "User" }
+  it { is_expected.to have_many(:annotations).dependent :destroy }
+  it { is_expected.to have_many(:atlases).inverse_of(:user).dependent :nullify }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+  it { is_expected.to have_many(:created_guide_sections).class_name("GuideSection").with_foreign_key("creator_id").inverse_of(:creator).dependent :nullify }
+  it { is_expected.to have_many :deleted_observations }
+  it { is_expected.to have_many :deleted_photos }
+  it { is_expected.to have_many :deleted_sounds }
+  it { is_expected.to have_many(:editing_guides).through(:guide_users) }
+  it { is_expected.to have_many(:flags_as_flaggable_user).inverse_of(:flaggable_user).class_name("Flag").with_foreign_key("flaggable_user_id").dependent :nullify }
+  it { is_expected.to have_many(:flags_as_flagger).inverse_of(:user).class_name "Flag" }
+  it { is_expected.to have_many :flow_tasks }
+  it { is_expected.to have_many(:friendships).dependent :destroy }
+  it { is_expected.to have_many(:friendships_as_friend).class_name("Friendship").with_foreign_key("friend_id").inverse_of(:friend).dependent :destroy }
+  it { is_expected.to have_many(:guide_users).inverse_of(:user).dependent :delete_all }
+  it { is_expected.to have_many(:guides).dependent(:destroy).inverse_of :user }
+  it { is_expected.to have_many(:identifications).dependent :destroy }
+  it { is_expected.to have_many(:journal_posts).class_name("Post").dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).dependent :nullify }
+  it { is_expected.to have_many(:lists).dependent :destroy }
+  it { is_expected.to have_many(:messages).dependent :destroy }
+  it { is_expected.to have_many(:moderator_actions).inverse_of :user }
+  it { is_expected.to have_many(:moderator_notes).inverse_of :user }
+  it { is_expected.to have_many(:moderator_notes_as_subject).class_name("ModeratorNote").with_foreign_key("subject_user_id").inverse_of(:subject_user).dependent :destroy }
+  it { is_expected.to have_many(:observation_field_values).dependent(:nullify).inverse_of :user }
+  it { is_expected.to have_many(:observation_fields).dependent(:nullify).inverse_of :user }
+  it { is_expected.to have_many(:observations).dependent :destroy }
+  it { is_expected.to have_many(:parentages).class_name("UserParent").with_foreign_key("parent_user_id").inverse_of :parent_user }
+  it { is_expected.to have_many(:photos).dependent :destroy }
+  it { is_expected.to have_many(:places).dependent :nullify }
+  it { is_expected.to have_many :posts }
+  it { is_expected.to have_many :projects }
+  it { is_expected.to have_many(:project_observations).dependent :nullify }
+  it { is_expected.to have_many(:project_user_invitations).dependent :nullify }
+  it { is_expected.to have_many(:project_user_invitations_received).dependent(:delete_all).class_name "ProjectUserInvitation" }
+  it { is_expected.to have_many(:project_users).dependent :destroy }
+  it { is_expected.to have_many(:provider_authorizations).dependent :delete_all }
+  it { is_expected.to have_many(:quality_metrics).dependent :destroy }
+  it { is_expected.to have_many(:saved_locations).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:site_admins).inverse_of :user }
+  it { is_expected.to have_many(:sounds).dependent :destroy }
+  it { is_expected.to have_many(:sources).dependent :nullify }
+  it { is_expected.to have_many(:subscriptions).dependent :delete_all }
+  it { is_expected.to have_many(:taxa).with_foreign_key("creator_id").inverse_of :creator }
+  it { is_expected.to have_many(:taxon_changes).inverse_of :user }
+  it { is_expected.to have_many(:taxon_curators).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many :taxon_framework_relationships }
+  it { is_expected.to have_many(:taxon_links).dependent :nullify }
+  it { is_expected.to have_many(:taxon_names).with_foreign_key("creator_id").inverse_of :creator }
+  it { is_expected.to have_many(:updated_guide_sections).class_name("GuideSection").with_foreign_key("updater_id").inverse_of(:updater).dependent :nullify }
+  it { is_expected.to have_many(:updated_observation_field_values).dependent(:nullify).inverse_of(:updater).with_foreign_key("updater_id").class_name "ObservationFieldValue" }
+  it { is_expected.to have_many(:user_blocks).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:user_blocks_as_blocked_user).class_name("UserBlock").with_foreign_key("blocked_user_id").inverse_of(:blocked_user).dependent :destroy }
+  it { is_expected.to have_many(:user_mutes).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:user_mutes_as_muted_user).class_name("UserMute").with_foreign_key("muted_user_id").inverse_of(:muted_user).dependent :destroy }
+  it { is_expected.to have_many(:user_privileges).inverse_of(:user).dependent :delete_all }
+  it { is_expected.to have_one(:flickr_identity).dependent :delete }
+  it { is_expected.to have_one(:soundcloud_identity).dependent :delete }
+  it { is_expected.to have_one(:user_parent).dependent(:destroy).inverse_of :user }
+end
+
+describe User, "validations" do
+  it { is_expected.to validate_exclusion_of(:login).in_array %w(password new edit create update delete destroy) }
+  it { is_expected.to validate_exclusion_of(:password).in_array %w(password) }
+  it { is_expected.to validate_length_of(:login).is_at_least(User::MIN_LOGIN_SIZE).is_at_most User::MAX_LOGIN_SIZE }
+  it { is_expected.to validate_length_of(:name).is_at_most(100).allow_blank }
+  it { is_expected.to validate_length_of(:time_zone).is_at_least(3).allow_nil }
+  it { is_expected.to validate_presence_of :login }
+  it { is_expected.to validate_presence_of :password }
+  it { is_expected.to validate_presence_of :email }
+  it { is_expected.to validate_uniqueness_of(:login).case_insensitive }
+end
+
 describe User do
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
   describe "creation" do
-    before do
-      @user = nil
-      @creating_user = lambda do
-        @user = create_user
-        puts "[ERROR] #{@user.errors.full_messages.to_sentence}" if @user.new_record?
-      end
+    it "increments User#count" do
+      expect { create( :user ) }.to change( User, :count ).by( 1 )
     end
 
-    it 'increments User#count' do
-      expect(@creating_user).to change(User, :count).by(1)
-    end
-
-    it 'initializes confirmation_token' do
-      @creating_user.call
-      @user.reload
-      expect(@user.confirmation_token).not_to be_blank
-    end
-    
-    it "should enforce unique login regardless of a case" do
-      u1 = User.make!(:login => 'foo')
-      expect {
-        User.make!(:login => 'FOO')
-      }.to raise_error(ActiveRecord::RecordInvalid)
+    it "initializes confirmation_token" do
+      expect( create( :user, :as_unconfirmed ).confirmation_token ).not_to be_blank
     end
 
     it "should require email under normal circumstances" do
-      u = User.make
+      u = build :user
       u.email = nil
-      expect(u).not_to be_valid
-    end
-    
-    it "should allow skipping email validation" do
-      u = User.make
-      u.email = nil
-      u.skip_email_validation = true
-      expect(u).to be_valid
+      expect( u ).not_to be_valid
     end
 
     it "should set the URI" do
       u = User.make!
-      expect(u.uri).to eq(FakeView.user_url(u))
+      expect(u.uri).to eq(UrlHelper.user_url(u))
     end
 
     it "should set a default locale" do
@@ -83,10 +137,6 @@ describe User do
       u.save
       expect(u.email).to eq "foo@bar.com"
       expect(u).to be_valid
-    end
-
-    it "should allow time_zone to be nil" do
-      expect( User.make( time_zone: nil ) ).to be_valid
     end
 
     it "should not allow time_zone to be a blank string" do
@@ -109,7 +159,7 @@ describe User do
       u.save
       expect(u.latitude).to eq 41.6318
       expect(u.longitude).to eq -70.8801
-      expect(u.lat_lon_acc_admin_level).to eq 2
+      expect(u.lat_lon_acc_admin_level).to eq Place::COUNTY_LEVEL
     end
 
     it "should validate email address domains" do
@@ -182,7 +232,7 @@ describe User do
     it "should strip html out of the name" do
       u = User.make!
       n = u.name
-      u.update_attributes( name: "#{u.name}<script>foo</script>" )
+      u.update( name: "#{u.name}<script>foo</script>" )
       expect( u.name ).to eq n
     end
     
@@ -191,7 +241,7 @@ describe User do
       s2 = Site.make!
       u = User.make!(site: s1)
       o = Observation.make!(user: u, site: s1)
-      without_delay { u.update_attributes(site: s2) }
+      without_delay { u.update(site: s2) }
       o.reload
       expect( o.site ).to eq s2
     end
@@ -201,32 +251,32 @@ describe User do
       s2 = Site.make!
       u = User.make!(site: s1)
       o = Observation.make!(user: u, site: s1)
-      without_delay { u.update_attributes(site: s2) }
+      without_delay { u.update(site: s2) }
       o.reload
       es_o = Observation.elastic_paginate(where: {site_id: s2.id}).first
       expect( es_o ).to eq o
     end
 
-    it "should update the native_realname on all photos if the name changed" do
+    it "should not update the native_realname on all photos if the name changed" do
       u = User.make!( name: "timdal the great" )
       o = make_research_grade_observation( user: u )
       p = o.photos.first
-      expect( p.native_realname ).to eq u.name
+      expect( p.native_realname ).to be_blank
       new_name = "Zolophon the Destroyer"
-      without_delay { u.update_attributes( name: new_name ) }
+      without_delay { u.update( name: new_name ) }
       p.reload
-      expect( p.native_realname ).to eq new_name
+      expect( p.native_realname ).to be_blank
     end
 
-    it "should update the native_username on all photos if the login changed" do
+    it "should not update the native_username on all photos if the login changed" do
       o = make_research_grade_observation
       u = o.user
       p = o.photos.first
-      expect( p.native_username ).to eq u.login
+      expect( p.native_username ).to be_blank
       new_login = "zolophon"
-      without_delay { u.update_attributes( login: new_login ) }
+      without_delay { u.update( login: new_login ) }
       p.reload
-      expect( p.native_username ).to eq new_login
+      expect( p.native_username ).to be_blank
     end
 
     it "should not update photos by other users when the name changes" do
@@ -235,11 +285,11 @@ describe User do
       other_o = make_research_grade_observation
       other_p = other_o.photos.first
       other_u = other_o.user
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
       new_login = "zolophon"
-      without_delay { target_u.update_attributes( login: new_login ) }
+      without_delay { target_u.update( login: new_login ) }
       other_p.reload
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
     end
 
     describe 'disallows illegitimate logins' do
@@ -257,18 +307,6 @@ describe User do
   #
   # Validations
   #
-
-  it 'requires login' do
-    expect {
-      u = create_user(:login => nil)
-      expect(u.errors[:login]).to_not be_blank
-    }.to_not change(User, :count)
-    
-    expect {
-      u = create_user(:login => "")
-      expect(u.errors[:login]).to_not be_blank
-    }.to_not change(User, :count)
-  end
 
   it "should not allow duplicate emails" do
     existing = User.make!
@@ -295,24 +333,10 @@ describe User do
     end
   end
 
-  it 'requires password' do
-    expect {
-      u = create_user(:password => nil)
-      expect(u.errors[:password]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
   it 'requires password confirmation' do
     expect {
       u = create_user(:password_confirmation => "")
       expect(u.errors[:password_confirmation]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
-  it 'requires email' do
-    expect {
-      u = create_user(:email => nil)
-      expect(u.errors[:email]).to_not be_blank
     }.to_not change(User, :count)
   end
 
@@ -358,14 +382,14 @@ describe User do
 
   it 'resets password' do
     user = User.make!
-    user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    user.update(:password => 'new password', :password_confirmation => 'new password')
     expect(User.authenticate(user.login, 'new password')).to eq user
   end
 
   it 'does not rehash password' do
     pw = "fooosdgsg"
     user = User.make!(:password => pw, :password_confirmation => pw)
-    user.update_attributes(:login => 'quentin2')
+    user.update(:login => 'quentin2')
     expect(User.authenticate('quentin2', pw)).to eq user
   end
 
@@ -447,11 +471,11 @@ describe User do
       other_o = make_research_grade_observation
       other_p = other_o.photos.first
       other_u = other_o.user
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
       new_login = "zolophon"
       without_delay { target_u.destroy }
       other_p.reload
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
     end
 
     it "should remove oauth access tokens" do
@@ -639,40 +663,12 @@ describe User do
         expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).to be_blank
       end
 
-      it "should destroy projects with no observations" do
-        expect( project.observations ).to be_blank
-        user.sane_destroy
-        expect( Project.find_by_id( project.id ) ).to be_blank
-      end
-
-      it "should not destroy projects with observations" do
-        po = make_project_observation( project: project )
-        user.sane_destroy
-        expect( Project.find_by_id( project.id ) ).not_to be_blank
-      end
-
       it "should assign projects to a manager" do
         po = make_project_observation( project: project )
         m = ProjectUser.make!( role: ProjectUser::MANAGER, project: project )
         user.sane_destroy
         project.reload
         expect( project.user_id ).to eq( m.user_id )
-      end
-
-      it "should assign projects to a site admin if no manager" do
-        a = make_admin
-        expect( User.admins.count ).to eq 1
-        po = make_project_observation( project: project )
-        user.sane_destroy
-        project.reload
-        expect( project.user_id ).to eq a.id
-      end
-
-      it "should not destroy project journal posts" do
-        po = make_project_observation( project: project )
-        pjp = Post.make!( parent: project, user: user )
-        user.sane_destroy
-        expect( Post.find_by_id( pjp.id ) ).not_to be_blank
       end
 
       describe "notifications" do
@@ -695,13 +691,12 @@ describe User do
 
         it "should generate for new project owners even if they're new members" do
           p = Project.make!( user: user )
-          po = make_project_observation( project: p )
-          a = without_delay do
-            make_admin
-          end
-          expect( UpdateAction.unviewed_by_user_from_query( a.id, { } ) ).to eq false
+          make_project_observation( project: p )
+          pu = create( :project_user, project: p, role: ProjectUser::MANAGER )
+          expect( UpdateAction.unviewed_by_user_from_query( pu.user_id, {} ) ).to eq false
           without_delay { user.sane_destroy }
-          expect( UpdateAction.unviewed_by_user_from_query( a.id, resource: p ) ).to eq true
+          expect( Project.find_by_id( p.id ) ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( pu.user_id, resource: p ) ).to eq true
         end
       end
     end
@@ -741,6 +736,34 @@ describe User do
       Delayed::Job.delete_all
       user.sane_destroy
       expect( TaxonName.find_by_id( tn.id ) ).not_to be_blank
+    end
+    it "should delete observed_by_user? project observation rules" do
+      por = ProjectObservationRule.make!( operator: "observed_by_user?", operand: user )
+      user.reload
+      user.sane_destroy
+      expect( ProjectObservationRule.find_by_id( por.id ) ).to be_blank
+    end
+    it "should delete not_observed_by_user? project observation rules" do
+      por = ProjectObservationRule.make!( operator: "not_observed_by_user?", operand: user )
+      user.reload
+      user.sane_destroy
+      expect( ProjectObservationRule.find_by_id( por.id ) ).to be_blank
+    end
+    it "should reindex a project with a observed_by_user? rule" do
+      por = ProjectObservationRule.make!( operator: "observed_by_user?", operand: user )
+      project = por.ruler
+      es_project = Project.elastic_search( where: { id: project.id } ).results.results[0]
+      es_por = es_project.project_observation_rules.detect do | r |
+        r.operator == "observed_by_user?" && r.operand_id == user.id
+      end
+      expect( es_por ).not_to be_blank
+      user.sane_destroy
+      project.reload
+      es_project = Project.elastic_search( where: { id: project.id } ).results.results[0]
+      es_por = es_project.project_observation_rules.detect do | r |
+        r.operator == "observed_by_user?" && r.operand_id == user.id
+      end
+      expect( es_por ).to be_blank
     end
   end
 
@@ -787,7 +810,7 @@ describe User do
       u = User.make!
       o = Observation.make!(:user => u)
       u.preferred_observation_license = Observation::CC_BY
-      u.update_attributes(:make_observation_licenses_same => true)
+      u.update(:make_observation_licenses_same => true)
       o.reload
       expect(o.license).to eq Observation::CC_BY
     end
@@ -796,7 +819,7 @@ describe User do
       u = User.make!
       p = LocalPhoto.make!(:user => u)
       u.preferred_photo_license = Observation::CC_BY
-      u.update_attributes(:make_photo_licenses_same => true)
+      u.update(:make_photo_licenses_same => true)
       p.reload
       expect(p.license).to eq Photo.license_number_for_code(Observation::CC_BY)
     end
@@ -805,7 +828,7 @@ describe User do
       u = User.make!
       p = GoogleStreetViewPhoto.make!(:user => u)
       u.preferred_photo_license = Observation::CC_BY
-      u.update_attributes(:make_photo_licenses_same => true)
+      u.update(:make_photo_licenses_same => true)
       p.reload
       expect(p.license).to eq Photo::COPYRIGHT
     end
@@ -841,12 +864,12 @@ describe User do
 
     it "should update the identifications_count" do
       Identification.make!( user: reject )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       reject.reload
       expect( reject.identifications_count ).to eq 1
       expect( keeper.identifications_count ).to eq 0
       keeper.merge( reject )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       keeper.reload
       expect( keeper.identifications_count ).to eq 1
     end
@@ -953,6 +976,13 @@ describe User do
       f.reload
       expect( f.flaggable_user_id ).to eq keeper.id
     end
+
+    it "should merge favorited observations" do
+      o = Observation.make!
+      o.vote_by voter: keeper, vote: true
+      o.vote_by voter: reject, vote: true
+      expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
+    end
   end
 
   describe "suggest_login" do
@@ -1007,7 +1037,7 @@ describe User do
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
       o.reload
       expect(o.community_taxon).to eq i1.taxon
-      o.user.update_attributes(:prefers_community_taxa => false)
+      o.user.update(:prefers_community_taxa => false)
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to be_blank
@@ -1021,7 +1051,7 @@ describe User do
       i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
       o.reload
       expect(o.taxon).to eq o.community_taxon
-      o.user.update_attributes(:prefers_community_taxa => false)
+      o.user.update(:prefers_community_taxa => false)
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to eq owners_taxon
@@ -1035,7 +1065,7 @@ describe User do
       i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
       o.reload
       expect(o.taxon).to eq o.community_taxon
-      o.user.update_attributes(:prefers_community_taxa => false)
+      o.user.update(:prefers_community_taxa => false)
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to eq o.community_taxon
@@ -1043,12 +1073,12 @@ describe User do
 
     it "should change observation taxa to community taxa when set to true" do
       o = Observation.make!
-      o.user.update_attributes(:prefers_community_taxa => false)
+      o.user.update(:prefers_community_taxa => false)
       i1 = Identification.make!(:observation => o)
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
       o.reload
       expect(o.taxon).to be_blank
-      o.user.update_attributes(:prefers_community_taxa => true)
+      o.user.update(:prefers_community_taxa => true)
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to eq o.community_taxon
@@ -1063,7 +1093,7 @@ describe User do
       o.reload
       expect( o.owners_identification ).to be_maverick
       expect( o.quality_grade ).to eq Observation::CASUAL
-      o.user.update_attributes( prefers_community_taxa: true )
+      o.user.update( prefers_community_taxa: true )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
@@ -1083,7 +1113,7 @@ describe User do
       expect( o.taxon ).to eq owners_ident.taxon
       expect( o.community_taxon ).to eq species
       expect( o.identifications.by( user ).count ).to eq 1
-      user.update_attributes( prefers_community_taxa: true )
+      user.update( prefers_community_taxa: true )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.identifications.by( user ).count ).to eq 1
@@ -1131,7 +1161,7 @@ describe User do
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c1) ).to eq true
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c2) ).to eq true
 
-      u.update_attributes(prefers_receive_mentions: false)
+      u.update(prefers_receive_mentions: false)
       c3 = without_delay { Comment.make!(body: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c3) ).to eq false
     end
@@ -1142,10 +1172,10 @@ describe User do
       c = without_delay { Comment.make!(body: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c) ).to eq true
       deliveries = ActionMailer::Base.deliveries.size
-      u.update_attributes(prefers_mention_email_notification: false)
+      u.update(prefers_mention_email_notification: false)
       UpdateAction.email_updates_to_user(u, 1.hour.ago, Time.now)
       expect( ActionMailer::Base.deliveries.size ).to eq deliveries
-      u.update_attributes(prefers_mention_email_notification: true)
+      u.update(prefers_mention_email_notification: true)
       UpdateAction.email_updates_to_user(u, 1.hour.ago, Time.now)
       expect( ActionMailer::Base.deliveries.size ).to eq (deliveries + 1)
     end
@@ -1165,7 +1195,7 @@ describe User do
 
     describe "true" do
       before do
-        u.update_attributes(prefers_redundant_identification_notifications: true)
+        u.update(prefers_redundant_identification_notifications: true)
         expect( i ).to be_persisted
         expect( u.subscriptions.map(&:resource) ).to include o
       end
@@ -1185,7 +1215,7 @@ describe User do
 
     describe "false" do
       before do
-        u.update_attributes(prefers_redundant_identification_notifications: false)
+        u.update(prefers_redundant_identification_notifications: false)
         expect( i ).to be_persisted
         expect( u.subscriptions.map(&:resource) ).to include o
       end
@@ -1223,6 +1253,8 @@ describe User do
       expect( es_o.spam ).to be false
       user.add_flag( flag: Flag::SPAM, user_id: flagger.id )
       Delayed::Worker.new.work_off
+      o.reload
+      expect( o.as_indexed_json[:spam] ).to be true
       es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( es_o.spam ).to be true
     end
@@ -1261,7 +1293,7 @@ describe User do
       expect( user ).not_to be_flagged_as_spam
       Rakismet.disabled = false
       allow( user ).to receive(:spam?).and_return( true )
-      user.update_attributes( description: "buy this watch!" )
+      user.update( description: "buy this watch!" )
       expect( user ).to be_flagged_as_spam
     end
   end
@@ -1278,6 +1310,29 @@ describe User do
       expect( f.user_id ).to eq -1
       other_f.reload
       expect( other_f.user_id ).to be > 0
+    end
+
+    it "removes the DeletedUser" do
+      u = create :user
+      user_id = u.id
+      User.forget( user_id, skip_aws: true )
+      expect( DeletedUser.where( user_id: user_id ).first ).to be_blank
+    end
+    it "removes EmailSuppressions associated with the user" do
+      u = create :user
+      user_id = u.id
+      es = create :email_suppression, user: u
+      User.forget( user_id, skip_aws: true )
+      expect( EmailSuppression.find_by_id( es.id ) ).to be_blank
+    end
+    it "removes EmailSuppressions with matching emails not associated with the user" do
+      u = create :user
+      user_id = u.id
+      email = u.email
+      es = create :email_suppression, email: u.email
+      expect( u.email_suppressions ).to be_blank
+      User.forget( user_id, skip_aws: true )
+      expect( EmailSuppression.find_by_email( email ) ).to be_blank
     end
   end
 
@@ -1354,7 +1409,7 @@ describe User do
     let(:auth_info) { {
       "info" => {
         "email" => email,
-        "name" => email
+        "name" => Faker::Name.name
       },
       "extra" => {
         "user_hash" => {
@@ -1362,19 +1417,63 @@ describe User do
         }
       }
     } }
-    it "should not allow an email in the name field" do
+    it "should set the confirmation_token" do
       u = User.create_from_omniauth( auth_info )
-      expect( u.email ).to eq email
-      expect( u.name ).not_to include email
+      expect( u ).not_to be_confirmed
+      expect( u.confirmation_token ).not_to be_blank
     end
-    it "should not automatically suggest something like the email in the name field" do
-      u = User.create_from_omniauth( auth_info )
-      expect( u.name ).to be_blank
+    it "should send the confirmation email" do
+      User.create_from_omniauth( auth_info )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
     end
-    it "should not automatically suggest something like the email in the login field" do
-      email_login_suggestion = User.suggest_login( email )
-      u = User.create_from_omniauth( auth_info )
-      expect( u.login ).not_to include email_login_suggestion
+    describe "with an email in the name field" do
+      let(:auth_info) { {
+        "info" => {
+          "email" => email,
+          "name" => email
+        },
+        "extra" => {
+          "user_hash" => {
+            "email" => email
+          }
+        }
+      } }
+      it "should not allow an email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.email ).to eq email
+        expect( u.name ).not_to include email
+      end
+      it "should not automatically suggest something like the email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.name ).to be_blank
+      end
+      it "should not automatically suggest something like the email in the login field" do
+        email_login_suggestion = User.suggest_login( email )
+        u = User.create_from_omniauth( auth_info )
+        expect( u.login ).not_to include email_login_suggestion
+      end
+    end
+  end
+
+  describe "confirmation" do
+    it "should deliver the welcome email when a new user is confirmed" do
+      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE + 1.day )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
+      expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
+    end
+    it "should not deliver the welcome email when confirmation_sent_at is nil" do
+      user = create :user
+      user.update( confirmed_at: nil, confirmation_sent_at: nil )
+      expect( user ).not_to be_confirmed
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
+    end
+    it "should not deliver the welcome email when user created before release date" do
+      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.day )
+      create :user_privilege, user: user
+      expect( user ).not_to be_confirmed
+      expect( user.created_at ).to be < User::EMAIL_CONFIRMATION_RELEASE_DATE
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end
 

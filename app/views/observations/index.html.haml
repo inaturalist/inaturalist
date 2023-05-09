@@ -27,6 +27,8 @@
       .col-xs-12
         #filters.clear
           %h1= t :observations
+          - INatAPIService::MAPPABLE_PARAMS.each do |param|
+            %input{ type: "hidden", name: param }
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t( 'filters' ) }}" }
               %i.fa.fa-sliders
@@ -37,7 +39,6 @@
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t( "ranks.species" ), name: "taxon_name", value: params[:taxon_name] }
-            %input{ type: "hidden", name: "taxon_id" }
             %span#place-name-input
               :ruby
                 # Note that if you give this a name like place_name, Chrome will apply its address autocomplete and potentiall obscure results.
@@ -54,11 +55,11 @@
           %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace && selectedPlace.name", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name | characters:35 }}"
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearPlaceSearch( )" }
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng || params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
-            {{ shared.t('bounding_box') }}
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
+            {{ shared.t('custom_boundary') }}
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearBoundary( )" }
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
@@ -98,58 +99,86 @@
               %button{ "ng-click": "changeView('observations', 'table')", title: "{{ shared.t('table') }}", :class => "btn btn-default {{ currentSubview == 'table' ? 'active' : '' }}" }
                 %span.glyphicon.glyphicon-menu-hamburger{ "aria-hidden": "true" }
                 = t(:list)
-            #layer-control.btn-group.btn-group-stateless{ "ng-show": "viewing('observations', 'map')" }
-              %button.btn.btn-default.btn-icon-stupidity.dropdown-toggle{ data: { toggle: "dropdown" } }
-                %i.icon-layers{ title: "{{ shared.t('layers') }}" }
-              %ul.dropdown-menu
-                %li.radio
-                  %label
-                    %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "map" }
-                    {{ shared.t('map') | capitalize }}
-                %li.radio
-                  %label
-                    %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "satellite" }
-                    {{ shared.t('satellite') | capitalize }}
-                %li.divider{ role: "separator" }
-                %li{:class => "checkbox {{ mapTerrain ? 'disabled' : '' }}"}
-                  %label
-                    %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled": "mapTerrain" }
-                    {{ shared.t('labels') | capitalize }}
-                %li{:class => "checkbox {{ mapType == 'map' ? '' : 'disabled' }}"}
-                  %label
-                    %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
-                    {{ shared.t('terrain') | capitalize }}
+            #primary-map-controls{ "ng-show": "viewing('observations', 'map')" }
+              #layer-control.btn-group.btn-group-stateless
+                %button.btn.btn-default.btn-icon-stupidity.dropdown-toggle{ data: { toggle: "dropdown" } }
+                  %i.icon-layers{ title: "{{ shared.t('layers') }}" }
+                %ul.dropdown-menu
+                  %li.radio
+                    %label
+                      %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "map" }
+                      {{ shared.t('map') | capitalize }}
+                  %li.radio
+                    %label
+                      %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "satellite" }
+                      {{ shared.t('satellite') | capitalize }}
+                  %li.divider{ role: "separator" }
+                  %li{:class => "checkbox {{ mapTerrain ? 'disabled' : '' }}"}
+                    %label
+                      %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled": "mapTerrain" }
+                      {{ shared.t('labels') | capitalize }}
+                  %li{:class => "checkbox {{ mapType == 'map' ? '' : 'disabled' }}"}
+                    %label
+                      %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
+                      {{ shared.t('terrain') | capitalize }}
 
-
-            %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
-              %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
-              {{ shared.t('places_of_interest') }}
-            .dropdown-menu.dropdown-menu-right.places
-              .col-xs-6
-                %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }
-                  {{ shared.t('standard') }}
-                .place{ "ng-repeat": "p in nearbyPlaces.standard", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
-                  %span.glyphicon.glyphicon-map-marker>
-                  %span.name<>
-                    = "{{ p.name }}"
-                  %span.type<>
-                    = "{{ p.placeTypeLabel( ) }}"
-                %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
-                  {{ shared.t("no_places_available") }}
-              .col-xs-6
-                %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
-                  {{ shared.t('community_curated') }}
-                .place{ "ng-repeat": "p in nearbyPlaces.community", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
-                  %span.glyphicon.glyphicon-map-marker>
-                  %span.name<>
-                    = "{{ p.name }}"
-                  %span.type<>
-                    = "{{ p.placeTypeLabel( ) }}"
-                %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
-                  {{ shared.t("no_places_available") }}
-            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !hideRedoSearch" }
-              %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
-              {{ shared.t('redo_search_in_map') }}
+              %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown" }
+                %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
+                {{ shared.t('places_of_interest') }}
+              .dropdown-menu.dropdown-menu-right.places
+                .col-xs-6
+                  %h4{ "uib-tooltip" => "{{ shared.t('places_maintained_by_site_admins')}}", "tooltip-popup-delay" => 500 }
+                    {{ shared.t('standard') }}
+                  .place{ "ng-repeat": "p in nearbyPlaces.standard", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                    %span.glyphicon.glyphicon-map-marker>
+                    %span.name<>
+                      = "{{ p.name }}"
+                    %span.type<>
+                      = "{{ p.placeTypeLabel( ) }}"
+                  %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
+                    {{ shared.t("no_places_available") }}
+                .col-xs-6
+                  %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
+                    {{ shared.t('community_curated') }}
+                  .place{ "ng-repeat": "p in nearbyPlaces.community", "ng-click": "filterByPlace( p )", "ng-mouseover": "showNearbyPlace( p )",  "ng-mouseleave": "hideNearbyPlace( p )" }
+                    %span.glyphicon.glyphicon-map-marker>
+                    %span.name<>
+                      = "{{ p.name }}"
+                    %span.type<>
+                      = "{{ p.placeTypeLabel( ) }}"
+                  %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
+                    {{ shared.t("no_places_available") }}
+            #map-shape-controls
+              %div.shape-buttons.btn-group
+                %button{
+                  "ng-click": "drawBoundary( 'rectangle' )",
+                  "ng-show": "viewing('observations', 'map')",
+                  :class => "btn btn-default btn-rect {{ drawing.pendingDrawing === 'rectangle' ? 'disabled' : '' }}",
+                  "tooltip-enable" => "drawing.pendingDrawing !== 'rectangle'",
+                  "uib-tooltip" => "{{ shared.t('draw_rectangular_boundary') }}"
+                }
+                  %embed{src: image_path('draw-rect.svg'), width: 16, height: 16 }
+                %button{
+                  "ng-click": "drawBoundary( 'circle' )",
+                  "ng-show": "viewing('observations', 'map')",
+                  :class => "btn btn-default btn-circle {{ drawing.pendingDrawing === 'circle' ? 'disabled' : '' }}",
+                  "tooltip-enable" => "drawing.pendingDrawing !== 'circle'",
+                  "uib-tooltip" => "{{ shared.t('draw_circular_boundary') }}"
+                }
+                  %embed{src: image_path('draw-circle.svg'), width: 16, height: 16 }
+              %button{
+                "ng-click": "filterByBounds( )",
+                "ng-show": "viewing('observations', 'map')",
+                :class => "btn btn-default btn-redo-search {{ disableRedoSearch ? 'disabled' : '' }}",
+              }
+                %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
+                {{ shared.t("redo_search_in_map") }}
+              %button{
+                "ng-click": "clearBoundary( )",
+                "ng-show": "viewing('observations', 'map') && drawing.currentShape !== null",
+                :class => "btn btn-default btn-clear-shape",
+              }
+                {{ shared.t("reset") }}
         .col-xs-6
     %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }

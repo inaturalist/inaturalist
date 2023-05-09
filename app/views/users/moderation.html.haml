@@ -67,12 +67,13 @@
             = @site.site_name_short
           - else
             = link_to_user( record.user )
-        %td= record.try_methods( :body, :flag, :description )
+        %td
+          = truncate_with_more formatted_user_text( record.try_methods( :body, :flag, :description, :reason ) ), length: 512
         %td.nobr
           - if record.is_a?( ModeratorNote )
             - if record.editable_by?( current_user )
               = link_to t(:edit), edit_moderator_note_path( record ), class: "btn btn-sm btn-default"
-              = link_to t(:delete), moderator_note_path( record ), method: :delete, confirm: t(:are_you_sure?), class: "btn btn-sm btn-danger"
+              = link_to t(:delete), moderator_note_path( record ), method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-sm btn-danger"
           - elsif record.is_a?( ModeratorAction )
             = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
           - else

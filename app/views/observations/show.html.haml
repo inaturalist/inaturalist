@@ -18,6 +18,11 @@
     - for ol in @observation_links
       %link{ rel: ol.rel, href: ol.href }
   %link{ rel: "canonical", href: observation_url( @observation, host: Site.default.url ) }
+  %link{ rel: "schema.DC", href: "http://purl.org/dc/elements/1.1/" }
+  %link{ rel: "schema.DCTERMS", href: "http://purl.org/dc/terms/" }
+  %meta{ name: "DC.creator", content: @observation.user.published_name }
+  %meta{ name: "DC.publisher", content: @site.name }
+  %meta{ name: "DCTERMS.issued", content: @observation.coordinates_viewable_by?( current_user ) ? @observation.created_at.to_date : @observation.created_at.strftime( "%Y-%m" ) }
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };

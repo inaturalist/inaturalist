@@ -1,6 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Photo do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to have_many(:observation_photos).dependent :destroy }
+  it { is_expected.to have_many(:taxon_photos).dependent :destroy }
+  it { is_expected.to have_many(:guide_photos).dependent(:destroy).inverse_of :photo }
+  it { is_expected.to have_many(:observations).through :observation_photos }
+  it { is_expected.to have_many(:taxa).through :taxon_photos }
+
   elastic_models( Observation )
   let( :stable_image_url ) { "https://www.inaturalist.org/assets/logo-small.png" }
   describe "creation" do
@@ -52,7 +59,7 @@ describe Photo do
 
     it "should nilify if not a license" do
       p = Photo.make!(:license => Photo.license_number_for_code(Observation::CC_BY))
-      p.update_attributes(:license => "on")
+      p.update(:license => "on")
       p.reload
       expect(p.license).to eq Photo::COPYRIGHT
     end
@@ -71,14 +78,13 @@ describe Photo do
   describe "local_photo_from_remote_photo" do
     it "creates a LocalPhoto with the right attributes" do
       fp = FlickrPhoto.new(
-        original_url: stable_image_url,
+        remote_original_url: stable_image_url,
         native_photo_id: "a native_photo_id",
         native_page_url: "a native_page_url",
         native_username: "a native_username",
         native_realname: "a native_realname",
         license: 2,
-        mobile: false,
-        metadata: { meta: :data })
+        mobile: false)
       lp = Photo.local_photo_from_remote_photo(fp)
       expect( lp.native_photo_id ).to eq fp.native_photo_id
       expect( lp.native_page_url ).to eq fp.native_page_url
@@ -86,8 +92,7 @@ describe Photo do
       expect( lp.native_realname ).to eq fp.native_realname
       expect( lp.license ).to eq fp.license
       expect( lp.mobile ).to eq fp.mobile
-      expect( lp.metadata ).to eq fp.metadata
-      expect( lp.original_url ).to be nil
+      expect( lp["original_url"] ).to be nil
       expect( lp.subtype ).to eq "FlickrPhoto"
       expect( lp.native_original_image_url ).to eq fp.original_url
     end
@@ -95,7 +100,7 @@ describe Photo do
 
   describe "turn_remote_photo_into_local_photo" do
     it "creates and saves local photos" do
-      fp = FlickrPhoto.new( original_url: stable_image_url )
+      fp = FlickrPhoto.new( remote_original_url: stable_image_url )
       expect(fp.type).to eq "FlickrPhoto"
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
@@ -105,16 +110,16 @@ describe Photo do
 
     it "fails if the original and large URLs are inaccessible" do
       fp = FlickrPhoto.new(
-        original_url: "https://static.inaturalist.org/whatever.png",
-        large_url: "https://static.inaturalist.org/whatever.png")
+        remote_original_url: "https://static.inaturalist.org/whatever.png",
+        remote_large_url: "https://static.inaturalist.org/whatever.png")
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "FlickrPhoto"
     end
 
     it "uses the large URL when the original is not available" do
       fp = FlickrPhoto.new(
-        original_url: "https://static.inaturalist.org/whatever.png",
-        large_url: stable_image_url )
+        remote_original_url: "https://static.inaturalist.org/whatever.png",
+        remote_large_url: stable_image_url )
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
       expect(fp.native_original_image_url).to eq fp.large_url
@@ -127,6 +132,33 @@ describe Photo do
       p = make_local_photo( user: u )
       expect( u.name ).to eq ""
       expect( p.attribution_name ).to eq u.login
+    end
+  end
+
+  describe "to_taxon" do
+    it "should choose a taxon when there are multiple options with different names" do
+      taxa = 3.times.map { create :taxon }
+      photo = build :photo
+      allow( photo ).to receive( :to_taxa ).and_return( taxa )
+      expect( photo.to_taxon ).not_to be_blank
+    end
+    it "should not choose among synonyms on different branches" do
+      taxa = [
+        create( :taxon, rank: Taxon::GENUS, name: "Tipula" ),
+        create( :taxon, rank: Taxon::GENUS, name: "Tipula" )
+      ]
+      photo = build :photo
+      allow( photo ).to receive( :to_taxa ).and_return( taxa )
+      expect( photo.to_taxon ).to be_blank
+    end
+    it "should choose the coarsest synonym on the same branch" do
+      family = create( :taxon, rank: Taxon::FAMILY, name: "Tipulidae" )
+      genus = create( :taxon, rank: Taxon::GENUS, name: "Tipula", parent: family )
+      subgenus = create( :taxon, rank: Taxon::SUBGENUS, name: "Tipula", parent: genus )
+      taxa = [genus, subgenus]
+      photo = build :photo
+      allow( photo ).to receive( :to_taxa ).and_return( taxa )
+      expect( photo.to_taxon ).to eq genus
     end
   end
 

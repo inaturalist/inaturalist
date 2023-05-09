@@ -1,0 +1,94 @@
+AllCops:
+  NewCops: enable
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+  IndentationWidth: 2
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/LineEndStringConcatenationIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: false
+
+Layout/SpaceAroundBlockParameters:
+  # This is weird, but without it you get a conflict / infinite loop with
+  # SpaceInsideParens
+  EnforcedStyleInsidePipes: space
+
+Layout/SpaceInsideParens:
+  EnforcedStyle: space
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    "%w": "()"
+
+# Not sure why but this causes some weird failures
+Style/RedundantSort:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/WordArray:
+  Enabled: false

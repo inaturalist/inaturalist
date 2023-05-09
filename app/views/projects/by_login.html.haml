@@ -2,10 +2,9 @@
   = raw is_me?( @selected_user ) ? t( :your_projects ) : t( :users_projects, user: h( @login ) )
 .container
   - before = capture do
-    .row
-      .col-xs-12
-        .pull-right= link_to t( :all_projects ), projects_path, class: "btn btn-default"
-  = render partial: "shared/by_login_header_bootstrap", locals: { before: before, model_name: "Projects" }
+    .pull-right= link_to t( :all_projects ), projects_path, class: "btn btn-default"
+  .row
+    = render partial: "shared/by_login_header_bootstrap", locals: { before: before, model_name: "Projects" }
   .col-xs-12.col-md-8
     - if @projects.blank?
       .row
@@ -19,11 +18,6 @@
                 = render partial: "project_by_login", locals: {project: project_user.project,  project_user: project_user }
     = will_paginate @project_users, param_name: "main_page"
   .col-xs-12.col-md-4
-    .row
-    .col-xs-12.col-md-12
-      - if is_me?
-        .project_invitations_button
-          = link_to t( :manage_your_project_invitations ), project_invitations_path, class: "btn btn-default"
     .row
       .col-xs-12.col-md-12
         .panel.panel-info.project_panel

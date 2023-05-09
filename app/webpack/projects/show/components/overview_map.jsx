@@ -36,7 +36,7 @@ const OverviewMap = ( { project, config, updateCurrentUser } ) => {
           <h2>{ title }</h2>
           <TaxonMap
             placement="projects-show-overview"
-            observationLayers={[Object.assign( { captive: "any" }, project.search_params )]}
+            observationLayers={[Object.assign( { captive: "any" }, project.search_params, { color: "iconic" } )]}
             showAccuracy
             enableShowAllLayer={false}
             overlayMenu={false}

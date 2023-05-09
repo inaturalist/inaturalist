@@ -10,7 +10,7 @@
   - unless @skip_external_connections
     #headersearch.search.navtabs.form-group{ class: header_search_open ? "open" : nil }
       .searchwrapper
-        %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
+        %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control", tabindex: header_search_open ? nil : -1 }
       %button.btn.btn-default.btn-inat.btn-focus.show-btn
         %i.fa.fa-search
       %button.btn.btn-link.hide-btn
@@ -39,7 +39,7 @@
           - if @site && !@site.discourse_url.blank? && @site.discourse_url && !@skip_external_connections
             %li= link_to t(:forum), @site.discourse_url
           - if logged_in?
-            - user_projects = current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
+            - user_projects = current_user.header_projects
             - unless user_projects.blank?
               %li.divider{role: "separator"}
               %li.dropdown-header=t :your_recent_projects
@@ -125,4 +125,4 @@
   - # "initiative branding" should only appear in the header for signed out users and only if it doesn't appear in a more appropriate place, like the footer
   - if !logged_in? && @footless && @site && @site.id == Site.default.id
     #initiative-branding.navtabs
-      %embed{ src: image_path( "nat-geo-cas-logos-color.svg" ), width: 179, height: 31 }
+      %img{ src: image_path( "nat-geo-cas-logos-color.svg" ), width: 179, height: 31 }

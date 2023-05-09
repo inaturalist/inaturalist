@@ -1,7 +1,7 @@
 class TaxonFrameworksController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :curator_required, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :curator_required, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_required, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_taxon_framework
   
   layout "bootstrap"
@@ -46,8 +46,8 @@ class TaxonFrameworksController < ApplicationController
       render action: :edit
       return
     end
-    pars = taxon_framework_params.update( updater_id: current_user.id )
-    if @taxon_framework.update_attributes(pars)
+    pars = taxon_framework_params[:updater_id] = current_user.id
+    if @taxon_framework.update(pars)
       redirect_to taxonomy_details_for_taxon_path( @taxon_framework.taxon )
     else
       @rank_levels = prepare_rank_levels
@@ -81,7 +81,7 @@ class TaxonFrameworksController < ApplicationController
   
   def set_taxon_framework
     @taxon_framework = TaxonFramework.where( id: params[:id] ).includes(
-            { taxon: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes] },
+            { taxon: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes] },
             :source
           ).first
   end

@@ -1,4 +1,4 @@
-class ObservationField < ActiveRecord::Base
+class ObservationField < ApplicationRecord
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -21,7 +21,7 @@ class ObservationField < ActiveRecord::Base
   
   validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :name
-  validates_length_of :name, :maximum => 255, :allow_blank => true
+  validates_length_of :name, :maximum => 255
   validates_length_of :description, :maximum => 255, :allow_blank => true
   
   before_validation :strip_tags
@@ -139,7 +139,7 @@ class ObservationField < ActiveRecord::Base
   end
 
   def reindex_observations_if_name_changed
-    if name_changed?
+    if saved_change_to_name?
       Observation.elastic_index!(ids:
         ObservationFieldValue.where( observation_field_id: self.id).pluck(:observation_id),
         delay: true)

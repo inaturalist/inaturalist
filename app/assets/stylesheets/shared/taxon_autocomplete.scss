@@ -6,6 +6,12 @@ body > [role="dialog"] .TaxonAutocomplete {
       width: 100%;
     }
   }
+  li.warning {
+    background: #e66666;
+    text-align: center;
+    cursor: default;
+    list-style: none;
+  }
   li.ui-state-focus {
     background: #f6f6f6;
   }

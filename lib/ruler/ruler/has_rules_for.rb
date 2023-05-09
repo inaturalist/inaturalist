@@ -30,16 +30,16 @@ module Ruler
           end
           next if errors_for_operator.blank?
           if operator_rules.size == 1
-            errors[:base] << "Didn't pass rule: #{errors_for_operator.first}"
+            errors.add( :base, "Didn't pass rule: #{errors_for_operator.first}" )
           # FYI: if there are multiple rules with the same operator
           # ONLY ONE of the rules with that operator must pass. For example
           # if there are 10 place rules, the obs needs be in only 1
           elsif errors_for_operator.size == operator_rules.size
-            errors[:base] << "Didn't pass rules: #{errors_for_operator.join(' OR ')}"
+            errors.add( :base, "Didn't pass rules: #{errors_for_operator.join(' OR ')}" )
           end
         end
       end
-      validate validation_method_name, options
+      validate validation_method_name.to_sym, options
       
       const_set "RULE_METHODS", rule_methods
     end

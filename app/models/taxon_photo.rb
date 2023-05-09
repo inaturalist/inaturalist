@@ -1,4 +1,6 @@
-class TaxonPhoto < ActiveRecord::Base
+class TaxonPhoto < ApplicationRecord
+  audited except: [:taxon_id], associated_with: :taxon
+
   belongs_to :taxon
   belongs_to :photo
   

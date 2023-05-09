@@ -131,7 +131,7 @@ def api(name, &block)
   @api = Api.new(name)
   @api.instance_eval(&block)
   haml_path = File.join(File.dirname(__FILE__), "api.haml")
-  haml = open(haml_path).read
+  haml = File.open( haml_path ).read
   engine = Haml::Engine.new(haml)
   puts engine.render @api
 end
@@ -735,15 +735,6 @@ EOT
         own the photo on Picasa.
       EOT
       values "Valid Flickr photo ID of a photo belonging to the user."
-    end
-
-    param "facebook_photos[]" do
-      desc <<-EOT
-        List of Facebook photo IDs to add as photos for this observation. User
-        must have their Facebook and iNat accounts connected and the user must
-        own the photo on Facebook.
-      EOT
-      values "Valid Facebook photo ID of a photo belonging to the user."
     end
 
     param "local_photos[]" do

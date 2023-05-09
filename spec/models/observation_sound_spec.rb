@@ -2,6 +2,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationSound do
+  it { is_expected.to belong_to(:observation).inverse_of(:observation_sounds).counter_cache false }
+  it { is_expected.to belong_to :sound }
   elastic_models( Observation )
 
   describe "creation" do

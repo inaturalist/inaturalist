@@ -1,26 +1,27 @@
-require 'spec_helper'
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe ApplicationController do
-
   describe "UnknownFormat" do
     # testing a feature implemented in the ApplicationController by using
     # the ObservationsController since there are no testable public-facing
     # actions in the ApplicationController
     describe ObservationsController do
       render_views
-      before(:all) { Observation.destroy_all }
+      before( :all ) { Observation.destroy_all }
       elastic_models( Observation )
 
       it "render the 404 page for unknown formats" do
         get :index, format: :html
-        expect(response.response_code).to eq 200
-        expect(response.body).to include "Observations"
+        expect( response.response_code ).to eq 200
+        expect( response.body ).to include "Observations"
         get :index, format: :json
-        expect(response.response_code).to eq 200
-        expect(JSON.parse response.body).to eq [ ]
+        expect( response.response_code ).to eq 200
+        expect( JSON.parse( response.body ) ).to eq []
         get :index, format: :nonsense
-        expect(response.response_code).to eq 404
-        expect(response.body).to match /doesn.*exist/
+        expect( response.response_code ).to eq 404
+        expect( response.body ).to match( /doesn.*exist/ )
       end
     end
   end
@@ -28,20 +29,20 @@ describe ApplicationController do
   describe "set_locale" do
     it "should set the session locale" do
       session[:locale] = "en"
-      get :set_locale, locale: :fr
+      get :set_locale, params: { locale: :fr }
       expect( session[:locale] ).to eq "fr"
     end
 
     it "should do nothing for unknown locales" do
       session[:locale] = "en"
-      get :set_locale, locale: :xx
+      get :set_locale, params: { locale: :xx }
       expect( session[:locale] ).to eq "en"
     end
 
     it "should update logged in users' locales" do
-      u = User.make!(locale: "en")
-      http_login(u)
-      get :set_locale, locale: :fr
+      u = User.make!( locale: "en" )
+      sign_in( u )
+      get :set_locale, params: { locale: :fr }
       u.reload
       expect( session[:locale] ).to eq "fr"
       expect( u.locale ).to eq "fr"
@@ -51,18 +52,18 @@ describe ApplicationController do
   describe "ping" do
     it "returns json" do
       get :ping
-      expect(response.response_code).to eq 200
-      expect(JSON.parse response.body).to eq( { "status" => "available" } )
+      expect( response.response_code ).to eq 200
+      expect( JSON.parse( response.body ) ).to eq( { "status" => "available" } )
     end
   end
 
   describe WelcomeController do
     describe "check_user_last_active" do
       it "re-activate inactive users" do
-        user = User.make!(last_active: nil, subscriptions_suspended_at: Time.now)
+        user = User.make!( last_active: nil, subscriptions_suspended_at: Time.now )
         expect( user.last_active ).to be_nil
         expect( user.subscriptions_suspended_at ).to_not be_nil
-        http_login(user)
+        sign_in( user )
         get :index
         user.reload
         # user's last_active date is set
@@ -73,61 +74,62 @@ describe ApplicationController do
     end
 
     describe "draft sites" do
-      let(:site) { Site.make!(draft: true) }
-      let(:basic_user) { User.make! }
-      let(:admin_user) { make_admin }
-      let(:site_admin_user) {
+      let( :site ) { Site.make!( draft: true ) }
+      let( :basic_user ) { User.make! }
+      let( :admin_user ) { make_admin }
+      let( :site_admin_user ) do
         u = User.make!
-        SiteAdmin.create(site: site, user: u)
+        SiteAdmin.create( site: site, user: u )
         u
-      }
+      end
 
       it "does not redirect users on the main site" do
         get :index
-        expect(response.response_code).to eq 200
-        expect(response).to_not be_redirect
+        expect( response.response_code ).to eq 200
+        expect( response ).to_not be_redirect
       end
 
       it "redirects logged-out users to log in" do
-        get :index, inat_site_id: site.id
-        expect(response.response_code).to eq 302
-        expect(response).to be_redirect
-        expect(response).to redirect_to(new_user_session_url)
+        controller.request.host = URI.parse( site.url ).host
+        get :index, params: { inat_site_id: site.id }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
       end
 
       it "redirects basic users to log in" do
-        http_login(basic_user)
-        get :index, inat_site_id: site.id
-        expect(response.response_code).to eq 302
-        expect(response).to be_redirect
-        expect(response).to redirect_to(login_url)
+        controller.request.host = URI.parse( site.url ).host
+        sign_in( basic_user )
+        get :index, params: { inat_site_id: site.id }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( login_url )
       end
 
       it "does not redirect admins" do
-        http_login(admin_user)
-        get :index, inat_site_id: site.id
-        expect(response.response_code).to eq 200
-        expect(response).to_not be_redirect
+        sign_in( admin_user )
+        get :index, params: { inat_site_id: site.id }
+        expect( response.response_code ).to eq 200
+        expect( response ).to_not be_redirect
       end
 
       it "does not redirect site admins" do
-        http_login(site_admin_user)
-        get :index, inat_site_id: site.id
-        expect(response.response_code).to eq 200
-        expect(response).to_not be_redirect
+        sign_in( site_admin_user )
+        get :index, params: { inat_site_id: site.id }
+        expect( response.response_code ).to eq 200
+        expect( response ).to_not be_redirect
       end
     end
-
   end
 
   describe GuidesController do
     describe "network affiliation prompt" do
       describe "for user in partner site place" do
-        let(:place) { make_place_with_geom }
-        let(:alt_site) { Site.make!( place: place ) }
+        let( :place ) { make_place_with_geom }
+        let( :alt_site ) { Site.make!( place: place ) }
         before do
           # Stub this request to ensure the user's lat/lon is in the site place
-          allow( INatAPIService ).to receive(:geoip_lookup) {
+          allow( INatAPIService ).to receive( :geoip_lookup ) {
             OpenStruct.new_recursive(
               results: {
                 ll: [place.latitude, place.longitude],
@@ -159,7 +161,7 @@ describe ApplicationController do
           u = User.make!( site: alt_site )
           expect( u.site ).to eq alt_site
           sign_in u
-          get :index, format: :html, inat_site_id: alt_site.id
+          get :index, format: :html, params: { inat_site_id: alt_site.id }
           expect( session[:potential_site] ).to be_blank
         end
         it "should not be set if prompting you to join the site you are affiliated with" do
@@ -173,7 +175,7 @@ describe ApplicationController do
           third_site = Site.make!
           u = User.make!
           sign_in u
-          get :index, format: :html, inat_site_id: third_site.id
+          get :index, format: :html, params: { inat_site_id: third_site.id }
           expect( session[:potential_site] ).to be_blank
         end
       end

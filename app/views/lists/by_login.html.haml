@@ -1,21 +1,19 @@
 :ruby
   observation_by_login_title = if is_me?( @selected_user )
-    t( "lists_by_login.title.current_user",
-      default: t( :second_person_possessive_singular, noun: t( :lists ).downcase ) )
+    t( "lists_by_login.title.current_user" )
   else
-    t( "lists_by_login.title.login", login: @login,
-      default: t( :third_person_possessive_singular, noun: t( :lists ).titleize, object_phrase: @login ) )
+    t( "lists_by_login.title.login", login: @login )
   end
 - content_for( :title ) do
   = @title ||= observation_by_login_title
 - content_for( :extracss ) do
-  = stylesheet_link_tag "lists"    
+  = stylesheet_link_tag "lists"
 
 .container.by-login
   .row.header
     - tools = capture do
       - if logged_in? && current_user == @selected_user
-        = link_to t( :new_list ), new_list_path( @parent_slug ), id: "newlistbutton", class: "btn btn-primary"
+        = link_to t( :new_list ), new_list_path, id: "newlistbutton", class: "btn btn-primary"
     = render partial: "shared/by_login_header_bootstrap", locals: { after: tools, model_name: "Lists" }
   
   .row
@@ -23,7 +21,7 @@
       #life-list.dynamic_life_list.clear
         = image_tag( @selected_user.icon.url( :medium ), class: "life-list-user-icon" )
         = image_tag( "lists-life-list.svg", class: "list-icon" )
-        = link_to t( :view_dynamic_lifelist ).upcase, by_login_lifelists_path( login: @selected_user.login ), class: "btn btn-default btn-inat btn-focus"
+        = link_to t( :view_dynamic_lifelist_ ), by_login_lifelists_path( login: @selected_user.login ), class: "btn btn-primary btn-inat"
     - if @lists.empty?
       .col-md-6
         #no_lists_message.description

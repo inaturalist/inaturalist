@@ -34,14 +34,12 @@
     <div class="timeline-heading">
       <h2 class="timeline-title">  
         <span class="time">
-          <%= compact_date(posted_at) %>
+          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
         </span>
         <span style="font-weight:normal; color:gray">
           <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
           <%- if item.is_a? Identification %>
             <%=t :user_added_an_identification_html, user: title %>
-          <% elsif item.is_a? ProjectInvitation %>
-            <%=t :user_added_a_project_invitation_html, user: title %>
           <% elsif item.is_a? Flag %>
             <%=t :user_added_a_flag_html, user: title %>
           <% elsif item.is_a? ObservationFieldValue %>
@@ -63,13 +61,6 @@
           :user => user,
           :hide_agree => hide_agree
         } %>
-      <% elsif item.is_a? ProjectInvitation %>
-        <p><%= t :please_add_this_observation_to %></p>
-        <%= render :partial => "project_invitations/project_invitation", 
-          :object => item,
-          :locals => { 
-            :observation => observation,
-            :truncation_length => 48 } %>
       <% elsif item.is_a? Flag %>
         <div class="stacked body">
           <div class="stacked">

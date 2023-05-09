@@ -19,11 +19,14 @@ const FlagAnItem = ( {
     } else if ( groupedFlags.inappropriate ) {
       flagQualifier = "inappropriate";
     }
-    const editLink = loggedIn ? (
-      <a href={manageFlagsPath} className="view">
-        { I18n.t( "add_edit_flags" ) }
-      </a> ) : null;
-    const type = itemTypeLabel || item.constructor.name;
+    const editLink = loggedIn
+      ? (
+        <a href={manageFlagsPath} className="view">
+          { I18n.t( "add_edit_flags" ) }
+        </a>
+      )
+      : null;
+    const type = itemTypeLabel;
     return (
       <div className="FlagAnItem alert alert-danger">
         <i className="fa fa-flag" />
@@ -67,7 +70,7 @@ FlagAnItem.propTypes = {
   setFlaggingModalState: PropTypes.func,
   manageFlagsPath: PropTypes.string,
   item: PropTypes.object,
-  itemTypeLabel: PropTypes.string
+  itemTypeLabel: PropTypes.string.isRequired
 };
 
 export default FlagAnItem;

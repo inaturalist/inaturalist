@@ -465,3 +465,36 @@ select.dropdown {
     }
   }
 }
+
+.settings-item {
+  .alert {
+    padding: 5px 10px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    .alert-link {
+      position: relative;
+      top: -1px;
+    }
+  }
+}
+
+.AlertModal.modal {
+  .modal-dialog {
+    width: 100%;
+    max-width: 60%;
+  }
+}
+
+#user_password {
+  .btn {
+    margin-bottom: 5px;
+  }
+}
+
+.BlockMutedUsers + .BlockMutedUsers {
+  margin-top: 50px;
+}
+
+body>div>[role="dialog"] .modal-dialog {
+  margin: 30px auto;
+}

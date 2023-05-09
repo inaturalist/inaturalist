@@ -28,7 +28,7 @@ export function setUrl( newParams, options = {} ) {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
-    if ( _.isArray( v ) ) {
+    if ( Array.isArray( v ) ) {
       newState[k] = v.join( "," );
     } else {
       newState[k] = v;
@@ -404,23 +404,19 @@ export function hydrateFromUrlParams( params ) {
     if ( params.quality_grade ) {
       newObservationParams.quality_grade = params.quality_grade;
     }
-    if ( taxon ) {
+    if ( taxon && params.term_id && params.term_value_id ) {
       const controlledAttrIDs = _.keys( taxon.fieldValues ).map( k => parseInt( k, 0 ) );
       const controlledValueIDs = _.flatten( _.values( taxon.fieldValues ) )
         .map( v => v.controlled_value.id );
-      _.forEach( params, ( value, key ) => {
-        if ( !key.match( /^term(_value)?_id$/ ) ) {
-          return;
-        }
-        const attrRelevant = key === "term_id" && controlledAttrIDs.includes( parseInt( value, 0 ) );
-        const valueRelevant = key === "term_value_id" && controlledValueIDs.includes( parseInt( value, 0 ) );
-        if ( attrRelevant || valueRelevant ) {
-          newObservationParams[key] = value;
-        }
-      } );
-      if ( !_.isEmpty( newObservationParams ) ) {
-        dispatch( setObservationParams( newObservationParams ) );
+      const attrRelevant = controlledAttrIDs.includes( parseInt( params.term_id, 0 ) );
+      const valueRelevant = controlledValueIDs.includes( parseInt( params.term_value_id, 0 ) );
+      if ( attrRelevant && valueRelevant ) {
+        newObservationParams.term_id = params.term_id;
+        newObservationParams.term_value_id = params.term_value_id;
       }
+    }
+    if ( !_.isEmpty( newObservationParams ) ) {
+      dispatch( setObservationParams( newObservationParams ) );
     }
   };
 }

@@ -1,4 +1,4 @@
-class ApiEndpoint < ActiveRecord::Base
+class ApiEndpoint < ApplicationRecord
 
   has_many :api_endpoint_caches
 

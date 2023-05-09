@@ -33,7 +33,7 @@
               - if @guide.editable_by?(current_user)
                 = link_to "(#{t(:stop)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
         - if @guide.editable_by?(current_user)
-          - if !@guide.ngz_url && !@guide.downloadable?
+          - if !ngz_url( @guide ) && !@guide.downloadable?
             %button.btn.btn-default.pull-left{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#mobile_dialog"}
               %i.fa-mobile.fa
               =t :enable_offline_access
@@ -111,7 +111,7 @@
               .input-group
                 %input.form-control{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
                 .input-group-btn
-                  %button.btn=t :search
+                  %button.btn.btn-default=t :search
               - unless @q.blank?
                 = link_to t(:clear).capitalize, url_for_params(without: [:q]), :class => "btn btn-default clearbtn"
             .pull-right
@@ -148,7 +148,7 @@
               .col-xs-6
                 %h4.name
                   = link_to guide_taxon.display_name, guide_taxon
-                - if gs = guide_taxon.guide_sections.order("COALESCE(position, id)").first
+                - if gs = guide_taxon.guide_sections.order( Arel.sql( "COALESCE(position, id)" ) ).first
                   = truncate_with_more formatted_user_text(gs.description), :length => 400
               .col-xs-3
                 .map

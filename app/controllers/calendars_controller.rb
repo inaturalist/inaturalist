@@ -1,10 +1,13 @@
 class CalendarsController < ApplicationController
-  before_filter :load_user_by_login
+  before_action :load_user_by_login
   
   def index
     @year = (params[:year] || Time.now.year).to_i
     @observations = @selected_user.observations.on(@year).select(:id, :observed_on)
     @observations_by_month = @observations.group_by {|o| o.observed_on.month}
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
   end
   
   def show
@@ -34,9 +37,9 @@ class CalendarsController < ApplicationController
         :quality_metrics,
         :stored_preferences,
         { taxon: { taxon_names: :place_taxon_names } },
-        { photos: :flags }
+        { photos: [:flags, :file_prefix, :file_extension] }
       )
-      if @selected_user != current_user && current_user && current_user.in_test_group?( "interpolation" )
+      if @selected_user != current_user
         filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
         diff = @observations.total_entries - filtered_obs.size
         @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|
@@ -99,26 +102,5 @@ class CalendarsController < ApplicationController
     respond_to do |format|
       format.html
     end
-  end
-  
-  def compare
-    @dates = params[:dates].split(',')
-    if @dates.blank?
-      flash[:notice] = t(:you_must_select_dates_to_compare)
-      redirect_back_or_default(calendar_path(@login))
-    end
-    @observations_by_date_by_taxon_id = {}
-    @taxon_ids = []
-    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
-    scope = Observation.includes(:iconic_taxon)
-    scope = scope.of(@taxon) if @taxon
-    scope = scope.at_or_below_rank(params[:rank]) if params[:rank]
-    @dates.each do |date|
-      observations = scope.by(@selected_user).on(date).all
-      @taxon_ids += observations.map{|o| o.taxon_id}
-      @observations_by_date_by_taxon_id[date] = observations.group_by{|o| o.taxon_id}
-    end
-    @taxa = Taxon.where(id: @taxon_ids.uniq.compact).includes(:taxon_names)
-    @taxa = Taxon.sort_by_ancestry(@taxa)
   end
 end

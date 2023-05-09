@@ -1,4 +1,4 @@
-class TaxonFrameworkRelationship < ActiveRecord::Base
+class TaxonFrameworkRelationship < ApplicationRecord
   alias_attribute :internal_taxa, :taxa
   
   attr_accessor :current_user
@@ -73,7 +73,9 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   end
     
   def taxon_framework_has_source
-    errors.add :taxon_framework_id, "taxon framework must have source" unless taxon_framework.source_id.present?
+    unless taxon_framework && taxon_framework.source_id.present?
+      errors.add :taxon_framework_id, "taxon framework must have source"
+    end
   end
   
   def taxa_covered_by_taxon_framework

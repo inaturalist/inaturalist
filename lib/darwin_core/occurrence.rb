@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module DarwinCore
   class Occurrence
-
     # Terms are tuples of (
     #   term name,
     #   term URI,
@@ -12,6 +13,11 @@ module DarwinCore
     # http://tools.gbif.org/dwca-assistant/. Vocabularies that GBIF understands
     # are at https://rs.gbif.org/vocabulary, though it's probably only best to
     # specify one if we're actually adhering to it.
+    ANNOTATION_TERMS = [
+      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
+      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
+    ].freeze
     TERMS = [
       %w(id id),
       %w(occurrenceID http://rs.tdwg.org/dwc/terms/occurrenceID),
@@ -24,12 +30,11 @@ module DarwinCore
       %w(catalogNumber http://rs.tdwg.org/dwc/terms/catalogNumber),
       %w(references http://purl.org/dc/terms/references),
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
-      %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
-      %w(recordedByID http://rs.gbif.org/terms/1.0/recordedByID),
+      %w(recordedByID http://rs.tdwg.org/dwc/terms/recordedByID),
       %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
-      %w(identifiedByID http://rs.gbif.org/terms/1.0/identifiedByID),
-      %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
+      %w(identifiedByID http://rs.tdwg.org/dwc/terms/identifiedByID),
+      %w(captive https://www.inaturalist.org/schema/terms/captive),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
       %w(verbatimEventDate http://rs.tdwg.org/dwc/terms/verbatimEventDate),
@@ -37,6 +42,7 @@ module DarwinCore
       %w(decimalLatitude http://rs.tdwg.org/dwc/terms/decimalLatitude),
       %w(decimalLongitude http://rs.tdwg.org/dwc/terms/decimalLongitude),
       %w(coordinateUncertaintyInMeters http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters),
+      %w(geodeticDatum http://rs.tdwg.org/dwc/terms/geodeticDatum EPSG:4326),
       %w(countryCode http://rs.tdwg.org/dwc/terms/countryCode),
       %w(stateProvince http://rs.tdwg.org/dwc/terms/stateProvince),
       %w(identificationID http://rs.tdwg.org/dwc/terms/identificationID),
@@ -47,25 +53,19 @@ module DarwinCore
       %w(taxonRank http://rs.tdwg.org/dwc/terms/taxonRank),
       %w(kingdom http://rs.tdwg.org/dwc/terms/kingdom),
       %w(phylum http://rs.tdwg.org/dwc/terms/phylum),
-      ['class', 'http://rs.tdwg.org/dwc/terms/class', nil, 'taxon_class'],
+      ["class", "http://rs.tdwg.org/dwc/terms/class", nil, "taxon_class"],
       %w(order http://rs.tdwg.org/dwc/terms/order),
       %w(family http://rs.tdwg.org/dwc/terms/family),
       %w(genus http://rs.tdwg.org/dwc/terms/genus),
-      ['license', 'http://purl.org/dc/terms/license', nil, 'dwc_license'],
-      %w(rights http://purl.org/dc/terms/rights),
+      ["license", "http://purl.org/dc/terms/license", nil, "dwc_license"],
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
-      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
-    ]
-    ANNOTATION_TERMS = [
-      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
-      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
-      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
-    ]
+      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick),
+      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry)
+    ] + ANNOTATION_TERMS
     cattr_accessor :annotation_controlled_attributes do
       {}
     end
-    TERMS += ANNOTATION_TERMS
-    TERM_NAMES = TERMS.map{|name, uri, default, method| name}
+    TERM_NAMES = TERMS.map {| name, _uri, _default, _method | name }
 
     ALA_EXTRA_TERMS = [
       %w(identificationVerificationStatus http://rs.tdwg.org/dwc/terms/identificationVerificationStatus),
@@ -73,7 +73,11 @@ module DarwinCore
       %w(numIdentificationDisagreements https://www.inaturalist.org/terms/numIdentificationDisagreements),
       %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
       %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
-    ]
+    ].freeze
+
+    OTHER_CATALOGUE_NUMBERS_TERM = %w(
+      otherCatalogueNumbers http://rs.tdwg.org/dwc/terms/otherCatalogNumbers
+    )
 
     GBIF_LIFE_STAGES = %w(
       adult
@@ -133,23 +137,29 @@ module DarwinCore
       wriggler
       zoea
       zygote
-    )
+    ).freeze
+
+    ANNOTATION_CONTROLLED_TERM_MAPPING = {
+      sex: "Sex",
+      lifeStage: "Life Stage",
+      reproductiveCondition: "Plant Phenology"
+    }
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
     # inside.  Otherwise I would just used a more traditional adapter with
     # delegation.
-    def self.adapt(record, options = {})
-      record.extend(InstanceMethods)
-      record.extend(DarwinCore::Helpers)
-      record.set_view(options[:view])
-      record.set_show_private_coordinates(options[:private_coordinates])
+    def self.adapt( record, options = {} )
+      record.extend( InstanceMethods )
+      record.extend( DarwinCore::Helpers )
+      record.set_view( options[:view] )
+      record.set_show_private_coordinates( options[:private_coordinates] )
       record.dwc_use_community_taxon if options[:community_taxon]
       record
     end
 
     def self.term_names( terms )
-      terms.map{ |name, uri, default, method| name }
+      terms.map {| name, _uri, _default, _method | name }
     end
 
     module InstanceMethods
@@ -157,11 +167,11 @@ module DarwinCore
         @view ||= FakeView
       end
 
-      def set_view(view)
+      def set_view( view )
         @view = view
       end
 
-      def set_show_private_coordinates(show_private_coordinates)
+      def set_show_private_coordinates( show_private_coordinates )
         @show_private_coordinates = show_private_coordinates
       end
 
@@ -169,12 +179,13 @@ module DarwinCore
         @dwc_use_community_taxon = true
       end
 
+      # rubocop:disable Naming/MethodName
       def occurrenceID
         uri
       end
 
       def references
-        view.observation_url(id)
+        view.observation_url( id )
       end
 
       def basisOfRecord
@@ -210,8 +221,6 @@ module DarwinCore
           "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
         elsif coordinates_obscured?
           "Coordinate uncertainty increased to #{public_positional_accuracy}m to protect threatened taxon"
-        else
-          nil
         end
       end
 
@@ -220,11 +229,7 @@ module DarwinCore
       end
 
       def occurrenceRemarks
-        dwc_filter_text(description) unless description.blank?
-      end
-
-      def occurrenceDetails
-        uri
+        dwc_filter_text( description ) unless description.blank?
       end
 
       def recordedBy
@@ -236,22 +241,26 @@ module DarwinCore
       end
 
       def recordedByID
-        orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
+        orcid_id = user.provider_authorizations.detect {| pa | pa.provider_name == "orcid" }.try( :provider_uid )
         return unless orcid_id
+
         "https://orcid.org/#{orcid_id}"
       end
 
       def identifiedBy
-        return unless first_improving = first_improving_identification
+        return unless ( first_improving = first_improving_identification )
+
         first_improving.user.name.blank? ? first_improving.user.login : first_improving.user.name
       end
 
       def identifiedByID
-        return unless first_improving = first_improving_identification
-        orcid_id = first_improving.user.provider_authorizations.detect{|pa|
+        return unless ( first_improving = first_improving_identification )
+
+        orcid_id = first_improving.user.provider_authorizations.detect do | pa |
           pa.provider_name == "orcid"
-        }.try(:provider_uid)
+        end.try( :provider_uid )
         return if orcid_id.blank?
+
         "https://orcid.org/#{orcid_id}"
       end
 
@@ -263,13 +272,14 @@ module DarwinCore
       # improving identification that matches the observation taxon
       def first_improving_identification
         return unless dwc_taxon
+
         taxon_id = dwc_taxon.id
-        idents = identifications.select(&:current?).sort_by(&:id)
-        idents.detect{|i| i.taxon_id == dwc_taxon.id && i.category == Identification::IMPROVING }
+        idents = identifications.select( &:current? ).sort_by( &:id )
+        idents.detect {| i | i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
       end
 
-      def establishmentMeans
-        score = quality_metric_score(QualityMetric::WILD)
+      def captive
+        score = quality_metric_score( QualityMetric::WILD )
         score && score < 0.5 ? "cultivated" : "wild"
       end
 
@@ -278,7 +288,7 @@ module DarwinCore
       end
 
       def eventTime
-        time_observed_at ? time_observed_at.iso8601.sub(/^.*T/, '') : nil
+        time_observed_at ? datetime.iso8601.sub( /^.*T/, "" ) : nil
       end
 
       def verbatimEventDate
@@ -287,7 +297,7 @@ module DarwinCore
 
       def verbatimLocality
         if @show_private_coordinates
-          dwc_filter_text(private_place_guess || place_guess) unless place_guess.blank?
+          dwc_filter_text( private_place_guess || place_guess ) unless place_guess.blank?
         else
           dwc_filter_text( place_guess ) unless place_guess.blank?
         end
@@ -325,70 +335,78 @@ module DarwinCore
         end
       end
 
+      def geodeticDatum
+        "EPSG:4326"
+      end
+
       def countryCode
         return if latitude.blank?
-        observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
+
+        observations_places.map( &:place ).compact.detect {| p | p.admin_level == Place::COUNTRY_LEVEL }.try( :code )
       end
 
       def stateProvince
         return if latitude.blank?
-        observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::STATE_LEVEL }.try(:name)
+
+        observations_places.map( &:place ).compact.detect {| p | p.admin_level == Place::STATE_LEVEL }.try( :name )
       end
 
       def identificationID
-        first_improving_identification.try(:id)
+        first_improving_identification.try( :id )
       end
 
       def dateIdentified
-        first_improving_identification.created_at.iso8601 if first_improving_identification
+        first_improving_identification&.created_at&.iso8601
       end
 
       def identificationRemarks
-        dwc_filter_text(first_improving_identification.body) if first_improving_identification
+        dwc_filter_text( first_improving_identification.body ) if first_improving_identification
       end
 
       def taxonID
-        dwc_taxon.try(:id)
+        dwc_taxon.try( :id )
       end
 
       def scientificName
-        dwc_taxon.try(:name)
+        dwc_taxon.try( :name )
       end
 
       def taxonRank
-        dwc_taxon.try(:rank)
+        dwc_taxon.try( :rank )
       end
 
       def kingdom
-        dwc_taxon.try(:kingdom_name)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :kingdom_name ) : dwc_taxon.try( :kingdom_name )
       end
 
       def phylum
-        dwc_taxon.try(:phylum_name)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :phylum_name ) : dwc_taxon.try( :phylum_name )
       end
 
       def taxon_class
-        dwc_taxon.try(:taxonomic_class_name)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :class_name ) : dwc_taxon.try( :taxonomic_class_name )
       end
 
       def order
-        dwc_taxon.try(:taxonomic_order_name)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :order_name ) : dwc_taxon.try( :taxonomic_order_name )
       end
 
       def family
-        dwc_taxon.try(:family_name)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :family_name ) : dwc_taxon.try( :family_name )
       end
 
       def genus
-        dwc_taxon.try(:genus_name)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :genus_name ) : dwc_taxon.try( :genus_name )
       end
 
       def dwc_license
         FakeView.url_for_license( license ) || license
-      end
-
-      def rights
-        FakeView.strip_tags( FakeView.rights( self ) )
       end
 
       def rightsHolder
@@ -397,6 +415,10 @@ module DarwinCore
 
       def dwc_taxon
         @dwc_use_community_taxon ? community_taxon : taxon
+      end
+
+      def set_ranked_ancestors( ranked_ancestors )
+        @ranked_ancestors = ranked_ancestors
       end
 
       def identificationVerificationStatus
@@ -431,38 +453,55 @@ module DarwinCore
       end
 
       def gbif_lifeStage
-        winning_value = winning_annotation_value_for_term( "lifeStage", inat_term: "Life Stage" )
+        winning_value = winning_annotation_value_for_term( "lifeStage" )
         return winning_value if GBIF_LIFE_STAGES.include?( winning_value )
+
         nil
       end
 
       def reproductiveCondition
-        v = winning_annotations_for_term( "reproductiveCondition", inat_term: "Plant Phenology" ).map {|a|
+        v = winning_annotations_for_term( "reproductiveCondition" ).map do | a |
           a.controlled_value.label.downcase
-        }.join( "|" )
+        end.join( "|" )
         v == "cannot be determined" ? nil : v
+      end
+      # rubocop:enable Naming/MethodName
+
+      def otherCatalogueNumbers
+        uuid
       end
 
       def winning_annotations_for_term( term, options = {} )
         return [] if annotations.blank?
-        inat_term = options.delete(:inat_term) || term
+
+        inat_term = ANNOTATION_CONTROLLED_TERM_MAPPING[term.to_sym] || term
         DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
-          joins(:labels).
+          joins( :labels ).
           where( is_value: false, active: true ).
           where( "LOWER(controlled_term_labels.label) = ?", inat_term.downcase ).
           first
         controlled_attribute = DarwinCore::Occurrence.annotation_controlled_attributes[term]
         return [] unless controlled_attribute
-        annotations.select{|a| a.controlled_attribute_id == controlled_attribute.id && a.vote_score >= 0}
+
+        annotations.select {| a | a.controlled_attribute_id == controlled_attribute.id && a.vote_score >= 0 }
       end
 
       def winning_annotation_value_for_term( term, options = {} )
         winning_anno = winning_annotations_for_term( term, options ).first
         return unless winning_anno
+
         winning_anno.controlled_value.label.downcase
       end
 
+      def publishingCountry
+        return unless site&.place&.code
+
+        return unless site.place.admin_level == Place::COUNTRY_LEVEL
+
+        return unless site.place.code.size == 2
+
+        site.place.code.upcase
+      end
     end
   end
-  
 end

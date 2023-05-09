@@ -2,11 +2,11 @@
 class PhotosController < ApplicationController
   before_action :doorkeeper_authorize!, only: [:update],
     if: lambda { authenticate_with_oauth? }
-  before_filter :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
-  before_filter :require_owner, :only => [:update, :destroy, :rotate]
-  before_filter :authenticate_user!, except: [:show],
+  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_action :require_owner, :only => [:update, :destroy, :rotate]
+  before_action :authenticate_user!, except: [:show],
     unless: lambda { authenticated_with_oauth? }
-  before_filter :return_here, :only => [:show, :invite, :inviter, :fix]
+  before_action :return_here, :only => [:show, :invite, :inviter, :fix]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
   
@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
   end
   
   def update
-    if @photo.update_attributes( photo_params( params[:photo] ) )
+    if @photo.update( photo_params( params[:photo] ) )
       respond_to do |format|
         format.html do
           flash[:notice] = t(:updated_photo)
@@ -80,9 +80,9 @@ class PhotosController < ApplicationController
   end
 
   def fix
-    types = %w(FacebookPhoto FlickrPhoto PicasaPhoto)
+    types = %w(FlickrPhoto PicasaPhoto)
     @type = params[:type]
-    @type = 'FacebookPhoto' unless types.include?(@type)
+    @type = "FlickrPhoto" unless types.include?( @type )
     @provider_name = @type.underscore.gsub(/_photo/, '')
     @provider_identity = if @provider_name == 'flickr'
       current_user.has_provider_auth('flickr')
@@ -97,7 +97,7 @@ class PhotosController < ApplicationController
   end
 
   def repair_all
-    @type = params[:type] if %w(FlickrPhoto FacebookPhoto PicasaPhoto).include?(params[:type])
+    @type = params[:type] if %w(FlickrPhoto PicasaPhoto).include?(params[:type])
     if @type.blank?
       respond_to do |format|
         format.json do
@@ -160,10 +160,10 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = LocalPhoto.new(file: params[:file],
-      user: current_user, mobile: is_mobile_app?)
+    @photo = LocalPhoto.new( file: params[:file],
+      user: current_user, mobile: is_mobile_app? )
     respond_to do |format|
-      if @photo.save
+      if !@photo.file.blank? && @photo.save
         @photo.reload
         format.html { redirect_to observations_path }
         format.json do
@@ -179,7 +179,10 @@ class PhotosController < ApplicationController
         end
       else
         format.html { redirect_to observations_path }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.json do
+          errors = @photo.file.blank? ? { errors: "No photo specified" } : @photo.errors
+          render json: errors, status: :unprocessable_entity
+        end
       end
     end
   end

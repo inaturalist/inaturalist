@@ -1,8 +1,8 @@
 class GuideRangesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_guide, :except => [:index, :new, :create, :import]
-  before_filter :only => [:edit, :update, :destroy] do |c|
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :load_guide, :except => [:index, :new, :create, :import]
+  before_action :only => [:edit, :update, :destroy] do |c|
     require_guide_user
   end
 
@@ -67,7 +67,7 @@ class GuideRangesController < ApplicationController
     @guide_range = GuideRange.find(params[:id])
 
     respond_to do |format|
-      if @guide_range.update_attributes(params[:guide_range])
+      if @guide_range.update(params[:guide_range])
         format.html { redirect_to @guide_range, notice: 'Guide range was successfully updated.' }
         format.json { head :no_content }
       else

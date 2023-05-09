@@ -8,11 +8,15 @@ const SHOW_ANNOTATIONS_PANEL = "obs-show/controlled_terms/SHOW_ANNOTATIONS_PANEL
 
 const API_V2_BASE_REQUEST_PARAMS = {
   fields: {
+    excepted_taxon_ids: true,
     label: true,
     multivalued: true,
+    taxon_ids: true,
     values: {
+      blocking: true,
+      excepted_taxon_ids: true,
       label: true,
-      blocking: true
+      taxon_ids: true
     }
   }
 };

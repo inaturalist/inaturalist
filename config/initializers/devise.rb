@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
 require "devise_json_web_token"
 require "devise_application_json_web_token"
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
-Devise.setup do |config|
-  
+Devise.setup do | config |
   rest_auth_site_key         = SiteConfig.rest_auth.REST_AUTH_SITE_KEY
   rest_auth_digest_stretches = SiteConfig.rest_auth.REST_AUTH_DIGEST_STRETCHES
-  
+
   config.secret_key = rest_auth_site_key
-  
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "#{ SiteConfig.site_name } <#{ SiteConfig.noreply_email }>"
+  config.mailer_sender = "#{SiteConfig.site_name} <#{SiteConfig.noreply_email}>"
 
   # Configure the class responsible to send e-mails.
   config.mailer = "DeviseMailer"
@@ -22,7 +23,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -44,12 +45,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -61,7 +62,7 @@ Devise.setup do |config|
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:token]` will
   # enable it only for token authentication.
-  config.http_authenticatable = true
+  config.http_authenticatable = false
 
   # If http headers should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -72,7 +73,7 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  # config.paranoid = true
+  config.paranoid = true
 
   # By default Devise will store the user in session. You can skip storage for
   # :http_auth and :token_auth by adding those symbols to the array below.
@@ -92,7 +93,6 @@ Devise.setup do |config|
   config.stretches = rest_auth_digest_stretches
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "bff9d780a473b0c4c5c7fb431ccbff35eefb9d78481b898b88fba6781f40f1c15d2919397028e03a20b28280396d92cf13f34ad73c7cb94b378ae85c4bc9cb92"
   config.pepper = rest_auth_site_key
 
   # ==> Configuration for :confirmable
@@ -101,14 +101,19 @@ Devise.setup do |config|
   # able to access the website for two days without confirming his account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming his account.
-  config.allow_unconfirmed_access_for = 2.days
+
+  # Disallow unconfirmed access
+  # Note: in spring of 2022 we are gradually requiring email confirmation by
+  # allowing existing users some time to sign in and manually send themselves
+  # a confirmation email. This is managed in User#active_for_authentication?
+  config.allow_unconfirmed_access_for = 0
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed new email is stored in
   # unconfirmed email column, and copied to email column on successful confirmation.
-  # config.reconfirmable = true
-  config.reconfirmable = false
+  config.reconfirmable = true
+  config.send_email_changed_notification = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
@@ -137,7 +142,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
-  
+
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 
@@ -148,7 +153,7 @@ Devise.setup do |config|
   config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  config.unlock_keys = [ :email ]
+  config.unlock_keys = [:email]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -228,11 +233,11 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 
-  config.warden do |manager|
-    manager.strategies.add(:ajwt, Devise::Strategies::ApplicationJsonWebToken)
-    manager.default_strategies(scope: :user).unshift :ajwt
-    manager.strategies.add(:jwt, Devise::Strategies::JsonWebToken)
-    manager.default_strategies(scope: :user).unshift :jwt
+  config.warden do | manager |
+    manager.strategies.add( :ajwt, Devise::Strategies::ApplicationJsonWebToken )
+    manager.default_strategies( scope: :user ).unshift :ajwt
+    manager.strategies.add( :jwt, Devise::Strategies::JsonWebToken )
+    manager.default_strategies( scope: :user ).unshift :jwt
   end
 
   # ==> Mountable engine configurations

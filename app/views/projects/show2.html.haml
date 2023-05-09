@@ -9,8 +9,6 @@
     %meta{ property: "og:image", content: @shareable_image_url }
     %meta{ property: "twitter:image", content: @shareable_image_url }
   %meta{ property: "og:url", content: project_url( @project ) }
-  - unless @fb_admin_ids.blank?
-    %meta{ property: "fb:admins", content: @fb_admin_ids.join( "," ) }
   - unless @project.description.blank?
     - og_description = truncate(strip_tags( @project.description ).gsub( /\s+/, " " ), length: 1000 )
   %meta{ property: "og:description", content: og_description }
@@ -29,7 +27,9 @@
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
         preferred_observations_search_map_type: current_user.preferred_observations_search_map_type,
         blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
-        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
+        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) },
+        sites_admined: current_user.site_admins.pluck(:site_id),
+        testGroups: current_user.test_groups_array
       }
   :javascript
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json.html_safe : "{ }" };

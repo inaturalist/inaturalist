@@ -50,9 +50,7 @@ module Shared::ListsModule
           return redirect_to @list
         end
         @allow_batch_adding = allow_batch_adding(@list, current_user)
-
         ListedTaxon.preload_associations(@listed_taxa, @find_options[:include])
-        @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts ||= get_iconic_taxon_counts(@list, @iconic_taxa, main_list)
         @total_listed_taxa ||= @listed_taxa.count
         @total_observed_taxa ||= @listed_taxa.confirmed.count
@@ -67,6 +65,13 @@ module Shared::ListsModule
             where(:primary_listing => true, :place_id => @list.place_id).
             where("taxon_id IN (?)", non_primary_listed_taxa.map(&:taxon_id))
           @primary_listed_taxa_by_taxon_id = primary_listed_taxa.index_by(&:taxon_id)
+          ListedTaxon.preload_associations( @listed_taxa, {
+            last_observation: [ :user, {
+              taxon: {
+                taxon_names: :place_taxon_names
+              }
+            }]
+          })
         end
 
         case @view
@@ -119,7 +124,7 @@ module Shared::ListsModule
           if path
             render :file => path
           else
-            render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+            render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
           end
         else
           job_id = Rails.cache.read(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
@@ -137,7 +142,7 @@ module Shared::ListsModule
             Rails.cache.write(@list.generate_csv_cache_key(view: @view, user_id: current_user.id), job.id, :expires_in => 1.hour)
           end
           prevent_caching
-          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+          render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
       end
       
@@ -149,7 +154,11 @@ module Shared::ListsModule
         end
         @listed_taxa = @listed_taxa.to_a
         ListedTaxon.preload_associations(@listed_taxa, [
-          { taxon: [ { taxon_names: :place_taxon_names }, { photos: :user }, :taxon_descriptions ]}
+          { taxon: [
+            { taxon_names: :place_taxon_names },
+            { photos: [:user, :flags, :file_prefix, :file_extension] },
+            :taxon_descriptions
+          ]}
         ])
         render :json => {
           :list => @list,
@@ -241,7 +250,7 @@ module Shared::ListsModule
     
     list_attributes = params[:list] || params[:check_list]
     
-    if @list.update_attributes(list_attributes)
+    if @list.update(list_attributes)
       flash[:notice] = t(:list_saved)
       redirect_to @list
     else
@@ -406,7 +415,7 @@ private
     end
   end
   
-  def load_list #before_filter
+  def load_list #before_action
     @list = List.find_by_id(params[:id].to_i)
     @list ||= List.find_by_id(params[:list_id].to_i)
     List.preload_associations(@list, :user)
@@ -426,7 +435,7 @@ private
     list
   end
 
-  def set_iconic_taxa #before_filter
+  def set_iconic_taxa #before_action
     @iconic_taxa = Taxon::ICONIC_TAXA
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
   end
@@ -440,11 +449,15 @@ private
     end
     per_page = 200 if per_page > 200
     find_options = {
-      :page => page,
-      :per_page => per_page,
-      :include => [
+      page: page,
+      per_page: per_page,
+      include: [
         :list, :user, :first_observation, :last_observation,
-        {:taxon => [:iconic_taxon, :photos, { taxon_names: :place_taxon_names }]}
+        { taxon: [
+          :iconic_taxon,
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ] }
       ]
     }
     # This scope uses an eager load which won't load all 2nd order associations (e.g. taxon names), so they'll have to loaded when needed
@@ -568,7 +581,7 @@ private
   end
 
   def set_options_order(find_options)
-    find_options[:order] = case params[:order_by]
+    options_order = case params[:order_by]
     when "name"
       order = params[:order]
       order = "asc" unless %w(asc desc).include?(params[:order])
@@ -581,6 +594,7 @@ private
       # TODO: somehow make the following not cause a filesort...
       "taxa.ancestry || '/' || listed_taxa.taxon_id"
     end
+    find_options[:order] = Arel.sql( options_order )
     find_options
   end
 

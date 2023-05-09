@@ -630,7 +630,7 @@ ul.timeline_observation > li:last-child > .timeline-panel > .timeline-body {
 .scaledimg {
   background-color:white;  
 }
-.media-body > h3 > .taxon > .comname{
+.media-body > h3 > .taxon > .comname {
   display:inline-block;
 }
 .media-body > h3 > .taxon > .othernames {
@@ -660,7 +660,8 @@ h3.dashboard_id{
   line-height:24px;
 }
 
-h3.dashboard_id > .taxon > .comname {
+h3.dashboard_id > .taxon > .comname,
+h3.dashboard_id > .taxon > a > .sciname {
   display: block;
 }
 
@@ -761,6 +762,19 @@ a.icon_container,
       white-space: nowrap;
       margin-left: 10px;
       text-align: right;
+    }
+  }
+}
+
+#flags-table {
+  th, td {
+    padding: 2px;
+    vertical-align: top;
+  }
+  .reason {
+    width: 100%;
+    p:last-child {
+      margin-bottom: 0;
     }
   }
 }

@@ -1,8 +1,8 @@
 class ListedTaxaController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
-  before_filter :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
+  before_action :authenticate_user!, :except => [:show]
+  before_action :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
 
-  SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
+  SHOW_PARTIALS = %w(guide batch_edit_row)
 
   def index
     redirect_to lists_path
@@ -111,18 +111,18 @@ class ListedTaxaController < ApplicationController
   def update
     unless @list.listed_taxa_editable_by?(current_user)
       flash[:error] = "You don't have permission to edit listed taxa on this list"
-      redirect_to :back
+      redirect_back_or_default( @listed_taxon )
       return
     end
     
     listed_taxon = params[:listed_taxon] || {}
 
     respond_to do |format|
-      @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
+      @listed_taxon.update_and_primary(listed_taxon, current_user)
       if @listed_taxon.valid?
         format.html do
           flash[:notice] = t(:listed_taxon_updated)
-          redirect_to :back
+          redirect_back_or_default( @listed_taxon )
         end
         format.json do
           if params[:partial] && SHOW_PARTIALS.include?(params[:partial])
@@ -135,7 +135,7 @@ class ListedTaxaController < ApplicationController
         format.html do
           Rails.logger.debug "[DEBUG] @listed_taxon.errors.full_messages: #{@listed_taxon.errors.full_messages.inspect}"
           flash[:error] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
-          redirect_to :back
+          redirect_back_or_default( @listed_taxon )
         end
         format.json do
           render :status => :unprocessable_entity, :json => @listed_taxon.as_json(:methods => [:errors])

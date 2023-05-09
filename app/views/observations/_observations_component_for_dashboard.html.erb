@@ -48,11 +48,10 @@
     <div class="media-body">
       <h3>
         <% if observation.taxon %>
-          <%= render :partial => 'shared/taxon', 
-                     :locals => {
-                        :taxon => observation.taxon,
-                        :link_url => observation_path(observation),
-                        :include_parens => false} %>
+          <%= render "shared/taxon",
+            taxon: observation.taxon,
+            link_url: observation_path( observation ),
+            include_parens: true %>
         <% elsif !observation.species_guess.blank? %>
           <span class="taxon">
             <%= link_to observation.species_guess, observation_path(observation) %>
@@ -72,9 +71,11 @@
             <% if observation.observed_on -%>
               <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
                 observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
-              <%= link_to observation.observed_on.day, 
-                observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
-              <%= link_to observation.observed_on.year, 
+              <% if observation.coordinates_viewable_by?( current_user ) %>
+                <%= link_to observation.observed_on.day,
+                  observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
+              <% end %>
+              <%= link_to observation.observed_on.year,
                 observations_path( user_id: observation.user.login, on: observation.observed_on.year) %>
             <% else %>
               <%=t :missing_date %>

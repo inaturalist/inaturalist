@@ -1,6 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe UpdateAction do
+  it { is_expected.to belong_to :resource }
+  it { is_expected.to belong_to :notifier }
+  it { is_expected.to belong_to(:resource_owner).class_name "User" }
+
+  it { is_expected.to validate_presence_of :resource }
+  it { is_expected.to validate_presence_of :notifier }
+
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 
@@ -33,7 +40,7 @@ describe UpdateAction do
       def test_preference( preference, &block )
         emailer_spy = spy( Emailer )
         stub_const( "Emailer", emailer_spy )
-        user.update_attributes( "prefers_#{preference}" => false )
+        user.update( "prefers_#{preference}" => false )
         yield( user )
         Delayed::Worker.new.work_off
         UpdateAction.email_updates_to_user( user, 10.minutes.ago, Time.now )

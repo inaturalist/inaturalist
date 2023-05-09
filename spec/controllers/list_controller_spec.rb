@@ -8,7 +8,9 @@ describe ListsController do
       user = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
       sign_in user
       place = make_place_with_geom(user: user)
-      post :create, list: { title: "foo", type: "CheckList"}, taxa: [{ taxon_id: taxon.id}], place: place.id
+      post :create, params: { 
+        list: { title: "foo", type: "CheckList"}, taxa: [{ taxon_id: taxon.id}], place: place.id
+      }
       expect(response).to be_redirect
       list = List.where(place_id: place.id).last
       expect(list).to be_a(CheckList)
@@ -19,7 +21,9 @@ describe ListsController do
       user = User.make!
       sign_in user
       expect( user.lists.count ).to eq 0
-      post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
+      post :create, params: { 
+        list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
+      }
       expect( user.lists.count ).to eq 0
     end
 
@@ -28,7 +32,9 @@ describe ListsController do
       user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       sign_in user
       expect( user.lists.count ).to eq 0
-      post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
+      post :create, params: { 
+        list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
+      }
       expect( user.lists.count ).to eq 1
     end
   end
@@ -38,7 +44,7 @@ describe ListsController do
       p = Project.make!
       u = p.user
       sign_in u
-      delete :destroy, :id => p.project_list.id
+      delete :destroy, params: { id: p.project_list.id }
       expect(List.find_by_project_id(p.id)).not_to be_blank
     end
   end
@@ -53,16 +59,16 @@ describe ListsController do
       lt1 = ListedTaxon.make!
       lt2 = ListedTaxon.make!
       expect {
-        get :compare, :id => lt1.list_id, :with => lt2.list_id
+        get :compare, params: { id: lt1.list_id, with: lt2.list_id }
       }.not_to raise_error
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe "spam" do
     let(:spammer_content) {
       l = List.make!
-      l.user.update_attributes(spammer: true)
+      l.user.update(spammer: true)
       l
     }
     let(:flagged_content) {
@@ -72,12 +78,12 @@ describe ListsController do
     }
 
     it "should render 403 when the owner is a spammer" do
-      get :show, id: spammer_content.id
+      get :show, params: { id: spammer_content.id }
       expect(response.response_code).to eq 403
     end
 
     it "should render 403 when content is flagged as spam" do
-      get :show, id: spammer_content.id
+      get :show, params: { id: spammer_content.id }
       expect(response.response_code).to eq 403
     end
   end

@@ -65,7 +65,7 @@ const Identifications = ( {
             <DateHistogram
               series={series}
               tickFormatBottom={d => moment( d ).format( "MMM D" )}
-              onClick={currentUser && currentUser.id ? d => {
+              onClick={currentUser && currentUser.id ? ( _clickEvent, d ) => {
                 let url = "/identifications?for=others&current=true";
                 const d1 = moment( d.date ).format( "YYYY-MM-DD" );
                 let d2;
@@ -88,7 +88,7 @@ const Identifications = ( {
         </div>
       ) }
       { user && ( data.users_helped || data.users_who_helped ) ? (
-        <div className="flex-row">
+        <div className="flex-row helped-row">
           { data.users_helped && data.users_helped.length > 0 ? (
             <div className="idents-users-helped">
               <h3>

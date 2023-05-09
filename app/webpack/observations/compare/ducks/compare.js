@@ -397,6 +397,7 @@ export function fetchBounds( ) {
     Promise.all( promises ).catch( e => {
       console.log( "[DEBUG] e: ", e );
     } ).then( responses => {
+      if ( typeof ( google ) === "undefined" ) { return; }
       const bounds = new google.maps.LatLngBounds( );
       _.forEach( responses, response => {
         if ( response.total_bounds ) {

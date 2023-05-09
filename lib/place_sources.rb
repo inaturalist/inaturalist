@@ -186,40 +186,25 @@ module PlaceSources
   #
   def self.new_place_from_census_shape(shape, options = {})
     options = options.clone
-    geoplanet_type = nil
     data = shape.respond_to?(:data) ? shape.data : shape.attributes
-    name = options[:name] || data['NAME'] || data['NAME10'] || data['NAMELSAD']
+    name = options[:name] || data["NAME"] || data["NAME10"] || data["NAMELSAD"]
     options[:name] = name
+    state_code = FIPS_STATE_CODES[data["STATEFP"] || data["STATE"]]
     case options[:place_type_name]
     when 'State'
-      geoplanet_query = if FIPS_STATES.values.include?(name)
-        "#{name} State, US"
-        options[:code] ||= FIPS_STATE_CODES[data['STATEFP']]
-      else
-        name
-      end
-      geoplanet_type = "State"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['State']
       options[:admin_level] = Place::STATE_LEVEL
       options[:parent] ||= Place.place_type('Country').where("name LIKE 'United States%'").first
+      options[:code] = state_code
     when 'County'
-      state = FIPS_STATE_CODES[data['STATEFP'] || data['STATE']]
-      geoplanet_query = "#{name} County, #{state}, US"
-      geoplanet_type = "County"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['County']
       options[:admin_level] = Place::COUNTY_LEVEL
       options[:code] ||= data['COUNTY']
-      options[:parent] ||= Place.place_type('State').where(:code => state, :name => FIPS_STATES[data['STATEFP'] || data['STATE']]).first
-    when 'place'
-      geoplanet_query = "#{name}, #{FIPS_STATE_CODES[data['STATEFP']]}, US"
-      geoplanet_type = "Town,City,Local+Administrative+Area"
-    else
-      geoplanet_query = "#{name}, US"
+      options[:parent] ||= Place.place_type('State').where(
+        code: state_code,
+        name: FIPS_STATES[data['STATEFP'] || data['STATE']]
+      ).first
     end
-    options = {
-      :geoplanet_query => geoplanet_query, 
-      :geoplanet_options => {:type => geoplanet_type}
-    }.merge(options)
     
     # The county files often contain a lot of weird county-like stuff that we 
     # probably don't want...
@@ -254,24 +239,8 @@ module PlaceSources
   #
   def self.new_place_from_esri_world_shape(shape, options = {})
     data = shape.respond_to?(:data) ? shape.data : shape.attributes
-    geoplanet_query = "#{data['ADMIN_NAME']}, #{data['FIPS_CNTRY']}"
-    options = {
-      :geoplanet_query => geoplanet_query,
-      :geoplanet_options => {
-        :type => "Country,State,Region,County,Prefecture"
-      }
-    }.merge(options)
-
     place = Place.new_from_shape(shape, options)
     place.source_identifier = data['FIPS_ADMIN']
-    
-    # If GeoPlanet does something stupid like thinking Chugoku Prefecture, 
-    # Japan is actually a country named China, ditch it.
-    if !options[:skip_woeid] && place.geoplanet_response && 
-        place.geoplanet_response.country != data['CNTRY_NAME']
-      place = nil
-    end
-    
     place
   end
   
@@ -288,9 +257,7 @@ module PlaceSources
   def self.new_place_from_cpad_units_fee(shape, options = {})
     data = shape.respond_to?(:data) ? shape.data : shape.attributes
     return nil if ['XA', 'No Access'].include?(data['Access'])
-    
-    # options = {:geoplanet_query => geoplanet_query}.merge(options)
-    place = Place.new_from_shape(shape, options.merge(:skip_woeid => true))
+    place = Place.new_from_shape(shape, options)
     
     name = data['Unit_Name'] || data['UNIT_NAME']
     name.gsub!(/SP$/, 'State Park')
@@ -307,28 +274,13 @@ module PlaceSources
     place.source_name = name
     place.source_identifier = unit_id.to_i.to_s if unit_id.to_i != 0
     
-    puts "[INFO] \t\tTrying to find a unique WOEID from '#{name}, US'..."
-    ydn_places = GeoPlanet::Place.search("#{name}, US", :count => 10, 
-      :type => "Land+Feature")
-    if ydn_places
-      ydn_place = ydn_places.find do |ydnp|
-        ydnp.name == data['Label_Name'] && ydnp.admin1 == 'California'
-      end
-      if ydn_place
-        puts "[INFO] \t\tFound unique GeoPlanet place: #{ydn_place.name}, #{ydn_place.woeid}, #{ydn_place.placetype}, #{ydn_place.admin2}, #{ydn_place.admin1}, #{ydn_place.country}"
-        place.woeid = ydn_place.woeid
-      end
-    end
-    
-    # If still no woeid, try to find a parent anyway by looking for the
+    # Try to find a parent anyway by looking for the
     # smallest place whose bounding box contains this one's.  This also
     # ignores places with iNat place types, like the "Open Space" type used
     # for CPAD places
-    unless place.woeid
-      parent = Place.containing_bbox(place.swlat, place.swlng, place.nelat, 
-        place.nelng).where("place_type < 100").order("bbox_area ASC").first
-      place.parent = parent if parent
-    end
+    parent = Place.containing_bbox(place.swlat, place.swlng, place.nelat,
+      place.nelng).where("place_type < 100").order("bbox_area ASC").first
+    place.parent = parent if parent
     
     place.place_type = Place::PLACE_TYPE_CODES['Open Space']
     

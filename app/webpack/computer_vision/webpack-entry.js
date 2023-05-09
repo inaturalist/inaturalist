@@ -1,12 +1,22 @@
-import "@babel/polyfill";
+import _ from "lodash";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore
+} from "redux";
 import React from "react";
+import moment from "moment";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import computerVisionDemoReducer from "./ducks/computer_vision_demo";
 import ComputerVisionDemo from "./containers/computer_vision_demo";
+
+moment.locale( I18n.locale );
 
 const rootReducer = combineReducers( {
   computerVisionDemo: computerVisionDemoReducer
@@ -14,13 +24,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 render(

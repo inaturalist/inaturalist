@@ -1,4 +1,4 @@
-class SavedLocation < ActiveRecord::Base
+class SavedLocation < ApplicationRecord
   belongs_to :user, inverse_of: :saved_locations
   validates :title, :latitude, :longitude, :user, presence: true
   validates :title, uniqueness: { scope: :user_id }

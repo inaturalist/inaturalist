@@ -45,7 +45,7 @@ class Translators extends React.Component {
     return (
       <div className="Translators">
         <h3>
-          <a name="growth" href="#translators">
+          <a name="translators" href="#translators">
             <span>{ I18n.t( "views.stats.year.translators_title" ) }</span>
           </a>
         </h3>
@@ -63,8 +63,8 @@ class Translators extends React.Component {
                 iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
                 android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
                 seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/master/config/locales/CONTRIBUTORS.md'>",
-                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/master/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
+                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
+                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
               } )
               : I18n.t( "views.stats.year.translators_desc", {
                 x_languages: I18n.t( "x_languages", {
@@ -78,8 +78,8 @@ class Translators extends React.Component {
                 iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
                 android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
                 seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/master/config/locales/CONTRIBUTORS.md'>",
-                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/master/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
+                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
+                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
               } )
           }}
         />
@@ -97,7 +97,10 @@ class Translators extends React.Component {
             <tr>
               <th>{ I18n.t( "name" ) }</th>
               { ["website", "mobile", "seek", "total"].map( a => (
-                <th className="number" key={`translators-header-${a}`}>
+                <th
+                  className={`number ${a === "total" ? "" : "hidden-xs hidden-sm"}`}
+                  key={`translators-header-${a}`}
+                >
                   <button
                     type="button"
                     onClick={( ) => this.setState( {
@@ -129,7 +132,7 @@ class Translators extends React.Component {
                     { d.name || d.username}
                   </a>
                 </td>
-                <td className="number">
+                <td className="number hidden-xs hidden-sm">
                   <div
                     className="bar"
                     style={{ width: `${100 * scale( d.words_web || 0 )}%` }}
@@ -137,7 +140,7 @@ class Translators extends React.Component {
                     { I18n.toNumber( d.words_web || 0, { precision: 0 } ) }
                   </div>
                 </td>
-                <td className="number">
+                <td className="number hidden-xs hidden-sm">
                   <div
                     className="bar"
                     style={{ width: `${100 * scale( d.words_mobile || 0 )}%` }}
@@ -145,7 +148,7 @@ class Translators extends React.Component {
                     { I18n.toNumber( d.words_mobile || 0, { precision: 0 } ) }
                   </div>
                 </td>
-                <td className="number">
+                <td className="number hidden-xs hidden-sm">
                   <div
                     className="bar"
                     style={{ width: `${100 * scale( d.words_seek || 0 )}%` }}
@@ -188,7 +191,9 @@ class Translators extends React.Component {
               } );
             }}
           >
-            { I18n.t( "more" ) }
+            { I18n.t( "more__context_translators_caps", {
+              defaultValue: I18n.t( "more_caps", { defaultValue: I18n.t( "more" ) } )
+            } ) }
           </button>
         ) }
       </div>

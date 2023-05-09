@@ -6,7 +6,7 @@ import { urlForUser, defaultObservationParams } from "../../shared/util";
 function mapStateToProps( state ) {
   const leader = state.leaders.topObserver;
   const props = {
-    label: I18n.t( "top_observer" ),
+    label: I18n.t( "top_observer_caps" ),
     noContent: true,
     iconClassName: "icon-person",
     valueIconClassName: "fa fa-binoculars",

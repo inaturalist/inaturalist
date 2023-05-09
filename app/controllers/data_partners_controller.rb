@@ -1,6 +1,6 @@
 class DataPartnersController < ApplicationController
-  before_filter :admin_required
-  before_filter :load_record, only: %w(show edit update destroy)
+  before_action :admin_required
+  before_action :load_record, only: %w(show edit update destroy)
 
   layout "bootstrap-container"
 

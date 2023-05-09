@@ -1,6 +1,6 @@
 class LifelistsController < ApplicationController
 
-  before_filter :load_user, only: [:by_login]
+  before_action :load_user, only: [:by_login]
 
   def by_login
     if params[:place_id]

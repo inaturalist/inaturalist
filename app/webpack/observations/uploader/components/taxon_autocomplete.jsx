@@ -182,13 +182,37 @@ class TaxonAutocomplete extends React.Component {
       const isVisionResults = items[0] && items[0].isVisionResult;
       let commonAncestorCategoryShown = false;
       let suggestionsCategoryShown = false;
+      let experimantalWarningShown = false;
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
+          if ( item.isExperimental && !experimantalWarningShown ) {
+            ul.append( `<li class='non-option warning'>Experimental: ${item.isExperimental}</li>` );
+            experimantalWarningShown = true;
+          }
           if ( item.isCommonAncestor ) {
-            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-              rank: I18n.t( `ranks_lowercase_${_.snakeCase( item.rank )}`, { defaultValue: item.rank } ),
-              gender: item.rank
+            const snakeCaseRank = _.snakeCase( item.rank );
+            // Note: given the way we're doing fallbacks as of this writing on
+            // 2021-08-10, `defaultValue` only kicks in when the key doesn't
+            // exist in the current locale or any of the fallbacks... so if
+            // there's an English translation, that will be used instead of
+            // `defaultValue`. Here I'm achieving the desired behavior
+            // manually, but this is a problem with our fallback system, b/c
+            // this is *not* how defaultValue is supposed to work.
+            // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
+            // I18n.t( "were_pretty_sure_this_is_in_the_family" )
+            // I18n.t( "were_pretty_sure_this_is_in_the_order" )
+            const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
+            const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+              rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
+              gender: snakeCaseRank
             } );
+            const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
+              defaultValue: labelInLocaleFallback
+            } );
+            let label = labelInLocale;
+            if ( I18n.locale !== "en" && label === labelInEnglish ) {
+              label = labelInLocaleFallback;
+            }
             ul.append( `<li class='category header-category non-option'>${label}</li>` );
             commonAncestorCategoryShown = true;
           } else if ( !suggestionsCategoryShown ) {
@@ -296,8 +320,10 @@ class TaxonAutocomplete extends React.Component {
   returnVisionResults( response, callback ) {
     let { results } = response;
     const { viewNotNearby } = this.state;
-    const nearbyResults = _.filter( response.results,
-      r => r.frequency_score && r.frequency_score > 0 );
+    const nearbyResults = _.filter(
+      response.results,
+      r => r.frequency_score && r.frequency_score > 0
+    );
     this.setState( {
       // eslint-disable-next-line react/no-unused-state
       numSuggested: response.results.length,
@@ -312,12 +338,14 @@ class TaxonAutocomplete extends React.Component {
       taxon.isVisionResult = true;
       taxon.visionScore = r.vision_score;
       taxon.frequencyScore = r.frequency_score;
+      taxon.isExperimental = response.experimental;
       return taxon;
     } );
     if ( response.common_ancestor ) {
       const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
       taxon.isVisionResult = true;
       taxon.isCommonAncestor = true;
+      taxon.isExperimental = response.experimental;
       visionTaxa.unshift( taxon );
     }
     if ( visionTaxa.length === 0 ) {
@@ -418,6 +446,12 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
+      const viewerIsAdmin = config.currentUser && config.currentUser.roles
+        && config.currentUser.roles.indexOf( "admin" ) >= 0;
+      if ( viewerIsAdmin && config.visionThreshold ) {
+        baseParams.threshold = config.visionThreshold;
+        baseParams.threshold_type = config.visionThresholdType;
+      }
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
           .then( r => {
@@ -433,10 +467,8 @@ class TaxonAutocomplete extends React.Component {
           observationID = observationUUID;
         }
         const params = Object.assign( baseParams, { id: observationID } );
-        this.fetchingVision = true;
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
-          this.fetchingVision = false;
           this.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for observation", e] );

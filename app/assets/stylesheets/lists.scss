@@ -339,19 +339,19 @@ a.stat.total .remainder .label {
    left: -38px;
    top: 33px;
   }
-  
+
   .life-list-user-icon {
    border-radius: 50%;
    margin: 15px 0px 15px 15px;
    width: 103.57px;
    vertical-align: middle;
   }
-  
-  .btn-inat, .btn-success:active, .btn-success:visited {
-   background-color: #74ac00 !important;
-   border-color: #74ac00 !important;
-   font-size: 14pt !important;
-   letter-spacing: 0.6pt !important;
-   font-family: 'Whitney Semibold' !important;
+
+  .btn-inat,
+  .btn-success:active,
+  .btn-success:visited {
+    font-size: 14pt !important;
+    letter-spacing: 0.6pt !important;
+    font-weight: bold;
   }
 }

@@ -12,8 +12,6 @@
     </style>
 - content_for(:extrahead) do
   %meta{:content => "#{@place.display_name}", :property => "og:title"}/
-  - if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank?
-    %meta{:content => CONFIG.facebook.admin_ids.join(','), :property => "fb:admins"}
   %meta{:content => "#{t(:learn_about_the_species_live_in) + "#{@place.display_name}"}!", :name => "description", :property => "og:description"}
   - if @site && @site.shareable_image?
     %meta{ content: ( @shareable_image_url = @site.shareable_image.url ), property: "og:image" }
@@ -24,7 +22,7 @@
   :javascript
     var PLACE = #{json_escape @place.to_json.html_safe},
         SHOW_PLACE_GEOMETRY = true,
-        WIKIPEDIA_DESCRIPTION_URL = #{url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe},
+        WIKIPEDIA_DESCRIPTION_URL = #{places_wikipedia_url( @place.wikipedia_name ).inspect.html_safe},
         FLICKR_API_KEY = #{CONFIG.flickr.key.inspect.html_safe},
         NEARBY_PLACES = #{json_escape @nearby_places.to_json.html_safe},
         INSIDE_PLACES = #{json_escape @inside_places.to_json.html_safe}
@@ -62,6 +60,7 @@
   #metalinks.meta.right
     :ruby
       pieces = []
+      pieces << link_to(t(:flag_this_place), new_place_flag_path(@place), :id => "flag_this", :rel => "nofollow")
       pieces << link_to(t(:embed_place_widget), place_widget_path(@place.id), :rel => "nofollow") if @place.check_list
       pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     = raw pieces.join(' | ')
@@ -129,7 +128,8 @@
   - unless @projects.blank?
     #projectstab
       .clear
-        %h3= t(:projects_in_x, :x => @place.name)
+        - place_name = @place.name.parameterize.blank? ? @place.name : t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
+        %h3= t( :projects_from_place, place: place_name, vow_or_con: place_name[0].downcase )
         = render :partial => 'projects/project', :collection => @projects
       = link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore"
   - if @show_leaderboard

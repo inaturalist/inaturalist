@@ -51,6 +51,10 @@
         %h2=t :apply_curator
         = form_for :application, url: curator_applications_path, builder: BootstrapFormBuilder do |f|
           - [:explanation, :taxonomy_examples, :name_examples, :moderation_examples].each_with_index do |a,i|
+            / t :curator_application_fields_explanation_html
+            / t :curator_application_fields_taxonomy_examples_html
+            / t :curator_application_fields_name_examples_html
+            / t :curator_application_fields_moderation_examples_html
             = f.text_area a, value: @application[a], label: t( "curator_application_fields_#{a}_html" ), style: "min-height: 100px", required: i == 0, minlength: i == 0 ? CuratorApplicationsController::MIN_EXPLANATION_LENGTH : nil
           = f.submit t(:apply_curator), class: "btn btn-primary"
       - else

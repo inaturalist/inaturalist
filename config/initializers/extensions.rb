@@ -10,7 +10,7 @@ class Hash
           [ k, v.force_utf8 ]
         elsif v.respond_to?(:to_utf8)
           [ k, v.to_utf8 ]
-        elsif v.respond_to?(:encoding)
+        elsif v.respond_to?(:encoding) && !v.frozen?
           v.force_encoding("UTF-8")
           # remove any invalid characters
           [ k, v.encode("UTF-8", invalid: :replace, undef: :replace, replace: "") ]

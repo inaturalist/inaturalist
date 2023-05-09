@@ -554,8 +554,14 @@ a.UserImage,
     }
   }
   .edit-button {
+    display: flex;
+    justify-content: flex-end;
     .btn-group {
-      float: right;
+      display: flex;
+      a {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
       .dropdown-menu > li > a {
         padding: 3px 10px;
       }
@@ -1057,7 +1063,7 @@ time {
 }
 
 .QualityMetrics {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding-right: 20px;
   .grade {
     margin: 15px 0px 25px;
@@ -1139,28 +1145,29 @@ time {
       }
     }
     .labels {
-      & > div {
-        display: inline-block;
-        width: 115px;
-        margin-top: 5px;
-      }
+      position: relative;
+      display: block;
+      margin-top: 5px;
+      text-align: center;
       .active {
         font-weight: 600;
       }
       .casual {
-        float: left;
-        text-align: left;
+        top: 0;
+        position: absolute;
+        inset-inline-start: 0;
       }
       .research {
-        float: right;
-        text-align: right;
+        top: 0;
+        position: absolute;
+        inset-inline-end: 0;
       }
     }
   }
   .info {
     margin-top: 35px;
     font-size: 18px;
-    line-height: 23px;
+    line-height: 24px;
   }
   ul.remaining {
     margin-top: 30px;
@@ -2113,11 +2120,9 @@ time {
     display: block;
     margin-top: 25px;
     .application {
-      .icon {
+      img {
+        max-height: 14px;
         margin-right: 5px;
-        img {
-          border: 1px solid $border-grey;
-        }
       }
       .name {
         vertical-align: middle;

@@ -187,7 +187,7 @@ class Suggestions extends React.Component {
     if ( query.place && query.place.ancestors ) {
       defaultPlaces = query.place.ancestors;
     }
-    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 0 ) >= 0 );
+    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 10 ) >= 0 );
     let title = I18n.t( "no_suggestions_available" );
     if ( loading ) {
       title = I18n.t( "suggestions" );
@@ -212,7 +212,7 @@ class Suggestions extends React.Component {
     }
     return (
       <div className="Suggestions">
-        <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
+        <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : ""}`}>
           <div className="suggestions-list" tabIndex="-1">
             <div className="suggestions-inner">
               <ChooserPopover
@@ -221,17 +221,17 @@ class Suggestions extends React.Component {
                 className="pull-right"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
-                choices={["default", "taxonomy"]}
-                choiceLabels={{ default: "default_" }}
+                choices={["default", "taxonomy", "sciname"]}
+                choiceLabels={{ default: "default_", sciname: "scientific_name" }}
                 defaultChoice="default"
                 preIconClass={false}
                 postIconClass="fa fa-angle-down"
                 hideClear
                 setChoice={orderBy => {
-                  setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
+                  setQuery( { ...query, order_by: orderBy } );
                 }}
                 clearChoice={( ) => {
-                  setQuery( Object.assign( { }, query, { order_by: null } ) );
+                  setQuery( { ...query, order_by: null } );
                 }}
               />
               <div className="column-header">
@@ -275,6 +275,7 @@ class Suggestions extends React.Component {
                 { query.source === "visual" ? null : (
                   <PlaceChooserPopover
                     container={$( ".ObservationModal" ).get( 0 )}
+                    config={config}
                     label={I18n.t( "place" )}
                     place={query.place}
                     withBoundaries
@@ -308,7 +309,7 @@ class Suggestions extends React.Component {
                   >
                     { comprehensiveList.title }
                     { " " }
-                    { comprehensiveList.source && (
+                    { comprehensiveList.source && comprehensiveList.source.in_text && (
                       <span
                         dangerouslySetInnerHTML={{
                           __html: `(${
@@ -366,14 +367,14 @@ class Suggestions extends React.Component {
                   >
                     <i className="fa fa-chevron-circle-left" />
                     { " " }
-                    { I18n.t( "prev" ) }
+                    { I18n.t( "previous_taxon_short" ) }
                   </Button>
                   <Button
                     disabled={nextTaxon === null}
                     onClick={( ) => setDetailTaxon( nextTaxon )}
                     className="next"
                   >
-                    { I18n.t( "next" ) }
+                    { I18n.t( "next_taxon_short" ) }
                     { " " }
                     <i className="fa fa-chevron-circle-right" />
                   </Button>

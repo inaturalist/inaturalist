@@ -1,9 +1,9 @@
 :ruby
   if @taxon
-    @taxon.html = render( partial: "taxa/chooser.html.erb", object: @taxon )
+    @taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: @taxon )
   end
   @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-    taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
+    taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon )
     taxon
   end
   if @user
@@ -38,7 +38,7 @@
     $( document ).ready( function() {      
       $( "#filters_user_id" ).chooser( {
         queryParam: "q",
-        collectionUrl: "/people/search.json",
+        collectionUrl: $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ) + "/search?sources=users",
         resourceUrl: "/people/{{id}}.json",
         chosen: user,
         defaultSources: defaultUsers
