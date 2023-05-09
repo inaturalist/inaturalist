@@ -1435,16 +1435,16 @@ en:
     Fails to demonstrate appropriate behavior themselves.
   # Message shown when the viewer is not yet elligible to apply to become a
   # curator
-  curator_application_inelligible: |
+  curator_application_inelligible2: |
     In order to apply to be a site curator you must have had an account for 60
-    days or more and have added 100 improving identifications to anyone's
-    observations, including your own (you've added %{num_idents}). When you've
-    met both of those requirements, return here and you'll be able to submit the
-    application.
-  curator_application_inelligible_error: |
+    days or more, you must have added at least 5 flags, and you must have
+    added 100 improving identifications to anyone's observations, including
+    your own (you've added %{num_idents}). When you've met those
+    requirements, return here and you'll be able to submit the application.
+  curator_application_inelligible_error2: |
     In order to apply to be a site curator you must have an account for 60
-    days or more and have added 100 improving identifications to anyone's
-    observations, including your own.
+    days or more, added at least 5 flags, and added 100 improving
+    identifications to anyone's observations, including your own.
   # Message shown when a curator application has been succesfully submitted
   curator_application_success: Curator application submitted
   # Header
@@ -1516,6 +1516,9 @@ en:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     You have been adding identifications and/or observations for a few months
     and intend to continue.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    You have demonstrated that you understand the curation process by adding a
+    few flags.
   # A requirement for becoming a curator; part of a list, so you might imagine
   # it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
