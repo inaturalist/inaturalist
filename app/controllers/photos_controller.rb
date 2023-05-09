@@ -80,9 +80,9 @@ class PhotosController < ApplicationController
   end
 
   def fix
-    types = %w(FacebookPhoto FlickrPhoto PicasaPhoto)
+    types = %w(FlickrPhoto PicasaPhoto)
     @type = params[:type]
-    @type = 'FacebookPhoto' unless types.include?(@type)
+    @type = "FlickrPhoto" unless types.include?( @type )
     @provider_name = @type.underscore.gsub(/_photo/, '')
     @provider_identity = if @provider_name == 'flickr'
       current_user.has_provider_auth('flickr')
@@ -97,7 +97,7 @@ class PhotosController < ApplicationController
   end
 
   def repair_all
-    @type = params[:type] if %w(FlickrPhoto FacebookPhoto PicasaPhoto).include?(params[:type])
+    @type = params[:type] if %w(FlickrPhoto PicasaPhoto).include?(params[:type])
     if @type.blank?
       respond_to do |format|
         format.json do

@@ -32,9 +32,6 @@
     <% end -%>
     <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>
-    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
-    <% end %>
     <% if !@headless && @site && !@site.ios_app_id.blank? -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
