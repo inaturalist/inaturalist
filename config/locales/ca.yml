@@ -1038,7 +1038,6 @@ ca:
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Connecteu el Flickr novament per a autoritzar els permesos d’escriptura
-  connecting_to_facebook: "Connectant-se a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecteu el vostre compte de %{site_name} amb comptes en altres llocs permetrà que entreu a %{site_name} amb les dades d'aquests llocs."
   cannot_be_changed_during_a_content_freeze: No es pot canviar mentre el contingut està congelat
   conservation_status: Estat de conservació
@@ -1745,13 +1744,6 @@ ca:
   extra_properties: Propietats extres
   evidence_of_organism: Evidència d'organisme
   facebook: Facebook
-  facebook_account_information: Informació del vostre compte de Facebook
-  facebook_account_not_linked: "L'usuari %{user} no té un enllaç a un compte de facebook, per tant %{site_name} no té permís per accedir a aquesta foto."
-  facebook_access_token_expired: "L'accés ha caducat. %{user} ha de tornar a enllaçar amb el seu compte de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necessita la confirmació del propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
-  facebook_options: Opcions de Facebook
-  facebook_photo_import_disabled_notice: |
-    A partir de novembre de 2020 Facebook ens demana verificar que realment necessitem accedir a les fotos, però no hem estat capaços de completar el procés a causa de problemes amb el sistema de verificació de Facebook. Com a resultat, no podem donar suport a la importació de fotografies de Facebook.
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
@@ -1916,7 +1908,6 @@ ca:
   frequency: Freqüència
   from_a_place: d'un lloc
   from_eol_collection: De la col·lecció EOL
-  from_flickr_facebook_etc: Des de Flickr, Facebook, etc.
   from_list: De la llista
   from_photos: De fotos
   from_place: Del lloc
@@ -2377,14 +2368,8 @@ ca:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Enllaç al codi d'autorització
-  link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
   link_your_google_account: Vinculeu el compte de Google
-  linked_facebook: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Facebook."
-  linked_facebook_automaticaly: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Facebook, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Facebook. Sembla raonable que, si utilitzeu Facebook voldreu poder importar fotos de Facebook, és així?"
-  linked_facebook_description: "Mantenir el vostre compte d’%{site_name} vinculat al compte de Facebook us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Facebook en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Facebook i el voleu vincular a %{site_name}."
-  linked_facebook_howto: "Per connectar Facebook amb %{site_name}, feu clic a l’enllaç de la dreta i inicieu sessió a facebook.com."
-  linked_facebook_password: "Mai no us demanarem la contrasenya de Facebook (però Facebook podria demanar-vos-la; verifique que l’adreça on us redirigeix el botó és facebook.com). Tampoc no canviarem les vostres dades de Facebook, tret que ho sol·liciteu."
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
@@ -2940,7 +2925,6 @@ ca:
   not_found: No trobat
   #Filter for observations not in a particular place
   not_in_place: No està al lloc
-  not_linked_facebook: "El vostre compte a %{site_name} no està vinculat amb  Facebook."
   not_linked_flickr: "El vostre compte a %{site_name} no està vinculat amb Flickr"
   not_on_this_list: No sou en aquesta llista.
   not_recorded: No enregistrat
@@ -3204,7 +3188,7 @@ ca:
   options: Opcions
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
   orange: taronja
@@ -4584,7 +4568,6 @@ ca:
   tagging: 'Etiquetant...'
   tags: Etiquetes
   tags_are_a_way: 'Les etiquetes són paraules clau que podeu afegir a les observacions perquè sigui més fàcil trobar-les.'
-  take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   target_list_alert: Esteu segur que heu intentat observar totes les espècies incloses a la vostra llista d'objectius? Recordeu que qualsevol cosa que estigui en aquesta llista i que no hagueu observat s’interpretarà com una absència, de manera que és molt important que la vostra llista de objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar.
   target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius que no hagueu observat en el radi i la durada del viatge s’interpretarà com una absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una espècie a la vostra llista de destinataris o a totes les espècies inclosa en un grup de la vostra llista d'objectius, elimineu-la.
@@ -5356,10 +5339,6 @@ ca:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
-  we_also_support: |
-    També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Fotografies de Google</a> i
-    <a href="http://facebook.com">Facebook</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
   we_couldnt_find_a_user_with_that_activation_code: "No hem trobat cap usuari amb aquest codi d'activació. Pot ser que el compte ja s’hagi activat; proveu d’entrar al sistema."
