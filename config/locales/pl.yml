@@ -1077,7 +1077,6 @@ pl:
   connected_accounts_titlecase: Połączone konta
   connecting_flickr: "Łączenie z Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Połącz się ponownie z Flickr, aby autoryzować uprawnienia do zapisu
-  connecting_to_facebook: "Łączenie z Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Połączenie konta %{site_name} z kontami na innych stronach pozwoli ci na logowanie do %{site_name}, używając danych logowania z tych stron."
   conservation_status: Status ochronny
   conservation_status_created: Status ochrony utworzony
@@ -1596,11 +1595,6 @@ pl:
   extra_properties: Dodatkowe właściwości
   evidence_of_organism: Ślad organizmu
   facebook: Facebook
-  facebook_account_information: Informacja o Twoim koncie na Facebooku
-  facebook_account_not_linked: "użytkownik %{user} nie ma już połączonego konta z kontem na Facebooku, dlatego %{site_name} nie ma zgody na dostęp do zdjęcia"
-  facebook_access_token_expired: "Token wygasł. Użytkownik %{user} musi ponownie połączyć konto z kontem na Facebooku."
-  facebook_needs_the_owner_of_that_photo_to: Facebook oczekuje ponownego połączenia z %{site_name_short} od właściciela tego zdjęcia.
-  facebook_options: Opcje Facebooka
   failed_to_find_your_location: Nie udało się odnaleźć twojej lokalizacji.
   failed_to_repair_photo: "Nie udało się naprawić zdjęcia: %{errors}"
   failed_to_save_record: "Nie udało się zapisać. Proszę spróbować ponownie później."
@@ -1752,7 +1746,6 @@ pl:
   frequency: Częstotliwość
   from_a_place: z miejsca
   from_eol_collection: Z kolekcji EOL
-  from_flickr_facebook_etc: Z Flickra, Facebooka itd.
   from_list: Z listy
   from_photos: Ze zdjęć
   from_place: Z miejsca
@@ -2136,12 +2129,8 @@ pl:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link do kodu autoryzacyjnego
-  link_your_facebook_account: Połącz swoje konto Facebook
   link_your_flickr_account: Połącz swoje konto Flickr
   link_your_google_account: Połącz swoje konto Google
-  linked_facebook: "Twoje konto na %{site_name} jest obecnie połączone z twoim kontem na Facebooku."
-  linked_facebook_howto: "Aby połączyć konto na Facebooku z %{site_name}, kliknij łącze po prawej i zaloguj się do Facebooka."
-  linked_facebook_password: "Nigdy nie będziemy cię prosić o twoje hasło do Facebooka (ale Facebook może; upewnij się jednak, czy guzik, który chcesz nacisnąć, łączy cię z Facebook.com). Nie będziemy też zmieniać twoich danych na Facebooku, chyba że będziesz tego chcieć."
   linked_flickr: "Twoje konto na %{site_name} jest obecnie połączone z twoim kontem na Flickrze."
   linked_flickr_password_html: "<strong>Nigdy nie będziemy cię prosić o twoje hasło do Flickra</strong> (ale Flickr może; upewnij się jednak, czy guzik, który chcesz nacisnąć, łączy cię z Flickr.com)."
   #Text inserted into a textarea when the link button is clicked but no text was selected
@@ -2591,7 +2580,6 @@ pl:
   not_findig_what_you_want: Nie znalazłeś tego, czego chciałeś?
   not_finding_place_you_want?: Nie znalazłeś lokalizacji, której szukałeś?
   not_found: Nie znaleziono
-  not_linked_facebook: "Twoje konto %{site_name} nie jest połączone z kontem na Facebooku"
   not_linked_flickr: "Twoje konto %{site_name} nie jest połączone z kontem na Flickrze"
   not_on_this_list: Nie na tej liście.
   not_resolved: Nie rozstrzygnięto
@@ -2754,7 +2742,7 @@ pl:
   options: Opcje
   or: lub
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: LUB
   orange: pomarańczowy
   order: Kolejność
@@ -3694,7 +3682,6 @@ pl:
   sync: Zsynchronizować?
   tagging: 'Tagowanie...'
   tags: Tagi
-  take_me_facebook: Tak, zabierz mnie do Facebooka!
   take_me_flickr!: Tak, zabierz mnie do Flickr!
   taxa: Taksony
   taxa_info: Informacje o Taksonach
