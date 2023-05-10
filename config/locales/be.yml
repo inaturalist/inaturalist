@@ -1137,7 +1137,6 @@ be:
   connected_accounts_titlecase: Падлучаныя Ўліковы запісы
   connecting_flickr: "Далучэнне да Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Далучыцца да Flickr яшчэ раз, каб аўтарызаваць дазвол на запіс
-  connecting_to_facebook: "Далучэнне да Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Падлучэнне вашага ўліковага запісу %{site_name} да ўліковых запісаў на іншых сайтах дазволіць вам уваходзіць на %{site_name} выкарыстоўваючы ўліковыя дадзеныя з гэтых сайтаў."
   cannot_be_changed_during_a_content_freeze: Не можа быць зменена падчас замарожвання зместу
   conservation_status: Прыродаахоўны статус
@@ -1820,13 +1819,6 @@ be:
   extra_properties: Дадатковыя ўласцівасці
   evidence_of_organism: Сведчанне існавання арганізму
   facebook: Facebook
-  facebook_account_information: Інфармацыя пра ваш уліковы запіс Facebook
-  facebook_account_not_linked: "%{user} больш не мае далучанага ўліковага запісу facebook, таму %{site_name} не мае дазволу на доступ да гэтага фота."
-  facebook_access_token_expired: "Тэрмін дзеяння токену доступу скончыўся. %{user} павінен перападлучыць свой уліковы запіс Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook патрабуе, каб уласнік гэтага фота зноў пацеврдзіў сваеre падлучэння да %{site_name_short}.
-  facebook_options: Наладжванні Facebook
-  facebook_photo_import_disabled_notice: |
-    У лістападзе 2020 года Facebook запатрабаваў ад нас пацверджваць, што нам сапараўдны патрэбны доступ да фатаграфій, і мы не змаглі скончыць працэс з-за праблем з сістэмай верыфікацыі Facebook. У выніку мы не можам надалей падтрымліваць імпарт фатаграфій з Facebook.
   failed_to_find_your_location: Не атрымалася знайсці ваш уліковы запіс
   failed_to_repair_photo: "Не атрымалася аднавіць фота: %{errors}"
   failed_to_save_record: "Не атрымалася захаваць запіс. Калі ласка, паспрабуйце зноў пазней."
@@ -1990,7 +1982,6 @@ be:
   frequency: Частата
   from_a_place: з месца
   from_eol_collection: З калекцыі EOL
-  from_flickr_facebook_etc: З Flickr, Facebook і г.д.
   from_list: З спісу
   from_photos: З фота
   from_place: З месца
@@ -2421,14 +2412,8 @@ be:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Спасылка на код аўтарызацыі
-  link_your_facebook_account: Звязаць свой уліковы запіс Facebook
   link_your_flickr_account: Звязаць свой уліковы запіс Flickr
   link_your_google_account: Звязаць свой уліковы запіс Google
-  linked_facebook: "Ваш уліковы запіс %{site_name} зараз звязаны з вашым уліковым запісам Facebook."
-  linked_facebook_automaticaly: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце ў %{site_name} праз Facebook, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Facebook. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Facebook, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
-  linked_facebook_description: "Звязванне вашага ўліковага запісу %{site_name} з уліковым запісам Facebook дазваляе вам дадаваць некалькі фатаграфій да сваіх назіранняў. Вядома, калі вы захочаце, каб сайт %{site_name} і Facebook не былі звязаны, мы не спынім вас, вы проста не зможаце дадаваць фатаграфіі. Часам гэта можа быць зручна, напрыклад, калі вы створыце новы ўліковы запіс Facebook, з якім захочаце звязаць %{site_name}."
-  linked_facebook_howto: "Каб звязаць Facebook з %{site_name}, націсніце на спасылку справа і ўвайдзіце ў Facebook.com."
-  linked_facebook_password: "Мы ніколі не будзем запытваць у вас пароль Facebook (але Facebook можа, праверце URL, на які вас перанакіроўвае кнопка, і пераканайцеся, што гэта Facebook.com). Мы таксама не будзем змяняць вашыя даныя ў Facebook, калі вы гэтага не захочаце."
   linked_flickr: "Ваш уліковы запіс на сайце %{site_name} зараз звязаны з вашым уліковым запісам Flickr."
   linked_flickr_automatically: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце на сайт %{site_name} праз Flickr, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Flickr. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Flickr, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
   linked_flickr_description: "Звязванне вашага ўліковага запісу %{site_name} з уліковым запісам Flickr дазваляе вам дадаваць некалькі фатаграфій да сваіх назіранняў. Вядома, калі вы захочаце, каб сайт %{site_name} і Flickr не былі звязаны, то мы не спынім вас, вы проста не зможаце дадаваць фатаграфіі. Часам гэта можа быць зручней, напрыклад, калі вы створыце новы ўліковы запіс Flickr, з якім захочаце звязаць %{site_name}."
@@ -2959,7 +2944,6 @@ be:
   not_findig_what_you_want: Не знайшлі тое, што шукалі?
   not_finding_place_you_want?: Не знайшлі месца, што шукалі?
   not_found: Не знойдзена
-  not_linked_facebook: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Facebook."
   not_linked_flickr: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Flickr."
   not_on_this_list: Няма ў гэтым спісе.
   not_recorded: Не запісана
@@ -3205,7 +3189,7 @@ be:
   optional: дадатковы
   or: або
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або выбраць з некаторых таксонаў вышэйшага рангу"
   orange: аранжавы
