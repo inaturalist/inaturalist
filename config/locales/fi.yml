@@ -1187,17 +1187,6 @@ fi:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ei itse käyttäydy asianmukaisesti
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
-    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
-    havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
-    täyttänyt molemmat vaatimukset, voit lähettää hakemuksen.
-  curator_application_inelligible_error: |
-    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
-    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
-    havaintoihin, mukaan lukien omasi.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuraattorihakemus lähetetty
   #Header
