@@ -876,7 +876,6 @@ pt:
   connected_accounts_description: Contas conectadas são as suas contas de outras aplicações ou sites aos quais você permitiu o acesso iNaturalist em seu nome para suportar fazer login, importar fotos ou outras funcionalidades.
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Ligando ao Flickr..."
-  connecting_to_facebook: "Ligando ao Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Ligar a sua conta do %{site_name} a contas em outros sites permite-lhe fazer login em %{site_name} usando as credenciais desses sites."
   conservation_status: Estatuto de conservação
   conservation_status_descriptions:
@@ -1401,11 +1400,6 @@ pt:
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
   evidence_of_organism: Evidência de organismo
-  facebook_account_information: Informação da sua conta do Facebook
-  facebook_account_not_linked: "%{user} já não tem uma ligação para conta de facebook, por isso %{site_name} não tem permissão para aceder a esta foto."
-  facebook_access_token_expired: "A chave electrônica de acesso expirou. %{user} precisa de fazer nova ligação à sua conta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: O Facebook necessita que o dono dessa fotografia faça nova confirmação da sua ligação a %{site_name_short}.
-  facebook_options: Opções do Facebook
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
   failed_to_save_record: "Não foi possível gravar o registo. Por favor, tente novamente mais tarde."
@@ -1505,7 +1499,6 @@ pt:
   frequency: Frequência
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
-  from_flickr_facebook_etc: Do Flickr, Facebook, etc.
   from_list: Da lista
   from_photos: Das fotografias
   from_place: De um local
@@ -1804,14 +1797,8 @@ pt:
   life: Vida
   life_list: "Lista de vida de %{user}"
   link: Ligação
-  link_your_facebook_account: Conecte a sua conta do Facebook
   link_your_flickr_account: Conecte a sua conta do Flickr
   link_your_google_account: Conecte a sua conta do Google
-  linked_facebook: "A sua conta do %{site_name} está atualmente ligada à sua conta do Facebook."
-  linked_facebook_automaticaly: "Lembre-se também que se entrar no %{site_name} através do Facebook, nós iremos ligar novamente as suas contas do %{site_name} e do Facebook. É provável que se usa o Facebook também queira ter a possibilidade de importar as fotografias do Facebook, certo?"
-  linked_facebook_description: "Manter a sua conta %{site_name} ligada à conta do Facebook permite-lhe adicionar várias fotografias às suas observações. Claro que se quiser que o %{site_name} e o Facebook percam a ligação, não o impediremos, apenas não poderá adicionar fotografias. Por vezes esta é a melhor opção, como quando cria uma nova conta Facebook e a quer ligar ao %{site_name}."
-  linked_facebook_howto: "Para ligar o Facebook com o %{site_name}, clique na ligação à direita e entre no Facebook.com."
-  linked_facebook_password: "Nunca iremos pedir a sua palavra-passe do Facebook (mas o Facebook pode verificar o url que o botão lhe envia para ter a certeza que é Facebook.com). Também não faremos alterações nos seus dados do Facebook a não ser que queira que as façamos."
   linked_flickr: "A sua conta do %{site_name} está actualmente ligada à sua conta do Flickr."
   linked_flickr_automatically: "Lembre-se também que se entrar no %{site_name} através do Flickr faremos nova ligação automaticamente as contas %{site_name} e Flickr. É provável que se usa o Flickr também queira ter a possibilidade de importar as fotografias do Flickr, certo?"
   linked_flickr_description: "Manter a sua conta %{site_name} ligada à conta do Flickr permite-lhe adicionar várias fotografias às suas observações. Claro que se quiser que o %{site_name} e o Flickr percam a ligação, não o impediremos, apenas não poderá adicionar fotografias. Por vezes esta é a melhor opção, como quando cria uma nova conta Flickr e a quer ligar ao %{site_name}."
@@ -2205,7 +2192,6 @@ pt:
   not_findig_what_you_want: Não encontra o que deseja?
   not_finding_place_you_want?: Não encontra o lugar que deseja?
   not_found: Não encontrado
-  not_linked_facebook: "A sua conta em %{site_name} não está atualmente ligada à sua conta do Facebook."
   not_linked_flickr: "A sua conta em %{site_name} não está atualmente ligada à sua conta no Flickr."
   not_on_this_list: Não está nesta lista.
   not_recorded: Não registado
@@ -3318,11 +3304,6 @@ pt:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ver o seu painel de controlo</a> para mais atualizações"
   view_your_observations: Ver as suas observações
   view_all_of_your_observations_from_x: "Ver todas as suas observações de %{x}"
-  we_also_support: |
-    Também apoiamos e interligamos com <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para o alojamento das suas imagens.
   we_had_a_problem_flagging_that_item: "Ocorreu um erro ao sinalizar esse item: %{flag_error}"
   welcome_back!: Bem-vindo de volta!
   welcome_to_inat: "Bem-vindo ao %{site_name}!"
