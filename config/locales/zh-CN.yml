@@ -935,7 +935,6 @@ zh-CN:
   connected_accounts_titlecase: 已关联的账号
   connecting_flickr: "正在连接至Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
-  connecting_to_facebook: "连接至Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "连接您的 %{site_name} 账户至其他网站上的账户将允许您使用您来自这些网站上的凭据登录 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 内容锁定期间无法被更改
   conservation_status: 保护状态
@@ -1508,11 +1507,6 @@ zh-CN:
   extra_properties: 额外属性
   evidence_of_organism: 生物证据
   facebook: 脸书
-  facebook_account_information: 您的Facebook账户信息
-  facebook_account_not_linked: "%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。"
-  facebook_access_token_expired: "访问令牌已过期。%{user}需要重新连接他们的Facebook账户。"
-  facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
-  facebook_options: Facebook选项
   failed_to_find_your_location: 无法找到您的位置。
   failed_to_repair_photo: "修复照片失败：%{errors}"
   failed_to_save_record: "保存记录失败。请重试。"
@@ -1667,7 +1661,6 @@ zh-CN:
   frequency: 频率
   from_a_place: 来自一个地方
   from_eol_collection: 来自EOL收藏
-  from_flickr_facebook_etc: 来自Flickr、Facebook等
   from_list: 来自列表
   from_photos: 来自照片
   from_place: 来自地方
@@ -2070,14 +2063,8 @@ zh-CN:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: 验证码的链接
-  link_your_facebook_account: 链接您的Facebook账户
   link_your_flickr_account: 链接您的Flickr账户
   link_your_google_account: 链接您的Google账户
-  linked_facebook: "您的%{site_name}账户目前已链接到您的Facebook账户。"
-  linked_facebook_automaticaly: "另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？"
-  linked_facebook_description: "让您的%{site_name}帐户与您的Facebook帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Facebook取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Facebook账户会是个最佳选择。"
-  linked_facebook_howto: "要将Facebook连接到%{site_name}，请点击右侧链接，并登录至Facebook.com。"
-  linked_facebook_password: "我们将不会询问您的Facebook密码（但是Facebook可能检查按钮发送给您的URL并确保那是Facebook.com）。我们也将不会更改您的Facebook数据，除非您要求我们去做。"
   linked_flickr: "您的%{site_name}账户目前已链接到您的Flickr账户。"
   linked_flickr_automatically: "另请注意，如果您通过Flickr登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Flickr账户。看起来如果您使用Flickr的话，您将希望能够导入Flickr的照片，对么？"
   linked_flickr_description: "让您的%{site_name}帐户与您的Flickr帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Flickr取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Flickr账户会是个最佳选择。"
@@ -2576,7 +2563,6 @@ zh-CN:
   not_findig_what_you_want: 找不到您想找的东西么？
   not_finding_place_you_want?: 找不到您想去的地点么？
   not_found: 未找到
-  not_linked_facebook: "您的%{site_name}账户并未链接至您的Facebook账户"
   not_linked_flickr: "您的%{site_name}账户并未链接至您的Flickr账户"
   not_on_this_list: 不在此列表中。
   not_recorded: 未记录
@@ -2804,7 +2790,7 @@ zh-CN:
   optional: 可选
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
   orange: 橙色
@@ -4047,7 +4033,6 @@ zh-CN:
   tagging: '正在添加标签……'
   tags: 标签
   tags_are_a_way: '标签是一种组织您的观察的方式。例如，您可以将所有潮池观察点标记为“tidepools”，便于以后查找。'
-  take_me_facebook: 是的，带我前往Facebook！
   take_me_flickr!: 是的，带我去Flickr！
   task_deleted: 任务已删除
   taxa: 分类单元
@@ -4516,7 +4501,7 @@ zh-CN:
   view_field_options: 查看字段选项
   view_flag: 查看标记
   view_flags: 查看标记
-  view_flags_for_x_html: "查看用于 %{x} 的旗帜"
+  view_flags_for_x_html: "查看 %{x} 的标记"
   view_full_observation: 查看完整观察
   view_full_size_photo: 查看全尺寸照片
   view_journal: 查看日记
@@ -4575,9 +4560,6 @@ zh-CN:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
   was_it_captive_cultivated?: "被俘虏/培养了吗？"
-  we_also_support: |
-    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://photos.google.com">Google照片</a>和<a
-    href="http://facebook.com">Facebook</a>用于图片存储。
   we_can_only_understand_csv_in: 我们只能解析此种格式的CSV文件
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_couldnt_find_a_user_with_that_activation_code: "我们找不到具有该激活码的用户。您可能已经激活了自己的帐户，请尝试登录。"
