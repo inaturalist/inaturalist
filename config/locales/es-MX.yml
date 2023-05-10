@@ -1067,7 +1067,6 @@ es-MX:
   connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectando a Flickr"
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
-  connecting_to_facebook: "Conectando a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Al conectar tu cuenta de %{site_name} a cuentas de otros sitios podrás registrarte en %{site_name} usando tus credenciales de esos sitios."
   cannot_be_changed_during_a_content_freeze: No se puede cambiar durante un bloqueo de contenido
   conservation_status: Estado de conservación
@@ -1794,13 +1793,6 @@ es-MX:
   extra_properties: Propiedades adicionales
   evidence_of_organism: Evidencia de organismo
   facebook: Facebook
-  facebook_account_information: Información de tu cuenta de Facebook
-  facebook_account_not_linked: "El %{user} ya no tiene vinculada la cuenta de facebook, para %{site_name} por lo que no tiene permiso para acceder a esta foto."
-  facebook_access_token_expired: "El acceso de muestra ha expirado. El %{user} requiere volver a enlazar su cuenta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
-  facebook_options: Opciones de Facebook
-  facebook_photo_import_disabled_notice: |
-    En noviembre de 2020 Facebook nos requirió verificar que realmente necesitábamos acceso a fotos, y no hemos podido completar el proceso debido a problemas con el sistema de verificación de Facebook. Como resultado, ya no podemos apoyar la importación de fotos de Facebook.
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -1966,7 +1958,6 @@ es-MX:
   frequency: Frecuencia
   from_a_place: de un lugar
   from_eol_collection: De una colección de EOL
-  from_flickr_facebook_etc: De Flickr, Facebook, etc.
   from_list: De la lista
   from_photos: De fotos
   from_place: De un lugar
@@ -2473,14 +2464,8 @@ es-MX:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Enlace al código de autorización
-  link_your_facebook_account: Enlaza tu cuenta de Facebook
   link_your_flickr_account: Enlaza tu cuenta de Flickr
   link_your_google_account: Enlaza tu cuenta de Google
-  linked_facebook: "Tu cuenta %{site_name} está enlazada con tu cuenta de Facebook."
-  linked_facebook_automaticaly: "También ten en cuenta que cuando entras a %{site_name} via Facebook, automáticamente re-enlazaremos tus cuentas de  %{site_name} y de Facebook. Nos parece razonable que si utilizas Facebook querrás importar tus fotos de Facebook ¿Correcto?"
-  linked_facebook_description: "El mantener tu cuenta de  %{site_name} enlazada a tu cuenta de Facebook te permite añadir muchas fotos a tus observaciones. Por supuesto que si quieres desenlazar  %{site_name} y Facebook, no te detendremos. Solo que no podrás añadir fotos. A veces esta puede ser una buena opción como cuando quieres crear una nueva cuenta de Facebook y enlazarla a %{site_name}."
-  linked_facebook_howto: "Para conectarte a Facebook con %{site_name}, selecciona el enlace de la derecha y regístrate en Facebook.com."
-  linked_facebook_password: "Nunca te pediremos tu contraseña de Facebook (pero Facebook puede hacerlo, revisa el url que el botón te envía y asegúrate que es Facebook.com. Tampoco cambiaremos tus datos de Facebook, a menos que tu quieras."
   linked_flickr: "Tu cuenta %{site_name} está enlazada con tu cuenta de Flickr."
   linked_flickr_automatically: "También ten en cuenta que cuando entras a %{site_name} via Flickr, automáticamente re-enlazaremos tus cuentas de  %{site_name} y de Flickr. Nos parece razonable que si utilizas Flickr querrás importar tus fotos de Flickr¿Correcto?"
   linked_flickr_description: "Al mantener tu cuenta %{site_name} ligada a tu cuenta de Flickr puedes añadir muchas fotos a tus observaciones. Por supuesto, si quieres desenlazar %{site_name} y Flickr, no te detendremos, pero no podrás añadir fotos. Algunas veces puede ser la mejor opción, como cuando quieres crear una nueva cuenta de Flickr y enlazarla a  %{site_name}."
@@ -3058,7 +3043,6 @@ es-MX:
   not_found: No encontrado
   #Filter for observations not in a particular place
   not_in_place: No está en este lugar
-  not_linked_facebook: "Tu cuenta de %{site_name} no se ha enlazado a tu cuenta de Facebook &#59;"
   not_linked_flickr: "Tu cuenta de  %{site_name} no se ha enlazado a tu cuenta de Flickr &#59;"
   not_on_this_list: No está en esta lista.
   not_recorded: No grabado
@@ -3332,7 +3316,7 @@ es-MX:
   options: Opciones
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: o
   or_choose_high_level_taxa: "... o escoge de algún grupo con nivel superior"
   orange: Anaranjado
@@ -4754,7 +4738,6 @@ es-MX:
   tagging: 'Etiquetando…'
   tags: Etiquetas
   tags_are_a_way: 'Las etiquetas son palabras clave que puedes agregar a tus observaciones para hacerlas más fáciles de encontrar.'
-  take_me_facebook: '¡Si, llévame a Facebook!'
   take_me_flickr!: '¡Sí, llévame a Flickr!'
   target_list_alert: '¿Está seguro de que intentaste observar todas las especies incluidas en tu lista de objetivos? Recuerda que cualquier cosa incluida en tu lista de objetivos que no haya sido observada se interpretará como una ausencia, por lo que es muy importante que tu lista de objetivos refleje con precisión el conjunto de especies que intentó detectar.'
   target_list_warning: Recuerde que cualquier cosa incluida en su lista de objetivos que no haya sido observada dentro del radio y la duración de este viaje se interpretará como una ausencia. Es muy importante que su lista de objetivos refleje con precisión el conjunto de especies que intentó detectar. Si no intentó detectar una especie en su lista de objetivos o todas las especies pertenecientes a un grupo en su lista de objetivos, elimínela.
@@ -5539,11 +5522,6 @@ es-MX:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerido
   was_it_captive_cultivated?: "¿En cautiverio o cultivada?"
-  we_also_support: |
-    También tenemos conexión con <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, y 
-    <a href="http://facebook.com">Facebook</a> 
-    para tus imágenes.
   we_can_only_understand_csv_in: Solamente podemos entender CSV en el siguiente formato
   we_couldnt_find_a_user: No pudimos encontrar a un usuario con esa dirección de correo electrónico.
   we_couldnt_find_a_user_with_that_activation_code: "No pudimos encontrar ningun usuario con ese código de activación. Puede que tu cuenta ya haya sido activada, porfavor trata de ingresar al sistema"
