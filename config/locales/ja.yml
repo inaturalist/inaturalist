@@ -919,7 +919,6 @@ ja:
   connected_accounts_titlecase: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
   connect_to_flickr_again_to_authorize_write_permissions: Flickrに再接続して書き込み権限を承認してください
-  connecting_to_facebook: "Facebookに接続中..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} アカウントを他のサイトのアカウントに連携すると、それらのサイトの認証情報を使用して%{site_name} にログインできます。"
   cannot_be_changed_during_a_content_freeze: コンテンツ凍結中は変更できません
   conservation_status: 保全状況
@@ -1584,11 +1583,6 @@ ja:
   extra_properties: その他のプロパティー
   evidence_of_organism: 生物の証拠
   facebook: Facebook
-  facebook_account_information: あなたのFacebookアカウント情報
-  facebook_account_not_linked: "%{user}さんのFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
-  facebook_access_token_expired: "アクセストークンの有効期限が切れています。%{user}さんはFacebookアカウントを再リンクする必要があります。"
-  facebook_needs_the_owner_of_that_photo_to: Facebookは、その写真の所有者が%{site_name_short} への接続を再確認する必要があります。
-  facebook_options: Facebook設定
   failed_to_find_your_location: 現在地を特定できませんでした。
   failed_to_repair_photo: "写真の修復作業は失敗しました: %{errors}"
   failed_to_save_record: "記録の保存に失敗しました。しばらくしてからもう一度お試しください。"
@@ -1740,7 +1734,6 @@ ja:
   frequency: 出現頻度
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
-  from_flickr_facebook_etc: Flickr、Facebookなどから
   from_list: リストから
   from_photos: 写真から
   from_place: 場所から
@@ -2166,13 +2159,8 @@ ja:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: 認証コードへのリンク
-  link_your_facebook_account: Facebookアカウントと連携させる
   link_your_flickr_account: Flickrアカウントと連携させる
   link_your_google_account: Googleアカウントをリンクする
-  linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている"
-  linked_facebook_automaticaly: "また、Facebook経由で%{site_name} にログインすると、%{site_name} とFacebookのアカウントが自動的に再リンクされます。Facebookを使っている人は、Facebookの写真をインポートできるようにしたいと思うでしょう。"
-  linked_facebook_howto: "Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。"
-  linked_facebook_password: "我々は、あなたのFacebookのパスワードを聞くことは絶対にありません。（しかし、Facebookから聞かれることがあるかもしれませんので、URL先のアドレスが本当にFacebookかどうか必ず確認してください）。また、希望しない限り、あなたのFacebookの情報を変えることもありません。"
   linked_flickr: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されています"
   linked_flickr_automatically: "また、Flickrから%{site_name} にログインすると、%{site_name} とFlickrのアカウントが自動的に再リンクされます。Flickrを使っている人は、Flickrの写真をインポートできるようにしたいと思うでしょう。"
   linkedin: LinkedIn
@@ -2661,7 +2649,6 @@ ja:
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_found: 見つかりません
-  not_linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていません"
   not_linked_flickr: "現在あなたの%{site_name}アカウントはFlickrアカウントと連携されていません"
   not_on_this_list: このリストに含まれていません
   not_recorded: 記録されていません
@@ -2853,7 +2840,7 @@ ja:
   options: オプション
   or: または
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: または
   or_choose_high_level_taxa: "... もしくは上級の分類群から選択"
   orange: 橙
@@ -4056,7 +4043,6 @@ ja:
   tagging: 'タグを付けています...'
   tags: タグ
   tags_are_a_way: 'タグは、観察記録を整理する方法です。たとえば、すべてのタイドプールでの観察記録に「タイドプール」というタグを付けて、後で見つけやすくすることができます。'
-  take_me_facebook: Facebookへ移動
   take_me_flickr!: Flickrへ移動
   target_list_alert: ターゲットリストに含まれる全ての種を観察しようとしたのは確かですか？ターゲットリストでカバーされている種のうち、観察しなかったものは欠落と解釈されることを覚えておいてください。
   task_deleted: タスクが削除されました。
@@ -4671,10 +4657,6 @@ ja:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 指名手配中
   was_it_captive_cultivated?: "飼育/栽培？"
-  we_also_support: |
-    画像ホスティングサービスの<a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google フォト</a>及び
-    <a href="http://facebook.com">Facebook</a>にも対応しています。
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_couldnt_find_a_user_with_that_activation_code: "そのアクティベーションコードのユーザーが見つかりませんでした。既にアカウントをアクティベートしている可能性があります。サインインしてみてください。"
