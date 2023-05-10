@@ -1279,14 +1279,6 @@ fr:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     le responsable n'a pas lui-même, à plusieurs reprises, un comportement approprié.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60
-    jours et avoir ajouté 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres. (Vous en avez ajouté %{num_idents}.) Lorsque vous satisferez à ces deux exigences, revenez ici et vous pourrez envoyer la demande.
-  curator_application_inelligible_error: |
-    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60
-    jours et avoir ajouté 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Demande envoyée
   #Header
@@ -1954,6 +1946,7 @@ fr:
   frequency: Fréquence
   from_a_place: À partir d’un lieu
   from_eol_collection: À partir de la collection de l’EdlV
+  from_flickr_etc: Depuis Flickr, etc.
   from_list: À partir de la liste
   from_photos: À partir des photos
   from_place: À partir du lieu
@@ -5506,6 +5499,9 @@ fr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Recherché
   was_it_captive_cultivated?: "Était-il en captivité / cultivé ?"
+  we_also_support2: |
+    L'importation de photos est également possible depuis <a href="http://flickr.com">Flickr</a>
+    et <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format suivant
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse électronique.
   we_couldnt_find_a_user_with_that_activation_code: "Nous n’avons pas pu trouver d’utilisateur avec ce code d’activation. Vous avez peut-être déjà activé votre compte; veuillez essayer de vous connecter."
