@@ -1140,7 +1140,6 @@ he:
   connected_accounts_titlecase: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
-  connecting_to_facebook: "מתחבר לפייסבוק..."
   connecting_your_inat_account_to_accounts_other_sites: "חיבור חשבון %{site_name} לחשבונות באתרים אחרים יאפשר לכם להתחבר ל%{site_name} בעזרת פרטי המשתמש של אתרים אלו."
   cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת הקפאת תוכן
   conservation_status: סטטוס שימור
@@ -1849,13 +1848,6 @@ he:
   extra_properties: תכונות נוספות
   evidence_of_organism: עדות לאורגניזם
   facebook: פייסבוק
-  facebook_account_information: פרטי חשבון הפייסבוק שלך
-  facebook_account_not_linked: "ל%{user} אין חשבון פייסבוק מקושר כעת, לכן ל%{site_name} אין גישה לתמונות."
-  facebook_access_token_expired: "פג התוקף של אסימון הגישה. %{user} צריכ.ה לקשר מחדש את חשבון הפייסבוק."
-  facebook_needs_the_owner_of_that_photo_to: פייסבוק צריך שהבעלים של התמונה ההיא יאשר מחדש את חיבורו ל%{site_name_short}
-  facebook_options: אפשרויות פייסבוק
-  facebook_photo_import_disabled_notice: |
-    בנובמבר 2020 פייסבוק דרש מאיתנו לאמת את הצורך האמיתי שלנו בגישה לתמונות, ולא הצלחנו להשלים את התהליך עקב בעיות עם מערכת האימות של פייסבוק. כתוצאה מכך, אין ביכולתנו לתמוך יותר בייבוא תמונות מפייסבוק.
   failed_to_find_your_location: לא ניתן למצוא את מיקומך
   failed_to_repair_photo: "לא ניתן היה לתקן את התמונה: %{errors}"
   failed_to_save_record: "לא ניתן היה לשמור את הרישום. נא לנסות שוב מאוחר יותר."
@@ -2021,7 +2013,6 @@ he:
   frequency: תדירות
   from_a_place: ממקום
   from_eol_collection: מאוסף אנציקלופדיית החיים (EOL)
-  from_flickr_facebook_etc: מתוך פייסבוק, פליקר, וכו'.
   from_list: מרשימה
   from_photos: מתמונות
   from_place: ממקום
@@ -2473,14 +2464,8 @@ he:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: קישור לקוד הרשאה
-  link_your_facebook_account: קישור חשבון פייסבוק
   link_your_flickr_account: קישור חשבון Flickr
   link_your_google_account: קישור חשבון הגוגל שלך
-  linked_facebook: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון הפייסבוק שלך."
-  linked_facebook_automaticaly: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פייסבוק, נקשר מחדש בין חשבונות ה-%{site_name} והפייסבוק שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפייסבוק אז את.ה רוצה את היכולת לייבא תמונות פייסבוק, נכון?"
-  linked_facebook_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפייסבוק שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפייסבוק, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פייסבוק חדש שאת.ה רוצה לקשר אליו את %{site_name}."
-  linked_facebook_howto: "לחיבור של פייסבוק עם %{site_name}, יש ללחוץ על הקישור מימין ולהתחבר ל-Facebook.com."
-  linked_facebook_password: "לעולם לא נבקש את סיסמת הפייסבוק שלך (אך יתכן שפייסבוק כן יבקש, יש לבדוק את הקישור שהכפתור שולח לך ולוודא שהוא Facebook.com). גם לא נשנה את נתוני הפייסבוק שלך אלא אם תרצה בכך."
   linked_flickr: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון ה Flickr שלך."
   linked_flickr_automatically: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פליקר, נקשר מחדש בין חשבונות ה-%{site_name} והפליקר שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפליקר אז את.ה רוצה את היכולת לייבא תמונות פליקר, נכון?"
   linked_flickr_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפליקר שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפליקר, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פליקר חדש שאת.ה רוצה לקשר אליו את %{site_name}."
@@ -3031,7 +3016,6 @@ he:
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
   not_finding_place_you_want?: לא מצאת את המקום שחיפשת?
   not_found: לא נמצא דבר
-  not_linked_facebook: "חשבון ה-%{site_name} אינו מחובר לחשבון הפייסבוק שלך."
   not_linked_flickr: "חשבון ה%{site_name} שלך אינו מקושר לחשבון ה Flickr שלך"
   not_on_this_list: לא ברשימה זו.
   not_recorded: לא נרשם
@@ -3282,7 +3266,7 @@ he:
   options: אפשרויות
   or: או
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
   orange: כתום
@@ -4680,7 +4664,6 @@ he:
   tagging: 'מתייג...'
   tags: תגיות
   tags_are_a_way: 'תגים הם דרך לסדר את התצפיות שלך. למשל, באפשרותך לתייג את כל התצפיות שלך מבריכות חורף "בריכות חורף" כדי להקל על מציאתן בהמשך.'
-  take_me_facebook: כן, קחו אותי לפייסבוק!
   take_me_flickr!: כן, קחו אותי ל Flickr!
   target_list_alert: האם את.ה בטוח.ה שניסית לתצפת על כל המינים המכוסים על ידי רשימת היעדים שלך? יש לזכור שכל מה שמכוסה על ידי הרשימה שלך ולא תצפתת עליו יתפרש כהיעדרות, לכן חשוב מאוד שרימת היעדים שלך תשקף בדיוק את סט המינים שניסית לגלות
   target_list_warning: יש לזכור שכל מה שמכוסה על ידי רשימת היעדים שלך ולא צפית בו בתוך רדיוס ומשך הטיול הזה יתפרש כהיעדרות. מאוד חשוב שרשימת היעדים שלך תשקף באופן מדויק את סט המינים שניסית למצוא. אם לא ניסית למצוא מין ברשימת היעדים שלך או כל המינים המכוסים על ידי קבוצה, יש להסיר אותו.
@@ -5489,8 +5472,6 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
-  we_also_support: |
-    אנחנו תומכים גם ב־<a href="http://flickr.com">Flickr</a>&rlm;, <a href="http://picasaweb.google.com">Picasa</a> ו־<a href="http://facebook.com">Facebook</a> כדי לאחסן תמונות.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
