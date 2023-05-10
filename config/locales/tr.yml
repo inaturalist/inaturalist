@@ -1046,7 +1046,6 @@ tr:
   connected_accounts_titlecase: Bağlı Hesaplar
   connecting_flickr: "Flickr'a bağlanıyor... "
   connect_to_flickr_again_to_authorize_write_permissions: Yazma izinlerini yetkilendirmek için Flickr'a yeniden bağlan
-  connecting_to_facebook: "Facebook'a bağlanıyor..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} hesabını başka sitelerdeki hesaplara bağlamak, bu sitelerdeki kimlik bilgilerini kullanarak %{site_name} hesabına giriş yapmanı sağlar."
   cannot_be_changed_during_a_content_freeze: İçerik dondurulduğunda değiştirilemez
   conservation_status: Koruma Durumu
@@ -1257,12 +1256,6 @@ tr:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Uygun davranışlar sergilemekte başarısız olmak.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Site küratörlüğüne başvurabilmek için, hesabın en az 60 gün önce oluşturulmuş olmalı ve herhangi birinin gözlemine (kendi gözlemlerin de dahil %{num_idents}) 100 geliştirici tanımlama yapmış olmalısın. Tüm gereklilikleri sağladığında buraya gelip başvurunu tamamlayabilirsin.
-  curator_application_inelligible_error: |
-    Site küratörlüğüne başvurabilmek için, hesabın en az 60 gün önce oluşturulmuş olmalı ve herhangi birinin gözlemine 100 geliştirici tanımlama yapmış olmalısın, kendi gözlemlerin de dahil.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Küratörlük başvurusu gönderildi
   #Header
@@ -1755,13 +1748,6 @@ tr:
   extra_properties: Ek Özellikler
   evidence_of_organism: Organizmanın kanıtı
   facebook: Facebook
-  facebook_account_information: Facebook Hesap Bilgin
-  facebook_account_not_linked: "%{user} artık bağlantılı bir Facebook hesabına sahip değil, bu nedenle %{site_name} bu fotoğrafa erişim iznine sahip değil."
-  facebook_access_token_expired: "Erişim süresi doldu. %{user} Facebook hesabını tekrar bağlamalı."
-  facebook_needs_the_owner_of_that_photo_to: Facebook, %{site_name_short} ile olan bağlantılarını tekrar onaylamak için o fotoğrafın sahibine gerek duyuyor.
-  facebook_options: Facebook Ayarları
-  facebook_photo_import_disabled_notice: |
-    Kasım 2020'de Facebook, fotoğraflara gerçekten erişmemiz gerektiğini doğrulamamızı istedi ve Facebook'un doğrulama sistemindeki sorunlar nedeniyle süreci tamamlayamadık. Sonuç olarak, artık Facebook'tan fotoğraf içe aktarmayı destekleyemiyoruz.
   failed_to_find_your_location: Konumun bulunamadı.
   failed_to_repair_photo: "Fotoğraf onarılamadı: %{errors}"
   failed_to_save_record: "Kayıt kaydedilemedi. Lütfen daha sonra tekrar deneyin."
@@ -1925,7 +1911,6 @@ tr:
   frequency: Sıklık
   from_a_place: bir konumdan
   from_eol_collection: EOL koleksiyonundan
-  from_flickr_facebook_etc: Flickr, Facebook vb'den.
   from_list: Listeden
   from_photos: Fotoğraflardan
   from_place: Konumdan
@@ -2419,14 +2404,8 @@ tr:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Yetkilendirme koduna bağlantı
-  link_your_facebook_account: Facebook hesabını bağla
   link_your_flickr_account: Flickr hesabını bağla
   link_your_google_account: Google hesabını bağla
-  linked_facebook: "%{site_name} hesabın şu anda Facebook hesabına bağlı."
-  linked_facebook_automaticaly: "Ayrıca, %{site_name}'e Facebook üzerinden giriş yaparsan, %{site_name} ve Facebook hesaplarını otomatik olarak yeniden bağlayacağımızı unutma. Facebook kullanıyorsan Facebook fotoğraflarını içe aktarabilmek istemen makul görünüyor, değil mi?"
-  linked_facebook_description: "%{site_name} hesabını Facebook hesabına bağlı tutmak, gözlemlerine birden çok fotoğraf eklemene olanak tanır. Elbette, eğer %{site_name} ve Facebook'un ayrılmasını istersen, seni durdurmayacağız, yalnızca fotoğraf ekleyemeyeceksin. Bazen bu en iyisi olabilir, örneğin %{site_name}'ı bağlamak istediğin yeni bir Facebook hesabı oluşturduğunda."
-  linked_facebook_howto: "Facebook'a %{site_name} ile bağlanmak için sağdaki bağlantıya tıkla ve Facebook.com'da oturum aç."
-  linked_facebook_password: "Asla Facebook şifreni istemeyeceğiz (ancak Facebook isteyebilir, sana gönderilen URL'yi kontrol et ve Facebook.com olduğundan emin ol). Ayrıca istemediğin sürece, Facebook verilerini de değiştirmeyeceğiz."
   linked_flickr: "%{site_name} hesabın şu anda Flickr hesabına bağlı."
   linked_flickr_automatically: "Ayrıca, Flickr üzerinden %{site_name}'e giriş yaparsan, %{site_name} ve Flickr hesaplarını otomatik olarak yeniden bağlayacağımızı unutma. Flickr kullanıyorsan Flickr fotoğraflarını içe aktarabilmek istemen mantıklı görünüyor, değil mi?"
   linked_flickr_description: "%{site_name} hesabını Flickr hesabına bağlı tutmak, gözlemlerine birden çok fotoğraf eklemene olanak tanır. Tabii ki, eğer %{site_name} ve Flickr'ın ayrılmasını istersen, seni durdurmayacağız, sadece fotoğraf ekleyemeyeceksin. Bazen bu en iyisi olabilir, örneğin %{site_name}'i bağlamak istediğin yeni bir Flickr hesabı oluşturursan."
@@ -2991,7 +2970,6 @@ tr:
   not_found: Bulunamadı
   #Filter for observations not in a particular place
   not_in_place: Konumlandırılmamış
-  not_linked_facebook: "%{site_name} hesabın, Facebook hesabına bağlı değil"
   not_linked_flickr: "%{site_name} hesabın, Flickr hesabına bağlı değil"
   not_on_this_list: Bu listede değil.
   not_recorded: Kaydedilmemiş
@@ -3253,7 +3231,7 @@ tr:
   options: Seçenekler
   or: ya da
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: YA DA
   or_choose_high_level_taxa: "... veya bazı üst düzey sınıflardan seç"
   orange: turuncu
@@ -4644,7 +4622,6 @@ tr:
   tagging: 'Etiketleniyor...'
   tags: Etiketler
   tags_are_a_way: 'Etiketler, gözlemlerinizi düzenlemenin bir yoludur. Örneğin, tüm tidepool gözlemlerini daha sonra kolayca bulmak için "tidepools" olarak etiketleyebilirsiniz.'
-  take_me_facebook: Evet, beni Facebook'a götür!
   take_me_flickr!: Evet, beni Flickr'a götür!
   target_list_alert: Hedef listende yer alan tüm türleri gözlemlemeye çalıştığından emin misin? Hedef listende yer alıp da gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutmayın; bu nedenle hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir
   target_list_warning: Hedef listende yer alan ve bu gezinin yarıçapı ve süresi içinde gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutma. Hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir. Hedef listendeki bir türü ya da hedef listendeki bir grubun kapsadığı her türü tespit etmeye çalışmadıysan, lütfen listenden çıkar.
@@ -5413,8 +5390,6 @@ tr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
-  we_also_support: |
-    Ayrıca görüntü barındırma için <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Fotoğraflar</a>, ve <a href="http://facebook.com">Facebook</a>'u destekliyoruz.
   we_can_only_understand_csv_in: CSV'yi yalnızca aşağıdaki formatta anlayabiliriz
   we_couldnt_find_a_user: Bu e-posta adresine sahip bir kullanıcı bulamadık.
   we_couldnt_find_a_user_with_that_activation_code: "Bu etkinleştirme koduna sahip bir kullanıcı bulamadık. Hesabını zaten etkinleştirmiş olabilirsin, lütfen giriş yapmayı dene."

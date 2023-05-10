@@ -568,7 +568,6 @@ ko:
   confirm_your_info: 정보 확인
   connect_to_provider: "%{provider}에 연결"
   connecting_flickr: "플리커에 연결 중..."
-  connecting_to_facebook: "페이스북에 연결 중..."
   connecting_your_inat_account_to_accounts_other_sites: " %{site_name} 계정을 다른 계정에 연결하면 %{site_name}에 다른 계정의 정보로 로그인할 수 있습니다."
   conservation_status: 보존 상태
   conservation_status_descriptions:
@@ -891,11 +890,6 @@ ko:
   extinct_in_the_wild: 야생절멸(EW)
   extra_properties: 추가 특징들
   facebook: 페이스북
-  facebook_account_information: 페이스북 계정 정보
-  facebook_account_not_linked: "%{user}님이 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이(가) 이 사진을 접근할 권한이 없습니다."
-  facebook_access_token_expired: "접근 기간이 만료되었습니다. %{user}는 다시 본인의 페이스북 계정을 연결해야 합니다."
-  facebook_needs_the_owner_of_that_photo_to: 페이스북이 사진의 저작권 소유자가 %{site_name_short}과의 관계를 재확인하는 것을 필요합니다.
-  facebook_options: 페이스북 옵션
   failed_to_find_your_location: 당신의 위치를 찾는데 실패하였습니다.
   failed_to_repair_photo: "사진을 수리하는데 실패했습니다. %{errors}"
   failed_to_save_record: "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오."
@@ -993,7 +987,6 @@ ko:
   frequency: 주기
   from_a_place: 어떤 장소로부터
   from_eol_collection: EOL 모음집으로부터
-  from_flickr_facebook_etc: Flickr, Facebook 등으로부터
   from_list: 목록으로부터
   from_photos: 사진들로부터
   from_place: 장소로부터
@@ -1204,14 +1197,8 @@ ko:
   life: 생명
   life_list: "%{user}의 생물 목록"
   link: 링크
-  link_your_facebook_account: 페이스북 계정 연결하기
   link_your_flickr_account: Flickr 계정과 링크하기
   link_your_google_account: 구글 계정과 링크하기
-  linked_facebook: "당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있습니다."
-  linked_facebook_automaticaly: "그리고, %{site_name}에 페이스북 계정으로 로그인하면, 자동적으로 페이스북과 %{site_name} 계정이 연동된다는 것을 유의해주십시오. 페이스북을 사용한다면 페이스북 사진을 들여오기 더 용이하게 하기 위함입니다."
-  linked_facebook_description: "%{site_name} 계정을 페이스북 계정과 연동시키면 당신의 관찰에 대한 여러 사진들을 업로드할 수 있습니다. 물론 언제든지 %{site_name} 계정과 페이스북 계정의 연동을 끊을 수 있지만, 사진을 추가하지는 못하게 됩니다. 새로운 페이스북 계정을 만들어서 %{site_name}과 연동할 수도 있습니다."
-  linked_facebook_howto: "페이스북과 %{site_name}을 연동하고 싶으면 오른쪽의 링크를 클릭하여 Facebook.com에 로그인하십시오."
-  linked_facebook_password: "우리는 당신의 페이스북 비밀번호를 절대 물어보지 않을 것입니다(하지만 페이스북은 물어볼 수 있기에 URL이 페이스북으로 가는지 주소를 꼭 확인해 주십시오). 또한, 당신의 페이스북 정보를 당신이 원하지 않는 한은 바꾸지 않을 것입니다."
   linked_flickr: "당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있습니다."
   linked_flickr_automatically: "그리고, %{site_name}에 Flickr 계정으로 로그인하면, 자동적으로 Flickr와 %{site_name} 계정이 연동된다는 것을 유의해주십시오. Flickr를 사용한다면 사진을 들여오기 더 용이하게 하기 위함입니다."
   linked_flickr_description: "%{site_name} 계정을 Flickr 계정과 연동시키면 당신의 관찰에 대한 여러 사진들을 업로드할 수 있습니다. 물론 언제든지 %{site_name} 계정과 Flickr 계정의 연동을 끊을 수 있지만, 사진을 추가하지는 못하게 됩니다. 새로운 Flickr 계정을 만들어서 %{site_name}과 연동할 수도 있습니다."
@@ -1500,7 +1487,6 @@ ko:
   not_findig_what_you_want: 찾으려는 것이 아닙니까?
   not_finding_place_you_want?: 원하는 장소가 아닙니까?
   not_found: 찾을 수 없음
-  not_linked_facebook: "당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있지 않습니다"
   not_linked_flickr: "당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있지 않습니다"
   not_on_this_list: 이 목록에 없음
   not_recorded: 기록되지 않음
@@ -2175,7 +2161,6 @@ ko:
   #Noun, as in "add a tag to this observation"
   tag: 태그
   tags: 태그
-  take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_info: 생물 분류 정보
   taxon: 분류군
@@ -2292,11 +2277,6 @@ ko:
   video_tutorials: 동영상 튜토리얼
   vulnerable: 취약(VU)
   was_it_captive_cultivated?: "포획되거나 사육되었습니까?"
-  we_also_support: |
-    <a href="http://flickr.com">플리커</a>, 
-    <a href="http://photos.google.com">구글 포토</a>, 
-    <a href="http://facebook.com">페이스북</a>
-    의 영상 호스팅도 지원합니다.
   we_couldnt_find_a_user: 해당하는 이메일 주소의 사용자를 찾지 못했습니다.
   we_couldnt_find_a_user_with_that_activation_code: "해당 활성 코드와 맞는 사용자를 찾지 못했습니다. 이미 당신의 계정을 활성화했을 수 있습니다. 로그인을 시도해 보세요."
   we_had_trouble_saving_comment: "해당 댓글을 저장하는데 문제가 발생했습니다."

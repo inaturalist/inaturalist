@@ -791,7 +791,6 @@ sr:
   connected_accounts_description: Povezani nalozi su nalozi na drugim aplikacijama ili veb-sajtovima kojima će iNaturalist imati pristup u tvoje ime kako bi se omogućilo logovanje, uvoz fotografija ili neka druga funkcionalnost.
   connected_accounts_titlecase: Povezani nalozi
   connecting_flickr: "Povezivanje sa Flickr... "
-  connecting_to_facebook: "Povezivanje sa Facebook-om..."
   conservation_status: Status ugroženosti
   conservation_status_created: Status ugroženosti kreiran
   conservation_status_deleted: Status ugroženosti izbrisan
@@ -1127,9 +1126,6 @@ sr:
   extinct_in_the_wild: Izumro u divljini
   evidence_of_organism: Dokaz prisustva organizma
   facebook: Facebook
-  facebook_account_information: Informacije sa tvog Facebook naloga
-  facebook_account_not_linked: "%{user} više nema povezan facebook nalog, stoga %{site_name} nema pristup ovoj slici."
-  facebook_options: Facebook opcije
   failed_to_find_your_location: Nije nađena tvoja lokacija.
   'false': 'Netačno'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
@@ -1198,7 +1194,6 @@ sr:
   forum_desc: |
     Forum je mesto gde se diskutije o iNaturalist-u; uključujući pomoć & podršku, zahteve za nove opcije, prijavu bagova, najave itd.
   frequency: Učestalosti
-  from_flickr_facebook_etc: Sa Flickr-a, Facebook-a itd.
   from_list: Sa liste
   from_photos: Iz slika
   from_place: Sa mesta
@@ -1515,10 +1510,8 @@ sr:
   life_list: "Lista života korisnika %{user}"
   linear_scale_label: Linearno
   link: Link
-  link_your_facebook_account: Poveži svoj Facebook nalog
   link_your_flickr_account: Poveži svoj Fllickr nalog
   link_your_google_account: Poveži svoj Google nalog
-  linked_facebook: "Tvoj %{site_name} nalog je trenutno povezan sa tvojim Facebook nalogom."
   linked_flickr: "Tvoj %{site_name} nalog je trenutno povezan sa tvojim Flickr nalogom."
   linkedin: LinkedIn
   list: Lista
@@ -2081,7 +2074,7 @@ sr:
   options: Opcije
   or: ili
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ILI
   orange: narandžasta
   order: Poređaj
@@ -3134,7 +3127,6 @@ sr:
   #Noun, as in "add a tag to this observation"
   tag: oznaka
   tags: Oznake
-  take_me_facebook: Da, odvedi me na Facebook!
   take_me_flickr!: Da, odvedi me na Flickr!
   task_deleted: Zadatak izbrisan
   taxa: Taksoni
@@ -3608,8 +3600,6 @@ sr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Tražene
   was_it_captive_cultivated?: "U zatoćeništvu / kultivisano?"
-  we_also_support: |
-    Takođe podržavamo <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google slike</a>, i <a href="http://facebook.com">Facebook</a> za hostovanje slika.
   we_can_only_understand_csv_in: CSV može biti prepoznat samo u sledećem formatu
   we_couldnt_find_a_user: Nema korisnika sa tom imejl adresom.
   weather: Vreme

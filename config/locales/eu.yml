@@ -786,7 +786,6 @@ eu:
   confirm_your_info: Zure informazioa baieztatu
   connect_to_provider: "Hona konektatu: %{provider}"
   connecting_flickr: "Flickr-era konektatzen..."
-  connecting_to_facebook: "Facebook-era konektatzen..."
   connecting_your_inat_account_to_accounts_other_sites: "Zure %{site_name} kontua beste leku batzuetako kontuekin konektatzeak %{site_name} gunera horietako datuak erabilita sartzeko aukera emango dizu."
   conservation_status: Arrisku maila
   conservation_status_created: Kontserbazio-egoera sortua
@@ -1120,9 +1119,6 @@ eu:
   extinct_in_the_wild: Egoera basatian desagertua
   extra_properties: Estra propietateak
   facebook: Facebook
-  facebook_account_information: Zure Facebook kontuko informazioa
-  facebook_needs_the_owner_of_that_photo_to: 'Facebook-ek %@ argazki-jabearen baieztapena behar du hona konexioa egiteko: %{site_name_short}.'
-  facebook_options: Facebook-eko aukerak
   failed_to_find_your_location: Zure kokapena aurkitzeak huts egin du.
   failed_to_save_record: "Ezin izan da agiria gorde. Mesedez saia zaitez berriz geroago."
   'false': 'Gezurra'
@@ -1406,13 +1402,8 @@ eu:
   life: Bizitza
   life_list: "Honen bizitza-zerrenda: %{user}"
   link: Esteka
-  link_your_facebook_account: Facebook-eko zure kontua estekatu
   link_your_flickr_account: Flickr-eko zure kontua estekatu
   link_your_google_account: Zure Google zerrenda estekatu
-  linked_facebook: "Zure %{site_name} kontua orain Facebook-eko zure kontuarekin lotuta dago."
-  linked_facebook_description: "Zure %{site_name} kontua Facebook-eko zure kontuarekin lotuta edukitzeak oharrei argazkiak gehitzeko aukera emango dizu. Zure %{site_name} eta Facebook-eko kontuak edozein unetan desesteka ditzakezu. Ez dizugu eragotziko, ezingo duzu argazkirik gehitu, besterik ez. Batzuetan onena izango da, esate baterako, %{site_name} webgunearekin estekatu nahi duzun Facebook-eko kontu berria sortzen duzunean."
-  linked_facebook_howto: "Facebook eta %{site_name} konektatzeko, klikatu eskuineko estekan eta hasi saioa hemen: facebook.com."
-  linked_facebook_password: "Facebook-eko pasahitza ez dizugu inoiz eskatuko (Facebook-ek egin dezake, ordea, egiaztatu botoiak facebook.com helbidera bidaltzen zaituela). Zure Facebook-eko datuak ere ez ditugu aldatuko, zuk hala eskatzen ez baduzu."
   linked_flickr: "Zure %{site_name} kontua orain Flickr-eko zure kontuarekin lotuta dago."
   linked_flickr_description: "Zure %{site_name} kontua Flickr-eko zure kontuarekin lotuta edukitzeak oharrei argazkiak gehitzeko aukera emango dizu. Zure %{site_name} eta Flickr-eko kontuak edozein unetan desesteka ditzakezu. Ez dizugu eragotziko, ezingo duzu argazkirik gehitu, besterik ez. Batzuetan onena izango da, esate baterako, %{site_name} webgunearekin estekatu nahi duzun Flickr-eko kontu berria sortzen duzunean."
   linked_flickr_password_html: "<strong>Flickr-eko pasahitza ez dizugu inoiz eskatuko</strong> (Flickr-ek eska dezake, ordea, egiaztatu botoiak flickr.com helbidera bidaltzen duela)."
@@ -1622,7 +1613,6 @@ eu:
   not_evaluated: ebaluatu gabe
   not_findig_what_you_want: Ez duzu nahi duzuna topatzen?
   not_finding_place_you_want?: Ez duzu topatu bila zenbiltzan lekua?
-  not_linked_facebook: "Zure %{site_name} kontua ez dago Facebook-eko zure kontuarekin lotuta"
   not_linked_flickr: "Zure %{site_name} kontua ez dago Flickr-eko zure kontuarekin lotuta"
   not_on_this_list: Ez dago zerrenda honetan.
   not_seeing_what_looking_for: Ez duzu bila zabiltzana topatzen?
@@ -2217,7 +2207,6 @@ eu:
   tagging: 'Etiketatzen...'
   tags: Etiketak
   tags_are_a_way: 'Behaketei gehi daitezkeen hitz gakoak dira etiketak, topatzen errazagoak izan daitezen.'
-  take_me_facebook: Bai, Facebook-era joan
   take_me_flickr!: Bai, Flickr-era joan
   taxa: Taxonak
   taxa_needing_curation: Administrazioa behar duten taxonak
@@ -2449,10 +2438,6 @@ eu:
   w_sounds: soinuekin
   wait_file_generation: Itxaron fitxategia sortu bitartean. Agian minutu batzuk beharko ditu zerrenda handietarako.
   was_it_captive_cultivated?: "Gatibu/hezia izan da?"
-  we_also_support: |
-    Zure irudietarako <a href="http://flickr.com">Flickr</a>, <a
-    href="http://picasaweb.google.com">Picasa</a> eta <a
-    href="http://facebook.com">Facebook-ekin</a> ere konexioa dugu.
   we_can_only_understand_csv_in: 'CSV formatu honetan soilik inporta dezakegu:'
   we_couldnt_find_a_user: Ezin izan dugu erabiltzailerik topatu posta-helbide honekin.
   we_couldnt_find_a_user_with_that_activation_code: "Ezin izan dugu erabiltzailerik topatu aktibazio-kode honekin. Baliteke zure kontua dagoeneko aktibatuta egotea, mesedez, saiatu sisteman sartzen"

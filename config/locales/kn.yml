@@ -877,7 +877,6 @@ kn:
   connected_accounts_titlecase: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connecting_flickr: "Flickr ಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ... "
   connect_to_flickr_again_to_authorize_write_permissions: ಬರವಣಿಗೆ ಅನುಮತಿಗಳನ್ನು ಧೃಢೀಕರಿಸಲು ಫ್ಲಿಕರ್ ಗೆ ಮತ್ತೊಮ್ಮೆ ಸಂಪರ್ಕಿಸಿ
-  connecting_to_facebook: "ಫೇಸ್‍ಬುಕ್‍ಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ..."
   connecting_your_inat_account_to_accounts_other_sites: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ಇತರೆ ತಾಣಗಳ ಖಾತೆಗಳಿಗೆ ಜೋಡಿಸುವುದರಿಂದ, ನೀವು %{site_name} ಗೆ ಆ ತಾಣಗಳಿಂದ ನಿಮ್ಮ ಗುರುತನ್ನು ಬಳಸಿ ಲಾಗಿನ್ ಆಗಬಹುದು."
   cannot_be_changed_during_a_content_freeze: ವಸ್ತುವಿಷಯದ ಸ್ಥಿರೀಕರಣದ ಸಮಯದಲ್ಲಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ
   conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
@@ -1054,8 +1053,6 @@ kn:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
     ಮೇಲ್ವಿಚಾರಕರ ಕೈಪಿಡಿಗಳ ನಿಯಮಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಲಾಗಿದೆ
-  curator_application_inelligible_error: |
-    ನೀವು ತಾಣದ ಮೇಲ್ವಿಚಾರಕರಾಗಿ ಅರ್ಜಿಸಲ್ಲಿಸಲು 60 ಅಥವಾ ಅದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ದಿನಗಳಿಂದ ಖಾತೆಯನ್ನು ಹೊಂದಿರಬೇಕು ಮತ್ತು ನಿಮ್ಮದನ್ನೂ ಒಳಗೊಂಡಂತೆ ಯಾರದಾದರೂ ವೀಕ್ಷಣೆಗಳಿಗೆ 100 ಸುಧಾರಿತ ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕು.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: ಮೇಲ್ವಿಚಾರಕರ ಅರ್ಜಿಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ
   #Header
@@ -1438,10 +1435,6 @@ kn:
   extra_properties: ಹೆಚ್ಚುವರಿ ಗುಣವಿಶೇಷಗಳು
   evidence_of_organism: ಜೀವಿಯ ಕುರುಹು
   facebook: ಫೇಸ್‍‌ಬುಕ್
-  facebook_account_information: ನಿಮ್ಮ ಫೇಸ್‍‌ಬುಕ್ ಖಾತೆಯ ಮಾಹಿತಿ
-  facebook_account_not_linked: "%{user} ಫೇಸ್‍ಬುಕ್ ಗೆ ಜೋಡಣೆಯಾದ ಖಾತೆಯನ್ನು ಹೊಂದಿಲ್ಲ, ಹಾಗಾಗಿ %{site_name} ಗೆ ಈ ಚಿತ್ರವನ್ನು ಬಳಸಲು ಅನುಮತಿಯಿಲ್ಲ."
-  facebook_needs_the_owner_of_that_photo_to: ಫೇಸ್‍ಬುಕ್ ಗೆ ಆ ಚಿತ್ರದ ಮಾಲೀಕರಿಂದ %{site_name_short} ಗೆ ಸಂಪರ್ಕಿಸಲು ಅವರ ಮರು-ಧೃಢೀಕರಣದ ಅಗತ್ಯವಿದೆ.
-  facebook_options: ಫೇಸ್‍‌ಬುಕ್ ಆಯ್ಕೆಗಳು
   failed_to_find_your_location: ನಿಮ್ಮ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಲಾಗಲಿಲ್ಲ
   failed_to_repair_photo: "ಚಿತ್ರವನು ರಿಪೇರಿಮಾಡಲು ವಿಫಲವಾಗಿದೆ: %{errors}"
   failed_to_save_record: "ದಾಖಲೆಯನು ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ, ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
@@ -1534,7 +1527,6 @@ kn:
   frequency: ಆವರ್ತನ
   from_a_place: ಸ್ಠಳದಿಂದ
   from_eol_collection: EOL ಸಂಗ್ರಹಗಳಿಂದ
-  from_flickr_facebook_etc: ಫ್ಲಿಕರ್, ಫೇಸ್‍ಬುಕ್, ಇತ್ಯಾದಿಗಳಿಂದ
   from_list: ಪಟ್ಟಿಯಿಂದ
   from_photos: ಚಿತ್ರಗಳಿಂದ
   from_place: ಸ್ಠಳದಿಂದ
@@ -1915,14 +1907,8 @@ kn:
   life_list: "%{user} ರವರ ಜೀವಿ ಪಟ್ಟಿ"
   linear_scale_label: ರೇಖಾತ್ಮಕ
   link: ಕೊಂಡಿ
-  link_your_facebook_account: ನಿಮ್ಮ Facebook ಖಾತೆ ಜೋಡಿಸಿ
   link_your_flickr_account: ನಿಮ್ಮ Flickr ಖಾತೆ ಜೋಡಿಸಿ
   link_your_google_account: ನಿಮ್ಮ Google ಖಾತೆ ಜೋಡಿಸಿ
-  linked_facebook: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ಪ್ರಸ್ತುತ ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿದೆ."
-  linked_facebook_automaticaly: "ಹಾಗೆ, ನೀವು %{site_name} ಗೆ ಫೇಸ್‍ಬುಕ್ ಮೂಲಕ ಲಾಗಿನ್ ಆದರೆ, ನಾವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ %{site_name} ಮತ್ತು ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗಳನ್ನು ಲಿಂಕ್ ಮಾಡುತ್ತೇವೆಂಬುದನ್ನು ಗಮನಿಸಿ. ನೀವು ಫೇಸ್‍ಬುಕ್ ಬಳಸುವಾಗ ಫೇಸ್‍ಬುಕ್ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವುದು ಸರ್ವೇಸಾಮಾನ್ಯ ಅಲ್ಲವೇ?"
-  linked_facebook_description: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿಟ್ಟಿರುವುದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಲವು ಚಿತ್ರಗಳನ್ನು ಒಮ್ಮೆಲೆ ಸೇರಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತದೆ. ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ %{site_name} ಮತ್ತು ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗಳನ್ನು ಬೇರೆಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಖಂಡಿತಾ ನಾವು ನಿಮ್ಮ ತಡೆಯುವುದಿಲ್ಲ. ನೀವು ಹೊಸ ಫೇಸ್‍ಬುಕ್  ಖಾತೆ ರಚಿಸಿ ಅದನ್ನು %{site_name} ಲಿಂಕ್ ಮಾಡಬಯಸುವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಇದು ಕೆಲಸಮಯ ಒಳ್ಳೆಯ ಆಯ್ಕೆಯೇ ಆಗಿರುತ್ತದೆ."
-  linked_facebook_howto: "%{site_name} ನೊಂದಿಗೆ ಫೇಸ್‍ಬುಕ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಲು, ಬಲಭಾಗದಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಫೇಸ್‍ಬುಕ್.ಕಾಂ ಗೆ ಲಾಗಿನ್ ಆಗಿ."
-  linked_facebook_password: "ನಾವು ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಗುಪ್ತಪದವನ್ನು ಎಂದೆಂದಿಗೂ ಕೇಳುವುದಿಲ್ಲ ( ಆದರೆ ಫೇಸ್‍ಬುಕ್ ಕೇಳಬಹುದು, ಹಾಗಾಗಿ ನಿಮಗೆ ಒದಗಿಸಿರುವ ಗುಂಡಿಯ url ಅನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಅದು Facebook.com ಎಂದು ಖಾತ್ರಿಮಾಡಿಕೊಳ್ಳಿ). ಅದಲ್ಲದೇ \nನೀವು ಸೂಚಿಸದ ಹೊರತು ನಾವು ಫೇಸ್‍ಬುಕ್ ದತ್ತಾಂಶವನ್ನು ಬದಲಿಸುವುದಿಲ್ಲ ಸಹ."
   linked_flickr: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ಪ್ರಸ್ತುತ ನಿಮ್ಮ Flickr ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿದೆ."
   linked_flickr_automatically: "ಹಾಗೆ, ನೀವು %{site_name} ಗೆ ಫ್ಲಿಕರ್ ಮೂಲಕ ಲಾಗಿನ್ ಆದರೆ, ನಾವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ %{site_name} ಮತ್ತು ಫ್ಲಿಕರ್ ಖಾತೆಗಳನ್ನು ಮರು-ಲಿಂಕ್ ಮಾಡುತ್ತೇವೆಂಬುದನ್ನು ಗಮನಿಸಿ. ನೀವು ಫ್ಲಿಕರ್ ಬಳಸುವಾಗ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವುದು ಸರ್ವೇಸಾಮಾನ್ಯ ಅಲ್ಲವೇ?"
   linked_flickr_description: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ನಿಮ್ಮ ಫ್ಲಿಕರ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿಟ್ಟಿರುವುದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಲವು ಚಿತ್ರಗಳನ್ನು ಒಮ್ಮೆಲೆ ಸೇರಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತದೆ. ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ %{site_name} ಮತ್ತು ಫ್ಲಿಕರ್ ಖಾತೆಗಳನ್ನು ಬೇರೆಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಖಂಡಿತಾ ನಾವು ನಿಮ್ಮ ತಡೆಯುವುದಿಲ್ಲ. ನೀವು ಹೊಸ ಫ್ಲಿಕರ್ ಖಾತೆ ರಚಿಸಿ ಅದನ್ನು %{site_name} ಲಿಂಕ್ ಮಾಡಬಯಸುವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಇದು ಕೆಲಸಮಯ ಒಳ್ಳೆಯ ಆಯ್ಕೆಯೇ ಆಗಿರುತ್ತದೆ."
@@ -2424,7 +2410,6 @@ kn:
   not_findig_what_you_want: ನೀವು ಬಯಸಿದ್ದು ಯಾವುದೂ ಕಂಡುಬಂದಿಲ್ಲವೇ?
   not_finding_place_you_want?: ನೀವು ಬಯಸಿದ ಸ್ಥಳ ಕಂಡುಬಂದಿಲ್ಲವೇ?
   not_found: ಕಂಡುಬಂದಿಲ್ಲ
-  not_linked_facebook: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿಲ್ಲ"
   not_linked_flickr: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ನಿಮ್ಮ Flickr ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿಲ್ಲ"
   not_on_this_list: ಈ ಪಟ್ಟಿಯ ಮೇಲಲ್ಲ.
   not_recorded: ದಾಖಲಿಸಿಲ್ಲ
@@ -2644,7 +2629,7 @@ kn:
   options: ಆಯ್ಕೆಗಳು
   or: ಅಥವಾ
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ಅಥವಾ
   or_choose_high_level_taxa: "... ಅಥವಾ ಕೆಲವು ಉನ್ನತ-ಮಟ್ಟದ ಜೀವಿವರ್ಗಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ"
   orange: ಕಿತ್ತಳೆ
@@ -3894,7 +3879,6 @@ kn:
   tagging: 'ಟ್ಯಾಗ್‍ ಮಾಡಲಾಗುತ್ತಿದೆ...'
   tags: ಟ್ಯಾಗ್‍ಗಳು
   tags_are_a_way: 'ಟ್ಯಾಗ್‍ಗಳು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಕ್ರಮಬದ್ಧವಾಗಿ ಅಣಿಗೊಳಿಸಲು ಸಹಕರಿಸುತ್ತವೆ. ಉದಾಹರಣೆಗೆ ನಿಮ್ಮೆಲ್ಲಾ ಕಡಲತೀರದ ವೀಕ್ಷಣೆಗಳನ್ನು ನೀವು "ಕಡಲತೀರಗಳು" ಎಂದು ಟ್ಯಾಗ್ ಮಾಡಬಹುದು, ಇವನ್ನು ನಿಮಗೆ ನಂತರದಲ್ಲಿ ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಸುತ್ತದೆ.'
-  take_me_facebook: ಹೌದು, ನನ್ನನ್ನು ಫೇಸ್‍ಬುಕ್ ಗೆ ಕರೆದೊಯ್ಯಿರಿ!
   take_me_flickr!: ಹೌದು, ನನ್ನನ್ನು ಫ್ಲಿಕರ್ ಗೆ ಕರೆದೊಯ್ಯಿರಿ!
   task_deleted: ಕೆಲಸವನ್ನು ಅಳಿಸಲಾಗಿದೆ.
   taxa: ಜೀವಿವರ್ಗಗಳು
@@ -4492,8 +4476,6 @@ kn:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: ಬೇಕಾಗಿದೆ
   was_it_captive_cultivated?: "ಇದು ಸೆರೆಯ ಜೀವಿ / ಪಳಗಿಸಿದ ಜೀವಿಯಾಗಿತ್ತೇ?"
-  we_also_support: |
-    ಚಿತ್ರದ ಹೋಸ್ಟಿಂಗ್ ಗೆ ನಾವು <a href="http://flickr.com">ಫ್ಲಿಕರ್</a>, <a href="http://photos.google.com">ಗೂಗಲ್ ಫೋಟೋಸ್</a>, ಹಾಗೂ <a href="http://facebook.com">ಫೇಸ್ ಬುಕ್</a> ಅನ್ನು ಬೆಂಬಲಿಸುತ್ತೇವೆ.
   we_can_only_understand_csv_in: ನಾವು CSV ಅನ್ನು ಕೆಳಗಿನ ಮಾದರಿಯಲ್ಲಿ ಮಾತ್ರ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಲ್ಲೆವು
   we_couldnt_find_a_user: ನಮಗೆ ಆ ಮಿಂಚೆ ವಿಳಾಸವುಳ್ಳ ಬಳಕೆದಾರರನ್ನು ಪತ್ತೆಮಾಡಲಾಗಲಿಲ್ಲ.
   we_couldnt_find_a_user_with_that_activation_code: "ನಮಗೆ ಆ ಸಕ್ರಿಯ ಸಂಕೇತವುಳ್ಳ ಬಳಕೆದಾರರನ್ನು ಪತ್ತೆಮಾಡಲಾಗಲಿಲ್ಲ. ನೀವು ಈಗಾಗಲೇ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿರಬಹುದು, ದಯವಿಟ್ಟು ಮತ್ತೆ ಸೈನ್ ಇನ್ ಆಗಲು ಪ್ರಯತ್ನಿಸಿ."

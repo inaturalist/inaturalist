@@ -545,7 +545,6 @@ sk:
   confirm_your_info: Potvrďte svoje info
   connect_to_provider: "Pripojiť sa k %{provider}"
   connecting_flickr: "Pripájanie k Flickr..."
-  connecting_to_facebook: "Pripájanie k Facebooku..."
   conservation_status: Stav ochrany
   conservation_status_descriptions:
     description: Krátky opis dôvodov, prečo je toto na zozname.
@@ -890,8 +889,6 @@ sk:
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
   evidence_of_organism: Dôkaz o organizme
-  facebook_account_information: Informácie z vášho facebookového účtu
-  facebook_options: Možnosti Facebooku
   failed_to_find_your_location: Vaša lokalita nebola nájdená.
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
   failed_to_save_record: "Nepodarilo sa uložiť záznam. Skúste to prosím znova."
@@ -1006,7 +1003,6 @@ sk:
   frequency: Frekvencia
   from_a_place: z miesta
   from_eol_collection: Z kolekcie EOL
-  from_flickr_facebook_etc: Z Facebooku, Flickr atď.
   from_list: Zo zoznamu
   from_photos: Z fotiek
   from_place: Z miesta
@@ -1283,14 +1279,8 @@ sk:
   life_list: "Zoznam života užívateľa %{user}"
   linear_scale_label: Lineárny
   link: Odkaz
-  link_your_facebook_account: Pripojiť váš účet na Facebooku
   link_your_flickr_account: Pripojiť účet Flickr
   link_your_google_account: Pripojiť účet Google
-  linked_facebook: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Facebooku."
-  linked_facebook_automaticaly: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Facebook, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Facebooku. Zdá sa rozumné, že ak používate Facebook, budete chcieť importovať fotky z Facebooku, že?"
-  linked_facebook_description: "Ak bude váš účet na %{site_name} prepojený s vašim účtom na Facebooku, budete môcť pridávať ku svojim pozorovaniam viac fotiek. Samozrejme, ak budete kedykoľvek chcieť %{site_name} a Facebook oddeliť, nebudeme vám v tom brániť, len nebudete môcť pridávať fotky. Niekedy to môže byť dobré, napríklad keď si vytvoríte nový účet na Facebooku, s ktorým chcete prepojiť %{site_name}."
-  linked_facebook_howto: "Pokiaľ chcete prepojiť Facebook a  %{site_name}, kliknite na odkaz vpravo a prihláste sa na Facebook.com."
-  linked_facebook_password: "Nikdy vás nebudeme žiadať o vaše heslo na Facebook (Facebook o neho však žiadať môže, skontrolujte url a overte si, že ide o Facebook.com). Tiež nebudeme meniť vaše údaje na Facebooku, ak nás o to nepožiadate."
   linked_flickr: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Flickr."
   linked_flickr_automatically: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Flickr, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Flickr. Zdá sa rozumné, že ak používate Flickr, budete chcieť importovať fotky z Flickr, že?"
   linked_flickr_description: "Ak bude váš účet na %{site_name} prepojený s vaším účtom na Flickr, budete môcť pridávať ku svojim pozorovaniam viac fotiek. Samozrejme, ak budete kedykoľvek chcieť %{site_name} a Flickr oddeliť, nebudeme vám v tom brániť, len nebudete môcť pridávať fotky. Niekedy to môže byť dobré, napríklad keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}."
@@ -1654,7 +1644,6 @@ sk:
   not_findig_what_you_want: Nenašli ste, čo ste chceli?
   not_finding_place_you_want?: Nenašli ste miesto, ktoré ste hľadali?
   not_found: Nenájdené
-  not_linked_facebook: "Váš účet na %{site_name} nie je pripojený s vašim účtom na Facebooku."
   not_linked_flickr: "Váš účet na %{site_name} nie je prepojený s vašim účtom na Flickr"
   not_on_this_list: Nie je na tomto zozname.
   not_recorded: Nebol zaznamenaný
@@ -1791,7 +1780,7 @@ sk:
   optional: voliteľný
   or: alebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ALEBO
   orange: oranžový
   order: Zoradiť
@@ -2703,7 +2692,6 @@ sk:
   tag: Tag
   tagging: 'Tagovanie...'
   tags: Tagy
-  take_me_facebook: Áno, chcem ísť na Facebook!
   take_me_flickr!: Áno, chcem ísť na Flickr!
   taxa: Taxóny
   taxa_with_unknown_relationships: Taxóny s neznámymi vzťahmi

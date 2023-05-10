@@ -948,7 +948,6 @@ nb:
   connected_accounts_titlecase: Koblete kontoer
   connecting_flickr: "Kobler til Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
-  connecting_to_facebook: "Kobler til Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Å koble din konto på %{site_name} til kontoer på andre sider lar deg logge på %{site_name} ved å bruke dine påloggingsopplysninger fra disse sidene."
   cannot_be_changed_during_a_content_freeze: Kan ikke endres under frysing av innhold
   conservation_status: Bevaringsstatus
@@ -1486,11 +1485,6 @@ nb:
   extra_properties: Ekstra egenskaper
   evidence_of_organism: Bevis for organisme
   facebook: Facebook
-  facebook_account_information: Din Facebook-kontoinformasjon
-  facebook_account_not_linked: "%{user} har ikke en tilkoblet Facebookkonto lenger, så %{site_name} har ikke tilgang til dette bildet."
-  facebook_access_token_expired: "Adgangstoken er utløpt. %{user} må lenke opp Facebook-kontoen på nytt."
-  facebook_needs_the_owner_of_that_photo_to: Facebook trenger at bildets eier bekrefter sin kobling til %{site_name_short} på nytt.
-  facebook_options: Facebookvalg
   failed_to_find_your_location: Kunne ikke finne din posisjon.
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
@@ -1650,7 +1644,6 @@ nb:
   frequency: Frekvens
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
-  from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
   from_list: Fra ei liste
   from_photos: Fra bilder
   from_place: Fra sted
@@ -2044,14 +2037,8 @@ nb:
   life_list: "Livsliste til %{user}"
   linear_scale_label: Lineær
   link: Lenker
-  link_your_facebook_account: Tilknytt din Facebook-konto
   link_your_flickr_account: Tilknytt din Flickr-konto
   link_your_google_account: Tilknytt din Google-konto
-  linked_facebook: "Din %{site_name}-konto er knyttet til din Facebook-konto."
-  linked_facebook_automaticaly: "Husk også at vi vil koble sammen din %{site_name} og Facebook kontoer på nytt automatisk hvis du logger inn på %{site_name} via Facebook. Når du bruker Facebook ønsker du jo å kunne importere Facebook-bilder, ikke sant?"
-  linked_facebook_description: "Å holde din %{site_name}-konto koblet til din Facebook-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Facebook og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Facebook-konto som du vil koble %{site_name} opp mot."
-  linked_facebook_howto: "For å koble Facebook til %{site_name}, klikk lenken til høyre og logg inn på Facebook.com."
-  linked_facebook_password: "Vi kommer aldri til å be deg om ditt Facebook-passord (men Facebook kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Facebook.com). Vi vil heller ikke endre Facebook-opplysningene dine med mindre du ønsker det."
   linked_flickr: "Din %{site_name}-konto er knyttet til din Flickr-konto."
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
@@ -2541,7 +2528,6 @@ nb:
   not_findig_what_you_want: Finner du ikke hva du ønsker?
   not_finding_place_you_want?: Finner du ikke stedet du ønsker?
   not_found: Ikke funnet
-  not_linked_facebook: "Din konto på %{site_name} er ikke koblet til din Facebook-konto"
   not_linked_flickr: "Din konto på %{site_name} er ikke koblet til din Flickr-konto"
   not_on_this_list: Ikke på denne lista.
   not_recorded: Ikke registrert
@@ -2763,7 +2749,7 @@ nb:
   optional: valgfritt
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller velg fra noen høyere taksa"
   orange: oransje
@@ -3998,7 +3984,6 @@ nb:
   tagging: 'Legger til etikett...'
   tags: Etiketter
   tags_are_a_way: 'Etiketter er en måte å organisere dine observasjoner på. Du vil for eksempel kanskje legge til etiketten "tidevann" til dine observasjoner gjort i tidevannet, slik at de blir lettere å finne igjen senere.'
-  take_me_facebook: Ja, ta meg til Facebook!
   take_me_flickr!: Ja, ta meg til Flickr!
   target_list_alert: Er du sikker på at du har forsøkt å observere alle arter dekt av din målliste? Husk at alt som dekkes av din målliste som du ikke observerer blir regnet som et fravær, så det er veldig viktig at din målliste kommer nøyaktig overens med artene som du forsøkte å finne
   target_list_warning: Husk at alt på din målliste som du ikke observerte under din innenfor området blir sett på som et fravær. Det er veldig viktig at din målliste nøyaktig representerer artene du prøvde å finne. Hvis du ikke forsøkte å finne en art på din målliste eller alle arter i en gruppe på din målliste, vennligst fjern den.
@@ -4532,8 +4517,6 @@ nb:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
-  we_also_support: |
-    Vi støtter også <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Bilder</a>, og <a href="http://facebook.com">Facebook</a> for bildelagring.
   we_can_only_understand_csv_in: Vi kan kun forstå csv i følgende format
   we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finne en bruker med den aktiveringskoden. Du har muligens allerede aktivert din konto, vennligst prøv å logge på."
