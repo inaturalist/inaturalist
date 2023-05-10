@@ -1287,17 +1287,6 @@ uk:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Самі не демонструють відповідну поведінку.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
-    днів та більше, додати не менше 100 уточнень визначень для будь-чиїх 
-    спостережень, у тому числі ваших власних (наразі ви додали %{num_idents}). Коли ви будете відповідати обом вимогам, поверніться сюди і заповніть
-    форму.
-  curator_application_inelligible_error: |
-    Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
-    днів і більше, і додати 100 уточнень визначень для будь-чиїх
-    спостережень, у т.ч. ваших власних.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявка на кураторство подана
   #Header
@@ -1886,6 +1875,7 @@ uk:
   frequency: Частотою
   from_a_place: з місця
   from_eol_collection: З колекції EOL
+  from_flickr_etc: З Flickr, тощо
   from_list: Зі списку
   from_photos: З фото
   from_place: З місця
@@ -4947,6 +4937,9 @@ uk:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Розшукуються
   was_it_captive_cultivated?: "Це утримувалося в неволі або культивувалося?"
+  we_also_support2: |
+    Ми також підтримуємо імпорт фотографій з <a href="http://flickr.com">Flickr</a>
+    та <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Ми можемо розпізнати лише CSV у такому форматі
   we_couldnt_find_a_user: Ми не можемо знайти користувача із такою електронною адресою.
   we_couldnt_find_a_user_with_that_activation_code: "Ми не змогли знайти користувача з цим кодом активації. Можливо, ви вже активували свій обліковий запис, будь ласка, спробуйте увійти."
