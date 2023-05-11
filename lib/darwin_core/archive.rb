@@ -540,9 +540,12 @@ module DarwinCore
     def write_resource_relationships_data( observations, csv )
       @generate_started_at ||= Time.now
       observations.each do |observation|
-        observation.observation_field_values.
-          select{ |ofv| ofv.observation_field.datatype === "taxon" && ActiveModel::Validations::NumericalityValidator::INTEGER_REGEX.match?( ofv.value ) }.
-          each do |ofv|
+        # fields must have datatype "taxon", values must have a user and the value must be numeric
+        observation.observation_field_values.select do |ofv|
+          ofv.observation_field.datatype === "taxon" &&
+          ofv.user &&
+          ActiveModel::Validations::NumericalityValidator::INTEGER_REGEX.match?( ofv.value )
+        end.each do |ofv|
           next unless ofv.created_at <= @generate_started_at
           DarwinCore::ResourceRelationship.adapt( ofv, observation: observation, core: @opts[:core] )
           csv << DarwinCore::ResourceRelationship::TERMS.map{ |field, uri, default, method| ofv.send( method || field ) }
