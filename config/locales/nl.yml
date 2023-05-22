@@ -1302,6 +1302,10 @@ nl:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Zelf niet het juiste gedrag vertoont.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd inclusief je eigen (je hebt %{num_idents} toegevoegd). Als jij aan deze eisen voldoet kun je hier terugkomen en ben je in staat een aanvraag in te dienen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Aanvraag voor curator ingediend
   #Header
@@ -1978,6 +1982,7 @@ nl:
   frequency: Frequentie
   from_a_place: van een plaats
   from_eol_collection: Van EOL collectie
+  from_flickr_etc: Van Flickr, etc.
   from_list: Van lijst
   from_photos: Van fotos
   from_place: van plaats
