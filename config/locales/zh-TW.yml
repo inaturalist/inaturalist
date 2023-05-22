@@ -1366,7 +1366,7 @@ zh-TW:
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: 帳號確認說明
+        subject: 確認您的電子郵件地址
       reset_password_instructions:
         subject: '重設密碼的說明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
