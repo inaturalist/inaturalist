@@ -1794,7 +1794,7 @@ uk:
     Прапорець для посібника: %{title}
   flag_for_identification_id_html: Прапорець для <a href="%{url}">визначення%{id}</a>
   flag_for_life_list_title_html: |
-    Прапорець для списку життя: %{title}
+    Прапорець для списку живого: %{title}
   flag_for_list_title_html: |
     Прапорець для списку: %{title}
   flag_for_message_id_html: Прапорець для <a href="%{url}">повідомлення %{id}</a>
@@ -2203,7 +2203,7 @@ uk:
   leave_a_comment: Залишити коментар
   leave_this_project: Покинути цей проєкт?
   #Terminal nodes in a taxonomic tree
-  leaves: листя
+  leaves: найточніше визначення
   legacy_authentication_notice_html: |
     Схоже, ви використовуєте пароль зі старішої версії веб-сайту.
     Не забудьте <a href="%{url}">змінити пароль</a> для нової версії.
@@ -2620,7 +2620,7 @@ uk:
   nearby_observations_: Спостереження поблизу
   needs_id: потребує визначення
   needs_id_: Потребує визначення
-  needs_id_expandable_html: "<span class='full'>Потребує</span>визначення"
+  needs_id_expandable_html: "<span class='full'>Потребує </span>визначення"
   needs_id_tooltip_html: 'Спостереження, позначені як такі, що "Потребують визначення" мають медіафайли, дату, але потребують консенсусу спільноти щодо їхнього точного визначення. <a href="https://www.inaturalist.org/pages/help#quality">Дізнатися більше про рівні якості</a>'
   needs_to_be_identified: Має бути визначене
   #@vow_or_con can be used here for the first letter of %{place}
@@ -4875,6 +4875,7 @@ uk:
   view_check_list_page: На сторінку таксономічного списку
   view_contributions: Переглянути доповнення
   view_details: Переглянути подробиці
+  view_dynamic_lifelist_: ПЕРЕГЛЯНУТИ ДИНАМІЧНИЙ СПИСОК ЖИВОГО
   view_field_options: Переглянути параметри поля
   view_flag: Переглянути прапорець
   view_flags: Переглянути прапорці
