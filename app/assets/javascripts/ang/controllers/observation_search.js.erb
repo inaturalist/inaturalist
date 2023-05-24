@@ -1280,6 +1280,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       resetOnChange: false,
       bootstrapClear: true,
       searchExternal: false,
+      position: { my: "right top", at: "right bottom" },
       idEl: $( "#filters input[name='taxon_id']" ),
       afterSelect: function( result ) {
         $scope.selectedTaxon = result.item;
@@ -1306,6 +1307,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "input[name='inat_place_name']" ).placeAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
+      position: { my: "right top", at: "right bottom" },
       idEl: $( "#filters input[name='place_id']" ),
       afterSelect: function( result ) {
         $scope.filterByPlace( result.item );
@@ -1330,6 +1332,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "input[name='user_name']" ).userAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
+      position: { my: "right top", at: "right bottom" },
       idEl: $( "#filters input[name='user_id']" ),
       afterSelect: function( result ) {
         $scope.params.user_id = result.item.login;
@@ -1359,6 +1362,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $( "input[name='project_name']" ).projectAutocomplete({
       resetOnChange: false,
       bootstrapClear: true,
+      position: { my: "right top", at: "right bottom" },
       idEl: $( "#filters input[name='project_id']" ),
       afterSelect: function( result ) {
         $scope.params.project_id = result.item.slug;
