@@ -100,7 +100,7 @@ class CloudfrontACLUpdater
     return unless kibana_uri && kibana_uri.host && kibana_uri.port
     begin
       http = Net::HTTP.new( kibana_uri.host, kibana_uri.port )
-      request = Net::HTTP::Post.new( "/logstash-*/_search" )
+      request = Net::HTTP::Post.new( "/logs-cloudfront-logs-default/_search", "Content-Type": "application/json" )
       request.body = prepare_es_query( time_range ).to_json
       response = http.request( request )
       buckets = JSON.parse( response.body )["aggregations"]["clientips"]["buckets"]
