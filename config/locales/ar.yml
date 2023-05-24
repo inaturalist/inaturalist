@@ -572,7 +572,6 @@ ar:
   confirm_your_info: أكد معلوماتك
   connect_to_provider: "الاتصال بـ%{provider}"
   connecting_flickr: "جارٍ الاتصال بفليكر..."
-  connecting_to_facebook: "جارٍ الاتصال بفيسبوك..."
   connecting_your_inat_account_to_accounts_other_sites: "سيتيح لك ربط حسابك %{site_name} بالحسابات على مواقع أخرى تسجيل الدخول إلى %{site_name} باستخدام بيانات الاعتماد من تلك المواقع."
   conservation_status: حالة الحفظ
   conservation_status_descriptions:
@@ -945,11 +944,6 @@ ar:
   extra_properties: خصائص إضافية
   evidence_of_organism: دليل على الكائن الحي
   facebook: فيسبوك
-  facebook_account_information: معلومات حساب فيسبوك الخاص بك
-  facebook_account_not_linked: "لم يعد لدى %{user} حساب فيسبوك مرتبط بعد الآن; لذلك ليس لدى %{site_name} إذن بالدخول إلى هذه الصورة."
-  facebook_access_token_expired: "انتهت صلاحية الرمز المميز للدخول; يحتاج %{user} إلى إعادة ربط حساب فيسبوك."
-  facebook_needs_the_owner_of_that_photo_to: يحتاج فيسبوك إلى مالك هذه الصورة لإعادة تأكيد اتصاله بـ%{site_name_short}.
-  facebook_options: خيارات فيسبوك
   failed_to_find_your_location: أخفق البحث عن موقعك.
   failed_to_repair_photo: "فشل إصلاح الصورة: %{errors}"
   failed_to_save_record: "أخفق حفظ السجل؛ الرجاء معاودة المحاولة في وقت لاحق."
@@ -1069,7 +1063,6 @@ ar:
   frequency: تردد
   from_a_place: من مكان
   from_eol_collection: من مجموعة موسوعة الحياة
-  from_flickr_facebook_etc: من فليكر، فيسبوك، إلخ.
   from_list: من قائمة
   from_photos: من الصور
   from_place: من مكان
@@ -1390,14 +1383,8 @@ ar:
   life_list: "قائمة حياة %{user}"
   linear_scale_label: خطي
   link: وصلة
-  link_your_facebook_account: ربط حساب فيسبوك الخاص بك
   link_your_flickr_account: ربط أو إلغاء ربط حساب فليكر الخاص بك
   link_your_google_account: ربط حسابك في جوجل
-  linked_facebook: "تم ربط حساب %{site_name} حاليا بحسابك على فيسبوك."
-  linked_facebook_automaticaly: "ضع في اعتبارك أيضا أنه إذا سجلت الدخول إلى %{site_name} عبر فيسبوك، فسنعيد تلقائيا ربط حسابك في %{site_name} وفيسبوك، يبدو معقولا أنه إذا كنت تستخدم فيسبوك ستحتاج إلى أن تكون قادرا على استيراد صور فيسبوك، أليس كذلك؟"
-  linked_facebook_description: "يتيح لك الاحتفاظ بحساب %{site_name} المرتبط بحسابك في فيسبوك إضافة صور متعددة لملاحظاتك، بطبيعة الحال، إذا كنت تريد تفريق %{site_name} وفيسبوك، لن نمنعك، فلن تتمكن فقط من إضافة الصور، قد يكون هذا في بعض الأحيان للأفضل، كما لو قمت بإنشاء حساب فيسبوك جديد تريد ربط %{site_name} به."
-  linked_facebook_howto: "لربط فيسبوك ب%{site_name}; انقر على الرابط على اليمين وسجل الدخول إلى Facebook.com."
-  linked_facebook_password: "لن نطلب منك أبدا كلمة السر الخاصة بك في فيسبوك (لكن فيسبوك قد يفعل، تحقق من المسار الذي يرسله الزر لك وتأكد من أنه Facebook.com)، وأيضا لن تغير بيانات فيسبوك الخاصة بك إلا إذا كنت تريد منا أن نفعل ذلك."
   linked_flickr: "حسابك في %{site_name} مرتبط حاليا بحسابك في فليكر"
   linked_flickr_automatically: "ضع في اعتبارك أنه إذا سجلت الدخول إلى %{site_name} عبر فليكر، فسنعيد تلقائيا ربط حسابك في %{site_name} وفي فليكر. يبدو معقولا أنه إذا كنت تستخدم فليكر عليك أن تكون قادرا على استيراد صور فليكر، أليس كذلك؟"
   linked_flickr_description: "يتيح لك الاحتفاظ بحساب %{site_name} المرتبط بحسابك في فليكر إضافة صور متعددة إلى ملاحظاتك، بطبيعة الحال، إذا كنت تريد حتى تفريق %{site_name} وفليكر، ونحن لن نمنعك، فلن تتمكن فقط من إضافة الصور، قد يكون هذا في بعض الأحيان للأفضل، كما لو قمت بإنشاء حساب فليكر جديد تريد ربط %{site_name} به."
@@ -1781,7 +1768,6 @@ ar:
   not_findig_what_you_want: لم تجد ما تريد؟
   not_finding_place_you_want?: لا تجد المكان الذي تريده؟
   not_found: لم يتم العثور عليه
-  not_linked_facebook: "حسابك في %{site_name} غير مرتبط بحسابك في فيسبوك"
   not_linked_flickr: "حسابك في %{site_name} غير مرتبط بحسابك في فليكر"
   not_on_this_list: ليس في هذه القائمة.
   not_recorded: غير مسجل
@@ -1969,7 +1955,7 @@ ar:
   optional: اختياري
   or: أو
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
   orange: برتقالي
@@ -2994,7 +2980,6 @@ ar:
   tagging: 'جارٍ وضع علامات...'
   tags: وسوم
   tags_are_a_way: 'العلامات وسيلة لتنظيم ملاحظاتك، على سبيل المثال، قد تعلم كل ما ملاحظاتك عن "tidepool" لجعل لعثور عليها لاحقا أسهل.'
-  take_me_facebook: نعم، خذني إلى فيسبوك!
   take_me_flickr!: نعم، خذني إلى فليكر!
   target_list_alert: هل أنت متأكد من أنك حاولت مراقبة جميع الأنواع التي تغطيها القائمة المستهدفة؟ تذكر أن أي شيء تمت تغطيته في القائمة المستهدفة ولم تلاحظه سيتم تفسيره على أنه غياب؛ لذا من المهم جدا أن تعكس القائمة المستهدفة بدقة مجموعة الأنواع التي حاولت اكتشافها
   target_list_warning: تذكر أن أي شيء تمت تغطيته في القائمة المستهدفة ولم تلاحظه داخل نصف قطر ومدة هذه الرحلة سيتم تفسيره على أنه غياب، من المهم جدا أن تعكس القائمة المستهدفة بدقة مجموعة الأنواع التي حاولت اكتشافها، إذا لم تحاول اكتشاف نوع في القائمة المستهدفة أو كل الأنواع التي تغطيها مجموعة في القائمة المستهدفة، فتُرجَى إزالته.
@@ -3451,10 +3436,6 @@ ar:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: مطلوب
   was_it_captive_cultivated?: "هل كان أسير / مزروع؟"
-  we_also_support: |
-    نحن ندعم أيضا <a href="http://flickr.com">فليكر</a>
-    و<a href="http://photos.google.com">جوجل صور</a> و<a href="http://facebook.com">فيسبوك</a>
-    لمشاركة الصور
   we_can_only_understand_csv_in: لا يمكننا فهم CSV إلا بالصيغة التالية
   we_couldnt_find_a_user: تعذر العثور على مستخدم لديه عنوان البريد الإلكتروني هذا.
   we_couldnt_find_a_user_with_that_activation_code: "تعذر العثور على مستخدم له رمز التفعيل هذا، ربما كنت قد نشطت حسابك بالفعل، الرجاء محاولة تسجيل الدخول."

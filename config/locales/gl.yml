@@ -982,7 +982,6 @@ gl:
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr outra vez para autorizar os permisos de escritura
-  connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar a túa conta de %{site_name} con contas noutros sitios permíteche entrar a %{site_name} empregando os datos deses sitios."
   cannot_be_changed_during_a_content_freeze: Non se pode mudar durante un conxelamento de contidos
   conservation_status: Categoría de risco
@@ -1185,12 +1184,6 @@ gl:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Non demostra comportamentos axeitados.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para solicitar ser un administrador do site, debes ter tido unha conta durante 60 días ou máis e engadido 100 identificacións para mellorar observacións de calquera usuario, incluíndo as túas propias (engadiches %{num_idents}). Cando cumpras ámbolos dous requerimentos, volve aquí e serás quen de enviar a solicitude.
-  curator_application_inelligible_error: |
-    Para solicitar ser un administrador do sitio, debes ter tido unha conta durante 60 días ou máis e engadido 100 identificacións para mellorar as observacións de calquera usuario, incluído ti.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitude para administrador entregada
   #Header
@@ -1619,13 +1612,6 @@ gl:
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia dun organismo
   facebook: Facebook
-  facebook_account_information: Información da túa conta de Facebook
-  facebook_account_not_linked: "%{user} xa non ten unha conta de facebook asociada, asi que %{site_name} non ten permiso para acceder a esta foto."
-  facebook_access_token_expired: "O token de acceso caducou. %{user} necesita reasociar a súa conta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita a confirmación do propietario desta foto para poder realizar a conexión a %{site_name_short}.
-  facebook_options: Opcións de Facebook
-  facebook_photo_import_disabled_notice: |
-    En Novembro de 2020, Facebook pedíunos verificar a necesidade de acceder a fotos, e non puidemos completar o proceso debido a problemas có sistema de verificación de Facebook. Como resultado, non podemos seguir importando fotos dende Facebook.
   failed_to_find_your_location: Non se puido atopar a túa ubicación.
   failed_to_repair_photo: "Non se puido arranxar foto: %{errors}"
   failed_to_save_record: "Non se puido gardar o rexistro. Por favor, téntao logo de novo."
@@ -1780,7 +1766,6 @@ gl:
   frequency: Frecuencia
   from_a_place: dun lugar
   from_eol_collection: Da Colección EOL
-  from_flickr_facebook_etc: Dende Flickr, Facebook, etc.
   from_list: Da lista
   from_photos: De fotos
   from_place: dun lugar
@@ -2155,14 +2140,8 @@ gl:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Linear
   link: Vínculo
-  link_your_facebook_account: Vincula a túa conta de Facebook
   link_your_flickr_account: Vincula a túa conta de Flickr
   link_your_google_account: Conecta a túa conta de Google
-  linked_facebook: "A túa conta de %{site_name} está actualmente vinculada coa túa conta de Facebook."
-  linked_facebook_automaticaly: "Ademáis, repara en que se accedes a %{site_name} a través de Facebook, automáticamente reconectaremos a túa %{site_name} e conta de Facebook. Semella razoable que se usas Facebook, queiras ser quen de importar as túas fotos de Facebook, ¿non si?"
-  linked_facebook_description: "Manter a túa conta de %{site_name} vinculada á túa conta de Facebook permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Facebook en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Facebook que desexas vincular a %{site_name}."
-  linked_facebook_howto: "Para conectar Facebook con %{site_name}, preme no vínculo da dereita e inicia sesión en facebook.com."
-  linked_facebook_password: "Non che pediremos nunca o teu contrasinal de Facebook (pero Facebook podería facelo, verifica que o enderezo ó cal o botón te redirixe é facebook.com). Tampouco cambiaremos os teus datos de Facebook, a menos que o solicites."
   linked_flickr: "A túa conta de %{site_name} está vinculada actualmente coa túa conta de Flickr."
   linked_flickr_automatically: "Ademáis, repara en que se accedes a %{site_name} a través de Flickr, automáticamente reconectaremos a túa %{site_name} e conta de Flickr. Semella razoable que se usas Flickr, queiras ser quen de importar as túas fotos de Flickr, ¿non si?"
   linked_flickr_description: "Manter a túa conta de %{site_name} vinculada coa túa conta de Flickr permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Flickr en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Flickr que desexes vincular con %{site_name}."
@@ -2665,7 +2644,6 @@ gl:
   not_findig_what_you_want: Non atopas o que desexas?
   not_finding_place_you_want?: '¿Non atopaches o lugar que buscabas?'
   not_found: Non se atopou
-  not_linked_facebook: "A túa conta de %{site_name} xa non está vinculada coa túa conta de Facebook."
   not_linked_flickr: "A túa conta de %{site_name} non está vinculada coa túa conta de Flickr"
   not_on_this_list: Non estás nesta lista.
   not_recorded: Non rexistrado
@@ -2896,7 +2874,7 @@ gl:
   optional: Opcional
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OU
   or_choose_high_level_taxa: "... Ou selecciona dalgúns taxóns de alto nivel"
   orange: Laranxa
@@ -4164,7 +4142,6 @@ gl:
   tagging: 'Etiquetando...'
   tags: Etiquetas
   tags_are_a_way: 'As etiquetas son palabras clave que podes engadir ás túas observacións para facelas máis fáciles de atopar.'
-  take_me_facebook: Si, ir a Facebook
   take_me_flickr!: Si, ir a Flickr
   target_list_alert: '¿Seguro que tentaches observar tódalas especies cubertas pola túa listaxe de obxectivos? Lembra que todo o que está cuberto na túa listaxe de obxectivos e non observaches, será interpretado como unha ausencia, polo que é moi importante que a túa listaxe de obxectivos reflicte con exactitude o conxunto de especies que trataches de detectar.'
   target_list_warning: Lembra que todo o que estea cuberto pola túa lista de obxectivos que non observaches no radio e duración desta excursión será interpretado como unha ausencia. É moi importante que a túa lista de obxectivos reflicta o conxunto de especies que intentaches detectar. Se non intentaches detectar unha especie ou tódalas especies cubertas por un grupo na túa listaxe de obxectivos, por favor, elimínaa.
@@ -4715,11 +4692,6 @@ gl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Buscados
   was_it_captive_cultivated?: "Era cativa/cultivada?"
-  we_also_support: |
-    Tamén temos conexión con Flickr <a href="http://flickr.com"></a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para as túas imaxes.
   we_can_only_understand_csv_in: Só podemos importar CSV no seguinte formato
   we_couldnt_find_a_user: Non puidemos atopar un usuario con este enderezo de correo.
   we_couldnt_find_a_user_with_that_activation_code: "Non puidemos atopar ningún usuario con este código de activación. Pode que a túa conta xa fora activada, por favor trata de entrar no sistema."

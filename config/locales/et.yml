@@ -1035,7 +1035,6 @@ et:
   connected_accounts_titlecase: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Ühenda ennast uuesti Flickriga, et lubada ka kirjutamisõigusi
-  connecting_to_facebook: "Ühendan Facebookiga..."
   connecting_your_inat_account_to_accounts_other_sites: "Oma %{site_name} konto ühendamine teiste lehtede kontodega lubab sul siseneda lehele %{site_name} kasutades selleks teiste lehtede sisselogimismeetodit."
   cannot_be_changed_during_a_content_freeze: Sisu külmutamise ajal ei saa muuta
   conservation_status: Kaitsestaatus
@@ -1246,12 +1245,6 @@ et:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ei käitu ise korralikult ja eeskujulikult.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Selleks, et kandideerida lehekülje kuraatoriks, peab su konto olema rohkem kui 60 päeva vana ning sa pead olema teinud kasutajate vaatlustele (kaasaarvatud enda omadele) vähemalt 100 täpsustavat määratlust (oled teinud %{num_idents}). Kui vastad mõlemale nõudmisele, tule sellele lehele tagasi ning esita avaldus.
-  curator_application_inelligible_error: |
-    Selleks, et kandideerida lehekülje kuraatoriks, peab su konto olema rohkem kui 60 päeva vana ning sa pead olema teinud kasutajate vaatlustele (kaasaarvatud enda omadele) vähemalt 100 täpsustavat määratlust.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuraatori avaldus edastatud
   #Header
@@ -1746,13 +1739,6 @@ et:
   extra_properties: Lisaomadused
   evidence_of_organism: Tõendid organismi kohta
   facebook: Facebook
-  facebook_account_information: Sinu Facebooki konto info
-  facebook_account_not_linked: "Kasutaja %{user} on lõpetanud seose oma Facebooki kontoga ning seetõttu ei oma %{site_name} sellele fotole enam ligipääsuõigust."
-  facebook_access_token_expired: "Ligipääs on aegunud. %{user} peab uuesti looma ühenduse oma Facebooki kontoga."
-  facebook_needs_the_owner_of_that_photo_to: Facebook soovib, et foto omanik kinnitaks uuesti oma seose lehega %{site_name_short}.
-  facebook_options: Facebooki sätted
-  facebook_photo_import_disabled_notice: |
-    Novemberis 2020 nõudis Facebook, et tõestaksime, et vajame tõepoolest fotodele ligipääsu. Meil see ei õnnestunud, kuna Facebooki tõenussüsteem ei võimaldanud seda. Selle tulemusena, ei toeta me enam Facebookist fotode importi.
   failed_to_find_your_location: Sinu asukohta ei leitu.
   failed_to_repair_photo: "Foto parandamine ei õnnestunud: %{errors}"
   failed_to_save_record: "Andmete salvestamine ebaõnnestus. Proovi hiljem uuesti."
@@ -1917,7 +1903,6 @@ et:
   frequency: Sagedus
   from_a_place: kohast
   from_eol_collection: EOL-i kollektsioonist
-  from_flickr_facebook_etc: Lehtedelt Flickr, Facebook, jms.
   from_list: Nimekirjadest
   from_photos: Fotodest
   from_place: Kohast
@@ -2413,14 +2398,8 @@ et:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Autoriseerimiskoodi link
-  link_your_facebook_account: Ühenda oma Facebooki konto
   link_your_flickr_account: Ühenda oma Flickr konto
   link_your_google_account: Ühenda oma Google'i konto
-  linked_facebook: "Sinu lehe %{site_name} konto on praegu ühendatud sinu Facebooki kontoga."
-  linked_facebook_automaticaly: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Facebooki konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Facebooki, soovid sa ka vajadusel importida Facebookis olevaid fotosid."
-  linked_facebook_description: "Ühendades lehe %{site_name} konto Facebooki omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Facebooki konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
-  linked_facebook_howto: "Kui soovid ühendada Facebooki lehega %{site_name}, vajuta paremal olevale lingile ning logi ennast Facebooki sisse."
-  linked_facebook_password: "Me ei küsi sinult kunagi su Facebooki salasõna (kuid Facebook võib seda teha: kontrolli internetiaadressit, millele see nupp sind saadab, ja veendu, et tegemist oleks Facebook.com-iga). Samuti ei muuda me sinu Facebooki andmeid, kui sa meilt just seda ise ei palu."
   linked_flickr: "Sinu lehe %{site_name} konto on praegu ühendatud sinu Flickr kontoga."
   linked_flickr_automatically: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Flickr konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Flickrit, soovid sa ka vajadusel importida Flickris olevaid fotosid."
   linked_flickr_description: "Ühendades lehe %{site_name} konto Flickri omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Flickr konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
@@ -2940,7 +2919,6 @@ et:
   not_findig_what_you_want: Ei leia soovitavat?
   not_finding_place_you_want?: Ei leia soovitud kohta?
   not_found: Ei leitud
-  not_linked_facebook: "Sinu lehe %{site_name} konto ei ole ühendatud sinu Facebooki kontoga."
   not_linked_flickr: "Sinu lehe %{site_name} konto ei ole ühendatud sinu Flickr kontoga."
   not_on_this_list: Pole nimekirjas.
   not_recorded: Pole märgitud
@@ -3127,7 +3105,7 @@ et:
   options: Sätted
   or: või
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: VÕI
   or_choose_high_level_taxa: "... või vali mõni kõrgema taseme takson"
   orange: oranž
@@ -4189,7 +4167,6 @@ et:
   tagging: 'Lisan märksõnu...'
   tags: Märksõnad
   tags_are_a_way: 'Märksõnade abil saab vaatluseid organiseerida. Näiteks võid lisada kõigile laugastest tehtud vaatlustele märksõna "laukad", et neid oleks hiljem lihtsam leida.'
-  take_me_facebook: Jah, lähme Facebooki!
   take_me_flickr!: Jah, lähme Flickrisse!
   taxa: Taksonid
   taxa_show_obs_photo_search_tip: |
@@ -4722,10 +4699,6 @@ et:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Otsime
   was_it_captive_cultivated?: "Oli see vangistatud / kultiveeritud?"
-  we_also_support: |
-    Lubame piltide majutamist ka <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> ja
-    <a href="http://facebook.com">Facebook</a> kontodel.
   we_can_only_understand_csv_in: Me mõistame CSV-faile ainult järgnevas formaadis
   we_couldnt_find_a_user: Me ei leidnud sellise e-posti aadressiga kasutajat.
   we_couldnt_find_a_user_with_that_activation_code: "Me ei leidnus sellise aktiveerimiskoodiga kasutajat. Võib-olla oled juba oma konto aktiveerinud, proovi palun sisse logida."

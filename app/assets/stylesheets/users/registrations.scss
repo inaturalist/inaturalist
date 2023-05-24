@@ -192,10 +192,6 @@
       line-height: 32px;
       vertical-align: middle;
     }
-    &.facebook {
-      background-color: $facebook-blue;
-      border-color: $facebook-blue;
-    }
     &.google {
       background-color: $google-red;
       border-color: $google-red;
@@ -246,11 +242,6 @@
     &.google {
       background-color: white;
       color: rgba(0,0,0,0.54);
-    }
-    &.facebook {
-      i {
-        margin-inline-start: 4px;
-      }
     }
     .btntext {
       width: 100%;

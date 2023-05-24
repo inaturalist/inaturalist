@@ -907,7 +907,6 @@ el:
   connected_accounts_titlecase: Συνδεδεμένοι Λογαριασμοί
   connecting_flickr: "Σύνδεση με το Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Συνδεθείτε στο Flickr ξανά για να εγκρίνετε τα δικαιώματα εγγραφής
-  connecting_to_facebook: "Σύνδεση στο Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Συνδέοντας τον%{site_name}λογαριασμό σας με λογαριασμούς σε άλλους ιστοτόπους θα σας επιτρέπει να εισέρχεστε στο %{site_name} χρησιμοποιώντας τα στοιχεία σας από εκείνους τους ιστοτόπους."
   cannot_be_changed_during_a_content_freeze: Δεν είναι δυνατή η αλλαγή όσο το περιεχόμενο είναι παγωμένο
   conservation_status: Κατάσταση διατήρησης
@@ -1075,15 +1074,6 @@ el:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Αποτυγχάνει να αποδείξει οτι ο ίδιος έχει την κατάλληλη συμπεριφορά.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Για να κάνετε αίτηση ώστε να γίνετε επιμελητής θα πρέπει να έχετε λογαριασμό για 60
-    ημέρες ή περισσότερες και να έχετε προσθέσει 100 βελτιωμένες αναγνωρίσεις στις παρατηρήσεις κάποιου, συμπεριλαμβανομένων και των δικών σας (έχετε προσθέσει %{num_idents}). Όταν έχετε
-    ικανοποιήσει και τις δύο αυτές απαιτήσεις, επιστρέψτε εδώ και θα είστε σε θέση να υποβάλετε την αίτηση.
-  curator_application_inelligible_error: |
-    Για να κάνετε αίτηση ώστε να γίνετε επιμελητής θα πρέπει να έχετε λογαριασμό για 60
-    ημέρες ή περισσότερες και να έχετε προσθέσει 100 βελτιωμένες αναγνωρίσεις στις παρατηρήσεις κάποιου, συμπεριλαμβανομένων και των δικών σας.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Η αίτηση επιμελητή υποβλήθηκε
   #Header
@@ -1502,11 +1492,6 @@ el:
   extra_properties: Πρόσθετες ιδιότητες
   evidence_of_organism: Ένδειξη ύπαρξης οργανισμού
   facebook: Facebook
-  facebook_account_information: Πληροφορίες του λογαριασμού σας στο Facebook
-  facebook_account_not_linked: "O/H %{user} δεν έχει πλέον συνδεδεμένο λογαριασμό facebook, οπότε το %{site_name} δεν έχει άδεια πρόσβασης σε αυτή τη φωτογραφία."
-  facebook_access_token_expired: "Η πρόσβαση έχει λήξει. O/H %{user} χρειάζεται να ξανασυνδεθεί στο λογαριασμό του/της στο Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Το Facebook απαιτεί ο ιδιοκτήτης αυτής της φωτογραφίας να επιβεβαιώσει ξανά τη σύνδεση του με το %{site_name_short}
-  facebook_options: Επιλογές Facebook
   failed_to_find_your_location: Η εύρεση της τοποθεσίας σας απέτυχε.
   failed_to_repair_photo: "Η επισκευή της φωτογραφίας απέτυχε: %{errors}"
   failed_to_save_record: "Η αποθήκευση της εγγραφής απέτυχε. Παρακαλώ προσπαθήστε πάλι αργότερα."
@@ -1659,7 +1644,6 @@ el:
   frequency: Συχνότητα
   from_a_place: από έναν τόπο
   from_eol_collection: Απο την συλλογή της EOL
-  from_flickr_facebook_etc: Από το Flickr, Facebook, κτλ.
   from_list: από τη λίστα
   from_photos: από φωτογραφίες
   from_place: Από τόπο
@@ -2013,14 +1997,8 @@ el:
   life_list: "Λίστα ζωής του %{user}"
   linear_scale_label: Γραμμική
   link: Σύνδεσμος
-  link_your_facebook_account: Συνδέστε τον λογαριασμό σας στο Facebook
   link_your_flickr_account: Συνδέστε τον λογαριασμό σας στο Flickr
   link_your_google_account: Συνδέστε τον λογαριασμό σας στο Google
-  linked_facebook: "Ο λογαριασμός σας στο %{site_name} είναι συνδεδεμένος με τον λογαριασμό σας στο Facebook."
-  linked_facebook_automaticaly: "Επίσης, θυμήσου ότι εάν συνδεθείς στο %{site_name} μέσω Facebook, εμείς αυτόματα θα επανάσυνδεσουμε το %{site_name} και τους λογαριασμούς σου στο Facebook. Φαίνεται λογικό ότι αν χρησιμοποιείς Facebook θα θελήσεις να μπορείς να εισάγεις φωτογραφίες του Facebook, σωστά;"
-  linked_facebook_description: "Διατηρώντας το %{site_name} λογαριασμό συνδεδεμένο στο λογαριασμό σου στο Facebook, σου επιτρέπει να προσθέσεις πολλαπλές φωτογραφίες στις παρατηρήσεις σου. Φυσικά, εάν ποτέ θελήσεις να χωρίσεις το %{site_name}και το Facebook, δεν θα σε σταματήσουμε, απλώς δεν θα έχεις την δυνατότητα να προσθέσεις φωτογραφίες. Μερικές φορές αυτό μπορεί να είναι για το καλύτερο, όπως αν δημιουργήσεις ένα νέο λογαριασμό στο Facebook στον οποίο θέλεις να συνδέσεις το %{site_name}."
-  linked_facebook_howto: "Για να συνδέσετε το Facebook με το %{site_name}, κάντε κλικ στον σύνδεσμο δεξιά και συνδεθείτε στο Facebook.com."
-  linked_facebook_password: "Δεν θα ζητήσουμε τον κωδικό σας στο Facebook (όμως είναι πιθανό να τον ζητήσει το Facebook, ελέγξτε την ιστοσελίδα που εστάλη και βεβαιωθείτε πως είναι η Facebook.com). Δε θα κάνουμε αλλαγές στα δεδομένα του Facebook σας, εκτός εάν το επιθυμείτε"
   linked_flickr: "Ο λογαριασμός σας στο %{site_name} είναι συνδεδεμένος με τον λογαριασμό σας στο Flickr."
   linked_flickr_automatically: "Έπιπλέον,έχετε στο νου σας ότι αν συνδεθείτε στο%{site_name}μέσω του Flickr,θα σας επανασυνδέσουμε αυτόματα στο λογαριασμό σας στο %{site_name} και στο Flickr.Φαίνεται λογικό πως εάν χρησιμοποιείτε το Flickr θα θελήστε να εισάγετε φωτογραφίες από το Flickr, σωστά;"
   linked_flickr_description: "Διατηρώντας τον %{site_name} λογαριασμό σας συνδεδεμένο με τον  Flickr λογαριασμό σας, μπορείτε να προσθέτετε πολλαπλές φωτογραφίες στις παρατηρήσεις σας. Φυσικά, εάν ποτέ θελήσετε να διαχωρίσετε το %{site_name} και το  Flickr, αυτό είναι εφικτό, απλώς δεν θα μπορείτε να προσθέτετε πλέον φωτογραφίες.Κάποιες φορές αυτό μπορεί να είναι προτιμότερο, όπως στην περίπτωση που δημιουργήσετε καινούριο λογαριασμό  Flickr και θελήσετε να τον συνδέσετε με  το%{site_name}."
@@ -2490,7 +2468,6 @@ el:
   not_findig_what_you_want: Δεν βρήκατε αυτό που θέλατε;
   not_finding_place_you_want?: Δεν βρίσκετε τον τόπο που θέλετε;
   not_found: Δεν βρέθηκε
-  not_linked_facebook: "Ο λογαριασμός σας στο %{site_name} δεν είναι συνδεδεμένος με τον λογαριασμό σας στο Facebook"
   not_linked_flickr: "Ο λογαριασμός σας στο %{site_name} δεν είναι συνδεδεμένος με τον λογαριασμό σας στο Flickr"
   not_on_this_list: Δεν είναι στην λίστα.
   not_recorded: μη καταγεγραμμένο
@@ -2706,7 +2683,7 @@ el:
   optional: προαιρετικό
   or: ή
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: Ή
   or_choose_high_level_taxa: "... ή επιλέξτε από κάποιο υψηλού επιπέδου taxa"
   orange: Πορτοκαλί
@@ -3897,7 +3874,6 @@ el:
   tagging: 'Προστίθεται ετικέτα...'
   tags: Ετικέτες
   tags_are_a_way: 'Οι ετικέτες είναι ένας τρόπος να οργανώσετε τις παρατηρήσεις σας. Για παράδειγμα, μπορεί να επισυνάψετε όλα τις tidepool παρατηρήσεις σας ως "tidepools" για να μπορείτε να τις βρείτε πιο εύκολα αργότερα.'
-  take_me_facebook: Ναι, πήγαινέ με στο Facebook!
   take_me_flickr!: Ναι, πήγαινέ με στο Flickr!
   target_list_alert: Είστε σίγουρος/η ότι προσπαθήσατε να παρατηρήσετε όλα τα είδη που περιλαμβάνονται στη στοχευμένη λίστα σας? Να θυμάστε ότι κάθε τι που περιλαμβάνεται σε αυτή τη λίστα που δεν παρατηρήσατε θα μεταφράζεται σαν μια απουσία επομένως είναι πολύ σημαντικό η λίστα αυτή να αντικατοπτρίζει με ακρίβεια το σετ από τα είδη που προσπαθείτε να εντοπίσετε
   target_list_warning: Θυμηθείτε ότι οτιδήποτε καλύπτεται από την λίστα στόχων σας που δεν παρατηρήσατε στην ακτίνα και στην διάρκεια αυτού του ταξιδιού θα εκληφθεί ως μία απουσία. Είναι πολύ σημαντικό το γεγονός ότι η λίστα των στόχων σας αντικατοπτρίζει με ακρίβεια το σύνολο των ειδών που επιχειρήσατε να εντοπίσετε. Εάν εσείς δεν επιχειρήσατε να ανιχνεύσετε είδη στην λίστα των στόχων σας ή κάθε είδος καλύπτεται από μία ομάδα στην λίστα σας με τους στόχους, παρακαλούμε αφαιρέστε την.
@@ -4440,8 +4416,6 @@ el:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Καταζητείται
   was_it_captive_cultivated?: "Ήταν σε αιχμαλωσία ή καλλιεργημένο;"
-  we_also_support: |
-    Υποστηρίζουμε, επίσης τις ιστοσελίδες <a href="http://flickr.com"> Flickr </a>, <a href="http://photos.google.com"> Google Photos </a> και <a href="http://facebook.com"> Facebook</a> για αποθήκευση εικόνων.
   we_can_only_understand_csv_in: Δεχόμαστε μόνο αρχεία τύπου CSV
   we_couldnt_find_a_user: Δεν μπορέσαμε να βρούμε έναν χρήστη με αυτήν τη διεύθυνση email.
   we_couldnt_find_a_user_with_that_activation_code: "Αδυνατούμε να βρούμε χρήστη με αυτό τον κωδικό ενεργοποίησης.Ενδεχομένως να έχετε ήδη ενεργοποιήσει τον λογαριασμό σας, παρακαλούμε δοκιμάστε να συνδεθείτε."

@@ -1160,7 +1160,6 @@ ru:
   connected_accounts_titlecase: Подключенные учетные записи
   connecting_flickr: "Подключение к Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Подключитесь к Flickr снова для авторизации прав на запись
-  connecting_to_facebook: "Подключение к Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Подключение учётной записи %{site_name} к учётным записям на других сайтах позволит вам входить в %{site_name}, используя учётные данные этих сайтов."
   cannot_be_changed_during_a_content_freeze: Нельзя изменить во время блокировки контента
   conservation_status: Природоохранный статус
@@ -1375,12 +1374,6 @@ ru:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Сами не демонстрируют надлежащего поведения.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные (вы добавили %{num_idents}). Когда вы выполните оба эти требования, возвращайтесь сюда, и вы сможете подать заявку.
-  curator_application_inelligible_error: |
-    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявление на куратора отправлено
   #Header
@@ -1879,13 +1872,6 @@ ru:
   extra_properties: Дополнительные свойства
   evidence_of_organism: Свидетельство существования организма
   facebook: Facebook
-  facebook_account_information: Информация о вашей учётной записи Facebook
-  facebook_account_not_linked: "У %{user} больше нет привязанной учётной записи Facebook, поэтому %{site_name} не имеет прав доступа к этому фото."
-  facebook_access_token_expired: "Срок действия токена доступа истёк. %{user} должен вновь связать свою учётную запись с Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook требует, чтобы владелец этого фото подтвердил свою привязку к %{site_name_short}.
-  facebook_options: Настройки Facebook
-  facebook_photo_import_disabled_notice: |
-    В ноябре 2020 года Facebook потребовал от нас подтверждать, что нам действительно нужен доступ к фотографиям, и мы не смогли завершить процесс из-за проблем с системой верификации Facebook. В результате мы не можем далее поддерживать импорт фотографий из Facebook.
   failed_to_find_your_location: Не удаётся найти ваше местоположение.
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
@@ -2051,7 +2037,6 @@ ru:
   frequency: Частота наблюдения
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
-  from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
   from_list: Из списка
   from_photos: Из фотографий
   from_place: Из места
@@ -2555,14 +2540,8 @@ ru:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Ссылка на код авторизации
-  link_your_facebook_account: Привязать вашу учётную запись Facebook
   link_your_flickr_account: Привязать свою учётную запись Flickr
   link_your_google_account: Привязать свою учётную запись Google
-  linked_facebook: "Ваша учётная запись %{site_name} на данный момент связана с учётной записью Facebook."
-  linked_facebook_automaticaly: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Facebook, мы автоматически перепривяжем ваши учетные записи %{site_name} и Facebook. Кажется разумным, что если вы используете Facebook, вы захотите иметь возможность импортировать фото из Facebook, верно?"
-  linked_facebook_description: "Привязка вашей учётной записи %{site_name} к учётной записи Facebook дает возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Facebook не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Facebook, которую хотите привязать к %{site_name}."
-  linked_facebook_howto: "Чтобы связать Facebook с %{site_name}, нажмите на ссылку справа и войдите в Facebook.com."
-  linked_facebook_password: "Мы никогда не будем запрашивать ваш пароль Facebook (однако Facebook может это сделать, проверьте URL, на который вас отправляет кнопка, и убедитесь, что это Facebook.com). Мы также не будем изменять ваши данные Facebook, если только вы не захотите, чтобы мы это сделали."
   linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей учётной записью Flickr."
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
@@ -3127,7 +3106,6 @@ ru:
   not_found: Не найдено
   #Filter for observations not in a particular place
   not_in_place: Не в данном месте
-  not_linked_facebook: "Ваша учётная запись %{site_name} не связана с учётной записью Facebook."
   not_linked_flickr: "Ваша учётная запись на сайте %{site_name} не привязана к вашей учётной записи Flickr"
   not_on_this_list: Нет в этом списке.
   not_recorded: Не указана
@@ -3389,7 +3367,7 @@ ru:
   options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "... или выберите из нескольких таксонов верхнего уровня"
   orange: оранжевый
@@ -4817,7 +4795,6 @@ ru:
   tagging: 'Присвоение тегов...'
   tags: Теги
   tags_are_a_way: 'Теги - это способ организовать ваши наблюдения. Например, вы можете пометить все ваши наблюдения tidepool тегом "tidepools", чтобы было легче найти их позже.'
-  take_me_facebook: Да, свяжите меня с Facebook!
   take_me_flickr!: Да, свяжите меня с Flickr!
   target_list_alert: Вы уверены, что пытались наблюдать за всеми видами, включенными в ваш целевой список? Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали, будет интерпретироваться как отсутствие, поэтому очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить
   target_list_warning: Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали в радиусе и за время поездки, будет истолковано как отсутствие. Очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить. Если вы не пытались обнаружить вид из вашего целевого списка или каждый вид, входящий в группу в вашем целевом списке, удалите его.
@@ -5636,10 +5613,6 @@ ru:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
-  we_also_support: |
-    Мы также поддерживаем <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, и
-    <a href="http://facebook.com">Facebook</a> как хостинги изображений.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."
