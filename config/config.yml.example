@@ -54,10 +54,6 @@ base: &base
       site_url: http://www.yoursite.com
 
     # facebook:
-    #     app_id: 00000000000
-    #     app_secret: 09af09af09af09af09af09af09af09af09af09af
-    #     # facebook user IDs of people who can admin pages on the site
-    #     admin_ids: [1,2]
     #     namespace: appname # your facebook app's namespace, used for open graph tags
 
     # twitter:
@@ -162,6 +158,7 @@ base: &base
             # The unsubscribe group used as a default for all emails sent from
             # the web app
             default: 1234
+    help_email: help@inaturalist.org
 
 development:
     <<: *base

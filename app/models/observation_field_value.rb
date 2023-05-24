@@ -184,7 +184,7 @@ class ObservationFieldValue < ApplicationRecord
   def update_observation_field_counts
     observation_field.delay(
       priority: USER_PRIORITY,
-      run_at: 30.minutes.from_now,
+      run_at: 2.hours.from_now,
       unique_hash: { "ObservationField::update_counts" => observation_field.id }
     ).update_counts
   end

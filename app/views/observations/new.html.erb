@@ -75,7 +75,7 @@
           <% end %>
         </div>
       <% end %>
-      <% if (@flickr_photo && @flickr_photo.copyrighted?) || @facebook_photo || @picasa_photo %>
+      <% if (@flickr_photo && @flickr_photo.copyrighted?) || @picasa_photo %>
         <div class="clear stacked notice">
           <%= fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
             <%= fu.label :email, "Yes, license my photos so scientists can use my data!",

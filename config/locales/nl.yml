@@ -1081,7 +1081,6 @@ nl:
   connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
-  connecting_to_facebook: "Verbinden met Facebook ..."
   connecting_your_inat_account_to_accounts_other_sites: "Door je %{site_name}-account aan te sluiten op accounts op andere sites, kunt je je aanmelden bij %{site_name} met je inloggegevens van die sites."
   cannot_be_changed_during_a_content_freeze: Kan niet worden gewijzigd tijdens een content freeze
   conservation_status: Natuurbeschermingstatus
@@ -1303,12 +1302,6 @@ nl:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Zelf niet het juiste gedrag vertoont.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen (je hebt %{num_idents}toegevoegd). Als jij aan beide eisen voldoet kun je een aanvraag indienen.
-  curator_application_inelligible_error: |
-    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Aanvraag voor curator ingediend
   #Header
@@ -1821,13 +1814,6 @@ nl:
   extra_properties: Extra eigenschappen
   evidence_of_organism: Bewijs van organisme
   facebook: Facebook
-  facebook_account_information: Je Facebook-accountgegevens
-  facebook_account_not_linked: "%{user} heeft geen gekoppeld Facebook-account meer, waardoor %{site_name} geen toegang meer heeft tot deze foto."
-  facebook_access_token_expired: "Access token is verlopen. %{user} moet zijn of haar Facebook account opnieuw linken."
-  facebook_needs_the_owner_of_that_photo_to: Facebook vereist dat de eigenaar van die foto hun verbinding met %{site_name_short} opnieuw bevestigt.
-  facebook_options: Facebookopties
-  facebook_photo_import_disabled_notice: |
-    In november 2020 vroeg Facebook ons te verifiëren of we echt toegang tot foto's nodig hadden en we konden het proces niet voltooien vanwege problemen met Facebook's verificatiesysteem. Als gevolg daarvan kunnen we niet langer het importeren van foto's vanuit Facebook ondersteunen.
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
@@ -1992,7 +1978,6 @@ nl:
   frequency: Frequentie
   from_a_place: van een plaats
   from_eol_collection: Van EOL collectie
-  from_flickr_facebook_etc: Van Flickr, Facebook, etc.
   from_list: Van lijst
   from_photos: Van fotos
   from_place: van plaats
@@ -2379,6 +2364,7 @@ nl:
   lexicon_cannot_contain_words: "kan de volgende woorden niet bevatten: %{words}"
   lexicons:
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanees
     aou_4_letter_codes: AOU 4-Letter Codes
     aou_6_letter_codes: AOU 6-Letter Codes
@@ -2412,7 +2398,9 @@ nl:
     gujarati: Gujarati
     hawaiian: Hawaïaans
     hebrew: Hebreeuws
+    herero: Herero
     hiligaynon: "\nHiligaynon"
+    hodges_number: Hodges nummer
     hokkien: Hokkien
     hungarian: Hongaars
     icelandic: IJslands
@@ -2463,12 +2451,15 @@ nl:
     thai: Thai
     tokelauan: Tokelaus
     turkish: Turks
+    u_s_d_a_symbol: V.S.D.A. Symbool
     ukrainian: Oekraïens
     uyghur: Oeigoers
+    vermont_flora_codes: Vermont Flora Codes
     vietnamese: Vietnamees
     visayan: Visayan
     waray_waray: Winaray
     xhosa: Xhosa
+    zulu: Zulu
   less: Minder
   #Button show less text
   less__context_text: Minder
@@ -2484,14 +2475,8 @@ nl:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link naar autorisatiecode
-  link_your_facebook_account: Verbind je Facebook-account
   link_your_flickr_account: Verbind je Flickr-account
   link_your_google_account: Verbind je Google-account
-  linked_facebook: "Je %{site_name}-account is momenteeel gekoppeld aan je Facebook-account."
-  linked_facebook_automaticaly: "Bedenk ook dat wanneer je op %{site_name} inlogt via Facebook, we je %{site_name}- en Facebookaccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Facebook gebruikt, je Facebookfoto's wilt kunnen importeren, toch?"
-  linked_facebook_description: "Door je account op %{site_name} aan je Facebook-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Facebook wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Facebook-account aanmaakt om aan %{site_name} te koppelen."
-  linked_facebook_howto: "Om Facebook te verbinden met %{site_name}, klik je op de link aan de rechterkant en log je in op Facebook.com."
-  linked_facebook_password: "We zullen je nooit om je Facebook-wachtwoord vragen (maar Facebook zou dat wel kunnen doen, controleer dat de URL die de knop je stuurt facebook.com is). We zullen ook je Facebook-gegevens niet wijzigen tenzij je dat wilt."
   linked_flickr: "Je account op %{site_name} is nu gekoppeld aan je Flickr-account."
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
@@ -3067,7 +3052,6 @@ nl:
   not_found: Niet gevonden
   #Filter for observations not in a particular place
   not_in_place: Niet op deze plek
-  not_linked_facebook: "Uw %{site_name}-account is niet aan uw Facebookaccount gekoppeld"
   not_linked_flickr: "Uw %{site_name}-account is niet aan uw Flickr-account gekoppeld"
   not_on_this_list: Niet op deze lijst
   not_recorded: Niet opgenomen
@@ -3349,7 +3333,7 @@ nl:
   options: Opties
   or: of
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OF
   or_choose_high_level_taxa: "... of kies wat taxa van een hoger niveau"
   orange: oranje
@@ -4799,7 +4783,6 @@ nl:
   tagging: 'Tagging ...'
   tags: Labels
   tags_are_a_way: 'Labels zijn een manier om je waarnemingen te organiseren. Je kunt bijvoorbeeld al je waarnemingen bij een getijdepoel labelen met "getijdepoel" om ze later makkelijker terug te vinden.'
-  take_me_facebook: Ja, breng me naar Facebook!
   take_me_flickr!: Ja, breng me naar Flickr!
   target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die je gezocht hebt.
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
@@ -5596,10 +5579,6 @@ nl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
-  we_also_support: |
-    We ondersteunen ook <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> en
-    <a href="http://facebook.com">Facebook</a> voor het hosten van afbeeldingen.
   we_can_only_understand_csv_in: We kunnen CSV alleen in het volgende formaat begrijpen
   we_couldnt_find_a_user: We vonden geen gebruiker met dat e-mailadres.
   we_couldnt_find_a_user_with_that_activation_code: "We konden geen gebruiker met die activeringscode vinden. Je hebt je account misschien al geactiveerd, probeer je aan te melden."

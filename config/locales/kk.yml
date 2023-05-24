@@ -718,7 +718,6 @@ kk:
   connect_to_provider: "%{provider} желісіне қосылу"
   connected_accounts_titlecase: Қосылған аккаунттар
   connecting_flickr: "Flickr желісіне қосылуда... "
-  connecting_to_facebook: "Facebook желісіне қосылуда..."
   conservation_status: Қорғау статусы
   conservation_status_created: Қорғау статусы құрылды
   conservation_status_deleted: Қорғау статусы жойылды
@@ -1251,7 +1250,7 @@ kk:
   options: Опциялар
   or: немесе
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: НЕМЕСЕ
   or_choose_high_level_taxa: "... немесе жоғары деңгейлі таксондардан таңдаңыз"
   orange: қызғылт сары
@@ -2306,8 +2305,18 @@ kk:
         woeid: WOEID
       source:
         url: URL
+      taxon_name:
+        is_valid: Жарамды ма?
+        name: Атауы
+        name_provider: Атау провайдері
       taxon_link:
         url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Сайт атауы
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Қысқаша атау
         #Taxon this link is associated with
         taxon: Таксон
         #Place this link is associated with
@@ -2321,6 +2330,10 @@ kk:
         search_place_id: Іздеу орны
         place_id: Орын
     errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: қабылдануы керек
+        blank: бос болуы мүмкін емес
       models:
         taxon_name:
           attributes:

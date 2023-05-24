@@ -1069,7 +1069,6 @@ da:
   connected_accounts_titlecase: Forbundne konti
   connecting_flickr: "Tilknytter til Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Forbind til Flickr igen for at godkende skriverettigheder
-  connecting_to_facebook: "Tilknytter til Facebook"
   connecting_your_inat_account_to_accounts_other_sites: "Ved at tilknytte din %{site_name} konto med konti på andre websteder kan du logge ind på %{site_name} ved hjælp af dine legitimationsoplysninger fra disse websteder."
   cannot_be_changed_during_a_content_freeze: Kan ikke ændres under en indholdsfrysning
   conservation_status: Bevaringsstatus
@@ -1295,17 +1294,6 @@ da:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ikke selv udviser passende adfærd.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    For at ansøge om at blive webstedskurator skal du have haft en konto i 60+
-    dage og have tilføjet 100 forbedrende identifikationer til nogens
-    observationer, herunder dine egne (du har tilføjet %{num_idents}). Når du
-    har opfyldt begge disse krav, så returnér hertil, og du vil nu være i stand til at indsende ansøgningen.
-  curator_application_inelligible_error: |
-    For at ansøge om at blive webstedskurator skal du have en konto i 60+
-    dage og have tilføjet 100 forbedrende identifikationer til nogens
-    observationer, herunder dine egne.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuratoransøgning indsendt
   #Header
@@ -1816,14 +1804,6 @@ da:
   extra_properties: Ekstra egenskaber
   evidence_of_organism: Bevis for organisme
   facebook: Facebook
-  facebook_account_information: Din Facebook konto information
-  facebook_account_not_linked: "%{user} har ikke længere en linket facebook-konto, så %{site_name} har ikke tilladelse til at få adgang til dette billede."
-  facebook_access_token_expired: "Adgangstoken er udløbet. %{user} skal re-linke deres Facebook-konto."
-  facebook_needs_the_owner_of_that_photo_to: Facebook ønsker at ejeren af dette foto bekræfter deres forbindelse til %{site_name_short}
-  facebook_options: Facebook valg
-  facebook_photo_import_disabled_notice: |
-    I november 2020 krævede Facebook godtgørelse af, at vi virkelig behøvede adgang til fotos, og vi kunne ikke fuldføre processen grundet
-    problemer med Facebooks bekræftelsesssystem. Som konsekvens heraf, er import af fotos fra Facebook ikke længere understøttet.
   failed_to_find_your_location: Kunne ikke finde din placering.
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
@@ -1990,7 +1970,7 @@ da:
   frequency: Hyppighed
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
-  from_flickr_facebook_etc: Fra Flickr, Facebook, etc.
+  from_flickr_etc: Fra Flickr mv.
   from_list: Fra liste
   from_photos: Fra fotos
   from_place: Fra et sted
@@ -2500,14 +2480,8 @@ da:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link til godkendelseskode
-  link_your_facebook_account: Tilknyt din Facebook konto
   link_your_flickr_account: Tilknyt din Flickr konto
   link_your_google_account: Tilknyt din Google konto
-  linked_facebook: "Din %{site_name} konto er i øjeblikket tilknyttet til din Facebook konto."
-  linked_facebook_automaticaly: "Husk også, at hvis du logger ind på %{site_name} via Facebook, vil vi automatisk genforbinde dine %{site_name} og Facebook konti. Det ser rimeligt ud, at hvis du bruger Facebook, vil du gerne kunne importere Facebook fotos, ikke?"
-  linked_facebook_description: "Ved at lade din %{site_name}-konto være tilknyttet din Facebook-konto, kan du tilføje flere billeder samtidigt til dine observationer. Vi vil selvfølgelig ikke stoppe dig, hvis du på et tidspunkt ønsker at %{site_name} og Facebook skal frakobles. Det kan nogle gange være en fordel at oprette en helt ny Facebook-konto til brug for billeddeling med %{site_name}"
-  linked_facebook_howto: "For at forbinde Facebook med %{site_name}, klik på linket til højre og log ind på Facebook.com."
-  linked_facebook_password: "Vi vil aldrig bede dig om din Facebook adgangskode (men Facebook vil, tjekke URL adressen, som knappen sender dig og sikre sig at det er Facebook.com). Vi vil heller ikke ændre dine Facebook data, medmindre du vil have os til det."
   linked_flickr: "Din %{site_name} konto er i øjeblikket tilknyttet din Flickr konto."
   linked_flickr_automatically: "Husk også, at hvis du logger ind på %{site_name} via Flickr, vil vi automatisk genforbinde din %{site_name} og Flickr konti. Det virker rimeligt, at hvis du bruger Flickr, vil du gerne kunne importere Flickr foto´s, ikke?"
   linked_flickr_description: "Hvis du lader din %{site_name} konto være tilknyttet til din Flickr konto, kan du tilføje flere billeder til dine observationer. Selvfølgelig, hvis du nogensinde vil have %{site_name} og Flickr til ikke at være tilknyttede, så stopper vi dig ikke, du kan bare ikke tilføje billeder derfra. Nogle gange kan det være det bedste, hvis du opretter en helt ny Flickr-konto, som du vil tilknytte %{site_name} til."
@@ -3086,7 +3060,6 @@ da:
   not_found: Ikke fundet
   #Filter for observations not in a particular place
   not_in_place: Ikke på stedet
-  not_linked_facebook: "Din %{site_name} konto er ikke tilknyttet til din Facebook-konto"
   not_linked_flickr: "Din %{site_name} konto er ikke tilknyttet til din Flickr-konto"
   not_on_this_list: Ikke på denne liste.
   not_recorded: Ikke registreret
@@ -3359,7 +3332,7 @@ da:
   options: Valgmuligheder
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
   orange: orange
@@ -4834,7 +4807,6 @@ da:
   tagging: 'Tagger...'
   tags: Tags
   tags_are_a_way: 'Tags er en måde hvorpå du organisere dine observationer. Du kan for eksempel tagge alle dine tidevandssøer observationer med "tidevandssøer", for at gøre det nemmere at finde dem senere.'
-  take_me_facebook: Ja, før mig til Facebook!
   take_me_flickr!: Ja, før mig til Flickr!
   target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt, at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
   target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
@@ -5650,11 +5622,9 @@ da:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønsket
   was_it_captive_cultivated?: "Var det i fangenskab / dyrket?"
-  we_also_support: |
-    Vi understøtter også <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a> og
-    <a href="http://facebook.com">Facebook</a>
-    til billeddeling.
+  we_also_support2: |
+    Vi understøtter også import af fotos fra <a href="http://flickr.com">Flickr</a>
+    og <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Vi kan kun forstå CSV i følgende format
   we_couldnt_find_a_user: Vi kunne ikke finde en bruger med den e-mail adresse.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finde en bruger med denne aktiveringskode. Du har måske allerede aktiveret din konto, prøv venligst at logge ind."

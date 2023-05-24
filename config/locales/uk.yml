@@ -1085,7 +1085,6 @@ uk:
   connected_accounts_titlecase: Під’єднані облікові записи
   connecting_flickr: "Підключення до Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Підключіться до Flickr знову, щоб авторизувати дозвіл на запис
-  connecting_to_facebook: "Підключення до Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Під’єднання вашого облікового запису %{site_name} до облікових записів на інших сайтах дозволить вам увійти до %{site_name} використовуючи ваші облікові дані з цих сайтів."
   cannot_be_changed_during_a_content_freeze: Не може бути змінено під час заморожування вмісту
   conservation_status: Природоохоронний статус
@@ -1288,17 +1287,6 @@ uk:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Самі не демонструють відповідну поведінку.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
-    днів та більше, додати не менше 100 уточнень визначень для будь-чиїх 
-    спостережень, у тому числі ваших власних (наразі ви додали %{num_idents}). Коли ви будете відповідати обом вимогам, поверніться сюди і заповніть
-    форму.
-  curator_application_inelligible_error: |
-    Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
-    днів і більше, і додати 100 уточнень визначень для будь-чиїх
-    спостережень, у т.ч. ваших власних.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявка на кураторство подана
   #Header
@@ -1728,11 +1716,6 @@ uk:
   extra_properties: Додаткові властивості
   evidence_of_organism: Свідчення існування організму
   facebook: Facebook
-  facebook_account_information: Інформація про ваш обліковий запис Facebook
-  facebook_account_not_linked: "%{user} не має облікового запису у facebook, так що %{site_name} не має дозволу на доступ до цього фото."
-  facebook_access_token_expired: "Термін дії токена доступу закінчився. Користувачу %{user} потрібно повторно підключити свій обліковий запис Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook вимагає, аби власники цього фото повторно підтвердили своє підключення до %{site_name_short}.
-  facebook_options: Налаштування Facebook
   failed_to_find_your_location: Не вдалося визначити ваше розташування.
   failed_to_repair_photo: "Не вдалося відновити фото: %{errors}"
   failed_to_save_record: "Не вдалося зберегти запис. Спробуй пізніше."
@@ -1892,7 +1875,7 @@ uk:
   frequency: Частотою
   from_a_place: з місця
   from_eol_collection: З колекції EOL
-  from_flickr_facebook_etc: З Flickr, Facebook тощо
+  from_flickr_etc: З Flickr, тощо
   from_list: Зі списку
   from_photos: З фото
   from_place: З місця
@@ -2286,14 +2269,8 @@ uk:
   life_list: "Список живого %{user}"
   linear_scale_label: Лінійна
   link: Посилання
-  link_your_facebook_account: Приєднайте свій обліковий запис Facebook
   link_your_flickr_account: Прив'язати обліковий запис Flickr
   link_your_google_account: Прив'язати обліковий запис Google
-  linked_facebook: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Facebook."
-  linked_facebook_automaticaly: "Також, майте на увазі, що при вході до %{site_name} через Facebook, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Facebook. Гадаємо, що якщо ви користуєтесь Facebook, то захочете мати можливість імпортувати фото з Facebook, чи не так?"
-  linked_facebook_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Facebook, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Facebook краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Facebook, до якого захочете прив'язати %{site_name}."
-  linked_facebook_howto: "Для ппідключення Facebook до %{site_name}, натисніть на посилання праворуч і увійдіть у Facebook.com."
-  linked_facebook_password: "Ми ніколи не будемо запитувати ваш пароль Facebook (але Facebook може, перевірте URL, на який вас перенадсилає кнопка і переконайтеся, що це Facebook.com). Ми також не зможемо змінювати ваші дані на Facebook, якщо ви цього не хочете."
   linked_flickr: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Flickr."
   linked_flickr_automatically: "Також, майте на увазі, що при вході до %{site_name} через Flickr, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Flickr. Гадаємо, що якщо ви користуєтесь Flickr, то захочете мати можливість імпортувати фото з Flickr, чи не так?"
   linked_flickr_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Flickr, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Flickr краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Flickr, до якого захочете прив'язати %{site_name}."
@@ -2802,7 +2779,6 @@ uk:
   not_findig_what_you_want: Не знаходиться те, що шукали?
   not_finding_place_you_want?: Не знаходиться місце, яке шукали?
   not_found: Не знайдено
-  not_linked_facebook: "Ваш обліковий запис %{site_name} не прив'язаний до вашого облікового запису Facebook."
   not_linked_flickr: "Ваш обліковий запис %{site_name} не прив'язаний до вашого облікового запису Flickr."
   not_on_this_list: Не в цьому списку.
   not_recorded: Не записано
@@ -3037,7 +3013,7 @@ uk:
   optional: необов'язковий
   or: або
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або оберіть з таксонів вищого рангу"
   orange: помаранчевий
@@ -4363,7 +4339,6 @@ uk:
   tagging: 'Позначення...'
   tags: Позначки
   tags_are_a_way: 'Позначки — це спосіб організувати свої спостереження. Наприклад, ви можете позначити всі свої спостереження у припливних водоймах як "припливні водойми", аби прискорити їх пошук в майбутньому.'
-  take_me_facebook: Так, спрямуйте мене на Facebook!
   take_me_flickr!: Так, спрямуйте мене на Flickr!
   target_list_alert: Ви впевнені, що спробували спостерегти всі види з цільового списку? Пам'ятайте, що всі види з вашого цільового списку, які ви не спостерігали, буде позначено як відсутні, тож дуже важливо, щоб ваш цільовий список точно відповідав тому наборові видів, які ви намагалися виявити
   target_list_warning: Пам'ятайте, що все, що було включене до вашого цільового списку, й не було помічене у визначеному радіусі та впродовж визначеної тривалості цієї поїздки буде інтерпретовано як відсутнє. Дуже важливо, що ваш цільовий список точно відображав набір видів, які ви намагалися виявити. Якщо ви не намагалися виявити якийсь вид зі свого цільовому списку, або кожен вид у межах визначеної цільовим списком групи, будь ласка, видаліть його.
@@ -4962,11 +4937,9 @@ uk:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Розшукуються
   was_it_captive_cultivated?: "Це утримувалося в неволі або культивувалося?"
-  we_also_support: |
-    Ми також підтримуємо <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>та
-    <a href="http://facebook.com">Facebook</a>
-    для хостингу зображень.
+  we_also_support2: |
+    Ми також підтримуємо імпорт фотографій з <a href="http://flickr.com">Flickr</a>
+    та <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Ми можемо розпізнати лише CSV у такому форматі
   we_couldnt_find_a_user: Ми не можемо знайти користувача із такою електронною адресою.
   we_couldnt_find_a_user_with_that_activation_code: "Ми не змогли знайти користувача з цим кодом активації. Можливо, ви вже активували свій обліковий запис, будь ласка, спробуйте увійти."

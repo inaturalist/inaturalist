@@ -162,10 +162,8 @@ Rails.application.routes.draw do
   delete "/auth/:provider/disconnect" => "provider_authorizations#destroy", :as => :omniauth_disconnect
   delete "/provider_authorizations/:id" => "provider_authorizations#destroy"
   get "/users/edit_after_auth" => "users#edit_after_auth", :as => :edit_after_auth
-  get "/facebook/photo_fields" => "facebook#photo_fields"
   get "/eol/photo_fields" => "eol#photo_fields"
   get "/wikimedia_commons/photo_fields" => "wikimedia_commons#photo_fields"
-  post "/facebook" => "facebook#index"
 
   resource :help, controller: :help, only: :index do
     collection do

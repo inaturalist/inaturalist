@@ -11,20 +11,15 @@
           %li.subitem{ class: ("active" if action_name == "active") }
             %a{ href: active_admin_delayed_jobs_path }
               Active
-              %span.badge= Delayed::Job.possibly_active.count
           %li.subitem{ class: ("active" if action_name == "pending") }
             %a{ href: pending_admin_delayed_jobs_path }
               Pending
-              %span.badge= Delayed::Job.pending.count
           %li.subitem{ class: ("active" if action_name == "failed") }
             %a{ href: failed_admin_delayed_jobs_path }
               Failed
-              %span.badge= Delayed::Job.failed.count
           %li{ class: ("active" if action_name == "queries") }
             %a{ href: queries_admin_path }
               Active Queries
-              %span.badge
-                = @queries ? @queries.count : ActiveRecord::Base.connection.active_queries.count
           %li{ class: ("active" if %w(users user_detail).include?( action_name ) ) }
             = link_to t(:users), users_admin_path
           %li{ class: ("active" if action_name == "deleted_users") }
