@@ -4,8 +4,8 @@ login: &login
   encoding: utf8
   adapter: postgis
   template: template_postgis
-  username: username
-  password: password
+  username: inaturalist
+  password: inaturalist
 
 development:
   <<: *login

@@ -646,6 +646,11 @@ inat-taxon { white-space: nowrap; }
   padding: 0px 6px;
   font-size: 26.4px;
 }
+
+[dir="rtl"] #filters .iconic-taxon {
+  margin: 0 0 5px 5px;
+}
+
 #filters .iconic-taxon:focus {
   outline: none;
 }
