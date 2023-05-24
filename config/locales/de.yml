@@ -190,14 +190,14 @@ de:
   about_trusting_projects: Über vertrauenswürdige Projekte
   about_trusting_projects_options_any: Alle deine Beobachtungen in diesem Projekt
   about_trusting_projects_options_any_desc: |-
-    Dies beinhaltet Beobachtungen, bei denen du die Geo-Privatsphäre "verdeckt"
-    oder "privat" gewählt hast, d.h. Beobachtungen aus deinem Hinterhof oder Orte, über die andere Leute nichts wissen sollen.
+    Dies beinhaltet auch Beobachtungen, bei denen du selbst die Geo-Privatsphäre "verdeckt"
+    oder "privat" gewählt hast (z.B. Beobachtungen von deinem Wohnort oder andere Orte, die nicht exakt lokalisiert werden sollen)
   about_trusting_projects_options_taxon: |-
     Nur deine Beobachtungen in diesem Projekt, die verdeckte Koordinaten
     wegen bedrohter Taxa enthalten
   about_trusting_projects_options_taxon_desc: |-
-    Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten, da die
-    Beobachtung ein bedrohtes Taxon darstellt.
+    Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten von Arten, die
+    aufgrund ihrer Gefährdung vom System automatisch verschleiert werden
   about_trusting_projects_overview: |-
     Wenn du Zugriff auf deine versteckten Koordinaten gewährst, können die Manager dieses
     Projekts die unverschleierte Position deiner Beobachtungen in diesem
@@ -3864,7 +3864,7 @@ de:
     Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_coordinate_access_warning: |
     Zugang zu den Koordinaten ist wichtig für Wissenschaftler, kann aber auch zu Missbrauch
-    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du allen Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust.
+    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du den Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust.
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -5089,7 +5089,7 @@ de:
   trusted: Vertrauenswürdig
   trusted_project?: Vertrauenswürdiges Projekt?
   trust_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten an
-  trust_this_project_with_your_private_coordinates?: Diesem Projekt versteckte Koordinaten anvertrauen?
+  trust_this_project_with_your_private_coordinates?: Diesem Projekt Beobachtungen mit verdeckten Koordinaten anvertrauen?
   trust_with_private_coordinates: Verborgene Koordinaten anvertrauen
   try_adding_species_form: Versuche einige Arten über das Formular auf dieser Seite hinzuzufügen.
   twitter: Twitter
@@ -5533,8 +5533,7 @@ de:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Ja, aber nur für meine Beobachtungen von bedrohten Taxa, nicht solche bei denen ich selber die
-    Geo-Privatsphäre gesetzt habe
+    Ja, aber nur für automatisch vom System geschützte (=gefährdete) Taxa, nicht solche Beobachtungen, die ich manuell verborgen habe
   yes_find_them!: "Ja, findet sie!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
