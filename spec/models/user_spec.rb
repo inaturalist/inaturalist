@@ -986,7 +986,7 @@ describe User do
   end
 
   describe "suggest_login" do
-    it "should suggest logins that are too short" do
+    it "should not suggest logins that are too short" do
       suggestion = User.suggest_login("AJ")
       expect(suggestion).not_to be_blank
       expect(suggestion.size).to be >= User::MIN_LOGIN_SIZE
