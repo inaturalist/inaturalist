@@ -1192,7 +1192,6 @@ cs:
   connected_accounts_titlecase: Připojené účty
   connecting_flickr: "Připojování k Flickru..."
   connect_to_flickr_again_to_authorize_write_permissions: Připojte se znovu k Flickru a autorizujte oprávnění pro zápis
-  connecting_to_facebook: "Připojování k Facebooku..."
   connecting_your_inat_account_to_accounts_other_sites: "Propojení vašeho účtu na %{site_name} s účty na ostatních stránkách vám umožní se přihlašovat na %{site_name} pomocí oprávnění z těchto ostatních stránek."
   cannot_be_changed_during_a_content_freeze: Nelze změnit během zmrazení obsahu
   conservation_status: Stav ochrany
@@ -1285,22 +1284,22 @@ cs:
     molt: Svlečka
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
-    dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
-    flower_budding: Květinové pupeny jsou viditelné a nejsou otevřené
-    flowering: Květiny viditelné, otevřené a stále připojené k rostlině
-    fruiting: Květiny viditelné a stále připojené k rostlině
-    no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
-    teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
-    cannot_be_determined: Na základě poskytnutých důkazů nelze určit
-    feather: Jedno nebo více per, které nejsou připevněny k organismu
-    organism: Celý organismus nebo jeho část
-    scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
-    track: Otisk v zemi nebo ve sněhu způsobený organismem
     bone: |
       Převážně pozůstatky vnitřní kostry; částečně odhalené kosti v jinak neporušeném organismu
       by měly být označeny jako „organismus“
-    molt: Odhozená kůže nebo exoskelet
+    cannot_be_determined: Na základě poskytnutých důkazů nelze určit
+    dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
+    feather: Jedno nebo více per, které nejsou připevněny k organismu
+    flower_budding: Květinové pupeny jsou viditelné a nejsou otevřené
+    flowering: Květiny viditelné, otevřené a stále připojené k rostlině
+    fruiting: Květiny viditelné a stále připojené k rostlině
     gall: Deformovaný výrůst rostlinných tkání způsobený parazitickým organismem
+    molt: Odhozená kůže nebo exoskelet
+    no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
+    organism: Celý organismus nebo jeho část
+    scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
+    teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
+    track: Otisk v zemi nebo ve sněhu způsobený organismem
   controls: Ovládací prvky
   convert: Převést
   coordinate_systems: Systémy souřadnic
@@ -1416,14 +1415,6 @@ cs:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Není schopen prokázat vlastní vhodné chování.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Abyste se mohli ucházet o kurátora stránek, musíte mít účet po dobu 60 dní nebo déle a musíte přidat 100 vylepšení identifikace do pozorování kohokoli, včetně svých vlastních (přidali jste %{num_idents}). Pokud splníte oba tyto požadavky, vraťte se sem a budete moci odeslat žádost.
-  curator_application_inelligible_error: |
-    Aby jste mohli být kurátorem, musíte mít účet po dobu 60
-    dní nebo více a přidali 100 vylepšení identifikací ke všem
-    pozorováním, včetně vašeho vlastního.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Žádost kurátora byla odeslána
   #Header
@@ -1933,13 +1924,6 @@ cs:
   extra_properties: Další vlastnosti
   evidence_of_organism: Důkaz o organismu
   facebook: Facebook
-  facebook_account_information: Informace z vašeho facebookového účtu
-  facebook_account_not_linked: "%{user} už nemá propojený facebookový účet, proto %{site_name} nemá povolení přístupu k této fotce."
-  facebook_access_token_expired: "Platnost přístupového kódu vypršela. %{user} si musí znovu propojit svůj facebookový účet."
-  facebook_needs_the_owner_of_that_photo_to: Facebook vyžaduje, aby vlastník této fotky opětovně potvrdil své propojení s %{site_name_short}.
-  facebook_options: Možnosti Facebooku
-  facebook_photo_import_disabled_notice: |
-    V listopadu 2020 nás Facebook požádal o ověření, zda skutečně potřebujeme přístup k fotografiím, a kvůli problémům s ověřovacím systémem Facebooku se nám tento proces nepodařilo dokončit. V důsledku toho již nemůžeme podporovat import fotografií ze sítě Facebook.
   failed_to_find_your_location: Vaše lokalita nebyla nalezena.
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
   failed_to_save_record: "Nelze uložit záznam. Prosím, zkuste to znovu o chvíli později."
@@ -2105,7 +2089,6 @@ cs:
   frequency: Frekvence
   from_a_place: Z místa
   from_eol_collection: Ze souboru EOL
-  from_flickr_facebook_etc: Z Flickru, Facebooku, apod.
   from_list: Ze seznamu
   from_photos: Z fotek
   from_place: Z místa
@@ -2489,13 +2472,15 @@ cs:
   lexicon: Slovník
   lexicon_cannot_contain_words: "nemůže obsahovat následující slova: %{words}"
   lexicons:
-    scientific_names: Vědecké názvy
     afrikaans: Afrikánština
+    alabama: Alabama
     albanian: Albánština
     aou_4_letter_codes: Čtyřpísmenný kód AOU
     aou_6_letter_codes: 6 písmenný kód AOU
     arabic: Arabština
     armenian: Arménština
+    asturian: Asturština
+    basque: Baskičtina
     belarusian: Běloruština
     bengali: Bengálština
     bulgarian: Bulharština
@@ -2503,6 +2488,7 @@ cs:
     cebuano: Cebuánština
     chinese_simplified: Čínština (zjednodušená)
     chinese_traditional: Čínština (tradiční)
+    chuvash: Čuvaština
     creole_french: Kreolšina (francouzská)
     creole_portuguese: Kreolština (portugalská)
     croatian: Chorvatština
@@ -2513,6 +2499,7 @@ cs:
     english: Angličtina
     estonian: Estonština
     faroese: Faerština
+    fijian: Fidžijština
     finnish: Finština
     french: Francouzština
     galician: Galicijština
@@ -2528,6 +2515,7 @@ cs:
     icelandic: Islandština
     ilokano: Ilokano
     indonesian: Indonéština
+    irish: Irština
     italian: Italština
     japanese: Japonština
     kannada: Kannadština
@@ -2536,6 +2524,7 @@ cs:
     latvian: Lotyština
     lithuanian: Litevština
     luxembourgish: Lucemburština
+    malagasy: Malgaština
     malay: Malajština
     malayalam: Malajámština
     maltese: Maltština
@@ -2556,8 +2545,8 @@ cs:
     romanian: rumunština
     russian: rusky
     santali: santálština
+    scientific_names: Vědecké názvy
     serbian: Srbština
-    setswana: Setswanština
     sinhala: Sinhálština
     slovak: Slovenština
     slovenian: Slovinština
@@ -2566,13 +2555,16 @@ cs:
     swedish: švédsky
     tagalog: Tagalog
     tahitian: tahitsky
+    tamil: Tamilština
     thai: Thajština
     tokelauan: Tokelauan
     turkish: turecky
     ukrainian: Ukrajinština
     uyghur: Ujghurština
-    waray_waray: Waray-Waray
+    vietnamese: Vietnamština
     visayan: Visayan
+    waray_waray: Waray-Waray
+    zulu: Zuluština
   less: Méně
   #Button show less text
   less__context_text: Méně
@@ -2588,14 +2580,8 @@ cs:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Odkaz na autorizační kód
-  link_your_facebook_account: Propojit váš účet na Facebooku
   link_your_flickr_account: Propojit váš účet na Flickru
   link_your_google_account: Propojit váš účet na Googlu
-  linked_facebook: "Váš účet na %{site_name}je nyní propojen s vaším účtem na Facebooku."
-  linked_facebook_automaticaly: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Facebook, automaticky znovu propojíme váš účet na %{site_name} s účtem na Facebooku. Zdá se rozumné, že pokud používáte Facebook, budete chtít importovat fotky z Facebooku, že?"
-  linked_facebook_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Facebooku, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Facebook oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Facebooku, s kterým chcete propojit %{site_name}."
-  linked_facebook_howto: "Pokud chcete propojit Facebook a %{site_name}, klikněte na odkaz vpravo a přihlaste se na Facebook.com."
-  linked_facebook_password: "Nikdy vás nebudeme žádat o vaše heslo na Facebook (Facebook o něj však žádat může, zkontrolujte url a ověřte si, že se jedná o Facebook.com). Také nebudeme měnit vaše údaje na Facebooku, pokud nás o to nepožádáte."
   linked_flickr: "Váš účet na %{site_name} je teď propojen s vaším účtem na Flickru."
   linked_flickr_automatically: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Flickr, automaticky znovu propojíme váš účet na %{site_name} s účtem na Flickru. Zdá se rozumné, že pokud používáte Flickr, budete chtít importovat fotky z Flickru, že?"
   linked_flickr_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Flickru, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Flickr oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Flickru, s kterým chcete propojit %{site_name}."
@@ -3175,7 +3161,6 @@ cs:
   not_found: Nenalezeno
   #Filter for observations not in a particular place
   not_in_place: Mimo místo
-  not_linked_facebook: "Váš účet na %{site_name} není propojen s vaším účtem na Facebooku"
   not_linked_flickr: "Váš účet na %{site_name} není propojen s vaším účtem na Flickru"
   not_on_this_list: Není na tomto seznamu.
   not_recorded: Nezaznamenáno
@@ -3443,7 +3428,7 @@ cs:
   options: Možnosti
   or: nebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: NEBO
   or_choose_high_level_taxa: "... nebo vybrat z taxonů vyšší úrovně"
   orange: oranžový
@@ -4816,6 +4801,10 @@ cs:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Statistika pro tento rok nebyla vygenerována.
   status: Stav
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Stav použit z taxonu vyšší úrovně:</strong> %{taxon}
   status_globally: '%{status} globálně'
   status_in_place: '%{status} v %{place}'
   stay_and_try_again: Zůstat a zkusit znovu
@@ -4892,7 +4881,6 @@ cs:
   tagging: 'Označování...'
   tags: Tagy
   tags_are_a_way: 'Tagy jsou způsob, jak organizovat vaše pozorování. Například můžete tagy označit všechna svá pozorování v přílivových bazénech jako „přílivové bazény“, abyste je později snadno našli.'
-  take_me_facebook: Ano, chci jít na Facebook!
   take_me_flickr!: Ano, chci jít na Flickr!
   target_list_alert: Jste si jisti, že jste se pokusili pozorovat všechny druhy, na které se vztahuje váš cílový seznam? Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali, bude interpretováno jako nepřítomnost, takže je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít.
   target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
@@ -5540,6 +5528,7 @@ cs:
   user_commented: "Uživatel %{user} přidal komentář"
   user_disagrees_this_is_taxon: "Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nesouhlasí s předchozí identifikací"
+  user_faved_an_observation_by_you: "%{user} dal přednost vašemu pozorování"
   user_faved_this_observation: "Uživatel %{user} upřednostnil toto pozorování"
   user_flagged_as_a_non_spammer_html: "%{user} označen jako nespammer"
   user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
@@ -5724,10 +5713,6 @@ cs:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Hledaný
   was_it_captive_cultivated?: "Byl v zajetí / pěstovaný?"
-  we_also_support: |
-    Ke zveřejňování obrázků podporujeme také <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> a
-    <a href="http://facebook.com">Facebook</a>.
   we_can_only_understand_csv_in: Rozumíme pouze CSV v následujícím formátu
   we_couldnt_find_a_user: Nepodařilo se nám najít uživatele s touto e-mailovou adresou.
   we_couldnt_find_a_user_with_that_activation_code: "Nepodařilo se nám najít uživatele s tímto aktivačním kódem. Možná už jste si účet aktivovali, zkuste se prosím přihlásit."
@@ -6582,10 +6567,13 @@ cs:
         cumulative_count_desc: '# identifikací jednotlivého taxonu a všech následných taxonů'
         curator_coordinate_access_disabled_desc_html: |
           Tento projekt nepovoluje pozorování se souřadnicemi, které kurátoři projektu nemohou zobrazit. Pokud nechcete souřadnice tohoto pozorování s kurátory sdílet, musíte pozorování z projektu odebrat.
-        data_quality_assessment_desc_html: |
-          Posouzení kvality dat je vyhodnocení 
-          přesnosti pozorování. Výzkumný stupeň pozorování mohou vědci použít pro
-          výzkum. Hlasujte níže:
+        data_quality_assessment_desc3_html: |
+          Kvalita shrnuje přesnost, přesnost, úplnost,
+          význam a vhodnost pozorování iNaturalist jako
+          údajů o biologické rozmanitosti. Některé atributy jsou automaticky určeny,
+          zatímco jiné jsou předmětem hlasování uživatelů iNat. iNaturalist
+          sdílí licencovaná pozorování "Výzkumného stupně" s mnoha daty
+          partnery pro použití ve vědě a ochraně.
         disagreement_count_desc: "# identifikovaných taxonů, které nespadají do základních taxonů"
         identification_count_desc: '# identifikací daného taxonu'
         flagged_photos_desc_html: |

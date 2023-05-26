@@ -1,15 +1,15 @@
 ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
-    one: "%{count} Изменение"
-    few: "%{count} изменений"
-    many: "%{count} Изменений"
-    other: "%{count} Изменений"
+    one: "%{count} изменение"
+    few: "%{count} изменения"
+    many: "%{count} изменений"
+    other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} Комментариев'
+    other: '%{count} комментариев'
   x_comments_html:
     one: '<span class="count">%{count}</span> комментарий'
     few: '<span class="count">%{count}</span> комментария'
@@ -1160,7 +1160,6 @@ ru:
   connected_accounts_titlecase: Подключенные учетные записи
   connecting_flickr: "Подключение к Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Подключитесь к Flickr снова для авторизации прав на запись
-  connecting_to_facebook: "Подключение к Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Подключение учётной записи %{site_name} к учётным записям на других сайтах позволит вам входить в %{site_name}, используя учётные данные этих сайтов."
   cannot_be_changed_during_a_content_freeze: Нельзя изменить во время блокировки контента
   conservation_status: Природоохранный статус
@@ -1252,21 +1251,21 @@ ru:
     molt: Линька
   controlled_term_definitions:
     alive: Организм жив и не проявляет признаков неизбежной смерти
+    bone: |
+      Преимущественно остатки эндоскелета; частичное обнажение костей в остальном неповрежденном организме должно быть помечено как "организм"
+    cannot_be_determined: Не может быть определен на основании представленных доказательств
     dead: Организм жив или проявляет признаки неизбежной смерти
+    feather: Одно или несколько перьев не прикрепленных к организму
     flower_budding: Цветочные почки видны, но не распустились
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
+    gall: Уродливый рост ткани растения, вызванный паразитическим организмом
+    molt: Удалённая кожа или экзоскелет
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
-    teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
-    cannot_be_determined: Не может быть определен на основании представленных доказательств
-    feather: Одно или несколько перьев не прикрепленных к организму
     organism: Весь организм или его части
     scat: Фекалии (не погадки совы или другие срыгнутые вещества)
+    teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
     track: Отпечаток на земле или снегу сделанный организмом
-    bone: |
-      Преимущественно остатки эндоскелета; частичное обнажение костей в остальном неповрежденном организме должно быть помечено как "организм"
-    molt: Удалённая кожа или экзоскелет
-    gall: Уродливый рост ткани растения, вызванный паразитическим организмом
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1375,12 +1374,6 @@ ru:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Сами не демонстрируют надлежащего поведения.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные (вы добавили %{num_idents}). Когда вы выполните оба эти требования, возвращайтесь сюда, и вы сможете подать заявку.
-  curator_application_inelligible_error: |
-    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявление на куратора отправлено
   #Header
@@ -1879,13 +1872,6 @@ ru:
   extra_properties: Дополнительные свойства
   evidence_of_organism: Свидетельство существования организма
   facebook: Facebook
-  facebook_account_information: Информация о вашей учётной записи Facebook
-  facebook_account_not_linked: "У %{user} больше нет привязанной учётной записи Facebook, поэтому %{site_name} не имеет прав доступа к этому фото."
-  facebook_access_token_expired: "Срок действия токена доступа истёк. %{user} должен вновь связать свою учётную запись с Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook требует, чтобы владелец этого фото подтвердил свою привязку к %{site_name_short}.
-  facebook_options: Настройки Facebook
-  facebook_photo_import_disabled_notice: |
-    В ноябре 2020 года Facebook потребовал от нас подтверждать, что нам действительно нужен доступ к фотографиям, и мы не смогли завершить процесс из-за проблем с системой верификации Facebook. В результате мы не можем далее поддерживать импорт фотографий из Facebook.
   failed_to_find_your_location: Не удаётся найти ваше местоположение.
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
@@ -2051,7 +2037,6 @@ ru:
   frequency: Частота наблюдения
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
-  from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
   from_list: Из списка
   from_photos: Из фотографий
   from_place: Из места
@@ -2425,20 +2410,25 @@ ru:
   lexicon: Язык
   lexicon_cannot_contain_words: "не может содержать следующие слова: %{words}"
   lexicons:
-    scientific_names: Научные названия
     afrikaans: Африкаанс
+    alabama: Алабама
     albanian: албанский
     aou_4_letter_codes: AOU 4-буквенные коды
     aou_6_letter_codes: AOU 6-буквенные коды
     arabic: Арабский
     armenian: Армянский
+    asturian: Астурийский
+    basque: Баскский
     belarusian: Белорусский
     bengali: Бенгальский
+    bikol: Ринконада бикол
     bulgarian: Болгарский
+    carolinian: Каролинский
     catalan: Каталонский
     cebuano: Себуанский
     chinese_simplified: Китайский (упрощенный)
     chinese_traditional: Китайский (традиционный)
+    chuvash: Чувашский
     creole_french: Креольский (Французский)
     creole_portuguese: Креольский (Португальский)
     croatian: Хорватский
@@ -2449,6 +2439,7 @@ ru:
     english: Английский
     estonian: Эстонский
     faroese: Фарерский
+    fijian: Фиджийский
     finnish: Финский
     french: Французский
     galician: Галисийский
@@ -2459,20 +2450,27 @@ ru:
     gujarati: Гуджарати
     hawaiian: Гавайский
     hebrew: Иврит
+    herero: Гереро
     hiligaynon: Хилигайнон
+    hill_mari: Горный марийский
+    hodges_number: Нумерация Ходжеса
     hokkien: Хоккиен
     hungarian: Венгерский
     icelandic: Исландский
     ilokano: Илоканский
     indonesian: Индонезийский
+    irish: Ирландский
     italian: Итальянский
     japanese: Японский
     kannada: Каннада
     kazakh: Казахский
     korean: Корейский
+    kweyol: Сент-люсийский франко-креольский
     latvian: Латышский
     lithuanian: Литовский
+    lozi: Лози
     luxembourgish: Люксембургский
+    malagasy: Малагасийский
     malay: Малайский
     malayalam: Малаялам
     maltese: Мальтийский
@@ -2482,6 +2480,8 @@ ru:
     misima_paneati: Misima-paneati
     mongolian: Монгольский
     nahuatl: Науатль
+    navajo: Навахо
+    ndebele: Ндебеле
     norwegian: Норвежский
     occitan: Окситанский
     ojibwe: Оджибве
@@ -2493,23 +2493,38 @@ ru:
     romanian: Румынский
     russian: Русский
     santali: Сантали
+    scientific_names: Научные названия
     serbian: Сербский
-    setswana: Тсвана
+    shona: Шона
     sinhala: Сингальский
     slovak: Словацкий
     slovenian: Словенский
+    sotho: Сото
+    sotho_northern: Сото Северный
     spanish: Испанский
     swahili: Суахили
+    swati: Свати
     swedish: Шведский
     tagalog: тагальский
     tahitian: таитянский
+    tamil: Тамильский
     thai: Тайский
     tokelauan: токелау
+    totonaco: Тотонакский
+    tsonga: Тсонга
+    tswana: Тсвана
     turkish: Турецкий
+    u_s_d_a_symbol: Кинологический
     ukrainian: Украинский
     uyghur: Уйгурский
-    waray_waray: варайский
+    venda: Венда
+    vermont_flora_codes: Коды флоры Вермонта
+    vietnamese: Вьетнамский
     visayan: Бисайский
+    waray_waray: варайский
+    xhosa: Коса
+    zapoteco: Сапотекский
+    zulu: Зулусский
   less: Меньше
   #Button show less text
   less__context_text: Меньше
@@ -2525,14 +2540,8 @@ ru:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Ссылка на код авторизации
-  link_your_facebook_account: Привязать вашу учётную запись Facebook
   link_your_flickr_account: Привязать свою учётную запись Flickr
   link_your_google_account: Привязать свою учётную запись Google
-  linked_facebook: "Ваша учётная запись %{site_name} на данный момент связана с учётной записью Facebook."
-  linked_facebook_automaticaly: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Facebook, мы автоматически перепривяжем ваши учетные записи %{site_name} и Facebook. Кажется разумным, что если вы используете Facebook, вы захотите иметь возможность импортировать фото из Facebook, верно?"
-  linked_facebook_description: "Привязка вашей учётной записи %{site_name} к учётной записи Facebook дает возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Facebook не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Facebook, которую хотите привязать к %{site_name}."
-  linked_facebook_howto: "Чтобы связать Facebook с %{site_name}, нажмите на ссылку справа и войдите в Facebook.com."
-  linked_facebook_password: "Мы никогда не будем запрашивать ваш пароль Facebook (однако Facebook может это сделать, проверьте URL, на который вас отправляет кнопка, и убедитесь, что это Facebook.com). Мы также не будем изменять ваши данные Facebook, если только вы не захотите, чтобы мы это сделали."
   linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей учётной записью Flickr."
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
@@ -3097,7 +3106,6 @@ ru:
   not_found: Не найдено
   #Filter for observations not in a particular place
   not_in_place: Не в данном месте
-  not_linked_facebook: "Ваша учётная запись %{site_name} не связана с учётной записью Facebook."
   not_linked_flickr: "Ваша учётная запись на сайте %{site_name} не привязана к вашей учётной записи Flickr"
   not_on_this_list: Нет в этом списке.
   not_recorded: Не указана
@@ -3359,7 +3367,7 @@ ru:
   options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "... или выберите из нескольких таксонов верхнего уровня"
   orange: оранжевый
@@ -4574,7 +4582,7 @@ ru:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Автоматически скрытые координаты (скрытые или частные из-за "геоприватности таксона")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist автоматически скрывает координаты некоторых видов, чтобы защитить их от беспокойства, сбора или браконьерства. Если координаты наблюдений были скрыты автоматически только для защиты видов, iNaturalist делится  с членами сети истинными координатами всех наблюдений из соответствующих стран.
+    iNaturalist автоматически скрывает координаты некоторых видов, чтобы защитить их от беспокойства, сбора или браконьерства. Если координаты наблюдений были скрыты автоматически только для защиты видов, iNaturalist делится истинными координатами всех наблюдений с членами сети соответствующих стран.
   sites_affiliation_more_email_addresses: |
     Адреса электронной почты сообщаются членам сети исключительно для коммуникационных целей, связанных с сайтом.
   sites_affiliation_more_twice_per_year: |
@@ -4787,7 +4795,6 @@ ru:
   tagging: 'Присвоение тегов...'
   tags: Теги
   tags_are_a_way: 'Теги - это способ организовать ваши наблюдения. Например, вы можете пометить все ваши наблюдения tidepool тегом "tidepools", чтобы было легче найти их позже.'
-  take_me_facebook: Да, свяжите меня с Facebook!
   take_me_flickr!: Да, свяжите меня с Flickr!
   target_list_alert: Вы уверены, что пытались наблюдать за всеми видами, включенными в ваш целевой список? Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали, будет интерпретироваться как отсутствие, поэтому очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить
   target_list_warning: Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали в радиусе и за время поездки, будет истолковано как отсутствие. Очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить. Если вы не пытались обнаружить вид из вашего целевого списка или каждый вид, входящий в группу в вашем целевом списке, удалите его.
@@ -5606,10 +5613,6 @@ ru:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
-  we_also_support: |
-    Мы также поддерживаем <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, и
-    <a href="http://facebook.com">Facebook</a> как хостинги изображений.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."
@@ -6416,8 +6419,10 @@ ru:
         cumulative_count_desc: '# идентификаций отдельного таксона и всех его потомков'
         curator_coordinate_access_disabled_desc_html: |
           Этот проект не допускает наблюдений с координатами, которые кураторы проекта не могут видеть. Если вы не хотите делиться координатами этого наблюдения с кураторами этого проекта, вы должны удалить наблюдение из проекта.
-        data_quality_assessment_desc_html: |
-          Оценка качества данных - это оценка точности наблюдения. Наблюдения исследовательского уровня могут использоваться учеными в научных целях. Проголосуйте ниже:
+        data_quality_assessment_desc3_html: |
+          Оценка качества суммирует точность, прецизионность, полноту, актуальность и уместность наблюдения iNaturalist как данных о биологическом разнообразии. Некоторые атрибуты определяются автоматически, а другие - голосованием пользователей iNat. iNaturalist
+          делится наблюдениями, имеющими оценку "Research Grade", с рядом партнеров
+          для использования в науке и охране природы.
         disagreement_count_desc: "# идентифицированных таксонов, которые не относятся к предкам таксона"
         identification_count_desc: '# идентификаций отдельного таксона'
         flagged_photos_desc_html: |

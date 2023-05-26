@@ -768,7 +768,6 @@ hr:
   leave_a_comment: Napiši komentar
   let_us_walk_you_through: Daj da te provedemo kroz glavne značajke naše stranice.
   lexicons:
-    scientific_names: Znanstveni nazivi
     afrikaans: Afrikaans
     albanian: Albanski
     arabic: Arapski
@@ -815,6 +814,7 @@ hr:
     romanian: Rumunjski
     russian: Ruski
     santali: Santali
+    scientific_names: Znanstveni nazivi
     serbian: Srpski
     slovak: Slovački
     slovenian: Slovenski
@@ -1007,7 +1007,7 @@ hr:
   only_showing_taxa_from: prikazana je samo taksa s ovog popisa
   or: ili
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ILI
   organism_is_wild: Organizam je divlji
   organisms: Organizmi
@@ -1622,7 +1622,6 @@ hr:
   subscriptions: Pretplate
   suggest_an_identification: Predloži identifikaciju
   summary: Sažetak
-  take_me_facebook: Da, povedi me na Facebook!
   taxa: Taksa
   taxa_info: Informacije o taksama
   taxa_needing_curation: Taksa koja treba kuraciju
@@ -1941,10 +1940,6 @@ hr:
           konzervativnijih identifikacija koje se ne slažu s finijim (nižim) taksonom. Za identificirane taksone koji
           imaju rezultat veći od 2/3 i najmanje 2 identifikacije, odabire najniže rangirani takson.
           </p>
-        data_quality_assessment_desc_html: |
-          Procjena kvalitete podataka je ocjena kvalitete i točnosti pronalazaka. 
-          Znanstvenici mogu koristiti opažanja ocijenjena istraživačkom ocjenom za svoja istraživanja. 
-          Glasuj ispod:
     projects:
       edit:
         admins_must_be_existing_members: Admini moraju biti postojeći članovi projekta

@@ -1009,7 +1009,6 @@ de:
   connected_accounts_titlecase: Verknüpfte Accounts
   connecting_flickr: "Verbinde mit Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Mit Flickr erneut verbinden, um Schreibrechte zu autorisieren
-  connecting_to_facebook: "Verbinde mit Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Dein %{site_name}-Konto mit den Konten anderer Portale zu verknüpfen ermöglicht es Dir, Dich bei %{site_name} anzumelden, indem Du die Anmeldedaten dieser Portale nutzen."
   cannot_be_changed_during_a_content_freeze: Kann beim Einfrieren von Inhalten nicht geändert werden
   conservation_status: Schutzstatus
@@ -1103,21 +1102,21 @@ de:
     molt: Häutung
   controlled_term_definitions:
     alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahenden Todes
+    bone: |
+      Vorwiegend Überreste des Endoskeletts; teilweise Sichtbarkeit von Knochen in ansonsten intakten Lebewesen sollten als 'Organismus' gekennzeichnet werden
+    cannot_be_determined: Kann anhand der zur Verfügung stehenden Daten nicht bestimmt werden
     dead: Der Organismus ist tot oder zeigt Anzeichen eines nahenden Todes
+    feather: Eine oder mehrere Federn ohne das zugehörige Tier
     flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
     flowering: Blüten sichtbar, geöffnet und noch fest mit der Pflanze verbunden
     fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
+    gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
+    molt: Abgeworfene Haut oder Exoskelett
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
-    teneral: Ein ausgewachsenes Individuum, das aber noch nicht fertig ausgefärbt ist
-    cannot_be_determined: Kann anhand der zur Verfügung stehenden Daten nicht bestimmt werden
-    feather: Eine oder mehrere Federn ohne das zugehörige Tier
     organism: Kompletter oder unvollständiger Organismus
     scat: Kot und Losung (keine Gewölle oder andere hervorgewürgte Bestandteile)
+    teneral: Ein ausgewachsenes Individuum, das aber noch nicht fertig ausgefärbt ist
     track: Durch das Lebewesen verursachter Abdruck in Boden oder Schnee
-    bone: |
-      Vorwiegend Überreste des Endoskeletts; teilweise Sichtbarkeit von Knochen in ansonsten intakten Lebewesen sollten als 'Organismus' gekennzeichnet werden
-    molt: Abgeworfene Haut oder Exoskelett
-    gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
   controls: Steuerung
   convert: Konvertieren
   coordinate_systems: Koordinatensysteme
@@ -1232,12 +1231,6 @@ de:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     selber kein angemessenes Verhalten zeigt.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Um sich als Kurator zu bewerben, musst du mindestens 60 Tage lang ein iNat-Konto besitzen und 100 verbesserte Identifikationen zu Beobachtungen hinzugefügt haben, einschließlich deiner eigenen (du hast %{num_idents} hinzugefügt). Wenn du beide Anforderungen erfüllt hast, kehren hierher zurück und du kannst die Bewerbung einreichen.
-  curator_application_inelligible_error: |
-    Um sich als Kurator zu bewerben, musst du mindestens 60 Tage lang ein Konto haben und 100 verbesserte Identifikationen zu den Beobachtungen hinzugefügt haben, einschließlich deiner eigenen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kurator-Beantragung eingereicht
   #Header
@@ -1713,16 +1706,6 @@ de:
   extra_properties: Extra Eigenschaften
   evidence_of_organism: Hinweis auf einen Organismus?
   facebook: Facebook
-  facebook_account_information: Deine Facebook-Kontoinformationen
-  facebook_account_not_linked: "%{user} hat kein verknüpftes Facebook-Konto mehr, deshalb hat %{site_name} keinen Zugriff mehr auf dieses Foto."
-  facebook_access_token_expired: "Zugriffstoken ist abgelaufen. %{user} muss sein Facebook-Konto erneut verknüpfen."
-  facebook_needs_the_owner_of_that_photo_to: Facebook benötigt den Besitzer dieses Fotos, um seine Verbindung zu %{site_name_short} erneut zu bestätigen.
-  facebook_options: Facebook-Optionen
-  facebook_photo_import_disabled_notice: |
-    Im November 2020 forderte uns Facebook dazu auf, nachzuweisen, dass wir unbedingt
-    Zugang zu Fotos benötigten, und wir konnten den Prozess wegen
-    Problemen mit dem Facebook-Verifizierungssystem nicht abschließen. Daher können wir das Importieren von Fotos von Facebook nicht mehr
-    unterstützen.
   failed_to_find_your_location: Dein Standort konnte nicht gefunden werden.
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
   failed_to_save_record: "Speichern fehlgeschlagen. Bitte später erneut versuchen."
@@ -1888,7 +1871,7 @@ de:
   frequency: Häufigkeit
   from_a_place: von einem Ort
   from_eol_collection: Aus EOL Sammlung
-  from_flickr_facebook_etc: Von Flickr, Facebook, usw.
+  from_flickr_etc: Von Flickr, etc.
   from_list: Von Liste
   from_photos: Von Bildern
   from_place: Vom Gebiet
@@ -2231,20 +2214,25 @@ de:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "darf folgende Wörter nicht enthalten: %{words}"
   lexicons:
-    scientific_names: Wissenschaftl. Name
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanisch
     aou_4_letter_codes: AOU 4-Buchstaben-Codes
     aou_6_letter_codes: AOU 6-Buchstaben-Codes
     arabic: Arabisch
     armenian: Armenisch
+    asturian: Asturisch
+    basque: Baskisch
     belarusian: Weißrussisch
     bengali: Bengali
+    bikol: Bikolano
     bulgarian: Bulgarisch
+    carolinian: Karolinisch
     catalan: Katalanisch
     cebuano: Cebuano
     chinese_simplified: Chinesisch (vereinfacht)
     chinese_traditional: Chinesisch (traditionell)
+    chuvash: Tschuwaschisch
     creole_french: Kreol (Französisch)
     creole_portuguese: Kreol (Portugiesisch)
     croatian: Kroatisch
@@ -2255,29 +2243,38 @@ de:
     english: Englisch
     estonian: Estnisch
     faroese: Färöisch
+    fijian: Fidschi
     finnish: Finnisch
     french: Französisch
     galician: Galizisch
     gela: Gela
+    georgian: Georgisch
     german: Deutsch
     greek: Griechisch
     gujarati: Gujarati
     hawaiian: Hawaiisch
     hebrew: Hebräisch
+    herero: Otjiherero
     hiligaynon: Hiligaynon
+    hill_mari: Bergmari
+    hodges_number: MONA-Nummer
     hokkien: Hokkien
     hungarian: Ungarisch
     icelandic: Isländisch
     ilokano: Ilokano
     indonesian: Indonesisch
+    irish: Irisch
     italian: Italienisch
     japanese: Japanisch
     kannada: Kannada
     kazakh: Kasachisch
     korean: Koreanisch
+    kweyol: Antillen-Kreolisch
     latvian: Lettisch
     lithuanian: Litauisch
+    lozi: Lozi
     luxembourgish: Luxemburgisch
+    malagasy: Malagasy
     malay: Malaiisch
     malayalam: Malayalam
     maltese: Maltesisch
@@ -2287,6 +2284,8 @@ de:
     misima_paneati: Misima-Paneati
     mongolian: Mongolisch
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norwegisch
     occitan: Okzitanisch
     ojibwe: Ojibwe
@@ -2298,23 +2297,38 @@ de:
     romanian: Rumänisch
     russian: Russisch
     santali: Santali
+    scientific_names: Wissenschaftl. Name
     serbian: Serbisch
-    setswana: Setswana
+    shona: Shona
     sinhala: Singhalesisch
     slovak: Slowakisch
     slovenian: Slowenisch
+    sotho: Sotho
+    sotho_northern: Sepedi
     spanish: Spanisch
     swahili: Swahili
+    swati: siSwati
     swedish: Schwedisch
     tagalog: Tagalog
     tahitian: Tahitisch
+    tamil: Tamilisch
     thai: Thailändisch
     tokelauan: Tokelauisch
+    totonaco: Totonakisch
+    tsonga: Xitsonga
+    tswana: Setswana
     turkish: Türkisch
+    u_s_d_a_symbol: U.S.D.A.-Symbol
     ukrainian: Ukrainisch
     uyghur: Uigurisch
-    waray_waray: Wáray-Wáray
+    venda: Tshivenda
+    vermont_flora_codes: Vermont Flora Codes
+    vietnamese: Vietnamesisch
     visayan: Visayan
+    waray_waray: Wáray-Wáray
+    xhosa: isiXhosa
+    zapoteco: Zapotekisch
+    zulu: isiZulu
   less: Weniger
   #Button show less text
   less__context_text: Weniger
@@ -2330,14 +2344,8 @@ de:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link zum Autorisierungscode
-  link_your_facebook_account: Verknüpfe deinen Facebook-Account
   link_your_flickr_account: Verknüpfe deinen Flickr-Account
   link_your_google_account: Verknüpfe deinen Google-Account
-  linked_facebook: "Dein %{site_name}-Account ist derzeit mit deinem Facebook-Account verlinkt."
-  linked_facebook_automaticaly: "Beachte auch, dass wenn du dich bei %{site_name} über Facebook einloggst, dass wir deinen %{site_name} und Facebook-Account automatisch neu verlinken. Es ist doch klar, dass wenn du Facebook benutzt, auch deine Facebook-Bilder importieren kannst, richtig?"
-  linked_facebook_description: "Wenn du deinen %{site_name}-Account mit deinem Facebook-Account verlinkt behältst, kannst du mehrere Bilder zu deinen Beobachtungen hinzufügen.  Natürlich, wenn du jemals willst, dass %{site_name} und Facebook nicht mehr verknüpft sein sollen, werden wir dich nicht aufhalten, du wirst einfach keine Bilder mehr hinzufügen können. Manchmal ist das am besten, z.B. wenn du einen neuen Facebook-Account erstellst, mit dem du %{site_name} verlinken möchtest."
-  linked_facebook_howto: "Um Facebook mit %{site_name} zu verbinden, klicke auf den Link auf der rechten Seite und melde dich bei Facebook.com an."
-  linked_facebook_password: "Wir werden dich niemals nach deinem Facebook-Passwort fragen (aber Facebook könnte es sein, überprüfe die URL, die dir der Button sendet und stelle sicher, dass es Facebook.com ist). Wir werden auch deine Facebook-Daten nicht ändern, es sei denn, du möchtest es von uns."
   linked_flickr: "Dein %{site_name}-Konto ist derzeit mit deinem Flickr-Account verknüpft."
   linked_flickr_automatically: "Beachte auch, dass wenn du dich bei %{site_name} über Flickr einloggst, dass wir deinen %{site_name} und Flicker-Account automatisch neu verlinken. Es ist doch klar, dass wenn du Flickr benutzt, auch deine Flickr-Bilder importieren kannst, richtig?"
   linked_flickr_description: "Wenn du dein %{site_name}-Account mit deinem Flickr-Account verlinkt behältst, kannst du mehrere Bilder zu deinen Beobachtungen hinzufügen.  Natürlich, wenn du jemals willst, dass %{site_name} und Flickr nicht mehr verknüpft sein sollen, werden wir dich nicht aufhalten, du wirst einfach keine Bilder mehr hinzufügen können. Manchmal ist das am besten, wenn deu einen neuen Flickr-Account erstellt, mit dem du %{site_name} verlinken möchtest."
@@ -2410,6 +2418,7 @@ de:
     id: Indonesisch
     it: Italienisch
     ja: Japanisch
+    ka: Georgisch
     kk: Kasachisch
     kn: Kannada
     ko: Koreanisch
@@ -2911,7 +2920,6 @@ de:
   not_found: Nicht gefunden
   #Filter for observations not in a particular place
   not_in_place: ohne Gebiet
-  not_linked_facebook: "Dein %{site_name}-Benutzerkonto ist nicht mit deinem Facebook-Benutzerkonto verknüpft"
   not_linked_flickr: "Dein %{site_name}-Benutzerkonto ist nicht mit deinem Flickr-Benutzerkonto verknüpft"
   not_on_this_list: Nicht auf dieser Liste.
   not_recorded: Nicht erfasst
@@ -3174,7 +3182,7 @@ de:
   options: Optionen
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ODER
   or_choose_high_level_taxa: "... oder wähle aus einem höheren Taxon aus"
   orange: Orange
@@ -4388,7 +4396,7 @@ de:
     Automatisch versteckte Koordinaten (verdeckt oder privat aufgrund von "Taxon-
     Geoprivatsphäre")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist versteckt automatisch die Koordinaten für einige Arten, um sie vor Störungen, Sammlung oder Wilderei zu schützen. Wenn die Beobachtung automatisch versteckt wurde, um Arten zu schützen, teilt iNaturalist die konkreten Koordinaten aller Beobachtungen mit den Netzwerkmitgliedern aus den jeweiligen Ländern .
+    iNaturalist verdeckt automatisch die Koordinaten für einige Arten, um sie vor Störungen, Sammlung oder Wilderei zu schützen. Falls die Beobachtung automatisch verdeckt wurde, um Arten zu schützen, teilt iNaturalist die konkreten Koordinaten aller Beobachtungen mit den Netzwerkmitgliedern aus den jeweiligen Ländern .
   sites_affiliation_more_email_addresses: |
     E-Mail-Adressen werden ausschließlich zum Zwecke der Kommunikation mit den Mitgliedern des Netzwerks weitergegeben.
   sites_affiliation_more_twice_per_year: |
@@ -4614,7 +4622,6 @@ de:
   tagging: 'Tagge...'
   tags: Stichwörter
   tags_are_a_way: 'Stichwörter sind eine Möglichkeit, deine Beobachtungen zu organisieren. Zum Beispiel kannst du alle deine Beobachtungen im Wald mit "Wald" versehen, um sie später leichter zu finden.'
-  take_me_facebook: Ja, bring mich zu Facebook!
   take_me_flickr!: Ja, bring mich zu Flickr!
   target_list_alert: Bist du sicher, dass du versucht hast, alle Arten zu beobachten, die von deiner Zielliste abgedeckt sind? Denke daran, dass alles, was von der Zielliste abgedeckt ist und nicht beobachtet wurde, als Abwesenheit interpretiert wird, so dass es sehr wichtig ist, dass die Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast
   target_list_warning: Denke daran, dass alles, was von der Zielliste abgedeckt wird, innerhalb des Radius und der Dauer dieser Reise nicht beobachtet wurde, als Abwesenheit interpretiert wird. Es ist sehr wichtig, dass deine Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast. Wenn du nicht versucht hast, eine Art auf deiner Zielliste oder jede von einer Gruppe abgedeckte Art auf deiner Zielliste zu finden, diese bitte entfernen.
@@ -5391,11 +5398,9 @@ de:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesucht
   was_it_captive_cultivated?: "In Haltung, gezüchtet oder kultiviert?"
-  we_also_support: |
-    Von <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a> und
-    <a href="http://facebook.com">Facebook</a>
-    bereitgestellte Bilder unterstützen wir ebenso.
+  we_also_support2: |
+    Wir unterstützen auch das Importieren von Fotos von <a href="http://flickr.com">Flickr</a>
+    und <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Wir können CSV nur im folgenden Format verarbeiten
   we_couldnt_find_a_user: Wir konnten keinen Benutzer mit dieser E-Mail-Adresse finden.
   we_couldnt_find_a_user_with_that_activation_code: "Wir konnten keinen Benutzer mit diesem Aktivierungscode finden. Vielleicht hast du dein Konto bereits aktiviert, versuche dich einzuloggen."
@@ -6170,8 +6175,8 @@ de:
           Projektkuratoren nicht gesehen werden können. Wenn du die
           Koordinaten deiner Beobachtungen nicht mit den Kuratoren dieses Projekts teilen möchtest
           musst du sie aus dem Projekt entfernen.
-        data_quality_assessment_desc_html: |
-          In der Datenqualitäts-Bewertung ('Data Quality Assessment'; DQA) werden bestimmte Kriterien einer Beobachtung erfasst, die festlegen, ob diese Beobachtung 'Forschungsqualität' erreichen kann. Jeder kann zu einer Beurteilung beitragen.
+        data_quality_assessment_desc3_html: |
+          Qualitätsstufen bewerten die Genauigkeit, Präzision, Vollständigkeit, Relevanz und Eignung einer iNat-Beobachtung im Hinblick auf Biodiversitätsdaten. Einige Attribute werden automatisch bestimmt, während andere von iNat-Benutzern bewertet werden können. iNaturalist teilt lizenzierte 'Forschungsqualität'-Beobachtungen mit einer Anzahl von Partnerorganisationen, damit sie für Wissenschaft und Naturschutz verwendet werden können.
         disagreement_count_desc: "Anzahl der identifizierten Taxa, die nicht zu den Vorfahren eines Taxons gehören"
         identification_count_desc: '# an Bestimmungen einer bestimmten Art'
         flagged_photos_desc_html: |
@@ -7376,6 +7381,18 @@ de:
       x_seconds:
         one: "%{count} Sekunde"
         other: '%{count} Sekunden'
+    countdown_x_days:
+      one: TAG
+      other: TAGE
+    countdown_x_hours:
+      one: STUNDE
+      other: STUNDEN
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEK
+      other: SEK
     prompts:
       day: Tag
       hour: Stunde

@@ -303,7 +303,10 @@ class UsersController < ApplicationController
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
       @favorite_listed_taxa = @favorites_list.listed_taxa.
-        includes(taxon: [:photos, :taxon_names ]).
+        includes(taxon: [
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ]).
         paginate(page: 1, per_page: 15).order("listed_taxa.id desc")
     end
 
@@ -533,8 +536,11 @@ class UsersController < ApplicationController
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
             includes(:user, :resolver, :comments).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
-            includes(:taxon_names).limit(5).active
+
+          # overfetching and limiting in Ruby to avoid an inefficient
+          # query plan when sorting by ID descending in PostgreSQL
+          @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
+            sort{ |t| t.id }[0...5]
         end
         render layout: "bootstrap"
       end

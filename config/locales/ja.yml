@@ -164,6 +164,12 @@ ja:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精度（m）'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 以上の精度
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 以下の精度
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: 以下の精度または不明
   account: アカウント
   account_creation: アカウント作成
   account_settings: アカウント設定
@@ -913,7 +919,6 @@ ja:
   connected_accounts_titlecase: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
   connect_to_flickr_again_to_authorize_write_permissions: Flickrに再接続して書き込み権限を承認してください
-  connecting_to_facebook: "Facebookに接続中..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} アカウントを他のサイトのアカウントに連携すると、それらのサイトの認証情報を使用して%{site_name} にログインできます。"
   cannot_be_changed_during_a_content_freeze: コンテンツ凍結中は変更できません
   conservation_status: 保全状況
@@ -1003,19 +1008,19 @@ ja:
     molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
+    cannot_be_determined: 提供された証拠から判断することはできません
     dead: 生物は死んでいるか、瀕死である
+    feather: 生物の本体から分離した羽毛
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
+    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
+    molt: 脱ぎ捨てられた皮膚または外骨格
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
-    teneral: 羽化したばかりで、まだ成熟していない成体
-    cannot_be_determined: 提供された証拠から判断することはできません
-    feather: 生物の本体から分離した羽毛
     organism: 生物の本体またはその一部
     scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
+    teneral: 羽化したばかりで、まだ成熟していない成体
     track: 地面や雪面に残された生物の圧痕
-    molt: 脱ぎ捨てられた皮膚または外骨格
-    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
   controls: 設定
   convert: 変換
   coordinate_systems: 座標システム
@@ -1120,13 +1125,6 @@ ja:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     不適切な行動をとること
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    キュレーターになる申請をするためには、作成から2か月以上経過していて、自分か他人の観察記録に100以上の改善IDを追加したことのあるアカウントが必要です (あなたは %{num_idents}を追加しました)。
-    双方の条件を満たしたときのみ、キュレーター申請ができます。
-  curator_application_inelligible_error: |
-    キュレーター管理者に申請するには、60日以上の間アカウントを持っている必要があり、100件以上の同定を追加・改善している必要があります。 （これにはあなた自身の観察記録の同定も含みます）
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: キュレーター申請が提出されました！
   #Header
@@ -1578,11 +1576,6 @@ ja:
   extra_properties: その他のプロパティー
   evidence_of_organism: 生物の証拠
   facebook: Facebook
-  facebook_account_information: あなたのFacebookアカウント情報
-  facebook_account_not_linked: "%{user}さんのFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
-  facebook_access_token_expired: "アクセストークンの有効期限が切れています。%{user}さんはFacebookアカウントを再リンクする必要があります。"
-  facebook_needs_the_owner_of_that_photo_to: Facebookは、その写真の所有者が%{site_name_short} への接続を再確認する必要があります。
-  facebook_options: Facebook設定
   failed_to_find_your_location: 現在地を特定できませんでした。
   failed_to_repair_photo: "写真の修復作業は失敗しました: %{errors}"
   failed_to_save_record: "記録の保存に失敗しました。しばらくしてからもう一度お試しください。"
@@ -1610,6 +1603,8 @@ ja:
   file_should_be_in_the_following_format: "ファイルは次のフォーマットでなければなりません: taxon name, description"
   fill_out_project_observation_fields: プロジェクトの観察フィールドを入力してください
   fill_out_your_profile: あなたのプロフィールを完成しましょう
+  #The name of a computer file
+  filename: ファイル名
   filter: 絞り込む
   filter_by_curator_identification: キュレーターの同定で絞り込む
   filter_by_place: 場所でフィルター
@@ -1732,7 +1727,6 @@ ja:
   frequency: 出現頻度
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
-  from_flickr_facebook_etc: Flickr、Facebookなどから
   from_list: リストから
   from_photos: 写真から
   from_place: 場所から
@@ -2049,18 +2043,23 @@ ja:
   lexicon: 言語
   lexicon_cannot_contain_words: "次の単語を含めることはできません: %{words}"
   lexicons:
-    scientific_names: 学名
     afrikaans: アフリカーンス語
+    alabama: アラバマ語
     albanian: アルバニア語
     arabic: アラビア語
     armenian: アルメニア語
+    asturian: アストゥリアス語
+    basque: バスク語
     belarusian: ベラルーシ語
     bengali: ベンガル語
+    bikol: ビコル語
     bulgarian: ブルガリア語
+    carolinian: カロリン語
     catalan: カタロニア語
     cebuano: セブアノ語
     chinese_simplified: 中国語 (簡体字)
     chinese_traditional: 中国語 (繁体字)
+    chuvash: チュヴァシュ語
     creole_french: クレオール語（フランス語）
     creole_portuguese: クレオール語（ポルトガル語）
     croatian: クロアチア語
@@ -2071,52 +2070,74 @@ ja:
     english: 英語
     estonian: エストニア語
     faroese: フェロー語
+    fijian: フィジー語
     finnish: フィンランド語
     french: フランス語
     galician: ガリシア語
     gela: ゲラ語
+    georgian: ジョージア(グルジア)語
     german: ドイツ語
     greek: ギリシャ語
     hawaiian: ハワイ語
     hebrew: ヘブライ語
+    herero: ヘレロ語
     hiligaynon: ヒリガイノン語
+    hill_mari: 山地マリ語
+    hodges_number: ホッジス番号
     hungarian: ハンガリー語
     icelandic: アイスランド語
     ilokano: イロカノ語
     indonesian: インドネシア語
+    irish: アイルランド語
     italian: イタリア語
     japanese: 日本語
     kannada: カンナダ語
     korean: 韓国語
     latvian: ラトビア語
     lithuanian: リトアニア語
+    lozi: ロズィ語
     luxembourgish: ルクセンブルク語
+    malagasy: マダガスカル語
     malay: マレー語
     malayalam: マラヤーラム語
     maltese: マルタ語
     maori: マオリ語
     marathi: マラーティー語
     misima_paneati: ミシマパネアティ語
+    navajo: ナバホ語
     norwegian: ノルウェー語
     occitan: オック語
     pangasinan: パンガシナン語
     portuguese: ポルトガル語
     romanian: ルーマニア語
     russian: ロシア語
+    scientific_names: 学名
     serbian: セルビア語
+    shona: ショナ語
     sinhala: シンハラ語
     slovak: スロバキア語
     slovenian: スロベニア語
+    sotho: ソト語
+    sotho_northern: 北ソト語
     spanish: スペイン語
     swahili: スワヒリ語
+    swati: スワティ語
     swedish: スウェーデン語
     tagalog: タガログ語
     tahitian: タヒチ語
+    tamil: タミル語
     thai: タイ語
     tokelauan: トケラウ語
+    totonaco: トトナク語
+    tsonga: ツォンガ語
+    tswana: ツワナ語
     turkish: トルコ語
     ukrainian: ウクライナ語
+    venda: ヴェンダ語
+    vietnamese: ベトナム語
     waray_waray: ワライ語
+    xhosa: コサ語
+    zulu: ズールー語
   less: より少なく
   #Button show less text
   less__context_text: 少なく表示
@@ -2131,13 +2152,8 @@ ja:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: 認証コードへのリンク
-  link_your_facebook_account: Facebookアカウントと連携させる
   link_your_flickr_account: Flickrアカウントと連携させる
   link_your_google_account: Googleアカウントをリンクする
-  linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている"
-  linked_facebook_automaticaly: "また、Facebook経由で%{site_name} にログインすると、%{site_name} とFacebookのアカウントが自動的に再リンクされます。Facebookを使っている人は、Facebookの写真をインポートできるようにしたいと思うでしょう。"
-  linked_facebook_howto: "Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。"
-  linked_facebook_password: "我々は、あなたのFacebookのパスワードを聞くことは絶対にありません。（しかし、Facebookから聞かれることがあるかもしれませんので、URL先のアドレスが本当にFacebookかどうか必ず確認してください）。また、希望しない限り、あなたのFacebookの情報を変えることもありません。"
   linked_flickr: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されています"
   linked_flickr_automatically: "また、Flickrから%{site_name} にログインすると、%{site_name} とFlickrのアカウントが自動的に再リンクされます。Flickrを使っている人は、Flickrの写真をインポートできるようにしたいと思うでしょう。"
   linkedin: LinkedIn
@@ -2201,6 +2217,7 @@ ja:
     id: インドネシア語
     it: イタリア語
     ja: 日本語
+    ka: ジョージア(グルジア)語
     kk: カザフ語
     kn: カンナダ語
     ko: 韓国語
@@ -2625,7 +2642,6 @@ ja:
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_found: 見つかりません
-  not_linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていません"
   not_linked_flickr: "現在あなたの%{site_name}アカウントはFlickrアカウントと連携されていません"
   not_on_this_list: このリストに含まれていません
   not_recorded: 記録されていません
@@ -2817,7 +2833,7 @@ ja:
   options: オプション
   or: または
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: または
   or_choose_high_level_taxa: "... もしくは上級の分類群から選択"
   orange: 橙
@@ -4020,7 +4036,6 @@ ja:
   tagging: 'タグを付けています...'
   tags: タグ
   tags_are_a_way: 'タグは、観察記録を整理する方法です。たとえば、すべてのタイドプールでの観察記録に「タイドプール」というタグを付けて、後で見つけやすくすることができます。'
-  take_me_facebook: Facebookへ移動
   take_me_flickr!: Flickrへ移動
   target_list_alert: ターゲットリストに含まれる全ての種を観察しようとしたのは確かですか？ターゲットリストでカバーされている種のうち、観察しなかったものは欠落と解釈されることを覚えておいてください。
   task_deleted: タスクが削除されました。
@@ -4101,6 +4116,7 @@ ja:
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: これはIUCNレッドリストからの分布マップではありません（分類群はIUCNに登録されていません）
   taxon_range_guidelines_each_taxon_can_have: 各分類群は1つの分布域のみを持つことができます。分布域はその分類群の世界的な分布を表す必要があります。
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
+  taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
   taxon_ranks: 分類群のランク
   taxon_removed_from_list: リストから分類群が削除されました
@@ -4634,10 +4650,6 @@ ja:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 指名手配中
   was_it_captive_cultivated?: "飼育/栽培？"
-  we_also_support: |
-    画像ホスティングサービスの<a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google フォト</a>及び
-    <a href="http://facebook.com">Facebook</a>にも対応しています。
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_couldnt_find_a_user_with_that_activation_code: "そのアクティベーションコードのユーザーが見つかりませんでした。既にアカウントをアクティベートしている可能性があります。サインインしてみてください。"
@@ -4688,6 +4700,8 @@ ja:
   without_annotation: 注釈なし
   widget: ウィジェット
   widget_code: ウィジェットコード
+  wikipedia_attribution_cc_by_sa_3: |
+    ソース: ウィキペディア, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
@@ -4892,6 +4906,7 @@ ja:
       all_observations: すべての観察記録
       filter_by: 絞込み条件：
       dropdowns:
+        sort: 並べ替え
         most_observed: 最も観察数が多い
         least_observed: 最も観察数が少ない
         date_added_newest: 登録日、最新順
@@ -4909,6 +4924,13 @@ ja:
           プロジェクトのキュレーターが手動で追加した分類群と、研究用観察
           からプロジェクトに提示された分類群は、プロジェクト一覧に追加
           されます。
+    messages:
+      from: 差出人
+      to: 宛先
+      subject_body: 件名 / 本文
+      index:
+        show_messages_from_user: '%{user} からのメッセージを表示'
+        show_messages_to_user: '%{user}に宛てたメッセージを表示'
     observations:
       community_id:
         ancestor_disagreements: 祖先の不一致数
@@ -4977,8 +4999,6 @@ ja:
           <p class="ui">
           <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
-        data_quality_assessment_desc_html: |
-          データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
     emailer:
@@ -5175,6 +5195,7 @@ ja:
         compare_site_desc: |
           今年は例年と比べてどうでしたか？緑のバーは今年、白のバーは昨年を示し、グレーの背景の部分は最も低い年と最も高い年、そして全年の平均を示しています。
         compared_to_previous_years: 前年との比較
+        inaturalist_network: iNaturalistネットワーク
         growth_title: 成長
         new_species_desc_html: |
           今年初めて追加された生物種。月をクリックすると、その月に追加された新記録種のいくつかを見ることができます。また、全体の種の累積を見たり、スライダーを過去に動かして他の新しく観察された種を見ることもできます。このグラフは、検証可能な観測による種を、%{site_name} にアップロードされた月（観測された月ではない）ごとに表示しています。これは上位または下位の分類を含まないので、哺乳類として識別された観察はカウントされず、<i>Canis lupus</i> ssp. <i>arctos</i> の観察は <i>Canis lupus</i> としてカウントされるだけです。
@@ -5210,6 +5231,8 @@ ja:
         frequency:
           research: 研究用
           verifiable: 研究用+要同定
+        max_photos_desc: |
+          分類群は最大%{max}枚の写真のみ追加できます。他の写真を追加するには、既存の写真を削除してください。
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -5383,6 +5406,8 @@ ja:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short_with_year: '%Y.%b.%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y年%B'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%Y年%B%d日'
@@ -5423,6 +5448,14 @@ ja:
         other: '%{count}ヶ月'
       x_seconds:
         other: '%{count}秒'
+    countdown_x_days:
+      other: 日
+    countdown_x_hours:
+      other: 時間
+    countdown_x_minutes:
+      other: 分
+    countdown_x_seconds:
+      other: 秒
     prompts:
       day: 日
       hour: 時間
@@ -5468,12 +5501,20 @@ ja:
         units:
           byte:
             other: バイト
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
+      last_word_connector: '、および '
+      two_words_connector: ' 、 '
       words_connector: '、'
   time:
     am: 午前
     formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      default: '%Y.%b.%d %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日 %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
@@ -5485,6 +5526,9 @@ ja:
       #on the web site, mostly on the dashboard
       Announcement: お知らせ
     attributes:
+      announcement:
+        created_at: '作成:'
+        updated_at: 'アップデート:'
       assessment:
         description: 説明
       assessment_section:
@@ -5647,6 +5691,10 @@ ja:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 この言語の名前は種の学名と一致してはいけません
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: すでにそのユーザをブロックしています
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"

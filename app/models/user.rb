@@ -474,7 +474,7 @@ class User < ApplicationRecord
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: 'facebook', 'twitter', 'google', 'yahoo'
+  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
@@ -550,6 +550,9 @@ class User < ApplicationRecord
     return false unless user.id
     return true if user.id == id
 
+    if friendships.loaded?
+      return friendships.any?{ |f| f.friend_id == user.id && f.trust == true }
+    end
     friendships.where( friend_id: user, trust: true ).exists?
   end
   
@@ -558,14 +561,11 @@ class User < ApplicationRecord
     @picasa_client ||= Picasa.new(pa.token)
   end
 
-  # returns a koala object to make (authenticated) facebook api calls
-  # e.g. @facebook_api.get_object('me')
-  # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
-    return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
+    # As of Spring 2023 we can no longer access the Facebook API on behalf of users
+    nil
   end
-  
+
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
     @facebook_identity ||= has_provider_auth('facebook')
@@ -1521,6 +1521,10 @@ class User < ApplicationRecord
     project_users.joins(:project).includes(:project).limit(7).
       order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
       map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+  end
+
+  def anonymous?
+    id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
   end
 
   # this method will look at all this users photos and create separate delayed jobs

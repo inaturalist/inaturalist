@@ -800,7 +800,6 @@ bg:
   connected_accounts_description: Свързаните акаунти са Ваши акаунти от други приложения или сайтове, на които сте разрешили достъп до iNaturalist от Ваше име за да могат да извършват функции като влизане, импортиране на снимки и др.
   connected_accounts_titlecase: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
-  connecting_to_facebook: "Свързване с Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Свързването на акаунта Ви на %{site_name} с акаунтите на други сайтове ще ви позволи да влизате в %{site_name} използвайки данните си за тези сайтове."
   conservation_status: Природозащитен статут
   conservation_status_descriptions:
@@ -871,21 +870,21 @@ bg:
     molt: Съблекло
   controlled_term_definitions:
     alive: Организмът е жив и не показва признаци за предстояща смърт
+    bone: |
+      Oстанки основно от вътрешен скелет; частично видими кости от иначе запазен организъм, трябва да бъдат обозначени като „организъм“
+    cannot_be_determined: Не може да се определи по наличните свидетелства
     dead: Организмът е мъртъв или по всичко личи, че скоро ще загине
+    feather: Едно или повече пера неприкрепени към организъм
     flower_budding: Виждат се цветни пъпки, но не са разтворени
     flowering: Цветовете са видими, напълно развити и все още прикачени към растението
     fruiting: Плодът се вижда и все още е прикрепен към растението
+    gall: Деформирано разрастване на растителна тъкан причинено от паразитен организъм
+    molt: Излиняла („съблечена“) кожа или телесна обвивка
     no_evidence_of_flowering: Медията не свидетелства за наличието на репродуктивни структури
-    teneral: Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид
-    cannot_be_determined: Не може да се определи по наличните свидетелства
-    feather: Едно или повече пера неприкрепени към организъм
     organism: Цял организъм или част от него
     scat: Фекалии (но не птичи погадки или друга повърната субстанция)
+    teneral: Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид
     track: Отпечатък в земята или снега оставен от организъм
-    bone: |
-      Oстанки основно от вътрешен скелет; частично видими кости от иначе запазен организъм, трябва да бъдат обозначени като „организъм“
-    molt: Излиняла („съблечена“) кожа или телесна обвивка
-    gall: Деформирано разрастване на растителна тъкан причинено от паразитен организъм
   coordinate_systems: Координатни системи
   coordinates: Координати
   #A filter option that only shows observations for which the viewer has
@@ -1307,8 +1306,6 @@ bg:
   extra_properties: Допълнителни свойства
   evidence_of_organism: Наличност (или следи) на организъм
   facebook: Фейсбук
-  facebook_account_information: Информация за вашия акаунт на Facebook
-  facebook_account_not_linked: "%{user} вече не е със свързан Фейсбук акаунт, затова %{site_name} няма достъп до тази снимка."
   failed_to_repair_photo: "Неуспешно възстановяване на снимка: %{errors}"
   failed_to_unlink_your_account: Неуспешно разединяване на Вашия акаунт
   'false': 'Невярно'
@@ -1440,7 +1437,6 @@ bg:
     Форумът е място за обсъждане на самия iNat - за помощ, предложения за подобрения, докладване на бъгове и проблеми, известия и др.
   frequency: Честота
   from_a_place: от място
-  from_flickr_facebook_etc: От Flickr, Facebook и др.
   from_list: От списък
   from_photos: От снимки
   from_place: От място
@@ -1683,7 +1679,6 @@ bg:
   let_us_walk_you_through: Нека Ви запознаем с основните функции на сайта.
   lexicon: Лексика
   lexicons:
-    scientific_names: Научни имена
     afrikaans: африканс
     albanian: албански
     arabic: арабски
@@ -1744,6 +1739,7 @@ bg:
     romanian: румънски
     russian: руски
     santali: сантали
+    scientific_names: Научни имена
     slovak: словашки
     slovenian: словенски
     spanish: испански
@@ -1765,10 +1761,8 @@ bg:
   life: Живот
   life_list: "Житейски списък на %{user}"
   linear_scale_label: Линейна
-  link_your_facebook_account: Свържете Вашия акаунт на Фейсбук
   link_your_flickr_account: Свържете Вашия акаунт на Flickr
   link_your_google_account: Свържете Вашия акаунт на Гугъл
-  linked_facebook: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Фейсбук."
   linked_flickr: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Flickr."
   linked_flickr_description: "Когато акаунтите Ви на %{site_name} и Flickr са свързани, ще можете да добавяте множество снимки от Flickr към наблюденията си. Разбира се, ако решите да прекратите връзката между акаунтите, няма да Ви спираме, но тогава няма да можете да добавяте снимки от Flickr. Прекратяването на връзката може да е необходимо и ако искате да свържете друг (нов) Flickr акаунт към %{site_name}."
   #Text inserted into a textarea when the link button is clicked but no text was selected
@@ -2190,7 +2184,6 @@ bg:
   not_finding_place_you_want?: Не намирате нужното място?
   #Filter for observations not in a particular place
   not_in_place: Не е в място
-  not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
   not_resolved: Няма решение
   not_seeing_what_looking_for: Не откривате това което търсите?
@@ -2403,7 +2396,7 @@ bg:
   options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "...или избери някои по-висши таксони"
   orange: оранжево
@@ -4053,8 +4046,6 @@ bg:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Издирвани
   was_it_captive_cultivated?: "Беше ли в плен/култивиран?"
-  we_also_support: |
-    Поддържаме също и <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Photos</a> и <a href="http://facebook.com">Facebook</a> като хранилища за снимки.
   we_can_only_understand_csv_in: Разбираме CSV само в следния формат
   we_couldnt_find_a_user: Не намерихме потребител с такъв имейл адрес.
   we_couldnt_find_a_user_with_that_activation_code: "Не намерихме потребител с такъв код за активиране. Може би вече сте активирали акаунта си, моля опитайте се да влезете."
@@ -4425,8 +4416,6 @@ bg:
           Брой разпознати таксони, които са сред надтаксоните на таксона, но не са съгласни с таксона (например „Мисля, че е от този род, но не и този вид“)
         curator_coordinate_access_disabled_desc_html: |
           Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
-        data_quality_assessment_desc_html: |
-          Оценката на качеството на данните представлява оценка на точността на данните. Наблюдения с Изследователско качество могат да се използват от учените за изследвания. Дайте своя вот по-долу:
         flagged_photos_desc_html: |
           Някои от тези снимки са маркирани за неуместно съдържание или нарушение на авторски права. За подробности вижте %{links}
         observer_only_allows_curators_to_add_fields: Наблюдателят позволява само на кураторите на сайта да добавят полета за наблюдения.

@@ -135,6 +135,7 @@ eu:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Inplantazio moduei buruz
+  about_license_options: Lizentzia motei buruz
   about_licenses: Lizentzien inguruan
   #Header for a section describing taxon names
   about_names: Izenei buruz
@@ -176,7 +177,7 @@ eu:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Lotura bat gehitu
   add_a_name: Izena gehitu
-  add_a_note: Ohar bat gehitu
+  add_a_note: Gehitu oharra
   add_a_new_change_group: Gehitu beste aldaketa bat taldean
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Zenbakidun zerrenda gehitu
@@ -188,7 +189,7 @@ eu:
   add_an_observation_of: "Honi buruzko oharra gehitu: %{taxon}"
   add_annotations_for_x: Gehitu iruzkinak "%{x}" horretan
   add_annotations_for_controlled_attribute:
-    sex: Gehitu oharra "Sexua"-rako
+    sex: Gehitu iruzkinak "Sexu"ari buruz
   add_another_flag: Beste bandera bat gehitu
   add_another_photo: Beste argazki bat gehitu
   add_another_section: Sekzio berria gehitu
@@ -196,7 +197,7 @@ eu:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Aktiboa gehitu
   add_batch: Lotea gehitu
-  add_blocked_users: Blokeatutako erabiltzaileak gehitu
+  add_blocked_users: Gehitu blokeatutako erabiltzaileetan
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Testu lodia sartu
   add_comma_separated_tags: "Komarekin bereiztutako etiketak gehitu"
@@ -212,6 +213,7 @@ eu:
   add_id: Identifikadorea gehitu
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Gehitu testu etzana
+  add_muted_users: Gehitu isilarazitako erabiltzaileetan
   add_new_lexicon: Lexiko berria gehitu
   add_new_photos_by_their_ids: Argazki berriak gehitu Flickr-eko id-aren bidez (Creative Commons izan behar dute!)
   add_new_place: Leku berria gehitu
@@ -408,6 +410,22 @@ eu:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: Edozein
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Edozein
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Edozein
+  #Label for an option to show content from any date
+  any_date: Edozein
+  #Label for an option to show content with any establishment means
+  any_establishment: Edozein
+  #Label for an option to show content with any license
+  any_license: Edozein
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Edozein
+  #Label for an option to show content from any project
+  any_project: Edozein
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Edozein
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
   any_reviewed: Edozein
@@ -416,6 +434,16 @@ eu:
   anyone: Edonor
   app_owner_application_explanation_required: |
     Eraiki nahi duzunaren azalpen zehatzagoa eman behar duzu.
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplikazioa
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications: Aplikazioak
+  apply_app_owner: Aplikatu
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Aplikatu
   apply_to_selected: Hautatutakoei aplikatu
   apply_captive_cultivated: "Aplikatu etxekotua / landatua"
   apply_fields: Aplikatu eremuak
@@ -528,6 +556,9 @@ eu:
   automatic_short: Automatikoa
   automatically_add_observations_to_this_project: Automatikoki gehitu behaketak proiektu honetara
   automatically_update_my_content_for_taxon_changes: Nire edukia automatikoki eguneratu aldaketa dagoenean
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Batazbestekoa
   back: Itzuli
   back_to_all_species: Espezie guztietara itzuli
   back_to_editing_observation: Oharra berriro aldatu
@@ -549,6 +580,8 @@ eu:
   back_to_x_history: "%{x}-(r)en historira itzuli."
   back_to_x_journal: "Honen egutegira itzuli: %{user}"
   back_to_x_blog: "%{x}-(r)en blogera itzuli"
+  back_to_your_calendar: Nire egutegira itzuli
+  back_to_your_lists: Itzuli zure zerrendetara
   back_to_your_journal: Zure egunkarira itzuli
   back_to_your_observations: Zure oharretara itzuli
   back_to_your_profile: Zure profilera itzuli
@@ -663,6 +696,8 @@ eu:
     input_taxon_will_be_dropped_html: "%{input_taxon} ezabatuko da"
     input_taxon_will_be_activated_soon_html: "%{input_taxon} laster aktibatuko da"
   change_your_password: Zure pasahitza aldatu
+  #Plural noun, as in changes to a taxon record over time
+  changes: Aldaketak
   changing_the_geoprivacy: 'Geopribatutasuna aldatzeak beste pertsona batzuek zure oharraren kokapena ikusteko modua aldatzen du.'
   check_above_for_errors: Begiratu goian akatsen bila
   check_back_soon: Laster itzuli!
@@ -751,12 +786,17 @@ eu:
   confirm_your_info: Zure informazioa baieztatu
   connect_to_provider: "Hona konektatu: %{provider}"
   connecting_flickr: "Flickr-era konektatzen..."
-  connecting_to_facebook: "Facebook-era konektatzen..."
   connecting_your_inat_account_to_accounts_other_sites: "Zure %{site_name} kontua beste leku batzuetako kontuekin konektatzeak %{site_name} gunera horietako datuak erabilita sartzeko aukera emango dizu."
   conservation_status: Arrisku maila
+  conservation_status_created: Kontserbazio-egoera sortua
+  conservation_status_deleted: Kontserbazio-egoera ezabatua
+  conservation_status_updated: Kontserbazio-egoera eguneratua
   conservation_status_descriptions:
     url: Estatus hau deskribatzen duen orrialde baterako URLa.
   contain_all_descendants?: Egiaztapen-zerrenda honek hemen sortutako taxon honen ondorengo guztiak al ditu?
+  content_author: Edukiaren egilea
+  content_hidden: Ezkutatutako edukia
+  content_type: Eduki Mota
   continue: Jarraitu
   continue_to_site: '%{site_name}(e)ra jarraitu'
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
@@ -784,6 +824,14 @@ eu:
     alive: Bizirik
     dead: Hilda
     cannot_be_determined: Ezin da zehaztu
+    #As in the feather on a bird
+    feather: Luma
+    #Fecal matter, not regurgitated matter
+    scat: Gorotza
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Arrasto
+    #Endoskeletal remains, like a deer bone
+    bone: Hezurra
   controlled_term_definitions:
     alive: Organismoa bizirik dago eta ez du ematen laster hilko denik
     dead: Organismoa hilda dago edo laster hilko dela ematen du
@@ -859,6 +907,7 @@ eu:
   custom_project_fields: Pertsonalizatutako proiektu-eremuak
   darr_apply_darr: "↓ Aplikatu ↓"
   daily_users: Erabiltzaileak egunero
+  danger_zone: Eremu arriskutsua
   dashboard: Taula
   data_deficient: Datuak ez dira nahikoak
   data_quality: Data kalitatea
@@ -961,8 +1010,10 @@ eu:
   destroy: Desegin
   details: Xehetasunak
   deviation: Desbideraketa
+  devise_reset_password_instructions_hello_email: Kaixo, %{email}
   did_you_mean: 'Honi buruz ari zara?'
   did_you_photos_flickr?: Argazkiak jarri dituzu Flickr-en?
+  disable_comments: Galarazi iruzkinak
   disconnect_provider: "Hemendik deskonektatu: %{provider}"
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Nematodoak aztertzen al dituzu? Lanpernen taxonomian munduko adituena al zara? Lore politei soilik gustatzen al zaizu begiratzea? Profila osatzeak nortasuna ematen dizu eta zure sinesgarritasuna indartzen du, beste batzuei identifikazioekin laguntzen diezunean.
@@ -974,6 +1025,7 @@ eu:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Utzi
   download: 'Deskargatu:'
+  download_caps: DESKARGATU
   download_csv: CSV deskargatu
   download_csv_template: CSV txantiloia deskargatu
   download_kml: KML deskargatu
@@ -996,6 +1048,7 @@ eu:
   edit_body: Gorputza aldatu
   edit_comment: Zure iruzkina aldatu
   edit_custom_project_fields: Pertsonalizatutako proiektu-eremuak aldatu
+  edit_field: Editatu eremua
   edit_license: Lizentzia aldatu
   edit_multiple_dates: Data anitzak aldatu
   edit_multiple_descriptions: Deskribapen anitzak aldatu
@@ -1026,6 +1079,7 @@ eu:
   editing_this: '%{elem} aldatzen'
   either_that_user_doesnt_exist_or: "Erabiltzaile hori ez da existitzen edo dagoeneko jarraitzen ari zara."
   email: Posta
+  email_notifications: Posta elektronikoaren jakinarazpenak
   embed: 'Txertatu:'
   embed_place_widget: Lekuko widget-a txertatu
   embed_widget_project: Proiektu honetarako widget-a txertatu zure web orrialdean
@@ -1047,11 +1101,16 @@ eu:
   establishment_means: Kokatzeko moduak
   establishment_means_describes_how: |
     Kokatzeko moduak taxona eremu batean nola txertatu zen deskribatzen du. Ikusi DarwinCore honetarako: <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">informazio gehiago terminologian</a>.
+  event_url: Gertaeraren URLa
+  events_only: Soilik gertaerak
   everyone: guztiak
+  everyone_: Edonork
   everyone_journal_posts: Artikuluak egunkari guztietan
+  everywhere: edonon
   exact: Zehatza
   exact_date: Data zehatza
   exact_rank: Tarte zehatza
+  except: salbu
   existing_flags: Existitzen diren banderak
   exit_full_screen: "Irten pantaila osotik"
   explore: Esploratu
@@ -1059,9 +1118,7 @@ eu:
   extinct: iraungia
   extinct_in_the_wild: Egoera basatian desagertua
   extra_properties: Estra propietateak
-  facebook_account_information: Zure Facebook kontuko informazioa
-  facebook_needs_the_owner_of_that_photo_to: 'Facebook-ek %@ argazki-jabearen baieztapena behar du hona konexioa egiteko: %{site_name_short}.'
-  facebook_options: Facebook-eko aukerak
+  facebook: Facebook
   failed_to_find_your_location: Zure kokapena aurkitzeak huts egin du.
   failed_to_save_record: "Ezin izan da agiria gorde. Mesedez saia zaitez berriz geroago."
   'false': 'Gezurra'
@@ -1081,8 +1138,11 @@ eu:
   fields_: Eremuak
   fields_merged: Eremuak bateratu dira
   file: Fitxategia
+  file_size: Fitxategiaren tamaina
   file_should_be_in_the_following_format: "Fitxategiak formatu hau izan behar luke: espeziearen edo taldearen izena,\ndeskribapena"
   fill_out_your_profile: zure profila osatu
+  #The name of a computer file
+  filename: Fitxategiaren izena
   filter: Iragazkia
   filter_by_place: Lekuaren arabera iragazi
   filter_by_taxon: Taxioiaren arabera iragazi
@@ -1140,7 +1200,11 @@ eu:
   followers: jarraitzaileak
   following: Jarraitzen
   for_a_taxon: taxon batena
+  formatting: Formateatu
   forgot_your_password: Zure pasahitza ahaztu duzu?
+  forum: Foroa
+  forum_categories:
+    tutorials: Tutorialak
   frequency: Maiztasuna
   from_a_place: leku batekoa
   from_list: Zerrendakoa
@@ -1186,6 +1250,9 @@ eu:
   has_sound: Soinua du
   has_sounds: Soinuak ditu
   hasnt_contributed_any_observations: ez duzu oharrik gehitu proiektu honetara.
+  header_your_calendar: Zure egutegia
+  header_your_favorites: Zure gogokoak
+  header_your_lists: Zure zerrendak
   heads_up: Abisua
   heads_up_this_photo_is_already_associated_with: "KONTUZ: argazki hau dagoeneko lotuta dago <a target=_blank' href='%{url}>beste ohar batekin</a>"
   heads_up_you_have_multiple: "Abisuak. Hainbat etiketa taxonomiko sortu dituzu maila berdin-berdinetarako. Kolorearen arabera kodetuta daude eta aurrerago mailaren arabera."
@@ -1259,6 +1326,7 @@ eu:
   insects: intsektuak
   introduced: sartu zuen
   invite: gonbidatu
+  invite_people: Gonbidatu jendea
   is_not_following_anyone: Ez zara inor jarraitzen ari
   is_this_place_a_duplicate: Leku hau bikoiztuta al dago?
   join: Bat egin
@@ -1286,6 +1354,7 @@ eu:
   layout: Antolamendua
   leaderboard_for_x: "Honetako aktiboenak: %{x}"
   leaderboards: Aktiboenak
+  learn: Ikasi
   learn_about_the_species_live_in: 'Ikasi hemen bizi diren espezieei buruz:'
   learn_more: Ikasi gehiago
   learn_more_raquo: "Gehiago jakin »"
@@ -1295,7 +1364,6 @@ eu:
   leave_this_project: Proiektu honetatik irten
   lexicon: Hiztegia
   lexicons:
-    scientific_names: Izen zientifikoak
     bengali: Bengalera
     catalan: Katalana
     cebuano: Cebuera
@@ -1320,6 +1388,7 @@ eu:
     portuguese: Portugesa
     romanian: Errumaniera
     russian: Errusiera
+    scientific_names: Izen zientifikoak
     spanish: Espainola
     swedish: Suediera
     tagalog: Tagaloa
@@ -1333,13 +1402,8 @@ eu:
   life: Bizitza
   life_list: "Honen bizitza-zerrenda: %{user}"
   link: Esteka
-  link_your_facebook_account: Facebook-eko zure kontua estekatu
   link_your_flickr_account: Flickr-eko zure kontua estekatu
   link_your_google_account: Zure Google zerrenda estekatu
-  linked_facebook: "Zure %{site_name} kontua orain Facebook-eko zure kontuarekin lotuta dago."
-  linked_facebook_description: "Zure %{site_name} kontua Facebook-eko zure kontuarekin lotuta edukitzeak oharrei argazkiak gehitzeko aukera emango dizu. Zure %{site_name} eta Facebook-eko kontuak edozein unetan desesteka ditzakezu. Ez dizugu eragotziko, ezingo duzu argazkirik gehitu, besterik ez. Batzuetan onena izango da, esate baterako, %{site_name} webgunearekin estekatu nahi duzun Facebook-eko kontu berria sortzen duzunean."
-  linked_facebook_howto: "Facebook eta %{site_name} konektatzeko, klikatu eskuineko estekan eta hasi saioa hemen: facebook.com."
-  linked_facebook_password: "Facebook-eko pasahitza ez dizugu inoiz eskatuko (Facebook-ek egin dezake, ordea, egiaztatu botoiak facebook.com helbidera bidaltzen zaituela). Zure Facebook-eko datuak ere ez ditugu aldatuko, zuk hala eskatzen ez baduzu."
   linked_flickr: "Zure %{site_name} kontua orain Flickr-eko zure kontuarekin lotuta dago."
   linked_flickr_description: "Zure %{site_name} kontua Flickr-eko zure kontuarekin lotuta edukitzeak oharrei argazkiak gehitzeko aukera emango dizu. Zure %{site_name} eta Flickr-eko kontuak edozein unetan desesteka ditzakezu. Ez dizugu eragotziko, ezingo duzu argazkirik gehitu, besterik ez. Batzuetan onena izango da, esate baterako, %{site_name} webgunearekin estekatu nahi duzun Flickr-eko kontu berria sortzen duzunean."
   linked_flickr_password_html: "<strong>Flickr-eko pasahitza ez dizugu inoiz eskatuko</strong> (Flickr-ek eska dezake, ordea, egiaztatu botoiak flickr.com helbidera bidaltzen duela)."
@@ -1549,7 +1613,6 @@ eu:
   not_evaluated: ebaluatu gabe
   not_findig_what_you_want: Ez duzu nahi duzuna topatzen?
   not_finding_place_you_want?: Ez duzu topatu bila zenbiltzan lekua?
-  not_linked_facebook: "Zure %{site_name} kontua ez dago Facebook-eko zure kontuarekin lotuta"
   not_linked_flickr: "Zure %{site_name} kontua ez dago Flickr-eko zure kontuarekin lotuta"
   not_on_this_list: Ez dago zerrenda honetan.
   not_seeing_what_looking_for: Ez duzu bila zabiltzana topatzen?
@@ -2144,7 +2207,6 @@ eu:
   tagging: 'Etiketatzen...'
   tags: Etiketak
   tags_are_a_way: 'Behaketei gehi daitezkeen hitz gakoak dira etiketak, topatzen errazagoak izan daitezen.'
-  take_me_facebook: Bai, Facebook-era joan
   take_me_flickr!: Bai, Flickr-era joan
   taxa: Taxonak
   taxa_needing_curation: Administrazioa behar duten taxonak
@@ -2376,10 +2438,6 @@ eu:
   w_sounds: soinuekin
   wait_file_generation: Itxaron fitxategia sortu bitartean. Agian minutu batzuk beharko ditu zerrenda handietarako.
   was_it_captive_cultivated?: "Gatibu/hezia izan da?"
-  we_also_support: |
-    Zure irudietarako <a href="http://flickr.com">Flickr</a>, <a
-    href="http://picasaweb.google.com">Picasa</a> eta <a
-    href="http://facebook.com">Facebook-ekin</a> ere konexioa dugu.
   we_can_only_understand_csv_in: 'CSV formatu honetan soilik inporta dezakegu:'
   we_couldnt_find_a_user: Ezin izan dugu erabiltzailerik topatu posta-helbide honekin.
   we_couldnt_find_a_user_with_that_activation_code: "Ezin izan dugu erabiltzailerik topatu aktibazio-kode honekin. Baliteke zure kontua dagoeneko aktibatuta egotea, mesedez, saiatu sisteman sartzen"

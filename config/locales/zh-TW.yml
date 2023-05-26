@@ -930,7 +930,6 @@ zh-TW:
   connected_accounts_titlecase: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次連結 Flickr 帳號以授權寫入權限
-  connecting_to_facebook: "連接至臉書..."
   connecting_your_inat_account_to_accounts_other_sites: "連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 在內容凍結狀態時無法更動
   conservation_status: 保育狀態
@@ -1020,20 +1019,20 @@ zh-TW:
     molt: 蛻皮
   controlled_term_definitions:
     alive: 還是活著的生物，而且看不出有立即死亡的徵兆
+    bone: |
+      主要的內骨骼還存在；部分骨骼暴露在一個完整的生物體中，應該標註為「生物」
+    cannot_be_determined: 從提供的證據當中無法判定
     dead: 生物已經死亡或是顯示有立即死亡的徵兆
+    feather: 一或多根未附著在某種生物上的羽毛
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    molt: 蛻下的表皮或外骨骼
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
-    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
-    cannot_be_determined: 從提供的證據當中無法判定
-    feather: 一或多根未附著在某種生物上的羽毛
     organism: 整個或部分生物體
     scat: 糞便類（非貓頭鷹的食繭或其他嘔吐物）
+    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
     track: 某種生物在地面或雪地上造成的印記
-    bone: |
-      主要的內骨骼還存在；部分骨骼暴露在一個完整的生物體中，應該標註為「生物」
-    molt: 蛻下的表皮或外骨骼
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
@@ -1140,12 +1139,6 @@ zh-TW:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     他們本身做了不良的示範。
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    若要申請成為網站的策展人，您必須持有帳號60天或是對任何人的觀察記錄新增100筆改進中的鑑定，包含您自己的（您已新增 %{num_idents} 筆鑑定）。當您已符合這些要求，返回此處後您將能夠提交申請書。
-  curator_application_inelligible_error: |
-    若要申請成為網站的策展人，您必須持有帳號60天或是對任何人的觀察記錄新增100筆改進中的鑑定，包含您自己的。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: 策展人申請已提交
   #Header
@@ -1596,13 +1589,6 @@ zh-TW:
   extra_properties: 額外屬性
   evidence_of_organism: 生物證據
   facebook: Facebook
-  facebook_account_information: 您的臉書帳號訊息
-  facebook_account_not_linked: "%{user}不再有連結臉書的帳號，因此%{site_name}沒有權限來使用此照片。"
-  facebook_access_token_expired: "存取令牌已逾時。%{user} 需要重新連結他們的臉書帳號。"
-  facebook_needs_the_owner_of_that_photo_to: 臉書需要照片擁有者再次確認至 %{site_name_short} 的連接。
-  facebook_options: 臉書選項
-  facebook_photo_import_disabled_notice: |
-    在 2020 年 11 月，Facebook 要求驗證我們需要自Facebook存取照片，但由於 Facebook 的驗證系統有問題，我們無法完成程序。 因此，我們無法支援從 Facebook 匯入照片。
   failed_to_find_your_location: 無法找到您的位置。
   failed_to_repair_photo: "修復照片失敗：%{errors}"
   failed_to_save_record: "無法儲存記錄。請稍後再重試。"
@@ -1765,7 +1751,6 @@ zh-TW:
   frequency: 頻率
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
-  from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
   from_list: 來自名錄
   from_photos: 來自照片
   from_place: 來自地點
@@ -2104,11 +2089,12 @@ zh-TW:
   lexicon: 詞彙
   lexicon_cannot_contain_words: "不能包括以下文字: %{words}"
   lexicons:
-    scientific_names: 學名
     afrikaans: 南非語
+    alabama: 阿拉巴馬語(Alabama)
     albanian: 阿爾巴尼亞語
     arabic: 阿拉伯文
     armenian: 亞美尼亞文
+    asturian: 阿斯圖里亞斯語(Asturian)
     belarusian: 白羅斯文
     bengali: 孟加拉語
     bulgarian: 保加利亞文
@@ -2164,7 +2150,7 @@ zh-TW:
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
     russian: 俄語
-    setswana: 札那文
+    scientific_names: 學名
     sinhala: 僧伽羅語
     slovak: 斯洛伐克語
     slovenian: 斯洛維尼亞文
@@ -2176,8 +2162,8 @@ zh-TW:
     tokelauan: 托克勞語
     turkish: 土耳其語
     ukrainian: 烏克蘭語
-    waray_waray: 瓦瑞瓦瑞語
     visayan: 維薩亞斯文
+    waray_waray: 瓦瑞瓦瑞語
   less: 較少
   licensed_site_photos: "已授權的 %{site_name} 照片"
   license: 許可協議
@@ -2187,14 +2173,8 @@ zh-TW:
   life_list: "%{user}的生涯名錄"
   linear_scale_label: 線性
   link: 連結
-  link_your_facebook_account: 連結您的臉書帳號
   link_your_flickr_account: 連結您的 Flickr 帳號
   link_your_google_account: 連結您的 Google 帳號
-  linked_facebook: "您的 %{site_name} 帳號目前已連結至您的臉書帳號。"
-  linked_facebook_automaticaly: "另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？"
-  linked_facebook_description: "保持您的 %{site_name} 帳號連結至您的臉書帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與臉書之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新臉書帳號。"
-  linked_facebook_howto: "要將臉書連接到 %{site_name}，請點擊右方連結來登入到 Facebook.com。"
-  linked_facebook_password: "我們不會詢問您的臉書密碼（但臉書也許會檢查按鍵所傳給您的 URL 來確認是屬於 Facebook.com）。我們也不會更改您在臉書上的資料，除非您要求我們這麼做。"
   linked_flickr: "您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。"
   linked_flickr_automatically: "另外，請留意如果您經由 Flickr 登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與 Flickr 帳號。若您有使用 Flickr；您應該會想要匯入在 Flickr 上的照片，很合理是吧？"
   linked_flickr_description: "保持您的 %{site_name} 帳號連結至您的 Flickr 帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與 Flickr 之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新 Flickr 帳號。"
@@ -2710,7 +2690,6 @@ zh-TW:
   not_findig_what_you_want: 沒有找到您要的東西嗎？
   not_finding_place_you_want?: 沒有找到您要的地點嗎？
   not_found: 未找到
-  not_linked_facebook: "您的 %{site_name} 帳號目前已未連結至您的臉書帳號"
   not_linked_flickr: "您的 %{site_name} 帳號目前已未連結至您的 Flickr 帳號"
   not_on_this_list: 未在此名錄中。
   not_recorded: 未記錄
@@ -2955,7 +2934,7 @@ zh-TW:
   optional: 可選
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
   orange: 橘色
@@ -4062,10 +4041,6 @@ zh-TW:
     葡萄牙的 iNaturalist 網路成員 %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} 共享葡萄牙候鳥地圖、哺乳類動物地圖的資料，以及數篇葡萄牙的科學研究論文。
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動隱藏座標 (依據「受脅分類群的地理資訊隱私權」的遮蔽或是私有座標）
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    《愛自然》會自動隱藏某些物種的座標來保護它們免除干擾、採集或狩獵。
-    如果該觀察紀錄座標被自動隱藏以保護物種的話，
-    《愛自然》會和國際網路成員分享在其國家中所有觀察紀錄之真實座標。
   sites_affiliation_more_email_addresses: |
     與國際網路成員共享的電子郵件位址僅會使用於跟本站相關之聯絡目的。
   sites_affiliation_more_twice_per_year: |
@@ -4281,7 +4256,6 @@ zh-TW:
   tagging: '標記中...'
   tags: 標籤
   tags_are_a_way: '標籤是個可組織您觀察的方式。舉例來說您可以標記您所有潮池方面的觀察為「潮池」，這樣可讓它們事後更容易被找尋。'
-  take_me_facebook: 是的，帶我前往臉書！
   take_me_flickr!: 是的，帶我前往 Flickr！
   target_list_alert: 您確定是否要嘗試由您的目標名錄中來觀察所涵蓋的所有物種？請記住任何由您的目標名錄中所涵蓋，但您未觀察到的生物，會被解讀為未出現。因此很重要的一點是，您的目標名錄要能準確地反映出您試圖探索的物種群
   target_list_warning: "請記住，在你的行程期間和半徑範圍裡未觀察到在你的目標名錄中所涵蓋的任何物種，\n會被視為不出現紀錄。因此，讓你的目標名錄能精準反映出是您所嘗試發覺的物種集合，是非常重要的。如果你不打算發掘在你的目標名錄上、或在其中分類群內所涵蓋的物種，請將它移除。"
@@ -4869,11 +4843,6 @@ zh-TW:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 徵求
   was_it_captive_cultivated?: "是被圈養/栽培？"
-  we_also_support: |
-    我們亦支援使用 <a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google 照片</a>，及
-    <a href="http://facebook.com">Facebook</a>
-    作為圖片託管。
   we_can_only_understand_csv_in: 我們僅接受以下格式的 CSV
   we_couldnt_find_a_user: 我們沒有找到帶此電子郵件的用戶。
   we_couldnt_find_a_user_with_that_activation_code: "我們找不到具有此啟用代碼的用戶。您可能已啟用過您的帳號，請嘗試登入看看。"
@@ -5614,8 +5583,6 @@ zh-TW:
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: |
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
-        data_quality_assessment_desc_html: |
-          「資料品質評估」是針對某一筆觀察記錄準確性的評量方式。「研究等級」的觀察記錄有機會被科學家用於研究上。請在下方投下您的一票：
         disagreement_count_desc: "# 已鑑定物種分類群不在物種分類的祖先之中"
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: |

@@ -2574,7 +2574,15 @@ class Taxon < ApplicationRecord
         )
         taxon_ids << t.id
       end
-      Taxon.elastic_index!( ids: taxon_ids )
+      if taxon_ids.length === 1
+        # index this taxon in a delayed job with a unique hash, as its possible
+        # there's already a job for this taxon, preventing extra indexing
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+          unique_hash: { "Taxon::elastic_index": taxon_ids[0] }).
+          elastic_index!(ids: taxon_ids)
+      else
+        Taxon.elastic_index!( ids: taxon_ids )
+      end
     end
   end
 

@@ -36,7 +36,7 @@
         %table.table
           %tr
             %th
-            %th.nobr id
+            %th.nobr ID
             %th.nobr title / name
             %th.nobr body
             %th.nobr
@@ -55,7 +55,20 @@
                 - else
                   - name = record.try_methods( :title, :name, :species_guess, :to_s )
                   = link_to( name, record ) rescue link_to( name, linkable_record ) rescue name
-              %td= record.try_methods(:body, :description, :remarks)
+              %td
+                = record.try_methods(:body, :description, :remarks)
+                %details
+                  %summary All Attributes
+                  %table.table.table-bordered
+                    %thead
+                      %tr
+                        %th Attr.
+                        %th Value
+                    %tbody
+                      - record.attributes.each do | record_attr, record_value |
+                        %tr
+                          %th= record_attr
+                          %td= record_value
               %td= record.created_at
               %td= record.updated_at
               %td.nobr

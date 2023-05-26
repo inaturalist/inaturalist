@@ -22,7 +22,7 @@ class OpeningActionMenu extends Component {
             id="more_imports"
           >
             <MenuItem href="/observations/import#photo_import">
-              { I18n.t( "from_flickr_facebook_etc" ) }
+              { I18n.t( "from_flickr_etc" ) }
             </MenuItem>
             <MenuItem href="/observations/import#sound_import">
               { I18n.t( "from_soundcloud" ) }

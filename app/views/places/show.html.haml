@@ -12,8 +12,6 @@
     </style>
 - content_for(:extrahead) do
   %meta{:content => "#{@place.display_name}", :property => "og:title"}/
-  - if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank?
-    %meta{:content => CONFIG.facebook.admin_ids.join(','), :property => "fb:admins"}
   %meta{:content => "#{t(:learn_about_the_species_live_in) + "#{@place.display_name}"}!", :name => "description", :property => "og:description"}
   - if @site && @site.shareable_image?
     %meta{ content: ( @shareable_image_url = @site.shareable_image.url ), property: "og:image" }

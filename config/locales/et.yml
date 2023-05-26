@@ -1035,7 +1035,6 @@ et:
   connected_accounts_titlecase: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Ühenda ennast uuesti Flickriga, et lubada ka kirjutamisõigusi
-  connecting_to_facebook: "Ühendan Facebookiga..."
   connecting_your_inat_account_to_accounts_other_sites: "Oma %{site_name} konto ühendamine teiste lehtede kontodega lubab sul siseneda lehele %{site_name} kasutades selleks teiste lehtede sisselogimismeetodit."
   cannot_be_changed_during_a_content_freeze: Sisu külmutamise ajal ei saa muuta
   conservation_status: Kaitsestaatus
@@ -1125,21 +1124,21 @@ et:
     molt: Kest
   controlled_term_definitions:
     alive: Organism on elus ja puuduvad peatse surma märgid
+    bone: |
+      Peamiselt siseskeletist koosnevad jäänused; muus osas tervest organismist välja paistvaid luid tuleks märkida terminiga "organism"
+    cannot_be_determined: Tõendite põhjal pole võimalik kindlaks määrata
     dead: Organism on surnud või on naha peatse surma märgid
+    feather: Üks või enam organismi külge mitte kinnituvat sulge
     flower_budding: Õite pungad on nähtavad, kuid pole avanenud
     flowering: Õied nähtavad, avatud ja ikka veel taime küljes
     fruiting: Vili nähtav ja ikka veel taime küljes
+    gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
+    molt: Kõrvale heidetud nahk või eksoskelett
     no_evidence_of_flowering: Meedia järgi pole paljunemisele viitavaid tunnuseid näha
-    teneral: Äsja väljunud täiskasvanud isend, kes pole veel saavutanud oma lõpliku täiskasvanud vormi
-    cannot_be_determined: Tõendite põhjal pole võimalik kindlaks määrata
-    feather: Üks või enam organismi külge mitte kinnituvat sulge
     organism: Täielik või osaline organism
     scat: Fekaalid (mitte öökulli räpetombud või muu tagasioksendatud mateeria)
+    teneral: Äsja väljunud täiskasvanud isend, kes pole veel saavutanud oma lõpliku täiskasvanud vormi
     track: Organismi poolt maapinda või lumme jäetud jälg
-    bone: |
-      Peamiselt siseskeletist koosnevad jäänused; muus osas tervest organismist välja paistvaid luid tuleks märkida terminiga "organism"
-    molt: Kõrvale heidetud nahk või eksoskelett
-    gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
   controls: Juhthoovad
   convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
@@ -1246,12 +1245,6 @@ et:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ei käitu ise korralikult ja eeskujulikult.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Selleks, et kandideerida lehekülje kuraatoriks, peab su konto olema rohkem kui 60 päeva vana ning sa pead olema teinud kasutajate vaatlustele (kaasaarvatud enda omadele) vähemalt 100 täpsustavat määratlust (oled teinud %{num_idents}). Kui vastad mõlemale nõudmisele, tule sellele lehele tagasi ning esita avaldus.
-  curator_application_inelligible_error: |
-    Selleks, et kandideerida lehekülje kuraatoriks, peab su konto olema rohkem kui 60 päeva vana ning sa pead olema teinud kasutajate vaatlustele (kaasaarvatud enda omadele) vähemalt 100 täpsustavat määratlust.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuraatori avaldus edastatud
   #Header
@@ -1484,6 +1477,7 @@ et:
       signed_up_but_locked: "Oled edukalt registreeritud. Aga me ei saanud sind sisse logida, kuna su konto on lukustatud."
       signed_up_but_unconfirmed: "Kinnituslingiga sõnum on saadetud sinu e-posti aadressile. Palun vajuta lingile, et oma kontot aktiveerida."
       updated: 'Sinu kasutajakonto värskendamine oli edukas.'
+      updated_but_not_signed_in: "Sinu konto on edukalt uuendatud, aga kuna su salasõna muutus, pead uuesti sisse logima."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1564,7 +1558,12 @@ et:
   download_csv_template: Lae alla CSV-mall
   download_kml: Laadia alla KML
   downstream_coverage_rank: Alamtasemete katte kategooria
+  downstream_coverage_colon_rank: "Seotud alamtaksonid: tase %{rank}"
   downstream_deviations: Alamtasemete erinevused
+  downstream_deviations_for_taxon: "Taksoni %{taxon} alamtsaksonite erisused"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Alamtaksonite märkused
   #Noun, as in a journal post that has not been published
   draft: visand
   #Noun, as in a journal post that has not been published
@@ -1696,6 +1695,10 @@ et:
   establishment_means: Asustamismeetod
   establishment_means_describes_how: |
     Asustamismeetod kirjeldab seda, kuidas takson mingisse piirkonda elama asus. Vaata <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisainformatsiooni</a> lehelt DarwinCore.
+  establishment_means_descriptions:
+    native: arenes siin piirkonnas või ei saabunud inimjõul
+    endemic: kohalike ja ei eksisteeri mujal
+    introduced: saabus siia piirkonda inimjõul
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     Hinda millised sisendtaksoni määratlused asendatakse väljuntaksonite määratlustega ning millised muudetakse peale jagamist ühiste ülemtaksonite tasemel ebatäpsemaks. Selle välja arvutamine võib natuke aega võtta. Vaatluste lingid on jagatud 200 kaupa osadeks.
@@ -1711,9 +1714,14 @@ et:
   exact_date: Täpne kuupäev
   exact_rank: Täpne kategooria
   except: väljaarvatud
+  exclude_places: Välja jäetud kohad
+  exclude_projects: Välja jäetud projektid
+  exclude_taxa: Välja jäetud taksonid
+  exclude_users: Välja jäetud kasutajad
   exclusion_filters: Välistusfiltrid
   existing_flags: Praegused märkused
   exit_full_screen: "Sule täisekraan"
+  examples_of_data_use_by_network_members: Näited sellest, kuidas võrgustiku liikmed on andmeid kasutanud
   examples_of_ranking_organizations: Kategooriaid määravad organisatsioonid
   explore: Avasta
   export: Ekspordi
@@ -1725,19 +1733,16 @@ et:
   external_applications: Välised rakendused
   external_applications_description: |
     Välised rakendused on kolmandate osapoolte rakendused, millel oled lubanud sinuna iNaturalisti kontot kasutada. Üldiselt saavad nad teha sinu kontoga kõik mida sinagi saad, nii et ole veendunud, et usaldad nende rakenduste loojaid, enne kui neile selle loa annad.
+  external_taxon_including_children: Väline takson (k.a. alamtaksonid)
   extinct: väljasurnud
   extinct_in_the_wild: Looduses väljasurnud
   extra_properties: Lisaomadused
   evidence_of_organism: Tõendid organismi kohta
   facebook: Facebook
-  facebook_account_information: Sinu Facebooki konto info
-  facebook_account_not_linked: "Kasutaja %{user} on lõpetanud seose oma Facebooki kontoga ning seetõttu ei oma %{site_name} sellele fotole enam ligipääsuõigust."
-  facebook_access_token_expired: "Ligipääs on aegunud. %{user} peab uuesti looma ühenduse oma Facebooki kontoga."
-  facebook_needs_the_owner_of_that_photo_to: Facebook soovib, et foto omanik kinnitaks uuesti oma seose lehega %{site_name_short}.
-  facebook_options: Facebooki sätted
   failed_to_find_your_location: Sinu asukohta ei leitu.
   failed_to_repair_photo: "Foto parandamine ei õnnestunud: %{errors}"
   failed_to_save_record: "Andmete salvestamine ebaõnnestus. Proovi hiljem uuesti."
+  failed_to_save_record_with_errors: "Kirje salvestamine ebaõnnestus: %{errors}"
   failed_to_unlink_your_account: Konto lahtiühendamine ebaõnnestus
   'false': 'Väär'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
@@ -1763,9 +1768,12 @@ et:
   fields_can_only_be_edited_by_the_people_who: Välju saavad muuta ainult need loonud kasutajad ja lehe kuraatorid
   fields_merged: Väljad ühendatud
   file: Fail
+  file_size: Faili suurus
   file_should_be_in_the_following_format: "Fail peaks olema formaadis: taksoni nimi, kirjeldus"
   fill_out_project_observation_fields: Täida projekti vaatlusväljad
   fill_out_your_profile: täida oma profiil
+  #The name of a computer file
+  filename: Faili nimi
   filter: Filtreeri
   filter_by_curator_identification: Filtreeri kuraatori määratluse järgi
   filter_by_place: Filtreeri koha järgi
@@ -1801,11 +1809,39 @@ et:
   flag_an_item: Lisa märkus
   flag_as_spammer: 'Märkus: rämpspostitaja'
   flag_as_non_spammer: 'Märkus: pole rämpspostitaja'
+  #Label for the date/time when a flag was created
+  flag_created: Märkus lisatud
+  flag_deleted: Märkus kustutatud
   flag_description: Lisa antud sisule märkus, et kuraatorid teaksid, et midagi on valesti.
   flag_comment_description: Lisa sellele märkusele soovikorral kommentaar, mis seletab lähemalt, miks seda tegid ning sisaldab linke vastavale tõestusmaterjalile.
+  flag_for_check_list_title_html: |
+    Kontrollnimekirja märkus: %{title}
+  flag_for_comment_id_html: <a href="%{url}">Kommentaari %{id}</a> märkus
+  flag_for_comment_id_deleted: Kommentaari %{id} märkus (kustutatud)
   flag_for_curation: 'Märkus: vajab kureerimist'
+  flag_for_guide_title_html: |
+    Märkus juhendile: %{title}
+  flag_for_identification_id_html: <a href="%{url}">Määratluse %{id}</a> märkus
+  flag_for_life_list_title_html: |
+    Märkus elunimekirjale: %{title}
+  flag_for_list_title_html: |
+    Märkus nimekirjale: %{title}
+  flag_for_message_id_html: <a href="%{url}">Sõnumi %{id}</a> märkus
   flag_for_observation_title_html: |
     Vaatluse märkus: %{title}
+  flag_for_photo_id_html: <a href="%{url}">Foto %{id}</a> märkus
+  flag_for_place_title_html: |
+    Märkus kohale: %{title}
+  flag_for_post_title_html: |
+    Märkus postitusele: %{title}
+  flag_for_project_title_html: |
+    Märkus projektile: %{title}
+  flag_for_guide_section_id_html: <a href="%{url}">Juhendiosa %{id}</a> märkus
+  flag_for_sound_id_html: <a href="%{url}">Heli %{id}</a> märkus
+  flag_for_taxon_title_html: |
+    Märkus taksonile: %{title}
+  flag_for_user_title_html: |
+    Märkus kasutajale: %{title}
   flag_it!: Lisa märkus!
   flag_marked_as_resolved_html: '<span class="meta">Märkus</span> <strong>on lahendatud.</strong>'
   #Label for the object that was flagged, e.g. a table header
@@ -1813,6 +1849,7 @@ et:
   flag_reason: "&ldquo;Lisan märkuse objektile %{record}, sest"
   flag_resolution: Otsus
   flag_saved: Märkus salvestatud
+  flag_saved_thanks_html: Märkus salvestatud. Täname! <a href="%{url}" class="readmore">Vaata märkust</a>
   flag_this_observation: Lisa vaatlusele märkus
   flag_this_photo: Lisa fotole märkus
   flag_this_place: Lisa kohale märkus
@@ -1866,7 +1903,6 @@ et:
   frequency: Sagedus
   from_a_place: kohast
   from_eol_collection: EOL-i kollektsioonist
-  from_flickr_facebook_etc: Lehtedelt Flickr, Facebook, jms.
   from_list: Nimekirjadest
   from_photos: Fotodest
   from_place: Kohast
@@ -1901,9 +1937,12 @@ et:
   going_to_your_observations: Lähen sinu vaatluste juurde...
   good_choice_for_sharing: Teadlastega jagamiseks hea valik
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps ei hakanud tööle. Ehk oled Google Mapsi mingi brauseri rakenduse või tulemüüri abil blokeerinud või blokeerib keegi teine sinu ligipääsu (näiteks interneti teenusepakkuja).
   got_it!: Selge!
   got_your_data_somewhere_else?: Kas sinu andmed on kusagil mujal? Me saame aidata.
   graft: Poogi
+  graft_taxon: Poogi %{taxon}
   grafting_attemps_to_insert_this_taxon: Pookimine proovib lisada seda taksonit sinu taksonoomilisse puusse, leides olemasoleva ülemtaksoni ning luues kõik vahepealsed taksonid.
   grant_role: "%{grant} roll %{role}"
   grid: Ruudustik
@@ -1945,6 +1984,13 @@ et:
     <strong>Tähelepanu:</strong> Selle taksonite jagamise tulemusena on tekkinud taksonid, millel kas atlased puuduvad või millel pole ühiseid ülemtaksoneid. Seega ei saa jagamisel sisendtaksonitega seotud vaatluseid automaatselt väljunditega seostada mistõttu peab kogukond nendele vaatlustele uued määratlused lisama.
   heads_up_automatable_split_notice_html: |
     <strong>Pane tähele:</strong> Osad või kõik selle taksoni jagamise poolt mõjutatud määratlused võisid asenduda taksoni %{taxon} määratlustega. See juhtub, kui me ei saa automaatselt mõnele väljundtaksonile anda uut määratlust.
+  heads_up_observose_taxon_change_html: |
+    <strong>Pane tähele:</strong> Ühel või enamal selle muutusega seotud sisendtaksonil on rohkem kui %{observose_taxon_threshold} alamtaksonite vaatlust. Ainult administraatorid ja selle taksoniraamistiku kuraatorid saavad seda muudatust sooritada.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Pane tähele:</strong> Üks või enam selle muutusega seotud sisendtaksonit on seotud <a href="%{framework_url}">taksoniraamistikuga</a>. Ainult administraatorid ja selle taksoniraamistiku kuraatorid saavad nende taksonitega seotud muudatust sooritada. Kontakteeru selle läbi viimiseks mõne selle taksoni kuraatoriga.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Pane tähele:</strong> kavandamisel on %{count} taksonimuudatus, mis kasutab samu sisendtaksoneid:"
+    other: "<strong>Pane tähele:</strong> kavandamisel on %{count} taksonimuudatust, mis kasutavad samu sisendtaksoneid:"
   heads_up_this_photo_has_been_flagged: "PANE TÄHELE: see foto on varustatud märkusega."
   heads_up_this_photo_is_already_associated_with: "Pane tähele: see foto on juba seotud <a target='_blank' href='%{url}'>teise vaatlusega</a>"
   heads_up_you_have_multiple: "Pane tähele: Sul vastab mitu taksonoomilist masin-märksõna identsetele kategooriatele. Allpool on nad tasemete kaupa värviga eristatud."
@@ -1953,12 +1999,15 @@ et:
   help_support_inaturalist: "Toeta iNaturalisti"
   help_translate!: Aita tõlkida!
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
+  here_are_our_top_suggestions: Meie parimad pakkumised
   here_are_our_top_species_suggestions: Meie parimad liigipakumised
   hex_color_eg: Hex-värf, nt 65644F
   hi_user: "Tere %{user}"
   #Verb, usually a button to hide an interface element
   hide: Peida
   hide_content: Peida sisu
+  hide_desc: |
+    Sisu peitmine varjab selle avalikkuse eest, kuid inimesed näevad siiski, et miskit on peidetud, ning lehe kuraatorid ja sisu autor näevad jätkuvalt varjatud sisu. Tavaliselt käib see ainult kirjaliku sisu kohta: kui sa näiteks varjad määratluse sisu, siis on määratus endiselt nähtav, kuid määratleja märkused varjatud. Seda sammu ei saa tagasi võtta ning ainult lehe meeskond saab peidetud sisu taas avalikuks teha, nii et ole ettevaatlik ja kasuta antud võimalust ainult väga sobimatu sisu puhul.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Peide märkuseta vaatlused
@@ -1970,6 +2019,8 @@ et:
   highlights_and_stats_from_year_on_site: "%{year}. aasta tipud ja statistika lehel %{site}"
   history: Ajalugu
   home: Kodu
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Tundide kohandus:"
   #Message displayed on an observation detail page when the observation is
   #not licensed. "It" refers to the observation.
   however_not_licensed: |
@@ -1980,6 +2031,10 @@ et:
   however_not_licensed_action_html: |
     Saad oma litsenseerimiseelistusi muuda <a class="linky" href="/users/edit#content">konto sätete alt</a>.
   however_there_were_some_issues: "Kuid tekkis probleeme: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Võid samas lisada ülal olevate tahtmatute erimeelsustega vaatluste juurde kommentaari, et anda määratlejatele teada, et varasema ülemtaksoni %{old_parent} ulatust on vähendatud.
   i_dont_know_but_i_am_sure_this_is_taxon: Ma pole kindel, kuid arvan, et see on %{taxon}
   icon: Ikoon
   icon_size: Ikooni suurus
@@ -1989,8 +2044,12 @@ et:
     tooltips:
       leading: |
         Takson pärineb kogukondlikust taksonist. See määratlus võib juhtida õige vastuseni.
+      improving: |
+        Esimene selle taksoni pakkumine, millega kogukond nõustub. See aitab kogukondliku taksonit parandada.
       maverick: |
         Takson ei ole kogukondliku taksoni järeltulija, st kogukond ei nõustu selle taksoniga.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "Peale ülemtaksoni muutmist on taksoni <strong>E</strong> määratlus 2 tahtmatus erimeelsuses taksoni <strong>B</strong> määratlusega 1."
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
   id_two_of_taxon_swap_html: "Peale taksonivahetust on taksoni <strong>E</strong> määratlus 2 tahtmatus erimeelduses taksoni <strong>B</strong> määratlusega 1."
   id_withdrawn: Määratlus tagasivõetud
@@ -2004,6 +2063,8 @@ et:
   #Notification when an identification has been deleted
   identification_deleted: Määratlus kustutatud.
   identification_saved: "Määratlus salvestatud!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Määratluse tekst muudetud avalikuks
   #Notification when an identification has been updated
   identification_updated: Määratlus uuendatud!
   identification_user_short: Määratlenud kasutaja
@@ -2038,6 +2099,7 @@ et:
   ignore_and_continue: Eira ja jätka
   ignore_times: Eira kellaaegu
   image_must_be_exactly: pilt peab olema täpselt 950 pikslit lai ja maksimaalselt 400 pikslit kõrge
+  image_size_control: Kujutise suuruse muutmine
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohustatud
   import: Impordi
@@ -2063,7 +2125,13 @@ et:
   inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
   #Label for messages you've received
   inbox: Saabunud kirjad
+  include_places: Kaasa kohad
+  include_projects: Kaada projektid
+  include_suggestions_not_seen_nearby: Kaasa ka lähipiirkonnas mitte nähtud soovitusi
+  include_taxa: Kaasa taksoneid
+  include_users: Kaasa kasutajaid
   including: sisaldab
+  increase_brightness: Suurenda heledust
   in_progress: pooleli
   in_the_past: minevikus
   in_the_past_week: Eelmisel nädalal
@@ -2081,6 +2149,9 @@ et:
   inat_believes_this_is_a_complete_listing: "%{site_name} usub, et tegemist on selle koha täielikut taksonite nimekirjaga."
   inat_user_profile: "%{site_name}: kasutaja %{user} profiil"
   inaturalist_activity_notifications: "Lehe %{site_name} teavitused"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalisti rakendused"
+  inaturalist_is_a_joint_initiative: "%{site_name} on California Teaduste Akadeemia ja National Geographic Society ühisprojekt."
   inaturalist_places: "%{site_name} kohad"
   info: Teave
   input_taxon: Sisendtakson
@@ -2091,6 +2162,8 @@ et:
   insert_a_quote: Sisesta tsitaat
   interactions: Vastastikmõjud
   internal_server_error: Serveri sisene viga
+  internal_taxon_including_descendants: Täpsem takson (kaasaarvatud alamtaksonid)
+  internal_taxon_rank: Täpsema taksoni kategooria
   introduced: Sissetoodud
   introduced_in_place: "Sissetoodud kohta %{place}"
   invitation: Kutse
@@ -2115,6 +2188,8 @@ et:
   join: Liitu
   join_and_add_an_observation_to_project_html: Liitu ja lisa vaatlus projektile %{project}
   join_project: Liitu selle projektiga
+  #Prompt to join a specific project
+  join_project?: Liitu projektiga %{project}?
   join_the_largest_group_of_naturalists_in_the_world: Liitu maailma suurima loodusloolaste grupiga!
   join_this_project: Liitu selle projektiga
   'joined!': Liitusid!
@@ -2131,11 +2206,20 @@ et:
   just_added!: Just lisatud!
   keep_editing: Jätka muutmist
   keyboard_shortcuts: Kiirklahvid
+  kml: KML
   kml_file_size_error: "KML peab olema vähem kui 1 MB suur"
+  label_colon: "%{label}:"
   labels: Sildid
   label_to_group_a_batch_of_taxon_changes: Silt, millega grupeeritakse taksonimuudatuste kogumit
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Asukoht privaatne
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Puudub asukoht
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lukusta suurendusaste
   language_slash_locale: Keel/Asukoht
   language_slash_locale_description: See määrab sinu keele- ja kuupäeva formaadi eelistused igal pool iNaturalistis. Muutus on nähtav peale lehe värskendamist.
   language_slash_type: Keel / Tüüp
@@ -2151,6 +2235,7 @@ et:
   latitude: Laiuskraad
   latitude_in_decimals: 'Laiuskraad komakohaga, nt 38.123'
   latitude_slash_y_coord_slash_northing: Laiuskraad / y-koordinaat / põhjapoole
+  latitude_value: "Laiuskraad: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Kihid
   layout: Paigutus
@@ -2181,21 +2266,27 @@ et:
     Palun pea meeles, et uue lehe jaoks tuleb <a href="%{url}">salasõna muuta</a>.
   let_us_walk_you_through: Vaatame üle selle lehe peamised võimalused.
   lexicon: Sõnastik
+  lexicon_cannot_contain_words: "ei tohi sisaldada järgnevaid sõnu: %{words}"
   lexicons:
-    scientific_names: Teaduslikud nimed
     afrikaans: Afrikaani
+    alabama: Alabama
     albanian: Albaania
     aou_4_letter_codes: 4-tähelised AOU koodid
     aou_6_letter_codes: 6-tähelised AOU koodid
     arabic: Araabia
     armenian: Armeenia
+    asturian: Astuuria
+    basque: Baski
     belarusian: Valgevene
     bengali: Bengali
+    bikol: Bikoli
     bulgarian: Bulgaaria
+    carolinian: Carolina
     catalan: Katalaani
     cebuano: Sebu
     chinese_simplified: Hiina (lihtsustatud)
     chinese_traditional: Hiina (traditsiooniline)
+    chuvash: Tšuvaši
     creole_french: Kreooli (Prantsuse)
     creole_portuguese: Kreooli (Portugali)
     croatian: Horvaatia
@@ -2206,6 +2297,7 @@ et:
     english: Inglise
     estonian: Eesti
     faroese: Fääri
+    fijian: Fidži
     finnish: Soome
     french: Prantsuse
     galician: Galiitsia
@@ -2216,20 +2308,27 @@ et:
     gujarati: Gudžarati
     hawaiian: Havai
     hebrew: Heebrea
+    herero: Herero
     hiligaynon: Hiligainoni
+    hill_mari: Mäemari
+    hodges_number: Hodges'i number
     hokkien: Hokkien
     hungarian: Ungari
     icelandic: Islandi
     ilokano: Iloko
     indonesian: Indoneesia
+    irish: Iiri
     italian: Itaalia
     japanese: Jaapani
     kannada: Kanada
     kazakh: Kasahhi
     korean: Korea
+    kweyol: Kwéyòli
     latvian: Läti
     lithuanian: Leedu
+    lozi: Lozi
     luxembourgish: Luksemburgi
+    malagasy: Malagassi
     malay: Malai
     malayalam: Malajalami
     maltese: Malta
@@ -2239,6 +2338,8 @@ et:
     misima_paneati: Misima-Paneati
     mongolian: Mongoli
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norra
     occitan: Oksitaani
     ojibwe: Odžibvei
@@ -2250,23 +2351,38 @@ et:
     romanian: Rumeenia
     russian: Vene
     santali: Santali
+    scientific_names: Teaduslikud nimed
     serbian: Serbia
-    setswana: Tsvana
+    shona: Šona
     sinhala: Singali
     slovak: Slovaki
     slovenian: Sloveenia
+    sotho: Sotho
+    sotho_northern: Sotho (põhjapoolne)
     spanish: Hispaania
     swahili: Suahiili
+    swati: Svaasi
     swedish: Rootsi
     tagalog: Tagalogi
     tahitian: Tahiti
+    tamil: Tamili
     thai: Tai
     tokelauan: Tokelau
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tsvana
     turkish: Türgi
+    u_s_d_a_symbol: U.S.D.A. sümbol
     ukrainian: Ukraina
     uyghur: Uiguuri
-    waray_waray: Varai
+    venda: Venda
+    vermont_flora_codes: Vermonti floorakoodid
+    vietnamese: Vietnami
     visayan: Visayani
+    waray_waray: Varai
+    xhosa: Koosa
+    zapoteco: Sapoteegi
+    zulu: Suulu
   less: Vähem
   #Button show less text
   less__context_text: Vähem
@@ -2282,14 +2398,8 @@ et:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Autoriseerimiskoodi link
-  link_your_facebook_account: Ühenda oma Facebooki konto
   link_your_flickr_account: Ühenda oma Flickr konto
   link_your_google_account: Ühenda oma Google'i konto
-  linked_facebook: "Sinu lehe %{site_name} konto on praegu ühendatud sinu Facebooki kontoga."
-  linked_facebook_automaticaly: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Facebooki konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Facebooki, soovid sa ka vajadusel importida Facebookis olevaid fotosid."
-  linked_facebook_description: "Ühendades lehe %{site_name} konto Facebooki omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Facebooki konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
-  linked_facebook_howto: "Kui soovid ühendada Facebooki lehega %{site_name}, vajuta paremal olevale lingile ning logi ennast Facebooki sisse."
-  linked_facebook_password: "Me ei küsi sinult kunagi su Facebooki salasõna (kuid Facebook võib seda teha: kontrolli internetiaadressit, millele see nupp sind saadab, ja veendu, et tegemist oleks Facebook.com-iga). Samuti ei muuda me sinu Facebooki andmeid, kui sa meilt just seda ise ei palu."
   linked_flickr: "Sinu lehe %{site_name} konto on praegu ühendatud sinu Flickr kontoga."
   linked_flickr_automatically: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Flickr konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Flickrit, soovid sa ka vajadusel importida Flickris olevaid fotosid."
   linked_flickr_description: "Ühendades lehe %{site_name} konto Flickri omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Flickr konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
@@ -2371,9 +2481,12 @@ et:
     lv: Läti
     mi: Maoori
     mk: Makedoonia
+    mr: Marathi
+    nb: Norra (Bokmål)
     nl: Hollandi
     oc: Oksitaani
     pl: Poola
+    pt: Portugali
     pt-BR: Portugali (Brasilia)
     ru: Vene
     sat: Santali
@@ -2450,6 +2563,7 @@ et:
   managers_can_do: Haldajad saavad teha kõike, mida kuraatoridki ning muuta ka projekti sätteid ja kirjutada projekti päevikukandeid.
   managing_projects: Projektide haldamine
   map: Kaart
+  map_legend: Kaardi legend
   map_marker_size: kaardi märgise suurus
   map_of_observations: Vaatluste kaart
   maps:
@@ -2466,10 +2580,16 @@ et:
       range: Piirkond
   map_tooltip: Näita kaarti
   mark_as_reviewed: Märgi kontrollituks
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Märkides vaatluse kontrollituks tähendab, et sa ei näe seda enam määratlemise alla. Teiste kasutajate jaoks on see määratlemise all ka edaspidi nähtav.
   mark_all_as_reviewed: Märgi kõik kontrollituks
   mark_all_as_unreviewed: Märgi kõik mittekontrollituks
   matching_species_will_shown_up_here: Siia ilmuvad sobivad liigid. Kaardid näitavad piirkonda kui üks selle liigi isend on asunud kohas %{place}.
   maverick: Sõltumatu
+  maximum_positional_accuracy: Maksimaalne asukoha täpsus
+  maximum_positional_accuracy_including_unknown: |
+    Maksimaalne asukoha täpsus kaasates asukoha täpsusastmeta vaatlusi
   media: Failid
   #Used to join media types required by a project, e.g. photos *and* sounds.
   #If a single word won't work, a symbol like "+" would be fine.
@@ -2479,15 +2599,23 @@ et:
   meet: Teretulemast
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist võrgustiku</a> liige
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    %{partial_inat_network_tag_html}iNaturalist võrgustiku</a> liige, mis on %{cas_tag_html} ja %{nat_geo_tag_html} ühisprojekt.
   #As in members of a project
   members: Liikmed
   membership_model: Liikmelisuse mudel
   mentioned_you_in_noun_html: "%{user} mainis sind kohas %{noun}"
   mentioned_you_in_noun_by_html: "%{user} mainis sind kohas %{noun} (autor %{by})"
+  mentioned_you_in_noun_by_user_html: "%{user} mainis sind (%{noun}, kasutajalt %{by})"
+  mentioned_you_in_noun_by_you_html: "%{user} mainis sind (%{noun}, mille autor oled sina ise)"
   mentioned_you_in_a_x_on_noun_html: "%{user} mainis sind kohas %{noun} (%{x})"
   mentioned_you_in_an_x_on_noun_html: "%{user} mainis sind kohas %{noun} (%{x})"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mainis sind kohas %{noun} (%{x}, kasutaja %{by})"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mainis sind (%{x} / %{noun}, kasutajalt %{by})"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} mainis sind (%{x} / %{noun}, mille autor oled sina ise)"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mainis sind kohas %{noun} (%{x}, kasutaja %{by})"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} mainis sind (%{x} / %{noun}, kasutajalt %{by})"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} mainis sind (%{x} / %{noun}, mille autor oled sina ise)"
   merge: Ühenda
   merge_it_with_another_place: Ühenda mõne teise kohaga
   merge_two_places_together: Ühenda kaks kohta omavahel. Kontrollnimekirjades olevad liigid ning kõik geograafilised andmed liidetakse kokku.
@@ -2495,15 +2623,28 @@ et:
   merging: Ühendan
   merging_places: Ühendan kohti
   message: Teade
+  message_deleted: Sõnum kustutatud
+  message_from_user_at_time: Kasutajalt %{user} kell %{time}
+  message_from_user_on_date: Kasutajalt %{user} kuupäeval %{date}
   messages: Teated
+  messages_new_correspondent_it_looks_like: |
+    Näib, et sa pole varem selle isikuga sõnumeid vahetanud, nii et pea meeles järgnevat:
+  messages_new_correspondent_specimens: |
+    Ole ettevaatlik, kui sinult palutakse näidiseid või varjatud andmeid. Proovi palve tegija isikut tuvastada ning, kui sinult palutakse näidisisendeid, siis küsi neilt vastavat luba.
   messages_new_correspondent_personal: |
     Ära avalda enda isiklikku infot inimestele, keda sa ei usalda.
+  messages_new_correspondent_actions_html: |
+    Kui kahtlustad, et see isik rikub <a href="%{tos_url}"
+    target="_blank">kasutustingimusi</a> või ei käitu vastavalt meie <a
+    href="%{guidelines_url}" target="_blank">kogukonna reegltele</a>, siis lisa allpool sellele sõnumile vastav märkus.
+  minimum_positional_accuracy: Minimaalne asukoha täpsus
   misidentifications: Valed määratlused
   misleading_or_illegal_content_html: |
     Eksitav või illegaalne sisu, rassiline või rahvuslik vihakõne, jne. Meie "sobiliku" määratluse nägemiseks vaata <a href="/help#inappropriate">KKKd</a>.
   #Label shown when a date has not been entered
   missing_date: Kuupäev puudub
   mobile: Mobiil
+  moderation_history_for_user_html: Kasutaja %{user} modereerimisajalugu
   mollusks: molluskid
   momentjs:
     shortRelativeTime:
@@ -2596,6 +2737,8 @@ et:
   must_be_less_than_x_MB: "Peab olema väiksem kui %{x} MB"
   must_have_observation_field: "vaatluse peab väli '%{operand}' olema täidetud"
   must_have_x: "peab omama %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Vaigista
   #Mute is a noun here
   mute_removed: Vaigistus eemaldatud
   muted_users: Vaigistatud kasutajad
@@ -2609,6 +2752,8 @@ et:
   name_or_slug: "Nimi või lühi-URL, nt minu-projekt"
   name_of_the_place_you: Vaatluskoha nimi
   name_providers:
+    col: Catalogue of Life
+    ubio: uBio
     nzor: Uus-Meremaa Organismide Register
   names: Nimed
   names_for_taxon_html: "Taksoni %{taxon} nimed"
@@ -2618,6 +2763,8 @@ et:
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Menüü
+  #Stub text to show where the nav section of the project detail page is.
+  nav_description: Siia tuleb projekti navigatsioonimenüü.
   ne_lat: Kirdelaius
   ne_lon: Kirdepikkus
   near_threatened: Peaaegu ohustatud
@@ -2626,6 +2773,8 @@ et:
   needs_id_: Vajab määramist
   needs_id_expandable_html: "<span class='full'>Vajab </span>määramist"
   needs_to_be_identified: Vajab määramist
+  #Column header in a table listing iNaturalist Network members
+  network_member: Võrgustiku liige
   new: Uued
   new_and_noteworthy: Uus & oluline
   new_announcement: Uus teade
@@ -2673,10 +2822,14 @@ et:
   newly_observed_species: Äsjavaadeldud liigid
   newly_observed_species_in_year: "Aastal %{year} lisatud uued liigid"
   next: Edasi
+  next_date_short: Edasi
   next_observation: Järgmine vaatlus
   next_page: Järgmine lehekülg
+  next_page_short: Edasi
   next_photo: Järgmine foto
+  next_post_short: Edasi
   next_tab: Järgmine sakk
+  next_taxon_short: Edasi
   'no': 'Ei'
   no_assessments_have_been_added_to_this_project_yet: Sellele projektile pole veel hinnanguid lisatud.
   no_but_it_is_a_member_of_taxon: "Ei, kuid see kuulub taksonisse %{taxon}"
@@ -2691,6 +2844,7 @@ et:
   no_identifications_added:
     current_user: Sa pole kellegi vaatlustele määratlusi lisanud
     user: "Kasutaja %{user} pole kellegi vaatlustele määratlusi lisanud"
+  no_ids: "Määratluste arv"
   no_ids_have_been_suggested_yet: Määratlusi pole veel soovitatud
   no_interaction_data_available: Vastastikmõjude kohta andmed puuduvad
   no_its_as_good_as_it_can_be: Sellest enam paremaks minna ei saa
@@ -2743,6 +2897,8 @@ et:
   no_species_have_been_listed: Selle koha juurde pole liike veel lisatud!
   no_species_on_this_list: Selles nimekirjas pole veel liike!
   no_subject_parens: "(Pealkiri puudub)"
+  no_such_wiki_page: Sellist lehte ei eksisteeri
+  no_such_wiki_page_html: Sellist lehte ei eksisteeri. Soovid seda <a href="%{new_url}">luua</a>?
   no_suggestions_available: Pakkumisi pole
   no_summary_from_wikipedia: Wikipedia kokkuvõte puudub
   no_summary_has_been_set: Kokkuvõtet pole lisatud.
@@ -2763,7 +2919,6 @@ et:
   not_findig_what_you_want: Ei leia soovitavat?
   not_finding_place_you_want?: Ei leia soovitud kohta?
   not_found: Ei leitud
-  not_linked_facebook: "Sinu lehe %{site_name} konto ei ole ühendatud sinu Facebooki kontoga."
   not_linked_flickr: "Sinu lehe %{site_name} konto ei ole ühendatud sinu Flickr kontoga."
   not_on_this_list: Pole nimekirjas.
   not_recorded: Pole märgitud
@@ -2775,6 +2930,8 @@ et:
   notify_me_of_mentions: Anna mulle mainimistest teada (s.t. @kasutajatunnus)
   notify_me_of_mentions_description: "Kui sa lülitad selle välja, ei saa sa enam teateid selle kohta, kui keegi sind lehel %{site_name} mainib."
   number_of_observations: Vaatluste arv
+  number_of_observers_value: "Vaatlejate arv: %{number}"
+  number_of_observers: "Vaatlejate arv"
   number_selected: "# valitud"
   obs: Vaatlus
   obs_cid_d: Kogukondlikud määratlused
@@ -2948,7 +3105,7 @@ et:
   options: Sätted
   or: või
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: VÕI
   or_choose_high_level_taxa: "... või vali mõni kõrgema taseme takson"
   orange: oranž
@@ -3890,6 +4047,7 @@ et:
   source_wikipedia: "Allikas: Wikipedia"
   source_list_: "Allikate loend"
   source_list:
+    catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
     new_zeland_organisms_register: Uus-Meremaa Organismide Register
     nzbrn_birds: NZBRN linnud
@@ -4009,7 +4167,6 @@ et:
   tagging: 'Lisan märksõnu...'
   tags: Märksõnad
   tags_are_a_way: 'Märksõnade abil saab vaatluseid organiseerida. Näiteks võid lisada kõigile laugastest tehtud vaatlustele märksõna "laukad", et neid oleks hiljem lihtsam leida.'
-  take_me_facebook: Jah, lähme Facebooki!
   take_me_flickr!: Jah, lähme Flickrisse!
   taxa: Taksonid
   taxa_show_obs_photo_search_tip: |
@@ -4542,10 +4699,6 @@ et:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Otsime
   was_it_captive_cultivated?: "Oli see vangistatud / kultiveeritud?"
-  we_also_support: |
-    Lubame piltide majutamist ka <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> ja
-    <a href="http://facebook.com">Facebook</a> kontodel.
   we_can_only_understand_csv_in: Me mõistame CSV-faile ainult järgnevas formaadis
   we_couldnt_find_a_user: Me ei leidnud sellise e-posti aadressiga kasutajat.
   we_couldnt_find_a_user_with_that_activation_code: "Me ei leidnus sellise aktiveerimiskoodiga kasutajat. Võib-olla oled juba oma konto aktiveerinud, proovi palun sisse logida."
@@ -5070,8 +5223,6 @@ et:
         cumulative_count_desc: 'Taksoni ja kõigi selle alamtaksonite määratluste hulk'
         curator_coordinate_access_disabled_desc_html: |
           See projekt ei luba lisada vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse projektist eemaldama.
-        data_quality_assessment_desc_html: |
-          Andmete kvaliteedihinnang näitab vaatluse täpsust. Teaduskõlbulike vaatluseid saavad teadlased kasutada oma uurimistöös. Hinda allpool ise:
         disagreement_count_desc: "Taksoni alamtaksonite seas mitte olevate määratluste hulk"
         identification_count_desc: 'Selle konkreetse taksoni määratluste hulk'
         flagged_photos_desc_html: |
@@ -5993,6 +6144,8 @@ et:
         conservation_status: Kaitsestaatus
         locked: Lukustatud
         name: Nimi
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Nimepank
         parent_id: Ülemtaksoni ID
         rank: Tase
         source_identifier: Allikamääratleja

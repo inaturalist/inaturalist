@@ -585,7 +585,6 @@ lb:
   #connecting to Flickr
   connect: Connectéieren
   connected_accounts_titlecase: Connectéiert Kontoen
-  connecting_to_facebook: "Mat Facebook verbannen..."
   conservation_status: Erhalungszoustand
   continue: Virufueren
   continue_to_site: Virun op %{site_name}
@@ -621,14 +620,14 @@ lb:
     molt: Häutung
   controlled_term_definitions:
     alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
+    bone: |
+      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
     dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
     feather: Eng oder mei Fiederen net um Organismuss hänkent
+    molt: Verworfen Haut oder Exoskelet
     organism: Ganzen oder partiellen Organismus
     scat: Fäkal Exkrementer (keen gierkstent Material)
     track: Androck am Buedem oder Schnéi vum Organismus
-    bone: |
-      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
-    molt: Verworfen Haut oder Exoskelet
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
@@ -837,10 +836,6 @@ lb:
   #account, e.g. Flickr
   external_applications: Exterm Applikatiounen
   extinct: ausgestuerwen
-  facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
-  facebook_options: Facebook-Optiounen
-  facebook_photo_import_disabled_notice: |
-    Am November 2020 huet Facebook ons opgefuerdert z'iwwerpréiwen ob mir wierklech Zougang zu Fotoe brauchen, dëse Prozess konnte mir net ofschléisse wéinst Probleemer mam Facebook Verifizéierungssystem. Als Konsequenz ënnerstëtze mir net méi den Import vu Facebook Fotoen.
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
   Family: Famill
@@ -910,7 +905,6 @@ lb:
     tutorials: Tutorialen
   frequency: Frequenz
   from_a_place: vun enger Plaz
-  from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
   from_photos: Vu Fotoen
   from_soundcloud: Vun Soundcloud
   full_screen: Ganzen Ecran
@@ -1056,7 +1050,6 @@ lb:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "kann déi folgend Wierder net enthalen: %{words}"
   lexicons:
-    scientific_names: Wëssenschaftlech Nimm
     albanian: Albanesch
     arabic: Arabesch
     armenian: Armenesch
@@ -1107,7 +1100,7 @@ lb:
     portuguese: Portugisesch
     romanian: Rumänesch
     russian: Russesch
-    setswana: Setswana
+    scientific_names: Wëssenschaftlech Nimm
     sinhala: Sinhala
     slovak: Slokwakesch
     slovenian: Slowenesch
@@ -1416,7 +1409,6 @@ lb:
   not_findig_what_you_want: Fannt Dir dat wat Dir gesicht hutt?
   not_finding_place_you_want?: Fannt Dir déi Plaz déi Dir gesicht hutt?
   not_found: Net fonnt
-  not_linked_facebook: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Facebook-Benotzerkont verbonnen"
   not_linked_flickr: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Flickr-Benotzerkont verbonnen"
   not_on_this_list: Net op dëser Lëscht.
   not_recorded: Net enregistréiert
@@ -1535,7 +1527,7 @@ lb:
   optional: fakultativ
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ODER
   order: Uerdnung
   organisms: Organismen

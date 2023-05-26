@@ -1140,7 +1140,6 @@ he:
   connected_accounts_titlecase: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
-  connecting_to_facebook: "מתחבר לפייסבוק..."
   connecting_your_inat_account_to_accounts_other_sites: "חיבור חשבון %{site_name} לחשבונות באתרים אחרים יאפשר לכם להתחבר ל%{site_name} בעזרת פרטי המשתמש של אתרים אלו."
   cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת הקפאת תוכן
   conservation_status: סטטוס שימור
@@ -1230,21 +1229,21 @@ he:
     molt: השלה
   controlled_term_definitions:
     alive: היצור חי ולא מראה סימנים של סכנת מוות מיידית
+    bone: |
+      בעיקר שרידי שלד פנימי; אורגניזם שהוא שלם למעט חשיפת עצמות חלקית צריך להיות מסומן "אורגניזם"
+    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
     dead: היצור מת או מראה שימנים של מוות מיידי
+    feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     flower_budding: רואים ניצני פרחים אך סגורים
     flowering: פרחים נראים לעין, פתוחים, ועוד מחוברים לצמח
     fruiting: פירות נראים ועוד מחוברים לצמח
+    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
+    molt: נשל או שלד חיצוני
     no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
-    teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
-    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
-    feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     organism: אורגניזם שלם או חלק ממנו
     scat: חומר גללי (לא כולל צנפות)
+    teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
     track: טביעה שנעשת על ידי אורגניזם בקרקע או שלג
-    bone: |
-      בעיקר שרידי שלד פנימי; אורגניזם שהוא שלם למעט חשיפת עצמות חלקית צריך להיות מסומן "אורגניזם"
-    molt: נשל או שלד חיצוני
-    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
   controls: פקדים
   convert: המרה
   coordinate_systems: מערכת קואורדינטות
@@ -1351,12 +1350,6 @@ he:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     אינם מציגים התנהגות הולמת בעצמם.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    על מנת להגיש מועמדות לתפקיד אוצר.ת של האתר, עליך להיות בעל.ת חשבון מזה 60 ימים או יותר ולהוסיף 100 זיהויים משפרים לתצפיות כלשהן, כולל אלו של עצמך (הוספת עד כה %{num_idents}). כאשר תגיע.י לשני ההישגים הללו, יש לחזור הנה ותוכל.י להגיש את טופס הבקשה.
-  curator_application_inelligible_error: |
-    על מנת להגיש מועמדות להיות אוצר.ת האתר, עליך להיות בעל חשבון מזה 60 יום לפחות ולהוסיף 100 זיהויים משפרים לתצפיות, כולל של עצמך.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: בקשה לאוצרות הוגשה
   #Header
@@ -1849,13 +1842,6 @@ he:
   extra_properties: תכונות נוספות
   evidence_of_organism: עדות לאורגניזם
   facebook: פייסבוק
-  facebook_account_information: פרטי חשבון הפייסבוק שלך
-  facebook_account_not_linked: "ל%{user} אין חשבון פייסבוק מקושר כעת, לכן ל%{site_name} אין גישה לתמונות."
-  facebook_access_token_expired: "פג התוקף של אסימון הגישה. %{user} צריכ.ה לקשר מחדש את חשבון הפייסבוק."
-  facebook_needs_the_owner_of_that_photo_to: פייסבוק צריך שהבעלים של התמונה ההיא יאשר מחדש את חיבורו ל%{site_name_short}
-  facebook_options: אפשרויות פייסבוק
-  facebook_photo_import_disabled_notice: |
-    בנובמבר 2020 פייסבוק דרש מאיתנו לאמת את הצורך האמיתי שלנו בגישה לתמונות, ולא הצלחנו להשלים את התהליך עקב בעיות עם מערכת האימות של פייסבוק. כתוצאה מכך, אין ביכולתנו לתמוך יותר בייבוא תמונות מפייסבוק.
   failed_to_find_your_location: לא ניתן למצוא את מיקומך
   failed_to_repair_photo: "לא ניתן היה לתקן את התמונה: %{errors}"
   failed_to_save_record: "לא ניתן היה לשמור את הרישום. נא לנסות שוב מאוחר יותר."
@@ -2021,7 +2007,6 @@ he:
   frequency: תדירות
   from_a_place: ממקום
   from_eol_collection: מאוסף אנציקלופדיית החיים (EOL)
-  from_flickr_facebook_etc: מתוך פייסבוק, פליקר, וכו'.
   from_list: מרשימה
   from_photos: מתמונות
   from_place: ממקום
@@ -2381,7 +2366,6 @@ he:
   lexicon: לקסיקון
   lexicon_cannot_contain_words: "לא יכול להכיל את המילים הבאות: %{words}"
   lexicons:
-    scientific_names: שמות מדעיים
     afrikaans: אפריקאנס
     albanian: אלבנית
     arabic: ערבית
@@ -2443,8 +2427,8 @@ he:
     romanian: רומנית
     russian: רוסית
     santali: סנטאלית
+    scientific_names: שמות מדעיים
     serbian: סרבית
-    setswana: טסואנה
     sinhala: סינהאלה
     slovak: סלובקית
     slovenian: סלובנית
@@ -2457,8 +2441,8 @@ he:
     tokelauan: טוקלאואית
     turkish: טורקית
     ukrainian: אוקראינית
-    waray_waray: ווראי-ווראי
     visayan: ויסאיאן
+    waray_waray: ווראי-ווראי
   less: פחות
   #Button show less text
   less__context_text: פחות
@@ -2474,14 +2458,8 @@ he:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: קישור לקוד הרשאה
-  link_your_facebook_account: קישור חשבון פייסבוק
   link_your_flickr_account: קישור חשבון Flickr
   link_your_google_account: קישור חשבון הגוגל שלך
-  linked_facebook: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון הפייסבוק שלך."
-  linked_facebook_automaticaly: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פייסבוק, נקשר מחדש בין חשבונות ה-%{site_name} והפייסבוק שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפייסבוק אז את.ה רוצה את היכולת לייבא תמונות פייסבוק, נכון?"
-  linked_facebook_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפייסבוק שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפייסבוק, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פייסבוק חדש שאת.ה רוצה לקשר אליו את %{site_name}."
-  linked_facebook_howto: "לחיבור של פייסבוק עם %{site_name}, יש ללחוץ על הקישור מימין ולהתחבר ל-Facebook.com."
-  linked_facebook_password: "לעולם לא נבקש את סיסמת הפייסבוק שלך (אך יתכן שפייסבוק כן יבקש, יש לבדוק את הקישור שהכפתור שולח לך ולוודא שהוא Facebook.com). גם לא נשנה את נתוני הפייסבוק שלך אלא אם תרצה בכך."
   linked_flickr: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון ה Flickr שלך."
   linked_flickr_automatically: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פליקר, נקשר מחדש בין חשבונות ה-%{site_name} והפליקר שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפליקר אז את.ה רוצה את היכולת לייבא תמונות פליקר, נכון?"
   linked_flickr_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפליקר שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפליקר, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פליקר חדש שאת.ה רוצה לקשר אליו את %{site_name}."
@@ -3032,7 +3010,6 @@ he:
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
   not_finding_place_you_want?: לא מצאת את המקום שחיפשת?
   not_found: לא נמצא דבר
-  not_linked_facebook: "חשבון ה-%{site_name} אינו מחובר לחשבון הפייסבוק שלך."
   not_linked_flickr: "חשבון ה%{site_name} שלך אינו מקושר לחשבון ה Flickr שלך"
   not_on_this_list: לא ברשימה זו.
   not_recorded: לא נרשם
@@ -3283,7 +3260,7 @@ he:
   options: אפשרויות
   or: או
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
   orange: כתום
@@ -4475,8 +4452,6 @@ he:
     חברת רשת iNaturalist בפורטוגל %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} שיתפה מאגר דאטא של האטלס הפורטוגזי של עופות נודדים, של יונקים, וכן הרבה מאמרים מחקריים פורטוגזיים אחרים.
   sites_affiliation_more_automatically_hidden_coordinates: |
     קואורדינטות נסתרות אוטומטית (מוסתרות או פרטיות עקב "פרטיות המיקום של טקסון")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    האפליקציה מסתירה באופן אוטומטי את הקואורדינטות של חלק מהמינים על מנת להגן עליהם מפגיעה, איסוף או ציד בלתי חוקי. במידה והקואורדינטות הוסתרו באופן אוטומטי על מנת להגן על המינים, iNaturalist משתפת את הקוארדינטות האמיתיות של כל התצפיות מהמדינות הרלוונטיות עם חברות וחברי הרשת.
   sites_affiliation_more_email_addresses: |
     שיתוף כתובות דוא"ל עם חברות וחברי רשת הוא לצורך תקשורת שקשורה לאתר בלבד.
   sites_affiliation_more_twice_per_year: |
@@ -4683,7 +4658,6 @@ he:
   tagging: 'מתייג...'
   tags: תגיות
   tags_are_a_way: 'תגים הם דרך לסדר את התצפיות שלך. למשל, באפשרותך לתייג את כל התצפיות שלך מבריכות חורף "בריכות חורף" כדי להקל על מציאתן בהמשך.'
-  take_me_facebook: כן, קחו אותי לפייסבוק!
   take_me_flickr!: כן, קחו אותי ל Flickr!
   target_list_alert: האם את.ה בטוח.ה שניסית לתצפת על כל המינים המכוסים על ידי רשימת היעדים שלך? יש לזכור שכל מה שמכוסה על ידי הרשימה שלך ולא תצפתת עליו יתפרש כהיעדרות, לכן חשוב מאוד שרימת היעדים שלך תשקף בדיוק את סט המינים שניסית לגלות
   target_list_warning: יש לזכור שכל מה שמכוסה על ידי רשימת היעדים שלך ולא צפית בו בתוך רדיוס ומשך הטיול הזה יתפרש כהיעדרות. מאוד חשוב שרשימת היעדים שלך תשקף באופן מדויק את סט המינים שניסית למצוא. אם לא ניסית למצוא מין ברשימת היעדים שלך או כל המינים המכוסים על ידי קבוצה, יש להסיר אותו.
@@ -5492,8 +5466,6 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
-  we_also_support: |
-    אנחנו תומכים גם ב־<a href="http://flickr.com">Flickr</a>&rlm;, <a href="http://picasaweb.google.com">Picasa</a> ו־<a href="http://facebook.com">Facebook</a> כדי לאחסן תמונות.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
@@ -6281,8 +6253,6 @@ he:
         cumulative_count_desc: 'מספר הזיהויים עבור טקסון מסוים וכל צאצאיו'
         curator_coordinate_access_disabled_desc_html: |
           פרויקט זה אינו מרשה תצפיות עם קואורדינטות שאינן ניגשות לאוצרות ואוצרי הפרויקט. אם אינך רוצה לשתף את הקואורדינטות של תצפית זו עם אוצרות ואוצרי הפרויקט, עליך להסיר את התצפית מהפרויקט.
-        data_quality_assessment_desc_html: |
-          אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:
         disagreement_count_desc: "מספר הטקסונים המזוהים שאינם חולקים הורה משותף"
         identification_count_desc: 'מספר הזיהויים עבור טקסון מסוים'
         flagged_photos_desc_html: |

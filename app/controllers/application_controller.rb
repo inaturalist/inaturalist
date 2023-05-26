@@ -312,6 +312,8 @@ class ApplicationController < ActionController::Base
     begin
       ActiveRecord::Base.connection.enable_replica
       yield
+    rescue Makara::Errors::AllConnectionsBlacklisted => e
+      yield
     ensure
       ActiveRecord::Base.connection.disable_replica
     end

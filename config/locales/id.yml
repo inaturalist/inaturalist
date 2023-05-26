@@ -994,7 +994,6 @@ id:
   connected_accounts_titlecase: Akun Yang Terhubung
   connecting_flickr: "Menghubungkan ke Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Sambungkan ke Flickr lagi untuk mengotorisasi izin menulis
-  connecting_to_facebook: "Menghubungkan ke Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Menghubungkan akun %{site_name} Anda ke akun di situs lainnya akan mengizinkan Anda masuk ke %{site_name} menggunakan kredensial Anda dari situs-situs tersebut."
   cannot_be_changed_during_a_content_freeze: Tidak dapat diganti di saat pembekuan konten
   conservation_status: Status Konservasi
@@ -1084,21 +1083,21 @@ id:
     molt: Kulit
   controlled_term_definitions:
     alive: Organisme hidup dan tidak memperlihatkan tanda-tanda akan mati
+    bone: |
+      Didominasi oleh sisa-sisa endoskeleton; organisme yang seharusnya utuh, tapi sebagian tulangnya terlihat harus tetap dilabeli "organisme"
+    cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
     dead: Organisme telah mati atau memperlihatkan tanda-tanda akan mati
+    feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
     flower_budding: Kuncup bunga terlihat namun tidak terbuka
     flowering: Bunga terlihat, terbuka, dan tetap menempel ke tanaman
     fruiting: Buah terlihat dan masih menempel ke tanaman
+    gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
+    molt: Kulit yang dibuang atau eksoskeleton
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
-    teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
-    cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
-    feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
     organism: Organisme penuh atau sebagian
     scat: Unsur tinja (bukan pelet burung hantu atau zat muntahan lainnya)
+    teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
     track: Jejak di tanah atau salju yang dibuat oleh organisme
-    bone: |
-      Didominasi oleh sisa-sisa endoskeleton; organisme yang seharusnya utuh, tapi sebagian tulangnya terlihat harus tetap dilabeli "organisme"
-    molt: Kulit yang dibuang atau eksoskeleton
-    gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
   controls: Kontrol
   convert: Ubah
   coordinate_systems: Sistem koordinat
@@ -1221,12 +1220,6 @@ id:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Gagal dalam mendemonstrasikan tingkah laku yang pantas.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Untuk melamar sebagai kurator situs, akun kamu harus berumur setidaknya 60 hari dan kamu harus menambahkan setidaknya 100 identifikasi pengembang untuk pengamatan siapa saja, termasuk pengamatanmu (kamu telah menambahkan %{num_idents}). Saat kamu sudah memenuhi persyaratan tersebut, kembalilah ke sini dan barulah kamu bisa mengirimkan lamaranmu.
-  curator_application_inelligible_error: |
-    Untuk melamar sebagai kurator situs, akun kamu harus berumur setidaknya 60 hari dan kamu harus menambahkan setidaknya 100 identifikasi pengembang untuk pengamatan siapa saja, termasuk pengamatanmu sendiri.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Permohonan menjadi kurator telah dikirim
   #Header
@@ -1731,13 +1724,6 @@ id:
   extra_properties: Properti Tambahan
   evidence_of_organism: Bukti organisme
   facebook: Facebook
-  facebook_account_information: Informasi Akun Facebook Anda
-  facebook_account_not_linked: "%{user} tidak memiliki akun facebook terkait lagi, jadi %{site_name} tidak memiliki izin untuk mengakses foto ini."
-  facebook_access_token_expired: "Akses token telah berakhir. %{user} harus menghubungkan kembali akun Facebook mereka."
-  facebook_needs_the_owner_of_that_photo_to: Facebook membutuhkan pemilik foto tersebut untuk mengonfirmasi ulang hubungan mereka dengan %{site_name_short}.
-  facebook_options: Opsi Facebook
-  facebook_photo_import_disabled_notice: |
-    Pada November 2020, Facebook mengharuskan kami untuk memverifikasi bahwa kami benar-benar memerlukan akses untuk foto-foto, dan kami tidak bisa memenuhi prosesnya karena masalah dengan sistem verifikasi Facebook. Akibatnya, sekarang kami tidak bisa mendukung impor foto dari Facebook.
   failed_to_find_your_location: Gagal menemukan lokasi Anda.
   failed_to_repair_photo: "Gagal untuk memperbaiki foto: %{errors}"
   failed_to_save_record: "Gagal menyimpan catatan. Silakan coba lagi nanti."
@@ -1903,7 +1889,7 @@ id:
   frequency: Frekuensi
   from_a_place: dari tempat
   from_eol_collection: Dari koleksi EOL
-  from_flickr_facebook_etc: Dari Flickr, Facebook, dll
+  from_flickr_etc: Dari Flickr, dll.
   from_list: Dari daftar
   from_photos: Dari foto
   from_place: Dari tempat
@@ -2270,20 +2256,25 @@ id:
   lexicon: Kamus
   lexicon_cannot_contain_words: "tidak boleh mengandung kata-kata berikut: %{words}"
   lexicons:
-    scientific_names: Nama Ilmiah
     afrikaans: Afrika
+    alabama: Alabama
     albanian: Albania
     aou_4_letter_codes: Kode 4 huruf AOU
     aou_6_letter_codes: Kode 6 huruf AOU
     arabic: Arab
     armenian: Armenia
+    asturian: Asturia
+    basque: Basque
     belarusian: Belarusia
     bengali: Benggala
+    bikol: Bikol
     bulgarian: Bulgaria
+    carolinian: Caroline
     catalan: Katalan
     cebuano: Cebuano
     chinese_simplified: Mandarin (sederhana)
     chinese_traditional: Mandarin (tradisional)
+    chuvash: Chuvash
     creole_french: Creole (Prancis)
     creole_portuguese: Creole (Portugis)
     croatian: Kroasia
@@ -2294,6 +2285,7 @@ id:
     english: Inggris
     estonian: Estonia
     faroese: Faroe
+    fijian: Fiji
     finnish: Finlandia
     french: Prancis
     galician: Galisia
@@ -2304,20 +2296,27 @@ id:
     gujarati: Gujarat
     hawaiian: Hawaii
     hebrew: Ibrani
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Hill Mari
+    hodges_number: Angka Hodge
     hokkien: Hokkien
     hungarian: Hungaria
     icelandic: Islandia
     ilokano: Ilokano
     indonesian: Indonesia
+    irish: Irlandia
     italian: Italia
     japanese: Jepang
     kannada: Kannada
     kazakh: Kazakh
     korean: Korea
+    kweyol: Kwéyòl
     latvian: Latvia
     lithuanian: Lithuania
+    lozi: Lozi
     luxembourgish: Luksemburg
+    malagasy: Malagasi
     malay: Melayu
     malayalam: Malayalam
     maltese: Malta
@@ -2327,6 +2326,8 @@ id:
     misima_paneati: Misima-paneati
     mongolian: Mongolia
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norwegia
     occitan: Occitan
     ojibwe: Ojibwe
@@ -2338,23 +2339,38 @@ id:
     romanian: Romania
     russian: Rusia
     santali: Santali
+    scientific_names: Nama Ilmiah
     serbian: Serbia
-    setswana: Setswana
+    shona: Shona
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
+    sotho: Sotho
+    sotho_northern: Sotho (Utara)
     spanish: Spanyol
     swahili: Swahili
+    swati: Swati
     swedish: Swedia
     tagalog: Tagalog
     tahitian: Tahiti
+    tamil: Tamil
     thai: Thai
     tokelauan: Tokelau
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turki
+    u_s_d_a_symbol: Simbol U.S.D.A.
     ukrainian: Ukraina
     uyghur: Uighur
-    waray_waray: Waray-Waray
+    venda: Venda
+    vermont_flora_codes: Kode Flora Vermont
+    vietnamese: Vietnam
     visayan: Visaya
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Kurang
   #Button show less text
   less__context_text: Lebih Sedikit
@@ -2370,14 +2386,8 @@ id:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Tautan untuk kode otorisasi
-  link_your_facebook_account: Hubungkan akun Facebook Anda
   link_your_flickr_account: Hubungkan akun Flickr Anda
   link_your_google_account: Hubungkan akun Google Anda
-  linked_facebook: "Akun %{site_name} Anda saat ini terhubung dengan akun Facebook Anda."
-  linked_facebook_automaticaly: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Facebook, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Facebook Anda. Tampak masuk akal bukan jika Anda menggunakan Facebook, Anda ingin dapat mengimpor foto dari Facebook?"
-  linked_facebook_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Facebook, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
-  linked_facebook_howto: "Untuk menghubungkan Facebook dengan %{site_name}, klik hubungkan di sebelah kanan dan masuk ke Facebook.com."
-  linked_facebook_password: "Kami tidak akan pernah menanyakan kata sandi Facebook Anda (tapi Facebook mungkin menanyakannya, periksa url yang dikirimkan tombol Anda dan pastikan itu adalah Facebook.com). Kami juga tidak akan mengubah data Facebook Anda kecuali Anda menginginkan kami untuk melakukannya."
   linked_flickr: "Akun %{site_name} Anda saat ini terhubung dengan akun Flickr Anda."
   linked_flickr_automatically: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Flickr, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Flickr Anda. Tampak masuk akal bukan jika Anda menggunakan Flickr, Anda ingin dapat mengimpor foto dari Flickr?"
   linked_flickr_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Flickr, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
@@ -2947,7 +2957,6 @@ id:
   not_found: Tidak ditemukan
   #Filter for observations not in a particular place
   not_in_place: Tidak pada tempatnya
-  not_linked_facebook: "Akun %{site_name} Anda tidak terhubung dengan akun Facebook Anda"
   not_linked_flickr: "Akun %{site_name} Anda tidak terhubung dengan akun Flickr Anda"
   not_on_this_list: Tidak ada di daftar ini.
   not_recorded: Tidak tercatat
@@ -3210,7 +3219,7 @@ id:
   options: Pengaturan
   or: atau
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ATAU
   or_choose_high_level_taxa: "... atau memilih dari beberapa taksa tingkat tinggi"
   orange: jingga
@@ -4613,7 +4622,6 @@ id:
   tagging: 'Menandai...'
   tags: Label
   tags_are_a_way: 'Label adalah suatu cara untuk mengatur pengamatan Anda. Misalnya, Anda dapat memberikan tanda kepada semua pengamatan kolam air pasang Anda "kolam air pasang" supaya lebih mudah untuk ditemukan nanti.'
-  take_me_facebook: Ya, bawa saya ke Facebook!
   take_me_flickr!: Ya, bawa saya ke Flickr!
   target_list_alert: Apakah Anda yakin bahwa Anda telah mencoba untuk mengamati semua spesies yang dicakup dalam daftar target Anda? Ingat bahwa apapun yang dicakup dalam daftar target Anda yang tidak Anda amati akan ditafsirkan sebagai ketidakberadaan, jadi daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan
   target_list_warning: Ingat bahwa semua yang dicakup daftar target Anda yang tidak Anda amati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. Daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan. Jika Anda belum mencoba untuk menemukan suatu spesies dalam daftar target Anda atau semua spesies yang dicakup dalam suatu kelompok di daftar target Anda, harap menghapusnya.
@@ -5375,8 +5383,8 @@ id:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Dicari
   was_it_captive_cultivated?: "Apakah itu dipelihara / dibudidayakan?"
-  we_also_support: |
-    Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a href="http://photos.google.com">Google Photos</a>, dan <a href="http://facebook.com">Facebook</a> sebagai host gambar.
+  we_also_support2: |
+    Kami juga mendukung pengimporan foto dari <a href="http://flickr.com">Flickr</a> dan <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Kami hanya dapat mengenali CSV dalam format berikut
   we_couldnt_find_a_user: Kami tidak dapat menemukan pengguna dengan alamat email tersebut.
   we_couldnt_find_a_user_with_that_activation_code: "Kami tidak dapat menemukan pengguna dengan kode aktivasi tersebut. Anda mungkin telah mengaktifkan akun Anda, silakan mencoba untuk masuk lagi."
@@ -6136,8 +6144,8 @@ id:
         cumulative_count_desc: '# identifikasi untuk sebuah takson individu dan semua keturunannya'
         curator_coordinate_access_disabled_desc_html: |
           Proyek ini tidak memperbolehkan pengamatan dengan koordinat yang tidak dapat dilihat oleh kurator proyek. Jika Anda tidak ingin berbagi koordinat pengamatan ini dengan kurator proyek ini, Anda harus menghapus pengamatan tersebut dari proyek ini.
-        data_quality_assessment_desc_html: |
-          Penilaian Kualitas Data merupakan sebuah evaluasi keakuratan sebuah pengamatan. Pengamatan Kelas Riset dapat digunakan oleh ilmuwan untuk penelitian. Berikan suaramu di bawah ini:
+        data_quality_assessment_desc3_html: |
+          Tingkat Kualitas merangkum akurasi, presisi, kelengkapan, relevansi, dan kelayakan dari suatu pengamatan iNaturalist sebagai suatu data keanekaragaman hayati. Beberapa atribut ditentukan secara otomatis, sedangkan beberapa atribut lain tergantung pada suara pengguna iNat. iNaturalist membagikan pengamatan-pengamatan "Tingkat Riset" yang berlisensi dengan beberapa mitra data untuk keperluan sains dan konservasi.
         disagreement_count_desc: "# taksa yang diidentifikasi yang bukan merupakan induk sebuah takson"
         identification_count_desc: '# identifikasi untuk sebuah takson individu'
         flagged_photos_desc_html: |

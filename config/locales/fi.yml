@@ -991,7 +991,6 @@ fi:
   connected_accounts_titlecase: Yhdistetyt käyttäjätilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
-  connecting_to_facebook: "Yhdistetään Facebookiin..."
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   cannot_be_changed_during_a_content_freeze: Tätä ei voi väliaikaisesti muuttaa sisällön jäädytyksen aikana
   conservation_status: Uhanalaisuusluokitus
@@ -1075,20 +1074,20 @@ fi:
     molt: Nahka
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
+    bone: |
+      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
+    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
     dead: Eliö on kuollut tai kuolemassa
+    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
     flower_budding: Nuput näkyvissä, mutta eivät auenneita
     flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
+    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
+    molt: Hylätty nahka tai ulkoinen tukiranka
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
-    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
-    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
     track: Eliön jälki maassa tai lumessa
-    bone: |
-      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
-    molt: Hylätty nahka tai ulkoinen tukiranka
-    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
   controls: Ohjaimet
   convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
@@ -1188,17 +1187,6 @@ fi:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ei itse käyttäydy asianmukaisesti
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
-    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
-    havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
-    täyttänyt molemmat vaatimukset, voit lähettää hakemuksen.
-  curator_application_inelligible_error: |
-    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
-    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
-    havaintoihin, mukaan lukien omasi.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuraattorihakemus lähetetty
   #Header
@@ -1691,16 +1679,6 @@ fi:
   extra_properties: Lisäominaisuudet
   evidence_of_organism: Näyttö eliöstä
   facebook: Facebook
-  facebook_account_information: Oman Facebook-tilisi tiedot
-  facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
-  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy linkittää Facebook-tilinsä uudelleen."
-  facebook_needs_the_owner_of_that_photo_to: Facebook haluaa että kuvan omistaja vahvistaa yhteyden %{site_name_short}iin uudelleen.
-  facebook_options: Facebook-asetukset
-  facebook_photo_import_disabled_notice: |
-    Marraskuussa 2020 Facebook vaati meitä vahvistamaan, että todella tarvitsimme
-    pääsyn valokuviin, emmekä pystyneet viemään vahvistusprosessia loppuun
-    Facebookin varmentamisjärjestelmän ongelmien vuoksi. Tämän seurauksena emme voi enää
-    tukea kuvien tuomista Facebookista.
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
   failed_to_save_record: "Tallennus epäonnistui. Ole hyvä ja kokeile myöhemmin uudelleen."
@@ -1860,7 +1838,7 @@ fi:
   frequency: Lukumäärä
   from_a_place: paikasta
   from_eol_collection: EOL-kokoelmasta
-  from_flickr_facebook_etc: Flickristä, Facebookista, yms.
+  from_flickr_etc: Flickr, jne.
   from_list: Luettelosta
   from_photos: Kuvista
   from_place: Paikasta
@@ -2177,7 +2155,6 @@ fi:
   let_us_walk_you_through: Tutustu tämän sivuston tärkeimpiin ominaisuuksiin.
   lexicon: Sanakirja
   lexicons:
-    scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
     albanian: Albania
     aou_4_letter_codes: AOU 4-kirjainkoodit
@@ -2244,8 +2221,8 @@ fi:
     romanian: Romania
     russian: Venäjä
     santali: santali
+    scientific_names: Tieteelliset nimet
     serbian: Serbia
-    setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
@@ -2259,8 +2236,8 @@ fi:
     turkish: Turkki
     ukrainian: Ukraina
     uyghur: Uiguuri
-    waray_waray: Waray-waray
     visayan: Visaya
+    waray_waray: Waray-waray
   less: Vähemmän
   #Button show less text
   less__context_text: Vähemmän
@@ -2272,14 +2249,8 @@ fi:
   life_list: "Käyttäjän %{user} pinnalista"
   linear_scale_label: Lineraarinen
   link: Linkki
-  link_your_facebook_account: Linkitä Facebook-tilisi
   link_your_flickr_account: Linkitä Flickr-tilisi
   link_your_google_account: Linkitä Google-tilisi
-  linked_facebook: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Facebook-tiliisi."
-  linked_facebook_automaticaly: "Huomaa myös että kun kirjaudut %{site_name} iin Facebookin kautta, linkitämme %{site_name}- ja Facebook-tilisi automaattisesti. Koska käytät Facebookia, haluat varmaankin myös pystyä tuomaan tänne kuvia Facebookista?"
-  linked_facebook_description: "Pitämällä %{site_name}-tilisi linkitettynä Facebook-tiliisi mahdollistaa sen, että voit tuoda useita kuvia havaintoihisi. Jos haluat poistaa %{site_name}in ja Facebookin linkityksen, emme estä sinua, mutta et voi sen jälkeen lisätä kuvia Facebookista. Joskus tämä voi olla paras vaihtoehto, esim. jos luot uuden Facebook-tunnuksen jonka haluat linkittää %{site_name}iin."
-  linked_facebook_howto: "Linkittääksesi Facebookin %{site_name}iin, klikkaa linkkiä oikealla ja kirjaudu Facebookiin."
-  linked_facebook_password: "Emme ikinä pyydä Facebook-salasanaasi. (Mutta Facebook voi kysyä, joten tarkista osoitteesta että olet todella Facebook.com:issa.) Emme myöskään muuta Facebookissa olevia tietojasi, ellet erikseen halua sitä."
   linked_flickr: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Flickr-tiliisi."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: linkin teksti
@@ -2809,7 +2780,6 @@ fi:
   not_found: Ei löydy
   #Filter for observations not in a particular place
   not_in_place: Ei käytössä
-  not_linked_facebook: "%{site_name}-tilisi ei ole linkitetty Facebook-tiliisi."
   not_linked_flickr: "%{site_name}-tilisi ei ole linkitetty Flickr-tiliisi."
   not_on_this_list: Ei tässä luettelossa.
   not_recorded: Ei merkitty
@@ -3037,7 +3007,7 @@ fi:
   options: Valinnat
   or: tai
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
   orange: oranssi
@@ -4317,7 +4287,6 @@ fi:
   tagging: 'Tageja lisätään...'
   tags: Tunnisteet
   tags_are_a_way: 'Tunnisteiden avulla voit järjestää havaintojasi. Voit esimerkiksi merkitä kaikki niityillä tekemästi havainnot tunnisteella "niitty" helpottaaksesi niiden löytämistä myöhemmin.'
-  take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   target_list_alert: Oletko varma, että olet yrittänyt havainnoida kaikkia lajiluettelosi lajeja? Huomaa, että kaikki luettelosi lajit, joita ei ole merkitty havaituksi, tulkitaan poissaoleviksi, joten on hyvin tärkeää, että lajiluettelosi vastaa täsmällisesti sitä lajiryhmää, jota ole yrittänyt havaita
   task_deleted: Tehtävä poistettu
@@ -4936,9 +4905,9 @@ fi:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
-  we_also_support: |
-    Kuvia voi säilyttää myös <a href="http://flickr.com">Flickrissä</a>,
-    <a href="http://photos.google.com">Google Kuvat -sovelluksessa</a>, ja <a href="http://facebook.com">Facebookissa</a>.
+  we_also_support2: |
+    Tuemme myös kuvien tuontia <a href="http://flickr.com">Flickr-</a>
+    ja <a href="http://photos.google.com">Google Photos</a> -palveluista.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -5508,8 +5477,6 @@ fi:
           </p>
         curator_coordinate_access_disabled_desc_html: |
           Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havainnon koordinaatteja projektin kuraattoreiden kanssa, sinun täytyy poistaa havaintosi projektista.
-        data_quality_assessment_desc_html: |
-          Laatuarvio on arvio havainnon täsmällisyydestä. Tutkimustason saavuttaneita havaintoja voidaan käyttää tieteelliseen tutkimukseen. Anna äänesi alla:
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
         observation_flagged_notice_html: |

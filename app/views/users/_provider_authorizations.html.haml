@@ -2,9 +2,6 @@
 .form-group.centered.bigtext
   =t :or_all_caps
 .form-group.centered.provider-authorizations
-  = button_to ProviderAuthorization::AUTH_URLS["facebook"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink facebook", disabled: true, data: { enable_with_js: true } do
-    = image_tag "facebook-f-logo-white.svg"
-    .btntext=t :sign_in_with_provider, provider: t(:facebook)
   = button_to ProviderAuthorization::AUTH_URLS["apple"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink apple", disabled: true, data: { enable_with_js: true } do
     %span.img
       %i.fa.fa-apple

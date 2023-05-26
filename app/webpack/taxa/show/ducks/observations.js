@@ -254,7 +254,7 @@ export function fetchLastObservation( ) {
       order_by: "observed_on",
       order: "desc",
       per_page: 1,
-      skip_total_hits: true
+      no_total_hits: true
     };
     if ( testingApiV2 ) {
       params.fields = {

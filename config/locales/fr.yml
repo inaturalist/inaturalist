@@ -1057,7 +1057,6 @@ fr:
   connected_accounts_titlecase: Comptes connectés
   connecting_flickr: "Connexion à Flickr…"
   connect_to_flickr_again_to_authorize_write_permissions: Se connecter à nouveau à Flickr pour autoriser les autorisations d'écriture
-  connecting_to_facebook: "Connexion à Facebook…"
   connecting_your_inat_account_to_accounts_other_sites: "La connexion de votre compte\n%{site_name} aux comptes d’autres sites vous permettra d’ouvrir une session\n%{site_name} au moyen de vos identifiants de ces sites."
   cannot_be_changed_during_a_content_freeze: Non modifiable pendant un gel des données
   conservation_status: Etat de conservation
@@ -1151,21 +1150,21 @@ fr:
     molt: Mue
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
+    bone: |
+      Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
+    cannot_be_determined: Ne peut être déterminé à partir des données fournies
     dead: L'organisme est mort ou montre des signes de mort imminente
+    feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
+    gall: Excroissance d'un tissu végétal causée par un parasite
+    molt: Dépouille ou exosquelette abandonné
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
-    teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
-    cannot_be_determined: Ne peut être déterminé à partir des données fournies
-    feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
     organism: Tout ou partie d'un organisme
     scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
+    teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
     track: Empreinte faite sur le sol ou dans la neige par l'organisme
-    bone: |
-      Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
-    molt: Dépouille ou exosquelette abandonné
-    gall: Excroissance d'un tissu végétal causée par un parasite
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
@@ -1280,14 +1279,6 @@ fr:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     le responsable n'a pas lui-même, à plusieurs reprises, un comportement approprié.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60
-    jours et avoir ajouté 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres. (Vous en avez ajouté %{num_idents}.) Lorsque vous satisferez à ces deux exigences, revenez ici et vous pourrez envoyer la demande.
-  curator_application_inelligible_error: |
-    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60
-    jours et avoir ajouté 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Demande envoyée
   #Header
@@ -1791,15 +1782,6 @@ fr:
   extra_properties: Propriétés supplémentaires
   evidence_of_organism: Preuve de l’organisme
   facebook: Facebook
-  facebook_account_information: Les informations de votre compte Facebook
-  facebook_account_not_linked: "%{user} n’a plus de compte Facebook lié, donc %{site_name} n’a pas le droit d’accéder à cette photo."
-  facebook_access_token_expired: "Le jeton d’accès a expiré. %{user} doit rétablir le lien avec son compte Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook exige que le propriétaire de cette photo reconfirme sa connexion à %{site_name_short}.
-  facebook_options: Options de Facebook
-  facebook_photo_import_disabled_notice: |
-    En novembre 2020, Facebook nous a demandé de vérifier que nous avions vraiment besoin
-    d'un accès aux photos, et nous n'avons pas pu valider le processus en raison de
-    problèmes avec le système de vérification de Facebook. Par conséquent, il n'est plus possible d'importer de photos depuis Facebook.
   failed_to_find_your_location: Échec à la localisation de votre position.
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
   failed_to_save_record: "Échec à la sauvegarde de l’enregistrement. Veuillez réessayer ultérieurement."
@@ -1964,7 +1946,7 @@ fr:
   frequency: Fréquence
   from_a_place: À partir d’un lieu
   from_eol_collection: À partir de la collection de l’EdlV
-  from_flickr_facebook_etc: Depuis Flickr, Facebook, etc.
+  from_flickr_etc: Depuis Flickr, etc.
   from_list: À partir de la liste
   from_photos: À partir des photos
   from_place: À partir du lieu
@@ -2346,20 +2328,25 @@ fr:
   lexicon: Lexique
   lexicon_cannot_contain_words: "ne peut pas contenir les mots suivants : %{words}"
   lexicons:
-    scientific_names: Noms scientifiques
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanais
     aou_4_letter_codes: Codes en 4 lettres de l'AOU
     aou_6_letter_codes: Codes en 6 lettres de l'AOU
     arabic: arabe
     armenian: arménien
+    asturian: Asturien
+    basque: Basque
     belarusian: Biélorusse
     bengali: Bengali
+    bikol: Bicol
     bulgarian: bulgare
+    carolinian: Carolinien
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinois (simplifié)
     chinese_traditional: Chinois (traditionnel)
+    chuvash: Tchouvache
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
     croatian: croate
@@ -2370,6 +2357,7 @@ fr:
     english: Anglais
     estonian: Estonien
     faroese: féroïen
+    fijian: Fidjien
     finnish: Finnois
     french: Français
     galician: galicien
@@ -2380,20 +2368,27 @@ fr:
     gujarati: Gujarati
     hawaiian: Hawaïen
     hebrew: Hébreu
+    herero: Héréro
     hiligaynon: Hiligaynon
+    hill_mari: Mari des montagnes
+    hodges_number: Numéro MONA
     hokkien: Hokkien
     hungarian: Hongrois
     icelandic: Islandais
     ilokano: Ilocano
     indonesian: indonésien
+    irish: Irlandais
     italian: Italien
     japanese: Japonais
     kannada: Kannada
     kazakh: Kazakh
     korean: Coréen
+    kweyol: Créole antillais
     latvian: letton
     lithuanian: Lithuanien
+    lozi: Lozi
     luxembourgish: Luxembourgeois
+    malagasy: Malgache
     malay: malais
     malayalam: malayalam
     maltese: Maltais
@@ -2403,6 +2398,8 @@ fr:
     misima_paneati: Misima-paneati
     mongolian: mongol
     nahuatl: nahuatl
+    navajo: Navajo
+    ndebele: Ndébélé
     norwegian: Norvégien
     occitan: Occitan
     ojibwe: ojibwé
@@ -2414,23 +2411,38 @@ fr:
     romanian: Roumain
     russian: Russe
     santali: Santâlî
+    scientific_names: Noms scientifiques
     serbian: Serbe
-    setswana: tswana
+    shona: Shona
     sinhala: Singhalais
     slovak: Slovaque
     slovenian: slovène
+    sotho: Sotho du Sud
+    sotho_northern: Sotho du Nord
     spanish: Espagnol
     swahili: Swahili
+    swati: Swati
     swedish: Suédois
     tagalog: Tagalog
     tahitian: Tahitien
+    tamil: Tamoul
     thai: Thaï
     tokelauan: Tokelauan
+    totonaco: Totonaque
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turc
+    u_s_d_a_symbol: Symbole de l'U.S.D.A.
     ukrainian: Ukrainien
     uyghur: Ouïghour
-    waray_waray: Waray-Waray
+    venda: Venda
+    vermont_flora_codes: Codes de la flore du Vermont
+    vietnamese: Vietnamien
     visayan: cebuano
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapotèque
+    zulu: Zoulou
   less: Moins
   #Button show less text
   less__context_text: Moins
@@ -2446,14 +2458,8 @@ fr:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Lien vers le code d'autorisation
-  link_your_facebook_account: Lier votre compte Facebook
   link_your_flickr_account: Lier votre compte Flickr
   link_your_google_account: Lier votre compte Google
-  linked_facebook: "Votre compte %{site_name} est déjà lié à votre compte Facebook."
-  linked_facebook_automaticaly: "N’oubliez pas que si vous vous connectez sur %{site_name} au moyen de Facebook, nous relierons automatiquement vos comptes %{site_name} et Facebook. Si vous utilisez Facebook, c’est probable que vous voudrez importer des photos de Facebook, n’est-ce pas ?"
-  linked_facebook_description: "En liant votre compte %{site_name} à votre compte Facebook, vous pourrez ajouter plusieurs photos à vos observations. Bien entendu, vous pouvez séparer %{site_name} et Facebook, mais vous ne pourrez plus ajouter de photos. Parfois, ça peut être préférable, comme quand vous créez un nouveau compte Facebook que vous voulez lier à %{site_name}."
-  linked_facebook_howto: "Pour vous connecter à Facebook avec %{site_name}, cliquez sur le lien à droite et connectez-vous sur Facebook.com."
-  linked_facebook_password: "Nous ne vous demanderons jamais votre mot de passe Facebook (mais Facebook pourrait vérifier l’URL que le bouton vous envoie pour    s’assurer que c’est Facebook.com). Nous ne modifierons pas non plus vos données Facebook sans votre consentement."
   linked_flickr: "Votre compte %{site_name} est actuellement lié à votre compte Flickr."
   linked_flickr_automatically: "N’oubliez pas que si vous vous connectez à %{site_name} au moyen de Flickr, nous relierons automatiquement vos comptes %{site_name} et Flickr. Si vous utilisez Flickr, c’est probable que vous voudrez importer des photos de Flickr, n’est-ce pas ?"
   linked_flickr_description: "En liant votre compte %{site_name} à votre compte Flickr, vous pourrez ajouter plusieurs photos à vos observations. Bien entendu, si vous pouvez séparer %{site_name} et Flickr, mais vous ne pourrez plus ajouter de photos. Parfois c’est préférable, comme si vous créez un nouveau compte Flickr que vous voulez lier à %{site_name}."
@@ -3026,7 +3032,6 @@ fr:
   not_found: Non trouvé
   #Filter for observations not in a particular place
   not_in_place: Pas dans le lieu
-  not_linked_facebook: "Votre compte %{site_name} n’est pas lié à votre compte Facebook"
   not_linked_flickr: "Votre compte %{site_name} n’est pas lié à votre compte Flickr"
   not_on_this_list: Pas dans cette liste.
   not_recorded: Non enregistré
@@ -3297,7 +3302,7 @@ fr:
   options: Options
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OU
   or_choose_high_level_taxa: "...ou choisissez à partir de taxons de haut niveau"
   orange: orange
@@ -4491,8 +4496,6 @@ fr:
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}, le membre du réseau iNaturalist du Portugal, a communiqué des données pour l'atlas portugais des oiseaux migrateurs, l'atlas des mammifères ainsi que pour plusieurs articles de recherche scientifique au Portugal.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordonnées cachées automatiquement (masquées ou privées en raison de la « géoconfidentialité » du taxon)
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist masque automatiquement les coordonnées pour certaines espèces, pour protéger celles-ci des perturbations, de la récolte ou du braconnage. Si les coordonnées exactes des observations dans un pays ne sont masquées que de façon automatique, pour protéger l'espèce, iNaturalist les communique aux membres du réseau dans ce pays.
   sites_affiliation_more_email_addresses: |
     Les adresses électroniques ne sont communiquées aux membres du réseau qu'à des fins de communication à propos du site.
   sites_affiliation_more_twice_per_year: |
@@ -4704,7 +4707,6 @@ fr:
   tagging: 'Étiquetage en cours…'
   tags: Étiquettes
   tags_are_a_way: 'Les étiquettes sont un moyen d’organiser vos observations. Par exemple, vous pouvez étiqueter toutes vos observations sur les bâches « bâches » pour aider à les retrouver plus tard.'
-  take_me_facebook: Oui, amenez-moi sur Facebook!
   take_me_flickr!: Oui, amenez-moi sur Flickr!
   target_list_alert: Êtes-vous sûr d'avoir tenté d'observer toutes les espèces couvertes par votre liste de cibles ? N'oubliez pas que tout ce qui est couvert par votre liste de cibles et que vous n'avez pas observé sera interprété comme une absence; il est donc très important que votre liste de cibles reflète avec précision l'ensemble des espèces que vous avez tenté de détecter.
   target_list_warning: N'oubliez pas que tout ce qui est couvert par votre liste de cibles et que vous n'avez pas observé dans le rayon et la durée de ce voyage sera interprété comme une absence. Il est très important que votre liste de cibles reflète avec précision l'ensemble des espèces que vous avez tenté de détecter. Si vous n'avez pas tenté de détecter une espèce de votre liste de cibles ou toutes les espèces couvertes par un groupe de votre liste de cibles, supprimez-la.
@@ -5497,11 +5499,9 @@ fr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Recherché
   was_it_captive_cultivated?: "Était-il en captivité / cultivé ?"
-  we_also_support: |
-    Nous acceptons aussi <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> et
-    <a href="http://facebook.com">Facebook</a>
-    pour l’hébergement d’images.
+  we_also_support2: |
+    L'importation de photos est également possible depuis <a href="http://flickr.com">Flickr</a>
+    et <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format suivant
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse électronique.
   we_couldnt_find_a_user_with_that_activation_code: "Nous n’avons pas pu trouver d’utilisateur avec ce code d’activation. Vous avez peut-être déjà activé votre compte; veuillez essayer de vous connecter."
@@ -6427,8 +6427,8 @@ fr:
           non visibles par les responsables. Si vous ne voulez pas partager les
           coordonnées de cette observation avec les responsables de ce projet,
           vous devez supprimer l’observation du projet.
-        data_quality_assessment_desc_html: |
-          L'appréciation de la qualité des données est une évaluation de la précision d’une observation. Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Votez ci-dessous :
+        data_quality_assessment_desc3_html: |
+          Le niveau de qualité résume l'exactitude, la précision, l'exhaustivité, la pertinence et le caractère approprié d'une observation iNaturalist en tant que donnée sur la biodiversité. Certains attributs sont établis automatiquement, tandis que d'autres sont le résultat du vote des utilisateurs. Des partenaires d'iNaturalist dans le domaine des sciences et de la conservation ont accès aux données des observations sous licence de « niveau recherche ».
         disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |

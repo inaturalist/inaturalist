@@ -1046,7 +1046,6 @@ lt:
   connected_accounts_titlecase: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Dar kartą prisijunkite prie „Flickr“, kad galėtumėte autorizuoti rašymo teises
-  connecting_to_facebook: "Prisijungiama prie Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Sujungus jūsų %{site_name} paskyrą su kitų tinklalapių paskyromis leis jums prisijungti prie %{site_name} naudojantis kitų tinklalapių įgaliojimais."
   cannot_be_changed_during_a_content_freeze: negali būti pakeista, kai turinys užšaldytas
   conservation_status: Apsaugos statusas
@@ -1132,21 +1131,21 @@ lt:
     molt: Išnara
   controlled_term_definitions:
     alive: Organizmas yra gyvas ir nėra jokių artėjančios mirties ženklų
+    bone: |
+      Daugiausia endoskeleto liekanos; dalinis kaulo atsidengimas daugiau nepažeistame organizme turėtų būti įvardijamas kaip „organizmas“
+    cannot_be_determined: Negali būti nustatyta iš pateiktų įrodymų
     dead: Organizmas yra miręs arba yra artėjančios mirties ženklų
+    feather: Viena ar daugiau plunksnų, neprisitvirtinusių prie organizmo
     flower_budding: Žiediniai pumpurai yra matomi, bet ne išsiskleidę
     flowering: Žiedai matomi, prasiskleidę ir vis dar prisitvirtinę prie augalo
     fruiting: Vaisiai matomi ir vis dar prisitvirtinę prie augalo
+    gall: Parazitinių organizmų sukelta augalo audinio deformacija
+    molt: Numesta oda arba egzoskeletas
     no_evidence_of_flowering: Nuotraukoje nesimato jokių dauginimosi struktūrų
-    teneral: Suaugėlis neseniai išsinėrė, bet dar nepasiekė pilnos brandos
-    cannot_be_determined: Negali būti nustatyta iš pateiktų įrodymų
-    feather: Viena ar daugiau plunksnų, neprisitvirtinusių prie organizmo
     organism: Visas organizmas arba jo dalis
     scat: Išmatos (ne pelėdų išvamos ar kitos nesuvirškitos medžiagos)
+    teneral: Suaugėlis neseniai išsinėrė, bet dar nepasiekė pilnos brandos
     track: Organimo palikta žymė žemėje arba sniege
-    bone: |
-      Daugiausia endoskeleto liekanos; dalinis kaulo atsidengimas daugiau nepažeistame organizme turėtų būti įvardijamas kaip „organizmas“
-    molt: Numesta oda arba egzoskeletas
-    gall: Parazitinių organizmų sukelta augalo audinio deformacija
   controls: Valdikliai
   convert: Konvertuoti
   coordinate_systems: Koordinačių sistemos
@@ -1568,11 +1567,6 @@ lt:
   extra_properties: Papildomos Savybės
   evidence_of_organism: Organizmo buvimo įrodymai
   facebook: Facebook
-  facebook_account_information: Jūsų Facebook Paskyros Informacija
-  facebook_account_not_linked: "%{user} nebeturi susietos facebook paskyros, todėl %{site_name} nebeturi leidimo prieiti prie šios nuotraukos."
-  facebook_access_token_expired: "Prieigos rakto galiojimas baigėsi. %{user} turi sujungti savo Facebook paskyrą iš naujo."
-  facebook_needs_the_owner_of_that_photo_to: Facebook reikia, kad tos nuotraukos savininkas patvirtintu savo prieigą prie %{site_name_short} iš naujo.
-  facebook_options: Facebook Pasirinktys
   failed_to_find_your_location: Nepavyko rasti jūsų vietos.
   failed_to_repair_photo: "Nepavyko pataisyti nuotraukos: %{errors}"
   failed_to_save_record: "Nepavyko įrašyti įrašo. Prašome pabandyti vėliau."
@@ -1728,7 +1722,6 @@ lt:
   frequency: Dažnumas
   from_a_place: iš vietos
   from_eol_collection: Iš EOL kolekcijos
-  from_flickr_facebook_etc: Iš Flickr, Facebook ir t.t.
   from_list: Iš sąrašo
   from_photos: Iš Nuotraukų
   from_place: Iš vietos
@@ -1998,7 +1991,6 @@ lt:
   let_us_walk_you_through: Leiskite jums pristatyti pagrindines puslapio funkcijas.
   lexicon: Leksikonas
   lexicons:
-    scientific_names: Moksliniai pavadinimai
     afrikaans: Afrikanų
     albanian: Albanų
     arabic: Arabų
@@ -2047,6 +2039,7 @@ lt:
     portuguese: Portugalų
     romanian: Rumunų
     russian: Rusų
+    scientific_names: Moksliniai pavadinimai
     serbian: Serbų
     sinhala: Sinhalų
     slovak: Slovakų
@@ -2069,14 +2062,8 @@ lt:
   life_list: "%{user} gyvenimo sąrašas"
   linear_scale_label: Linijinis
   link: Nuoroda
-  link_your_facebook_account: Susiekite savo Facebook paskyrą
   link_your_flickr_account: Susiekite savo Flickr paskyrą
   link_your_google_account: Susiekite savo Google paskyrą
-  linked_facebook: "Jūsų %{site_name} paskyra šiuo metu yra susieta su jūsų Facebook paskyra."
-  linked_facebook_automaticaly: "Taip pat atminkite, kad jeigu prisijungsite prie %{site_name} per Facebook, mes automatiškai susiesime jūsų %{site_name} su Facebook paskyra. Racionalu manyti, jog jeigu naudojate Facebook, turbūt norėsite importuoti Facebook nuotraukas, tiesa?"
-  linked_facebook_description: "Kai jūsų %{site_name} ir Facebook paskyros susietos, galite pridėti kelias nuotraukas prie stebėjimų. Žinoma, jeigu kada nors norėsite atsieti %{site_name} ir Facebook, mes jūsų nesustabdysime, tiesiog nebegalėsite pridėti nuotraukų. Kartais tai gali būti naudinga, pavyzdžiui, jeigu sukuriate naują Facebook paskyrą, kurią norite susieti su %{site_name}."
-  linked_facebook_howto: "Susieti Facebook ir %{site_name} spauskite ant nuorodos dešinėje ir prisijunkite prie Facebook.com."
-  linked_facebook_password: "Mes niekada neprašysime jūsų Facebook slaptažodžio (bet Facebook gali prašyti. Patikrinkite url, kad įsitikintumėte, jog tai tikrai Facebook.com). Mes taip pat niekada nekeisime jūsų Facebook duomenų, nebent to patys norėtumėte."
   linked_flickr: "Jūsų %{site_name} paskyra šiuo metu yra susieta su jūsų Flickr paskyra."
   linked_flickr_automatically: "Taip pat atminkite, kad jeigu prisijungsite prie %{site_name} per Flickr, mes automatiškai susiesime jūsų %{site_name} su Flickr paskyra. Racionalu manyti, jog jeigu naudojate Flickr, turbūt norėsite importuoti Flickr nuotraukas, tiesa?"
   linked_flickr_description: "Kai jūsų %{site_name} ir Flickr paskyros susietos, galite pridėti kelias nuotraukas prie stebėjimų. Žinoma, jeigu kada nors norėsite atsieti %{site_name} ir Flickr, mes jūsų nesustabdysime, tiesiog nebegalėsite pridėti nuotraukų. Kartais tai gali būti naudinga, pavyzdžiui, jeigu sukuriate naują Flickr paskyrą, kurią norite susieti su %{site_name}."
@@ -2523,7 +2510,6 @@ lt:
   not_findig_what_you_want: Nerandate, ko norite?
   not_finding_place_you_want?: Nerandate norimos vietos?
   not_found: Nerasta
-  not_linked_facebook: "Jūsų %{site_name} paskyra nėra susieta su jūsų Facebook paskyra"
   not_linked_flickr: "Jūsų %{site_name} paskyra nėra susieta su jūsų Flickr paskyra"
   not_on_this_list: Ne šiame sąraše.
   not_recorded: Neįrašyta
@@ -2654,7 +2640,7 @@ lt:
   options: Parinktys
   or: arba
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ARBA
   or_choose_high_level_taxa: "...arba rinkitės aukštesnio lygio taksonus"
   orange: oranžinė
@@ -3748,7 +3734,6 @@ lt:
   tag: žymė
   tagging: 'Žymima...'
   tags: Žymės
-  take_me_facebook: Taip, perkelkite mane į Facebook!
   take_me_flickr!: Taip, perkelkite mane į Flickr!
   task_deleted: Užduotis ištrinta
   taxa: Taksonai
@@ -4223,10 +4208,6 @@ lt:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ieškomas
   was_it_captive_cultivated?: "Ar tai buvo naminis / kultivuojamas?"
-  we_also_support: |
-    Mes taip pat palaikome vaizdų talpinimą <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, ir
-    <a href="http://facebook.com">Facebook</a>.
   we_can_only_understand_csv_in: Mes galime suprasti CSV tik jeigu jo formatas toks
   we_couldnt_find_a_user: Mes neradome vartotojo su tokiu el. pašto adresu.
   we_couldnt_find_a_user_with_that_activation_code: "Mes neradome vartotojo su tokiu aktyvacijos kodu. Galbūt jūs jau aktyvavote savo paskyrą. Pabandykite prisijungti."

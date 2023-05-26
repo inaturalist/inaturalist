@@ -1038,7 +1038,6 @@ ca:
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Connecteu el Flickr novament per a autoritzar els permesos d’escriptura
-  connecting_to_facebook: "Connectant-se a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecteu el vostre compte de %{site_name} amb comptes en altres llocs permetrà que entreu a %{site_name} amb les dades d'aquests llocs."
   cannot_be_changed_during_a_content_freeze: No es pot canviar mentre el contingut està congelat
   conservation_status: Estat de conservació
@@ -1128,21 +1127,21 @@ ca:
     molt: Muda
   controlled_term_definitions:
     alive: L'organisme està viu i no mostra signes de probable mort imminent
+    bone: |
+      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
+    cannot_be_determined: No es pot determinar a partir de les dades aportades
     dead: L'organisme està mort o mostra signes de probable mort imminent
+    feather: Una o més plomes, no unides a un organisme
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
+    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
+    molt: Restes de pell o exoesquelet
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
-    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
-    cannot_be_determined: No es pot determinar a partir de les dades aportades
-    feather: Una o més plomes, no unides a un organisme
     organism: Tot o part d'un organisme
     scat: Matèria fecal (no egagròpiles de rapinyaires o altres materials regurgitats)
+    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
     track: Impressió al terra o la neu feta per un organisme
-    bone: |
-      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
-    molt: Restes de pell o exoesquelet
-    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -1249,12 +1248,6 @@ ca:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     No demostra que tingui un comportament adequat.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies i afegit 100 millores de la identificació de les observacions, incloses les vostres (heu afegit %{num_idents}). Quan compliu els dos requisits, torneu aquí i podreu enviar la vostra sol·licitud.
-  curator_application_inelligible_error: |
-    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies i afegit 100 millores de la identificació de les observacions, incloses les vostres.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Sol·licitud com a Supervisor lliurada
   #Header
@@ -1745,13 +1738,6 @@ ca:
   extra_properties: Propietats extres
   evidence_of_organism: Evidència d'organisme
   facebook: Facebook
-  facebook_account_information: Informació del vostre compte de Facebook
-  facebook_account_not_linked: "L'usuari %{user} no té un enllaç a un compte de facebook, per tant %{site_name} no té permís per accedir a aquesta foto."
-  facebook_access_token_expired: "L'accés ha caducat. %{user} ha de tornar a enllaçar amb el seu compte de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necessita la confirmació del propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
-  facebook_options: Opcions de Facebook
-  facebook_photo_import_disabled_notice: |
-    A partir de novembre de 2020 Facebook ens demana verificar que realment necessitem accedir a les fotos, però no hem estat capaços de completar el procés a causa de problemes amb el sistema de verificació de Facebook. Com a resultat, no podem donar suport a la importació de fotografies de Facebook.
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
@@ -1916,7 +1902,6 @@ ca:
   frequency: Freqüència
   from_a_place: d'un lloc
   from_eol_collection: De la col·lecció EOL
-  from_flickr_facebook_etc: Des de Flickr, Facebook, etc.
   from_list: De la llista
   from_photos: De fotos
   from_place: Del lloc
@@ -2284,11 +2269,11 @@ ca:
   lexicon: Lèxic
   lexicon_cannot_contain_words: "no pot contenir les següents paraules: %{words}"
   lexicons:
-    scientific_names: Noms científics
     afrikaans: Afrikaans
     albanian: Albanès
     arabic: Àrab
     armenian: Armeni
+    asturian: Asturià
     belarusian: Bielorús
     bengali: Bengalí
     bulgarian: Búlgar
@@ -2346,8 +2331,8 @@ ca:
     romanian: Romanès
     russian: Rus
     santali: Santali
+    scientific_names: Noms científics
     serbian: Serbi
-    setswana: Setsuana
     sinhala: Singalès
     slovak: Eslovac
     slovenian: Eslovè
@@ -2360,8 +2345,8 @@ ca:
     tokelauan: Tokelauà
     turkish: Turc
     ukrainian: Ucraïnès
-    waray_waray: Samarà
     visayan: Visayà
+    waray_waray: Samarà
   less: Menys
   #Button show less text
   less__context_text: Menys
@@ -2377,14 +2362,8 @@ ca:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Enllaç al codi d'autorització
-  link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
   link_your_google_account: Vinculeu el compte de Google
-  linked_facebook: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Facebook."
-  linked_facebook_automaticaly: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Facebook, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Facebook. Sembla raonable que, si utilitzeu Facebook voldreu poder importar fotos de Facebook, és així?"
-  linked_facebook_description: "Mantenir el vostre compte d’%{site_name} vinculat al compte de Facebook us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Facebook en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Facebook i el voleu vincular a %{site_name}."
-  linked_facebook_howto: "Per connectar Facebook amb %{site_name}, feu clic a l’enllaç de la dreta i inicieu sessió a facebook.com."
-  linked_facebook_password: "Mai no us demanarem la contrasenya de Facebook (però Facebook podria demanar-vos-la; verifique que l’adreça on us redirigeix el botó és facebook.com). Tampoc no canviarem les vostres dades de Facebook, tret que ho sol·liciteu."
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
@@ -2940,7 +2919,6 @@ ca:
   not_found: No trobat
   #Filter for observations not in a particular place
   not_in_place: No està al lloc
-  not_linked_facebook: "El vostre compte a %{site_name} no està vinculat amb  Facebook."
   not_linked_flickr: "El vostre compte a %{site_name} no està vinculat amb Flickr"
   not_on_this_list: No sou en aquesta llista.
   not_recorded: No enregistrat
@@ -3204,7 +3182,7 @@ ca:
   options: Opcions
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
   orange: taronja
@@ -4378,8 +4356,6 @@ ca:
     El membre de la xarxa d'iNaturalist a Portugal %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} comparteix dades per l'atles portuguès d'aus migratòries, l'atles de mamífers, així com per diversos articles portuguesos d'investigació científica.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenades ocultes automàticament (enfosquides o privades a causa de la "geoprivacitat del tàxon")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist oculta automàticament les coordenades d'algunes espècies per protegir-les de les molèsties, la recol·lecció o la caça furtiva. Si les coordenades de l'observació s'han ocultat automàticament únicament per a protegir l'espècie, iNaturalist comparteix les coordenades correctes de totes les observacions amb els Membres de la Xarxa dels respectius països.
   sites_affiliation_more_email_addresses: |
     Les adreces de correu electrònic són compartides amb Membres de la Xarxa amb l'únic objectiu de permetre comunicacions relatives a aquest lloc.
   sites_affiliation_more_twice_per_year: |
@@ -4586,7 +4562,6 @@ ca:
   tagging: 'Etiquetant...'
   tags: Etiquetes
   tags_are_a_way: 'Les etiquetes són paraules clau que podeu afegir a les observacions perquè sigui més fàcil trobar-les.'
-  take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   target_list_alert: Esteu segur que heu intentat observar totes les espècies incloses a la vostra llista d'objectius? Recordeu que qualsevol cosa que estigui en aquesta llista i que no hagueu observat s’interpretarà com una absència, de manera que és molt important que la vostra llista de objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar.
   target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius que no hagueu observat en el radi i la durada del viatge s’interpretarà com una absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una espècie a la vostra llista de destinataris o a totes les espècies inclosa en un grup de la vostra llista d'objectius, elimineu-la.
@@ -5358,10 +5333,6 @@ ca:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
-  we_also_support: |
-    També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Fotografies de Google</a> i
-    <a href="http://facebook.com">Facebook</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
   we_couldnt_find_a_user_with_that_activation_code: "No hem trobat cap usuari amb aquest codi d'activació. Pot ser que el compte ja s’hagi activat; proveu d’entrar al sistema."
@@ -6139,9 +6110,6 @@ ca:
         cumulative_count_desc: '# d''identificacions per a un tàxon individual i els seus descendents'
         curator_coordinate_access_disabled_desc_html: |
           Aquest projecte no permet les observacions amb coordenades que no són accessibles als seus supervisors. Si no voleu compartir les coordenades d'aquesta observació amb els supervisors d'aquest projecte hauríeu de treure l'observació d'aquest projecte.
-        data_quality_assessment_desc_html: |
-          L'Anàlisi de la Qualitat de les Dades és una avaluació de la precisió d'una observació. Les observacions amb Grau de Recerca poden ser utilitzades pels científics per a la recerca.
-          Doneu el vostre vot sota:
         disagreement_count_desc: "# dels tàxons identificats que no estan entre els ancestres del tàxon"
         identification_count_desc: '# de les identificacions per a un tàxon individual'
         flagged_photos_desc_html: |
