@@ -193,8 +193,7 @@ de:
     Dies beinhaltet auch Beobachtungen, bei denen du selbst die Geo-Privatsphäre "verdeckt"
     oder "privat" gewählt hast (z.B. Beobachtungen von deinem Wohnort oder andere Orte, die nicht exakt lokalisiert werden sollen)
   about_trusting_projects_options_taxon: |-
-    Nur deine Beobachtungen in diesem Projekt, die verdeckte Koordinaten
-    wegen bedrohter Taxa enthalten
+    Nur deine Beobachtungen von Taxa/Arten in diesem Projekt, die aufgrund ihres Gefährdungsstatus automatisch verschleiert sind
   about_trusting_projects_options_taxon_desc: |-
     Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten von Arten, die
     aufgrund ihrer Gefährdung vom System automatisch verschleiert werden
@@ -209,10 +208,10 @@ de:
   about_trusting_projects_project_managers_are: |-
     Projektmanager, die Zugriff auf deine versteckten Koordinaten haben:
   about_trusting_projects_warning: |-
-    Beachte, dass Projektmanager die Projekteinstellungen ändern können und beliebige deiner Beobachtungen einschließen können, und sie können jederzeit andere Projektmanager hinzufügen oder entfernen. Du wirst über diese Änderungen benachrichtig, aber du vertraust grundsätzlich diesem Projekt deine privaten Koordinaten an, also sei vorsichtig.
+    Beachte, dass Projektmanager die Projekteinstellungen ändern können und beliebige deiner Beobachtungen einschließen können, und sie können jederzeit andere Projektmanager hinzufügen oder entfernen. Du wirst aber über diese Änderungen benachrichtigt, und bei jeder Änderung werden deine geschützten Koordinaten für 1 Woche wieder verborgen.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-    Du kannst auswählen, die verdeckten Koordinaten zu teilen mit
+    Du kannst auswählen, von welchen Beobachtungen die verdeckten Koordinaten geteilt werden:
   #Header for a section describing unintended disagreements
   about_unintended_disagreements: Über unbeabsichtigte ID-Widersprüche
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
@@ -3863,8 +3862,8 @@ de:
   project_coordinate_access_disabled_until_datetime: |
     Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_coordinate_access_warning: |
-    Zugang zu den Koordinaten ist wichtig für Wissenschaftler, kann aber auch zu Missbrauch
-    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du den Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust.
+    Zugang zu den Koordinaten ist wichtig für Forschung und Naturschutz, kann aber auch zu Missbrauch
+    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du den Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust. Du kannst deine Einstellungen auch jederzeit ändern
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -6537,9 +6536,8 @@ de:
         trust_allow_members_to_trust: |-
           Mitgliedern erlauben, diesem Projekt mit versteckten Koordinaten zu vertrauen
         trust_help_desc: |-
-          Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
-          erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
-          den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
+          Wenn du Zugriff auf die genauen Koordinaten verdeckter Beobachtungen haben möchtest,
+          können Benutzer, die diesem Projekt beigetreten sind, den Projektadministratoren Einsicht in diese Beobachtungen gewähren. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen in diesem Projekt erlauben, oder nur für die Beobachtungen, die aufgrund einer Gefährdungskategorie verschleiert werden.
         trust_help_notification2: |-
           Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
           neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
