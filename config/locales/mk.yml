@@ -1,19 +1,40 @@
 mk:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} промена"
+    other: "%{count} промени"
   x_comments:
     one: '1 коментар'
     other: '%{count} коментари'
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> обележувач'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Препознавачи'
   x_languages:
     one: "%{count} јазик"
     other: "%{count} јазици"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> дневнички ставки'
+    other: '<span class="count">%{count}</span> дневнички ставки'
   x_matching_taxa:
     one: '1 совпаднат таксон'
     other: '%{count} совпаднати таксони'
   x_matching_taxa_html:
     one: '<span class="count">1</span> совпаднат таксон'
     other: '<span class="count">%{count}</span> совпаднати таксони'
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} погрешно препознаен вид во овој род"
+    other: "%{count} погрешно препознаени видови во овој род"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} погрешно препознаени видови во овај %{rank}"
+    other: "%{count} погрешно препознаени видови во ова %{rank}"
   x_observations:
     one: "1 набљудување"
     other: "%{count} набљудувања"
@@ -26,15 +47,28 @@ mk:
   x_observations_link_html:
     one: "<a href='%{url}'>1 набљудување</a>"
     other: "<a href='%{url}'>%{count} набљудувања</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> прегледано набљудување"
+    other: "<span class='count'>%{count}</span> прегледани набљудувања"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Набљудувач'
+    other: '<span class="count">%{count}</span> Набљудувачи'
   x_others:
     one: "1 друг"
     other: "%{count} други"
+  x_people:
+    one: "%{count} лице"
+    other: "%{count} лица"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} лица</strong> му помогнале на %{user} со <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 слика"
     other: "%{count} слики"
   x_new_species:
     one: "1 нов вид"
     other: "%{count} нови видови"
+  x_new_users:
+    one: '%{count} нов корисник'
+    other: '%{count} нови корисници'
   x_species:
     one: '1 вид'
     other: '%{count} видови'
@@ -44,6 +78,12 @@ mk:
   x_species_link_html:
     one: "<a href='%{url}'>1 вид</a>"
     other: "<a href='%{url}'>%{count} видови</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} префлози филтрирани по:"
+    other: "%{count} Предлози филтрирани по:"
+  x_taxa:
+    one: "%{count} таксон"
+    other: "%{count} таксони"
   x_taxa_observed_html:
     one: "Набљудуван <span class='count'>1</span> таксон"
     other: "<span class='count'>Набљудувани %{count}</span> таксони"
@@ -53,21 +93,102 @@ mk:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> препознаен вид (или пониско) од истражен степен</span>"
     other: "<span class='count'>%{count}</span> препознаени видови (или пониско) од истражен степен</span>"
+  x_sounds:
+    one: "%{count} звук"
+    other: "%{count} звуци"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> згрижен таксон"
+    other: "<span class='count'>%{count}</span> згрижени таксони"
   x_taxa_matching_current_filters:
     one: "На тековните филтри одговара 1 таксон"
     other: "На тековните филтри одговараат %{count} таксони"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> додадена промена во таксон"
+    other: "<span class='count'>%{count}</span> додадени промени во таксон"
   _100_day_trends: Трендови за 100 дена
+  _percent_ID_d: "% со назнака"
   a_community_for_naturalist: Заедница за природници
+  a_default_taxon_name_will_automatically_created: |
+    Таксонскоте име ќе се по основно ќе се создаде автоматски поред научното име на овој таксон.
+    Кога ќе го зачувате овој нов таксон, тука ќе имате можност да ставите други имиња (народни имиња, застарени научни имиња итн.).
   a_flag_for_x: "обележувач за %{x}"
   a_member_of_taxon_html: "член на %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "А to Ш"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: За
+  about_charts: За графиконите
   about_community_taxa: За таксоните од заедницата
+  about_complete_taxa: За целосните таксони
+  about_conservation_status: За заштитниот статус
+  about_editing_observation_fields: За уредувањето на полињата на набљудување
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: За начинот на населување
+  about_license_options: За лиценцните можности
   about_licenses: За лиценците
   #Header for a section describing taxon names
   about_names: За имињата
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "За %{place}"
   about_places: За местата
+  about_taxon_ranges: За распространетоста на таксонот
+  about_taxon_ranges_desc: |
+    Распространетоста на таксонот дава слика за глобалната присутност на еден таксон. Тие обично се преземаат од Црвениот список на МСЗП.
+  about_the_network: За мрежата
+  about_this_bioblitz: За овој биоблиц
   about_this_map: За картава
   about_this_project: За проектов
+  about_trips_html: |
+    <h4>
+    Патувањата овозможува собирање на податоци за присуство или отсуство со додавање на контекст кон вашите набљудувања
+    </h4>
+    <p>
+    <strong>Зошто</strong> Податоците за присуство или отсуство вклучуваат информации
+    за напорите за примерочење кои се корисни во научната анализа како
+    моделирање на распространетоста (сировите набљудувања на iNaturalist се само податоци за присуство).
+    </p>
+    <p>
+    <strong>Како</strong> Патувањето им дава контекст на вашите набљудувања, евидентирајќи:
+    </p>
+    <ul>
+    <li><strong>Како</strong> пребарувавте for (целниот список)</li>
+    <li><strong>Каде</strong> пребарувавте (покриеното подрачје)</li>
+    <li><strong>Кога</strong> пребарувавте (временскиот интервал)</li>
+    </ul>
+    <p>
+    Видовите на вашиот целен список кои успеавте да ги забележите во
+    рамките на подрачјето на пребарување и интервалот се толкуваат како присуства. 
+    Оние што не сте ги забележале се толкуваат како отсуства. Стиснете на „Внеси во таблица на присуства и отсуства на патувања“ за да создадете
+    табела со таква евиденција за видовите од патувањата и тие
+    набљудувања. <a href='%{url}'>Дознајте повеќе</a>
+    </p>
+  about_trusting_projects: За довербата во проекти
+  about_trusting_projects_options_any: Сите баши набљудувања на овој проект
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Сите нанамерни несогласувања
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -236,6 +357,7 @@ mk:
   allowed_values: Допуштени вредности
   alphabetical: Азбучно
   alphabetical_order: Азбучен ред
+  already_have_an_account_log_in_html: Веќе имате сметка? <strong>Најавете се.</strong>
   amphibians: водоземци
   and_other_taxa: "други таксони"
   android: Андроид
@@ -299,6 +421,7 @@ mk:
   back_to_your_journal: Назад на вашиот дневник
   back_to_your_observations: Назад на вашите набљудувања
   back_to_your_profile: Назад на вашиот профил
+  badges: Значки
   batch: Збир
   batch_edit: Збирно уредување
   #Where x is the title of a list of taxa
@@ -342,6 +465,7 @@ mk:
   choose_a_taxon: Одберете таксон (незадол.)
   choose_from_your_lists: Одберете од вашите списоци
   choose_photos_for_this_taxon: Одберете слики за таксонов
+  choose_tags: Изберете ознаки
   citation: Наведување
   classification: Класификација
   clear: тргни
@@ -360,6 +484,8 @@ mk:
   committed: Спроведено
   #Status message while a taxon change is being committed
   committing: Спроведувам...
+  community: Заедница
+  community_guidelines: Правила на заедницата
   community_supported_id: Препознаено од заедницата?
   compare_with: Спореди со
   comparing: споредба
@@ -379,6 +505,15 @@ mk:
   connect_to_provider: "Поврзи со %{provider}"
   connecting_flickr: "Поврзувам со Flickr..."
   conservation_status: Заштитен статус
+  controlled_term_labels:
+    sex: Пол
+    male: Машки
+    female: Женски
+    budding: Пупење
+    flower_budding: Пупење на цетовите
+    flowering: Цветање
+    fruiting: Плодообразување
+    life_stage: Животен стадиум
   coordinates: Координати
   copy: Копирање
   copyright:
@@ -451,6 +586,8 @@ mk:
   #Default option
   default: по основно
   default_invite_comment: "Одлична слика!  Треба да ја објавите на %{site_name}: {{INVITE_LINK}}"
+  default_search_place_description: |
+    Ова ќе биде вашето матично место за сите пребарувања во Истражи и препознај.
   delete: Избриши
   delete_all: Избриши ги сите
   #Button to delete the cover (or banner) image for a project
@@ -462,12 +599,20 @@ mk:
   descending: опаѓачки
   description: Опис
   description_from: Опис од
+  description_slash_tags: Опис / Ознаки
   description_tags_more: "Опис, ознаки и повеќе"
   desription: Опис
   destroy: Уништи
   details: Подробно
   did_you_mean: 'Дали мислевте на'
   disconnect_provider: "Отстрани ја врската со %{provider}"
+  documentation_for_developers_html: Документација за <a href="/pages/developers">разработувачи</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ДАРУВАЈТЕ
+  donate_again_caps: ДАРУВАЈТЕ ПОВТОРНО
+  donate_again_today_caps: ДАРУВАЈТЕ ПОВТОРНО ДЕНЕС
+  dont_have_an_account_sign_up_html: Немате сметка? <strong>Зачленете се.</strong>
   download: Преземи
   download_csv: Преземи CSV
   download_kml: Преземи KML
@@ -495,6 +640,7 @@ mk:
   edit_your_account_and_profile_html: "Измени ја сметката и профилот"
   edit_your_default_settings: "Измени ги стандардните поставки"
   edited_by_name_html: "Изменето од %{name}"
+  email: Е-пошта
   establishment:
     endemic: ендемски
     introduced: доведен
@@ -503,9 +649,11 @@ mk:
     native: домороден
     naturalised: одомаќинет
   everyone: сите
+  everyone_journal_posts: Сечии дневнички објави
   everywhere: насекаде
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
+  explore: Истражете
   export: Извези
   export_observations: Извези набљудувања
   exporting: "Извезувам..."
@@ -545,9 +693,20 @@ mk:
   flag_this_photo: Обележи ја сликава
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
+  flickr_tags: Ознаки на Flickr
   follow_user: "Следи го/ја %{user}"
   following: следач
   for_a_taxon: за таксон
+  forum: Форум
+  forum_categories:
+    bug_reports: Пријави на грешки
+    feature_requests: Барања за функции
+    nature_talk: Разговор за природата
+    news_and_updates: Новости
+    tutorials: Упатства
+  forum_desc: |
+    Форумот е место за водење разговори за самиот iNat, вклучувајќи помош и поддршка,
+    барања за функции, пријавување на грешки, известувања и др.
   from_a_place: од местото
   fungi:
     one: габа
@@ -570,6 +729,7 @@ mk:
   guide_was_successfully_created: Водичот е успешно создаден.
   guide_was_successfully_published: Водичот е успешно објавен.
   guide_was_successfully_updated: Водичот е успешно подновен.
+  guidelines: Напатствија
   has_already_been_flagged_by: е веќе обележан од
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
@@ -584,6 +744,7 @@ mk:
   #Notification when an identification has been updated
   identification_updated: Препознавањето е подновено!
   identifications: Препознавања
+  identifiers: Препознавачи
   identotron: Идентотрон
   identotron_for: Идентотрон за
   identotron_help: Помош со Идентотрон
@@ -597,9 +758,17 @@ mk:
   import_observations: Увези набљудувања
   import_observations_from_a_photo: Увези набљудувања од добавувач на слики или од податотека на мојот сметач.
   import_photos: Увези слики
+  import_tags_from_csv: Увези ознаки од CSV
   importing: "Увезувам..."
   in_the_past: во изминатите
   in_the_past_week: во изминатата седмица
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Неактивно
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Неактивно
+  inaturalist_is_a_joint_initiative: "%{site_name} е заедничка иницијатива на Калифорниската академија на науките и Националното географско друштво."
   inaturalist_places: "Места на %{site_name}"
   info: Инфо
   input_taxon: Влезен таксон
@@ -609,15 +778,25 @@ mk:
   invite: покани
   #Type of project where people can only join after they have been invited
   inviteonly: само со покана
+  jobs: Работни места
   join: Приклучи се
   join_project: Приклучете се на проектов!
+  join_the_largest_group_of_naturalists_in_the_world: Приклучете се кон најголемата група на природници во светот!
   join_this_project: Приклучи се на проектов
   'joined!': Приклучено!
   journal: Дневник
+  journal_posts: Дневнички објави
   jpg_png_or_gif: "JPG, PNG или GIF"
   labels: Натписи
   layout: Распоред
   leaderboards: Предводници
+  leaderboard_most:
+    species_in_month_year: Највеќе видови во %{month_year} г.
+    observations_in_month_year: Највеќе набљудувања во %{month_year} г.
+    observations_in_year: Највеќе набљудувања во %{year} г.
+    identifications_in_month_year: Највеќе препознавања во %{month_year} г.
+    identifications_in_year: Највеќе препознавања во %{year} г.
+  learn: Научете
   learn_about_the_species_live_in: Научете за видовите што живеат во
   learn_more: Дознајте повеќе
   learn_more_raquo: "Дознајте повеќе &raquo;"
@@ -630,23 +809,58 @@ mk:
   lexicon: Лексикон
   lexicons:
     afrikaans: африканс
+    alabama: алабамски
+    albanian: албански
+    aou_4_letter_codes: 4-буквени кодови AOU
+    aou_6_letter_codes: 6-буквени кодови AOU
+    arabic: арапски
+    armenian: ерменски
+    asturian: астурски
+    basque: баскиски
+    belarusian: белоруски
     bengali: бенгалски
+    bikol: биколски
+    bulgarian: бугарски
+    carolinian: каролински
+    catalan: каталонски
     cebuano: себуански
+    chinese_simplified: кинески (упростено)
+    chinese_traditional: кинески (традиционално)
+    chuvash: чувашки
     creole_french: креолски (француски)
     creole_portuguese: креолски (португалски)
+    croatian: хрватски
+    czech: чешки
+    danish: дански
     davawenyo: даваоански
     dutch: холандски
     english: англиски
+    estonian: естонски
+    faroese: фарски
+    fijian: фиџиски
+    finnish: фински
     french: француски
+    galician: галициски
     gela: гела
+    georgian: грузиски
     german: германски
+    greek: грчки
+    gujarati: гуџаратски
     hawaiian: хавајски
     hebrew: Хебрејски
+    herero: херерски
     hiligaynon: хилигајнонски
+    hill_mari: горномариски
+    hodges_number: Хоџесов број
+    hokkien: хокиен
+    hungarian: унгарски
     icelandic: исландски
     ilokano: илокански
+    indonesian: индонезиски
+    irish: ирски
     italian: италијански
     japanese: јапонски
+    kannada: канадски
     korean: корејски
     maltese: малтешки
     maori: маорски
@@ -663,7 +877,16 @@ mk:
     tahitian: тахиќански
     tokelauan: токелауански
     turkish: турски
+    u_s_d_a_symbol: Симбол по U.S.D.A.
+    ukrainian: украински
+    uyghur: ујгурски
+    venda: венда
+    vietnamese: виетнамски
+    visayan: висајски
     waray_waray: варајварајски
+    xhosa: коса
+    zapoteco: запотечки
+    zulu: зулу
   less: Помалку
   life: Живот
   life_list: "Животниот список на %{user}"
@@ -686,17 +909,68 @@ mk:
   loading_tags: "Ги вчитувам ознаките..."
   loading_taxa_from_your: "Ги вчитувам таксоните од вашите набљудувања..."
   loading_wikipedia_description: "Го вчитувам описот од Википедија..."
+  locales_: Јазични средини
   locales:
+    ar: арапски
+    be: белоруски
+    bg: бугарски
+    br: бретонски
     ca: каталонски
+    cs: чешки
+    da: дански
+    de: германски
+    el: грчки
     en: англиски
+    en-GB: англиски (Британија)
+    eo: есперанто
     es: шпански
+    es-AR: шпански (Аргентина)
+    es-CO: шпански (Колумбија)
     es-MX: шпански (Мексико)
+    et: естонски
     eu: баскиски
+    fi: фински
+    fr: француски
+    fr-CA: француски (Канада)
     gl: галициски
+    he: хебрејски
+    hr: хрватски
+    hu: унгарски
+    id: индонезиски
+    it: италијански
+    ja: јапонски
+    ka: грузиски
+    kk: казашки
+    kn: канадски
+    ko: корејски
+    lb: луксембуршки
+    lt: литвански
+    lv: латвиски
+    mi: маорски
     mk: македонски
+    mr: маратски
+    nb: норвешки (книжевен)
+    nl: холандски
+    oc: окситански
+    pl: полски
+    pt: португалски
+    pt-BR: португалски (Бразил)
+    ru: руски
+    sat: санталски
+    sk: словачки
+    sl: словенечки
+    sq: албански
+    sr: српски
+    sv: шведски
+    th: тајландски
+    tr: турски
+    uk: украински
+    zh-CN: кинески (упростено)
+    zh-TW: кинески (традиционално)
   localized_species_accounts: Сметки за локализирани видови
   location: Местоположба
   location_is_exact: местоположбата е докрај уточнета
+  location_is_private: Местоположбата е доверлива
   log_in: Најава
   logo:
     logo: Лого
@@ -723,6 +997,9 @@ mk:
   map: Карта
   map_tooltip: Дај картографски приказ
   matching_species_will_shown_up_here: Пронајдените видови ќе се прикажат тука. Картите ќе прикажат распространетост ако еден од тие видови е присутен во %{place}.
+  meet: Запознајте се
+  member_of_the_inaturalist_network_html: |
+    Член на <a href="%{url}">Мрежата на iNaturalist</a>
   #As in members of a project
   members: Членови
   merge: Спој
@@ -735,10 +1012,21 @@ mk:
   mollusks: мекотелци
   month: Месец
   more: Повеќе
+  #Button to show more observations
+  more__context_observations_caps: ПОВЕЌЕ
+  #Button to show more places
+  more__context_places: Повеќе
+  #Button to show more text
+  more__context_text: Повеќе
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ПОВЕЌЕ
+  more_caps: ПОВЕЌЕ
   more_fields: Повеќе полиња
   more_info: Повеќе инфо
+  more_info_title: Повеќе инфо
   more_journal_posts: Повеќе дневнички објави
   more_observations: Повеќе набљудувања
+  more_photos: Повеќе слики
   most_agree: највеќето се согласуваат
   most_disagree: највеќето не се согласуваат
   most_observations: Највеќе набљудувања
@@ -765,6 +1053,7 @@ mk:
   ne_lat: СИ шир.
   ne_lon: СИ дол.
   near_threatened: речиси загрозен
+  new_and_noteworthy: Ново и значајно
   new_announcement: Ново соопштение
   new_assessment: Нова оценка
   new_check_list: Нов контролен список
@@ -819,6 +1108,7 @@ mk:
   no_observations_matching_those_ids: Нема набљудувања за тие видови.
   no_observations_submitted: "Нема поднесени набљудувања!"
   no_observations_yet: Засега нема ниедно набљудување
+  no_one_posted_anything_yet: Засега никој нема објавено ништо!
   no_range_data_available: Нема податоци за распространетоста.
   no_subject_parens: "(без наслов)"
   no_summary_from_wikipedia: Нема опис од Википедија
@@ -854,6 +1144,7 @@ mk:
   observed_by: Забележан од
   observed_on: Забележан на
   observer: Набљудувач
+  observers: Набљудувачи
   observer_short: Видел
   occurence_status_describes_how: 'Застапеноста опишува колку чест или редок е таксонот на дадено подрачје. Погледајте го DarwinCore за <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">повеќе информации за поимите</a>.'
   occurrence_status: Застапеност
@@ -879,6 +1170,7 @@ mk:
   order: Редослед
   order_by: Подреди по
   original: изворна
+  our_blog: Нашиот блог
   output_taxon: Излезен таксон
   owner: Сопственик
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -903,6 +1195,18 @@ mk:
     large: голема
     original: изворно
   photos_updated: Сликите се подновени.
+  pi_consent_label: |
+    Му дозволувам на iNaturalist да складира и обработува ограничени
+    видови лични податоци за мене со цел да управува со мојата сметка
+  pi_consent_child_label: |
+    Му дозволувам на iNaturalist да складира и обработува ограничени
+    видови лични податоци за моето дете со цел да управува со неговата сметка
+  data_transfer_consent_label: |
+    Се согласувам да дозволам моите лични податоци 
+    да бидат префрлени во САД
+  data_transfer_consent_child_label: |
+    Се согласувам да дозволам личните податоци на моето дете
+    да бидат префрлени во САД
   pink: розова
   place: Место
   place_deleted: Местото е избришано.
@@ -1028,10 +1332,15 @@ mk:
   please_add_a_citation_for_this_change: Додајте навод во страницава.
   position: Положба
   posted_by: Објавено од
+  #Shows the date a journal post was published
+  posted_on_date_html: Објавено на %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Објавено на %{date} од %{user}
   posts: Објави
   powered_by: Овозможено од
   powered_by_inaturalist_open_source_software_html: 'Овозможено од <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> — програм со отворен код'
   present: присутен
+  press: Печат
   preview_of_synced_observation: "<strong>Преглед</strong> на усогласеното набљудување.  <a href=\"%{url}\">Да отповикам?</a>"
   previewing: "Давам преглед..."
   prev: Прет
@@ -1060,6 +1369,10 @@ mk:
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
   rank: Ранг
+  rank_position: Ранг
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     kingdom: царство
     phylum: колено
@@ -1086,6 +1399,7 @@ mk:
     variety: разновидност
     form: облик
   ray_finned_fishes: зракоперки
+  read_more: Прочитајте повеќе
   recent_observations: Скорешни набљудувања
   recent_post: Скорешна објава
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
@@ -1096,6 +1410,7 @@ mk:
   red: црвена
   redo_search_in_map_area: Пребарај одново за ова подрачје од картата
   refresh: Превчитај
+  remember_me: Запомни ме
   remove_from_list: Отстрани од списокот
   remove_from_project: Отстрани од проектот
   remove_this_section: Отстрани го делов
@@ -1138,6 +1453,12 @@ mk:
   search_ubio_raquo: "Пребарај го uBio &raquo;"
   search_your_photos: Пребарајте по вашите слики
   searching: "Пребарувам..."
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  second_person_possessive_singular: "@gender{m:Ваш|f:Ваша|n:Ваше} %{noun}"
   select: Избери
   select_all: Избери сè
   #select_one_or_more_photos: Select One Or More Photos
@@ -1149,12 +1470,16 @@ mk:
   settings: Поставки
   short_code_for_this_place: Краток код за местово, на пр. US за Соединетите Држави
   show: Прикажи
+  show_more: Прикажи повеќе
   show_taxa_from_everywhere: "Прикажи таксони од секаде"
   show_taxa_from_place: "Прикажи таксони од %{place}"
   showing_taxa_from_everywhere: "Приказ на таксони од секаде"
   showing_taxa_from_place: "Приказ на таксони од %{place}"
   sign_in: Најава
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Најавете се со Apple
   sign_in_with_provider: "Најави ме со %{provider}"
+  sign_in_with_google: Најавете се со Google
   sign_out: Одјава
   sign_up: Пријава
   similar_species: Слични видови
@@ -1162,6 +1487,7 @@ mk:
   sizes: Големини
   site_name_place: "Место на %{site_name}"
   site_observations_export_from_date: "Извоз на набљудувања од %{site_name} од %{date}"
+  site_stats: Статистика за порталот
   site_taxon_page: "Таксонска промена на %{site_name}"
   some_agree: некои се согласуваат
   some_other_reason: Друга причина што треба да ја наведете подолу.
@@ -1221,6 +1547,10 @@ mk:
   start_typing_someones_name: "Почнете да пишувате нечие име..."
   stop_editing: Запри со уредување
   stop_following_user: "Запри со следење на %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Продавница
+  store_caps: ПРОДАВНИЦА
   stuff_just_added: "Работи кои штотуку ги додадовте..."
   subject_resolved_noun_html: "%{subject} го реши %{noun}"
   subject_affecting_stuff_html: "%{subject} што се однесува на %{stuff}"
@@ -1240,11 +1570,13 @@ mk:
   tags: Ознаки
   take_me_flickr!: Да, одведи ме на Flickr!
   taxa: Таксони
+  taxa_info: Информации за таксони
   taxa_needing_curation: Таксони со потреба од загрижување
   taxon: Таксон
   taxon_map:
     data_url: Податочен URL
     overlays: Облоги
+  taxonomic_groups: Таксономски групи
   terms: Услови
   terms_and_rules_html: "Услови и правила"
   terms_service: Услови на употреба
@@ -1253,14 +1585,28 @@ mk:
   the_people_of_inat: "Луѓето на %{site_name}"
   the_user_x_has_been_suspended: "Корисникот %{user} е исклучен"
   the_user_x_has_been_unsuspended: "Корисникот %{user} е повторно примен"
+  the_world: Светот
   these_folks_kindly_volunteer_to: Овие луѓе љубезно и доброволно ја одржуваат нашата таксономија и се занимаваат со други проблематики.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{noun} на %{object_phrase}"
   threatened: Загрозен
   time_ago: "пред %{time}"
   today: Денес
   tools: Алатки
+  top_identifiers: Најдобри препознавачи
+  top_identifiers_of_taxon: Најдобри препознавачи на %{taxon}
+  top_observers: Најдобри набљудувачи
+  tos_privacy_guidelines_label: |
+    Се согласувам со <a href="/terms" target="_blank">Условите на употреба</a> и
+    <a href="/privacy" target="_blank">Правилата за лични податоци</a>, и ги прегледав <a href="/pages/community+guidelines" target="_blank">Правилата на заедницата</a>.
   total: вкупно
   total_members: Вкупно членови
   total_observations: Вкупно набљудувања
+  total_species_observed_caps: ВКУПНО НАБЉУДУВАНИ ВИДОВИ
   total_unique_observers: Вкупно посебни набљудувачи
   #As in a category, not as in a keyboard
   type: Внесете
@@ -1291,6 +1637,8 @@ mk:
   user_added_an_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_x_observations_html: "%{user} додаде %{x} набљудувања"
+  username: Корисничко име
+  users: Корисници
   users_profile: "Профилот на %{user}"
   view: Погл.
   view_all: Погл. сите
@@ -1330,11 +1678,13 @@ mk:
   view_taxon_page: Погл. таксонска промена
   view_your_dashboard: Погл. вашиот прегледник
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Погледајте го вашиот прегледник</a> за повеќе новини"
+  video_tutorials: Видеоупатства
   vulnerable: ранлив
   w_photos_only: со слики
   w_sounds: со звуци
   was_it_captive_cultivated?: "Дали е во заробеништво / одгледуван"
   welcome: добре дојдовте
+  welcome_back!: Добре дојдовте назад!
   welcome_to_inat: "Добре дојдовте на %{site_name}!"
   welcome_to_guides: "Добре дојдовте на Водичите на %{site_name}!"
   welcome_to_x_project: "Добре дојдовте на %{project}"
@@ -1368,6 +1718,11 @@ mk:
   'yes': "Да"
   yes_find_them!: "Да, најди ги!"
   yes_i_want_to_join: Да, сакам да се придружам
+  yes_license_my_childs_observations: Да, лиценцирај ги сликите, звуците и набљудувањата на моето дете, така што научниците ќе можат да ги користат податоците (препорачано).
+  yes_license_my_observations_so_scientists_can_use: Да, лиценцирај ги моите слики, звуци и набљудувања, така што научниците ќе можат да ги користат податоците (препорачано).
+  yir_donate_banner_inaturalist_in_year: "INATURALIST ВО %{year}:"
+  yir_millions_of_people_used_inaturalist: |
+    Годинава милиони луѓе го користеа iNaturalist и Seek од iNaturalist за да се зближат со природата
   you: вие
   your_account_has_been_activated: Вашата сметка на е активирана.
   your_home: Ваша почетна
@@ -1375,12 +1730,15 @@ mk:
   your_identification: Ваша назнака
   your_observations: Ваши набљудувања
   your_profile_was_successfully_updated: Вашиот профил е успешно подновен!
+  your_tags: Ваши ознаки
   views:
     views: 'Посети'
     custom_projects:
       edit:
         custom_project_fields_warning: |
           Бидете вминателни: додавањето на Javascript и CSS во вашата проектна страница може во голема мера да го општети изгледот на страницата и потенцијално да овозможи злонамерни програми кои ќе им се наметнат на посетителите на страницата. Ако не знаете за што точно служи некој коден текст, тогаш не го ставајте.
+    donate:
+      donate_short_desc: "Дарувајте сега и искажете ја вашата поддршка!"
     guides:
       index:
         funding_html: |
@@ -1400,6 +1758,55 @@ mk:
         are_you_ready_to_duplicate: |
           Дали сте сигурни дека сакате да ја напуштите страницава за дуплирање овој проект?
         are_you_sure_you_want_to_delete: Дали сте сигурни дека сакате да го избришете овој проект?
+    users:
+      recent:
+        about_recent_users: За
+    welcome:
+      index:
+        connect_with_nature: Зближете се со природата
+        explore_and_share: Истражете и споделете ги вашите набљудувања на природата.
+        observations_to_date:
+          one: "Набљудување досега"
+          other: "Набљудувања досега"
+        species_observed:
+          one: "Набљудуван вид"
+          other: "Набљудувани видови"
+        people_signed_up:
+          one: "Зачленети"
+          other: "Зачленети"
+        how_it_works: Како работи
+        record_your_observations: Запишете ги вашите набљудувања
+        share_with_fellow_naturalists: Споделете со други природници
+        discuss_your_findings: Дискутирајте ги наодите
+        contribute_to_science: Придонесувајте кон науката
+        science_desc_html: |
+          Секое набљудување може да даде придонес кон науката за биоразновидноста — 
+          од најретката пеперутка до најобичниот троскот. Ние ги споделуваме
+          вашите наоди со складиштата на научни податоци како
+          <a href='http://gbif.org' target='_blank'>Глобалниот информативен систем за биоразновидност</a>
+          за да им помогнеме на научниците да ги пронајдат и употребат вашите податоци.
+          Сè што треба да направите е да набљудувате.
+        nature_at_your_fingertips: Науката на дланка
+        keep_track: Водете евиденција
+        record_your_encounters: |
+          Опишете ги вашите средби со други организми и водете списоци со видови
+          — сето тоа во облакот.
+        create_useful_data: Создавајте корисни податоци
+        help_scientists: Помогнете им на научниците и еколозите да добијат увид во тоа кога и каде се среќаваат организмите.
+        crowdsource_identifications: Препознавања од заедницата
+        connect_with_experts: Поврзете се со стручњаци што можат да ги препознаат организмите што ги набљудувате.
+        become_a_citizen_scientist: Станете граѓански научник
+        find_a_project: "Најдете проект со мисија што ве интересира, или пак започнете свој."
+        learn_about_nature: Научете за природата
+        build_your_knowledge: Изградете го вашето знаење разговарајќи со други природници и помагајќи на другите.
+        run_a_bioblitz: Приредете биоблиц
+        hold_an_event: Приредете настан каде учесниците се стремат да најдат што повеќе видови.
+        works_on_all_your_devices: Работи на сите ваши уреди
+        install_our_mobile_apps: |
+          Преземете ги нашите мобилни прилози за да можете секогаш да набљудувате, дури и кога немате мобилна мрежа или wifi.
+        who_uses_site_name: "Koj go koristi %{site_name}?"
+        what_are_you_waiting_for: Што чекате?
+        join_today: Приклучете се денес
   date:
     abbr_day_names:
       - нед
@@ -1617,6 +2024,9 @@ mk:
         name_provider: Добавувач на името
         source_url: Изворен URL
         source_identifier: Назнака на изворот
+      user:
+        email: Е-пошта
+        login: Корисничко име
     errors:
       models:
         guide:
