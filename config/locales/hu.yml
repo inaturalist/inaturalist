@@ -741,7 +741,7 @@ hu:
     replaced_with: Cserélve erre
     dropped: elejtve
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}t feloszották ezekre: %{output_taxa}"
-    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} felosztása ezekre: %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} felosztásre kerül ezekre: %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} ejtve"
     input_taxon_will_be_dropped_html: "%{input_taxon} ejtve lesz"
     input_taxon_will_be_activated_soon_html: "%{input_taxon} hamarosan aktiválva lesz"
@@ -4123,6 +4123,7 @@ hu:
     %{user} szerint ez %{place} átfogó %{taxon}-listája
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
+  user_faved_an_observation_by_you: "%{user} kedvelte ezt a megfigyelésedet"
   user_faved_this_observation: "%{user} kedvelte ezt a megfigyelést"
   user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
   user_has_opted_out_of_community_id: A megfigyelő kikapcsolta a közösségi a közösségi taxont.
