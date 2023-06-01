@@ -312,6 +312,12 @@ uk:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Точність (м)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Точність позиціювання вище
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Точність позиціювання нижче
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Точність позиціювання нижче або невідома
   account: Обліковий запис
   account_creation: Створення облікового запису
   account_settings: Налаштування облікового запису
@@ -679,6 +685,8 @@ uk:
   #Label for an option to show/include content by any user
   any_user: Будь-який
   anyone: Будь-хто
+  app_owner_application_explanation_required: |
+    Ви повинні надати детальніше пояснення того, що ви хочете побудувати.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Додаток
