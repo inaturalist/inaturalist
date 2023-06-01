@@ -43,11 +43,15 @@ ko:
     other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
+  x_people:
+    other: "%{count}명"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
   x_photos:
     other: "사진 %{count} 개"
   x_new_species:
     other: "새로운 종 %{count} 종"
+  x_new_users:
+    other: '%{count} 새로운 사용자'
   x_species:
     other: '%{count} 종'
   x_species_html:
@@ -56,6 +60,8 @@ ko:
     other: "<a href='%{url}'>%{count} 종</a>"
   x_suggestions_filtered_by_colon:
     other: "다음 필터에 의해서 %{count} 개가 제안됨:"
+  x_taxa:
+    other: "%{count} 분류군"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> 개의 분류군이 관찰됨"
   x_research_grade_observations_html:
@@ -74,6 +80,9 @@ ko:
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   a_flag_for_x: "%{x}을 위한 플래그"
   a_member_of_taxon_html: "%{taxon}에 속함"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "오름차순"
   about: 소개
   about_charts: 차트에 대하여
   about_community_taxa: 공동체 분류군에 대하여
@@ -87,10 +96,18 @@ ko:
   about_licenses: 라이선스 정보
   #Header for a section describing taxon names
   about_names: 이름에 대하여
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} 소개"
   about_places: 장소에 대하여
+  about_taxon_ranges: 분류군 범위에 대해
+  about_taxon_ranges_desc: |
+    분류군 범위는 해당 분류군의 전체적인 서식 분포를 보여줍니다. 분류 범위는 왼쪽 표와 같습니다.
+    일반적으로 IUCN 적색 목록을 출처로 하고 있습니다.
   about_this_bioblitz: 이 바이오블리츠에 대하여
   about_this_map: 이 지도에 대하여
   about_this_project: 이 프로젝트에 대하여
+  about_trusting_projects_options_any: 당신이 이 프로젝트에서 관찰한 모든 것들
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -117,6 +134,7 @@ ko:
   #Tool tip for a button that adds a link to a text area
   add_a_link: 링크 추가
   add_a_name: 이름 추가하기
+  add_a_note: 설명 추가
   add_a_new_change_group: 새로운 변화 그룹 추가하기
   add_a_single_observation: 관찰 하나를 추가합니다.
   add_a_taxon: 분류군 추가하기
@@ -219,6 +237,8 @@ ko:
   agree_with_current_taxon: 현재 분류군에 동의
   agreeing: 동의 중...
   aka: 다른 말로
+  #Noun, title of a popup alerting you to something
+  alert: 알림
   all: 모두
   all_comments: 모든 댓글
   all_flags_must_be_resolved: 모든 플래그는 해결되어야 합니다
@@ -542,10 +562,19 @@ ko:
   comments: 댓글
   comments_by_me: 내가 작성한 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
+  #Second person verb to commit a taxon change, i.e. the change has been executed
+  commit: 등록
+  #Adjective describing a taxon change that has been committed
+  committed: 등록됨
+  #Status message while a taxon change is being committed
+  committing: 등록중...
+  common_name: 일반명
   community: 공동체
   community_curated: 공동으로 큐레이션됨
   community_guidelines: 공동체 지침
   community_id_heading: 공동체 ID
+  community_id_at_species_or_lower?: 종 단위 이하의 커뮤니티 동정
+  community_id_at_species_level_or_lower: 종 단위 이하의 커뮤니티 동정
   compare: 비교하기
   compare_with: '다음과 비교:'
   comparing: 비교 중
@@ -584,6 +613,9 @@ ko:
     sex: 성별
     male: 수컷
     female: 암컷
+    flower_budding: 꽃봉오리
+    flowering: 개화
+    fruiting: 결실
     life_stage: 성장 단계
     adult: 성체
     teneral: 우화 직후
@@ -597,6 +629,16 @@ ko:
     alive: 살아있음
     dead: 죽음
     cannot_be_determined: 확인할 수 없음
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: 개체
+    #Fecal matter, not regurgitated matter
+    scat: 배설물
+    #Endoskeletal remains, like a deer bone
+    bone: 뼈
+  controlled_term_definitions:
+    organism: 개체의 전체 혹은 일부
+    scat: 배설물(펠릿 등 토사물 미포함)
   controls: 제어
   convert: 변환
   coordinate_systems: 좌표계
@@ -655,6 +697,17 @@ ko:
   curating: 큐레이팅
   curation: 큐레이션
   curator: 큐레이터
+  #Header
+  curator_application_what_curators_can_do: 큐레이터가 할 수 있는 작업
+  #Header
+  curator_application_what_curators_cannot_do: 큐레이터가 할 수 없는 작업
+  #Title of a page where people apply to become a curator
+  curator_application_title: 큐레이터 신청
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    다음을 만족하는 경우에만 큐레이터를 신청하시기 바랍니다:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    지난 몇 개월간 관찰 기록 및 동정을 등록하였으며 앞으로도 계속 활동하고자 함
   curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
   curators: 큐레이터
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
@@ -1272,6 +1325,7 @@ ko:
   lookup: 검색
   low: 낮음
   make_admin: 관리자 만들기
+  mammals: 포유류
   manage_all_your_subscriptions: 알림 관리
   manage_names: 이름 관리
   manage_your_projects: 내 프로젝트 관리
@@ -1666,9 +1720,11 @@ ko:
     angola: 앙골라
     anguilla: 앙귈라
     antarctica: 남극
+    antigua_and_barbuda: 앤티가바부다
     argentina: 아르헨티나
     armenia: 아르메니아
     aruba: 아루바
+    asia: 아시아
     australia: 오스트레일리아
     austria: 오스트리아
     azerbaijan: 아제르바이잔
@@ -1684,6 +1740,7 @@ ko:
     bhutan: 부탄
     bolivia: 볼리비아
     bonaire_saint_eustatius_and_saba: 보네르섬, 세인트 유스타티우스, 사바섬
+    bosnia_and_herzegovina: 보스니아헤르체고비나
     botswana: 보츠와나
     bouvet_island: 부베섬
     brazil: 브라질
@@ -1798,6 +1855,7 @@ ko:
     mali: 말리
     malta: 몰타
     marshall_islands: 마셜 제도
+    martinique: 마르티니크
     mauritania: 모리타니아
     mauritius: 모리셔스
     mayotte: 마요트
@@ -1831,6 +1889,7 @@ ko:
     oman: 오만
     pakistan: 파키스탄
     palau: 팔라우
+    palestine: 팔레스타인
     panama: 파나마
     papua_new_guinea: 파푸아뉴기니
     paraguay: 파라과이
@@ -1855,6 +1914,7 @@ ko:
     saint_vincent_and_the_grenadines: 세인트빈센트 그레나딘
     samoa: 사모아
     san_marino: 산마리노
+    sao_tome_and_principe: 상투메프린시페
     saudi_arabia: 사우디아라비아
     senegal: 세네갈
     serbia: 세르비아
@@ -1887,6 +1947,7 @@ ko:
     togo: 토고
     tokelau: 토켈라우
     tonga: 통가
+    trinidad_and_tobago: 트리니다드 토바고
     tunisia: 튀니지
     turkey: 터키
     turkmenistan: 투르크메니스탄
@@ -1905,6 +1966,7 @@ ko:
     vatican_city: 바티칸시티
     venezuela: 베네수엘라
     vietnam: 베트남
+    virgin_islands: 버진 제도
     wallis_and_futuna: 월리스푸투나
     west_africa: 서아프리카
     western_sahara: 서사하라
@@ -2029,6 +2091,7 @@ ko:
   repair_doesnt_work_for_that_kind_of_photo: 이와 같은 사진 종류는 수정할 수 없습니다
   repair_external_photos: 외부 사진 수정하기
   reply: 답변
+  reptiles: 파충류
   request_failed: "요청이 실패했습니다"
   required: 필수
   required_: 필수
