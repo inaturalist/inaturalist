@@ -712,6 +712,7 @@ th:
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: โมเดลคอมพิวเตอร์วิทัศน์
+  confidential: ไม่เปิดเผย
   confirm: ยืนยัน
   confirm_membership: ยืนยันการเป็นสมาชิก
   confirm_new_password: ยืนยันรหัสผ่านใหม่
@@ -824,7 +825,12 @@ th:
   cumulative_ids: "การจำแนกสะสม: %{count} จาก %{total}"
   curation: จัดการอนุกรมวิธาน
   curator: ผู้ดูแล
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    ในการสมัครเป็น Curator คุณต้องเป็นผู้ใช้ 60 วันขึ้นไป และเพิ่มอย่างน้อย 5 flags และต้องมี 100 improving identifications ให้กับการสังเกตของทุกคน รวมถึงของคุณเอง (คุณได้เพิ่ม %{num_idents}) เมื่อมีคุณสมบัติตามเกณฑ์ที่กำหนด กลับมาหน้านี่และดำเนินการยื่นส่งใบสมัครได้
   curators: ผู้ดูแล
+  curator_identification: การจำแนกโดย Curator
   daily_users: ผู้ใช้งานรายวัน
   danger_zone: พิจารณาให้ดีก่อนเลือก
   dashboard: หน้ารวม
