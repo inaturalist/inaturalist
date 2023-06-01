@@ -1306,6 +1306,8 @@ nl:
   #curator
   curator_application_inelligible2: |
     Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd inclusief je eigen (je hebt %{num_idents} toegevoegd). Als jij aan deze eisen voldoet kun je hier terugkomen en ben je in staat een aanvraag in te dienen.
+  curator_application_inelligible_error2: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Aanvraag voor curator ingediend
   #Header
@@ -5587,6 +5589,9 @@ nl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
+  we_also_support2: |
+    We ondersteunen ook het importeren van foto's van <a href="http://flickr.com">Flickr</a>
+    en <a href="http://photos.google.com">Google Foto's</a>.
   we_can_only_understand_csv_in: We kunnen CSV alleen in het volgende formaat begrijpen
   we_couldnt_find_a_user: We vonden geen gebruiker met dat e-mailadres.
   we_couldnt_find_a_user_with_that_activation_code: "We konden geen gebruiker met die activeringscode vinden. Je hebt je account misschien al geactiveerd, probeer je aan te melden."
