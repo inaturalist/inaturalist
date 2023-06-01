@@ -501,17 +501,25 @@ hu:
   are_you_really_sure_want_delete_this_user: Teljesen biztos vagy benne, hogy ki akarod törölni ezt a felhasználót és minden tartalmát?
   are_you_sure?: Biztos vagy benne?
   are_you_sure_no_undo: Biztos vagy benne? Ezt nem lehet visszavonni.
+  are_you_sure_delete_conservation_status: |
+    Biztosan törlöd ezt a természetvédelmi státuszt? Ez megváltoztathatja ezen taxon és az alatta levő taxonok megfigyeléseinek a kitakarását.
   are_you_sure_delete_post: Biztos, hogy ki akarod törölni ezt a cikket?
+  are_you_sure_delete_taxon_move_associates: "Biztosan törlöd %{taxonname} (%{taxonid}) taxont és áthelyezed összes kapcsolódó adatait?"
   are_you_sure_delete_this_place: Biztos, hogy ki akarod törölni ezt helyet?
   are_you_sure_leave_this_project: Biztos, hogy kilépsz ebből a projektből?
   are_you_sure_merge_these_places: Biztosan összevonod ezeket a helyeket? Ezt nem lehet visszafordítani.
   are_you_sure_remove_photo: "Biztosan eltávolítod ezt a fényképet?"
+  are_you_sure_remove_relationship: Biztosan törlöd ezt a kapcsolatot? Többé nem fogod ezt a személy követni és visszavonod a rejtett koordinátáidnak a hozzáférési jogát ha ezeket engedélyezted.
   are_you_sure_remove_taxon_from_list: "Biztosan eltávolítod ezt a taxont a listáról?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Biztos vagy benne? Ez újratölti az oldalt, ezért néhány változtatásod elveszhet.
   are_you_sure_unresolve_flag?: |
     Biztosan visszavonod e bejelentés megoldását? Ez eltávolítja a megoldást és a megoldást nyújtó felhasználót erről a bejelentésről.
   are_you_sure_want_delete_taxon: "Biztosan törlöd ezt a taxont?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Biztosan törlöd ezt a taxont? Vannak leszármazott taxonok hozzá.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Biztosan törlöd ezt a taxont? Vannak leszármazott taxonok és azonosítások hozzá.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
     Biztosan törlöd ezt a taxont? Vannak utód taxonok, azonosítások és megfigyelések hozzá.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
@@ -689,6 +697,7 @@ hu:
   calendars_only_show_x_observations_at_time: A kalendárium csak %{x} megfigyelést mutat egyszerre
   callback_url: Visszacsatolási URL
   cancel: Mégse
+  cant_edit_or_delete_hidden_content: Nem szerkeszthetsz vagy törölhetsz olyan tartalmat amit a honlap gondozói rejtettek el
   cant_flag_an_object_that_doesnt_exist: Nem jelölhetsz meg egy objektumot ami nem létezik
   cant_merge_a_taxon_with_itself: Nem lehet egy taxont önmagával egyesíteni
   captive: Fogságban
@@ -699,6 +708,7 @@ hu:
   casual_: Hobbiszintű
   casual_tooltip_html: 'A "hobbiszintű" megfigyeléseknél hiányzik a kép vagy hang, a hely, a dátum, vagy egyéb okokból nem felelnek meg a "Tudományos szint" vagy a "Meghatározás szükséges" minőségi szinteknek. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi szintekről</a>'
   categories: Kategóriák
+  cc_0_description: "Ezzel a lincenccel alkotásodat közkinccsé teszed, így mások lemásolhatják, módosíthatják, megoszthatják az alkotásodat, akár kereskedelmi célokból is anélkül, hogy engedélyt kérnének vagy szerzőként megneveznének. Ez a legengedékenyebb licenc a felajánlottak közül. Ajánlott egy alkotás legszélesebbkörű terjesztéséhez, illetve engedélyezett felhasználásához."
   cc_0_name: Közkincs (CC0)
   cc_attribution_license: Creative Commons Nevezd meg! licenc
   cc_by_name: Nevezd meg!
@@ -1536,6 +1546,7 @@ hu:
     tutorials: Bemutatók
   frequency: Gyakoriság
   from_a_place: egy helyről
+  from_flickr_etc: Flick-ról, stb.
   from_list: Listáról
   from_photos: Fotókról
   from_place: Helyről
@@ -4257,6 +4268,9 @@ hu:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
+  we_also_support2: |
+    Támogatujk fotók importálását <a href="http://flickr.com">Flickr</a>-ról
+    és <a href="http://photos.google.com">Google Photos</a>-ról is.
   we_can_only_understand_csv_in: Csak a következő formátumú CSV-t értjük meg
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
   we_have_no_conservation_status_for_this_taxon: Nincs a természetvédelmi státuszra vonatkozó adatunk erről a taxonról
