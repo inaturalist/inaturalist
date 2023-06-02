@@ -1374,6 +1374,12 @@ ru:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Сами не демонстрируют надлежащего поведения.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Чтобы подать заявку на должность куратора сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, вы должны добавить как минимум 5 флагов и вы должны иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные (вы добавили % {num_idents}). Когда вы выполните эти требования, вернитесь сюда, и вы сможете подать заявку.
+  curator_application_inelligible_error2: |
+    Чтобы стать куратором сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, добавить как минимум 5 флагов и иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявление на куратора отправлено
   #Header
@@ -1432,6 +1438,9 @@ ru:
     Вы можете подать заявку на должность куратора только в том случае, если:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Вы добавляете идентификации и/или наблюдения в течение нескольких месяцев и намерены продолжать делать это.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Вы показали, что вы понимаете процесс курирования, добавив
+    несколько флагов.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -2037,6 +2046,7 @@ ru:
   frequency: Частота наблюдения
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
+  from_flickr_etc: Из Flickr и т. п.
   from_list: Из списка
   from_photos: Из фотографий
   from_place: Из места
@@ -5613,6 +5623,9 @@ ru:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
+  we_also_support2: |
+    Мы также поддерживаем импорт фото из <a href="http://flickr.com">Flickr</a>
+    и <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."

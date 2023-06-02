@@ -987,7 +987,7 @@ tr:
   committing_this_swap_may_result: İşleme yapmak istenmeyen anlaşmazlıklara yol açabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
   common_name: Yaygın Ad
   community: Topluluk
-  community_curated: Topluluk Düzenlendi
+  community_curated: Topluluğun Oluşturduğu
   community_guidelines: Topluluk İlkeleri
   community_id_heading: Topluluk Sınıfı
   community_id_at_species_or_lower?: Topluluk Sınıfı, tür düzeyinde ya da altında mı?
@@ -1256,6 +1256,12 @@ tr:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Uygun davranışlar sergilemekte başarısız olmak.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Site küratörü olmak için 60 gün ya da daha uzun süredir bir hesabın olmalı, en az 5 işaret eklemiş olmalı ve kendininki de dahil olmak üzere herhangi birinin gözlemlerine 100 geliştirici tanımlama eklemiş olmalısın (%{num_idents} tane ekledin). Bu şartları yerine getirdiğinde buraya dön ve başvurunu gönder.
+  curator_application_inelligible_error2: |
+    Site küratörü olmak için 60 gün ya da daha uzun süredir bir hesabın olmalı, en az 5 işaret eklemeli ve kendininki de dahil olmak üzere herhangi birinin gözlemlerine 100 geliştirici tanımlama eklemelisin.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Küratörlük başvurusu gönderildi
   #Header
@@ -1314,6 +1320,8 @@ tr:
     Küratörlüğe Sadece Şu Şartlarda Başvurmalısın:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     En az birkaç aydır tanımlama ve/veya gözlem ekliyorsan ve eklemeye devam edeceksen.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Birkaç işaret ekleyerek kürasyon sürecini anladığını gösterdin.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1911,6 +1919,7 @@ tr:
   frequency: Sıklık
   from_a_place: bir konumdan
   from_eol_collection: EOL koleksiyonundan
+  from_flickr_etc: Flickr'dan vb.
   from_list: Listeden
   from_photos: Fotoğraflardan
   from_place: Konumdan
@@ -2823,7 +2832,7 @@ tr:
   new_check_list: Yeni kontrol listesi
   new_check_list_for: "%{place} için yeni bir kontrol listesi oluştur &raquo;"
   new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsan, onu oluştur, sınıfları ekle ve ardından düzenle; burada kapsamlı olarak işaretleme seçeneğin olacaktır."
-  new_comment_on_a_parent_by_user_link: '%{user_link} tarafından %{parent} için yeni yorum'
+  new_comment_on_a_parent_by_user_link: '%{user_link} tarafından %{parent} hakkında yeni yorum'
   new_conservation_status: Yeni Koruma Durumu
   new_flag_for: Şunun için Yeni İşaret
   new_guide: Yeni Rehber
@@ -3384,16 +3393,16 @@ tr:
   place_deleted: Konum silindi.
   place_geo:
     geo_planet_place_types:
-      Aggregate: Toplu
-      aggregate: toplu
+      Aggregate: Küme
+      aggregate: küme
       Airport: Havalimanı
       airport: havalimanı
-      Building: Yapı
-      building: yapı
+      Building: Bina
+      building: bina
       Canton: Kanton
       canton: kanton
-      City Building: Kent Yapısı
-      city building: kent yapısı
+      City Building: Şehir Binası
+      city building: şehir binası
       Colloquial: Günlük dilde
       colloquial: günlük dilde
       Commune: Komün
@@ -3407,9 +3416,9 @@ tr:
       County: İlçe
       county: ilçe
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
-      Delegation: Delegasyon
+      Delegation: Mutamediye
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
-      delegation: delegasyon
+      delegation: mutamediye
       #Added by mistake with some GADM place types, but subsequently used
       #by some of our users. Assume it's a type of place contained within
       #a "department"
@@ -3422,12 +3431,12 @@ tr:
       district: semt
       Division: Bölme
       division: bölme
-      Drainage: Drenaj
-      drainage: drenaj
+      Drainage: Su Sistemi
+      drainage: su sistemi
       Estate: Emlak
       estate: emlak
-      Governorate: Valilik
-      governorate: valilik
+      Governorate: Yönetim Bölgesi
+      governorate: yönetim bölgesi
       Historical_County: Tarihsel Şehir
       historical_county: tarihsel şehir
       Historical_State: Tarihsel Devlet
@@ -3438,14 +3447,14 @@ tr:
       intersection: kesişme noktası
       Island: Ada
       island: ada
-      Land_Feature: Arazi Özelliği
-      land_feature: arazi özelliği
+      Land_Feature: Arazi Alanı
+      land_feature: arazi alanı
       Local_Administrative_Area: Yerel Yönetim Alanı
       local_administrative_area: yerel yönetim alanı
       Local_Authority: Yerel Yönetim
       local_authority: yerel yönetim
-      Miscellaneous: Çeşitli
-      miscellaneous: çeşitli
+      Miscellaneous: Diğer
+      miscellaneous: diğer
       Municipality: Belediye
       municipality: belediye
       Nationality: Uyruk
@@ -3464,16 +3473,16 @@ tr:
       poblacion: poblacion
       Prefecture: Prefektörlük
       prefecture: prefektörlük
-      Prefecture_City: İl Düzeyindeki Kent
-      prefecture_city: il düzeyindeki kent
+      Prefecture_City: İl Düzeyi Şehir
+      prefecture_city: il düzeyi şehir
       Point_of_Interest: İlgi Çekici Nokta
       point_of_interest: ilgi çekici nokta
       Postal_Code: Posta Kodu
       postal_code: posta kodu
-      Province: İl/Eyalet
-      province: il/eyalet
-      Regency: Regency
-      regency: regency
+      Province: İl
+      province: il
+      Regency: Naiplik
+      regency: naiplik
       Region: Bölge
       region: bölge
       Republic: Cumhuriyet
@@ -3488,7 +3497,7 @@ tr:
       street: sokak
       Street_Segment: Sokak Bölümü
       street_segment: sokak bölümü
-      Subdivision: Alt bölüm
+      Subdivision: Alt Bölüm
       subdivision: alt bölüm
       Suburb: Banliyö
       suburb: banliyö
@@ -4729,7 +4738,7 @@ tr:
   taxon_name: Sınıf ismi
   taxon_name_must_match_an_existing_taxon_in_our_database: Sınıf ismi veri tabanımızdaki mevcut bir sınıf ile eşleşmelidir
   taxon_observed_by_html: |
-    <a href="%{url}">%{taxon}</a> sınıfını gözlemleyen:
+    <a href="%{url}">%{taxon}</a>, gözlemleyen:
   taxon_observed_by_user: "%{user} tarafından gözlemlenen %{taxon}"
   taxon_photos_updated: Sınıf fotoğrafları güncellendi!
   taxon_range: Sınıf yayılımı
@@ -5390,6 +5399,8 @@ tr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
+  we_also_support2: |
+    Ayrıca <a href="http://flickr.com">Flickr</a> ve <a href="http://photos.google.com">Google Fotoğraflar</a>'dan fotoğraf içe aktarmayı da destekliyoruz.
   we_can_only_understand_csv_in: CSV'yi yalnızca aşağıdaki formatta anlayabiliriz
   we_couldnt_find_a_user: Bu e-posta adresine sahip bir kullanıcı bulamadık.
   we_couldnt_find_a_user_with_that_activation_code: "Bu etkinleştirme koduna sahip bir kullanıcı bulamadık. Hesabını zaten etkinleştirmiş olabilirsin, lütfen giriş yapmayı dene."
