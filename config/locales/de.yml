@@ -190,14 +190,13 @@ de:
   about_trusting_projects: Über vertrauenswürdige Projekte
   about_trusting_projects_options_any: Alle deine Beobachtungen in diesem Projekt
   about_trusting_projects_options_any_desc: |-
-    Dies beinhaltet Beobachtungen, bei denen du die Geo-Privatsphäre "verdeckt"
-    oder "privat" gewählt hast, d.h. Beobachtungen aus deinem Hinterhof oder Orte, über die andere Leute nichts wissen sollen.
+    Dies beinhaltet auch Beobachtungen, bei denen du selbst die Geo-Privatsphäre "verdeckt"
+    oder "privat" gewählt hast (z.B. Beobachtungen von deinem Wohnort oder andere Orte, die nicht exakt lokalisiert werden sollen)
   about_trusting_projects_options_taxon: |-
-    Nur deine Beobachtungen in diesem Projekt, die verdeckte Koordinaten
-    wegen bedrohter Taxa enthalten
+    Nur deine Beobachtungen von Taxa/Arten in diesem Projekt, die aufgrund ihres Gefährdungsstatus automatisch verschleiert sind
   about_trusting_projects_options_taxon_desc: |-
-    Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten, da die
-    Beobachtung ein bedrohtes Taxon darstellt.
+    Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten von Arten, die
+    aufgrund ihrer Gefährdung vom System automatisch verschleiert werden
   about_trusting_projects_overview: |-
     Wenn du Zugriff auf deine versteckten Koordinaten gewährst, können die Manager dieses
     Projekts die unverschleierte Position deiner Beobachtungen in diesem
@@ -209,10 +208,10 @@ de:
   about_trusting_projects_project_managers_are: |-
     Projektmanager, die Zugriff auf deine versteckten Koordinaten haben:
   about_trusting_projects_warning: |-
-    Beachte, dass Projektmanager die Projekteinstellungen ändern können und beliebige deiner Beobachtungen einschließen können, und sie können jederzeit andere Projektmanager hinzufügen oder entfernen. Du wirst über diese Änderungen benachrichtig, aber du vertraust grundsätzlich diesem Projekt deine privaten Koordinaten an, also sei vorsichtig.
+    Beachte, dass Projektmanager die Projekteinstellungen ändern können und beliebige deiner Beobachtungen einschließen können, und sie können jederzeit andere Projektmanager hinzufügen oder entfernen. Du wirst aber über diese Änderungen benachrichtigt, und bei jeder Änderung werden deine geschützten Koordinaten für 1 Woche wieder verborgen.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-    Du kannst auswählen, die verdeckten Koordinaten zu teilen mit
+    Du kannst auswählen, von welchen Beobachtungen die verdeckten Koordinaten geteilt werden:
   #Header for a section describing unintended disagreements
   about_unintended_disagreements: Über unbeabsichtigte ID-Widersprüche
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
@@ -1231,6 +1230,12 @@ de:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     selber kein angemessenes Verhalten zeigt.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Um sich als Kurator bewerben zu können, musst du seit mindestens 60 Tage lang ein iNat-Konto besitzen, 5 Meldungen ('Flags') abgegeben und 100 verbessernde Identifikationen zu Beobachtungen hinzugefügt haben, einschließlich deiner eigenen (du hast derzeit %{num_idents} hinzugefügt). Wenn du diese Anforderungen erfüllt hast, kannst du die Bewerbung einreichen.
+  curator_application_inelligible_error2: |
+    Um sich als Kurator bewerben zu können, musst du seit mindestens 60 Tagen ein Konto haben, 5 Meldungen ('Flags') abgegeben und 100 verbessernde Identifikationen zu Beobachtungen hinzugefügt haben, einschließlich deiner eigenen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kurator-Beantragung eingereicht
   #Header
@@ -1289,6 +1294,9 @@ de:
     Du solltest dich nur als Kurator bewerben, wenn:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     du bereits seit einigen Monaten Identifikationen und/oder Beobachtungen hinzugefügt hast und es beabsichtigst, das auch weiterhin zu tun.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Du hast gezeigt, dass du den Kuratierungsprozess verstehst, indem du ein paar
+    Meldungen abgegeben hast.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -2528,7 +2536,7 @@ de:
   mark_as_reviewed: Als "begutachtet" markieren
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
   mark_as_reviewed_desc: |
-    Wenn du eine Beobachtung als 'überprüft' markierst, wirst du sie nicht mehr 
+    Wenn du eine Beobachtung als 'begutachtet' markierst, wirst du sie nicht mehr 
     standardmäßig im ID-Modul sehen. Für andere Personen wird sie aber weiterhin sichtbar sein.
   mark_all_as_reviewed: Alle als "begutachtet" markieren
   mark_all_as_unreviewed: Alle als "nicht begutachtet" markieren
@@ -3854,8 +3862,8 @@ de:
   project_coordinate_access_disabled_until_datetime: |
     Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_coordinate_access_warning: |
-    Zugang zu den Koordinaten ist wichtig für Wissenschaftler, kann aber auch zu Missbrauch
-    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du allen Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust.
+    Zugang zu den Koordinaten ist wichtig für Forschung und Naturschutz, kann aber auch zu Missbrauch
+    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du den Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust. Du kannst deine Einstellungen auch jederzeit ändern
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -5080,7 +5088,7 @@ de:
   trusted: Vertrauenswürdig
   trusted_project?: Vertrauenswürdiges Projekt?
   trust_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten an
-  trust_this_project_with_your_private_coordinates?: Diesem Projekt versteckte Koordinaten anvertrauen?
+  trust_this_project_with_your_private_coordinates?: Diesem Projekt Beobachtungen mit verdeckten Koordinaten anvertrauen?
   trust_with_private_coordinates: Verborgene Koordinaten anvertrauen
   try_adding_species_form: Versuche einige Arten über das Formular auf dieser Seite hinzuzufügen.
   twitter: Twitter
@@ -5524,8 +5532,7 @@ de:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Ja, aber nur für meine Beobachtungen von bedrohten Taxa, nicht solche bei denen ich selber die
-    Geo-Privatsphäre gesetzt habe
+    Ja, aber nur für automatisch vom System geschützte (=gefährdete) Taxa, nicht solche Beobachtungen, die ich manuell verborgen habe
   yes_find_them!: "Ja, findet sie!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
@@ -6131,12 +6138,12 @@ de:
         positioning_device: Beim bestimmen der Koordinaten benutze Gerät
       identify:
         review_all_tooltip: "Alle Beobachtungen auf der Seite als \"begutachtet\" markieren"
-        you_reviewed_message: "Du hast %{reviewed} von %{pageTotal} Beobachtungen auf dieser Seite von insgesamt %{total} passenden Beobachtungen überprüft."
+        you_reviewed_message: "Du hast %{reviewed} von %{pageTotal} Beobachtungen auf dieser Seite von insgesamt %{total} passenden Beobachtungen begutachtet."
         unreview_all_tooltip: "\"Begutachtet\"-Status für alle Beobachtungen auf der Seite entfernen"
         too_many_results_desc: |
           Seitennummer multipliziert mit der Anzahl an Ergebnissen pro Seite darf nicht mehr als 10.000 überschreiten.
           Versuche Filter anzuwenden, um die Anzahl der Ergebnisse zu reduzieren oder markiere
-          Beobachtungen als überprüft und verwende die Schaltfläche "Mehr ansehen" anstelle von
+          Beobachtungen als 'begutachtet' und verwende die Schaltfläche "Mehr ansehen" anstelle von
           Seitenzahlen
       import:
         coordinate_systems_help: |
@@ -6529,9 +6536,8 @@ de:
         trust_allow_members_to_trust: |-
           Mitgliedern erlauben, diesem Projekt mit versteckten Koordinaten zu vertrauen
         trust_help_desc: |-
-          Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
-          erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
-          den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
+          Wenn du Zugriff auf die genauen Koordinaten verdeckter Beobachtungen haben möchtest,
+          können Benutzer, die diesem Projekt beigetreten sind, den Projektadministratoren Einsicht in diese Beobachtungen gewähren. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen in diesem Projekt erlauben, oder nur für die Beobachtungen, die aufgrund einer Gefährdungskategorie verschleiert werden.
         trust_help_notification2: |-
           Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
           neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
