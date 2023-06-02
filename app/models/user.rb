@@ -393,7 +393,7 @@ class User < ApplicationRecord
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
-  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-07-01" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-09-01" )
 
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
@@ -406,10 +406,10 @@ class User < ApplicationRecord
 
     # Temporary state to allow existing users to sign in. Probably redundant
     # with the next grandparent exception
-    return true if confirmation_sent_at.blank?
+    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
 
     # Temporary state to allow existing users to sign in
-    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
 
     super
   end
