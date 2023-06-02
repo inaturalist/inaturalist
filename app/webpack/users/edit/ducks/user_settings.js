@@ -140,7 +140,7 @@ export function saveUserSettings( ) {
     delete params.user.monthly_supporter;
     delete params.user.muted_user_ids;
     delete params.user.orcid;
-    delete params.user.taxon_name_preferences;
+    delete params.user.taxon_name_priorities;
     delete params.user.privileges;
     delete params.user.roles;
     delete params.user.saved_status;

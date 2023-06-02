@@ -66,13 +66,20 @@ class SplitTaxon extends React.Component {
           name: taxon.name
         } );
       }
+      if ( !_.isEmpty( taxon.preferred_common_names ) ) {
+        const commonNames = _.map( taxon.preferred_common_names, preferredCommonName => (
+          _.trim( iNatModels.Taxon.titleCaseName( preferredCommonName.name ) ) ) );
+        if ( user && user.prefers_scientific_name_first ) {
+          return `${title} (${commonNames.join( ", " )})`;
+        }
+        return `${commonNames.join( "," )} (${_.trim( title )})`;
+      }
       if ( taxon.preferred_common_name ) {
         const comName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
         if ( user && user.prefers_scientific_name_first ) {
-          title = `${title} (${_.trim( comName )})`;
-        } else {
-          title = `${comName} (${_.trim( title )})`;
+          return `${title} (${_.trim( comName )})`;
         }
+        return `${comName} (${_.trim( title )})`;
       }
     }
     return title;

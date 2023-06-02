@@ -485,8 +485,11 @@ select.dropdown {
   }
 }
 
-.TaxonNamePreferences {
-  .TaxonNamePreference {
+.TaxonNamePriorities {
+  .alert {
+    margin: 0px 0px 5px;
+  }
+  .TaxonNamePriority {
     min-height: 30px;
     &.dragging {
       opacity: 0.3;

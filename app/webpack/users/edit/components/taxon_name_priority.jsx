@@ -8,7 +8,7 @@ import { DragSource, DropTarget } from "react-dnd";
 
 const sourceSpec = {
   beginDrag: props => ( {
-    taxonNamePreference: props.taxonNamePreference,
+    taxonNamePriority: props.taxonNamePriority,
     index: props.index
   } ),
   endDrag( props, monitor ) {
@@ -49,39 +49,38 @@ const targetCollect = connect => ( {
   connectDropTarget: connect.dropTarget( )
 } );
 
-class TaxonNamePreference extends React.Component {
+class TaxonNamePriority extends React.Component {
   render( ) {
     const {
-      taxonNamePreference,
-      deleteTaxonNamePreference,
+      taxonNamePriority,
+      deleteTaxonNamePriority,
       connectDragSource,
       connectDropTarget,
       isDragging
     } = this.props;
-    let className = "TaxonNamePreference";
+    let className = "TaxonNamePriority";
     if ( isDragging ) {
       className += " dragging";
     }
     let lexicon;
-    if ( taxonNamePreference.lexicon ) {
-      lexicon = TAXON_NAME_LEXICONS[taxonNamePreference.lexicon]
-        ? TAXON_NAME_LEXICONS[taxonNamePreference.lexicon]
-        : taxonNamePreference.lexicon;
+    if ( taxonNamePriority.lexicon ) {
+      lexicon = TAXON_NAME_LEXICONS[taxonNamePriority.lexicon]
+        ? TAXON_NAME_LEXICONS[taxonNamePriority.lexicon]
+        : taxonNamePriority.lexicon;
     } else {
       lexicon = "Same as locale";
     }
     return connectDragSource( connectDropTarget(
       <div className={className}>
-        <span className="index">{taxonNamePreference.position}</span>
         <span className="lexicon">{ lexicon }</span>
-        { taxonNamePreference.place_id && (
+        { taxonNamePriority.place && (
           <span className="place">
-            { taxonNamePreference.place_id }
+            { taxonNamePriority.place.display_name }
           </span>
         ) }
         <button
           type="button"
-          onClick={( ) => deleteTaxonNamePreference( taxonNamePreference.id )}
+          onClick={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
         >
           Delete
         </button>
@@ -90,15 +89,15 @@ class TaxonNamePreference extends React.Component {
   }
 }
 
-TaxonNamePreference.propTypes = {
+TaxonNamePriority.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
-  taxonNamePreference: PropTypes.object,
-  deleteTaxonNamePreference: PropTypes.func,
+  taxonNamePriority: PropTypes.object,
+  deleteTaxonNamePriority: PropTypes.func,
   isDragging: PropTypes.bool
 };
 
 export default _.flow(
-  DragSource( "TaxonNamePreference", sourceSpec, sourceCollect ),
-  DropTarget( "TaxonNamePreference", targetSpec, targetCollect )
-)( TaxonNamePreference );
+  DragSource( "TaxonNamePriority", sourceSpec, sourceCollect ),
+  DropTarget( "TaxonNamePriority", targetSpec, targetCollect )
+)( TaxonNamePriority );

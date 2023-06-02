@@ -457,7 +457,7 @@ TaxonLink.blueprint do
   site_title { Faker::Lorem.sentence }
 end
 
-TaxonNamePreference.blueprint do
+TaxonNamePriority.blueprint do
   user { User.make! }
 end
 
