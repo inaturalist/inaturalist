@@ -69,7 +69,7 @@ class AnnouncementsController < ApplicationController
     end
     @announcement.save!
     respond_to do |format|
-      format.any { head :ok }
+      format.any { head :no_content }
       format.html { redirect_back_or_default( dashboard_path ) }
     end
   end
