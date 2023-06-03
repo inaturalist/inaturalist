@@ -259,6 +259,7 @@ class TaxonName < ApplicationRecord
     json = {
       name: name.blank? ? nil : name,
       locale: locale_for_lexicon,
+      lexicon: parameterized_lexicon,
       position: position,
       place_taxon_names: place_taxon_names.map( &:as_indexed_json )
     }
@@ -490,6 +491,14 @@ class TaxonName < ApplicationRecord
       find {| _loc, lexes | lexes.values.include?( translation.downcase.strip ) }
 
     { locale: match_loc, lexicons: match_lexes }
+  end
+
+  def self.all_lexicons
+    Rails.cache.fetch( "TaxonName::all_lexicons", expires_in: 1.hour ) do
+      Hash[TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do |l|
+        [l.parameterize, l]
+      end.sort].filter{ |k,v| !k.blank? }
+    end
   end
 
   private
