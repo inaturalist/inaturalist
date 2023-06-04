@@ -846,7 +846,7 @@ fr:
   cc_used_under_a: "Creative Commons, utilisé sous une"
   change_admin: Changer d’administrateur
   #Button to change the cover (or banner) image for a project
-  change_cover: Modifier la couverture
+  change_cover: Modifier la bannière
   change_descriptions:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
     merge: Plusieurs anciens taxons agrégés dans un nouveau taxon
@@ -898,7 +898,7 @@ fr:
   #disagreements are identifications that disagree with other identifications on the same observation
   changing_the_ancestry_to_that_parent: Changer la généalogie vers ce taxon de rang supérieur peut entraîner des désaccords involontaires. Veuillez d'abord les analyser, ce qui peut prendre un certain temps.
   changing_the_geoprivacy: 'En changeant la géoconfidentialité, vous changez la façon dont les gens voient l’emplacement de votre observation.'
-  check_above_for_errors: Vérifier ci-dessus les erreurs
+  check_above_for_errors: Veuillez corriger les erreurs ci-dessus.
   check_back_soon: Revenez voir dans quelques temps !
   check_here_to_autoload_description: "Cochez pour charger automatiquement la description à partir de Wikipédia.\nNe cochez pas si le nom scientifique de taxon est aussi un nom non\nscientifique ou un mot souvent mal écrit, comme « Parus »."
   check_here_to_autoload_photos: "Cochez ici pour charger automatiquement les photos à partir de Flickr. Ne\ncochez pas si le nom scientifique d’un taxon est aussi un nom non\nscientifique ou un mot souvent mal écrit, comme « Parus »."
@@ -1455,7 +1455,7 @@ fr:
   delete_all: Supprimer tout
   delete_conversation: Supprimer la conversation
   #Button to delete the cover (or banner) image for a project
-  delete_cover?: supprimer la couverture ?
+  delete_cover?: supprimer la bannière ?
   delete_icon?: Supprimer l’icône ?
   delete_photo: Supprimer la photo
   delete_project: Supprimer ce projet
@@ -1592,7 +1592,7 @@ fr:
   donate: Faire un don
   donate_again_caps: DONNEZ DE NOUVEAU
   donate_again_today_caps: DONNEZ DE NOUVEAU AUJOURD'HUI
-  done: Validé
+  done: Valider
   dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
   dont_use_double_quotes: N’utilisez pas de guillemets anglais ailleurs
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -1759,7 +1759,7 @@ fr:
   events_only: Événements uniquement
   everyone: tout le monde
   everyone_: Tout le monde
-  everyone_journal_posts: Notes de journal de tout le monde
+  everyone_journal_posts: Articles de journal de tout le monde
   everywhere: partout
   exact: Exacte
   exact_date: Date exacte
@@ -1838,7 +1838,7 @@ fr:
   find_a_post: Trouver une note
   find_a_place: Trouver un lieu
   find_guides: Trouver des guides
-  find_posts_for: "Trouver les notes pour : %{journal_name}"
+  find_posts_for: "Trouver les articles pour : %{journal_name}"
   find_new_place_to_explore: Trouver un nouveau lieu à explorer!
   find_observations: Trouver des observations
   find_photos: Trouver des photos
@@ -2265,8 +2265,8 @@ fr:
   joined_with_date: "Rejoint le : %{date}"
   journal: Journal
   journal_archives_for: Archives du journal de
-  journal_post: Note du journal
-  journal_post_deleted: Note de journal supprimée.
+  journal_post: Article du journal
+  journal_post_deleted: Article de journal supprimé.
   journal_posts: Articles du journal
   jpg_png_or_gif: "JPG, PNG ou GIF"
   jump_to_letter: Sauter à la lettre
@@ -2629,7 +2629,7 @@ fr:
   manage_your_relationships: Gérer vos relations
   manager: Gestionnaire
   managers: Gestionnaires
-  managers_can_do: Les gestionnaires peuvent faire tout ce que font les responsables de l’organisation, ainsi que modifier les paramètres du projet et écrire des notes de journal pour le projet.
+  managers_can_do: Les gestionnaires peuvent faire tout ce que font les responsables de l’organisation, ainsi que modifier les paramètres du projet et écrire des articles de journal pour le projet.
   managing_projects: Gestion des projets
   map: Carte
   map_legend: Légende de la Carte
@@ -2794,7 +2794,7 @@ fr:
   more_import_options: Plus options d’importation
   more_info: Plus d’informations
   more_info_title: Plus d’informations
-  more_journal_posts: D'avantage d'articles de journal
+  more_journal_posts: Plus d'articles de journal
   more_observations: D'avantage d’observations
   more_photos: Plus de photos
   more_than_a_week_ago: Il y a plus d’une semaine
@@ -3270,10 +3270,10 @@ fr:
     youve_got_updates_panel_body_p1: Tenez vous au courant des derniers développements sur les points suivants…
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Votre contenu :</strong> Activité sur vos observations, par exemple des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des notifications quand quelqu’un ajoute votre observation à un projet, ou l'annote avec des champs supplémentaires.</li>
-      <li><strong>Personnes :</strong> Nouvelles observations ou articles du journal des personnes que vous suivez.</li>
-      <li><strong>Organismes, projets et lieux :</strong> Nouvelles observations des organismes ou lieux particuliers auxquels vous êtes abonnés. Vous pouvez aussi rejoindre des projets quand vous voulez pour être tenu au courant quand ils publient des notes de journal du projet.</li>
-      <li><strong>Discussions auxquelles vous participez :</strong> Commentaire ou ajout d’identifications au contenu de quelqu’un d’autre vous abonne automatiquement à toute nouvelle activité sur ce contenu. Utilisez l’outil 'Gérer vos abonnements' pour arrêter de recevoir les notifications.</li>
+      <li><strong>Votre contenu :</strong> Activité sur vos observations, par exemple des commentaires, des identifications ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des notifications quand quelqu’un ajoute votre observation à un projet, ou l'annote avec des champs supplémentaires.</li>
+      <li><strong>Personnes :</strong> Nouvelles observations ou articles de journal des personnes que vous suivez.</li>
+      <li><strong>Organismes, projets et lieux :</strong> Nouvelles observations des organismes ou lieux particuliers auxquels vous êtes abonnés. Vous pouvez aussi rejoindre des projets pour être tenu au courant quand ils publient des articles de journal.</li>
+      <li><strong>Discussions auxquelles vous participez :</strong> Commenter ou ajouter une identification au contenu de quelqu’un d’autre vous abonne automatiquement à toute nouvelle activité sur ce contenu. Utilisez l’outil 'Gérer vos abonnements' pour arrêter de recevoir les notifications.</li>
       </ul>
   one_by_one: "Un par un"
   #Header for a list of project observation requirements
@@ -3302,7 +3302,7 @@ fr:
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet peut supprimer ce projet.
   only_view_nearby_suggestions: Voir uniquement les suggestions à proximité
   only_you: Seulement vous
-  open: Ouvert
+  open: ouvert
   open_: Ouverte
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
   open_street_map: OpenStreetMap
@@ -3914,9 +3914,9 @@ fr:
   popular: Populaire
   position: Emplacement
   #Post is a noun
-  post_from_journal_by_parent_html: Publié depuis <a href="%{url}">le journal par %{parent}</a>
+  post_from_journal_by_parent_html: Article du <a href="%{url}">journal par %{parent}</a>
   #Post is a noun
-  post_from_your_journal_html: Publié depuis <a href="%{url}">votre journal</a>
+  post_from_your_journal_html: Article de <a href="%{url}">votre journal</a>
   post_published: Note publiée!
   posted_by: Publié par
   #Shows the date a journal post was published
@@ -3971,7 +3971,7 @@ fr:
   project_coordinate_access_warning: |
     L'accès aux coordonnées est important pour les scientifiques, mais des braconniers peuvent en faire un mauvais usage aussi. Assurez-vous de faire confiance à tous les responsables du projet avant de faire confiance à ce projet
     .
-  project_cover: Couverture du projet
+  project_cover: Bannière du projet
   project_created_on: projet créé le %{date}
   project_curator_id: ID du responsable de l’organisation du projet
   project_curator_tools: Outils du chef de projet
@@ -5198,7 +5198,7 @@ fr:
   type_species_name: "Saisissez un nom d’espèce"
   type_taxon_name: "Saisissez un nom de taxon"
   uicn_red_list_status: "Situation selon la liste rouge de UICN :"
-  umbrella_projects: Projets cadres
+  umbrella_projects: Projets-cadres
   unable_to_save_comment: Malheureusement, nous n'avons pas pu enregistrer le commentaire.
   unblock: Débloquer
   unclassified: Non classifié
@@ -5716,7 +5716,7 @@ fr:
   you_arent_a_member_of_that_project: Vous n’êtes pas membre de ce projet.
   you_arent_following_that_person: "Vous ne suivez pas cette personne."
   you_can_accept_invitations: Vous pouvez accepter l’invitation ici
-  you_can_choose_observations_associated: Vous pouvez choisir les observations à associer avec cette note du journal.
+  you_can_choose_observations_associated: Vous pouvez choisir des observations à associer à cet article du journal.
   you_can_edit_this_default_check_list_because: |
     Par défaut vous pouvez modifier cette check-list parce que vous êtes un administrateur, mais il ne devrait pas être nécessaire de le faire.
   you_can_only_destroy_taxa_you_created2: |
@@ -5935,10 +5935,7 @@ fr:
         coordinates_desc: |
           En donnant vos coordonnées de guide, vous aiderez les gens à le trouver durant une recherche par lieu.
         eol_subjects_desc: |
-          L’EdlV publie son contenu selon un nombre différent d’entêtes de sujet,
-          tous n’étant pas disponibles pour chaque taxon. En choisissant « Vue d’ensemble »,
-          vous importerez simplement la première section texte accessible de l'EdlV, qui
-          contient en général un résumé, s’il est disponible.
+          L’EdlV publie son contenu sous différentes rubriques qui n'existent pas toutes pour chaque taxon. En choisissant « Vue d’ensemble », vous importerez simplement la première section texte accessible de l'EdlV, qui contient en général un résumé, si celui-ci existe.
         eol_collection_desc_html: |
           L’<a href="http://eol.org/" target="_blank">Encyclopédie de la Vie (EdlV)</a> 
           est un dépôt d’information sur la vie sur terre. Sur l’EdlV, vous pouvez créer des
@@ -6746,7 +6743,7 @@ fr:
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
       collection_and_umbrellas_do_not_support: |
-        Actuellement, les collections et les projets cadres ne prennent pas en charge l’accès aux coordonnées masquées.
+        Actuellement, les collections et les projets-cadres ne prennent pas en charge l’accès aux coordonnées masquées.
       curator_coordinate_access_desc_html: |
         Souvenez-vous, <strong>les responsables du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
@@ -6782,12 +6779,8 @@ fr:
         admins_must_be_existing_members: Les administrateurs doivent être des membres existants du projet.
         aggregation_pending: En attente d'aggrégation
         new_place_desc_html: |
-          Essayez de voir en utilisant 
-          <a href="%{places_url}" target="_blank">nos lieux</a>
-          et assurez-vous que vous obtenez le nom de l'endroit est correct. Si vous
-          ne pouvez vraiment pas trouver l'endroit que vous souhaitez, envisager
-          <a href="%{new_place_url}" target="_blank">la création d'un nouveau lieu</a>,
-          mais s'il vous plaît assurez-vous que vous n'êtes pas en train de dupliquer entrée qui existe déjà.
+          Parcourez <a href="%{places_url}" target="_blank">nos lieux</a> et vérifiez le nom de l'endroit. Si vous
+          ne trouvez vraiment pas l'endroit que vous souhaitez, vous pouvez envisager de <a href="%{new_place_url}" target="_blank">créer un nouveau lieu</a>, mais assurez-vous que vous ne dupliquez pas une entrée qui existe déjà.
         bioblitz_desc_html: |
           <p>
           Un bioblitz est une activité durant laquelle les participants tentent d’observer autant
@@ -6799,14 +6792,14 @@ fr:
         change_owner_alert: |
           Cela supprimera votre possibilité de supprimer ce projet ou d'en transférer la responsabilité à quelqu'un d'autre. Voulez-vous continuer ?
         cover_desc: "Image de bannière facultative qui apparaîtra en haut de votre page de projet. Elle doit faire 950px de large et moins de 400px de haut."
-        custom_project_fields_means: "Personnalisez la bannière du projet, ajoutez du contenu au site et modifiez le CSS."
+        custom_project_fields_means: "Personnalisez la bannière du projet, ajoutez du contenu à droite et modifiez le CSS."
         end_time_desc: "Date de fin du bioblitz. Doit être moins d’un an après la date de début"
         event_url_desc: |
           URL du service d’inscriptions que vous utilisez pour votre bioblitz.
           Si c’est une adresse URL d’Eventbrite qui inclut un ID numérique, nous
           inclurons un widget d’inscription sur votre page de projet jusqu’au début de
           votre bioblitz.
-        icon_desc: "Sera retaillé en un carré"
+        icon_desc: "Sera rognée en carré"
         it_looks_like_this_project_can_be_converted: |
           On dirait que ce projet peut être converti en un nouveau <a href="%{url}">project Collection</a>.
         last_aggregated_at_desc: |
@@ -6910,34 +6903,33 @@ fr:
         a_project_allows_you_to_gather: |
           Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche natifs d'iNaturalist. Tout ce qui correspond aux paramètres définis par le projet sera automatiquement inclus.
         an_umbrella_project_can_be_used_to: |
-          Un projet cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets dans un seul projet cadre. Les projets cadres ne peuvent pas contenir d’autres projets cadres.
+          Un projet-cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets dans un seul projet-cadre. Les projets-cadres ne peuvent pas contenir d’autres projets-cadres.
         are_you_ready_to_duplicate: |
-          Êtes-vous prêt à sortir de cette page pour dupliquer ce projet ? Veuillez noter que l’icône du projet
-          et sa bannière ne seront pas dupliqués, et devront être rechargés dans le projet
+          Êtes-vous prêt à quitter cette page pour dupliquer ce projet ? Veuillez noter que l’icône du projet
+          et sa bannière ne seront pas dupliqués, et devront être rechargées dans le projet
           dupliqué.
         are_you_sure_you_want_to_delete: Êtes-vous sûr de vouloir supprimer ce projet ?
-        can_be_included_in_multiple: Peut être inclus dans plusieurs projets chapeau
+        can_be_included_in_multiple: Peuvent être inclus dans plusieurs projets-cadres
         check_the_box_to_include_member_observations: |
           Cochez la case ci-dessous pour inclure uniquement les observations faites par les utilisateurs qui font partie de ce projet.
           Utilisez le filtre Exclure Utilisateurs ci-dessus pour exclure les observations d'utilisateurs spécifiques,
           y compris le responsable du projet et les administrateurs.
-        click_through_to_individual_projects: Cliquez parmi les projets individuels
-        collection_projects: Projets de collections
+        click_through_to_individual_projects: Cliquer pour accéder aux projets individuels
+        collection_projects: Projets de collection
         collection_project_features: "Fonctionalités des projets de collection"
         contain_entire_image_without_cropping: Contient une image entière sans troncature
-        custom_banner_icon_and_project_description: Entête personnalisée, icône, et description du projet
+        custom_banner_icon_and_project_description: Bannière personnalisée, icône et description du projet
         data_visualizations: Visualisations des données
         delete_project: Supprimer le projet
         display_project_name: Afficher le nom du projet
         do_you_need_features_from_traditional: |
-          Avez-vous besoin des fonctionnalités des projets traditionnels, comme accéder aux coordonnées réelles,
-          des champs d’observation personnalisés, ou ajouter des observations qui ne peuvent pas être filtrées automatiquement ?
+          Avez-vous besoin de fonctionnalités des projets traditionnels, comme l'accès aux coordonnées réelles, des champs d’observation personnalisés ou l'ajout d'observations qui ne peuvent pas être filtrées automatiquement ?
         duplicate_project: Dupliquer le projet
         include_annotated_observations: |
           Inclure uniquement les observations annotées avec un attribut particulier (par exemple le stade de développement),
           ou un attribut et une valeur (par exemple, stade de développement = adulte).
           La limite est d'un seul filtre d'annotation par projet.
-        leaderboards_among_individuals: Classements entre <strong>individus</strong>
+        leaderboards_among_individuals: Classements entre <strong>personnes</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Classements entre <strong>projets</strong>
         multiple_project_administrators: Administrateurs multiples du projet
@@ -6982,17 +6974,16 @@ fr:
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         trusting_members_will_be_notified: |
           Vous avez changé les critères du projet. Ceci va notifier tous les membres qui ont donné au projet l'accès aux coordonnées masquées de leurs observations pour qu'ils puissent décider s'ils veulent continuer à faire confiance au projet après ce changement.
-        umbrella_project_features: "Fonctionnalités du projet cadre:"
+        umbrella_project_features: "Fonctionnalités des projets-cadres :"
         unique_url_for_outreach: URL unique pour diffusion
         use_this_for_a_time_limited_event: |
           Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.
         users_can_follow_your_project: Les utilisateurs peuvent suivre les progrès de votre projet via les articles du journal
         use_this_link_to_create_html: |
-          Utilisez à la place,  <a href="%{url}">ce lien</a> pour créer un projet traditionnel.
-        visual_comparison_of_data_among: Comparaison visuelle des données parmi les projets inclus dans le projet cadre
+          Créez plutôt un projet traditionnel en utilisant <a href="%{url}">ce lien</a>.
+        visual_comparison_of_data_among: Comparaison visuelle des données entre les projets inclus dans le projet-cadre
         we_have_redesigned_projects: |
-          Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types principaux :
-          Projets collections et Projets cadres, qui partagent les fonctionnalités suivantes :
+          Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types de projet, les projets de collections et les projets-cadres, qui partagent les fonctionnalités suivantes :
         welcome_to_projects: Bienvenue dans les projets !
         you_can_learn_more_html: |
           Vous pouvez en savoir plus sur la gestion des projets
@@ -7057,19 +7048,16 @@ fr:
           Cliquer ici pour convertir ce projet en un projet Collection.
         no_journal_blurb_html: |
           <p>
-          Votre journal de projet est un outil pour communiquer avec les
-          membres de votre projet. Vous pouver l'utiliser pour émettre des des
-          annonces, déterminer les priorités ou parler des découvertes de votre
-          projet.
+          Votre journal de projet est un outil pour communiquer avec les membres de votre projet. Vous pouver l'utiliser pour publier des annonces, fixer des priorités ou parler des découvertes de votre projet.
           </p>
           <p>
-          Pour débuter, <a href="%{url}" class="readmore">créez une note</a>
+          Pour commencer, <a href="%{url}" class="readmore">créez un article</a>
           </p>
         curated_checklist_desc: |
           Il s’agit de la check-list triée et du nombre de taxons des observations ajoutées manuellement à ce
           projet, et non de toutes les observations enregistrées dans ce lieu et au moment où l'évènement a eu lieu.
         make_sure_you_have_read_about_the_differences: |
-          Assurez-vous d'avoir lu les différences dans notre <a href="%{url}" target="_blank">billet de blog au sujet des Projets collection</a>.
+          Assurez-vous d'avoir lu les différences dans notre <a href="%{url}" target="_blank">billet de blog au sujet des projets de collection</a>.
         this_is_a_preview: |
           Ceci est un aperçu de la façon dont ce projet apparaîtra en tant que projet Collection.
         this_project_has_not_defined_requirements: |
@@ -7109,7 +7097,7 @@ fr:
         even_our_dedicated_search_mole_couldnt: Même notre taupe de recherche n’a rien pu trouver !
     stats:
       index:
-        active_desc: A créé une ID, une observation, un commentaire, ou un article de journal dans les 30 derniers jours
+        active_desc: A créé une ID, une observation, un commentaire ou un article de journal dans les 30 derniers jours
         android_desc_html: Créée avec l'<a href="%{url}">application Android iNaturalist</a>
         avg_ttcid: TTCID moyen
         avg_ttid: TTID moyen
@@ -7612,7 +7600,7 @@ fr:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Messages
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_journal_posts: Notes de journal du projet
+        notification_preferences_project_journal_posts: Articles de journal du projet
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Quand un projet ajoute vos observations
         #Checkbox label for user preference about what to receive in the daily
@@ -7669,8 +7657,8 @@ fr:
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
         this_only_applies_to_traditional_projects: |
-          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
-          D'avantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
+          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets-cadres, qui sont essentiellement des recherches sauvegardées.
+          Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
       recent:
         about_recent_users: À propos
         definitions_html: <dl> <dt>Sans doute du pourriel</dt> <dd> Utilisateur qui est sans doute un pollueur, ce qui veut dire qu’ils n’ont pas d’observations ou d’identifications, mais une description e profil. </dd> <dt>Pourriel automatique</dt> <dd> Pollueur qui a été marqué automatiquement comme tel par le système. </dd> <dt>Pourriel manuel</dt> <dd> Pollueur qui a été marqué comme tel par un responsable du site. </dd> <dt>Faux positifs</dt> <dd> Utilisateurs qui ont été marqués comme pollueurs mais les marquages ont été résolus par les responsables du site parce qu’ils ne sont pas vraiment des pollueurs. </dd> </dl>
@@ -8354,7 +8342,7 @@ fr:
               #basically saved searches so you don't have to add anything to
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
-                les projets de collecte et les projets cadres ne permettent pas l'ajout direct d'observations
+                l'ajout direct d'observations dans des projets de collection et des projets-cadres n'est pas possible
             user_id:
               must_be_curator: doit être un responsable de ce projet
             observation_id:
