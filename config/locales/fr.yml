@@ -1574,7 +1574,7 @@ fr:
   #Label for a button that dismisses an alert or popup
   dismiss: Ignorer
   display: Affichage
-  display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
+  display_link_to_checklist: Afficher le lien vers la liste du projet sur la page du projet
   display_monthly_supporter_badge: Afficher le badge Soutien mensuel sur le profil
   display_name: Nom affiché
   display_name_description: Ceci est le nom qui sera affiché sur votre profil et sur les mentions au droit d'auteur
@@ -2229,7 +2229,7 @@ fr:
   internal_server_error: Erreur interne du serveur
   internal_taxon_including_descendants: Taxon interne (incluant les descendants)
   internal_taxon_rank: Rang du taxon interne
-  introduced: Introduite
+  introduced: Introduit
   introduced_in_place: "Introduit dans %{place}"
   invitation: Invitation
   invite: inviter
@@ -2902,7 +2902,7 @@ fr:
   new_list: Nouvelle liste d'observations
   new_members: "Nouveaux membres…"
   new_message: Nouveau message
-  new_observation_field: Nouveau champ de l’observation
+  new_observation_field: Nouveau champ d’observation
   new_observations: Nouvelles observations
   new_observations_in_year: "Nouvelles observations en %{year}"
   new_observations_ellispsis: "Nouvelles observations…"
@@ -3147,7 +3147,7 @@ fr:
   observation_field_type_datetime: Date / Heure
   observation_field_type_taxon: Taxon
   observation_field_type_dna: ADN
-  observation_fields: Champs de l’observation
+  observation_fields: Champs des observations
   observation_fields_are_additional: Les champs de l’observation sont des champs de données supplémentaires qui peuvent être ajoutés aux observations.
   observation_fields_by_preferences_description: |
     Les champs de l’observation sont comme des étiquettes que, par défaut, n’importe qui peut ajouter à votre observation. Modifiez vos paramètres si vous voulez être la seule personne à pouvoir les remplir ou pour donner cette capacité uniquement aux personnes responsables de l’organisation du site.
@@ -3159,7 +3159,7 @@ fr:
   #Label for a field showing the date when the observation requirements for a
   #project were last updated
   observation_requirements_updated_at: Critères d'observation actualisés le
-  observation_rules: Règles d’observation
+  observation_rules: Règles au sujet des observations
   observation_rules_description: |
     Vous pouvez choisir les règles pour déterminer quelles observations peuvent
     être ajoutées au projet. Vous pouvez, par exemple, limiter les observations à
@@ -3185,7 +3185,7 @@ fr:
   observations_from_this_project: Observations de ce projet
   observations_in_this_project_must: Les observations dans ce projet doivent correspondre aux critères suivants
   observations_map: Observations/carte
-  observation_must_dotdotdot: L’observation doit…
+  observation_must_dotdotdot: L’organisme ou l'observation doit…
   observations_near_a_place_are: |
     Les observations « proches » d’un lieu se retrouvent à l’intérieur d’un rectangle autour des limites géographiques du lieu en question, ce qui peut donner lieu à des résultats inexacts pour les lieux qui ne sont pas en forme de rectangle. Il s’agit d’une limitation de notre base de données que nous sommes en train de résoudre.
   observations_needing_curation: Observations nécessitant une organisation
@@ -4692,7 +4692,7 @@ fr:
   subscriptions_arent_available_for: Les abonnements ne sont pas disponibles pour les lieux sans frontières.
   successfully_changed_your_password: Le mot de passe a bien été modifié.
   suggest_an_identification: Suggérer une identification
-  suggest_or_require_that: Suggérez ou demandez que les collaborateurs remplissent ces champs pour les observations que vous avez ajoutées à votre projet.
+  suggest_or_require_that: Demandez ou exigez que les contributeurs remplissent ces champs pour les observations qu'ils ajoutent à votre projet.
   suggestions: Suggestions
   suitable_for_the_global_biodiversity_information_facility: Convient au Système Mondial d'Information sur la Biodiversité (GBIF)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Convient à Wikipédia et aux autres projets de la Fondation Wikimédia
@@ -5723,7 +5723,7 @@ fr:
     Vous ne pouvez supprimer que les taxons que vous avez créés qui ne sont associés ni à des modifications
     de taxon, ni à des identifications, ni à aucun autre contenu.
   you_can_only_block_three_users: Vous ne pouvez bloquer que trois utilisateurs
-  you_can_show_the_boundary_of: Vous pouvez afficher les limites géographiques du lieu sur votre page de projet s’il en a une.
+  you_can_show_the_boundary_of: Vous pouvez afficher les limites géographiques du lieu sur votre page de projet.
   you_cant_compare_a_list_with_nothing: Vous ne pouvez pas comparer une liste avec rien!
   you_cant_delete_a_project_list: "Vous ne pouvez pas supprimer une liste de projet"
   you_cant_delete_observation_fields_that_people_are_using: "Vous ne pouvez pas supprimer des champs d’observation que les gens utilisent"
@@ -6836,25 +6836,21 @@ fr:
           </ol>
         project_list_desc_html: |
           <p class="description">
-          Vous pouvez créer une liste de projet personnalisée de taxons et la
-          lier à votre projet. Cela peut être utile pour restreindre les
-          observations ajoutées à votre projet à celles qui correspondent aux
-          taxons de votre liste via la règle « doit être un taxon de la liste
-          du projet ».
+          Vous pouvez créer une liste personnalisée de taxons et la lier à votre projet. Cela peut être utile pour restreindre les observations ajoutées à votre projet aux taxons de votre liste en utilisant la règle « doit être un taxon de la liste du projet ».
           </p>
         rules:
           captive: être en captivité/cultivé
-          coordinates_shareable_by_project_curators: coordonnées partageables par les responsables du projet
+          coordinates_shareable_by_project_curators: avoir des coordonnées consultables par les responsables du projet
           georeferenced: avoir des coordonnées
           has_a_photo: avoir une photo
           has_a_sound: avoir un son
           has_media: avoir des médias (photo ou son)
           identified: être identifié
-          in_taxon: être dans un taxon
-          observed_in_place: être observé dans le lieu
+          in_taxon: appartenir à un taxon précisé
+          observed_in_place: avoir été observé dans un lieu précisé
           on_list: être d’un taxon de la liste du projet
           verifiable: être vérifiable
-          wild: être sauvage/acclimaté
+          wild: être sauvage/naturalisé
         start_time_desc: "Date de début de votre bioblitz. Format: AAAA-MM-JJThh:mm:ss±hh:mm"
         submission_models:
           any: n’importe qui
