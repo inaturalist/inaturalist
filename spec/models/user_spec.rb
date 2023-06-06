@@ -170,8 +170,8 @@ describe User do
     end
 
     describe "email domain exists validation" do
-      before(:all) { enable_user_email_domain_exists_validation }
-      after(:all) { disable_user_email_domain_exists_validation }
+      before( :all ) { enable_user_email_domain_exists_validation }
+      after( :all ) { disable_user_email_domain_exists_validation }
 
       it "should allow email domains that exist" do
         [
@@ -192,9 +192,9 @@ describe User do
           "att.net",
           "cvcaroyals.org",
           "ymail.com"
-        ].each do |domain|
+        ].each do | domain |
           u = User.make!( email: "someone@#{domain}" )
-          expect( u ).to be_valid
+          expect( u ).to be_valid, "should allow email domain: #{domain}"
         end
       end
 
