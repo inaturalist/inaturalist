@@ -261,11 +261,13 @@ class Emailer < ActionMailer::Base
       track_total_hits: true
     )
     @identifications_count = ident_response.total_entries
+    @skip_donate = true
     mail_with_defaults( set_site_specific_opts.merge(
       to: user.email,
       subject: t(
         :email_confirmation_reminder_confirm_your_site_email_address_before_date,
         site_name: @site.name,
+        vow_or_con: @site.name[0].downcase,
         date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
       )
     ) )

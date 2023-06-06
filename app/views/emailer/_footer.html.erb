@@ -119,7 +119,9 @@
                           <table width="100%">
                             <tr>
                               <td align="right">
-                                <%= link_to t(:donate), donate_url( utm_content: "footer-button", utm_campaign: "default", utm_source: @site.domain, utm_medium: "email", utm_term: "donate" ), title: t(:donate), style: "width: auto; min-width: 50%; margin-bottom: 20px; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
+                                <%- unless @skip_donate -%>
+                                  <%= link_to t(:donate), donate_url( utm_content: "footer-button", utm_campaign: "default", utm_source: @site.domain, utm_medium: "email", utm_term: "donate" ), title: t(:donate), style: "width: auto; min-width: 50%; margin-bottom: 20px; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
+                                <%- end -%>
                                 <%= link_to t(:store_caps), "https://store.inaturalist.org", title: t(:store), style: "width: auto; min-width: 50%; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
                               </td>
                             </tr>
