@@ -14,6 +14,9 @@ require "optimist"
   opt :users, "Comma-separated list of user logins or IDs to mail for testing", type: :string
   opt :english, "Only email en-* locale users"
   opt :non_english, "Only email NOT en-* locale users"
+  opt :min_id, "Minimum user ID, mostly for testing and restarging a stopped process", type: :integer, default: 0
+  opt :max_id, "Maximum user ID, mostly for testing", type: :integer
+  opt :num_processes, "Number of subprocesses to use", type: :integer, short: "-p", default: 4
 end
 
 test_users = @opts.users.to_s.split( "," )
@@ -44,26 +47,59 @@ end
 @failed = 0
 @failures_by_user_id = {}
 
-scope.script_find_each do | recipient |
-  next if recipient.email.size.zero?
-  next if recipient.email_suppressed_in_group?(
-    [
-      EmailSuppression::BLOCKS,
-      EmailSuppression::BOUNCES,
-      EmailSuppression::INVALID_EMAILS
-    ]
-  )
-  next if @opts.users.blank? && recipient.confirmed?
+num_processes = @opts.num_processes
+min_id = @opts.min_id
+max_id = @opts.max_id || scope.calculate( :maximum, :id ).to_i
+offset = max_id / num_processes
+debug = @opts.debug
+dry = @opts.dry
+custom_users_requested = @opts.users.blank?
 
-  puts "[DEBUG] Emailing recipient: #{recipient}" if @opts.debug
+if @opts.debug
+  puts "Starting #{num_processes} processes, min_id: #{min_id}, max_id: #{max_id}, offset: #{offset}"
+end
 
-  begin
-    Emailer.email_confirmation_reminder( recipient ).deliver_now unless @opts.dry
-    @emailed += 1
-  rescue => e
-    @failed += 1
-    @failures_by_user_id[recipient.id] = e
+results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | process_index |
+  start = offset * process_index
+  limit = process_index == ( num_processes - 1 ) ? max_id : start + offset - 1
+  scope = scope.where( "users.id BETWEEN ? AND ? AND users.id > ?", start, limit, min_id )
+  process_emailed = 0
+  process_failed = 0
+  process_failures_by_user_id = {}
+  if debug
+    puts "Query: #{scope.to_sql}"
   end
+  scope.script_find_each( label: "[Proc #{process_index}]" ) do | recipient |
+    next if recipient.email.size.zero?
+    next if recipient.email_suppressed_in_group?(
+      [
+        EmailSuppression::BLOCKS,
+        EmailSuppression::BOUNCES,
+        EmailSuppression::INVALID_EMAILS
+      ]
+    )
+    next if !custom_users_requested && recipient.confirmed?
+
+    puts "[DEBUG] Emailing recipient: #{recipient}" if debug
+
+    begin
+      Emailer.email_confirmation_reminder( recipient ).deliver_now unless dry
+      process_emailed += 1
+    rescue StandardError => e
+      if debug
+        puts "Caught error: #{e}"
+      end
+      process_failed += 1
+      process_failures_by_user_id[recipient.id] = e
+    end
+  end
+  { emailed: process_emailed, failed: process_failed, failures_by_user_id: process_failures_by_user_id }
+end
+
+results.each do | result |
+  @emailed += result[:emailed]
+  @failed += result[:failed]
+  @failures_by_user_id = @failures_by_user_id.merge( result[:failures_by_user_id] )
 end
 
 puts

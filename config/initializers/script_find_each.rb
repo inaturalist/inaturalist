@@ -18,8 +18,9 @@ module ActiveRecord
             avg * ( total - current )
           ).seconds.from_now )
         end
+        identifier = "#{options[:label]} #{record.class.name} #{record.id}".strip
         pieces = [
-          "#{record.class.name} #{record.id}".ljust( max_count_width + record.class.name.size + 5 ),
+          identifier.ljust( identifier.size + 5 ),
           "#{current.to_s.rjust( max_count_width )} / #{total}",
           "#{( current.to_f / total * 100 ).round( 2 )}%",
           "Avg: #{"#{avg.to_f.round( 4 )}s".ljust( 10 )}",
