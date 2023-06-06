@@ -1920,6 +1920,32 @@ en:
     date anyone who has not confirmed their email address will be unable to
     sign in unless they reset their password. To confirm your email address,
     go to your %{link_start_tag}account settings%{link_end_tag}.
+  # Subject of an email prompting people to confirm their email address before
+  # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date:
+    Confirm your %{site_name} email address before %{date}
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Please confirm your email address today to ensure that you can continue to
+    access your account. %{site_name} and the mobile apps
+    iNaturalist and Seek by iNaturalist connect people to nature and each
+    other by sharing observations of biodiversity. Thank you for being a part
+    of the iNaturalist community!
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    We will require verified email addresses for all accounts starting on
+    %{requirement_date}. Please take a moment to confirm it now.
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation.
+  email_confirmation_reminder_any_questions: |
+    If you have any questions, please refer to the FAQs. Thank you for taking
+    the time to connect with nature and with %{site_name}.
+  # Header in email prompting people to confirm their email address before we
+  # start requiring confirmation. This preceeds some details about the
+  # recipient's account.
+  email_confirmation_reminder_account_details: Account Details
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
   embed: 'Embed'
@@ -8706,17 +8732,17 @@ en:
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
+      long: '%B %-d, %Y'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
+      short: '%b %-d'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
+      short_with_year: '%b %-d, %Y'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%B %d, %Y'
+      month_day_year: '%B %-d, %Y'
     month_names:
       -
       - January
@@ -8861,17 +8887,17 @@ en:
     am: am
     formats:
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%b. %d, %Y %H:%M:%S %z'
+      default: '%b. %-d, %Y %H:%M:%S %z'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y %I:%M %p'
+      long: '%B %-d, %Y %I:%M %p'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
+      short: '%-d %b %H:%M'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%B %d, %Y"
+      day_month_year: "%B %-d, %Y"
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
