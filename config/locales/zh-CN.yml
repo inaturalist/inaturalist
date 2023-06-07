@@ -5823,7 +5823,7 @@ zh-CN:
       6: 五
       7: 六
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
     month_names:
       - 
@@ -5912,7 +5912,7 @@ zh-CN:
   time:
     am: 上午
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%I:%M %p"
     pm: 下午
   activerecord:
