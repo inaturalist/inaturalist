@@ -35,10 +35,11 @@ jobs:
         # Note that these letter prefix patterns must match existing files or
         # Github will error out of the build
         spec_pattern:
-          - spec/models/{a,b,c,d,e,f,g,i,l}*_spec.rb
-          - spec/models/{m,o}*_spec.rb
+          - spec/models/{a,b,c,d,e,f,g}*_spec.rb
+          - spec/models/{i,l,m}*_spec.rb
+          - spec/models/{o}*_spec.rb
           - spec/models/{p,q,s}*_spec.rb
-          - spec/models/{t,u,w}*_spec.rb
+          - spec/models/{t,u,w,y}*_spec.rb
           - spec/controllers/{a,c,e,f,g,i,l,m,o}*_spec.rb
           - spec/controllers/{p,q,r,s,t,u,v,w}*_spec.rb
           - spec/helpers spec/initializers spec/lib spec/views spec/features
