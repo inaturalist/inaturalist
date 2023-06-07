@@ -877,8 +877,8 @@ class User < ApplicationRecord
   def self.suggest_login(requested_login)
     base_login = sanitize_login( requested_login.to_s ).presence || DEFAULT_LOGIN
 
-    # Random-number suffixes shouldn't be more than half the total character count available for a login.
-    max_random_suffix = 10 ** ( MAX_LOGIN_SIZE / 2 ).to_i
+    # Biggest random number to append to the login to make it unique
+    max_random_suffix = 100_000
     random_suffixes = Enumerator.produce { rand( max_random_suffix ) }
     numeric_suffixes =  ( 1..9 ).
       chain( random_suffixes.take( 20 ) ).
