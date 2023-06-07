@@ -1743,6 +1743,25 @@ da:
     Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
     dato vil brugere med ubekræftede e-mailadresser være ude af stand til at
     logge ind, medmindre de nulstiller deres adgangskode. Gå til %{link_start_tag}kontoindstillingerne%{link_end_tag} for at bekræfte din e-mailadresse.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekræft din %{site_name} e-mailadresse før %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Bekræft din e-mailadresse i dag for at sikre fortsat adgang til din konto. %{site_name} og mobil-appsne
+    iNaturalist og Seek by iNaturalist forbinder folk med naturen og hinanden ved at dele biodiversitetsobservationer. Tak for din deltagelse i iNaturalist-fællesskabet!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Fra og med %{requirement_date} kræver vi bekræftede e-mailadresser for alle konti. Brug et øjeblik på at bekræfte den nu.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions: |
+    Ved evt. spørgsmål henvises til FAQ. Tak fordi du tager dig
+    tiden til at forbinde med naturen og med %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Kontooplysninger
   email_copyright: "Ophavsret &copy; %{x}, alle rettigheder forbeholdt"
   email_notifications: E-mailnotifikationer
   embed: 'Integrér'
@@ -7870,11 +7889,13 @@ da:
       6: Fr
       7: Lø
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d. %=B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
     month_names:
       - 
@@ -8007,17 +8028,17 @@ da:
   time:
     am: AM
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M %p"
     pm: PM
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
-      #on the platform
+      #on the web site, mostly on the dashboard
       Announcement: Bekendtgørelse
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
