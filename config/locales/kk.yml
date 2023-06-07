@@ -2143,17 +2143,9 @@ kk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - Қаңтар
@@ -2264,7 +2256,7 @@ kk:
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
-      #on the web site, mostly on the dashboard
+      #on the platform
       Announcement: Хабарландыру
       AssessmentSection: Бағалау бөлімі
       Atlas: Атлас
