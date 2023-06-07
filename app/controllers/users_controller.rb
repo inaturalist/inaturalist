@@ -303,7 +303,10 @@ class UsersController < ApplicationController
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
       @favorite_listed_taxa = @favorites_list.listed_taxa.
-        includes(taxon: [:photos, :taxon_names ]).
+        includes(taxon: [
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ]).
         paginate(page: 1, per_page: 15).order("listed_taxa.id desc")
     end
 
@@ -533,8 +536,11 @@ class UsersController < ApplicationController
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
             includes(:user, :resolver, :comments).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
-            includes(:taxon_names).limit(5).active
+
+          # overfetching and limiting in Ruby to avoid an inefficient
+          # query plan when sorting by ID descending in PostgreSQL
+          @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
+            sort{ |t| t.id }[0...5]
         end
         render layout: "bootstrap"
       end
@@ -582,12 +588,16 @@ class UsersController < ApplicationController
       format.json { render :json => @updates }
     end
   end
-  
+
   def edit
     respond_to do |format|
       format.html do
-        @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
-        render :edit2, layout: "bootstrap"
+        if params[:notifications]
+          redirect_to generic_edit_user_url( anchor: "notifications" )
+        else
+          @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+          render :edit2, layout: "bootstrap"
+        end
       end
       format.json do
         render :json => @user.to_json(
@@ -646,7 +656,6 @@ class UsersController < ApplicationController
          @display_user.previous_changes.empty?
         @display_user.update_columns(updated_at: Time.now)
       end
-      bypass_sign_in( @display_user )
       respond_to do |format|
         format.html do
           if locale_was != @display_user.locale
@@ -681,6 +690,9 @@ class UsersController < ApplicationController
         end
         format.json do
           User.refresh_es_index
+          if @display_user.encrypted_password_previously_changed?
+            flash[:success] = I18n.t( "devise.registrations.updated_but_not_signed_in" )
+          end
           render :json => @display_user.to_json(User.default_json_options)
         end
       end

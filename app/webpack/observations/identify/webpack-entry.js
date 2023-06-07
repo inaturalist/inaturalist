@@ -1,4 +1,5 @@
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import moment from "moment";
 import inatjs from "inaturalistjs";
 import thunkMiddleware from "redux-thunk";

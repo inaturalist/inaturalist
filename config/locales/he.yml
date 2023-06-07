@@ -618,7 +618,6 @@ he:
   analyze_clashes: ניתוח חילוקי דעות לא מכוונים
   analyze_ids: ניתוח זיהויים
   ancestor_taxon: טקסון אבא
-  and: וגם
   and_other_taxa: "&amp; טקסונים אחרים"
   android: אנדרואיד
   animals: בעלי־חיים
@@ -905,7 +904,6 @@ he:
   browse_species_that_occur_near_this_observation: חיפוש מינים ליד תצפית זו.
   built_with_site_guides_html: "נבנה באמצעות <a href='%{url}'>מדריכי %{site_name}</a>"
   bulk_import_of_filename_is_complete: "הייבוא של %{filename} הושלם"
-  by: על־ידי
   by_everyone: על־ידי כולם
   by_user: "על־ידי %{user}"
   by_you: על־ידך
@@ -1142,7 +1140,6 @@ he:
   connected_accounts_titlecase: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
-  connecting_to_facebook: "מתחבר לפייסבוק..."
   connecting_your_inat_account_to_accounts_other_sites: "חיבור חשבון %{site_name} לחשבונות באתרים אחרים יאפשר לכם להתחבר ל%{site_name} בעזרת פרטי המשתמש של אתרים אלו."
   cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת הקפאת תוכן
   conservation_status: סטטוס שימור
@@ -1232,21 +1229,21 @@ he:
     molt: השלה
   controlled_term_definitions:
     alive: היצור חי ולא מראה סימנים של סכנת מוות מיידית
+    bone: |
+      בעיקר שרידי שלד פנימי; אורגניזם שהוא שלם למעט חשיפת עצמות חלקית צריך להיות מסומן "אורגניזם"
+    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
     dead: היצור מת או מראה שימנים של מוות מיידי
+    feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     flower_budding: רואים ניצני פרחים אך סגורים
     flowering: פרחים נראים לעין, פתוחים, ועוד מחוברים לצמח
     fruiting: פירות נראים ועוד מחוברים לצמח
+    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
+    molt: נשל או שלד חיצוני
     no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
-    teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
-    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
-    feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     organism: אורגניזם שלם או חלק ממנו
     scat: חומר גללי (לא כולל צנפות)
+    teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
     track: טביעה שנעשת על ידי אורגניזם בקרקע או שלג
-    bone: |
-      בעיקר שרידי שלד פנימי; אורגניזם שהוא שלם למעט חשיפת עצמות חלקית צריך להיות מסומן "אורגניזם"
-    molt: נשל או שלד חיצוני
-    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
   controls: פקדים
   convert: המרה
   coordinate_systems: מערכת קואורדינטות
@@ -1353,12 +1350,6 @@ he:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     אינם מציגים התנהגות הולמת בעצמם.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    על מנת להגיש מועמדות לתפקיד אוצר.ת של האתר, עליך להיות בעל.ת חשבון מזה 60 ימים או יותר ולהוסיף 100 זיהויים משפרים לתצפיות כלשהן, כולל אלו של עצמך (הוספת עד כה %{num_idents}). כאשר תגיע.י לשני ההישגים הללו, יש לחזור הנה ותוכל.י להגיש את טופס הבקשה.
-  curator_application_inelligible_error: |
-    על מנת להגיש מועמדות להיות אוצר.ת האתר, עליך להיות בעל חשבון מזה 60 יום לפחות ולהוסיף 100 זיהויים משפרים לתצפיות, כולל של עצמך.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: בקשה לאוצרות הוגשה
   #Header
@@ -1676,9 +1667,13 @@ he:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: טקסונים מסומנים במורד העץ הטקסונומי
+  #Noun, as in a journal post that has not been published
   draft: טיוטה
+  #Noun, as in a journal post that has not been published
   draft_: טיוטה
+  #Noun, as in a journal post that has not been published
   draft_saved: טיוטה נשמרה!
+  #Noun, as in journal posts that has not been published
   drafts: טיוטות
   drag_and_drop_some_photos_or_sounds: נא לגרור ולשחרר כמה תמונות או קולות
   #Button label for drawing a circular boundary for an observation search
@@ -1847,13 +1842,6 @@ he:
   extra_properties: תכונות נוספות
   evidence_of_organism: עדות לאורגניזם
   facebook: פייסבוק
-  facebook_account_information: פרטי חשבון הפייסבוק שלך
-  facebook_account_not_linked: "ל%{user} אין חשבון פייסבוק מקושר כעת, לכן ל%{site_name} אין גישה לתמונות."
-  facebook_access_token_expired: "פג התוקף של אסימון הגישה. %{user} צריכ.ה לקשר מחדש את חשבון הפייסבוק."
-  facebook_needs_the_owner_of_that_photo_to: פייסבוק צריך שהבעלים של התמונה ההיא יאשר מחדש את חיבורו ל%{site_name_short}
-  facebook_options: אפשרויות פייסבוק
-  facebook_photo_import_disabled_notice: |
-    בנובמבר 2020 פייסבוק דרש מאיתנו לאמת את הצורך האמיתי שלנו בגישה לתמונות, ולא הצלחנו להשלים את התהליך עקב בעיות עם מערכת האימות של פייסבוק. כתוצאה מכך, אין ביכולתנו לתמוך יותר בייבוא תמונות מפייסבוק.
   failed_to_find_your_location: לא ניתן למצוא את מיקומך
   failed_to_repair_photo: "לא ניתן היה לתקן את התמונה: %{errors}"
   failed_to_save_record: "לא ניתן היה לשמור את הרישום. נא לנסות שוב מאוחר יותר."
@@ -2019,7 +2007,6 @@ he:
   frequency: תדירות
   from_a_place: ממקום
   from_eol_collection: מאוסף אנציקלופדיית החיים (EOL)
-  from_flickr_facebook_etc: מתוך פייסבוק, פליקר, וכו'.
   from_list: מרשימה
   from_photos: מתמונות
   from_place: ממקום
@@ -2379,7 +2366,6 @@ he:
   lexicon: לקסיקון
   lexicon_cannot_contain_words: "לא יכול להכיל את המילים הבאות: %{words}"
   lexicons:
-    scientific_names: שמות מדעיים
     afrikaans: אפריקאנס
     albanian: אלבנית
     arabic: ערבית
@@ -2441,8 +2427,8 @@ he:
     romanian: רומנית
     russian: רוסית
     santali: סנטאלית
+    scientific_names: שמות מדעיים
     serbian: סרבית
-    setswana: טסואנה
     sinhala: סינהאלה
     slovak: סלובקית
     slovenian: סלובנית
@@ -2455,8 +2441,8 @@ he:
     tokelauan: טוקלאואית
     turkish: טורקית
     ukrainian: אוקראינית
-    waray_waray: ווראי-ווראי
     visayan: ויסאיאן
+    waray_waray: ווראי-ווראי
   less: פחות
   #Button show less text
   less__context_text: פחות
@@ -2472,14 +2458,8 @@ he:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: קישור לקוד הרשאה
-  link_your_facebook_account: קישור חשבון פייסבוק
   link_your_flickr_account: קישור חשבון Flickr
   link_your_google_account: קישור חשבון הגוגל שלך
-  linked_facebook: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון הפייסבוק שלך."
-  linked_facebook_automaticaly: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פייסבוק, נקשר מחדש בין חשבונות ה-%{site_name} והפייסבוק שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפייסבוק אז את.ה רוצה את היכולת לייבא תמונות פייסבוק, נכון?"
-  linked_facebook_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפייסבוק שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפייסבוק, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פייסבוק חדש שאת.ה רוצה לקשר אליו את %{site_name}."
-  linked_facebook_howto: "לחיבור של פייסבוק עם %{site_name}, יש ללחוץ על הקישור מימין ולהתחבר ל-Facebook.com."
-  linked_facebook_password: "לעולם לא נבקש את סיסמת הפייסבוק שלך (אך יתכן שפייסבוק כן יבקש, יש לבדוק את הקישור שהכפתור שולח לך ולוודא שהוא Facebook.com). גם לא נשנה את נתוני הפייסבוק שלך אלא אם תרצה בכך."
   linked_flickr: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון ה Flickr שלך."
   linked_flickr_automatically: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פליקר, נקשר מחדש בין חשבונות ה-%{site_name} והפליקר שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפליקר אז את.ה רוצה את היכולת לייבא תמונות פליקר, נכון?"
   linked_flickr_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפליקר שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפליקר, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פליקר חדש שאת.ה רוצה לקשר אליו את %{site_name}."
@@ -2645,7 +2625,6 @@ he:
       every_publicly_visible_observation: כל תצפית גלויה שנוצרה ברשת iNaturalist
       featured_observations: תצפיות נבחרות
       gbif_network: רשת GBIF
-      gbif_network_description: רישומים ממוזאונים וספקי תיעודים אחרים מופצים על ידי מתקן המידע העולמי למגוון הביולוגי (GBIF)
       observations: תצפיות
       place_boundary: גבול מקום
       checklist_places: מיקומי רשימת מינים
@@ -2828,6 +2807,7 @@ he:
   must_have_quality_grades: "חייבת להיות בדרגות איכות: %{grades}"
   must_have_sounds: חייב להכיל קולות
   must_have_x: "חייב להכיל %{x}"
+  #Mute is a noun here
   mute_removed: ביטול השתקה
   muted_users: משתמשים מושתקים
   n_ago: "לפני %{n}"
@@ -3030,7 +3010,6 @@ he:
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
   not_finding_place_you_want?: לא מצאת את המקום שחיפשת?
   not_found: לא נמצא דבר
-  not_linked_facebook: "חשבון ה-%{site_name} אינו מחובר לחשבון הפייסבוק שלך."
   not_linked_flickr: "חשבון ה%{site_name} שלך אינו מקושר לחשבון ה Flickr שלך"
   not_on_this_list: לא ברשימה זו.
   not_recorded: לא נרשם
@@ -3188,10 +3167,6 @@ he:
   observed_on: נצפה ב
   observer: מתצפת.ת
   observers: מתצפתות.ים
-  observer_prefers_no_project_addition: |
-    המתצפת.ת לא מרשה לא.נשים אחרים להוסיף את התצפיות שלהם לפרויקטים.
-  observer_prefers_addition_to_projects_joined: |
-    המתצפת.ת מרשה לא.נשים להוסיף את תצפיותיהן.ם רק לפרויקטים שהצטרפו אליהם.
   observer_short: מתצפת.ת
   occurence_status_describes_how: 'ססטוס הימצאות מתאר כמה טקסון הוא נפוץ או נדיר באזור מסוים. <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">למידע נוסף על טרמינולוגיה</a> יש לעיין ב-DarwinCore.'
   occurrence_status: סטטוס הופעה
@@ -3285,7 +3260,7 @@ he:
   options: אפשרויות
   or: או
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
   orange: כתום
@@ -3844,8 +3819,6 @@ he:
   places_merged_successfully: המקומות אוחדו בהצלחה!
   places_warning_export_complex_boundary_html: |
     אם את.ה מנסה לייצא תצפיות מגבול מורכב, שווה לשקול <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">להוריד אותן מ-GBIF במקום</a>, שם אפשר לצייר גבולות שרירותיים, או לייצא אותן מ-iNaturalist באמצעות מקומות קיימים או תיבה תוחמת ואז לסנן את הנתונים שוב לאחר ההורדה.
-  places_warning_look_for_existing_html: |
-    יש לחפש <a href="/search?source[]=places">מקומות קיימים</a> כדי לוודא שאינך יוצר.ת שכפול. כבר יש לנו מקומות עבור על היבשות והמדינות, וכן לשתי רמות אדמיניסטרטיביות מתחת למדינה.
   places_warning_please_keep_in_mind: |
     נא לזכור את המגבלות הבאות:
   places_warning_projects_can_have_multiple_places: |
@@ -3881,7 +3854,6 @@ he:
   post_from_your_journal_html: פוסט <a href="%{url}">מהיומן שלך</a>
   post_published: רשומה פורסמה!
   posted_by: פורסם על-ידי
-  posted_on: פורסם ב
   posts: פוסטים
   potential_disagreement: אי-הסכמה פוטנציאלית
   powered_by: מופעל על ידי
@@ -4480,8 +4452,6 @@ he:
     חברת רשת iNaturalist בפורטוגל %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} שיתפה מאגר דאטא של האטלס הפורטוגזי של עופות נודדים, של יונקים, וכן הרבה מאמרים מחקריים פורטוגזיים אחרים.
   sites_affiliation_more_automatically_hidden_coordinates: |
     קואורדינטות נסתרות אוטומטית (מוסתרות או פרטיות עקב "פרטיות המיקום של טקסון")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    האפליקציה מסתירה באופן אוטומטי את הקואורדינטות של חלק מהמינים על מנת להגן עליהם מפגיעה, איסוף או ציד בלתי חוקי. במידה והקואורדינטות הוסתרו באופן אוטומטי על מנת להגן על המינים, iNaturalist משתפת את הקוארדינטות האמיתיות של כל התצפיות מהמדינות הרלוונטיות עם חברות וחברי הרשת.
   sites_affiliation_more_email_addresses: |
     שיתוף כתובות דוא"ל עם חברות וחברי רשת הוא לצורך תקשורת שקשורה לאתר בלבד.
   sites_affiliation_more_twice_per_year: |
@@ -4688,7 +4658,6 @@ he:
   tagging: 'מתייג...'
   tags: תגיות
   tags_are_a_way: 'תגים הם דרך לסדר את התצפיות שלך. למשל, באפשרותך לתייג את כל התצפיות שלך מבריכות חורף "בריכות חורף" כדי להקל על מציאתן בהמשך.'
-  take_me_facebook: כן, קחו אותי לפייסבוק!
   take_me_flickr!: כן, קחו אותי ל Flickr!
   target_list_alert: האם את.ה בטוח.ה שניסית לתצפת על כל המינים המכוסים על ידי רשימת היעדים שלך? יש לזכור שכל מה שמכוסה על ידי הרשימה שלך ולא תצפתת עליו יתפרש כהיעדרות, לכן חשוב מאוד שרימת היעדים שלך תשקף בדיוק את סט המינים שניסית לגלות
   target_list_warning: יש לזכור שכל מה שמכוסה על ידי רשימת היעדים שלך ולא צפית בו בתוך רדיוס ומשך הטיול הזה יתפרש כהיעדרות. מאוד חשוב שרשימת היעדים שלך תשקף באופן מדויק את סט המינים שניסית למצוא. אם לא ניסית למצוא מין ברשימת היעדים שלך או כל המינים המכוסים על ידי קבוצה, יש להסיר אותו.
@@ -5326,8 +5295,6 @@ he:
   user_commented: "%{user} העיר"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} העדיף %{noun} של %{owner}"
   user_faved_this_observation: "%{user} אהב/ה תצפית זו"
   user_flagged_as_a_non_spammer_html: "%{user} סומנ.ה שלא מפיצ.ה ספאם"
   user_flagged_as_a_spammer_html: "%{user} סומנ.ה כמפיצ.ה ספאם"
@@ -5499,8 +5466,6 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
-  we_also_support: |
-    אנחנו תומכים גם ב־<a href="http://flickr.com">Flickr</a>&rlm;, <a href="http://picasaweb.google.com">Picasa</a> ו־<a href="http://facebook.com">Facebook</a> כדי לאחסן תמונות.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
@@ -6288,8 +6253,6 @@ he:
         cumulative_count_desc: 'מספר הזיהויים עבור טקסון מסוים וכל צאצאיו'
         curator_coordinate_access_disabled_desc_html: |
           פרויקט זה אינו מרשה תצפיות עם קואורדינטות שאינן ניגשות לאוצרות ואוצרי הפרויקט. אם אינך רוצה לשתף את הקואורדינטות של תצפית זו עם אוצרות ואוצרי הפרויקט, עליך להסיר את התצפית מהפרויקט.
-        data_quality_assessment_desc_html: |
-          אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:
         disagreement_count_desc: "מספר הטקסונים המזוהים שאינם חולקים הורה משותף"
         identification_count_desc: 'מספר הזיהויים עבור טקסון מסוים'
         flagged_photos_desc_html: |
@@ -6503,8 +6466,6 @@ he:
         view_original_html: |
           באפשרותך לצפות במקור ב<a href="%{url}">%{url}</a>. נא להשאיר סימונים של הפרת זכויות יוצרים כלא פתורים במידה ותמונה זו אכן מפרה זכויות יוצרים.
     places:
-      kml_field_desc: |
-        KML של גבול המקום. ביכולתך ליצור כזה באמצעות גוגל מפות, גוגל ארת', או רוב אפליקציות GIS. חייב להכיל לפחות פוליגון אחד הקטן מ-1 מגה-בייט (5 עבור אוצרות ואוצרי האתר) ובעל שטח קטן ממדינת טקסס.
       edit:
         complex_boundary_note_html: |
           גבול זה מעט מורכב מדי כדי לערוך באינטרנט. אולם, באפשרותך <a href="%{url}">להוריד את ה-KML</a>, לערוך אותו בתוכנת GIS לבחירתך, ולהעלות את ה-KML הערוך שלך ישירות.
@@ -7105,10 +7066,6 @@ he:
           </p>
         licensing_desc_html: |
           מתן רשיוין לתוכן שלך נותן לכל אחת ואחד את הזכות החוקית להשתמש בו מבלי לבקש את רשותך במידה והם שומרות ושומרים על תנאי הרישיון. נוסף על כך, %{site_name} כולל את התוכן שלך שמורשה ב-Creative Commons בארכיונים המעודכנים בקביעות אשר מופקים עבור ארגונים שותפים שמעוניינים בנתונים שלנו. למשל, אנו כוללים רישומי No Copyright (CC0), Attribution (CC BY), ו-Attribution-NonCommercial (CC BY-NC) בארכיון שאנו מייצרים עבור <a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>, ארגון בינלאומי ובין-ממשלתי שמרכז ומפיץ מידע על המגוון הביולוגי ברחבי העולם.
-        monthly_supporter_desc_html: |
-          תומכות ותומכי iNaturalist על בסיס חודשי מבצעות.ים תרומות חודשיות המתקבלות על ידי האקדמיה למדעים של קליפורניה (United
-          States IRS EIN 94-1156258) לתמיכה בתפעול שאינו למטרת רווח של iNaturalist ואתרי רשת iNaturalist.
-          <a href="%{url}">לחצ.י כאן להפוך לתומכ.ת חודשי.ת של iNaturalist</a>. כאשר נאשר את התמיכה שלך תוכל.י לסמן תיבה זו להצגת סטטוס זה בפרופיל שלך. הערה: עליך להשתמש באותה כתובת הדוא"ל בדיוק ב-Donorbox כמו ב-iNaturalist על מנת שנוכל לאשר שהפכת לתומכ.ת חודשי.ת.
         muting_desc_html: |
           <p>
           השתקת משתמש.ת מונעת ממך לקבל התראות על פעילותם, כולל תגובות על תצפיות שלך, שליחת הודעות אליך, אזכורים עליך, וכו'. השתקה עוזרת לך להתעלם ממישהי או ממישהו מבלי למנוע מהם לעשות דבר.
@@ -7227,9 +7184,6 @@ he:
       index:
         connect_with_nature: התחברו לטבע
         explore_and_share: גלו ושתפו את תצפיות הטבע שלכן.ם
-        observations_to_date: 'תצפיות עד היום'
-        species_observed: 'מינים שנצפו'
-        people_signed_up: 'א.נשים הצטרפו'
         how_it_works: איך זה עובד
         record_your_observations: תעדו את התצפיות שלכם.ן
         share_with_fellow_naturalists: שתפו עם הקהילה
@@ -7300,19 +7254,19 @@ he:
       6: שישי
       7: שבת
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B, %Y'
     month_names:
       - 
@@ -7386,26 +7340,6 @@ he:
         two: '%{count} שניות'
         many: '%{count} שניות'
         other: '%{count} שניות'
-    countdown_x_days:
-      one: יום
-      two: יומיים
-      many: ימים
-      other: ימים
-    countdown_x_hours:
-      one: שעה
-      two: שעתיים
-      many: שעות
-      other: שעות
-    countdown_x_minutes:
-      one: דקה
-      two: שתי דקות
-      many: דקות
-      other: דקות
-    countdown_x_seconds:
-      one: שניה
-      two: שתי שניות
-      many: שניות
-      other: שניות
     prompts:
       day: יום
       hour: שעה
@@ -7413,54 +7347,6 @@ he:
       month: חודש
       second: שניות
       year: שנה
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: חייב להתקבל
-      blank: לא ניתן להשאיר ריק
-      confirmation: לא תואם לססמה
-      empty: אינו יכול להיות ריק
-      equal_to: חייב להיות שווה ל־%{count}
-      even: חייב להיות זוגי
-      exclusion: שמור
-      greater_than: חייב להיות גדול מ־%{count}
-      greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
-      inclusion: לא ברשימה
-      invalid: שגוי
-      less_than: חייב להיות פחות מ־%{count}
-      less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-      new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
-      not_a_number: הוא לא מספר
-      not_an_integer: חייב להיות מספר שלם
-      odd: חייב להיות אי־זוגי
-      only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
-      record_invalid: 'אימות נכשל: %{errors}'
-      requires_privilege_speech: |
-        צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-      requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
-      taken: כבר תפוס
-      too_long:
-        one: ארוך מדי (מקסימום תו אחד)
-        two: ארוך מדי (מקסימום %{count} תווים)
-        many: ארוך מדי (מקסימום %{count} תווים)
-        other: ארוך מדי (מקסימום %{count} תווים)
-      too_short:
-        one: קצר מדי (מינימום תו אחד)
-        two: קצר מדי (מינימום %{count} תווים)
-        many: קצר מדי (מינימום %{count} תווים)
-        other: קצר מדי (מינימום %{count} תווים)
-      wrong_length:
-        one: באורך לא נכון (צריך להיות תו אחד)
-        two: באורך לא נכון (צריך להיות %{count} תווים)
-        many: באורך לא נכון (צריך להיות %{count} תווים)
-        other: באורך לא נכון (צריך להיות %{count} תווים)
-    template:
-      body: 'היו בעיות עם השדות הבאים:'
-      header:
-        one: "טעות אחת מנעה את שמירת %{model} זה"
-        two: '%{count} טעויות מנעו את שמירת %{model} זה'
-        many: '%{count} טעויות מנעו את שמירת %{model} זה'
-        other: '%{count} טעויות מנעו את שמירת %{model} זה'
   helpers:
     defaults:
       title: "זוהי כותרת"
@@ -7526,72 +7412,21 @@ he:
   time:
     am: לפנה"צ
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: אחה"צ
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: חייב להתקבל
-        blank: לא ניתן להשאיר ריק
-        confirmation: לא תואם לססמה
-        empty: אינו יכול להיות ריק
-        equal_to: חייב להיות שווה ל־%{count}
-        even: חייב להיות זוגי
-        exclusion: שמור
-        greater_than: חייב להיות גדול מ־%{count}
-        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
-        inclusion: לא ברשימה
-        invalid: שגוי
-        less_than: חייב להיות פחות מ־%{count}
-        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-        new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
-        not_a_number: אינו מספר
-        not_an_integer: חייב להיות מספר שלם
-        odd: חייב להיות אי־זוגי
-        only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
-        record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זהצריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-        requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
-        taken: כבר תפוס
-        too_long:
-          one: ארוך מדי (המקסימום הוא תו אחד)
-          two: ארוך מדי (מקסימום %{count} תווים)
-          many: ארוך מדי (המקסימום הוא %{count} תוים)
-          other: ארוך מדי (המקסימום הוא %{count} תוים)
-        too_short:
-          one: קצר מדי (לפחוחת תו אחד)
-          two: קצר מדי (%{count} תווים לפחות)
-          many: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-          other: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-        wrong_length:
-          one: באורך לא נכון (צריך להיות תו %{count})
-          two: באורך לא נכון (צרים להיות %{count} תווים)
-          many: באורך לא נכון (צרים להיות %{count} תווים)
-          other: באורך לא נכון (צרים להיות %{count} תווים)
-      template:
-        body: 'היו בעיות עם השדות הבאים:'
-        header:
-          one: טעות אחת ב%{model} זה מנעה את שמירתו
-          two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7807,22 +7642,18 @@ he:
         blank: לא ניתן להשאיר ריק
         confirmation: לא תואם לססמה
         empty: אינו יכול להיות ריק
-        equal_to: חייב להיות שווה ל־%{count}
         even: חייב להיות זוגי
         exclusion: שמור
-        greater_than: חייב להיות גדול מ־%{count}
-        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
         inclusion: לא ברשימה
         invalid: שגוי
-        less_than: חייב להיות פחות מ־%{count}
-        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
         new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
         not_a_number: הוא לא מספר
         not_an_integer: חייב להיות מספר שלם וחיובי
         odd: חייב להיות אי־זוגי
         only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
         record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
+        requires_privilege_speech: |
+          צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
         requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
         taken: כבר תפוס
         too_long:
@@ -7843,7 +7674,7 @@ he:
       template:
         body: 'אירעו בעיות עם השדות הבאים:'
         header:
-          one: טעות אחת מנעה את שמירת %{model} זה
+          one: "טעות אחת מנעה את שמירת %{model} זה"
           two: '%{count} טעויות מנעו את שמירת %{model} זה'
           many: '%{count} טעויות מנעו את שמירת %{model} זה'
           other: '%{count} טעויות מנעו את שמירת %{model} זה'

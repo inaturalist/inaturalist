@@ -158,7 +158,7 @@ class NewSpecies extends React.Component {
           series={series}
           legendPosition="nw"
           showContext
-          onClick={d => {
+          onClick={( _clickEvent, d ) => {
             if ( d.seriesName === "accumulated" ) {
               return false;
             }

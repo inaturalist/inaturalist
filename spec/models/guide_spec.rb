@@ -88,11 +88,11 @@ describe Guide do
     end
 
     it "should have guide photo image files" do
-      expect(File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium")))).to be true
+      expect(File.exist?(File.join(@unzipped_path, "files", @guide_photo.asset_filename(size: "medium")))).to be true
     end
 
     it "should have guide range image files" do
-      expect(File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium")))).to be true
+      expect(File.exist?(File.join(@unzipped_path, "files", @guide_range.asset_filename(size: "medium")))).to be true
     end
   end
 

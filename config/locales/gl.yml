@@ -514,7 +514,6 @@ gl:
   analyze_clashes: Analizar Desacordos Involuntarios
   analyze_ids: Analizar IDs
   ancestor_taxon: Taxon Ancestral
-  and: E
   and_other_taxa: "&amp; Outros Taxóns"
   android: Android
   animals: Animais
@@ -770,7 +769,6 @@ gl:
   browse_species_that_occur_near_this_observation: Busca especies que ocorran preto desta observación.
   built_with_site_guides_html: "Construido coas Guías de <a href='%{url}'>%{site_name} </a>"
   bulk_import_of_filename_is_complete: "Completouse a importación masiva de %{filename}"
-  by: Por
   by_everyone: Por todos
   by_user: "por %{user}"
   by_you: propias
@@ -984,7 +982,6 @@ gl:
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr outra vez para autorizar os permisos de escritura
-  connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar a túa conta de %{site_name} con contas noutros sitios permíteche entrar a %{site_name} empregando os datos deses sitios."
   cannot_be_changed_during_a_content_freeze: Non se pode mudar durante un conxelamento de contidos
   conservation_status: Categoría de risco
@@ -1067,20 +1064,20 @@ gl:
     molt: Muda
   controlled_term_definitions:
     alive: O organismo vive e non mostra sinais de morte inminente
+    bone: |
+      Restos endoesqueléticos predominantemente; exposición ósea parcial nun organismo sen outros danos debe ser etiquetado como "organismo"
+    cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
     dead: O organismo está morto ou mostra sinais de morte inminente
+    feather: Unha pluma ou máis non unidas a un organismo
     flower_budding: Os botóns das flores son visibles pero non están abertos
     flowering: As flores son visibles, están abertas e aínda están unidos á planta
     fruiting: Os froitos son visibles e aínda están unidos á planta
+    molt: Restos de pel ou exoesqueleto
     no_evidence_of_flowering: Os medios non amosan evidencias de estructuras reproductivas
-    teneral: Adulto que emerxeu hai pouco pero aínda non acadou a forma final de adulto
-    cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
-    feather: Unha pluma ou máis non unidas a un organismo
     organism: Organismo completo ou parte
     scat: Materia fecal (non egagrópilas ou outras materias regurxitadas)
+    teneral: Adulto que emerxeu hai pouco pero aínda non acadou a forma final de adulto
     track: Impresión no solo ou na neve feita por un organismo
-    bone: |
-      Restos endoesqueléticos predominantemente; exposición ósea parcial nun organismo sen outros danos debe ser etiquetado como "organismo"
-    molt: Restos de pel ou exoesqueleto
   controls: Controis
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1187,12 +1184,6 @@ gl:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Non demostra comportamentos axeitados.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para solicitar ser un administrador do site, debes ter tido unha conta durante 60 días ou máis e engadido 100 identificacións para mellorar observacións de calquera usuario, incluíndo as túas propias (engadiches %{num_idents}). Cando cumpras ámbolos dous requerimentos, volve aquí e serás quen de enviar a solicitude.
-  curator_application_inelligible_error: |
-    Para solicitar ser un administrador do sitio, debes ter tido unha conta durante 60 días ou máis e engadido 100 identificacións para mellorar as observacións de calquera usuario, incluído ti.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitude para administrador entregada
   #Header
@@ -1478,9 +1469,13 @@ gl:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxons marcados no descenso
+  #Noun, as in a journal post that has not been published
   draft: '¡BORRADOR!'
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Gardado en borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra e solta algunhas fotos ou sons
   drawings: Deseños
@@ -1617,13 +1612,6 @@ gl:
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia dun organismo
   facebook: Facebook
-  facebook_account_information: Información da túa conta de Facebook
-  facebook_account_not_linked: "%{user} xa non ten unha conta de facebook asociada, asi que %{site_name} non ten permiso para acceder a esta foto."
-  facebook_access_token_expired: "O token de acceso caducou. %{user} necesita reasociar a súa conta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita a confirmación do propietario desta foto para poder realizar a conexión a %{site_name_short}.
-  facebook_options: Opcións de Facebook
-  facebook_photo_import_disabled_notice: |
-    En Novembro de 2020, Facebook pedíunos verificar a necesidade de acceder a fotos, e non puidemos completar o proceso debido a problemas có sistema de verificación de Facebook. Como resultado, non podemos seguir importando fotos dende Facebook.
   failed_to_find_your_location: Non se puido atopar a túa ubicación.
   failed_to_repair_photo: "Non se puido arranxar foto: %{errors}"
   failed_to_save_record: "Non se puido gardar o rexistro. Por favor, téntao logo de novo."
@@ -1778,7 +1766,6 @@ gl:
   frequency: Frecuencia
   from_a_place: dun lugar
   from_eol_collection: Da Colección EOL
-  from_flickr_facebook_etc: Dende Flickr, Facebook, etc.
   from_list: Da lista
   from_photos: De fotos
   from_place: dun lugar
@@ -2094,7 +2081,6 @@ gl:
   let_us_walk_you_through: Déixanos amosarte as principais características deste sitio.
   lexicon: Léxico
   lexicons:
-    scientific_names: Nomes científicos
     afrikaans: Afrikáans
     albanian: Albanés
     bengali: Bengalí
@@ -2136,6 +2122,7 @@ gl:
     portuguese: Portugués
     romanian: Romanés
     russian: Ruso
+    scientific_names: Nomes científicos
     spanish: Español
     swedish: Sueco
     tagalog: Tagalo
@@ -2153,14 +2140,8 @@ gl:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Linear
   link: Vínculo
-  link_your_facebook_account: Vincula a túa conta de Facebook
   link_your_flickr_account: Vincula a túa conta de Flickr
   link_your_google_account: Conecta a túa conta de Google
-  linked_facebook: "A túa conta de %{site_name} está actualmente vinculada coa túa conta de Facebook."
-  linked_facebook_automaticaly: "Ademáis, repara en que se accedes a %{site_name} a través de Facebook, automáticamente reconectaremos a túa %{site_name} e conta de Facebook. Semella razoable que se usas Facebook, queiras ser quen de importar as túas fotos de Facebook, ¿non si?"
-  linked_facebook_description: "Manter a túa conta de %{site_name} vinculada á túa conta de Facebook permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Facebook en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Facebook que desexas vincular a %{site_name}."
-  linked_facebook_howto: "Para conectar Facebook con %{site_name}, preme no vínculo da dereita e inicia sesión en facebook.com."
-  linked_facebook_password: "Non che pediremos nunca o teu contrasinal de Facebook (pero Facebook podería facelo, verifica que o enderezo ó cal o botón te redirixe é facebook.com). Tampouco cambiaremos os teus datos de Facebook, a menos que o solicites."
   linked_flickr: "A túa conta de %{site_name} está vinculada actualmente coa túa conta de Flickr."
   linked_flickr_automatically: "Ademáis, repara en que se accedes a %{site_name} a través de Flickr, automáticamente reconectaremos a túa %{site_name} e conta de Flickr. Semella razoable que se usas Flickr, queiras ser quen de importar as túas fotos de Flickr, ¿non si?"
   linked_flickr_description: "Manter a túa conta de %{site_name} vinculada coa túa conta de Flickr permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Flickr en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Flickr que desexes vincular con %{site_name}."
@@ -2316,7 +2297,6 @@ gl:
       every_publicly_visible_observation: Tódalas observacións visibles publicamente creadas na rede de iNaturalist
       featured_observations: Observacións destacadas
       gbif_network: Rede do GBIF
-      gbif_network_description: Rexistros de museos e outros provedores de presencias distribuídos pola Infraestructura Global de Informática da Biodiversidade (GBIF)
       observations: Observacións
       place_boundary: Límites do lugar
       checklist_places: Lugares da lista de verificación
@@ -2474,6 +2454,7 @@ gl:
   must_have_quality_grades: "debe ter graos de calidade: %{grades}"
   must_have_sounds: debe ter sons
   must_have_x: "debe ter %{x}"
+  #Mute is a noun here
   mute_removed: Silenciador retirado
   muted_users: Usuarios Acalados
   n_ago: "hai %{n}"
@@ -2663,7 +2644,6 @@ gl:
   not_findig_what_you_want: Non atopas o que desexas?
   not_finding_place_you_want?: '¿Non atopaches o lugar que buscabas?'
   not_found: Non se atopou
-  not_linked_facebook: "A túa conta de %{site_name} xa non está vinculada coa túa conta de Facebook."
   not_linked_flickr: "A túa conta de %{site_name} non está vinculada coa túa conta de Flickr"
   not_on_this_list: Non estás nesta lista.
   not_recorded: Non rexistrado
@@ -2807,10 +2787,6 @@ gl:
   observed_on: Observado o
   observer: Observador
   observers: Observadores
-  observer_prefers_no_project_addition: |
-    O observador non permite outra xente engadir as súas observacións a proxectos.
-  observer_prefers_addition_to_projects_joined: |
-    O observador só permite outra xente engadir as súas observacións a proxectos ós que se uniran.
   observer_short: Persoa
   occurence_status_describes_how: 'O estado de ocorrencia indica o grao de presenza ou rareza dun taxón nunha área determinada. Ver DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">máis información sobre terminoloxía </a>.'
   occurrence_status: Estado de ocorrencia
@@ -2898,7 +2874,7 @@ gl:
   optional: Opcional
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OU
   or_choose_high_level_taxa: "... Ou selecciona dalgúns taxóns de alto nivel"
   orange: Laranxa
@@ -3434,8 +3410,6 @@ gl:
   places_merged_successfully: '¡Os lugares combináronse satisfactoriamente!'
   places_warning_export_complex_boundary_html: |
     Se estás tentando exportar observacións dun territorio con fronteiras complexas, considera <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargalas dende GBIF</a>, onde podes debuxar fronteiras arbitrarias; ou exportalas dende iNat usando lugares existentes, ou unha caixa delimitada, e logo filtrar os dados unha descargadas.
-  places_warning_look_for_existing_html: |
-    Busca <a href="/search?source[]=places">lugares existentes</a>para asegurarte de que non estás creando un duplicado. Xa temos lugares para tódolos contientes e países, así como dous niveis administrativos inferiores a país.
   places_warning_projects_can_have_multiple_places: |
     Se estás tentando demarcar un lugar para limitar un proxecto, sabe que os proxectos poden ser compostos de varios lugares. Por exemplo, se queres compoñer un proxecto para Nova Zelanda e Australia, podes engadir requisitos para dous lugares en vez de crear un novo.
   places_warning_new_places_are_slow_html: |
@@ -3467,7 +3441,6 @@ gl:
   post_from_your_journal_html: Publicación do <a href="%{url}">teu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
-  posted_on: Introducido o
   posts: Ingresos
   potential_disagreement: Desacordo Potencial
   powered_by: Desenvolvido por
@@ -4169,7 +4142,6 @@ gl:
   tagging: 'Etiquetando...'
   tags: Etiquetas
   tags_are_a_way: 'As etiquetas son palabras clave que podes engadir ás túas observacións para facelas máis fáciles de atopar.'
-  take_me_facebook: Si, ir a Facebook
   take_me_flickr!: Si, ir a Flickr
   target_list_alert: '¿Seguro que tentaches observar tódalas especies cubertas pola túa listaxe de obxectivos? Lembra que todo o que está cuberto na túa listaxe de obxectivos e non observaches, será interpretado como unha ausencia, polo que é moi importante que a túa listaxe de obxectivos reflicte con exactitude o conxunto de especies que trataches de detectar.'
   target_list_warning: Lembra que todo o que estea cuberto pola túa lista de obxectivos que non observaches no radio e duración desta excursión será interpretado como unha ausencia. É moi importante que a túa lista de obxectivos reflicta o conxunto de especies que intentaches detectar. Se non intentaches detectar unha especie ou tódalas especies cubertas por un grupo na túa listaxe de obxectivos, por favor, elimínaa.
@@ -4606,8 +4578,6 @@ gl:
   user_commented: "%{user} comentou"
   user_disagrees_this_is_taxon: "%{user} non concorda en que isto é %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non concorda con identificacións previas máis afinadas"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} engadíu a favoritos unha %{noun} de %{owner}"
   user_faved_this_observation: "%{user} engadíu a favoritos esta observación"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como non remitente de spam"
   user_flagged_as_a_spammer_html: "%{user} marcado como remitente de spam"
@@ -4722,11 +4692,6 @@ gl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Buscados
   was_it_captive_cultivated?: "Era cativa/cultivada?"
-  we_also_support: |
-    Tamén temos conexión con Flickr <a href="http://flickr.com"></a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para as túas imaxes.
   we_can_only_understand_csv_in: Só podemos importar CSV no seguinte formato
   we_couldnt_find_a_user: Non puidemos atopar un usuario con este enderezo de correo.
   we_couldnt_find_a_user_with_that_activation_code: "Non puidemos atopar ningún usuario con este código de activación. Pode que a túa conta xa fora activada, por favor trata de entrar no sistema."
@@ -5445,8 +5410,6 @@ gl:
         cumulative_count_desc: 'Nº de identificacións para un taxon individual e tódolos seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
           Este proxecto non permite observacións con coordenadas que os conservadores non poidan ver. Se non queres compartit as coordenadas desta observación cós conservadores do proxecto, debes quitar a observación do proxecto.
-        data_quality_assessment_desc_html: |
-          A Avaliación da Calidade de Dados é unha avaliación da exactitude dunha observación. As observacións con Grao de Investigación poden ser usadas por científicos para a súa investigación. Vota embaixo:
         disagreement_count_desc: "Nº de taxons identificados que non están entre os ancestros dun taxon"
         identification_count_desc: 'Nº de identificacións para un taxon individual'
         flagged_photos_desc_html: |
@@ -5612,11 +5575,6 @@ gl:
         view_original_html: |
           Podes ver o orixinal en<a href="%{url}">%{url}</a>. Por favor, deixa as marcas por violación de dereitos de autor sen resolver se de feito esta foto viola os dereitos de autor.
     places:
-      kml_field_desc: |
-        KML do límite do lugar. Podes facer un empregando Google Maps, Google
-        Earth ou a maioría das aplicacións GIS. Debe ter polo menos un polígono de
-        menos de 1 MB (5 MB para conservadores do sitio), e ter un área menor do que o
-        Estado de Texas nos EEUU.
       edit:
         complex_boundary_note_html: |
           Este límite é demasiado complexo para editalo na web. Aínda así podes<a href="%{url}">descargar o KML</a>, editalo na aplicación GIS da túa escolla e cargar o teu KML editado directamente.
@@ -6193,10 +6151,6 @@ gl:
           </p>
         licensing_desc_html: |
           A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.
-        monthly_supporter_desc_html: |
-          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
-          <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
-          Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
         muting_desc_html: |
           <p>
           Acalar a alguén evita que recibas notificacións sobre cousas que ese alguén faga, incluíndo comentarios nas túas observacións, enviarte mensaxes, mencionarte, etc. Acalar axúdache a ignorar a alguén sen que se lle impida facer nada.
@@ -6316,9 +6270,6 @@ gl:
       index:
         connect_with_nature: Conecta coa Natureza
         explore_and_share: Explora e comparte as túas observacións do mundo natural.
-        observations_to_date: 'Observacións ata a Data'
-        species_observed: 'Especies Observadas'
-        people_signed_up: 'Persoas Rexistradas'
         how_it_works: Como Funciona
         record_your_observations: Rexistra as túas observación
         share_with_fellow_naturalists: Comparte con outros naturalistas
@@ -6389,19 +6340,19 @@ gl:
       6: Ve
       7: Sá
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b,%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d de %B, %Y'
     month_names:
       - 
@@ -6453,18 +6404,6 @@ gl:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
-    countdown_x_days:
-      one: día
-      other: días
-    countdown_x_hours:
-      one: hora
-      other: horas
-    countdown_x_minutes:
-      one: min
-      other: mins
-    countdown_x_seconds:
-      one: seg
-      other: segs
     prompts:
       day: Día
       hour: Hora
@@ -6472,46 +6411,6 @@ gl:
       month: Mes
       second: Segundos
       year: Ano
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Débese aceptar
-      blank: non pode estar en branco
-      confirmation: non coincide coa confirmación
-      empty: non pode estar baleiro
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser maior que %{count}
-      greater_than_or_equal_to: debe ser maior que ou igual a %{count}
-      inclusion: non está incluído na lista
-      invalid: non é válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que ou igual a %{count}
-      new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
-      not_a_number: non é un número
-      not_an_integer: debe ser un número enteiro
-      odd: debe ser impar
-      only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
-      record_invalid: 'A validación fallou: %{errors}'
-      requires_privilege_speech: |
-        debe ter tres observacións verificables ou tres identificacións para outros para facer iso
-      requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
-      taken: xa está en uso
-      too_long:
-        one: é demasiado longo (o máximo é %{count} caracter)
-        other: é demasiado longo (o máximo son %{count} caracteres)
-      too_short:
-        one: é demasiado curto (o mínimo é %{count} caracter)
-        other: é demasiado curto (o mínimo son %{count} caracteres)
-      wrong_length:
-        one: ten a longura errada (debe ter %{count} caracter)
-        other: ten a longura errada (debe ter %{count} caracteres)
-    template:
-      body: 'Atopáronse problemas nos seguintes campos:'
-      header:
-        one: "Non se puido gardar este/a %{model} porque se atopou 1 erro."
-        other: 'Non se puido gardar este/a %{model} porque se atoparon %{count} erros.'
   helpers:
     defaults:
       title: "ISTO É UN TÍTULO"
@@ -6574,64 +6473,21 @@ gl:
   time:
     am: Mañá
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: 'ás %I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d de %B do %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: Tarde
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{message} %{attribute}'
-      messages:
-        accepted: debe ser aceptado
-        blank: non se pode deixar en branco
-        confirmation: non coincide cá palabra chave
-        empty: non pode estar baleiro
-        equal_to: debe ser igual a %{count}
-        even: debe ser par
-        exclusion: está reservado
-        greater_than: debe ser maior que %{count}
-        greater_than_or_equal_to: debe ser maior ou igual a %{count}
-        inclusion: non está incluído na lista
-        invalid: non é válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor ou igual a %{count}
-        new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
-        not_a_number: non é un número
-        not_an_integer: debe ser un número enteiro
-        odd: debe ser impar
-        only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
-        record_invalid: 'A validación fallou: %{errors}'
-        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
-        requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
-        taken: xa está collido
-        too_long:
-          one: é demasiado longo (o máximo é %{count} caracter)
-          other: é demasiado longo (o máximo son %{count} caracteres)
-        too_short:
-          one: é demasiado curto (o mínimo é %{count} caracter)
-          other: é demasiado curto (o mínimo son %{count} caracteres)
-        wrong_length:
-          one: ten a longura errada (debe ter %{count} caracter)
-          other: ten a longura errada (debe ter %{count} caracteres)
-      template:
-        body: 'Houbo problemas cós seguintes campos:'
-        header:
-          one: '%{count} erro prohibíu este %{model} ser gardado.'
-          other: '%{count} erros prohibiron este %{model} ser gardado'
   activerecord:
     models:
       AssessmentSection: Sección de Avaliación
@@ -6769,22 +6625,18 @@ gl:
         blank: non se pode deixar en branco
         confirmation: non coincide cá palabra chave
         empty: non pode estar baleiro
-        equal_to: debe ser igual a %{count}
         even: debe ser par
         exclusion: está reservado
-        greater_than: debe ser maior que %{count}
-        greater_than_or_equal_to: debe ser maior ou igual a %{count}
         inclusion: non está incluído na lista
         invalid: non é válido
-        less_than: debe ser inferior a %{count}
-        less_than_or_equal_to: debe ser inferior ou igual a %{count}
         new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
         not_a_number: non é un número
         not_an_integer: debe ser un número enteiro
         odd: debe ser impar
         only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
         record_invalid: 'A validación fallou: %{errors}'
-        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
+        requires_privilege_speech: |
+          debe ter tres observacións verificables ou tres identificacións para outros para facer iso
         requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
         taken: xa está en uso
         too_long:
@@ -6799,7 +6651,7 @@ gl:
       template:
         body: 'Atopáronse problemas nos seguintes campos:'
         header:
-          one: '%{count} erro prohibíu este %{model} ser gardado'
+          one: "%{count} erro prohibíu este %{model} ser gardado"
           other: '%{count} erros prohibiron este %{model} ser gardado'
       models:
         application:

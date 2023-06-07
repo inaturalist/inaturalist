@@ -26,4 +26,6 @@
       %span.favorites{ "ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}" }
         %i.fa.fa-star
         {{ o.faves_count }}
-      %span.created_at.pull-right{ "am-time-ago" => "o.created_at", title: "{{ (!o.obscured || o.private_geojson ) && shared.t('added_on_datetime', { datetime: shared.l('datetime.formats.long', o.created_at )}) }}" }
+      %span.created_at.pull-right{ "am-time-ago" => "(!o.obscured || o.private_geojson ) && o.created_at", title: "{{ (!o.obscured || o.private_geojson ) && shared.t('added_on_datetime', { datetime: shared.l('datetime.formats.long', o.created_at )}) }}", "ng-hide": "o.obscured && !o.private_geojson"}
+      %span.created_at.pull-right{ "ng-show": "o.obscured && !o.private_geojson" }
+        %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", obscured: "true", short: "true", "ng-show": "o.obscured && !o.private_geojson" }

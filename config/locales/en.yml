@@ -612,7 +612,6 @@ en:
   analyze_clashes: Analyze Unintended Disagreements
   analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
-  and: and
   and_other_taxa: "&amp; Other Taxa"
   android: Android
   animals: Animals
@@ -902,6 +901,10 @@ en:
   birds: birds
   birthday: Birthday
   black: black
+  block: Block
+  blocking_description: Blocking prevents any communication between you and another user. It is for
+    situations where another user may put your safety at risk, like stalking or other abusive
+    behavior.
   block_removed: Block removed
   blocked_users: Blocked Users
   blog_widget: Blog widget
@@ -929,7 +932,6 @@ en:
   browse_species_that_occur_near_this_observation: Browse species that occur near this observation.
   built_with_site_guides_html: "Built with <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Bulk import of %{filename} is complete"
-  by: by
   by_everyone: By everyone
   by_user: "By %{user}"
   by_you: By you
@@ -1191,7 +1193,6 @@ en:
   connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
-  connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   cannot_be_changed_during_a_content_freeze: Cannot be changed during a content freeze
   conservation_status: Conservation Status
@@ -1290,22 +1291,22 @@ en:
     molt: Molt
   controlled_term_definitions:
     alive: Organism is living and shows no signs of imminent death
-    dead: Organism is dead or shows signs of imminent death
-    flower_budding: Flower buds are visible but not open
-    flowering: Flowers visible, open, and still attached to the plant
-    fruiting: Fruit visible and still attached to the plant
-    no_evidence_of_flowering: Media provides no evidence of reproductive structures
-    teneral: Adult that has recently emerged but has not yet achieved its final adult form
-    cannot_be_determined: Cannot be determined from the evidence provided
-    feather: One or more feathers not attached to an organism
-    organism: Whole or partial organism
-    scat: Fecal matter (not owl pellets or other regurgitated matter)
-    track: Impression in ground or snow made by organism
     bone: |
       Predominantly endoskeletal remains; partial bone exposure in an otherwise
       intact organism should be labelled "organism"
-    molt: Discarded skin or exoskeleton
+    cannot_be_determined: Cannot be determined from the evidence provided
+    dead: Organism is dead or shows signs of imminent death
+    feather: One or more feathers not attached to an organism
+    flower_budding: Flower buds are visible but not open
+    flowering: Flowers visible, open, and still attached to the plant
+    fruiting: Fruit visible and still attached to the plant
     gall: Deformed plant tissue outgrowth caused by a parasitic organism
+    molt: Discarded skin or exoskeleton
+    no_evidence_of_flowering: Media provides no evidence of reproductive structures
+    organism: Whole or partial organism
+    scat: Fecal matter (not owl pellets or other regurgitated matter)
+    teneral: Adult that has recently emerged but has not yet achieved its final adult form
+    track: Impression in ground or snow made by organism
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
@@ -1434,16 +1435,16 @@ en:
     Fails to demonstrate appropriate behavior themselves.
   # Message shown when the viewer is not yet elligible to apply to become a
   # curator
-  curator_application_inelligible: |
+  curator_application_inelligible2: |
     In order to apply to be a site curator you must have had an account for 60
-    days or more and have added 100 improving identifications to anyone's
-    observations, including your own (you've added %{num_idents}). When you've
-    met both of those requirements, return here and you'll be able to submit the
-    application.
-  curator_application_inelligible_error: |
+    days or more, you must have added at least 5 flags, and you must have
+    added 100 improving identifications to anyone's observations, including
+    your own (you've added %{num_idents}). When you've met those
+    requirements, return here and you'll be able to submit the application.
+  curator_application_inelligible_error2: |
     In order to apply to be a site curator you must have an account for 60
-    days or more and have added 100 improving identifications to anyone's
-    observations, including your own.
+    days or more, added at least 5 flags, and added 100 improving
+    identifications to anyone's observations, including your own.
   # Message shown when a curator application has been succesfully submitted
   curator_application_success: Curator application submitted
   # Header
@@ -1515,6 +1516,9 @@ en:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     You have been adding identifications and/or observations for a few months
     and intend to continue.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    You have demonstrated that you understand the curation process by adding a
+    few flags.
   # A requirement for becoming a curator; part of a list, so you might imagine
   # it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1710,6 +1714,7 @@ en:
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       updated: 'You updated your account successfully.'
+      updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     mailer:
       confirmation_instructions:
         # Subject of an email sent to confirm your account
@@ -1806,9 +1811,15 @@ en:
   # Label for a link to taxa that are descendants ("downstream") of the current
   # taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Downstream flagged taxa
+  # Noun, as in a journal post that has not been published
   draft: draft
+  # Noun, as in a journal post that has not been published
   draft_: Draft
+  # Attribution for a journal post that has not been published
+  draft_by_user_html: Draft by %{user}
+  # Noun, as in a journal post that has not been published
   draft_saved: Draft saved!
+  # Noun, as in journal posts that has not been published
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
   # Button label for drawing a circular boundary for an observation search
@@ -1909,6 +1920,32 @@ en:
     date anyone who has not confirmed their email address will be unable to
     sign in unless they reset their password. To confirm your email address,
     go to your %{link_start_tag}account settings%{link_end_tag}.
+  # Subject of an email prompting people to confirm their email address before
+  # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date:
+    Confirm your %{site_name} email address before %{date}
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Please confirm your email address today to ensure that you can continue to
+    access your account. %{site_name} and the mobile apps
+    iNaturalist and Seek by iNaturalist connect people to nature and each
+    other by sharing observations of biodiversity. Thank you for being a part
+    of the iNaturalist community!
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    We will require verified email addresses for all accounts starting on
+    %{requirement_date}. Please take a moment to confirm it now.
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation.
+  email_confirmation_reminder_any_questions: |
+    If you have any questions, please refer to the FAQs. Thank you for taking
+    the time to connect with nature and with %{site_name}.
+  # Header in email prompting people to confirm their email address before we
+  # start requiring confirmation. This preceeds some details about the
+  # recipient's account.
+  email_confirmation_reminder_account_details: Account Details
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
   embed: 'Embed'
@@ -1989,16 +2026,6 @@ en:
   extra_properties: Extra Properties
   evidence_of_organism: Evidence of organism
   facebook: Facebook
-  facebook_account_information: Your Facebook Account Information
-  facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
-  facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
-  facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
-  facebook_options: Facebook Options
-  facebook_photo_import_disabled_notice: |
-    In November 2020 Facebook required us to verify that we really needed
-    access to photos, and we were unable to complete the process due to
-    problems with Facebook's verification system. As a result, we can no longer
-    support importing photos from Facebook.
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
@@ -2167,7 +2194,7 @@ en:
   frequency: Frequency
   from_a_place: from a place
   from_eol_collection: From EOL collection
-  from_flickr_facebook_etc: From Flickr, Facebook, etc.
+  from_flickr_etc: From Flickr, etc.
   from_list: From list
   from_photos: From photos
   from_place: From place
@@ -2311,6 +2338,17 @@ en:
   home: Home
   # Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hours to Adjust:"
+  # Message displayed on an observation detail page when the observation is
+  # not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    However, it is not licensed for re-use and will not be shared with data
+    repositories that respect license choices.
+  # Message displayed on an observation detail page when the observation is
+  # not licensed and the page is being viewed by the person who made the
+  # observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    You can change your license preferences in your
+    <a class="linky" href="/users/edit#content">account settings</a>.
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   # disagreements are identifications that disagree with other identifications on the same observation
   # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2572,18 +2610,25 @@ en:
   lexicon: Lexicon
   lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
-    scientific_names: Scientific Names
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanian
+    aou_4_letter_codes: AOU 4-Letter Codes
+    aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabic
     armenian: Armenian
+    asturian: Asturian
+    basque: Basque
     belarusian: Belarusian
     bengali: Bengali
+    bikol: Bikol
     bulgarian: Bulgarian
+    carolinian: Carolinian
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinese (simplified)
     chinese_traditional: Chinese (traditional)
+    chuvash: Chuvash
     creole_french: creole (French)
     creole_portuguese: creole (Portuguese)
     croatian: Croatian
@@ -2594,26 +2639,38 @@ en:
     english: English
     estonian: Estonian
     faroese: Faroese
+    fijian: Fijian
     finnish: Finnish
     french: French
     galician: Galician
     gela: Gela
+    georgian: Georgian
     german: German
     greek: Greek
+    gujarati: Gujarati
     hawaiian: Hawaiian
     hebrew: Hebrew
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Hill Mari
+    hodges_number: Hodges Number
+    hokkien: Hokkien
     hungarian: Hungarian
     icelandic: Icelandic
     ilokano: Ilokano
     indonesian: Indonesian
+    irish: Irish
     italian: Italian
     japanese: Japanese
     kannada: Kannada
+    kazakh: Kazakh
     korean: Korean
+    kweyol: Kwéyòl
     latvian: Latvian
     lithuanian: Lithuanian
+    lozi: Lozi
     luxembourgish: Luxembourgish
+    malagasy: Malagasy
     malay: Malay
     malayalam: Malayalam
     maltese: Maltese
@@ -2623,6 +2680,8 @@ en:
     misima_paneati: Misima-paneati
     mongolian: Mongolian
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norwegian
     occitan: Occitan
     ojibwe: Ojibwe
@@ -2634,22 +2693,39 @@ en:
     romanian: Romanian
     russian: Russian
     santali: Santali
+    scientific_names: Scientific Names
     serbian: Serbian
-    setswana: Setswana
+    shona: Shona
     sinhala: Sinhala
     slovak: Slovak
     slovenian: Slovenian
+    sotho: Sotho
+    sotho: Sotho
+    sotho_northern: Sotho (Northern)
     spanish: Spanish
     swahili: Swahili
+    swati: Swati
     swedish: Swedish
     tagalog: Tagalog
     tahitian: Tahitian
+    tamil: Tamil
     thai: Thai
     tokelauan: Tokelauan
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turkish
+    u_s_d_a_symbol: U.S.D.A. Symbol
     ukrainian: Ukrainian
-    waray_waray: Waray-Waray
+    uyghur: Uyghur
+    venda: Venda
+    vermont_flora_codes: Vermont Flora Codes
+    vietnamese: Vietnamese
     visayan: Visayan
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Less
   # Button show less text
   less__context_text: Less
@@ -2665,14 +2741,8 @@ en:
   # user to iNat to authorize the app's use of their iNat account. "Link" is
   # a noun.
   link_to_authorization_code: Link to authorization code
-  link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
   link_your_google_account: Link your Google account
-  linked_facebook: "Your %{site_name} account is currently linked to your Facebook account."
-  linked_facebook_automaticaly: "Also, keep in mind that if you log in to %{site_name} via Facebook, we will automatically re-link your %{site_name} and Facebook accounts. Seems reasonable that if you use Facebook you'll want to be able to import Facebook photos, right?"
-  linked_facebook_description: "Keeping your %{site_name} account linked to your Facebook account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Facebook to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Facebook account that you want to link %{site_name} to."
-  linked_facebook_howto: "To connect Facebook with %{site_name}, click the link on the right and sign into Facebook.com."
-  linked_facebook_password: "We will never ask you for your Facebook password (but Facebook might, check the url that the button sends you and make sure it's Facebook.com). We will also won't change your Facebook data unless you want us to."
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
@@ -2690,6 +2760,10 @@ en:
     taxonomic: taxonomic
     photo: photo
   list_was_successfully_created: List was successfully created.
+  # Template for a comma-separated list of items. We'll use this to generate
+  # lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, and %{three}"
+  list_with_two_items: "%{one} and %{two}"
   listed_taxa: Listed Taxa
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
@@ -2742,6 +2816,8 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    ka: Georgian
+    kk: Kazakh
     kn: Kannada
     ko: Korean
     lb: Luxembourgish
@@ -2807,6 +2883,8 @@ en:
   lookup: Lookup
   low: Low
   lowest_rank: Lowest Rank
+  # Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Make admin
   # Header for main content section of the project detail page when editing custom project data.
   main_content: Main content
@@ -2839,7 +2917,7 @@ en:
       every_publicly_visible_observation: Every publicly visible observation created in the iNaturalist network
       featured_observations: Featured observations
       gbif_network: GBIF network
-      gbif_network_description: Records from museums and other occurrence providers distributed by the Global Biodiversity Informatics Facility
+      gbif_network_description2: Records from museums and other occurrence providers distributed by the Global Biodiversity Information Facility
       observations: Observations
       place_boundary: Place boundary
       checklist_places: Checklist places
@@ -2859,6 +2937,9 @@ en:
   maximum_positional_accuracy_including_unknown: |
     Maximum positional accuracy including observations without positional accuracy
   media: Media
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
+  media_and: and
   media_type: Media Type
   medium: medium
   meet: Meet
@@ -3038,8 +3119,13 @@ en:
   must_have_quality_grades: "must have quality grades: %{grades}"
   must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
+  # Imperative verb, label for a button that lets you mute another user
+  mute: Mute
+  # Mute is a noun here
   mute_removed: Mute removed
   muted_users: Muted Users
+  muting_description: Muting someone prevents you from being notified about any of their activity,
+    including "@" mentions, messages, or comments and identifications on your observations.
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -3248,7 +3334,6 @@ en:
   not_found: Not found
   # Filter for observations not in a particular place
   not_in_place: Not in place
-  not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
@@ -3432,11 +3517,12 @@ en:
   observed_on: Observed on
   observer: Observer
   observers: Observers
-  observer_prefers_no_project_addition: |
-    Observer does not allow other people to add their observations to projects.
-  observer_prefers_addition_to_projects_joined: |
-    Observer only allows other people to add their observations to projects they
-    have joined.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observer only allows other people to add their observations to traditional
+    projects they have joined.
+  observer_prefers_no_traditional_project_addition: |
+    Observer does not allow other people to add their observations to
+    traditional projects.
   observer_short: Observer
   occurence_status_describes_how: Occurrence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
@@ -3534,7 +3620,7 @@ en:
   options: Options
   or: or
   # Usually used to separate buttons or functional areas of the interface, e.g.
-  # sign in fields OR sign in with Facebook
+  # sign in with Apple OR Google
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   orange: orange
@@ -3590,6 +3676,14 @@ en:
     invalid_email: Invalid email format
   password: Password
   password_confirmation: 'Password confirmation'
+  password_change_description: Changing your password will log you out of all active
+    iNaturalist sessions across your devices
+  password_change_logout_warning: After you change your password, you will be signed out and you
+    will need to sign in again with your new password.
+  password_change_observations_warning: You will also be signed out of the iNaturalist mobile apps
+    and any other apps or websites that post to iNaturalist on your behalf, so make sure you have
+    uploaded any pending observations before you do this. Any observations that are not uploaded
+    will be lost.
   paste: Paste
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   people: People
@@ -4135,11 +4229,10 @@ en:
     where you can draw arbitrary boundaries, or export them from iNat using
     existing places or a bounding box and then filter the data again once you've
     downloaded it.
-  places_warning_look_for_existing_html: |
+  places_warning_look_for_existing2_html: |
     Look for <a href="/search?source[]=places">existing places</a> to make sure
     you're not creating a duplicate. We already have places for all the
-    continents and countries, as well as two administrative levels below
-    country.
+    continents and countries, and many other political boundaries.
   places_warning_please_keep_in_mind: |
     Please keep in mind the following restrictions:
   places_warning_projects_can_have_multiple_places: |
@@ -4187,7 +4280,10 @@ en:
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   posted_by: Posted by
-  posted_on: Posted on
+  # Shows the date a journal post was published
+  posted_on_date_html: Posted on %{date}
+  # Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Posted on %{date} by %{user}
   posts: Posts
   potential_disagreement: Potential Disagreement
   powered_by: Powered by
@@ -4294,10 +4390,6 @@ en:
     Apple did not provide an email address for that account, which is
     required. Please create a account on this site instead of signing
     in via Apple.
-  provider_without_email_error_flickr: |
-    Facebook did not provide an email address for that account, which is
-    required. Please create a account on this site instead of signing
-    in via Facebook.
   provider_without_email_error_flickr: |
     Flickr did not provide an email address for that account, which is
     required. Please create a account on this site instead of signing
@@ -4817,7 +4909,7 @@ en:
     iNaturalist automatically hides the coordinates for some species to protect
     them from disturbance, collection, or poaching. If the observation
     coordinates have only been hidden automatically to protect species,
-    iNaturalist shares  the true coordinates of all observations from their
+    iNaturalist shares the true coordinates of all observations from their
     respective countries with Network Members.
   sites_affiliation_more_email_addresses: |
     Email addresses are shared with Network Members solely for the purposes of
@@ -5007,6 +5099,10 @@ en:
   stats: Stats
   stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   status: Status
+  # Displayed on the taxon detail page when a conservation status is being
+  # applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applied from a higher-level taxon:</strong> %{taxon}
   status_globally: '"%{status}" Globally'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Stay and try again
@@ -5081,7 +5177,6 @@ en:
   tagging: 'Tagging...'
   tags: Tags
   tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
-  take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
   target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
@@ -5738,8 +5833,7 @@ en:
   user_commented: "%{user} commented"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
-  # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_faved_an_observation_by_you: "%{user} faved an observation by you"
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
@@ -5929,11 +6023,9 @@ en:
   # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
-  we_also_support: |
-    We also support <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, and
-    <a href="http://facebook.com">Facebook</a>
-    for image hosting.
+  we_also_support2: |
+    We also support importing photos from <a href="http://flickr.com">Flickr</a>
+    and <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
@@ -6976,10 +7068,13 @@ en:
           project curators cannot see. If you don't want to share the
           coordinates of this observation with the curators of this project,
           you must remove the observation from the project.
-        data_quality_assessment_desc_html: |
-          The Data Quality Assessment is an evaluation of an observation’s
-          accuracy. Research Grade observations may be used by scientists for
-          research. Cast your vote below:
+        data_quality_assessment_desc3_html: |
+          The Quality Grade summarizes the accuracy, precision, completeness,
+          relevance, and appropriateness of an iNaturalist observation as
+          biodiversity data. Some attributes are automatically determined,
+          while others are subject to a vote by iNat users. iNaturalist
+          shares licensed "Research Grade" observations with a number of data
+          partners for use in science and conservation.
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
@@ -7305,9 +7400,9 @@ en:
           leave copyright infringement flags as unresolved if this photo does
           infringe copyright.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         KML of the place boundary. You can make one using Google Maps, Google
-        Earth, or most GIS applications. Must have at least one polygon be
+        Earth, or most GIS applications. Must have at least one polygon, be
         under 1 MB (5 MB for site curators), and have an area smaller than the
         US state of Texas.
       edit:
@@ -8318,9 +8413,9 @@ en:
           iNaturalist and iNaturalist Network sites.
           <a href="%{url}">Click here to become a Monthly Supporter</a>.
           When we have confirmed your support you will be able to check this
-          box to display this status on your profile. Note: you will need to use
-          exactly the same email address on Donorbox as you do on iNaturalist
-          for us to confirm that you've become a Monthly Supporter.
+          box to display this status on your profile. Note: the email addresses
+          on Donorbox and iNaturalist must match exactly for us to confirm that
+          you are a Monthly Supporter. If they differ, change one to match the other.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -8539,9 +8634,24 @@ en:
       index:
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
-        observations_to_date: 'Observations to Date'
-        species_observed: 'Species Observed'
-        people_signed_up: 'People Signed Up'
+        observations_to_date:
+          zero: "Observations to Date"
+          one: "Observation to Date"
+          few: "Observations to Date"
+          many: "Observations to Date"
+          other: "Observations to Date"
+        species_observed:
+          zero: "Species Observed"
+          one: "Species Observed"
+          few: "Species Observed"
+          many: "Species Observed"
+          other: "Species Observed"
+        people_signed_up:
+          zero: "People Signed Up"
+          one: "Person Signed Up"
+          few: "People Signed Up"
+          many: "People Signed Up"
+          other: "People Signed Up"
         how_it_works: How It Works
         record_your_observations: Record your observations
         share_with_fellow_naturalists: Share with fellow naturalists
@@ -8619,20 +8729,20 @@ en:
       6: Fr
       7: Sa
     formats:
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b %d'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      long: '%B %-d, %Y'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short: '%b %-d'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%b %d, %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short_with_year: '%b %-d, %Y'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%B %d, %Y'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      month_day_year: '%B %-d, %Y'
     month_names:
       -
       - January
@@ -8684,17 +8794,17 @@ en:
         one: "%{count} second"
         other: '%{count} seconds'
     countdown_x_days:
-      one: day
-      other: days
+      one: DAY
+      other: DAYS
     countdown_x_hours:
-      one: hour
-      other: hours
+      one: HOUR
+      other: HOURS
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MINS
     countdown_x_seconds:
-      one: sec
-      other: sec
+      one: SEC
+      other: SECS
     prompts:
       day: Day
       hour: Hour
@@ -8702,47 +8812,6 @@ en:
       month: Month
       second: Seconds
       year: Year
-  errors: &errors
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: must be accepted
-      blank: can't be blank
-      confirmation: didn't match password
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      new_project_owner_must_be_a_manager: New project owner must be an admin
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      odd: must be odd
-      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
-      record_invalid: 'Validation failed: %{errors}'
-      requires_privilege_speech: |
-        must have three verifiable observations or three identifications
-        for others to do that
-      requires_privilege_organizer: must have 50 verifiable observations to do that
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is %{count} character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is %{count} character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be %{count} character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: 'There were problems with the following fields:'
-      header:
-        one: "%{count} error prohibited this %{model} from being saved"
-        other: '%{count} errors prohibited this %{model} from being saved'
   helpers:
     defaults:
       title: "THIS IS A TITLE"
@@ -8817,31 +8886,25 @@ en:
   time:
     am: am
     formats:
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%b. %d, %Y %H:%M:%S %z'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y %I:%M %p'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b %H:%M'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      default: '%b. %-d, %Y %H:%M:%S %z'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      long: '%B %-d, %Y %I:%M %p'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short: '%-d %b %H:%M'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%B %d, %Y"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      day_month_year: "%B %-d, %Y"
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
     models:
       # Information authored by site admins shown to users at various places
-      # on the web site, mostly on the dashboard
+      # on the platform
       Announcement: Announcement
       AssessmentSection: Assessment Section
       Atlas: Atlas
@@ -8868,6 +8931,9 @@ en:
         # Numerical IDs of the iNaturalist Network partner sites the
         # announcement should be shown on
         site_ids: Site IDs
+        # Preference for an announcement that is only shown to users who have
+        # not confirmed their email address
+        prefers_target_unconfirmed_users: Target unconfirmed users
       assessment:
         description: Description
       assessment_section:
@@ -9050,7 +9116,56 @@ en:
         place_id: Place
         preferred_observation_fields_by: Allow observation fields from
     errors:
-      <<: *errors
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: didn't match password
+        empty: can't be empty
+        equal_to:
+          one: must be equal to %{count}
+          other: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than:
+          one: must be greater than %{count}
+          other: must be greater than %{count}
+        greater_than_or_equal_to:
+          one: must be greater than or equal to %{count}
+          other: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than:
+          one: must be less than %{count}
+          other: must be less than %{count}
+        less_than_or_equal_to:
+          one: must be less than or equal to %{count}
+          other: must be less than or equal to %{count}
+        new_project_owner_must_be_a_manager: New project owner must be an admin
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        only_project_owner_can_change_project_owner: Only the project owner can change the project owner
+        record_invalid: 'Validation failed: %{errors}'
+        requires_privilege_speech: |
+          must have three verifiable observations or three identifications
+          for others to do that
+        requires_privilege_organizer: must have 50 verifiable observations to do that
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is %{count} character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is %{count} character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be %{count} character)
+          other: is the wrong length (should be %{count} characters)
+      template:
+        body: 'There were problems with the following fields:'
+        header:
+          one: "%{count} error prohibited this %{model} from being saved"
+          other: '%{count} errors prohibited this %{model} from being saved'
       models:
         application:
           attributes:

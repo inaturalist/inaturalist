@@ -88,7 +88,7 @@ iNatModels.Taxon.prototype.localizedPhotoAttribution = function( options ) {
 };
 
 iNatModels.Taxon.prototype.establishmentMeansCode = function( ) {
-  if( !_.isUndefined( this.establishment_means_code ) ) {
+  if( this.establishment_means_code !== undefined ) {
     return this.establishment_means_code;
   }
   switch( this.establishment_means && this.establishment_means.establishment_means ) {
@@ -108,7 +108,7 @@ iNatModels.Taxon.prototype.establishmentMeansCode = function( ) {
 };
 
 iNatModels.Taxon.prototype.conservationStatus = function( ) {
-  if( !_.isUndefined( this.conservationStatusName ) ) {
+  if( this.conservationStatusName !== undefined ) {
     return this.conservationStatusName;
   }
   switch( this.conservation_status && this.conservation_status.status ) {

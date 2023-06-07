@@ -18,6 +18,8 @@ import StatusRow from "./status_row";
 import FlashMessage from "../../../observations/show/components/flash_message";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
+import { commasAnd } from "../../shared/util";
+
 const App = ( { taxon, showNewTaxon, config } ) => (
   <div id="TaxonDetail">
     { config && config.testingApiV2 && (

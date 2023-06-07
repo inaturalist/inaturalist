@@ -137,6 +137,7 @@ class ProjectForm extends React.Component {
                   addManager( e.item );
                   this.ua.current.inputElement( ).val( "" );
                 }}
+                config={config}
                 bootstrapClear
                 placeholder={I18n.t( "user_autocomplete_placeholder" )}
                 projectID={project.id}

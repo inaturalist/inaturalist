@@ -332,7 +332,6 @@ lb:
   already_have_an_account_log_in_html: Hutt Dir schonn e Benotzerkont? <strong>Aloggen.</strong>
   amphibians: Amphibien
   analyze_ids: IDen analyséieren
-  and: a(n)
   android: Android
   animals: Déieren
   annotation: Annotatioun
@@ -487,7 +486,6 @@ lb:
   browse_people: Zeréck zu Léit duerchsichen
   browse_projects: Projeten duerchsichen
   browse_species_that_occur_near_this_observation: Aarten duerchsichen déi no un dëser Observatioun fonnt gi sinn.
-  by: vum
   by_everyone: Vu jidderengem
   by_user: "Vum %{user}"
   by_you: Vun Iech
@@ -587,7 +585,6 @@ lb:
   #connecting to Flickr
   connect: Connectéieren
   connected_accounts_titlecase: Connectéiert Kontoen
-  connecting_to_facebook: "Mat Facebook verbannen..."
   conservation_status: Erhalungszoustand
   continue: Virufueren
   continue_to_site: Virun op %{site_name}
@@ -623,14 +620,14 @@ lb:
     molt: Häutung
   controlled_term_definitions:
     alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
+    bone: |
+      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
     dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
     feather: Eng oder mei Fiederen net um Organismuss hänkent
+    molt: Verworfen Haut oder Exoskelet
     organism: Ganzen oder partiellen Organismus
     scat: Fäkal Exkrementer (keen gierkstent Material)
     track: Androck am Buedem oder Schnéi vum Organismus
-    bone: |
-      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
-    molt: Verworfen Haut oder Exoskelet
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
@@ -690,6 +687,8 @@ lb:
       may: Mee
       june: Juni
       july: Juli
+      august: August
+      september: September
       october: Oktober
       november: November
       december: Dezember
@@ -770,9 +769,13 @@ lb:
   download_csv: CSV eroflueden
   download_csv_template: CSV-Schabloun eroflueden
   download_kml: KML eroflueden
+  #Noun, as in a journal post that has not been published
   draft: virbereeden
+  #Noun, as in a journal post that has not been published
   draft_: Virbereedung
+  #Noun, as in a journal post that has not been published
   draft_saved: Virbereedung gespäichert!
+  #Noun, as in journal posts that has not been published
   drafts: Virbereedungen
   drag_and_drop_some_photos_or_sounds: Drag & drop Fotoen oder Sound
   drawings: Zeechnungen
@@ -833,10 +836,6 @@ lb:
   #account, e.g. Flickr
   external_applications: Exterm Applikatiounen
   extinct: ausgestuerwen
-  facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
-  facebook_options: Facebook-Optiounen
-  facebook_photo_import_disabled_notice: |
-    Am November 2020 huet Facebook ons opgefuerdert z'iwwerpréiwen ob mir wierklech Zougang zu Fotoe brauchen, dëse Prozess konnte mir net ofschléisse wéinst Probleemer mam Facebook Verifizéierungssystem. Als Konsequenz ënnerstëtze mir net méi den Import vu Facebook Fotoen.
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
   Family: Famill
@@ -906,7 +905,6 @@ lb:
     tutorials: Tutorialen
   frequency: Frequenz
   from_a_place: vun enger Plaz
-  from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
   from_photos: Vu Fotoen
   from_soundcloud: Vun Soundcloud
   full_screen: Ganzen Ecran
@@ -1052,7 +1050,6 @@ lb:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "kann déi folgend Wierder net enthalen: %{words}"
   lexicons:
-    scientific_names: Wëssenschaftlech Nimm
     albanian: Albanesch
     arabic: Arabesch
     armenian: Armenesch
@@ -1103,7 +1100,7 @@ lb:
     portuguese: Portugisesch
     romanian: Rumänesch
     russian: Russesch
-    setswana: Setswana
+    scientific_names: Wëssenschaftlech Nimm
     sinhala: Sinhala
     slovak: Slokwakesch
     slovenian: Slowenesch
@@ -1113,6 +1110,7 @@ lb:
     thai: Thailännesch
     turkish: Tierkesch
     ukrainian: Ukrainesch
+    uyghur: Uiguresch
     visayan: Visayesch
   less: Manner
   license: Lizenz
@@ -1122,6 +1120,7 @@ lb:
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: verlinkten Text
+  linkedin: LinkedIn
   list: Lëscht
   list_deleted: Lëscht geläscht.
   list_saved: Lëscht gespäichert.
@@ -1156,10 +1155,13 @@ lb:
     fi: Finnesch
     fr: Franséisch
     gl: Galizesch
+    he: Hebräesch
+    hr: Kroatesch
     hu: Ungaresch
     id: Indonesesch
     it: italienesch
     ja: Japanesch
+    kk: Kasachesch
     kn: Kannada
     ko: Koreanesch
     lb: Lëtzebuergesch
@@ -1169,13 +1171,16 @@ lb:
     mr: Marathi
     nl: Hollännesch
     pl: Polnesch
+    pt: Portugisesch
     pt-BR: Portugisesch (Brasilien)
     ru: Russesch
     sk: Slokwakesch
     sl: Slowenesch
     sq: Albanesch
+    sr: Serbesch
     sv: Schwedesch
     th: Thailännesch
+    tr: Tierkesch
     uk: Ukrainesch
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
@@ -1249,7 +1254,7 @@ lb:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%d Méint"
+      mm: "%d Minuten"
       #Short text representing 1 hour in the past
       h: "1 Stonn"
       #Short text representing %d hours in the past
@@ -1257,7 +1262,7 @@ lb:
       #Short text representing 1 day in the past
       d: "1D"
       #Short text representing %d days in the past
-      dd: "%d Deeg"
+      dd: "%dd"
       #Short text representing 1 month in the past
       M: "1min"
       #Short text representing 1 year in the past
@@ -1307,6 +1312,7 @@ lb:
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "muss Qualiteitsgrad: %{grades} hunn"
   must_have_sounds: muss ee Sound hunn
+  #Mute is a noun here
   mute_removed: Stomm schalten ewechgeholl
   n_ago: "viru(n) %{n}"
   name: Numm
@@ -1403,7 +1409,6 @@ lb:
   not_findig_what_you_want: Fannt Dir dat wat Dir gesicht hutt?
   not_finding_place_you_want?: Fannt Dir déi Plaz déi Dir gesicht hutt?
   not_found: Net fonnt
-  not_linked_facebook: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Facebook-Benotzerkont verbonnen"
   not_linked_flickr: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Flickr-Benotzerkont verbonnen"
   not_on_this_list: Net op dëser Lëscht.
   not_recorded: Net enregistréiert
@@ -1522,7 +1527,7 @@ lb:
   optional: fakultativ
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ODER
   order: Uerdnung
   organisms: Organismen
@@ -1630,9 +1635,12 @@ lb:
   places: Plazen
   places_added_by_members_of_the_community: Plaz gouf vun engem Member vun der Communautéit bäigefüügt
   places_name:
+    afghanistan: Afghanistan
     africa: Afrika
     albania: Albanien
     algeria: Algerien
+    andorra: Andorra
+    angola: Angola
     antarctica: Antarktis
     antigua_and_barbuda: Antigua a Barbuda
     argentina: Argentinien
@@ -1640,26 +1648,46 @@ lb:
     asia: Asien
     australia: Australien
     austria: Éisträich
+    azerbaijan: Aserbaidjan
+    bangladesh: Bangladesch
     belarus: Wäissrussland
     belgium: Belsch
+    benin: Benin
+    bhutan: Bhutan
     bolivia: Bolivien
+    botswana: Botswana
     brazil: Brasilien
+    brunei: Brunei
     bulgaria: Bulgarien
+    burkina_faso: Burkina Faso
+    burundi: Burundi
     cambodia: Kambodscha
     cameroon: Kamerun
     canada: Kanada
+    cape_verde: Cap Vert
     central_african_republic: Zentralafrikanesch Republik
     central_america: Zentralamerika
     chad: Tschad
+    chile: Chile
+    china: China
     colombia: Kolumbien
     comoros: Komoren
+    costa_rica: Costa Rica
+    cote_d_ivoire: Côte d'Ivoire
     croatia: Kroatien
     cuba: Kuba
     cyprus: Zypern
+    czech_republic: Tschechesch Republik
+    democratic_republic_of_the_congo: Demokratesch Republik Kongo
     denmark: Dänemark
+    djibouti: Dschibuti
+    dominica: Dominica
     dominican_republic: Dominikanesch Republik
     east_timor: Ost-Timor
+    ecuador: Ecuador
     egypt: Egypten
+    el_salvador: El Salvador
+    eritrea: Eritrea
     estonia: Estland
     europe: Europa
     fiji: Fidschi
@@ -1685,34 +1713,68 @@ lb:
     jamaica: Jamaika
     jordan: Jordanien
     kenya: Kenia
+    kyrgyzstan: Kirgisistan
     laos: Laos
     latvia: Lettland
     lebanon: Libanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libyen
+    liechtenstein: Liechtenstein
     lithuania: Litauen
     luxembourg: Lëtzebuerg
     macedonia: Mazedonien
     madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
     maldives: Maldiven
     mali: Mali
+    malta: Malta
+    marshall_islands: Marshallinselen
     mauritania: Mauretanien
+    mauritius: Mauritius
     mexico: Mexiko
     micronesia: Mikronesien
     moldova: Moldawien
+    monaco: Monaco
+    mongolia: Mongolei
+    montenegro: Montenegro
+    morocco: Marokko
+    mozambique: Mosambik
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Holland
     new_caledonia: Nei-Kaledonien
     new_zealand: Neiséiland
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
     niue: Niue
     north_africa: Nordafrika
     north_america: Nordamerika
+    north_korea: Nordkorea
     norway: Norwegen
     oman: Oman
+    pakistan: Pakistan
+    palau: Palau
     palestine: Palestina
+    panama: Panama
+    papua_new_guinea: Papua-Neuguinea
+    paraguay: Paraguay
     peru: Peru
     philippines: Philippinnen
     poland: Polen
+    portugal: Portugal
+    puerto_rico: Puerto Rico
+    qatar: Katar
     republic_of_congo: Republik Kongo
     romania: Rumänien
     russia: Russland
+    rwanda: Ruanda
+    samoa: Samoa
+    san_marino: San Marino
     saudi_arabia: Saudi Arabien
     serbia: Serbien
     seychelles: Seychellen
@@ -1779,6 +1841,9 @@ lb:
   quality_grade: Qualitéitsgrad
   quality_grade_: Qualitéitsgrad
   query: Ufro
+  radius: Radius (m)
+  radius_km: Radius (km)
+  radius_value: "Radius (m): %{radius}"
   random: Zoufall
   range: Beräich
   rank: Rang
@@ -2491,9 +2556,6 @@ lb:
       index:
         connect_with_nature: Mat der Natur verbannen
         explore_and_share: Entdeckt an deelt Är Observatiounen aus der Natur
-        observations_to_date: 'Observatioune bis elo'
-        species_observed: 'Aarten observéiert'
-        people_signed_up: 'Leit hu sech ageschriwwen'
         how_it_works: Wéi et geet
         record_your_observations: Enregistréiert Är Observatiounen
         share_with_fellow_naturalists: Mat aneren Naturalisten deelen
@@ -2588,18 +2650,6 @@ lb:
       x_seconds:
         one: "%{count} Sekonn"
         other: '%{count} Sekonnen'
-    countdown_x_days:
-      one: Dag
-      other: Deeg
-    countdown_x_hours:
-      one: Stonn
-      other: Stonnen
-    countdown_x_minutes:
-      one: Min
-      other: Min
-    countdown_x_seconds:
-      one: Sek
-      other: Sek
     prompts:
       day: Dag
       hour: Stonn
@@ -2607,22 +2657,6 @@ lb:
       month: Mount
       second: Sekonnen
       year: Joer
-  errors:
-    messages:
-      blank: däerf net eidel sinn
-      empty: däerf net eidel sinn
-      even: muss gerued sinn
-      exclusion: ass reservéiert
-      greater_than: muss méi grouss wéi %{count} sinn
-      invalid: ass net valabel
-      not_a_number: ass keng Zuel
-      not_an_integer: muss eng ganz Zuel sinn
-      odd: muss ongerued sinn
-      record_invalid: 'Validatioun feelgeschlo: %{errors}'
-      requires_privilege_speech: |
-        musst dräi iwwerpréifbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
-      requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
-      taken: gouf scho geholl
   helpers:
     defaults:
       title: "DEST AS EEN TITEL"
@@ -2679,26 +2713,6 @@ lb:
   time:
     am: am
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: muss akzeptéiert ginn
-        blank: däerf net eidel sinn
-        empty: däerf net eidel sinn
-        even: muss gerued sinn
-        exclusion: ass reservéiert
-        greater_than: muss méi grouss wéi %{count} sinn
-        greater_than_or_equal_to: muss méi grouss oder gläich si wéi %{count}
-        inclusion: ass net an der Lëscht dran
-        invalid: ass net valabel
-        less_than: muss méi kleng wéi %{count} sinn
-        less_than_or_equal_to: muss méi kleng oder gläich si wéi %{count}
-        not_a_number: ass keng Zuel
-        not_an_integer: muss eng ganz Zuel sinn
-        odd: muss ongerued sinn
-        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
-        requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
   activerecord:
     models:
       Atlas: Atlas
@@ -2762,12 +2776,12 @@ lb:
         empty: däerf net eidel sinn
         even: muss gerued sinn
         exclusion: ass reservéiert
-        greater_than: muss méi grouss si wéi %{count}
         inclusion: ass net an der Lëscht dran
         invalid: ass net valabel
         not_a_number: ass keng Zuel
         odd: muss ongerued sinn
-        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
+        requires_privilege_speech: |
+          musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
         requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       models:
         moderator_action:

@@ -170,6 +170,10 @@ zh-TW:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精確度 (公尺)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 在特定精確度數值以上
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 在特定精確度數值以下
   account: 帳號
   account_creation: 帳號建立
   account_settings: 帳號設定
@@ -449,7 +453,6 @@ zh-TW:
   analyze_clashes: 分析無意中的意見分歧
   analyze_ids: 分析 ID
   ancestor_taxon: 祖先分類
-  and: 和
   and_other_taxa: "&amp;其它物種分類"
   android: Android
   animals: 動物
@@ -492,6 +495,12 @@ zh-TW:
   anyone: 任何人
   app_owner_application_explanation_required: |
     您必須對您想要打造的應用程式提供更詳細的解釋。
+  app_owner_application_about_p2_html: |
+    自2022年起，我們以人工審核方式審核想要使用API用戶端的使用者，為了創建第三方應用程式，您必須先提交申請才能成為"app擁有者"，申請內容必須描述該app的功能以及您計畫如何使用它，在提交申請前請確認您的帳號註冊時間至少2個月以上並且在過去一個月內完成至少10筆<a href="/pages/help#identification"
+    target="_blank">改進中的鑑定</a>，我們可能會對您的申請內容提出後續問題，並保留以任何理由拒絕申請的權利。
+  app_owner_application_inelligible: |
+    在提交申請前，你的帳號註冊時間需要至少2個月以上，並在過去的一個月內完成10次改進中鑑定。
+  app_owner_application_fields_explanation_html: 描述您的app將具有的功能以及您計畫如何使用它。
   app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -630,6 +639,7 @@ zh-TW:
   #of values, and not a synonym of "typical" or "normal"
   avg: 平均
   back: 返回
+  back_to_applications: "返回應用程式"
   back_to_all_species: 返回至所有物種
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
@@ -669,6 +679,8 @@ zh-TW:
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
+  become_a_donor_caps: 成為捐款者
+  become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
   bg_color: 背景顏色
   bio: 個人簡介
@@ -677,6 +689,8 @@ zh-TW:
   birds: 鳥類
   birthday: 生日
   black: 黑色
+  block: 封鎖
+  blocking_description: 封鎖可以防止您與其他使用者之間的任何通訊。這一功能主要使用於其他使用者可能對您的安全構成風險的狀況下，例如跟蹤或其他濫用行為。
   block_removed: 封鎖已移除
   blocked_users: 已封鎖的使用者
   blog_widget: 部落格小工具
@@ -704,12 +718,12 @@ zh-TW:
   browse_species_that_occur_near_this_observation: 瀏覽接近此觀察所出現的物種。
   built_with_site_guides_html: "建於 <a href='%{url}'>%{site_name} 指南</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的巨量匯入已完成"
-  by: 由
   by_everyone: 由任何人
   by_user: "由 %{user}"
   by_you: 由您
   calendar: 行事曆
   calendars_only_show_x_observations_at_time: 行事曆每次僅會顯示 %{x} 個觀察
+  callback_url: 回傳 URL
   cancel: 取消
   cant_edit_or_delete_hidden_content: 因這已被網站策展人給隱藏，您不能編輯或刪除內容
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
@@ -751,6 +765,8 @@ zh-TW:
   change_group: 更改群組
   change_icon: 更改圖示
   change_password: 更改密碼
+  #Message shown after you change your email address
+  change_to_email_requested_html: 已提出修改<strong>%{email}</strong>。請在此電子郵件地址中檢查並確認此更動。
   change_types:
     activated_soon: 即將被啟用
     change_types: 更改類型
@@ -909,6 +925,10 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: 確認電子郵件已於 %{datetime} 傳送
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: 已於 %{date}確認
   confirming_ids: 確認物種鑑定
   confirming_ids_description: 如果您關閉此選項，您將不會收到同意您鑑定的分類群通知。
   #Label for a button to connect your iNat account to another account, e.g.
@@ -919,7 +939,6 @@ zh-TW:
   connected_accounts_titlecase: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次連結 Flickr 帳號以授權寫入權限
-  connecting_to_facebook: "連接至臉書..."
   connecting_your_inat_account_to_accounts_other_sites: "連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 在內容凍結狀態時無法更動
   conservation_status: 保育狀態
@@ -1009,20 +1028,20 @@ zh-TW:
     molt: 蛻皮
   controlled_term_definitions:
     alive: 還是活著的生物，而且看不出有立即死亡的徵兆
+    bone: |
+      主要的內骨骼還存在；部分骨骼暴露在一個完整的生物體中，應該標註為「生物」
+    cannot_be_determined: 從提供的證據當中無法判定
     dead: 生物已經死亡或是顯示有立即死亡的徵兆
+    feather: 一或多根未附著在某種生物上的羽毛
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    molt: 蛻下的表皮或外骨骼
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
-    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
-    cannot_be_determined: 從提供的證據當中無法判定
-    feather: 一或多根未附著在某種生物上的羽毛
     organism: 整個或部分生物體
     scat: 糞便類（非貓頭鷹的食繭或其他嘔吐物）
+    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
     track: 某種生物在地面或雪地上造成的印記
-    bone: |
-      主要的內骨骼還存在；部分骨骼暴露在一個完整的生物體中，應該標註為「生物」
-    molt: 蛻下的表皮或外骨骼
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
@@ -1129,12 +1148,6 @@ zh-TW:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     他們本身做了不良的示範。
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    若要申請成為網站的策展人，您必須持有帳號60天或是對任何人的觀察記錄新增100筆改進中的鑑定，包含您自己的（您已新增 %{num_idents} 筆鑑定）。當您已符合這些要求，返回此處後您將能夠提交申請書。
-  curator_application_inelligible_error: |
-    若要申請成為網站的策展人，您必須持有帳號60天或是對任何人的觀察記錄新增100筆改進中的鑑定，包含您自己的。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: 策展人申請已提交
   #Header
@@ -1332,6 +1345,8 @@ zh-TW:
   deviation: 偏差
   devise:
     confirmations:
+      confirmed: |
+        已成功確認電子郵件地址。您現在可以登入此網站或行動端的 iNaturalist 及 Seek 應用程式。
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1362,9 +1377,14 @@ zh-TW:
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: 帳號確認說明
+        subject: 確認您的電子郵件地址
       reset_password_instructions:
         subject: '重設密碼的說明'
+  devise_confirmation_instructions_if_you_did_not: |
+    如果您沒有註冊 %{site_name} 帳號，請忽略此電子郵件。
+  devise_confirmation_instructions_please_click: |
+    請按此鏈結確認您的電子郵件地址：
+  devise_confirmation_instructions_send_confirmation_email: 傳送確認電子郵件
   devise_reset_password_instructions_hello_email: 您好 %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您沒有要求重設密碼，請忽略這封 email。
@@ -1431,9 +1451,13 @@ zh-TW:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: 下游已標記的涵蓋物種分類
+  #Noun, as in a journal post that has not been published
   draft: 草稿
+  #Noun, as in a journal post that has not been published
   draft_: 草稿
+  #Noun, as in a journal post that has not been published
   draft_saved: 草稿已儲存！
+  #Noun, as in journal posts that has not been published
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
   #Button label for drawing a circular boundary for an observation search
@@ -1511,6 +1535,8 @@ zh-TW:
   email: 電子郵件
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}請確認您的電子郵件地址%{link_end_tag}</strong>。所有使用者必須在 %{date} 之前確認自己的電子郵件地址。在那之後，除非重設密碼，否則任何未確認自己電子郵件地址的人將無法登入。請到%{link_start_tag}帳號設定%{link_end_tag}確認電子郵件地址。
   email_copyright: "版權所有 &copy; %{x}, 保留所有權利"
   email_notifications: 電子郵件通知
   embed: '內嵌'
@@ -1581,13 +1607,6 @@ zh-TW:
   extra_properties: 額外屬性
   evidence_of_organism: 生物證據
   facebook: Facebook
-  facebook_account_information: 您的臉書帳號訊息
-  facebook_account_not_linked: "%{user}不再有連結臉書的帳號，因此%{site_name}沒有權限來使用此照片。"
-  facebook_access_token_expired: "存取令牌已逾時。%{user} 需要重新連結他們的臉書帳號。"
-  facebook_needs_the_owner_of_that_photo_to: 臉書需要照片擁有者再次確認至 %{site_name_short} 的連接。
-  facebook_options: 臉書選項
-  facebook_photo_import_disabled_notice: |
-    在 2020 年 11 月，Facebook 要求驗證我們需要自Facebook存取照片，但由於 Facebook 的驗證系統有問題，我們無法完成程序。 因此，我們無法支援從 Facebook 匯入照片。
   failed_to_find_your_location: 無法找到您的位置。
   failed_to_repair_photo: "修復照片失敗：%{errors}"
   failed_to_save_record: "無法儲存記錄。請稍後再重試。"
@@ -1693,7 +1712,7 @@ zh-TW:
   flag_marked_as_resolved_html: '<span class="meta">的旗號標記項目</span> <strong>已被解決。</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 項目
-  flag_reason: "&ldquo;我正標記此%{record}出自於"
+  flag_reason: "&ldquo;我正標記此%{record}，因為其變動原因為："
   flag_resolution: 解決
   flag_saved: 已儲存旗號標記。
   flag_saved_thanks_html: 標記已儲存，感謝！<a href="%{url}" class="readmore">檢視標記</a>
@@ -1750,7 +1769,6 @@ zh-TW:
   frequency: 頻率
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
-  from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
   from_list: 來自名錄
   from_photos: 來自照片
   from_place: 來自地點
@@ -2089,11 +2107,12 @@ zh-TW:
   lexicon: 詞彙
   lexicon_cannot_contain_words: "不能包括以下文字: %{words}"
   lexicons:
-    scientific_names: 學名
     afrikaans: 南非語
+    alabama: 阿拉巴馬語(Alabama)
     albanian: 阿爾巴尼亞語
     arabic: 阿拉伯文
     armenian: 亞美尼亞文
+    asturian: 阿斯圖里亞斯語(Asturian)
     belarusian: 白羅斯文
     bengali: 孟加拉語
     bulgarian: 保加利亞文
@@ -2149,7 +2168,7 @@ zh-TW:
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
     russian: 俄語
-    setswana: 札那文
+    scientific_names: 學名
     sinhala: 僧伽羅語
     slovak: 斯洛伐克語
     slovenian: 斯洛維尼亞文
@@ -2161,8 +2180,8 @@ zh-TW:
     tokelauan: 托克勞語
     turkish: 土耳其語
     ukrainian: 烏克蘭語
-    waray_waray: 瓦瑞瓦瑞語
     visayan: 維薩亞斯文
+    waray_waray: 瓦瑞瓦瑞語
   less: 較少
   licensed_site_photos: "已授權的 %{site_name} 照片"
   license: 許可協議
@@ -2172,14 +2191,8 @@ zh-TW:
   life_list: "%{user}的生涯名錄"
   linear_scale_label: 線性
   link: 連結
-  link_your_facebook_account: 連結您的臉書帳號
   link_your_flickr_account: 連結您的 Flickr 帳號
   link_your_google_account: 連結您的 Google 帳號
-  linked_facebook: "您的 %{site_name} 帳號目前已連結至您的臉書帳號。"
-  linked_facebook_automaticaly: "另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？"
-  linked_facebook_description: "保持您的 %{site_name} 帳號連結至您的臉書帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與臉書之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新臉書帳號。"
-  linked_facebook_howto: "要將臉書連接到 %{site_name}，請點擊右方連結來登入到 Facebook.com。"
-  linked_facebook_password: "我們不會詢問您的臉書密碼（但臉書也許會檢查按鍵所傳給您的 URL 來確認是屬於 Facebook.com）。我們也不會更改您在臉書上的資料，除非您要求我們這麼做。"
   linked_flickr: "您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。"
   linked_flickr_automatically: "另外，請留意如果您經由 Flickr 登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與 Flickr 帳號。若您有使用 Flickr；您應該會想要匯入在 Flickr 上的照片，很合理是吧？"
   linked_flickr_description: "保持您的 %{site_name} 帳號連結至您的 Flickr 帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與 Flickr 之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新 Flickr 帳號。"
@@ -2339,7 +2352,6 @@ zh-TW:
       every_publicly_visible_observation: 任何在 iNaturalist 網路裡所創建的公開可見觀察
       featured_observations: 精選觀察
       gbif_network: GBIF 網路
-      gbif_network_description: 來自於博物館以及其它透由全球生物多樣性資訊機構（GBIF）所分派的事件提供方之記錄
       observations: 觀察
       place_boundary: 地點邊界
       checklist_places: 名錄地點
@@ -2499,6 +2511,7 @@ zh-TW:
   must_have_quality_grades: "必須符合品質等級為：%{grades}"
   must_have_sounds: 必須要有聲音檔
   must_have_x: "必須要有 %{x}"
+  #Mute is a noun here
   mute_removed: 禁言已移除
   muted_users: 已被禁言的使用者
   n_ago: "%{n} 前"
@@ -2695,7 +2708,6 @@ zh-TW:
   not_findig_what_you_want: 沒有找到您要的東西嗎？
   not_finding_place_you_want?: 沒有找到您要的地點嗎？
   not_found: 未找到
-  not_linked_facebook: "您的 %{site_name} 帳號目前已未連結至您的臉書帳號"
   not_linked_flickr: "您的 %{site_name} 帳號目前已未連結至您的 Flickr 帳號"
   not_on_this_list: 未在此名錄中。
   not_recorded: 未記錄
@@ -2853,10 +2865,6 @@ zh-TW:
   observed_on: 觀察在
   observer: 觀察者
   observers: 觀察者
-  observer_prefers_no_project_addition: |
-    觀察者不允許其他人把他們的觀察紀錄加入到專案中。
-  observer_prefers_addition_to_projects_joined: |
-    觀察者只允許在他們已加入專案時，讓其他人加入他們的觀察紀錄到專案中
   observer_short: 觀察者
   occurence_status_describes_how: '發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。'
   occurrence_status: 事件狀態
@@ -2944,7 +2952,7 @@ zh-TW:
   optional: 可選
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
   orange: 橘色
@@ -3000,6 +3008,7 @@ zh-TW:
     invalid_email: 無效的電子郵件格式。
   password: 密碼
   password_confirmation: '密碼確認'
+  password_change_logout_warning: 更改密碼後會被登出，到時候需要使用新密碼重新登入。
   paste: 貼上
   paste_in_a_bunch_of_names: 每行貼上一串名稱，然後按下按鍵！
   people: 成員
@@ -3479,8 +3488,6 @@ zh-TW:
   places_merged_successfully: 合併地點成功！
   places_warning_export_complex_boundary_html: |
     如果您嘗試要從一個複雜的區域邊界中匯出觀察紀錄，請考慮從<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF</a>來下載，在 GBIF 網站上您可以繪出任意的邊界，或是使用現有的地點或邊界框來篩選並下載資料。
-  places_warning_look_for_existing_html: |
-    搜尋<a href="/search?source[]=places">現有的地點</a>以確保您不會重複建立。我們已經建立了所有大陸和國家的地點，以及各國轄下的兩層行政區域邊界。
   places_warning_projects_can_have_multiple_places: |
     如果您試著要建立一個地點邊界給某專案使用的話，其實專案可以同時選擇多個地點。舉例來說，如果您想要建立一個專案給紐西蘭和澳洲使用，您可以在專案設定中加入這兩個地點而非建立一個包含兩個國家的地點。
   places_warning_new_places_are_slow_html: |
@@ -3512,7 +3519,6 @@ zh-TW:
   post_from_your_journal_html: 來自<a href="%{url}">您的日誌</a>的發佈文章
   post_published: 貼文已發佈！
   posted_by: 發佈由
-  posted_on: 發佈在
   posts: 貼文
   potential_disagreement: 潛在不一致
   powered_by: 技術提供由
@@ -3855,6 +3861,10 @@ zh-TW:
   research_grade_tooltip_html: '「研究等級」的觀察紀錄有多媒體、地點、日期，還有社群對於一個精確鑑定的共識(通常是物種階層)。<a href="https://www.inaturalist.org/pages/help#quality">閱讀有關資料品質等級的細節</a>'
   research_grade_observations_have: '「研究等級」觀察擁有日期、照片、座標，以及社群支持的鑑定內容。點擊來查看資料品質評估。'
   research_grade_qualification: 研究等級資格
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: 再次傳送並登出
+  resend_confirmation_email: 再次傳送確認電子郵件
   reset_filters_short: 重設
   reset_brightness: 重新設定亮度
   reset_search_filters: 重新設定搜尋篩選
@@ -3979,6 +3989,10 @@ zh-TW:
   selected_taxon: 已選的分類群
   select_this_taxon: 選擇此分類群
   send: 傳送
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: 傳送並登出
+  send_confirmation_email: 傳送確認電子郵件
   send_me_reset_password_instructions: 寄送給我關於重新設定密碼的說明
   sending: 寄送中...
   #Label for messages you've sent
@@ -4054,10 +4068,6 @@ zh-TW:
     葡萄牙的 iNaturalist 網路成員 %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} 共享葡萄牙候鳥地圖、哺乳類動物地圖的資料，以及數篇葡萄牙的科學研究論文。
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動隱藏座標 (依據「受脅分類群的地理資訊隱私權」的遮蔽或是私有座標）
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    《愛自然》會自動隱藏某些物種的座標來保護它們免除干擾、採集或狩獵。
-    如果該觀察紀錄座標被自動隱藏以保護物種的話，
-    《愛自然》會和國際網路成員分享在其國家中所有觀察紀錄之真實座標。
   sites_affiliation_more_email_addresses: |
     與國際網路成員共享的電子郵件位址僅會使用於跟本站相關之聯絡目的。
   sites_affiliation_more_twice_per_year: |
@@ -4273,7 +4283,6 @@ zh-TW:
   tagging: '標記中...'
   tags: 標籤
   tags_are_a_way: '標籤是個可組織您觀察的方式。舉例來說您可以標記您所有潮池方面的觀察為「潮池」，這樣可讓它們事後更容易被找尋。'
-  take_me_facebook: 是的，帶我前往臉書！
   take_me_flickr!: 是的，帶我前往 Flickr！
   target_list_alert: 您確定是否要嘗試由您的目標名錄中來觀察所涵蓋的所有物種？請記住任何由您的目標名錄中所涵蓋，但您未觀察到的生物，會被解讀為未出現。因此很重要的一點是，您的目標名錄要能準確地反映出您試圖探索的物種群
   target_list_warning: "請記住，在你的行程期間和半徑範圍裡未觀察到在你的目標名錄中所涵蓋的任何物種，\n會被視為不出現紀錄。因此，讓你的目標名錄能精準反映出是您所嘗試發覺的物種集合，是非常重要的。如果你不打算發掘在你的目標名錄上、或在其中分類群內所涵蓋的物種，請將它移除。"
@@ -4419,6 +4428,7 @@ zh-TW:
   terms: 條款
   terms_and_rules_html: "條款&amp;規範"
   terms_new_users: "若您添加條款，新用戶必須再加入專案前同意該項目。"
+  terms_service: 使用條款
   terrain: 地形
   text: 文字
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4743,8 +4753,6 @@ zh-TW:
   user_commented: "%{user} 已評論"
   user_disagrees_this_is_taxon: "%{user} 不同意這是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意之前較佳的鑑定"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛"
   user_faved_this_observation: "%{user} 將此觀察記錄設為最愛"
   user_flagged_as_a_non_spammer_html: "%{user}已被標記為並不是濫發垃圾訊息者"
   user_flagged_as_a_spammer_html: "%{user}已被標記為濫發垃圾訊息者"
@@ -4776,6 +4784,23 @@ zh-TW:
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    請確保電子郵件地址沒錯。我們會將電子郵件傳送到此地址：
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    如果您沒有收到電子郵件，請參考以下提示：
+    </p>
+    <ul>
+    <li><p>檢查您的垃圾郵件資料夾</p></li>
+    <li><p>檢查您建立的篩選器，篩選器可能會從您的收件匣中刪除我們的電子郵件</p></li>
+    </ul>
+    <p>
+    如果您仍未收到確認電子郵件，請透過
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    與我們聯絡，以便我們協助您。
+    </p>
   users_favorites: "%{user} 的最愛"
   users_highlights_and_stats_from_year_on_site: "%{user} 的精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   users_id: "%{user} 的鑑定"
@@ -4863,11 +4888,6 @@ zh-TW:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 徵求
   was_it_captive_cultivated?: "是被圈養/栽培？"
-  we_also_support: |
-    我們亦支援使用 <a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google 照片</a>，及
-    <a href="http://facebook.com">Facebook</a>
-    作為圖片託管。
   we_can_only_understand_csv_in: 我們僅接受以下格式的 CSV
   we_couldnt_find_a_user: 我們沒有找到帶此電子郵件的用戶。
   we_couldnt_find_a_user_with_that_activation_code: "我們找不到具有此啟用代碼的用戶。您可能已啟用過您的帳號，請嘗試登入看看。"
@@ -5608,8 +5628,6 @@ zh-TW:
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: |
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
-        data_quality_assessment_desc_html: |
-          「資料品質評估」是針對某一筆觀察記錄準確性的評量方式。「研究等級」的觀察記錄有機會被科學家用於研究上。請在下方投下您的一票：
         disagreement_count_desc: "# 已鑑定物種分類群不在物種分類的祖先之中"
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: |
@@ -5778,8 +5796,6 @@ zh-TW:
         view_original_html: |
           您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
-      kml_field_desc: |
-        地點邊界的 KML。您可以使用在 Google 地圖、Google 地球，或多數的 GIS 應用程式。另外內容必須至少要有一個多邊形且小於 1 MB（網站策展人可使用到 5 MB），而且是要比美國德州還要小的地區。
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
@@ -6545,9 +6561,6 @@ zh-TW:
       index:
         connect_with_nature: 與自然連接
         explore_and_share: 探索並分享您來自於大自然的觀察。
-        observations_to_date: '個現有觀察'
-        species_observed: '個已觀察物種'
-        people_signed_up: '個註冊成員'
         how_it_works: 它是如何運作的
         record_your_observations: 記錄您的觀察
         share_with_fellow_naturalists: 與關注的自然觀察者分享
@@ -6618,19 +6631,19 @@ zh-TW:
       6: 五
       7: 六
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%Y年%m月%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-m月%-d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b 月 %e 日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%Y %b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y年%B'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%Y年%-m月%-d日'
     month_names:
       - 
@@ -6671,14 +6684,6 @@ zh-TW:
         other: '%{count} 個月'
       x_seconds:
         other: '%{count} 秒'
-    countdown_x_days:
-      other: 天
-    countdown_x_hours:
-      other: 小時
-    countdown_x_minutes:
-      other: 分
-    countdown_x_seconds:
-      other: 秒
     prompts:
       day: 日
       hour: 時
@@ -6686,42 +6691,6 @@ zh-TW:
       month: 月
       second: 秒
       year: 年
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: 必須被接受
-      blank: 不可留空
-      confirmation: 密碼不符
-      empty: 不能為空
-      equal_to: 必須等於 %{count}
-      even: 必須是偶數
-      exclusion: 已被保留
-      greater_than: 必須大於%{count}
-      greater_than_or_equal_to: 必須大於或等於 %{count}
-      inclusion: 未包含在名錄中
-      invalid: 是無效的
-      less_than: 必須小於%{count}
-      less_than_or_equal_to: 必須小於或等於 %{count}
-      new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
-      not_a_number: 不是一個數字
-      not_an_integer: 必須是整數
-      odd: 必須是奇數
-      only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-      record_invalid: '驗證失敗: %{errors}'
-      requires_privilege_speech: |
-        必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
-      requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
-      taken: 已被使用
-      too_long:
-        other: 太長 (最多 %{count} 個字元)
-      too_short:
-        other: 太短 (最少 %{count} 個字元)
-      wrong_length:
-        other: 長度錯誤 (應為 %{count} 個字元)
-    template:
-      body: '以下欄位出現了問題：'
-      header:
-        other: '%{count} 個錯誤禁止了儲存此%{model}'
   helpers:
     defaults:
       title: "這是個標題"
@@ -6783,60 +6752,21 @@ zh-TW:
   time:
     am: 上午
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y/%m/%d %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%Y年%m月%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%m月%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: 下午
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: 必須被接受
-        blank: 不可留空
-        confirmation: 密碼不符
-        empty: 不能為空
-        equal_to: 必須相同於%{count}
-        even: 必須是偶數
-        exclusion: 已被保留
-        greater_than: 必須大於%{count}
-        greater_than_or_equal_to: 必須大於或等於 %{count}
-        inclusion: 未包含在名錄中
-        invalid: 是無效的
-        less_than: 必須小於%{count}
-        less_than_or_equal_to: 必須小於或等於 %{count}
-        new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
-        not_a_number: 不是一個數字
-        not_an_integer: 必須為整數
-        odd: 必須是奇數
-        only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-        record_invalid: '驗證失敗: %{errors}'
-        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
-        requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
-        taken: 已被使用
-        too_long:
-          other: 太長 (最多 %{count} 個字元)
-        too_short:
-          other: 太短 (最少 %{count} 個字元)
-        wrong_length:
-          other: 長度錯誤 (應為 %{count} 個字元)
-      template:
-        body: 以下欄位出現了問題：
-        header:
-          other: '%{count} 個錯誤禁止了儲存此%{model}'
   activerecord:
     models:
       AssessmentSection: 評估段落
@@ -6901,6 +6831,9 @@ zh-TW:
         finished_at: 完成
         #Inputs to an export task, e.g. the query and the columns
         inputs: 輸入
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
       post:
         title: 標題
         body: 正文
@@ -6950,14 +6883,18 @@ zh-TW:
         name: 名稱
         parent_id: 父級鑑定
         rank: 級別
+        source_id: 來源 ID
         source_identifier: 來源鑑定人
         source_url: 來源 URL
         wikipedia_summary: 維基百科摘要
         wikipedia_title: 維基百科標題
       taxon_name:
+        name: 名稱
         name_provider: 名稱提供者
         source_url: 來源 URL
         source_identifier: 來源鑑定人
+      taxon_link:
+        url: URL
       user:
         email: 電子郵件
         login: 使用者名稱
@@ -6974,22 +6911,18 @@ zh-TW:
         blank: 不可留空
         confirmation: 密碼不符
         empty: 不能為空
-        equal_to: 必須等於 %{count}
         even: 必須是偶數
         exclusion: 已被保留
-        greater_than: 必須大於 %{count}
-        greater_than_or_equal_to: 必須大於或等於 %{count}
         inclusion: 未包含在名錄中
         invalid: 是無效的
-        less_than: 必須小於 %{count}
-        less_than_or_equal_to: 必須小於或等於 %{count}
         new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
         not_a_number: 不是一個數字
         not_an_integer: 必須為整數
         odd: 必須是奇數
         only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-        record_invalid: 驗證失敗：%{errors}
-        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
+        record_invalid: '驗證失敗：%{errors}'
+        requires_privilege_speech: |
+          必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
         requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
         too_long:
@@ -6999,7 +6932,7 @@ zh-TW:
         wrong_length:
           other: 長度錯誤（應為 %{count} 個字元）
       template:
-        body: 以下欄位出現了問題：
+        body: '以下欄位出現了問題：'
         header:
           other: '%{count} 個錯誤禁止了儲存此%{model}'
       models:

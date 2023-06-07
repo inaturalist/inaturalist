@@ -52,7 +52,6 @@ csv << %w(
   vision_score
   frequency_score
 )
-fv = FakeView.new
 while true
   break if num_obs >= OPTS.sample_size
   obs = Observation.elastic_query( Rack::Utils.parse_nested_query( OPTS.query ).merge(
@@ -75,7 +74,7 @@ while true
       next
     end
     json = JSON.parse( r.body )
-    photo_url = fv.observation_image_url( o )
+    photo_url = UrlHelper.observation_image_url( o )
     photo_id = photo_url[/photos\/(\d+)/, 1].to_i
     photo_ext = photo_url[/square\.([A-z0-9]+)/, 1]
     json["results"].each_with_index do |r,i|

@@ -198,7 +198,8 @@ class User < ApplicationRecord
   has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
     foreign_key: "subject_user_id", inverse_of: :subject_user,
     dependent: :destroy
-  
+  has_many :taxon_name_priorities, dependent: :destroy
+
   file_options = {
     processors: [:deanimator],
     styles: {
@@ -367,17 +368,17 @@ class User < ApplicationRecord
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -393,7 +394,7 @@ class User < ApplicationRecord
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
-  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-07-01" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-09-01" )
 
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
@@ -406,10 +407,10 @@ class User < ApplicationRecord
 
     # Temporary state to allow existing users to sign in. Probably redundant
     # with the next grandparent exception
-    return true if confirmation_sent_at.blank?
+    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
 
     # Temporary state to allow existing users to sign in
-    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
 
     super
   end
@@ -426,7 +427,7 @@ class User < ApplicationRecord
 
   def strip_name
     return true if name.blank?
-    self.name = FakeView.strip_tags( name ).to_s
+    self.name = ApplicationController.helpers.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end
@@ -473,7 +474,7 @@ class User < ApplicationRecord
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: 'facebook', 'twitter', 'google', 'yahoo'
+  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
@@ -549,6 +550,9 @@ class User < ApplicationRecord
     return false unless user.id
     return true if user.id == id
 
+    if friendships.loaded?
+      return friendships.any?{ |f| f.friend_id == user.id && f.trust == true }
+    end
     friendships.where( friend_id: user, trust: true ).exists?
   end
   
@@ -557,14 +561,11 @@ class User < ApplicationRecord
     @picasa_client ||= Picasa.new(pa.token)
   end
 
-  # returns a koala object to make (authenticated) facebook api calls
-  # e.g. @facebook_api.get_object('me')
-  # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
-    return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
+    # As of Spring 2023 we can no longer access the Facebook API on behalf of users
+    nil
   end
-  
+
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
     @facebook_identity ||= has_provider_auth('facebook')
@@ -1281,6 +1282,11 @@ class User < ApplicationRecord
     end
   end
 
+  def revoke_authorizations_after_password_change
+    return unless encrypted_password_previously_changed?
+    Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
+  end
+
   def recent_notifications(options={})
     return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
@@ -1301,6 +1307,10 @@ class User < ApplicationRecord
 
   def blocked_by?( user )
     user_blocks_as_blocked_user.where( user_id: user ).exists?
+  end
+
+  def muted_by?( user )
+    user_mutes_as_muted_user.where( user_id: user ).exists?
   end
 
   def self.default_json_options
@@ -1511,6 +1521,10 @@ class User < ApplicationRecord
     project_users.joins(:project).includes(:project).limit(7).
       order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
       map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+  end
+
+  def anonymous?
+    id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
   end
 
   # this method will look at all this users photos and create separate delayed jobs

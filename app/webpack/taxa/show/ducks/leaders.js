@@ -44,7 +44,11 @@ export function fetchTopObserver( ) {
   return function ( dispatch, getState ) {
     const state = getState( );
     const { testingApiV2 } = state.config;
-    const params = { ...defaultObservationParams( state ), per_page: 1 };
+    const params = {
+      ...defaultObservationParams( state ),
+      per_page: 1,
+      no_total_hits: true
+    };
     if ( testingApiV2 ) {
       params.fields = {
         observation_count: true,
@@ -67,7 +71,8 @@ export function fetchTopIdentifier( ) {
     const params = {
       ...defaultObservationParams( getState( ) ),
       own_observation: false,
-      per_page: 1
+      per_page: 1,
+      no_total_hits: true
     };
     if ( testingApiV2 ) {
       params.fields = {

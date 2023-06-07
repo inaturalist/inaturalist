@@ -228,6 +228,12 @@ sv:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Noggr (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Noggr. över
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Noggr. under
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Noggr. under eller okänd
   account: Konto
   account_creation: Att skapa konto
   account_settings: Kontoinställningar
@@ -525,7 +531,6 @@ sv:
   analyze_clashes: Undersök oavsiktlig oenighet
   analyze_ids: Analysera ID:n
   ancestor_taxon: Överliggande taxon
-  and: och
   and_other_taxa: "&amp;Andra taxa"
   android: Android
   animals: Djur
@@ -806,6 +811,8 @@ sv:
   birds: fåglar
   birthday: Födelsedag
   black: svart
+  block: Blockera
+  blocking_description: Blockering förhindrar kommunikation mellan dig och en annan användare. Det är till för situationer där en annan användare kan äventyra din säkerhet, som stalking eller andra kränkande beteenden.
   block_removed: Blockering togs bort
   blocked_users: Blockerade användare
   blog_widget: Blogg-widget
@@ -833,7 +840,6 @@ sv:
   browse_species_that_occur_near_this_observation: Bläddra bland arter som förekommer i närheten av detta fynd.
   built_with_site_guides_html: "Byggt med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Bulkimport av %{filename} är klar"
-  by: av
   by_everyone: Av alla
   by_user: "Av %{user}"
   by_you: Av dig
@@ -1084,7 +1090,6 @@ sv:
   connected_accounts_titlecase: Kopplade Konton
   connecting_flickr: "Kopplar till Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koppla till Flickr igen för att godkänna skrivrättigheter
-  connecting_to_facebook: "Kopplar till Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Genom att koppla ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
   cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
   conservation_status: Bevarandestatus
@@ -1176,21 +1181,21 @@ sv:
     molt: Ömsskinn/exuvium
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
+    bone: |
+      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
+    cannot_be_determined: Kan inte bestämmas utifrån angiven information
     dead: Död organism eller visar tecken på snar död
+    feather: En eller flera fjädrar som inte sitter fast på en organism
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
+    gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
+    molt: Kvarlämning av skinn eller exoskelett
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
-    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
-    cannot_be_determined: Kan inte bestämmas utifrån angiven information
-    feather: En eller flera fjädrar som inte sitter fast på en organism
     organism: Hela eller delar av en organism
     scat: Avföring (inte spybollar eller andra uppstötningar)
+    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
     track: Avtryck i marken eller snön av en organism
-    bone: |
-      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
-    molt: Kvarlämning av skinn eller exoskelett
-    gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem
@@ -1302,10 +1307,10 @@ sv:
     Underlåter att själv uppträda på lämpligt sätt.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt båda dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
-  curator_application_inelligible_error: |
-    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna.
+  curator_application_inelligible2: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer, du måste ha lagt till minst 5 flaggor och du måste även ha lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
+  curator_application_inelligible_error2: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer, lagt till minst 5 flaggor och även lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Förvaltaransökan inskickad
   #Header
@@ -1366,6 +1371,9 @@ sv:
     Du bör endast söka för att bli förvaltare om:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Du har lagt till bestämningar och/eller fynd i några månader och har för avsikt att fortsätta.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Du har visat att du förstår förvaltningsprocessen genom att lägga till
+    några flaggor.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1551,6 +1559,7 @@ sv:
       signed_up_but_locked: "Du har registrerat dig. Vi kunde tyvärr inte logga in dig eftersom ditt konto är låst."
       signed_up_but_unconfirmed: "Ett meddelande med en bekräftelselänk har skickats till din e-postadress. Följ länken för att aktivera ditt konto."
       updated: 'Ditt konto har uppdaterats.'
+      updated_but_not_signed_in: "Ditt konto har uppdaterats framgångsrikt, men eftersom ditt lösenord ändrades måste du logga in igen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1647,9 +1656,15 @@ sv:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Underliggande flaggade taxa
+  #Noun, as in a journal post that has not been published
   draft: utkast
+  #Noun, as in a journal post that has not been published
   draft_: Utkast
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Utkast av %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Utkast sparat!
+  #Noun, as in journal posts that has not been published
   drafts: Utkast
   drag_and_drop_some_photos_or_sounds: Dra & släpp några bilder eller ljud
   #Button label for drawing a circular boundary for an observation search
@@ -1824,16 +1839,6 @@ sv:
   extra_properties: Ytterligare egenskaper
   evidence_of_organism: Belägg för organism
   facebook: Facebook
-  facebook_account_information: Din Facebook-kontoinformation
-  facebook_account_not_linked: "%{user} har inte längre ett kopplat Facebook-konto, varför %{site_name} inte har behörighet att komma åt denna bild."
-  facebook_access_token_expired: "Åtkomsttoken har löpt ut. %{user} måste länka sitt Facebook-konto igen."
-  facebook_needs_the_owner_of_that_photo_to: Facebook behöver få ägaren av den bilden att bekräfta sin koppling till %{site_name_short}.
-  facebook_options: Facebook-inställningar
-  facebook_photo_import_disabled_notice: |
-    I november 2020 krävde Facebook att vi skulle visa att vi verkligen behövde
-    tillgång till bilder, och vi kunde inte genomföra det på grund av
-    problem med Facebooks verifieringssystem. Det innebär att vi inte längre kan
-    stödja import av bilder från Facebook.
   failed_to_find_your_location: Kunde inte att hitta din position.
   failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
   failed_to_save_record: "Lyckades inte att spara posten. Försök igen senare."
@@ -1999,7 +2004,7 @@ sv:
   frequency: Frekvens
   from_a_place: från en fyndplats
   from_eol_collection: Från EOL-samling
-  from_flickr_facebook_etc: Från Flickr, Facebook, etc.
+  from_flickr_etc: Från Flickr, etc.
   from_list: Från lista
   from_photos: Från bilder
   from_place: Från fyndplats
@@ -2132,6 +2137,16 @@ sv:
   home: Hem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timmar att justera:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Det är dock inte licensierat för återanvändning och kommer inte att delas med datalagringsplatser som respekterar licensval.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Du kan ändra dina licensval i dina
+    <a class="linky" href="/users/edit#content">kontoinställningar</a>.
   however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2379,18 +2394,25 @@ sv:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "kan inte innehålla följande ord: %{words}"
   lexicons:
-    scientific_names: Vetenskapliga namn
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanska
+    aou_4_letter_codes: AOU-koder med 4 bokstäver
+    aou_6_letter_codes: AOU-koder med 6 bokstäver
     arabic: Arabiska
     armenian: Armeniska
+    asturian: Asturiska
+    basque: Baskiska
     belarusian: Belarusiska
     bengali: Bengaliska
+    bikol: Bikol
     bulgarian: Bulgariska
+    carolinian: Karoliniska
     catalan: Katalanska
     cebuano: Cebuano
     chinese_simplified: Kinesiska (förenklad)
     chinese_traditional: Kinesiska (traditionell)
+    chuvash: Tjuvasjiska
     creole_french: kreol (Franska)
     creole_portuguese: kreol (Portugisiska)
     croatian: Kroatiska
@@ -2401,26 +2423,38 @@ sv:
     english: Engelska
     estonian: Estniska
     faroese: Färöiska
+    fijian: Fijianska
     finnish: Finska
     french: Franska
     galician: Galiciska
     gela: Gela
+    georgian: Georgiska
     german: Tyska
     greek: Grekiska
+    gujarati: Gujarati
     hawaiian: Hawaiiska
     hebrew: Hebreiska
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Västmariska
+    hodges_number: MONA-nummer
+    hokkien: Hokkien
     hungarian: Ungerska
     icelandic: Isländska
     ilokano: Ilokano
     indonesian: Indonesiska
+    irish: Irländska
     italian: Italienska
     japanese: Japanska
     kannada: Kannada
+    kazakh: Kazakiska
     korean: Koreanska
+    kweyol: Fransk kreol
     latvian: Lettiska
     lithuanian: Litauiska
+    lozi: Lozi
     luxembourgish: Luxemburgiska
+    malagasy: Malagassiska
     malay: Malajiska
     malayalam: Malayalam
     maltese: Maltesiska
@@ -2430,6 +2464,8 @@ sv:
     misima_paneati: Misima-paneati
     mongolian: Mongoliska
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norska
     occitan: Occitanska
     ojibwe: Ojibwe
@@ -2441,22 +2477,38 @@ sv:
     romanian: Rumänska
     russian: Ryska
     santali: santali
+    scientific_names: Vetenskapliga namn
     serbian: Serbiska
-    setswana: Setswana
+    shona: Shona
     sinhala: Singalesiska
     slovak: Slovakiska
     slovenian: Slovenska
+    sotho: Sesotho
+    sotho_northern: Nordsotho
     spanish: Spanska
     swahili: Swahili
+    swati: Siswati
     swedish: Svenska
     tagalog: Tagalog
     tahitian: Tahitiska
+    tamil: Tamil
     thai: Thailändska
     tokelauan: Tokelauiska
+    totonaco: Totonac
+    tsonga: Tsonga
+    tswana: Setswana
     turkish: Turkiska
+    u_s_d_a_symbol: U.S.D.A.-symbol
     ukrainian: Ukrainska
-    waray_waray: Waray-Waray
+    uyghur: Uiguriska
+    venda: Venda
+    vermont_flora_codes: Vermonts florakoder
+    vietnamese: Vietnamesiska
     visayan: Cebuano
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapotekiska
+    zulu: Zulu
   less: Mindre
   #Button show less text
   less__context_text: Mindre
@@ -2472,14 +2524,8 @@ sv:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Länk till auktoriseringskod
-  link_your_facebook_account: Anslut ditt Facebook-konto
   link_your_flickr_account: Anslut ditt Flickr-konto
   link_your_google_account: Anslut ditt Google-konto
-  linked_facebook: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Facebook-konto."
-  linked_facebook_automaticaly: "Kom också ihåg att om du loggar in på %{site_name} via Facebook, kommer vi automatiskt att länka dina %{site_name}- och Facebook-konton. Verkar rimligt att om du använder Facebook du vill kunna importera Facebook-bilder, eller hur?"
-  linked_facebook_description: "Genom att hålla ditt %{site_name}-konto länkat till ditt Facebook-konto kan du lägga till flera bilder till dina fynd. Om du någonsin skulle vilja bryta kopplingen mellan %{site_name} och Facebook, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skulle skapa ett nytt Facebook-konto som du vill länka %{site_name} till."
-  linked_facebook_howto: "För att ansluta Facebook till %{site_name} klickar du på länken till höger och loggar in på Facebook.com."
-  linked_facebook_password: "Vi kommer aldrig att be dig om ditt Facebook-lösenord (men Facebook kanske gör det, kolla webbadressen som knappen skickar dig och se till att det är Facebook.com). Vi kommer inte heller att ändra dina Facebook-uppgifter om du inte vill att vi ska göra det."
   linked_flickr: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Flickr-konto."
   linked_flickr_automatically: "Tänk på, att om du loggar in på %{site_name} via Flickr, kommer vi automatiskt att länka dina %{site_name}- och Flickr-konton. Det verkar rimligt att om du använder Flickr du vill kunna importera Flickr-bilder, eller hur?"
   linked_flickr_description: "Genom att hålla ditt %{site_name}-konto kopplat till ditt Flickr-konto kan du lägga till flera bilder till ett fynd. Om du någonsin vill att kopplingen mellan %{site_name} och Flickr ska brytas, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skapar ett nytt Flickr-konto som du vill länka %{site_name} till."
@@ -2497,6 +2543,10 @@ sv:
     taxonomic: taxonomisk
     photo: bild
   list_was_successfully_created: Lyckades skapa lista.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} och %{three}"
+  list_with_two_items: "%{one} och %{two}"
   listed_taxa: Listade taxa
   listed_taxon: Listat taxon
   listed_taxon_updated: Listat taxon uppdaterat
@@ -2548,6 +2598,8 @@ sv:
     id: Indonesiska
     it: Italienska
     ja: Japanska
+    ka: Georgiska
+    kk: Kazakiska
     kn: Kannada
     ko: Koreanska
     lb: Luxemburgiska
@@ -2613,6 +2665,8 @@ sv:
   lookup: Sök
   low: Låg
   lowest_rank: Lägsta rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Gör admin
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Huvudinnehåll
@@ -2645,7 +2699,7 @@ sv:
       every_publicly_visible_observation: Varje publikt synligt fynd skapat i iNaturalist-nätverket
       featured_observations: Utvalda fynd
       gbif_network: GBIF-nätverket
-      gbif_network_description: Uppgifter från museer och andra leverantörer av förekomster som tillhandahålls av Global Biodiversity Informatics Facility
+      gbif_network_description2: Uppgifter från museer och andra leverantörer av observationer tillhandahålls av Global Biodiversity Information Facility
       observations: Fynd
       place_boundary: Gräns för fyndplats
       checklist_places: Checklistefyndplatser
@@ -2664,6 +2718,9 @@ sv:
   maximum_positional_accuracy_including_unknown: |
     Maximal positionsnoggrannhet inklusive fynd utan positionsnoggrannhet
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ' och'
   media_type: Mediatyp
   medium: medium
   meet: Träffa
@@ -2837,8 +2894,12 @@ sv:
   must_have_quality_grades: "måste vara av kvalitetsklass: %{grades}"
   must_have_sounds: måste ha ljud
   must_have_x: "måste ha %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Tysta
+  #Mute is a noun here
   mute_removed: Tystning borttagen
   muted_users: Tystade användare
+  muting_description: Att tysta någon hindrar dig från att bli aviserad om någon av deras aktiviteter, inklusive "@"-omnämnanden, meddelanden eller kommentarer och bestämningar av dina observationer.
   n_ago: "%{n} sedan"
   n_people_agrees: "%{amount} personer håller med"
   n_people_disagrees: "%{amount} personer är emot"
@@ -3040,7 +3101,8 @@ sv:
   not_findig_what_you_want: Hittar du inte det du vill?
   not_finding_place_you_want?: Hittar du inte den fyndplats du vill?
   not_found: Hittades inte
-  not_linked_facebook: "Ditt %{site_name}-konto är inte kopplat till ditt Facebook-konto"
+  #Filter for observations not in a particular place
+  not_in_place: Inte från plats
   not_linked_flickr: "Ditt %{site_name}-konto är inte kopplat till ditt Flickr-konto"
   not_on_this_list: Inte på denna lista.
   not_recorded: Ingen uppgift
@@ -3129,6 +3191,14 @@ sv:
   observation_curation: Fyndförvaltning
   observation_date: Datum
   observation_date?: Datum?
+  #Basic observation export fields
+  observation_export_column_type_basic: Grundläggande
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon utökad
   observation_field: Fyndfält
   observation_field_details: Fyndfältsdetaljer
   observation_field_type_text: Text
@@ -3198,10 +3268,10 @@ sv:
   observed_on: Observerad den
   observer: Observatör
   observers: Observatörer
-  observer_prefers_no_project_addition: |
-    Observatören tillåter inte att andra adderar hens fynd till projekt.
-  observer_prefers_addition_to_projects_joined: |
-    Observatören tillåter bara andra att lägga till hens fynd till projekt som hen har gått med i.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observatören tillåter bara andra att lägga till hens fynd till traditionella projekt som de har gått med i.
+  observer_prefers_no_traditional_project_addition: |
+    Observatören tillåter inte att andra adderar hens fynd till traditionella projekt.
   observer_short: Observatör
   occurence_status_describes_how: 'Förekomststatus anger hur vanlig eller sällsynt ett taxon är i ett givet område. Se DarwinCore för <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mer information om terminologi</a>.'
   occurrence_status: Förekomststatus
@@ -3296,7 +3366,7 @@ sv:
   options: Alternativ
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
   orange: orange
@@ -3352,6 +3422,9 @@ sv:
     invalid_email: Ogiltigt e-postformat
   password: Lösenord
   password_confirmation: 'Lösenordsbekräftelse'
+  password_change_description: Om du ändrar ditt lösenord loggas du ut från alla aktiva iNaturalist-sessioner på dina enheter
+  password_change_logout_warning: Efter att du bytt lösenord kommer du att loggas ut och du måste logga in igen med ditt nya lösenord.
+  password_change_observations_warning: Du kommer också att loggas ut från iNaturalist-mobilappar och andra appar eller webbplatser som publicerar på iNaturalist för din räkning, så se till att du har laddat upp eventuella väntande observationer innan du gör detta. Alla observationer som inte är uppladdade kommer att gå förlorade.
   paste: Klistra in
   paste_in_a_bunch_of_names: Klistra in ett gäng namn, 1 per rad, och tryck på knappen!
   people: Personer
@@ -3887,8 +3960,8 @@ sv:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">att ladda ner dem från GBIF istället</a>,
     där du kan dra godtyckliga gränser, eller exportera dem från iNat utifrån befintliga fyndplatser eller en polygon och sedan filtrera datat när du väl har
     hämtat det.
-  places_warning_look_for_existing_html: |
-    Leta efter <a href="/search?source[]=places">befintliga fyndplatser</a> för att se till att du inte skapar en dubblett. Vi har redan fyndplatser för alla kontinenter och länder, samt två administrativa nivåer under land.
+  places_warning_look_for_existing2_html: |
+    Leta efter <a href="/search?source[]=places">befintliga fyndplatser</a> för att se till att du inte skapar en dubblett. Vi har redan fyndplatser för alla kontinenter och länder, och många andra politiska gränser.
   places_warning_please_keep_in_mind: |
     Tänk på följande begränsningar:
   places_warning_projects_can_have_multiple_places: |
@@ -3925,7 +3998,10 @@ sv:
   post_from_your_journal_html: Inlägg från <a href="%{url}">din dagbok</a>
   post_published: Inlägget publicerat!
   posted_by: Inlagt av
-  posted_on: Inlagt den
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicerat %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicerat %{date} av %{user}
   posts: Inlägg
   potential_disagreement: Möjlig oenighet
   powered_by: Drivs av
@@ -4521,7 +4597,7 @@ sv:
     Automatiskt dolda koordinater (diffuserade eller privata på grund av ett "taxons
     koordinatsekretess")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist döljer automatiskt koordinaterna för vissa arter för att skydda dem från störning, insamling eller tjuvjakt. Om observationskoordinaterna bara har dolts automatiskt för att skydda arter, delar iNaturalist de exakta koordinaterna för alla observationer från deras respektive länder med Nätverksmedlemmar.
+    iNaturalist döljer automatiskt koordinaterna för vissa arter för att skydda dem från störning, insamling eller tjuvjakt. Om fyndkoordinaterna bara har dolts automatiskt för att skydda arter, delar iNaturalist de exakta koordinaterna för alla fynd från deras respektive länder med Nätverksmedlemmar.
   sites_affiliation_more_email_addresses: |
     E-postadresser delas med Nätverksmedlemmar enbart för kommunikation relaterad till webbplatsen.
   sites_affiliation_more_twice_per_year: |
@@ -4672,6 +4748,10 @@ sv:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte genererats.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status tagen från ett överliggande taxon:</strong> %{taxon}
   status_globally: '%{status} Globalt'
   status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
@@ -4746,7 +4826,6 @@ sv:
   tagging: 'Taggar...'
   tags: Taggningar
   tags_are_a_way: 'Taggningar är ett sätt att organisera dina fynd. Till exempel kan du tagga alla dina hällkarsfynd med "hällkar" för att göra dem lättare att hitta senare.'
-  take_me_facebook: Ja, ta mig till Facebook!
   take_me_flickr!: Ja, ta mig till Flickr!
   target_list_alert: Är du säker på att du försökt hitta alla arter som finns på din mållista? Kom ihåg att allt på mållistan som du inte angett kommer att tolkas som ett nollfynd så det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta
   target_list_warning: Kom ihåg att allt som finns på din mållista som du inte uppgett från området under tidsperioden för denna utflykt kommer att tolkas som en nollfynd. Det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta. Om du inte försökte hitta en art, eller alla arter inom en grupp, på din mållista, ta då bort den från listan.
@@ -5358,8 +5437,7 @@ sv:
   user_commented: "%{user} kommenterade"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
+  user_faved_an_observation_by_you: "%{user} favoritmarkerade ett av dina fynd"
   user_faved_this_observation: "%{user} favoritmarkerade detta fynd"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
@@ -5545,11 +5623,9 @@ sv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Efterlyst
   was_it_captive_cultivated?: "Var den i fångenskap / odlad?"
-  we_also_support: |
-    Vi stöder också <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Foto</a>, och
-    <a href="http://facebook.com">Facebook</a>
-    med bildlagring.
+  we_also_support2: |
+    Vi stöder även import av bilder från <a href="http://flickr.com">Flickr</a>
+    och <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Vi kan bara förstå CSV i följande format
   we_couldnt_find_a_user: Vi kunde inte hitta någon användare med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunde inte hitta någon användare med den aktiveringskoden. Du kanske redan har aktiverat ditt konto, försök logga in."
@@ -5625,6 +5701,8 @@ sv:
     Commons Erkännande Dela Lika-licens 3.0</a>. Delar av innehållet kan ha
     utelämnats jämfört med originalet, men inget har ändrats eller lagts till.
   with: med
+  #Filter for observations not in a particular taxon
+  without_taxon: Ej i taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Dra tillbaka
@@ -6353,8 +6431,13 @@ sv:
         cumulative_count_desc: 'Antal bestämning av ett enskilt taxon och alla underliggande'
         curator_coordinate_access_disabled_desc_html: |
           Detta projekt tillåter inte fynd med koordinater som förvaltarna inte kan se. Om du inte vill dela koordinaterna för detta fynd med förvaltarna av detta projekt, måste du ta bort fyndet från projektet.
-        data_quality_assessment_desc_html: |
-          Datakvalitetsbedömning är en utvärdering av ett fynd noggrannhet. Fyndav forskningsklass kan användas av vetenskapsmän för forskning. Rösta nedan:
+        data_quality_assessment_desc3_html: |
+          Kvalitetsklassen är en sammanfattning av noggrannhet, precision, fullständighet,
+          relevans och lämplighet av ett iNaturalist-fynd i egenskapen av data om
+          biologisk mångfald. Vissa egenskaper avgörs automatiskt, medan
+          andra bestäms genom röstning av iNat-användare. iNaturalist
+          delar fynd av "Forskningsklass" med ett antal datapartners
+          för användning inom vetenskap och naturvård.
         disagreement_count_desc: "Antal bestämda taxa som inte hör till ett taxons föräldrar"
         identification_count_desc: 'Antal bestämningar för ett enskilt taxon'
         flagged_photos_desc_html: |
@@ -6606,7 +6689,7 @@ sv:
           Du kan se originalet på <a href="%{url}">%{url}</a>.
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
       edit:
         complex_boundary_note_html: |
@@ -7097,6 +7180,7 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
+          "Plant Phenology=No Evidence of Flowering": Inga tecken på blomning
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Ägg
           "Life Stage=Larva": Larv
@@ -7254,7 +7338,7 @@ sv:
           för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
         monthly_supporter_desc_html: |
-          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
+          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS EIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
           <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
           När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
           Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
@@ -7382,9 +7466,15 @@ sv:
       index:
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforska och dela dina fynd från naturen.
-        observations_to_date: 'Fynd hittills'
-        species_observed: 'Observerade arter'
-        people_signed_up: 'Registrerade användare'
+        observations_to_date:
+          one: "Fynd hittills"
+          other: "Fynd hittills"
+        species_observed:
+          one: "Observerad art"
+          other: "Observerade arter"
+        people_signed_up:
+          one: "Registrerad användare"
+          other: "Registrerade användare"
         how_it_works: Hur det fungerar
         record_your_observations: Spara dina fynd
         share_with_fellow_naturalists: Dela med andra naturforskare
@@ -7456,19 +7546,19 @@ sv:
       6: Fre
       7: Lö
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%-d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%-d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%-d %B %Y'
     month_names:
       - 
@@ -7521,17 +7611,17 @@ sv:
         one: "%{count} sekund"
         other: '%{count} sekunder'
     countdown_x_days:
-      one: dag
-      other: dagar
+      one: DAG
+      other: DAGAR
     countdown_x_hours:
-      one: timme
-      other: timmar
+      one: TIMME
+      other: TIMMAR
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sek
-      other: sek
+      one: SEK
+      other: SEK
     prompts:
       day: Dag
       hour: Timme
@@ -7539,46 +7629,6 @@ sv:
       month: Månad
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: måste accepteras
-      blank: kan inte vara tomt
-      confirmation: stämde inte överens med lösenordet
-      empty: kan inte vara tomt
-      equal_to: måste vara lika med %{count}
-      even: måste vara jämnt
-      exclusion: är reserverad
-      greater_than: måste vara större än %{count}
-      greater_than_or_equal_to: måste vara större än eller lika med %{count}
-      inclusion: finns inte med i listan
-      invalid: är ogiltig
-      less_than: måste vara mindre än %{count}
-      less_than_or_equal_to: måste vara mindre än eller lika med %{count}
-      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
-      not_a_number: är inte ett nummer
-      not_an_integer: måste vara ett heltal
-      odd: måste vara udda
-      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
-      record_invalid: 'Validering misslyckades: %{errors}'
-      requires_privilege_speech: |
-        måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
-      requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
-      taken: är redan taget
-      too_long:
-        one: är för långt (maximalt %{count} tecken)
-        other: är för långt (maximalt %{count} tecken)
-      too_short:
-        one: är för kort (minimum %{count} tecken)
-        other: är för kort (minimum %{count} tecken)
-      wrong_length:
-        one: är av fel längd (borde vara %{count} tecken)
-        other: är av fel längd (borde vara %{count} tecken)
-    template:
-      body: 'Det uppstod problem med följande fält:'
-      header:
-        one: "%{count} fel hindrade denna %{model} från att sparas"
-        other: '%{count} fel hindrade denna %{model} från att sparas'
   helpers:
     defaults:
       title: "DETTA ÄR EN TITEL"
@@ -7641,64 +7691,21 @@ sv:
   time:
     am: fm
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%-d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: em
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: måste accepteras
-        blank: kan inte vara tomt
-        confirmation: stämde inte överens med lösenordet
-        empty: kan inte vara tomt
-        equal_to: måste vara lika med %{count}
-        even: måste vara jämnt
-        exclusion: är reserverat
-        greater_than: måste vara större än %{count}
-        greater_than_or_equal_to: måste vara större än eller lika med %{count}
-        inclusion: finns inte med i listan
-        invalid: är ogiltig
-        less_than: måste vara mindre än %{count}
-        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
-        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
-        not_a_number: är inte ett nummer
-        not_an_integer: måste vara ett heltal
-        odd: måste vara udda
-        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
-        record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
-        requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
-        taken: är redan taget
-        too_long:
-          one: är för långt (maximalt %{count} tecken)
-          other: är för långt (maximalt %{count} tecken)
-        too_short:
-          one: är för kort (minimum %{count} tecken)
-          other: är för kort (minimum %{count} tecken)
-        wrong_length:
-          one: är fel längd (ska vara %{count} tecken)
-          other: är fel längd (ska vara %{count} tecken)
-      template:
-        body: 'Det uppstod problem med följande fält:'
-        header:
-          one: '%{count} fel hindrade denna %{model} från att sparas'
-          other: '%{count} fel hindrade denna %{model} från att sparas'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7914,22 +7921,33 @@ sv:
         blank: kan inte vara tom
         confirmation: stämde inte överens med lösenordet
         empty: kan inte vara tom
-        equal_to: måste vara samma som %{count}
+        equal_to:
+          one: måste vara lika med %{count}
+          other: måste vara lika med %{count}
         even: måste vara jämn
         exclusion: är reserverad
-        greater_than: måste vara större än %{count}
-        greater_than_or_equal_to: måste vara större än eller lika med %{count}
+        greater_than:
+          one: måste vara fler än %{count}
+          other: måste vara fler än %{count}
+        greater_than_or_equal_to:
+          one: måste vara fler än eller lika med %{count}
+          other: måste vara fler än eller lika med %{count}
         inclusion: ingår inte i listan
         invalid: är ogiltig
-        less_than: måste vara mindre än %{count}
-        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        less_than:
+          one: måste vara färre än %{count}
+          other: måste vara färre än %{count}
+        less_than_or_equal_to:
+          one: måste vara färre än eller lika med %{count}
+          other: måste vara färre än eller lika med %{count}
         new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
         only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
+        requires_privilege_speech: |
+          måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
         requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
         taken: är redan taget
         too_long:
@@ -7944,7 +7962,7 @@ sv:
       template:
         body: 'Det uppstod problem med följande fält:'
         header:
-          one: '%{count} fel hindrade denna %{model} från att sparas'
+          one: "%{count} fel hindrade denna %{model} från att sparas"
           other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
         application:

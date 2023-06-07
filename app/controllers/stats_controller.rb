@@ -12,7 +12,6 @@ class StatsController < ApplicationController
   before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   caches_action :summary, expires_in: 1.day
-  caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes
   caches_action :cnc2017, expires_in: 5.minutes
@@ -144,14 +143,6 @@ class StatsController < ApplicationController
         render json: { status: status }, status: status
       end
     end
-  end
-
-  def observation_weeks
-    render layout: "basic"
-  end
-
-  def observation_weeks_json
-    render json: observation_weeks_data
   end
 
   def nps_bioblitz
@@ -362,58 +353,6 @@ class StatsController < ApplicationController
     return if @stats.any?
 
     @stats = [SiteStatistic.order( "created_at asc" ).last]
-  end
-
-  def observation_weeks_data
-    inner1 = "
-      SELECT
-        date_trunc( 'week', o.created_at ) AS week,
-        user_id,
-        count(*) as user_total,
-        count(*) over( partition by date_trunc( 'week', o.created_at ) ) as observer_count
-      FROM observations o
-      WHERE quality_grade IN ( 'research', 'needs_id' )
-      GROUP BY date_trunc( 'week', o.created_at ), user_id"
-    inner2 = "
-      SELECT
-        week,
-        user_id,
-        user_total,
-        observer_count,
-        rank( ) OVER( partition by week order by user_total desc ) as user_rank,
-        sum( user_total ) OVER( partition by week ) as week_total
-      FROM (#{inner1}) as inner1"
-    query = "
-      SELECT
-        week,
-        user_id as id,
-        u.login,
-        u.icon_file_name,
-        u.icon_content_type,
-        u.icon_file_size,
-        user_total,
-        observer_count,
-        week_total,
-        rank( ) OVER( order by week_total desc ) as week_rank,
-        rank( ) OVER( order by user_total desc ) as user_week_rank
-      FROM (#{inner2}) as inner2
-      LEFT JOIN users u ON ( inner2.user_id = u.id )
-      WHERE user_rank = 1
-      ORDER by week desc"
-    weeks_totals = User.find_by_sql( query )
-    weeks_totals.map do | r |
-      {
-        week: r.week,
-        user_id: r.id,
-        user_login: r.login,
-        user_icon: r.medium_user_icon_url,
-        user_week_total: r.user_total,
-        user_week_rank: r.user_week_rank,
-        week_total: r.week_total.to_i,
-        week_rank: r.week_rank,
-        observer_count: r.observer_count
-      }
-    end
   end
 
   def project_slideshow_data( overall_project_id, options = {} )

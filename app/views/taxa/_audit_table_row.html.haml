@@ -14,6 +14,7 @@
           when "TaxonName" then edit_taxon_name_path( audit.auditable )
           when "PlaceTaxonName" then edit_taxon_name_path( audit.auditable.taxon_name_id )
           when "ConservationStatus" then edit_taxon_path( audit.auditable )
+          when "TaxonPhoto" then photo_path( audit.auditable.photo_id )
           else audit.auditable
         end
       = link_to audit.auditable.try_methods(:to_plain_s, :to_s) || t( "activerecord.models.#{audit.auditable_type}", default: audit.auditable_type.underscore.humanize ), item_url

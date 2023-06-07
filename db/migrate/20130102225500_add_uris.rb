@@ -6,8 +6,8 @@ class AddUris < ActiveRecord::Migration
     add_column :users, :uri, :string
     add_index :observations, :uri
     add_index :users, :uri
-    Observation.update_all(["uri = ? || id", "#{FakeView.observations_url}/"])
-    User.update_all(["uri = ? || id", "#{FakeView.users_url}/"])
+    Observation.update_all(["uri = ? || id", "#{UrlHelper.observations_url}/"])
+    User.update_all(["uri = ? || id", "#{UrlHelper.users_url}/"])
   end
 
   def down

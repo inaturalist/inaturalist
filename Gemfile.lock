@@ -31,14 +31,6 @@ GIT
     objectify-xml (0.2.3)
 
 GIT
-  remote: https://github.com/inaturalist/omniauth-openid
-  revision: b06b8d2c6bc0ac5eb63e4b9285148b409c0d3ca6
-  specs:
-    omniauth-openid (2.0.0)
-      omniauth (~> 1.0)
-      rack-openid (~> 1.4.0)
-
-GIT
   remote: https://github.com/inaturalist/riparian.git
   revision: a09196fa31273002167442abc08df96c3f28dcf6
   ref: rails6
@@ -111,31 +103,39 @@ GIT
       i18n-inflector (~> 2.6)
       railties (>= 3.0.0)
 
+GIT
+  remote: https://github.com/stanhu/chronic.git
+  revision: 7ea371fd15a4e95dbd59c84894a77407cf4fe029
+  ref: 7ea371f
+  specs:
+    chronic (0.10.2)
+      numerizer (~> 0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (6.1.6.1)
-      actionpack (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    actioncable (6.1.7.3)
+      actionpack (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
-    actionmailbox (6.1.6.1)
-      actionpack (= 6.1.6.1)
-      activejob (= 6.1.6.1)
-      activerecord (= 6.1.6.1)
-      activestorage (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    actionmailbox (6.1.7.3)
+      actionpack (= 6.1.7.3)
+      activejob (= 6.1.7.3)
+      activerecord (= 6.1.7.3)
+      activestorage (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       mail (>= 2.7.1)
-    actionmailer (6.1.6.1)
-      actionpack (= 6.1.6.1)
-      actionview (= 6.1.6.1)
-      activejob (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    actionmailer (6.1.7.3)
+      actionpack (= 6.1.7.3)
+      actionview (= 6.1.7.3)
+      activejob (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 2.0)
-    actionpack (6.1.6.1)
-      actionview (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    actionpack (6.1.7.3)
+      actionview (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       rack (~> 2.0, >= 2.0.9)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
@@ -144,26 +144,26 @@ GEM
       actionpack (>= 4.0.0)
     actionpack-page_caching (1.2.4)
       actionpack (>= 4.0.0)
-    actiontext (6.1.6.1)
-      actionpack (= 6.1.6.1)
-      activerecord (= 6.1.6.1)
-      activestorage (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    actiontext (6.1.7.3)
+      actionpack (= 6.1.7.3)
+      activerecord (= 6.1.7.3)
+      activestorage (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       nokogiri (>= 1.8.5)
-    actionview (6.1.6.1)
-      activesupport (= 6.1.6.1)
+    actionview (6.1.7.3)
+      activesupport (= 6.1.7.3)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activejob (6.1.6.1)
-      activesupport (= 6.1.6.1)
+    activejob (6.1.7.3)
+      activesupport (= 6.1.7.3)
       globalid (>= 0.3.6)
-    activemodel (6.1.6.1)
-      activesupport (= 6.1.6.1)
-    activerecord (6.1.6.1)
-      activemodel (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    activemodel (6.1.7.3)
+      activesupport (= 6.1.7.3)
+    activerecord (6.1.7.3)
+      activemodel (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
     activerecord-postgis-adapter (7.1.1)
       activerecord (~> 6.1)
       rgeo-activerecord (~> 7.0.0)
@@ -173,14 +173,14 @@ GEM
       multi_json (~> 1.11, >= 1.11.2)
       rack (>= 2.0.8, < 3)
       railties (>= 5.2.4.1)
-    activestorage (6.1.6.1)
-      actionpack (= 6.1.6.1)
-      activejob (= 6.1.6.1)
-      activerecord (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    activestorage (6.1.7.3)
+      actionpack (= 6.1.7.3)
+      activejob (= 6.1.7.3)
+      activerecord (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       marcel (~> 1.0)
       mini_mime (>= 1.1.0)
-    activesupport (6.1.6.1)
+    activesupport (6.1.7.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -191,6 +191,7 @@ GEM
     acts_as_votable (0.13.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    aes_key_wrap (1.1.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     akami (1.3.1)
@@ -203,8 +204,9 @@ GEM
       sprockets (>= 3.0, < 5)
       tilt
     ast (2.4.2)
-    audited (5.0.2)
+    audited (5.3.3)
       activerecord (>= 5.0, < 7.1)
+      request_store (~> 1.2)
     aws-eventstream (1.2.0)
     aws-partitions (1.510.0)
     aws-sdk-cloudfront (1.56.0)
@@ -233,9 +235,13 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
+    bindata (2.4.15)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     byebug (11.1.3)
     capistrano (3.16.0)
       airbrussh (>= 1.0.0)
@@ -261,7 +267,6 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     chroma (0.2.0)
-    chronic (0.10.2)
     climate_control (0.2.0)
     cocoon (1.2.15)
     coderay (1.1.3)
@@ -272,18 +277,19 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.2)
     crack (0.4.5)
       rexml
     crass (1.0.6)
     daemons (1.4.1)
-    dalli (2.7.11)
+    dalli (3.2.4)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    date (3.3.3)
     dbf (4.2.0)
     debug_inspector (1.1.0)
     delayed_job (4.1.9)
@@ -326,7 +332,7 @@ GEM
     elasticsearch-transport (7.15.0)
       faraday (~> 1)
       multi_json
-    erubi (1.11.0)
+    erubi (1.12.0)
     execjs (2.8.1)
     exifr (1.3.9)
     exiftool (1.2.4)
@@ -340,25 +346,29 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
-    faraday (1.8.0)
+    faraday (1.10.3)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
-      faraday-httpclient (~> 1.0.1)
+      faraday-httpclient (~> 1.0)
+      faraday-multipart (~> 1.0)
       faraday-net_http (~> 1.0)
-      faraday-net_http_persistent (~> 1.1)
+      faraday-net_http_persistent (~> 1.0)
       faraday-patron (~> 1.0)
       faraday-rack (~> 1.0)
-      multipart-post (>= 1.2, < 3)
+      faraday-retry (~> 1.0)
       ruby2_keywords (>= 0.0.4)
     faraday-em_http (1.0.0)
     faraday-em_synchrony (1.0.0)
     faraday-excon (1.1.0)
     faraday-httpclient (1.0.1)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (1.0.1)
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
+    faraday-retry (1.0.3)
     fastimage (2.2.5)
     ffi (1.15.4)
     flickraw (0.9.10)
@@ -367,7 +377,7 @@ GEM
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     georuby (2.5.2)
-    globalid (1.0.0)
+    globalid (1.1.0)
       activesupport (>= 5.0)
     gyoku (1.3.1)
       builder (>= 2.1.2)
@@ -387,10 +397,11 @@ GEM
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
+    httpclient (2.8.3)
     httpi (2.5.0)
       rack
       socksify
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
       i18n (>= 0.4.1)
@@ -399,11 +410,12 @@ GEM
     ice_cube (0.16.3)
     jmespath (1.6.1)
     json (2.5.1)
-    jwt (2.3.0)
-    koala (3.0.0)
-      addressable
-      faraday
-      json (>= 1.8)
+    json-jwt (1.15.3)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      httpclient
+    jwt (2.7.0)
     kt-paperclip (7.1.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -414,8 +426,11 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
     mime-types (3.4.1)
@@ -425,59 +440,72 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
-    minitest (5.16.2)
+    mini_portile2 (2.8.1)
+    minitest (5.18.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    multipart-post (2.1.1)
+    multipart-post (2.3.0)
+    net-imap (0.3.4)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
+    net-smtp (0.3.3)
+      net-protocol
     net-ssh (6.1.0)
     netrc (0.11.0)
     newrelic_rpm (8.3.0)
     nio4r (2.5.8)
-    nokogiri (1.13.10)
+    nokogiri (1.14.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-darwin)
+    nokogiri (1.14.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
+    numerizer (0.2.0)
     oauth (0.5.10)
-    oauth2 (1.4.7)
-      faraday (>= 0.8, < 2.0)
+    oauth2 (2.0.9)
+      faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
-      multi_json (~> 1.3)
       multi_xml (~> 0.5)
-      rack (>= 1.2, < 3)
-    omniauth (1.9.2)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    omniauth (2.1.1)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
-    omniauth-apple (1.0.2)
-      jwt
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-apple (1.3.0)
+      json-jwt
       omniauth-oauth2
-    omniauth-facebook (8.0.0)
-      omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.8.2)
+    omniauth-google-oauth2 (1.1.1)
       jwt (>= 2.0)
-      oauth2 (~> 1.1)
-      omniauth (~> 1.1)
-      omniauth-oauth2 (>= 1.6)
+      oauth2 (~> 2.0.6)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.8.0)
     omniauth-oauth (1.2.0)
       oauth
       omniauth (>= 1.0, < 3)
-    omniauth-oauth2 (1.7.1)
-      oauth2 (~> 1.4)
-      omniauth (>= 1.9, < 3)
+    omniauth-oauth2 (1.8.0)
+      oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    omniauth-openid (2.0.1)
+      omniauth (>= 1.0, < 3.0)
+      rack-openid (~> 1.4.0)
     omniauth-orcid (2.1.1)
       omniauth-oauth2 (~> 1.3)
       ruby_dig (~> 0.0.2)
-    omniauth-rails_csrf_protection (0.1.2)
+    omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
-      omniauth (>= 1.3.1)
+      omniauth (~> 2.0)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -491,8 +519,8 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.4)
       nio4r (~> 2.0)
-    racc (1.6.1)
-    rack (2.2.4)
+    racc (1.6.2)
+    rack (2.2.6.4)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-mobile-detect (0.4.0)
@@ -500,26 +528,28 @@ GEM
     rack-openid (1.4.2)
       rack (>= 1.1.0)
       ruby-openid (>= 2.1.8)
-    rack-test (2.0.2)
+    rack-protection (3.0.5)
+      rack
+    rack-test (2.1.0)
       rack (>= 1.3)
     rack-tracker (1.13.0)
       activesupport (>= 3.0)
       rack (>= 1.4)
       tilt (>= 1.4)
-    rails (6.1.6.1)
-      actioncable (= 6.1.6.1)
-      actionmailbox (= 6.1.6.1)
-      actionmailer (= 6.1.6.1)
-      actionpack (= 6.1.6.1)
-      actiontext (= 6.1.6.1)
-      actionview (= 6.1.6.1)
-      activejob (= 6.1.6.1)
-      activemodel (= 6.1.6.1)
-      activerecord (= 6.1.6.1)
-      activestorage (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    rails (6.1.7.3)
+      actioncable (= 6.1.7.3)
+      actionmailbox (= 6.1.7.3)
+      actionmailer (= 6.1.7.3)
+      actionpack (= 6.1.7.3)
+      actiontext (= 6.1.7.3)
+      actionview (= 6.1.7.3)
+      activejob (= 6.1.7.3)
+      activemodel (= 6.1.7.3)
+      activerecord (= 6.1.7.3)
+      activestorage (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       bundler (>= 1.15.0)
-      railties (= 6.1.6.1)
+      railties (= 6.1.7.3)
       sprockets-rails (>= 2.0.0)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
@@ -528,7 +558,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.4)
+    rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
@@ -537,9 +567,9 @@ GEM
       activemodel (>= 4.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
-    railties (6.1.6.1)
-      actionpack (= 6.1.6.1)
-      activesupport (= 6.1.6.1)
+    railties (6.1.7.3)
+      actionpack (= 6.1.7.3)
+      activesupport (= 6.1.7.3)
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
@@ -549,6 +579,8 @@ GEM
     rdoc (6.3.3)
     redcarpet (3.5.1)
     regexp_parser (2.1.1)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -641,13 +673,16 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     socksify (1.7.1)
     soundcloud (0.3.5)
       hashie
       httmultiparty (~> 0.3.0)
-    sprockets (4.1.1)
+    sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
+      rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -660,7 +695,8 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.10)
-    tzinfo (2.0.5)
+    timeout (0.3.2)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -670,6 +706,7 @@ GEM
     unicode-display_width (2.1.0)
     utf8-cleaner (1.0.0)
       activesupport
+    version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     wasabi (3.6.1)
@@ -692,7 +729,7 @@ GEM
     ya2yaml (0.31)
     yajl-ruby (1.4.3)
     yui-compressor (0.12.0)
-    zeitwerk (2.6.0)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   ruby
@@ -717,6 +754,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   better_errors
   binding_of_caller
+  bundler-audit
   byebug
   capistrano
   capistrano-passenger
@@ -724,7 +762,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara
   chroma
-  chronic
+  chronic!
   cocoon
   coffee-rails
   daemons
@@ -762,7 +800,6 @@ DEPENDENCIES
   icalendar
   irwi!
   json
-  koala
   kt-paperclip
   lefthook
   machinist!
@@ -774,11 +811,10 @@ DEPENDENCIES
   objectify-xml!
   omniauth
   omniauth-apple
-  omniauth-facebook
   omniauth-flickr!
   omniauth-google-oauth2
   omniauth-oauth2
-  omniauth-openid!
+  omniauth-openid
   omniauth-orcid
   omniauth-rails_csrf_protection
   omniauth-soundcloud!
@@ -791,7 +827,7 @@ DEPENDENCIES
   rack-cors
   rack-mobile-detect
   rack-tracker
-  rails (= 6.1.6.1)
+  rails (= 6.1.7.3)
   rails-controller-testing
   rails-html-sanitizer
   rails-i18n

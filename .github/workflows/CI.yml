@@ -44,7 +44,7 @@ jobs:
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
@@ -107,7 +107,7 @@ jobs:
     if: ${{ success() || failure() }}
     runs-on: ubuntu-20.04
     steps:
-      - uses: iRoachie/slack-github-actions@v2.0.1
+      - uses: iRoachie/slack-github-actions@v2.3.2
         if: env.SLACK_WEBHOOK_URL != null
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}

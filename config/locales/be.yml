@@ -652,7 +652,6 @@ be:
   analyze_clashes: Аналізваць непрадбачанныя рознагалоссі
   analyze_ids: Аналіз вызначэнняў
   ancestor_taxon: Бацькоўскі таксон
-  and: і
   and_other_taxa: "&amp; Іншыя таксоны"
   android: Android
   animals: Жывёлы
@@ -914,7 +913,6 @@ be:
   browse_species_that_occur_near_this_observation: Праглядзець віды, якія сустракаюцца каля гэтага назірання.
   built_with_site_guides_html: "Створана з дапамогай <a href='%{url}'>%{site_name} дапаможнікаў</a>"
   bulk_import_of_filename_is_complete: "Гуртавы імпарт %{filename} скончаны"
-  by: паводле
   by_everyone: Любыя
   by_user: "карыстальніка %{user}"
   by_you: вашыя
@@ -1139,7 +1137,6 @@ be:
   connected_accounts_titlecase: Падлучаныя Ўліковы запісы
   connecting_flickr: "Далучэнне да Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Далучыцца да Flickr яшчэ раз, каб аўтарызаваць дазвол на запіс
-  connecting_to_facebook: "Далучэнне да Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Падлучэнне вашага ўліковага запісу %{site_name} да ўліковых запісаў на іншых сайтах дазволіць вам уваходзіць на %{site_name} выкарыстоўваючы ўліковыя дадзеныя з гэтых сайтаў."
   cannot_be_changed_during_a_content_freeze: Не можа быць зменена падчас замарожвання зместу
   conservation_status: Прыродаахоўны статус
@@ -1233,21 +1230,21 @@ be:
     molt: Лінька
   controlled_term_definitions:
     alive: Арганізм жывы і не выяўляе прыкметаў немінучай смерці
+    bone: |
+      Па большай частцы, рэшткі экзаскелету; чатковае агаленне костак у астатняй частцы некранутага арганізма павінна быць пазначана як "арганізм"
+    cannot_be_determined: Не можа быць вызначана па прадастаўленых сведчаннях
     dead: Арганізм мёртвы або выяўляе прыкметы немінучай смерці
+    feather: Адно ці больш пер'яў, не дастасаваных да арганізма
     flower_budding: Бутоны бачныя, але не адкрытыя
     flowering: Кветкі бачныя, адкрытыя і ўсё яшчэ дастасаваныя да раслін
     fruiting: Плады бачныя, адкрытыя і ўсё яшчэ дастасаваныя да раслін
+    gall: Дэфармаванае разрастанне расліннай тканкі, выкліканае паразітычным арганізмам
+    molt: Скура, або экзаскелет, што засталіся пасля ліняння
     no_evidence_of_flowering: Медыя не даюць уяўлення аб рэпрадуктыўных структурах
-    teneral: Дарослая асобіна, якая нядаўна ўзнікла, але яшчэ не дасягнула канчатковай дарослай формы
-    cannot_be_determined: Не можа быць вызначана па прадастаўленых сведчаннях
-    feather: Адно ці больш пер'яў, не дастасаваных да арганізма
     organism: Цэлы арганізм ці яго частка
     scat: Фекаліі (не пагадкі соў ці іншыя адрыгнутыя рэчывы)
+    teneral: Дарослая асобіна, якая нядаўна ўзнікла, але яшчэ не дасягнула канчатковай дарослай формы
     track: Адбітак на зямлі ці снезе, зроблены арганізмам
-    bone: |
-      Па большай частцы, рэшткі экзаскелету; чатковае агаленне костак у астатняй частцы некранутага арганізма павінна быць пазначана як "арганізм"
-    molt: Скура, або экзаскелет, што засталіся пасля ліняння
-    gall: Дэфармаванае разрастанне расліннай тканкі, выкліканае паразітычным арганізмам
   controls: Элементы кіравання
   convert: Пераўтварыць
   coordinate_systems: Сістэма каардынат
@@ -1354,17 +1351,6 @@ be:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Сам не дэманструе адпаведных паводзінаў.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Каб падаць заяўку на пасаду куратара сайту, вы павінны маць рахунак на працягу не менш як 60
-    дзён і дадаць не менш як 100 паляпшаючых вызначэнняў да чыіх-небудзь
-    назіранняў, у тым ліку вашых (вы дадалі %{num_idents}). Калі вы
-    выканаеце абодва гэтыя патрабаванні, вярніцеся сюды, і вы зможаце падаць заяўку.
-  curator_application_inelligible_error: |
-    Каб падаць заяўку на пасаду куратара сайту, вы павінны маць рахунак на працягу не менш як 60
-    дзён і дадаць не менш як 100 паляпшаючых вызначэнняў да чыіх-небудзь
-    назіранняў, у тым ліку вашых.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заяўка на пасаду куратара пададзена
   #Header
@@ -1664,9 +1650,13 @@ be:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Таксоны ў на ніжэйшых узроўнях, пазначыня сцяжком
+  #Noun, as in a journal post that has not been published
   draft: чарнавік
+  #Noun, as in a journal post that has not been published
   draft_: Чарнавік
+  #Noun, as in a journal post that has not been published
   draft_saved: Чарнавiк захаваны!
+  #Noun, as in journal posts that has not been published
   drafts: Чарнавікі
   drag_and_drop_some_photos_or_sounds: Перацягніце сюды якія-небудзь фота ці гукі
   #Button label for drawing a circular boundary for an observation search
@@ -1818,13 +1808,6 @@ be:
   extra_properties: Дадатковыя ўласцівасці
   evidence_of_organism: Сведчанне існавання арганізму
   facebook: Facebook
-  facebook_account_information: Інфармацыя пра ваш уліковы запіс Facebook
-  facebook_account_not_linked: "%{user} больш не мае далучанага ўліковага запісу facebook, таму %{site_name} не мае дазволу на доступ да гэтага фота."
-  facebook_access_token_expired: "Тэрмін дзеяння токену доступу скончыўся. %{user} павінен перападлучыць свой уліковы запіс Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook патрабуе, каб уласнік гэтага фота зноў пацеврдзіў сваеre падлучэння да %{site_name_short}.
-  facebook_options: Наладжванні Facebook
-  facebook_photo_import_disabled_notice: |
-    У лістападзе 2020 года Facebook запатрабаваў ад нас пацверджваць, што нам сапараўдны патрэбны доступ да фатаграфій, і мы не змаглі скончыць працэс з-за праблем з сістэмай верыфікацыі Facebook. У выніку мы не можам надалей падтрымліваць імпарт фатаграфій з Facebook.
   failed_to_find_your_location: Не атрымалася знайсці ваш уліковы запіс
   failed_to_repair_photo: "Не атрымалася аднавіць фота: %{errors}"
   failed_to_save_record: "Не атрымалася захаваць запіс. Калі ласка, паспрабуйце зноў пазней."
@@ -1988,7 +1971,6 @@ be:
   frequency: Частата
   from_a_place: з месца
   from_eol_collection: З калекцыі EOL
-  from_flickr_facebook_etc: З Flickr, Facebook і г.д.
   from_list: З спісу
   from_photos: З фота
   from_place: З месца
@@ -2329,7 +2311,6 @@ be:
   lexicon: Слоўнік
   lexicon_cannot_contain_words: "не можа змяшчаць наступныя словы: %{words}"
   lexicons:
-    scientific_names: Навуковая назва
     afrikaans: Афрыкаанс
     albanian: Албанская
     arabic: Арабская
@@ -2391,8 +2372,8 @@ be:
     romanian: Румынская
     russian: Руская
     santali: Санталі
+    scientific_names: Навуковая назва
     serbian: Сербская
-    setswana: Сэтсвана
     sinhala: Сінгальская
     slovak: Славацкая
     slovenian: Славенская
@@ -2405,8 +2386,8 @@ be:
     tokelauan: Такелауанская
     turkish: Турэцкая
     ukrainian: Украінская
-    waray_waray: Варай-Варай
     visayan: Вісаян
+    waray_waray: Варай-Варай
   less: Менш
   licensed_site_photos: "Ліцэнзаваныя фота з %{site_name}"
   license: Ліцэнзія
@@ -2420,14 +2401,8 @@ be:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Спасылка на код аўтарызацыі
-  link_your_facebook_account: Звязаць свой уліковы запіс Facebook
   link_your_flickr_account: Звязаць свой уліковы запіс Flickr
   link_your_google_account: Звязаць свой уліковы запіс Google
-  linked_facebook: "Ваш уліковы запіс %{site_name} зараз звязаны з вашым уліковым запісам Facebook."
-  linked_facebook_automaticaly: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце ў %{site_name} праз Facebook, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Facebook. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Facebook, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
-  linked_facebook_description: "Звязванне вашага ўліковага запісу %{site_name} з уліковым запісам Facebook дазваляе вам дадаваць некалькі фатаграфій да сваіх назіранняў. Вядома, калі вы захочаце, каб сайт %{site_name} і Facebook не былі звязаны, мы не спынім вас, вы проста не зможаце дадаваць фатаграфіі. Часам гэта можа быць зручна, напрыклад, калі вы створыце новы ўліковы запіс Facebook, з якім захочаце звязаць %{site_name}."
-  linked_facebook_howto: "Каб звязаць Facebook з %{site_name}, націсніце на спасылку справа і ўвайдзіце ў Facebook.com."
-  linked_facebook_password: "Мы ніколі не будзем запытваць у вас пароль Facebook (але Facebook можа, праверце URL, на які вас перанакіроўвае кнопка, і пераканайцеся, што гэта Facebook.com). Мы таксама не будзем змяняць вашыя даныя ў Facebook, калі вы гэтага не захочаце."
   linked_flickr: "Ваш уліковы запіс на сайце %{site_name} зараз звязаны з вашым уліковым запісам Flickr."
   linked_flickr_automatically: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце на сайт %{site_name} праз Flickr, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Flickr. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Flickr, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
   linked_flickr_description: "Звязванне вашага ўліковага запісу %{site_name} з уліковым запісам Flickr дазваляе вам дадаваць некалькі фатаграфій да сваіх назіранняў. Вядома, калі вы захочаце, каб сайт %{site_name} і Flickr не былі звязаны, то мы не спынім вас, вы проста не зможаце дадаваць фатаграфіі. Часам гэта можа быць зручней, напрыклад, калі вы створыце новы ўліковы запіс Flickr, з якім захочаце звязаць %{site_name}."
@@ -2591,7 +2566,6 @@ be:
       every_publicly_visible_observation: Кожнае агульнадаступнае назіранне, створанае ў сетцы iNaturalist
       featured_observations: Рэкамендаваныя назіранні
       gbif_network: Сетка GBIF
-      gbif_network_description: Запісы з навуковых калекцый і іншых крыніц знаходак, якія распаўсюджваюцца праз Global Biodiversity Informatics Facility (GBIF)
       observations: Назіранні
       place_boundary: Межы месца
       checklist_places: Месцы з таксанамічнымі спісамі
@@ -2759,6 +2733,7 @@ be:
   must_have_quality_grades: "павінна мець узровень якасці: %{grades}"
   must_have_sounds: павінна мець гукі
   must_have_x: "павінен мець %{x}"
+  #Mute is a noun here
   mute_removed: Ігнараванне скасавана
   muted_users: Карыстальнікі, якіх вы ігнаруеце
   n_ago: "%{n} таму"
@@ -2958,7 +2933,6 @@ be:
   not_findig_what_you_want: Не знайшлі тое, што шукалі?
   not_finding_place_you_want?: Не знайшлі месца, што шукалі?
   not_found: Не знойдзена
-  not_linked_facebook: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Facebook."
   not_linked_flickr: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Flickr."
   not_on_this_list: Няма ў гэтым спісе.
   not_recorded: Не запісана
@@ -3115,10 +3089,6 @@ be:
   observed_on: Назіранне зроблена
   observer: Назіральнік
   observers: Назіральнікі
-  observer_prefers_no_project_addition: |
-    Назіральнік не дазваляе іншым людзям дадаваць свае назіранні ў праекты.
-  observer_prefers_addition_to_projects_joined: |
-    Назіральнік дазваляе іншым людзям дадаваць свае назіранні толькі ў праекты, да якіх яны далучыліся.
   observer_short: Назіральнік
   occurence_status_describes_how: 'Статус наяўнасці паказвае, наколькі у дадзенай вобласці таксон звычайны або рэдкі. Глядзіце ў DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">дадатковую інфармацыю пра тэрміналогію</a>.'
   occurrence_status: Статус наяўнасці
@@ -3206,9 +3176,10 @@ be:
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap
   optional: дадатковы
+  options: Опцыі
   or: або
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або выбраць з некаторых таксонаў вышэйшага рангу"
   orange: аранжавы
@@ -3746,7 +3717,6 @@ be:
   post_from_your_journal_html: Допіс з <a href="%{url}">вашага часопісу</a>
   post_published: Допіс апублікаваны!
   posted_by: Апублікавана
-  posted_on: Апублікавана ў
   posts: Допісы
   potential_disagreement: Патэнцыйная нязгода
   powered_by: Працуе на
@@ -3972,6 +3942,7 @@ be:
   relationships:
     error: памылка
   reload_from_observations: Перазагрузіце з назіранняў
+  remember_me: Запомніць мяне
   remove: Выдаліць
   remove_all_tags: Выдаліць усе пазнакі
   remove_conservation_status: выдаліць прыродаахоўны статус
@@ -4063,8 +4034,6 @@ be:
   sites_affiliation_examples_portugal_atlas_html: |
     Чалец сеткі iNaturalist Партугаліі
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} падзяліўся запісамі з партугальскага атласу мігруючых птушак, атласу млекакормячых, а таксама дадзенымі некаторых іншых навуковых прац з Партугаліі.
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist аўтаматычна хавае каардынаты для некаторых відаў каб захаваць іх ад турбавання, збору або браканьерства. Калі каардынаты назірання былі схаваны аўтаматычна толькі для аховы відаў, iNaturalist абагульняе сапраўдныя каардынаты для ўсіх назіранняў з іх адпаведных краінаў з усімі Ўдзельнікамі Сеткі.
   sites_affiliation_more_email_addresses: |
     Адрасы электроннай пошты абагульняюцца з Удзельнікамі Сеткі выключна для камунікацыйных мэтаў, звязаных з сайтам.
   sites_affiliation_more_twice_per_year: |
@@ -4324,9 +4293,6 @@ be:
       index:
         connect_with_nature: Злучыцца з Прыродай
         explore_and_share: Даследуйце ды дзяліцеся сваімі назіраннямі жывой прыроды.
-        observations_to_date: 'Назіранні на гэты момант'
-        species_observed: 'Назіраемыя віды'
-        people_signed_up: 'Людзей зарэгістравана'
         how_it_works: Як гэта працуе
         record_your_observations: Запішыце свае назіранні
         share_with_fellow_naturalists: Падзяліцеся з калегамі-натуралістамі
@@ -4411,26 +4377,6 @@ be:
       - Лістапад
       - Снежань
   datetime:
-    countdown_x_days:
-      one: дзень
-      few: дні
-      many: дзён
-      other: дня
-    countdown_x_hours:
-      one: гадзіна
-      few: гадзіны
-      many: гадзін
-      other: гадзіны
-    countdown_x_minutes:
-      one: хв
-      few: хв
-      many: хв
-      other: хв
-    countdown_x_seconds:
-      one: сек
-      few: сек
-      many: сек
-      other: сек
     prompts:
       day: Дзень
       hour: Гадзіна
@@ -4438,8 +4384,6 @@ be:
       month: Месяц
       second: Секунды
       year: Год
-  errors:
-    format: '%{attribute} %{message}'
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -4515,7 +4459,8 @@ be:
     errors:
       messages:
         empty: не можа быць пустым
-        requires_privilege_speech: для гэтага павінна быць тры правераныя назіранні альбо тры вызначэнні для іншых
+        requires_privilege_speech: |
+          для гэтага павінна быць тры правераныя назіранні альбо тры вызначэнні для іншых
         requires_privilege_organizer: для гэтага павінна быць 50 правераных назіранняў
         taken: гэта ўжо зроблена
       template:

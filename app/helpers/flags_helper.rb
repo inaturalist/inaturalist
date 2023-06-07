@@ -25,6 +25,12 @@ module FlagsHelper
         if flag.flaggable_content_viewable_by?( current_user )
           concat content_tag :blockquote, formatted_user_text( flag.flaggable_content )
         end
+        if flag.flaggable_parent
+          txt = t :bold_label_colon_value_html,
+            label: t(:parent),
+            value: link_to( flag.flaggable_parent.to_plain_s, flag.flaggable_parent )
+          concat content_tag :div, "[#{txt}]".html_safe
+        end
       end
     end
   end

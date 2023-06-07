@@ -312,6 +312,12 @@ uk:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Точність (м)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Точність позиціювання вище
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Точність позиціювання нижче
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Точність позиціювання нижче або невідома
   account: Обліковий запис
   account_creation: Створення облікового запису
   account_settings: Налаштування облікового запису
@@ -639,7 +645,6 @@ uk:
   analyze_clashes: Аналіз непередбачуваних розбіжностей
   analyze_ids: Аналізувати ID
   ancestor_taxon: Материнський таксон
-  and: та
   and_other_taxa: "&amp; Інші таксони"
   android: Android
   animals: Тварини
@@ -680,6 +685,8 @@ uk:
   #Label for an option to show/include content by any user
   any_user: Будь-який
   anyone: Будь-хто
+  app_owner_application_explanation_required: |
+    Ви повинні надати детальніше пояснення того, що ви хочете побудувати.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Додаток
@@ -878,7 +885,6 @@ uk:
   browse_species_that_occur_near_this_observation: Переглянути види, які трапляються поблизу цього спостереження.
   built_with_site_guides_html: "Створено за допомогою <a href='%{url}'>%{site_name} посібників</a>"
   bulk_import_of_filename_is_complete: "Пакетний імпорт %{filename} завершено"
-  by: '&nbsp;'
   by_everyone: Будь-ким
   by_user: "користувачем %{user}"
   by_you: від вас
@@ -1087,7 +1093,6 @@ uk:
   connected_accounts_titlecase: Під’єднані облікові записи
   connecting_flickr: "Підключення до Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Підключіться до Flickr знову, щоб авторизувати дозвіл на запис
-  connecting_to_facebook: "Підключення до Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Під’єднання вашого облікового запису %{site_name} до облікових записів на інших сайтах дозволить вам увійти до %{site_name} використовуючи ваші облікові дані з цих сайтів."
   cannot_be_changed_during_a_content_freeze: Не може бути змінено під час заморожування вмісту
   conservation_status: Природоохоронний статус
@@ -1171,21 +1176,21 @@ uk:
     molt: Линяння
   controlled_term_definitions:
     alive: Організм живий і не проявляє ознак неминучої смерті
-    dead: Організм мертвий або проявляє ознаки неминучої смерті
-    flower_budding: Бутони видимі, але не розкриті
-    flowering: Квіти видимі, розкриті та все ще прикріплені до рослини
-    fruiting: Плід видимий та все ще прикріплений до рослини
-    no_evidence_of_flowering: Зображення не дозволяють скласти уявлення про репродуктивні структури
-    teneral: Доросла особина, яка нещодавно виникла, але ще не досягла своєї остаточної дорослої форми
-    cannot_be_determined: Не може бути визначено виходячи з наведених свідчень
-    feather: Одне перо чи пір’я, не прикріплене до організму
-    organism: Цілий організм або його частина
-    scat: Фекальна матерія (не пелетки сов чи інші відригнуті речовини)
-    track: Відбиток на землі чи снігу, зроблений організмом
     bone: |
       В основному, залишки ендоскелету; частково видима кістка у іншому
       непошкодженого організму маж бути позначена як "організм"
+    cannot_be_determined: Не може бути визначено виходячи з наведених свідчень
+    dead: Організм мертвий або проявляє ознаки неминучої смерті
+    feather: Одне перо чи пір’я, не прикріплене до організму
+    flower_budding: Бутони видимі, але не розкриті
+    flowering: Квіти видимі, розкриті та все ще прикріплені до рослини
+    fruiting: Плід видимий та все ще прикріплений до рослини
     molt: Шкіра або екзоскелет, що залишилися після линяння
+    no_evidence_of_flowering: Зображення не дозволяють скласти уявлення про репродуктивні структури
+    organism: Цілий організм або його частина
+    scat: Фекальна матерія (не пелетки сов чи інші відригнуті речовини)
+    teneral: Доросла особина, яка нещодавно виникла, але ще не досягла своєї остаточної дорослої форми
+    track: Відбиток на землі чи снігу, зроблений організмом
   controls: Елементи керування
   convert: Перетворити
   coordinate_systems: Системи координат
@@ -1290,17 +1295,6 @@ uk:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Самі не демонструють відповідну поведінку.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
-    днів та більше, додати не менше 100 уточнень визначень для будь-чиїх 
-    спостережень, у тому числі ваших власних (наразі ви додали %{num_idents}). Коли ви будете відповідати обом вимогам, поверніться сюди і заповніть
-    форму.
-  curator_application_inelligible_error: |
-    Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
-    днів і більше, і додати 100 уточнень визначень для будь-чиїх
-    спостережень, у т.ч. ваших власних.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявка на кураторство подана
   #Header
@@ -1585,9 +1579,13 @@ uk:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Таксони на нижчих рівнях, позначені прапорцем
+  #Noun, as in a journal post that has not been published
   draft: чернетка
+  #Noun, as in a journal post that has not been published
   draft_: Чернетка
+  #Noun, as in a journal post that has not been published
   draft_saved: Чернетку збережено!
+  #Noun, as in journal posts that has not been published
   drafts: Чернетки
   drag_and_drop_some_photos_or_sounds: Перетягніть сюди фотографії або звукозаписи
   drawings: Рисунки
@@ -1726,11 +1724,6 @@ uk:
   extra_properties: Додаткові властивості
   evidence_of_organism: Свідчення існування організму
   facebook: Facebook
-  facebook_account_information: Інформація про ваш обліковий запис Facebook
-  facebook_account_not_linked: "%{user} не має облікового запису у facebook, так що %{site_name} не має дозволу на доступ до цього фото."
-  facebook_access_token_expired: "Термін дії токена доступу закінчився. Користувачу %{user} потрібно повторно підключити свій обліковий запис Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook вимагає, аби власники цього фото повторно підтвердили своє підключення до %{site_name_short}.
-  facebook_options: Налаштування Facebook
   failed_to_find_your_location: Не вдалося визначити ваше розташування.
   failed_to_repair_photo: "Не вдалося відновити фото: %{errors}"
   failed_to_save_record: "Не вдалося зберегти запис. Спробуй пізніше."
@@ -1809,7 +1802,7 @@ uk:
     Прапорець для посібника: %{title}
   flag_for_identification_id_html: Прапорець для <a href="%{url}">визначення%{id}</a>
   flag_for_life_list_title_html: |
-    Прапорець для списку життя: %{title}
+    Прапорець для списку живого: %{title}
   flag_for_list_title_html: |
     Прапорець для списку: %{title}
   flag_for_message_id_html: Прапорець для <a href="%{url}">повідомлення %{id}</a>
@@ -1890,7 +1883,7 @@ uk:
   frequency: Частотою
   from_a_place: з місця
   from_eol_collection: З колекції EOL
-  from_flickr_facebook_etc: З Flickr, Facebook тощо
+  from_flickr_etc: З Flickr, тощо
   from_list: Зі списку
   from_photos: З фото
   from_place: З місця
@@ -2218,14 +2211,13 @@ uk:
   leave_a_comment: Залишити коментар
   leave_this_project: Покинути цей проєкт?
   #Terminal nodes in a taxonomic tree
-  leaves: листя
+  leaves: найточніше визначення
   legacy_authentication_notice_html: |
     Схоже, ви використовуєте пароль зі старішої версії веб-сайту.
     Не забудьте <a href="%{url}">змінити пароль</a> для нової версії.
   let_us_walk_you_through: Давайте покажемо вам основні можливості цього сайту.
   lexicon: Мова
   lexicons:
-    scientific_names: Наукова назва
     afrikaans: Африкаанс
     albanian: Албанська
     bengali: Бенгальська
@@ -2267,6 +2259,7 @@ uk:
     portuguese: Португальська
     romanian: Румунська
     russian: Російська
+    scientific_names: Наукова назва
     spanish: Іспанська
     swedish: Шведська
     tagalog: Тагальська
@@ -2284,14 +2277,8 @@ uk:
   life_list: "Список живого %{user}"
   linear_scale_label: Лінійна
   link: Посилання
-  link_your_facebook_account: Приєднайте свій обліковий запис Facebook
   link_your_flickr_account: Прив'язати обліковий запис Flickr
   link_your_google_account: Прив'язати обліковий запис Google
-  linked_facebook: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Facebook."
-  linked_facebook_automaticaly: "Також, майте на увазі, що при вході до %{site_name} через Facebook, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Facebook. Гадаємо, що якщо ви користуєтесь Facebook, то захочете мати можливість імпортувати фото з Facebook, чи не так?"
-  linked_facebook_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Facebook, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Facebook краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Facebook, до якого захочете прив'язати %{site_name}."
-  linked_facebook_howto: "Для ппідключення Facebook до %{site_name}, натисніть на посилання праворуч і увійдіть у Facebook.com."
-  linked_facebook_password: "Ми ніколи не будемо запитувати ваш пароль Facebook (але Facebook може, перевірте URL, на який вас перенадсилає кнопка і переконайтеся, що це Facebook.com). Ми також не зможемо змінювати ваші дані на Facebook, якщо ви цього не хочете."
   linked_flickr: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Flickr."
   linked_flickr_automatically: "Також, майте на увазі, що при вході до %{site_name} через Flickr, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Flickr. Гадаємо, що якщо ви користуєтесь Flickr, то захочете мати можливість імпортувати фото з Flickr, чи не так?"
   linked_flickr_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Flickr, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Flickr краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Flickr, до якого захочете прив'язати %{site_name}."
@@ -2447,7 +2434,6 @@ uk:
       every_publicly_visible_observation: Всі публічно видимі спостереження створені в мережі iNaturalist
       featured_observations: Рекомендовані спостереження
       gbif_network: Мережа GBIF
-      gbif_network_description: Записи наукових колекцій та інших постачальників даних, які розповсюджуються через Global Biodiversity Informatics Facility (GBIF)
       observations: Спостереження
       place_boundary: Межі місця
       checklist_places: Місця з таксономічними списками
@@ -2602,7 +2588,7 @@ uk:
   must_be_observed_after: має бути спостережено після %{operand}
   must_be_observed_before: має бути спостережено до %{operand}
   must_be_observed_by_user: повинні бути спостережені %{user}
-  must_be_observed_in_place: не повинні бути спостережені у %{place}
+  must_be_observed_in_place: повинні бути спостережені у %{place}
   must_be_less_than_x_MB: "має бути менше за %{x} МБ"
   must_have_observation_field: "спостереження мусить мати заповнене поле %{operand}"
   must_have_photos: повинні мати фото
@@ -2610,6 +2596,7 @@ uk:
   must_have_quality_grades: "повинні мати рівень якості: %{grades}"
   must_have_sounds: повинні мати звукозаписи
   must_have_x: "мусить мати %{x}"
+  #Mute is a noun here
   mute_removed: Ігнорування скасоване
   muted_users: Ігноровані користувачі
   n_ago: "%{n} тому"
@@ -2641,7 +2628,7 @@ uk:
   nearby_observations_: Спостереження поблизу
   needs_id: потребує визначення
   needs_id_: Потребує визначення
-  needs_id_expandable_html: "<span class='full'>Потребує</span>визначення"
+  needs_id_expandable_html: "<span class='full'>Потребує </span>визначення"
   needs_id_tooltip_html: 'Спостереження, позначені як такі, що "Потребують визначення" мають медіафайли, дату, але потребують консенсусу спільноти щодо їхнього точного визначення. <a href="https://www.inaturalist.org/pages/help#quality">Дізнатися більше про рівні якості</a>'
   needs_to_be_identified: Має бути визначене
   #@vow_or_con can be used here for the first letter of %{place}
@@ -2800,7 +2787,6 @@ uk:
   not_findig_what_you_want: Не знаходиться те, що шукали?
   not_finding_place_you_want?: Не знаходиться місце, яке шукали?
   not_found: Не знайдено
-  not_linked_facebook: "Ваш обліковий запис %{site_name} не прив'язаний до вашого облікового запису Facebook."
   not_linked_flickr: "Ваш обліковий запис %{site_name} не прив'язаний до вашого облікового запису Flickr."
   not_on_this_list: Не в цьому списку.
   not_recorded: Не записано
@@ -2946,10 +2932,6 @@ uk:
   observed_on: Дата
   observer: Спостерігач
   observers: Спостерігачі
-  observer_prefers_no_project_addition: |
-    Спостерігач не дозволяє іншим людям додавати їхні спостереження до проєктів
-  observer_prefers_addition_to_projects_joined: |
-    Спостерігач дозволяє іншим людям додавати їхні спостереження тільки до тих проєктів, до яких вони долучилися.
   observer_short: Спостерігач
   occurence_status_describes_how: 'Cтатус трапляння описує, наскільки таксон є поширеним або рідкісним в даній області. Більше інформації про термінологію можна знайти у <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">стандарті DarwinCore</a>.'
   occurrence_status: Статус трапляння
@@ -3039,7 +3021,7 @@ uk:
   optional: необов'язковий
   or: або
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або оберіть з таксонів вищого рангу"
   orange: помаранчевий
@@ -3600,9 +3582,6 @@ uk:
   places_merged_successfully: Місця успішно об'єднані!
   places_warning_export_complex_boundary_html: |
     Якщо ви намагаєтеся експортувати спостереження у межах складних контурів, розгляньте натомість варіанти <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">завантаження їх із GBIF</a>, де ви можете намалювати довільні межі, або спробуйте експортувати їх з iNat за допомогою наявних місць або обмежувальної рамки, а потім знову відфільтрувати дані як тільки вони будуть завантажені.
-  places_warning_look_for_existing_html: |
-    Пошукайте серед <a href="/search?source[]=places">наявних місць</a> , щоб переконатися, що
-    ви не створюєте дублікат. У нас вже є місця для всіх континентів і країн, а також двох адміністративних рівнів нижче рівня країни.
   places_warning_projects_can_have_multiple_places: |
     Якщо ви намагаєтеся створити місце для визначення меж проєкту, майте на увазі, що проєкти можуть складатися з кількох місць. Наприклад, якщо ви хочете зробити проєкт для
     Нової Зеландії та Австралії, ви можете просто додати до умов два місця замість того, щоб створювати нове.
@@ -3638,7 +3617,6 @@ uk:
   post_from_your_journal_html: Допис з <a href="%{url}">вашого журналу</a>
   post_published: Допис опубліковано!
   posted_by: Опубліковано
-  posted_on: Опубліковано у
   posts: Дописи
   potential_disagreement: Потенційна незгода
   powered_by: Працює на
@@ -4369,7 +4347,6 @@ uk:
   tagging: 'Позначення...'
   tags: Позначки
   tags_are_a_way: 'Позначки — це спосіб організувати свої спостереження. Наприклад, ви можете позначити всі свої спостереження у припливних водоймах як "припливні водойми", аби прискорити їх пошук в майбутньому.'
-  take_me_facebook: Так, спрямуйте мене на Facebook!
   take_me_flickr!: Так, спрямуйте мене на Flickr!
   target_list_alert: Ви впевнені, що спробували спостерегти всі види з цільового списку? Пам'ятайте, що всі види з вашого цільового списку, які ви не спостерігали, буде позначено як відсутні, тож дуже важливо, щоб ваш цільовий список точно відповідав тому наборові видів, які ви намагалися виявити
   target_list_warning: Пам'ятайте, що все, що було включене до вашого цільового списку, й не було помічене у визначеному радіусі та впродовж визначеної тривалості цієї поїздки буде інтерпретовано як відсутнє. Дуже важливо, що ваш цільовий список точно відображав набір видів, які ви намагалися виявити. Якщо ви не намагалися виявити якийсь вид зі свого цільовому списку, або кожен вид у межах визначеної цільовим списком групи, будь ласка, видаліть його.
@@ -4854,8 +4831,6 @@ uk:
   user_commented: "%{user} коментує"
   user_disagrees_this_is_taxon: "%{user} не погоджується, що це %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не погоджується з попередніми уточнючими визначеннями"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} додав/додала в уподобані %{noun} від %{owner}"
   user_faved_this_observation: "%{user} додав/додала це спостереження в уподобані"
   user_flagged_as_a_non_spammer_html: "%{user} позначено як не-спамера"
   user_flagged_as_a_spammer_html: "%{user} позначено як спамера"
@@ -4908,6 +4883,7 @@ uk:
   view_check_list_page: На сторінку таксономічного списку
   view_contributions: Переглянути доповнення
   view_details: Переглянути подробиці
+  view_dynamic_lifelist_: ПЕРЕГЛЯНУТИ ДИНАМІЧНИЙ СПИСОК ЖИВОГО
   view_field_options: Переглянути параметри поля
   view_flag: Переглянути прапорець
   view_flags: Переглянути прапорці
@@ -4970,11 +4946,9 @@ uk:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Розшукуються
   was_it_captive_cultivated?: "Це утримувалося в неволі або культивувалося?"
-  we_also_support: |
-    Ми також підтримуємо <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>та
-    <a href="http://facebook.com">Facebook</a>
-    для хостингу зображень.
+  we_also_support2: |
+    Ми також підтримуємо імпорт фотографій з <a href="http://flickr.com">Flickr</a>
+    та <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Ми можемо розпізнати лише CSV у такому форматі
   we_couldnt_find_a_user: Ми не можемо знайти користувача із такою електронною адресою.
   we_couldnt_find_a_user_with_that_activation_code: "Ми не змогли знайти користувача з цим кодом активації. Можливо, ви вже активували свій обліковий запис, будь ласка, спробуйте увійти."
@@ -5076,7 +5050,7 @@ uk:
   x_is_the_root_of_the_tree: "%{rank} %{name} є основою дерева"
   x_project_journal: "%{name} з %{project}"
   x_project_stats: "Статистика %{project}"
-  x_sent_you_a_new_message_on_y_html: "%{x} надіслав вам нове повідомлення щодо %{y}: "
+  x_sent_you_a_new_message_on_y_html: "%{x} надіслав вам нове повідомлення на сайті %{y}: "
   x_site_is_a_social_network_for_naturalist: |
     %{site} - це соціальна мережа для натуралістів! Фіксуйте свої спостереження рослин та тварин, діліться ними з друзями та дослідниками, та дізнавайтеся більше про живий сіт довкола вас.
   x_wrote_a_new_post_html: "%{x} написав новий допис"
@@ -5767,8 +5741,6 @@ uk:
           куратори проєкту не зможуть побачити. Якщо ви волієте не ділитися
           координатами ваших спостережень з кураторами цього проєкту,
           ви маєте видалити їх з проєкту.
-        data_quality_assessment_desc_html: |
-          Оцінка Якості Даних є оцінюванням праильності визначення. Спостереження дослідницького рівня можуть використовуватися з науковою метою. Проголосуйте нижче:
         disagreement_count_desc: "Кількість визначених таксонів, що лежать поза межами батьківського таксону"
         identification_count_desc: 'Кількість визначень для окремого таксону'
         flagged_photos_desc_html: |
@@ -5945,10 +5917,6 @@ uk:
         view_original_html: |
           Ви можете переглянути оригінал в <a href="%{url}">%{url}</a>. Будь ласка, залиште прапорець порушення авторських прав нерозв'язаним, якщо це фото порушує авторське право.
     places:
-      kml_field_desc: |
-        Межі місця у форматі KML. Ви можете створити такий файл за допомогою Карт Google, Google
-        Планета Земля, або більшості ГІС-програм. Мусить містити принаймні один полігон, бути
-        меншим за 1 МБ (5 МБ для кураторів) і не перевищувати за площею штат Техас, США.
       edit:
         complex_boundary_note_html: |
           Ці межі занадто складні, щоб бути зміненими засобами сайту. Однак, ви можете <a href="%{url}">завантажити KML</a>, змінити його у геоінформаційній системі на ваш вибір, та вивантажити ваш відредагований KML напряму.
@@ -6655,10 +6623,6 @@ uk:
           Ліцензування вашого доробку дає усім законне право використовувати його без запиту вашого дозволу, за умови, що вони дотримуються умов ліцензії. Крім того, %{site_name} долучає ваш доробок, ліцензований Creative Commons,
           до регулярно оновлюваних архівів, які створюються для деяких партнерських організацій, які цікавляться нашими даними. Наприклад, ми включаємо записи, ліцензовані No Copyright (CC0), Attribution (CC BY) та Attribution-NonCommercial
           (CC BY-NC) в архів, який ми створюємо для <a href="http://www.gbif.org/"> Глобальної інформаційної системи з біорізноманіття</a> (GBIF) - міжнародної міжурядової організації, яка збирає та розповсюджує інформацію про біорізноманіття з усього світу.
-        monthly_supporter_desc_html: |
-          Щомісячні донори iNaturalist роблять автоматичні щомісячні внески які отримує Каліфорнійська академія наук (Сполучені Штати IRS EIN 94-1156258) на підтримку некомерційної діяльності веб-сайтів iNaturalist та iNaturalist Network.
-          <a href="%{url}"> Натисніть тут, щоб стати Щомісячним донором</a>.
-          Після підтвердження вашої підтримки, ви зможете відображувати цей статус у своєму профілі, поставивши галочку у цьому віконці. Примітка: щоб ми підтвердили, що ви стали щомісячним донором, вам буде необхідно використовувати ту ж електронну адресу на Donorbox, що і на iNaturalist.
         muting_desc_html: |
           <p>
           Вимкнення когось заважатиме вам отримувати сповіщення про те, що вони роблять, зокрема про коментарі до ваших спостережень, надісланих вам повідомлень, згадувань про вас тощо. Вимкнення допоможе вам ігнорувати когось, але не завадить їм будь-що робити.
@@ -6791,9 +6755,6 @@ uk:
       index:
         connect_with_nature: Будьте на зв'язку з Природою
         explore_and_share: Досліджуйте та діліться своїми спостереженнями живої природи.
-        observations_to_date: 'Спостереження на цей момент'
-        species_observed: 'Спостережені види'
-        people_signed_up: 'Людей зареєструвалися'
         how_it_works: Як це працює
         record_your_observations: Фіксуйте ваші спостереження
         share_with_fellow_naturalists: Діліться з іншими натуралістами
@@ -6864,19 +6825,19 @@ uk:
       6: пт
       7: сб
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -6950,26 +6911,6 @@ uk:
         few: '%{count} секунди'
         many: '%{count} секунд'
         other: '%{count} секунд'
-    countdown_x_days:
-      one: день
-      few: дні
-      many: днів
-      other: днів
-    countdown_x_hours:
-      one: година
-      few: години
-      many: годин
-      other: годин
-    countdown_x_minutes:
-      one: хв
-      few: хв
-      many: хв
-      other: хв
-    countdown_x_seconds:
-      one: с
-      few: с
-      many: с
-      other: с
     prompts:
       day: день
       hour: година
@@ -6977,54 +6918,6 @@ uk:
       month: місяць
       second: секунд
       year: рік
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: повинні бути прийняті
-      blank: має бути заповненим
-      confirmation: не збігається з паролем
-      empty: не може бути порожнім
-      equal_to: має дорівнювати %{count}
-      even: має бути парним
-      exclusion: зарезервовано
-      greater_than: має бути більшим за %{count}
-      greater_than_or_equal_to: має бути більше або дорівнювати %{count}
-      inclusion: не включено до переліку
-      invalid: недійсне
-      less_than: має бути менше, ніж %{count}
-      less_than_or_equal_to: має бути менше або дорівнювати %{count}
-      new_project_owner_must_be_a_manager: Новий власник проекту повинен бути адміністратором
-      not_a_number: не є числом
-      not_an_integer: має бути цілим числом
-      odd: має бути непарним
-      only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
-      record_invalid: 'Помилка перевірки: %{errors}'
-      requires_privilege_speech: |
-        потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
-      requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
-      taken: вже зайнятий
-      too_long:
-        one: занадто довгий (максимум %{count} знак)
-        few: занадто довгий (максимум %{count} знаків)
-        many: занадто довгий (максимум %{count} знаків)
-        other: занадто довгий (максимум %{count} знаків)
-      too_short:
-        one: занадто короткий (мінімум %{count} знак)
-        few: занадто короткий (мінімум %{count} знаків)
-        many: занадто короткий (мінімум %{count} знаків)
-        other: занадто короткий (мінімум %{count} знаків)
-      wrong_length:
-        one: неправильна довжина (має бути %{count} знак)
-        few: неправильна довжина (має бути %{count} знаків)
-        many: неправильна довжина (має бути %{count} знаків)
-        other: неправильна довжина (має бути %{count} знаків)
-    template:
-      body: 'Виникли деякі проблеми з такими полями:'
-      header:
-        one: "%{count} помилка не дозволяє зберегти цю %{model}"
-        few: '%{count} помилки не дозволяють зберегти цю %{model}'
-        many: '%{count} помилок не дозволяють зберегти цю %{model}'
-        other: '%{count} помилок не дозволяють зберегти цю %{model}'
   helpers:
     defaults:
       title: "ЦЕ НАЗВА"
@@ -7089,72 +6982,21 @@ uk:
   time:
     am: дп
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: пп
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: повинні бути прийняті
-        blank: має бути заповненим
-        confirmation: не збігається з паролем
-        empty: не може бути порожнім
-        equal_to: має дорівнювати %{count}
-        even: має бути парним
-        exclusion: зарезервовано
-        greater_than: має бути більшим за %{count}
-        greater_than_or_equal_to: має бути більше або дорівнювати %{count}
-        inclusion: не включено до переліку
-        invalid: недійсне
-        less_than: має бути менше, ніж %{count}
-        less_than_or_equal_to: має бути менше або дорівнювати %{count}
-        new_project_owner_must_be_a_manager: Новий власник проєкту повинен бути адміністратором
-        not_a_number: не є числом
-        not_an_integer: має бути цілим числом
-        odd: має бути непарним
-        only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
-        record_invalid: 'Помилка перевірки: %{errors}'
-        requires_privilege_speech: потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
-        requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
-        taken: вже зайнятий
-        too_long:
-          one: занадто довгий (максимум %{count} знак)
-          few: занадто довгий (максимум %{count} знаки)
-          many: занадто довгий (максимум %{count} знаків)
-          other: занадто довгий (максимум %{count} знаків)
-        too_short:
-          one: занадто короткий (мінімум %{count} знак)
-          few: занадто короткий (мінімум %{count} знаки)
-          many: занадто короткий (мінімум %{count} знаків)
-          other: занадто короткий (мінімум %{count} знаків)
-        wrong_length:
-          one: неправильна довжина (має бути %{count} знак)
-          few: неправильна довжина (має бути %{count} знаки)
-          many: неправильна довжина (має бути %{count} знаків)
-          other: неправильна довжина (має бути %{count} знаків)
-      template:
-        body: 'Виникли деякі проблеми з такими полями:'
-        header:
-          one: '%{count} помилка не дозволяє зберегти цю %{model}'
-          few: '%{count} помилок не дозволяють зберегти цю %{model}'
-          many: '%{count} помилок не дозволяють зберегти цю %{model}'
-          other: '%{count} помилок не дозволяють зберегти цю %{model}'
   activerecord:
     models:
       AssessmentSection: Розділи оцінки
@@ -7292,22 +7134,18 @@ uk:
         blank: не можуть залишатися порожніми
         confirmation: не збігається з паролем
         empty: не може бути порожнім
-        equal_to: має дорівнювати %{count}
         even: може мати тільки парне значення
         exclusion: зарезервовано
-        greater_than: значення має бути більшим за %{count}
-        greater_than_or_equal_to: значення має бути більшим або дорівнювати %{count}
         inclusion: не включено до переліку
         invalid: недійсне
-        less_than: значення має бути меншим ніж %{count}
-        less_than_or_equal_to: значення має бути меншим або дорівнювати %{count}
         new_project_owner_must_be_a_manager: Новий власник проєкту повинен бути адміністратором
         not_a_number: не є числом
         not_an_integer: має бути цілим числом
         odd: може мати тільки непарне значення
         only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
         record_invalid: 'Помилка перевірки: %{errors}'
-        requires_privilege_speech: потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
+        requires_privilege_speech: |
+          потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
         requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
         taken: вже зайнятий
         too_long:
@@ -7328,7 +7166,7 @@ uk:
       template:
         body: 'Виникли деякі проблеми з такими полями:'
         header:
-          one: '%{count} помилка не дозволяє зберегти цю %{model}'
+          one: "%{count} помилка не дозволяє зберегти цю %{model}"
           few: '%{count} помилки не дозволяють зберегти цю %{model}'
           many: '%{count} помилок не дозволяють зберегти цю %{model}'
           other: '%{count} помилок не дозволяють зберегти цю %{model}'

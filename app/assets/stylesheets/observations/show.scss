@@ -602,7 +602,7 @@ a.UserImage,
     }
     .SplitTaxon {
       white-space: normal;
-      a.secondary-name {
+      a.secondary-name, .secondary-names {
         font-size: 20px;
         line-height: 24px;
         color: #747474;
@@ -614,10 +614,10 @@ a.UserImage,
         color: #000;
         white-space: normal;
       }
-      &.genus .comname.secondary-name,
-      &.species .comname.secondary-name,
-      &.subspecies .comname.secondary-name,
-      &.variety .comname.secondary-name {
+      &.genus .comname.secondary-names,
+      &.species .comname.secondary-names,
+      &.subspecies .comname.secondary-names,
+      &.variety .comname.secondary-names {
         margin-left: 0.25em;
       }
     }
@@ -1145,28 +1145,29 @@ time {
       }
     }
     .labels {
-      & > div {
-        display: inline-block;
-        width: 115px;
-        margin-top: 5px;
-      }
+      position: relative;
+      display: block;
+      margin-top: 5px;
+      text-align: center;
       .active {
         font-weight: 600;
       }
       .casual {
-        float: left;
-        text-align: left;
+        top: 0;
+        position: absolute;
+        inset-inline-start: 0;
       }
       .research {
-        float: right;
-        text-align: right;
+        top: 0;
+        position: absolute;
+        inset-inline-end: 0;
       }
     }
   }
   .info {
     margin-top: 35px;
     font-size: 18px;
-    line-height: 23px;
+    line-height: 24px;
   }
   ul.remaining {
     margin-top: 30px;
@@ -1981,7 +1982,7 @@ time {
       }
       td {
         padding: 2px 8px;
-        .secondary-name {
+        .secondary-names {
           font-size: 12px;
         }
         .display-name {
@@ -2431,6 +2432,17 @@ body > [role="dialog"] .easyzoom > a > img {
   width: 245px;
 }
 
+.obs .caption, .obs-highlight-link, .obs-modal-header {
+  .SplitTaxon.taxon {
+    .display-names .display-name + .display-name,
+    .secondary-names .secondary-name + .secondary-name {
+      &:before {
+        content: "";
+        display: inline;
+      }
+    }
+  }
+}
 
 @media (max-width: 1000px) {
   .bootstrap .container {

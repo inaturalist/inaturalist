@@ -479,7 +479,6 @@ el:
   already_have_an_account_log_in_html: Έχετε ήδη λογαριασμό;<strong>Συνδεθείτε.</strong>
   amphibians: Αμφίβια
   ancestor_taxon: Πρόγονη Ταξινομική Βαθμίδα
-  and: και
   and_other_taxa: "&amp; Άλλα Taxa"
   android: Ανδροειδές
   animals: Ζώα
@@ -715,7 +714,6 @@ el:
   browse_species_that_occur_near_this_observation: Περιήγηση ειδών που απαντώνται κοντά σε αυτή τη παρατήρηση.
   built_with_site_guides_html: "Κατασκευάστηκε με τους <a href='%{url}'>%{site_name} Οδηγούς</a>"
   bulk_import_of_filename_is_complete: "Η μαζική εισαγωγή του %{filename} ολοκληρώθηκε"
-  by: από
   by_everyone: από όλους
   by_user: "από την/τον %{user}"
   by_you: από εσάς
@@ -909,7 +907,6 @@ el:
   connected_accounts_titlecase: Συνδεδεμένοι Λογαριασμοί
   connecting_flickr: "Σύνδεση με το Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Συνδεθείτε στο Flickr ξανά για να εγκρίνετε τα δικαιώματα εγγραφής
-  connecting_to_facebook: "Σύνδεση στο Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Συνδέοντας τον%{site_name}λογαριασμό σας με λογαριασμούς σε άλλους ιστοτόπους θα σας επιτρέπει να εισέρχεστε στο %{site_name} χρησιμοποιώντας τα στοιχεία σας από εκείνους τους ιστοτόπους."
   cannot_be_changed_during_a_content_freeze: Δεν είναι δυνατή η αλλαγή όσο το περιεχόμενο είναι παγωμένο
   conservation_status: Κατάσταση διατήρησης
@@ -965,13 +962,13 @@ el:
     cannot_be_determined: Δε μπορεί να προσδιοριστεί
   controlled_term_definitions:
     alive: Ο οργανισμός είναι ζωντανός και δεν παρουσιάζει σημάδια επικείμενου θανάτου.
+    cannot_be_determined: Δεν μπορεί να προσδιοριστεί με βάση τις ενδείξεις που έχουν δοθεί
     dead: Ο οργανισμός είναι νεκρός ή παρουσιάζει σημάδια επικείμενου θανάτου.
     flower_budding: Τα μπουμπούκια είναι εμφανή αλλά όχι ανθισμένα.
     flowering: Τα άνθη είναι εμφανή, ανθισμένα, και ακόμα προσκολλημένα στο φυτό.
     fruiting: Τα φρούτα είναι εμφανή και ακόμα προσκολλημένα στο φυτό.
     no_evidence_of_flowering: Τα μέσα δεν παρέχουν καμία ένδειξη από αναπαραγωγικές δομές
     teneral: Ενήλικο άτομο που έχει πρόσφατα ολοκληρώσει τη φάση της νύμφης αλλά δεν έχει ακόμα λάβει την τελική ενήλικη μορφή
-    cannot_be_determined: Δεν μπορεί να προσδιοριστεί με βάση τις ενδείξεις που έχουν δοθεί
   controls: Έλεγχοι
   convert: Μετατροπή
   coordinate_systems: Συστήματα συντεταγμένων
@@ -1077,15 +1074,6 @@ el:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Αποτυγχάνει να αποδείξει οτι ο ίδιος έχει την κατάλληλη συμπεριφορά.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Για να κάνετε αίτηση ώστε να γίνετε επιμελητής θα πρέπει να έχετε λογαριασμό για 60
-    ημέρες ή περισσότερες και να έχετε προσθέσει 100 βελτιωμένες αναγνωρίσεις στις παρατηρήσεις κάποιου, συμπεριλαμβανομένων και των δικών σας (έχετε προσθέσει %{num_idents}). Όταν έχετε
-    ικανοποιήσει και τις δύο αυτές απαιτήσεις, επιστρέψτε εδώ και θα είστε σε θέση να υποβάλετε την αίτηση.
-  curator_application_inelligible_error: |
-    Για να κάνετε αίτηση ώστε να γίνετε επιμελητής θα πρέπει να έχετε λογαριασμό για 60
-    ημέρες ή περισσότερες και να έχετε προσθέσει 100 βελτιωμένες αναγνωρίσεις στις παρατηρήσεις κάποιου, συμπεριλαμβανομένων και των δικών σας.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Η αίτηση επιμελητή υποβλήθηκε
   #Header
@@ -1363,9 +1351,13 @@ el:
   downstream_coverage_colon_rank: "Κάλυψη με φορά προς τα κάτω: Κατάταξη %{rank}"
   downstream_deviations: Αποκλίσεις με φορά προς τα κάτω
   downstream_deviations_for_taxon: "Αποκλίσεις με φορά προς τα κάτω για %{taxon}"
+  #Noun, as in a journal post that has not been published
   draft: Πρόχειρο
+  #Noun, as in a journal post that has not been published
   draft_: Πρόχειρο
+  #Noun, as in a journal post that has not been published
   draft_saved: Το πρόχειρο αποθηκεύτηκε!
+  #Noun, as in journal posts that has not been published
   drafts: Προσχέδια
   drag_and_drop_some_photos_or_sounds: Σύρετε & αποθέστε φωτογραφίες ή ήχους
   drawings: Σχέδια
@@ -1500,11 +1492,6 @@ el:
   extra_properties: Πρόσθετες ιδιότητες
   evidence_of_organism: Ένδειξη ύπαρξης οργανισμού
   facebook: Facebook
-  facebook_account_information: Πληροφορίες του λογαριασμού σας στο Facebook
-  facebook_account_not_linked: "O/H %{user} δεν έχει πλέον συνδεδεμένο λογαριασμό facebook, οπότε το %{site_name} δεν έχει άδεια πρόσβασης σε αυτή τη φωτογραφία."
-  facebook_access_token_expired: "Η πρόσβαση έχει λήξει. O/H %{user} χρειάζεται να ξανασυνδεθεί στο λογαριασμό του/της στο Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Το Facebook απαιτεί ο ιδιοκτήτης αυτής της φωτογραφίας να επιβεβαιώσει ξανά τη σύνδεση του με το %{site_name_short}
-  facebook_options: Επιλογές Facebook
   failed_to_find_your_location: Η εύρεση της τοποθεσίας σας απέτυχε.
   failed_to_repair_photo: "Η επισκευή της φωτογραφίας απέτυχε: %{errors}"
   failed_to_save_record: "Η αποθήκευση της εγγραφής απέτυχε. Παρακαλώ προσπαθήστε πάλι αργότερα."
@@ -1657,7 +1644,6 @@ el:
   frequency: Συχνότητα
   from_a_place: από έναν τόπο
   from_eol_collection: Απο την συλλογή της EOL
-  from_flickr_facebook_etc: Από το Flickr, Facebook, κτλ.
   from_list: από τη λίστα
   from_photos: από φωτογραφίες
   from_place: Από τόπο
@@ -1954,7 +1940,6 @@ el:
   let_us_walk_you_through: Επιτρέψτε μας να σας ξεναγήσουμε στα βασικά χαρακτηριστικά αυτού του ιστότοπου.
   lexicon: Λεξικό
   lexicons:
-    scientific_names: Επιστημονικά ονόματα
     afrikaans: Αφρικάανς
     albanian: Αλβανικά
     bengali: Βεγγαλικά
@@ -1995,6 +1980,7 @@ el:
     portuguese: Πορτογαλικά
     romanian: Ρουμανικά
     russian: Ρωσικά
+    scientific_names: Επιστημονικά ονόματα
     spanish: Ισπανικά
     swedish: Σουηδικά
     tagalog: Ταγκαλόγκ
@@ -2011,14 +1997,8 @@ el:
   life_list: "Λίστα ζωής του %{user}"
   linear_scale_label: Γραμμική
   link: Σύνδεσμος
-  link_your_facebook_account: Συνδέστε τον λογαριασμό σας στο Facebook
   link_your_flickr_account: Συνδέστε τον λογαριασμό σας στο Flickr
   link_your_google_account: Συνδέστε τον λογαριασμό σας στο Google
-  linked_facebook: "Ο λογαριασμός σας στο %{site_name} είναι συνδεδεμένος με τον λογαριασμό σας στο Facebook."
-  linked_facebook_automaticaly: "Επίσης, θυμήσου ότι εάν συνδεθείς στο %{site_name} μέσω Facebook, εμείς αυτόματα θα επανάσυνδεσουμε το %{site_name} και τους λογαριασμούς σου στο Facebook. Φαίνεται λογικό ότι αν χρησιμοποιείς Facebook θα θελήσεις να μπορείς να εισάγεις φωτογραφίες του Facebook, σωστά;"
-  linked_facebook_description: "Διατηρώντας το %{site_name} λογαριασμό συνδεδεμένο στο λογαριασμό σου στο Facebook, σου επιτρέπει να προσθέσεις πολλαπλές φωτογραφίες στις παρατηρήσεις σου. Φυσικά, εάν ποτέ θελήσεις να χωρίσεις το %{site_name}και το Facebook, δεν θα σε σταματήσουμε, απλώς δεν θα έχεις την δυνατότητα να προσθέσεις φωτογραφίες. Μερικές φορές αυτό μπορεί να είναι για το καλύτερο, όπως αν δημιουργήσεις ένα νέο λογαριασμό στο Facebook στον οποίο θέλεις να συνδέσεις το %{site_name}."
-  linked_facebook_howto: "Για να συνδέσετε το Facebook με το %{site_name}, κάντε κλικ στον σύνδεσμο δεξιά και συνδεθείτε στο Facebook.com."
-  linked_facebook_password: "Δεν θα ζητήσουμε τον κωδικό σας στο Facebook (όμως είναι πιθανό να τον ζητήσει το Facebook, ελέγξτε την ιστοσελίδα που εστάλη και βεβαιωθείτε πως είναι η Facebook.com). Δε θα κάνουμε αλλαγές στα δεδομένα του Facebook σας, εκτός εάν το επιθυμείτε"
   linked_flickr: "Ο λογαριασμός σας στο %{site_name} είναι συνδεδεμένος με τον λογαριασμό σας στο Flickr."
   linked_flickr_automatically: "Έπιπλέον,έχετε στο νου σας ότι αν συνδεθείτε στο%{site_name}μέσω του Flickr,θα σας επανασυνδέσουμε αυτόματα στο λογαριασμό σας στο %{site_name} και στο Flickr.Φαίνεται λογικό πως εάν χρησιμοποιείτε το Flickr θα θελήστε να εισάγετε φωτογραφίες από το Flickr, σωστά;"
   linked_flickr_description: "Διατηρώντας τον %{site_name} λογαριασμό σας συνδεδεμένο με τον  Flickr λογαριασμό σας, μπορείτε να προσθέτετε πολλαπλές φωτογραφίες στις παρατηρήσεις σας. Φυσικά, εάν ποτέ θελήσετε να διαχωρίσετε το %{site_name} και το  Flickr, αυτό είναι εφικτό, απλώς δεν θα μπορείτε να προσθέτετε πλέον φωτογραφίες.Κάποιες φορές αυτό μπορεί να είναι προτιμότερο, όπως στην περίπτωση που δημιουργήσετε καινούριο λογαριασμό  Flickr και θελήσετε να τον συνδέσετε με  το%{site_name}."
@@ -2168,7 +2148,6 @@ el:
       every_publicly_visible_observation: Κάθε δημόσια ορατή παρατήρηση που έχει δημιουργηθεί στο δίκτυο του iNaturalist
       featured_observations: Προβεβλημμένες παρατηρήσεις
       gbif_network: Δίκτυο GBIF
-      gbif_network_description: Καταγραφές από μουσεία και άλλους διοργανωτές εκδηλώσεων που διανέμονται από την Global Biodiversity Informatics Facility
       observations: Παρατηρήσεις
       place_boundary: Σύνορα τόπου
       checklist_places: Τόποι λίστας ελέγχου
@@ -2308,6 +2287,7 @@ el:
   must_be_less_than_x_MB: "Πρέπει να είναι λιγότερο από %{x} MB"
   must_have_observation_field: "Απαιτείται συμπλήρωση %{operand} του πεδίου παρατηρήσεων"
   must_have_x: "πρέπει να έχει %{x}"
+  #Mute is a noun here
   mute_removed: Η σίγαση αφαιρέθηκε
   muted_users: Σιγασμένοι χρήστες
   n_ago: "%{n} πριν"
@@ -2488,7 +2468,6 @@ el:
   not_findig_what_you_want: Δεν βρήκατε αυτό που θέλατε;
   not_finding_place_you_want?: Δεν βρίσκετε τον τόπο που θέλετε;
   not_found: Δεν βρέθηκε
-  not_linked_facebook: "Ο λογαριασμός σας στο %{site_name} δεν είναι συνδεδεμένος με τον λογαριασμό σας στο Facebook"
   not_linked_flickr: "Ο λογαριασμός σας στο %{site_name} δεν είναι συνδεδεμένος με τον λογαριασμό σας στο Flickr"
   not_on_this_list: Δεν είναι στην λίστα.
   not_recorded: μη καταγεγραμμένο
@@ -2704,7 +2683,7 @@ el:
   optional: προαιρετικό
   or: ή
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: Ή
   or_choose_high_level_taxa: "... ή επιλέξτε από κάποιο υψηλού επιπέδου taxa"
   orange: Πορτοκαλί
@@ -3234,11 +3213,6 @@ el:
     όπου μπορείτε να σχεδιάσετε αυθαίρετα όρια ή να τα εξάγετε από το iNat χρησιμοποιώντας
     υπάρχουσες τοποθεσίες ή ένα πλαίσιο οριοθέτησης και στη συνέχεια να φιλτράρετε ξανά τα δεδομένα αφότου τα κατεβάσετε.
     .
-  places_warning_look_for_existing_html: |
-    Αναζητήστε <a href="/search?source[]=places">υπάρχουσες περιοχές</a> για να βεβαιωθείτε ότι
-    δεν δημιουργείτε διπλότυπα. Έχουμε ήδη περιοχές από όλες τις
-    ηπείρους και χώρες, καθώς και δύο διοικητικά επίπεδα χαμηλότερα της χώρας
-    .
   places_warning_projects_can_have_multiple_places: |
     Αν προσπαθείτε να δημιουργήσετε μια περιοχή για ένα όριο του έργου, τα έργα μπορούν να
     να αποτελούνται από πολλαπλές περιοχές. Για παράδειγμα, αν θέλετε να κάνετε ένα έργο για
@@ -3274,7 +3248,6 @@ el:
   post_from_your_journal_html: Δημοσίευση από το <a href="%{url}">ημερολόγιό σας</a>
   post_published: Η ανάρτηση δημοσιεύτηκε!
   posted_by: Αναρτήθηκε από
-  posted_on: Αναρτήθηκε στις
   posts: Αναρτήσεις
   potential_disagreement: Πιθανή διαφωνία
   powered_by: Παρέχεται από
@@ -3901,7 +3874,6 @@ el:
   tagging: 'Προστίθεται ετικέτα...'
   tags: Ετικέτες
   tags_are_a_way: 'Οι ετικέτες είναι ένας τρόπος να οργανώσετε τις παρατηρήσεις σας. Για παράδειγμα, μπορεί να επισυνάψετε όλα τις tidepool παρατηρήσεις σας ως "tidepools" για να μπορείτε να τις βρείτε πιο εύκολα αργότερα.'
-  take_me_facebook: Ναι, πήγαινέ με στο Facebook!
   take_me_flickr!: Ναι, πήγαινέ με στο Flickr!
   target_list_alert: Είστε σίγουρος/η ότι προσπαθήσατε να παρατηρήσετε όλα τα είδη που περιλαμβάνονται στη στοχευμένη λίστα σας? Να θυμάστε ότι κάθε τι που περιλαμβάνεται σε αυτή τη λίστα που δεν παρατηρήσατε θα μεταφράζεται σαν μια απουσία επομένως είναι πολύ σημαντικό η λίστα αυτή να αντικατοπτρίζει με ακρίβεια το σετ από τα είδη που προσπαθείτε να εντοπίσετε
   target_list_warning: Θυμηθείτε ότι οτιδήποτε καλύπτεται από την λίστα στόχων σας που δεν παρατηρήσατε στην ακτίνα και στην διάρκεια αυτού του ταξιδιού θα εκληφθεί ως μία απουσία. Είναι πολύ σημαντικό το γεγονός ότι η λίστα των στόχων σας αντικατοπτρίζει με ακρίβεια το σύνολο των ειδών που επιχειρήσατε να εντοπίσετε. Εάν εσείς δεν επιχειρήσατε να ανιχνεύσετε είδη στην λίστα των στόχων σας ή κάθε είδος καλύπτεται από μία ομάδα στην λίστα σας με τους στόχους, παρακαλούμε αφαιρέστε την.
@@ -4332,8 +4304,6 @@ el:
   user_commented: "Ο/Η %{user} σχολίασε"
   user_disagrees_this_is_taxon: "Ο/Η %{user} διαφωνεί ότι αυτό είναι %{taxon}"
   user_disagrees_with_previous_finer_identifications: "Ο/Η %{user} διαφωνεί με προηγούμενες καλύτερες ταυτοποιήσεις"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "Ο χρήστης %{user} προσέθεσε στα αγαπημένα του το %{noun} του %{owner}"
   user_faved_this_observation: "Ο χρήστης %{user} προσέθεσε αυτήν την παρατήρηση στα αγαπημένα του"
   user_flagged_as_a_non_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως όχι σπάμερ"
   user_flagged_as_a_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως σπάμερ"
@@ -4446,8 +4416,6 @@ el:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Καταζητείται
   was_it_captive_cultivated?: "Ήταν σε αιχμαλωσία ή καλλιεργημένο;"
-  we_also_support: |
-    Υποστηρίζουμε, επίσης τις ιστοσελίδες <a href="http://flickr.com"> Flickr </a>, <a href="http://photos.google.com"> Google Photos </a> και <a href="http://facebook.com"> Facebook</a> για αποθήκευση εικόνων.
   we_can_only_understand_csv_in: Δεχόμαστε μόνο αρχεία τύπου CSV
   we_couldnt_find_a_user: Δεν μπορέσαμε να βρούμε έναν χρήστη με αυτήν τη διεύθυνση email.
   we_couldnt_find_a_user_with_that_activation_code: "Αδυνατούμε να βρούμε χρήστη με αυτό τον κωδικό ενεργοποίησης.Ενδεχομένως να έχετε ήδη ενεργοποιήσει τον λογαριασμό σας, παρακαλούμε δοκιμάστε να συνδεθείτε."
@@ -5180,8 +5148,6 @@ el:
         cumulative_count_desc: '# ταυτοποιήσεων μια μια μεμονωμένη ταξινομική βαθμίδα και όλες τις επόμενες'
         curator_coordinate_access_disabled_desc_html: |
           Αυτό το πρότζεκτ δεν επιτρέπει παρατηρήσεις με συντεταγμένες που οι επιμελητές του πρότζεκτ δεν μπορούν να δουν. Αν δε θέλετε να μοιραστείτε τις συντεταγμένες των παρατηρήσεων σας με τους επιμελητές του πρότζεκτ, πρέπει να αφαιρέσετε τις παρατηρήσεις σας από το πρότζεκτ.
-        data_quality_assessment_desc_html: |
-          Η Αποτίμηση Ποιότητας Δεδομένων είναι η αξιολόγηση της ακρίβειας μιας παρατήρησης. Οι Ερευνητικού Επιπέδου παρατηρήσεις μπορούν να χρησιμοποιηθούν από επιστήμονες για έρευνα. Αφήστε την ψήφο σας παρακάτω:
         disagreement_count_desc: "# των ταυτοποιημένων ταξινομικών μονάδων που δεν είναι μεταξύ των προγόνων μιας ταξινομικής μονάδας"
         identification_count_desc: '# ταυτοποιήσεων για μια μεμονωμένη ταξινομική βαθμίδα'
         flagged_photos_desc_html: |
@@ -5358,10 +5324,6 @@ el:
         view_original_html: |
           Μπορείτε να δείτε το πρωτότυπο στο <a href="%{url}">%{url}</a>. Παρακαλούμε να αφήνετε ως μη επιλυμένες τις αναφορές για παραβάσεις δικαιωμάτων δημιουργού αν αυτή η φωτογραφία όντως παραβιάζει πνευματικά δικαιώματα.
     places:
-      kml_field_desc: |
-        KML του ορίου της περιοχής. Μπορείτε να δημιουργήσετε ένα χρησιμοποιώντας το Google Maps, το Google Earth ή τις περισσότερες εφαρμογές GIS. Πρέπει να έχει τουλάχιστον ένα πολύγωνο
-        κάτω του 1 MB (5 MB για επιμελητές ιστοσελίδων) και να είναι μια περιοχή μικρότερη από την
-        πολιτεία του Τέξας των ΗΠΑ.
       edit:
         complex_boundary_note_html: |
           Αυτό το όριο είναι λίγο περίπλοκο για να επεξεργαστεί στο διαδίκτυο. Όμως, μπορείτε να <a href="%{url}">κατεβάσετε το KML</a>, να το επεξεργαστείτε στην εφαρμογή GIS της επιλογής σας, και να ανεβάσετε το επεξεργασμένο KML απευθείας.
@@ -6024,16 +5986,6 @@ el:
           <a href="http://www.gbif.org/">Υπηρεσία Παγκόσμιας Ενημέρωσης για τη Βιοποικιλότητα</a> (GBIF), που είναι ένας διεθνής, διακυβερνητικός οργανισμός
           που συγκεντρώνει και διανέμει πληροφορίες για τη βιοποικιλότητα από όλο τον κόσμο
           .
-        monthly_supporter_desc_html: |
-          Οι Μηνιαίοι Υποστηρικτές του iNaturalist κάνουν αυτόματες μηνιαίες εισφορές
-          που λαμβάνονται από το California Academy of Sciences (Ηνωμένες Πολιτείες
-          IRS EIN 94-1156258) για να υποστηρίξουν τη μη κερδοσκοπική λειτουργία των δικτυακών τόπων
-          iNaturalist και Δικτύου iNaturalist.
-          <a href="%{url}">Κάντε κλικ εδώ για να γίνετε Μηνιαίος Υποστηρικτής</a>.
-          Όταν επιβεβαιώσουμε την υποστήριξή σας, θα μπορείτε να τσεκάρετε αυτό το πλαίσιο
-          για να εμφανίσετε αυτό το στατους στο προφίλ σας. Σημείωση: θα χρειαστεί να χρησιμοποιήσετε
-          ακριβώς την ίδια διεύθυνση email στο Donorbox όπως κάνετε στο iNaturalist
-          για να επιβεβαιώσουμε ότι έχετε γίνει Μηνιαίος Υποστηρικτής.
         muting_desc_html: |
           <p>
           Με το να σιγάσετε κάποιον σταματάτε να λαμβάνετε ειδοποιήσεις για πράγματα
@@ -6186,9 +6138,6 @@ el:
       index:
         connect_with_nature: Συνδέσου με τη Φύση
         explore_and_share: Εξερεύνησε και μοιράσου τις παρατηρήσεις σου από τον φυσικό κόσμο.
-        observations_to_date: 'Παρατηρήσεις μέχρι σήμερα'
-        species_observed: 'Παρατηρηθέντα Είδη'
-        people_signed_up: 'Άτομα που έχουν εγγραφεί'
         how_it_works: Πώς Λειτουργεί
         record_your_observations: Καταχωρίστε τις παρατηρήσεις σας
         share_with_fellow_naturalists: Μοιραστείτε με τους φίλους φυσιολάτρες
@@ -6261,19 +6210,19 @@ el:
       6: Πα
       7: Σα
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -6325,18 +6274,6 @@ el:
       x_seconds:
         one: "1 δευτερόλεπτο"
         other: '%{count} δευτερόλεπτα'
-    countdown_x_days:
-      one: ημέρα
-      other: ημέρες)
-    countdown_x_hours:
-      one: ώρα
-      other: ώρες
-    countdown_x_minutes:
-      one: λεπτό
-      other: λεπτά
-    countdown_x_seconds:
-      one: δευτερόλεπτο
-      other: δευτερόλεπτα
     prompts:
       day: Ημέρα
       hour: Ώρα
@@ -6344,46 +6281,6 @@ el:
       month: Μήνας
       second: δεύτερα
       year: Έτος
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Αποδεκτό
-      blank: Δε μπορεί να είναι κενό
-      confirmation: δεν αντιστοιχεί στον κωδικό
-      empty: δεν πρέπει να είναι άδειο
-      equal_to: πρέπει να είναι ίσο με %{count}
-      even: πρέπει να είναι άρτιος
-      exclusion: είναι δεσμευμένο
-      greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-      greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
-      inclusion: δεν περιλαμβάνεται στη λίστα
-      invalid: είναι άκυρο
-      less_than: πρέπει να είναι λιγότερο από %{count}
-      less_than_or_equal_to: πρέπει να είναι λιγότερο ή ίσο με %{count}
-      new_project_owner_must_be_a_manager: Ο νέος ιδιοκτήτης του έργου πρέπει να είναι διαχειριστής
-      not_a_number: δεν είναι αριθμός
-      not_an_integer: πρέπει να είναι ακέραιος αριθμός
-      odd: πρέπει να είναι περιττός
-      only_project_owner_can_change_project_owner: Μόνο ο ιδιοκτήτης του έργου μπορεί να αλλάξει τον ιδιοκτήτη του έργου
-      record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-      requires_privilege_speech: |
-        πρέπει να έχει τρεις επαληθευμένες παρατηρήσεις ή τρεις ταυτοποιήσεις για άλλους για να μπορεί να το κάνει αυτό
-      requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
-      taken: έχει ήδη καταληφθεί
-      too_long:
-        one: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρας)
-        other: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρες)
-      too_short:
-        one: είναι πολύ μικρό (ελάχ.επιτρ. %{count} χαρακτήρας)
-        other: είναι πολύ μικρά (ελάχ.επιτρ. %{count} χαρακτήρες)
-      wrong_length:
-        one: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-        other: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-    template:
-      body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
-      header:
-        one: "Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του %{model}"
-        other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του %{model}'
   helpers:
     defaults:
       title: "ΑΥΤΟΣ ΕΙΝΑΙ ΕΝΑΣ ΤΙΤΛΟΣ"
@@ -6446,64 +6343,21 @@ el:
   time:
     am: πμ
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l: %M %p"
     pm: μμ
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: πρέπει να είναι αποδεκτό
-        blank: δεν μπορεί να είναι κενό
-        confirmation: δεν αντιστοιχεί στον κωδικό
-        empty: δεν πρέπει να είναι άδειο
-        equal_to: πρέπει να είναι ίσο με %{count}
-        even: πρέπει να είναι άρτιος
-        exclusion: είναι δεσμευμένο
-        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
-        inclusion: δεν περιλαμβάνεται στη λίστα
-        invalid: είναι άκυρο
-        less_than: πρέπει να είναι μικρότερο από %{count}
-        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
-        new_project_owner_must_be_a_manager: Ο νέος ιδιοκτήτης του έργου πρέπει να είναι διαχειριστής
-        not_a_number: δεν είναι αριθμός
-        not_an_integer: πρέπει να είναι ακέραιος αριθμός
-        odd: πρέπει να είναι περιττός
-        only_project_owner_can_change_project_owner: Μόνο ο ιδιοκτήτης του έργου μπορεί να αλλάξει τον ιδιοκτήτη του έργου
-        record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-        requires_privilege_speech: πρέπει να έχει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για άλλους για να το κάνει αυτό
-        requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
-        taken: έχει ήδη καταληφθεί
-        too_long:
-          one: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρας)
-          other: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρες)
-        too_short:
-          one: είναι πολύ μικρό (το ελάχιστο είναι %{count} χαρακτήρες)
-          other: είναι πολύ μικρό (το ελάχιστο είναι %{count} χαρακτήρες)
-        wrong_length:
-          one: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-          other: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-      template:
-        body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
-        header:
-          one: Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του "%{model}"
-          other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του "%{model}'
   activerecord:
     models:
       AssessmentSection: Τομέας Αποτίμησης
@@ -6633,22 +6487,18 @@ el:
         blank: δεν μπορεί να είναι κενό
         confirmation: δεν αντιστοιχεί στον κωδικό πρόσβασης
         empty: δεν μπορεί να είναι κενό
-        equal_to: πρέπει να είναι ίσο με %{count}
         even: πρέπει να είναι άρτιος αριθμός
         exclusion: είναι δεσμευμένο
-        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
         inclusion: δεν περιλαμβάνεται στη λίστα
         invalid: είναι άκυρο
-        less_than: πρέπει να είναι λιγότερο από %{count}
-        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
         new_project_owner_must_be_a_manager: Ο νέος κάτοχος του πρότζεκτ πρέπει να είναι ένας διαχειριστής
         not_a_number: δεν είναι αριθμός
         not_an_integer: πρέπει να είναι ακέραιος αριθμός
         odd: πρέπει να είναι περιττός
         only_project_owner_can_change_project_owner: Μόνο ο κάτοχοςτου έργου μπορεί να αλλάξει τον κάτοχο του έργου
         record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-        requires_privilege_speech: πρέπει να διαθέτει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για να το κάνει κάποιος άλλος αυτό
+        requires_privilege_speech: |
+          πρέπει να διαθέτει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για να το κάνει κάποιος άλλος αυτό
         requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
         taken: έχει ήδη καταληφθεί
         too_long:
@@ -6663,7 +6513,7 @@ el:
       template:
         body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
         header:
-          one: Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του "%{model}"
+          one: "Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του \"%{model}\""
           other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του "%{model}'
       models:
         application:

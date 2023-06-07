@@ -1,35 +1,2495 @@
 kk:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} өзгеріс"
+    other: "%{count} өзгеріс"
+  x_comments:
+    one: '%{count} пікір'
+    other: '%{count} пікір'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> пікір'
+    other: '<span class="count">%{count}</span> пікір'
+  x_faves:
+    one: '%{count} таңдаулы'
+    other: '%{count} таңдаулы'
+  x_identifications:
+    one: '%{count} идентификация'
+    other: '%{count} идентификация'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> идентификация'
+    other: '<span class="count">%{count}</span> идентификация'
+  x_identifications_:
+    one: '%{count} Идентификация'
+    other: '%{count} Идентификация'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> сарапшы'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> сарапшы'
+  x_languages:
+    one: "%{count} тіл"
+    other: "%{count} тіл"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} өмір тізімінде алғашқы"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} өмір тізімінде алғашқы"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> журнал жазбалары'
+    other: '<span class="count">%{count}</span> журнал жазбалары'
+  x_matching_taxa:
+    one: '%{count} сәйкес таксон'
+    other: '%{count} сәйкес таксон'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> сәйкес таксон'
+    other: '<span class="count">%{count}</span> сәйкес таксон'
+  x_misidentifications_of_this_species:
+    one: "%{count} осы түрдің қате идентификациясы"
+    other: "%{count} осы түрдің қате идентификациялары"
+  x_observations:
+    one: "%{count} бақылау"
+    other: "%{count} бақылау"
+  x_observations_:
+    one: "%{count} Бақылау"
+    other: "%{count} Бақылау"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> бақылау"
+    other: "<span class='count'>%{count}</span> бақылау"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} бақылау</a>"
+    other: "<a href='%{url}'>%{count} бақылау</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> бақылау қарастырылды"
+    other: "<span class='count'>%{count}</span> бақылау қарастырылды"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> бақылаушы'
+    other: '<span class="count">%{count}</span> бақылаушы'
+  x_others:
+    one: "%{count} басқа"
+    other: "%{count} басқа"
+  x_people:
+    one: "%{count} адам"
+    other: "%{count} адам"
+  x_photos:
+    one: "%{count} фотосурет"
+    other: "%{count} фотосурет"
+  x_new_species:
+    one: "%{count} жаңа түр"
+    other: "%{count} жаңа түр"
+  x_new_users:
+    one: '%{count} жаңа пайдаланушы'
+    other: '%{count} жаңа пайдаланушы'
+  x_species:
+    one: '%{count} түр'
+    other: '%{count} түр'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> түр"
+    other: "<span class='count'>%{count}</span> түр"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} түр</a>"
+    other: "<a href='%{url}'>%{count} түр</a>"
+  x_taxa:
+    one: "%{count} таксон"
+    other: "%{count} таксон"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> зерттеу-дәрежесіндегі бақылау"
+    other: "<span class='count'>%{count}</span> зерттеу-дәрежесіндегі бақылау"
+  x_sounds:
+    one: "%{count} дыбыс"
+    other: "%{count} дыбыс"
+  x_taxa_matching_current_filters:
+    one: "%{count} ағымдағы сүзгілерге сәйкес таксон"
+    other: "%{count} ағымдағы сүзгілерге сәйкес таксон"
+  _100_day_trends: 100 күндік трендтер
+  a_community_for_naturalist: Натуралистер қауымдастығы
+  a_default_taxon_name_will_automatically_created: |
+    Әдепкі таксон атауы осы таксонның ғылыми атрибутынан автоматты түрде жасалады.
+    Осы жаңа таксонды сақтаған кезде, осы жерге басқа атауларды қоса аласыз (жалпы атаулар, ескірген ғылыми атаулар және т.б.).
+  a_flag_for_x: "%{x} үшін белгі"
+  a_member_of_taxon_html: "%{taxon} мүшесі"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "А – Я"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
+  about: Толығырақ
+  about_charts: Диаграммалар туралы
+  about_community_taxa: Қауымдастық таксондары туралы
+  about_complete_taxa: Толық таксондар туралы
+  about_conservation_status: Қорғау статусы туралы
+  about_editing_observation_fields: Бақылау өрістерін өңдеу туралы
+  about_license_options: Лицензия опциялары туралы
+  about_licenses: Лицензиялар туралы
+  #Header for a section describing taxon names
+  about_names: Атаулар туралы
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} туралы"
+  about_places: Орындар туралы
+  about_the_network: Желі туралы
+  about_this_bioblitz: Осы биоблиц туралы
+  about_this_map: Бұл карта туралы
+  about_this_project: Осы жоба туралы
+  about_trusting_projects: Сенімді жобалар туралы
+  about_trusting_projects_options_any: Осы жобадағы сіздің барлық бақылауларыңыз
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Сіздің жасырын координаттарыңызға қол жеткізе алатын жоба менеджерлері:
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Жасырын координаттарды бөлісуді таңдай аласыз
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Күтпеген келіспеушіліктер туралы
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'дәлдік (м)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Дәлдігі жоғары
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Дәлдігі төмен
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: дәлдігі төмен немесе белгісіз
+  account: Аккаунт
+  account_creation: Аккаунттың жасалуы
+  account_settings: Аккаунт баптаулары
+  accept_community_identifications: Қауымдастық идентификацияларын қабылдау
+  accuracy: Дәлдік
+  accuracy_meters: Дәлдік (метрлер)
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: Әрекет
+  actions: Әрекеттер
+  active: Белсенді
+  #Status of a complete set that is available for use
+  active_complete_set_status: Белсенді
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Белсенді
+  active_users: Белсенді пайдаланушылар
+  activity: Әрекет
+  add: Қосу
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Таңбаланған тізім қосу
+  add_a_comment: Пікір қосу
+  add_a_field: Өріс қосу
+  add_a_flag: Белгі қосу
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Сілтеме қосу
+  add_a_name: Атау қосу
+  add_a_note: Ескертпе қосу
+  add_a_new_change_group: Жаңа өзгерістер тобын қосу
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Нөмірленген тізім қосу
+  add_a_single_observation: Жалғыз бақылауды қосу.
+  add_a_taxon: Таксон қосу
+  add_an_assessment: Бағалау қосу
+  add_an_identification: Идентификация қосу
+  add_an_observation: Бақылау қосу
+  add_an_observation_of: "%{taxon} таксонына бақылау қосу"
+  add_an_observation_to_project_html: '%{project} жобасына бақылау қосу'
+  add_another_flag: Тағы бір белгі қосу
+  add_another_photo: Тағы бір фотосурет қосу
+  add_another_section: Тағы бір бөлім қосу
+  add_another_subscription: Тағы бір жазылым қосу
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Тағы бір актив қосу
+  add_blocked_users: Бұғатталған пайдаланушыны қосу
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Қалың мәтінді қосу
+  add_comma_separated_tags: "Үтірмен бөлінген тегтерді қосу"
+  add_comment: Пікір қосу
+  add_conservation_status: Қорғау статусын қосу
+  add_custom_project_fields: Пайдаланушы жоба өрістерін қосу
+  add_edit_flags: Белгілерді қосу/өңдеу
+  add_editor: Редакторды қосу
+  add_description: "Қосу %{description_name}"
+  add_from_your_observations: Сіздің бақылауларыңыздан қосу
+  add_link: Сілтеме қосу
+  add_higher_level_taxon: Жоғары деңгейлі таксонды қосу (мысалы, "құстар")
+  add_id: ID қосу
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Көлбеу мәтінді қосу
+  add_muted_users: Еленбейтін пайдаланушыларды қосу
+  add_new_lexicon: Жаңа лексикон қосу
+  add_new_place: Жаңа орынды қосу
+  add_new_rule: Жаңа ереже қосу
+  add_new_source: "Жаңа дереккөз қосу..."
+  add_new_taxon_name: Жаңа таксон атауын қосу
+  add_observations: Бақылау қосу
+  add_observations_project: Осы жобаға бақылаулар қосу
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Бақылаулар</span> <span>қосу</span>"
+  #Prompt to add a new journal post
+  add_one: Біреуін қосыңыз!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Қазір біреуін қосыңыз
+  add_place: Орын қосу
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Қарым-қатынасты қосу'
+  #As in a Guide Section
+  add_section: Бөлім қосу
+  add_several_observations_at_once: Бірден бірнеше бақылауды қосу.
+  add_tag: Тег қосу
+  add_tags: Тегтерді қосу
+  add_tags_to_selected_taxa: Таңдалған таксондарға тегтерді қосу
+  add_taxa: Таксондарды қосу
+  add_taxon_range: Таксонның таралу аймағын қосу
+  add_taxonomic_tags_to: "Таңдалған Flickr фотосуреттеріне таксономиялық тегтерді қосу &raquo;"
+  add_to_a_scheme: Сызбаға қосу
+  add_to_a_project: Жобаға қосу
+  add_to_calendar: Күнтізбеге қосу
+  add_to_favorites: Таңдаулыға қосу
+  add_to_list: Тізімге қосу
+  add_to_project: Жобаға қосу
+  add_to_your_list: Сіздің тізіміңізге қосу
+  added: Енгізілді
+  added!: Енгізілді!
+  added_by: Енгізген
+  added_on_datetime: "%{datetime} енгізілді"
+  adjust_brightness: Жарықтықты реттеу
+  admin: Әкімші
+  admin_s: Әкімші(лер)
+  admin_only: Тек әкімші
+  admin_tools: Әкімші құралдары
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Еншілес ұйымдар
+  agree_: Келісемін
+  agree?: Келісесіз бе?
+  agree_with_current_taxon: Ағымдағы таксонмен келісу
+  agreeing: Келісемін...
+  aka: ака
+  #Noun, title of a popup alerting you to something
+  alert: Ескерту
+  all: Барлық
+  all_comments: Барлық пікірлер
+  all_life: Бүкіл өмір
+  all_names: Барлық атаулар
+  all_observations: Барлық бақылаулар
+  all_photos: Барлық фотосуреттер
+  all_places: "Барлық орындар"
+  all_projects: Барлық жобалар
+  all_rank_added_to_the_database:
+    phylum: Барлық типтер дерекқорға енгізілген
+    subphylum: Барлық субтиптер дерекқорға енгізілген
+    superclass: Барлық суперкласстар дерекқорға енгізілген
+    class: Барлық класстар дерекқорға енгізілген
+    subclass: Барлық субкласстар дерекқорға енгізілген
+    infraclass: Барлық инфракласстар дерекқорға енгізілген
+    superorder: Барлық супержасақтар дерекқорға енгізілген
+    order: Барлық жасақтар дерекқорға енгізілген
+    suborder: Барлық субжасақтар дерекқорға енгізілген
+    infraorder: Барлық инфражасақтар дерекқорға енгізілген
+    superfamily: Барлық суперотбасылар дерекқорға енгізілген
+    epifamily: Барлық эпиотбасылар дерекқорға енгізілген
+    family: Барлық отбасылар дерекқорға енгізілген
+    subfamily: Барлық суботбасылар дерекқорға енгізілген
+    supertribe: Барлық супертайпалар дерекқорға енгізілген
+    tribe: Барлық тайпалар дерекқорға енгізілген
+    subtribe: Барлық субтайпалар дерекқорға енгізілген
+    genus: Барлық тұқымдастар дерекқорға енгізілген
+    genushybrid: Барлық тұқымдасгибридтер дерекқорға енгізілген
+    subgenus: Барлық субтұқымдастар дерекқорға енгізілген
+    section: Барлық секциялар дерекқорға енгізілген
+    subsection: Барлық субсекциялар дерекқорға енгізілген
+    complex: Барлық комплектер дерекқорға енгізілген
+    species: Барлық түрлер дерекқорға енгізілген
+    hybrid: Барлық гибридтер дерекқорға енгізілген
+    subspecies: Барлық түршелер дерекқорға енгізілген
+    variety: Барлық вариациялар дерекқорға енгізілген
+    form: Барлық формалар дерекқорға енгізілген
+  all_rights_reserved: барлық құқықтар сақталған
+  all_taxa:
+    amphibians: Қосмекенділер
+    animals: Жануарлар
+    arachnids: Өрмекшітәрізділер
+    birds: Құстар
+    chromista: Хромисттер
+    fungi: Саңырауқұлақтар
+    fungi_including_lichens: Саңырауқұлақтар, қыналарды қоса
+    insects: Жәндіктер
+    mammals: Сүтқоректілер
+    mollusks: Моллюскілер
+    other_animals: Басқа жануарлар
+    plants: Өсімдіктер
+    protozoans: Қарапайымдылар
+    ray_finned_fishes: Қауырсын қанатты балықтар
+    reptiles: Бауырымен жорғалаушылар
+    life: Тіршілік
+    x_plantae:
+      one: "%{count} өсімдік"
+      other: "%{count} өсімдік"
+    x_animalia:
+      one: "%{count} жануар"
+      other: "%{count} жануар"
+    x_mollusca:
+      one: "%{count} моллюск"
+      other: "%{count} моллюск"
+    x_amphibia:
+      one: "%{count} қосмекенді"
+      other: "%{count} қосмекенді"
+    x_mammalia:
+      one: "%{count} сүтқоректі"
+      other: "%{count} сүтқоректі"
+    x_actinopterygii:
+      one: "%{count} қауырсын қанатты балық"
+      other: "%{count} қауырсын қанатты балық"
+    x_reptilia:
+      one: "%{count} бауырымен жорғалаушы"
+      other: "%{count} бауырымен жорғалаушы"
+    x_aves:
+      one: "%{count} құс"
+      other: "%{count} құс"
+    x_insecta:
+      one: "%{count} жәндік"
+      other: "%{count} жәндік"
+    x_arachnida:
+      one: "%{count} өрмекшітәрізді"
+      other: "%{count} өрмекшітәрізді"
+    x_fungi:
+      one: "%{count} саңырауқұлақ"
+      other: "%{count} саңырауқұлақ"
+    x_chromista:
+      one: "%{count} хромист"
+      other: "%{count} хромист"
+    x_protozoa:
+      one: "%{count} қарапайымды"
+      other: "%{count} қарапайымды"
+    x_other_animals:
+      one: "%{count} өзге жануар"
+      other: "%{count} өзге жануар"
+  all_taxa_: Барлық таксондар
+  all_taxa_in_this_guide: Осы нұсқаулықтағы барлық таксондар
+  all_taxonomic_groups: "&laquo; Барлық таксономиялық топтар"
+  all_updates: Барлық жаңартулар
+  allow_project_curators_to_view_your_private_coordinates: Жоба кураторларына жасырын координаттарыңызды көруге рұқсат беру
+  allowed_html: Рұқсат етілген HTML
+  allowed_values: Рұқсат етілген мәндер
+  alphabetical: Әліпби бойынша
+  alphabetical_order: Әліпби реті
+  already_have_an_account_log_in_html: Аккаунтыңыз бар ма? <strong>Кіру.</strong>
+  amphibians: қосмекенділер
+  analyze_ids: Идентификаторларды талдау
+  ancestor_taxon: Аталық таксон
+  and_other_taxa: "&amp; Басқа таксондар"
+  android: Android
+  animals: Жануарлар
+  annotation: Аңдатпа
+  annotations: Аңдатпалар
+  announcement_was_successfully_created: Хабарландыру сәтті жасалды.
+  announcement_was_successfully_updated: Хабарландыру сәтті жаңартылды.
+  announcements: Хабарландырулар
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any: кез келген
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: Кез келген
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Кез келген
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Кез келген
+  #Label for an option to show content from any date
+  any_date: Кез келген
+  #Label for an option to show content with any establishment means
+  any_establishment: Кез келген
+  #Label for an option to show content with any license
+  any_license: Кез келген
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Кез келген
+  #Label for an option to show content from any project
+  any_project: Кез келген
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Кез келген
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Кез келген
+  #Label for an option to show/include content by any user
+  any_user: Кез келген
+  anyone: Кез келген адам
+  app_owner_application_fields_explanation_html: Қолданбаңызда болатын функционалдылықты және оны қалай пайдалануды жоспарлап отырғаныңызды сипаттаңыз.
+  app_owner_application_success: Қолданба иесінің өтініші жіберілді
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Қолданба
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications: Қолданбалар
+  apply_app_owner: Өтініш беру
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Өтініш
+  apply_to_be_an_app_owner: Қолданба иесі болу үшін өтініш беру
+  apply_to_create_applications_title: Қолданбалар жасау үшін қолдану
+  apply_to_selected: Таңдалғанға қолдану
+  apply_captive_cultivated: "Қолға түскен / өсірілген деп қолдану"
+  apply_fields: Өрістерді қолдану
+  apply_geoprivacy: Геоқұпиялықты қолдану
+  apply_darr: "&darr; қолдану"
+  apply_these_settings_to_all: Осы баптауларды төмендегі барлық бақылауларға қолдану.
+  arachnids: өрмекшітәрізділер
+  archives: Мұрағаттар
+  are_you_really_sure_want_delete_this_user: Сіз бұл пайдаланушыны және оның барлық контентін жойғыңыз келетініне шынымен сенімдісіз бе?
+  are_you_sure?: Сіз сенімдісіз бе?
+  are_you_sure_no_undo: Сіз сенімдісіз бе? Бұл әрекетті қайтару мүмкін емес.
+  are_you_sure_delete_post: Осы жазбаны жойғыңыз келетініне сенімдісіз бе?
+  are_you_sure_delete_this_place: Бұл орынды шынымен жойғыңыз келе ме?
+  are_you_sure_leave_this_project: Бұл жобадан шынымен шыққыңыз келе ме?
+  are_you_sure_merge_these_places: Осы орындарды біріктіргіңіз келетініне сенімдісіз бе? Бұл әрекетті қайтару мүмкін емес.
+  are_you_sure_remove_photo: "Бұл фотосуретті шынымен жойғыңыз келе ме?"
+  are_you_sure_remove_taxon_from_list: "Бұл таксонды тізімнен шынымен жойғыңыз келе ме?"
+  are_you_sure_want_delete_taxon: "Бұл таксонды шынымен жойғыңыз келе ме?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның ұрпақ таксондары бар.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның ұрпақ таксондары мен идентификациялары бар.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның ұрпақ таксондары, идентификациялары және бақылаулары бар.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның ұрпақ таксондары мен бақылаулары бар.
+  are_you_sure_want_delete_taxon_identifications: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның идентификациялары бар.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның идентификациялары мен бақылаулары бар.
+  are_you_sure_want_delete_taxon_observations: |
+    Бұл таксонды шынымен жойғыңыз келе ме? Оның бақылаулары бар.
+  are_you_sure_want_delete_taxon_link: Осы таксон сілтемесін шынымен жойғыңыз келе ме?
+  are_you_sure_want_delete_this_name: Бұл атауды шынымен жойғыңыз келе ме?
+  are_you_sure_want_delete_this_range: Осы таралу аймағын шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_commit_this_change: Бұл өзгерісті енгізгіңіз келетініне сенімдісіз бе? Бұл әрекетті қайтару мүмкін емес.
+  are_you_sure_you_want_to_delete_this: Мұны шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_delete_this_assessment?: Осы бағалауды шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_delete_this_photo?: Бұл фотосуретті шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_delete_this_post: Осы жазбаны шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_delete_this_taxon_change: Осы таксон өзгерісін шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_remove_all_tags: Барлық тегтерді шынымен жойғыңыз келе ме?
+  are_you_sure_you_want_to_remove_from_project: '%{user} пайдаланушыны осы жобадан шынымен жойғыңыз келе ме?'
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Осы %{x} таксондарды шынымен жойғыңыз келе ме?"
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Бұл бақылауды %{project} ішінен жойғыңыз келетініне сенімдісіз бе?
+  associated_observations: Байланысты бақылаулар
+  associated_taxa: Байланысты таксондар
+  attention: Назар аударыңыз
+  you_sure_delete_list: Бұл тізімді шынымен жойғыңыз келе ме?
+  you_sure_delete_taxon_from_list?: "%{taxon} тізімнен шынымен жойғыңыз келе ме?"
+  ascending: Өсуі бойынша
+  assessment: бағалау
+  assessment_has_benn_completed: Бағалау аяқталды
+  assessment_sections: Бағалау бөлімдері
+  assessment_was_deleted: Бағалау жойылды.
+  assessment_was_successfully_created: Бағалау сәтті жасалды.
+  assessment_was_successfully_updated: Бағалау сәтті жаңартылды.
+  assessment_x: "%{assessment} бағалау"
+  assessments: бағалаулар
+  associations: Бірлестіктер
+  atlased: Атласталған
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Төлсипат
+  attribution: Атрибуция
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, жүктеп салған %{user}"
+  authority_list:
+    iucn_red_list: IUCN Қызыл кітабы
+    natureserve: NatureServe
+    cites: CITES
+  automatic_short: Авто
+  automatically_add_observations_to_this_project: Бұл жобаға бақылауларды автоматты түрде қосу
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Орта
+  back: Кері қайту
+  back_to_applications: "&laquo; Қолданбаларға қайта оралу"
+  back_to_all_species: Барлық түрлерге қайта оралу
+  back_to_editing_observation: Бақылауларды өңдеуге қайта оралу
+  back_to_friends: Достарға қайта оралу
+  back_to_flags_html: "&laquo; Белгілерге қайта оралу"
+  back_to_lists: "%{name} тізімдеріне қайта оралу"
+  back_to_observation: Бақылауға қайта оралу
+  back_to_observation_fields: Бақылау өрістеріне қайта оралу
+  back_to_people: Адамдарға қайта оралу
+  back_to_places: Орындарға қайта оралу
+  back_to_possessive_user_profile: "%{possuser} профиліне қайта оралу"
+  back_to_post: '&laquo; Хабарламаға қайта оралу'
+  back_to_projects: Жобаларға қайта оралу
+  back_to_suggestions: Ұсыныстарға қайта оралу
+  back_to_taxon_changes: "Таксон өзгерістеріне қайта оралу"
+  back_to_users_calendar: "%{user} күнтізбесіне қайта оралу"
+  back_to_users_lists: "%{user} тізімдеріне қайта оралу"
+  back_to_x_assessment: "%{project} бағалауларына қайта оралу"
+  back_to_x_history: "%{x} тарихына қайта оралу"
+  back_to_x_journal: "%{user} журналына қайта оралу"
+  back_to_x_blog: "%{x} блогына қайта оралу"
+  back_to_your_calendar: Күнтізбеңізге қайта оралу
+  back_to_your_lists: Тізімдеріңізге қайта оралу
+  back_to_your_journal: Журналыңызға қайта оралу
+  back_to_your_observations: Бақылауларыңызға қайта оралу
+  back_to_your_profile: Профильге қайта оралу
+  badges: Танымбелгілер
+  based_on_the_evidence_can_id_be_improved: |
+    Дәлелдерге сүйене отырып, қауымдастық таксонын әлі де растауға немесе жақсартуға бола ма?
+  batch: Топтама
+  batch_edit: Топтамалық өңдеу
+  batch_operations: Топтамалық операциялар
+  be_the_first_to_fave_this_observation: Бұл бақылауды бірінші болып таңдаулыға қосыңыз!
+  become_a_donor_caps: ДЕМЕУШІ БОЛЫҢЫЗ
+  become_a_donor_today_caps: БҮГІН ДЕМЕУШІ БОЛЫҢЫЗ
+  before_importing_photos: фотосуреттерді импорттаудан бұрын
+  bio_description: iNaturalist сайтындағы басқа пайдаланушыларға өзіңіз туралы айтып беріңіз!
+  bioblitz: Биоблиц
+  birds: құстар
+  birthday: Туған күні
+  black: қара
+  block_removed: Бұғаттау алынып тасталды
+  blocked_users: Бұғатталған пайдаланушылар
+  blog_widget: Блог виджеті
+  blue: көк
+  blue_butterfly_etc: "көк, көбелек және т.б."
+  body: Мәтін
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: қалың мәтін
+  breadcrumbs: Нан үгіндісі
+  brown: қоңыр
+  browse: Шолу
+  browse_all_projects: Барлық жобаларды шолу
+  browse_all_species: Барлық түрлерді шолу
+  browse_observations: Бақылауларды шолу
+  browse_people: Адамдарды шолу
+  browse_projects: Жобаларды шолу
+  browse_species_that_occur_near_this_observation: Осы бақылауға жақын жерде кездесетін түрлерді шолу.
+  bulk_import_of_filename_is_complete: "%{filename} файлын жаппай импорттау аяқталды"
+  by_user: "%{user}"
+  calendar: Күнтізбе
+  calendars_only_show_x_observations_at_time: Күнтізбелер бір уақытта тек %{x} бақылауды көрсетеді
+  cancel: Бас тарту
+  cant_edit_or_delete_hidden_content: Сайт кураторлары жасырған контентті өңдеу немесе жою мүмкін емес
+  cant_flag_an_object_that_doesnt_exist: Жоқ нысанды белгілеу мүмкін емес
+  cant_merge_a_taxon_with_itself: Таксонды өзімен біріктіру мүмкін емес.
+  captive: Қолға түскен
+  captive_cultivated: Қолға түскен / Өсірілген
+  card: Карта
+  casual: кәдімгі
+  casual_: Кәдімгі
+  categories: Санаттар
+  cc_0_description: "Бұл лицензия жұмысыңызды жалпыға ортақ доменге айналдырады, сондықтан басқалар сіздің жұмысыңызды, тіпті коммерциялық мақсатта да рұқсат сұрамай немесе сіздің автор екеніңізді көрсетпей, көшіре, өзгерте, тарата және орындай алады. Бұл ұсынылған лицензиялардың ең қолайлысы. Лицензияланған материалдарды барынша тарату және пайдалану үшін ұсынылады."
+  cc_0_name: Авторлық құқық (CC0) жоқ
+  cc_attribution_license: Creative Commons Атрибуция лицензиясы
+  cc_by_description: "Бұл лицензия басқаларға сіздің жұмысыңызды таратуға, ремиксациялауға, түзетуге және бастапқы жасау үшін сіздің автор екеніңізді көрсеткен жағдайда, тіпті коммерциялық тұрғыдан да құруға мүмкіндік береді."
+  cc_by_name: Атрибуция
+  cc_by_nc_name: Атрибуция-Коммерциялық емес
+  cc_by_nc_nd_description: "Бұл лицензия алты негізгі лицензияның ішіндегі ең шектеуші болып табылады, тек басқаларға жұмыстарыңызды жүктеп алуға және сіздің автор екеніңізді көрсеткен жағдайда оларды басқалармен бөлісуге мүмкіндік береді, бірақ олар оларды ешбір жолмен өзгерте немесе коммерциялық мақсатта пайдалана алмайды."
+  cc_by_nc_nd_name: Атрибуция-Коммерциялық емес-Туындыларсыз
+  cc_by_nc_sa_description: "Бұл лицензия басқаларға сіздің жұмысыңызды коммерциялық емес түрде ремиксациялауға, өзгертуге және негізінде құруға мүмкіндік береді, егер олар сіздің автор екеніңізді көрсетіп, жаңа туындыларына бірдей шарттармен лицензия берсе."
+  cc_by_nc_sa_name: Атрибуция-Коммерциялық емес-Бірдей бөлісу
+  cc_by_nd_description: "Бұл лицензия өзгеріссіз және толығымен сіздің автор екеніңіз көрсетілген жағдайда, коммерциялық және коммерциялық емес негізде қолдануға мүмкіндік береді."
+  cc_by_nd_name: Атрибуция-Туындыларсыз
+  cc_by_sa_name: Атрибуция-Бірдей бөлісу
+  change_admin: Әкімшіні өзгерту
+  #Button to change the cover (or banner) image for a project
+  change_cover: Мұқабаны өзгерту
+  change_descriptions:
+    split: Ескі таксон бірнеше жаңа таксондарға бөлінді
+    merge: Бірнеше ескі таксондар бір жаңа таксонға біріктірілді
+  change_geoprivacy: 'Геоқұпиялылықты өзгерту'
+  change_group: Өзгертулер тобы
+  change_password: Құпия сөзді ауыстыру
+  change_types:
+    activated_soon: жақын арада іске қосылады
+    split: Бөлу
+    merge: Біріктіру
+    swap: Ауыстыру
+    stage: Кезең
+  change_your_password: Құпия сөзді ауыстыру
+  #Plural noun, as in changes to a taxon record over time
+  changes: Өзгерістер
+  changing_the_geoprivacy: 'Геоқұпиялылықты өзгерту басқа адамдардың бақылауыңыздың орнын қалай көретінін өзгертеді.'
+  check_back_soon: Жақында қайта тексеріңіз!
+  check_out_the_inat_store: iNaturalist дүкенін қарап шығыңыз
+  check_out_what_the_observation: Анықтауға тырысып жатқан бақылаудың қандай екенін тексеріңіз.
+  check_this_box_if_html: |
+    Жүктеп салынған контентке <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Атриуция-Коммерциялық емес лицензиясын</a> қолданғыңыз келсе, осы құсбелгіні қойыңыз. Бұл кез келген адам сіздің фотосуреттеріңізді және/немесе бақылауларыңызды рұқсат сұрамай-ақ көшіріп, қайта пайдалана алады дегенді білдіреді, егер олар сіздің автор екеніңзді көрсетіп, туындыларды коммерциялық мақсатта пайдаланбаса. Басқа лицензияны таңдауға немесе лицензияны кейінірек жоюға болады, бірақ бұл зерттеушілермен бөлісуге арналған ең жақсы лицензия.
+  choose_a_field: Өрісті таңдаңыз
+  choose_a_list_above: Жоғарыда көрсетілген тізімді таңдаңыз.
+  choose_a_place: Орынды таңдаңыз
+  choose_a_taxon: Таксонды таңдаңыз (міндетті емес)
+  choose_columns: Бағандарды таңдаңыз
+  choose_file: Файлды таңдаңыз
+  choose_files: Файлдарды таңдаңыз
+  choose_from_your_lists: Тізімдерден таңдаңыз
+  choose_photos_for_this_taxon: Осы таксон үшін фотосуреттерді таңдаңыз
+  choose_rule: Ережені таңдаңыз
+  choose_subjects: Тақырыптарды таңдаңыз
+  choose_tags: Тегтерді таңдаңыз
+  choose_taxon: Таксонды таңдаңыз
+  citation: Дәйексөз
+  classification: Классификация
+  clear: тазалау
+  clear_filters: Сүзгілерді тазалау
+  clear_search: Іздеуді тазалау
+  click_the_map: "Орынды қосу үшін <strong>картаны басыңыз</strong>."
+  close: Жабу
+  code: Код
+  colors: Түстер
+  columns: Бағандар
+  combine: Біріктіру
+  comma_separated_please: Өтініш, үтірмен ажыратыңыз
+  #Noun, used to label a comment or a comment field in a form
+  comment: пікір
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: Пікір
+  comment_deleted: Пікір жойылды
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Пікір жасырылды
+  comments: Пікірлер
+  comments_by_me: Мен жазған пікірлер
+  comments_have_been_disabled: Пікірлер өшірілді
+  comments_on_my_observations: Менің бақылауларым бойынша пікірлер
+  commercial_solicitation: Сауда ұсыныстары, ешқайда жоқ сілтемелер және т.б.
+  common_name: Жалпы атауы
+  community: Қауымдастық
+  community_guidelines: Қауымдастық нұсқаулары
+  community_id_heading: Қауымдастық таксоны
+  community_id_is_precise: Қауымдастық таксоны нақты
+  community_supported_id: Қоғамдастық қолдайтын таксон ба?
+  compare: Салыстыру
+  comparing: салыстыру
+  comparing_versions_x_and_y: "%{x} және %{y} нұсқаларын салыстыру"
+  compiled_by_name: "Құрастырушы %{name}"
+  completed: Аяқталды
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Жан-жақты?
+  comprehensive_list: Толық тізім
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Компьютерлік көру үлгісі
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Күтілуде
+  concept_status: Тұжырымдама күйі
+  configure: Конфигурациялау
+  confirm: Растау
+  confirm_membership: Мүшелікті растау
+  confirm_new_password: Жаңа құпия сөзді растау
+  confirm_now: Қазір растау
+  confirm_your_info: Ақпаратыңызды растаңыз
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Растау электрондық хаты %{datetime} мекенжайында жіберілді
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: '%{date} күні расталды'
+  confirming_ids: Идентификацияларды растау
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Қосылу
+  connect_to_provider: "%{provider} желісіне қосылу"
+  connected_accounts_titlecase: Қосылған аккаунттар
+  connecting_flickr: "Flickr желісіне қосылуда... "
+  conservation_status: Қорғау статусы
+  conservation_status_created: Қорғау статусы құрылды
+  conservation_status_deleted: Қорғау статусы жойылды
+  conservation_status_updated: Қорғау статусы жаңартылды
+  conservation_status_descriptions:
+    url: Осы статусты сипаттайтын беттің URL мекенжайы.
+  contact_support: Қолдау қызметіне хабарласыңыз
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content: Контент
+  content_author: Контент авторы
+  content_hidden: Контент жасырылған
+  content_hidden_by_user_on_date_because_reason_html: |
+    Контентті %{user} %{date} күні жасырды, себебі: "%{reason}"
+  content_type: Контент түрі
+  user_hid_this_item_because_reason_html: |
+    %{user} осы %{item} жасырды, себебі "%{reason}"
+  continue: Жалғастыру
+  continue_to_site: '%{site_name} сайтына өту'
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Кез келген
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Кез келген
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Кез келген
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Кез келген
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Кез келген
+    sex: Жынысы
+    male: Еркек
+    female: Ұрғашы
+    plant_phenology: Өсімдік фенологиясы
+    budding: Бүршіктену
+    flower_budding: Гүл бүршіктері
+    flowering: Гүлдену
+    fruiting: Жеміс беру
+    life_stage: Өмір кезеңі
+    adult: Ересек
+    teneral: Түлеген жәндік
+    subimago: Субимаго
+    pupa: Қуыршақ
+    no_evidence_of_flowering: Гүлденудің дәлелі жоқ
+    nymph: Нимфа
+    larva: Дернәсіл
+    egg: Жұмыртқа
+    juvenile: Жас
+    alive_or_dead: Тірі немесе Өлі
+    alive: Тірі
+    dead: Өлі
+    cannot_be_determined: Анықтау мүмкін емес
+    evidence_of_presence: Бар екендігінің дәлелі
+    #As in the feather on a bird
+    feather: Қауырсын
+    #Abnormal growth
+    gall: Галл
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Ағза
+    #Fecal matter, not regurgitated matter
+    scat: Экскремент
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Із
+    #Endoskeletal remains, like a deer bone
+    bone: Сүйек
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Тасталған қабық
+  controlled_term_definitions:
+    alive: Ағза тірі және жақын арада өлім белгілерін көрсетпейді
+    cannot_be_determined: Ұсынылған дәлелдер бойынша анықтау мүмкін емес
+    dead: Ағза өлі немесе жақын арада өлетін белгілерді көрсетеді
+    flower_budding: Гүл бүршіктері көрінеді, бірақ ашық емес
+    flowering: Гүлдер көрінеді, ашық және әлі де өсімдікке бекітілген
+    fruiting: Жемістер көрінеді және әлі де өсімдікке бекітілген
+    track: Ағзаның жердегі немесе қардағы ізі
+  controls: Басқару элементтері
+  coordinate_systems: Координаталық жүйелер
+  coordinates: Координаттар
+  copy: Көшіру
+  copyright:
+    some_rights_reserved: кейбір құқықтар сақталған
+    some_rights_reserved_by: "(c) %{name}, кейбір құқықтар сақталған (%{license_short})"
+    all_rights_reserved: "(c) %{name}, барлық құқықтар сақталған"
+    no_known_copyright_restrictions: "%{name}, белгілі авторлық құқық шектеулері жоқ (%{license_name})"
+    no_known_copyright_restrictions_text: "белгілі авторлық құқық шектеулері жоқ"
+    no_rights_reserved: ешқандай құқықтар сақталмаған
+    no_rights_reserved_by: "%{name}, ешқандай құқықтар сақталмаған (%{license_name})"
+    anonymous: анонимді
+    public_domain: жалпыға ортақ домен
+    copyright: авторлық құқық
+    no_copyright: авторлық құқық жоқ (CC0)
+    attribution_noncommercial_sharealike_license: Атрибуция-Коммерциялық емес-Бірдей бөлісу лицензиясы
+    attribution_noncommercial_license: Атрибуция-Коммерциялық емес лицензиясы
+    attribution_noncommercial_noderivs_license: Атрибуция-Коммерциялық емес-Туындыларсыз лицензиясы
+    attribution_license: Атрибуция лицензиясы
+    attribution_sharealike_license: Атрибуция-Бірдей бөлісу лицензиясы
+    attribution_noderivs_license: Атрибуция-Туындыларсыз лицензиясы
+    gnu_free_documentation_license: GNU тегін құжаттама лицензиясы
+  copyright_holder: Авторлық құқық иесі
+  copyright_info: Авторлық құқық туралы ақпарат
+  copyright_info_and_more: Авторлық құқық туралы ақпарат және т.б
+  copyright_infringement: Авторлық құқықты бұзу
+  copyright_infringement_desc: Авторлық құқық заңын бұзады немесе бақылаушы емес басқа біреу жасаған және авторлық атрибуты жоқ
+  covered_by_a_taxon_framework_html: "%{link} қамтиды"
+  covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name} үшін таксон құрылымы"
+  couldnt_change_your_password: "Құпия сөзіңізді өзгерту мүмкін болмады: %{e}"
+  couldnt_find_a_user_matching_x_param: "%{id} сәйкес пайдаланушы табылмады"
+  couldnt_find_that_taxon: Бұл таксон табылмады.
+  create: Жасау
+  create_a_guide: Нұсқаулық құру
+  create_a_new_field: Жаңа өріс жасау
+  create_a_new_place: Жаңа орын жасау
+  create_a_new_taxon: Жаңа таксон құру
+  create_a_query: Сұраныс жасау
+  create_an_account: Аккаунт ашу
+  create_an_atlas: Атлас құру
+  create_export: Экспорт жасау
+  create_new_taxon: Жаңа таксон құру
+  create_observations: Бақылаулар жасау
+  created: Жасалған
+  created_by: Жасаған
+  created_by_user_on_date: '%{date} күні %{user} жасаған'
+  creative_commons_unless_otherwise_noted: "Creative Commons, егер басқаша белгіленбесе."
+  critically_endangered: Өте қауіпті жағдайда
+  css_description: Бұл беттегі барлық басқа CSS-тен кейін қосылады.
+  csv: CSV
+  csv_file: CSV-файл
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Өздері тиісті мінез-құлықты көрсете алмайды.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Басқа пайдаланушылар жасаған контентті жою.
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Сіз бірнеше ай бойы сәйкестендірулерді және/немесе бақылауларды қосып жатырсыз және жалғастырғыңыз келеді.
+  current_flags: Ағымдағы белгілер
+  darr_apply_darr: "&darr; Қолдану &darr;"
+  daily_users: Күнделікті пайдаланушылар
+  danger_zone: Қауіпті аймақ
+  dashboard: Бақылау тақтасы
+  data_deficient: Деректер жетіспейді
+  data_quality: Деректер сапасы
+  data_quality_assessment: Деректер сапасын бағалау
+  data_used: "Қолданылған деректер:"
+  datatype: Деректер түрі
+  date_: Күн
+  date_added: Қосылған күні
+  date_created: Жасалған күні
+  date_format:
+    date_long:
+      january: Қаңтар %{day} %{year}
+      february: Ақпан %{day} %{year}
+      march: Наурыз %{day} %{year}
+      april: Сәуір %{day} %{year}
+      may: Мамыр %{day} %{year}
+      june: Маусым %{day} %{year}
+      july: Шілде %{day} %{year}
+      august: Тамыз %{day} %{year}
+      september: Қыркүйек %{day} %{year}
+      october: Қазан %{day} %{year}
+      november: Қараша %{day} %{year}
+      december: Желтоқсан %{day} %{year}
+    month:
+      january: Қаңтар
+      february: Ақпан
+      march: Наурыз
+      april: Сәуір
+      may: Мамыр
+      june: Маусым
+      july: Шілде
+      august: Тамыз
+      september: Қыркүйек
+      october: Қазан
+      november: Қараша
+      december: Желтоқсан
+  date_is_accurate: Күні нақты көрсетілген
+  date_observed: Бақыланған күні
+  date_observed_: Бақыланған күні
+  date_observed_on: бақыланған күні
+  date_picker:
+    closeText: Жабу
+    currentText: Бүгін
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: Алд.
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Келесі
+    range: Ауқым
+  date_range: Күндер ауқымы
+  date_specified: Күні көрсетілген
+  date_time: Күні/Уақыты
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
+  day: Күн
+  default_display_time_zone: Әдепкі уақыт белдеуі
+  default_invite_comment: "Керемет фото! Сіз оны %{site_name} сайтында жариялауыңыз керек: {{INVITE_LINK}}"
+  default_observation_license: Әдепкі бақылау лицензиясы
+  default_photo_license: Әдепкі фотосурет лицензиясы
+  default_search_place: Әдепкі іздеу орны
+  default_sound_license: Әдепкі дыбыс лицензиясы
+  defines_a_taxon_framework_for: '%{taxon_name} үшін таксон құрылымын анықтайды'
+  definitions: Анықтамалар
+  delete: Жою
+  delete_all: Барлығын жою
+  delete_conversation: Әңгімені жою
+  #Button to delete the cover (or banner) image for a project
+  delete_cover?: мұқабаны жою керек пе?
+  delete_icon?: Белгішені жою керек пе?
+  delete_photo: Фотосуретті жою
+  delete_project: Осы жобаны жою
+  delete_selected: Таңдалғанды жою
+  delete_user: Пайдаланушыны жою
+  delete_your_account: Аккаунтыңызды жою
+  deleted_synonyms: Жойылған синонимдер
+  deleted_user: жойылған пайдаланушы
+  deleted_vote: Жойылған дауыс
+  deleting: Жойылуда...
+  deleting_verb: Жою
+  deny: Бас тарту
+  desc: Кему
+  descending: Кему бойынша
+  describe_purpose: Бұл жобаның мақсатын сипаттаңыз.
+  describe_your_interest_in_nature: Табиғатқа деген қызығушылығыңызды сипаттаңыз!
+  description: Сипаттама
+  description_sections: Сипаттама бөлімдері
+  description_slash_tags: Сипаттама / Тегтер
+  desription: Сипаттама
+  deviation: Ауытқу
+  devise:
+    confirmations:
+      send_instructions: "Бірнеше минут ішінде электрондық пошта мекенжайыңызды растау туралы нұсқаулары бар электрондық хат аласыз."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Егер сіздің электрондық пошта мекенжайыңыз біздің дерекқорымызда болса, бірнеше минут ішінде электрондық пошта мекенжайыңызды растау туралы нұсқаулары бар электрондық хат аласыз.
+    failure:
+      unauthenticated: 'Жалғастырмас бұрын жүйеге кіру немесе тіркелу қажет.'
+      invalid: 'Жарамсыз электрондық пошта, пайдаланушы аты немесе құпия сөз.'
+      unconfirmed: |
+        Электрондық поштаңызды тексеріп, аккаунтыңызды растау үшін алынған электрондық поштадағы сілтемені басыңыз.
+      user:
+        suspended: Аккаунтыңыз уақытша тоқтатылды
+    mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Электрондық пошта мекенжайыңызды растаңыз
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Электрондық поштаны өзгерту сұралды
+      reset_password_instructions:
+        subject: 'Құпия сөзді қалпына келтіру нұсқаулары'
+  devise_confirmation_instructions_send_confirmation_email: Растау электрондық хатын жіберу
+  devise_reset_password_instructions_hello_email: Сәлеметсіз бе %{email}
+  disable: Өшіру
+  disable_comments: Пікірлерді өшіру
+  disagree_: Келіспеймін
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Ажырату
+  disconnect_caps: АЖЫРАТУ
+  disconnect_provider: "%{provider} байланысын ажырату"
+  done: Дайын
+  download_caps: ЖҮКТЕУ
+  #Noun, as in a journal post that has not been published
+  draft_: Нобай
+  #Noun, as in a journal post that has not been published
+  draft_saved: Нобай сақталды!
+  #Noun, as in journal posts that has not been published
+  drafts: Нобайлар
+  edit_observations: Бақылауларды өңдеу
+  email: Электрондық пошта
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
+  establishment:
+    native: Табиғи
+  explore: Зерттеу
+  failed_to_save_record_with_errors: "Жазба сақталмады: %{errors}"
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Таңдаулы
+  Family: Отбасы
+  favorites: "Таңдаулылар"
+  first_observer: 1-бақылаушы
+  #Verb form, as in "Flag this item"
+  flag: Белгі
+  flag_as_inappropriate: Орынсыз деп белгілеу
+  flickr_account_information: Flickr аккаунтыңыз туралы ақпарат
+  forum: Форум
+  gbif: GBIF
+  Genus: Тұқымдас
+  google: Google
+  grid: Тор
+  group: Топ
+  guides: Нұсқаулықтар
+  help: Көмек
+  id: ID
+  identify: Анықтау
+  identification: идентификация
+  identifications: Идентификациялар
+  inaturalist_is_a_joint_initiative: "%{site_name} California Academy of Sciences пен National Geographic Society бірлескен бастамасы."
+  insects: жәндіктер
+  instagram: Instagram
+  iphone: iPhone
+  join_the_largest_group_of_naturalists_in_the_world: Әлемдегі ең үлкен натуралистер тобына қосылыңыз!
+  journal: Журнал
+  journal_posts: Журнал жазбалары
+  jpg_png_or_gif: "JPG, PNG немесе GIF"
+  kml: KML
+  labels: Белгілер
+  learn: Үйрену
+  learn_more: Толығырақ ақпарат
+  #Terminal nodes in a taxonomic tree
+  leaves: жапырақтар
+  lexicons:
+    afrikaans: Африкаанс
+    albanian: Албан
+    arabic: Араб
+    armenian: Армян
+    belarusian: Белорус
+    bengali: Бенгал
+    bulgarian: Болгар
+    catalan: Каталан
+    cebuano: Себуано
+    chinese_simplified: Қытай (жеңілдетілген)
+    chinese_traditional: Қытай (дәстүрлі)
+    creole_french: Креол (Француз)
+    creole_portuguese: Креол (Португал)
+    croatian: Хорват
+    czech: Чех
+    danish: Дат
+    davawenyo: Дававэньо
+    dutch: Голланд
+    english: Ағылшын
+    estonian: Эстон
+    faroese: Фарер
+    finnish: Фин
+    french: Француз
+    galician: Галисиан
+    gela: Гела
+    german: Неміс
+    greek: Грек
+    hawaiian: Гавайи
+    hebrew: Иврит
+    hiligaynon: Хилигайнон
+    hungarian: Венгр
+    icelandic: Исланд
+    ilokano: Илокано
+    indonesian: Индонезия
+    italian: Итальян
+    japanese: Жапон
+    kannada: Каннада
+    kazakh: Қазақ
+    korean: Кәріс
+    latvian: Латыш
+    lithuanian: Литва
+    luxembourgish: Люксембург
+    malay: Малай
+    malayalam: Малаялам
+    maltese: Мальта
+    maori: Маори
+    marathi: Маратхи
+    maya: Майя
+    misima_paneati: Мисима-панеати
+    mongolian: Монғол
+    nahuatl: Науатль
+    norwegian: Норвег
+    occitan: Окситан
+    ojibwe: Оджибве
+    palauan: Палау
+    pangasinan: Пангасинан
+    persian: Парсы
+    polish: Поляк
+    portuguese: Португал
+    romanian: Румын
+    russian: Орыс
+    santali: Сантали
+    scientific_names: Ғылыми атаулар
+    serbian: Cерб
+    sinhala: Сингал
+    slovak: Словак
+    slovenian: Словен
+    spanish: Испан
+    swahili: Суахили
+    swedish: Швед
+    tagalog: Тагалог
+    tahitian: Таити
+    thai: Тай
+    tokelauan: Токелау
+    turkish: Түрік
+    ukrainian: Украин
+    visayan: Висаян
+    waray_waray: Варай-Варай
+  linkedin: LinkedIn
+  list: Тізім
+  lists: Тізімдер
+  locales_: Жергілікті тіл
+  locales:
+    ar: Арабша
+    be: Беларусша
+    bg: Болгарша
+    br: Бретонша
+    ca: Каталанша
+    cs: Чехша
+    da: Датша
+    de: Немісше
+    el: Грекше
+    en: Ағылшынша
+    en-GB: Ағылшынша (Ұлыбритания)
+    eo: Эсперантоша
+    es: Испанша
+    es-AR: Испанша (Аргентина)
+    es-CO: Испанша (Колумбия)
+    es-MX: Испанша (Мексика)
+    et: Эстонша
+    eu: Баскша
+    fi: Финша
+    fr: Французша
+    fr-CA: Французша (Канада)
+    gl: Галисияша
+    he: Ивритше
+    hr: Хорватша
+    hu: Венгрше
+    id: Индонезияша
+    it: Италиянша
+    ja: Жапонша
+    kk: Қазақша
+    kn: Каннадаша
+    ko: Кәрісше
+    lb: Люксембургша
+    lt: Литваша
+    lv: Латышша
+    mi: Маорише
+    mk: Македонша
+    mr: Маратхиша
+    nb: Норвегше (букмол)
+    nl: Голландша
+    oc: Окситанша
+    pl: Полякша
+    pt: Португалша
+    pt-BR: Португалша (Бразилия)
+    ru: Орысша
+    sat: Санталише
+    sk: Словакша
+    sl: Словенша
+    sq: Албанша
+    sr: Cербше
+    sv: Шведше
+    th: Тайша
+    tr: Түрікше
+    uk: Украинша
+    zh-CN: Қытайша (жеңілдетілген)
+    zh-TW: Қытайша (дәстүрлі)
+  location: Орналасқан жер
+  log_in: Жүйеге кіру
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Негізгі контент осында
+  make_a_new_place: Жаңа орын жасау
+  mammals: сүтқоректілер
+  managing_projects: Жобаларды басқару
+  map: Карта
+  maps:
+    overlays:
+      all_observations: Барлық бақылаулар
+  maverick: Басқа пікір
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: және
+  meet: Танысу
+  mollusks: моллюскілер
+  momentjs:
+    shortRelativeTime:
+      #Short text representing 1 second in the past
+      s: "1сек"
+      #Short text representing 1 minute in the past
+      m: "1мин"
+      #Short text representing %d minutes in the past
+      mm: "%dмин"
+      #Short text representing 1 hour in the past
+      h: "1сағ"
+      #Short text representing %d hours in the past
+      hh: "%dсағ"
+      #Short text representing 1 day in the past
+      d: "1күн"
+      #Short text representing 1 month in the past
+      M: "1ай"
+      #Short text representing %d months in the past
+      MM: "%dай"
+      #Short text representing 1 year in the past
+      'y': "1ж"
+      #Short text representing %d years in the past
+      yy: "%dж"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
+  month: Ай
+  months: Айлар
+  more: Тағы
+  name_providers:
+    ubio: uBio
+  new_guide: Жаңа нұсқаулық
+  no_curators_yet: Әзірге кураторлар жоқ!
+  no_description: Сипаттама жоқ
+  no_flags: Бұл жолы белгілер жоқ
+  notify_me_of_mentions: Маған ескертулер туралы хабарлау (мысалы, @username)
+  observations_by_app: Қолданба бойынша бақылаулар
+  observations_by_rank: Дәреже бойынша бақылаулар
+  old_observation_form: Ескі бақылау нысаны (ескірген)
+  ok: "ОК"
+  on_caps: "ҚОСУ"
+  options: Опциялар
+  or: немесе
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in with Apple OR Google
+  or_all_caps: НЕМЕСЕ
+  or_choose_high_level_taxa: "... немесе жоғары деңгейлі таксондардан таңдаңыз"
+  orange: қызғылт сары
+  password: Құпия сөз
+  password_confirmation: 'Құпия сөзді растау'
+  people: Адамдар
+  pi_consent_desc_title: Жеке ақпарат
+  pi_consent_desc_html: |
+    <p>
+    Біз осы сайттағы аккаунттарды басқару және құпиялылық туралы заңдарды сақтау үшін пайдаланушы аттары мен электрондық пошта мекенжайлары сияқты жеке ақпаратты сақтаймыз, жеке ақпаратты осылай пайдалануға келісім беретініңізді көрсету үшін осы құсбелгіні қою керек. Біз қандай ақпаратты жинайтынымыз және оны қалай қолданатынымыз туралы көбірек білу үшін біздің
+    <a href='%{privacy_url}' target='_blank'>Құпиялылық саясаты</a>
+    мен <a href='%{terms_url}' target='_blank'>Пайдалану шарттарын</a> қараңыз.
+    </p>
+    <p>
+    Жеке ақпаратты сақтамай iNaturalist аккаунтына ие болу мүмкін емес, сондықтан бұл келісімнен бас тартудың жалғыз жолы - аккаунтыңызды жою.
+    </p>
+  pi_consent_label: |
+    Мен iNaturalist компаниясына аккаунтымды басқару үшін мен туралы шектеулі жеке ақпаратты сақтауға және өңдеуге рұқсат беремін
+  pi_consent_child_label: |
+    Мен iNaturalist компаниясына баламның аккаунтын басқару үшін балам туралы шектеулі жеке ақпарат түрлерін сақтауға және өңдеуге рұқсат беремін
+  data_transfer_consent_desc_title: Жеке ақпаратты беруге келісім туралы
+  data_transfer_consent_desc_html: |
+    <p>
+    Еуропалық Одақтың Деректерді қорғаудың жалпы ережесі (GDPR) сияқты кейбір деректердің құпиялылығы туралы заңдар жеке ақпаратты өз юрисдикцияларынан осы ақпаратты заңмен қорғау жеткілікті деп саналмайтын басқа юрисдикцияларға тасымалдауға нақты келісімді талап етеді. <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> жылдан бастап Еуропалық Одақ Америка Құрама Штаттарын жеке ақпаратты тиісті құқықтық қорғауды қамтамасыз ететін юрисдикция ретінде қарастырмайды, әсіресе АҚШ үкіметінің АҚШ-қа кіру деректерін қадағалау мүмкіндігіне байланысты. Басқа юрисдикциялар да осындай пікірде болуы мүмкін. 
+    </p>
+    <p>
+    iNaturalist қолданбасын пайдалану электрондық пошта мекенжайыңыз сияқты жеке ақпаратты сақтауды талап етеді, барлық iNaturalist деректері Америка Құрама Штаттарында сақталады және iNaturalist қолданбасын пайдаланған кезде сіз қандай заңды юрисдикцияда екеніңізді білмейміз, сондықтан, GDPR сияқты, құпиялылық туралы заңдарды сақтау үшін, сіз осы тәуекелді түсінетіндігіңізді және қабылдайтыныңызды және жеке ақпаратыңызды АҚШ-тағы iNaturalist серверлеріне тасымалдауға келісуіңіз керек. 
+    </p>
+    <p>
+    Біз қандай ақпаратты жинайтынымыз және оны қалай қолданатынымыз туралы көбірек білу үшін біздің <a href='%{privacy_url}' target='_blank'>Құпиялық саясатын</a> және <a href='%{terms_url}' target='_blank'>Пайдалану шарттарын</a> қараңыз.
+    </p>
+    <p>
+    Жеке ақпаратты сақтамай iNaturalist аккаунтына ие болу мүмкін емес, сондықтан бұл келісімнен бас тартудың жалғыз жолы - аккаунтыңызды жою.
+    </p>
+  data_transfer_consent_label: |
+    Мен жеке ақпаратымның Америка Құрама Штаттарына берілуіне рұқсат беремін
+  data_transfer_consent_child_label: |
+    Мен баламның жеке ақпаратын Америка Құрама Штаттарына жіберуге рұқсат беремін
+  place_geo:
+    geo_planet_place_types:
+      Airport: Әуежай
+      airport: әуежай
+      Building: Ғимарат
+      building: ғимарат
+      Canton: Кантон
+      canton: кантон
+      City Building: Қалалық ғимарат
+      city building: қалалық ғимарат
+      Colloquial: Ауызекі тіл
+      colloquial: ауызекі тіл
+      Commune: Коммуна
+      commune: коммуна
+      Continent: Континент
+      continent: континент
+      Country: Ел
+      country: ел
+      County: Өңір
+      county: өңір
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Муатамадият
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: муатамадият
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Департамент сегменті
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: департамент сегменті
+      District: Аудан
+      district: аудан
+      Division: Бөлім
+      division: бөлім
+      Drainage: Дренаж
+      drainage: дренаж
+      Estate: Жылжымайтын мүлік
+      estate: жылжымайтын мүлік
+      Governorate: Губерния
+      governorate: губерния
+      Historical_County: Тарихи аудан
+      historical_county: тарихи аудан
+      Historical_State: Тарихи мемлекет
+      historical_state: тарихи мемлекет
+      Historical_Town: Тарихи қалашық
+      historical_town: тарихи қалашық
+      Intersection: Жол қиылысы
+      intersection: жол қиылысы
+      Island: Арал
+      island: арал
+      Land_Feature: Жер ерекшелігі
+      land_feature: жер ерекшелігі
+      Local_Administrative_Area: Жергілікті әкімшілік аймақ
+      local_administrative_area: жергілікті әкімшілік аймақ
+      Local_Authority: Жергілікті билік
+      local_authority: жергілікті билік
+      Miscellaneous: Miscellaneous
+      miscellaneous: miscellaneous
+      Municipality: Муниципалитет
+      municipality: муниципалитет
+      Nationality: Азаматтық
+      nationality: азаматтық
+      Nearby_Building: Жақын ғимарат
+      nearby_building: жақын ғимарат
+      Nearby_Intersection: Жақын жол қиылысы
+      nearby_intersection: жақын жол қиылысы
+      Open_Space: Ашық кеңістік
+      open_space: ашық кеңістік
+      Parish: Приход
+      parish: приход
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Побласьон
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: побласьон
+      Prefecture: Префектура
+      prefecture: префектура
+      Prefecture_City: Префектуралық қала
+      prefecture_city: префектуралық қала
+      Point_of_Interest: Қызықты жер
+      point_of_interest: қызықты жер
+      Postal_Code: Пошталық индекс
+      postal_code: пошталық индекс
+      Province: Облыс
+      province: облыс
+      Regency: Регенсия
+      regency: регенсия
+      Region: Аймақ
+      region: аймақ
+      Republic: Республика
+      republic: республика
+      Shire: Шир
+      shire: шир
+      Sports_Team: Спорттық құрама
+      sports_team: спорттық құрама
+      State: Мемлекет
+      state: мемлекет
+      Street: Көше
+      street: көше
+      Street_Segment: Көше бөлігі
+      street_segment: көше бөлігі
+      Subdivision: Бөлімше
+      subdivision: бөлімше
+      Suburb: Қала маңы
+      suburb: қала маңы
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Сум
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: сум
+      Supername: Супересім
+      supername: супересім
+      Territory: Территория
+      territory: территория
+      Time_Zone: Уақыт белдеуі
+      time_zone: уақыт белдеуі
+      Town: Қала
+      town: қала
+      Undefined: Анықталмаған
+      undefined: анықталмаған
+      Unknown: Белгісіз
+      unknown: белгісіз
+      Village_block: Ауыл кварталы
+      village_block: ауыл кварталы
+      Zone: Зона
+      zone: зона
+  places: Орындар
+  places_name:
+    afghanistan: Ауғанстан
+    africa: Aфрика
+    akrotiri_and_dhekelia: Акротири және Декелия
+    aland: Аланд аралдары
+    albania: Албания
+    algeria: Алжир
+    american_samoa: Америка Самоасы
+    andorra: Андорра
+    angola: Ангола
+    anguilla: Ангилья
+    antarctica: Антарктика
+    antigua_and_barbuda: Антигуа және Барбуда
+    argentina: Аргентина
+    armenia: Армения
+    aruba: Аруба
+    asia: Aзия
+    australia: Аустралия
+    austria: Аустрия
+    azerbaijan: Әзірбайжан
+    bahamas: Багама аралдары
+    bahrain: Бахрейн
+    bangladesh: Бангладеш
+    barbados: Барбадос
+    belarus: Беларусь
+    belgium: Бельгия
+    belize: Белиз
+    benin: Бенин
+    bermuda: Бермуда аралдары
+    bhutan: Бутан
+    bolivia: Боливия
+    bonaire_saint_eustatius_and_saba: Бонэйр, Синт-Эстатиус және Саба
+    bosnia_and_herzegovina: Босния және Герцеговина
+    botswana: Ботсвана
+    bouvet_island: Буве аралы
+    brazil: Бразилия
+    british_indian_ocean_territory: Үнді мұхитындағы Британия аймағы
+    british_virgin_islands: Вирджин аралдары (Ұлыбритания)
+    brunei: Бруней
+    bulgaria: Болгария
+    burkina_faso: Буркина-Фасо
+    burundi: Бурунди
+    cambodia: Камбоджа
+    cameroon: Камерун
+    canada: Канада
+    cape_verde: Кабо-Верде
+    cayman_islands: Кайман аралдары
+    central_african_republic: Орталық Африка Республикасы
+    central_america: Орталық Америка
+    chad: Чад
+    chile: Чили
+    china: Қытай
+    christmas_island: Крисмас аралы
+    clipperton_island: Клиппертон аралы
+    cocos_islands: Кокос аралдары
+    colombia: Колумбия
+    commonwealth_of_the_northern_mariana_islands: Солтүстік Мариана аралдары
+    comoros: Комор аралдары
+    cook_islands: Кук аралдары
+    costa_rica: Коста-Рика
+    cote_d_ivoire: Кот-д'Ивуар
+    croatia: Хорватия
+    cuba: Куба
+    curacao: Кюрасао
+    cyprus: Кипр
+    czech_republic: Чехия
+    democratic_republic_of_the_congo: Конго Демократиялық Республикасы
+    denmark: Дания
+    djibouti: Джибути
+    dominica: Доминика
+    dominican_republic: Доминикана Республикасы
+    east_timor: Тимор-Лешти
+    ecuador: Эквадор
+    egypt: Мысыр
+    el_salvador: Эль-Сальвадор
+    equatorial_guinea: Экваторлық Гвинея
+    eritrea: Эритрея
+    estonia: Эстония
+    ethiopia: Эфиопия
+    europe: Еуропа
+    falkland_islands: Фолкленд аралдары
+    faroe_islands: Фарер аралдары
+    fiji: Фиджи
+    finland: Финляндия
+    france: Франция
+    french_guiana: Француз Гайанасы
+    french_polynesia: Француз Полинезиясы
+    french_southern_territories: Француз оңтүстік территориялары
+    gabon: Габон
+    gambia: Гамбия
+    georgia: Грузия
+    germany: Германия
+    ghana: Гана
+    gibraltar: Гибралтар
+    greece: Грекия
+    greenland: Гренландия
+    grenada: Гренада
+    guadeloupe: Гуаделупа
+    guam: Гуам
+    guatemala: Гуатемала
+    guernsey: Гернси
+    guinea: Гуинея
+    guinea_bissau: Гуинея-Биссау
+    guyana: Гайана
+    haiti: Гаити
+    heard_island_and_mcdonald_islands: Херд аралы мен Макдональд аралдары
+    honduras: Гондурас
+    hong_kong: Гонконг
+    hungary: Мажарстан
+    iceland: Исландия
+    india: Үндістан
+    indonesia: Индонезия
+    iran: Иран
+    iraq: Ирак
+    ireland: Ирландия
+    isle_of_man: Мэн аралы
+    israel: Израиль
+    italy: Италия
+    jamaica: Ямайка
+    japan: Жапония
+    jersey: Джерси
+    jordan: Иордания
+    kazakhstan: Қазақстан
+    kenya: Кения
+    kiribati: Кирибати
+    korea: Корея
+    kosovo: Косово
+    kuwait: Кувейт
+    kyrgyzstan: Қырғызстан
+    laos: Лаос
+    latvia: Латвия
+    lebanon: Ливан
+    lesotho: Лесото
+    liberia: Либерия
+    libya: Либия
+    liechtenstein: Лихтенштейн
+    lithuania: Литва
+    luxembourg: Люксембург
+    macao: Макао
+    macedonia: Македония
+    madagascar: Мадагаскар
+    malawi: Малави
+    malaysia: Малайзия
+    maldives: Мальдив аралдары
+    mali: Мали
+    malta: Мальта
+    marshall_islands: Маршалл Аралдары
+    martinique: Мартиника
+    mauritania: Мауритания
+    mauritius: Маврикий
+    mayotte: Майотта
+    mexico: Мексика
+    micronesia: Микронезия
+    moldova: Молдова
+    monaco: Монако
+    mongolia: Моңғолия
+    montenegro: Черногория
+    montserrat: Монтсеррат
+    morocco: Марокко
+    mozambique: Мозамбик
+    myanmar: Мьянма
+    namibia: Намибия
+    nauru: Науру
+    nepal: Непал
+    netherlands: Нидерланд
+    new_caledonia: Жаңа Каледония
+    new_guinea: Жаңа Гвинея
+    new_zealand: Жаңа Зеландия
+    nicaragua: Никарагуа
+    niger: Нигер
+    nigeria: Нигерия
+    niue: Ниуэ
+    norfolk_island: Норфолк аралы
+    north_africa: Солтүстік Африка
+    north_america: Солтүстік Америка
+    north_korea: Солтүстік Корея
+    northern_cyprus: Солтүстік Кипр
+    norway: Норвегия
+    oman: Оман
+    pakistan: Пәкістан
+    palau: Палау
+    palestine: Палестина
+    panama: Панама
+    papua_new_guinea: Папуа - Жаңа Гвинея
+    paraguay: Парагвай
+    peru: Перу
+    philippines: Филиппин аралдары
+    pitcairn_islands: Питкэрн аралдары
+    poland: Польша
+    portugal: Португалия
+    puerto_rico: Пуэрто-Рико
+    qatar: Катар
+    republic_of_congo: Конго Республикасы
+    reunion: Реюньон
+    romania: Румыния
+    russia: Ресей
+    rwanda: Руанда
+    saint_barthelemy: Сен-Бартелеми
+    saint_helena: Сент-Элена
+    saint_kitts_and_nevis: Сент-Китс және Невис
+    saint_lucia: Сент-Люсия
+    saint_martin: Сен-Мартен
+    saint_pierre_and_miquelon: Сен-Пьер және Микелон
+    saint_vincent_and_the_grenadines: Сент-Винсент және Гренадиндер
+    samoa: Самоа
+    san_marino: Сан-Марино
+    sao_tome_and_principe: Сан-Томе және Принсипи
+    saudi_arabia: Сауд Арабиясы
+    senegal: Сенегал
+    serbia: Сербия
+    seychelles: Сейшел аралдары
+    sierra_leone: Сьерра-Леоне
+    singapore: Сингапур
+    sint_maarten: Синт-Мартен
+    slovakia: Словакия
+    slovenia: Словения
+    solomon_islands: Соломон аралдары
+    somalia: Сомали
+    south_africa: Оңтүстік Африка
+    south_america: Оңтүстік Америка
+    south_georgia_and_the_south_sandwich_islands: Оңтүстік Джорджия және Оңтүстік Сэндвич аралдары
+    south_korea: Оңтүстік Корея
+    south_sudan: Оңтүстік Судан
+    spain: Испания
+    sri_lanka: Шри-Ланка
+    sudan: Судан
+    suriname: Суринам
+    svalbard_and_jan_mayen: Свалбард және Ян-Майен
+    swaziland: Свазиленд
+    sweden: Швеция
+    switzerland: Швейцария
+    syria: Сирия
+    taiwan: Тайвань
+    tajikistan: Тәжікстан
+    tanzania: Танзания
+    thailand: Тайланд
+    togo: Того
+    tokelau: Токелау
+    tonga: Тонга
+    trinidad_and_tobago: Тринидад және Тобаго
+    tunisia: Тунис
+    turkey: Түркия
+    turkmenistan: Түрікменстан
+    turks_and_caicos_islands: Теркс және Кайкос аралдары
+    tuvalu: Тувалу
+    uganda: Уганда
+    ukraine: Украина
+    united_arab_emirates: Біріккін Араб Әмірліктері
+    united_kingdom: Ұлыбритания
+    united_states: Америка Құрама Штаттары
+    united_states_minor_outlying_islands: АҚШ шеткі кіші аралдары
+    united_states_virgin_islands: Вирджин аралдары (АҚШ)
+    uruguay: Уругвай
+    uzbekistan: Өзбекстан
+    vanuatu: Вануату
+    vatican_city: Ватикан
+    venezuela: Венесуэла
+    vietnam: Вьетнам
+    virgin_islands: Вирджин аралдары (Ұлыбритания)
+    wallis_and_futuna: Уоллес және Футуна
+    west_africa: Батыс Африка
+    western_sahara: Батыс Сахара
+    yemen: Йемен
+    zambia: Замбия
+    zimbabwe: Зимбабве
+  places_of_interest: Қызықты жерлер
+  potential_disagreement: Ықтимал келіспеушілік
+  privacy: Құпиялылық
+  profile: Профиль
+  project_cover: Жоба мұқабасы
+  project_curator_id: Жоба кураторының идентификациясы
+  project_curator_tools: Жоба кураторының құралдары
+  project_curators: Жоба кураторлары
+  project_group_label: Топ
+  project_icon: Жоба белгішесі
+  project_journal: Жоба журналы
+  project_list: Жобалар тізімі
+  project_observations: Жоба бақылаулары
+  project_requirements: Жоба талаптары
+  project_rules: Жоба ережелері
+  project_settings: Жоба баптаулары
+  projects: Жобалар
+  purple: күлгін
+  ranks:
+    kingdom: Патшалық
+    x_kingdoms:
+      one: Патшалық
+      other: Патшалық
+    subkingdom: Субпатшалық
+    phylum: Тип
+    x_phyla:
+      one: Тип
+      other: Тип
+    subphylum: Субтип
+    superclass: Суперкласс
+    class: Класс
+    x_classes:
+      one: Класс
+      other: Класс
+    subclass: Субкласс
+    infraclass: Инфракласс
+    superorder: Супержасақ
+    order: Жасақ
+    x_orders:
+      one: Жасақ
+      other: Жасақ
+    suborder: Субжасақ
+    infraorder: Инфражасақ
+    subterclass: Субтеркласс
+    parvorder: Парвжасақ
+    zoosection: Зоосекция
+    zoosubsection: Зоосубсекция
+    superfamily: Суперотбасы
+    epifamily: Эпиотбасы
+    family: Отбасы
+    x_families:
+      one: Отбасы
+      other: Отбасы
+    subfamily: Суботбасы
+    supertribe: Супертайпа
+    tribe: Тайпа
+    subtribe: Субтайпа
+    genus: Тұқымдас
+    x_genera:
+      one: Тұқымдас
+      other: Тұқымдас
+    genushybrid: Тұқымдасгибрид
+    subgenus: Субтұқымдас
+    section: Секция
+    subsection: Субсекция
+    complex: Комплекс
+    #Singular
+    species: Түр
+    x_species:
+      one: Түр
+      other: Түр
+    hybrid: Гибрид
+    #Singular
+    subspecies: Түрше
+    variety: Вариация
+    form: Форма
+    infrahybrid: Инфрагибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: патшалық
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: субпатшалық
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: тип
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: субтип
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: суперкласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: класс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: субкласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: инфракласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: супержасақ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: жасақ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: субжасақ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: инфражасақ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: субтеркласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: парвжасақ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: зоосекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: зоосубсекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: суперотбасы
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: эпиотбасы
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: отбасы
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: суботбасы
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: супертайпа
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: тайпа
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: субтайпа
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: тұқымдас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: тұқымдасгибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: субтұқымдас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: секция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: субсекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: комплекс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: түр
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: гибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: түрше
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: вариация
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: форма
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: инфрагибрид
+  recent: Соңғы
+  recent_evidence_of_organism: Ағзаның бар екендігінің соңғы дәлелі
+  recent_exports: Соңғы экспорттар
+  recent_new_users: Соңғы жаңа пайдаланушылар
+  recent_observations: Соңғы бақылаулар
+  recent_observations_: Соңғы бақылаулар
+  recent_post: Соңғы жазба
+  remove_from_guide: Нұсқаулықтан алып тастау
+  remove_from_list: Тізімнен жою
+  remove_from_project: Жобадан жою
+  remove_this_section: Осы бөлімді жою
+  remove_manager: Менеджерді алып тастау
+  remove_observations:
+    one: 1 бақылауды жою керек пе?
+    other: '%{count} бақылауды жою керек пе?'
+  remove_photo: Фотосуретті жою
+  remove_place: Орынды жою
+  reorder_by_taxonomy: Таксономия бойынша қайта реттеу
+  repair_broken_urls: Бұзылған URL мекенжайларын жөндеу
+  repair_doesnt_work_for_that_kind_of_photo: Мұндай фотосурет үшін жөндеу жұмыс істемейді
+  repair_external_photos: Сыртқы фотосуреттерді жөндеу
+  replace_parentesis: (алмастыру)
+  reply: Жауап беру
+  reptiles: бауырымен жорғалаушылар
+  request_failed: "Сұраныс орындалмады"
+  request_timed_out: Сұраныс уақыты аяқталды!
+  required: міндетті
+  required_: Міндетті
+  required_field: міндетті өріс
+  research: зерттеу
+  research_: Зерттеу
+  research_grade: Зерттеу дәрежесі
+  research_grade_short_html: "З<span class='full'>ерттеу </span>Д<span class='full'>әрежесі</span>"
+  research_grade_observations_have: '"Зерттеу дәрежесі" бақылауларының күні, фотосуреті, координаттары және қоғамдастық қолдайтын идентификациясы болады. Деректер сапасын бағалауды көру үшін басыңыз.'
+  research_grade_qualification: Зерттеу дәрежесінің бағасы
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Қайта жіберу және шығу
+  resend_confirmation_email: Растау электрондық хатын қайта жіберу
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Тастау
+  reset_filters_short: Тастау
+  restore: Қалпына келтіру
+  restoring: Қалпына келтірілуде...
+  review_all: Барлығын шолу
+  review_identifications_of_taxon_html: |
+    <span class="sciname">%{taxon}</span> %{taxon_id} идентификацияларын қарап шығу
+  rg_observations: ЗД бақылаулары
+  role: Рөл
+  rotate_left: Солға бұру
+  rotate_right: Оңға бұру
+  row_singular_or_plural: Қатар(лар)
+  rules_and_formatting: "Ережелер және форматтау"
+  rules_for_adding_observations: Бақылауларды қосу ережелері
+  rules_for_becoming_a_member: Мүше болу ережелері
+  rules_types:
+    must_be_identified: анықталуы қажет
+    must_be_on_list: тізімде болуы керек
+    must_be_coordinates_shareable_by_project_curators: бақылаушы жоба кураторларына координаттарды көруге рұқсат беруі керек.
+    must_be_verifiable: тексерілетін болуы керек
+    must_be_wild: жабайы болуы керек
+  satellite: жер серігі
+  save: Сақтау
+  save_all: Барлығын сақтау
+  save_and_add_another: Сақтау және басқасын қосу
+  save_and_continue: "Сақтау &amp; Жалғастыру..."
+  save_and_add_taxa: "Сақтау және түрлерді қосуды бастау"
+  save_changes: Өзгерістерді сақтау
+  save_comment: Пікірді сақтау
+  save_fields: Өрістерді сақтау
+  save_identification: Идентификацияны сақтау
+  save_observation: Бақылауды сақтау
+  save_photos: Фотосуреттерді сақтау
+  save_place: Орынды сақтау
+  saved: Сақталды
+  saved_at_time: '%{time} сақталды'
+  saving: "Сақталуда..."
+  saving_verb: Сақталуда
+  scale_colon: "Масштаб:"
+  schemes: Сызбалар
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Ғылыми атауы
+  search: Іздеу
+  search_all_fields: барлық өрістерден іздеу
+  search_for_a_location: Орналасқан жерді іздеу
+  search_for_species: Түрлерді іздеу
+  search_observations: "Бақылауларды іздеу"
+  search_projects: Жобаларды іздеу
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Себептерді іздеу
+  search_species: Түрді іздеу
+  search_the_map: Картадан іздеу
+  search_this_taxon: осы таксонды іздеу
+  seasonality: Маусымдық
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
+  select: Таңдау
+  select_all: Барлығын таңдау
+  sign_out: Шығу
+  sign_up: Тіркелу
+  similar_taxa: Ұқсас таксондар
+  #Journal post formatting option
+  simple: Қарапайым
+  single_observation: Жалғыз бақылау
+  site_stats: Сайт статистикасы
+  source_wikipedia: "Дереккөз: Уикипедия"
+  source_list:
+    ubio: uBio
+    inaturalist: iNaturalist
+  taxa_info: Таксондар туралы ақпарат
+  taxon_framework_deviations_with_count_html: "Ауытқулар: %{count}"
+  taxonomic_groups: Таксономиялық топтар
+  taxonomic_order: Таксономиялық тәртіп
+  taxonomic_status: Таксономиялық статус
+  taxonomic_tags_for_flickr: Flickr үшін таксономиялық тегтер
+  teachers_guide: Мұғалім нұсқаулығы
+  terrain: жер бедері
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Оңтүстік Африка уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Шығыс Африка уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Аргентина уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Колумбия уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Боливия уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Перу уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Израиль уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Красноярск уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Тайвань уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Екатеринбург уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Аделаида уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Брисбен уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Перт уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Сидней уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Мәскеу уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Орталық Еуропа уақыты
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Самоа уақыты
+  today: Бүгін
+  too_many_results: Нәтижелер тым көп
+  tos_privacy_guidelines_label: |
+    Мен <a href="/terms" target="_blank">Қызмет көрсету шарттарымен</a> және <a href="/privacy" target="_blank">Құпиялылық саясатымен</a> келісемін, және мен <a href="/pages/community+guidelines" target="_blank">Қауымдастық нұсқауларын</a> қарап шықтым.
+  unique_observers: бірегей бақылаушылар
+  unknown: Белгісіз
+  unknown_error: Белгісіз қате
+  unknown_rank: '(Белгісіз дәреже)'
+  unfollow: Жазылудан бас тарту
+  unlink_your_google_account: Google аккаунтыңызбен байланысты ажырату
+  unlink_your_flickr_account: "Flickr аккаунтыңызбен байланысты ажырату"
+  upload: Жүктеу
+  uploader:
+    tooltips:
+      add: Бақылау(ларды) қосу
+      combine: Таңдалған бақылауларды біріктіру
+      duplicate: Таңдалған бақылауларды қайталау
+  username: Пайдаланушы аты
+  view_all_fields: Барлық өрістерді көру
+  view_all_flags: Барлық белгілерді көру
+  view_all_members: Барлық мүшелерді көру
+  video_tutorials: Бейне оқулық
+  weather: Ауа райы
+  were_sorry_but_your_bulk_import_of_filename_has_failed: "Кешіріңіз, бірақ %{filename} файлын жаппай импорттау сәтсіз аяқталды."
+  what_did_you_see: Сіз не көрдіңіз?
+  what_did_you_see?: <em>Сіз</em> не көрдіңіз?
+  what_do_you_think: Сіз қалай ойлайсыз?
+  what_to_keep: Нені сақтау керек
+  yellow: сары
+  'yes': "Иә"
+  yes_license_my_childs_observations: Иә, ғалымдар деректерді пайдалана алуы үшін баламның фотосуреттерін, дыбыстарын және бақылауларын лицензиялаңыз (ұсынылады).
+  yes_license_my_observations_so_scientists_can_use: Иә, ғалымдар менің деректерімді пайдалана алатындай фотоларымды, дыбыстарды және бақылауларымды лицензиялаңыз (ұсынылады).
+  yesterday: Кеше
+  your_observations: Сіздің бақылауларыңыз
+  your_recent_projects: Сіздің соңғы жобаларыңыз
+  views:
+    guides:
+      sorts:
+        default: Нұсқаулық реті
+    observations:
+      field_descriptions:
+        license: Бақылаушының осы бақылау үшін таңдаған лицензиясы
+        url: Бақылаудың URL мекенжайы
+        image_url: Әдепкі кескіннің URL мекенжайы
+    emailer:
+      photos_missing:
+        subject: Кейбір фотосуреттер жөндеуді қажет етеді
+    stats:
+      index:
+        TTCID: TTCID
+        TTID: TTID
+      year:
+        donors_guide_label_our_goal_is_1000: Біздің мақсатымыз айына 1000 тұрақты демеуші
+        inaturalist_network: iNaturalist желісі
+    taxa:
+      show:
+        frequency:
+          research: Зерттеу дәрежесі
+          "Alive or Dead=Alive": Тірі
+          "Alive or Dead=Dead": Өлі
+          "Plant Phenology=Budding": Бүршіктену
+          "Plant Phenology=Flower Budding": Гүл бүршіктері
+          "Plant Phenology=Flowering": Гүлдену
+          "Plant Phenology=Fruiting": Жеміс беру
+          "Plant Phenology=No Evidence of Flowering": Гүлденудің дәлелі жоқ
+          "Life Stage=Adult": Ересек
+          "Life Stage=Egg": Жұмыртқа
+          "Life Stage=Larva": Дернәсіл
+          "Life Stage=Juvenile": Жас
+          "Life Stage=Nymph": Нимфа
+          "Life Stage=Pupa": Қуыршақ
+          "Life Stage=Subimago": Субимаго
+          "Life Stage=Teneral": Түлеген жәндік
+          "Sex=Cannot Be Determined": Анықтау мүмкін емес
+          "Sex=Female": Ұрғашы
+          "Sex=Male": Еркек
+    welcome:
+      index:
+        connect_with_nature: Табиғатпен байланыс
+        explore_and_share: Табиғат әлемінен өз бақылауларыңызды зерттеп, бөлісіңіз.
+        how_it_works: Бұл қалай жұмыс істейді
+        record_your_observations: Өз бақылауларыңызды жазыңыз
+        share_with_fellow_naturalists: Табиғат зерттеушілерімен бөлісіңіз
+        discuss_your_findings: Нәтижелеріңізді талқылаңыз
+        contribute_to_science: Ғылымға үлес қосыңыз
+        science_desc_html: |
+          Кез келген бақылау ең сирек кездесетін көбелектен бастап, ауладағы ең көп таралған арамшөпке дейін биоәртүрлілік ғылымына үлес қоса алады. Ғалымдарға деректеріңізді табуға және пайдалануға көмектесу үшін нәтижелеріңізді <a href='http://gbif.org' target='_blank'>Жаһандық биоалуантүрлілік ақпарат орталығы</a> сияқты ғылыми деректер репозиторийлерімен бөлісеміз. Бар болғаны бақыласаңыз болғаны.
+        nature_at_your_fingertips: Табиғат сіздің қолыңызда
+        keep_track: Бақылауды жалғастырыңыз
+        record_your_encounters: |
+          Басқа ағзалармен кездесулеріңізді жазып алыңыз және өмір тізімдерін бұлтта сақтаңыз.
+        create_useful_data: Пайдалы деректерді жасаңыз
+        help_scientists: Ғалымдар мен ресурстар менеджерлеріне ағзалардың қашан және қайда кездесетіндігін түсінуге көмектесіңіз.
+        crowdsource_identifications: Краудсорс идентификациялары
+        connect_with_experts: Сіз бақылайтын ағзаларды анықтай алатын мамандармен байланысыңыз.
+        become_a_citizen_scientist: Азаматтық ғалым болыңыз
+        find_a_project: "Сізді қызықтыратын миссиясы бар жобаны табыңыз немесе өз жобаңызды бастаңыз."
+        learn_about_nature: Табиғат туралы білім алыңыз
+        build_your_knowledge: Басқа натуралистермен сөйлесу және басқаларға көмектесу арқылы біліміңізді жетілдіріңіз.
+        run_a_bioblitz: Биоблицті орындаңыз
+        hold_an_event: Адамдар мүмкіндігінше көп түр табуға тырысатын іс-шара өткізіңіз.
+        works_on_all_your_devices: Барлық құрылғыларыңызда жұмыс істейді
+        install_our_mobile_apps: |
+          Мобильді қолданбаларды орнатыңыз, сонда сіз ұялы телефонды қабылдаусыз немесе Wi-Fi желісінсіз әрқашан бақылай аласыз.
+        who_uses_site_name: "%{site_name} кім пайдаланады?"
+        what_are_you_waiting_for: Сіз не күтіп тұрсыз?
+        join_today: Бүгін қосылыңыз
   date:
+    abbr_day_names:
+      - Жек.
+      - Дүй.
+      - Сей.
+      - Сәр.
+      - Бей.
+      - Жұма
+      - Сен.
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
+      - Қаң.
+      - Ақп.
+      - Нау.
+      - Сәу.
+      - Мам.
+      - Мау.
+      - Шіл.
+      - Там.
+      - Қыр.
+      - Қаз.
+      - Қар.
+      - Жел.
+    day_names:
+      - Жексенбі
+      - Дүйсенбі
+      - Сейсенбі
+      - Сәрсенбі
+      - Бейсенбі
+      - Жұма
+      - Сенбі
+    day_names_min:
+      1: Жс.
+      2: Дс.
+      3: Сс.
+      4: Ср.
+      5: Бс.
+      6: Жм.
+      7: Сб.
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      default: '%Y-%m-%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      long: '%B %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short: '%b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      compact: "%b %e"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short_with_year: '%b %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      month_day_year: '%B %d, %Y'
     month_names:
       - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+      - Қаңтар
+      - Ақпан
+      - Наурыз
+      - Сәуір
+      - Мамыр
+      - Маусым
+      - Шілде
+      - Тамыз
+      - Қыркүйек
+      - Қазан
+      - Қараша
+      - Желтоқсан
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: шамамен %{count} сағат
+        other: шамамен %{count} сағат
+      about_x_months:
+        one: шамамен %{count} ай
+        other: шамамен %{count} ай
+      about_x_years:
+        one: шамамен %{count} жыл
+        other: шамамен %{count} жыл
+      almost_x_years:
+        one: '%{count} жылға жуық'
+        other: '%{count} жылға жуық'
+      half_a_minute: жарты минут
+      less_than_x_minutes:
+        one: '%{count} минуттан аз'
+        other: '%{count} минуттан аз'
+      less_than_x_seconds:
+        one: '%{count} секундтан аз'
+        other: '%{count} секундтан аз'
+      over_x_years:
+        one: '%{count} жылдан астам'
+        other: '%{count} жылдан астам'
+      x_days:
+        one: "%{count} күн"
+        other: '%{count} күн'
+      x_minutes:
+        one: "%{count} минут"
+        other: '%{count} минут'
+      x_months:
+        one: "%{count} ай"
+        other: '%{count} ай'
+      x_seconds:
+        one: "%{count} секунд"
+        other: '%{count} секунд'
+    prompts:
+      day: Күн
+      hour: Сағат
+      minute: Минут
+      month: Ай
+      second: Секундтар
+      year: Жыл
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '  '
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}к"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}М"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}Г"
     human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: Миллиард
+          million: Миллион
+          quadrillion: Квадриллион
+          thousand: Мың
+          trillion: Триллион
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: байт
+            other: байт
+          gb: ГБ
+          kb: КБ
+          mb: МБ
+          tb: TБ
+  support:
+    array:
+      last_word_connector: ', және '
+      two_words_connector: ' және '
+      words_connector: ', '
+  activerecord:
+    models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Хабарландыру
+      AssessmentSection: Бағалау бөлімі
+      Atlas: Атлас
+      BlockedUser: Бұғатталған пайдаланушы
+      CompleteSet: Толық жинақ
+      #Noun
+      Flag: Белгі
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Модератор әрекеті
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Модератор ескертпесі
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Қолданба
+      TaxonLink: Таксон сілтемесі
+    attributes:
+      project:
+        title: Тақырып
+        project_icon: Жоба белгішесі
+        project_type: Жоба түрі
+        description: Сипаттама
+        end_time: Аяқталу уақыты
+        terms: Шарттар
+        map_type: Карта түрі
+        zoom_level: Масштабтау деңгейі
+        start_time: Басталу уақыты
+      project_observation:
+        user_id: Жіберуші
+      place:
+        code: Код
+        latitude: Ендік
+        longitude: Бойлық
+        place_type: Орын түрі
+        woeid: WOEID
+      source:
+        url: URL
+      taxon_name:
+        is_valid: Жарамды ма?
+        name: Атауы
+        name_provider: Атау провайдері
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Сайт атауы
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Қысқаша атау
+        #Taxon this link is associated with
+        taxon: Таксон
+        #Place this link is associated with
+        place: Орын
+      user:
+        email: Электрондық пошта
+        login: Пайдаланушы аты
+        name: Есімі
+        locale: Жергілікті тіл
+        time_zone: Уақыт белдеуі
+        search_place_id: Іздеу орны
+        place_id: Орын
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: қабылдануы керек
+        blank: бос болуы мүмкін емес
+      models:
+        taxon_name:
+          attributes:
+            lexicon:
+              should_be_in_english: ағылшын тілінде болуы керек
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: электрондық пошта мекенжайы сияқты болуы керек
+              domain_is_not_supported: доменге қолдау көрсетілмейді
+  doorkeeper:
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: 'Қолданба жасалды.'
+        destroy:
+          #Application as in a software application
+          notice: 'Қолданба жойылды.'
+        update:
+          #Application as in a software application
+          notice: 'Қолданба жаңартылды.'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: 'Қолданба кері қайтарылды.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: дауысты дыбыс
+        con: дауыссыз дыбыс
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
+      "@gender":
+        m: ер
+        f: әйел
+        "n": бейтарап
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Ескерту
+  wikimedia: Уикимедиа
+  wild: Жабайы
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Я – А
+  zoom_in: Үлкейту
+  zoom_out: Кішірейту
+  zoom_photo: Фотосуретті үлкейту

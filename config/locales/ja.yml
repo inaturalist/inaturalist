@@ -146,7 +146,7 @@ ja:
   about_trusting_projects: Trust Projectsについて
   about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
   about_trusting_projects_options_any_desc: |-
-    これには、あなたが位置情報プライバシーを「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
+    これには、あなたが位置情報公開状況を「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
   about_trusting_projects_options_taxon: |-
     このプロジェクトのあなたの観察記録のうち、絶滅危惧種のため場所が不明瞭なもののみ
   about_trusting_projects_options_taxon_desc: |-
@@ -164,6 +164,12 @@ ja:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精度（m）'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 以上の精度
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 以下の精度
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: 以下の精度または不明
   account: アカウント
   account_creation: アカウント作成
   account_settings: アカウント設定
@@ -443,7 +449,6 @@ ja:
   amphibians: 両生類
   analyze_ids: 分析ID
   ancestor_taxon: 祖先の分類群
-  and: そして
   and_other_taxa: "&amp; その他の分類群"
   android: Android
   animals: 動物
@@ -505,7 +510,7 @@ ja:
   apply_to_selected: 選択された項目に適応
   apply_captive_cultivated: "飼育/栽培として付ける"
   apply_fields: フィールドを適用する
-  apply_geoprivacy: 位置情報プライバシーを適用させる
+  apply_geoprivacy: この位置情報公開状況を適用する
   apply_darr: "適用 &darr;"
   apply_establishment_means_to_descendant_places: "定着状況を下級場所にも適用"
   apply_these_settings_to_all: この設定を以下の観測記録すべてに適用する
@@ -611,6 +616,7 @@ ja:
   attribution_uploaded_by_user: "%{attribution}, %{user} によって投稿されました"
   authority_list:
     iucn_red_list: IUCNレッドリスト
+    natureserve: NatureServe
     cites: ワシントン条約（CITES）
   authorize: 承認
   #Second-person verb to authorize an application to access an iNat account
@@ -678,6 +684,7 @@ ja:
   birds: 鳥類
   birthday: 誕生日
   black: 黒
+  block: ブロック
   block_removed: ブロックを削除しました
   blocked_users: ブロックしたユーザー
   blog_widget: ブログ用のウィジェット
@@ -700,7 +707,6 @@ ja:
   browse_species_that_occur_near_this_observation: この観察記録近隣の種を表示
   built_with_site_guides_html: "<a href='%{url}'>%{site_name}ガイド</a>で作成されました"
   bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
-  by: '投稿者:'
   by_everyone: 全てのユーザー
   by_user: "%{user}さんによる"
   by_you: あなた
@@ -744,7 +750,7 @@ ja:
     swap: 入力分類群を出力分類群に置き換え
     drop: 現在は完全に廃止された分類群。過去の記録またはデータ提供先との互換性のために保存されます。
     stage: 変更グループの一部としてリリースするための非アクティブなコンセプトを準備する
-  change_geoprivacy: '位置情報プライバシーを変更する'
+  change_geoprivacy: '位置情報公開状況を変更する'
   change_group: グループを変更
   change_icon: アイコンを変更
   change_password: パスワードを変更
@@ -783,7 +789,7 @@ ja:
   change_your_password: パスワードを変更
   #Plural noun, as in changes to a taxon record over time
   changes: 更新履歴
-  changing_the_geoprivacy: '地理的条件を変えることで、他人からの自分の観測地点の見え方が変わります。'
+  changing_the_geoprivacy: 'あなたの観察記録の位置情報公開状況を変更することにより、位置情報を不明瞭または完全非公開にすることができます。'
   check_above_for_errors: 上記のエラーをチェック
   check_back_soon: お早めに!
   check_here_to_autoload_description: Wikipediaから説明を自動ロードするには、ここをチェックします。分類群の学名が非科学的な単語であったり、「Parus」のように平凡なスペルミスであったりする場合は、このチェックボックスをオフにするとよいでしょう。
@@ -903,6 +909,8 @@ ja:
   confirm_new_password: パスワード再入力
   confirm_now: 今すぐ確認
   confirm_your_info: 登録情報をご確認ください
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: 確認日:%{date}
   confirming_ids: IDの確認
   confirming_ids_description: これをオフにすると、自分と一致するIDについては通知されなくなります。
   #Label for a button to connect your iNat account to another account, e.g.
@@ -913,7 +921,6 @@ ja:
   connected_accounts_titlecase: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
   connect_to_flickr_again_to_authorize_write_permissions: Flickrに再接続して書き込み権限を承認してください
-  connecting_to_facebook: "Facebookに接続中..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} アカウントを他のサイトのアカウントに連携すると、それらのサイトの認証情報を使用して%{site_name} にログインできます。"
   cannot_be_changed_during_a_content_freeze: コンテンツ凍結中は変更できません
   conservation_status: 保全状況
@@ -928,11 +935,11 @@ ja:
     place: このステータスが制限されている場所。
     url: 保全状況を明記するウェブページのURL
     geoprivacy: |
-      この分類群のデフォルトの場所公開状況。大陸、国、または県/州単位などで個別に追加されている場所公開状況は、より大きい場所を指定して追加されている場所公開状況または場所を指定せず（対象:世界）追加されている場所公開状況よりも優先されます。
+      この分類群のデフォルトの位置情報公開状況。大陸、国、または県/州単位などで個別に設定されている位置情報公開状況は、より大きい場所を指定して追加されている位置情報公開状況または場所を指定せず（対象:世界）追加されている位置情報公開状況よりも優先されます。
     iucn: |
       近似のIUCNレッドリストコード。これは実際のIUCNコードではなく、あなたが追加/編集したいステータスに最も近いIUCNレッドリストコードです。
   conservation_status_geoprivacy_desc: |
-    この場所でのこの分類群のすべての観察記録に適用されるデフォルトの地理情報プライバシー
+    この場所でのこの分類群のすべての観察記録に適用されるデフォルトの位置情報公開状況
   contact_support: サポートへのお問い合わせ
   contain_all_descendants?: リストにはこの場所で生息する当分類群のすべての種が含まれていますか？
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1003,19 +1010,19 @@ ja:
     molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
+    cannot_be_determined: 提供された証拠から判断することはできません
     dead: 生物は死んでいるか、瀕死である
+    feather: 生物の本体から分離した羽毛
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
+    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
+    molt: 脱ぎ捨てられた皮膚または外骨格
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
-    teneral: 羽化したばかりで、まだ成熟していない成体
-    cannot_be_determined: 提供された証拠から判断することはできません
-    feather: 生物の本体から分離した羽毛
     organism: 生物の本体またはその一部
     scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
+    teneral: 羽化したばかりで、まだ成熟していない成体
     track: 地面や雪面に残された生物の圧痕
-    molt: 脱ぎ捨てられた皮膚または外骨格
-    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
   controls: 設定
   convert: 変換
   coordinate_systems: 座標システム
@@ -1099,6 +1106,12 @@ ja:
     可能であれば、出典には、<a
     href="https://www.inaturalist.org/pages/curator+guide#policies">iNaturalistが準拠している生物データベース一覧</a>に記載されているデータベースを使用してください。
     分類群編集の例に信用のおける出典を明記しなかった場合、キュレーター申請は却下されます。
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    もし一般名を編集したい場合は、1, 2 個ほどの例を挙げてください
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    iNaturalistでの荒らしや不適切なコンテンツに対応したい場合は、1, 2 個のコミュニティガイドライン違反の例と、その例においてどのような方法で対応するかを説明してください。
   #Header
   curator_application_how_curators_lose_their_powers: |
     キュレーター管理者が権限を失う場合
@@ -1116,9 +1129,10 @@ ja:
     不適切な行動をとること
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    キュレーターになる申請をするためには、作成から2か月以上経過していて、自分か他人の観察記録に100以上の改善IDを追加したことのあるアカウントが必要です (あなたは %{num_idents}を追加しました)。
-    双方の条件を満たしたときのみ、キュレーター申請ができます。
+  curator_application_inelligible2: |
+    サイトキュレーターに応募するには、60日以上アカウントを保持していること、5つ以上のフラグを追加していること、自分を含む誰かの観察記録に100個の改善同定を追加していること（あなたは %{num_idents} 個を追加しました）などが必要です。これらの条件を満たした後、ここに戻ると応募できるようになります。
+  curator_application_inelligible_error2: |
+    サイトキュレーターに応募するには、60日以上アカウントを保持していて、5つ以上のフラグを追加し、自身のものを含む観察記録に100の改善同定を追加している必要があります。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: キュレーター申請が提出されました！
   #Header
@@ -1126,7 +1140,7 @@ ja:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'キュレーターは、キュレーターガイドの <a href="/pages/curator+guide#policies" target="_blank">方針欄</a>に記載されている方針に従って、iNaturalistの分類群を編集することができます。つまり、iNaturalist上での分類群の追加、分割、統合、無効名化、削除などが可能です。 また、保全状況や場所公開度を編集したり、任意のユーザーによって追加された和名（一般名）を編集および管理することもできます。'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'キュレーターは、キュレーターガイドの <a href="/pages/curator+guide#policies" target="_blank">方針欄</a>に記載されている方針に従って、iNaturalistの分類群を編集することができます。つまり、iNaturalist上での分類群の追加、分割、統合、無効名化、削除などが可能です。 また、保全状況や位置情報公開状況を編集したり、任意のユーザーによって追加された和名（一般名）を編集および管理することもできます。'
   curator_application_what_curators_can_do_hide_comments_html: |
     <a
     href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>.に違反しているコメントを隠すこと、上に違反しているユーザーを利用停止すること
@@ -1148,6 +1162,12 @@ ja:
     コミュニティによって作成された場所の編集、1MBよりも大きいKMLファイルのアップロード（5MB以下）
   #Header
   curator_application_what_curators_cannot_do: キュレーター管理者ができないこと
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    一般のユーザーが可能な以上に観察記録のコミュニティ分類群または観察記録のグレードに影響を与えること
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
@@ -1165,6 +1185,8 @@ ja:
     あなたは以下の場合である場合にかぎりキュレーター申請をすべきです：
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     あなたが数か月の間、同定/観察記録または両方を追加していて、今後も続ける意欲があること
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    フラグを立てることで、キュレーションプロセスを理解していることを証明したことになります。
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1400,9 +1422,15 @@ ja:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: 下位のフラグ付き分類群
+  #Noun, as in a journal post that has not been published
   draft: 下書き
+  #Noun, as in a journal post that has not been published
   draft_: 下書き
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: 下書き - %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: 下書きが保存されました
+  #Noun, as in journal posts that has not been published
   drafts: 下書き
   drag_and_drop_some_photos_or_sounds: 写真や音声をドラッグ&ドロップする
   #Button label for drawing a circular boundary for an observation search
@@ -1558,11 +1586,6 @@ ja:
   extra_properties: その他のプロパティー
   evidence_of_organism: 生物の証拠
   facebook: Facebook
-  facebook_account_information: あなたのFacebookアカウント情報
-  facebook_account_not_linked: "%{user}さんのFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
-  facebook_access_token_expired: "アクセストークンの有効期限が切れています。%{user}さんはFacebookアカウントを再リンクする必要があります。"
-  facebook_needs_the_owner_of_that_photo_to: Facebookは、その写真の所有者が%{site_name_short} への接続を再確認する必要があります。
-  facebook_options: Facebook設定
   failed_to_find_your_location: 現在地を特定できませんでした。
   failed_to_repair_photo: "写真の修復作業は失敗しました: %{errors}"
   failed_to_save_record: "記録の保存に失敗しました。しばらくしてからもう一度お試しください。"
@@ -1590,6 +1613,8 @@ ja:
   file_should_be_in_the_following_format: "ファイルは次のフォーマットでなければなりません: taxon name, description"
   fill_out_project_observation_fields: プロジェクトの観察フィールドを入力してください
   fill_out_your_profile: あなたのプロフィールを完成しましょう
+  #The name of a computer file
+  filename: ファイル名
   filter: 絞り込む
   filter_by_curator_identification: キュレーターの同定で絞り込む
   filter_by_place: 場所でフィルター
@@ -1712,7 +1737,7 @@ ja:
   frequency: 出現頻度
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
-  from_flickr_facebook_etc: Flickr、Facebookなどから
+  from_flickr_etc: Flickrなどから
   from_list: リストから
   from_photos: 写真から
   from_place: 場所から
@@ -1727,10 +1752,10 @@ ja:
   generate_your_stats: 統計を生成
   generating_mobile_archive: "モバイルアーカイブを作成中"
   Genus: 属
-  geoprivacy: 位置情報プライバシー
+  geoprivacy: 位置情報公開状況
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
   geoprivacy_is_obscured_desc: 観察者は、座標を曖昧にすることを選択しました。
-  geoprivacy_is_private: 位置情報プライバシーはプライベート
+  geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
   geoprivacy_is_private_desc: 観察者は座標を隠すことを選択しました。
   georeferenced: 位置データありますか？
   get_started: 始めよう
@@ -1810,6 +1835,11 @@ ja:
   home: ホーム
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "調整する時間:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    <a class="linky" href="/users/edit#content">アカウント設定</a> からライセンス設定を変更することができます。
   however_there_were_some_issues: "しかし、問題がありました：%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: 私にはわかりません。しかし%{taxon} だと思います。
   icon: アイコン
@@ -1820,14 +1850,16 @@ ja:
     tooltips:
       leading: |
         分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。
+      improving: |
+        この分類群として最初に追加された同定であり、コミュニティが同意したもの。このような同定はコミュニティ分類群の改善に貢献しています。
       maverick: |
         分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
   id_withdrawn: 同定の撤回
   ids_by_taxon: 分類群別ID
   identify: 同定する
-  identify_observations: "観察記録をID判定"
+  identify_observations: "観察記録を同定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
-  identify_title: "ID判定"
+  identify_title: "同定"
   identification: 同定
   identification_by_user: '%{user}さんの同定'
   #Notification when an identification has been deleted
@@ -1843,9 +1875,9 @@ ja:
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
-  identifiers: ID判定者
-  identotron: らくらくID判定
-  identotron_help: らくらくID判定ヘルプ
+  identifiers: 同定者
+  identotron: らくらく同定
+  identotron_help: らくらく同定ヘルプ
   ids: "ID"
   ids_made_for_others: 他のユーザーへ提案したID
   if_for_some_reason_a_user_doesnt_agree: |
@@ -1938,6 +1970,7 @@ ja:
   italic_text: 斜体
   item_flagged_notice_html: |
     これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、サイトの管理者のみに表示されます。間違いだと思われる場合は<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。<a href="%{manage_flags_path}">フラグの管理</a>
+  jobs: 採用情報
   join: 参加
   join_and_add_an_observation_to_project_html: '%{project} への参加と観察記録の追加'
   join_project: このプロジェクトに参加する
@@ -2021,18 +2054,23 @@ ja:
   lexicon: 言語
   lexicon_cannot_contain_words: "次の単語を含めることはできません: %{words}"
   lexicons:
-    scientific_names: 学名
     afrikaans: アフリカーンス語
+    alabama: アラバマ語
     albanian: アルバニア語
     arabic: アラビア語
     armenian: アルメニア語
+    asturian: アストゥリアス語
+    basque: バスク語
     belarusian: ベラルーシ語
     bengali: ベンガル語
+    bikol: ビコル語
     bulgarian: ブルガリア語
+    carolinian: カロリン語
     catalan: カタロニア語
     cebuano: セブアノ語
     chinese_simplified: 中国語 (簡体字)
     chinese_traditional: 中国語 (繁体字)
+    chuvash: チュヴァシュ語
     creole_french: クレオール語（フランス語）
     creole_portuguese: クレオール語（ポルトガル語）
     croatian: クロアチア語
@@ -2043,47 +2081,77 @@ ja:
     english: 英語
     estonian: エストニア語
     faroese: フェロー語
+    fijian: フィジー語
     finnish: フィンランド語
     french: フランス語
     galician: ガリシア語
     gela: ゲラ語
+    georgian: ジョージア(グルジア)語
     german: ドイツ語
     greek: ギリシャ語
     hawaiian: ハワイ語
     hebrew: ヘブライ語
+    herero: ヘレロ語
     hiligaynon: ヒリガイノン語
+    hill_mari: 山地マリ語
+    hodges_number: ホッジス番号
     hungarian: ハンガリー語
     icelandic: アイスランド語
     ilokano: イロカノ語
     indonesian: インドネシア語
+    irish: アイルランド語
     italian: イタリア語
     japanese: 日本語
     kannada: カンナダ語
     korean: 韓国語
     latvian: ラトビア語
     lithuanian: リトアニア語
+    lozi: ロズィ語
     luxembourgish: ルクセンブルク語
+    malagasy: マダガスカル語
     malay: マレー語
     malayalam: マラヤーラム語
     maltese: マルタ語
     maori: マオリ語
     marathi: マラーティー語
     misima_paneati: ミシマパネアティ語
+    navajo: ナバホ語
     norwegian: ノルウェー語
     occitan: オック語
     pangasinan: パンガシナン語
     portuguese: ポルトガル語
     romanian: ルーマニア語
     russian: ロシア語
+    scientific_names: 学名
     serbian: セルビア語
+    shona: ショナ語
+    sinhala: シンハラ語
+    slovak: スロバキア語
+    slovenian: スロベニア語
+    sotho: ソト語
+    sotho_northern: 北ソト語
     spanish: スペイン語
+    swahili: スワヒリ語
+    swati: スワティ語
     swedish: スウェーデン語
     tagalog: タガログ語
     tahitian: タヒチ語
+    tamil: タミル語
+    thai: タイ語
     tokelauan: トケラウ語
+    totonaco: トトナク語
+    tsonga: ツォンガ語
+    tswana: ツワナ語
     turkish: トルコ語
+    ukrainian: ウクライナ語
+    venda: ヴェンダ語
+    vietnamese: ベトナム語
     waray_waray: ワライ語
+    xhosa: コサ語
+    zulu: ズールー語
   less: より少なく
+  #Button show less text
+  less__context_text: 少なく表示
   licensed_site_photos: "ライセンス付の%{site_name}写真"
   license: ライセンス
   licensing: ライセンス
@@ -2091,15 +2159,15 @@ ja:
   life_list: "%{user}さんのライフリスト"
   linear_scale_label: 線形
   link: リンク
-  link_your_facebook_account: Facebookアカウントと連携させる
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: 認証コードへのリンク
   link_your_flickr_account: Flickrアカウントと連携させる
   link_your_google_account: Googleアカウントをリンクする
-  linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている"
-  linked_facebook_automaticaly: "また、Facebook経由で%{site_name} にログインすると、%{site_name} とFacebookのアカウントが自動的に再リンクされます。Facebookを使っている人は、Facebookの写真をインポートできるようにしたいと思うでしょう。"
-  linked_facebook_howto: "Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。"
-  linked_facebook_password: "我々は、あなたのFacebookのパスワードを聞くことは絶対にありません。（しかし、Facebookから聞かれることがあるかもしれませんので、URL先のアドレスが本当にFacebookかどうか必ず確認してください）。また、希望しない限り、あなたのFacebookの情報を変えることもありません。"
   linked_flickr: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されています"
   linked_flickr_automatically: "また、Flickrから%{site_name} にログインすると、%{site_name} とFlickrのアカウントが自動的に再リンクされます。Flickrを使っている人は、Flickrの写真をインポートできるようにしたいと思うでしょう。"
+  linkedin: LinkedIn
   list: リスト
   list_deleted: リスト削除されました
   list_saved: リスト保存されました
@@ -2133,6 +2201,7 @@ ja:
   locales_: 地域
   locales:
     ar: アラビア語
+    be: ベラルーシ語
     bg: ブルガリア語
     br: ブルトン語
     ca: カタルーニャ語
@@ -2145,6 +2214,7 @@ ja:
     eo: エスペラント語
     es: スペイン語
     es-AR: スペイン語 (アルゼンチン)
+    es-CO: スペイン語（コロンビア）
     es-MX: スペイン語（メキシコ）
     et: エストニア語
     eu: バスク語
@@ -2154,12 +2224,17 @@ ja:
     gl: ガリシア語
     he: ヘブライ語
     hr: クロアチア語
+    hu: ハンガリー語
     id: インドネシア語
     it: イタリア語
     ja: 日本語
+    ka: ジョージア(グルジア)語
+    kk: カザフ語
+    kn: カンナダ語
     ko: 韓国語
     lb: ルクセンブルク語
     lt: リトアニア語
+    lv: ラトビア語
     mi: マオリ語
     mk: マケドニア語
     mr: マラーティー語
@@ -2250,7 +2325,6 @@ ja:
       every_publicly_visible_observation: iNaturalistネットワーク上のすべての公開中観察記録
       featured_observations: 注目の観察記録
       gbif_network: GBIFネットワーク
-      gbif_network_description: GBIFが公開している博物館やその他の生物記録プロバイダーからの記録
       observations: 観察記録
       place_boundary: 場所範囲
       checklist_places: チェックリスト場所
@@ -2270,6 +2344,9 @@ ja:
   maximum_positional_accuracy_including_unknown: |
     位置精度のない観測を含む最大位置精度
   media: メディア
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: および
   media_type: メディアの種類
   medium: 中
   meet: 会う
@@ -2374,6 +2451,7 @@ ja:
   most_recent_observation_by_date_observed: 観測された日付による最新の検証可能な観測
   most_species: 最多の種
   most_observed_species: 最も観察された種
+  most_observed_introduced_species: 最も多く観察された外来種
   most_observed_threatened_species: 最も多く観察された絶滅危惧種
   move_input_children_to_output?: 下位分類群を置換先へ移行しますか？
   moving_child_out_of_old_parent_would_narrow_html: |
@@ -2398,6 +2476,9 @@ ja:
   must_have_photos: 観察記録に画像が含まれている必要があります
   must_have_sounds: 観察記録に音声が含まれていることが必要です
   must_have_x: "%{x}がなければなりません"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: ミュート
+  #Mute is a noun here
   mute_removed: ミュートが解除されました
   muted_users: ミュートしたユーザー
   n_ago: "%{n}前"
@@ -2432,6 +2513,8 @@ ja:
   needs_to_be_identified: 要同定
   network_affiliation_prompt_from_other_site_html: |
     所属を<strong>%{other_site_name}</strong> から<strong>%{site_name}</strong> に変更しますか?
+  #Column header in a table listing iNaturalist Network members
+  network_member: ネットワークメンバー
   new: 新規
   new_and_noteworthy: 注目すべき新機能
   new_announcement: 新着お知らせ
@@ -2476,10 +2559,14 @@ ja:
   newly_observed_species: 新たに観察された種
   newly_observed_species_in_year: "%{year} に新たに追加された種"
   next: 次
+  next_date_short: 次へ
   next_observation: 次の観察記録
   next_page: 次のページ
+  next_page_short: 次へ
   next_photo: 次の写真
+  next_post_short: 次へ
   next_tab: 次のタブ
+  next_taxon_short: 次へ
   'no': 'いいえ'
   no_assessments_have_been_added_to_this_project_yet: このプロジェクトにはまだ評価がありません。
   no_but_it_is_a_member_of_taxon: "同定に十分な情報が無いか、 %{taxon} の別の分類群です。"
@@ -2508,6 +2595,7 @@ ja:
   no_matching_places: 一致する場所がありません
   no_matching_projects: 一致するプロジェクトがありません
   no_matching_species: 一致する種がありません
+  no_matching_taxa: 一致する分類群がありません
   no_matching_users: 一致するユーザーありません
   no_members_yet: "メンバーはまだありません。"
   no_messages_yet: メッセージはまだありません。
@@ -2565,7 +2653,6 @@ ja:
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_found: 見つかりません
-  not_linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていません"
   not_linked_flickr: "現在あなたの%{site_name}アカウントはFlickrアカウントと連携されていません"
   not_on_this_list: このリストに含まれていません
   not_recorded: 記録されていません
@@ -2590,6 +2677,9 @@ ja:
   observation_: 観察記録
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
   observation_aggregation: 観察記録の集合体
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: 観察 - %{user}
   observation_brief_something_on_day: "%{day} の何か"
   observation_brief_something_on_day_at_time: "%{day} %{time} の何か"
   observation_brief_something_on_day_at_time_by_user: "%{user}さんによる %{day} %{time} の何か"
@@ -2672,10 +2762,6 @@ ja:
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
-  observer_prefers_no_project_addition: |
-    他の人によって観察記録をプロジェクトへ追加することを許可していません。
-  observer_prefers_addition_to_projects_joined: |
-    観察者が参加しているプロジェクトにのみ、他の人によって観察記録を追加されることを許可しています。
   observer_short: 観察者
   occurence_status_describes_how: '分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）'
   occurrence_status: 分布状況
@@ -2696,10 +2782,12 @@ ja:
   of_places: 場所
   of_this_taxon: この分類群の
   offensive_inappropriate: 不快／不適切
+  off_caps: "OFF"
   official_blog: 公式ブログ
   offline_access_enabled: オフラインアクセス対応
   old_observation_form: 旧観察記録記入フォーム（非推奨）
   ok: "OK"
+  on_caps: "ON"
   onboarding:
     observe_panel_title: 早速観察記録を投稿しよう！
     observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近隣で観察されている生き物を見てみましょう...
@@ -2756,7 +2844,7 @@ ja:
   options: オプション
   or: または
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: または
   or_choose_high_level_taxa: "... もしくは上級の分類群から選択"
   orange: 橙
@@ -2875,7 +2963,7 @@ ja:
   pin_verb: ピン
   pink: 桃
   pinned_locations_desc: |
-    後で使用できるように、座標、精度、地理的位置、および地域の注釈の設定を保存します。
+    後で使用できるように、座標、座標の精度、位置情報公開状況、および地域の名称の設定を保存する
   place: 場所
   placeholder: プレースホルダー
   place_autocomplete_placeholder: ザイオン国立公園、マイアミなど。
@@ -3286,7 +3374,10 @@ ja:
   post_from_your_journal_html: <a href="%{url}">あなたの日記</a>からの投稿
   post_published: 投稿されました！
   posted_by: 投稿者
-  posted_on: 投稿日
+  #Shows the date a journal post was published
+  posted_on_date_html: '投稿日: %{date}'
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: '投稿日: %{date}、投稿者 - %{user}'
   posts: 投稿
   potential_disagreement: 不一致の可能性
   powered_by: 搭載ソフト：
@@ -3296,11 +3387,15 @@ ja:
   preview_observations_with_these_observation_requirements: これらの観察条件で観察記録をプレビューする
   preview_of_synced_observation: "同期済の観察記録の<strong>プレビュー</strong>です。<a href=\\\"%{url}\\\">取り消しますか？</a>"
   previewing: "プレビュー中"
+  previous_date_short: 前へ
   prev: 前へ
   previous_observation: 前の観察記録
   previous_page: 前のページ
+  previous_page_short: 前へ
   previous_photo: 前の写真
+  previous_post_short: 前へ
   previous_tab: 前のタブ
+  previous_taxon_short: 前へ
   print_verb: 印刷
   privacy: プライバシー
   private: 非公開
@@ -3364,6 +3459,10 @@ ja:
   proposed_taxa_that_support_the_community_id: コミュニティ同定に対応した分類群の提案
   protozoans: 原生動物
   provider_authorizations: プロバイダの承認
+  provider_without_email_error_flickr: |
+    Flickerはこれに必要なアカウントのメールアドレスを提供していません。Flicker経由でない方法でアカウントを作成してください。
+  provider_without_email_error_google_oauth2: |
+    Googleはこれに必要なアカウントのメールアドレスを提供していません。Google経由でない方法でアカウントを作成してください。
   public_domain: パブリックドメイン
   publish: 公開
   purple: 紫
@@ -3373,6 +3472,7 @@ ja:
   queued: 待機中
   query: クエリ
   radius: 半径 (m)
+  radius_km: 半径 (km)
   radius_value: "半径 (m): %{radius}"
   random: ランダム
   range: 分布・生息区域
@@ -3381,6 +3481,8 @@ ja:
   ranks:
     stateofmatter: 物質の状態
     kingdom: 界
+    x_kingdoms:
+      other: 界
     subkingdom: 亜界
     phylum: 門
     x_phyla:
@@ -3388,10 +3490,14 @@ ja:
     subphylum: 亜門
     superclass: 上綱
     class: 綱
+    x_classes:
+      other: 綱
     subclass: 亜綱
     infraclass: 下綱
     superorder: 上目
     order: 目
+    x_orders:
+      other: 目
     suborder: 亜目
     infraorder: 下目
     subterclass: 準綱
@@ -3415,12 +3521,42 @@ ja:
     complex: 種群
     #Singular
     species: 種
+    x_species:
+      other: 種
     hybrid: 雑種
     #Singular
     subspecies: 亜種
     variety: 変種
     form: 品種
     leaves: 末端ノード
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: 物質の状態
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: 界
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: 亜界
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: 門
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: 亜門
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: 上綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: 綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: 亜綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: 下綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: 上目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: 目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: 亜目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: 下目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: 準綱
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: 小目
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
@@ -3451,6 +3587,10 @@ ja:
   ranks_lowercase_hybrid: 雑種
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: 亜種
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: 変種
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: 品種
   ranges: 範囲
   ray_finned_fishes: 条鰭綱
   re_order_photos: "写真の並べ替え &raquo;"
@@ -3475,6 +3615,7 @@ ja:
   recent_atom_observations_by: "%{login}の最新観察記録"
   recent_observations_by: "%{login}の新着観察記録"
   recently_active: 最近の活動
+  recently_added: 最近の追加順
   recently_created: 最近作成された
   recently_finished: 最近完成
   recently_observed: 最近の観察記録
@@ -3489,6 +3630,7 @@ ja:
   regenerate_stats: 統計を再生成
   register_for_this_event_at_x_html: "%{x}でこのイベントの参加登録を行う"
   reject?: 却下しますか?
+  relative_observations: 関連した観察記録
   relationships:
     match: 一致
     one_to_one: 1対1
@@ -3520,6 +3662,8 @@ ja:
   remove_place: 場所を取り除く
   remove_range: 範囲の削除
   remove_relationship: 関係性の削除
+  remove_relationship_caps: フォローを解除
+  remove_relationship_question: フォローを解除しますか？
   remove_section: セクションを削除
   remove_selected: 選択された項目を取り除く
   remove_tags: タブを削除
@@ -3546,6 +3690,10 @@ ja:
   research_grade_tooltip_html: '"研究用"グレードの観察記録は、メディア、位置、日付、そして正確な同定（通常は種レベル）についてコミュニティの合意が得られています。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
   research_grade_observations_have: '"研究用グレード"の観察記録には、日付、写真、座標、コミュニティが支持する同定が含まれています。クリックすると、データ品質評価を見ることができます。'
   research_grade_qualification: 研究用グレードの資格
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: 再送信してサインアウト
+  resend_confirmation_email: 確認メールを再送信
   reset_filters_short: リセット
   reset_brightness: 明るさをリセット
   reset_search_filters: 検索フィルターを解除
@@ -3574,6 +3722,7 @@ ja:
     must_be_observed_in_place: 次の場所で観察されなければなりません
     must_be_in: 分類群に含まれなければなりません
     must_be_coordinates_shareable_by_project_curators: 観察者は、プロジェクトのキュレーターが座標を表示できるようにしなければなりません。
+    must_be_verifiable: 研究用グレードか要同定グレードでなければなりません
     must_be_wild: 野生である必要があります
   running_total: 現在の総計
   said: が発言しました
@@ -3680,6 +3829,7 @@ ja:
   show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
   show_hidden_content: 非表示コンテンツを表示
   show_history_by_this_user: このユーザーの履歴を表示
+  show_history_for_this_record: この記録の履歴を表示
   show_keyboard_shortcuts: キーボードショートカットを表示
   show_less: 一部のみ表示
   show_more: もっと表示
@@ -3701,6 +3851,8 @@ ja:
   showing_x_of_y: '%{y} 中の%{x} を表示中'
   showing_x_of_y_listings: "%{x} /%{y} の一覧を表示しています"
   sign_in: ログイン
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Appleでサインイン
   sign_in_with_provider: "%{provider}経由でログイン"
   sign_in_with_google: Googleでサインイン
   sign_out: ログアウト
@@ -3724,6 +3876,12 @@ ja:
   site_staff: "%{site_name} スタッフ"
   site_stats: サイト統計
   site_taxon_page: "%{site_name}分類群のページ"
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    自動で不明瞭または非公開に設定されている位置情報（分類群に設定されている位置情報公開状況による）
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalistは一部の種を騒動、採集、密猟から保護するために自動的に座標を隠しています。もし、種の保護のために観測座標が自動的に隠されただけであれば、iNaturalistはそれぞれの国からのすべての観測座標の真の座標をネットワークメンバーと共有します。
+  sites_affiliation_more_user_hidden_coordinates: |
+    投稿者によって不明瞭または非公開にされた位置情報
   some_agree: 一部が賛成
   some_observations_failed_to_be_added: いくつかの観察記録がプロジェクトへの追加に失敗しました
   some_observations_failed_to_save: 保存に失敗した観察記録があります
@@ -3825,6 +3983,10 @@ ja:
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年の統計は作成されていません。
   status: 状況
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>上位の分類群から適用された位置情報公開状況:</strong> %{taxon}
   status_globally: '世界中で「%{status}」'
   status_in_place: '%{place} で「%{status}」'
   stay_and_try_again: 滞在して、もう一度試してみてください。
@@ -3887,7 +4049,6 @@ ja:
   tagging: 'タグを付けています...'
   tags: タグ
   tags_are_a_way: 'タグは、観察記録を整理する方法です。たとえば、すべてのタイドプールでの観察記録に「タイドプール」というタグを付けて、後で見つけやすくすることができます。'
-  take_me_facebook: Facebookへ移動
   take_me_flickr!: Flickrへ移動
   target_list_alert: ターゲットリストに含まれる全ての種を観察しようとしたのは確かですか？ターゲットリストでカバーされている種のうち、観察しなかったものは欠落と解釈されることを覚えておいてください。
   task_deleted: タスクが削除されました。
@@ -3902,7 +4063,7 @@ ja:
   taxa_to_include: 対象分類群
   taxon: 分類群
   taxon_autocomplete_placeholder: 鳥綱、オオカバマダラなど。
-  taxon_geoprivacy: 分類群の場所公開状況
+  taxon_geoprivacy: 分類群の位置情報公開状況
   taxon_is_a_rank: "%{taxon} は %{rank} です"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     other: "%{taxon}は観察%{count}件で%{iconic_taxon}の%{rank}位"
@@ -3968,6 +4129,7 @@ ja:
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: これはIUCNレッドリストからの分布マップではありません（分類群はIUCNに登録されていません）
   taxon_range_guidelines_each_taxon_can_have: 各分類群は1つの分布域のみを持つことができます。分布域はその分類群の世界的な分布を表す必要があります。
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
+  taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
   taxon_ranks: 分類群のランク
   taxon_removed_from_list: リストから分類群が削除されました
@@ -4135,15 +4297,25 @@ ja:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_phoenix: アリゾナ標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: チリ大陸時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_sao_paulo: ブラジリア標準時
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: 太平洋時間 (メキシコ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_baghdad: アラビア標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: インドシナ時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_hong_kong: 香港標準時
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: インドネシア西部時間
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_jerusalem: イスラエル標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_kolkata: インド標準時
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: クラスノヤルスク時間
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_shanghai: 中国標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4152,6 +4324,8 @@ ja:
   time_zone_asia_taipei: 台湾標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_tokyo: 日本標準時
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: エカテリンブルク時間
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_adelaide: アデレード標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4225,6 +4399,8 @@ ja:
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
   top_observer_caps: トップ観察者
   top_observers: トップ観察者
+  tos_privacy_guidelines_label: |
+    <a href="/terms" target="_blank">利用規約</a>、<a href="/privacy" target="_blank">プライバシーポリシー</a>、と<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>に同意します。
   total: 合計
   totals: 合計
   total_members: メンバー人数
@@ -4311,6 +4487,7 @@ ja:
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
+  upload_photo: 写真をアップロード
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: アップロードしたユーザー：
   uploader:
@@ -4321,6 +4498,7 @@ ja:
     tooltips:
       add: 観察記録を追加
       combine: 選択された観察記録を統合
+      duplicate: 選択された観察記録の複製を作成（一枚の画像に複数種が含まれている場合などに使用されます）
       photo_failed: 写真のアップロードはできませんでした
       remove: 選択された観察記録を削除
       remove_observation: 観察記録を取り除く
@@ -4339,6 +4517,8 @@ ja:
   user1_and_user2_faved_this_observation: "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました"
   user1_user2_and_x_others_faved_this_observation: "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました"
   user_added_a_comment_html: "%{user} さんがコメントを追加しました"
+  user_added_a_fave_html: "%{user}さんがお気に入りを追加しました"
+  user_added_a_flag_html: "%{user}さんがフラグを追加しました"
   user_added_a_x: "%{user}さんが%{x}を追加しました"
   user_added_a_x_to_noun_by_html: "%{user}さんは%{by}の%{noun}に%{x}を追加しました"
   user_added_a_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
@@ -4351,8 +4531,7 @@ ja:
   user_commented: "%{user} さんがコメントしました"
   user_disagrees_this_is_taxon: "%{user} さんは同定に必要な情報が無いか、 %{taxon} ではないと考えています"
   user_disagrees_with_previous_finer_identifications: "%{user}は以前のより細かい分類レベルの同定に不賛成しました。"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}さんが%{owner}の%{noun}をお気に入りに追加しました"
+  user_faved_an_observation_by_you: "%{user}さんがあなたの観察記録をお気に入りに追加しました。"
   user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
   user_flagged_as_a_non_spammer_html: "%{user} を非スパマーとしてマークしました"
   user_flagged_as_a_spammer_html: "%{user} をスパマーとしてマークしました"
@@ -4484,10 +4663,8 @@ ja:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 指名手配中
   was_it_captive_cultivated?: "飼育/栽培？"
-  we_also_support: |
-    画像ホスティングサービスの<a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google フォト</a>及び
-    <a href="http://facebook.com">Facebook</a>にも対応しています。
+  we_also_support2: |
+    また、<a href="http://flickr.com">Flickr</a>や<a href="http://photos.google.com">Googleフォト</a>からの写真のインポートにも対応しています。
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_couldnt_find_a_user_with_that_activation_code: "そのアクティベーションコードのユーザーが見つかりませんでした。既にアカウントをアクティベートしている可能性があります。サインインしてみてください。"
@@ -4538,6 +4715,8 @@ ja:
   without_annotation: 注釈なし
   widget: ウィジェット
   widget_code: ウィジェットコード
+  wikipedia_attribution_cc_by_sa_3: |
+    ソース: ウィキペディア, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
@@ -4548,6 +4727,7 @@ ja:
   withdrawing: 撤回中...
   wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
   would_you_like_to: よかったら
+  would_you_prefer_to_view_common_names_used_in_place_html: <strong>%{place}</strong>で使われる習慣的な名称で表示しますか?
   x_blog: "%{x}のブログ"
   x_deleted: "%{x}は削除されました"
   x_does_not_exist: "%{x}は存在しません"
@@ -4741,6 +4921,7 @@ ja:
       all_observations: すべての観察記録
       filter_by: 絞込み条件：
       dropdowns:
+        sort: 並べ替え
         most_observed: 最も観察数が多い
         least_observed: 最も観察数が少ない
         date_added_newest: 登録日、最新順
@@ -4758,6 +4939,13 @@ ja:
           プロジェクトのキュレーターが手動で追加した分類群と、研究用観察
           からプロジェクトに提示された分類群は、プロジェクト一覧に追加
           されます。
+    messages:
+      from: 差出人
+      to: 宛先
+      subject_body: 件名 / 本文
+      index:
+        show_messages_from_user: '%{user} からのメッセージを表示'
+        show_messages_to_user: '%{user}に宛てたメッセージを表示'
     observations:
       community_id:
         ancestor_disagreements: 祖先の不一致数
@@ -4793,6 +4981,7 @@ ja:
         longitude: 公開経度
         private_latitude: "非公開緯度（観察記録が非公開または不明瞭な場合）"
         private_longitude: "非公開緯度（観察記録が非公開または不明瞭な場合）"
+        taxon_geoprivacy: "現在設定されている複数の位置情報公開状況の中から、もっとも保守的な位置情報公開状況が適用されました。"
         user_id: 観察者の一意の識子
         user_login: 観察者のユーザネーム
         created_at: 観察記録の作成日時
@@ -4825,8 +5014,8 @@ ja:
           <p class="ui">
           <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
-        data_quality_assessment_desc_html: |
-          データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。
+        data_quality_assessment_desc3_html: |
+          品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
     emailer:
@@ -4943,6 +5132,8 @@ ja:
           まずはプロジェクトを、コレクションプロジェクトかアンブレラプロジェクトのどちらのタイプにするか選択してください。以下の機能は２つのタイプで共通です:
         welcome_to_projects: プロジェクトへようこそ！
         errors:
+          name_is_required: プロジェクト名が必要です
+          name_less_than_100_characters: プロジェクト名は100文字未満にする必要があります
           name_already_taken: このプロジェクト名は既に使用されています
           summary_is_required: プロジェクトの概要が必要です。
       project_user_curator_coordinate_access_labels:
@@ -4975,7 +5166,10 @@ ja:
     search:
       index:
         no_taxa_options: "いくつかの選択肢があります:"
+        no_taxa_forum: フォーラムに連絡
     shared:
+      blocked:
+        youve_been_blocked: ブロックされました
       spam:
         message_for_owner_and_curators_html: |
           これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、キュレーター管理者のみに表示されます。間違いだと思われる場合は<a href="mailto:%{email}">ご連絡</a>ください。
@@ -5018,15 +5212,22 @@ ja:
         compare_site_desc: |
           今年は例年と比べてどうでしたか？緑のバーは今年、白のバーは昨年を示し、グレーの背景の部分は最も低い年と最も高い年、そして全年の平均を示しています。
         compared_to_previous_years: 前年との比較
+        inaturalist_network: iNaturalistネットワーク
         growth_title: 成長
         new_species_desc_html: |
           今年初めて追加された生物種。月をクリックすると、その月に追加された新記録種のいくつかを見ることができます。また、全体の種の累積を見たり、スライダーを過去に動かして他の新しく観察された種を見ることもできます。このグラフは、検証可能な観測による種を、%{site_name} にアップロードされた月（観測された月ではない）ごとに表示しています。これは上位または下位の分類を含まないので、哺乳類として識別された観察はカウントされず、<i>Canis lupus</i> ssp. <i>arctos</i> の観察は <i>Canis lupus</i> としてカウントされるだけです。
+        new_species_per_year_by_date_added: 追加した日付順
+        new_species_per_year_by_date_observed: 観察した日付順
+        observations_per_year_by_date_added: 追加した日付順
+        observations_per_year_by_date_observed: 観察した日付順
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: 連続観測
         observation_streaks_color_desc: |
           色は対数スケールで日数を表しています。
         observation_streaks_desc2: |
           連続観測とは、誰かが毎日外に出て、検証可能な新しい観測を記録した、少なくとも5日間の期間のことを言います。ここでは、今年始まった、あるいはこの統計が作成された時点で進行中である最長連続観測を表示しています（個々のユーザーについては、今年終了した連続観測も含めています）。
+        species_per_year_by_date_added: 追加した日付順
+        species_per_year_by_date_observed: 観察した日付順
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
         sunburst_desc_html: |
           観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁にある種で終わる。各円弧の大きさはその分類群の観測数に比例し、色はいつもの「象徴的な」分類群の色（植物は緑、昆虫はオレンジ、その他のほとんどの動物は青、など）におおよそ対応しているので、緑が多いということは、多くの植物を観測したことを意味します。<strong>円弧をクリックすると、その分類群が中心に配置され</strong>、その周囲に子分類群が配置されます。また、<strong>中心をクリックすると、階層が後ろに移動します</strong>。
@@ -5047,6 +5248,8 @@ ja:
         frequency:
           research: 研究用
           verifiable: 研究用+要同定
+        max_photos_desc: |
+          分類群は最大%{max}枚の写真のみ追加できます。他の写真を追加するには、既存の写真を削除してください。
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -5092,8 +5295,6 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
-        monthly_supporter_desc_html: |
-          iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。
@@ -5141,13 +5342,13 @@ ja:
         this_user_was_banned: このユーザーは利用停止されました
         favorites_list_prompt_html: |
           あなたのお気に入りの分類群を紹介してみませんか？「%{link_start_tag}お気に入り%{link_end_tag}」というタイトルのリストを作成してみよう。最近追加されたものがこのスペースに表示されます。
+    user_parents:
+      new:
+        child_name_private: お子様の名前 (プライベート)
     welcome:
       index:
         connect_with_nature: 自然とふれ合おう
         explore_and_share: 自然界からの観察記録を探索し、共有しましょう
-        observations_to_date: '件の観察記録（これまで）'
-        species_observed: '観察された種'
-        people_signed_up: '人が参加しています'
         how_it_works: ご利用方法
         record_your_observations: 観察した生き物を記録しよう
         share_with_fellow_naturalists: ナチュラリスト仲間と情報共有しよう
@@ -5215,15 +5416,17 @@ ja:
       6: 金
       7: 土
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y年%m月%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%Y年%B%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short_with_year: '%Y.%b.%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y年%B'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%Y年%B%d日'
     month_names:
       - 
@@ -5262,8 +5465,12 @@ ja:
         other: '%{count}ヶ月'
       x_seconds:
         other: '%{count}秒'
+    countdown_x_days:
+      other: 日
     countdown_x_hours:
       other: 時間
+    countdown_x_minutes:
+      other: 分
     countdown_x_seconds:
       other: 秒
     prompts:
@@ -5273,33 +5480,9 @@ ja:
       month: か月
       second: 秒
       year: 年
-  errors:
-    messages:
-      blank: は空白にすることができません。
-      even: 偶数でなければなりません
-      exclusion: は保留中
-      greater_than: '%{count}より大きくなければなりません'
-      greater_than_or_equal_to: '%{count}以上でなければなりません'
-      inclusion: はリストに含まれていません
-      invalid: は無効
-      less_than: '%{count}より小さくなければなりません'
-      less_than_or_equal_to: '%{count}以下でなければなりません'
-      not_a_number: は数字ではありません
-      not_an_integer: 整数でなければならない
-      odd: 奇数でなければならない
-      record_invalid: '認証は失敗しました：%{errors}'
-      taken: 既に取得されています
-      too_long:
-        other: は長すぎます（最大は%{count}文字）
-      too_short:
-        other: は短すぎます（最小は%{count}文字）
-      wrong_length:
-        other: iの長さが間違いです (数字%{count}文字が正解)
-    template:
-      body: '次のフィールドに問題がありました：'
-      header:
-        other: '%{model}の保存を許可しなかったエラー%{count}件'
   helpers:
+    defaults:
+      title: "これはタイトルです"
     select:
       prompt: 選択してください
     submit:
@@ -5307,6 +5490,19 @@ ja:
       submit: '%{model} を保存'
       update: '%{model} を更新'
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: ','
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:
@@ -5322,50 +5518,34 @@ ja:
         units:
           byte:
             other: バイト
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
+      last_word_connector: '、および '
+      two_words_connector: ' 、 '
       words_connector: '、'
   time:
     am: 午前
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      default: '%Y.%b.%d %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y年%B%d日"
     pm: 午後
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        even: 偶数でなければなりません
-        exclusion: は保留中
-        greater_than: '%{count}より大きくなければなりません'
-        greater_than_or_equal_to: '%{count}以上でなければなりません'
-        inclusion: はリストに含まれていません
-        invalid: は無効
-        less_than: '%{count}より小さくなければなりません'
-        less_than_or_equal_to: '%{count}以下でなければなりません'
-        not_a_number: は数字ではありません
-        not_an_integer: 整数でなければならない
-        odd: 奇数でなければならない
-        record_invalid: 認証は失敗しました：%{errors}
-        taken: 既に取得されています
-        too_long:
-          other: は長すぎます（最大は%{count}文字）
-        too_short:
-          other: は短すぎます（最小は%{count}文字）
-      template:
-        body: 以下のフィールドに問題があります：
-        header:
-          other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
       #on the web site, mostly on the dashboard
       Announcement: お知らせ
     attributes:
+      announcement:
+        created_at: '作成:'
+        updated_at: 'アップデート:'
       assessment:
         description: 説明
       assessment_section:
@@ -5375,7 +5555,7 @@ ja:
         status: 状態
         description: 説明
         place_id: 場所
-        geoprivacy: 位置情報プライバシー
+        geoprivacy: 位置情報公開状況
         iucn: IUCN相当
       flag:
         #The reason the item was flagged
@@ -5451,6 +5631,7 @@ ja:
         #taxon
         show_for_descendent_taxa: 子孫分類群を表示
       user:
+        login: ユーザ名
         locale: 地域
         time_zone: タイムゾーン
         search_place_id: 場所を検索
@@ -5458,25 +5639,22 @@ ja:
         preferred_observation_fields_by: 観測フィールドを許可する人
     errors:
       messages:
-        equal_to: '%{count}に等しくしてください。'
         even: 偶数でなければなりません
-        greater_than: は%{count}より大きい値にしてください
-        greater_than_or_equal_to: '%{count}以上の値にしてください'
         inclusion: はリストに含まれていません
         invalid: は無効です
-        less_than: '%{count}未満でなければなりません'
-        less_than_or_equal_to: '%{count}以下でなければなりません'
         new_project_owner_must_be_a_manager: 新しいプロジェクトのオーナーは管理者である必要があります
         not_a_number: は数字ではありません
         not_an_integer: 整数で入力してください
         odd: 奇数にしてください
         only_project_owner_can_change_project_owner: プロジェクトのオーナーだけがプロジェクトのオーナーを変更できます
-        record_invalid: 認証は失敗しました：%{errors}
-        requires_privilege_speech: "3つの確認可能な観察記録、もしくは3つの同定\nが必要です"
+        record_invalid: '認証は失敗しました：%{errors}'
+        requires_privilege_speech: |
+          3つの確認可能な観察記録、もしくは3つの同定
+          が必要です
       template:
-        body: 次のフィールドに問題がありました：
+        body: '次のフィールドに問題がありました：'
         header:
-          other: この %{model} の保存を禁止する %{count} 件のエラーが発生しました。
+          other: 'この %{model} の保存を禁止する %{count} 件のエラーが発生しました。'
       models:
         application:
           attributes:
@@ -5530,9 +5708,14 @@ ja:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 この言語の名前は種の学名と一致してはいけません
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: すでにそのユーザをブロックしています
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"
     next_label: "次へ &#8594;"
+    page_gap: "&hellip;"
   zoom_in: 拡大
   zoom_out: 縮小

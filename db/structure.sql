@@ -1450,7 +1450,9 @@ CREATE TABLE public.flags (
     resolved_at timestamp without time zone,
     flaggable_user_id integer,
     flaggable_content text,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    flaggable_parent_type character varying,
+    flaggable_parent_id bigint
 );
 
 
@@ -4597,6 +4599,41 @@ ALTER SEQUENCE public.taxon_links_id_seq OWNED BY public.taxon_links.id;
 
 
 --
+-- Name: taxon_name_priorities; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxon_name_priorities (
+    id integer NOT NULL,
+    "position" smallint,
+    user_id integer NOT NULL,
+    place_id integer,
+    lexicon character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: taxon_name_priorities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxon_name_priorities_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_name_priorities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxon_name_priorities_id_seq OWNED BY public.taxon_name_priorities.id;
+
+
+--
 -- Name: taxon_names; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6093,6 +6130,13 @@ ALTER TABLE ONLY public.taxon_links ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: taxon_name_priorities id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_name_priorities ALTER COLUMN id SET DEFAULT nextval('public.taxon_name_priorities_id_seq'::regclass);
+
+
+--
 -- Name: taxon_names id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7106,6 +7150,14 @@ ALTER TABLE ONLY public.taxon_links
 
 
 --
+-- Name: taxon_name_priorities taxon_name_priorities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_name_priorities
+    ADD CONSTRAINT taxon_name_priorities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: taxon_names taxon_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7710,6 +7762,13 @@ CREATE INDEX index_file_prefixes_on_prefix ON public.file_prefixes USING btree (
 --
 
 CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON public.flags USING btree (flaggable_id, flaggable_type);
+
+
+--
+-- Name: index_flags_on_flaggable_parent_type_and_flaggable_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_flags_on_flaggable_parent_type_and_flaggable_parent_id ON public.flags USING btree (flaggable_parent_type, flaggable_parent_id);
 
 
 --
@@ -9337,6 +9396,13 @@ CREATE INDEX index_taxon_links_on_user_id ON public.taxon_links USING btree (use
 
 
 --
+-- Name: index_taxon_name_priorities_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_name_priorities_on_user_id ON public.taxon_name_priorities USING btree (user_id);
+
+
+--
 -- Name: index_taxon_names_on_lexicon; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10230,6 +10296,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211001151300'),
 ('20211109220615'),
 ('20211216171216'),
+('20220105014844'),
 ('20220127195113'),
 ('20220209191328'),
 ('20220217224804'),
@@ -10241,7 +10308,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220317205240'),
 ('20220317210522'),
 ('20220407173712'),
+('20221129175508'),
 ('20221214192739'),
-('20221219015021');
+('20221219015021'),
+('20230224230316');
 
 

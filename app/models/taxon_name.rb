@@ -28,7 +28,7 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
-  SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/.freeze
+  SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     if: proc {| tn |
@@ -67,6 +67,7 @@ class TaxonName < ApplicationRecord
     FINNISH: "Finnish",
     FRENCH: "French",
     GELA: "Gela",
+    GEORGIAN: "Georgian",
     GERMAN: "German",
     GREEK: "Greek",
     HAWAIIAN: "Hawaiian",
@@ -78,6 +79,7 @@ class TaxonName < ApplicationRecord
     ITALIAN: "Italian",
     JAPANESE: "Japanese",
     KANNADA: "Kannada",
+    KAZAKH: "Kazakh",
     KOREAN: "Korean",
     LATVIAN: "Latvian",
     LITHUANIAN: "Lithuanian",
@@ -96,7 +98,7 @@ class TaxonName < ApplicationRecord
     RUSSIAN: "Russian",
     SANTALI: "Santali",
     SERBIAN: "Serbian",
-    SETSWANA: "Setswana",
+    TSWANA: "Tswana",
     SINHALA: "Sinhala",
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
@@ -154,6 +156,7 @@ class TaxonName < ApplicationRecord
     "italian" => "it",
     "japanese" => "ja",
     "kannada" => "kn",
+    "kazakh" => "kk",
     "korean" => "ko",
     "latvian" => "lv",
     "lithuanian" => "lt",
@@ -256,6 +259,7 @@ class TaxonName < ApplicationRecord
     json = {
       name: name.blank? ? nil : name,
       locale: locale_for_lexicon,
+      lexicon: parameterized_lexicon,
       position: position,
       place_taxon_names: place_taxon_names.map( &:as_indexed_json )
     }
@@ -359,6 +363,7 @@ class TaxonName < ApplicationRecord
   end
 
   def locale_for_lexicon
+    # Note that `und` is an official ISO 639 code for "Undetermined". See https://en.wikipedia.org/wiki/ISO_639:u
     LOCALES[localizable_lexicon] || "und"
   end
 
@@ -488,6 +493,14 @@ class TaxonName < ApplicationRecord
     { locale: match_loc, lexicons: match_lexes }
   end
 
+  def self.all_lexicons
+    Rails.cache.fetch( "TaxonName::all_lexicons", expires_in: 1.hour ) do
+      Hash[TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do |l|
+        [l.parameterize, l]
+      end.sort].filter{ |k,v| !k.blank? }
+    end
+  end
+
   private
 
   def english_lexicon_if_exists
@@ -507,8 +520,7 @@ class TaxonName < ApplicationRecord
 
     errors.add( :lexicon, :should_match_english_translation,
       suggested: I18n.with_locale( :en ) { I18n.t( "lexicons.#{match[:lexicons].key( lexicon.downcase.strip )}" ) },
-      suggested_locale: I18n.t( "locales.#{match[:locale]}" )
-    )
+      suggested_locale: I18n.t( "locales.#{match[:locale]}" ) )
   end
 
   def parameterize_lexicon

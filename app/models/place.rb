@@ -31,6 +31,7 @@ class Place < ApplicationRecord
   # do not destroy observations_places. That will happen
   # in update_observations_places, from a callback in place_geometry
   has_many :observations_places
+  has_many :taxon_name_priorities, dependent: :nullify
   has_one :place_geometry, dependent: :destroy, inverse_of: :place
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
@@ -871,9 +872,16 @@ class Place < ApplicationRecord
   end
 
   def kml_url
-    FakeView.place_geometry_kml_url(:place => self)
+    geometry ||= place_geometry_without_geom if association( :place_geometry_without_geom ).loaded?
+    geometry ||= place_geometry if association( :place_geometry ).loaded?
+    geometry ||= PlaceGeometry.without_geom.where( place_id: id ).first
+    if geometry.blank?
+      "".html_safe
+    else
+      "#{UrlHelper.place_geometry_url( self, format: 'kml' )}?#{geometry.updated_at.to_i}".html_safe
+    end
   end
-  
+
   def self.guide_cache_key(id)
     "place_guide_#{id}"
   end
