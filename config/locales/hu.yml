@@ -5241,11 +5241,7 @@ hu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y %B'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%Y %B %d'
     month_names:
       - 
       - Január
@@ -5340,14 +5336,11 @@ hu:
       words_connector: ', '
   time:
     am: de.
-    formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%Y %B %d"
     pm: du.
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
-      #on the web site, mostly on the dashboard
+      #on the platform
       Announcement: Közlemény
       AssessmentSection: Értékelés szakasz
       Atlas: Térkép
@@ -5370,6 +5363,8 @@ hu:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Webhely-azonosító
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
       assessment:
         description: Leírás
