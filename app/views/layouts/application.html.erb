@@ -75,7 +75,7 @@
     <% if !@headless && @site && !@site.ios_app_id -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
-    <% if @site && @site.preferred_fathom_analytics_tracker_id && !( current_user && current_user.prefers_no_tracking? ) %>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
       <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
     <% end %>
     <%= yield :extrahead %>

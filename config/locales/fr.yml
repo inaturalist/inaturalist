@@ -1279,6 +1279,12 @@ fr:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     le responsable n'a pas lui-même, à plusieurs reprises, un comportement approprié.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60 jours et vous devez avoir ajouté au moins 5 signalements ainsi que 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres. (Vous en avez ajouté %{num_idents}.) Quand vous aurez satisfait à ces exigences, revenez ici et vous pourrez envoyer la demande.
+  curator_application_inelligible_error2: |
+    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60 jours et vous devez avoir ajouté au moins 5 signalements ainsi que 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Demande envoyée
   #Header
@@ -1340,6 +1346,8 @@ fr:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Vous ajoutez des identifications et/ou des observations depuis au moins quelques mois
     et vous avez l'intention de continuer.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Vous avez démontré que vous comprenez le processus d'organisation en ajoutant quelques signalements.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |

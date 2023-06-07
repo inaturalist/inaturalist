@@ -909,6 +909,8 @@ ja:
   confirm_new_password: パスワード再入力
   confirm_now: 今すぐ確認
   confirm_your_info: 登録情報をご確認ください
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: 確認日:%{date}
   confirming_ids: IDの確認
   confirming_ids_description: これをオフにすると、自分と一致するIDについては通知されなくなります。
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1125,6 +1127,12 @@ ja:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     不適切な行動をとること
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    サイトキュレーターに応募するには、60日以上アカウントを保持していること、5つ以上のフラグを追加していること、自分を含む誰かの観察記録に100個の改善同定を追加していること（あなたは %{num_idents} 個を追加しました）などが必要です。これらの条件を満たした後、ここに戻ると応募できるようになります。
+  curator_application_inelligible_error2: |
+    サイトキュレーターに応募するには、60日以上アカウントを保持していて、5つ以上のフラグを追加し、自身のものを含む観察記録に100の改善同定を追加している必要があります。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: キュレーター申請が提出されました！
   #Header
@@ -1177,6 +1185,8 @@ ja:
     あなたは以下の場合である場合にかぎりキュレーター申請をすべきです：
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     あなたが数か月の間、同定/観察記録または両方を追加していて、今後も続ける意欲があること
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    フラグを立てることで、キュレーションプロセスを理解していることを証明したことになります。
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1727,6 +1737,7 @@ ja:
   frequency: 出現頻度
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
+  from_flickr_etc: Flickrなどから
   from_list: リストから
   from_photos: 写真から
   from_place: 場所から
@@ -3867,6 +3878,8 @@ ja:
   site_taxon_page: "%{site_name}分類群のページ"
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動で不明瞭または非公開に設定されている位置情報（分類群に設定されている位置情報公開状況による）
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalistは一部の種を騒動、採集、密猟から保護するために自動的に座標を隠しています。もし、種の保護のために観測座標が自動的に隠されただけであれば、iNaturalistはそれぞれの国からのすべての観測座標の真の座標をネットワークメンバーと共有します。
   sites_affiliation_more_user_hidden_coordinates: |
     投稿者によって不明瞭または非公開にされた位置情報
   some_agree: 一部が賛成
@@ -4650,6 +4663,8 @@ ja:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 指名手配中
   was_it_captive_cultivated?: "飼育/栽培？"
+  we_also_support2: |
+    また、<a href="http://flickr.com">Flickr</a>や<a href="http://photos.google.com">Googleフォト</a>からの写真のインポートにも対応しています。
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_couldnt_find_a_user_with_that_activation_code: "そのアクティベーションコードのユーザーが見つかりませんでした。既にアカウントをアクティベートしている可能性があります。サインインしてみてください。"
@@ -4999,6 +5014,8 @@ ja:
           <p class="ui">
           <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
+        data_quality_assessment_desc3_html: |
+          品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
     emailer:

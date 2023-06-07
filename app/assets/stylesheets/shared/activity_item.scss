@@ -41,7 +41,7 @@ body > [role="dialog"] .ActivityItem {
   }
   span.taxon {
     & > a.display-name,
-    & > .display-name {
+    & > .display-name, & > .display-names .display-name {
       color: #000;
     }
     a.secondary-name,
@@ -204,7 +204,7 @@ body > [role="dialog"] .ActivityItem {
         display: table;
       }
       & > a.display-name,
-      & > .display-name {
+      & > .display-name, & > .display-names .display-name {
         font-size: 20px;
         line-height: 25px;
       }
