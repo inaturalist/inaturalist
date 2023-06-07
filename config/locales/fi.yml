@@ -6295,17 +6295,9 @@ fi:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%-d. %Bta %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%-d. %bkuuta'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%-d. %bkuuta %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%-d. %Bta %Y'
     month_names:
       - 
       - tammikuu
@@ -6438,24 +6430,16 @@ fi:
     am: ap.
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%-d. %Bta %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%-d. %Bta %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%-d. %bkuuta %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%-d. %Bta %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: ip.
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
-      #on the web site, mostly on the dashboard
+      #on the platform
       Announcement: Ilmoitus
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
