@@ -1220,6 +1220,12 @@ id:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Gagal dalam mendemonstrasikan tingkah laku yang pantas.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Untuk melamar sebagai kurator situs, kamu harus memiliki akun selama minimal 60 hari, kamu harus menambahkan setidaknya 5 tanda, dan kamu harus menambahkan setidaknya 100 identifikasi pengembang untuk pengamatan siapa saja, termasuk pengamatanmu (kamu telah menambahkan %{num_idents}). Saat kamu sudah memenuhi persyaratan tersebut, kembalilah ke sini; barulah kamu bisa mengirimkan lamaranmu.
+  curator_application_inelligible_error2: |
+    Untuk melamar sebagai kurator situs, kamu harus memiliki akun selama minimal 60 hari, menambahkan setidaknya 5 tanda, dan menambahkan setidaknya 100 identifikasi pengembang untuk pengamatan siapa saja, termasuk pengamatanmu sendiri.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Permohonan menjadi kurator telah dikirim
   #Header
@@ -1280,6 +1286,8 @@ id:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Anda telah menambahkan identifikasi dan/atau pengamatan selama beberapa bulan
     dan berniat untuk melanjutkan.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Kamu sudah mendemonstrasikan bahwa kamu memahami proses kurasi dengan menambahkan beberapa tanda.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |

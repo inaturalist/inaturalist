@@ -1415,6 +1415,18 @@ cs:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Není schopen prokázat vlastní vhodné chování.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Aby jste mohli být kurátorem, musíte mít účet po dobu 60
+    dní nebo déle, musíte přidat alespoň 5 příznaků, a musíte
+    přidat 100 vylepšení identifikace ke všem pozorováním, včetně
+    vašich vlastních (přidali jste %{num_idents}). Jakmile splníte tyto
+    požadavky, vraťte se sem a budete moci podat žádost.
+  curator_application_inelligible_error2: |
+    Aby jste mohli být kurátorem, musíte mít účet po dobu 60
+    dnů nebo více, přidáno alespoň 5 příznaků, a přidal 100 zlepšení
+    identifikací ke komukoliv pozorování, včetně vašich vlastních.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Žádost kurátora byla odeslána
   #Header
@@ -1475,6 +1487,9 @@ cs:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Přidáváte identifikaci a/nebo pozorování již několik měsíců
     a hodláte pokračovat.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Prokázali jste, že rozumíte procesu kurace přidáním
+    několika příznaků.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -2089,6 +2104,7 @@ cs:
   frequency: Frekvence
   from_a_place: Z místa
   from_eol_collection: Ze souboru EOL
+  from_flickr_etc: Z Flickru, atd.
   from_list: Ze seznamu
   from_photos: Z fotek
   from_place: Z místa
@@ -5713,6 +5729,9 @@ cs:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Hledaný
   was_it_captive_cultivated?: "Byl v zajetí / pěstovaný?"
+  we_also_support2: |
+    Podporujeme také import fotografií z <a href="http://flickr.com">Flickr</a>
+    a <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Rozumíme pouze CSV v následujícím formátu
   we_couldnt_find_a_user: Nepodařilo se nám najít uživatele s touto e-mailovou adresou.
   we_couldnt_find_a_user_with_that_activation_code: "Nepodařilo se nám najít uživatele s tímto aktivačním kódem. Možná už jste si účet aktivovali, zkuste se prosím přihlásit."

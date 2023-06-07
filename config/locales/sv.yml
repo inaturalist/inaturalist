@@ -1305,6 +1305,12 @@ sv:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Underlåter att själv uppträda på lämpligt sätt.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer, du måste ha lagt till minst 5 flaggor och du måste även ha lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
+  curator_application_inelligible_error2: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer, lagt till minst 5 flaggor och även lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Förvaltaransökan inskickad
   #Header
@@ -1365,6 +1371,9 @@ sv:
     Du bör endast söka för att bli förvaltare om:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Du har lagt till bestämningar och/eller fynd i några månader och har för avsikt att fortsätta.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Du har visat att du förstår förvaltningsprocessen genom att lägga till
+    några flaggor.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |

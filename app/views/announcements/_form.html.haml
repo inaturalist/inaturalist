@@ -20,6 +20,7 @@
   - else
     = f.hidden_field :site_ids
   = f.check_box :dismissible, label_after: true
+  = f.check_box :prefers_target_unconfirmed_users, label_after: true
   = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ) }
   = f.text_area :body
   .actions.buttons

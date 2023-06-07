@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class EmailerPreview < ActionMailer::Preview
   # Preview at /rails/mailers/emailer/updates_notification
   def updates_notification
@@ -13,9 +14,9 @@ class EmailerPreview < ActionMailer::Preview
       sort: { id: :desc },
       keep_es_source: true
     ).first.es_source.subscriber_ids.first
-    @user = User.find(recently_notified_user_id)
+    @user = User.find( recently_notified_user_id )
     updates = @user.recent_notifications( per_page: 50 )
-    Emailer.updates_notification(@user, updates)
+    Emailer.updates_notification( @user, updates )
   end
 
   def new_message
@@ -25,7 +26,7 @@ class EmailerPreview < ActionMailer::Preview
     # end
     m = Message.where( to_user_id: 1, user_id: 1 ).first
     m ||= Message.last
-    Emailer.new_message(m)
+    Emailer.new_message( m )
   end
 
   def observations_export_notification
@@ -33,8 +34,8 @@ class EmailerPreview < ActionMailer::Preview
     # ft = if (ftid = @rack_env["QUERY_STRING"].to_s[/flow_task_id=([^&]+)/, 1])
     #   FlowTask.find_by_id(ftid)
     # end
-    ft ||= ObservationsExportFlowTask.includes(:outputs).where("flow_task_resources.id IS NOT NULL").last
-    Emailer.observations_export_notification(ft)
+    ft ||= ObservationsExportFlowTask.includes( :outputs ).where( "flow_task_resources.id IS NOT NULL" ).last
+    Emailer.observations_export_notification( ft )
   end
 
   def project_user_invitation
@@ -43,34 +44,34 @@ class EmailerPreview < ActionMailer::Preview
     #   ProjectUserInvitation.find_by_id(id)
     # end
     pui ||= ProjectUserInvitation.last
-    Emailer.project_user_invitation(pui)
+    Emailer.project_user_invitation( pui )
   end
 
   def confirmation_instructions
     # locale is determined by the user's locale
     set_user
     @user ||= User.first
-    DeviseMailer.devise_mail(@user, :confirmation_instructions)
+    DeviseMailer.devise_mail( @user, :confirmation_instructions )
   end
 
   def bulk_observation_success
     set_locale
     @user ||= User.first
-    Emailer.bulk_observation_success(@user, "some_file_name")
+    Emailer.bulk_observation_success( @user, "some_file_name" )
   end
 
   def bulk_observation_error
     set_locale
     @user ||= User.first
-    bof = BulkObservationFile.new(nil, nil, nil, @user)
+    bof = BulkObservationFile.new( nil, nil, nil, @user )
     o = Observation.new
     e = BulkObservationFile::BulkObservationException.new(
-      "failed to process", 
-      1, 
-      [BulkObservationFile::BulkObservationException.new("observation was invalid", 1, o.errors)]
+      "failed to process",
+      1,
+      [BulkObservationFile::BulkObservationException.new( "observation was invalid", 1, o.errors )]
     )
-    errors = bof.collate_errors(e)
-    Emailer.bulk_observation_error(@user, "some_file_name", errors)
+    errors = bof.collate_errors( e )
+    Emailer.bulk_observation_error( @user, "some_file_name", errors )
   end
 
   def parental_consent
@@ -99,7 +100,7 @@ class EmailerPreview < ActionMailer::Preview
   end
 
   def curator_application
-    lorem = <<-EOT
+    lorem = <<-LOREM
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -107,7 +108,7 @@ class EmailerPreview < ActionMailer::Preview
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    EOT
+    LOREM
     Emailer.curator_application( User.last, {
       explanation: lorem,
       taxonomy_examples: lorem,
@@ -120,7 +121,12 @@ class EmailerPreview < ActionMailer::Preview
     Emailer.welcome( User.last )
   end
 
+  def email_confirmation_reminder
+    Emailer.email_confirmation_reminder( User.last )
+  end
+
   private
+
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]
     #   User.find_by_login(login)
