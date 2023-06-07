@@ -889,6 +889,20 @@ cs:
   back_to_your_observations: Zpátky na vaše pozorování
   back_to_your_profile: Zpátky na váš profil
   badges: Odznaky
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      k <strong>%{count} nezamýšlené neshodě</strong> s ID %{child}.
+    few: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      ke <strong>%{count} nezamýšleným neshodám</strong> s ID %{child}.
+    many: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      k <strong>%{count} nezamýšleným neshodám</strong> s ID %{child}.
+    other: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      k <strong>%{count} nezamýšleným neshodám </strong> s ID %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Může být na základě důkazů komunitní ID stále potvrzeno nebo vylepšeno?
   batch: Série
@@ -2575,6 +2589,7 @@ cs:
     thai: Thajština
     tokelauan: Tokelauan
     turkish: turecky
+    u_s_d_a_symbol: Znak U.S.D.A.
     ukrainian: Ukrajinština
     uyghur: Ujghurština
     vietnamese: Vietnamština
@@ -7680,11 +7695,21 @@ cs:
       index:
         connect_with_nature: Spojte se s přírodou
         explore_and_share: Objevujte a sdílejte svá pozorování ze světa přírody.
+        observations_to_date:
+          one: "Pozorování k datu"
+          few: "Pozorování k datu"
+          many: "Pozorování k datu"
+          other: "Pozorování k datu"
         species_observed:
           one: "Pozorovaný druh"
           few: "Pozorované druhy"
           many: "Pozorovaných druhů"
           other: "Pozorovaných druhů"
+        people_signed_up:
+          one: "Osoba se zaregistrovala"
+          few: "Osoby se zaregistrovaly"
+          many: "Osob se zaregistrovalo"
+          other: "Osob se zaregistrovalo"
         how_it_works: Jak to funguje
         record_your_observations: Zaznamenejte své pozorování
         share_with_fellow_naturalists: Sdílejte s našimi přírodovědci
@@ -7756,20 +7781,12 @@ cs:
       6: pá
       7: so
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%m %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d. %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Leden
@@ -7842,6 +7859,26 @@ cs:
         few: '%{count} sekund'
         many: '%{count} sekund'
         other: '%{count} sekund'
+    countdown_x_days:
+      one: DEN
+      few: DNY
+      many: DNÍ
+      other: DNÍ
+    countdown_x_hours:
+      one: HODINA
+      few: HODINY
+      many: HODIN
+      other: HODIN
+    countdown_x_minutes:
+      one: MIN
+      few: MIN
+      many: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: S
+      few: S
+      many: S
+      other: S
     prompts:
       day: Den
       hour: Hodina
@@ -7913,19 +7950,11 @@ cs:
   time:
     am: dopoledne
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%B %d, %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: odpoledne
   activerecord:
@@ -8143,10 +8172,35 @@ cs:
         blank: nesmí být prázdné
         confirmation: nesouhlasí heslo
         empty: nesmí být prázdné
+        equal_to:
+          one: musí být rovno %{count}
+          few: musí být rovno %{count}
+          many: musí být rovno %{count}
+          other: musí být rovno %{count}
         even: musí být sudé číslo
         exclusion: je rezervováno
+        greater_than:
+          one: musí být větší než %{count}
+          few: musí být větší než %{count}
+          many: musí být větší než %{count}
+          other: musí být větší než %{count}
+        greater_than_or_equal_to:
+          one: musí být větší nebo rovno %{count}
+          few: musí být větší nebo rovno %{count}
+          many: musí být větší nebo rovno %{count}
+          other: musí být větší nebo rovno %{count}
         inclusion: není zahrnuto v seznamu
         invalid: je neplatné
+        less_than:
+          one: musí být menší než %{count}
+          few: musí být menší než %{count}
+          many: musí být menší než %{count}
+          other: musí být menší než %{count}
+        less_than_or_equal_to:
+          one: musí být menší než nebo rovno %{count}
+          few: musí být menší než nebo rovno %{count}
+          many: musí být menší než nebo rovno %{count}
+          other: musí být menší než nebo rovno %{count}
         new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
