@@ -83,6 +83,7 @@ class Taxon < ApplicationRecord
         indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
         indexes :is_valid, type: "boolean"
         indexes :locale, type: "keyword"
+        indexes :lexicon, type: "keyword"
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, type: "text",
           analyzer: "autocomplete_analyzer",

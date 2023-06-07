@@ -50,7 +50,7 @@ CSV.foreach( ARGV[0], headers: headers ) do | line |
   end
 end
 
-inat_author_pattern = /kueda|alexinat|loarie|carrieseltzer|kroodsmad|REMOVED_USER|albullington/
+inat_author_pattern = /kueda|alexinat|loarie|carrieseltzer|kroodsmad|REMOVED_USER|albullington|jtklein/
 
 ci_authors.keys.sort.each do | language |
   locale = locale_codes_by_name[language.parameterize]
@@ -67,7 +67,7 @@ ci_authors.keys.sort.each do | language |
   title += " (`#{locale}`)" if locale
   puts title
   # authors are sorted by number of contributions desc by default
-  authors.each do | author |
+  authors.sort_by( &:downcase ).each do | author |
     username = author[/ \((.+)\)$/, 1] || author
     puts "* [#{author}](https://crowdin.com/profile/#{username})"
   end

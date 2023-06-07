@@ -1187,6 +1187,17 @@ fi:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ei itse käyttäydy asianmukaisesti
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 5 lippua ja 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
+    täyttänyt nämä vaatimukset, voit lähettää hakemuksen.
+  curator_application_inelligible_error2: |
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 5 lippua ja 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuraattorihakemus lähetetty
   #Header
@@ -1249,6 +1260,9 @@ fi:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Olet lisännyt tunnistuksia ja/tai havaintoja muutaman kuukauden
     ja aiot jatkaa.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Olet osoittanut, että ymmärrät kuratointiprosessin lisäämällä
+    muutaman lipun.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |

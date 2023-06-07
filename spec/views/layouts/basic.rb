@@ -10,6 +10,14 @@ describe "layouts/bootstrap" do
       } )
     end
 
+    it "does not include tracker JS if the tracker ID is an empty string" do
+      @site = Site.make!( preferred_fathom_analytics_tracker_id: "" )
+      render
+      expect(rendered).to_not have_tag( "script", with: {
+        src: "https://cdn.usefathom.com/script.js"
+      } )
+    end
+
     it "includes tracker JS if site has a tracker ID" do
       @site = Site.make!( preferred_fathom_analytics_tracker_id: "test_fathom_tracker_id" )
       render

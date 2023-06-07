@@ -1,7 +1,14 @@
 class Announcement < ApplicationRecord
-  PLACEMENTS = %w(users/dashboard#sidebar users/dashboard welcome/index)
+  PLACEMENTS = %w(
+    users/dashboard#sidebar
+    users/dashboard
+    welcome/index
+    mobile/home
+  )
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
+
+  preference :target_unconfirmed_users, :boolean
 
   scope :in_locale, lambda {|locale|
     where("(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale)
@@ -26,6 +33,13 @@ class Announcement < ApplicationRecord
     user_id = user.id if user.is_a?( User )
     user_id = user_id.to_i
     dismiss_user_ids.include?( user_id )
+  end
+
+  def targeted_to_user?( user )
+    if prefers_target_unconfirmed_users
+      return !user.confirmed?
+    end
+    true
   end
 
   def self.active_in_placement( placement, site )

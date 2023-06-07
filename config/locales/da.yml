@@ -867,7 +867,7 @@ da:
     swap: Erstat input-takson med output-takson
     drop: Takson-konceptet er helt ugyldigt, og er opretholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt koncept for frigivelse som en del af en ændringsgruppe
-  change_geoprivacy: 'Ændre geofortrolighed'
+  change_geoprivacy: 'Ændr geofortrolighed'
   change_group: Ændre gruppe
   change_icon: Skift ikon
   change_password: Ændre adgangskode
@@ -1294,6 +1294,16 @@ da:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Ikke selv udviser passende adfærd.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    For at ansøge om at blive webstedskurator skal man have haft sin konto i mindst 60 dage, have tilføjet mindst 5 flag og have
+    føjet 100 forbedrende identifikationer til andres observationer, herunder
+    sine egne (som pt. udgør %{num_idents}). Når disse krav er opfyldt, returnér hertil, hvorfra ansøgningen nu vil kunne indsendes.
+  curator_application_inelligible_error2: |
+    For at ansøge om at blive webstedskurator skal man have haft sin konto i mindst 60 dage, have tilføjet mindst 5 flag og have
+    føjet 100 forbedrende identifikationer til andres observationer, herunder
+    sine egne.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuratoransøgning indsendt
   #Header
@@ -1353,6 +1363,9 @@ da:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Du har tilføjet identifikationer og/eller observationer i nogle måneder
     og har til hensigt at fortsætte.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Du har demonstreret forståelse af kurationsprocessen ved at tilføje nogle
+    få flag.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
