@@ -4519,11 +4519,11 @@ sr:
       6: Pet
       7: Sub
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y.'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e. %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
     month_names:
       - 
@@ -4656,17 +4656,17 @@ sr:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
-      #on the platform
+      #on the web site, mostly on the dashboard
       Announcement: Najave
       Atlas: Atlas
       BlockedUser: Blokirani korisnici
