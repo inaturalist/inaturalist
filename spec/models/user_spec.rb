@@ -1020,10 +1020,13 @@ describe User do
       expect(suggestion).not_to be_blank
       expect(suggestion).to eq "naturalist1"
 
-      User.make!(login: "naturalist1")
+      # 9 is forbidden
+      (1..8).each do |i|
+        User.make!(login: "naturalist#{i}")
+      end
+      allow(User).to receive(:rand).and_return(12345)
       suggestion = User.suggest_login("")
-      expect(suggestion).not_to be_blank
-      expect(suggestion).to eq "naturalist2"
+      expect(suggestion).to eq "naturalist12345"
     end
 
   end
