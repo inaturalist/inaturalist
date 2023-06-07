@@ -3,24 +3,45 @@
 .SplitTaxon > *:first-child {
   content: '';
 }
-.taxon.has-com-name .secondary-name {
-  color: #aaa;
-  white-space: nowrap;
+.taxon.has-com-name {
+  .secondary-name, .secondary-names {
+    color: #aaa;
+    white-space: nowrap;
+  }
 }
 
 .SplitTaxon.taxon.has-com-name {
   .sciname:before { content: ''; display: inline-block; }
   .sciname:after { content: ''; display: inline-block; }
-  &.no-parens .secondary-name:before { content: ''; display: inline-block; }
-  &.no-parens .secondary-name:after { content: ''; display: inline-block; }
+  &.no-parens .secondary-name:before,
+  &.no-parens .secondary-names:before {
+    content: '';
+    display: inline-block;
+  }
+  &.no-parens .secondary-name:after,
+  &.no-parens .secondary-names:after {
+    content: '';
+    display: inline-block;
+  }
   .secondary-name:before,
-  &.parens .secondary-name:before {
+  &.parens .secondary-name:before,
+  .secondary-names:before {
     content: '(';
     display: inline-block;
   }
+  .secondary-names .secondary-name:before,
+  &.parens .secondary-names .secondary-name:before {
+    content: '';
+  }
   .secondary-name:after,
-  &.parens .secondary-name:after {
+  &.parens .secondary-name:after,
+  .secondary-names:after {
     content: ')';
+    display: inline-block;
+  }
+  .secondary-names .secondary-name:after,
+  &.parens .secondary-names  .secondary-name:after {
+    content: '';
     display: inline-block;
   }
   &.genus,
@@ -33,6 +54,13 @@
     .sciname.secondary-name:before,
     .sciname.secondary-name:after {
       font-style: normal;
+    }
+  }
+  .display-names .display-name + .display-name,
+  .secondary-names .secondary-name + .secondary-name {
+    &:before {
+      content: ", ";
+      display: inline;
     }
   }
 }

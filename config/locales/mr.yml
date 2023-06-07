@@ -517,6 +517,14 @@ mr:
     scat: विष्ठा
     track: खुणा/पदचिन्हे
   create_an_account: खाते उघडा
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    साइट क्युरेटर होण्यासाठी अर्ज करण्यासाठी तुमचे खाते ६० दिवस किंवा त्यापेक्षा अधिक काळ आस्तित्वात असणे, तुम्ही किमान ५ निशाण जोडलेले असणे आणि तुमच्यासह इतर कोणाच्याही १०० हुन अधिक निरीक्षणांमध्ये सुधारित ओळख जोडलेली असणे आवश्यक आहे, तुमचे स्वतःचे (तुम्ही %{num_idents} जोडले आहे). जेव्हा तुम्ही या बाबींची पूर्तता केली असेल, तेव्हा येथे परत या आणि तुम्ही अर्ज सबमिट करण्यास पात्र व्हाल.
+  curator_application_inelligible_error2: |
+    साइट क्युरेटर होण्यासाठी अर्ज करण्यासाठी तुमचे खाते ६० दिवस किंवा त्यापेक्षा अधिक काळ आस्तित्वात असणे, तुम्ही किमान ५ निशाण जोडलेले असणे आणि तुमच्यासह इतर कोणाच्याही १०० हुन अधिक निरीक्षणांमध्ये सुधारित ओळख जोडलेली असणे आवश्यक आहे.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    तुम्ही काही निशाण जोडून क्युरेशन प्रक्रिया समजून घेतल्याचे दर्शविलेले आहे.
   #Label for a custom boundary for an observation search
   custom_boundary: स्वनिर्मित सीमारेषा
   dashboard: मुख्यपटल
@@ -570,6 +578,7 @@ mr:
   find_a_post: पोस्ट शोधा
   find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
   forum: मंच
+  from_flickr_etc: फ्लिकर वरून इ.
   grid: ओळखलेली निरीक्षणे
   guides: मार्गदर्शक
   help: मदत
@@ -606,15 +615,47 @@ mr:
   learn: जाणून घ्या
   learn_more: अधिक जाणून घ्या
   lexicons:
+    alabama: अलाबामा
     aou_4_letter_codes: AOU ४-अक्षरी कोड्स
     aou_6_letter_codes: AOU ६-अक्षरी कोड्स
+    asturian: अस्तुरियन
+    basque: बास्क
+    bikol: बिकोल
+    carolinian: कॅरोलिनियन
+    chuvash: चुवाश
+    fijian: फिजीयन
+    georgian: जॉर्जियन
     gujarati: गुजराती
+    herero: हेररो
+    hill_mari: हिल मारी
+    hodges_number: हॉजेस क्रमांक
     hokkien: हाकीयन
+    irish: आयरिश
+    kweyol: क्वेयोल
+    lozi: लोझी
+    malagasy: मालागॅसी
     marathi: मराठी
+    navajo: नावाहो
+    ndebele: डबेले
     persian: पर्शियन
     serbian: सर्बियन
+    shona: शोना
+    sotho: सोथो
+    sotho_northern: सोथो (उत्तर)
     swahili: स्वाहिली
+    swati: स्वाती
+    tamil: तमिळ
+    totonaco: टोटोनाको
+    tsonga: सोंगा
+    tswana: त्स्वाना
+    u_s_d_a_symbol: U.S.D.A. चिन्ह
     uyghur: वीगर
+    venda: वेंडा
+    vermont_flora_codes: व्हरमाँट फ्लोरा कोड्स
+    vietnamese: व्हिएतनामीज
+    xhosa: कोसा
+    zapoteco: झापोटेको
+    zulu: झुलू
   #Button show less text
   less__context_text: कमी
   list: सूची
@@ -635,6 +676,7 @@ mr:
   locales:
     en-GB: इंग्रजी (युके)
     hr: क्रोएशिअन
+    ka: जॉर्जियन
     mi: माओरी
     mr: मराठी
     sr: सर्बियन
@@ -772,6 +814,9 @@ mr:
   #@vow_or_con should work with %{site}
   site_year_in_review: "%{site} चे %{year} पुनरावलोकनाचे वर्ष"
   site_stats: साइट आकडेवारी
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist काही प्रजातींना होणारा संभाव्य उपद्रव, त्यांचे संकलन किंवा शिकार होणे ह्यापासून संरक्षण करण्यासाठी त्यांचे निर्देशांक आपणहून लपविते. 
+    जर प्रजातींचे संरक्षण करण्यासाठी यांचे निर्देशांक केवळ स्वयंचलितपणे लपविले गेले असतील, तर iNaturalist त्यांच्याकडील सर्व निरीक्षणांचे खरे निर्देशांक नेटवर्क सदस्यांसह संबंधित देशांशी शेअर करते.
   #Displayed on the taxon detail page when a conservation status is being
   #applied from a taxon that contains the current taxon
   status_applied_from_higher_level_taxon_html: |
@@ -965,6 +1010,8 @@ mr:
   view_your_personal_year_in_review: "तुमचे वैयक्तिक %{year} पुनरावलोकनाचे वर्ष पहा"
   view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
   video_tutorials: माहितीपर व्हिडीओ
+  we_also_support2: |
+    आम्ही <a href="http://flickr.com">Flickr</a> आणि <a href="http://photos.google.com">Google Photos</a> वरून फोटो आयात करण्यास देखील समर्थन देतो.
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
   #Filter for observations not in a particular taxon
@@ -994,6 +1041,9 @@ mr:
       show:
         ancestor_disagreements_desc2: |
           टॅक्सनच्या पूर्वजांपैकी ओळखलेल्या टॅक्साची संख्या, परंतु वर्गीकरणाशी असहमत (म्हणजे "मला वाटते की ते वंशात आहे पण हीच ती प्रजाती आहे ह्याच्याशी मी असहमत आहे")
+        data_quality_assessment_desc3_html: |
+          एखाद्या iNaturalist निरीक्षणाची गुणवत्ता पातळी जैवविविधता डेटाच्या दृष्टीकोनातून त्याची अचूकता, नि:संदिग्धता, पूर्णता, समर्पकता आणि योग्यता सूचित करते. 
+          काही मूल्यांकने आपोआप ठरवली जातात, तर काही iNat वापरकर्त्यांद्वारे मताधिक्याने ठरविली जातात. iNaturalist परवानाधिकृत "संशोधन श्रेणी" तील निरीक्षणे विज्ञान आणि संवर्धनासाठी त्याच्या अनेक माहितीक्षेत्रातील भागीदारांसह शेअर करते.
     places:
       kml_field_desc2: |
         ठिकाणाच्या सीमारेषेसाथीचा KML. तुम्ही गूगल मॅप, गूगल अर्थ अथवा इतर GIS अनुप्रयोग वापरून एक बनवू शकता. किमान एक बहुभुज असणे आवश्यक, १ MB पर्यंत (साइट क्युरेटरसाठी ५ MB), आणि क्षेत्रफळ अमेरिकेचे टेक्सास राज्यापेक्षा लहान असण्याची मर्यादा.
@@ -1098,6 +1148,19 @@ mr:
       - October
       - November
       - December
+  datetime:
+    countdown_x_days:
+      one: दिवस
+      other: दिवस
+    countdown_x_hours:
+      one: तास
+      other: तास
+    countdown_x_minutes:
+      one: मिनिट
+      other: मिनिटे
+    countdown_x_seconds:
+      one: सेकंद
+      other: सेकंद
   number:
     human:
       format:
