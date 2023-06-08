@@ -50,11 +50,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Use Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
-
     - name: Configure sysctl limits
       run: |
         sudo swapoff -a
@@ -72,9 +67,6 @@ jobs:
       run: |
         curl --verbose --show-error http://localhost:9200
 
-    - run: npm install
-    - run: npm run webpack
-
     - name: Install dependencies
       run: |
         sudo apt-get -qq update --fix-missing
@@ -82,6 +74,14 @@ jobs:
         # gem install bundler
         # bundle install --jobs 4 --retry 3
         # echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
+
+    - name: Use Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - run: npm install
+    - run: npm run webpack
 
     - name: Before script
       run: ci/scripts/before_script.sh
