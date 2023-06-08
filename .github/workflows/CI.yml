@@ -37,7 +37,7 @@ jobs:
         spec_pattern:
           - spec/models/{a,b,c,d,e,f,g}*_spec.rb
           - spec/models/{i,l,m}*_spec.rb
-          - spec/models/oauth*_spec.rb spec/models/observation_{b,f}*_spec.rb
+          - spec/models/oauth*_spec.rb spec/models/observation_{f,b}*_spec.rb
           - spec/models/observation_{g,l,p,r}*_spec.rb
           - spec/models/observation_s*_spec.rb spec/models/observation_spec.rb spec/models/observation_p*_spec.rb
           - spec/models/{p,q,s}*_spec.rb
