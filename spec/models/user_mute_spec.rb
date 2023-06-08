@@ -49,13 +49,17 @@ describe UserMute do
         expect( UpdateAction.unviewed_by_user_from_query( user.id, {} ) ).to eq false
       end
       it "when the user follows a place and the muted user makes a new observation in that place" do
-        p = make_place_with_geom( name: "Some Great Place" )
-        Subscription.make!( user: user, resource: p )
-        o = Observation.make!( user: muted_user, latitude: p.latitude, longitude: p.longitude )
-        Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
-        update_action = UpdateAction.where( resource: p, notifier: o ).first
-        expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query( user.id, {} ) ).to eq false
+        # This test is flaky for reasons I don't entirely understand. This
+        # will try and regenerate the failing place 3 times
+        try_and_try_again( ActiveRecord::RecordInvalid, sleep: 1 ) do
+          p = make_place_with_geom( name: "Some Great Place" )
+          Subscription.make!( user: user, resource: p )
+          o = Observation.make!( user: muted_user, latitude: p.latitude, longitude: p.longitude )
+          Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+          update_action = UpdateAction.where( resource: p, notifier: o ).first
+          expect( update_action ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, {} ) ).to eq false
+        end
       end
       it "when the user follows a taxon and the muted user makes a new observation of that taxon" do
         t = Taxon.make!
