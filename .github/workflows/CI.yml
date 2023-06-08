@@ -74,9 +74,6 @@ jobs:
       run: |
         sudo apt-get -qq update --fix-missing
         sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
-        # gem install bundler
-        # bundle install --jobs 4 --retry 3
-        # echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
