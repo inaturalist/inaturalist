@@ -37,10 +37,13 @@ jobs:
         spec_pattern:
           - spec/models/{a,b,c,d,e,f,g}*_spec.rb
           - spec/models/{i,l,m}*_spec.rb
-          - spec/models/o*_spec.rb
+          - spec/models/oauth*_spec.rb spec/models/observation_{b,f}*_spec.rb
+          - spec/models/observation_{g,l,p,r}*_spec.rb
+          - spec/models/observation_s*_spec.rb spec/models/observation_spec.rb spec/models/observation_p*_spec.rb
           - spec/models/{p,q,s}*_spec.rb
           - spec/models/{t,u,w,y}*_spec.rb
-          - spec/controllers/{a,c,e,f,g,i,l,m,o}*_spec.rb
+          - spec/controllers/{a,c,e,f,g,i,l,m}*_spec.rb
+          - spec/controllers/o*_spec.rb
           - spec/controllers/{p,q,r,s,t,u,v,w}*_spec.rb
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
@@ -50,8 +53,7 @@ jobs:
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.0'
-        bundler-cache: false
+        bundler-cache: true
 
     - name: Configure sysctl limits
       run: |
@@ -77,9 +79,9 @@ jobs:
       run: |
         sudo apt-get -qq update --fix-missing
         sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
+        # gem install bundler
+        # bundle install --jobs 4 --retry 3
+        # echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
 
     - name: Before script
       run: ci/scripts/before_script.sh
