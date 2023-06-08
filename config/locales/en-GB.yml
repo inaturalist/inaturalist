@@ -18,6 +18,11 @@ en-GB:
   authorize_with_pkce: Authorise with PKCE
   bg_color: BG Colour
   colors: Colours
+  devise:
+    confirmations:
+      confirmed: |
+        Your email address has been successfully confirmed. You can now log
+        in here on the website or in the iNaturalist or Seek mobile apps.
   distance_traveled_value: "Distance travelled: %{distance}m"
   distance_traveled: "Distance travelled (m)"
   favorite_taxa: Favourite Taxa
