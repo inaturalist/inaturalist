@@ -40,9 +40,11 @@ jobs:
           - spec/models/oauth*_spec.rb spec/models/observation_{f,b}*_spec.rb
           - spec/models/observation_{g,l,p,r}*_spec.rb
           - spec/models/observation_s*_spec.rb spec/models/observation_spec.rb spec/models/observation_p*_spec.rb
-          - spec/models/p*_spec.rb
+          - spec/models/p{a,h,l,o}*_spec.rb
+          - spec/models/pr*_spec.rb
           - spec/models/{q,s,u,w,y}*_spec.rb
-          - spec/models/t*_spec.rb
+          - spec/models/taxon_{c,d,f,l,m,n,p,r,s}*_spec.rb
+          - spec/models/taxon_spec.rb spec/models/trip_*_spec.rb
           - spec/controllers/{a,c,e,f,g,i,l,m}*_spec.rb
           - spec/controllers/o*_spec.rb
           - spec/controllers/{p,q,r,s,t,u,v,w}*_spec.rb
