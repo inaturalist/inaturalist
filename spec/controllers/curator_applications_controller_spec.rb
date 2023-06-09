@@ -86,7 +86,7 @@ describe CuratorApplicationsController do
       sign_in eligible_user
       expect do
         post :create, params: { application: {
-          explanation: Faker::Lorem.sentence,
+          explanation: Faker::Lorem.sentence( word_count: 10 ),
           taxonomy_examples: Faker::Lorem.sentence,
           name_examples: Faker::Lorem.sentence,
           moderation_examples: Faker::Lorem.sentence

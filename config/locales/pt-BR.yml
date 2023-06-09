@@ -1293,6 +1293,19 @@ pt-BR:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Falha em demostrar comportamento apropriado em si mesmo.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Para se candidatar para ser um curador de site, sua conta deve ter 60
+    dias ou mais, você deve ter adicionado pelo menos 5 sinalizações e ter
+    adicionado 100 identificações melhorando observações de qualquer usuário, incluindo
+    suas próprias (você adicionou %{num_idents}). Para se candidatar novamente, retorne quando tiver cumprido esses
+    requisitos .
+  curator_application_inelligible_error2: |
+    Para se candidatar para ser um curador de site, sua conta deve ter 60
+    dias ou mais, você deve ter adicionado pelo menos 5 sinalizações e ter
+    adicionado 100 identificações melhorando observações de qualquer usuário, incluindo
+    as suas próprias.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Candidatura para curador enviada
   #Header
@@ -1354,6 +1367,9 @@ pt-BR:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Você tem adicionado identificações e/ou observações há alguns meses
     e pretende continuar.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Você demonstrou entender o processo de curadoria adicionando
+    algumas sinalizações.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1964,6 +1980,7 @@ pt-BR:
   frequency: Frequência
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
+  from_flickr_etc: Do Flickr, etc.
   from_list: Da lista
   from_photos: De fotos
   from_place: De um local
@@ -5600,6 +5617,9 @@ pt-BR:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Procurado
   was_it_captive_cultivated?: "Era cultivada / mantida em cativeiro?"
+  we_also_support2: |
+    Também suportamos a importação de fotos do <a href="http://flickr.com">Flickr</a>
+    e <a href="http://photos.google.com">Fotos do Google</a>.
   we_can_only_understand_csv_in: Só podemos entender CSV no seguinte formato
   we_couldnt_find_a_user: Não podemos encontrar um usuário com este endereço de e-mail.
   we_couldnt_find_a_user_with_that_activation_code: "Nós não podemos encontrar um usuário com este código de ativação. Você deve já ter ativado sua conta, por favor tente entrar no sistema."
@@ -7634,20 +7654,12 @@ pt-BR:
       6: Sx
       7: Sáb
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d de %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d de %B de %Y'
     month_names:
       - 
       - Janeiro
@@ -7779,19 +7791,11 @@ pt-BR:
   time:
     am: manhã
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d de %b. de %Y, %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y, %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d/%m, %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d de %B de %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: tarde
   activerecord:

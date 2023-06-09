@@ -5,7 +5,7 @@
     .col-xs-12
       %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
       %table.table.table-bordered
-        - %w(created_at updated_at placement start end site_ids locales).each do |a|
+        - %w(created_at updated_at placement start end site_ids locales prefers_target_unconfirmed_users).each do |a|
           %tr
             %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
             %td= @announcement.send( a )

@@ -6,6 +6,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import LicenseImageRow from "./license_image_row";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
+import TaxonNamePrioritiesContainer from "../containers/taxon_name_priorities_container";
 
 const radioButtons = {
   any: I18n.t( "views.users.edit.project_addition_preferences.any" ),
@@ -225,6 +226,7 @@ const Content = ( {
             afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "place_id" )}
           />
         </SettingsItem>
+        <TaxonNamePrioritiesContainer />
         <SettingsItem>
           <h4>{I18n.t( "community_moderation_settings" )}</h4>
           <CheckboxRowContainer

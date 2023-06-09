@@ -1257,6 +1257,12 @@ it:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Non riesce a dimostrare lui stesso un comportamento appropriato.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni o più, devi aver aggiunto 100 identificazioni "di affinamento" alle osservazioni di chiunque, incluse le tue (ne hai aggiunte %{num_idents}). Quando hai soddisfatto entrambi i requisiti, torna qui e sarai in grado di inviare la domanda.
+  curator_application_inelligible_error2: |
+    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni e aver aggiunto almeno 5 contrasegni e 100 identificazioni "di affinamento" alle osservazioni di chiunque, incluse le tue.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Domanda curatore presentata
   #Header
@@ -1318,6 +1324,8 @@ it:
     Dovresti candidarti per essere un curatore solo se:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Hai aggiunto identificazioni e/o osservazioni per alcuni mesi e hai intenzione di continuare.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Hai dimostrato di capire il processo di curatela aggiungendo alcuni contrassegni.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1918,6 +1926,7 @@ it:
   frequency: Frequenza
   from_a_place: da un luogo
   from_eol_collection: Da una collezione EOL
+  from_flickr_etc: Da Flickr, ecc.
   from_list: Da una lista
   from_photos: Da foto
   from_place: Dal luogo
@@ -2285,16 +2294,24 @@ it:
   lexicon_cannot_contain_words: "non può contenere le seguenti parole: %{words}"
   lexicons:
     afrikaans: Africano
+    alabama: Alabama
     albanian: Albanese
+    aou_4_letter_codes: Codici AOU a 4 Lettere
+    aou_6_letter_codes: Codici Aou a 6 Lettere
     arabic: Arabo
     armenian: Armeno
+    asturian: Asturiano
+    basque: Basco
     belarusian: Bielorusso
     bengali: Bengalese
+    bikol: Bikol
     bulgarian: Bulgaro
+    carolinian: Caroliniano
     catalan: Catalano
     cebuano: Cebuano
     chinese_simplified: Cinese (semplificato)
     chinese_traditional: Cinese (tradizionale)
+    chuvash: Chuvash
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
     croatian: Croato
@@ -2305,27 +2322,38 @@ it:
     english: Inglese
     estonian: Estone
     faroese: Faroese
+    fijian: Fijano
     finnish: Finlandese
     french: Francese
     galician: Galiziano
     gela: Gela
+    georgian: Georgiano
     german: Tedesco
     greek: Greco
+    gujarati: Gujarati
     hawaiian: Hawaiano
     hebrew: Ebraico
+    herero: Herero
     hiligaynon: Ilongo
+    hill_mari: Hill Mari
+    hodges_number: Numero di Hodges
+    hokkien: Hokkien
     hungarian: Ungherese
     icelandic: Islandese
     ilokano: Ilokano
     indonesian: Indonesiano
+    irish: Irlandese
     italian: Italiano
     japanese: Giapponese
     kannada: Kannada
     kazakh: Kazako
     korean: Coreano
+    kweyol: Kwéyòl
     latvian: Lettone
     lithuanian: Lituano
+    lozi: Lozi
     luxembourgish: Lussemburghese
+    malagasy: Malgascio
     malay: Malese
     malayalam: Malayalam
     maltese: Maltese
@@ -2335,6 +2363,8 @@ it:
     misima_paneati: Misima-Panaeati
     mongolian: Mongolo
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norvegese
     occitan: Occitano
     ojibwe: Ojibwe
@@ -2348,20 +2378,36 @@ it:
     santali: Santali
     scientific_names: Nomi scientifici
     serbian: Serbo
+    shona: Shona
     sinhala: Singalese
     slovak: Slovacco
     slovenian: Sloveno
+    sotho: Sotho
+    sotho_northern: Sotho (Nord)
     spanish: Spagnolo
     swahili: Swahili
+    swati: Swati
     swedish: Svedese
     tagalog: Tagalog
     tahitian: Tahitiano
+    tamil: Tamil
     thai: Thailandese
     tokelauan: Tokelau
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turco
+    u_s_d_a_symbol: Simboli U.S.D.A.
     ukrainian: Ucraino
+    uyghur: Uiguro
+    venda: Venda
+    vermont_flora_codes: Codici Flora Vermont
+    vietnamese: Vietnamita
     visayan: Visayan
     waray_waray: Wáray-Wáray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Meno
   #Button show less text
   less__context_text: Di meno
@@ -2451,6 +2497,7 @@ it:
     id: Indonesiano
     it: Italiano
     ja: Giapponese
+    ka: Georgiano
     kk: Kazako
     kn: Kannada
     ko: Coreano
@@ -4396,6 +4443,8 @@ it:
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} ha condiviso i dati dei registri per l'atlante portoghese degli uccelli migratori, per l'atlante dei mammiferi, nonché per diversi altri documenti di ricerca scientifica portoghesi.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordinate nascoste automaticamente (oscurate o private per la "geoprivacy del taxon")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist nasconde automaticamente le coordinate per alcune specie per proteggerle dall'essere disturbate, raccolte o braccate. Se le coordinate dell'osservazione sono state nascoste automaticamente solo per proteggere le specie, iNaturalist condivide le coordinate reali di tutte le osservazioni per i loro rispettivi paesi coi Membri della Rete.
   sites_affiliation_more_email_addresses: |
     Gli indirizzi email sono condivisi con i Membri della Rete solo per gli scopi delle comunicazioni correlate al sito.
   sites_affiliation_more_twice_per_year: |
@@ -5391,6 +5440,8 @@ it:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
+  we_also_support2: |
+    Supportiamo anche l'importazione di foto da <a href="http://flickr.com">Flickr</a> e <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente formattazione
   we_couldnt_find_a_user: Non siamo riusciti a trovare alcun utente con questo indirizzo email.
   we_couldnt_find_a_user_with_that_activation_code: "Non siamo riusciti a trovare alcun utente con questo codice di attivazione. Potresti già aver attivato il tuo account, per favore prova ad accedere."
@@ -6176,6 +6227,8 @@ it:
         cumulative_count_desc: '# di identificazioni per un singolo taxon e per tutti i suoi discendenti'
         curator_coordinate_access_disabled_desc_html: |
           Questo progetto non permette di aggiungere osservazioni con coordinate non visibili dai curatori. Se non vuoi condividere le coordinate di questa osservazione con i curatori, devi rimuoverla dal progetto.
+        data_quality_assessment_desc3_html: |
+          La Qualità dei Dati riassume l'accuratezza, la precisione, la completezza, la rilevanza e l'appropriatezza di un osservazione iNaturalist come dato di biodiversità. Alcuni attributi sono determinati in automatico, mentre altri sono oggetto di votazione da parte degli utenti di iNat. iNaturalist condivide le osservazioni "Livello Ricerca" licenziate con alcuni partner di gestione dati per il loro uso nella scienza e nella conservazione.
         disagreement_count_desc: "# di taxa identificati che non sono tra gli antenati del taxon"
         identification_count_desc: '# di identificazioni per un singolo taxon'
         flagged_photos_desc_html: |
@@ -7216,20 +7269,12 @@ it:
       6: Ve
       7: Sa
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d %b, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d %B, %Y'
     month_names:
       - 
       - Gennaio
@@ -7280,6 +7325,18 @@ it:
       x_seconds:
         one: "1 secondo"
         other: '%{count} secondi'
+    countdown_x_days:
+      one: GIORNO
+      other: GIORNI
+    countdown_x_hours:
+      one: ORA
+      other: ORE
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEC
+      other: SEC
     prompts:
       day: Giorno
       hour: Ora
@@ -7349,19 +7406,11 @@ it:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b., %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %B, %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
   activerecord:

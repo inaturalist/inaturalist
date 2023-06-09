@@ -18,6 +18,9 @@ I18n.fallbacks.map( fallback_maps )
 # from and to locales for the translate gem (translation ui)
 Rails.application.config.from_locales = [:en, :es]
 Rails.application.config.to_locales = [:es, :"es-MX"]
+
+# Extend I18n module and the simple backend
 I18n.extend( I18nExtensions )
+I18n::Backend::Simple.include I18nCustomBackend
 
 I18n::JS.export_i18n_js_dir_path = "app/assets/javascripts"

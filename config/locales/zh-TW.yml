@@ -689,6 +689,8 @@ zh-TW:
   birds: 鳥類
   birthday: 生日
   black: 黑色
+  block: 封鎖
+  blocking_description: 封鎖可以防止您與其他使用者之間的任何通訊。這一功能主要使用於其他使用者可能對您的安全構成風險的狀況下，例如跟蹤或其他濫用行為。
   block_removed: 封鎖已移除
   blocked_users: 已封鎖的使用者
   blog_widget: 部落格小工具
@@ -721,6 +723,7 @@ zh-TW:
   by_you: 由您
   calendar: 行事曆
   calendars_only_show_x_observations_at_time: 行事曆每次僅會顯示 %{x} 個觀察
+  callback_url: 回傳 URL
   cancel: 取消
   cant_edit_or_delete_hidden_content: 因這已被網站策展人給隱藏，您不能編輯或刪除內容
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
@@ -762,6 +765,8 @@ zh-TW:
   change_group: 更改群組
   change_icon: 更改圖示
   change_password: 更改密碼
+  #Message shown after you change your email address
+  change_to_email_requested_html: 已提出修改<strong>%{email}</strong>。請在此電子郵件地址中檢查並確認此更動。
   change_types:
     activated_soon: 即將被啟用
     change_types: 更改類型
@@ -920,6 +925,10 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: 確認電子郵件已於 %{datetime} 傳送
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: 已於 %{date}確認
   confirming_ids: 確認物種鑑定
   confirming_ids_description: 如果您關閉此選項，您將不會收到同意您鑑定的分類群通知。
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1336,6 +1345,8 @@ zh-TW:
   deviation: 偏差
   devise:
     confirmations:
+      confirmed: |
+        已成功確認電子郵件地址。您現在可以登入此網站或行動端的 iNaturalist 及 Seek 應用程式。
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1366,9 +1377,14 @@ zh-TW:
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: 帳號確認說明
+        subject: 確認您的電子郵件地址
       reset_password_instructions:
         subject: '重設密碼的說明'
+  devise_confirmation_instructions_if_you_did_not: |
+    如果您沒有註冊 %{site_name} 帳號，請忽略此電子郵件。
+  devise_confirmation_instructions_please_click: |
+    請按此鏈結確認您的電子郵件地址：
+  devise_confirmation_instructions_send_confirmation_email: 傳送確認電子郵件
   devise_reset_password_instructions_hello_email: 您好 %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您沒有要求重設密碼，請忽略這封 email。
@@ -1519,6 +1535,8 @@ zh-TW:
   email: 電子郵件
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}請確認您的電子郵件地址%{link_end_tag}</strong>。所有使用者必須在 %{date} 之前確認自己的電子郵件地址。在那之後，除非重設密碼，否則任何未確認自己電子郵件地址的人將無法登入。請到%{link_start_tag}帳號設定%{link_end_tag}確認電子郵件地址。
   email_copyright: "版權所有 &copy; %{x}, 保留所有權利"
   email_notifications: 電子郵件通知
   embed: '內嵌'
@@ -2990,6 +3008,7 @@ zh-TW:
     invalid_email: 無效的電子郵件格式。
   password: 密碼
   password_confirmation: '密碼確認'
+  password_change_logout_warning: 更改密碼後會被登出，到時候需要使用新密碼重新登入。
   paste: 貼上
   paste_in_a_bunch_of_names: 每行貼上一串名稱，然後按下按鍵！
   people: 成員
@@ -3842,6 +3861,10 @@ zh-TW:
   research_grade_tooltip_html: '「研究等級」的觀察紀錄有多媒體、地點、日期，還有社群對於一個精確鑑定的共識(通常是物種階層)。<a href="https://www.inaturalist.org/pages/help#quality">閱讀有關資料品質等級的細節</a>'
   research_grade_observations_have: '「研究等級」觀察擁有日期、照片、座標，以及社群支持的鑑定內容。點擊來查看資料品質評估。'
   research_grade_qualification: 研究等級資格
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: 再次傳送並登出
+  resend_confirmation_email: 再次傳送確認電子郵件
   reset_filters_short: 重設
   reset_brightness: 重新設定亮度
   reset_search_filters: 重新設定搜尋篩選
@@ -3966,6 +3989,10 @@ zh-TW:
   selected_taxon: 已選的分類群
   select_this_taxon: 選擇此分類群
   send: 傳送
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: 傳送並登出
+  send_confirmation_email: 傳送確認電子郵件
   send_me_reset_password_instructions: 寄送給我關於重新設定密碼的說明
   sending: 寄送中...
   #Label for messages you've sent
@@ -4401,6 +4428,7 @@ zh-TW:
   terms: 條款
   terms_and_rules_html: "條款&amp;規範"
   terms_new_users: "若您添加條款，新用戶必須再加入專案前同意該項目。"
+  terms_service: 使用條款
   terrain: 地形
   text: 文字
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4756,6 +4784,23 @@ zh-TW:
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    請確保電子郵件地址沒錯。我們會將電子郵件傳送到此地址：
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    如果您沒有收到電子郵件，請參考以下提示：
+    </p>
+    <ul>
+    <li><p>檢查您的垃圾郵件資料夾</p></li>
+    <li><p>檢查您建立的篩選器，篩選器可能會從您的收件匣中刪除我們的電子郵件</p></li>
+    </ul>
+    <p>
+    如果您仍未收到確認電子郵件，請透過
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    與我們聯絡，以便我們協助您。
+    </p>
   users_favorites: "%{user} 的最愛"
   users_highlights_and_stats_from_year_on_site: "%{user} 的精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   users_id: "%{user} 的鑑定"
@@ -6586,20 +6631,12 @@ zh-TW:
       6: 五
       7: 六
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%Y年%m月%d日'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%-m月%-d日'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b 月 %e 日"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%Y %b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%Y年%-m月%-d日'
     month_names:
       - 
       - 1月
@@ -6707,19 +6744,11 @@ zh-TW:
   time:
     am: 上午
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%Y/%m/%d %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%Y年%m月%d日 %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%m月%d日 %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%Y年%B%d日"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: 下午
   activerecord:
@@ -6786,6 +6815,9 @@ zh-TW:
         finished_at: 完成
         #Inputs to an export task, e.g. the query and the columns
         inputs: 輸入
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
       post:
         title: 標題
         body: 正文
@@ -6835,14 +6867,18 @@ zh-TW:
         name: 名稱
         parent_id: 父級鑑定
         rank: 級別
+        source_id: 來源 ID
         source_identifier: 來源鑑定人
         source_url: 來源 URL
         wikipedia_summary: 維基百科摘要
         wikipedia_title: 維基百科標題
       taxon_name:
+        name: 名稱
         name_provider: 名稱提供者
         source_url: 來源 URL
         source_identifier: 來源鑑定人
+      taxon_link:
+        url: URL
       user:
         email: 電子郵件
         login: 使用者名稱
