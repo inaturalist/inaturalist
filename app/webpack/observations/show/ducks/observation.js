@@ -796,7 +796,8 @@ export function addID( taxon, options = { } ) {
     let observationTaxon = o.taxon;
     if (
       o.preferences.prefers_community_taxon === false
-      || (o.user.preferences.prefers_community_taxa === false && !o.preferences.prefers_community_taxon === true)
+      || (o.user.preferences.prefers_community_taxa === false 
+      && o.preferences.prefers_community_taxon === null)
     ) {
       observationTaxon = o.community_taxon || o.taxon;
     }
