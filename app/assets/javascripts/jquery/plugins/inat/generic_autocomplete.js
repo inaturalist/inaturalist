@@ -66,7 +66,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   var ac;
   var field = this;
   if ( $('html[dir="rtl"]').length > 0 ){
-    options.position = { my: "right top", at: "right bottom" };
+    options.position = options.position || { my: "right top", at: "right bottom" };
   }
   if ( !field || field.length < 1 ) { return; }
   var createWrappingDiv = options.createWrappingDiv
