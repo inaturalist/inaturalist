@@ -986,7 +986,7 @@ describe User do
   end
 
   describe "suggest_login" do
-    it "should suggest logins that are too short" do
+    it "should not suggest logins that are too short" do
       suggestion = User.suggest_login("AJ")
       expect(suggestion).not_to be_blank
       expect(suggestion.size).to be >= User::MIN_LOGIN_SIZE
@@ -1020,10 +1020,13 @@ describe User do
       expect(suggestion).not_to be_blank
       expect(suggestion).to eq "naturalist1"
 
-      User.make!(login: "naturalist1")
+      # 9 is forbidden
+      (1..8).each do |i|
+        User.make!(login: "naturalist#{i}")
+      end
+      allow(User).to receive(:rand).and_return(12345)
       suggestion = User.suggest_login("")
-      expect(suggestion).not_to be_blank
-      expect(suggestion).to eq "naturalist2"
+      expect(suggestion).to eq "naturalist12345"
     end
 
   end

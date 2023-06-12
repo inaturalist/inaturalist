@@ -1683,6 +1683,23 @@ tr:
     %{date} tarihinde sana bir doğrulama e-postası gönderdik. Almadıysan, yapabileceğin bazı şeyler:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Lütfen e-posta adresini doğrula%{link_end_tag}</strong>. Tüm kullanıcılar e-posta adreslerini %{date} tarihine kadar onaylamalıdır. Bu tarihten sonra e-posta adresini teyit etmemiş olan herkes, şifrelerini sıfırlamadıkları sürece oturum açamayacaktır. E-posta adresini doğrulamak için %{link_start_tag}hesap ayarlarına%{link_end_tag} git.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: '%{date} tarihinden önce %{site_name} e-posta adresini doğrula' #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Hesabını erişmeye devam edebilmen için lütfen e-posta adresinizi bugün onayla. %{site_name}, iNaturalist ve Seek by iNaturalist mobil uygulamaları, biyolojik çeşitlilik gözlemlerini paylaşarak insanları doğaya ve birbirlerine bağlar. iNaturalist topluluğunun bir parçası olduğun için teşekkür ederiz!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Tüm hesaplar için %{requirement_date} tarihinden itibaren doğrulanmış e-posta adresleri talep edeceğiz. Lütfen şimdi onaylamak için bir dakikanı ayır.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions: |
+    Herhangi bir sorun var ise ütfen SSS bölümüne bakın. Doğa ve %{site_name} ile bağlantı kurmak için zaman ayırdığın için teşekkür ederiz.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Hesap Ayrıntıları
   email_copyright: "Telif hakkı &copy; %{x}, tüm hakları saklıdır"
   email_notifications: E-posta Bildirimleri
   embed: 'Yerleştir'
@@ -7290,20 +7307,20 @@ tr:
       6: Cum
       7: Cmt
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d %b, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d %B, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%-d %B %Y'
     month_names:
       - 
       - Ocak
@@ -7435,19 +7452,19 @@ tr:
   time:
     am: öö
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b., %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%-d %b %Y, %H.%M.%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y %H.%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H.%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %B, %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d %B %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: ös
   activerecord:
@@ -7480,6 +7497,9 @@ tr:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Site ID'leri
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
       assessment:
         description: Açıklama
       assessment_section:

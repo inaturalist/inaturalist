@@ -35,22 +35,23 @@ jobs:
         # Note that these letter prefix patterns must match existing files or
         # Github will error out of the build
         spec_pattern:
-          - spec/models/{a,b,c,d,e,f,g,i,l}*_spec.rb
-          - spec/models/{m,o}*_spec.rb
-          - spec/models/{p,q,s}*_spec.rb
-          - spec/models/{t,u,w}*_spec.rb
-          - spec/controllers/{a,c,e,f,g,i,l,m,o}*_spec.rb
+          - spec/models/{a,b,c,d,e,f,g}*_spec.rb
+          - spec/models/{i,l,m}*_spec.rb
+          - spec/models/oauth*_spec.rb spec/models/observation_{f,b}*_spec.rb
+          - spec/models/observation_{g,l,p,r}*_spec.rb
+          - spec/models/observation_s*_spec.rb spec/models/observation_spec.rb spec/models/observation_p*_spec.rb
+          - spec/models/p{a,h,l,o}*_spec.rb
+          - spec/models/pr*_spec.rb
+          - spec/models/{q,s,u,w,y}*_spec.rb
+          - spec/models/taxon_{c,d,f,l,m,n,p,r,s}*_spec.rb
+          - spec/models/taxon_spec.rb spec/models/trip_*_spec.rb
+          - spec/controllers/{a,c,e,f,g,i,l,m}*_spec.rb
+          - spec/controllers/o*_spec.rb
           - spec/controllers/{p,q,r,s,t,u,v,w}*_spec.rb
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: Use Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-        bundler-cache: false
 
     - name: Configure sysctl limits
       run: |
@@ -69,16 +70,18 @@ jobs:
       run: |
         curl --verbose --show-error http://localhost:9200
 
-    - run: npm install
-    - run: npm run webpack
-
     - name: Install dependencies
       run: |
-        sudo apt-get -qq update
+        sudo apt-get -qq update --fix-missing
         sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
+
+    - name: Use Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - run: npm install
+    - run: npm run webpack
 
     - name: Before script
       run: ci/scripts/before_script.sh

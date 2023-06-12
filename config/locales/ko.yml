@@ -2632,9 +2632,7 @@ ko:
       6: 금
       7: 토
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%Y %b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y년 %B'
     month_names:
       - 
@@ -2673,10 +2671,6 @@ ko:
       format:
         significant: true
         strip_insignificant_zeros: true
-  time:
-    formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%Y년 %B %d일"
   activerecord:
     models:
       TaxonLink: 분류 링크
