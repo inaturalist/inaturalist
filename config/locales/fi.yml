@@ -875,7 +875,7 @@ fi:
   check_this_box_if_html: |
     Laita ruksi tähän jos haluat käyttää <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>Creative Commons Nimeä-Epäkaupallinen -lisenssiä</a> palveluun lisäämääsi sisältöön. Tämä tarkoittaa että kuka tahansa voi kopioida ja käyttää valokuviasi ja/tai havaintojasi pyytämättä erikseen lupaa, kunhan he viittaavat sinuun tiedon lähteenä eivätkä käytä niitä kaupallisesti. Voit valita erilaisen lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi tiedon jakamiseen tutkijoille.
+    target='_blank'>Creative Commons Nimeä-Epäkaupallinen -lisenssiä</a> palveluun lisäämääsi sisältöön. Tämä tarkoittaa että kuka tahansa voi kopioida ja käyttää valokuviasi ja/tai havaintojasi pyytämättä erikseen lupaa, kunhan he viittaavat sinuun tiedon lähteenä eivätkä käytä niitä kaupallisesti. Voit valita erilaisen lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi tiedon tutkimuskäyttöön.
   checklist: Lajiluettelo
   choose_a_field: Valitse kenttä
   choose_a_list_above: Valitse luettelo yläpuolelta.
@@ -1923,7 +1923,7 @@ fi:
   grid_tooltip: Näytä ruudukkonäkymä
   group: Ryhmä
   grouping: Ryhmittely
-  guides: Oppaat
+  guides: Lajioppaat
   guide_compiled_by: Oppaan koonnut
   guide_deleted: Opas poistettu
   guide_will_be_deleted: Opas poistetaan. Suurten oppaiden poistaminen kestää hetken.
@@ -3187,9 +3187,9 @@ fi:
     tilisi.
     </p>
   data_transfer_consent_label: |
-    Hyväksyn henkilötietojeni siirtämisen Amerikan yhdysvaltoihin
+    Hyväksyn henkilötietojeni siirtämisen Yhdysvaltoihin
   data_transfer_consent_child_label: |
-    Hyväksyn lapseni henkilötietojen siirtämisen Amerikan yhdysvaltoihin
+    Hyväksyn lapseni henkilötietojen siirtämisen Yhdysvaltoihin
   pin_verb: Kiinnitä
   pink: pinkki
   pinned_locations_desc: |
@@ -5062,7 +5062,7 @@ fi:
   yes_for_any_of_my_observations: "Kyllä, kaikkien havaintojen koordinaatit"
   yes_i_want_to_join: Kyllä, haluan liittyä
   yes_license_my_childs_observations: Kyllä, lisensoi lapseni ottamat valokuvat, äänitteet ja havainnot niin että tutkijat voivat käyttää niitä.
-  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
+  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi valokuvani, äänittteeni ja havaintoni niin, että niitä voidaan käyttää joustavasti tutkimuksessa (suositeltavaa).
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
   yir_code_contributors_desc_html: |
@@ -5235,6 +5235,8 @@ fi:
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     guides:
       index:
+        deprecated_banner: |
+          Huom: Lajiopas-osion kehitys on päättynyt, ja se on käytettävissä sellaisena kuin se oli tammikuussa 2019.
         funding_html: |
           Rahoituksen oppaiden kehittämiseen toimitti <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
