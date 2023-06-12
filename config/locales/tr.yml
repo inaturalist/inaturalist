@@ -1692,10 +1692,6 @@ tr:
   #we start requiring confirmation.
   email_confirmation_reminder_we_will_require: |
     Tüm hesaplar için %{requirement_date} tarihinden itibaren doğrulanmış e-posta adresleri talep edeceğiz. Lütfen şimdi onaylamak için bir dakikanı ayır.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions: |
-    Herhangi bir sorun var ise ütfen SSS bölümüne bakın. Doğa ve %{site_name} ile bağlantı kurmak için zaman ayırdığın için teşekkür ederiz.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
