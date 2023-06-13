@@ -100,7 +100,9 @@ export async function handleSaveError( e ) {
     //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
     return JSON.parse( body.errors[0].message ).errors;
   }
-  return body.errors ? body.errors : body.error.original.errors;
+  if ( body && body.errors ) return body.errors;
+  if ( body && body.error && body.error.original ) return body.error.original.errors;
+  return null;
 }
 
 export function saveUserSettings( ) {
