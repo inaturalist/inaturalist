@@ -62,7 +62,10 @@ end
 results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | process_index |
   start = offset * process_index
   limit = process_index == ( num_processes - 1 ) ? max_id : start + offset - 1
+  # Process id limits
   scope = scope.where( "users.id BETWEEN ? AND ? AND users.id > ?", start, limit, min_id )
+  # Don't email users who signed up in the last month
+  scope = scope.where( "users.created_at < ?", 1.month.ago )
   process_emailed = 0
   process_failed = 0
   process_failures_by_user_id = {}
