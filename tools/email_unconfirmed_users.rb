@@ -32,6 +32,7 @@ scope = if test_users.size.positive?
 else
   User.
     where( "confirmed_at IS NULL" ).
+    where( "suspended_at IS NULL" ).
     where( "(NOT spammer OR spammer IS NULL)" ).
     where( "email IS NOT NULL" )
 end
