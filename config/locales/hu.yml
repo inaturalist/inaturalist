@@ -1351,6 +1351,8 @@ hu:
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
   email_conf_banner_please_click: |
     Kérjük, hogy az emailcím megerősítéséhez kattints az emailben található linkre.
+  email_conf_required_after_grace_period: |
+    Az emailcím-megerősítés nem volt elvégezve %{requirement_date} határidőig, ezért kérjük, hogy állíts be új jelszót.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Kérjük, hogy erősítsd meg az email címed%{link_end_tag}</strong>. Ezt minden felhasználónak el kell végeznie %{date}-ig. E dátum után email cím megerősítés nélkül csak a jelszó módosítával lehet majd belépni. Az email cím megerősítését %{link_start_tag}a fiókbeállításoknál tudod elvégezni.%{link_end_tag}
   #Subject of an email prompting people to confirm their email address before
