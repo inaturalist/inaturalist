@@ -1759,6 +1759,10 @@ sv:
   email_conf_banner_we_delivered_todos: |
     Vi levererade ett bekräftelsemejl till dig den %{date}. Om du inte
     fick det, är här några saker du kan göra:
+  email_conf_required_after_grace_period: |
+    E-postbekräftelse krävs från och med %{requirement_date} och du har inte
+    bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
+    för att komma åt ditt konto.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
     Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
