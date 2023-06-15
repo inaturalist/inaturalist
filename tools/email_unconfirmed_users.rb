@@ -54,15 +54,13 @@ max_id = @opts.max_id || scope.calculate( :maximum, :id ).to_i
 offset = ( max_id - min_id ) / num_processes
 debug = @opts.debug
 dry = @opts.dry
-custom_users_requested = @opts.users.blank?
+custom_users_requested = !@opts.users.blank?
 
 if @opts.debug
   puts "Starting #{num_processes} processes, min_id: #{min_id}, max_id: #{max_id}, offset: #{offset}"
 end
 
 results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | process_index |
-  valid_domains = {}
-  invalid_domains = {}
   start = min_id + ( offset * process_index )
   limit = process_index == ( num_processes - 1 ) ? max_id : start + offset - 1
   # Process id limits
@@ -76,38 +74,39 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     puts "Query: #{scope.to_sql}"
   end
   scope.script_find_each( label: "[Proc #{process_index}]" ) do | recipient |
-    next if recipient.email.size.zero?
-    next if recipient.email_suppressed_in_group?(
+    if recipient.email.size.zero?
+      puts "[DEBUG] Email is blank" if debug
+      next
+    end
+
+    if recipient.email_suppressed_in_group?(
       [
         EmailSuppression::BLOCKS,
         EmailSuppression::BOUNCES,
         EmailSuppression::INVALID_EMAILS
       ]
     )
-    next if !custom_users_requested && recipient.confirmed?
+      puts "[DEBUG] Suppression exists" if debug
+      next
+    end
+
+    if !custom_users_requested && recipient.confirmed?
+      puts "[DEBUG] user already confirmed" if debug
+      next
+    end
 
     # Perform some pre-checks on the email address
-    recipient.email_will_change!
 
     # If there's something there but it doesn't look like an email address
-    next unless Devise.email_regexp.match( recipient.email )
+    unless Devise.email_regexp.match( recipient.email )
+      puts "[DEBUG] invalid email: #{recipient.email}" if debug
+      next
+    end
 
     # This checks banned domains
-    recipient.validate_email_pattern
-    next unless recipient.errors[:email].blank?
-
-    # Ensure email domain is there (try to only check each domain once)
-    domain = recipient.email.split( "@" )[1].strip
-    next if invalid_domains[domain]
-
-    unless valid_domains[domain]
-      recipient.validate_email_domain_exists
-      if recipient.errors[:email].blank?
-        valid_domains[domain] = true
-      else
-        invalid_domains[domain] = true
-        next
-      end
+    if ( CONFIG.banned_emails || [] ).detect {| suffix | recipient.email =~ /#{suffix}$/ }
+      puts "[DEBUG] banned email suffix" if debug
+      next
     end
 
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
@@ -123,8 +122,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       process_failures_by_user_id[recipient.id] = e
     end
   end
-  puts "Proc #{process_index} (#{start} - #{limit}, min_id: #{min_id}) finished, " \
-    "#{invalid_domains.size} invalid domains: #{invalid_domains.keys}"
+  puts "Proc #{process_index} (#{start} - #{limit}, min_id: #{min_id}) finished"
   { emailed: process_emailed, failed: process_failed, failures_by_user_id: process_failures_by_user_id }
 end
 
