@@ -1654,6 +1654,8 @@ id:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Kami sudah mengirimkan email konfirmasi pada tanggal %{date}. Jika Anda belum menerimanya, di sini ada beberapa hal yang bisa Anda lakukan:
+  email_conf_required_after_grace_period: |
+    Konfiirmasi email diwajibkan sejak %{requirement_date} dan Anda belum mengonfirmasi alamat email Anda sebelum tanggal pemberlakuan aturan ini. Harap mengatur ulang kata sandi Anda sebelum mengakses akun Anda.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Hatap mengonfirmasi alamat email Anda%{link_end_tag}</strong>.
     Semua pengguna harus mengonfirmasi email mereka sebelum %{date}. Setelah tanggal tersebut, semua orang yang belum mengonfirmasi alamat email mereka tidak akan bisa masuk kecuali mereka mengatur ulang kata sandi mereka. Untuk mengonfirmasi alamat email Anda,
@@ -1661,6 +1663,12 @@ id:
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Konfirmasi alamat email %{site_name} Anda sebelum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Harap mengonfirmasi alamat email Anda hari ini untuk memastikan bahwa Anda bisa mengakses akun Anda ke depannya. %{site_name}, aplikasi mobile iNaturalist, dan Seek by iNaturalist menghubungkan orang-orang dengan alam dan sesama dengan membagikan pengamatan-pengamatan keanekaragaman hayati. Terima kasih telah menjadi bagian dari komunitas iNaturalist!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Kami mewajibkan verifikasi alamat email mulai %{requirement_date}. Mohon luangkan waktu untuk mengonfirmasinya sekarang.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
   email_confirmation_reminder_any_questions_html: |
