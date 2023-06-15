@@ -7,7 +7,7 @@
   // for lowercase month names
   I18n.toTime = function ( scope, input ) {
     var format = I18n.t( scope, { defaultValue: null } );
-    const date = I18n.parseDate( input );
+    var date = I18n.parseDate( input );
     if ( !format ) return originalImplementation.apply( I18n, [scope, input] );
 
     if ( !format.match( /%=b/i ) ) {
