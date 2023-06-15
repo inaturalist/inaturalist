@@ -41,5 +41,15 @@ class OauthTokensController < Doorkeeper::TokensController
       error: "invalid_grant",
       error_description: I18n.t( "devise.failure.unconfirmed" )
     }.to_json
+  rescue INat::Auth::UnconfirmedAfterGracePeriodError
+    headers.delete "WWW-Authenticate"
+    self.status = 400
+    self.response_body = {
+      error: "invalid_grant",
+      error_description: I18n.t(
+        :email_conf_required_after_grace_period,
+        requirement_date: I18n.l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+      )
+    }.to_json
   end
 end

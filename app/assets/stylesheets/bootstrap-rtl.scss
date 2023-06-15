@@ -59,6 +59,13 @@
   text-align: end;
 }
 
+.pull-right {
+  float: left !important;
+}
+.pull-left {
+  float: right !important;
+}
+
 .list-unstyled {
   padding-inline-start: 0;
 }
@@ -114,6 +121,10 @@ blockquote.pull-right {
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
     float: right;
   }
+}
+
+.col-xs-offset-8 {
+  margin-inline-start: 66.66666667%;
 }
 
 caption {
@@ -241,6 +252,15 @@ th {
   float: right;
 }
 
+.btn-group-vertical > .btn,
+.btn-group-vertical > .btn-group,
+.btn-group-vertical > .btn-group > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+}
+
 .btn .caret {
   margin-inline-start: 0;
 }
@@ -249,7 +269,7 @@ th {
 .btn-group-vertical > .btn + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
 .btn-group-vertical > .btn-group + .btn-group {
-  margin-inline-end: 0;
+  margin-inline-start: 0;
 }
 
 .btn-group-justified > .btn-group .dropdown-menu {
@@ -277,6 +297,47 @@ th {
   z-index: 2;
   margin-inline-start: -1px;
 }
+
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-group-addon:first-child {
+  border-inline-end: 0;
+}
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input-group-addon:last-child {
+  border-inline-start: 0;
+}
+
+.input-group-btn > .btn + .btn {
+  margin-inline-start: -1px;
+}
+
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group {
+  margin-inline-end: -1px;
+}
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group {
+  margin-inline-start: -1px;
+}
+
 .nav {
   padding-inline-start: 0;
 }
