@@ -1914,6 +1914,10 @@ en:
   email_conf_banner_we_delivered_todos: |
     We delivered a confirmation email to you on %{date}. If you did not
     receive it, here are some things you can do:
+  email_conf_required_after_grace_period: |
+    Email confirmation is required as of %{requirement_date} and you did not
+    confirm your email address before the cutoff. Please reset your password
+    to access your account.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
     All users must confirm their email address by %{date}. After that

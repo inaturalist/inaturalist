@@ -32,6 +32,7 @@ scope = if test_users.size.positive?
 else
   User.
     where( "confirmed_at IS NULL" ).
+    where( "suspended_at IS NULL" ).
     where( "(NOT spammer OR spammer IS NULL)" ).
     where( "email IS NOT NULL" )
 end
@@ -50,7 +51,7 @@ end
 num_processes = @opts.num_processes
 min_id = @opts.min_id
 max_id = @opts.max_id || scope.calculate( :maximum, :id ).to_i
-offset = max_id / num_processes
+offset = ( max_id - min_id ) / num_processes
 debug = @opts.debug
 dry = @opts.dry
 custom_users_requested = @opts.users.blank?
@@ -60,7 +61,9 @@ if @opts.debug
 end
 
 results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | process_index |
-  start = offset * process_index
+  valid_domains = {}
+  invalid_domains = {}
+  start = min_id + ( offset * process_index )
   limit = process_index == ( num_processes - 1 ) ? max_id : start + offset - 1
   # Process id limits
   scope = scope.where( "users.id BETWEEN ? AND ? AND users.id > ?", start, limit, min_id )
@@ -83,6 +86,30 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     )
     next if !custom_users_requested && recipient.confirmed?
 
+    # Perform some pre-checks on the email address
+    recipient.email_will_change!
+
+    # If there's something there but it doesn't look like an email address
+    next unless Devise.email_regexp.match( recipient.email )
+
+    # This checks banned domains
+    recipient.validate_email_pattern
+    next unless recipient.errors[:email].blank?
+
+    # Ensure email domain is there (try to only check each domain once)
+    domain = recipient.email.split( "@" )[1].strip
+    next if invalid_domains[domain]
+
+    unless valid_domains[domain]
+      recipient.validate_email_domain_exists
+      if recipient.errors[:email].blank?
+        valid_domains[domain] = true
+      else
+        invalid_domains[domain] = true
+        next
+      end
+    end
+
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
 
     begin
@@ -96,6 +123,8 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       process_failures_by_user_id[recipient.id] = e
     end
   end
+  puts "Proc #{process_index} (#{start} - #{limit}, min_id: #{min_id}) finished, " \
+    "#{invalid_domains.size} invalid domains: #{invalid_domains.keys}"
   { emailed: process_emailed, failed: process_failed, failures_by_user_id: process_failures_by_user_id }
 end
 
