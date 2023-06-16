@@ -20,7 +20,6 @@ class GeoModelController < ApplicationController
         when "recall" then "recall"
         when "f1" then "f1"
         when "elev_threshold" then "elev_threshold"
-        when "no_elev_threshold" then "no_elev_threshold"
         else "taxa.name"
         end
         sort_order = case params[:order]
@@ -39,7 +38,6 @@ class GeoModelController < ApplicationController
             recall: gmt.recall,
             f1: gmt.f1,
             elev_threshold: gmt.elev_threshold,
-            no_elev_threshold: gmt.no_elev_threshold,
             name: gmt.taxon.name
           }
         }
@@ -54,7 +52,6 @@ class GeoModelController < ApplicationController
     preferred_place = user_place || site_place
 
     @raw_env_data = JSON.parse( File.read( File.join( Rails.root, "public/geo_model/tf_env_maps/#{@taxon.id}.json" ) ) )
-    @raw_no_env_data = JSON.parse( File.read( File.join( Rails.root, "public/geo_model/tf_maps/#{@taxon.id}.json" ) ) )
     @presence_absence = JSON.parse( File.read( File.join( Rails.root, "public/geo_model/tf_env_presence_maps/#{@taxon.id}.json" ) ) )
     taxon_range_data_path = File.join( Rails.root, "public/geo_model/taxon_range_maps/#{@taxon.id}.json" )
     @taxon_range = File.exist?( taxon_range_data_path ) ? JSON.parse( File.read( taxon_range_data_path ) ) : { }

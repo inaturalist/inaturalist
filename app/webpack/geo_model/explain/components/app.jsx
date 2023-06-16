@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 /* global h3 */
 /* global chroma */
 /* global TAXON_RAW_ENV_DATA */
-/* global TAXON_RAW_NO_ENV_DATA */
 /* global PRESENCE_ABSENCE_DATA */
 /* global TAXON_RANGE_DATA */
 /* global GEO_MODEL_TAXON */
@@ -35,10 +34,6 @@ class App extends React.Component {
 
     const allData = {
       rawEnvData: _.mapValues( TAXON_RAW_ENV_DATA, v => ( {
-        value: v,
-        color: colorScale( v ).hex( )
-      } ) ),
-      rawNoEnvData: _.mapValues( TAXON_RAW_NO_ENV_DATA, v => ( {
         value: v,
         color: colorScale( v ).hex( )
       } ) ),
@@ -150,9 +145,6 @@ class App extends React.Component {
       if ( key === "rawEnvData" && cellData.value < GEO_MODEL_TAXON.elev_threshold ) {
         return;
       }
-      if ( key === "rawNoEnvData" && cellData.value < GEO_MODEL_TAXON.no_elev_threshold ) {
-        return;
-      }
       const popupData = {
         Cell: h3Index,
         Lat: latlng[0],
@@ -261,15 +253,6 @@ class App extends React.Component {
         onClick={( ) => this.setLayer( "rawEnvData" )}
       >
         Raw Env
-      </button>
-    ) );
-    buttons.push( (
-      <button
-        type="button"
-        key="rawNoEnvData"
-        onClick={( ) => this.setLayer( "rawNoEnvData" )}
-      >
-        Raw No Env
       </button>
     ) );
     buttons.push( (
