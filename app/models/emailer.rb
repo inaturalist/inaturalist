@@ -245,7 +245,12 @@ class Emailer < ActionMailer::Base
     @user = user
     @user.send( :generate_confirmation_token! ) if @user.confirmation_token.blank?
     set_locale
+    # If you unsubscribe from this you're saying you don't want *any* emails
+    # about your account
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
+    # This is a mass mailer so try not to endanger the reputation of the
+    # highest priority IPs
+    @x_smtpapi_headers[:ip_pool] = "ip_pool_2"
     ident_response = Identification.elastic_search(
       size: 0,
       filters: [
@@ -345,7 +350,8 @@ class Emailer < ActionMailer::Base
       # when you put tags like this in a template
       sub: {
         "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
-      }
+      },
+      ip_pool: "ip_pool_1"
     }
   end
 end

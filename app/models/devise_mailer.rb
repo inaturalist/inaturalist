@@ -90,7 +90,8 @@ class DeviseMailer < Devise::Mailer
       # when you put tags like this in a template
       sub: {
         "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
-      }
+      },
+      ip_pool: "ip_pool_1"
     }
   end
 end
