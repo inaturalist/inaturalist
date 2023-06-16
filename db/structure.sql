@@ -1705,6 +1705,44 @@ ALTER SEQUENCE public.friendships_id_seq OWNED BY public.friendships.id;
 
 
 --
+-- Name: geo_model_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.geo_model_taxa (
+    id bigint NOT NULL,
+    taxon_id integer,
+    model_type character varying,
+    prauc double precision,
+    "precision" double precision,
+    recall double precision,
+    f1 double precision,
+    elev_threshold double precision,
+    no_elev_threshold double precision,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: geo_model_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.geo_model_taxa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: geo_model_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.geo_model_taxa_id_seq OWNED BY public.geo_model_taxa.id;
+
+
+--
 -- Name: goal_contributions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5640,6 +5678,13 @@ ALTER TABLE ONLY public.friendships ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: geo_model_taxa id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.geo_model_taxa ALTER COLUMN id SET DEFAULT nextval('public.geo_model_taxa_id_seq'::regclass);
+
+
+--
 -- Name: goal_contributions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6587,6 +6632,14 @@ ALTER TABLE ONLY public.friendly_id_slugs
 
 ALTER TABLE ONLY public.friendships
     ADD CONSTRAINT friendships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: geo_model_taxa geo_model_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.geo_model_taxa
+    ADD CONSTRAINT geo_model_taxa_pkey PRIMARY KEY (id);
 
 
 --
@@ -7853,6 +7906,13 @@ CREATE INDEX index_friendships_on_trust ON public.friendships USING btree (trust
 --
 
 CREATE UNIQUE INDEX index_friendships_on_user_id_and_friend_id ON public.friendships USING btree (user_id, friend_id);
+
+
+--
+-- Name: index_geo_model_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_geo_model_taxa_on_taxon_id ON public.geo_model_taxa USING btree (taxon_id);
 
 
 --
@@ -10311,6 +10371,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221129175508'),
 ('20221214192739'),
 ('20221219015021'),
-('20230224230316');
+('20230224230316'),
+('20230407150700');
 
 
