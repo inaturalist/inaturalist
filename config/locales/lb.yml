@@ -104,6 +104,9 @@ lb:
   x_sounds:
     one: "%{count} Sound"
     other: "%{count} Sounds"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> Taxon Changement bäigesat"
+    other: "<span class='count'>%{count}</span> Taxon Changementer bäigesat"
   _100_day_trends: Tendenz iwwer 100 Deeg
   _percent_ID_d: "% ID bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -244,6 +247,8 @@ lb:
   add_your_own_observations_at: "Setzt Är eegen Observatiounen op %{site_name} derbäi"
   added: Derbäigesat
   added!: Derbäigesat!
+  added_as_a_part_of_a_taxon_change_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxon Changement</a>
   added_by: Derbäigesat vum
   added_by_user_on_date_html: "Derbäigesat vum %{user} de(n) %{date}"
   added_on_datetime: "Bäisetzen den %{datetime}"
@@ -1364,6 +1369,8 @@ lb:
   no_comments_yet: Nach keng Bemierkungen.
   no_description: Keng Beschreiwung
   no_identifications: Keng Bestëmmungen
+  no_identifications_added:
+    user: "%{user} huet keng Identifikatiounen zu iergendengem senger Observatioun bäigefüügt."
   no_ids: "Zuel vun IDen"
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
@@ -1377,6 +1384,7 @@ lb:
   no_observations: Keng Observatiounen
   no_observations_from_this_place_yet: Nach keng Observatioune vun dëser Plaz.
   no_observations_yet: Nach keng Observatiounen
+  no_one_has_added_any: Keen huet keng Notizen fir dës Plaz bäigefüügt
   no_one_has_been_invited_yet: Et gouf nach keen invitéiert
   no_photo: Keng Foto
   no_photos: Keng Fotoen
@@ -2219,8 +2227,14 @@ lb:
   user_added_a_x: "%{user} huet e(n) %{x} derbäigesat"
   user_added_a_x_to_noun_by_html: "%{user} huet eng %{x} zu %{noun} vum %{by} bäigesat"
   user_added_an_identification_html: "%{user} huet eng Bestemmung bäigesat"
+  user_added_an_observation_field_html: '%{user} huet een Wäert fir "%{field_name}" bei eng Observatioun vum %{owner} bäigesat'
+  user_added_an_observation_field_value_html: "%{user} huet een Observatiounsfeldwert bäigesat"
   user_added_an_observation_html: "%{user} huet eng Observatioun bäigesat"
   user_added_an_x: "%{user} huet eng %{x} derbäigesat"
+  user_added_an_x_to_noun_by_html: "%{user} huet een %{x} bei %{noun} vum %{by} bäigesat"
+  user_added_an_x_to_noun_by_user_html: "%{user} huet eng %{x} bei %{noun} vum %{by} bäigesat"
+  user_added_an_x_to_noun_by_you_html: "%{user} huet eng %{x} bei %{noun} vun Iech bäigesat"
+  user_added_an_x_to_noun_html: "%{user} huet eng %{x} bei %{noun} bäigesat"
   user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
   user_already_app_owner: De Benotzer ass schonn en App Besëtzer

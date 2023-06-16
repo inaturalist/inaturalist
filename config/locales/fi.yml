@@ -1640,11 +1640,6 @@ fi:
   email_confirmation_reminder_we_will_require: |
     Vaadimme vahvistettuja sähköpostiosoitteita kaikille tileille alkaen
     %{requirement_date}. Ole hyvä ja vahvista se nyt.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions: |
-    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset. Kiitos, että olet ottanut
-    aikaa yhteyden luontiin luonnon ja %{site_name} kanssa.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.

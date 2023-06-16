@@ -1715,6 +1715,11 @@ fr:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Veuillez svp confirmer votre courriel.%{link_end_tag}</strong>.
     Tous les usagers et usagères doivent confirmer leur adresse courriel d’ici le 1er juillet 2023. Après cette date, quiconque n’aura pas confirmé son courriel ne pourra se connecter à son compte et devra réinitialiser son mot de passe. Pour confirmer votre courriel, allez aux %{link_start_tag}paramètres de votre compte%{link_end_tag}.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Si vous avez des questions, veuillez vous référer à la
+    <a href="%{faq_url}">FAQ</a>. Merci d'avoir pris le temps de vous connecter à la nature et à %{site_name}.
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
   email_notifications: Notifications par mail
   embed: 'Intégrer'

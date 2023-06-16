@@ -1759,6 +1759,10 @@ sv:
   email_conf_banner_we_delivered_todos: |
     Vi levererade ett bekräftelsemejl till dig den %{date}. Om du inte
     fick det, är här några saker du kan göra:
+  email_conf_required_after_grace_period: |
+    E-postbekräftelse krävs från och med %{requirement_date} och du har inte
+    bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
+    för att komma åt ditt konto.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
     Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
@@ -1780,9 +1784,10 @@ sv:
     %{requirement_date}. Vänligen ta dig tid att bekräfta den nu.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
-  email_confirmation_reminder_any_questions: |
-    Om du har några frågor, vänligen se FAQ:n. Tack för att du tar dig
-    tid att få kontakt med naturen och med %{site_name}.
+  email_confirmation_reminder_any_questions_html: |
+    Om du har några frågor, vänligen se
+    <a href="%{faq_url}">Vanliga frågor</a>. Tack för att du tog dig tid att anknyta
+    till naturen och %{site_name}.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
