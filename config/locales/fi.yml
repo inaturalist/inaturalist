@@ -1623,6 +1623,10 @@ fi:
   email_conf_banner_we_delivered_todos: |
     Toimitimme sinulle vahvistusviestin %{date}. Jos et
     saanut sitä, tässä on joitain asioita, joita voit tehdä:
+  email_conf_required_after_grace_period: |
+    Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
+    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja nollaa salasanasi
+    päästäksesi tiliisi.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
     Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
@@ -1640,6 +1644,11 @@ fi:
   email_confirmation_reminder_we_will_require: |
     Vaadimme vahvistettuja sähköpostiosoitteita kaikille tileille alkaen
     %{requirement_date}. Ole hyvä ja vahvista se nyt.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset <a href="%{faq_url}">FAQs</a>. Kiitos, että olet ottanut
+    aikaa yhteyden luontiin luonnon ja %{site_name} kanssa.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
