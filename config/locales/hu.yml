@@ -2138,6 +2138,7 @@ hu:
   #Label shown when a date has not been entered
   missing_date: Hiányzó dátum
   mobile: Mobil
+  moderation_history_for_user_html: '%{user} felhasználó moderálási előzményei'
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderátor / Megjelölő
   mollusks: puhatestűek
@@ -4160,6 +4161,8 @@ hu:
   user_hasnt_joined_any_projects: "%{user} még nem csatlakozott egy projekthez sem"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
   user_invite_observation_to_project: '%{user} meghívja "%{observation}" megfigyelésedet a %{project} projektbe.'
+  user_invited_you_to_join_html: "%{user} meghívott, hogy csatlakozz"
+  user_invited_you_to_join_project: "%{user} meghívott %{project} projekthez"
   user_invited_you_to_join_this_project_on_date_html: "%{user} meghívott, hogy csatlakozz ehez a projekthez ekkor: %{date}"
   user_is_a_naturalist: "%{user} egy természetbarát!"
   user_muted: A felhasználó némítva van
@@ -4411,6 +4414,8 @@ hu:
     Az adományod révén hozzájárulsz a program globális fenntartásához és eredményeihez személyes és ökológiai szinten
   you: te
   you_: Te
+  you_appear_offline_try_again: |
+    Nincs internetkapcsolatod. Próbálkozz újra később.
   you_are_not_editing_any_guides_add_one_html: |
     Nem szerkesztesz egy útmutatót sem. <a href="/guides/new">Adj hozzá egyet</a>
   you_are_already_a_member_of_this_project: "Ennek a projektnek már tagja vagy!"
@@ -4602,6 +4607,11 @@ hu:
       from: Feladó
       to: Címzett
       subject_body: Tárgy / Szövegtörzs
+      index:
+        show_messages_from_user: Mutasd az üzeneteket %{user} felhasználótól
+        show_messages_to_user: Mutasd az üzeneteket %{user} felhasználóhoz
+        speech_privilege_notice: |
+          Akkor küldhetsz új üzeneteket, miután van három hiteles megfigyelésed vagy három meghatározásod más számára. Egyelőre elolvashatod és válaszolhatsz azokra az üzenetekre amiket másoktól kaptál.
     oauth:
       authorizations:
         new:
@@ -5429,6 +5439,7 @@ hu:
         establishment_means: Honosság státusza
       message:
         subject: Tárgy
+        body: Üzenet
       moderator_action:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
