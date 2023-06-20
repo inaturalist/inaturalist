@@ -831,6 +831,7 @@ th:
     ในการสมัครเป็น Curator คุณต้องเป็นผู้ใช้ 60 วันขึ้นไป และเพิ่มอย่างน้อย 5 flags และต้องมี 100 improving identifications ให้กับการสังเกตของทุกคน รวมถึงของคุณเอง (คุณได้เพิ่ม %{num_idents}) เมื่อมีคุณสมบัติตามเกณฑ์ที่กำหนด กลับมาหน้านี่และดำเนินการยื่นส่งใบสมัครได้
   curators: ผู้ดูแล
   curator_identification: การจำแนกโดย Curator
+  custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
   daily_users: ผู้ใช้งานรายวัน
   danger_zone: พิจารณาให้ดีก่อนเลือก
   dashboard: หน้ารวม
@@ -1724,6 +1725,10 @@ th:
   people_following_user: "ผู้คนที่ติดตาม %{user}"
   people_user_follows: "ผู้คนที่ %{user} ติดตาม"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: เพิ่ม<a href="%{observation_url}">การสังเกต</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2257,6 +2262,8 @@ th:
   #can buy merchandise. Please try to keep translations as short as possible
   store: ร้านค้า
   store_caps: ร้านค้า
+  subject_affecting_stuff_html: "%{subject}ที่ส่งผลต่อ %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} ได้ทำการ%{thing}ที่ส่งผลต่อ %{stuff}"
   submit_observations:
     other: ส่ง 1 การสังเกต
   submitted: ส่งเมื่อ
@@ -2544,7 +2551,11 @@ th:
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
+  user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
+  user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
+  user_added_an_x: "%{user} เพิ่ม%{x}"
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
   user_faved_this_observation: "%{user} ชอบการสังเกตนี้"
@@ -2695,6 +2706,7 @@ th:
   your_membership: การเป็นสมาชิกของคุณ
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
   your_observations: การสังเกตของคุณ
+  your_observations_couldnt_be_added_to_that_project: "เพิ่มการสังเกตของคุณเข้าโครงการนั้นไม่ได้: %{errors}"
   your_projects: โครงการของคุณ
   your_pinned_locations: ตำแหน่งที่คุณปักหมุดไว้
   your_recent_projects: โครงการล่าสุดของคุณ
@@ -2932,10 +2944,13 @@ th:
         new_species_desc_html: |
           ชนิดที่เพิ่มเข้ามาเป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และดูชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ ได้ด้วย แผนภูมินี้แสดงชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่นับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
         new_species_per_year: ชนิดใหม่ / ปี
+        new_species_per_year_by_date_added: ตามวันที่เพิ่ม
         percent_growth_in_year: "% การเติบโตในปี %{year}"
         percent_of_total_growth: "% การเติบโตทั้งหมด"
         observations_per_year: การสังเกต / ปี
+        observations_per_year_by_date_added: ตามวันที่เพิ่ม
         species_per_year: ชนิด / ปี
+        species_per_year_by_date_added: ตามวันที่เพิ่ม
         stats_generated_datetime: สถิตินี้สร้างเมื่อ %{datetime}
         stats_generation_schedule: สถิติจะสร้างทุกวันอาทิตย์ในเดือนธันวาคมและวันที่ 1 มกราคม
     taxa:
