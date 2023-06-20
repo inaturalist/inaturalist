@@ -257,9 +257,11 @@ class PlacesController < ApplicationController
       return
     end
 
+    area_km2 = @place.area_km2
+
     if !current_user.is_admin? &&
-        @place.area_km2 &&
-        @place.area_km2 > Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
+        area_km2 &&
+        area_km2 > Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
       flash[:error] = t( :only_staff_can_edit_large_places )
       redirect_to place_path( @place )
       nil
@@ -269,7 +271,7 @@ class PlacesController < ApplicationController
     return if current_user.is_admin?
 
     # Small places are ok to edit
-    return if @place.area_km2 && @place.area_km2 <= Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
+    return if area_km2 && area_km2 <= Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
 
     # At this point, a non-staffer is trying to edit a large place
     flash[:error] = t( :only_staff_can_edit_large_places )

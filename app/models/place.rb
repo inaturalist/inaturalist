@@ -90,7 +90,7 @@ class Place < ApplicationRecord
   end
 
   attr_accessor :html
-
+  attr_accessor :max_area_km2
   attr_accessor :updating_bbox
 
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
@@ -959,10 +959,7 @@ class Place < ApplicationRecord
   end
 
   def area_km2
-    PlaceGeometry.
-      where( place_id: id ).
-      select( "id, ST_Area(geom::geography) / (1000 * 1000) AS area_km2" ).
-      first&.area_km2
+    place_geometry&.area_km2
   end
 
   def self.param_to_array(places)

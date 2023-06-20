@@ -22,6 +22,16 @@ class PlaceGeometry < ApplicationRecord
     "<PlaceGeometry #{id} place_id: #{place_id}>"
   end
 
+  def area_km2
+    return unless geom
+
+    self.class.area_km2( geom )
+  end
+
+  def self.area_km2( geom )
+    connection.query_value sanitize_sql_array( ["SELECT ST_Area(?::geography) / 1000 ^ 2", geom.as_text] )
+  end
+
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?
