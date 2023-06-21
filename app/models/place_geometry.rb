@@ -34,6 +34,7 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def self.area_km2( geom )
+    # Discussion of ST_Area: https://gis.stackexchange.com/questions/169422/how-does-st-area-in-postgis-work
     connection.query_value sanitize_sql_array( ["SELECT ST_Area(?::geography) / 1000 ^ 2", geom.as_text] )
   end
 

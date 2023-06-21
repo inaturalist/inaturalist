@@ -257,7 +257,7 @@ class PlacesController < ApplicationController
       return
     end
 
-    if @place.area_km2 > max_area_km2
+    if max_area_km2 && @place.area_km2 > max_area_km2
       flash[:error] = t( :only_staff_can_edit_large_places )
       redirect_to place_path( @place )
       nil
@@ -266,7 +266,7 @@ class PlacesController < ApplicationController
 
   def update
     if @place.update( params[:place] )
-      if @place.area_km2 > max_area_km2
+      if max_area_km2 && @place.area_km2 > max_area_km2
         @place.add_custom_error( :place_geometry, :is_too_large_to_edit )
       elsif params[:file]
         assign_geometry_from_file
@@ -684,7 +684,7 @@ class PlacesController < ApplicationController
   end
 
   def max_area_km2
-    return Float::INFINITY if current_user.is_admin?
+    return nil if current_user.is_admin?
 
     if CONFIG.content_freeze_enabled
       # 70,000 km2 is roughly the size of West Virginia or Croatia
@@ -696,7 +696,7 @@ class PlacesController < ApplicationController
   end
 
   def max_observation_count
-    return Float::INFINITY if current_user.is_admin?
+    return nil if current_user.is_admin?
 
     if CONFIG.content_freeze_enabled
       10_000
