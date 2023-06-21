@@ -58,7 +58,7 @@ class Place < ApplicationRecord
   validate :validate_name_does_not_start_with_a_number
   validate :custom_errors
   validates :place_geometry, presence: true, on: :create
-  
+
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
   }
@@ -90,7 +90,6 @@ class Place < ApplicationRecord
   end
 
   attr_accessor :html
-  attr_accessor :max_area_km2
   attr_accessor :updating_bbox
 
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
@@ -197,18 +196,6 @@ class Place < ApplicationRecord
   TOWN_LEVEL = 30
   PARK_LEVEL = 100
   ADMIN_LEVELS = [CONTINENT_LEVEL, REGION_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
-
-  # 66 is roughly the size of Texas
-  MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
-  # 700,000 km2 is roughly the size of Texas or Somalia
-  MAX_PLACE_AREA_FOR_NON_STAFF_KM2 = 700_000
-  # 6 is roughly the size of West Virginia
-  MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
-  # 70,000 km2 is roughly the size of West Virginia or Croatia
-  MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE_KM2 = 70_000
-
-  MAX_PLACE_OBSERVATION_COUNT = 200000
-  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 10000
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -440,7 +427,7 @@ class Place < ApplicationRecord
     check_list.destroy
   end
 
-  def validate_with_geom( geom, other_attrs = {} )
+  def validate_with_geom( geom, max_area_km2: nil, max_observation_count: nil )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
@@ -452,19 +439,23 @@ class Place < ApplicationRecord
       add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
       return false
     end
-    observation_count = Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count
-    if other_attrs[:user] && !other_attrs[:user].is_admin?
-      if geom.respond_to?(:area) && (
-         ( CONFIG.content_freeze_enabled && geom.area > MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE ) ||
-         geom.area > MAX_PLACE_AREA_FOR_NON_STAFF )
-        add_custom_error( :place_geometry, :is_too_large_to_import )
-        return false
-      elsif ( ( CONFIG.content_freeze_enabled && observation_count >= MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE ) ||
-        observation_count >= MAX_PLACE_OBSERVATION_COUNT )
+
+    if max_observation_count
+      observation_count = Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count
+      if observation_count > max_observation_count
         add_custom_error(:place_geometry, :contains_too_many_observations)
         return false
       end
     end
+
+    if max_area_km2
+      area_km2 = PlaceGeometry.area_km2( geom )
+      if area_km2 > max_area_km2
+        add_custom_error( :place_geometry, :is_too_large_to_import )
+        return false
+      end
+    end
+
     true
   end
   
@@ -474,7 +465,7 @@ class Place < ApplicationRecord
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
-    return unless validate_with_geom( geom, other_attrs )
+    return unless validate_with_geom( geom, **other_attrs )
     other_attrs.delete(:user)
     other_attrs.merge!(:geom => geom, :place => self)
     begin

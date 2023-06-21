@@ -25,7 +25,12 @@ class PlaceGeometry < ApplicationRecord
   def area_km2
     return unless geom
 
-    self.class.area_km2( geom )
+    @area_km2 ||= self.class.area_km2( geom )
+  end
+
+  def geom=( value )
+    @area_km2 = nil
+    super
   end
 
   def self.area_km2( geom )
