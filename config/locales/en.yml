@@ -494,6 +494,8 @@ en:
   # Noun, title of a popup alerting you to something
   alert: Alert
   all: All
+  # Title for a list of all 3rd party applications
+  all_applications: All Applications
   all_comments: All comments
   all_flags_must_be_resolved: All flags must be resolved
   all_life: All life
@@ -3240,6 +3242,8 @@ en:
   next_tab: Next Tab
   next_taxon_short: Next
   'no': 'No'
+  # Shown when a list of 3rd party applications has no applications
+  no_applications_yet: No applications yet
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
   no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}"
   no_comments_yet: No comments yet.
@@ -6317,6 +6321,8 @@ en:
   your_account_has_been_activated: Your account has been activated!
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
+  # Title for a list of 3rd party applications you control
+  your_applications: Your Applications
   your_browser_does_not_support_the_audio_element: Your browser does not support the audio element.
   your_comment_was_saved: Your content was saved
   your_content: Your Content
