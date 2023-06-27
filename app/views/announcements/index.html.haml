@@ -22,6 +22,7 @@
       %table.table
         %thead
           %tr
+            %th= t :id
             %th= t :placement
             %th= t :sites, default: "Sites"
             %th= t :start
@@ -30,10 +31,14 @@
         %tbody
           - @announcements.each do |announcement|
             %tr
+              %td= link_to announcement.id, announcement
               %td= h announcement.placement
               %td= announcement.site_ids.empty? ? t(:all)  : announcement.sites.map(&:name).join(", ")
               %td=l announcement.start
-              %td=l announcement.end
+              %td
+                =l announcement.end
+                - if announcement.end > Time.now
+                  %span.label.label-success=t :active
               %td
                 - if announcement.placement === "users/dashboard#sidebar"
                   %div.sidebar-body=raw announcement.body

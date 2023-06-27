@@ -8936,6 +8936,8 @@ en:
         # Numerical IDs of the iNaturalist Network partner sites the
         # announcement should be shown on
         site_ids: Site IDs
+        # Preference for an announcement that is only shown to staff
+        prefers_target_staff: Target staff (for testing)
         # Preference for an announcement that is only shown to users who have
         # not confirmed their email address
         prefers_target_unconfirmed_users: Target unconfirmed users
