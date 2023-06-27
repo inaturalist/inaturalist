@@ -6,7 +6,7 @@ index = 0
 
 static_bucket_id = FilePrefix.where( prefix: "https://static.inaturalist.org/photos" ).first.id
 
-while index < max_photo_id
+while index <= max_photo_id
   puts "Starting batch #{index}"
   LocalPhoto.joins( "LEFT JOIN flags ON (photos.id = flags.flaggable_id)" ).
   where( "flags.id IS NULL" ).
