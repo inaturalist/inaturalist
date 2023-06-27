@@ -23,6 +23,7 @@ require "optimist"
   opt :confirmed, "Only mail confirmed email addresses", type: :boolean
   opt :unconfirmed, "Only mail unconfirmed email addresses", type: :boolean
   opt :skip_recent, "Skip users created in the last month", type: :boolean
+  opt :locale, "Locale to filter users by. Matches sublocles, so `es` will match `es-MX`", type: :string
 end
 
 mailer_method = ARGV.shift
@@ -53,6 +54,10 @@ end
 
 if @opts.confirmed && @opts.unconfirmed
   Optimist.die "You can't email confirmed and unconfirmed users"
+end
+
+if @opts.locale && ( @opts.english || @opts.non_english )
+  Optimist.die "You can't specify a locale as well as the English or non-English filters"
 end
 
 test_users = @opts.users.to_s.split( "," )
@@ -87,6 +92,8 @@ if @opts.english
   scope = scope.where( "locale LIKE 'en%'" )
 elsif @opts.non_english
   scope = scope.where( "locale NOT LIKE 'en%'" )
+elsif @opts.locale
+  scope = scope.where( "locale LIKE ?", "#{@opts.locale}%" )
 end
 
 @start = Time.now
@@ -100,7 +107,6 @@ max_id = @opts.max_id || scope.calculate( :maximum, :id ).to_i
 offset = ( max_id - min_id ) / num_processes
 debug = @opts.debug
 dry = @opts.dry
-custom_users_requested = !@opts.users.blank?
 
 if @opts.debug
   puts "Starting #{num_processes} processes, min_id: #{min_id}, max_id: #{max_id}, offset: #{offset}"
@@ -134,11 +140,6 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       next
     end
 
-    if !custom_users_requested && recipient.confirmed?
-      puts "[DEBUG] user already confirmed" if debug
-      next
-    end
-
     # Perform some pre-checks on the email address
 
     # If there's something there but it doesn't look like an email address
@@ -166,11 +167,24 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       process_failures_by_user_id[recipient.id] = e
     end
   end
-  puts "Proc #{process_index} (#{start} - #{limit}, min_id: #{min_id}) finished"
-  { emailed: process_emailed, failed: process_failed, failures_by_user_id: process_failures_by_user_id }
+  puts "Proc #{process_index} (#{start} - #{limit}, min_id: #{min_id}) finished, " \
+    "#{process_emailed} emailed, #{process_failed} failed"
+  {
+    process_index: process_index,
+    emailed: process_emailed,
+    failed: process_failed,
+    failures_by_user_id: process_failures_by_user_id,
+    start: start,
+    limit: limit,
+    min_id: min_id
+  }
 end
 
+puts
+puts "Process summary:"
 results.each do | result |
+  puts "Proc #{result[:process_index]} (#{result[:start]} - #{result[:limit]}, min_id: #{result[:min_id]}) finished, " \
+    "#{result[:emailed]} emailed, #{result[:failed]} failed"
   @emailed += result[:emailed]
   @failed += result[:failed]
   @failures_by_user_id = @failures_by_user_id.merge( result[:failures_by_user_id] )
