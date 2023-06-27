@@ -1738,6 +1738,9 @@ da:
   email_conf_banner_we_delivered_todos: |
     Vi sendte dig en bekræftelsesmail d. %{date}. Er den ikke
     modtaget, så er her nogle ting, du kan gøre:
+  email_conf_required_after_grace_period: |
+    Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
+    for at tilgå kontoen.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
     Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
