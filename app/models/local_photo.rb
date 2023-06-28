@@ -530,11 +530,9 @@ class LocalPhoto < Photo
       photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
       photo.reload
 
-      # if the photo is being removed as a result of a flag being applied,
-      # then remove it from the source bucket
-      if photo.flags.detect{ |f| !f.resolved? }
-        LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
-      end
+      # remove the photo from the source bucket
+      LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      
       # mark the observation as being updated, re-index only the updated_at column
       photo.mark_observations_as_updated
     else
