@@ -402,6 +402,8 @@ da:
   #Noun, title of a popup alerting you to something
   alert: Advarsel
   all: Alle
+  #Title for a list of all 3rd party applications
+  all_applications: Alle Applikationer
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
   all_life: Alt liv
@@ -2995,6 +2997,8 @@ da:
   next_tab: Næste fane
   next_taxon_short: Næste
   'no': 'Nej'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Ingen applikationer endnu
   no_assessments_have_been_added_to_this_project_yet: Ingen vurderinger er blevet tilføjet til dette projekt endnu.
   no_but_it_is_a_member_of_taxon: "Nej, men det er et medlem af %{taxon}"
   no_comments_yet: Ingen kommentarer endnu.
@@ -5923,6 +5927,8 @@ da:
   your_account_has_been_activated: Din konto er blevet aktiveret!
   your_account_has_been_verified: "Din %{site_name} konto er blevet bekræftet! Log venligst ind for at fortsætte."
   your_activation_code_was_missing: "Din aktiveringskode manglede. Følg webadressen fra din email."
+  #Title for a list of 3rd party applications you control
+  your_applications: Dine Applikationer
   your_browser_does_not_support_the_audio_element: Din browser understøtter ikke lydelementet.
   your_comment_was_saved: Dit indhold blev gemt
   your_content: Dit indhold
@@ -8081,6 +8087,8 @@ da:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Websteds-ID'er
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Målrettet personale (til test)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
