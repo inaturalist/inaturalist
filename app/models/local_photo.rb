@@ -600,4 +600,16 @@ class LocalPhoto < Photo
     true
   end
 
+  def self.migrate_to_odp_bucket( start_index, end_index )
+    static_bucket_id = FilePrefix.where( prefix: "https://static.inaturalist.org/photos" ).first.id
+    LocalPhoto.joins( "LEFT JOIN flags ON (photos.id = flags.flaggable_id)" ).
+    where( "flags.id IS NULL" ).
+    where( "photos.file_prefix_id=?", static_bucket_id ).
+    where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES).
+    where( "photos.id between ? and ?", start_index, end_index ).
+    each do |photo|
+      change_photo_bucket_if_needed( photo )
+    end
+  end
+
 end
