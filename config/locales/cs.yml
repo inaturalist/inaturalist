@@ -514,6 +514,8 @@ cs:
   #Noun, title of a popup alerting you to something
   alert: Výstraha
   all: Vše
+  #Title for a list of all 3rd party applications
+  all_applications: Všechny aplikace
   all_comments: Všechny komentáře
   all_flags_must_be_resolved: Všechna označení musí být vyřešena
   all_life: Veškerý život
@@ -1873,6 +1875,8 @@ cs:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Dne %{date} jsme Vám zaslali potvrzovací e-mail. Pokud jste ho neobdrželi, zde je několik věcí, které můžete udělat:
+  email_conf_required_after_grace_period: |
+    Od %{requirement_date} je vyžadováno potvrzení e-mailu a před koncem období jste nepotvrdili svou e-mailovou adresu. Pro přístup ke svému účtu si prosím obnovte heslo.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Prosím, potvrďte svou e-mailovou adresu%{link_end_tag}</strong>.
     Všichni uživatelé musí potvrdit svou e-mailovou adresu do %{date}. Po tomto datu se každý, kdo nepotvrdí svou e-mailovou adresu, nebude moci přihlásit, pokud si neobnoví heslo. Chcete-li potvrdit svou e-mailovou adresu, přejděte do %{link_start_tag}nastavení účtu%{link_end_tag}.
@@ -3115,6 +3119,8 @@ cs:
   next_tab: Další panel
   next_taxon_short: Další
   'no': 'Ne'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Zatím žádné aplikace
   no_assessments_have_been_added_to_this_project_yet: K tomuto projektu zatím nebyla přidána žádná hodnocení.
   no_but_it_is_a_member_of_taxon: "Ne, ale patří do %{taxon}"
   no_comments_yet: Žádné komentáře.
@@ -6033,6 +6039,8 @@ cs:
   your_account_has_been_activated: Váš účet byl aktivován!
   your_account_has_been_verified: "Váš účet na %{site_name} byl ověřen! Přihlaste se a pokračujte."
   your_activation_code_was_missing: "Chyběl váš aktivační kód. Použijte prosím URL v e-mailu."
+  #Title for a list of 3rd party applications you control
+  your_applications: Vaše aplikace
   your_browser_does_not_support_the_audio_element: Váš prohlížeč tento zvukový prvek nepodporuje.
   your_comment_was_saved: Váš obsah byl uložen
   your_content: Váš obsah
@@ -8009,6 +8017,8 @@ cs:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID webu
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Cílit na zaměstnance (pro testování)
       assessment:
         description: Popis
       assessment_section:
