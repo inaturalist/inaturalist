@@ -719,6 +719,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :geo_model do
+    collection do
+      get :index
+    end
+    member do
+      get :explain
+    end
+  end
+
   resources :email_suppressions, only: [:index, :destroy]
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association

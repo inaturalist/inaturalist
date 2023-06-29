@@ -1,0 +1,15 @@
+@import "../colors";
+@import "../shared/loading_spinner";
+
+#map {
+  height: 600px;
+}
+
+#TaxonGeoExplain {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-width: 980px;
+  padding: 0px 30px;
+}
