@@ -549,7 +549,7 @@ class TaxonName < ApplicationRecord
   # happen before audited has a change to delete the audit_comment
   def audit_destroy
     user_submitted_names_need_notes
-    throw(:abort) if errors.any?
+    throw( :abort ) unless errors.details[:audit_comment].blank?
     super
   end
 
