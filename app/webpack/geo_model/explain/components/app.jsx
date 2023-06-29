@@ -95,7 +95,7 @@ class App extends React.Component {
     const comparisonData = { };
     _.each( taxonRawEnvData, ( value, cellKey ) => {
       let compareValue = null;
-      if ( value >= GEO_MODEL_TAXON.elev_threshold ) {
+      if ( value >= GEO_MODEL_TAXON.threshold ) {
         if ( rangeData[cellKey] ) {
           compareValue = 0.5;
         } else {
@@ -142,7 +142,7 @@ class App extends React.Component {
     _.each( data, ( cellData, h3Index ) => {
       const hexBoundary = h3.cellToBoundary( h3Index );
       const latlng = h3.cellToLatLng( h3Index );
-      if ( key === "rawEnvData" && cellData.value < GEO_MODEL_TAXON.elev_threshold ) {
+      if ( key === "rawEnvData" && cellData.value < GEO_MODEL_TAXON.threshold ) {
         return;
       }
       const popupData = {

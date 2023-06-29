@@ -47,10 +47,10 @@ class App extends React.Component {
                 { order === "f1::asc" && ( <i className="fa fa-caret-up" /> ) }
                 { order === "f1::desc" && ( <i className="fa fa-caret-down" /> ) }
               </th>
-              <th onClick={( ) => setOrderBy( "elev_threshold", "desc" )}>
-                Elev Threshold
-                { order === "elev_threshold::asc" && ( <i className="fa fa-caret-up" /> ) }
-                { order === "elev_threshold::desc" && ( <i className="fa fa-caret-down" /> ) }
+              <th onClick={( ) => setOrderBy( "threshold", "desc" )}>
+                Threshold
+                { order === "threshold::asc" && ( <i className="fa fa-caret-up" /> ) }
+                { order === "threshold::desc" && ( <i className="fa fa-caret-down" /> ) }
               </th>
             </tr>
           </thead>
@@ -63,7 +63,7 @@ class App extends React.Component {
                 <td>{ taxon.precision }</td>
                 <td>{ taxon.recall }</td>
                 <td>{ taxon.f1 }</td>
-                <td>{ taxon.elev_threshold }</td>
+                <td>{ taxon.threshold }</td>
               </tr>
             ) ) }
           </tbody>

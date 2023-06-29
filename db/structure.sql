@@ -1711,13 +1711,11 @@ ALTER SEQUENCE public.friendships_id_seq OWNED BY public.friendships.id;
 CREATE TABLE public.geo_model_taxa (
     id bigint NOT NULL,
     taxon_id integer,
-    model_type character varying,
     prauc double precision,
     "precision" double precision,
     recall double precision,
     f1 double precision,
-    elev_threshold double precision,
-    no_elev_threshold double precision,
+    threshold double precision,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
