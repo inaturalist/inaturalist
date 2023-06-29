@@ -469,8 +469,10 @@ class LocalPhoto < Photo
   end
 
   def reindex_taxa
-    taxa.each do |t|
-      t.elastic_index!
+    taxa.each do |taxon|
+      Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+        unique_hash: { "Taxon::elastic_index": taxon.id } ).
+        elastic_index!( ids: [taxon.id] )
     end
   end
 
