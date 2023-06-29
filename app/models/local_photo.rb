@@ -468,6 +468,12 @@ class LocalPhoto < Photo
     end
   end
 
+  def reindex_taxa
+    taxa.each do |t|
+      t.elastic_index!
+    end
+  end
+
   def prune_odp_duplicates( options = { } )
     return unless in_public_s3_bucket?
     client = options[:s3_client] || LocalPhoto.new.s3_client
@@ -535,6 +541,9 @@ class LocalPhoto < Photo
       
       # mark the observation as being updated, re-index only the updated_at column
       photo.mark_observations_as_updated
+
+      # reindex associated taxa
+      photo.reindex_taxa
     else
       # move failed, so remove any files that did get copied to the target before the failure
       LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
@@ -608,17 +617,7 @@ class LocalPhoto < Photo
     where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES ).
     where( "photos.id between ? and ?", start_index, end_index ).
     each do |photo|
-      LocalPhoto.change_photo_bucket_and_index_taxa_if_needed( photo )
-    end
-  end
-
-  def self.change_photo_bucket_and_index_taxa_if_needed( p )
-    return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
-    p.change_photo_bucket_if_needed
-    TaxonPhoto.where( photo_id: p.id ).each do |taxon_photo| 
-      Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
-        unique_hash: { "Taxon::elastic_index": taxon_photo.taxon_id } ).
-        elastic_index!( ids: [taxon_photo.taxon_id] )
+      LocalPhoto.change_photo_bucket_if_needed( photo )
     end
   end
 
