@@ -17,7 +17,7 @@ $( function ( ) {
     e.preventDefault( );
     e.stopPropagation( );
     // eslint-disable-next-line no-alert
-    if ( window.confirm( I18n.t( "are_you_sure_want_delete_this_name" ) ) === true ) {
+    if ( window.confirm( I18n.t( "are_you_sure_want_delete_this_name" ) ) == true ) {
       $( "input[name=\"_method\"]" ).val( "delete" );
       $( "form.edit_taxon_name" ).submit( );
     }
