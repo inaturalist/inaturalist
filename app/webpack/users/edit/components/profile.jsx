@@ -217,6 +217,9 @@ const Profile = ( {
           <textarea id="user_description" className="form-control user-description" value={profile.description || ""} name="description" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
+          <div className="alert alert-info">
+            <p>{ I18n.t( "views.donate.temporarily_unavailable" ) }</p>
+          </div>
           <CheckboxRowContainer
             name="prefers_monthly_supporter_badge"
             label={I18n.t( "display_monthly_supporter_badge" )}
@@ -225,7 +228,7 @@ const Profile = ( {
                 url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
               } )
             }
-            disabled={!profile.monthly_supporter}
+            disabled={true || !profile.monthly_supporter}
           />
         </SettingsItem>
       </div>
