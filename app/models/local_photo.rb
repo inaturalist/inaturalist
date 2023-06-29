@@ -608,8 +608,15 @@ class LocalPhoto < Photo
     where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES).
     where( "photos.id between ? and ?", start_index, end_index ).
     each do |photo|
-      change_photo_bucket_if_needed( photo )
+      change_photo_bucket_and_index_taxa_if_needed( photo )
     end
+  end
+
+  def self.change_photo_bucket_and_index_taxa_if_needed( p )
+    return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
+    TaxonPhoto.find_by_photo_id( p.id )
+    
+    p.change_photo_bucket_if_needed
   end
 
 end
