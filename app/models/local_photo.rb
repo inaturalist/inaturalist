@@ -612,7 +612,7 @@ class LocalPhoto < Photo
   end
 
   def self.migrate_to_odp_bucket( start_index, end_index )
-    static_bucket_id = FilePrefix.where( prefix: "https://#{LocalPhoto.s3_host_alias}/photos" ) ).first.id
+    static_bucket_id = FilePrefix.where( prefix: "https://#{LocalPhoto.s3_host_alias}/photos" ).first.id
     LocalPhoto.joins( "LEFT JOIN flags ON (photos.id = flags.flaggable_id)" ).
     where( "flags.id IS NULL" ).
     where( "photos.file_prefix_id=?", static_bucket_id ).
