@@ -228,7 +228,7 @@ const Profile = ( {
                 url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
               } )
             }
-            disabled={true || !profile.monthly_supporter}
+            disabled={!profile.monthly_supporter}
           />
         </SettingsItem>
       </div>
