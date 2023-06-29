@@ -617,8 +617,8 @@ class LocalPhoto < Photo
     p.change_photo_bucket_if_needed
     TaxonPhoto.where( photo_id: p.id ).each do |taxon_photo| 
       Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
-        unique_hash: { "Taxon::elastic_index": taxon_photo.id } ).
-        elastic_index!( ids: [taxon_photo.id] )
+        unique_hash: { "Taxon::elastic_index": taxon_photo.taxon_id } ).
+        elastic_index!( ids: [taxon_photo.taxon_id] )
     end
   end
 
