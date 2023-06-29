@@ -808,21 +808,33 @@ describe User do
 
     it "should update existing observations if requested" do
       u = User.make!
-      o = Observation.make!(:user => u)
+      o = Observation.make!( user: u )
       u.preferred_observation_license = Observation::CC_BY
-      u.update(:make_observation_licenses_same => true)
+      u.update( make_observation_licenses_same: true )
       o.reload
-      expect(o.license).to eq Observation::CC_BY
+      expect( o.license ).to eq Observation::CC_BY
     end
-    
+
     it "should update existing photo if requested" do
       u = User.make!
-      p = LocalPhoto.make!(:user => u)
+      p = LocalPhoto.make!( user: u )
       u.preferred_photo_license = Observation::CC_BY
-      u.update(:make_photo_licenses_same => true)
+      u.update( make_photo_licenses_same: true )
       p.reload
-      expect(p.license).to eq Photo.license_number_for_code(Observation::CC_BY)
+      expect( p.license ).to eq Photo.license_number_for_code( Observation::CC_BY )
     end
+
+    it "should queue moving photos if needed" do
+      u = User.make!
+      p = LocalPhoto.make!( user: u )
+      u.update( make_photo_licenses_same: true )
+      p.reload
+      expect( Delayed::Job.where(
+        queue: "photos",
+        unique_hash: "{:\"User::enqueue_photo_bucket_moving_jobs\"=>#{u.id}}"
+      ).any? ).to be true
+    end
+
 
     it "should not update GoogleStreetViewPhotos" do
       u = User.make!
