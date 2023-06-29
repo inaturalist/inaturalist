@@ -8,6 +8,7 @@ while index <= max_photo_id
   puts "Starting batch #{index}"
   LocalPhoto.delay(
       queue: "photos",
+      priority: INTEGRITY_PRIORITY,
       unique_hash: { "LocalPhoto::migrate_to_odp_bucket": index }
     ).migrate_to_odp_bucket( index, index + batch_size - 1  )
   index += batch_size

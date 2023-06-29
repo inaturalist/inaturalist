@@ -601,22 +601,25 @@ class LocalPhoto < Photo
   end
 
   def self.migrate_to_odp_bucket( start_index, end_index )
-    static_bucket_id = FilePrefix.where( prefix: "https://static.inaturalist.org/photos" ).first.id
+    static_bucket_id = FilePrefix.where( prefix: "https://#{LocalPhoto.s3_host_alias}/photos" ) ).first.id
     LocalPhoto.joins( "LEFT JOIN flags ON (photos.id = flags.flaggable_id)" ).
     where( "flags.id IS NULL" ).
     where( "photos.file_prefix_id=?", static_bucket_id ).
-    where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES).
+    where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES ).
     where( "photos.id between ? and ?", start_index, end_index ).
     each do |photo|
-      change_photo_bucket_and_index_taxa_if_needed( photo )
+      LocalPhoto.change_photo_bucket_and_index_taxa_if_needed( photo )
     end
   end
 
   def self.change_photo_bucket_and_index_taxa_if_needed( p )
     return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
-    TaxonPhoto.find_by_photo_id( p.id )
-    
     p.change_photo_bucket_if_needed
+    TaxonPhoto.where( photo_id: p.id ).each do |taxon_photo| 
+      Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+        unique_hash: { "Taxon::elastic_index": taxon_photo.id } ).
+        elastic_index!( ids: [taxon_photo.id] )
+    end
   end
 
 end
