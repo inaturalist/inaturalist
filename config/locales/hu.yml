@@ -844,7 +844,7 @@ hu:
   complete: Kész
   complete_set_for_taxon_in_place_html: "Teljes sorozat %{taxon} taxonnak itt: %{place}"
   completed: Kész
-  completed_at: Elkészült
+  completed_at: 'Elkészült:'
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Átfogó?
@@ -1480,7 +1480,7 @@ hu:
   find_species: Fajok keresése
   find_suitable_observations: Megfelelő megfigyelések keresése
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
-  finished: Elkészült
+  finished: A végéhez értél
   finished_with_page: Az oldal végéhez értél
   first_confirmed_inat_observation: "Első igazolt %{site_name} megfigyelés"
   first_connect_your_provider_account_to_your_site: "Először csatlakoztasd %{provider} fiókodat ide: %{site_name}"
