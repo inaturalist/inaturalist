@@ -171,6 +171,9 @@ pt:
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
+  about_taxon_ranges: Sobre a Distribuição do Táxon
+  about_taxon_ranges_desc: |
+    A Distribuição do Táxon indica a distribuição global de um táxon. Normalmente, a fonte da distribuição do táxon é a Lista Vermelha da IUCN.
   about_the_network: Sobre a Rede
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre Este Mapa
@@ -3632,6 +3635,9 @@ pt:
     countdown_x_hours:
       one: hora
       other: horas
+    countdown_x_seconds:
+      one: SEG
+      other: SEGS
     prompts:
       day: Dia
       hour: Hora
