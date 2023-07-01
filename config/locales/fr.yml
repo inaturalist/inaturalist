@@ -1714,14 +1714,29 @@ fr:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Nous vous avons envoyé un e-mail de confirmation le %{date}. Si vous ne l'avez pas reçu, voici ce que vous pouvez faire :
+  email_conf_required_after_grace_period: |
+    La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Veuillez svp confirmer votre courriel.%{link_end_tag}</strong>.
     Tous les usagers et usagères doivent confirmer leur adresse courriel d’ici le 1er juillet 2023. Après cette date, quiconque n’aura pas confirmé son courriel ne pourra se connecter à son compte et devra réinitialiser son mot de passe. Pour confirmer votre courriel, allez aux %{link_start_tag}paramètres de votre compte%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmez votre adresse e-mail %{site_name} avant le %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Veuillez confirmer votre adresse e-mail aujourd'hui pour conserver l'accès à votre compte. %{site_name} et les applications mobiles iNaturalist et Seek by iNaturalist permettent d'entre en contact avec la nature et avec d'autres personnes par l'intermédiaire d'observations de la biodiversité. Merci de faire partie de la communauté iNaturalist !
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    À partir du %{requirement_date}, tous les comptes devront avoir une adresse e-mail vérifiée. Veuillez prendre un moment pour confirmer votre adresse maintenant.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
   email_confirmation_reminder_any_questions_html: |
     Si vous avez des questions, veuillez vous référer à la
     <a href="%{faq_url}">FAQ</a>. Merci d'avoir pris le temps de vous connecter à la nature et à %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Détails du compte
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
   email_notifications: Notifications par mail
   embed: 'Intégrer'
@@ -4513,6 +4528,8 @@ fr:
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}, le membre du réseau iNaturalist du Portugal, a communiqué des données pour l'atlas portugais des oiseaux migrateurs, l'atlas des mammifères ainsi que pour plusieurs articles de recherche scientifique au Portugal.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordonnées cachées automatiquement (masquées ou privées en raison de la « géoconfidentialité » du taxon)
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist masque automatiquement les coordonnées pour certaines espèces, pour protéger celles-ci des perturbations, de la récolte ou du braconnage. Si les coordonnées exactes des observations dans un pays ne sont masquées que de façon automatique, pour protéger l'espèce, iNaturalist les communique aux membres du réseau dans ce pays.
   sites_affiliation_more_email_addresses: |
     Les adresses électroniques ne sont communiquées aux membres du réseau qu'à des fins de communication à propos du site.
   sites_affiliation_more_twice_per_year: |
@@ -5910,6 +5927,8 @@ fr:
           </p>
         thank_you_for_being_a_monthly_supporter: Merci de faire un don chaque mois !
         thank_you_for_being_a_monthly_supporter_caps: MERCI DE FAIRE UN DON CHAQUE MOIS !
+      temporarily_unavailable: |
+        Merci pour votre soutien à iNaturalist ! Nous mettons à jour notre système de collecte de dons et faire un don à iNaturalist est temporairement impossible. Veuillez réessayer plus tard.
     flags:
       show:
         flaggable_content_desc: |
@@ -7823,9 +7842,17 @@ fr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%-d %b %Y'
     month_names:
       - 
       - janvier
@@ -7958,9 +7985,17 @@ fr:
     am: am
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%-d %b. %Y, %k h %M min %S s, %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %b %Y, %k h %M min'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b, %k h %M min'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d %b %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
