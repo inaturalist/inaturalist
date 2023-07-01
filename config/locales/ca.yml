@@ -4397,6 +4397,8 @@ ca:
     El membre de la xarxa d'iNaturalist a Portugal %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} comparteix dades per l'atles portuguès d'aus migratòries, l'atles de mamífers, així com per diversos articles portuguesos d'investigació científica.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenades ocultes automàticament (enfosquides o privades a causa de la "geoprivacitat del tàxon")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automàticament les coordenades d'algunes espècies per protegir-les de les molèsties, la recol·lecció o la caça furtiva. Si les coordenades de l'observació s'han ocultat automàticament únicament per a protegir l'espècie, iNaturalist comparteix les coordenades correctes de totes les observacions amb els Membres de la Xarxa dels respectius països.
   sites_affiliation_more_email_addresses: |
     Les adreces de correu electrònic són compartides amb Membres de la Xarxa amb l'únic objectiu de permetre comunicacions relatives a aquest lloc.
   sites_affiliation_more_twice_per_year: |
@@ -7345,6 +7347,9 @@ ca:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Identificadors del lloc
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Per a usuaris sense confirmació.
       assessment:
         description: Descripció
       assessment_section:
