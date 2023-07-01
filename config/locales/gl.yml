@@ -6151,6 +6151,10 @@ gl:
           </p>
         licensing_desc_html: |
           A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.
+        monthly_supporter_desc_html: |
+          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
+          <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
+          Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
         muting_desc_html: |
           <p>
           Acalar a alguén evita que recibas notificacións sobre cousas que ese alguén faga, incluíndo comentarios nas túas observacións, enviarte mensaxes, mencionarte, etc. Acalar axúdache a ignorar a alguén sen que se lle impida facer nada.
@@ -6396,6 +6400,18 @@ gl:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: día
+      other: días
+    countdown_x_hours:
+      one: hora
+      other: horas
+    countdown_x_minutes:
+      one: min
+      other: mins
+    countdown_x_seconds:
+      one: seg
+      other: segs
     prompts:
       day: Día
       hour: Hora
