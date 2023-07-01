@@ -3023,6 +3023,8 @@ sr:
   site_taxon_page: "%{site_name} strana taksona"
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatski skrivene koordinate (prikrivene ili privatne zbog "geoprivatnosti taksona")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist automatski sakriva koordinate za neke vrste radi zaštite od uznemiravanja, prikupljanja i krivolova. Ako su koordinate opservacije automatski skrivene da bi se žaštitile vrste, iNaturalist deli koordinate svih opservacija u njihovim zemljama sa članovima mreže.
   sites_affiliation_more_user_hidden_coordinates: |
     Koordinate koje je korisnik sakrio (prikrivene ili privatne zbog podešavanja "geoprivatnosti")
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
@@ -4586,6 +4588,22 @@ sr:
         one: "%{count} sekund"
         few: '%{count} sekunda'
         other: '%{count} sekundi'
+    countdown_x_days:
+      one: dan
+      few: dana
+      other: dana
+    countdown_x_hours:
+      one: sat
+      few: sata
+      other: sati
+    countdown_x_minutes:
+      one: minut
+      few: minuta
+      other: minuta
+    countdown_x_seconds:
+      one: sekund
+      few: sekunda
+      other: sekundi
     prompts:
       day: Dan
       hour: Sat

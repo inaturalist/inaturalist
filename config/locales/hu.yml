@@ -350,6 +350,8 @@ hu:
   #Noun, title of a popup alerting you to something
   alert: Figyelem
   all: Mind
+  #Title for a list of all 3rd party applications
+  all_applications: Minden alkalmazás
   all_comments: Minden megjegyzés
   all_flags_must_be_resolved: Minden megjelölést meg kell oldani
   all_life: Minden életforma
@@ -842,7 +844,7 @@ hu:
   complete: Kész
   complete_set_for_taxon_in_place_html: "Teljes sorozat %{taxon} taxonnak itt: %{place}"
   completed: Kész
-  completed_at: Elkészült
+  completed_at: 'Elkészült:'
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Átfogó?
@@ -1208,11 +1210,16 @@ hu:
         Perceken belül fogsz kapni egy emailt a jelszavad visszaállításáról.
       updated: 'A jelszó sikeresen megváltoztatva. Be vagy jelentkezve.'
       updated_not_active: 'Sikeresen megváltoztattad jelszavadat.'
+      send_paranoid_instructions: |
+        Ha az e-mail-címed megtalálható az adatbázisunkban, néhány perc múlva kapsz egy jelszóvisszaállítási hivatkozást az e-mail-címedre.
+      no_token: |
+        Nem érheted el ezt az oldalt, ha nem kaptál jelszóvisszaállítási e-mailt. Ha valóban jelszóvisszaállítási e-mailt kaptál, kérünk ellenőrizd, hogy a megadott teljes URL-címet használtad-e.
     registrations:
       destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
       signed_up_but_unconfirmed: "Egy megerősítő linket küldtünk a megadott e-mail címre. Kattints az emailben található linkre a fiók aktiválásához."
       updated: 'Fiókod sikeresen frissítve.'
+      updated_but_not_signed_in: "A fiókodat sikeresen frissítettük, de mivel megváltozott a jelszavad újból be kell jelentkezned."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1227,6 +1234,10 @@ hu:
   devise_reset_password_instructions_hello_email: Kedves %{email}!
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ha nem kértél ilyen e-mailt, akkor tárgytalan, vedd figyelmen kívül.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Valaki hivatkozást kérelmezett a jelszó megváltoztatásához. A műveletet az alábbi hivatkozáson keresztül végezheted el.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    A jelszód nem változik meg, amíg nem hozol létre újat a fenti hivatkozás segítségével.
   devise_unlock_instructions_your_account_has_been_locked: |
     Fiókodat zároltuk, mert túl sok sikertelen bejelentkezési kísérlet történt.
   devise_unlock_instructions_click_the_link: |
@@ -1478,7 +1489,7 @@ hu:
   find_species: Fajok keresése
   find_suitable_observations: Megfelelő megfigyelések keresése
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
-  finished: Elkészült
+  finished: A végéhez értél
   finished_with_page: Az oldal végéhez értél
   first_confirmed_inat_observation: "Első igazolt %{site_name} megfigyelés"
   first_connect_your_provider_account_to_your_site: "Először csatlakoztasd %{provider} fiókodat ide: %{site_name}"
@@ -1848,6 +1859,9 @@ hu:
   leave_this_project: Kilépés a projektből
   #Terminal nodes in a taxonomic tree
   leaves: végpontok
+  legacy_authentication_notice_html: |
+    Úgy néz ki, hogy a jelszavad amelyet használsz ezen honlap egyik régebbi változatától van.
+    Kérünk ne felejtsd el <a href="%{url}">lecserélni a jelszavad</a> az új változathoz.
   let_us_walk_you_through: Ismerd meg az iNaturalist főbb funkcióit (angolul).
   lexicon: Szókészlet
   lexicon_cannot_contain_words: "nem tartalmazhatja ezeket a szavakat: %{words}"
@@ -1938,6 +1952,7 @@ hu:
   link_to_authorization_code: Hivatkozás a hitelesítési kódhoz
   link_your_flickr_account: Flickr-fiók csatlakoztatása
   link_your_google_account: Google-fiók csatlakoztatása
+  linked_flickr_password_html: "<strong>Sosem fogjuk kérni a Flickr jelszavadat</strong> (de a Flickr talán kérheti, ezért kérünk győződj meg arról, hogy a hivatkozás ahová a gomb küld tényleg Flickr.com)."
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista törölve.
@@ -2326,6 +2341,8 @@ hu:
   next_tab: Következő fül
   next_taxon_short: Következő
   'no': 'Nem'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Még nincs alkalmazás
   no_but_it_is_a_member_of_taxon: "Nem, de %{taxon} taxon tagja"
   no_comments_yet: Még nincsenek megjegyzések.
   no_creative_commons_flickr_photos_tagged_x: 'Nincs Creative Commons Flickr fotó "%{x}" címkével'
@@ -2658,6 +2675,9 @@ hu:
   parent_name: Szülő neve
   password: Jelszó
   password_confirmation: 'Jelszó megerősítése'
+  password_change_description: A jelszó megváltoztatásával kiléptetünk mindeni aktív iNaturalist munkamenetedből minden eszközödről.
+  password_change_logout_warning: Miután lecseréled a jelszavad ki fogunk léptetni a fiókodból, azután pedig be kell jelentkezned újból az új jelszavaddal.
+  password_change_observations_warning: Ki fogunk léptetni az iNaturalist mobil alkalmazásaiból is és minden más alkalmazásból és honlapról ami a nevedben tölt fel az iNaturalistra, ezért kérünk győződj meg arról, hogy minden függő megfigyelést feltöltöttél mielőtt ezt megtennéd. Minden megfigyelés ami nem kerül feltöltésre megsemmisül.
   paste: Beilleszt
   people: Emberek
   people_following_user: "%{user} követői"
@@ -3565,6 +3585,7 @@ hu:
   #you out until you do
   send_and_sign_out: Küldés és kijelentkezés
   send_confirmation_email: Megerősítő e-mail küldése
+  send_me_reset_password_instructions: Jelszóvisszaállítási utasítások küldése
   sending: Küldés...
   #Label for messages you've sent
   sent: Elküldve
@@ -3619,6 +3640,8 @@ hu:
     Automatikusan rejtett koordináták (kitakart vagy rejtett a "taxon helyvédelme" miatt)
   sites_affiliation_more_user_hidden_coordinates: |
     Felhasználó által rejtett koordináták (kitakarva vagy rejtve a helyvédelmi beállítások miatt)
+  sites_network_your_username: |
+    A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot támogatják elérhetik az email címedet (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordinátáknál a kitakart vagy privát beállításokat használtad.
   some_agree: néhányan egyetértenek
   some_observations_are_missing_media_or_identifications: |
     Néhány megfigyelésből hiányzik a média vagy az asonosítás
@@ -4443,6 +4466,7 @@ hu:
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
   you_must_have_a_header_row: Fejléc szükséges
   you_must_select_a_place_to_merge_with: Válassz egy helyet, amivel összevonod.
+  you_must_specify_and_confirm_a_new_password: Be kell állíts és meg kell erősíts egy új jelszót.
   you_need_to_have_linked_flickr_account: Kell ehhez egy csatlakoztatott Flickr fiók, hogy a fotóidat címkézni tudd.
   you_retain_full_copyright: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
   you_retain_full_copyright_over_your_content: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
@@ -4456,6 +4480,8 @@ hu:
   you_unlinked_your_provider_account: "%{provider}-fiókodat sikeresen leválasztottad"
   youll_need_to_link: Kell, hogy csatlakoztasd
   your_account_has_been_activated: A fiókod sikeresen aktiválva!
+  #Title for a list of 3rd party applications you control
+  your_applications: Alkalmazásaid
   your_comment_was_saved: A taralmad elmentve
   your_content: Tartalmaid
   your_contributions_to_project: "Hozzájárulásaid %{project_title} projekthez"
@@ -4511,6 +4537,8 @@ hu:
         become_a_monthly_supporter_of_inaturalist_caps: LEGYÉL AZ INATURALIST RENDSZERES TÁMOGATÓJA
         thank_you_for_being_a_monthly_supporter: Köszönjük a rendszeres támogatásodat!
         thank_you_for_being_a_monthly_supporter_caps: KÖSZÖNJÜK A RENDSZERES TÁMOGATÁSODAT!
+      temporarily_unavailable: |
+        Köszönjük, hogy támogatni szeretnéd az iNaturalistot! Az adományozást az iNaturalisthoz pillanatnyilag felfüggesztettük ameddig frissítjük az adományozó rendszerünket. Kérünk látogass vissza hamarosan.
     guides:
       index:
         deprecated_banner: |
@@ -5147,6 +5175,19 @@ hu:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ha meggondolod magad, bármikor
           <a href='/users/edit'>módosíthatod beállításaidat</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          Az <a href="%{url}" target="_blank">iNaturalist Hálózat</a> olyan helyi honlapok gyűjteménye 
+          amelyek teljesen hozzá vannak kapcsolódva az iNaturalist közösséghez. A Hálózat honlapjait olyan 
+          helyi szervezetek támogatják amelyek egy egyezményt írtak alá az iNaturalisttal, a helyi használat érdekében és a helyi biodiverzitás javára. Ezeknek engedélyük van a valós koordináták eléréséhez a saját 
+          országukban ahol ezek automatikusan kitakarva jelennek meg a nyilvánosság számára a veszélyeztetett fajok védelméért.
+          </p>
+          <p>
+          A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot működtetik elérhetik az email címedet is (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordináták kitakartak vagy privátak.
+          </p>
+          <p>
+          Megjegyzés: Kérünk ne kísérletezz a csatlakozásod megváltoztatásával ha több mint 1000 megfigyelésed van.
+          </p>
         name_place_help_html: |
           Elsőbbségben részesülnek az ezen a helyen használt közynelvi nevek.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5409,6 +5450,8 @@ hu:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Webhely-azonosító
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Belső használatra
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
@@ -5736,6 +5779,10 @@ hu:
         #Common error messages
         invalid_request: 'A kérésből hiányzik egy szükséges paraméter, nem támogatott paramétert tartalmaz, vagy máshogy sérült.'
         invalid_redirect_uri: 'Az átirányító URI nem valós.'
+        #Configuration error messages
+        credential_flow_not_configured: 'Az Erőforrás Tulajdonos Jelszóadatainak átadása megszakadt, mert a Doorkeeper.configure.resource_owner_from_credentials beállítatlan.'
+        #Password Access token errors
+        invalid_resource_owner: 'A megadott erőforrás tulajdonosának hitelesítő adatai nem valósak, vagy az erőforrás tulajdonosa nem található.'
     flash:
       applications:
         create:

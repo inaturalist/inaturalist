@@ -2667,6 +2667,12 @@ eu:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y/%m/%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d %b. %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b(e)ko %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d %b. %Y'
     month_names:
       - 
       - urtarrila

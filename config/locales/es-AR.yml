@@ -689,6 +689,7 @@ es-AR:
   birds: aves
   birthday: Cumpleaños
   black: negro
+  block: Bloquear
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
@@ -798,6 +799,8 @@ es-AR:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} fueron combinados en %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} serán combinados en %{output_taxon}"
   change_your_password: Cambiar tu contraseña
+  #Plural noun, as in changes to a taxon record over time
+  changes: Cambios
   changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica como otras personas ven la localización de tu observación.'
   check_above_for_errors: Revisa errores en lo anterior
   check_back_soon: '¡Vuelve a consultar pronto!'
@@ -842,6 +845,8 @@ es-AR:
   click_the_map: "<strong>Marca en el mapa</strong> para agregar una ubicación."
   close: Cerrar
   code: Código
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Contribuidores de código
   colors: Colores
   columns: Columnas
   combine: Combinar
@@ -854,6 +859,10 @@ es-AR:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentario
   comment_deleted: Comentario eliminado
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Se ocultó el comentario
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Se hizo visible el comentario
   comments: Comentarios
   comments_by_me: Mis comentarios
   comments_have_been_disabled: Los comentarios han sido desactivados
@@ -912,6 +921,7 @@ es-AR:
     pueda ser incluido en sugerencias automatizadas con la etiqueta "Observado cerca",
     no tendrá la etiqueta "Visualmente similar". Aunque los requisitos para la inclusión cambian con cada modelo, generalmente ésta se basa en el número de observaciones, así que para aumentar la probabilidad de que este taxón se incluya en el siguiente entrenamiento del modelo, agregá o identificá más observaciones de este taxón.
   concept_status: Concepto de la situación
+  confidential: Confidencial
   configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la <code>&lt;head&gt;</code> de tu código HTML. Siéntete libre de modificar el CSS.
   confirm: Confirmar
@@ -1006,6 +1016,8 @@ es-AR:
     evidence_of_presence: Evidencia de presencia
     #As in the feather on a bird
     feather: Plumas
+    #Abnormal growth
+    gall: Agalla
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismo
@@ -3964,6 +3976,8 @@ es-AR:
     En Portugal, el miembro de la red iNaturalist %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} compartió datos para el Atlas portugués de aves migratorias o el Atlas de mamíferos, así como para varios artículos de investigación científica portugueses.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenadas ocultas automáticamente (ocultas o privadas debido a la "geoprivacidad del taxón")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas de la perturbación, recolección o caza furtiva. Si las coordenadas de observación sólo se ocultaron automáticamente para proteger las especies, iNaturalist comparte las verdaderas coordenadas de todas las observaciones de sus países respectivos con Miembros de la Red.
   sites_affiliation_more_email_addresses: |
     Las direcciones de correo electrónico se comparten con los administradores locales de los miembros de la red, únicamente con el propósito de facilitar la comunicación relacionada con iNaturalist, en el caso de que sea necesario.
   sites_affiliation_more_twice_per_year: |
@@ -6041,6 +6055,9 @@ es-AR:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        monthly_supporter_desc_html: |
+          Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
+          <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
         muting_desc_html: |
           <p>
           Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -6258,6 +6275,15 @@ es-AR:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: día
+      other: días
+    countdown_x_hours:
+      one: hora
+      other: horas
+    countdown_x_seconds:
+      one: s
+      other: s
     prompts:
       day: Día
       hour: Hora
