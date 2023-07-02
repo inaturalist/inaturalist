@@ -230,11 +230,11 @@ export function setRelationshipFilters( newFilters ) {
   };
 }
 
-export function updateRelationship( id, relationship ) {
+export function updateRelationship( id, relationship, page ) {
   // user id, not friendUser id
   const params = { id, relationship };
   return dispatch => inatjs.relationships.update( params ).then( ( ) => {
-    dispatch( fetchRelationships( ) );
+    dispatch( fetchRelationships( false, page ) );
   } ).catch( e => console.log( `Failed to update relationship: ${e}` ) );
 }
 
@@ -242,13 +242,12 @@ export function handleCheckboxChange( e, id ) {
   const { name, checked } = e.target;
 
   return ( dispatch, getState ) => {
-    const { relationships } = getState( );
-    const friends = relationships.relationships;
-    const targetFriend = friends.filter( user => user.id === id );
+    const { relationships: { relationships, page } } = getState( );
+    const targetFriend = relationships.filter( user => user.id === id );
 
     targetFriend[0][name] = checked;
 
-    dispatch( updateRelationship( id, { [name]: checked } ) );
+    dispatch( updateRelationship( id, { [name]: checked }, page ) );
   };
 }
 

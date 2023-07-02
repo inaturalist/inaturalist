@@ -1988,6 +1988,8 @@ sr:
   observations_total: Ukupno opservacija
   observations_w: Opservacije sa
   observations_was_successfully_updated: Opservacija/je uspešno ažurirana/e.
+  observations_with_this_field: Opservacije sa ovim poljem
+  observations_with_this_field_and_value: Opservacije sa ovim poljem i vrednošću
   observed: Zabeleženo
   observed_by: Opservacija od strane
   observed_on: Zabeleženo
@@ -2563,10 +2565,15 @@ sr:
   #Post is a noun
   post_from_your_journal_html: Objava iz <a href="%{url}">tvog dnevnika</a>
   posted_by: Postavio
+  #Shows the date a journal post was published
+  posted_on_date_html: Postavljeno %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Postavljeno %{date} od strane %{user}
   posts: Objave
   potential_disagreement: Potencijalno neslaganje
   powered_by: Pokreće
   powered_by_inaturalist_open_source_software_html: 'Pokreće <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist softver otvorenog koda</a>'
+  present: prisutno
   press: Štampa
   preview: Pregled
   previous_date_short: Prethodno
@@ -2594,6 +2601,7 @@ sr:
     few: Administratori projekta
     other: Administratori projekta
   project_cover: Naslovna fotografija projekta
+  project_created_on: je kreirao/la projekat %{date}
   project_curator_id: ID kustosa projekta
   project_curators: Kustosi projekta
   project_group_label: Grupa
@@ -2791,6 +2799,7 @@ sr:
   refreshing: osvežava se
   register_for_this_event_at_x_html: "Prijavi se za ovaj događaj %{x}"
   reject?: Odbaci?
+  relationship: "Odnos"
   relationship_x: "Odnos: %{relationship}"
   relationships:
     match: poklapanje
@@ -2841,6 +2850,9 @@ sr:
   research_grade_tooltip_html: 'Opservacije "Istraživački nivo" imaju medije, lokaciju, datum i slaganje zajednice oko identifikacije (obično na nivou vrste). <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o kvalitetu podataka</a>'
   research_grade_observations_have: 'Opservacije "Istraživački nivo" imaju datum, fotografiju, koordinate i ID podržan od strane zajednice. Klikni da pogledaš procenu kvaliteta podataka.'
   research_grade_qualification: Zahtevi za istraživački nivo
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Pošalji opet i odjavi me
   resend_confirmation_email: Ponovo pošalji imejl za potvrdu
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
@@ -2975,6 +2987,7 @@ sr:
   show_no_annotation: Prikaži "Bez pribeleške"
   show_off_your_recent_observations: Pokaži opservacije na tvom blogu ili sajtu!
   show_only: Prikaži samo
+  show_taxa_from_both: (prikaži taksone sa obe liste)
   show_taxa_from_everywhere: "Prikaži taksone od svuda"
   show_taxa_from_place: "Prikaži taksoni iz %{place}"
   show_uncountable_species: Prikaži nebrojive vrste
@@ -3010,6 +3023,8 @@ sr:
   site_taxon_page: "%{site_name} strana taksona"
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatski skrivene koordinate (prikrivene ili privatne zbog "geoprivatnosti taksona")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist automatski sakriva koordinate za neke vrste radi zaštite od uznemiravanja, prikupljanja i krivolova. Ako su koordinate opservacije automatski skrivene da bi se žaštitile vrste, iNaturalist deli koordinate svih opservacija u njihovim zemljama sa članovima mreže.
   sites_affiliation_more_user_hidden_coordinates: |
     Koordinate koje je korisnik sakrio (prikrivene ili privatne zbog podešavanja "geoprivatnosti")
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
@@ -4506,20 +4521,12 @@ sr:
       6: Pet
       7: Sub
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y.'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e. %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d. %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Januar
@@ -4581,6 +4588,22 @@ sr:
         one: "%{count} sekund"
         few: '%{count} sekunda'
         other: '%{count} sekundi'
+    countdown_x_days:
+      one: dan
+      few: dana
+      other: dana
+    countdown_x_hours:
+      one: sat
+      few: sata
+      other: sati
+    countdown_x_minutes:
+      one: minut
+      few: minuta
+      other: minuta
+    countdown_x_seconds:
+      one: sekund
+      few: sekunda
+      other: sekundi
     prompts:
       day: Dan
       hour: Sat
@@ -4651,19 +4674,11 @@ sr:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d. %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d. %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
   activerecord:

@@ -1685,7 +1685,17 @@ kk:
   potential_disagreement: Ықтимал келіспеушілік
   privacy: Құпиялылық
   profile: Профиль
+  profile_picture: Профиль суреті
+  project: Жоба
+  project_admins:
+    one: Жоба әкімшісі
+    other: Жоба әкімшілері
+  project_assessments: Жобаны бағалау
+  project_assets: Жоба активтері
+  project_coordinate_access_warning: |
+    Координаттарға қол жеткізу ғалымдар үшін маңызды, бірақ оны браконьерлер теріс пайдалануы мүмкін. Бұл жобаға сенбес бұрын барлық жоба кураторларына сенетініңізге көз жеткізіңіз.
   project_cover: Жоба мұқабасы
+  project_created_on: осы жобаны %{date} жасады
   project_curator_id: Жоба кураторының идентификациясы
   project_curator_tools: Жоба кураторының құралдары
   project_curators: Жоба кураторлары
@@ -1693,6 +1703,8 @@ kk:
   project_icon: Жоба белгішесі
   project_journal: Жоба журналы
   project_list: Жобалар тізімі
+  project_list_defaults:
+    description: '%{owner_name} үшін түрлер тізімі'
   project_observations: Жоба бақылаулары
   project_requirements: Жоба талаптары
   project_rules: Жоба ережелері
@@ -2140,20 +2152,12 @@ kk:
       6: Жм.
       7: Сб.
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - Қаңтар

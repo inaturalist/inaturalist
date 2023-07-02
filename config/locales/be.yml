@@ -4034,6 +4034,8 @@ be:
   sites_affiliation_examples_portugal_atlas_html: |
     Чалец сеткі iNaturalist Партугаліі
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} падзяліўся запісамі з партугальскага атласу мігруючых птушак, атласу млекакормячых, а таксама дадзенымі некаторых іншых навуковых прац з Партугаліі.
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist аўтаматычна хавае каардынаты для некаторых відаў каб захаваць іх ад турбавання, збору або браканьерства. Калі каардынаты назірання былі схаваны аўтаматычна толькі для аховы відаў, iNaturalist абагульняе сапраўдныя каардынаты для ўсіх назіранняў з іх адпаведных краінаў з усімі Ўдзельнікамі Сеткі.
   sites_affiliation_more_email_addresses: |
     Адрасы электроннай пошты абагульняюцца з Удзельнікамі Сеткі выключна для камунікацыйных мэтаў, звязаных з сайтам.
   sites_affiliation_more_twice_per_year: |
@@ -4377,6 +4379,26 @@ be:
       - Лістапад
       - Снежань
   datetime:
+    countdown_x_days:
+      one: дзень
+      few: дні
+      many: дзён
+      other: дня
+    countdown_x_hours:
+      one: гадзіна
+      few: гадзіны
+      many: гадзін
+      other: гадзіны
+    countdown_x_minutes:
+      one: хв
+      few: хв
+      many: хв
+      other: хв
+    countdown_x_seconds:
+      one: сек
+      few: сек
+      many: сек
+      other: сек
     prompts:
       day: Дзень
       hour: Гадзіна

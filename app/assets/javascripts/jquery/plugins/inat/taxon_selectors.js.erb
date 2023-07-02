@@ -97,6 +97,7 @@
     var status = $('<div class="status">' + I18n.t('species_unknown') + '</div>');
     $(status).css(
       $.extend(
+        {},
         $.fn.simpleTaxonSelector.styles.statuses['default'],
         $.fn.simpleTaxonSelector.styles.statuses.unmatched
       )
@@ -133,7 +134,7 @@
         'font-weight': 'bold'
       }).click(function() {
         $.fn.simpleTaxonSelector.lookup(
-          wrapper, $.extend(options, {includeExternal: true}));
+          wrapper, $.extend({}, options, {includeExternal: true}));
         return false;
       })
     }
@@ -144,7 +145,7 @@
       if (lastLookupOptions.everywhere) {
         searchEverywhereLink = $('<a href="#">'+I18n.t('show_taxa_from_place', {place: options.placeName})+'</a>').click(function() {
           $.fn.simpleTaxonSelector.lookup(
-            wrapper, $.extend(options, {everywhere: false}));
+            wrapper, $.extend({}, options, {everywhere: false}));
           return false;
         })
         searchEverywhereNotice = $('<div></div>').append(
@@ -154,7 +155,7 @@
       } else {
         searchEverywhereLink = $('<a href="#">'+I18n.t('show_taxa_from_everywhere')+'</a>').click(function() {
           $.fn.simpleTaxonSelector.lookup(
-            wrapper, $.extend(options, {everywhere: true}));
+            wrapper, $.extend({}, options, {everywhere: true}));
           return false;
         })
         searchEverywhereNotice = $('<div></div>').append(
@@ -177,7 +178,7 @@
   
     // If there's only one result and it's an exact match, select the taxon
     else if (taxa.length == 1 && taxa[0].taxon_names.map(function(n) { return n.name.toLowerCase()}).indexOf(q.toLowerCase()) >= 0) {
-      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], $.extend(true, options, {selectedName: q}));
+      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], $.extend(true, {}, options, {selectedName: q}));
     }
   
     // Otherwise, display each as a selection option
@@ -187,9 +188,9 @@
       $(taxa).each(function(i, taxon) {
         var chosenTaxonName = $.fn.simpleTaxonSelector.chosenTaxonNameFor(q, taxon)
         if (chosenTaxonName && chosenTaxonName.name != taxon.name) {
-          var t = $.fn.simpleTaxonSelector.taxonNameToS(chosenTaxonName, $.extend(true, options, {taxon: taxon}))
+          var t = $.fn.simpleTaxonSelector.taxonNameToS(chosenTaxonName, $.extend(true, {}, options, {taxon: taxon}))
         } else {
-          var t = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, options, {taxon: taxon}))
+          var t = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, {}, options, {taxon: taxon}))
         }
         var link = $('<a>'+I18n.t('view')+'</a>').attr('href', '/taxa/'+taxon.id).addClass('small')
         $(link).click(function() {
@@ -345,9 +346,9 @@
 
     // Set the status
     if (chosenTaxonName && chosenTaxonName.name != taxon.name) {
-      var message = $.fn.simpleTaxonSelector.taxonNameToS(chosenTaxonName, $.extend(true, options, {taxon: taxon}));
+      var message = $.fn.simpleTaxonSelector.taxonNameToS(chosenTaxonName, $.extend(true, {}, options, {taxon: taxon}));
     } else if (taxon.default_name) {
-      var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, options, {taxon: taxon}));
+      var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, {}, options, {taxon: taxon}));
     } else {
       var message = $.fn.simpleTaxonSelector.taxonToS(taxon, options);
     }
@@ -384,7 +385,7 @@
     } else {
       formatted.addClass('Unknown');
     }
-    var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon, $.extend(true, options, {skipClasses: true}));
+    var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon, $.extend(true, {}, options, {skipClasses: true}));
     if (name.lexicon == 'Scientific Names') {
       if (name.is_valid) {
         $(formatted).append(formattedSciName);

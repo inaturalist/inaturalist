@@ -280,7 +280,14 @@ class User < ApplicationRecord
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
-  DEFAULT_LOGIN = "naturalist"
+  DEFAULT_LOGIN = "naturalist".freeze
+
+  # Do not append these numbers to usernames when generating an unused username for a new user.
+  # Source: https://www.adl.org/resources/hate-symbols/search?f%5B0%5D=topic%3A1709
+  LOGIN_SUFFIX_EXCLUSIONS = [
+    100, 109, 110, 111, 12, 13, 1352, 1390, 52, 90, 14, 1410, 1423, 1488, 18, 21_212, 2316, 28, 23, 16, 311,
+    318, 336, 38, 43, 511, 737, 83, 88, 9, 10
+  ].freeze
 
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
@@ -396,10 +403,8 @@ class User < ApplicationRecord
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
   EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-09-01" )
 
-  # This is a dangerous override in that it doesn't call super, thereby
-  # ignoring the results of all the devise modules like confirmable. We do
-  # this b/c we want all users to be able to sign in, even if unconfirmed, but
-  # not if suspended.
+  # Override of method from devise to implement some custom restrictions like
+  # parent/child permission and gradual confirmation requirement rollout
   def active_for_authentication?
     return false if suspended?
 
@@ -410,7 +415,28 @@ class User < ApplicationRecord
     return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
 
     # Temporary state to allow existing users to sign in
-    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    return true if allowed_unconfirmed_grace_period?
+
+    super
+  end
+
+  def allowed_unconfirmed_grace_period?
+    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
+  end
+
+  def unconfirmed_grace_period_expired?
+    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATE
+  end
+
+  # Devise override for message to show the user when they can't log in b/c
+  # their account is not active
+  def inactive_message
+    if unconfirmed_grace_period_expired?
+      return I18n.t(
+        :email_conf_required_after_grace_period,
+        requirement_date: I18n.l( EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+      )
+    end
 
     super
   end
@@ -602,12 +628,16 @@ class User < ApplicationRecord
   end
   
   def update_photo_licenses
-    return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
-    number = Photo.license_number_for_code(preferred_photo_license)
+    return true unless [true, "1", "true"].include?( @make_photo_licenses_same )
+    number = Photo.license_number_for_code( preferred_photo_license )
     return true unless number
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
       update_all( license: number, updated_at: Time.now )
     index_observations_later
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": id }
+    ).enqueue_photo_bucket_moving_jobs( id )
     true
   end
 
@@ -863,40 +893,43 @@ class User < ApplicationRecord
     u
   end
 
-  # given a requested login, will try to find existing users with that login
-  # and suggest handle2, handle3, handle4, etc if the login's taken
-  # to prevent namespace clashes (e.g. i register with twitter @joe but 
-  # there's already an inat user where login=joe, so it suggest joe2)
+  # Sanitize the requested login.
+  # If the sanitized login is available, return it.
+  # If not, add numbers to the end until we find an available login. Particularly long requested logins may have
+  # characters removed from the end.
+  # If we somehow couldn't find a reasonable login, return nil.
   def self.suggest_login(requested_login)
-    requested_login = requested_login.to_s
-    requested_login = DEFAULT_LOGIN if requested_login.blank?
-    requested_login = I18n.transliterate( requested_login ).sub( /^\d*/, "" ).gsub( /\?+/, "" )
-    requested_login = if requested_login.blank?
-      DEFAULT_LOGIN
-    else
-      requested_login.gsub( /\W/, "_" ).downcase
-    end
-    suggested_login = requested_login
+    base_login = sanitize_login( requested_login.to_s ).presence || DEFAULT_LOGIN
 
-    if suggested_login.size > MAX_LOGIN_SIZE
-      suggested_login = suggested_login[0..MAX_LOGIN_SIZE/2]
-    end
+    # Biggest random number to append to the login to make it unique
+    max_random_suffix = 100_000
+    random_suffixes = Enumerator.produce { rand( max_random_suffix ) }
+    numeric_suffixes =  ( 1..9 ).
+      chain( random_suffixes.take( 20 ) ).
+      reject { |number| LOGIN_SUFFIX_EXCLUSIONS.include? number }
+    suffixes = [""].chain( numeric_suffixes.map( &:to_s ) )
 
-    if suggested_login =~ /^#{DEFAULT_LOGIN}\d+?/
-      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login( suggested_login )
-        suggested_login = "#{requested_login}#{rand( User.maximum(:id) * 2 )}"
-      end
-    else
-      # if the name is semi-unique, try to append integers, so kueda would get
-      # kueda2 and not kueda34097348976 off the bat
-      appendix = 1
-      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
-        suggested_login = "#{requested_login}#{appendix}"
-        appendix += 1
-      end
-    end
+    # Delete some characters off the end of the end if necessary to fit the suffix while staying under
+    # MAX_LOGIN_SIZE.
+    suggested_logins = suffixes.
+      map { |suffix| base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
+      reject { |login| login.size < MIN_LOGIN_SIZE }
 
-    (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
+    # Find an available login.
+    suggested_logins.find { |login| where( login: login ).none? }
+  end
+
+  # A sanitized login:
+  # - contains only the characters a-z, 0-9, and _
+  # - does not begin with a number
+  # - may or may not be taken
+  # - may or may not fit the size requirements for a login
+  def self.sanitize_login( login )
+    I18n.transliterate( login ).
+      sub( /^\d*/, "" ).
+      gsub( "?", "" ).
+      gsub( /\W/, "_" ).
+      downcase
   end
 
   # Destroying a user triggers a giant, slow, costly cascade of deletions that

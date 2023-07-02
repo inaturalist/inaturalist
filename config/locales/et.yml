@@ -401,6 +401,8 @@ et:
   #Noun, title of a popup alerting you to something
   alert: Teavitus
   all: Kõik
+  #Title for a list of all 3rd party applications
+  all_applications: Kõik rakendused
   all_comments: Kõik kommentaarid
   all_flags_must_be_resolved: Kõik märkused peavad olema lahendatud
   all_life: Kogu elusloodus
@@ -1663,9 +1665,15 @@ et:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Saatsime kuupäeval %{date} sulle kinnituskirja. Kui sa seda kätte ei saanud, siis siin on sulle mõned soovitused:
+  email_conf_required_after_grace_period: |
+    E-posti aadressi kinnitamine on alates kuupäevast %{requirement_date} kohustuslik ning sa ei kinnitanud enne tähtaja saabumist oma aadressit. Kontole sisenemiseks palun lähtesta oma salasõna.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Palun kinnita oma e-posti aadress%{link_end_tag}</strong>.
     Kõik kasutajad peavad oma e-posti aadressi kinnitama kuupäevaks %{date}. Peale seda kuupäeva ei saa aadressi mitte kinnitanud kasutajad enne sisse logida, kui uuendavad oma salasõna. E-posti aadressi kinnitamiseks külasta oma %{link_start_tag}konto sätteid%{link_end_tag}.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Kui sul on küsimusi, siis vaata palun <a href="%{faq_url}">korduma kippuvaid küsimusi</a>. Aitäh, et leiad aega loodusega suhestumiseks ja lehe %{site_name} külastamiseks.
   email_copyright: "&copy; %{x}, kõik õigused kaitstud"
   email_notifications: E-posti teavitused
   embed: 'Manusta'
@@ -2831,6 +2839,8 @@ et:
   next_tab: Järgmine sakk
   next_taxon_short: Edasi
   'no': 'Ei'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Rakendusi pole
   no_assessments_have_been_added_to_this_project_yet: Sellele projektile pole veel hinnanguid lisatud.
   no_but_it_is_a_member_of_taxon: "Ei, kuid see kuulub taksonisse %{taxon}"
   no_comments_yet: Kommentaare veel ei ole.
@@ -4910,6 +4920,8 @@ et:
   your_account_has_been_activated: Sinu konto on aktiveeritud!
   your_account_has_been_verified: "Sinu %{site_name} konto on kinnitatud! Palun logi jätkamiseks sisse."
   your_activation_code_was_missing: "Me ei leidnud sinu aktiveerimiskoodi. Palun kasuta e-kirjas olnud linki."
+  #Title for a list of 3rd party applications you control
+  your_applications: Sinu rakendused
   your_browser_does_not_support_the_audio_element: Sinu brauser ei toeta audio elementi.
   your_comment_was_saved: Sisu salvestati
   your_content: Sinu sisu
@@ -4976,6 +4988,8 @@ et:
         become_a_monthly_supporter_of_inaturalist_caps: HAKKA INATURALISTI IGAKUISEKS TOETAJAKS
         thank_you_for_being_a_monthly_supporter: Aitäh, et oled igakuine toetaja!
         thank_you_for_being_a_monthly_supporter_caps: AITÄH, ET OLED IGAKUINE TOETAJA!
+      temporarily_unavailable: |
+        Aitäh, et tunned huvi iNaturalisti toetamise vastu! Ajutiselt ei saa iNaturalistile annetada, sest uuendame oma annetussüsteeme. Palun tule proovi varsti uuesti.
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5775,6 +5789,9 @@ et:
           </p>
         licensing_desc_html: |
           Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href="http://www.gbif.org/">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.
+        monthly_supporter_desc_html: |
+          iNaturalisti igakuised toetajad teevad automaatseid igakuiseid annetusi, mille adressaadiks on California Teaduste Akadeemia (Ameerika Ühendriikide maksuameti tunnus 94-1156258), millega toetatakse iNaturalisti ja iNaturalisti võrgustikku kuuluvate lehtede mittetulunduslikku tegevust.
+          <a href="%{url}">Igakuiseks toetajaks saamiseks vajuta siia</a>. Kui oleme sinu toetuse kinnitanud, saad panna sellesse kasti linnukese, et näidata oma profiili juures vastavat märget. NB! Pead Donorbox-i lehel kasutama täpselt sama e-posti aadressit nagu iNaturalistis, et saaksime kinnitada, et sinust on saanud igakuine toetaja.
         muting_desc_html: |
           <p>
           Kellegi vaigistamisel ei saa sa enam teateid nende tegevuse kohta nagu sinu vaatluste kommenteerimine, sulle sõnumite saatmine, sinu mainimine, jne. Vaigistamisega saad kedagi ignoreerida, ilma et sa neil midagi teha keelaks.
@@ -5920,16 +5937,8 @@ et:
       6: R
       7: L
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d. %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - jaanuar
@@ -6037,17 +6046,9 @@ et:
   time:
     am: ennelõunat
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d. %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d. %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pealelõunat
   activerecord:
@@ -6066,6 +6067,11 @@ et:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Lehtede ID-koodid
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Saada meeskonnale (testimiseks)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Saada kinnitamata e-postiga kasutajatele
       assessment:
         description: Kirjeldus
       assessment_section:

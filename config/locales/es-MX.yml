@@ -397,6 +397,8 @@ es-MX:
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Todo
+  #Title for a list of all 3rd party applications
+  all_applications: Todas las aplicaciones
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben resolver todas las advertencias
   all_life: Toda la vida
@@ -1282,6 +1284,17 @@ es-MX:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     No muestra un comportamiento correcto.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Para solicitar ser un curador del sitio debe haber tenido una cuenta durante 60
+    días o más, debes haber añadido al menos 5 advertencias , y debes tener
+    añadidos 100 mejoras de identificaciones a las observaciones de cualquier usuario, incluyendo las tuyas propias (has añadido %{num_idents}). Cuando hayas cumplido esos
+    requisitos, regresa aquí y podrás enviar la solicitud.
+  curator_application_inelligible_error2: |
+    Para solicitar ser un curador del sitio debes tener una cuenta por 60
+    días o más, añadidos al menos 5 banderas, y añadieron 100 mejoras en
+    identificaciones a las observaciones de cualquier usuario, incluyendo las tuyas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitud enviada para ser curador
   #Header
@@ -1340,6 +1353,9 @@ es-MX:
     Sólo deberías solicitar ser curador si:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Llevas contribuyendo con identificaciones y/o observaciones por unos meses y tienes la intención de continuar.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Has demostrado que entiendes el proceso de curación agregando unas
+    pocas Advertencias.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1709,9 +1725,31 @@ es-MX:
   email_conf_banner_we_delivered_todos: |
     Te hemos enviado un correo electrónico de confirmación el %{date}. Si no lo has
     recibido, aquí hay algunas cosas que puedes hacer:
+  email_conf_required_after_grace_period: |
+    La confirmación del correo electrónico es necesaria a partir de %{requirement_date} y no
+    confirmó su dirección de correo electrónico antes del corte. Por favor, restablezca su contraseña para acceder a su cuenta.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Por favor confirma su dirección de correo electrónico%{link_end_tag}</strong>.
     Todos los usuarios deben confirmar su dirección de correo electrónico para el %{date}. Después de esa fecha, cualquiera que no haya confirmado su dirección de correo electrónico no podrá iniciar sesión a menos que restablezca su contraseña. Para confirmar tu dirección de correo electrónico, ve a la %{link_start_tag}configuración de tu cuenta%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirma tu dirección de correo electrónico de %{site_name} antes de %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Por favor, confirma tu dirección de correo electrónico hoy para asegurarte de que puedes seguir accediendo a tu cuenta. %{site_name} y las aplicaciones móviles iNaturalist y Seek de iNaturalist conectan a las personas con la naturaleza compartiendo observaciones de biodiversidad. ¡Gracias por ser parte de la comunidad de iNaturalist!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Necesitaremos direcciones de correo electrónico verificadas para todas las cuentas que comienzan el %{requirement_date}. Por favor, tómese un momento para confirmarlo ahora.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Si tiene alguna pregunta, consulte las
+    <a href="%{faq_url}">Preguntas frecuentes</a>. Gracias por tomarse el tiempo para conectar
+    con la naturaleza y con %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Detalles de la cuenta
   email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar:'
@@ -1952,6 +1990,7 @@ es-MX:
   frequency: Frecuencia
   from_a_place: de un lugar
   from_eol_collection: De una colección de EOL
+  from_flickr_etc: Desde Flickr, etc.
   from_list: De la lista
   from_photos: De fotos
   from_place: De un lugar
@@ -2938,6 +2977,8 @@ es-MX:
   next_tab: Siguiente pestaña
   next_taxon_short: Siguiente
   'no': 'No'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Aún no hay aplicaciones
   no_assessments_have_been_added_to_this_project_yet: Ninguna evaluación ha sido añadida a este proyecto..
   no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
   no_comments_yet: No hay comentarios aún.
@@ -5516,6 +5557,9 @@ es-MX:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerido
   was_it_captive_cultivated?: "¿En cautiverio o cultivada?"
+  we_also_support2: |
+    También admitimos la importación de fotos de <a href="http://flickr.com">Flickr</a>
+    y <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Solamente podemos entender CSV en el siguiente formato
   we_couldnt_find_a_user: No pudimos encontrar a un usuario con esa dirección de correo electrónico.
   we_couldnt_find_a_user_with_that_activation_code: "No pudimos encontrar ningun usuario con ese código de activación. Puede que tu cuenta ya haya sido activada, porfavor trata de ingresar al sistema"
@@ -5779,6 +5823,8 @@ es-MX:
   your_account_has_been_activated: Tu cuenta ha sido activada
   your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
   your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
+  #Title for a list of 3rd party applications you control
+  your_applications: Tus Aplicaciones
   your_browser_does_not_support_the_audio_element: El navegador no parece ser compatible con el elemento <audio>.
   your_comment_was_saved: Tu comentario fue guardado
   your_content: Tu contenido
@@ -5876,6 +5922,8 @@ es-MX:
           </p>
         thank_you_for_being_a_monthly_supporter: '¡Gracias por ser un Patrocinador Mensual!'
         thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
+      temporarily_unavailable: |
+        ¡Gracias por tu interés en apoyar a iNaturalist! Donar a iNaturalist no está disponible temporalmente mientras actualizamos nuestros sistemas de donación. Por favor, vuelve más tarde.
     flags:
       show:
         flaggable_content_desc: |
@@ -7494,20 +7542,12 @@ es-MX:
       6: Vi
       7: Sá
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d de %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d.%b.%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d de %B de %Y'
     month_names:
       - 
       - enero
@@ -7639,19 +7679,11 @@ es-MX:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y a las %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %b. %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
   activerecord:
@@ -7684,6 +7716,11 @@ es-MX:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID de sitio
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Personal objetivo (para pruebas)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Para usuarios sin confirmación
       assessment:
         description: Descripción
       assessment_section:

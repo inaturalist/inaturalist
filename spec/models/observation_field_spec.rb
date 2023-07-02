@@ -49,13 +49,15 @@ describe ObservationField do
   describe "editing" do
     it "should reindex observations if the name is changed" do
       o = Observation.make!
-      of = ObservationField.make!(name: "oldname")
-      ofv = ObservationFieldValue.make!(observation: o, observation_field: of)
-      expect( Observation.page_of_results({ "field:oldname": nil }).total_entries ).to eq 1
-      without_delay{ of.update(name: "newname") }
-      new_of_with_oldname = ObservationField.make!(name: "oldname")
-      expect( Observation.page_of_results({ "field:oldname": nil }).total_entries ).to eq 0
-      expect( Observation.page_of_results({ "field:newname": nil }).total_entries ).to eq 1
+      oldname = "oldname"
+      newname = "newname"
+      of = ObservationField.make!( name: oldname )
+      ObservationFieldValue.make!( observation: o, observation_field: of )
+      expect( Observation.page_of_results( { "field:#{oldname}": nil } ).total_entries ).to eq 1
+      without_delay { of.update( name: newname ) }
+      _new_of_with_oldname = ObservationField.make!( name: oldname )
+      expect( Observation.page_of_results( { "field:#{oldname}": nil } ).total_entries ).to eq 0
+      expect( Observation.page_of_results( { "field:#{newname}": nil } ).total_entries ).to eq 1
     end
 
     it "should reindex projects" do

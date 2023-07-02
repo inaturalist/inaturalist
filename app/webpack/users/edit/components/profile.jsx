@@ -49,6 +49,25 @@ const Profile = ( {
       </div>
     );
   };
+
+  const unconfirmedEmailAlert = (
+    <div className="alert alert-warning">
+      <span
+        dangerouslySetInnerHTML={{
+          __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
+        }}
+      />
+      { " " }
+      <button
+        type="button"
+        className="btn btn-nostyle alert-link"
+        onClick={( ) => resendConfirmation( )}
+      >
+        { I18n.t( "resend_confirmation_email" ) }
+      </button>
+    </div>
+  );
+
   let emailConfirmation = (
     <div>
       <p className="text-success">
@@ -56,26 +75,12 @@ const Profile = ( {
           date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )
         } )}
       </p>
-      { profile.unconfirmed_email && (
-        <div className="alert alert-warning">
-          <span
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
-            }}
-          />
-          { " " }
-          <button
-            type="button"
-            className="btn btn-nostyle alert-link"
-            onClick={( ) => resendConfirmation( )}
-          >
-            { I18n.t( "resend_confirmation_email" ) }
-          </button>
-        </div>
-      ) }
+      { profile.unconfirmed_email && unconfirmedEmailAlert }
     </div>
   );
-  if ( !profile.confirmed_at ) {
+  if ( !profile.confirmed_at && profile.unconfirmed_email ) {
+    emailConfirmation = unconfirmedEmailAlert;
+  } else if ( !profile.confirmed_at ) {
     emailConfirmation = (
       <div
         className={`alert alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
@@ -212,6 +217,9 @@ const Profile = ( {
           <textarea id="user_description" className="form-control user-description" value={profile.description || ""} name="description" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
+          <div className="alert alert-info">
+            <p>{ I18n.t( "views.donate.temporarily_unavailable" ) }</p>
+          </div>
           <CheckboxRowContainer
             name="prefers_monthly_supporter_badge"
             label={I18n.t( "display_monthly_supporter_badge" )}
