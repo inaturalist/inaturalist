@@ -877,6 +877,7 @@ he:
   birds: עופות
   birthday: יום הולדת
   black: שחור
+  block: חסימה
   block_removed: חסימה הוסרה
   blocked_users: משתמשים חסומים
   blog_widget: יישומון בלוג
@@ -1769,6 +1770,10 @@ he:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}נא לאשר את כתובת הדוא"ל שלך%{link_end_tag}</strong>.
     כל היוזרים חייבים לאשר את כתובת הדוא"ל שלהם עד %{date}. לאחר תאריך זה כל מי שטרם אישרו כתובות הדוא"ל לא יוכלו להתחבר עד שיאפסו סיסמה. לאישור כתובת הדוא"ל שלך, יש לגשת %{link_start_tag}להגדרות החשבון%{link_end_tag} שלך.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: פרטי החשבון
   email_copyright: "זכויות יוצרים של &copy; %{x}, כל הזכויות שמורות"
   email_notifications: התראות דוא"ל
   embed: 'הטמע'
@@ -2391,6 +2396,7 @@ he:
     french: צרפתית
     galician: גליציאנית
     gela: גלה
+    georgian: גרוזינית
     german: גרמנית
     greek: יוונית
     hawaiian: הוואית
@@ -2403,6 +2409,7 @@ he:
     italian: איטלקית
     japanese: יפנית
     kannada: קאנדה
+    kazakh: קזאחית
     korean: קוראנית
     latvian: לטבית
     lithuanian: ליטאית
@@ -2440,10 +2447,12 @@ he:
     thai: תאילנדית
     tokelauan: טוקלאואית
     turkish: טורקית
+    u_s_d_a_symbol: סמל U.S.D.A.
     ukrainian: אוקראינית
     vietnamese: וייטנאמית
     visayan: ויסאיאן
     waray_waray: ווראי-ווראי
+    zulu: זולו
   less: פחות
   #Button show less text
   less__context_text: פחות
@@ -2478,6 +2487,10 @@ he:
     taxonomic: טקסונומי
     photo: תמונה
   list_was_successfully_created: הרשימה נוצרה בהצלחה.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, ו-%{three}"
+  list_with_two_items: "%{one} ו-%{two}"
   listed_taxa: טקסונים רשומים
   listed_taxon: טקסון רשום
   listed_taxon_updated: עודכן טקסון רשום
@@ -2529,6 +2542,8 @@ he:
     id: אינדונזית
     it: איטלקית
     ja: יפנית
+    ka: גרוזינית
+    kk: קזאחית
     kn: קאנדה
     ko: קוראנית
     lb: לוקסמבורגית
@@ -2644,6 +2659,9 @@ he:
   maximum_positional_accuracy_including_unknown: |
     דיוק מיקום מירבי כולל תצפיות ללא דיוק מיקום
   media: מדיה
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: וגם
   media_type: סוג המדיה
   medium: בינוני
   meet: הכירו
@@ -2808,6 +2826,8 @@ he:
   must_have_quality_grades: "חייבת להיות בדרגות איכות: %{grades}"
   must_have_sounds: חייב להכיל קולות
   must_have_x: "חייב להכיל %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: השתקה
   #Mute is a noun here
   mute_removed: ביטול השתקה
   muted_users: משתמשים מושתקים
@@ -3099,6 +3119,10 @@ he:
   observation_curation: אצירת תצפית
   observation_date: תאריך
   observation_date?: תאריך?
+  #Basic observation export fields
+  observation_export_column_type_basic: בסיסי
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: טקסון
   observation_field: שדה התצפית
   observation_field_details: פרטי שדה התצפית
   observation_field_type_text: טקסט
@@ -4453,6 +4477,8 @@ he:
     חברת רשת iNaturalist בפורטוגל %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} שיתפה מאגר דאטא של האטלס הפורטוגזי של עופות נודדים, של יונקים, וכן הרבה מאמרים מחקריים פורטוגזיים אחרים.
   sites_affiliation_more_automatically_hidden_coordinates: |
     קואורדינטות נסתרות אוטומטית (מוסתרות או פרטיות עקב "פרטיות המיקום של טקסון")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    האפליקציה מסתירה באופן אוטומטי את הקואורדינטות של חלק מהמינים על מנת להגן עליהם מפגיעה, איסוף או ציד בלתי חוקי. במידה והקואורדינטות הוסתרו באופן אוטומטי על מנת להגן על המינים, iNaturalist משתפת את הקוארדינטות האמיתיות של כל התצפיות מהמדינות הרלוונטיות עם חברות וחברי הרשת.
   sites_affiliation_more_email_addresses: |
     שיתוף כתובות דוא"ל עם חברות וחברי רשת הוא לצורך תקשורת שקשורה לאתר בלבד.
   sites_affiliation_more_twice_per_year: |
@@ -5538,6 +5564,8 @@ he:
   wikipedia_attribution_cc_by_sa_3_html: |
     ערך זה עושה שימוש בתוכן מערך הויקיפדיה <a href="%{url}">%{title}</a>, שפורסם תחת <a href="https://creativecommons.org/licenses/by-sa/3.0/">CreativeCommons Attribution-Share-Alike License 3.0</a>. יתכן כי תוכן הוחסר מהמקור, אך אף תוכן לא שונה או הוארך.
   with: עם
+  #Filter for observations not in a particular taxon
+  without_taxon: לא בטקסון
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: שלילה
@@ -7067,6 +7095,10 @@ he:
           </p>
         licensing_desc_html: |
           מתן רשיוין לתוכן שלך נותן לכל אחת ואחד את הזכות החוקית להשתמש בו מבלי לבקש את רשותך במידה והם שומרות ושומרים על תנאי הרישיון. נוסף על כך, %{site_name} כולל את התוכן שלך שמורשה ב-Creative Commons בארכיונים המעודכנים בקביעות אשר מופקים עבור ארגונים שותפים שמעוניינים בנתונים שלנו. למשל, אנו כוללים רישומי No Copyright (CC0), Attribution (CC BY), ו-Attribution-NonCommercial (CC BY-NC) בארכיון שאנו מייצרים עבור <a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>, ארגון בינלאומי ובין-ממשלתי שמרכז ומפיץ מידע על המגוון הביולוגי ברחבי העולם.
+        monthly_supporter_desc_html: |
+          תומכות ותומכי iNaturalist על בסיס חודשי מבצעות.ים תרומות חודשיות המתקבלות על ידי האקדמיה למדעים של קליפורניה (United
+          States IRS EIN 94-1156258) לתמיכה בתפעול שאינו למטרת רווח של iNaturalist ואתרי רשת iNaturalist.
+          <a href="%{url}">לחצ.י כאן להפוך לתומכ.ת חודשי.ת של iNaturalist</a>. כאשר נאשר את התמיכה שלך תוכל.י לסמן תיבה זו להצגת סטטוס זה בפרופיל שלך. הערה: עליך להשתמש באותה כתובת הדוא"ל בדיוק ב-Donorbox כמו ב-iNaturalist על מנת שנוכל לאשר שהפכת לתומכ.ת חודשי.ת.
         muting_desc_html: |
           <p>
           השתקת משתמש.ת מונעת ממך לקבל התראות על פעילותם, כולל תגובות על תצפיות שלך, שליחת הודעות אליך, אזכורים עליך, וכו'. השתקה עוזרת לך להתעלם ממישהי או ממישהו מבלי למנוע מהם לעשות דבר.
@@ -7333,6 +7365,26 @@ he:
         two: '%{count} שניות'
         many: '%{count} שניות'
         other: '%{count} שניות'
+    countdown_x_days:
+      one: יום
+      two: ימים
+      many: ימים
+      other: ימים
+    countdown_x_hours:
+      one: שעה
+      two: שעות
+      many: שעות
+      other: שעות
+    countdown_x_minutes:
+      one: דקה
+      two: דקות
+      many: דקות
+      other: דקות
+    countdown_x_seconds:
+      one: שניה
+      two: שניות
+      many: שניות
+      other: שניות
     prompts:
       day: יום
       hour: שעה

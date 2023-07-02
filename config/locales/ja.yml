@@ -349,6 +349,8 @@ ja:
   #Noun, title of a popup alerting you to something
   alert: 警告
   all: すべて
+  #Title for a list of all 3rd party applications
+  all_applications: すべてのアプリケーション
   all_comments: すべてのコメント
   all_flags_must_be_resolved: すべてのフラグを解決する必要があります
   all_life: すべての生き物
@@ -1521,6 +1523,14 @@ ja:
   email_conf_banner_we_delivered_todos: |
     %{date}に確認メールを送信しました。
     受信していない場合は、以下の手順で確認できます。
+  email_conf_required_after_grace_period: |
+    %{requirement_date} の期限までにメールアドレスの確認が行われませんでした。アカウントにアクセスするには、パスワードをリセットしてください。
+  email_confirmation_reminder_please_confirm: |
+    アカウントに引き続きアクセスできるようにするため、本日中にメールアドレスをご確認ください。%{site_name}とモバイルアプリのiNaturalistとSeek by iNaturalistは、生物多様性の観察を共有することで人々と自然、そして互いを繋いでいます。iNaturalistのコミュニティの一員であることに感謝します！
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: アカウント詳細
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'
@@ -2568,6 +2578,8 @@ ja:
   next_tab: 次のタブ
   next_taxon_short: 次へ
   'no': 'いいえ'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: アプリケーションはまだありません
   no_assessments_have_been_added_to_this_project_yet: このプロジェクトにはまだ評価がありません。
   no_but_it_is_a_member_of_taxon: "同定に十分な情報が無いか、 %{taxon} の別の分類群です。"
   no_comments_yet: まだコメントはありません
@@ -4841,6 +4853,8 @@ ja:
   your_account_has_been_activated: あなたのアカウントは無事作成することができました。
   your_account_has_been_verified: "%{site_name} アカウントが認証されました。続行するにはログインしてください。"
   your_activation_code_was_missing: "アクティベーションコードが見つかりません。メールアドレスのURLに従ってください。"
+  #Title for a list of 3rd party applications you control
+  your_applications: あなたのアプリケーション
   your_browser_does_not_support_the_audio_element: お使いのブラウザーは音声要素をサポートしていないようです。
   your_comment_was_saved: 内容は保存されました
   your_content: あなたのコンテンツ
@@ -5295,6 +5309,8 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
+        monthly_supporter_desc_html: |
+          iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。

@@ -1623,6 +1623,10 @@ fi:
   email_conf_banner_we_delivered_todos: |
     Toimitimme sinulle vahvistusviestin %{date}. Jos et
     saanut sitä, tässä on joitain asioita, joita voit tehdä:
+  email_conf_required_after_grace_period: |
+    Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
+    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja nollaa salasanasi
+    päästäksesi tiliisi.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
     Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
@@ -1642,8 +1646,8 @@ fi:
     %{requirement_date}. Ole hyvä ja vahvista se nyt.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
-  email_confirmation_reminder_any_questions: |
-    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset. Kiitos, että olet ottanut
+  email_confirmation_reminder_any_questions_html: |
+    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset <a href="%{faq_url}">FAQs</a>. Kiitos, että olet ottanut
     aikaa yhteyden luontiin luonnon ja %{site_name} kanssa.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
@@ -6134,6 +6138,11 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
+        monthly_supporter_desc_html: |
+          iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
+          States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
+          <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
+          Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.

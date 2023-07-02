@@ -349,6 +349,8 @@ zh-TW:
   #Noun, title of a popup alerting you to something
   alert: 警告
   all: 所有
+  #Title for a list of all 3rd party applications
+  all_applications: 所有應用程式
   all_comments: 所有評論
   all_flags_must_be_resolved: 所有標記需要被解決
   all_life: 所有生物
@@ -1378,6 +1380,10 @@ zh-TW:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: 確認您的電子郵件地址
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: 請求更改電子郵件
       reset_password_instructions:
         subject: '重設密碼的說明'
   devise_confirmation_instructions_if_you_did_not: |
@@ -1455,6 +1461,8 @@ zh-TW:
   draft: 草稿
   #Noun, as in a journal post that has not been published
   draft_: 草稿
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: 起稿者：%{user}
   #Noun, as in a journal post that has not been published
   draft_saved: 草稿已儲存！
   #Noun, as in journal posts that has not been published
@@ -1535,8 +1543,14 @@ zh-TW:
   email: 電子郵件
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
+  email_conf_required_after_grace_period: |
+    從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}請確認您的電子郵件地址%{link_end_tag}</strong>。所有使用者必須在 %{date} 之前確認自己的電子郵件地址。在那之後，除非重設密碼，否則任何未確認自己電子郵件地址的人將無法登入。請到%{link_start_tag}帳號設定%{link_end_tag}確認電子郵件地址。
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: 帳號詳情
   email_copyright: "版權所有 &copy; %{x}, 保留所有權利"
   email_notifications: 電子郵件通知
   embed: '內嵌'
@@ -2612,6 +2626,8 @@ zh-TW:
   next_tab: 下一個頁籤
   next_taxon_short: 下一個
   'no': '否'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: 還沒有應用程式
   no_assessments_have_been_added_to_this_project_yet: 此專案尚未添加評估。
   no_but_it_is_a_member_of_taxon: "不，但這是%{taxon}的成員之一"
   no_comments_yet: 尚無評論。
@@ -3781,7 +3797,7 @@ zh-TW:
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "最近由 %{login}（Atom）做出的觀察"
   recent_observations_by: "最近由 %{login}做出的觀察"
-  recently_active: 最近活躍內容
+  recently_active: 最近動態
   recently_added: 最近新增
   recently_created: 最近創建
   recently_finished: 近期完成
@@ -4068,6 +4084,10 @@ zh-TW:
     葡萄牙的 iNaturalist 網路成員 %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} 共享葡萄牙候鳥地圖、哺乳類動物地圖的資料，以及數篇葡萄牙的科學研究論文。
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動隱藏座標 (依據「受脅分類群的地理資訊隱私權」的遮蔽或是私有座標）
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    《愛自然》會自動隱藏某些物種的座標來保護它們免除干擾、採集或狩獵。
+    如果該觀察紀錄座標被自動隱藏以保護物種的話，
+    《愛自然》會和國際網路成員分享在其國家中所有觀察紀錄之真實座標。
   sites_affiliation_more_email_addresses: |
     與國際網路成員共享的電子郵件位址僅會使用於跟本站相關之聯絡目的。
   sites_affiliation_more_twice_per_year: |
@@ -4780,7 +4800,7 @@ zh-TW:
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> 寫道，
   username: 使用者名稱
   username_description: 這是您在 iNaturalist 上用來登入，還有讓其他使用者辨識您的使用者名稱
-  username_or_email: 用戶名稱或電子郵件
+  username_or_email: 使用者名稱或電子郵件
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
@@ -5106,6 +5126,8 @@ zh-TW:
   your_account_has_been_activated: 您的帳號已啟用！
   your_account_has_been_verified: "您的 %{site_name} 帳號已被驗證！請登入以繼續。"
   your_activation_code_was_missing: "您的啟用代碼已遺失。請按照您的電子郵件裡的 URL。"
+  #Title for a list of 3rd party applications you control
+  your_applications: 您的應用程式
   your_browser_does_not_support_the_audio_element: 您的瀏覽器不支援音效元素。
   your_comment_was_saved: 您的內容已儲存
   your_content: 您的內容
@@ -6663,9 +6685,9 @@ zh-TW:
         other: 大約 %{count} 年
       half_a_minute: 半分鐘
       less_than_x_minutes:
-        other: 小於 %{count} 分
+        other: 於 %{count} 分鐘
       less_than_x_seconds:
-        other: 小於 %{count} 秒
+        other: 於 %{count} 秒
       over_x_years:
         other: 超過 %{count} 年
       x_days:
@@ -6676,6 +6698,14 @@ zh-TW:
         other: '%{count} 個月'
       x_seconds:
         other: '%{count} 秒'
+    countdown_x_days:
+      other: 天
+    countdown_x_hours:
+      other: 小時
+    countdown_x_minutes:
+      other: 分
+    countdown_x_seconds:
+      other: 秒
     prompts:
       day: 日
       hour: 時

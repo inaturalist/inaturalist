@@ -1681,6 +1681,8 @@ tr:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     %{date} tarihinde sana bir doğrulama e-postası gönderdik. Almadıysan, yapabileceğin bazı şeyler:
+  email_conf_required_after_grace_period: |
+    E-posta doğrulaması %{requirement_date} itibariyle gereklidir ve e-postanı son tarihten önce doğrulamadın. Hesabınıa erişmek için lütfen şifreni sıfırla.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Lütfen e-posta adresini doğrula%{link_end_tag}</strong>. Tüm kullanıcılar e-posta adreslerini %{date} tarihine kadar onaylamalıdır. Bu tarihten sonra e-posta adresini teyit etmemiş olan herkes, şifrelerini sıfırlamadıkları sürece oturum açamayacaktır. E-posta adresini doğrulamak için %{link_start_tag}hesap ayarlarına%{link_end_tag} git.
   #Subject of an email prompting people to confirm their email address before
@@ -1694,8 +1696,8 @@ tr:
     Tüm hesaplar için %{requirement_date} tarihinden itibaren doğrulanmış e-posta adresleri talep edeceğiz. Lütfen şimdi onaylamak için bir dakikanı ayır.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
-  email_confirmation_reminder_any_questions: |
-    Herhangi bir sorun var ise ütfen SSS bölümüne bakın. Doğa ve %{site_name} ile bağlantı kurmak için zaman ayırdığın için teşekkür ederiz.
+  email_confirmation_reminder_any_questions_html: |
+    Herhangi bir sorun var ise lütfen <a href="%{faq_url}">SSS</a> bölümüne bak. Doğa ve %{site_name} ile bağlantı kurmak için zaman ayırdığın için teşekkür ederiz.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.

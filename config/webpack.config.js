@@ -23,7 +23,9 @@ const config = {
     "projects-form": "./projects/form/webpack-entry",
     "projects-show": "./projects/show/webpack-entry",
     "observations-compare": "./observations/compare/webpack-entry",
-    "users-edit": "./users/edit/webpack-entry"
+    "users-edit": "./users/edit/webpack-entry",
+    "geo-model-explain": "./geo_model/explain/webpack-entry",
+    "geo-model-index": "./geo_model/index/webpack-entry"
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
