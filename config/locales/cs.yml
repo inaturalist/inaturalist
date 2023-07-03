@@ -429,9 +429,9 @@ cs:
   #"one" refers to a photo
   add_one_now: Přidat nyní
   add_place: Přidat místo
-  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Živý"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
-  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Mrtvý"'
+  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živé nebo mrtvé: Živé"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živé nebo mrtvé: Nelze určit“'
+  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živé nebo mrtvé: Mrtvé"'
   add_plant_phenology_budding_annotation: 'Přidat anotaci „Fenologie rostliny: pučení“'
   add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostliny: pučící květ“'
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
@@ -1277,7 +1277,7 @@ cs:
     larva: Larva
     egg: Vejce
     juvenile: Mládě
-    alive_or_dead: Živý nebo mrtvý
+    alive_or_dead: Živé nebo mrtvé
     alive: Živé
     dead: Mrtvý
     cannot_be_determined: Nelze určit
@@ -7397,7 +7397,7 @@ cs:
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
-          "Alive or Dead=Alive": Živý
+          "Alive or Dead=Alive": Živé
           "Alive or Dead=Dead": Mrtvý
           "Plant Phenology=Budding": Pučení
           "Plant Phenology=Flower Budding": Květinové pučení
