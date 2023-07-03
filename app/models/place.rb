@@ -460,22 +460,19 @@ class Place < ApplicationRecord
   end
   
   # Update the associated place_geometry or create a new one
-  def save_geom( geom, other_attrs = {} )
+  def save_geom( geom, max_area_km2: nil, max_observation_count: nil, **other_attrs )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
-    return unless validate_with_geom( geom, **other_attrs )
-    other_attrs.delete(:user)
-    other_attrs.merge!(:geom => geom, :place => self)
+
+    return unless validate_with_geom( geom, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
+
+    build_place_geometry unless place_geometry
     begin
-      if place_geometry
-        self.place_geometry.update(other_attrs)
-      else
-        pg = PlaceGeometry.create!(other_attrs)
-        self.place_geometry = pg
+      if place_geometry.update( other_attrs.merge( geom: geom ) )
+        update( points_from_geom( geom ).merge( updating_bbox: true ) )
       end
-      update(points_from_geom(geom).merge(updating_bbox: true)) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
       if e.message =~ /TopologyException/
