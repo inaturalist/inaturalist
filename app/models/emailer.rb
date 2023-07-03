@@ -242,6 +242,8 @@ class Emailer < ActionMailer::Base
   end
 
   def email_confirmation_reminder( user )
+    return if user&.confirmed?
+
     @user = user
     @user.send( :generate_confirmation_token! ) if @user.confirmation_token.blank?
     set_locale

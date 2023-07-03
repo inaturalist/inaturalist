@@ -628,12 +628,16 @@ class User < ApplicationRecord
   end
   
   def update_photo_licenses
-    return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
-    number = Photo.license_number_for_code(preferred_photo_license)
+    return true unless [true, "1", "true"].include?( @make_photo_licenses_same )
+    number = Photo.license_number_for_code( preferred_photo_license )
     return true unless number
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
       update_all( license: number, updated_at: Time.now )
     index_observations_later
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": id }
+    ).enqueue_photo_bucket_moving_jobs( id )
     true
   end
 

@@ -417,6 +417,8 @@ nl:
   #Noun, title of a popup alerting you to something
   alert: Opgelet
   all: Alle
+  #Title for a list of all 3rd party applications
+  all_applications: Alle toepassingen
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
   all_life: Alle leven
@@ -1744,6 +1746,10 @@ nl:
   email_conf_banner_we_delivered_todos: |
     We hebben je een bevestigingsmail gestuurd op %{date}. Als je deze niet
     hebt ontvangen dan zijn er enkele dingen die je kunt doen:
+  email_conf_required_after_grace_period: |
+    E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
+    je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
+    om toegang te behouden tot je account.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
     Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
@@ -1753,6 +1759,25 @@ nl:
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Bevestig jouw %{site_name} e-mailadres voor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Bevestig vandaag je e-mailadres om ervoor te zorgen dat jij jouw toegang tot je account behoudt.
+     %{site_name} en de mobiele apps iNaturalist en Seek door iNaturalist verbinden mensen met de natuur en elkaar
+    door waarnemingen van biodiversiteit te delen. Bedankt voor je deelname aan de iNaturalist community!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    We hebben geverifieerde e-mailadressen nodig voor alle accounts vanaf
+    %{requirement_date}. Neem even de tijd om dit te bevestigen.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Als je vragen hebt raadpleeg dan de
+    <a href="%{faq_url}">FAQs</a>. Bedankt dat je de tijd hebt genomen om
+    verbinding te maken met de natuur en met %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Accountgegevens
   email_copyright: "Copyright &copy; %{x}, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
@@ -2966,6 +2991,8 @@ nl:
   next_tab: Volgende tabblad
   next_taxon_short: Volgende
   'no': 'Nee'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Nog geen toepassingen
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_comments_yet: Nog geen reacties.
@@ -4559,6 +4586,11 @@ nl:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatisch verborgen coördinaten (verborgen of privé als gevolg van "taxon
     geoprivacy")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist verbergt automatisch de coördinaten voor sommige soorten om
+    ze te beschermen tegen storingen, verzamelen of stroperij. Als de coördinaten van een waarneming alleen automatisch zijn verborgen om soorten te beschermen,
+    dan deelt iNaturalist de werkelijke coördinaten van alle waarnemingen van hun
+    respectievelijke leden met Netwerkleden.
   sites_affiliation_more_email_addresses: |
     E-mailadressen worden gedeeld met leden van het netwerk uitsluitend voor communicatie met betrekking tot de site.
   sites_affiliation_more_twice_per_year: |
@@ -5854,6 +5886,8 @@ nl:
   your_account_has_been_activated: Je account is geactiveerd!
   your_account_has_been_verified: "Je %{site_name}-account is bevestigd! Log in om verder te gaan."
   your_activation_code_was_missing: "Je activatiecode ontbrak. Gebruik de URL in je e-mail."
+  #Title for a list of 3rd party applications you control
+  your_applications: Jouw toepassingen
   your_browser_does_not_support_the_audio_element: Je browser ondersteunt het audio-element niet.
   your_comment_was_saved: Je inhoud is opgeslagen
   your_content: Jouw inhoud
@@ -5954,6 +5988,10 @@ nl:
           iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
+      temporarily_unavailable: |
+        Bedankt voor het ondersteunen van iNaturalist! Doneren aan
+        iNaturalist is tijdelijk niet mogelijk omdat we onze donatie
+        systemen bijwerken. Kom alsjeblieft snel terug.
     flags:
       show:
         flaggable_content_desc: |
@@ -7566,7 +7604,11 @@ nl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d. %=B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d. %=B %Y'
     month_names:
       - 
       - januari
@@ -7623,6 +7665,9 @@ nl:
     countdown_x_hours:
       one: UUR
       other: UREN
+    countdown_x_minutes:
+      one: min
+      other: min
     countdown_x_seconds:
       one: SEC
       other: SECS
@@ -7696,9 +7741,17 @@ nl:
     am: am
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d. %=B %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d. %=B %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d. %=B %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d. %=B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
@@ -7732,6 +7785,8 @@ nl:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Site ID's
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Doelpersoneel (voor test)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email

@@ -1,4 +1,8 @@
 lb:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} Ännerung"
+    other: "%{count} Ännerungen"
   x_comments:
     one: '%{count} Bemierkung'
     other: '%{count} Bemierkungen'
@@ -255,6 +259,7 @@ lb:
   added_to_favorites_html: |
     Bei <a href="%{url}">Favoriten</a> derbäigesat
   adding: "Derbäisetzen..."
+  adjust_brightness: Hellegkeet upassen
   admin: Admin
   admin_s: Administrateur(en)
   admin_only: Just fir Administrateuren
@@ -266,6 +271,8 @@ lb:
   agree_with_current_taxon: Si mam aktuellen Taxon d'accord
   agreeing: Sinn d'accord...
   all: All
+  #Title for a list of all 3rd party applications
+  all_applications: All Applikatiounen
   all_comments: All Bemierkungen
   all_life: All Liewesformen
   all_names: All Nimm
@@ -528,6 +535,8 @@ lb:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
+  #Plural noun, as in changes to a taxon record over time
+  changes: Ännerungen
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
   check_out_the_inat_store: Besicht och den iNaturalist Store
   checklist: Check-Lëscht
@@ -598,6 +607,7 @@ lb:
     male: Männlech
     female: Weiblech
     plant_phenology: Phenologie vun der Planz
+    flowering: Bléiend
     life_stage: Liewensstadium
     adult: Erwuessen
     pupa: Popp
@@ -823,6 +833,7 @@ lb:
   establishment:
     endemic: endemesch
     introduced: Ageféieren
+    invasive: Invasiv
     native: Nativ
     naturalised: Naturaliséiert
   everyone: jiddwereen
@@ -841,10 +852,13 @@ lb:
   #account, e.g. Flickr
   external_applications: Exterm Applikatiounen
   extinct: ausgestuerwen
+  facebook: Facebook
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
   Family: Famill
   favorites: "Favoriten"
+  #Button to show fewer places
+  fewer__context_places: Manner
   failed: Huet net funktionéiert
   fields: Felder
   fields_: Felder
@@ -866,6 +880,7 @@ lb:
   find_your_current_location: Är aktuell Plaz fannen
   finished: Fäerdeg
   finished_with_page: Fäerdeg mat der Säit
+  first_observer: Éischte Beobachter
   #Verb form, as in "Flag this item"
   flag: Mellen
   flag_as_inappropriate: Als onpassend markéieren
@@ -921,6 +936,7 @@ lb:
   globally: Global
   go: Lass
   go_back: Zréck goen
+  google: Google
   google_maps_not_loaded_error: |
     Google Maps konnt net initialiséiert ginn. Et ka sinn dass Dir den Zougang zu Google Maps mat enger Browser Extensioun oder enger Firewall blockéiert, oder soss eppes wéi en Internet Service Provider blockéiert den Zougang.
   got_it!: Verstan!
@@ -935,9 +951,15 @@ lb:
   has_sound: Mat Toun
   has_sounds: Huet Sound
   hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
+  header_your_calendar: Äre Kalenner
+  header_your_favorites: Är Favoritten
+  header_your_lists: Är Lëschten
   header_your_identifications: Är Bestëmmungen
+  header_your_projects: Är Projeten
+  header_your_profile: Äre Profil
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
+  help_translate!: Hëlleft beim Iwwersetzen!
   here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
   hi_user: "Salut %{user}"
   #Verb, usually a button to hide an interface element
@@ -1008,6 +1030,7 @@ lb:
   invite: invitéieren
   invite_people: Leit invitéieren
   invite_people_to_project: "Leit op %{project} invitéieren"
+  iphone: iPhone
   is_not_following_anyone: suivéiert kengem
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -1055,9 +1078,11 @@ lb:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "kann déi folgend Wierder net enthalen: %{words}"
   lexicons:
+    alabama: Alabama
     albanian: Albanesch
     arabic: Arabesch
     armenian: Armenesch
+    basque: Baskesch
     belarusian: Belarusesch
     bengali: Bengalesch
     bulgarian: Bulgaresch
@@ -1086,6 +1111,7 @@ lb:
     italian: Italienesch
     japanese: Japanesch
     kannada: Kannada
+    kazakh: Kasachesch
     korean: Koreanesch
     latvian: Lettesch
     lithuanian: Litauesch
@@ -1116,8 +1142,11 @@ lb:
     turkish: Tierkesch
     ukrainian: Ukrainesch
     uyghur: Uiguresch
+    vietnamese: Vietnameesesch
     visayan: Visayesch
   less: Manner
+  #Button show less text
+  less__context_text: Manner
   license: Lizenz
   life: Liewen
   link: Link
@@ -1131,6 +1160,7 @@ lb:
   list_saved: Lëscht gespäichert.
   list_updated: Lëscht aktualiséiert!
   list_views:
+    taxonomic: taxonomesch
     photo: Foto
   lists: Lëschten
   lists_by_login:
@@ -1152,13 +1182,17 @@ lb:
     de: Däitsch
     el: Griichesch
     en: Englesch
+    en-GB: Englesch (Groussbritannien)
+    eo: Esperanto
     es: Spuenesch
+    es-AR: Spuenesch (Argentinien)
     es-CO: Spuenesch (Kolumbien)
     es-MX: Spuenesch (Mexiko)
     et: Estnesch
     eu: Baskesch
     fi: Finnesch
     fr: Franséisch
+    fr-CA: Franséisch (Kanada)
     gl: Galizesch
     he: Hebräesch
     hr: Kroatesch
@@ -1166,6 +1200,7 @@ lb:
     id: Indonesesch
     it: italienesch
     ja: Japanesch
+    ka: Georgesch
     kk: Kasachesch
     kn: Kannada
     ko: Koreanesch
@@ -1239,6 +1274,8 @@ lb:
   mentioned_you_in_an_x_on_noun_by_html: "%{user} huet Iech an engem %{x} iwwer %{noun} vum %{by} ernimmt"
   merge: Fusionéieren
   merging: Gëtt fusionéiert
+  message: Message
+  message_deleted: Message geläscht
   messages: Messagen
   messages_new_correspondent_it_looks_like: |
     Et gesäit aus wéi wann Dir nach ni mat dëser Persoun korrespondéiert hätt, also beuecht w.e.g. Folgendes:
@@ -1365,6 +1402,8 @@ lb:
   next_tab: Nächsten Tab
   next_taxon_short: Nächst
   'no': 'Neen'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Nach keng Applikatiounen
   no_but_it_is_a_member_of_taxon: "Neen, awer et ass e Member vu(n) %{taxon}"
   no_comments_yet: Nach keng Bemierkungen.
   no_description: Keng Beschreiwung
@@ -1532,13 +1571,16 @@ lb:
   only_you: Nëmmen Dir
   open: opmaachen
   open_: Opmaachen
+  open_street_map: OpenStreetMap
   optional: fakultativ
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: ODER
   order: Uerdnung
+  organism_is_wild: Organismus ass wëll
   organisms: Organismen
+  original: Original
   organism_appears_captive_cultivated: Organismus schéngt Gefaangen / Kultivéiert ze sinn
   other: Anerer
   other_animals: aner Déieren
@@ -1657,12 +1699,16 @@ lb:
     australia: Australien
     austria: Éisträich
     azerbaijan: Aserbaidjan
+    bahamas: Bahamas
+    bahrain: Bahrain
     bangladesh: Bangladesch
     belarus: Wäissrussland
     belgium: Belsch
+    belize: Belize
     benin: Benin
     bhutan: Bhutan
     bolivia: Bolivien
+    bosnia_and_herzegovina: Bosnien-Herzegowina
     botswana: Botswana
     brazil: Brasilien
     brunei: Brunei
@@ -1699,16 +1745,20 @@ lb:
     estonia: Estland
     europe: Europa
     fiji: Fidschi
+    finland: Finnland
     france: Frankräich
     french_guiana: Franséisch Guyane
     gabon: Gabun
     gambia: Gambia
     georgia: Georgien
     germany: Däitschland
+    ghana: Ghana
     greece: Griicheland
     greenland: Grönland
     guam: Guam
     guyana: Guyana
+    haiti: Haiti
+    honduras: Honduras
     hong_kong: Hong-Kong
     hungary: Ungarn
     iceland: Island
@@ -1721,6 +1771,7 @@ lb:
     jamaica: Jamaika
     jordan: Jordanien
     kenya: Kenia
+    kuwait: Kuwait
     kyrgyzstan: Kirgisistan
     laos: Laos
     latvia: Lettland
@@ -1784,23 +1835,46 @@ lb:
     samoa: Samoa
     san_marino: San Marino
     saudi_arabia: Saudi Arabien
+    senegal: Senegal
     serbia: Serbien
     seychelles: Seychellen
+    sierra_leone: Sierra Leone
     singapore: Singapur
     slovakia: Slowakei
     slovenia: Slowenien
+    somalia: Somalia
     south_africa: Südafrika
     south_america: Südamerika
+    south_korea: Südkorea
+    south_sudan: Südsudan
     spain: Spuenien
+    sri_lanka: Sri Lanka
+    sudan: Sudan
     suriname: Surinam
     sweden: Schweden
     switzerland: Schwäiz
     syria: Syrien
+    taiwan: Taiwan
+    tajikistan: Tadjikistan
     tanzania: Tansania
+    thailand: Thailand
     togo: Togo
+    tonga: Tonga
     trinidad_and_tobago: Trinidad an Tobago
     tunisia: Tunesien
     turkey: Tierkei
+    turkmenistan: Turkmenistan
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukrain
+    united_arab_emirates: Vereenegt Arabesch Emirater
+    united_kingdom: Vereenegt Kinnekräich
+    united_states: Vereenegt Staaten
+    uruguay: Uruguay
+    uzbekistan: Usbekistan
+    vanuatu: Vanuatu
+    vatican_city: Vatikanstad
+    venezuela: Venezuela
     west_africa: Westafrika
     yemen: Jemen
     zambia: Sambia
@@ -2388,6 +2462,8 @@ lb:
   you_sure_delete_project?: Sidd Dir sécher datt Dir dëse Projet läsche wëllt?
   you_unlinked_your_provider_account: "Dir hutt de Link op Äre(n) %{provider}-Benotzerkont ewechgeholl"
   your_account_has_been_activated: Äre Benotzerkont gouf desaktivéiert!
+  #Title for a list of 3rd party applications you control
+  your_applications: Är Applikatiounen
   your_browser_does_not_support_the_audio_element: Äre Browser ënnerstëtzt d'Audioelement net.
   your_comment_was_saved: Ären Inhalt gouf gespäichert
   your_content: Ären Inhalt
@@ -2461,6 +2537,10 @@ lb:
       export:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: "Ok, mir schécken Iech eng E-Mail wann et prett ass."
+      field_descriptions:
+        user_login: Benotzernumm vum Beobachter
+        url: URL vun der Beobachtung
+        image_url: URL vum Standardbild
       import:
         date_column_format: JJJJ-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
@@ -2664,6 +2744,18 @@ lb:
       x_seconds:
         one: "%{count} Sekonn"
         other: '%{count} Sekonnen'
+    countdown_x_days:
+      one: Dag
+      other: Deeg
+    countdown_x_hours:
+      one: Stonn
+      other: Stonnen
+    countdown_x_minutes:
+      one: Min
+      other: Min
+    countdown_x_seconds:
+      one: Sek
+      other: Sek
     prompts:
       day: Dag
       hour: Stonn
@@ -2760,6 +2852,8 @@ lb:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Vertraulech
+      place_taxon_name:
+        position: Positioun
       post:
         title: Titel
       project:
@@ -2774,8 +2868,15 @@ lb:
         in_text: Am Text
         url: URL
       taxon:
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiv?
         name: Numm
         rank: Rang
+        wikipedia_summary: Wikipedia-Zesummefaassung
+      taxon_name:
+        name: Numm
+      taxon_link:
+        url: URL
       user:
         email: E-Mail
         login: Benotzernumm
@@ -2852,6 +2953,10 @@ lb:
           attributes:
             email:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Dir hutt dëse Benotzer scho blockéiert
   i18n:
     inflections:
       "@vow_or_con":

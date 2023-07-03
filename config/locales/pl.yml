@@ -4746,6 +4746,26 @@ pl:
         few: '%{count} sekundy'
         many: '%{count} sekund'
         other: '%{count} sekundy'
+    countdown_x_days:
+      one: dzień
+      few: dni
+      many: dni
+      other: dnia
+    countdown_x_hours:
+      one: godzina
+      few: godziny
+      many: godzin
+      other: godziny
+    countdown_x_minutes:
+      one: minuta
+      few: minuty
+      many: minut
+      other: minuty
+    countdown_x_seconds:
+      one: sekunda
+      few: sekundy
+      many: sekund
+      other: sekundy
     prompts:
       day: Dzień
       hour: Godzina

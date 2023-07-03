@@ -217,6 +217,9 @@ const Profile = ( {
           <textarea id="user_description" className="form-control user-description" value={profile.description || ""} name="description" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
+          <div className="alert alert-info">
+            <p>{ I18n.t( "views.donate.temporarily_unavailable" ) }</p>
+          </div>
           <CheckboxRowContainer
             name="prefers_monthly_supporter_badge"
             label={I18n.t( "display_monthly_supporter_badge" )}
