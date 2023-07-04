@@ -409,6 +409,8 @@ tr:
   #Noun, title of a popup alerting you to something
   alert: Uyarı
   all: Tümü
+  #Title for a list of all 3rd party applications
+  all_applications: Tüm Uygulamalar
   all_comments: Tüm yorumlar
   all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
   all_life: Tüm yaşam
@@ -2899,6 +2901,8 @@ tr:
   next_tab: Sonraki Sekme
   next_taxon_short: Sonraki
   'no': 'Hayır'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Henüz uygulama yok
   no_assessments_have_been_added_to_this_project_yet: Bu projeye henüz değerlendirme eklenmedi.
   no_but_it_is_a_member_of_taxon: "Hayır ama bir %{taxon} üyesi"
   no_comments_yet: Henüz yorum yok.
@@ -5670,6 +5674,8 @@ tr:
   your_account_has_been_activated: Hesabın etkinleştirildi!
   your_account_has_been_verified: "%{site_name} hesabın doğrulandı! Lütfen devam etmek için giriş yap."
   your_activation_code_was_missing: "Etkinleştirme kodun eksikti. Lütfen e-postandaki URL'yi takip et."
+  #Title for a list of 3rd party applications you control
+  your_applications: Uygulamaların
   your_browser_does_not_support_the_audio_element: Tarayıcın ses ögesini desteklemiyor.
   your_comment_was_saved: İçeriğin kaydedildi
   your_content: İçeriğin
@@ -5766,6 +5772,8 @@ tr:
           </p>
         thank_you_for_being_a_monthly_supporter: Aylık Destekçi olduğun için teşekkür ederiz!
         thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
+      temporarily_unavailable: |
+        iNaturalist'i desteklemeye gösterdiğin ilgi için teşekkür ederiz! Bağış sistemlerimizi güncellerken iNaturalist'e bağış yapmak geçici olarak mümkün değildir. Lütfen yakında tekrar kontrol edin.
     flags:
       show:
         flaggable_content_desc: |
@@ -7499,6 +7507,8 @@ tr:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Site ID'leri
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Personelin dikkatine (test için)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
