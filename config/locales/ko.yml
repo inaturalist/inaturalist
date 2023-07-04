@@ -629,11 +629,17 @@ ko:
     alive: 살아있음
     dead: 죽음
     cannot_be_determined: 확인할 수 없음
+    #As in the feather on a bird
+    feather: 깃털
+    #Abnormal growth
+    gall: 충영
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: 개체
     #Fecal matter, not regurgitated matter
     scat: 배설물
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: 발자국
     #Endoskeletal remains, like a deer bone
     bone: 뼈
   controlled_term_definitions:
@@ -1198,6 +1204,7 @@ ko:
   last_active_with_date: "마지막 활동일: %{date}"
   last_confirmed_observation: 마지막으로 확인된 관찰
   last_observation: 마지막 관찰
+  last_observation_caps: 마지막 관찰
   last_year: 지난 해
   lat: 위도
   latitude: 위도
@@ -1584,6 +1591,7 @@ ko:
   observations_of_taxon: "%{taxon_name} 관찰"
   observations_per_month: 관찰/월
   observations_specifying_this_field: 이 필드의 관찰
+  observations_total: 기록된 관찰
   observations_w_field: 필드가 있는 관찰
   observed: 관찰됨
   observer: 관찰자
@@ -2197,6 +2205,7 @@ ko:
   species_name_cap: 종명
   species_names: 종명
   species_taxon_name: 종명/분류군 이름
+  species_unknown: 알 수 없는 종
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
   start: 시작일
   start_a_new_project: 새 프로젝트 시작하기
@@ -2259,9 +2268,11 @@ ko:
   too_many_results: 결과가 너무 많음
   total: 합계
   total_observations: 총 관찰
+  total_observations_caps: 전체 관찰 수
   translated_languages: 번역된 언어
   twitter: 트위터
   unblock: 차단 해제
+  unknown: 알 수 없음
   unknown_error: 알 수 없는 오류
   unfollow: 팔로우 해제
   unlink_your_google_account: 구글 계정의 연결을 끊습니다
@@ -2433,6 +2444,8 @@ ko:
         grid: 격자
         book: 책
         journal: 일지
+    lifelists:
+      total_observations: 총 관찰
     messages:
       from: '게시한 사용자:'
       to: 받는이
@@ -2654,6 +2667,14 @@ ko:
         other: 약 %{count}분
       less_than_x_seconds:
         other: 약 %{count}초
+    countdown_x_days:
+      other: 일
+    countdown_x_hours:
+      other: 시간
+    countdown_x_minutes:
+      other: 분
+    countdown_x_seconds:
+      other: 초
     prompts:
       day: 일
       hour: 시간

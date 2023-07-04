@@ -1178,6 +1178,9 @@ mr:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: वेबसाईट संकेतांक
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: असत्यापित वापरकर्त्यांना केंद्रित करा
       flag:
         #The person who resolved the flag
         resolver_id: निराकरण करणारा

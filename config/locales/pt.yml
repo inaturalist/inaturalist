@@ -133,6 +133,26 @@ pt:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A – Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:um|f:uma|n:um} %{resource}"
   about: Acerca de
   about_charts: Acerca dos gráficos
   about_community_taxa: Sobre os táxons da comunidade
@@ -151,6 +171,10 @@ pt:
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
+  about_taxon_ranges: Sobre a Distribuição do Táxon
+  about_taxon_ranges_desc: |
+    A Distribuição do Táxon indica a distribuição global de um táxon. Normalmente, a fonte da distribuição do táxon é a Lista Vermelha da IUCN.
+  about_the_network: Sobre a Rede
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre Este Mapa
   about_this_project: Sobre este Projeto
@@ -3336,6 +3360,9 @@ pt:
             <a href="%{url}">Verificar as Directrizes de Comunidade</a> para as dicas sobre como manter o iNaturalist um lugar amigável e acolhedor.
           please_read_the_teachers_guide_html: |
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
+    donate:
+      temporarily_unavailable: |
+        Obrigado pelo seu interesse em apoiar ao iNaturalist! A doação ao iNaturalist está temporariamente indisponível enquanto actualizamos os nossos sistemas de doação. Por favor, volte brevemente.
     lifelists:
       list_view: Ver em lista
       observed_rank: Observado %{rank}
@@ -3602,6 +3629,15 @@ pt:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: dia
+      other: dias
+    countdown_x_hours:
+      one: hora
+      other: horas
+    countdown_x_seconds:
+      one: SEG
+      other: SEGS
     prompts:
       day: Dia
       hour: Hora

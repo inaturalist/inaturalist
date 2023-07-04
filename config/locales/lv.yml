@@ -4254,6 +4254,8 @@ lv:
     Portugāles iNaturalist tīkla dalībnieku organizācija %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} nodrošina novērojumu datus Portugāles migrējošo putnu un zīdītāju atlantiem, kā arī vairākiem citiem zinātniski pētnieciskajiem darbiem Portugālē.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automātiski noslēptas koordinātas (tās ir noslēptas vai privātas taksonu ģeoprivātuma iestatījumu dēļ)
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist automātiski noslēpj noteiktu sugu koordinātas, lai pasargātu tās no tādiem draudiem kā miera traucēšana, transportēšana un malu medniecība. Ja koordinātas ir noslēptas tikai automātiski, lai pasargātu sugas, iNaturalist dalās ar visu novērojumu faktiskajām koordinātām ar attiecīgo valstu tīkla dalībniekiem.
   sites_affiliation_more_email_addresses: |
     E-pasta adreses ir pieejamas tīkla dalībniekiem tikai ar šo vietni saistītos komunikācijas nolūkos.
   sites_affiliation_more_twice_per_year: |
@@ -6727,6 +6729,10 @@ lv:
           Licencē savu saturu, lai sniegtu lietotājiem tiesības to izmantot, nelūdzot tavu piekrišanu, bet ievērojot norādītos licences noteikumus. %{site_name} glabā tavu ar Creative Commons licencēto saturu partnerorganizācijām paredzētos arhīvos, kas tiek regulāri atjaunoti. Piemēram, ar No
           Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
           (CC BY-NC) licencētais saturs tiek glabāts arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska starpvaldību organizācija, kas apkopo un izplata bioloģiskās daudzveidības datus no visas pasaules.
+        monthly_supporter_desc_html: |
+          Lietotāji ar iNaturalist ikmēnēša atbalstītāja statusu katru mēnesi automātiski ziedo, lai atbalstītu California Academy of Sciences (United States IRS EIN 94-1156258) un iNaturalist un iNaturalist tīkla vietņu uzturēšanu, kas nenes peļņu.
+          <a href="%{url}">Lai kļūtu par ikmēneša atbalstītāju, nospied šeit</a>.
+          Kad būsim saņēmuši tavu ziedojumu, varēsi atzīmēt lodziņu, lai rādītu savā profilā ziedotāja statusu. Lai mēs varētu pārbaudīt to, ka esi kļuvis par ikmēneša atbalstītāju, tev jānorāda vienādu e-pasta adresi gan Donorbox, gan iNaturalist vietnē.
         muting_desc_html: |
           <p>
           Apklusinot kādu lietotāju, nesaņemsi paziņojumus par viņa darbībām, tai skaitā tavu novērojumu komentēšanu, sazināšanos ar tevi, tevis pieminēšanu utt. Apklusināšana sniedz iespēju kādu ignorēt, neierobežojot lietotāju veikt citas darbības.
@@ -6982,6 +6988,22 @@ lv:
         zero: '%{count} sekundes'
         one: "%{count} sekunde"
         other: '%{count} sekundes'
+    countdown_x_days:
+      zero: dienas
+      one: diena
+      other: dienas
+    countdown_x_hours:
+      zero: stundas
+      one: stunda
+      other: stundas
+    countdown_x_minutes:
+      zero: min.
+      one: min.
+      other: min.
+    countdown_x_seconds:
+      zero: sek.
+      one: sek.
+      other: sek.
     prompts:
       day: Diena
       hour: Stunda

@@ -468,6 +468,14 @@ class LocalPhoto < Photo
     end
   end
 
+  def reindex_taxa
+    taxa.each do |taxon|
+      Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+        unique_hash: { "Taxon::elastic_index": taxon.id } ).
+        elastic_index!( ids: [taxon.id] )
+    end
+  end
+
   def prune_odp_duplicates( options = { } )
     return unless in_public_s3_bucket?
     client = options[:s3_client] || LocalPhoto.new.s3_client
@@ -530,13 +538,14 @@ class LocalPhoto < Photo
       photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
       photo.reload
 
-      # if the photo is being removed as a result of a flag being applied,
-      # then remove it from the source bucket
-      if photo.flags.detect{ |f| !f.resolved? }
-        LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
-      end
+      # remove the photo from the source bucket
+      LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      
       # mark the observation as being updated, re-index only the updated_at column
       photo.mark_observations_as_updated
+
+      # reindex associated taxa
+      photo.reindex_taxa
     else
       # move failed, so remove any files that did get copied to the target before the failure
       LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
@@ -600,6 +609,18 @@ class LocalPhoto < Photo
       return false
     end
     true
+  end
+
+  def self.migrate_to_odp_bucket( start_index, end_index )
+    static_bucket_id = FilePrefix.where( prefix: "https://#{LocalPhoto.s3_host_alias}/photos" ).first.id
+    LocalPhoto.joins( "LEFT JOIN flags ON (photos.id = flags.flaggable_id)" ).
+    where( "flags.id IS NULL" ).
+    where( "photos.file_prefix_id=?", static_bucket_id ).
+    where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES ).
+    where( "photos.id between ? and ?", start_index, end_index ).
+    each do |photo|
+      LocalPhoto.change_photo_bucket_if_needed( photo )
+    end
   end
 
 end

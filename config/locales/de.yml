@@ -1643,6 +1643,8 @@ de:
   email_address_for_comments_and_other_feedback: E-Mail-Adresse für Kommentare oder Feedback
   email_conf_banner_please_click: |
     Bitte klicke auf den Link in deiner E-Mail, um deine E-Mail-Adresse zu verifizieren.
+  email_conf_required_after_grace_period: |
+    Ab dem %{requirement_date} ist eine E-Mail-Bestätigung erforderlich und du hast deine E-Mail-Adresse nicht vor Ablauf der Frist bestätigt. Bitte setze dein Passwort zurück, um wieder Zugriff auf dein Konto zu erhalten
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Bestätige deine E-Mail-Adresse für %{site_name} bevor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
@@ -1657,8 +1659,8 @@ de:
     %{requirement_date}. Bitte nimm dir einen Moment Zeit, um sie jetzt zu bestätigen.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
-  email_confirmation_reminder_any_questions: |
-    Sollten Fragen auftauchen, schau bitte in den FAQs nach. 
+  email_confirmation_reminder_any_questions_html: |
+    Sollten Fragen auftauchen, können die <a href="%{faq_url}">FAQs</a> vielleicht weiterhelfen. 
     Vielen Dank, dass du %{site_name} verwendest.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
@@ -1675,7 +1677,7 @@ de:
   encompassing_places: Umgebende Gebiete
   end: Ende
   end_date_time: Enddatum/-zeit
-  endangered: gefährdet
+  endangered: Stark gefährdet
   endemic: endemisch
   endemic_to_x: "Endemisch in %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
@@ -5789,6 +5791,9 @@ de:
           </p>
         thank_you_for_being_a_monthly_supporter: Vielen Dank, dass du ein monatlicher Unterstützer bist!
         thank_you_for_being_a_monthly_supporter_caps: DANKE DAFÜR, DASS DU EIN MONATLICHER UNTERSTÜTZER BIST!
+      temporarily_unavailable: |
+        Vielen Dank für das Interesse, iNaturalist unterstützen zu wollen! Die Spendenfunktion 
+        ist vorübergehend nicht verfügbar, während wir unsere Systeme aktualisieren. Bitte demnächst wieder versuchen.
     flags:
       show:
         flaggable_content_desc: |
@@ -7124,6 +7129,11 @@ de:
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 
            (CC BY-NC)-Datensätze in das Archiv auf, das wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
+        monthly_supporter_desc_html: |
+          Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, die von der California Academy of Sciences (United States IRS EIN 94-1156258) verwendet werden, um den gemeinnützigen Betrieb von iNaturalist und den Websites des iNaturalist-Netzwerks zu unterstützen.
+          <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
+          Sobald wir deine Zahlung bestätigt haben, kannst du dieses Feld ankreuzen, um diesen Status in deinem Profil anzuzeigen.
+          Hinweis: Damit wir dich als monatlichen Unterstützer bestätigen können, muss in der Donorbox exakt dieselbe Emailadresse verwenden wie in iNaturalist.
         muting_desc_html: |
           <p>
           Jemanden stummzuschalten unterbindet es, Benachrichtigungen über dessen Verhalten zu erhalten
