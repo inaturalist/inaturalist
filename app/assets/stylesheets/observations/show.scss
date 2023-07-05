@@ -202,7 +202,7 @@ a.UserImage,
   }
   display: inline-block;
   border-radius: 120px;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   min-width: 40px;
   width: 48px;
   height: 48px;
@@ -1395,7 +1395,7 @@ time {
         margin-top: 4px;
         i {
           font-size: 12px;
-          margin-right: 3px;
+          margin-inline-end: 3px;
         }
       }
     }
@@ -2163,6 +2163,10 @@ time {
       color: white;
     }
   }
+}
+
+[dir="rtl"] .PreviousNextButtons {
+  float: left;
 }
 
 .box.opt-out {
