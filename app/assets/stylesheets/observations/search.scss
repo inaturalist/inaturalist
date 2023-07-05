@@ -724,6 +724,11 @@ inat-taxon { white-space: nowrap; }
   margin-inline-start: 5px;
   color: rgba(0, 0, 0, .5);
 }
+.dropdown-menu.places .spinner {
+  font-size: 1.2em;
+  color: white;
+  margin: 10px;
+}
 .shape-buttons {
   display: inline-block;
   margin-inline-end: 2px;
