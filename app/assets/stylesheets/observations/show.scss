@@ -396,10 +396,10 @@ a.UserImage,
             .badge {
               background: white;
               color: rgba(0,0,0,.75);
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
             .btn-nostyle {
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
           }
         }
@@ -685,7 +685,7 @@ h3, h4 {
   i.fa-star, i.fa-star-o {
     font-size: 16px;
     color: $inat-green;
-    margin-right: 8px;
+    margin-inline-end: 8px;
     &:hover {
       cursor: pointer;
     }
