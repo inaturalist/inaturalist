@@ -1335,12 +1335,27 @@ module ApplicationHelper
   # https://developers.google.com/maps/documentation/javascript/url-params
   # https://developers.google.com/maps/documentation/javascript/libraries
   # https://developers.google.com/maps/documentation/javascript/versions
-  def google_maps_loader_uri(libraries: [])
+  def google_maps_loader_uri( libraries: [] )
     URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
       key: CONFIG.google.browser_api_key,
-      libraries: libraries.join(","),
+      libraries: libraries.join( "," ),
       v: "3.51",
+      language: I18n.locale,
+      region: cctld_from_locale( I18n.locale )
     }.to_query
+  end
+
+  # Mostly for Google API regions
+  def cctld_from_locale( locale )
+    # return "il" if locale.to_s == "he"
+    return if locale.to_s.split( "-" ).size < 2
+
+    region = locale.to_s.split( "-" ).last
+    case region
+    # There are a few exceptions to ISO 3166-1 / ccTLD mapping
+    when "gb" then "uk"
+    else region
+    end
   end
 
   def leaflet_js(options = {})
