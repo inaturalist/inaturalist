@@ -6726,8 +6726,6 @@ sv:
           Du kan se originalet på <a href="%{url}">%{url}</a>.
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
-      kml_field_desc2: |
-        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
       edit:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
@@ -7176,18 +7174,6 @@ sv:
           Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
       show:
-        about_names_desc: |
-          <p>
-          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn är vanligtvis förståeliga, lätta att uttala, och stabila över tid, men många organismer har flera olika namn på olika platser, även på samma språk, som kan göra det svårt att kommunicera om dessa organismer utan förvirring.
-          Vetenskapsmän försöker råda bot på detta genom att använda ett enda "vetenskapligt namn" för varje organismkategori som omfattas av reglerna för <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>, men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de är inte lika lätta att komma ihåg som vardagliga namn för många personer. Vetenskapliga namn kan också återspegla en organisms taxonomiska placering, så att de kan förändras när forskare lägger fram nya hypoteser om evolutionära förhållanden
-          mellan olika organismer, vilket minskar deras användbarhet för kommunikation, även bland människor som kan vetenskapliga namn.
-          </p>
-          <p>
-          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats till plats, medan vetenskapliga namn ändras då och då.
-          </p>
-          <p>
-          Vi försöker åtgärda dessa brister genom att visa både vardagliga och vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat på läsarens språkliga och geografiska preferenser.
-          </p>
         about_conservation_status_desc: |
           Bevarandestatus sammanfattar risken för utrotning för en grupp organismer.
         about_establishment_desc: |
