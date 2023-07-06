@@ -6838,10 +6838,6 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
-      kml_field_desc2: |
-        KML af stedets afgrænsning. Man kan lave én vha. Google Maps, Google
-        Earth eller de fleste GIS-applikationer. Skal have mindst én polygon, være
-        under 1 MB (5 MB til sidekuratorer) samt med en udstrækning mindre end den amerikanske stat Texas.
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
@@ -7411,17 +7407,6 @@ da:
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
       show:
-        about_names_desc: |
-          <P>
-            De fleste kategorier af organismer har "lokale navne" i de talte sprog. Disse navne er normalt genkendelige, lette at udtale, og stabile over tid, men mange organismer har flere forskellige navne i forskellige lande, selv på samme sprog, som kan gøre det svært at kommunikere om disse organismer uden at skabe forvirring.
-            Forskerne har løst dette problem ved at bruge et enkelt "videnskabeligt navn" for hver kategori af organismer, der opfylder reglerne i <ahref="https://en.wikipedia.org/wiki/Binomial_nomenclature"> biologisk nomenklatur </a>, men disse navne har tendens til at være baseret på Latin, et sprog ingen længere taler, så for mange mennesker, er de ikke så nemme at huske som de lokale navne. Videnskabelige navne kan også afspejle en organismes taksonomiske placering, så de kan også ændre sig, når forskere udvikler mere nøjagtige teorier om de evolutionære forhold mellem forskellige organismer, som igen reducerer deres anvendelighed i kommunikationen, selv blandt personer, der kender de videnskabelige navne.
-          </p>
-          <P>
-            Det gamle ordsprog siger: "Lokale navne skifter fra sted til sted og de videnskabelige navne fra tid til anden. "
-          </p>
-          <P>
-            Vi forsøger at løse disse udfordringer ved at vise både de lokale - og de videnskabelige navne, hvor det er muligt, og vælge lokale navne baseret på brugerens præferencer for sprog og geografi.
-          </p>
         about_conservation_status_desc: |
           Bevaringsstatus opsummerer risikoen for udryddelse for en gruppe af organismer.
         about_establishment_desc: |
