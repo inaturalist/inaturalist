@@ -6686,11 +6686,6 @@ pt-BR:
         view_original_html: |
           Você pode visualizar o original em <a href="%{url}">%{url}</a>. Por favor deixe alertas de infração de direitos autorais como não resolvido se esta foto estar de fato infringindo direitos.
     places:
-      kml_field_desc2: |
-        KML dos limites do local. Você pode fazer um usando Google Maps, Google
-        Earth ou a maioria dos aplicativos de SIG. Deve ter pelo menos um polígono, ser
-        menos de 1 MB (5 MB para curadores do site), e ter uma área menor do que o
-        estado de Texas nos EUA.
       edit:
         complex_boundary_note_html: |
           Estes limites de fronteira são um pouco complexos para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download do KML</a>, e editar elas no aplicativo GIS que você escolher, depois fazer o upload do seu KML editado diretamente.
@@ -7191,17 +7186,6 @@ pt-BR:
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizar este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
-        about_names_desc: |
-          <p>
-            A grande maioria dos organismos vivos possuem "nomes comuns" nas línguas faladas em seus locais de origem. Estes nomes são comumente, popularmente conhecidos, mais fáceis de pronunciar e fixos ao longo do tempo, mas muitos outros organismos possuem mais de um nome popular em diferentes locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar muito difícil o processo de comunicar qual espécie é qual, causando confusão. \  
-            Os cientistas solucionaram este problema criando o uso do "nome científico" para nomear cada uma das espécies do mundo, seguindo regras específicas conforme <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>,
-            mas este nomes são normalmente baseados no Latim, uma língua que praticamente ninguém mais fala, então não são tão fáceis de memorizar como os nomes comuns, ou populares. Nomes científicos pode também refletir a posição taxonômica de um organismo, assim podem acabar sendo alterados sempre que pesquisadoress com base em novas tecnologias ou, novos dados desenvolvem novas teorias sobre a evolução de determinada espécie, o que novamente reduz a facilidade do seu uso na comunicação diária, mesmo entre especialistas.
-          </p>
-          <p>
-            Um velho ditado popular já dizia: "Nomes comuns se alteram de um local para o outro e, nomes científicos de tempos em tempos."
-          </p>
-          <p>
-           \ Por esse motivo tentamos resolver esta questão exibindo ambos os nomes das espécies, tanto os comuns quanto os científicos sempre que possível e, escolhendo os nomes comuns com base na localização e preferências geográficas do usuário. </p>
         about_conservation_status_desc: |
           O Estado de Conservação sintetiza o risco de extinção para um determinado grupo de organismos.
         about_establishment_desc: |
