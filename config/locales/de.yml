@@ -6436,8 +6436,6 @@ de:
           belasse Copyright-Meldungen als ungelöst, falls dieses Foto
           das Urheberrecht verletzt.
     places:
-      kml_field_desc2: |
-        KML der Gebietsgrenze. Du kannst sie mit Google Maps, Google Earth oder den meisten GIS-Anwendungen erstellen. Muss mindestens ein Polygon enthalten und kleiner als 1 MB (5 MB für Webseitenkuratoren) sein und eine Fläche kleiner als die des US-Staates Texas haben.
       edit:
         complex_boundary_note_html: |
           Diese Grenze ist etwas zu komplex, um sie im Web zu bearbeiten. Du kannst jedoch <a href="%{url}">die KML herunterladen</a>, in der GIS-Anwendung deiner Wahl bearbeiten und die bearbeitete KML direkt hochladen.
@@ -6911,17 +6909,6 @@ de:
           unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
           Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
       show:
-        about_names_desc: |
-          <p>
-          Die meisten Organismenformen besitzen "umgangssprachliche oder allgemeingebräuchliche Namen". Diese Namen sind im Allgemeinen leicht auszusprechen und haben sich im Laufe der Zeit etabliert, aber viele Organismen haben, auch in der gleichen Sprache, mehrere verschiedene Namen an unterschiedlichen Orten. Dadurch kann es schwierig werden, ohne Verwechslungen über diese Organismen zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
-          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein und Altgriechisch - Sprachen, die niemand spricht - sodass die Bezeichnungen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Position eines Organismus widerspiegeln, so dass sie sich ändern können, falls Wissenschaftler neue Erkenntnisse über die verwandschaftlichen Beziehungen zwischen verschiedenen Organismen entwickeln, was wiederum ihren Nutzen für die Kommunikation verringert, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
-          </p>
-          <p>
-          Das alte Sprichwort fasst es zusammen: "Umgangssprachliche Namen ändern sich von Ort zu Ort, und wissenschaftliche Namen ändern sich von Zeit zu Zeit."
-          </p>
-          <p>
-          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl allgemeingebräuchliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen.
-          </p>
         about_conservation_status_desc: |
           Der Gefährdungsstatus beschreibt das Aussterberisiko einer Gruppe von Organismen.
         about_establishment_desc: |
