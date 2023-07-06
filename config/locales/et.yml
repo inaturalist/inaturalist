@@ -5345,8 +5345,6 @@ et:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun jäta autoriõiguste rikkumise märkused alles, kui see foto neid tõepoolest rikub.
     places:
-      kml_field_desc2: |
-        Koha piirjoone KML. Seda saab teha Google Maps, Google Earth või enamiku GIS-programmidega. Peab sisaldama vähemalt ühte hulknurka, olema vähem kui 1 MB (kuraatorite puhul vähem kui 5 MB) ning selle pindala peab olema väiksem kui USA Texase osariigil.
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
@@ -5681,16 +5679,6 @@ et:
         complete_rank_desc_html: |
           Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
       show:
-        about_names_desc: |
-          <p>
-          Enamikel organismide kategooriatel on "rahvapärased nimed", mida kasutatakse kõnekeeltes. Need nimed on enamasti äratuntavad, lihtsasti hääldatavad ning läbi ajaloo samad, kuid paljudel organismidel on mitu erinevat nime, mida kasutatakse erinevates kohtades, isegi kui keel on sama, mis võib nendest rääkimise muuta keeruliseks. Teadlased on lahendanud selle probleemi kasutades ühte "teaduslikku nimetust" iga organismi kategooria puhul, mis vastab <a href="https://et.wikipedia.org/wiki/Binaarne_nomenklatuur">binaarse nomenklatuuri reeglitele</a>, kuid enamasti on need nimed ladina keeles ehk siis keeles, mida enam ei räägita, mistõttu pole nad paljudele samavõrd meeldejäävad kui rahvapärased nimed. Teaduslikud nimed võivad ka peegeldada organismi taksonoomilist asukohta, mis tähendab, et need võivad muutuda, kui teadlased loovad erinevate organismide evolutsiooniliste suhete kohta täpsemaid teooriaid. See vähendab taaskord nende kasulikust suhtlemisel ja seda isegi inimeste puhul, kes tunnevad teaduslikke nimesid.
-          </p>
-          <p>
-          Vana ütlus võtab selle kokku: "Rahvapärased nimed muutuvad kohast kohta ja teaduslikud nimed ajast aega."
-          </p>
-          <p>
-          Proovime neid probleeme leevendada näidates igal pool, kus võimalik, nii rahvapärast kui teaduslikku nime ning valides näidatavad rahvapärased nimed vastavalt lugeja keele ja geograafilistele eelistustele.
-          </p>
         about_conservation_status_desc: |
           Kaitsestaatus võtab kokku organismidegrupi hävimisohu.
         about_establishment_desc: |
