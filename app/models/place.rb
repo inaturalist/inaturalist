@@ -484,7 +484,7 @@ class Place < ApplicationRecord
   end
   
   # Appends a geom instead of replacing it
-  def append_geom(geom, other_attrs = {})
+  def append_geom( geom, **other_attrs )
     if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
       geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) rescue nil
     end
@@ -499,7 +499,7 @@ class Place < ApplicationRecord
         f.multi_polygon([union])
       end
     end
-    self.save_geom(new_geom, other_attrs)
+    self.save_geom( new_geom, **other_attrs )
   end
 
   def points_from_geom(geom)
