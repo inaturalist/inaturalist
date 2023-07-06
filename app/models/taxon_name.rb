@@ -28,6 +28,7 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
+  validate :user_submitted_names_need_notes
   SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
@@ -199,6 +200,7 @@ class TaxonName < ApplicationRecord
   alias scientific? is_scientific_names?
 
   attr_accessor :skip_indexing
+  attr_accessor :user_submission
 
   def to_s
     "<TaxonName #{id}: #{name} in #{lexicon}>"
@@ -532,4 +534,23 @@ class TaxonName < ApplicationRecord
   def parameterized_lexicon_present
     errors.add( :lexicon, :should_be_in_english ) if lexicon.parameterize.empty?
   end
+
+  def user_submitted_names_need_notes
+    return unless user_submission
+    if audit_comment.blank? || audit_comment.length < 10
+      errors.add( :audit_comment, :needs_to_be_at_least_10_characters )
+    end
+  end
+
+  # audited was setting the audit_comment to nil before a `before_destroy` callback was being
+  # called. So even if the destroy was aborted and the audit transaction was rolled back, the
+  # audited_comment was nil after the abort, and that prevented the audit_comment from being
+  # displayed in the redisplayed taxon name edit form. This ensures the destroy validations
+  # happen before audited has a change to delete the audit_comment
+  def audit_destroy
+    user_submitted_names_need_notes
+    throw( :abort ) unless errors.details[:audit_comment].blank?
+    super
+  end
+
 end
