@@ -6476,8 +6476,6 @@ it:
         view_original_html: |
           Puoi vedere l'originale al link <a href="%{url}">%{url}</a>. Per favore lascia la segnalazione di violazione del copyright come "non risolto" se la foto viola il copyright.
     places:
-      kml_field_desc2: |
-        File KML del perimetro del luogo. Ne puoi fare uno usando Google Maps, Google Earth, o la maggior parte delle applicazioni GIS. Deve essere formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori del sito) ed avere un'area più piccola di quella dello stato statunitense del Texas.
       edit:
         complex_boundary_note_html: |
           Questo perimetro è un po' troppo complesso per essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
@@ -6930,18 +6928,6 @@ it:
           href="%{url}"> pagina di Wikipedia</a> che manteniamo a tempo indeterminato fino ad un
           aggiornamento manuale. Aggiornando questa sintesi viene aggiornata immediatamente anche la nostra cache del sottostante contenuto di Wikipedia visualizzato sul sito web, che si aggiorna automaticamente dopo una settimana.
       show:
-        about_names_desc: |
-          <p>
-            La maggior parte degli organismi hanno "nomi comuni" nel   linguaggio parlato. Questi nomi sono spesso riconoscibili, facili da pronunciare stabili nel tempo, ma molti organismi hanno nomi differenti nei diversi luoghi, anche nella stessa lingua, che possono creare alcune confusioni. 
-            Gli scienziati risolvono il problema utilizzando un singolo "nome scientifico" per ogni specie che segue le regole della
-            <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura binomiale</a>; ma questi nomi sono in Latino, una lingua che non parla nessuno, e pertanto non sono facilmente memorizzabili per la maggior parte delle persone. I nomi scientifici possono anche riflettere la posizione tassonomica di un organismo, e così possono cambiare quando gli scienziati sviluppano teorie più accurate sulle relazioni evoluzionistiche tra gli organismi, riducendone ancora la loro utilità, anche tra le persone che ne conoscono il loro nome scientifico.
-          </p>
-          <p>
-            Un vecchio detto dice così: "I nomi comuni cambiano da luogo a luogo, quelli scientifici di anni in anni"
-          </p>
-          <p>
-           \ Noi cerchiamo di compensare questa carenza permettendo, se possibile, di visualizzare sia i nomi comuni che quelli scientifici, e scegliendo il nome comune in base alla lingua e alle preferenze geografiche dell'utente.
-          </p>
         about_conservation_status_desc: |
           Lo stato di conservazione riassume il rischio di estinzione per un gruppo di organismi.
         about_establishment_desc: |
