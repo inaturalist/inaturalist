@@ -6881,11 +6881,6 @@ cs:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
     places:
-      kml_field_desc2: |
-        KML hranice místa. Můžete jej vytvořit pomocí Google Maps, Google
-        Earth, nebo většiny GIS aplikací. Musí obsahovat alespoň jeden polygon, být
-        menší než 1 MB (5 MB pro kurátory webu), a mít plochu menší než
-        stát Texas.
       edit:
         complex_boundary_note_html: |
           Toto ohraničení je pro editování na webu příliš složité. Můžete si ale
@@ -7364,16 +7359,6 @@ cs:
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
-        about_names_desc: |
-          <p>
-            Většina kategorií organismů má v mluvené řeči své „obecné názvy“. Tyto názvy jsou obvykle srozumitelné, snadno se vyslovují a jsou trvalé, ale mnoho organismů má na různých místech několik různých názvů, a to i v jednom jazyce, což může komplikovat komunikaci o těchto organismech. Vědci tento problém řeší tak, že používají jeden „vědecký název“ pro každou kategorii organismů, která splňuje pravidla <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické terminologie</a>, ale tyto názvy většinou vycházejí z latiny, což je jazyk, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak snadno zapamatovatelné jako obecné názvy. Vědecké názvy mohou také odrážet taxonomické zařazení organismu, takže se mohou změnit, pokud vědci vytvoří přesnější teorie o evolučních vztazích mezi jednotlivými organismy, což opět snižuje jejich užitečnost při komunikaci, a to i mezi lidmi, kteří znají vědecké názvy.
-          </p>
-          <p>
-           \ Jak se říká: „Obecné názvy jsou různé na různých místech a vědecké názvy jsou různé v různých dobách.“ 
-          </p>
-          <p>
-            My se snažíme tyto nedostatky řešit tím, že zobrazujeme jak obecné tak vědecké názvy, kdykoliv je to možné, a obecné názvy vybíráme podle jazykových a geografických preferencích čtenáře.
-          </p>
         about_conservation_status_desc: |
           Ochranářský status shrnuje riziko vyhynutí pro skupinu organismů.
         about_establishment_desc: |
