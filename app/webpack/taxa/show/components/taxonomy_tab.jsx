@@ -131,6 +131,9 @@ const TaxonomyTab = ( {
               { _.isEmpty( namesGroupedByPlace ) ? null : (
                 <div>
                   <h3>{ I18n.t( "regional_names" ) }</h3>
+                  <UserText
+                    text={I18n.t( "views.taxa.show.about_regional_names_desc" ).replace( /\n+/gm, " " )}
+                  />
                   <table className="table table-striped">
                     <thead>
                       <tr>
