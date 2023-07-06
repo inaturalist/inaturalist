@@ -6399,8 +6399,6 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
-      kml_field_desc2: |
-        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau kebanyakan aplikasi GIS lainnya. Harus memiliki setidaknya satu poligon, di bawah 1 MB (5MB untuk kurator situs), dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
@@ -6819,17 +6817,6 @@ id:
           Ringkasan singkat dari takson ini berdasarkan <a target="_blank"
           href="%{url}">halaman Wikipedianya</a> yang terus kami simpan dalam cache hingga disegarkan secara manual. Menyegarkan ringkasan ini juga akan secara langsung mengubah cache konten Wikipedia kami yang kami tampilkan di situs web, yang akan disegarkan secara otomatis setiap minggunya.
       show:
-        about_names_desc: |
-          <p>
-          Kebanyakan kategori organisme memiliki "nama umum" dalam bahasa-bahasa lisan. Nama-nama ini biasanya dapat dikenali, gampang untuk diucapkan, dan tidak berubah-ubah seiring waktu, tetapi banyak organisme yang memiliki beberapa nama berbeda di tempat yang berbeda, meskipun dalam satu bahasa yang sama, sehingga sulit sekali untuk berbicara tentang organisme-organisme ini tanpa membingungkan orang. Para ilmuwan menyelesaikan masalah ini dengan menggunakan satu "nama ilmiah" untuk setiap kategori organisme yang mematuhi aturan <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenklatur biologi</a>, 
-          tetapi nama-nama ini biasanya berasal dari bahasa Latin, bahasa yang jarang dipakai untuk percakapan sehari-hari, jadi mereka tidak semudah nama umum untuk diingat oleh kebanyakan orang. Nama ilmiah juga bisa mencerminkan penempatan taksonomi suatu organisme, sehingga mereka bisa berubah ketika para ilmuwan mengembangkan lebih banyak teori yang lebih akurat tentang hubungan evolusi antara organisme yang berbeda, yang lagi-lagi mengurangi kegunaan mereka dalam hal komunikasi, bahkan di antara orang-orang yang mengetahui nama ilmiah.
-          </p>
-          <p>
-          Pepatah zaman dulu pernah berkata: "Nama umum berubah dari tempat ke tempat, sedangkan nama ilmiah berubah dari waktu ke waktu."
-          </p>
-          <p>
-          Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna.
-          </p>
         about_conservation_status_desc: |
           Status konservasi merangkum risiko kepunahan untuk sekelompok organisme.
         about_establishment_desc: |
