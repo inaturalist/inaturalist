@@ -6368,8 +6368,6 @@ ca:
         view_original_html: |
           Podeu veure l'original a <a href="%{url}">%{url}</a>. Si us plau no marqueu les caselles sobre violació dels drets d'autor si aquesta foto no els viola.
     places:
-      kml_field_desc2: |
-        KML del límit del lloc. Podeu crear-ne un mitjançant Google Maps, Google Earth o la majoria d'aplicacions SIG. Ha de tenir almenys un polígon, ocupar menys d'1 MB (5 MB per als supervisors del lloc) i tenir una àrea més petita que l'estat de Texas dels EUA.
       edit:
         complex_boundary_note_html: |
           Aquest límit és massa complicat per editar-ho al web. Malgrat això podeu <a href="%{url}">descarregar l'arxiu KML</a>, editar-ho en una aplicació SIG i pujar el KML editat directament.
@@ -6799,18 +6797,6 @@ ca:
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
       show:
-        about_names_desc: |
-          <p>
-          La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
-          Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
-          però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre la història evolutiva de les relacions entre els diferents organismes, reduint novament la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
-          </p>
-          <p>
-          El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."
-          </p>
-          <p>
-          Intentem respondre a aquestes mancances mostrant tant el nom comú com el científic, sempre que sigui possible, i elegint els noms comuns basant-nos en l'idioma i localització geogràfica de les preferències de l'usuari.
-          </p>
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
         about_establishment_desc: |
