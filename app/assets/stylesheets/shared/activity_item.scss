@@ -36,7 +36,7 @@ body > [role="dialog"] .ActivityItem {
     border: 1px solid $border-grey;
     border-radius: 2px;
     float: left;
-    margin-right: 15px;
+    margin-inline-end: 15px;
     display: inline-block;
   }
   span.taxon {
@@ -74,7 +74,7 @@ body > [role="dialog"] .ActivityItem {
     }
   }
   .time {
-    margin-right: 12px;
+    margin-inline-end: 12px;
     color: #999999;
     a {
       color: #999999;
@@ -256,12 +256,22 @@ body > [role="dialog"] .ActivityItem {
     padding-left: 1px
   }
   .panel {
-    margin-left: 60px;
+    margin-inline-start: 60px;
     box-shadow: none;
     -webkit-box-shadow: none;
   }
   .id_body {
     margin-top: 15px;
+  }
+}
+
+[dir ="rtl"] .ActivityItem,
+body > [role="dialog"] .ActivityItem {
+  .icon {
+    float: right;
+  }
+  .buttons {
+    float: left;
   }
 }
 
@@ -292,7 +302,7 @@ body > [role="dialog"] .ActivityItem.withdrawn {
 
 .ActivityItemMenu,
 body > [role="dialog"] .ActivityItemMenu {
-  border-left: 1px solid $border-grey;
+  border-inline-start: 1px solid $border-grey;
   .loading_spinner {
     margin: 4px 0px 1px 12px;
   }
@@ -310,7 +320,8 @@ body > [role="dialog"] .ActivityItemMenu {
   .control-group {
     .dropdown.btn-group {
       button {
-        margin: 0px 0px 2px 12px;
+        margin-bottom: 2px;
+        margin-inline-start: 12px;
         padding: 0;
         border: none !important;
         background: none !important;

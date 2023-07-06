@@ -505,7 +505,7 @@ a.UserImage,
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     border: 1px solid $border-grey;
-    margin-left: 60px;
+    margin-inline-start: 60px;
     margin-bottom: 15px;
     ul.nav-tabs {
       background-color: #f5f5f5;
@@ -1036,15 +1036,15 @@ time {
     position: absolute;
     content: " ";
     display: block;
-    border-left: $activity-line-width solid $border-grey;
+    border-inline-start: $activity-line-width solid $border-grey;
     width: $activity-line-width;
     height: 100%;
-    left: 24px;
+    inset-inline-start: 24px;
     top: 0;
     z-index: 0;
   }
   .comment_id {
-    margin-left: 60px;
+    margin-inline-start: 60px;
   }
   .review {
     float: right;
@@ -1059,6 +1059,20 @@ time {
   .ac-select-thumb i {
     vertical-align: auto;
     line-height: 31px;
+  }
+}
+
+[dir="rtl"] .bootstrap .Activity {
+  > .icon {
+    float: right;
+  }
+  .review{
+    float:left;
+    input {
+      position: relative;
+      top: 2px;
+      right: -5px;
+    }
   }
 }
 
