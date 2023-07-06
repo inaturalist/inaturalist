@@ -134,7 +134,7 @@ const TaxonomyTab = ( {
                   <UserText
                     text={I18n.t( "views.taxa.show.about_regional_names_desc" ).replace( /\n+/gm, " " )}
                   />
-                  <table className="table table-striped">
+                  <table className="table table-striped regional-names">
                     <thead>
                       <tr>
                         <th>{ I18n.t( "place" ) }</th>
