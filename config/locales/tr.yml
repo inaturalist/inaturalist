@@ -6441,8 +6441,6 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
-      kml_field_desc2: |
-        Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsin. En az bir çokgene sahip olmalı, 1 MB'nin altında olmalı (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olmalıdır.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
@@ -6892,16 +6890,6 @@ tr:
           Bu, sınıfın <a target="_blank"
           href="%{url}">Wikipedia sayfasına</a> dayanan ve manuel olarak yenilenene kadar süresiz olarak önbelleğe aldığımız kısa özetidir. Bu özetin yenilenmesi, web sitesinde gösterdiğimiz ve bir hafta sonra otomatik olarak yenilenen temel Wikipedia içeriğinin önbelleğini de hemen günceller.
       show:
-        about_names_desc: |
-          <p>
-          Çoğu organizma kategorisinin konuşulan dillerde "yaygın adları" vardır. Bu adlar genellikle tanınabilir, söylenmesi kolay ve zaman içinde aynı kalır ancak birçok organizmanın değişik yerlerde hatta aynı dilde bile bu organizmalarla ilgili karışıklık olmadan iletişimini zorlaştırabilen birkaç değişik adı vardır. Bilim insanları, <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik terminoloji</a> kurallarına uyan her organizma kategorisi için tek bir "bilimsel ad" kullanarak bu sorunu çözüyorlar ancak bu adlar kimsenin konuşamadığı bir dil olan Latince'ye dayanmaktadır, bu yüzden birçok insan için yaygın adlar kadar akılda kalıcı değillerdir. Bilimsel adlar aynı zamanda bir organizmanın sınıflandırmasal yerleşimini yansıtabilir, böylece bilim insanları değişik organizmalar arasındaki evrimsel ilişkilerle ilgili daha doğru kuramlar geliştirdiklerinde bu adlar değişebilirler ve yine bilimsel adları bilen insanlar arasında bile iletişimdeki yararlarını azaltırlar.
-          </p>
-          <p>
-          Eski atasözü şöyle özetliyor: "Yaygın adlar bölgeden bölgeden değişiyor ve bilimsel adlar zaman zaman değişiyor."
-          </p>
-          <p>
-          Olanaklı olan yerlerde hem yaygın hem de bilimsel adlar göstererek ve görüntüleyen kişinin dil ve coğrafi seçimlerine göre genel adlar seçerek bu eksiklikleri gidermeye çalışıyoruz.
-          </p>
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
         about_establishment_desc: |
