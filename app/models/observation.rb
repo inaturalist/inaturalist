@@ -3383,29 +3383,14 @@ class Observation < ApplicationRecord
   end
 
   # this method will set the updated_at column on this observation to the current time,
-  # and re-index only the updated_at attribute of the observation doc in Elasticsearch
+  # and queue the observation to be re-indexed shortly
   def mark_as_updated
-    updated_time = Time.now
-    update_column( :updated_at, updated_time )
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Observation.__elasticsearch__.client.update_by_query(
-        index: Observation.index_name,
-        refresh: Rails.env.test?,
-        body: {
-          query: {
-            term: {
-              "id": id
-            }
-          },
-          script: {
-            source: "ctx._source.updated_at = params.updated_time",
-            params: {
-              updated_time: updated_time
-            }
-          }
-        }
-      )
-    end
+    update_column( :updated_at, Time.now )
+    Observation.delay(
+      run_at: 10.minutes.from_now,
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: { "Observation::elastic_index": id }
+    ).elastic_index!( ids: [id] )
   end
 
 end
