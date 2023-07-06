@@ -1327,7 +1327,7 @@ time {
     background: #fff;
     padding: 8px;
     min-height: 56px;
-    text-align: left;
+    text-align: start;
     a {
       display: block;
       text-overflow: ellipsis;
@@ -1338,7 +1338,15 @@ time {
   }
   .view {
     font-weight: 700;
-    margin-right: 5px;
+    margin-inline-end: 5px;
+  }
+}
+
+[dir = "rtl"] .MoreFromUser{
+  h3 {
+    .links {
+      float: left;
+    }
   }
 }
 
@@ -1387,6 +1395,15 @@ time {
     }
   }
 }
+
+[dir = "rtl"] .ObservationsHighlight {
+  h3 {
+    a {
+      float: left;
+    }
+  }
+}
+
 .obs-highlight-link {
   .SplitTaxon {
     a.display-name,
