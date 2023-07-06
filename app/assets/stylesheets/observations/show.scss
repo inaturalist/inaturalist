@@ -673,7 +673,7 @@ h3, h4 {
   &.collapsible {
     i.fa {
       color: $inat-green;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
     &.collapsible {
       cursor: pointer;
@@ -1101,16 +1101,16 @@ time {
     text-align: center;
     .separators {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       width: 100%;
       .left, .right {
         margin: 0;
       }
       .left {
-        padding-left: 38px;
+        padding-inline-start: 38px;
       }
       .right {
-        padding-right: 38px;
+        padding-inline-end: 38px;
       }
       .separator {
         display: inline-block;
@@ -1232,6 +1232,28 @@ time {
       float: left;
       margin-bottom: 15px;
       padding-right: 10px;
+    }
+  }
+}
+
+[dir="rtl"] .ResearchGradeProgress{
+  .graphic{
+    .checks{
+      .check{
+        &.casual {
+          float: right;
+        }
+        &.research {
+          float: left;
+        }
+      }
+    }
+  }
+  ul.remaining {
+    li {
+      .reason_icon {
+        float: right;
+      }
     }
   }
 }
@@ -2136,7 +2158,7 @@ time {
     .application {
       img {
         max-height: 14px;
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
       .name {
         vertical-align: middle;
@@ -2364,14 +2386,17 @@ body > [role="dialog"] .easyzoom > a > img {
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding: 2px 0px 1px 10px;
+  padding-top: 2px;
+  padding-inline-end: 0px;
+  padding-bottom: 1px;
+  padding-inline-start: 10px;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
   z-index: 1;
-  margin-right: 20px;
+  margin-inline-end: 20px;
   // added
-  margin-left: 10px;
+  margin-inline-start: 10px;
   vertical-align: text-bottom;
 }
 .quality_grade:after {
@@ -2380,9 +2405,9 @@ body > [role="dialog"] .easyzoom > a > img {
   display: block;
   bottom: 0;
   border: 10px solid $border-grey;
-  border-right-width: 5px;
+  border-inline-end-width: 5px;
   border-right-color: transparent;
-  right: -15px;
+  inset-inline-end: -15px;
   z-index: -1;
 }
 .quality_grade.needs_id {
@@ -2391,7 +2416,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.needs_id:after {
   border-color: $needs-id-yellow;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 .quality_grade.research {
   background-color: $inat-green;
