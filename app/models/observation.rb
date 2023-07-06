@@ -2088,7 +2088,9 @@ class Observation < ApplicationRecord
     return true if species_guess =~ /\?$/
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    self.taxon_id = single_taxon_id_for_name(species_guess)
+    if taxon = single_taxon_for_name( species_guess )
+      self.taxon_id = taxon.try( :id ) if taxon.is_active?
+    end
     true
   end
 

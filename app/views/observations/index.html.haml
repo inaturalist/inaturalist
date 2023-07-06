@@ -122,8 +122,11 @@
                       %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
                       {{ shared.t('terrain') | capitalize }}
 
-              %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown" }
-                %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
+              %button.button.btn-stateless.btn-default.dropdown-toggle.places{
+                "data-toggle": "dropdown",
+                "ng-click": "searchForNearbyPlaces( )"
+              }
+                %span.glyphicon.glyphicon-globe{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
                 {{ shared.t('places_of_interest') }}
               .dropdown-menu.dropdown-menu-right.places
                 .col-xs-6
@@ -135,7 +138,9 @@
                       = "{{ p.name }}"
                     %span.type<>
                       = "{{ p.placeTypeLabel( ) }}"
-                  %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
+                  .spinner.ng-cloak{ "ng-show": "!nearbyPlaces" }
+                    %span.fa.fa-spin.fa-refresh
+                  %span{ "ng-show": "nearbyPlaces && (!nearbyPlaces.standard || nearbyPlaces.standard.length == 0)" }
                     {{ shared.t("no_places_available") }}
                 .col-xs-6
                   %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
@@ -146,7 +151,9 @@
                       = "{{ p.name }}"
                     %span.type<>
                       = "{{ p.placeTypeLabel( ) }}"
-                  %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
+                  .spinner.ng-cloak{ "ng-show": "!nearbyPlaces" }
+                    %span.fa.fa-spin.fa-refresh
+                  %span{ "ng-show": "nearbyPlaces && (!nearbyPlaces.community || nearbyPlaces.community.length == 0)" }
                     {{ shared.t("no_places_available") }}
             #map-shape-controls
               %div.shape-buttons.btn-group

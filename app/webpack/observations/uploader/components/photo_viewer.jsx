@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Lightbox from "react-images";
 
 class PhotoViewer extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.close = this.close.bind( this );
@@ -27,17 +26,17 @@ class PhotoViewer extends Component {
   render( ) {
     let images = [];
     if ( this.props.obsCard ) {
-      images = _.map( this.props.obsCard.files, f => (
+      images = _.map( _.sortBy( this.props.obsCard.files, "sort" ), f => (
         { src: f.photo ? f.photo.large_url : f.file.preview } ) );
     }
     return (
       <Lightbox
-        onClickPrev={ this.prev }
-        onClickNext={ this.next }
-        isOpen={ this.props.show }
-        currentImage={ this.props.activeIndex }
-        onClose={ this.close }
-        images={ images }
+        onClickPrev={this.prev}
+        onClickNext={this.next}
+        isOpen={this.props.show}
+        currentImage={this.props.activeIndex}
+        onClose={this.close}
+        images={images}
         backdropClosesModal
       />
     );
