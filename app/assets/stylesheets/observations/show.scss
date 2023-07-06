@@ -661,6 +661,12 @@ a.UserImage,
   }
 }
 
+[dir = "rtl"] #ObservationShow {
+  .FollowButton {
+    float: left;
+  }
+}
+
 .more_from > .container > .row > .col-xs-12 {
   padding: 0;
 }
@@ -906,7 +912,7 @@ time {
       display: block;
       float: left;
       min-width: 110px;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
   .links {
@@ -936,8 +942,8 @@ time {
         margin-bottom: 10px;
         i {
           position: absolute;
-          left: 0;
-          margin-right: 3px;
+          inset-inline-start: 0;
+          margin-inline-end: 3px;
           color: $inat-green;
           &.fa { top: 3px; }
           &.icon-person { top: -2px; }
@@ -951,6 +957,18 @@ time {
         }
       }
     }
+  }
+}
+
+[dir = "rtl"] .MapDetails{
+  .top_info {
+    .info {
+      float: right;
+    }
+  }
+
+  .community{
+    float: right;
   }
 }
 
@@ -1430,9 +1448,9 @@ time {
     display: inline-block;
     margin-bottom: 15px;
     .UserWithIcon {
-      padding-right: 15px;
+      padding-inline-end: 15px;
       .icon {
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
       .title {
         font-size: 14px;
@@ -2075,7 +2093,7 @@ time {
   .badge {
     min-width: 24px;
   }
-  margin-left: 10px;
+  margin-inline-start: 10px;
   cursor: pointer;
   vertical-align: text-bottom;
 }
