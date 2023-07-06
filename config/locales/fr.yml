@@ -6748,8 +6748,6 @@ fr:
           laisser les drapeaux de violation du droit d’auteur comme étant non résolues si cette photo
           viole les droits d’auteur.
     places:
-      kml_field_desc2: |
-        Fichier KML des limites géographiques du lieu. Vous pouvez le créer en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Doit contenir au moins un polygone, peser moins de 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une surface plus petite que l’état du Texas (États-Unis).
       edit:
         complex_boundary_note_html: |
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
@@ -7288,32 +7286,6 @@ fr:
         wikipedia_summary_desc_html: |
           Bref résumé de ce taxon basé sur sa page <a target="_blank" href="%{url}">Wikipédia</a> que nous mettons en cache indéfiniment jusqu'à ce qu'il soit actualisé manuellement. Rafraîchir ce résumé met également immédiatement à jour notre cache du contenu sous-jacent de Wikipédia que nous affichons sur le site Web, et qui se rafraîchit automatiquement après une semaine.
       show:
-        about_names_desc: |
-          <p>
-          La plupart des catégories d’organismes ont des « noms communs » dans les langues
-          parlées. Ces noms sont reconnus couramment, faciles à prononcer,
-          et stables dans le temps, mais de nombreux organismes ont plusieurs noms
-          différents selon les endroits, même dans la même langue, ce qui peut rendre
-          difficile une communication claire sur ces organismes.
-          Les scientifiques résolvent ce problème en utilisant un « nom scientifique »
-          unique pour chaque catégorie d’organisme, qui se conforme aux règles de
-          <a href="https://fr.wikipedia.org/wiki/Nom_binominal">la nomenclature biologique</a>,
-          mais ces noms sont en général basés sur le latin, une langue que plus personne
-          ne parle, et ne sont donc pas mémorisables comme les noms communs pour la plupart d'entre nous. Les noms scientifiques peuvent aussi refléter l’emplacement taxinomique
-          d’un organisme, donc ils peuvent changer quand les scientifiques développent des théories
-          plus précises sur les relations d’évolution entre différents organismes, réduisant
-          encore l’utilité dans la communication, même parmi les personnes qui connaissent
-          les noms scientifiques.
-          </p>
-          <p>
-          Le vieil adage le résume bien : « Les noms communs changent de lieu en
-          lieu, les noms scientifiques changent de temps en temps. »
-          </p>
-          <p>
-          Nous essayons de corriger ces lacunes en affichant à la fois les noms
-          communs et scientifiques quand c’est possible, et en choisissant des noms communs
-          basés sur la langue et les préférences géographiques du lecteur.
-          </p>
         about_conservation_status_desc: |
           L’état de conservation synthétise le risque d’extinction d’un groupe d’organismes.
         about_establishment_desc: |
