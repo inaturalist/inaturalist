@@ -4260,6 +4260,7 @@ es-MX:
   refresh: Refrescar
   refreshing: actualizando
   regenerate_stats: Regenerar estadísticas
+  regional_names: Nombres regionales
   register_for_this_event_at_x_html: "Registro para este evento en %{x}"
   reject?: '¿Rechazar?'
   relative_observations: Observaciones relativas
@@ -5611,6 +5612,7 @@ es-MX:
   white: Blanco
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: '¿Por qué estás haciendo este cambio? (opcional)'
+  why_are_you_making_this_change_cite_source_required: '¿Por qué está haciendo este cambio? Por favor, explíquelo y cite una fuente si es posible. (requerido)'
   why_you_can_see_the_coordinates: Por qué puedes ver las coordenadas
   who_can_add_observation_fields_to_my_obs: '¿Quién puede añadir campos de observación a mis observaciones?'
   who_can_add_observations_to_this_project?: '¿Quiénes pueden añadir observaciones a este proyecto?'
@@ -6632,6 +6634,11 @@ es-MX:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
+      kml_field_desc3: |
+        El KML del límite de lugar. Puede crear uno usando Google Maps, Google
+        Earth o la mayoría de aplicaciones GIS. Debe tener al menos un polígono, ser
+        menos de 1 MB (5 MB para curadores del sitio), y tener un área menor que
+        ~700, 00 kilómetros cuadrados (aproximadamente el tamaño de Somalia o el estado de Estados Unidos de Texas).
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
@@ -7133,6 +7140,40 @@ es-MX:
           Breve resumen de este taxón basado en su <a target="_blank"
           href="%{url}">página de Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
       show:
+        about_names_desc: |
+          <p>
+          La mayoría de las categorías de organísmo tienen "nombres comunes" en los diferentes idiomas idiomas. Estos nombres son generalmente reconocibles, fáciles de pronunciar,
+          y estables através el tiempo, pero muchos organismos tienen varios nombres diferentes en distintos lugares, incluso en el mismo idioma, que puede hacer que sea difícil comunicarse sobre estos organismos sin generar confusión.
+          Los científicos abordan este problema usando un solo "nombre científico"
+          para cada categoría de organismo que se ajusta a las reglas de
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biológica</a>,
+          pero estos nombres tienden a estar basados en el latín, un idioma que nadie
+          habla, así que no son tan memorables como nombres comunes para muchas
+          personas. Los nombres científicos también pueden reflejar la posición taxonómica
+          del organismo, para que puedan cambiar cuando los científicos desarrollan más
+          teorías precisas sobre las relaciones evolutivas entre organismos diferentes, de nuevo reduciendo su utilidad en comunicaciones, incluso entre personas que conocen nombres científicos.
+          </p>
+          <p>
+          El viejo refrán lo resume así: "Los nombres comunes cambian de lugar a
+          lugar, y los nombres científicos cambian de vez en cuando.
+          </p>
+          <p>
+          Intentamos resolver estas deficiencias mostrando los nombres comunes y científicos siempre que sea posible y eligiendo nombres comunes basados en el idioma y las preferencias geográficas del visor.
+          Nombres están listados por su prioridad global dentro de cada idioma/
+          Tipos.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Los nombres pueden añadirse a lugares (normalmente países) en casos en los que
+          países o regiones diferentes utilizan nombres comunes diferentes en
+          el mismo idioma. Por ejemplo, México y Costa Rica pueden tener diferentes
+          nombres de español para la misma especie.
+          </p>
+          <p>
+          Esta tabla muestra qué nombres se han añadido a qué lugares, y
+          están listados en orden de prioridad para cada lugar. Si se añaden dos nombres de español
+          a México, el que aparece primero aparecerá si prefieres para ver los nombres de español añadidos a México.
+          </p>
         about_conservation_status_desc: |
           El estado de conservación sintetiza el riesgo de extinción de un grupo de organismos.
         about_establishment_desc: |
@@ -7866,6 +7907,7 @@ es-MX:
         position: Posición
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
+        audit_comment: Nota
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8098,6 +8140,8 @@ es-MX:
                 debe coincidir con el nombre del taxón si este es un nombre científico válido
               bad_format: |
                 solo puede contener caracteres latinos estándar, guiones, espacios y ×; tenga en cuenta que los taxones y cultivares hipotéticos no están permitidos
+            audit_comment:
+              needs_to_be_at_least_10_characters: debe tener al menos 10 caracteres
         taxon_photo:
           attributes:
             taxon:
