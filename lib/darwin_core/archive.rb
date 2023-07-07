@@ -5,6 +5,7 @@ module DarwinCore
       :occurrence,
       :simple_multimedia,
       :observation_fields,
+      :resource_relationships,
       :project_observations,
       :user
     ]
@@ -143,6 +144,12 @@ module DarwinCore
               row_type: "http://www.inaturalist.org/observation_fields",
               files: ["observation_fields.csv"],
               terms: DarwinCore::ObservationFields::TERMS
+            }
+          when "ResourceRelationships"
+            extensions << {
+              row_type: "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
+              files: ["resource_relationships.csv"],
+              terms: DarwinCore::ResourceRelationship::TERMS
             }
           when "ProjectObservations"
             extensions << {
@@ -515,6 +522,33 @@ module DarwinCore
           next unless ofv.created_at <= @generate_started_at
           DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
           csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
+        end
+      end
+    end
+
+    def make_resource_relationships_file
+      headers = DarwinCore::ResourceRelationship::TERM_NAMES
+      fname = "resource_relationships.csv"
+      tmp_path = File.join(@opts[:work_path], fname)
+      preloads = [ { observation_field_values: :observation_field } ]
+      file = CSV.open( tmp_path, "w" )
+      file << headers
+      file.close
+      { path: tmp_path, preloads: preloads }
+    end
+
+    def write_resource_relationships_data( observations, csv )
+      @generate_started_at ||= Time.now
+      observations.each do |observation|
+        # fields must have datatype "taxon", values must have a user and the value must be numeric
+        observation.observation_field_values.select do |ofv|
+          ofv.observation_field.datatype === "taxon" &&
+          ofv.user &&
+          ActiveModel::Validations::NumericalityValidator::INTEGER_REGEX.match?( ofv.value )
+        end.each do |ofv|
+          next unless ofv.created_at <= @generate_started_at
+          DarwinCore::ResourceRelationship.adapt( ofv, observation: observation, core: @opts[:core] )
+          csv << DarwinCore::ResourceRelationship::TERMS.map{ |field, uri, default, method| ofv.send( method || field ) }
         end
       end
     end
