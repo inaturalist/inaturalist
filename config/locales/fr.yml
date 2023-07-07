@@ -4241,6 +4241,7 @@ fr:
   refresh: Rafraîchir
   refreshing: rafraîchissement en cours
   regenerate_stats: Regénérer les statistiques
+  regional_names: Noms régionaux
   register_for_this_event_at_x_html: "Inscrivez-vous à cette activité à %{x}"
   reject?: Refuser ?
   relative_observations: Observations relatives
@@ -5587,6 +5588,7 @@ fr:
   white: blanc
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Pourquoi faites-vous ce changement ? (Facultatif)
+  why_are_you_making_this_change_cite_source_required: Pourquoi apportez-vous ce changement ? Veuillez expliquer et, si possible, citer une source. (Obligatoire)
   why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
   who_can_add_observation_fields_to_my_obs: Qui peut ajouter des champs d’observation à mes observations ?
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce projet ?
@@ -7286,6 +7288,23 @@ fr:
         wikipedia_summary_desc_html: |
           Bref résumé de ce taxon basé sur sa page <a target="_blank" href="%{url}">Wikipédia</a> que nous mettons en cache indéfiniment jusqu'à ce qu'il soit actualisé manuellement. Rafraîchir ce résumé met également immédiatement à jour notre cache du contenu sous-jacent de Wikipédia que nous affichons sur le site Web, et qui se rafraîchit automatiquement après une semaine.
       show:
+        about_names_desc: |
+          <p>
+          La plupart des catégories d’organismes ont des noms « communs » dans les langues parlées. Ces noms sont en général connus, faciles à prononcer et stables dans le temps, mais de nombreux organismes ont plusieurs noms différents selon les endroits, même dans la même langue, ce qui peut rendre difficile une communication claire sur ces organismes.
+          Les scientifiques résolvent ce problème en utilisant pour chaque catégorie d’organisme un « nom scientifique » unique conforme aux règles de la <a href="https://fr.wikipedia.org/wiki/Nom_binominal">nomenclature biologique</a>, mais ces noms sont en général basés sur le latin, une langue que plus personne ne parle et, pour la plupart d'entre nous, il n'est donc pas aussi facile de les retenir que les noms communs. Les noms scientifiques peuvent aussi refléter le placement taxinomique d’un organisme. Ils peuvent donc changer quand les scientifiques développent des théories plus exactes sur les relations d’évolution entre différents organismes, ce qui réduit encore l’utilité des noms scientifiques dans la communication, même parmi les personnes qui les connaissent.
+          </p>
+          <p>
+          Le vieil adage le résume bien : « Les noms communs changent de lieu en lieu, les noms scientifiques changent de temps en temps. »
+          </p>
+          <p>
+          Nous essayons de remédier à ces inconvénients en affichant quand c’est possible à la fois les noms commun et scientifique, et en choisissant des noms communs basés sur la langue et les préférences géographiques du lecteur. Les noms sont classés en fonction de leur priorité globale dans chaque langue/type.</p>
+        about_regional_names_desc: |
+          <p>
+          Des noms peuvent être associés à des endroits (généralement des pays) dans les cas où des régions ou pays différents utilisent des noms communs différents dans la même langue. Par exemple, le Mexique et le Costa Rica peuvent avoir des noms différents en espagnol pour la même espèce.
+          </p>
+          <p>
+          Ce tableau montre quels noms ont été associés à quels endroits. Les noms sont classés par ordre de priorité pour chaque endroit. Si deux noms espagnols sont ajoutés au Mexique, celui listé en premier apparaîtra si vous préférez voir les noms espagnols ajoutés au Mexique.
+          </p>
         about_conservation_status_desc: |
           L’état de conservation synthétise le risque d’extinction d’un groupe d’organismes.
         about_establishment_desc: |
@@ -8160,6 +8179,7 @@ fr:
         position: Position
         source_url: URL source
         source_identifier: Identifiant source
+        audit_comment: Note
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8399,6 +8419,8 @@ fr:
               bad_format: |
                 ne peut contenir que des caractères standards latins, des tirets, des espaces, et 
                 ×; notez que les taxons et cultivars putatifs ne sont pas autorisés
+            audit_comment:
+              needs_to_be_at_least_10_characters: doit compter au moins 10 caractères
         taxon_photo:
           attributes:
             taxon:
