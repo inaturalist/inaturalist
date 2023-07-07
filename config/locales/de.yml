@@ -4133,6 +4133,7 @@ de:
   refresh: Aktualisieren
   refreshing: aktualisiere
   regenerate_stats: Statistik neu erstellen
+  regional_names: Regionale Namen
   register_for_this_event_at_x_html: "Für dieses Event registrieren: %{x}"
   reject?: Ablehnen?
   relative_observations: Relative Beobachtungen
@@ -5481,6 +5482,7 @@ de:
   where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?
   white: weiß
+  why_are_you_making_this_change_cite_source_required: Bitte erläutere den Grund für die Änderung und zitiere eine Quelle, falls möglich. (Erforderlich)
   why_you_can_see_the_coordinates: Warum Du die Koordinaten sehen kannst
   who_can_add_observation_fields_to_my_obs: Wer kann Beobachtungsfelder zu meinen Beobachtungen hinzufügen?
   who_can_add_observations_to_this_project?: Wer kann diesem Projekt Beobachtungen hinzufügen?
@@ -6909,6 +6911,17 @@ de:
           unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
           Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
       show:
+        about_names_desc: |
+          <p>
+          Viele Lebensformen besitzen "umgangssprachliche oder allgemeingebräuchliche Namen". Diese Namen besitzen im Allgemeinen einen hohen Wiedererkennungswert, sind leicht auszusprechen und haben sich im Laufe der Zeit fest etabliert, aber viele Organismen haben - auch in der gleichen Sprache - mehrere verschiedene Namen in unterschiedlichen Regionen. Dadurch kann es schwierig sein, ohne Missverständnisse über diese Organismen zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein und Altgriechisch - Sprachen, die niemand spricht - sodass die Bezeichnungen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Position eines Organismus widerspiegeln, so dass sie sich ändern können, falls Wissenschaftler neue Erkenntnisse über die verwandschaftlichen Beziehungen zwischen verschiedenen Organismen entwickeln. Das wiederum kann ihren Nutzen für die Kommunikation verringern, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
+          </p>
+          <p>
+          Das alte Sprichwort fasst es zusammen: "Umgangssprachliche Namen ändern sich von Ort zu Ort, und wissenschaftliche Namen ändern sich von Zeit zu Zeit."
+          </p>
+          <p>
+          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl allgemeingebräuchliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen. Die Namen sind dabei nach ihrer lokalen Priorität gelistet.
+          </p>
         about_conservation_status_desc: |
           Der Gefährdungsstatus beschreibt das Aussterberisiko einer Gruppe von Organismen.
         about_establishment_desc: |
@@ -7668,6 +7681,7 @@ de:
         position: Position
         source_url: Quellen-URL
         source_identifier: Quellbezeichner
+        audit_comment: Hinweis
       taxon_link:
         url: URL
         #Taxon this link is associated with
@@ -7889,6 +7903,8 @@ de:
               bad_format: |
                 kann nur lateinische Standardzeichen, Bindestriche, Leerzeichen und
                 × enthalten; beachte bitte, dass strittige Taxa und Kultivare nicht erlaubt sind
+            audit_comment:
+              needs_to_be_at_least_10_characters: muss mindestens 10 Zeichen enthalten
         taxon_photo:
           attributes:
             taxon:
