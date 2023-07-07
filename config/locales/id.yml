@@ -4153,6 +4153,7 @@ id:
   refresh: Segarkan
   refreshing: menyegarkan
   regenerate_stats: Perbarui Statistik
+  regional_names: Nama Regional
   register_for_this_event_at_x_html: "Daftar untuk acara ini di %{x}"
   reject?: Tolak?
   relative_observations: Pengamatan Relatif
@@ -5463,6 +5464,7 @@ id:
   white: putih
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
+  why_are_you_making_this_change_cite_source_required: Mengapa Anda membuat perubahan ini? Tolong jelaskan dan sertakan sebuah sumber jika ada. (Wajib)
   why_you_can_see_the_coordinates: Mengapa Anda Bisa Melihat Koordinatnya
   who_can_add_observation_fields_to_my_obs: Siapa yang dapat menambahkan bidang pengamatan ke pengamatan saya?
   who_can_add_observations_to_this_project?: Siapa yang dapat menambahkan pengamatan ke proyek ini?
@@ -6817,6 +6819,17 @@ id:
           Ringkasan singkat dari takson ini berdasarkan <a target="_blank"
           href="%{url}">halaman Wikipedianya</a> yang terus kami simpan dalam cache hingga disegarkan secara manual. Menyegarkan ringkasan ini juga akan secara langsung mengubah cache konten Wikipedia kami yang kami tampilkan di situs web, yang akan disegarkan secara otomatis setiap minggunya.
       show:
+        about_names_desc: |
+          <p>
+          Kebanyakan kategori organisme memiliki "nama umum" dalam bahasa-bahasa lisan. Nama-nama ini biasanya dapat dikenali, gampang untuk diucapkan, dan tidak berubah-ubah seiring waktu, tetapi banyak organisme yang memiliki beberapa nama berbeda di tempat yang berbeda, meskipun dalam satu bahasa yang sama, sehingga sulit sekali untuk berbicara tentang organisme-organisme ini tanpa membingungkan orang. Para ilmuwan menyelesaikan masalah ini dengan menggunakan satu "nama ilmiah" untuk setiap kategori organisme yang mematuhi aturan <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenklatur biologi</a>, 
+          tetapi nama-nama ini biasanya berasal dari bahasa Latin, bahasa yang jarang dipakai untuk percakapan sehari-hari, jadi mereka tidak semudah nama umum untuk diingat oleh kebanyakan orang. Nama ilmiah juga bisa mencerminkan penempatan taksonomi suatu organisme, sehingga mereka bisa berubah ketika para ilmuwan mengembangkan lebih banyak teori yang lebih akurat tentang hubungan evolusi antara organisme yang berbeda, yang lagi-lagi mengurangi kegunaan mereka dalam hal komunikasi, bahkan di antara orang-orang yang mengetahui nama ilmiah.
+          </p>
+          <p>
+          Pepatah zaman dulu pernah berkata: "Nama umum berubah dari tempat ke tempat, sedangkan nama ilmiah berubah dari waktu ke waktu."
+          </p>
+          <p>
+          Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna. Namanya diurutkan berdasarkan prioritas global di dalam masing-masing bahasa / jenis.
+          </p>
         about_conservation_status_desc: |
           Status konservasi merangkum risiko kepunahan untuk sekelompok organisme.
         about_establishment_desc: |
@@ -7516,6 +7529,7 @@ id:
         position: Posisi
         source_url: URL Sumber
         source_identifier: Pengidentifikasi sumber
+        audit_comment: Catatan
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -7734,6 +7748,8 @@ id:
                 harus sama dengan nama takson jika ini adalah nama ilmiah yang valid
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+            audit_comment:
+              needs_to_be_at_least_10_characters: minimal 10 karakter
         taxon_photo:
           attributes:
             taxon:
