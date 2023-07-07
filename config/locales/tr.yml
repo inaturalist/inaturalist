@@ -4157,6 +4157,7 @@ tr:
   refresh: Yenile
   refreshing: yenileme
   regenerate_stats: İstatistikleri Yeniden Oluştur
+  regional_names: Bölgesel Adlar
   register_for_this_event_at_x_html: "Bu etkinlik için %{x} adresinden kaydolun"
   reject?: Reddet?
   relative_observations: İlgili Gözlemler
@@ -5475,6 +5476,7 @@ tr:
   white: beyaz
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Bu değişikliği neden yapıyorsunuz? (isteğe bağlı)
+  why_are_you_making_this_change_cite_source_required: Neden bu değişikliği yapıyorsun? Lütfen açıkla ve mümkün ise bir kaynağa atıf yap. (Gerekli)
   why_you_can_see_the_coordinates: Koordinatları Neden Görebiliyorsun
   who_can_add_observation_fields_to_my_obs: Gözlemlerime kimler gözlem alanı ekleyebilir?
   who_can_add_observations_to_this_project?: Bu projeye kim gözlem ekleyebilir?
@@ -6441,6 +6443,8 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
+      kml_field_desc3: |
+        Yer sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsin. En az bir poligona sahip olmalı, 1 MB'ın altında olmalı (site küratörleri için 5 MB) ve ~700.000 kilometrekareden (kabaca Somali ya da ABD'nin Teksas eyaleti büyüklüğünde) daha küçük bir alana sahip olmalıdır.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
@@ -6890,6 +6894,23 @@ tr:
           Bu, sınıfın <a target="_blank"
           href="%{url}">Wikipedia sayfasına</a> dayanan ve manuel olarak yenilenene kadar süresiz olarak önbelleğe aldığımız kısa özetidir. Bu özetin yenilenmesi, web sitesinde gösterdiğimiz ve bir hafta sonra otomatik olarak yenilenen temel Wikipedia içeriğinin önbelleğini de hemen günceller.
       show:
+        about_names_desc: |
+          <p>
+          Çoğu organizma kategorisinin konuşulan dillerde "yaygın adları" vardır. Bu adlar genellikle tanınabilir, telaffuzu kolay ve zaman içinde değişmezdir ancak birçok organizmanın farklı yerlerde, hatta aynı dilde bile birkaç farklı adı vardır, bu da bu organizmalar hakkında kafa karışıklığı olmadan iletişim kurmayı zorlaştırabilir. Bilim insanları bu sorunu, her bir organizma kategorisi için <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik adlandırma</a> kurallarına uygun tek bir "bilimsel ad" kullanarak ele almaktadır ancak bu isimler genellikle kimsenin konuşmadığı bir dil olan Latinceye dayanmaktadır, bu nedenle birçok insan için yaygın adlar kadar akılda kalıcı değildir. Bilimsel adlar aynı zamanda bir organizmanın taksonomik yerleşimini de yansıtabilir, bu nedenle bilim insanları farklı organizmalar arasındaki evrimsel ilişkiler hakkında daha doğru kuramlar geliştirdiklerinde değişebilirler, bu da bilimsel adları bilen insanlar arasında bile iletişimdeki yararlılıklarını azaltır.
+          </p>
+          <p>
+          Eski bir atasözü bunu özetler: "Yaygın adlar yerden yere, bilimsel adlar ise zamandan zamana değişir."
+          </p>
+          <p>
+          Bu eksiklikleri, mümkün olan her yerde hem yaygın hem de bilimsel adları göstererek ve yaygın adları kullanıcının dil ve coğrafi tercihlerine göre seçerek gidermeye çalışıyoruz. Adlar, her bir Dil / Tür içindeki küresel önceliklerine göre listelenmiştir.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Farklı ülkelerin ya da bölgelerin aynı dilde farklı yaygın adlar kullandığı durumlarda, konumlara (genellikle ülkelere) adlar eklenebilir. Örneğin, Meksika ve Kosta Rika aynı tür için farklı İspanyolca adlara sahip olabilir.
+          </p>
+          <p>
+          Bu tablo hangi adların hangi konumlara eklendiğini gösterir ve her konum için öncelik sırasına göre listelenir. Meksika'ya iki İspanyolca ad eklenmiş ise Meksika'ya eklenen İspanyolca adları görmeyi tercih ediyorsan, önce listelenen ad görünecektir. 
+          </p>
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
         about_establishment_desc: |
@@ -7654,6 +7675,7 @@ tr:
         position: Konum
         source_url: Kaynak URL
         source_identifier: Kaynak tanımlayıcısı
+        audit_comment: Not
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -7883,6 +7905,8 @@ tr:
                 geçerli bir bilimsel ad ise sınıf adıyla eşleşmelidir
               bad_format: |
                 yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+            audit_comment:
+              needs_to_be_at_least_10_characters: en az 10 karakter olmalı
         taxon_photo:
           attributes:
             taxon:
