@@ -3435,6 +3435,7 @@ hu:
   refresh: Frissít
   refreshing: frissül
   regenerate_stats: Statisztikák újragenerálása
+  regional_names: Regionális nevek
   reject?: Elutasítod?
   relative_observations: Relatív megfigyelésszám
   relationship: "Viszony"
@@ -4355,6 +4356,7 @@ hu:
   white: fehér
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Miért módosítasz? (opcionális)
+  why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
   who_can_see_the_coordinates: Ki láthatja a koordinátákat
@@ -5087,6 +5089,23 @@ hu:
           %{view_all_mobile_link_tag}mobil%{link_tag_end} forráskód tárunkban.
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          Az élőlények nagy része rendelkezik köznyelvi névvel a beszélt nyelvek valamelyikén. Ezek a nevek általában könnyen felismerhetők, könnyen kiejthetők, és jellemzően nem módosulnak az idő folyamán. Viszont sok élőlényt számos különböző néven illetnek különféle helyeken, még ugyanazon a nyelven belül is, ami félreértésekhez vezethet. Ezt a problémát a tudósok azzal kerülik el, hogy minden egyes élőlény-kategóriát egy tudományos névvel illetnek, amely név megfelel a <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">Binomenális nómenklatúra</a> szabályainak. A tudományos név legtöbbször a latin nyelven alapszik, amelyet senki nem beszél, ezért azokat a legtöbb embernek nehezebb észben tartani. A tudományos nevek az élőlény rendszertani besorolására is utalhatnak, így azok módosításra szorulnak, amikor a tudósok rendszertanilag pontosabban be tudják kategorizálni az élőlényt. Ez szintén kommunikációs problémákhoz vezethet, még a tudományos neveket ismerők körében is.
+          </p>
+          <p>
+          Ami jól kifejezi a problémát: "A köznyelvi nevek helyről helyre, a tudományos nevek időről időre változnak."
+          </p>
+          <p>
+          Ezeket a problémákat mi azzal próbáljuk kiküszöbölni, hogy lehetőség szerint mind a köznyelvi, mind pedig a tudományos nevet megjelenítjük, a köznyelvi nevet a felhasználó nyelvi és földrajzi beállításai alapján. Az egyes nyelveken és típusokon belül a nevek sorrendje a globális prioritásukat tükrözi.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          A nevek különféle földrajzi helyekhez (legtöbbször országhoz) rendelhetők. Erre azért lehet szükség, mert ugyanazon nyelven belül is az egyes országokban elfogadott köznyelvi név eltérhet, például a spanyolon belül Costa Rica és Mexikó más neveket használhat.
+          </p>
+          <p>
+          Ez a táblázat az egyes földrajzi helyekhez hozzárendelt köznyelvi neveket mutatja, az adott helyen belüli prioritás szerint rendezve. Ha például két spanyol név van hozzáadva Mexikóhoz, az elsőként megjelenített fog neked megjelenni, feltéve ha spanyol nyelvet állítottál be Mexikóhoz.
+          </p>
         about_conservation_status_desc: |
           A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
         about_establishment_desc: |
@@ -5574,6 +5593,7 @@ hu:
         name_provider: Névszolgáltató
         source_url: Forrás URL
         source_identifier: Forrás azonosító
+        audit_comment: Megjegyzés
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -5733,6 +5753,8 @@ hu:
               already_exists: már létezik ehhez a taxonhoz ebben a szókészletben
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nem lehet azonos a tudományos fajnévvel e lexikonban
+            audit_comment:
+              needs_to_be_at_least_10_characters: legalább 10 karakter hosszú kell legyen
         taxon_photo:
           attributes:
             taxon:
