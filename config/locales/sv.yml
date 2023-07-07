@@ -4334,6 +4334,7 @@ sv:
   refresh: Ladda om
   refreshing: laddar om
   regenerate_stats: Generera statistik igen
+  regional_names: Regionala namn
   register_for_this_event_at_x_html: "Registrera dig för denna händelse på %{x}"
   reject?: Förkasta?
   relative_observations: Fynd av närbesläktade
@@ -5708,6 +5709,7 @@ sv:
   white: vit
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Varför gör du denna förändring? (valfritt)
+  why_are_you_making_this_change_cite_source_required: Varför gör du denna förändring? Förklara och citera en källa om möjligt. (Obligatoriskt)
   why_you_can_see_the_coordinates: Därför kan du se koordinaterna
   who_can_add_observation_fields_to_my_obs: Vem kan lägga till fyndfält till mina fynd?
   who_can_add_observations_to_this_project?: Vem kan lägga till fynd i detta projekt?
@@ -6726,6 +6728,12 @@ sv:
           Du kan se originalet på <a href="%{url}">%{url}</a>.
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
+      kml_field_desc3: |
+        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google
+        Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB
+        (5 MB för webbplatsens förvaltare) och till ytan vara mindre än ~700 000
+        kvadratkilometer (ungefär storleken på Somalia eller amerikanska delstaten
+        Texas).
       edit:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
@@ -7174,6 +7182,47 @@ sv:
           Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
       show:
+        about_names_desc: |
+          <p>
+          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn
+          är vanligtvis förståeliga, lätta att uttala och stabila över tid, men många
+          organismer har flera olika namn på olika platser, även på samma språk,
+          vilket om kan göra det svårt att kommunicera om dessa organismer utan
+          förvirring.
+          Forskare försöker råda bot på detta genom att använda ett enda "vetenskapligt
+          namn" för varje organismgrupp som omfattas av reglerna för
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>,
+          men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de
+          är inte lika lätta att komma ihåg som vardagliga namn för de flesta.
+          Vetenskapliga namn kan också återspegla en organisms taxonomiska
+          placering, så de kan förändras när forskare tar fram nya hypoteser om
+          evolutionärt släktskap mellan olika organismer, vilket återigen minskar
+          deras användbarhet för kommunikation, även bland människor som kan
+          vetenskapliga namn.
+          </p>
+          <p>
+          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats
+          till plats, medan vetenskapliga namn ändras då och då.
+          </p>
+          <p>
+          Vi försöker åtgärda dessa brister genom att visa både vardagliga och
+          vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat
+          på läsarens språkliga och geografiska preferenser. Namn listas efter deras
+          globala prioritet inom varje Språk / Typ.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Namn kan läggas till platser (vanligtvis länder) i fall där
+          olika länder eller regioner använder olika vardagliga namn på
+          samma språk. Till exempel kan Mexiko och Costa Rica ha olika
+          spanska namn för samma art.
+          </p>
+          <p>
+          Denna tabell visar vilka namn som lagts till på vilka platser, och
+          listas i prioritetsordning för varje plats. Om två spanska namn
+          läggs till Mexiko, kommer det som listas först att visas om du föredrar
+          att se spanska namn som lagts till Mexiko.
+          </p>
         about_conservation_status_desc: |
           Bevarandestatus sammanfattar risken för utrotning för en grupp organismer.
         about_establishment_desc: |
@@ -7918,6 +7967,7 @@ sv:
         position: Position
         source_url: Källans URL
         source_identifier: Källans identifierare
+        audit_comment: Anteckning
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8148,6 +8198,8 @@ sv:
                 måste matcha detta taxons namn om det är ett giltigt vetenskapligt namn
               bad_format: |
                 kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och ×; observera att preliminära taxa och sortnamn inte är tillåtna
+            audit_comment:
+              needs_to_be_at_least_10_characters: måste vara minst 10 tecken
         taxon_photo:
           attributes:
             taxon:
