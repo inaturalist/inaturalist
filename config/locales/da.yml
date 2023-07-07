@@ -4294,6 +4294,7 @@ da:
   refresh: Opdatér
   refreshing: opdaterer
   regenerate_stats: Regenerer statistikker
+  regional_names: Områdenavne
   register_for_this_event_at_x_html: "Tilmeld dig denne begivenhed på %{x}"
   reject?: Afvis?
   relative_observations: Relative observationer
@@ -5714,6 +5715,7 @@ da:
   white: hvid
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Hvorfor foretages denne ændring? (valgfrit)
+  why_are_you_making_this_change_cite_source_required: Hvorfor foretages denne ændring? Forklar venligst og angiv om muligt en kilde. (Obligatorisk)
   why_you_can_see_the_coordinates: Hvorfor du kan se koordinaterne
   who_can_add_observation_fields_to_my_obs: Hvem kan tilføje observationsfelter til mine observationer?
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette projekt?
@@ -6838,6 +6840,10 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
+      kml_field_desc3: |
+        KML af stedets afgrænsning. Man kan lave én vha. Google Maps, Google
+        Earth eller de fleste GIS-applikationer. Skal have mindst én polygon, være
+        mindre end 1 MB (5 MB til sidekuratorer) samt med en udstrækning mindre end 700.000 kvadratkilometer (rundt regnet som Texas eller Somalia).
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
@@ -7407,6 +7413,31 @@ da:
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
       show:
+        about_names_desc: |
+          <p>
+          De fleste kategorier af organismer har "almindelige navne" i de talte sprog. Disse navne er normalt genkendelige, lette at udtale, og statiske over tid, men mange organismer har flere forskellige navne i forskellige lande, selv på samme sprog, hvilket kan gøre det svært at kommunikere om disse organismer uden at skabe forvirring.
+          Forskerne har løst dette problem ved at bruge ét enkelt "videnskabeligt navn" for hver kategori af organismer, som opfylder reglerne i <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature"> biologisk nomenklatur </a>, men disse navne er typisk baseret på Latin, et sprog ingen længere taler, hvilket for mange folk gør dem sværere at huske, end de almindelige navne. Videnskabelige navne kan også afspejle en organismes taksonomiske placering, hvorfor de også kan ændre sig, når forskere udvikler mere præcise teorier om de evolutionære forhold de forskellige organismer imellem, hvilket igen reducerer deres anvendelighed i kommunikationen, selv blandt folk, som kender de videnskabelige navne.
+          </p>
+          <p>
+          Den gamle talemåde opsummere det: "Almindelige navne skifter fra sted til sted, og de videnskabelige navne fra tid til anden. "
+          </p>
+          <p>
+          Vi forsøger at løse disse udfordringer ved at vise både de almindelige og videnskabelige navne, hvor det er muligt, samt vælge almindelige navne baseret på læserens sprog og geografiske præferencer.
+          Navne oplistes efter deres globale prioritet inden for hvert sprog/Type.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Navne kan føjes til steder (normalt lande) i tilfælde, hvor
+          forskellige lande eller områder bruger forskellige almindelige navne på det
+          samme sprog. F.eks. kan Mexico og Costa Rica have forskellige
+          spanske navne for de samme arter.
+          </p>
+          <p>
+          Denne tabel viser hvilke navne, som er føjet til hvilke steder, og
+          er opført i prioriteret rækkefølge for hvert sted. Føjes to spanske navne
+          til Mexico, vil den første på listen vises, hvis man foretrækker
+          at se spanske navne føjet til Mexico.
+          </p>
         about_conservation_status_desc: |
           Bevaringsstatus opsummerer risikoen for udryddelse for en gruppe af organismer.
         about_establishment_desc: |
@@ -8234,6 +8265,7 @@ da:
         position: Position
         source_url: Kilde URL
         source_identifier: Kilde identifikator
+        audit_comment: Bemærk
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8470,6 +8502,8 @@ da:
               bad_format: |
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt
+            audit_comment:
+              needs_to_be_at_least_10_characters: skal udgøre minimum 10 tegn
         taxon_photo:
           attributes:
             taxon:
