@@ -22,6 +22,13 @@ describe Observation do
       expect( observation.taxon_id ).to eq taxon.id
     end
 
+    it "should not choose an inactive taxon" do
+      taxon = create :taxon, :as_species, is_active: false
+      observation.species_guess = taxon.name
+      observation.set_taxon_from_species_guess
+      expect( observation.taxon_id ).to be_blank
+    end
+
     it "should choose a taxon from species_guess if exact matches form a subtree" do
       taxon = create :taxon, :as_species, name: "Spirolobicus bananaensis"
       child = create :taxon, :as_subspecies, parent: taxon, name: "#{taxon.name} foo"

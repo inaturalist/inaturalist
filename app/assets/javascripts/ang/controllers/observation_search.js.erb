@@ -1103,6 +1103,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.drawing.dragIcon.setVisible(false);
     }
   };
+  $scope.searchForNearbyPlaces = function( ) {
+    $rootScope.$emit( "searchForNearbyPlaces" );
+  }
   $scope.orderBy = function( order ) {
     if ($scope.params.order_by == order) {
       $scope.params.order = ($scope.params.order == 'asc' ? 'desc' : 'asc');
@@ -1665,7 +1668,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   });
   $scope.searchForNearbyPlaces = function( options, callback ) {
     if ( typeof ( google ) === "undefined" ) return;
-    $scope.$parent.searchingNearbyPlaces = true;
     var onMap = $scope.viewing("observations", "map");
     if( $scope.$parent.placeSearchBox && $scope.map && onMap ) {
       $scope.$parent.placeSearchBox.setBounds( $scope.map.getBounds( ) );
@@ -1677,7 +1679,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     } else if( $scope.mapBounds ) {
       options.bounds = options.bounds || $scope.mapBounds;
     }
-    if( options.bounds && $scope.drawing.currentShape !== "circle" ) {
+    if( options.bounds ) {
       options.params.swlat = options.bounds.getSouthWest( ).lat( );
       options.params.swlng = options.bounds.getSouthWest( ).lng( );
       options.params.nelat = options.bounds.getNorthEast( ).lat( );
@@ -1712,7 +1714,13 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $scope.nearbyPlaceSearch = function ( options, callback ) {
     callback = callback || $scope.nearbyPlaceCallback;
-    PlacesFactory.nearby( options.params ).then( callback );
+    $scope.$parent.nearbyPlaces = null;
+    $scope.$parent.searchingNearbyPlaces = true;
+    PlacesFactory.nearby( options.params )
+      .then( function( response ) {
+        $scope.$parent.searchingNearbyPlaces = false;
+        callback( response );
+      } );
   };
   $scope.nearbyPlaceCallback = function( response ) {
     if( !( response && response.data && response.data.results ) ) { return { }; }
@@ -1728,7 +1736,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       };
     }
     $scope.$parent.nearbyPlaces = nearbyPlaces;
-    $scope.$parent.searchingNearbyPlaces = false;
     $scope.lastMoveTime = null;
   };
   $rootScope.$on( "showNearbyPlace", function( event, place ) {
@@ -1772,20 +1779,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $scope.delayedOnMove = function( ) {
     // show the `Redo Search` button when the map moves
     if( !$scope.$parent.searchingNearbyPlaces ) {
-      $scope.$parent.searchingNearbyPlaces = true;
       if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
     }
     $scope.enableRedoSearchInMapButton( );
     var time = new Date( ).getTime( );
     $scope.lastMoveTime = time;
     $scope.mapBounds = $scope.map.getBounds( );
-    setTimeout( function( ) {
-      // only perform one nearby place search, once
-      // the map has stopped moving for a half second
-      if( $scope.lastMoveTime === time ) {
-        $rootScope.$emit( "searchForNearbyPlaces" );
-      }
-    }, 500 );
   };
   $scope.enableRedoSearchInMapButton = function( ) {
     var time = new Date( ).getTime( );
@@ -1839,7 +1838,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if ($scope.map) {
       $scope.$parent.disableRedoSearch = $scope.map.getZoom() <= 2;
     }
-    $rootScope.$emit( "searchForNearbyPlaces" );
   };
   $rootScope.$on( "showInfowindow", function( event, o ) {
     if ( typeof ( google ) === "undefined" ) return;
@@ -1905,7 +1903,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       var sw = $scope.selectedPlaceLayer.getBounds().getSouthWest();
       $scope.setRectBounds(ne, sw);
     }
-    $rootScope.$emit( "searchForNearbyPlaces" );
   };
 
   $scope.initDragIcon = function ( shape ) {

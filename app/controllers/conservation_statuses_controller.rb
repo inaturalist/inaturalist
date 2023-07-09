@@ -63,6 +63,9 @@ class ConservationStatusesController < ApplicationController
   end
 
   def destroy
+    if params[:conservation_status] && params[:conservation_status][:audit_comment]
+      @conservation_status.audit_comment = params[:conservation_status][:audit_comment]
+    end
     @conservation_status.destroy
     flash[:notice] = t( :conservation_status_deleted )
     redirect_to @conservation_status.taxon
