@@ -51,7 +51,7 @@
           = fields_for @taxon_name do |tn|
             = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-sm"
       .stacked
-        = n.text_area :audit_comment, placeholder: t(:why_are_you_making_this_change_optional), label: t(:note)
+        = n.text_area :audit_comment, placeholder: t(:why_are_you_making_this_change_cite_source_required), label: t(:note)
       .clear.buttonrow.upstacked
         = n.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)
         = link_to t(:cancel), @taxon || @taxon_name.taxon, :class => 'button'

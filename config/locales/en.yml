@@ -4602,6 +4602,7 @@ en:
   refresh: Refresh
   refreshing: refreshing
   regenerate_stats: Regenerate Stats
+  regional_names: Regional Names
   register_for_this_event_at_x_html: "Register for this event at %{x}"
   reject?: Reject?
   relative_observations: Relative Observations
@@ -6086,6 +6087,7 @@ en:
   white: white
   # Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Why are you making this change? (optional)
+  why_are_you_making_this_change_cite_source_required: Why are you making this change? Please explain, and cite a source if possible. (Required)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
@@ -7415,11 +7417,12 @@ en:
           leave copyright infringement flags as unresolved if this photo does
           infringe copyright.
     places:
-      kml_field_desc2: |
+      kml_field_desc3: |
         KML of the place boundary. You can make one using Google Maps, Google
         Earth, or most GIS applications. Must have at least one polygon, be
-        under 1 MB (5 MB for site curators), and have an area smaller than the
-        US state of Texas.
+        under 1 MB (5 MB for site curators), and have an area smaller than
+        ~700,000 square kilometers (roughly the size of Somalia or the US state of
+        Texas).
       edit:
         complex_boundary_note_html: |
           This boundary is a bit too complex to edit on the web. However, you can
@@ -8100,6 +8103,21 @@ en:
             We try to address these shortcomings by showing both common
             and scientific names wherever possible, and choosing common names
             based on the language and geographic preferences of the viewer.
+            Names are listed by their global priority within each Language /
+            Type.
+          </p>
+        about_regional_names_desc: |
+          <p>
+            Names may be added to places (usually countries) in cases where
+            different countries or regions use different common names in the
+            same language. For example, Mexico and Costa Rica may have different
+            Spanish names for the same species.
+          </p>
+          <p>
+            This table shows which names have been added to which places, and
+            are listed in order of priority for each place. If two Spanish names
+            are added to Mexico, the one listed first will appear if you prefer
+            to see Spanish names added to Mexico.
           </p>
         about_conservation_status_desc: |
           The conservation status summarizes the risk of extinction for a group of organisms.
@@ -9108,6 +9126,7 @@ en:
         position: Position
         source_url: Source URL
         source_identifier: Source identifier
+        audit_comment: Note
       taxon_link:
         url: URL
         # Name of the web site being linked to bey a taxon link, e.g. Global
@@ -9347,6 +9366,8 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+            audit_comment:
+              needs_to_be_at_least_10_characters: needs to be at least 10 characters
         taxon_photo:
           attributes:
             taxon:
