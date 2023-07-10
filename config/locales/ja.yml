@@ -51,7 +51,7 @@ ja:
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
   x_observers_html:
-    other: '<span class="count">%{count}</span> 観察者'
+    other: '<span class="count">%{count}</span> 投稿者'
   x_others:
     other: "その他%{count}人"
   x_people:
@@ -1628,7 +1628,7 @@ ja:
   filter: 絞り込む
   filter_by_curator_identification: キュレーターの同定で絞り込む
   filter_by_place: 場所でフィルター
-  filter_by_taxon: 分類群でフィルタ
+  filter_by_taxon: 分類群で検索
   filter_by_place_taxon_and_color: 場所、分類群、そして色でフィルター
   filter_list_by_this_taxon: この分類群でリストをフィルター
   filtering: フィルター中
@@ -1764,9 +1764,8 @@ ja:
   Genus: 属
   geoprivacy: 位置情報公開状況
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
-  geoprivacy_is_obscured_desc: 観察者は、座標を曖昧にすることを選択しました。
+  geoprivacy_is_obscured_desc: 投稿者は、座標を曖昧にすることを選択しました。
   geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
-  geoprivacy_is_private_desc: 観察者は座標を隠すことを選択しました。
   georeferenced: 位置データありますか？
   get_started: 始めよう
   getting_started_guide: 初めてのユーザーガイド
@@ -2677,8 +2676,8 @@ ja:
   notify_me_of_mentions: 私についての投稿（例@username)の通知を受け取る
   notify_me_of_mentions_description: "これをオフにすると、%{site_name}で誰かが自分宛てに@コメントしても通知が届かなくなります。"
   number_of_observations: 観測記録数
-  number_of_observers_value: "観察者数：%{number}"
-  number_of_observers: "観察者数"
+  number_of_observers_value: "投稿者数：%{number}"
+  number_of_observers: "投稿者数"
   number_selected: "# 選択済み"
   obs: 観察記録
   obscured: 不明瞭
@@ -3733,7 +3732,7 @@ ja:
     must_be_on_list: リストに入っていなければなりません
     must_be_observed_in_place: 次の場所で観察されなければなりません
     must_be_in: 分類群に含まれなければなりません
-    must_be_coordinates_shareable_by_project_curators: 観察者は、プロジェクトのキュレーターが座標を表示できるようにしなければなりません。
+    must_be_coordinates_shareable_by_project_curators: プロジェクトメンバーに対して、プロジェクト管理者に正確な位置情報を開示することを強制する
     must_be_verifiable: 研究用グレードか要同定グレードでなければなりません
     must_be_wild: 野生である必要があります
   running_total: 現在の総計
@@ -3900,7 +3899,7 @@ ja:
   some_of_those_photos_couldnt_be_saved: "いくつかの写真は保存できませんでした：%{error}"
   some_other_reason: 他にもいくつか理由がありますが、以下に説明します。
   duplicate_observation_flag_warning: |
-    サイト管理者は観察記録を削除できないため、重複した観察記録についてはフラグを追加するのではなく、観察者に問題への対処を依頼してください。
+    サイト管理者は観察記録を削除できないため、重複した観察記録についてはフラグを追加するのではなく、投稿者に問題への対処を依頼してください。
   some_rights_reserved: いくつかの権利を保有
   something: 何か
   something_: 何か
@@ -4410,7 +4409,7 @@ ja:
   top_identifiers: 同定の達人
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
   top_observer_caps: トップ観察者
-  top_observers: トップ観察者
+  top_observers: トップ投稿者
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">利用規約</a>、<a href="/privacy" target="_blank">プライバシーポリシー</a>、と<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>に同意します。
   total: 合計
