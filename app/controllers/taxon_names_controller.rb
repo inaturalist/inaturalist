@@ -16,7 +16,7 @@ class TaxonNamesController < ApplicationController
   def index
     per_page = params[:per_page].to_i
     per_page = 30 if per_page <= 0
-    per_page = 200 if per_page > 200
+    per_page = 400 if per_page > 400
     @taxon_names = TaxonName.page( params[:page] ).per_page( per_page ).
       includes( { place_taxon_names: :place } )
 

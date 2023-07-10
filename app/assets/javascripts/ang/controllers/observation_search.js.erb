@@ -1903,6 +1903,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       var sw = $scope.selectedPlaceLayer.getBounds().getSouthWest();
       $scope.setRectBounds(ne, sw);
     }
+    $scope.$apply( );
   };
 
   $scope.initDragIcon = function ( shape ) {

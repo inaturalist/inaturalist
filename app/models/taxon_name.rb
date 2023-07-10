@@ -535,8 +535,10 @@ class TaxonName < ApplicationRecord
     errors.add( :lexicon, :should_be_in_english ) if lexicon.parameterize.empty?
   end
 
-  def user_submitted_names_need_notes
+  def user_submitted_names_need_notes( options = { } )
     return unless user_submission
+    return unless options[:ignore_field_checks] || name_changed? ||
+      is_valid_changed? || lexicon_changed? || place_taxon_names.any?{ |ptn| ptn.changed? }
     if audit_comment.blank? || audit_comment.length < 10
       errors.add( :audit_comment, :needs_to_be_at_least_10_characters )
     end
@@ -548,7 +550,7 @@ class TaxonName < ApplicationRecord
   # displayed in the redisplayed taxon name edit form. This ensures the destroy validations
   # happen before audited has a change to delete the audit_comment
   def audit_destroy
-    user_submitted_names_need_notes
+    user_submitted_names_need_notes( ignore_field_checks: true )
     throw( :abort ) unless errors.details[:audit_comment].blank?
     super
   end
