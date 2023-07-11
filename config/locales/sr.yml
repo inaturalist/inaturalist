@@ -1083,7 +1083,6 @@ sr:
   eligible_for_research_grade: Prihvatljivo za istraživački nivo
   email: Imejl
   email_description: Vaš imejl neće biti podeljen sa drugim iNaturalist korisnicima
-  email_copyright: "Copyright &copy; %{x}, sva prava zadržana"
   email_notifications: Imejl obaveštenja
   embed: 'Ugradi'
   enable_offline_access: Omogući offline pristup
@@ -1239,7 +1238,6 @@ sr:
   heads_up_this_photo_is_already_associated_with: "Napomena: ova fotografija je već deo <a target='_blank' href='%{url}'>druge opservacije</a>"
   help: Pomoć
   help_confirm_observations!: Pomozi u potvrđivanju opservacija!
-  help_support_inaturalist: "Podrži iNaturalist"
   help_translate!: Pomozi u prevođenju!
   here_are_our_top_suggestions: Ovo su naši najbolji predlozi
   hex_color_eg: Hex kod boje, npr. 65644F
@@ -1331,7 +1329,6 @@ sr:
   inat_user_profile: "%{site_name}: %{user} profil"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist aplikacije"
-  inaturalist_is_a_joint_initiative: "%{site_name} je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva."
   inaturalist_places: "%{site_name} mesta"
   info: Informacije
   insects: insekti
@@ -1651,8 +1648,6 @@ sr:
   meet: Upoznaj
   member_of_the_inaturalist_network_html: |
     Deo <a href="%{url}">iNaturalist mreže</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Član %{partial_inat_network_tag_html}iNaturalist mreže</a>, združena inicijativa %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Članovi
   membership_model: Tip članstva
@@ -3839,35 +3834,7 @@ sr:
             Ako je tako, pročitaj naš<a href="%{url}">Vodič za nastavnike</a> za savete o upotrebi %{site_name} u nastavne svrhe.
     donate:
       donate_short_desc: "Doniraj sada da bi podržao!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist je jedna od najvećih svetskih zajednica posvećena istraživanju biodiverziteta. Hvala ti što si deo nje!</strong>
-        </p>
-        <p class="lead">
-        Ako veruješ u snagu razmene znanja i stvaranja neprocenjivih podataka o biodiverzitetu ove globalne zajednice ljubitelja prirode, razmotri kupovinu jednog ili više poklona online, ili pogledaj <a
-        href="https://www.inaturalist.org/pages/giving">druge načine da pomogneš</a>.
-        </p>
-        <p class="lead">
-        Tvoja donacija pomaže iNaturalist kako se zajednica uvećava, od unapređenja kompjuterske vizije i uvođenja novih opcija do održavanja servera i plaćanja osoblja.
-        </p>
-        <p class="text-muted">
-        iNaturalist je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva. Sve donacije prima Akademija nauka u Kaliforniji, 501(c)(3) oslobađanje od poreza za neprofitne organizacije sa sedištem u Sjedinjenim Američkim Državama (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Podržavam iNaturalist zato što...
-      monthly_supporters:
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist je jedna od najvećih zajednica posvećenih istraživanju biodiverziteta. Hvala ti što si deo nje!</strong>
-          </p>
-          <p class="lead">
-          Iako mi želimo da iNaturalist ostane besplatan, svakako ga nije besplatno održavati. Ako voliš iNaturalist, razmisli o tome da postaneš mesečni donator. Takve donacije pomažu iNaturalist-u da uvećava svoju infrastrukturu i osoblje uz predvidivu dobit. Takođe možeš izabrati da tvoj status mesečnog donatora bude prikazan na tvom profilu.
-          </p>
-          <p class="lead">
-          Tvoja donacija pomaže iNaturalist kako se zajednica uvećava, od unapređenja kompjuterske vizije i uvođenja novih opcija do održavanja servera i plaćanja osoblja. Ako se pak odlučiš za jednokratnu donaciju <a href="%{donate_url}">klikni ovde</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva. Sve donacije prima Akademija nauka u Kaliforniji, 501(c)(3) oslobađanje od poreza za neprofitne organizacije sa sedištem u Sjedinjenim Američkim Državama.
-          </p>
     guides:
       edit:
         import_tags_from_csv_help_html: |
