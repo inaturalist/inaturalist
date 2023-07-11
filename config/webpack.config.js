@@ -4,7 +4,7 @@ const webpack = require( "webpack" );
 const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
-  mode: "none",
+  mode: process.env.RAILS_ENV === "production" ? "production" : "none",
   target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
@@ -23,7 +23,9 @@ const config = {
     "projects-form": "./projects/form/webpack-entry",
     "projects-show": "./projects/show/webpack-entry",
     "observations-compare": "./observations/compare/webpack-entry",
-    "users-edit": "./users/edit/webpack-entry"
+    "users-edit": "./users/edit/webpack-entry",
+    "geo-model-explain": "./geo_model/explain/webpack-entry",
+    "geo-model-index": "./geo_model/index/webpack-entry"
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
@@ -57,8 +59,12 @@ const config = {
     ]
   },
   plugins: [
+    // Some dependencies seem to expect process.env.NODE_ENV to be defined,
+    // particularly in development
     new webpack.DefinePlugin( {
-      "process.env.NODE_ENV": JSON.stringify( process.env.NODE_ENV )
+      "process.env.NODE_ENV": JSON.stringify(
+        process.env.RAILS_ENV || process.env.NODE_ENV
+      )
     } )
   ]
 };

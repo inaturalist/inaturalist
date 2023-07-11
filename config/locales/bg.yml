@@ -800,7 +800,6 @@ bg:
   connected_accounts_description: Свързаните акаунти са Ваши акаунти от други приложения или сайтове, на които сте разрешили достъп до iNaturalist от Ваше име за да могат да извършват функции като влизане, импортиране на снимки и др.
   connected_accounts_titlecase: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
-  connecting_to_facebook: "Свързване с Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Свързването на акаунта Ви на %{site_name} с акаунтите на други сайтове ще ви позволи да влизате в %{site_name} използвайки данните си за тези сайтове."
   conservation_status: Природозащитен статут
   conservation_status_descriptions:
@@ -871,21 +870,21 @@ bg:
     molt: Съблекло
   controlled_term_definitions:
     alive: Организмът е жив и не показва признаци за предстояща смърт
+    bone: |
+      Oстанки основно от вътрешен скелет; частично видими кости от иначе запазен организъм, трябва да бъдат обозначени като „организъм“
+    cannot_be_determined: Не може да се определи по наличните свидетелства
     dead: Организмът е мъртъв или по всичко личи, че скоро ще загине
+    feather: Едно или повече пера неприкрепени към организъм
     flower_budding: Виждат се цветни пъпки, но не са разтворени
     flowering: Цветовете са видими, напълно развити и все още прикачени към растението
     fruiting: Плодът се вижда и все още е прикрепен към растението
+    gall: Деформирано разрастване на растителна тъкан причинено от паразитен организъм
+    molt: Излиняла („съблечена“) кожа или телесна обвивка
     no_evidence_of_flowering: Медията не свидетелства за наличието на репродуктивни структури
-    teneral: Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид
-    cannot_be_determined: Не може да се определи по наличните свидетелства
-    feather: Едно или повече пера неприкрепени към организъм
     organism: Цял организъм или част от него
     scat: Фекалии (но не птичи погадки или друга повърната субстанция)
+    teneral: Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид
     track: Отпечатък в земята или снега оставен от организъм
-    bone: |
-      Oстанки основно от вътрешен скелет; частично видими кости от иначе запазен организъм, трябва да бъдат обозначени като „организъм“
-    molt: Излиняла („съблечена“) кожа или телесна обвивка
-    gall: Деформирано разрастване на растителна тъкан причинено от паразитен организъм
   coordinate_systems: Координатни системи
   coordinates: Координати
   #A filter option that only shows observations for which the viewer has
@@ -1187,9 +1186,13 @@ bg:
   download_csv: Изтегли CSV
   download_csv_template: Изтегли CSV шаблон
   download_kml: Изтегли KML
+  #Noun, as in a journal post that has not been published
   draft: чернова
+  #Noun, as in a journal post that has not been published
   draft_: Чернова
+  #Noun, as in a journal post that has not been published
   draft_saved: Черновата е запазена!
+  #Noun, as in journal posts that has not been published
   drafts: Чернови
   drag_and_drop_some_photos_or_sounds: Завлачи и пусни снимки или звуци
   drawings: Рисунки
@@ -1303,8 +1306,6 @@ bg:
   extra_properties: Допълнителни свойства
   evidence_of_organism: Наличност (или следи) на организъм
   facebook: Фейсбук
-  facebook_account_information: Информация за вашия акаунт на Facebook
-  facebook_account_not_linked: "%{user} вече не е със свързан Фейсбук акаунт, затова %{site_name} няма достъп до тази снимка."
   failed_to_repair_photo: "Неуспешно възстановяване на снимка: %{errors}"
   failed_to_unlink_your_account: Неуспешно разединяване на Вашия акаунт
   'false': 'Невярно'
@@ -1436,7 +1437,6 @@ bg:
     Форумът е място за обсъждане на самия iNat - за помощ, предложения за подобрения, докладване на бъгове и проблеми, известия и др.
   frequency: Честота
   from_a_place: от място
-  from_flickr_facebook_etc: От Flickr, Facebook и др.
   from_list: От списък
   from_photos: От снимки
   from_place: От място
@@ -1679,7 +1679,6 @@ bg:
   let_us_walk_you_through: Нека Ви запознаем с основните функции на сайта.
   lexicon: Лексика
   lexicons:
-    scientific_names: Научни имена
     afrikaans: африканс
     albanian: албански
     arabic: арабски
@@ -1740,6 +1739,7 @@ bg:
     romanian: румънски
     russian: руски
     santali: сантали
+    scientific_names: Научни имена
     slovak: словашки
     slovenian: словенски
     spanish: испански
@@ -1761,10 +1761,8 @@ bg:
   life: Живот
   life_list: "Житейски списък на %{user}"
   linear_scale_label: Линейна
-  link_your_facebook_account: Свържете Вашия акаунт на Фейсбук
   link_your_flickr_account: Свържете Вашия акаунт на Flickr
   link_your_google_account: Свържете Вашия акаунт на Гугъл
-  linked_facebook: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Фейсбук."
   linked_flickr: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Flickr."
   linked_flickr_description: "Когато акаунтите Ви на %{site_name} и Flickr са свързани, ще можете да добавяте множество снимки от Flickr към наблюденията си. Разбира се, ако решите да прекратите връзката между акаунтите, няма да Ви спираме, но тогава няма да можете да добавяте снимки от Flickr. Прекратяването на връзката може да е необходимо и ако искате да свържете друг (нов) Flickr акаунт към %{site_name}."
   #Text inserted into a textarea when the link button is clicked but no text was selected
@@ -2045,6 +2043,7 @@ bg:
   must_have_observation_field: "трябва да има попълнено поле за наблюдения '%{operand}'"
   must_have_photos: трябва да има снимки
   must_have_x: "трябва да има %{x}"
+  #Mute is a noun here
   mute_removed: Заглушаването е отменено
   muted_users: Заглушени потребители
   n_ago: "преди %{n}"
@@ -2185,7 +2184,6 @@ bg:
   not_finding_place_you_want?: Не намирате нужното място?
   #Filter for observations not in a particular place
   not_in_place: Не е в място
-  not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
   not_resolved: Няма решение
   not_seeing_what_looking_for: Не откривате това което търсите?
@@ -2398,7 +2396,7 @@ bg:
   options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "...или избери някои по-висши таксони"
   orange: оранжево
@@ -2937,7 +2935,6 @@ bg:
   post_from_your_journal_html: Публикация от <a href="%{url}">Вашия дневник</a>
   post_published: Публикувано!
   posted_by: Публикувано от
-  posted_on: Публикувано на
   posts: Публикации
   potential_disagreement: Потенциално несъгласие
   powered_by: Овъзможнено от
@@ -3912,8 +3909,6 @@ bg:
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
   user_faved_this_observation: "%{user} хареса това наблюдение"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
   user_helped_x_people_with_y_ids_html: "%{user} е помогнал на <strong>%{x} човека</strong> със <strong>%{y} разпознавания</strong>"
@@ -4051,8 +4046,6 @@ bg:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Издирвани
   was_it_captive_cultivated?: "Беше ли в плен/култивиран?"
-  we_also_support: |
-    Поддържаме също и <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Photos</a> и <a href="http://facebook.com">Facebook</a> като хранилища за снимки.
   we_can_only_understand_csv_in: Разбираме CSV само в следния формат
   we_couldnt_find_a_user: Не намерихме потребител с такъв имейл адрес.
   we_couldnt_find_a_user_with_that_activation_code: "Не намерихме потребител с такъв код за активиране. Може би вече сте активирали акаунта си, моля опитайте се да влезете."
@@ -4423,8 +4416,6 @@ bg:
           Брой разпознати таксони, които са сред надтаксоните на таксона, но не са съгласни с таксона (например „Мисля, че е от този род, но не и този вид“)
         curator_coordinate_access_disabled_desc_html: |
           Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
-        data_quality_assessment_desc_html: |
-          Оценката на качеството на данните представлява оценка на точността на данните. Наблюдения с Изследователско качество могат да се използват от учените за изследвания. Дайте своя вот по-долу:
         flagged_photos_desc_html: |
           Някои от тези снимки са маркирани за неуместно съдържание или нарушение на авторски права. За подробности вижте %{links}
         observer_only_allows_curators_to_add_fields: Наблюдателят позволява само на кураторите на сайта да добавят полета за наблюдения.
@@ -4831,6 +4822,10 @@ bg:
           </p>
         licensing_desc_html: |
           Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.
+        monthly_supporter_desc_html: |
+          Ежемесечните поддръжници на iNaturalist правят автоматични приноси, получавани от Калифорнийската академия на науките (САЩ, IRS EIN 94-1156258), в поддръжка на некомерсиалната дейност на iNaturalist и другите сайтове от Мрежата на iNaturalist.
+          <a href="%{url}">Щракнете тук, ако искате да станете Ежемесечен поддръжник</a>.
+          Когато потвърдим Вашата поддръжка, ще можете да добавите отметка в тази кутийка и статусът ще се изобразява на Вашия профил. Забележка: трябва да използвате същия имейл в Donorbox, какъвто използвате и в iNaturalist, за да можем да потвърдим поддръжката Ви.
         muting_desc_html: |
           <p> Ако заглушите някого, вече няма да получавате известия за нещата които прави, включително когато коментира Ваши наблюдения, изпраща Ви съобщения, споменава Ви и т.н. Заглушаването ще Ви помогне да игнорирате някого, без да му попречите да прави каквото и да било. </p>
           <p> Можете да заглушите колкото хора искате, но имайте предвид, че така може да пропуснете потенциално важни известия, например за разпознавания които променят консенсусното разпознаване от общността на наблюденията Ви. </p>
@@ -4902,9 +4897,6 @@ bg:
       index:
         connect_with_nature: Сближете се с Природата
         explore_and_share: Изследвай и споделяй своите наблюдения на природата.
-        observations_to_date: 'Наблюдения до момента'
-        species_observed: 'Наблюдавани видове'
-        people_signed_up: 'Регистрирани потребители'
         how_it_works: Как работи
         record_your_observations: Запиши своите наблюдения
         share_with_fellow_naturalists: Сподели с останалите
@@ -4972,20 +4964,12 @@ bg:
       6: Пт
       7: Сб
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%-d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%d %B %Y'
     month_names:
       - 
       - януари
@@ -5055,41 +5039,6 @@ bg:
       month: Месец
       second: Секунди
       year: Година
-  errors:
-    messages:
-      accepted: трябва да бъде прието
-      blank: не може да е празно
-      confirmation: не съвпада с потвърждението
-      empty: не може да е празно
-      equal_to: трябва да е равно на %{count}
-      even: трябва да е четно
-      exclusion: е заето
-      greater_than: трябва да е повече от %{count}
-      greater_than_or_equal_to: трябва да е повече или равно на %{count}
-      inclusion: не фигурира в списъка
-      invalid: е невалидно
-      less_than: трябва да е по-малко от %{count}
-      less_than_or_equal_to: трябва да е по-малко или равно на %{count}
-      new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
-      not_a_number: не е число
-      not_an_integer: трябва да е цяло число
-      odd: трябва да е нечетно
-      record_invalid: 'Неуспешна проверка: %{errors}'
-      taken: вече е заето
-      too_long:
-        one: е прекалено дълго (макс. 1 символ)
-        other: е прекалено дълго (макс. %{count} символа)
-      too_short:
-        one: е прекалено кратко (мин. 1 символ)
-        other: е прекалено кратко (мин. %{count} символа)
-      wrong_length:
-        one: е с грешна дължина (трябва да е 1 символ)
-        other: е с грешна дължина (трябва да е %{count} символа)
-    template:
-      body: 'Имаше проблеми със следните полета:'
-      header:
-        one: "1 грешка попречи на запазването на %{model}"
-        other: '%{count} грешки попречиха на запазването на %{model}'
   helpers:
     defaults:
       title: "ТОВА Е ЗАГЛАВИЕ"
@@ -5152,48 +5101,13 @@ bg:
   time:
     am: преди обед
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%-d %b %Y, %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%-d %B %Y, %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%-d %b, %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: следобед
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        blank: не може да е празно
-        confirmation: не съвпада с паролата
-        empty: не може да е празно
-        equal_to: трябва да е равно на %{count}
-        even: трябва да е четно
-        exclusion: е резервирано
-        greater_than: трябва да е повече от %{count}
-        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
-        inclusion: не фигурира в списъка
-        invalid: е невалидно
-        less_than: трябва да е по-малко от %{count}
-        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
-        new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
-        not_a_number: не е число
-        not_an_integer: трябва да е цяло число
-        odd: трябва да е нечетно
-        record_invalid: 'Неуспешна проверка: %{errors}'
-        taken: вече е заето
-      template:
-        body: 'Възникнаха проблеми със следните полета:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -5315,12 +5229,7 @@ bg:
       messages:
         blank: не може да е празно
         confirmation: несъответстваща парола
-        equal_to: трябва да е равно на %{count}
         even: трябва да е четно
-        greater_than: трябва да е по-голямо от %{count}
-        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
-        less_than: трябва да е по-малко от %{count}
-        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
         new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
         not_an_integer: трябва да е цяло число
         odd: трябва да е нечетно

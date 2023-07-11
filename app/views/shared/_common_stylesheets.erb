@@ -1,4 +1,8 @@
-<%= stylesheet_link_tag "font-awesome" %>
+<% if @rtl -%>
+ <%= stylesheet_link_tag "rtl-font-awesome" %>
+<% else -%>
+ <%= stylesheet_link_tag "font-awesome" %>
+<% end -%> 
 <%= stylesheet_link_tag 'application_bundle' %>
 <% if @site && @site.stylesheet.file? -%>
   <%= stylesheet_link_tag @site.stylesheet.url %>

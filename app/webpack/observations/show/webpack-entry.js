@@ -1,5 +1,6 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -117,12 +118,10 @@ if (
   }
 }
 
-const threshold = Number( urlParams.get( "vision_threshold" ) );
-if ( threshold ) {
+const testFeature = urlParams.get( "test_feature" );
+if ( testFeature ) {
   store.dispatch( setConfig( {
-    visionThreshold: threshold,
-    visionThresholdType: urlParams.get( "vision_threshold_type" ) === "percentage"
-      ? "percentage" : "absolute"
+    testFeature: testFeature
   } ) );
 }
 

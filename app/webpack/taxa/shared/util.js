@@ -15,7 +15,7 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
-const defaultObservationParams = state => {
+const defaultObservationParams = ( state, options = { } ) => {
   const { config } = state;
   const params = {
     verifiable: true,
@@ -25,7 +25,8 @@ const defaultObservationParams = state => {
     locale: I18n.locale
   };
   if ( state.config.chosenPlace ) {
-    params.place_id = config.testingApiV2
+    // TODO: explore should use integer IDs until the explore-apiv2 branch is merged
+    params.place_id = ( config.testingApiV2 && !options.forExplore )
       ? state.config.chosenPlace.uuid
       : state.config.chosenPlace.id;
   }

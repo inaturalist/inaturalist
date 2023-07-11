@@ -417,6 +417,8 @@ nl:
   #Noun, title of a popup alerting you to something
   alert: Opgelet
   all: Alle
+  #Title for a list of all 3rd party applications
+  all_applications: Alle toepassingen
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
   all_life: Alle leven
@@ -804,6 +806,8 @@ nl:
   birds: vogels
   birthday: Verjaardag
   black: zwart
+  block: Blokkeren
+  blocking_description: Blokkeren voorkomt elke communicatie tussen jou en een andere gebruiker. Het is voor situaties waarin een andere gebruiker jouw veiligheid in gevaar kan brengen, zoals stalking of ander misbruik.
   block_removed: Blokkering opgeheven
   blocked_users: Geblokkeerde gebruikers
   blog_widget: Blogwidget
@@ -1079,7 +1083,6 @@ nl:
   connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
-  connecting_to_facebook: "Verbinden met Facebook ..."
   connecting_your_inat_account_to_accounts_other_sites: "Door je %{site_name}-account aan te sluiten op accounts op andere sites, kunt je je aanmelden bij %{site_name} met je inloggegevens van die sites."
   cannot_be_changed_during_a_content_freeze: Kan niet worden gewijzigd tijdens een content freeze
   conservation_status: Natuurbeschermingstatus
@@ -1172,21 +1175,21 @@ nl:
     molt: Vervellingshuid
   controlled_term_definitions:
     alive: Organisme leeft en vertoont geen tekenen stervende te zijn
+    bone: |
+      Vooral endoskelet-resten; gedeeltelijke blootstelling van bot in een verder intact organisme moet worden gelabeld als "organisme"
+    cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
     dead: Organisme is dood of vertoont tekenen stervende te zijn
+    feather: Een of meer veren die niet zijn bevestigd aan een organisme
     flower_budding: Bloemknoppen zijn zichtbaar maar niet open
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
+    gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
+    molt: Afgeworpen huid of exoskelet
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
-    teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
-    cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
-    feather: Een of meer veren die niet zijn bevestigd aan een organisme
     organism: Heel of gedeeltelijk organisme
     scat: Feces (geen uileballen of andere uitgebraakte dingen)
+    teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
     track: Afdruk in grond of sneeuw gemaakt door organisme
-    bone: |
-      Vooral endoskelet-resten; gedeeltelijke blootstelling van bot in een verder intact organisme moet worden gelabeld als "organisme"
-    molt: Afgeworpen huid of exoskelet
-    gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
@@ -1303,10 +1306,10 @@ nl:
     Zelf niet het juiste gedrag vertoont.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen (je hebt %{num_idents}toegevoegd). Als jij aan beide eisen voldoet kun je een aanvraag indienen.
-  curator_application_inelligible_error: |
-    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
+  curator_application_inelligible2: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd inclusief je eigen (je hebt %{num_idents} toegevoegd). Als jij aan deze eisen voldoet kun je hier terugkomen en ben je in staat een aanvraag in te dienen.
+  curator_application_inelligible_error2: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Aanvraag voor curator ingediend
   #Header
@@ -1367,6 +1370,9 @@ nl:
     Je moet je alleen aanmelden om curator te worden als:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Jij hebt al determinaties en/of waarnemingen toegevoegd de afgelopen paar maanden en bent van plan om daar mee door te gaan.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Je hebt aangetoond dat je het curatieproces begrijpt door een
+    aantal vlaggen toe te voegen.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1544,6 +1550,7 @@ nl:
       signed_up_but_locked: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account is vergrendeld."
       signed_up_but_unconfirmed: "Een bericht met een bevestigingslink is verzonden naar jouw e-mailadres. Volg de link om je account te activeren."
       updated: 'Je hebt je account succesvol bijgewerkt.'
+      updated_but_not_signed_in: "Jouw account is met succes bijgewerkt maar omdat jouw wachtwoord is gewijzigd moet je opnieuw inloggen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1637,9 +1644,15 @@ nl:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Onderliggende gedekte taxa
+  #Noun, as in a journal post that has not been published
   draft: concept
+  #Noun, as in a journal post that has not been published
   draft_: Concept
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Concept door %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Kladversie bewaard!
+  #Noun, as in journal posts that has not been published
   drafts: Concepten
   drag_and_drop_some_photos_or_sounds: Sleep hier foto's of geluiden naartoe
   #Button label for drawing a circular boundary for an observation search
@@ -1733,12 +1746,38 @@ nl:
   email_conf_banner_we_delivered_todos: |
     We hebben je een bevestigingsmail gestuurd op %{date}. Als je deze niet
     hebt ontvangen dan zijn er enkele dingen die je kunt doen:
+  email_conf_required_after_grace_period: |
+    E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
+    je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
+    om toegang te behouden tot je account.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
     Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
     datum kan iedereen die zijn e-mailadres niet heeft bevestigd niet
     inloggen tenzij hij zijn wachtwoord opnieuw instelt. Ga om je e-mailadres te bevestigen
     naar je %{link_start_tag}account instellingen%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bevestig jouw %{site_name} e-mailadres voor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Bevestig vandaag je e-mailadres om ervoor te zorgen dat jij jouw toegang tot je account behoudt.
+     %{site_name} en de mobiele apps iNaturalist en Seek door iNaturalist verbinden mensen met de natuur en elkaar
+    door waarnemingen van biodiversiteit te delen. Bedankt voor je deelname aan de iNaturalist community!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    We hebben geverifieerde e-mailadressen nodig voor alle accounts vanaf
+    %{requirement_date}. Neem even de tijd om dit te bevestigen.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Als je vragen hebt raadpleeg dan de
+    <a href="%{faq_url}">FAQs</a>. Bedankt dat je de tijd hebt genomen om
+    verbinding te maken met de natuur en met %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Accountgegevens
   email_copyright: "Copyright &copy; %{x}, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
@@ -1812,13 +1851,6 @@ nl:
   extra_properties: Extra eigenschappen
   evidence_of_organism: Bewijs van organisme
   facebook: Facebook
-  facebook_account_information: Je Facebook-accountgegevens
-  facebook_account_not_linked: "%{user} heeft geen gekoppeld Facebook-account meer, waardoor %{site_name} geen toegang meer heeft tot deze foto."
-  facebook_access_token_expired: "Access token is verlopen. %{user} moet zijn of haar Facebook account opnieuw linken."
-  facebook_needs_the_owner_of_that_photo_to: Facebook vereist dat de eigenaar van die foto hun verbinding met %{site_name_short} opnieuw bevestigt.
-  facebook_options: Facebookopties
-  facebook_photo_import_disabled_notice: |
-    In november 2020 vroeg Facebook ons te verifiëren of we echt toegang tot foto's nodig hadden en we konden het proces niet voltooien vanwege problemen met Facebook's verificatiesysteem. Als gevolg daarvan kunnen we niet langer het importeren van foto's vanuit Facebook ondersteunen.
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
@@ -1983,7 +2015,7 @@ nl:
   frequency: Frequentie
   from_a_place: van een plaats
   from_eol_collection: Van EOL collectie
-  from_flickr_facebook_etc: Van Flickr, Facebook, etc.
+  from_flickr_etc: Van Flickr, etc.
   from_list: Van lijst
   from_photos: Van fotos
   from_place: van plaats
@@ -2369,11 +2401,14 @@ nl:
   lexicon: Lexicon
   lexicon_cannot_contain_words: "kan de volgende woorden niet bevatten: %{words}"
   lexicons:
-    scientific_names: Wetenschappelijke namen
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanees
+    aou_4_letter_codes: AOU 4-Letter Codes
+    aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabisch
     armenian: Armeens
+    basque: Baskisch
     belarusian: Wit-Russisch
     bengali: Bengaals
     bulgarian: Bulgaars
@@ -2395,22 +2430,30 @@ nl:
     french: Frans
     galician: Galicisch
     gela: Gela
+    georgian: Georgisch
     german: Duits
     greek: Grieks
+    gujarati: Gujarati
     hawaiian: Hawaïaans
     hebrew: Hebreeuws
+    herero: Herero
     hiligaynon: "\nHiligaynon"
+    hodges_number: Hodges nummer
+    hokkien: Hokkien
     hungarian: Hongaars
     icelandic: IJslands
     ilokano: Ilokano
     indonesian: Indonesisch
+    irish: Iers
     italian: Italiaans
     japanese: Japans
     kannada: Kannada
+    kazakh: Kazachs
     korean: Koreaans
     latvian: Lets
     lithuanian: Litouws
     luxembourgish: Luxemburgs
+    malagasy: Malagasi
     malay: Maleis
     malayalam: Malayalam
     maltese: Maltees
@@ -2420,6 +2463,7 @@ nl:
     misima_paneati: Misima-paneati
     mongolian: Mongools
     nahuatl: Nahuatl
+    navajo: Navajo
     norwegian: Noors
     occitan: Provençaals
     ojibwe: Ojibwe
@@ -2431,8 +2475,8 @@ nl:
     romanian: Roemeens
     russian: Russisch
     santali: Santali
+    scientific_names: Wetenschappelijke namen
     serbian: Servisch
-    setswana: Setswana
     sinhala: Singalees
     slovak: Slowaaks
     slovenian: Sloveens
@@ -2441,12 +2485,19 @@ nl:
     swedish: Zweeds
     tagalog: Tagalog
     tahitian: Tahitiaans
+    tamil: Tamil
     thai: Thai
     tokelauan: Tokelaus
     turkish: Turks
+    u_s_d_a_symbol: V.S.D.A. Symbool
     ukrainian: Oekraïens
-    waray_waray: Winaray
+    uyghur: Oeigoers
+    vermont_flora_codes: Vermont Flora Codes
+    vietnamese: Vietnamees
     visayan: Visayan
+    waray_waray: Winaray
+    xhosa: Xhosa
+    zulu: Zulu
   less: Minder
   #Button show less text
   less__context_text: Minder
@@ -2462,14 +2513,8 @@ nl:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link naar autorisatiecode
-  link_your_facebook_account: Verbind je Facebook-account
   link_your_flickr_account: Verbind je Flickr-account
   link_your_google_account: Verbind je Google-account
-  linked_facebook: "Je %{site_name}-account is momenteeel gekoppeld aan je Facebook-account."
-  linked_facebook_automaticaly: "Bedenk ook dat wanneer je op %{site_name} inlogt via Facebook, we je %{site_name}- en Facebookaccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Facebook gebruikt, je Facebookfoto's wilt kunnen importeren, toch?"
-  linked_facebook_description: "Door je account op %{site_name} aan je Facebook-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Facebook wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Facebook-account aanmaakt om aan %{site_name} te koppelen."
-  linked_facebook_howto: "Om Facebook te verbinden met %{site_name}, klik je op de link aan de rechterkant en log je in op Facebook.com."
-  linked_facebook_password: "We zullen je nooit om je Facebook-wachtwoord vragen (maar Facebook zou dat wel kunnen doen, controleer dat de URL die de knop je stuurt facebook.com is). We zullen ook je Facebook-gegevens niet wijzigen tenzij je dat wilt."
   linked_flickr: "Je account op %{site_name} is nu gekoppeld aan je Flickr-account."
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
@@ -2517,7 +2562,7 @@ nl:
     ar: Arabisch
     be: Wit-Russisch
     bg: Bulgaars
-    br: Bretoens
+    br: Bretons
     ca: Catalaans
     cs: Tsjechisch
     da: Deens
@@ -2542,6 +2587,8 @@ nl:
     id: Indonesisch
     it: Italiaans
     ja: Japans
+    ka: Georgisch
+    kk: Kazachs
     kn: Kannada
     ko: Koreaans
     lb: Luxemburgs
@@ -2835,8 +2882,12 @@ nl:
   must_have_quality_grades: "moet kwaliteitsbeoordelingen bevatten: %{grades}"
   must_have_sounds: moet geluiden hebben
   must_have_x: "%{x} vereist"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Dempen
+  #Mute is a noun here
   mute_removed: Dempen verwijderd
   muted_users: Gedempte gebruikers
+  muting_description: Het negeren van iemand voorkomt dat je meldingen krijgt over één van zijn activiteiten, inclusief "@"-vermeldingen, berichten of opmerkingen en determinaties van je waarnemingen.
   n_ago: "%{n} geleden"
   n_people_agrees: "%{amount} mensen gaan akkoord"
   n_people_disagrees: "%{amount} personen zijn het oneens"
@@ -2940,6 +2991,8 @@ nl:
   next_tab: Volgende tabblad
   next_taxon_short: Volgende
   'no': 'Nee'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Nog geen toepassingen
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_comments_yet: Nog geen reacties.
@@ -3039,7 +3092,6 @@ nl:
   not_found: Niet gevonden
   #Filter for observations not in a particular place
   not_in_place: Niet op deze plek
-  not_linked_facebook: "Uw %{site_name}-account is niet aan uw Facebookaccount gekoppeld"
   not_linked_flickr: "Uw %{site_name}-account is niet aan uw Flickr-account gekoppeld"
   not_on_this_list: Niet op deze lijst
   not_recorded: Niet opgenomen
@@ -3321,7 +3373,7 @@ nl:
   options: Opties
   or: of
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OF
   or_choose_high_level_taxa: "... of kies wat taxa van een hoger niveau"
   orange: oranje
@@ -3377,6 +3429,9 @@ nl:
     invalid_email: Ongeldige e-mailopmaak.
   password: Wachtwoord
   password_confirmation: 'Bevestiging wachtwoord'
+  password_change_description: Als jij jouw wachtwoord wijzigt log je uit uit alle actieve iNaturalist sessies op je toestellen
+  password_change_logout_warning: Nadat jij jouw wachtwoord hebt gewijzigd wordt je afgemeld en moet je opnieuw inloggen met je nieuwe wachtwoord.
+  password_change_observations_warning: Je wordt ook afgemeld bij de iNaturalist mobiele apps en andere apps of websites die in jouw naam naar iNaturalist posten, dus zorg ervoor dat je alle lopende waarnemingen hebt geüpload voordat je dit doet. Alle waarnemingen die niet worden geüpload zullen verloren gaan.
   paste: Plakken
   paste_in_a_bunch_of_names: Plak een aantal namen, 1 per regel en druk op de knop!
   people: Personen
@@ -3936,7 +3991,10 @@ nl:
   post_from_your_journal_html: Post vanuit <a href="%{url}">je dagboek</a>
   post_published: Bericht gepubliceerd!
   posted_by: Geplaatst door
-  posted_on: Geplaatst op
+  #Shows the date a journal post was published
+  posted_on_date_html: Geplaatst op %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Geplaatst op %{date} door %{user}
   posts: Berichten
   potential_disagreement: Potentiële meningsverschillen
   powered_by: Draait op
@@ -4692,6 +4750,10 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status toegepast van een hoger taxon:</strong> %{taxon}
   status_globally: 'Wereldwijd "%{status}"'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Blijf en probeer het opnieuw
@@ -4766,7 +4828,6 @@ nl:
   tagging: 'Tagging ...'
   tags: Labels
   tags_are_a_way: 'Labels zijn een manier om je waarnemingen te organiseren. Je kunt bijvoorbeeld al je waarnemingen bij een getijdepoel labelen met "getijdepoel" om ze later makkelijker terug te vinden.'
-  take_me_facebook: Ja, breng me naar Facebook!
   take_me_flickr!: Ja, breng me naar Flickr!
   target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die je gezocht hebt.
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
@@ -5384,9 +5445,7 @@ nl:
   user_commented: "%{user} reageerde"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} heeft %{noun} door %{owner} als favoriet opgeslagen"
-  user_faved_a_noun_by_you: "%{user} heeft %{noun} van jou als favoriet opgeslagen"
+  user_faved_an_observation_by_you: "%{user} heeft een waarneming van jou als favoriet opgeslagen"
   user_faved_this_observation: "%{user} heeft deze waarneming als favoriet opgeslagen"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
   user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
@@ -5565,10 +5624,9 @@ nl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
-  we_also_support: |
-    We ondersteunen ook <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> en
-    <a href="http://facebook.com">Facebook</a> voor het hosten van afbeeldingen.
+  we_also_support2: |
+    We ondersteunen ook het importeren van foto's van <a href="http://flickr.com">Flickr</a>
+    en <a href="http://photos.google.com">Google Foto's</a>.
   we_can_only_understand_csv_in: We kunnen CSV alleen in het volgende formaat begrijpen
   we_couldnt_find_a_user: We vonden geen gebruiker met dat e-mailadres.
   we_couldnt_find_a_user_with_that_activation_code: "We konden geen gebruiker met die activeringscode vinden. Je hebt je account misschien al geactiveerd, probeer je aan te melden."
@@ -5828,6 +5886,8 @@ nl:
   your_account_has_been_activated: Je account is geactiveerd!
   your_account_has_been_verified: "Je %{site_name}-account is bevestigd! Log in om verder te gaan."
   your_activation_code_was_missing: "Je activatiecode ontbrak. Gebruik de URL in je e-mail."
+  #Title for a list of 3rd party applications you control
+  your_applications: Jouw toepassingen
   your_browser_does_not_support_the_audio_element: Je browser ondersteunt het audio-element niet.
   your_comment_was_saved: Je inhoud is opgeslagen
   your_content: Jouw inhoud
@@ -5928,6 +5988,10 @@ nl:
           iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
+      temporarily_unavailable: |
+        Bedankt voor het ondersteunen van iNaturalist! Doneren aan
+        iNaturalist is tijdelijk niet mogelijk omdat we onze donatie
+        systemen bijwerken. Kom alsjeblieft snel terug.
     flags:
       show:
         flaggable_content_desc: |
@@ -6385,8 +6449,6 @@ nl:
         cumulative_count_desc: '# determinaties voor een individueel taxon en al zijn afstammelingen'
         curator_coordinate_access_disabled_desc_html: |
           Dit project staat geen waarnemingen toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Als je de coördinaten van deze waarneming niet wilt delen met de curatoren van dit project, moet je de waarneming uit het project verwijderen.
-        data_quality_assessment_desc_html: |
-          De datakwaliteitsbeoordeling is een evaluatie van de nauwkeurigheid van een waarneming. Waarnemingen van onderzoekskwaliteit kunnen door wetenschappers worden gebruikt voor onderzoek. Breng hieronder je stem uit:
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
@@ -6603,6 +6665,10 @@ nl:
           Je kunt het origineel bekijken op <a href="%{url}">%{url}</a>. 
           Laat meldingen over schending van auteursrechten alsjeblieft als onopgelost staan als deze foto auteursrechten schendt.
     places:
+      kml_field_desc2: |
+        KML van de gebiedsgrens. Je kunt er één maken met behulp van Google Maps, Google
+        Earth of met de meeste GIS-applicaties. Moet ten minste één polygoon hebben, 
+        minder dan 1 MB (5 MB voor website-curatoren) zijn en het gebied moet een oppervlakte kleiner dan de Amerikaanse staat Texas, dat is ongeveer twee keer Duitsland, hebben.
       edit:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
@@ -7446,9 +7512,15 @@ nl:
       index:
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
-        observations_to_date: 'Waarnemingen tot nu toe'
-        species_observed: 'Waargenomen soorten'
-        people_signed_up: 'Mensen aangemeld'
+        observations_to_date:
+          one: "Waarneming tot"
+          other: "Waarnemingen tot"
+        species_observed:
+          one: "Waargenomen soort"
+          other: "Waargenomen soorten"
+        people_signed_up:
+          one: "Persoon aangemeld"
+          other: "Mensen aangemeld"
         how_it_works: Hoe het werkt
         record_your_observations: Houd je waarnemingen bij
         share_with_fellow_naturalists: Deel met mede-naturalisten
@@ -7523,20 +7595,20 @@ nl:
       6: vr
       7: za
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d. %=B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d. %=B'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d. %=B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d. %=B %Y'
     month_names:
       - 
       - januari
@@ -7588,17 +7660,17 @@ nl:
         one: "%{count} seconde"
         other: '%{count} seconden'
     countdown_x_days:
-      one: dag
-      other: dagen
+      one: DAG
+      other: DAGEN
     countdown_x_hours:
-      one: uur
-      other: uren
+      one: UUR
+      other: UREN
     countdown_x_minutes:
       one: min
       other: min
     countdown_x_seconds:
-      one: sec
-      other: sec
+      one: SEC
+      other: SECS
     prompts:
       day: Dag
       hour: Uur
@@ -7606,46 +7678,6 @@ nl:
       month: Maand
       second: Seconden
       year: Jaar
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: moet aanvaard worden
-      blank: mag niet leeg blijven
-      confirmation: kwam niet overeen met het wachtwoord
-      empty: mag niet leeg blijven
-      equal_to: moet gelijk zijn aan %{count}
-      even: moet even zijn
-      exclusion: is voorbehouden
-      greater_than: moet groter zijn dan %{count}
-      greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
-      inclusion: is niet opgenomen in de lijst
-      invalid: is ongeldig
-      less_than: moet kleiner zijn dan %{count}
-      less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
-      new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
-      not_a_number: is geen getal
-      not_an_integer: moet een geheel getal zijn
-      odd: moet oneven zijn
-      only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
-      record_invalid: 'Validatie is mislukt: %{errors}'
-      requires_privilege_speech: |
-        je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
-      requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
-      taken: bestaat al
-      too_long:
-        one: is te lang (maximum is %{count} teken)
-        other: is te lang (maximum is %{count} tekens)
-      too_short:
-        one: is te kort (minimum is %{count} teken)
-        other: is te kort (minimum is %{count} tekens)
-      wrong_length:
-        one: heeft de verkeerde lengte (moet %{count} teken zijn)
-        other: heeft de verkeerde lengte (moet %{count} tekens zijn)
-    template:
-      body: 'Er was een probleem met de volgende velden:'
-      header:
-        one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
-        other: 'Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen'
   helpers:
     defaults:
       title: "DIT IS EEN TITEL"
@@ -7708,64 +7740,21 @@ nl:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%d %b. %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d. %=B %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d. %=B %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d. %=B %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d. %=B %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: moet aanvaard worden
-        blank: mag niet leeg blijven
-        confirmation: kwam niet overeen met het wachtwoord
-        empty: mag niet leeg blijven
-        equal_to: moet gelijk zijn aan %{count}
-        even: moet even zijn
-        exclusion: is voorbehouden
-        greater_than: moet groter zijn dan %{count}
-        greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
-        inclusion: is niet opgenomen in de lijst
-        invalid: is ongeldig
-        less_than: moet kleiner zijn dan %{count}
-        less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
-        new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
-        not_a_number: is geen getal
-        not_an_integer: moet een geheel getal zijn
-        odd: moet oneven zijn
-        only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
-        record_invalid: 'Validatie is mislukt: %{errors}'
-        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
-        requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
-        taken: bestaat al
-        too_long:
-          one: is te lang (maximum is %{count} teken)
-          other: is te lang (maximum is %{count} tekens)
-        too_short:
-          one: is te kort (minimum is %{count} teken)
-          other: is te kort (minimum is %{count} tekens)
-        wrong_length:
-          one: heeft de verkeerde lengte (moet %{count} teken zijn)
-          other: heeft de verkeerde lengte (moet %{count} tekens zijn)
-      template:
-        body: 'Er was een probleem met de volgende velden:'
-        header:
-          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7796,6 +7785,11 @@ nl:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Site ID's
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Doelpersoneel (voor test)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
       assessment:
         description: Beschrijving
       assessment_section:
@@ -7981,22 +7975,33 @@ nl:
         blank: mag niet leeg blijven
         confirmation: kwam niet overeen met het wachtwoord
         empty: mag niet leeg blijven
-        equal_to: moet gelijk zijn aan %{count}
+        equal_to:
+          one: moet gelijk zijn aan %{count}
+          other: moeten gelijk zijn aan %{count}
         even: moet even zijn
         exclusion: is voorbehouden
-        greater_than: moet groter zijn dan %{count}
-        greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
+        greater_than:
+          one: moet groter zijn dan %{count}
+          other: moet groter zijn dan %{count}
+        greater_than_or_equal_to:
+          one: moet groter dan of gelijk zijn aan %{count}
+          other: moet groter dan of gelijk zijn aan %{count}
         inclusion: is niet opgenomen in de lijst
         invalid: is ongeldig
-        less_than: moet kleiner zijn dan %{count}
-        less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
+        less_than:
+          one: moet kleiner zijn dan %{count}
+          other: moet kleiner zijn dan %{count}
+        less_than_or_equal_to:
+          one: moet kleiner dan of gelijk zijn aan %{count}
+          other: moet kleiner dan of gelijk zijn aan %{count}
         new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
         not_a_number: is geen getal
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
         only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
         record_invalid: 'Validatie is mislukt: %{errors}'
-        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
+        requires_privilege_speech: |
+          je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
         too_long:
@@ -8011,8 +8016,8 @@ nl:
       template:
         body: 'Er was een probleem met de volgende velden:'
         header:
-          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon dit %{model} niet worden opgeslagen
+          one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
+          other: 'Door %{count} fouten kon dit %{model} niet worden opgeslagen'
       models:
         application:
           attributes:

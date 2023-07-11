@@ -1,4 +1,5 @@
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import _ from "lodash";
 import thunkMiddleware from "redux-thunk";
 import React from "react";

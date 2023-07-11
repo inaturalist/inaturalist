@@ -16,6 +16,12 @@ describe Emailer, "updates_notification" do
   end
   after { disable_has_subscribers }
 
+  it "should include a fave" do
+    without_delay { @observation.vote_by voter: create( :user ) }
+    mail = Emailer.updates_notification( @user, @user.recent_notifications )
+    expect( mail.body ).to match( /faved/ )
+  end
+
   it "should use common names for a user's place" do
     p = make_place_with_geom
     t = Taxon.make!
@@ -36,7 +42,10 @@ describe Emailer, "updates_notification" do
       @user.update( locale: loc )
       mail = Emailer.updates_notification( @user, @user.recent_notifications )
       expect( mail.body ).to include I18n.t( :user_added_an_observation_field_html,
-        user: FakeView.link_to( @ofv.user.login, FakeView.person_url( @ofv.user, host: Site.default.url ) ),
+        user: ApplicationController.helpers.link_to(
+          @ofv.user.login,
+          UrlHelper.person_url( @ofv.user, host: Site.default.url )
+        ),
         field_name: @ofv.observation_field.name.truncate( 30 ),
         owner: @user.login,
         locale: loc )

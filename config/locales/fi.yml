@@ -173,6 +173,7 @@ fi:
   about_taxon_ranges: Tietoja taksonin alueesta
   about_taxon_ranges_desc: |
     Taksonin alue kuvaa taksonin maailmanlaajuista levinneisyyttä. Tiedot tulevat tyypillisesti IUCN Punaisesta kirjasta.
+  about_the_network: Tietoa verkostosta
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
@@ -745,6 +746,8 @@ fi:
   birds: linnut
   birthday: Syntymäpäivä
   black: musta
+  block: Estä
+  blocking_description: Estäminen estää yhteydenpidon sinun ja toisen käyttäjän välillä. Estäminen on tarkoitettu tilanteisiin, joissa toinen käyttäjä häiritsee sinua, esimerkiksi vainoaa tai tekee muuta väärinkäyttöä.
   block_removed: Esto poistettu
   blocked_users: Estetyt käyttäjät
   blog_widget: Blogi-pienoisohjelma
@@ -872,7 +875,7 @@ fi:
   check_this_box_if_html: |
     Laita ruksi tähän jos haluat käyttää <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>Creative Commons Nimeä-Epäkaupallinen -lisenssiä</a> palveluun lisäämääsi sisältöön. Tämä tarkoittaa että kuka tahansa voi kopioida ja käyttää valokuviasi ja/tai havaintojasi pyytämättä erikseen lupaa, kunhan he viittaavat sinuun tiedon lähteenä eivätkä käytä niitä kaupallisesti. Voit valita erilaisen lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi tiedon jakamiseen tutkijoille.
+    target='_blank'>Creative Commons Nimeä-Epäkaupallinen -lisenssiä</a> palveluun lisäämääsi sisältöön. Tämä tarkoittaa että kuka tahansa voi kopioida ja käyttää valokuviasi ja/tai havaintojasi pyytämättä erikseen lupaa, kunhan he viittaavat sinuun tiedon lähteenä eivätkä käytä niitä kaupallisesti. Voit valita erilaisen lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi tiedon tutkimuskäyttöön.
   checklist: Lajiluettelo
   choose_a_field: Valitse kenttä
   choose_a_list_above: Valitse luettelo yläpuolelta.
@@ -988,7 +991,6 @@ fi:
   connected_accounts_titlecase: Yhdistetyt käyttäjätilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
-  connecting_to_facebook: "Yhdistetään Facebookiin..."
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   cannot_be_changed_during_a_content_freeze: Tätä ei voi väliaikaisesti muuttaa sisällön jäädytyksen aikana
   conservation_status: Uhanalaisuusluokitus
@@ -1072,20 +1074,20 @@ fi:
     molt: Nahka
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
+    bone: |
+      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
+    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
     dead: Eliö on kuollut tai kuolemassa
+    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
     flower_budding: Nuput näkyvissä, mutta eivät auenneita
     flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
+    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
+    molt: Hylätty nahka tai ulkoinen tukiranka
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
-    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
-    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
     track: Eliön jälki maassa tai lumessa
-    bone: |
-      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
-    molt: Hylätty nahka tai ulkoinen tukiranka
-    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
   controls: Ohjaimet
   convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
@@ -1187,14 +1189,14 @@ fi:
     Ei itse käyttäydy asianmukaisesti
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
+  curator_application_inelligible2: |
     Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
-    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    päivää tai kauemmin ja olet lisännyt 5 lippua ja 100 tunnistusta kenen tahansa
     havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
-    täyttänyt molemmat vaatimukset, voit lähettää hakemuksen.
-  curator_application_inelligible_error: |
+    täyttänyt nämä vaatimukset, voit lähettää hakemuksen.
+  curator_application_inelligible_error2: |
     Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
-    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    päivää tai kauemmin ja olet lisännyt 5 lippua ja 100 tunnistusta kenen tahansa
     havaintoihin, mukaan lukien omasi.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kuraattorihakemus lähetetty
@@ -1258,6 +1260,9 @@ fi:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Olet lisännyt tunnistuksia ja/tai havaintoja muutaman kuukauden
     ja aiot jatkaa.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Olet osoittanut, että ymmärrät kuratointiprosessin lisäämällä
+    muutaman lipun.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1434,6 +1439,7 @@ fi:
       signed_up_but_locked: "Rekisteröintisi onnistui. Emme kuitenkaan voineet kirjata sinua sisään koska tunnuksesi on lukittu."
       signed_up_but_unconfirmed: "Vahvistusohjeet on lähetetty sähköpostiosoitteeseesi. Avaathan sähköpostissa olevan linkin vahvistaaksesi tunnuksen."
       updated: 'Päivitit tilisi onnistuneesti.'
+      updated_but_not_signed_in: "Tilisi on päivitetty onnistuneesti, mutta salasanan vaihtamisen jälkeen sinun on kirjauduttava sisään uudelleen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1496,6 +1502,8 @@ fi:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: LAHJOITA
+  donate_again_caps: LAHJOITA UUDELLEEN
+  donate_again_today_caps: LAHJOITA UUDELLEEN TÄNÄÄN
   done: Valmis
   dont_have_an_account_sign_up_html: Eikö sinulla vielä ole käyttäjätunnusta? <strong>Rekisteröidy.</strong>
   dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
@@ -1515,9 +1523,15 @@ fi:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Alemmat liputetut taksonit
+  #Noun, as in a journal post that has not been published
   draft: luonnos
+  #Noun, as in a journal post that has not been published
   draft_: Luonnos
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Luonnos käyttäjältä %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Luonnos tallennettu!
+  #Noun, as in journal posts that has not been published
   drafts: Luonnokset
   drag_and_drop_some_photos_or_sounds: Vedä ja pudota joitain valokuvia tai ääniä
   #Button label for drawing a circular boundary for an observation search
@@ -1609,9 +1623,36 @@ fi:
   email_conf_banner_we_delivered_todos: |
     Toimitimme sinulle vahvistusviestin %{date}. Jos et
     saanut sitä, tässä on joitain asioita, joita voit tehdä:
+  email_conf_required_after_grace_period: |
+    Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
+    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja nollaa salasanasi
+    päästäksesi tiliisi.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
     Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Vahvista %{site_name} sähköpostiosoitteesi ennen %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Ole hyvä ja vahvista sähköpostiosoitteesi tänään varmistaaksesi, että voit edelleen
+    käyttää tiliäsi. %{site_name} ja mobiilisovellukset
+    iNaturalist ja Seek yhdistävät ihmiset luontoon ja
+    toisiinsa jakamalla luontohavaintoja. Kiitos, että olet osa
+    iNaturalist-yhteisöä!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Vaadimme vahvistettuja sähköpostiosoitteita kaikille tileille alkaen
+    %{requirement_date}. Ole hyvä ja vahvista se nyt.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset <a href="%{faq_url}">FAQs</a>. Kiitos, että olet ottanut
+    aikaa yhteyden luontiin luonnon ja %{site_name} kanssa.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Tilin tiedot
   email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
@@ -1679,16 +1720,6 @@ fi:
   extra_properties: Lisäominaisuudet
   evidence_of_organism: Näyttö eliöstä
   facebook: Facebook
-  facebook_account_information: Oman Facebook-tilisi tiedot
-  facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
-  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy linkittää Facebook-tilinsä uudelleen."
-  facebook_needs_the_owner_of_that_photo_to: Facebook haluaa että kuvan omistaja vahvistaa yhteyden %{site_name_short}iin uudelleen.
-  facebook_options: Facebook-asetukset
-  facebook_photo_import_disabled_notice: |
-    Marraskuussa 2020 Facebook vaati meitä vahvistamaan, että todella tarvitsimme
-    pääsyn valokuviin, emmekä pystyneet viemään vahvistusprosessia loppuun
-    Facebookin varmentamisjärjestelmän ongelmien vuoksi. Tämän seurauksena emme voi enää
-    tukea kuvien tuomista Facebookista.
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
   failed_to_save_record: "Tallennus epäonnistui. Ole hyvä ja kokeile myöhemmin uudelleen."
@@ -1848,7 +1879,7 @@ fi:
   frequency: Lukumäärä
   from_a_place: paikasta
   from_eol_collection: EOL-kokoelmasta
-  from_flickr_facebook_etc: Flickristä, Facebookista, yms.
+  from_flickr_etc: Flickr, jne.
   from_list: Luettelosta
   from_photos: Kuvista
   from_place: Paikasta
@@ -1896,7 +1927,7 @@ fi:
   grid_tooltip: Näytä ruudukkonäkymä
   group: Ryhmä
   grouping: Ryhmittely
-  guides: Oppaat
+  guides: Lajioppaat
   guide_compiled_by: Oppaan koonnut
   guide_deleted: Opas poistettu
   guide_will_be_deleted: Opas poistetaan. Suurten oppaiden poistaminen kestää hetken.
@@ -2165,9 +2196,10 @@ fi:
   let_us_walk_you_through: Tutustu tämän sivuston tärkeimpiin ominaisuuksiin.
   lexicon: Sanakirja
   lexicons:
-    scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
     albanian: Albania
+    aou_4_letter_codes: AOU 4-kirjainkoodit
+    aou_6_letter_codes: AOU 6-kirjainkoodit
     arabic: Arabia
     armenian: Armenia
     belarusian: Valkovenäjä
@@ -2190,11 +2222,14 @@ fi:
     finnish: Suomi
     french: Ranska
     galician: Galicia
+    georgian: Georgia
     german: Saksa
     greek: Kreikka
+    gujarati: Gujarati
     hawaiian: Havaiji
     hebrew: Heprea
     hiligaynon: Hiligaino
+    hokkien: Hokkien
     hungarian: Unkari
     icelandic: Islanti
     ilokano: Ilokano
@@ -2202,6 +2237,7 @@ fi:
     italian: Italia
     japanese: Japani
     kannada: Kannada
+    kazakh: Kazakki
     korean: Korea
     latvian: Latvia
     lithuanian: Liettua
@@ -2226,8 +2262,8 @@ fi:
     romanian: Romania
     russian: Venäjä
     santali: santali
+    scientific_names: Tieteelliset nimet
     serbian: Serbia
-    setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
@@ -2240,8 +2276,9 @@ fi:
     tokelauan: Tokelau
     turkish: Turkki
     ukrainian: Ukraina
-    waray_waray: Waray-waray
+    uyghur: Uiguuri
     visayan: Visaya
+    waray_waray: Waray-waray
   less: Vähemmän
   #Button show less text
   less__context_text: Vähemmän
@@ -2253,14 +2290,8 @@ fi:
   life_list: "Käyttäjän %{user} pinnalista"
   linear_scale_label: Lineraarinen
   link: Linkki
-  link_your_facebook_account: Linkitä Facebook-tilisi
   link_your_flickr_account: Linkitä Flickr-tilisi
   link_your_google_account: Linkitä Google-tilisi
-  linked_facebook: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Facebook-tiliisi."
-  linked_facebook_automaticaly: "Huomaa myös että kun kirjaudut %{site_name} iin Facebookin kautta, linkitämme %{site_name}- ja Facebook-tilisi automaattisesti. Koska käytät Facebookia, haluat varmaankin myös pystyä tuomaan tänne kuvia Facebookista?"
-  linked_facebook_description: "Pitämällä %{site_name}-tilisi linkitettynä Facebook-tiliisi mahdollistaa sen, että voit tuoda useita kuvia havaintoihisi. Jos haluat poistaa %{site_name}in ja Facebookin linkityksen, emme estä sinua, mutta et voi sen jälkeen lisätä kuvia Facebookista. Joskus tämä voi olla paras vaihtoehto, esim. jos luot uuden Facebook-tunnuksen jonka haluat linkittää %{site_name}iin."
-  linked_facebook_howto: "Linkittääksesi Facebookin %{site_name}iin, klikkaa linkkiä oikealla ja kirjaudu Facebookiin."
-  linked_facebook_password: "Emme ikinä pyydä Facebook-salasanaasi. (Mutta Facebook voi kysyä, joten tarkista osoitteesta että olet todella Facebook.com:issa.) Emme myöskään muuta Facebookissa olevia tietojasi, ellet erikseen halua sitä."
   linked_flickr: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Flickr-tiliisi."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: linkin teksti
@@ -2330,6 +2361,8 @@ fi:
     id: indonesia
     it: italia
     ja: japani
+    ka: Georgia
+    kk: Kazakki
     kn: Kannada
     ko: korea
     lb: luxemburg
@@ -2551,6 +2584,8 @@ fi:
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Kuukausi
   #title for section describing people who donate to iNat every month
   monthly_supporters: Kuukausilahjoittajat
@@ -2600,8 +2635,12 @@ fi:
   must_have_quality_grades: "täytyy olla laatuarvosana: %{grades}"
   must_have_sounds: täytyy olla ääniä
   must_have_x: "täytyy olla %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Mykistä
+  #Mute is a noun here
   mute_removed: Hiljennys poistettu
   muted_users: Hiljennetyt käyttäjät
+  muting_description: Jonkun mykistäminen estää sinua saamasta ilmoitusta heidän toiminnastaan, mukaan lukien "@" maininnat, viestit tai kommentit ja tunnisteet havaintoihisi.
   n_ago: "%{n} sitten"
   n_people_agrees: "%{amount} ihmistä samaa mieltä"
   n_people_disagrees: "%{amount} ihmistä ovat eri mieltä"
@@ -2782,7 +2821,6 @@ fi:
   not_found: Ei löydy
   #Filter for observations not in a particular place
   not_in_place: Ei käytössä
-  not_linked_facebook: "%{site_name}-tilisi ei ole linkitetty Facebook-tiliisi."
   not_linked_flickr: "%{site_name}-tilisi ei ole linkitetty Flickr-tiliisi."
   not_on_this_list: Ei tässä luettelossa.
   not_recorded: Ei merkitty
@@ -3010,7 +3048,7 @@ fi:
   options: Valinnat
   or: tai
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
   orange: oranssi
@@ -3061,6 +3099,9 @@ fi:
     invalid_email: Virhellinen sähköpostiosoite
   password: Salasana
   password_confirmation: 'Salasanan vahvistus'
+  password_change_description: Salasanan vaihtaminen kirjaa sinut ulos kaikista aktiivisista iNaturalist-istunnoista kaikissa laitteissasi
+  password_change_logout_warning: Kun olet vaihtanut salasanasi, sinut kirjataan ulos ja sinun täytyy kirjautua uudelleen uudella salasanallasi.
+  password_change_observations_warning: Sinut kirjautaan ulos myös iNaturalist-mobiilisovelluksesta ja muista sovelluksista tai sivustoista, jotka lähettävät havainnot iNaturalistiin puolestasi, joten varmista, että olet ladannut kaikki havainnot ennen kuin teet tämän. Kaikki lataamattoma havainnot menetetään.
   paste: Liitä
   paste_in_a_bunch_of_names: Liitä joukko nimiä, 1 riviä kohden ja paina nappia!
   people: Ihmiset
@@ -3150,9 +3191,9 @@ fi:
     tilisi.
     </p>
   data_transfer_consent_label: |
-    Hyväksyn henkilötietojeni siirtämisen Amerikan yhdysvaltoihin
+    Hyväksyn henkilötietojeni siirtämisen Yhdysvaltoihin
   data_transfer_consent_child_label: |
-    Hyväksyn lapseni henkilötietojen siirtämisen Amerikan yhdysvaltoihin
+    Hyväksyn lapseni henkilötietojen siirtämisen Yhdysvaltoihin
   pin_verb: Kiinnitä
   pink: pinkki
   pinned_locations_desc: |
@@ -3250,6 +3291,10 @@ fi:
       subdivision: naapurusto
       Suburb: Lähiö
       suburb: lähiö
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Ylänimi
       supername: ylänimi
       Territory: Reviiri
@@ -3572,7 +3617,10 @@ fi:
   position: Sijainti
   post_published: Viesti julkaistu
   posted_by: Lähettänyt
-  posted_on: Lähetetty
+  #Shows the date a journal post was published
+  posted_on_date_html: Julkaistu %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Julkaistu %{date} käyttäjältä %{user}
   posts: Viestit
   potential_disagreement: Mahdollinen erimielisyys
   powered_by: Palvelun mahdollistaa
@@ -4210,6 +4258,10 @@ fi:
   stats: Tilastot
   stats_for_this_year_have_not_been_generated: Paina nappia alta, niin luomme tilastot.
   status: Tila
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Tila haettu korkeammalta taksonilta:</strong> %{taxon}
   stay_and_try_again: Jää ja yritä uudelleen
   still_no_luck?: Vieläkään onnea?
   still_working_on_classifying_taxon: Taksonin luokittelu edelleen käynnissä. Tarkista myöhemmin
@@ -4276,7 +4328,6 @@ fi:
   tagging: 'Tageja lisätään...'
   tags: Tunnisteet
   tags_are_a_way: 'Tunnisteiden avulla voit järjestää havaintojasi. Voit esimerkiksi merkitä kaikki niityillä tekemästi havainnot tunnisteella "niitty" helpottaaksesi niiden löytämistä myöhemmin.'
-  take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   target_list_alert: Oletko varma, että olet yrittänyt havainnoida kaikkia lajiluettelosi lajeja? Huomaa, että kaikki luettelosi lajit, joita ei ole merkitty havaituksi, tulkitaan poissaoleviksi, joten on hyvin tärkeää, että lajiluettelosi vastaa täsmällisesti sitä lajiryhmää, jota ole yrittänyt havaita
   task_deleted: Tehtävä poistettu
@@ -4487,6 +4538,8 @@ fi:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: Guatemalan aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantin normaaliaika (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: Bolivian aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: Perun aika
@@ -4505,7 +4558,23 @@ fi:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_tijuana: Meksikon Tyynenmeren aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabian normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indokiinan aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hongkongin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Länsi-Indonesian aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Israelin normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Intian normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_novosibirsk: Krasnojarskin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Kiinan normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Singaporen normaaliaika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_taipei: Taiwanin aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4566,6 +4635,8 @@ fi:
   time_zone_pacific_apia: Samoan aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Uuden-Seelannin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Havaijin-Aleuttien normaaliaika
   #As in the title of a book or a blog post
   title: otsikko
   title_and_description: "Otsikko & kuvaus"
@@ -4716,9 +4787,6 @@ fi:
   user_blocked: Käyttäjä on estetty
   user_commented: "%{user} kommentoi"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
-  user_faved_a_noun_by_you: "Merkitsit %{user} %{noun} suosikiksi"
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
@@ -4878,9 +4946,9 @@ fi:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
-  we_also_support: |
-    Kuvia voi säilyttää myös <a href="http://flickr.com">Flickrissä</a>,
-    <a href="http://photos.google.com">Google Kuvat -sovelluksessa</a>, ja <a href="http://facebook.com">Facebookissa</a>.
+  we_also_support2: |
+    Tuemme myös kuvien tuontia <a href="http://flickr.com">Flickr-</a>
+    ja <a href="http://photos.google.com">Google Photos</a> -palveluista.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -4998,7 +5066,7 @@ fi:
   yes_for_any_of_my_observations: "Kyllä, kaikkien havaintojen koordinaatit"
   yes_i_want_to_join: Kyllä, haluan liittyä
   yes_license_my_childs_observations: Kyllä, lisensoi lapseni ottamat valokuvat, äänitteet ja havainnot niin että tutkijat voivat käyttää niitä.
-  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
+  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi valokuvani, äänittteeni ja havaintoni niin, että niitä voidaan käyttää joustavasti tutkimuksessa (suositeltavaa).
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
   yir_code_contributors_desc_html: |
@@ -5171,6 +5239,8 @@ fi:
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     guides:
       index:
+        deprecated_banner: |
+          Huom: Lajiopas-osion kehitys on päättynyt, ja se on käytettävissä sellaisena kuin se oli tammikuussa 2019.
         funding_html: |
           Rahoituksen oppaiden kehittämiseen toimitti <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
@@ -5450,8 +5520,6 @@ fi:
           </p>
         curator_coordinate_access_disabled_desc_html: |
           Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havainnon koordinaatteja projektin kuraattoreiden kanssa, sinun täytyy poistaa havaintosi projektista.
-        data_quality_assessment_desc_html: |
-          Laatuarvio on arvio havainnon täsmällisyydestä. Tutkimustason saavuttaneita havaintoja voidaan käyttää tieteelliseen tutkimukseen. Anna äänesi alla:
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
         observation_flagged_notice_html: |
@@ -5586,6 +5654,8 @@ fi:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
     places:
+      kml_field_desc2: |
+        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
       edit:
         complex_boundary_note_html: |
           Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
@@ -5995,6 +6065,8 @@ fi:
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
+          "Sex=Female": Naaras
+          "Sex=Male": Koiras
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -6066,6 +6138,11 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
+        monthly_supporter_desc_html: |
+          iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
+          States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
+          <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
+          Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
@@ -6170,9 +6247,15 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
-        observations_to_date: 'havaintoa tällä hetkellä'
-        species_observed: 'Havaitut lajit'
-        people_signed_up: 'rekisteröitynyttä käyttäjää'
+        observations_to_date:
+          one: "Havainto tällä hetkellä"
+          other: "Havaintoa tällä hetkellä"
+        species_observed:
+          one: "Laji havaittu"
+          other: "Lajia havaittu"
+        people_signed_up:
+          one: "Rekisteröitynyttä käyttäjää"
+          other: "Rekisteröitynyttä käyttäjää"
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
         share_with_fellow_naturalists: Jaa muiden luontoharrastajien kanssa
@@ -6243,20 +6326,20 @@ fi:
       6: Pe
       7: La
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%-d. %Bta %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%-d. %bkuuta'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %-d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%-d. %bkuuta %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%b %-d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%-d. %Bta %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%B %-d, %Y'
     month_names:
       - 
       - tammikuu
@@ -6308,17 +6391,17 @@ fi:
         one: "1 sekunti"
         other: '%{count} sekuntia'
     countdown_x_days:
-      one: päivä
-      other: päivää
+      one: PÄIVÄ
+      other: PÄIVÄÄ
     countdown_x_hours:
-      one: tunti
-      other: tuntia
+      one: TUNTI
+      other: TUNTIA
     countdown_x_minutes:
-      one: minuutti
-      other: minuuttia
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sekunti
-      other: sekuntia
+      one: SEK
+      other: SEK
     prompts:
       day: Päivä
       hour: Tunti
@@ -6326,41 +6409,6 @@ fi:
       month: Kuukausi
       second: sekuntia
       year: Vuosi
-  errors:
-    messages:
-      accepted: täytyy olla hyväksytty
-      blank: ei voi olla tyhjä
-      confirmation: ei vastaa salasanaa
-      empty: ei voi olla tyhjä
-      equal_to: oltava yhtäsuuri kuin %{count}
-      even: täytyy olla parillinen
-      exclusion: on varattu
-      greater_than: täytyy olla suurempi kuin %{count}
-      greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
-      inclusion: ei sisälly luetteloon
-      invalid: on virheellinen
-      less_than: täytyy olla vähemmän kuin %{count}
-      less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
-      new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
-      not_a_number: ei ole numero
-      not_an_integer: täytyy olla kokonaisluku
-      odd: on oltava pariton
-      only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
-      requires_privilege_speech: |
-        täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme muille tehtyä tunnistusta, jotta voisit tehdä tämän
-      requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
-      taken: on jo varattu
-      too_long:
-        one: on liian pitkä (maksimi on 1 merkki)
-        other: on liian pitkä (maksimi on %{count} merkkiä)
-      too_short:
-        one: on liian lyhyt (maksimi on 1 merkki)
-        other: on liian lyhyt (maksimi on %{count} merkkiä)
-      wrong_length:
-        one: on väärän pituinen (pitäisi olla 1 merkki)
-        other: on väärän pituinen (pitäisi olla %{count} merkkiä)
-    template:
-      body: 'Seuraavissa kentissä oli ongelmia:'
   helpers:
     defaults:
       title: "TÄMÄ ON OTSIKKO"
@@ -6423,61 +6471,21 @@ fi:
   time:
     am: ap.
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%-d. %Bta %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%-d. %Bta %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%-d. %bkuuta %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %-d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%-d. %Bta %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%-d. %Bta %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %-d, %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: ip.
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: täytyy olla hyväksytty
-        blank: ei voi olla tyhjä
-        confirmation: ei vastaa salasanaa
-        empty: ei voi olla tyhjä
-        equal_to: oltava yhtäsuuri kuin %{count}
-        even: täytyy olla parillinen
-        exclusion: on varattu
-        greater_than: täytyy olla suurempi kuin %{count}
-        greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
-        inclusion: ei sisälly luetteloon
-        invalid: on virheellinen
-        less_than: täytyy olla vähemmän kuin %{count}
-        less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
-        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
-        not_a_number: ei ole numero
-        not_an_integer: on oltava kokonaisluku
-        odd: on oltava pariton
-        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
-        record_invalid: 'Vahvistus epäonnistui: %{errors}'
-        requires_privilege_speech: täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
-        requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
-        taken: on jo varattu
-        too_long:
-          one: on liian pitkä (maksimi on 1 merkki)
-          other: on liian pitkä (maksimi on %{count} merkkiä)
-        too_short:
-          one: on liian lyhyt (minimi on 1 merkki)
-          other: on liian lyhyt (minimi on %{count} merkkiä)
-        wrong_length:
-          one: on väärän pituinen (pitää olla %{count} merkkiä)
-          other: ovat väärän pituisia (pitää olla %{count} merkkiä)
-      template:
-        body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6601,6 +6609,8 @@ fi:
         wikipedia_summary: Wikipedia-yhteenveto
         wikipedia_title: Wikipedia-otsikko
       taxon_name:
+        lexicon: Sanasto
+        name: Nimi
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
@@ -6634,22 +6644,33 @@ fi:
         blank: ei voi olla tyhjä
         confirmation: ei vastaa salasanaa
         empty: ei voi olla tyhjä
-        equal_to: oltava yhtäsuuri kuin %{count}
+        equal_to:
+          one: oltava yhtäsuuri kuin %{count}
+          other: oltava yhtäsuuri kuin %{count}
         even: pitää olla parillinen
         exclusion: on varattu
-        greater_than: oltava suurempi kuin %{count}
-        greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
+        greater_than:
+          one: oltava suurempi kuin %{count}
+          other: oltava suurempi kuin %{count}
+        greater_than_or_equal_to:
+          one: oltava suurempi tai yhtäsuuri kuin %{count}
+          other: oltava suurempi tai yhtäsuuri kuin %{count}
         inclusion: ei sisälly luetteloon
         invalid: on virheellinen
-        less_than: oltava vähemmän kuin %{count}
-        less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+        less_than:
+          one: oltava vähemmän kuin %{count}
+          other: oltava vähemmän kuin %{count}
+        less_than_or_equal_to:
+          one: oltava vähemmän tai yhtäsuuri kuin %{count}
+          other: oltava vähemmän tai yhtäsuuri kuin %{count}
         new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
         only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
-        requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
+        requires_privilege_speech: |
+          sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
         taken: on jo varattu
         too_long:

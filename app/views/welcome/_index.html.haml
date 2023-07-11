@@ -50,7 +50,7 @@
                     %h1
                       %i.fa.fa-refresh.fa-spin
                     %p
-                      =t 'views.welcome.index.observations_to_date'
+                      =t "views.welcome.index.observations_to_date", count: 0
               .herolinks
                 = link_to signup_path, :class => "morelink signuplink" do
                   = t(:sign_up)
@@ -72,7 +72,7 @@
                     %h1
                       %i.fa.fa-refresh.fa-spin
                     %p
-                      =t 'views.welcome.index.species_observed'
+                      =t "views.welcome.index.species_observed", count: 0
               .herolinks
                 = link_to signup_path, :class => "morelink signuplink" do
                   = t(:sign_up)
@@ -94,7 +94,7 @@
                     %h1
                       %i.fa.fa-refresh.fa-spin
                     %p
-                      =t 'views.welcome.index.people_signed_up'
+                      =t "views.welcome.index.people_signed_up", count: 0
               .herolinks
                 = link_to signup_path, :class => "morelink signuplink" do
                   = t(:sign_up)

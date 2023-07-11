@@ -31,23 +31,16 @@
     </div>
     
     <% if listed_taxon.first_observation -%>
+      <h5><%=t :first_inat_observation, :site_name => @site.preferred_site_name_short %></h5>
       <p class="ui description">
-        <%=t :first_confirmed_inat_observation, :site_name => @site.preferred_site_name_short %>
-        <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
-        <%= t(:by).downcase %>
-        <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>
-        <%= link_to you_or_login(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>,
-        <%=t :added %> <%= l(listed_taxon.first_observation.created_at.to_date, :format => :long) %>
+        <%= link_to listed_taxon.first_observation.to_plain_s( viewer: current_user ), listed_taxon.first_observation %>
       </p>
     <% end -%>
 
     <% if listed_taxon.last_observation -%>
+      <h5><%=t :last_observation %></h5>
       <p class="ui description">
-       <%=t :last_confirmed_observation %>
-        <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
-        <%= t(:by).downcase %>
-        <%= link_to user_image(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
-        <%= link_to you_or_login(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
+        <%= link_to listed_taxon.last_observation.to_plain_s( viewer: current_user ), listed_taxon.last_observation %>
       </p>
     <% end -%>
     

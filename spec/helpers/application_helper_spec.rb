@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{File.dirname( __FILE__ )}/../spec_helper"
+require "spec_helper"
 
 describe ApplicationHelper do
   describe "hyperlink_mentions" do
@@ -67,6 +67,112 @@ describe ApplicationHelper do
       end
       it "adds nofollow" do
         expect( parsed_formatted_link[:rel] ).to include "nofollow"
+      end
+    end
+    describe "mentions" do
+      let( :user ) { User.make!( login: "with__extra__underscores" ) }
+      it "preserves user logins in mentions" do
+        expect( formatted_user_text( "@#{user.login}" ) ).to include( ">@#{user.login}</a>" )
+        expect( formatted_user_text( "<p>@#{user.login}</p>" ) ).to include( ">@#{user.login}</a>" )
+      end
+    end
+  end
+
+  describe "#image_url" do
+    subject { image_url source, options }
+
+    let( :source ) { "/" }
+    let( :options ) { {} }
+    let( :assigned_site ) { build :site, url: "https://site-example.org" }
+    let( :base_url ) { "http://option-example.org" }
+
+    context "when source is path" do
+      let( :source ) { "/source_path" }
+
+      context "with optional base_url" do
+        let( :options ) { { base_url: base_url } }
+
+        it do
+          is_expected.to eq URI.join(base_url, source).to_s
+        end
+      end
+
+      context "with site assigned" do
+        before { @site = assigned_site }
+
+        it { is_expected.to eq URI.join( assigned_site.url, source ).to_s }
+      end
+
+      context "with neither base or site" do
+        before { controller.request.host = UrlHelper.root_url }
+
+        it { is_expected.to eq URI.join(UrlHelper.root_url, source).to_s }
+      end
+    end
+
+    context "when source is whitelisted asset" do
+      let( :source ) { "bird.png" }
+
+      context "with optional base_url" do
+        let( :options ) { { base_url: base_url } }
+
+        it { is_expected.to eq URI.join( base_url, "/assets/#{source}" ).to_s }
+      end
+
+      context "with site assigned" do
+        before { @site = assigned_site }
+
+        it { is_expected.to eq URI.join( assigned_site.url, "/assets/#{source}" ).to_s }
+      end
+
+      context "with neither base or site" do
+        before { controller.request.host = UrlHelper.root_url }
+
+        it { is_expected.to eq URI.join( UrlHelper.root_url, "/assets/#{source}" ).to_s }
+      end
+    end
+
+    context "when source is asset" do
+      let( :source ) { "example_asset.jpg" }
+
+      context "with optional base_url" do
+        let( :options ) { { base_url: base_url } }
+
+        it { is_expected.to eq URI.join( base_url, source ).to_s }
+      end
+
+      context "with site assigned" do
+        before { @site = assigned_site }
+
+        it { is_expected.to eq URI.join( assigned_site.url, source ).to_s }
+      end
+
+      context "with neither base or site" do
+        before { controller.request.host = UrlHelper.root_url }
+
+        it { is_expected.to eq URI.join( UrlHelper.root_url, source ).to_s }
+      end
+    end
+
+    context "when source is url" do
+      let( :source ) { "http://example.org/asset_path.jpg" }
+
+      context "with optional base_url" do
+        let( :options ) { { base_url: base_url } }
+
+        it { is_expected.to eq URI.join( base_url, source ).to_s }
+      end
+
+      context "with site assigned" do
+        before { @site = assigned_site }
+
+        it { is_expected.to eq URI.join( assigned_site.url, source ).to_s }
+      end
+
+      context "with neither base or site" do
+        before { controller.request.host = UrlHelper.root_url }
+
+        it { is_expected.to eq URI.join( UrlHelper.root_url, source ).to_s }
       end
     end
   end

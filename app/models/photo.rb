@@ -55,7 +55,7 @@ class Photo < ApplicationRecord
     original =  file.url( :original )
     return unless original
     if original !~ /http/
-      original = FakeView.uri_join( UrlHelper.root_url, original ).to_s
+      original = UrlHelper.uri_join( UrlHelper.root_url, original ).to_s
     end
     if matches = original.match( /^(.*)\/#{id}\/original/ )
       return matches[1]
@@ -93,13 +93,13 @@ class Photo < ApplicationRecord
 
   def sized_url( size = "original" )
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }
-      return FakeView.image_url( "copyright-infringement-#{size}.png" )
+      return ApplicationController.helpers.image_url( "copyright-infringement-#{size}.png" )
     end
     if self.instance_variable_get("@remote_#{size}_url")
       return self.instance_variable_get("@remote_#{size}_url")
     end
     if processing?
-      return FakeView.uri_join( UrlHelper.root_url, LocalPhoto.new.file.url( size ) )
+      return UrlHelper.uri_join( UrlHelper.root_url, LocalPhoto.new.file.url( size ) )
     end
     "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end

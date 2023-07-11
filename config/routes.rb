@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   get "/donate", to: "donate#index"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
 
-  get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
+  # get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
+  get "/donate-seek", to: redirect( "/donate", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
   resources :user_mutes, only: [:create, :destroy]
   resources :guide_users
   resources :taxon_curators, except: [:show, :index]
+  resources :taxon_name_priorities, only: [:create, :update, :destroy]
 
   resources :guide_sections do
     collection do
@@ -162,10 +164,8 @@ Rails.application.routes.draw do
   delete "/auth/:provider/disconnect" => "provider_authorizations#destroy", :as => :omniauth_disconnect
   delete "/provider_authorizations/:id" => "provider_authorizations#destroy"
   get "/users/edit_after_auth" => "users#edit_after_auth", :as => :edit_after_auth
-  get "/facebook/photo_fields" => "facebook#photo_fields"
   get "/eol/photo_fields" => "eol#photo_fields"
   get "/wikimedia_commons/photo_fields" => "wikimedia_commons#photo_fields"
-  post "/facebook" => "facebook#index"
 
   resource :help, controller: :help, only: :index do
     collection do
@@ -597,7 +597,6 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :summary
-      get :observation_weeks
       get :nps_bioblitz
       get :cnc2016
       get :cnc2017
@@ -717,6 +716,15 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :locales
+    end
+  end
+
+  resources :geo_model do
+    collection do
+      get :index
+    end
+    member do
+      get :explain
     end
   end
 

@@ -948,7 +948,6 @@ es-CO:
   connected_accounts_titlecase: Cuentas Vinculadas
   connecting_flickr: "Conectándose a Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Conéctate de nuevo a Flickr para autorizar permisos de escritura
-  connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar su cuenta de %{site_name} con cuentas en otros sitios le permitirá ingresar a %{site_name} usando sus credenciales de esos sitios."
   conservation_status: Estado de Conservación
   conservation_status_descriptions:
@@ -1035,20 +1034,20 @@ es-CO:
     molt: Muda
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
+    bone: |
+      Predominantemente restos de endoesqueletos; exposición parcial de huesos de un organismo intacto debe etiquetarse como "organismo"
+    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
     dead: El organismo está muerto o muestra signos de muerte inminente
+    feather: Una o más plumas no unidas a un organismo
     flower_budding: Las yemas florales son visibles pero no están abiertas
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
+    molt: Restos de piel o exoesqueleto
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
-    teneral: Adulto que ha emergido recientemente pero no ha alcanzado su forma adulta final
-    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
-    feather: Una o más plumas no unidas a un organismo
     organism: Todo o parte de un Organismo
     scat: Materia fecal (no egagrópilas de rapaces u otros materiales regurgitados)
+    teneral: Adulto que ha emergido recientemente pero no ha alcanzado su forma adulta final
     track: Impresión en suelo o nieve hecha por un organismo
-    bone: |
-      Predominantemente restos de endoesqueletos; exposición parcial de huesos de un organismo intacto debe etiquetarse como "organismo"
-    molt: Restos de piel o exoesqueleto
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1159,12 +1158,6 @@ es-CO:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     No demuestra un comportamiento correcto.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para solicitar ser curador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a las observaciones de cualquier persona, incluyendo las tuyas (has añadido %{num_idents}). Cuando cumplas con estos requisitos, regresa aquí y podrás enviar tu solicitud.
-  curator_application_inelligible_error: |
-    Para solicitar ser curador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a las observaciones de cualquier persona, incluyendo las tuyas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitud para ser curador enviada
   #Header
@@ -1453,9 +1446,13 @@ es-CO:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxones descendentes marcados
+  #Noun, as in a journal post that has not been published
   draft: borrador
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Guardado como borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   drawings: Dibujos
@@ -1587,13 +1584,6 @@ es-CO:
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia del organismo
   facebook: Facebook
-  facebook_account_information: Información de tu cuenta de Facebook
-  facebook_account_not_linked: "El %{user} ya no tiene vinculada una cuenta de facebook, por lo que %{site_name} no tiene permiso para acceder a esta foto."
-  facebook_access_token_expired: "El token de acceso ha caducado. %{user} necesita volver a vincular su cuenta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita que el dueño de la foto reconfirme su conexión con %{site_name_short}.
-  facebook_options: Opciones de Facebook
-  facebook_photo_import_disabled_notice: |
-    En noviembre de 2020 Facebook nos pidió verificar sí realmente necesitábamos acceder a las fotos, y no pudimos completar el proceso a causa de problemas con el sistema de verificación de Facebook. Por lo tanto, ya no soportamos la importación de fotos desde Facebook
   failed_to_find_your_location: No se pudo encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -1750,7 +1740,6 @@ es-CO:
   frequency: Frecuencia
   from_a_place: de un lugar
   from_eol_collection: De la colección de EOL
-  from_flickr_facebook_etc: De Flickr, Facebook, etc.
   from_list: De la lista
   from_photos: De fotos
   from_place: De lugar
@@ -2050,7 +2039,6 @@ es-CO:
   lexicon: Léxico
   lexicon_cannot_contain_words: "no puede contener las siguientes palabras: %{words}"
   lexicons:
-    scientific_names: Nombres científicos
     afrikaans: Afrikaans
     albanian: Albanés
     arabic: Árabe
@@ -2110,7 +2098,7 @@ es-CO:
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
-    setswana: Setswana
+    scientific_names: Nombres científicos
     sinhala: Sinhala
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2122,8 +2110,8 @@ es-CO:
     tokelauan: Tokelauano
     turkish: Turco
     ukrainian: Ucraniano
-    waray_waray: Samareño
     visayan: Bisayo
+    waray_waray: Samareño
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -2133,14 +2121,8 @@ es-CO:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Lineal
   link: Vínculo
-  link_your_facebook_account: Vincula tu cuenta de Facebook
   link_your_flickr_account: Vincula tu cuenta de Flickr
   link_your_google_account: Vincula tu cuenta de Google
-  linked_facebook: "Tu cuenta de %{site_name} está vinculada actualmente con tu cuenta de Facebook."
-  linked_facebook_automaticaly: "Además, ten en cuenta que si inicias sesión en %{site_name} a través de Facebook, re-vincularemos automáticamente tus cuentas de %{site_name} y Facebook. Parece razonable que si usas Facebook querrás poder importar fotos de Facebook, ¿verdad?"
-  linked_facebook_description: "Mantener tu cuenta de %{site_name} vinculada a tu cuenta de Facebook te permite añadir varias fotos a tus observaciones. Por supuesto, si alguna vez quieres que se separen %{site_name} y Facebook, no te detendremos, simplemente no podrás añadir fotos. A veces esto puede ser lo mejor, como si creas una nueva cuenta de Facebook a la que quieres vincular %{site_name}."
-  linked_facebook_howto: "Para conectar Facebook con %{site_name}, haz clic en el enlace de la derecha e inicia sesión en Facebook.com."
-  linked_facebook_password: "Nunca te pediremos tu contraseña de Facebook (pero Facebook podría hacerlo, comprueba la url a la que el botón te envía y asegúrese de que es Facebook.com). Tampoco cambiaremos tus datos de Facebook a menos que quieras."
   linked_flickr: "Tu cuenta de %{site_name} está actualmente vinculada a tu cuenta de Flickr."
   linked_flickr_automatically: "Además, ten en cuenta que si inicias sesión en %{site_name} a través de Flickr, re-vincularemos automáticamente tus cuentas de %{site_name} y Flickr. Parece razonable que si usas Flickr querrás poder importar fotos de Flickr, ¿verdad?"
   linked_flickr_description: "Mantener tu cuenta de %{site_name} vinculada a tu cuenta de Flickr te permite añadir varias fotos a tus observaciones. Por supuesto, si alguna vez quieres que %{site_name} y Flickr se separen, no te detendremos, simplemente no podrás añadir fotos. A veces esto puede ser lo mejor, como cuando creas una nueva cuenta de Flickr a la que quieres vincular %{site_name}."
@@ -2549,7 +2531,6 @@ es-CO:
   not_findig_what_you_want: '¿No encuentras lo que quieres?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
   not_found: No encontrado
-  not_linked_facebook: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Facebook"
   not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr"
   not_on_this_list: No está en esta lista.
   not_recorded: Sin grabar

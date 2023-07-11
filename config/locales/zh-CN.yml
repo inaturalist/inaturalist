@@ -635,11 +635,18 @@ zh-CN:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 属性
   attribution: 署名
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, 由 %{user} 上传"
   authority_list:
     iucn_red_list: IUCN红色名录
     natureserve: NatureServe
     cites: 引用
   authorize: 授权
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: 使用 PKCE 授权
   authorize_permissions_from_provider: "来自%{provider}的授权权限"
   automatic_short: 自动
   automatically_add_observations_to_this_project: 自动添加观察至此项目
@@ -928,7 +935,6 @@ zh-CN:
   connected_accounts_titlecase: 已关联的账号
   connecting_flickr: "正在连接至Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
-  connecting_to_facebook: "连接至Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "连接您的 %{site_name} 账户至其他网站上的账户将允许您使用您来自这些网站上的凭据登录 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 内容锁定期间无法被更改
   conservation_status: 保护状态
@@ -1009,19 +1015,19 @@ zh-CN:
     molt: 蜕皮
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
+    cannot_be_determined: 无法根据已提供的证据确认。
     dead: 生物已经死亡或有死亡征兆
+    feather: 一根或多根不附于生物身上的羽毛
     flower_budding: 花苞可见但未绽放
     flowering: 花朵可见，已绽放，并且仍然连接在植株上
     fruiting: 果实可见并仍连接在植株上
+    gall: 植物因受病原刺激或虫害而出现的局部增生
+    molt: 蜕下的皮或外骨骼
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
-    teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
-    cannot_be_determined: 无法根据已提供的证据确认。
-    feather: 一根或多根不附于生物身上的羽毛
     organism: 整个或部分生物体
     scat: 排泄物（非鸮类食丸或其它呕吐物）
+    teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
     track: 由生物在地面或雪地上留下的印痕
-    molt: 蜕下的皮或外骨骼
-    gall: 植物因受病原刺激或虫害而出现的局部增生
   controls: 控制
   convert: 转换
   coordinate_systems: 坐标系
@@ -1115,10 +1121,6 @@ zh-CN:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
     无视管理指南中的原则。
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    您需要拥有一个建立60天以上并且提供过超过100个鉴定的账号（包括自己的观察，目前您已添加了%{num_idents}）来申请管理员。如果您的账号两项都符合，可以回到本页面提交申请。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: 管理员申请已提交
   #Header
@@ -1298,6 +1300,7 @@ zh-CN:
       destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
       updated: '您已成功更新您的帐户。'
+      updated_but_not_signed_in: "帐号资料更新成功，由于您的密码已修改，请重新登录。"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1360,9 +1363,15 @@ zh-CN:
   download_kml: 下载KML
   downstream_coverage_rank: 下游覆盖率等级
   downstream_deviations: 下游偏差
+  #Noun, as in a journal post that has not been published
   draft: 草稿
+  #Noun, as in a journal post that has not been published
   draft_: 草稿
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: '%{user} 的草稿'
+  #Noun, as in a journal post that has not been published
   draft_saved: 草稿已保存！
+  #Noun, as in journal posts that has not been published
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
   drawings: 绘画
@@ -1494,11 +1503,6 @@ zh-CN:
   extra_properties: 额外属性
   evidence_of_organism: 生物证据
   facebook: 脸书
-  facebook_account_information: 您的Facebook账户信息
-  facebook_account_not_linked: "%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。"
-  facebook_access_token_expired: "访问令牌已过期。%{user}需要重新连接他们的Facebook账户。"
-  facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
-  facebook_options: Facebook选项
   failed_to_find_your_location: 无法找到您的位置。
   failed_to_repair_photo: "修复照片失败：%{errors}"
   failed_to_save_record: "保存记录失败。请重试。"
@@ -1653,7 +1657,6 @@ zh-CN:
   frequency: 频率
   from_a_place: 来自一个地方
   from_eol_collection: 来自EOL收藏
-  from_flickr_facebook_etc: 来自Flickr、Facebook等
   from_list: 来自列表
   from_photos: 来自照片
   from_place: 来自地方
@@ -1887,6 +1890,7 @@ zh-CN:
   item_flagged_notice_html: |
     这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
     <a href="%{manage_flags_path}">管理标签</a>
+  jobs: 工作机会
   join: 加入
   join_and_add_an_observation_to_project_html: 加入并添加观察到 %{project}
   join_project: 加入这个项目
@@ -1966,7 +1970,6 @@ zh-CN:
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
   lexicons:
-    scientific_names: 学名
     afrikaans: 南非语
     albanian: 阿尔巴尼亚语
     arabic: 阿拉伯语
@@ -2027,11 +2030,13 @@ zh-CN:
     romanian: 罗马尼亚语
     russian: 俄语
     santali: 桑塔利语
-    setswana: 茨瓦纳语
+    scientific_names: 学名
+    serbian: 塞尔维亚语
     sinhala: 僧伽罗语
     slovak: 斯洛伐克语
     slovenian: 斯洛文尼亚语
     spanish: 西班牙语
+    swahili: 斯瓦希里语
     swedish: 瑞典语
     tagalog: 他加禄语
     tahitian: 塔希提语
@@ -2039,8 +2044,8 @@ zh-CN:
     tokelauan: 托克劳语
     turkish: 土耳其语
     ukrainian: 乌克兰语
-    waray_waray: 瓦瑞瓦瑞语
     visayan: 维萨扬文
+    waray_waray: 瓦瑞瓦瑞语
   less: 更少
   licensed_site_photos: "已授权的 %{site_name} 照片"
   license: 许可协议
@@ -2054,14 +2059,8 @@ zh-CN:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: 验证码的链接
-  link_your_facebook_account: 链接您的Facebook账户
   link_your_flickr_account: 链接您的Flickr账户
   link_your_google_account: 链接您的Google账户
-  linked_facebook: "您的%{site_name}账户目前已链接到您的Facebook账户。"
-  linked_facebook_automaticaly: "另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？"
-  linked_facebook_description: "让您的%{site_name}帐户与您的Facebook帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Facebook取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Facebook账户会是个最佳选择。"
-  linked_facebook_howto: "要将Facebook连接到%{site_name}，请点击右侧链接，并登录至Facebook.com。"
-  linked_facebook_password: "我们将不会询问您的Facebook密码（但是Facebook可能检查按钮发送给您的URL并确保那是Facebook.com）。我们也将不会更改您的Facebook数据，除非您要求我们去做。"
   linked_flickr: "您的%{site_name}账户目前已链接到您的Flickr账户。"
   linked_flickr_automatically: "另请注意，如果您通过Flickr登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Flickr账户。看起来如果您使用Flickr的话，您将希望能够导入Flickr的照片，对么？"
   linked_flickr_description: "让您的%{site_name}帐户与您的Flickr帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Flickr取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Flickr账户会是个最佳选择。"
@@ -2112,6 +2111,7 @@ zh-CN:
     de: 德语
     el: 希腊语
     en: 英语
+    en-GB: 英语（英国）
     eo: 世界语
     es: 西班牙语
     es-AR: 西班牙语(阿根廷)
@@ -2124,10 +2124,12 @@ zh-CN:
     fr-CA: 法语（加拿大）
     gl: 加利西亚语
     he: 希伯来语
+    hr: 克罗地亚语
     hu: 匈牙利语
     id: 印尼语
     it: 意大利语
     ja: 日语
+    kk: 哈萨克语
     kn: 卡纳达语
     ko: 韩语
     lb: 卢森堡语
@@ -2373,8 +2375,12 @@ zh-CN:
   must_have_quality_grades: "质量等级必须为: %{grades}"
   must_have_sounds: 必须有音频
   must_have_x: "必须有 %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: 屏蔽
+  #Mute is a noun here
   mute_removed: 禁言已移除
   muted_users: 禁言用户
+  muting_description: 屏蔽某用户后，您将不再收到任何有关其活动的通知，包括 @，消息以及针对您观察的评论和鉴定。
   n_ago: "%{n}前"
   n_people_agrees: "%{amount} 个人同意"
   n_people_disagrees: "%{amount} 个人不同意"
@@ -2553,7 +2559,6 @@ zh-CN:
   not_findig_what_you_want: 找不到您想找的东西么？
   not_finding_place_you_want?: 找不到您想去的地点么？
   not_found: 未找到
-  not_linked_facebook: "您的%{site_name}账户并未链接至您的Facebook账户"
   not_linked_flickr: "您的%{site_name}账户并未链接至您的Flickr账户"
   not_on_this_list: 不在此列表中。
   not_recorded: 未记录
@@ -2781,7 +2786,7 @@ zh-CN:
   optional: 可选
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
   orange: 橙色
@@ -2835,6 +2840,8 @@ zh-CN:
     invalid_email: 无效的电子邮件格式
   password: 密码
   password_confirmation: '密码确认'
+  password_change_description: 更改密码后，您的所有设备将从 iNaturalist 登出。
+  password_change_logout_warning: 更改密码后，您的账号将被登出，请用新的密码重新登陆。
   paste: 粘贴
   paste_in_a_bunch_of_names: 粘贴一系列名字，每行一个，然后点击按钮！
   people: 成员
@@ -3332,7 +3339,6 @@ zh-CN:
   post_from_your_journal_html: 来自<a href="%{url}">您的日记</a>的帖子
   post_published: 贴子已发布！
   posted_by: 发帖人：
-  posted_on: 发帖时间：
   posts: 帖子
   potential_disagreement: 潜在争论
   powered_by: 驱动方
@@ -4023,7 +4029,6 @@ zh-CN:
   tagging: '正在添加标签……'
   tags: 标签
   tags_are_a_way: '标签是一种组织您的观察的方式。例如，您可以将所有潮池观察点标记为“tidepools”，便于以后查找。'
-  take_me_facebook: 是的，带我前往Facebook！
   take_me_flickr!: 是的，带我去Flickr！
   task_deleted: 任务已删除
   taxa: 分类单元
@@ -4245,6 +4250,30 @@ zh-CN:
   threatened: 受到威胁
   time_: 时间
   time_ago: "%{time}前"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: 哥伦比亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: 中部时间（美国和加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: 太平洋时间（墨西哥）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: 山地时间（美国和加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: 危地马拉时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: 大西洋标准时间（加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: 玻利维亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: 秘鲁时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: 中南半岛时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: 欧洲中部时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: 欧洲东部时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: 土耳其时间
   #As in the title of a book or a blog post
   title: 标题
   title_and_description: "标题和描述"
@@ -4415,8 +4444,6 @@ zh-CN:
   user_commented: "%{user} 已评论"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意先前更精确的识别"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}喜欢了%{owner}的%{noun}"
   user_faved_this_observation: "%{user} 收藏了此观察"
   user_flagged_as_a_non_spammer_html: "%{user} 被标记为非垃圾邮件发送者"
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
@@ -4470,7 +4497,7 @@ zh-CN:
   view_field_options: 查看字段选项
   view_flag: 查看标记
   view_flags: 查看标记
-  view_flags_for_x_html: "查看用于 %{x} 的旗帜"
+  view_flags_for_x_html: "查看 %{x} 的标记"
   view_full_observation: 查看完整观察
   view_full_size_photo: 查看全尺寸照片
   view_journal: 查看日记
@@ -4529,9 +4556,6 @@ zh-CN:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
   was_it_captive_cultivated?: "被俘虏/培养了吗？"
-  we_also_support: |
-    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://photos.google.com">Google照片</a>和<a
-    href="http://facebook.com">Facebook</a>用于图片存储。
   we_can_only_understand_csv_in: 我们只能解析此种格式的CSV文件
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_couldnt_find_a_user_with_that_activation_code: "我们找不到具有该激活码的用户。您可能已经激活了自己的帐户，请尝试登录。"
@@ -5108,8 +5132,8 @@ zh-CN:
         cumulative_count_desc: '单个分类单元及其所有后代的标识号'
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
-        data_quality_assessment_desc_html: |
-          数据质量评估是对观察记录的精确程度的评估。科研级别的观察记录可能会被科学家用于科学研究。请在下方投票：
+        data_quality_assessment_desc3_html: |
+          出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确性、精确性、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
@@ -5729,9 +5753,6 @@ zh-CN:
       index:
         connect_with_nature: 连接自然
         explore_and_share: 探索并分享您对自然世界的观察。
-        observations_to_date: '观察至今'
-        species_observed: '观察的物种'
-        people_signed_up: '注册的人'
         how_it_works: 它是如何工作的
         record_your_observations: 记录您的观察
         share_with_fellow_naturalists: 与自然学家分享
@@ -5802,16 +5823,8 @@ zh-CN:
       6: 五
       7: 六
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%Y年%B%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%Y %b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%Y年%B%d日'
     month_names:
       - 
       - 一月
@@ -5866,38 +5879,6 @@ zh-CN:
       month: 月
       second: 秒
       year: 年
-  errors:
-    messages:
-      accepted: 必须接受
-      blank: 不能为空
-      confirmation: 不匹配确认
-      empty: 不能为空
-      equal_to: 必须等于 %{count}
-      even: 必须是偶数
-      exclusion: 被保留
-      greater_than: 必须大于 %{count}
-      greater_than_or_equal_to: 必须大于等于 %{count}
-      inclusion: 未包括在列表中
-      invalid: 无效
-      less_than: 必须小于 %{count}
-      less_than_or_equal_to: 必须小于等于 %{count}
-      new_project_owner_must_be_a_manager: 新项目所有者必须是管理员
-      not_a_number: 不是数字
-      not_an_integer: 必须是一个整数
-      odd: 必须是奇数
-      record_invalid: '验证失败：%{errors}'
-      requires_privilege_organizer: 要做到这一点，必须有50个可核查的观察记录
-      taken: 已被使用
-      too_long:
-        other: 太长了（最多 %{count} 个字符）
-      too_short:
-        other: 太短了（至少 %{count} 个字符）
-      wrong_length:
-        other: 长度错误（应为 %{count} 个字符）
-    template:
-      body: '以下字段存在问题：'
-      header:
-        other: '%{count} 个错误禁止了此 %{model} 的保存'
   helpers:
     defaults:
       title: "这是标题"
@@ -5939,51 +5920,9 @@ zh-CN:
   time:
     am: 上午
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%Y年%b%d日 %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%Y年%d%B日 %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%I:%M %p"
     pm: 下午
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: 必须接受
-        blank: 不能为空
-        confirmation: 不匹配确认
-        empty: 不能为空
-        equal_to: 必须等于 %{count}
-        even: 必须是偶数
-        exclusion: 被保留
-        greater_than: 必须大于 %{count}
-        greater_than_or_equal_to: 必须大于等于 %{count}
-        inclusion: 未包括在列表中
-        invalid: 无效
-        less_than: 必须小于 %{count}
-        less_than_or_equal_to: 必须小于等于 %{count}
-        not_a_number: 不是数字
-        not_an_integer: 必须是整数
-        odd: 必须是奇数
-        record_invalid: 验证失败：%{errors}
-        taken: 已被使用
-        too_long:
-          other: 太长了（最多 %{count} 个字符）
-        too_short:
-          other: 太短了（至少 %{count} 个字符）
-        wrong_length:
-          other: 长度错误（应为 %{count} 个字符）
-      template:
-        body: 以下字段存在问题：
-        header:
-          other: '%{count} 个错误禁止了此 %{model} 的保存'
   activerecord:
     models:
       AssessmentSection: 评定章节
@@ -6106,19 +6045,16 @@ zh-CN:
         empty: 不能为空
         even: 必须是偶数
         exclusion: 已被保留
-        greater_than: 必须大于%{count}
-        greater_than_or_equal_to: 必须大于或等于%{count}
         inclusion: 未包含在列表中
         invalid: 是无效的
-        less_than: 必须小于%{count}
-        less_than_or_equal_to: 必须小于或等于 %{count}。
         new_project_owner_must_be_a_manager: 新项目所有者必须是管理员
         not_a_number: 不是数字
         not_an_integer: 必须是一个整数
         odd: 必须是奇数
         only_project_owner_can_change_project_owner: 只有项目所有者可以更改项目所有者
         record_invalid: '验证失败: %{errors}'
-        requires_privilege_speech: 必须有三次可验证的观察或三次替别人做出的身份验证才能做出
+        requires_privilege_speech: |
+          必须有三次可验证的观察或三次替别人做出的身份验证才能做出
         requires_privilege_organizer: 必须要有50个可验证观察才能做出
         taken: 已被使用
         too_long:
@@ -6128,7 +6064,7 @@ zh-CN:
         wrong_length:
           other: 长度错误（应为 %{count} 个字符）
       template:
-        body: 以下字段出现问题：
+        body: '以下字段出现问题：'
         header:
           other: '%{count} 个错误禁止了储存此%{model}'
       models:

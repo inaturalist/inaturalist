@@ -816,7 +816,7 @@ class Observation < ApplicationRecord
     i18n_vars = {}
     key = if taxon
       i18n_vars[:taxon] = if options[:viewer]
-        FakeView.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
+        ApplicationController.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
       else
         common_name( locale: I18n.locale )
       end
@@ -1535,8 +1535,7 @@ class Observation < ApplicationRecord
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
-    return true if user_id == viewer.id
-    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
+    return true if user.trusts?( viewer )
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
@@ -1925,6 +1924,9 @@ class Observation < ApplicationRecord
       if first_id_of_prob_taxon && first_id_of_community_taxon && first_id_of_prob_taxon.id < first_id_of_community_taxon.id
         # prob_taxon was subspecific but first
         prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      elsif prob_taxon.species
+        # when the subspecific prob_taxon was added later, use it's species ancestor
+        prob_taxon.species.id
       else
         # prob_taxon was subspecific and not first, using CID
         ct.id
@@ -2090,7 +2092,9 @@ class Observation < ApplicationRecord
     return true if species_guess =~ /\?$/
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    self.taxon_id = single_taxon_id_for_name(species_guess)
+    if taxon = single_taxon_for_name( species_guess )
+      self.taxon_id = taxon.try( :id ) if taxon.is_active?
+    end
     true
   end
 
@@ -2244,7 +2248,7 @@ class Observation < ApplicationRecord
       taxon_ids_including_ancestors.each do |tid|
         Taxon.delay(
           priority: INTEGRITY_PRIORITY,
-          run_at: 1.hour.from_now,
+          run_at: 2.hours.from_now,
           unique_hash: { "Taxon::update_observation_counts": tid }
         ).update_observation_counts( taxon_ids: [tid] )
       end
@@ -3385,29 +3389,14 @@ class Observation < ApplicationRecord
   end
 
   # this method will set the updated_at column on this observation to the current time,
-  # and re-index only the updated_at attribute of the observation doc in Elasticsearch
+  # and queue the observation to be re-indexed shortly
   def mark_as_updated
-    updated_time = Time.now
-    update_column( :updated_at, updated_time )
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Observation.__elasticsearch__.client.update_by_query(
-        index: Observation.index_name,
-        refresh: Rails.env.test?,
-        body: {
-          query: {
-            term: {
-              "id": id
-            }
-          },
-          script: {
-            source: "ctx._source.updated_at = params.updated_time",
-            params: {
-              updated_time: updated_time
-            }
-          }
-        }
-      )
-    end
+    update_column( :updated_at, Time.now )
+    Observation.delay(
+      run_at: 10.minutes.from_now,
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: { "Observation::elastic_index": id }
+    ).elastic_index!( ids: [id] )
   end
 
 end

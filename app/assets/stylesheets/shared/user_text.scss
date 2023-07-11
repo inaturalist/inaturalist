@@ -1,5 +1,10 @@
 .UserText {
-  &.inline { display: inline; }
+  &.inline {
+    display: inline;
+    p {
+      display: inline;
+    }
+  }
   a {
     cursor: pointer;
   }

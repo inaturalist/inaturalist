@@ -38,9 +38,9 @@ module Shared
     # Check for an array of allowed email patterns in config/config.yml to
     # control email delivery in certain environments
     def check_allowed_email_recipient_patterns
-      return unless message && CONFIG&.allowed_email_recipient_patterns
+      return unless message&.to && CONFIG&.allowed_email_recipient_patterns
 
-      message.to_addresses.each do | email_address |
+      message.to.each do | email_address |
         unless CONFIG.allowed_email_recipient_patterns.detect {| pattern | email_address.to_s =~ /#{pattern}/ }
           message.perform_deliveries = false
           break

@@ -948,7 +948,6 @@ nb:
   connected_accounts_titlecase: Koblete kontoer
   connecting_flickr: "Kobler til Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
-  connecting_to_facebook: "Kobler til Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Å koble din konto på %{site_name} til kontoer på andre sider lar deg logge på %{site_name} ved å bruke dine påloggingsopplysninger fra disse sidene."
   cannot_be_changed_during_a_content_freeze: Kan ikke endres under frysing av innhold
   conservation_status: Bevaringsstatus
@@ -1028,15 +1027,15 @@ nb:
     bone: Bein
   controlled_term_definitions:
     alive: Organisme lever og viser ikke tegn på en snarlig død
+    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
     dead: Organisme er død eller viser tegn på en snarlig død
+    feather: En eller flere fjær som ikke er knyttet til en organisme
     flower_budding: Blomsterknopper er synlige men ikke åpne
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
-    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
-    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
-    feather: En eller flere fjær som ikke er knyttet til en organisme
     organism: Hel eller del av organisme
+    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
     track: Avtrykk i bakken eller snø laget av organisme
   controls: Kontrollpanel
   convert: Konverter
@@ -1348,9 +1347,13 @@ nb:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Downstream markert dekkede taksa
+  #Noun, as in a journal post that has not been published
   draft: utkast
+  #Noun, as in a journal post that has not been published
   draft_: Utkast
+  #Noun, as in a journal post that has not been published
   draft_saved: Utkast lagret!
+  #Noun, as in journal posts that has not been published
   drafts: Utkast
   drag_and_drop_some_photos_or_sounds: Dra og slipp noen bilder eller lyder
   drawings: Tegninger
@@ -1482,11 +1485,6 @@ nb:
   extra_properties: Ekstra egenskaper
   evidence_of_organism: Bevis for organisme
   facebook: Facebook
-  facebook_account_information: Din Facebook-kontoinformasjon
-  facebook_account_not_linked: "%{user} har ikke en tilkoblet Facebookkonto lenger, så %{site_name} har ikke tilgang til dette bildet."
-  facebook_access_token_expired: "Adgangstoken er utløpt. %{user} må lenke opp Facebook-kontoen på nytt."
-  facebook_needs_the_owner_of_that_photo_to: Facebook trenger at bildets eier bekrefter sin kobling til %{site_name_short} på nytt.
-  facebook_options: Facebookvalg
   failed_to_find_your_location: Kunne ikke finne din posisjon.
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
@@ -1646,7 +1644,6 @@ nb:
   frequency: Frekvens
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
-  from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
   from_list: Fra ei liste
   from_photos: Fra bilder
   from_place: Fra sted
@@ -1964,7 +1961,6 @@ nb:
   lexicon: Leksikon
   lexicon_cannot_contain_words: "kan ikke inneholde følgende ord: %{words}"
   lexicons:
-    scientific_names: Vitenskapelige navn
     afrikaans: Afrikansk
     albanian: Albansk
     arabic: Arabisk
@@ -2017,6 +2013,7 @@ nb:
     portuguese: Portugisisk
     romanian: Rumensk
     russian: Russisk
+    scientific_names: Vitenskapelige navn
     serbian: Serbisk
     slovak: Slovakisk
     slovenian: Slovensk
@@ -2040,14 +2037,8 @@ nb:
   life_list: "Livsliste til %{user}"
   linear_scale_label: Lineær
   link: Lenker
-  link_your_facebook_account: Tilknytt din Facebook-konto
   link_your_flickr_account: Tilknytt din Flickr-konto
   link_your_google_account: Tilknytt din Google-konto
-  linked_facebook: "Din %{site_name}-konto er knyttet til din Facebook-konto."
-  linked_facebook_automaticaly: "Husk også at vi vil koble sammen din %{site_name} og Facebook kontoer på nytt automatisk hvis du logger inn på %{site_name} via Facebook. Når du bruker Facebook ønsker du jo å kunne importere Facebook-bilder, ikke sant?"
-  linked_facebook_description: "Å holde din %{site_name}-konto koblet til din Facebook-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Facebook og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Facebook-konto som du vil koble %{site_name} opp mot."
-  linked_facebook_howto: "For å koble Facebook til %{site_name}, klikk lenken til høyre og logg inn på Facebook.com."
-  linked_facebook_password: "Vi kommer aldri til å be deg om ditt Facebook-passord (men Facebook kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Facebook.com). Vi vil heller ikke endre Facebook-opplysningene dine med mindre du ønsker det."
   linked_flickr: "Din %{site_name}-konto er knyttet til din Flickr-konto."
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
@@ -2358,6 +2349,7 @@ nb:
   must_have_quality_grades: "må ha kvalitetsgrader: %{grades}"
   must_have_sounds: må ha lyder
   must_have_x: "må ha %{x}"
+  #Mute is a noun here
   mute_removed: Demping fjernet
   muted_users: Dempede brukere
   n_ago: "%{n} siden"
@@ -2536,7 +2528,6 @@ nb:
   not_findig_what_you_want: Finner du ikke hva du ønsker?
   not_finding_place_you_want?: Finner du ikke stedet du ønsker?
   not_found: Ikke funnet
-  not_linked_facebook: "Din konto på %{site_name} er ikke koblet til din Facebook-konto"
   not_linked_flickr: "Din konto på %{site_name} er ikke koblet til din Flickr-konto"
   not_on_this_list: Ikke på denne lista.
   not_recorded: Ikke registrert
@@ -2758,7 +2749,7 @@ nb:
   optional: valgfritt
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller velg fra noen høyere taksa"
   orange: oransje
@@ -3310,7 +3301,6 @@ nb:
   post_from_your_journal_html: Innlegg fra <a href="%{url}">din journal</a>
   post_published: Innlegg publisert!
   posted_by: Publisert av
-  posted_on: Publisert
   posts: Innlegg
   potential_disagreement: Potensiell uenighet
   powered_by: Drevet av
@@ -3994,7 +3984,6 @@ nb:
   tagging: 'Legger til etikett...'
   tags: Etiketter
   tags_are_a_way: 'Etiketter er en måte å organisere dine observasjoner på. Du vil for eksempel kanskje legge til etiketten "tidevann" til dine observasjoner gjort i tidevannet, slik at de blir lettere å finne igjen senere.'
-  take_me_facebook: Ja, ta meg til Facebook!
   take_me_flickr!: Ja, ta meg til Flickr!
   target_list_alert: Er du sikker på at du har forsøkt å observere alle arter dekt av din målliste? Husk at alt som dekkes av din målliste som du ikke observerer blir regnet som et fravær, så det er veldig viktig at din målliste kommer nøyaktig overens med artene som du forsøkte å finne
   target_list_warning: Husk at alt på din målliste som du ikke observerte under din innenfor området blir sett på som et fravær. Det er veldig viktig at din målliste nøyaktig representerer artene du prøvde å finne. Hvis du ikke forsøkte å finne en art på din målliste eller alle arter i en gruppe på din målliste, vennligst fjern den.
@@ -4417,8 +4406,6 @@ nb:
   user_commented: "%{user} kommenterte"
   user_disagrees_this_is_taxon: "%{user} er uenig i at dette er %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig i tidligere finere identifikasjoner"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} har favorittisert %{noun} av %{owner}"
   user_faved_this_observation: "%{user} har lagt til denne observasjonen til sine favoritter"
   user_flagged_as_a_non_spammer_html: "%{user} markert som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markert som spammer"
@@ -4530,8 +4517,6 @@ nb:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
-  we_also_support: |
-    Vi støtter også <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Bilder</a>, og <a href="http://facebook.com">Facebook</a> for bildelagring.
   we_can_only_understand_csv_in: Vi kan kun forstå csv i følgende format
   we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finne en bruker med den aktiveringskoden. Du har muligens allerede aktivert din konto, vennligst prøv å logge på."
@@ -5237,9 +5222,6 @@ nb:
         cumulative_count_desc: 'Antall observasjoner for et individuelt takson og alle sine etterkommere'
         curator_coordinate_access_disabled_desc_html: |
           Dette prosjektet aksepterer ikke observasjoner med koordinater som prosjektkuratorene ikke kan se. Hvis du ikke vil dele koordinatene til denne observasjonen med kuratorene til dette prosjektet, må du fjerne observasjonen fra dette prosjektet.
-        data_quality_assessment_desc_html: |
-          Datakvalitetsvurderingen er en evaluering av observasjonens nøyaktighet.
-          Observasjoner av forskningskvalitet kan brukes av forskere innen forskning. Stem nedenfor:
         disagreement_count_desc: "antall identifiserte taksa som ikke er blant taksonets aner"
         identification_count_desc: 'Antall identifikasjoner for et individuelt takson'
         flagged_photos_desc_html: |
@@ -5973,6 +5955,10 @@ nb:
           </p>
         licensing_desc_html: |
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
+        monthly_supporter_desc_html: |
+          Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
+          States IRS EIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
+          <a href="%{url}">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme e-postadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.
         muting_desc_html: |
           <p>
           Å ignorere noen sørger for at du ikke får varslinger om ting de gjør, inkludert kommentarer på dine observasjoner, beskjeder til deg, å nevne deg, osv. Å ignorere noen hjelper deg med å overse noen uten å hindre dem fra å gjøre noe. 
@@ -6093,9 +6079,6 @@ nb:
       index:
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforsk og dele dine observasjoner fra den naturlige verden.
-        observations_to_date: 'Observasjoner hittil'
-        species_observed: 'Arter observert'
-        people_signed_up: 'Personer påmeldt'
         how_it_works: Slik fungerer det
         record_your_observations: Register dine observasjoner
         share_with_fellow_naturalists: Del med dine felles naturalister
@@ -6167,20 +6150,12 @@ nb:
       6: Fr
       7: Lø
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d. %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d. %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%d. %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Januar
@@ -6250,46 +6225,6 @@ nb:
       month: Måned
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: må være akseptert
-      blank: kan ikke være tom
-      confirmation: kom ikke overens med passordet
-      empty: kan ikke være tom
-      equal_to: må være lik %{count}
-      even: må være partall
-      exclusion: er forbeholdt
-      greater_than: må være større enn %{count}
-      greater_than_or_equal_to: må være større enn eller lik %{count}
-      inclusion: er ikke inkludert på listen
-      invalid: er ugyldig
-      less_than: må være mindre enn %{count}
-      less_than_or_equal_to: må være mindre enn eller lik %{count}
-      new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
-      not_a_number: er ikke et tall
-      not_an_integer: må være et helt tall
-      odd: må være oddetall
-      only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
-      record_invalid: 'Verifisering mislykket: %{errors}'
-      requires_privilege_speech: |
-        må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
-      requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
-      taken: er allerede opptatt
-      too_long:
-        one: er for lang (maks antall tegn er %{count})
-        other: er for lang (maks antall tegn er %{count})
-      too_short:
-        one: er for kort (minimum er %{count} tegn)
-        other: er for kort (minimum er %{count} tegn)
-      wrong_length:
-        one: har feil lengde (skal være %{count} tegn)
-        other: har feil lengde (skal være %{count} tegn)
-    template:
-      body: 'Det oppstod problemer med de følgende felt:'
-      header:
-        one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres"
-        other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres'
   helpers:
     defaults:
       title: "DETTE ER EN TITTEL"
@@ -6352,64 +6287,13 @@ nb:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%d. %b. %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d. %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d. %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: må være akseptert
-        blank: kan ikke være tom
-        confirmation: kom ikke overens med passordet
-        empty: kan ikke være tom
-        equal_to: må være lik %{count}
-        even: må være partall
-        exclusion: er forbeholdt
-        greater_than: må være større enn %{count}
-        greater_than_or_equal_to: må være større enn eller lik %{count}
-        inclusion: er ikke inkludert på listen
-        invalid: er ugyldig
-        less_than: må være mindre enn %{count}
-        less_than_or_equal_to: må være mindre enn eller lik %{count}
-        new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
-        not_a_number: er ikke et tall
-        not_an_integer: må være et helt tall
-        odd: må være oddetall
-        only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
-        record_invalid: 'Verifisering mislykket: %{errors}'
-        requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
-        requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
-        taken: er allerede opptatt
-        too_long:
-          one: er for lang (maks antall tegn er %{count})
-          other: er for lang (maks antall tegn er %{count})
-        too_short:
-          one: er for kort (minimum er %{count} tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: har feil lengde (skal være %{count} tegn)
-          other: har feil lengde (skal være %{count} tegn)
-      template:
-        body: 'Det var problemer med følgende felt:'
-        header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
   activerecord:
     models:
       AssessmentSection: Vurderingsseksjon
@@ -6539,22 +6423,18 @@ nb:
         blank: kan ikke være tom
         confirmation: kom ikke overens med passordet
         empty: kan ikke være tom
-        equal_to: må være lik %{count}
         even: må være partall
         exclusion: er forbeholdt
-        greater_than: må være større enn %{count}
-        greater_than_or_equal_to: må være større enn eller lik %{count}
         inclusion: er ikke inkludert på listen
         invalid: er ugyldig
-        less_than: må være mindre enn %{count}
-        less_than_or_equal_to: må være mindre enn eller lik %{count}
         new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
         only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
         record_invalid: 'Verifisering mislykket: %{errors}'
-        requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
+        requires_privilege_speech: |
+          må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
         taken: er allerede opptatt
         too_long:
@@ -6569,8 +6449,8 @@ nb:
       template:
         body: 'Det var problemer med følgende felt:'
         header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
+          one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres"
+          other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres'
       models:
         application:
           attributes:

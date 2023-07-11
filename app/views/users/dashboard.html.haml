@@ -143,7 +143,7 @@
                 .list-group-item
                   - datetime = DateTime.parse( topic["created_at"] ).in_time_zone( Time.zone )
                   .title
-                    = link_to topic["title"], "#{@discourse_url}/t/#{topic["slug"]}"
+                    = link_to topic["title"], "#{@discourse_url}/t/#{topic["slug"]}/#{topic["id"]}"
                     .categories
                       - if dc = @discourse_data[:categories][topic["category_id"]]
                         %a.inlineblock.label.label-default{ href: "#{@discourse_url}/c/#{dc["slug"]}", style: "color: ##{dc["text_color"]}; background-color: ##{dc["color"]}" }

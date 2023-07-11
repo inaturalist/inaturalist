@@ -23,9 +23,10 @@ shared_examples_for "a RelationshipsController" do
       expect( user.friendships.last ).not_to be_following
     end
     it "should create with a UUID" do
-      expect do
-        post :create, format: :json, params: { relationship: { friend_id: friend.uuid } }
-      end.to change( user.friendships, :count ).by( 1 )
+      friendships_count = user.friendships.count
+      post :create, format: :json, params: { relationship: { friend_id: friend.uuid } }
+      user.reload
+      expect( user.friendships.count ).to eq( friendships_count + 1 )
     end
   end
   describe "update" do

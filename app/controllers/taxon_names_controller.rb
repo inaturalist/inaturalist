@@ -16,8 +16,9 @@ class TaxonNamesController < ApplicationController
   def index
     per_page = params[:per_page].to_i
     per_page = 30 if per_page <= 0
-    per_page = 200 if per_page > 200
-    @taxon_names = TaxonName.page( params[:page] ).per_page( per_page ).includes( :place_taxon_names )
+    per_page = 400 if per_page > 400
+    @taxon_names = TaxonName.page( params[:page] ).per_page( per_page ).
+      includes( { place_taxon_names: :place } )
 
     if params[:q]
       @taxon_names = @taxon_names.where( "name LIKE ?", "%#{params[:q].split.join( '%' )}%" )
@@ -39,7 +40,15 @@ class TaxonNamesController < ApplicationController
     pagination_headers_for( @taxon_names )
 
     respond_to do | format |
-      format.json { render json: @taxon_names.as_json( include: :place_taxon_names ) }
+      format.json { render json: @taxon_names.as_json( include: {
+        place_taxon_names: {
+          include: {
+            place: {
+              only: [:id, :name]
+            }
+          }
+        }
+      } ) }
     end
   end
 
@@ -79,6 +88,7 @@ class TaxonNamesController < ApplicationController
     @taxon_name = TaxonName.new( params[:taxon_name] )
     @taxon_name.creator = current_user
     @taxon_name.updater = current_user
+    @taxon_name.user_submission = true
 
     respond_to do | format |
       if @taxon_name.save
@@ -104,6 +114,7 @@ class TaxonNamesController < ApplicationController
   def update
     # Set the last editor
     params[:taxon_name][:updater_id] = current_user.id
+    @taxon_name.user_submission = true
 
     if (
       !current_user.is_curator? &&
@@ -134,6 +145,10 @@ class TaxonNamesController < ApplicationController
   end
 
   def destroy
+    @taxon_name.user_submission = true
+    if params[:taxon_name] && params[:taxon_name][:audit_comment]
+      @taxon_name.audit_comment = params[:taxon_name][:audit_comment]
+    end
     if @taxon_name == @taxon_name.taxon.scientific_name
       msg = <<-MSG
         You can't delete the default scientific name of a taxon. You might
@@ -144,6 +159,13 @@ class TaxonNamesController < ApplicationController
     elsif @taxon_name.destroy
       flash[:notice] = t( :taxon_name_was_deleted )
     else
+      if @taxon_name.errors.any?
+        respond_to do | format |
+          load_lexicons
+          format.html { render action: "edit" }
+        end
+        return
+      end
       flash[:error] = t( :something_went_wrong_deleting_the_taxon_name, taxon_name: @taxon_name.name )
     end
     respond_to do | format |

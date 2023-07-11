@@ -1,0 +1,69 @@
+{
+  "total_results": 1,
+  "page": 1,
+  "per_page": 30,
+  "results": [
+    {
+      "id": 2,
+      "ancestors": [
+        {
+          "id": 1,
+          "ancestor_ids": [
+            48460,
+            1
+          ],
+          "ancestry": "48460",
+          "atlas_id": null,
+          "complete_rank": "order",
+          "complete_species_count": null,
+          "current_synonymous_taxon_ids": null,
+          "default_photo": {
+            "id": 80678745,
+            "attribution": "no rights reserved, uploaded by Abhas Misraraj",
+            "flags": [],
+            "license_code": "cc0",
+            "medium_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/80678745/medium.jpg",
+            "original_dimensions": {
+              "height": 2000,
+              "width": 2000
+            },
+            "square_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/80678745/square.jpg",
+            "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/80678745/square.jpg"
+          },
+          "extinct": false,
+          "flag_counts": {
+            "resolved": 13,
+            "unresolved": 0
+          },
+          "iconic_taxon_id": 1,
+          "iconic_taxon_name": "Animalia",
+          "is_active": true,
+          "name": "Animalia",
+          "observations_count": 71337341,
+          "parent_id": 48460,
+          "preferred_common_name": "Animals",
+          "rank": "kingdom",
+          "rank_level": 70,
+          "taxon_changes_count": 8,
+          "taxon_schemes_count": 2,
+          "wikipedia_url": "http://en.wikipedia.org/wiki/Animal"
+        }
+      ],
+      "ancestor_ids": [
+        48460,
+        1
+      ],
+      "ancestry": "48460/1",
+      "atlas_id": null,
+      "iconic_taxon_id": 1,
+      "iconic_taxon_name": "Animalia",
+      "is_active": true,
+      "name": "Chordata",
+      "parent_id": 1,
+      "preferred_common_name": "Chordates",
+      "rank": "phylum",
+      "rank_level": 60,
+      "wikipedia_summary": "A <b>chordate</b> is an animal belonging to the phylum <b>Chordata</b>; chordates possess a notochord, a hollow dorsal nerve cord, pharyngeal slits, an endostyle, and a post-anal tail, metameric segmentation, and a circulatory system, for at least some period of their life cycle. Chordates are deuterostomes, as during the embryo development stage the anus forms before the mouth. They are also bilaterally symmetric coelomates. In the case of vertebrate chordates, the notochord is usually replaced by a..."
+    }
+  ]
+}

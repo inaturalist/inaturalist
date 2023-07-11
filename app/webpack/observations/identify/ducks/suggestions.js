@@ -89,7 +89,7 @@ export default function reducer(
       if ( observation && isFeaturedObs ) {
         newState.query = Object.assign( newState.query, {
           taxon: state.query.taxon,
-          taxon_id: state.query.taxon.id,
+          taxon_id: state.query.taxon_id,
           place: state.query.place,
           place_id: state.query.place_id
         } );

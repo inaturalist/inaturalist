@@ -1085,7 +1085,6 @@ lv:
   connected_accounts_titlecase: Savienotie konti
   connecting_flickr: "Savienojas ar Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Pieslēdzies vēlreiz Flickr, lai autorizētu rakstīšanas atļaujas
-  connecting_to_facebook: "Savienojas ar Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Savienojot savu %{site_name} kontu ar citu tīmekļa vietņu kontiem, %{site_name} vietnei būs iespējams pieslēgties ar akreditācijas datiem no šīm pārējām vietnēm."
   cannot_be_changed_during_a_content_freeze: Izmaiņas nav iespējams veikt kamēr saturs ir bloķēts
   conservation_status: Aizsardzības statuss
@@ -1175,21 +1174,21 @@ lv:
     molt: Nomesta āda
   controlled_term_definitions:
     alive: Organisms ir dzīvs un nekas neliecina par pretējo
+    bone: |
+      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
+    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
     dead: Organisms ir miris vai novērojamas nenovēršamas nāves pazīmes
+    feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     flower_budding: Ziedpumpuri ir redzami, bet nav uzplaukuši
     flowering: Ziedi ir redzami, uzplaukuši un vēl aizvien klāt pie auga
     fruiting: Augļi ir redzami un vēl aizvien klāt pie auga
+    gall: Deformēta auga audu izaugums, ko izraisījis parazītisks organisms
+    molt: Nomesta āda vai ārskelets
     no_evidence_of_flowering: Pievienotajos failos nekas neliecina par reproduktīvajām struktūrām
-    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
-    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
-    feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     organism: Vesels organisms vai tā daļa
     scat: Izkārnijumi (neskaitot pūču atrijas vai citu atvemtu barību)
+    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
     track: Kāda organisma uz zemes atstāti nospiedumi
-    bone: |
-      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
-    molt: Nomesta āda vai ārskelets
-    gall: Deformēta auga audu izaugums, ko izraisījis parazītisks organisms
   controls: Vadīklas
   convert: Konvertēt
   coordinate_systems: Koordinātu sistēmas
@@ -1296,12 +1295,6 @@ lv:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Neizturas atbilstoši uzvedības normu nosacījumiem.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas tiek precizētas, tai skaitā paša lietotāja %{num_idents} pievienotās identifikācijas. Kad šie kritēriji ir izpildīti, šajā sadaļā iespējams pieteikties pārziņa statusam.
-  curator_application_inelligible_error: |
-    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas tiek precizētas, tai skaitā paša lietotāja pievienotās identifikācijas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Pieteikums pārziņa statusam iesniegts.
   #Header
@@ -1594,9 +1587,13 @@ lv:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Pašreiz aktīvo taksonu pēcteči
+  #Noun, as in a journal post that has not been published
   draft: melnraksts
+  #Noun, as in a journal post that has not been published
   draft_: Melnraksts
+  #Noun, as in a journal post that has not been published
   draft_saved: Melnraksts saglabāts.
+  #Noun, as in journal posts that has not been published
   drafts: Melnraksts
   drag_and_drop_some_photos_or_sounds: Velc un nomet fotogrāfijas un audiofailus
   drawings: Zīmējumi
@@ -1742,13 +1739,6 @@ lv:
   extra_properties: Papildu informācija
   evidence_of_organism: Ar organisma novērojumu pierādījumiem
   facebook: Facebook
-  facebook_account_information: Tava Facebook konta informācija
-  facebook_account_not_linked: "%{user} konts vairs nav savienots ar Facebook, tāpēc %{site_name} vietnei nav atļauta piekļuve šai fotogrāfijai."
-  facebook_access_token_expired: "Piekļuves pilnvaras laiks ir beidzies. %{user} no jauna jāsavieno savs konts ar Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook nepieciešams, lai fotogrāfijas īpašnieks no jauna apstiprinātu savienojumu ar %{site_name_short}.
-  facebook_options: Facebook iestatījumi
-  facebook_photo_import_disabled_notice: |
-    2020. gada novembrī Facebook mums pieprasīja pierādīt to, ka mums patiešām ir nepieciešama piekļuve pie fotogrāfijām. Mums neizdevās izpildīt viņu prasības Facebook verifikācijas sistēmas dēļ. Tādēļ mēs vairs neatbalstām fotogrāfiju importēšanu no Facebook.
   failed_to_find_your_location: Neizdevās sameklēt tavu atrašanās vietu.
   failed_to_repair_photo: "Neizdevās salabot fotogrāfiju: %{errors}"
   failed_to_save_record: "Neizdevās saglabāt ierakstu. Lūdzu, mēģini vēlreiz nedaudz vēlāk."
@@ -1909,7 +1899,6 @@ lv:
   frequency: Biežums
   from_a_place: no vietas
   from_eol_collection: No EOL kolekcijas
-  from_flickr_facebook_etc: No Flickr, Facebook u.t.t.
   from_list: No saraksta
   from_photos: No fotogrāfijām
   from_place: No vietas
@@ -2268,7 +2257,6 @@ lv:
   lexicon: Leksikons
   lexicon_cannot_contain_words: "nedrīkst saturēt šos vārdus: %{words}"
   lexicons:
-    scientific_names: Zinātniskie nosaukumi
     afrikaans: Afrikandu
     albanian: Albāņu
     arabic: Arābu
@@ -2330,7 +2318,7 @@ lv:
     romanian: Rumāņu
     russian: Krievu
     santali: Santali
-    setswana: Secvanu
+    scientific_names: Zinātniskie nosaukumi
     sinhala: Singāļu
     slovak: Slovāku
     slovenian: Slovēņu
@@ -2343,8 +2331,8 @@ lv:
     tokelauan: Tokelauiešu
     turkish: Turku
     ukrainian: Ukraiņu
-    waray_waray: Varajiešu
     visayan: Visajaniešu
+    waray_waray: Varajiešu
   less: Mazāk
   licensed_site_photos: "%{site_name} vietnes licencētas fotogrāfijas"
   license: Licence
@@ -2358,14 +2346,8 @@ lv:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Saite uz autorizācijas kodu
-  link_your_facebook_account: Pievieno savu Facebook kontu
   link_your_flickr_account: Pievieno savu Flickr kontu
   link_your_google_account: Pievieno savu Google kontu
-  linked_facebook: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Facebook kontu."
-  linked_facebook_automaticaly: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Facebook kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Facebook kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Facebook."
-  linked_facebook_description: "%{site_name} konta savienošana ar Facebook kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Facebook konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Facebook kontu, ko gribēsi savienot ar %{site_name} kontu."
-  linked_facebook_howto: "Lai savienotu Facebook ar %{site_name}, nospied uz saites pa labi un pieraksties savā Facebook kontā."
-  linked_facebook_password: "Mēs nekad nepieprasām tavu Facebook paroli, bet paši Facebook to mēdz palūgt, lai pārbaudītu, vai pogas URL patiešām ir no Facebook.com. Mēs arī neveicam izmaiņas tavos Facebook datos, ja vien tu pats to nelūdz."
   linked_flickr: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Flickr kontu."
   linked_flickr_automatically: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Flickr kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Flickr kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Flickr."
   linked_flickr_description: "%{site_name} konta savienošana ar Flickr kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Flickr konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Flickr kontu, ko gribēsi savienot ar %{site_name} kontu."
@@ -2699,6 +2681,7 @@ lv:
   must_have_quality_grades: "Jābūt noteiktam līmenim: %{grades}"
   must_have_sounds: jābūt ar audiofailiem
   must_have_x: "jābūt ar %{x}"
+  #Mute is a noun here
   mute_removed: Vairs nav apklusināts
   muted_users: Apklusinātie lietotāji
   n_ago: "pirms %{n}"
@@ -2899,7 +2882,6 @@ lv:
   not_findig_what_you_want: Nevari atrast iecerēto?
   not_finding_place_you_want?: Nevari atrast vēlamo vietu?
   not_found: Nav atrasts
-  not_linked_facebook: "Tavs %{site_name} konts nav savienots ar tavu Facebook kontu."
   not_linked_flickr: "Tavs %{site_name} konts nav savienots ar tavu Flickr kontu."
   not_on_this_list: Nav šajā sarakstā.
   not_recorded: Nav saglabāts
@@ -3143,7 +3125,7 @@ lv:
   optional: pēc izvēles
   or: vai
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: VAI
   or_choose_high_level_taxa: "... vai izvēlies no augsto pakāpju taksoniem"
   orange: oranžs
@@ -3708,7 +3690,6 @@ lv:
   post_from_your_journal_html: Ieraksts no <a href="%{url}">tava žurnāla</a>
   post_published: Ieraksts publicēts.
   posted_by: 'Publicējis:'
-  posted_on: Publicēts
   posts: Ieraksti
   potential_disagreement: Potenciālas domstarpības
   powered_by: Darbināts ar
@@ -4481,7 +4462,6 @@ lv:
   tagging: 'Pievieno tagus...'
   tags: Tagi
   tags_are_a_way: 'Tagi noder novērojumu organizēšanai. Piemēram, visiem novērojumiem plūdmaiņas baseinos var pievienot tagu "plūdmaiņas baseini", lai vēlāk tos būtu vieglāk atrast.'
-  take_me_facebook: Jā, iet uz Facebook.
   take_me_flickr!: Jā, iet uz Flickr.
   target_list_alert: Vai esi pārliecināts, ka mēģināji novērot visas sarakstā iekļautās sugas? Atceries, ka visi gadījumi, kad sarakstā iekļautās sugas neizdevās novērot, tiks uzskatīti par prombūtni, tāpēc ir ļoti svarīgi, lai tavs saraksts precīzi atspoguļotu tieši tās sugas, ko mēģināji atrast.
   target_list_warning: Atceries, ka visi gadījumi, kad sarakstā iekļautās sugas neizdevās novērot noteiktajā teritorijā un laikā, tiks uzskatīti par prombūtni. Ir ļoti svarīgi, lai tavs saraksts precīzi atspoguļotu tieši tās sugas, ko mēģināji atrast. Ja kādu no tavā sarakstā iekļautajām sugām vai sugu grupām nemaz nemēģināji atrast, lūdzu, izņem tās no saraksta.
@@ -5089,8 +5069,6 @@ lv:
   user_commented: "%{user} komentēja"
   user_disagrees_this_is_taxon: "%{user} nepiekrīt %{taxon} identifikācijai"
   user_disagrees_with_previous_finer_identifications: "%{user} nepiekrīt iepriekšējām identifikācijām, kas bija tuvāk konkrētai sugai"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} pievienoja izlasei %{noun}, ko radījis %{owner}"
   user_faved_this_observation: "%{user} pievienoja novērojumu izlasei"
   user_flagged_as_a_non_spammer_html: "%{user} atzīmēts kā mēstuļu neizplatītājs"
   user_flagged_as_a_spammer_html: "%{user} atzīmēts kā mēstuļu izplatītājs"
@@ -5215,11 +5193,6 @@ lv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Nesameklētie
   was_it_captive_cultivated?: "Organisms bija nebrīvē vai kultivēts?"
-  we_also_support: |
-    Atbalstām arī <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> un
-    <a href="http://facebook.com">Facebook</a>
-    attēlu mitināšanai.
   we_can_only_understand_csv_in: Sistēma saprot CSV tikai šādā formātā
   we_couldnt_find_a_user: Neatradām lietotāju ar šo e-pasta adresi.
   we_couldnt_find_a_user_with_that_activation_code: "Neatradām lietotāju ar šo aktivizācijas kodu. Iespējams, ka jau aktivizēji savu kontu. Pamēģini pierakstīties."
@@ -5986,8 +5959,6 @@ lv:
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
         curator_coordinate_access_disabled_desc_html: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
-        data_quality_assessment_desc_html: |
-          Datu kvalitātes novērtējumā izvērtē novērojuma precizitāti. Pētniecības līmeņa novērojumus izmanto zinātnieki. Nobalso šeit:
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
         identification_count_desc: 'Individuāla taksona identifikāciju skaits'
         flagged_photos_desc_html: |
@@ -6758,6 +6729,10 @@ lv:
           Licencē savu saturu, lai sniegtu lietotājiem tiesības to izmantot, nelūdzot tavu piekrišanu, bet ievērojot norādītos licences noteikumus. %{site_name} glabā tavu ar Creative Commons licencēto saturu partnerorganizācijām paredzētos arhīvos, kas tiek regulāri atjaunoti. Piemēram, ar No
           Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
           (CC BY-NC) licencētais saturs tiek glabāts arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska starpvaldību organizācija, kas apkopo un izplata bioloģiskās daudzveidības datus no visas pasaules.
+        monthly_supporter_desc_html: |
+          Lietotāji ar iNaturalist ikmēnēša atbalstītāja statusu katru mēnesi automātiski ziedo, lai atbalstītu California Academy of Sciences (United States IRS EIN 94-1156258) un iNaturalist un iNaturalist tīkla vietņu uzturēšanu, kas nenes peļņu.
+          <a href="%{url}">Lai kļūtu par ikmēneša atbalstītāju, nospied šeit</a>.
+          Kad būsim saņēmuši tavu ziedojumu, varēsi atzīmēt lodziņu, lai rādītu savā profilā ziedotāja statusu. Lai mēs varētu pārbaudīt to, ka esi kļuvis par ikmēneša atbalstītāju, tev jānorāda vienādu e-pasta adresi gan Donorbox, gan iNaturalist vietnē.
         muting_desc_html: |
           <p>
           Apklusinot kādu lietotāju, nesaņemsi paziņojumus par viņa darbībām, tai skaitā tavu novērojumu komentēšanu, sazināšanos ar tevi, tevis pieminēšanu utt. Apklusināšana sniedz iespēju kādu ignorēt, neierobežojot lietotāju veikt citas darbības.
@@ -6876,9 +6851,6 @@ lv:
       index:
         connect_with_nature: Pietuvojies dabai
         explore_and_share: Izzini un dalies ar novērojumiem no dabas.
-        observations_to_date: 'Novērojumi līdz šim brīdim'
-        species_observed: 'Novērotās sugas'
-        people_signed_up: 'Reģistrējušies jauni lietotāji'
         how_it_works: Kā tas strādā?
         record_your_observations: Pievieno novērojumus
         share_with_fellow_naturalists: Dalies ar citiem dabas draugiem
@@ -6949,20 +6921,12 @@ lv:
       6: Piek.
       7: Ses.
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - Janvāris
@@ -7047,50 +7011,6 @@ lv:
       month: Mēnesis
       second: Sekundes
       year: Gads
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: jābūt apstiprinātām
-      blank: nevar būt tukšs
-      confirmation: nesakrīt ar paroli
-      empty: nevar būt tukšs
-      equal_to: jābūt vienādam ar %{count}
-      even: jābūt vienādam
-      exclusion: ir rezervēts
-      greater_than: jābūt vairāk par %{count}
-      greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
-      inclusion: nav iekļauts sarakstā
-      invalid: ir nederīgs
-      less_than: jābūt mazāk par %{count}
-      less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
-      new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
-      not_a_number: nevar būt skaitlis
-      not_an_integer: jābūt veselam skaitlim
-      odd: jābūt nepāra
-      only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
-      record_invalid: 'Validācija neizdevās: %{errors}'
-      requires_privilege_speech: |
-        lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
-      requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
-      taken: jau ir aizņemts
-      too_long:
-        zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-        one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
-        other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-      too_short:
-        zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-        one: pārāk īss (ne mazāk par %{count} rakstzīmi)
-        other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-      wrong_length:
-        zero: nepareizs garums (jābūt %{count} rakstzīmēm)
-        one: nepareizs garums (jābūt %{count} rakstzīmei)
-        other: nepareizs garums (jābūt %{count} rakstzīmēm)
-    template:
-      body: 'Radās problēmas ar šiem laukiem:'
-      header:
-        zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-        one: "%{count} kļūdas dēļ šis %{model} netika saglabāts"
-        other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   helpers:
     defaults:
       title: "ŠIS IR VIRSRAKSTS"
@@ -7154,68 +7074,13 @@ lv:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: jābūt apstiprinātām
-        blank: nevar būt tukšs
-        confirmation: nesakrīt ar paroli
-        empty: nevar būt tukšs
-        equal_to: jābūt vienādam ar %{count}
-        even: jābūt vienādam
-        exclusion: ir rezervēts
-        greater_than: jābūt vairāk par %{count}
-        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
-        inclusion: nav iekļauts sarakstā
-        invalid: ir nederīgs
-        less_than: jābūt mazāk par %{count}
-        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
-        new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
-        not_a_number: nevar būt skaitlis
-        not_an_integer: jābūt veselam skaitlim
-        odd: jābūt nepāra
-        only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
-        record_invalid: 'Validācija neizdevās: %{errors}'
-        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
-        requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
-        taken: jau ir aizņemts
-        too_long:
-          zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-          one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
-          other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-        too_short:
-          zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-          one: pārāk īss (ne mazāk par %{count} rakstzīmi)
-          other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-        wrong_length:
-          zero: nepareizs garums (jābūt %{count} rakstzīmēm)
-          one: nepareizs garums (jābūt %{count} rakstzīmei)
-          other: nepareizs garums (jābūt %{count} rakstzīmēm)
-      template:
-        body: 'Radās problēmas ar šiem laukiem:'
-        header:
-          zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
-          other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   activerecord:
     models:
       AssessmentSection: Novērtējuma sadaļa
@@ -7405,22 +7270,18 @@ lv:
         blank: nevar būt tukšs
         confirmation: nesakrīt ar paroli
         empty: nevar būt tukšs
-        equal_to: jābūt vienādam ar %{count}
         even: jābūt vienādam
         exclusion: ir rezervēts
-        greater_than: jābūt vairāk par %{count}
-        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
         inclusion: nav iekļauts sarakstā
         invalid: ir nederīgs
-        less_than: jābūt mazāk par %{count}
-        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
         new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
         not_a_number: nevar būt skaitlis
         not_an_integer: jābūt veselam skaitlim
         odd: jābūt nepāra
         only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
         record_invalid: 'Validācija neizdevās: %{errors}'
-        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
+        requires_privilege_speech: |
+          lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
         requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
         taken: jau ir aizņemts
         too_long:
@@ -7439,7 +7300,7 @@ lv:
         body: 'Radās problēmas ar šiem laukiem:'
         header:
           zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
+          one: "%{count} kļūdas dēļ šis %{model} netika saglabāts"
           other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
       models:
         application:

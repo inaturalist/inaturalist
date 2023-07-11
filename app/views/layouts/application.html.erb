@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xml:lang="<%= I18n.locale %>"
     lang="<%= I18n.locale %>"
+    <% if @rtl %>
+      dir="rtl"
+    <% else %>
+      dir="ltr"
+    <% end %>
     xmlns:fb="http://www.facebook.com/2008/fbml"
     xmlns:og="http://ogp.me/ns#">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <% if CONFIG.facebook && CONFIG.facebook.namespace %><%= CONFIG.facebook.namespace %>: http://ogp.me/ns/fb/<%= CONFIG.facebook.namespace %>#<% end %>">
@@ -19,6 +24,7 @@
     <%= javascript_include_tag "jquery/jquery-1.9.1.min" %>
     <%= javascript_include_tag "jquery/jquery-ui-1.9.1.min" %>
     <%= javascript_include_tag "bootstrap.min" %>
+    <%= stylesheet_link_tag "bootstrap-rtl" if @rtl %>
     <%= render "shared/i18n" %>
     <script type="text/javascript">
       <% if @site %>
@@ -66,12 +72,12 @@
     <% if @site %>
       <meta property="og:site_name" content="<%= @site.name %>"/>
     <% end %>
-    <% if CONFIG.facebook && !CONFIG.facebook.app_id.blank? -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
-    <% end -%>
     <% if !@headless && @site && !@site.ios_app_id -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
+      <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>

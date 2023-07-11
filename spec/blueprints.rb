@@ -274,11 +274,6 @@ FlickrPhoto.blueprint do
   native_photo_id { rand(1000) }
 end
 
-FacebookPhoto.blueprint do
-  user { User.make! }
-  native_photo_id { rand(1000) }
-end
-
 PicasaPhoto.blueprint do
   user { User.make! }
   native_photo_id { rand(1000) }
@@ -460,6 +455,10 @@ TaxonLink.blueprint do
   taxon { Taxon.make! }
   url { "http://#{Faker::Internet.domain_name}" }
   site_title { Faker::Lorem.sentence }
+end
+
+TaxonNamePriority.blueprint do
+  user { User.make! }
 end
 
 TaxonPhoto.blueprint do

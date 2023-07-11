@@ -145,7 +145,7 @@ Some notes:
     </span>
     <% if observation.time_observed_at && coordinates_viewable %>
     <span class="time">
-      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z")  %>
+      <%=l observation.time_observed_at.in_time_zone(observation.time_zone), format: :observed_at  %>
     </span>
     <% end %>
   </div>
@@ -178,10 +178,10 @@ Some notes:
     <div class="created_at attribute" style="display:none">
       <h4 class="label"><%=t :date_added %></h4>
       <span class="date">
-        <%= l(observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), :format => :day_month_year) %>
+        <%= l(observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), format: :day_month_year) %>
       </span>
       <span class="time">
-        <%= observation.created_at.in_time_zone(observation.user.time_zone || 'UTC').strftime("%I:%M %p %Z") %>
+        <%=l observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), format: :observed_at %>
       </span>
     </div>
   <% end -%>

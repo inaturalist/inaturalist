@@ -52,15 +52,41 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-      it "should return a token for an unconfirmed user who never received a confirmation email" do
-        u = create :user, email: google_response[:email], confirmed_at: nil
-        User.where( id: u.id ).update_all( confirmation_sent_at: nil )
-        u.reload
-        expect( u ).not_to be_confirmed
-        expect( u.confirmation_sent_at ).to be_blank
-        post :assertion, format: :json, params: assertion_params
-        expect( response ).to be_successful
-        expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
+      it "should return a token for an unconfirmed user who never received a confirmation " \
+        "email before the requirement date" do
+        if Date.today <= User::EMAIL_CONFIRMATION_REQUIREMENT_DATE
+          u = create :user,
+            email: google_response[:email],
+            confirmed_at: nil,
+            created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.week )
+          User.where( id: u.id ).update_all( confirmation_sent_at: nil )
+          u.reload
+          expect( u ).not_to be_confirmed
+          expect( u.confirmation_sent_at ).to be_blank
+          post :assertion, format: :json, params: assertion_params
+          expect( response ).to be_successful
+          expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
+        end
+      end
+
+      it "should not return a token for an unconfirmed user who never received a confirmation " \
+        "email after the requirement date" do
+        if Date.today > User::EMAIL_CONFIRMATION_REQUIREMENT_DATE
+          u = create :user,
+            email: google_response[:email],
+            confirmed_at: nil,
+            created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.week )
+          User.where( id: u.id ).update_all( confirmation_sent_at: nil )
+          u.reload
+          expect( u ).not_to be_confirmed
+          expect( u.confirmation_sent_at ).to be_blank
+          post :assertion, format: :json, params: assertion_params
+          expect( response ).not_to be_successful
+          response_json = JSON.parse( response.body )
+          expect( response_json["access_token"] ).to be_blank
+          expect( response_json["error"] ).to eq "invalid_grant"
+          expect( response_json["error_description"] ).not_to be_blank
+        end
       end
 
       it "should not return a token for a confirmed suspended user" do

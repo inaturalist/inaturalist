@@ -1,4 +1,8 @@
 lb:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} Ännerung"
+    other: "%{count} Ännerungen"
   x_comments:
     one: '%{count} Bemierkung'
     other: '%{count} Bemierkungen'
@@ -104,6 +108,9 @@ lb:
   x_sounds:
     one: "%{count} Sound"
     other: "%{count} Sounds"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> Taxon Changement bäigesat"
+    other: "<span class='count'>%{count}</span> Taxon Changementer bäigesat"
   _100_day_trends: Tendenz iwwer 100 Deeg
   _percent_ID_d: "% ID bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -244,12 +251,15 @@ lb:
   add_your_own_observations_at: "Setzt Är eegen Observatiounen op %{site_name} derbäi"
   added: Derbäigesat
   added!: Derbäigesat!
+  added_as_a_part_of_a_taxon_change_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxon Changement</a>
   added_by: Derbäigesat vum
   added_by_user_on_date_html: "Derbäigesat vum %{user} de(n) %{date}"
   added_on_datetime: "Bäisetzen den %{datetime}"
   added_to_favorites_html: |
     Bei <a href="%{url}">Favoriten</a> derbäigesat
   adding: "Derbäisetzen..."
+  adjust_brightness: Hellegkeet upassen
   admin: Admin
   admin_s: Administrateur(en)
   admin_only: Just fir Administrateuren
@@ -261,6 +271,8 @@ lb:
   agree_with_current_taxon: Si mam aktuellen Taxon d'accord
   agreeing: Sinn d'accord...
   all: All
+  #Title for a list of all 3rd party applications
+  all_applications: All Applikatiounen
   all_comments: All Bemierkungen
   all_life: All Liewesformen
   all_names: All Nimm
@@ -523,6 +535,8 @@ lb:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
+  #Plural noun, as in changes to a taxon record over time
+  changes: Ännerungen
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
   check_out_the_inat_store: Besicht och den iNaturalist Store
   checklist: Check-Lëscht
@@ -585,7 +599,6 @@ lb:
   #connecting to Flickr
   connect: Connectéieren
   connected_accounts_titlecase: Connectéiert Kontoen
-  connecting_to_facebook: "Mat Facebook verbannen..."
   conservation_status: Erhalungszoustand
   continue: Virufueren
   continue_to_site: Virun op %{site_name}
@@ -594,6 +607,7 @@ lb:
     male: Männlech
     female: Weiblech
     plant_phenology: Phenologie vun der Planz
+    flowering: Bléiend
     life_stage: Liewensstadium
     adult: Erwuessen
     pupa: Popp
@@ -621,14 +635,14 @@ lb:
     molt: Häutung
   controlled_term_definitions:
     alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
+    bone: |
+      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
     dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
     feather: Eng oder mei Fiederen net um Organismuss hänkent
+    molt: Verworfen Haut oder Exoskelet
     organism: Ganzen oder partiellen Organismus
     scat: Fäkal Exkrementer (keen gierkstent Material)
     track: Androck am Buedem oder Schnéi vum Organismus
-    bone: |
-      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
-    molt: Verworfen Haut oder Exoskelet
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
@@ -688,6 +702,8 @@ lb:
       may: Mee
       june: Juni
       july: Juli
+      august: August
+      september: September
       october: Oktober
       november: November
       december: Dezember
@@ -768,9 +784,13 @@ lb:
   download_csv: CSV eroflueden
   download_csv_template: CSV-Schabloun eroflueden
   download_kml: KML eroflueden
+  #Noun, as in a journal post that has not been published
   draft: virbereeden
+  #Noun, as in a journal post that has not been published
   draft_: Virbereedung
+  #Noun, as in a journal post that has not been published
   draft_saved: Virbereedung gespäichert!
+  #Noun, as in journal posts that has not been published
   drafts: Virbereedungen
   drag_and_drop_some_photos_or_sounds: Drag & drop Fotoen oder Sound
   drawings: Zeechnungen
@@ -813,6 +833,7 @@ lb:
   establishment:
     endemic: endemesch
     introduced: Ageféieren
+    invasive: Invasiv
     native: Nativ
     naturalised: Naturaliséiert
   everyone: jiddwereen
@@ -831,14 +852,13 @@ lb:
   #account, e.g. Flickr
   external_applications: Exterm Applikatiounen
   extinct: ausgestuerwen
-  facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
-  facebook_options: Facebook-Optiounen
-  facebook_photo_import_disabled_notice: |
-    Am November 2020 huet Facebook ons opgefuerdert z'iwwerpréiwen ob mir wierklech Zougang zu Fotoe brauchen, dëse Prozess konnte mir net ofschléisse wéinst Probleemer mam Facebook Verifizéierungssystem. Als Konsequenz ënnerstëtze mir net méi den Import vu Facebook Fotoen.
+  facebook: Facebook
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
   Family: Famill
   favorites: "Favoriten"
+  #Button to show fewer places
+  fewer__context_places: Manner
   failed: Huet net funktionéiert
   fields: Felder
   fields_: Felder
@@ -860,6 +880,7 @@ lb:
   find_your_current_location: Är aktuell Plaz fannen
   finished: Fäerdeg
   finished_with_page: Fäerdeg mat der Säit
+  first_observer: Éischte Beobachter
   #Verb form, as in "Flag this item"
   flag: Mellen
   flag_as_inappropriate: Als onpassend markéieren
@@ -904,7 +925,6 @@ lb:
     tutorials: Tutorialen
   frequency: Frequenz
   from_a_place: vun enger Plaz
-  from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
   from_photos: Vu Fotoen
   from_soundcloud: Vun Soundcloud
   full_screen: Ganzen Ecran
@@ -916,6 +936,7 @@ lb:
   globally: Global
   go: Lass
   go_back: Zréck goen
+  google: Google
   google_maps_not_loaded_error: |
     Google Maps konnt net initialiséiert ginn. Et ka sinn dass Dir den Zougang zu Google Maps mat enger Browser Extensioun oder enger Firewall blockéiert, oder soss eppes wéi en Internet Service Provider blockéiert den Zougang.
   got_it!: Verstan!
@@ -930,9 +951,15 @@ lb:
   has_sound: Mat Toun
   has_sounds: Huet Sound
   hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
+  header_your_calendar: Äre Kalenner
+  header_your_favorites: Är Favoritten
+  header_your_lists: Är Lëschten
   header_your_identifications: Är Bestëmmungen
+  header_your_projects: Är Projeten
+  header_your_profile: Äre Profil
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
+  help_translate!: Hëlleft beim Iwwersetzen!
   here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
   hi_user: "Salut %{user}"
   #Verb, usually a button to hide an interface element
@@ -1003,6 +1030,7 @@ lb:
   invite: invitéieren
   invite_people: Leit invitéieren
   invite_people_to_project: "Leit op %{project} invitéieren"
+  iphone: iPhone
   is_not_following_anyone: suivéiert kengem
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -1050,10 +1078,11 @@ lb:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "kann déi folgend Wierder net enthalen: %{words}"
   lexicons:
-    scientific_names: Wëssenschaftlech Nimm
+    alabama: Alabama
     albanian: Albanesch
     arabic: Arabesch
     armenian: Armenesch
+    basque: Baskesch
     belarusian: Belarusesch
     bengali: Bengalesch
     bulgarian: Bulgaresch
@@ -1082,6 +1111,7 @@ lb:
     italian: Italienesch
     japanese: Japanesch
     kannada: Kannada
+    kazakh: Kasachesch
     korean: Koreanesch
     latvian: Lettesch
     lithuanian: Litauesch
@@ -1101,7 +1131,7 @@ lb:
     portuguese: Portugisesch
     romanian: Rumänesch
     russian: Russesch
-    setswana: Setswana
+    scientific_names: Wëssenschaftlech Nimm
     sinhala: Sinhala
     slovak: Slokwakesch
     slovenian: Slowenesch
@@ -1111,8 +1141,12 @@ lb:
     thai: Thailännesch
     turkish: Tierkesch
     ukrainian: Ukrainesch
+    uyghur: Uiguresch
+    vietnamese: Vietnameesesch
     visayan: Visayesch
   less: Manner
+  #Button show less text
+  less__context_text: Manner
   license: Lizenz
   life: Liewen
   link: Link
@@ -1120,11 +1154,13 @@ lb:
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: verlinkten Text
+  linkedin: LinkedIn
   list: Lëscht
   list_deleted: Lëscht geläscht.
   list_saved: Lëscht gespäichert.
   list_updated: Lëscht aktualiséiert!
   list_views:
+    taxonomic: taxonomesch
     photo: Foto
   lists: Lëschten
   lists_by_login:
@@ -1146,18 +1182,26 @@ lb:
     de: Däitsch
     el: Griichesch
     en: Englesch
+    en-GB: Englesch (Groussbritannien)
+    eo: Esperanto
     es: Spuenesch
+    es-AR: Spuenesch (Argentinien)
     es-CO: Spuenesch (Kolumbien)
     es-MX: Spuenesch (Mexiko)
     et: Estnesch
     eu: Baskesch
     fi: Finnesch
     fr: Franséisch
+    fr-CA: Franséisch (Kanada)
     gl: Galizesch
+    he: Hebräesch
+    hr: Kroatesch
     hu: Ungaresch
     id: Indonesesch
     it: italienesch
     ja: Japanesch
+    ka: Georgesch
+    kk: Kasachesch
     kn: Kannada
     ko: Koreanesch
     lb: Lëtzebuergesch
@@ -1167,13 +1211,16 @@ lb:
     mr: Marathi
     nl: Hollännesch
     pl: Polnesch
+    pt: Portugisesch
     pt-BR: Portugisesch (Brasilien)
     ru: Russesch
     sk: Slokwakesch
     sl: Slowenesch
     sq: Albanesch
+    sr: Serbesch
     sv: Schwedesch
     th: Thailännesch
+    tr: Tierkesch
     uk: Ukrainesch
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
@@ -1227,6 +1274,8 @@ lb:
   mentioned_you_in_an_x_on_noun_by_html: "%{user} huet Iech an engem %{x} iwwer %{noun} vum %{by} ernimmt"
   merge: Fusionéieren
   merging: Gëtt fusionéiert
+  message: Message
+  message_deleted: Message geläscht
   messages: Messagen
   messages_new_correspondent_it_looks_like: |
     Et gesäit aus wéi wann Dir nach ni mat dëser Persoun korrespondéiert hätt, also beuecht w.e.g. Folgendes:
@@ -1247,7 +1296,7 @@ lb:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%d Méint"
+      mm: "%d Minuten"
       #Short text representing 1 hour in the past
       h: "1 Stonn"
       #Short text representing %d hours in the past
@@ -1255,7 +1304,7 @@ lb:
       #Short text representing 1 day in the past
       d: "1D"
       #Short text representing %d days in the past
-      dd: "%d Deeg"
+      dd: "%dd"
       #Short text representing 1 month in the past
       M: "1min"
       #Short text representing 1 year in the past
@@ -1305,6 +1354,7 @@ lb:
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "muss Qualiteitsgrad: %{grades} hunn"
   must_have_sounds: muss ee Sound hunn
+  #Mute is a noun here
   mute_removed: Stomm schalten ewechgeholl
   n_ago: "viru(n) %{n}"
   name: Numm
@@ -1352,10 +1402,14 @@ lb:
   next_tab: Nächsten Tab
   next_taxon_short: Nächst
   'no': 'Neen'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Nach keng Applikatiounen
   no_but_it_is_a_member_of_taxon: "Neen, awer et ass e Member vu(n) %{taxon}"
   no_comments_yet: Nach keng Bemierkungen.
   no_description: Keng Beschreiwung
   no_identifications: Keng Bestëmmungen
+  no_identifications_added:
+    user: "%{user} huet keng Identifikatiounen zu iergendengem senger Observatioun bäigefüügt."
   no_ids: "Zuel vun IDen"
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
@@ -1369,6 +1423,7 @@ lb:
   no_observations: Keng Observatiounen
   no_observations_from_this_place_yet: Nach keng Observatioune vun dëser Plaz.
   no_observations_yet: Nach keng Observatiounen
+  no_one_has_added_any: Keen huet keng Notizen fir dës Plaz bäigefüügt
   no_one_has_been_invited_yet: Et gouf nach keen invitéiert
   no_photo: Keng Foto
   no_photos: Keng Fotoen
@@ -1401,7 +1456,6 @@ lb:
   not_findig_what_you_want: Fannt Dir dat wat Dir gesicht hutt?
   not_finding_place_you_want?: Fannt Dir déi Plaz déi Dir gesicht hutt?
   not_found: Net fonnt
-  not_linked_facebook: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Facebook-Benotzerkont verbonnen"
   not_linked_flickr: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Flickr-Benotzerkont verbonnen"
   not_on_this_list: Net op dëser Lëscht.
   not_recorded: Net enregistréiert
@@ -1517,13 +1571,16 @@ lb:
   only_you: Nëmmen Dir
   open: opmaachen
   open_: Opmaachen
+  open_street_map: OpenStreetMap
   optional: fakultativ
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ODER
   order: Uerdnung
+  organism_is_wild: Organismus ass wëll
   organisms: Organismen
+  original: Original
   organism_appears_captive_cultivated: Organismus schéngt Gefaangen / Kultivéiert ze sinn
   other: Anerer
   other_animals: aner Déieren
@@ -1628,9 +1685,12 @@ lb:
   places: Plazen
   places_added_by_members_of_the_community: Plaz gouf vun engem Member vun der Communautéit bäigefüügt
   places_name:
+    afghanistan: Afghanistan
     africa: Afrika
     albania: Albanien
     algeria: Algerien
+    andorra: Andorra
+    angola: Angola
     antarctica: Antarktis
     antigua_and_barbuda: Antigua a Barbuda
     argentina: Argentinien
@@ -1638,39 +1698,67 @@ lb:
     asia: Asien
     australia: Australien
     austria: Éisträich
+    azerbaijan: Aserbaidjan
+    bahamas: Bahamas
+    bahrain: Bahrain
+    bangladesh: Bangladesch
     belarus: Wäissrussland
     belgium: Belsch
+    belize: Belize
+    benin: Benin
+    bhutan: Bhutan
     bolivia: Bolivien
+    bosnia_and_herzegovina: Bosnien-Herzegowina
+    botswana: Botswana
     brazil: Brasilien
+    brunei: Brunei
     bulgaria: Bulgarien
+    burkina_faso: Burkina Faso
+    burundi: Burundi
     cambodia: Kambodscha
     cameroon: Kamerun
     canada: Kanada
+    cape_verde: Cap Vert
     central_african_republic: Zentralafrikanesch Republik
     central_america: Zentralamerika
     chad: Tschad
+    chile: Chile
+    china: China
     colombia: Kolumbien
     comoros: Komoren
+    costa_rica: Costa Rica
+    cote_d_ivoire: Côte d'Ivoire
     croatia: Kroatien
     cuba: Kuba
     cyprus: Zypern
+    czech_republic: Tschechesch Republik
+    democratic_republic_of_the_congo: Demokratesch Republik Kongo
     denmark: Dänemark
+    djibouti: Dschibuti
+    dominica: Dominica
     dominican_republic: Dominikanesch Republik
     east_timor: Ost-Timor
+    ecuador: Ecuador
     egypt: Egypten
+    el_salvador: El Salvador
+    eritrea: Eritrea
     estonia: Estland
     europe: Europa
     fiji: Fidschi
+    finland: Finnland
     france: Frankräich
     french_guiana: Franséisch Guyane
     gabon: Gabun
     gambia: Gambia
     georgia: Georgien
     germany: Däitschland
+    ghana: Ghana
     greece: Griicheland
     greenland: Grönland
     guam: Guam
     guyana: Guyana
+    haiti: Haiti
+    honduras: Honduras
     hong_kong: Hong-Kong
     hungary: Ungarn
     iceland: Island
@@ -1683,52 +1771,110 @@ lb:
     jamaica: Jamaika
     jordan: Jordanien
     kenya: Kenia
+    kuwait: Kuwait
+    kyrgyzstan: Kirgisistan
     laos: Laos
     latvia: Lettland
     lebanon: Libanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libyen
+    liechtenstein: Liechtenstein
     lithuania: Litauen
     luxembourg: Lëtzebuerg
     macedonia: Mazedonien
     madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
     maldives: Maldiven
     mali: Mali
+    malta: Malta
+    marshall_islands: Marshallinselen
     mauritania: Mauretanien
+    mauritius: Mauritius
     mexico: Mexiko
     micronesia: Mikronesien
     moldova: Moldawien
+    monaco: Monaco
+    mongolia: Mongolei
+    montenegro: Montenegro
+    morocco: Marokko
+    mozambique: Mosambik
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Holland
     new_caledonia: Nei-Kaledonien
     new_zealand: Neiséiland
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
     niue: Niue
     north_africa: Nordafrika
     north_america: Nordamerika
+    north_korea: Nordkorea
     norway: Norwegen
     oman: Oman
+    pakistan: Pakistan
+    palau: Palau
     palestine: Palestina
+    panama: Panama
+    papua_new_guinea: Papua-Neuguinea
+    paraguay: Paraguay
     peru: Peru
     philippines: Philippinnen
     poland: Polen
+    portugal: Portugal
+    puerto_rico: Puerto Rico
+    qatar: Katar
     republic_of_congo: Republik Kongo
     romania: Rumänien
     russia: Russland
+    rwanda: Ruanda
+    samoa: Samoa
+    san_marino: San Marino
     saudi_arabia: Saudi Arabien
+    senegal: Senegal
     serbia: Serbien
     seychelles: Seychellen
+    sierra_leone: Sierra Leone
     singapore: Singapur
     slovakia: Slowakei
     slovenia: Slowenien
+    somalia: Somalia
     south_africa: Südafrika
     south_america: Südamerika
+    south_korea: Südkorea
+    south_sudan: Südsudan
     spain: Spuenien
+    sri_lanka: Sri Lanka
+    sudan: Sudan
     suriname: Surinam
     sweden: Schweden
     switzerland: Schwäiz
     syria: Syrien
+    taiwan: Taiwan
+    tajikistan: Tadjikistan
     tanzania: Tansania
+    thailand: Thailand
     togo: Togo
+    tonga: Tonga
     trinidad_and_tobago: Trinidad an Tobago
     tunisia: Tunesien
     turkey: Tierkei
+    turkmenistan: Turkmenistan
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukrain
+    united_arab_emirates: Vereenegt Arabesch Emirater
+    united_kingdom: Vereenegt Kinnekräich
+    united_states: Vereenegt Staaten
+    uruguay: Uruguay
+    uzbekistan: Usbekistan
+    vanuatu: Vanuatu
+    vatican_city: Vatikanstad
+    venezuela: Venezuela
     west_africa: Westafrika
     yemen: Jemen
     zambia: Sambia
@@ -1777,6 +1923,9 @@ lb:
   quality_grade: Qualitéitsgrad
   quality_grade_: Qualitéitsgrad
   query: Ufro
+  radius: Radius (m)
+  radius_km: Radius (km)
+  radius_value: "Radius (m): %{radius}"
   random: Zoufall
   range: Beräich
   rank: Rang
@@ -2152,8 +2301,14 @@ lb:
   user_added_a_x: "%{user} huet e(n) %{x} derbäigesat"
   user_added_a_x_to_noun_by_html: "%{user} huet eng %{x} zu %{noun} vum %{by} bäigesat"
   user_added_an_identification_html: "%{user} huet eng Bestemmung bäigesat"
+  user_added_an_observation_field_html: '%{user} huet een Wäert fir "%{field_name}" bei eng Observatioun vum %{owner} bäigesat'
+  user_added_an_observation_field_value_html: "%{user} huet een Observatiounsfeldwert bäigesat"
   user_added_an_observation_html: "%{user} huet eng Observatioun bäigesat"
   user_added_an_x: "%{user} huet eng %{x} derbäigesat"
+  user_added_an_x_to_noun_by_html: "%{user} huet een %{x} bei %{noun} vum %{by} bäigesat"
+  user_added_an_x_to_noun_by_user_html: "%{user} huet eng %{x} bei %{noun} vum %{by} bäigesat"
+  user_added_an_x_to_noun_by_you_html: "%{user} huet eng %{x} bei %{noun} vun Iech bäigesat"
+  user_added_an_x_to_noun_html: "%{user} huet eng %{x} bei %{noun} bäigesat"
   user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
   user_already_app_owner: De Benotzer ass schonn en App Besëtzer
@@ -2307,6 +2462,8 @@ lb:
   you_sure_delete_project?: Sidd Dir sécher datt Dir dëse Projet läsche wëllt?
   you_unlinked_your_provider_account: "Dir hutt de Link op Äre(n) %{provider}-Benotzerkont ewechgeholl"
   your_account_has_been_activated: Äre Benotzerkont gouf desaktivéiert!
+  #Title for a list of 3rd party applications you control
+  your_applications: Är Applikatiounen
   your_browser_does_not_support_the_audio_element: Äre Browser ënnerstëtzt d'Audioelement net.
   your_comment_was_saved: Ären Inhalt gouf gespäichert
   your_content: Ären Inhalt
@@ -2380,6 +2537,10 @@ lb:
       export:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: "Ok, mir schécken Iech eng E-Mail wann et prett ass."
+      field_descriptions:
+        user_login: Benotzernumm vum Beobachter
+        url: URL vun der Beobachtung
+        image_url: URL vum Standardbild
       import:
         date_column_format: JJJJ-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
@@ -2489,9 +2650,6 @@ lb:
       index:
         connect_with_nature: Mat der Natur verbannen
         explore_and_share: Entdeckt an deelt Är Observatiounen aus der Natur
-        observations_to_date: 'Observatioune bis elo'
-        species_observed: 'Aarten observéiert'
-        people_signed_up: 'Leit hu sech ageschriwwen'
         how_it_works: Wéi et geet
         record_your_observations: Enregistréiert Är Observatiounen
         share_with_fellow_naturalists: Mat aneren Naturalisten deelen
@@ -2605,22 +2763,6 @@ lb:
       month: Mount
       second: Sekonnen
       year: Joer
-  errors:
-    messages:
-      blank: däerf net eidel sinn
-      empty: däerf net eidel sinn
-      even: muss gerued sinn
-      exclusion: ass reservéiert
-      greater_than: muss méi grouss wéi %{count} sinn
-      invalid: ass net valabel
-      not_a_number: ass keng Zuel
-      not_an_integer: muss eng ganz Zuel sinn
-      odd: muss ongerued sinn
-      record_invalid: 'Validatioun feelgeschlo: %{errors}'
-      requires_privilege_speech: |
-        musst dräi iwwerpréifbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
-      requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
-      taken: gouf scho geholl
   helpers:
     defaults:
       title: "DEST AS EEN TITEL"
@@ -2677,26 +2819,6 @@ lb:
   time:
     am: am
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: muss akzeptéiert ginn
-        blank: däerf net eidel sinn
-        empty: däerf net eidel sinn
-        even: muss gerued sinn
-        exclusion: ass reservéiert
-        greater_than: muss méi grouss wéi %{count} sinn
-        greater_than_or_equal_to: muss méi grouss oder gläich si wéi %{count}
-        inclusion: ass net an der Lëscht dran
-        invalid: ass net valabel
-        less_than: muss méi kleng wéi %{count} sinn
-        less_than_or_equal_to: muss méi kleng oder gläich si wéi %{count}
-        not_a_number: ass keng Zuel
-        not_an_integer: muss eng ganz Zuel sinn
-        odd: muss ongerued sinn
-        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
-        requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
   activerecord:
     models:
       Atlas: Atlas
@@ -2730,6 +2852,8 @@ lb:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Vertraulech
+      place_taxon_name:
+        position: Positioun
       post:
         title: Titel
       project:
@@ -2744,8 +2868,15 @@ lb:
         in_text: Am Text
         url: URL
       taxon:
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiv?
         name: Numm
         rank: Rang
+        wikipedia_summary: Wikipedia-Zesummefaassung
+      taxon_name:
+        name: Numm
+      taxon_link:
+        url: URL
       user:
         email: E-Mail
         login: Benotzernumm
@@ -2760,12 +2891,12 @@ lb:
         empty: däerf net eidel sinn
         even: muss gerued sinn
         exclusion: ass reservéiert
-        greater_than: muss méi grouss si wéi %{count}
         inclusion: ass net an der Lëscht dran
         invalid: ass net valabel
         not_a_number: ass keng Zuel
         odd: muss ongerued sinn
-        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
+        requires_privilege_speech: |
+          musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
         requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       models:
         moderator_action:
@@ -2822,6 +2953,10 @@ lb:
           attributes:
             email:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Dir hutt dëse Benotzer scho blockéiert
   i18n:
     inflections:
       "@vow_or_con":

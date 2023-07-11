@@ -9,24 +9,25 @@
   .row
     = render :partial => "shared/by_login_header_bootstrap", locals: { model_name: "Identifications" }
   
-  #identifications.col-xs-12.col-lg-9
-    - if @identifications.empty?
-      #no_content.readable.description
-        - if logged_in? && @selected_user.id == current_user.id
-          = t 'no_identifications_added.current_user'
-        - else
-          = t 'no_identifications_added.user', user: @login.to_s
-    - for identification in @identifications
-      = render :partial => 'identification_with_observation', :object => identification
-    = will_paginate @identifications
+  #identifications.row
+    .col-xs-12.col-lg-9
+      - if @identifications.empty?
+        #no_content.readable.description
+          - if logged_in? && @selected_user.id == current_user.id
+            = t "no_identifications_added.current_user"
+          - else
+            = t "no_identifications_added.user", user: @login.to_s
+      - for identification in @identifications
+        = render "identification_with_observation", identification: identification
+      = will_paginate @identifications
 
-  .last.column.col-xs-5.col-lg-3
-    .box
-      %h4
-        = t :stats
-      %ul
-        %li
-          %span.count
-            = @identifications.total_entries
-          %label
-            = t :ids_made_for_others
+    .col-xs-5.col-lg-3
+      .box
+        %h4
+          = t :stats
+        %ul
+          %li
+            %span.count
+              = @identifications.total_entries
+            %label
+              = t :ids_made_for_others

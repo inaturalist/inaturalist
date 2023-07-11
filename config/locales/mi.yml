@@ -398,9 +398,13 @@ mi:
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
   download_caps: TIKIAKE
+  #Noun, as in a journal post that has not been published
   draft: hukihuki
+  #Noun, as in a journal post that has not been published
   draft_: Hukihuki
+  #Noun, as in a journal post that has not been published
   draft_saved: Kua tiakina te hukihuki!
+  #Noun, as in journal posts that has not been published
   drafts: Hukihuki
   duration_value: "Roanga: %{duration} mēneti"
   edit: Whakatika
@@ -549,7 +553,6 @@ mi:
   lexicons:
     spanish: Pāniora
   license: Raihana
-  link_your_facebook_account: Ka hono tāu pūkete Pukamata
   link_your_google_account: Ka hono tāu pūkete Kūkara
   list: Tūtira
   lists: Tūtira
@@ -1370,8 +1373,6 @@ mi:
         step1_title: HANGAIA HE PŪKETE I TŌ TAMARIKI
     welcome:
       index:
-        species_observed: 'Momo i mātakitia'
-        people_signed_up: 'Tāngata i takiuru'
         how_it_works: Pehea te mahi
         record_your_observations: Tuhia āu whakamātaki
         contribute_to_science: Homai ki te pūtaiao
@@ -1419,20 +1420,20 @@ mi:
       6: Me
       7: Ho
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%-d %B %Y'
     month_names:
       - 
       - Kohiātea
@@ -1465,9 +1466,6 @@ mi:
       month: Marama
       second: Hākona
       year: Tau
-  errors:
-    messages:
-      confirmation: Kāore i te ōrite te kupuhipa
   number:
     human:
       decimal_units:
@@ -1479,17 +1477,14 @@ mi:
         format: '%n %u'
   time:
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%d %B %Y"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: Kāore i te ōrite te kupuhipa
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%-d %b %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d %B %Y"
   activerecord:
     models:
       #Noun

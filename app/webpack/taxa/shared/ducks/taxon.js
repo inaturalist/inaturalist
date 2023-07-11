@@ -259,16 +259,21 @@ export function fetchTerms( options = { histograms: false } ) {
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
-      if ( options.histograms ) {
-        _.each( r.unannotated, ( data, controlledAttributeId ) => {
-          fieldValues[Number( controlledAttributeId )].push( {
-            count: data.count,
-            month_of_year: data.month_of_year,
-            controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
-            controlled_value: {
-              label: "No Annotation"
-            }
-          } );
+      // If there's data about how many observations do *not* have annotations
+      // of these relevant attributes, add "No Annotation" data
+      if ( options.histograms && r.unannotated ) {
+        const usedAttributeIds = _.keys( fieldValues ).map( Number );
+        _.each( r.unannotated, ( data, unannotatedAttributeId ) => {
+          if ( usedAttributeIds.indexOf( Number( unannotatedAttributeId ) ) >= 0 ) {
+            fieldValues[Number( unannotatedAttributeId )].push( {
+              count: data.count,
+              month_of_year: data.month_of_year,
+              controlled_attribute: controlledAttributes[Number( unannotatedAttributeId )],
+              controlled_value: {
+                label: "No Annotation"
+              }
+            } );
+          }
         } );
       }
       dispatch( {
@@ -408,7 +413,7 @@ export function fetchLinks( ) {
 export function fetchNames( taxon ) {
   return ( dispatch, getState ) => {
     const t = taxon || getState( ).taxon.taxon;
-    fetch( `/taxon_names.json?per_page=200&taxon_id=${t.id}` ).then(
+    fetch( `/taxon_names.json?per_page=400&taxon_id=${t.id}` ).then(
       response => {
         response.json( ).then( json => dispatch( setNames( json ) ) );
       },

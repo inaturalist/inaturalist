@@ -126,7 +126,7 @@ export function fetchNearby( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -162,7 +162,7 @@ export function fetchMoreFromClade( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -181,7 +181,7 @@ export function fetchMoreFromThisUser( ) {
       user_id: observation.user.id,
       order_by: "id",
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,

@@ -27,6 +27,8 @@
       .col-xs-12
         #filters.clear
           %h1= t :observations
+          - INatAPIService::MAPPABLE_PARAMS.each do |param|
+            %input{ type: "hidden", name: param }
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t( 'filters' ) }}" }
               %i.fa.fa-sliders
@@ -37,7 +39,6 @@
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t( "ranks.species" ), name: "taxon_name", value: params[:taxon_name] }
-            %input{ type: "hidden", name: "taxon_id" }
             %span#place-name-input
               :ruby
                 # Note that if you give this a name like place_name, Chrome will apply its address autocomplete and potentiall obscure results.
@@ -121,8 +122,11 @@
                       %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
                       {{ shared.t('terrain') | capitalize }}
 
-              %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown" }
-                %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
+              %button.button.btn-stateless.btn-default.dropdown-toggle.places{
+                "data-toggle": "dropdown",
+                "ng-click": "searchForNearbyPlaces( )"
+              }
+                %span.glyphicon.glyphicon-globe{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
                 {{ shared.t('places_of_interest') }}
               .dropdown-menu.dropdown-menu-right.places
                 .col-xs-6
@@ -134,7 +138,9 @@
                       = "{{ p.name }}"
                     %span.type<>
                       = "{{ p.placeTypeLabel( ) }}"
-                  %span{ "ng-show": "!nearbyPlaces.standard || nearbyPlaces.standard.length == 0" }
+                  .spinner.ng-cloak{ "ng-show": "!nearbyPlaces" }
+                    %span.fa.fa-spin.fa-refresh
+                  %span{ "ng-show": "nearbyPlaces && (!nearbyPlaces.standard || nearbyPlaces.standard.length == 0)" }
                     {{ shared.t("no_places_available") }}
                 .col-xs-6
                   %h4{ "uib-tooltip" => "{{ shared.t('places_added_by_members_of_the_community')}}", "tooltip-popup-delay" => 500 }
@@ -145,7 +151,9 @@
                       = "{{ p.name }}"
                     %span.type<>
                       = "{{ p.placeTypeLabel( ) }}"
-                  %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
+                  .spinner.ng-cloak{ "ng-show": "!nearbyPlaces" }
+                    %span.fa.fa-spin.fa-refresh
+                  %span{ "ng-show": "nearbyPlaces && (!nearbyPlaces.community || nearbyPlaces.community.length == 0)" }
                     {{ shared.t("no_places_available") }}
             #map-shape-controls
               %div.shape-buttons.btn-group

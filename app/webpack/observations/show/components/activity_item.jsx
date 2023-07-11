@@ -67,6 +67,7 @@ class ActivityItem extends React.Component {
           textareaClassName="form-control"
           maxLength={5000}
           showCharsRemainingAt={4000}
+          mentions
         />
         <div className="btn-group edit-form-btns">
           <button
@@ -365,7 +366,7 @@ class ActivityItem extends React.Component {
                   rel="noopener noreferrer"
                   className="linky"
                 >
-                  {I18n.t( "view_moderation_history" )}
+                  {I18n.t( "view_flags" )}
                 </a>
                 {viewerIsActor && (
                   <span>
@@ -570,7 +571,7 @@ class ActivityItem extends React.Component {
       <time
         className="time"
         dateTime={item.created_at}
-        title={moment( item.created_at ).format( "LLL" )}
+        title={moment( item.created_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
       >
         <a href={itemURL} target={linkTarget}>{relativeTime}</a>
       </time>

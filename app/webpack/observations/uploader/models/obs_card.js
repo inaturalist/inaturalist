@@ -53,7 +53,7 @@ const ObsCard = class ObsCard {
   }
 
   uploadedFileIDs( ) {
-    return _.map( this.uploadedFiles( ), f => f.id );
+    return _.map( _.sortBy( this.uploadedFiles( ), "sort" ), f => f.id );
   }
 
   momentDate( ) {

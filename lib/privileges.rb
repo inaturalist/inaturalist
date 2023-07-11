@@ -67,7 +67,7 @@ module Privileges
               !current_user.is_admin? &&
               !current_user.is_curator?
 
-            msg = t( "errors.messages.requires_privilege_#{privilege}" )
+            msg = t( "activerecord.errors.messages.requires_privilege_#{privilege}" )
             respond_to do | format |
               format.html do
                 flash[:notice] = msg

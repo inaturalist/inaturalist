@@ -689,6 +689,7 @@ es-AR:
   birds: aves
   birthday: Cumpleaños
   black: negro
+  block: Bloquear
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
@@ -798,6 +799,8 @@ es-AR:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} fueron combinados en %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} serán combinados en %{output_taxon}"
   change_your_password: Cambiar tu contraseña
+  #Plural noun, as in changes to a taxon record over time
+  changes: Cambios
   changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica como otras personas ven la localización de tu observación.'
   check_above_for_errors: Revisa errores en lo anterior
   check_back_soon: '¡Vuelve a consultar pronto!'
@@ -842,6 +845,8 @@ es-AR:
   click_the_map: "<strong>Marca en el mapa</strong> para agregar una ubicación."
   close: Cerrar
   code: Código
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Contribuidores de código
   colors: Colores
   columns: Columnas
   combine: Combinar
@@ -854,6 +859,10 @@ es-AR:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentario
   comment_deleted: Comentario eliminado
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Se ocultó el comentario
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Se hizo visible el comentario
   comments: Comentarios
   comments_by_me: Mis comentarios
   comments_have_been_disabled: Los comentarios han sido desactivados
@@ -912,6 +921,7 @@ es-AR:
     pueda ser incluido en sugerencias automatizadas con la etiqueta "Observado cerca",
     no tendrá la etiqueta "Visualmente similar". Aunque los requisitos para la inclusión cambian con cada modelo, generalmente ésta se basa en el número de observaciones, así que para aumentar la probabilidad de que este taxón se incluya en el siguiente entrenamiento del modelo, agregá o identificá más observaciones de este taxón.
   concept_status: Concepto de la situación
+  confidential: Confidencial
   configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la <code>&lt;head&gt;</code> de tu código HTML. Siéntete libre de modificar el CSS.
   confirm: Confirmar
@@ -933,7 +943,6 @@ es-AR:
   connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
-  connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "El conectar tu cuenta de %{site_name} con cuentas en otros sitios te permitirá ingresar a %{site_name} usando tus credenciales de esos sitios."
   cannot_be_changed_during_a_content_freeze: No se puede cambiar durante un bloqueo de contenido
   conservation_status: Estado de conservación
@@ -1007,6 +1016,8 @@ es-AR:
     evidence_of_presence: Evidencia de presencia
     #As in the feather on a bird
     feather: Plumas
+    #Abnormal growth
+    gall: Agalla
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismo
@@ -1021,20 +1032,20 @@ es-AR:
     molt: Muda
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
+    bone: |
+      Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
+    cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
     dead: El organismo está muerto o muestra signos de muerte inminente
+    feather: Una o más plumas no unidas a un organismo
     flower_budding: Los cogollos de flores son visibles pero no están abiertos
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Frutas visibles y todavía unidas a la planta
+    molt: Piel descartada o exoesqueleto
     no_evidence_of_flowering: Los medios no proporcionan pruebas de estructuras reproductivas
-    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
-    cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
-    feather: Una o más plumas no unidas a un organismo
     organism: Organismo total o parcial
     scat: Materias fecales (no egagrópilas de rapaces u otros materiales regurgitados)
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     track: Impresión en el suelo o la nieve hecha por un organismo
-    bone: |
-      Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
-    molt: Piel descartada o exoesqueleto
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1143,16 +1154,6 @@ es-AR:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     No demuestra el comportamiento apropiado él mismo.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para solicitar ser curador del sitio debes haber tenido una cuenta por 60
-     o más días y haber añadido 100 identificaciones que mejoran a varias observaciones, incluyendo las tuyas (has añadido %{num_idents}). Cuando hayas
-    cumplido con los ambos requisitos, regresa aquí y podrás enviar la
-    aplicación.
-  curator_application_inelligible_error: |
-    Para solicitar ser curador del sitio debes haber tenido una cuenta por 60
-     o más días y haber añadido 100 identificaciones que mejoran a varias observaciones, incluyendo las tuyas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitud para ser curador enviada
   #Header
@@ -1469,9 +1470,13 @@ es-AR:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxones descendientes marcados
+  #Noun, as in a journal post that has not been published
   draft: borrador
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Guardado en borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   drawings: Dibujos
@@ -1619,16 +1624,6 @@ es-AR:
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia de organismo
   facebook: Facebook
-  facebook_account_information: Información de tu cuenta de Facebook
-  facebook_account_not_linked: "El %{user} ya no tiene vinculada la cuenta de facebook, para %{site_name} por lo que no tiene permiso para acceder a esta foto."
-  facebook_access_token_expired: "El acceso de muestra ha expirado. El %{user} requiere volver a enlazar su cuenta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
-  facebook_options: Opciones de Facebook
-  facebook_photo_import_disabled_notice: |
-    En noviembre de 2020 Facebook nos obligó a verificar que realmente necesitábamos
-    acceso a fotos, y no pudimos completar el proceso debido a
-    problemas con el sistema de verificación de Facebook. Como resultado, ya no podemos
-    contar con la importación de fotos desde Facebook.
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -1788,7 +1783,6 @@ es-AR:
   frequency: Frecuencia
   from_a_place: de un lugar
   from_eol_collection: De colección EOL
-  from_flickr_facebook_etc: De Flickr, Facebook, etc.
   from_list: De la lista
   from_photos: De fotos
   from_place: De lugar
@@ -2127,7 +2121,6 @@ es-AR:
   lexicon: Léxico
   lexicon_cannot_contain_words: "no puede contener las siguientes palabras: %{words}"
   lexicons:
-    scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
     arabic: Árabe
@@ -2186,7 +2179,7 @@ es-AR:
     romanian: Rumano
     russian: Ruso
     santali: Santalí
-    setswana: Setsuana
+    scientific_names: Nombres científicos
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Español
@@ -2198,8 +2191,8 @@ es-AR:
     tokelauan: Tokelauano
     turkish: Turco
     ukrainian: Ucraniano
-    waray_waray: Samareño
     visayan: Bisayo
+    waray_waray: Samareño
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -2209,14 +2202,8 @@ es-AR:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Lineal
   link: Vínculo
-  link_your_facebook_account: Vincula tu cuenta de Facebook
   link_your_flickr_account: Vincula tu cuenta de Flickr
   link_your_google_account: Enlaza tu cuenta de Google
-  linked_facebook: "Tu cuenta de %{site_name} está actualmente ligada con tu cuenta de Facebook."
-  linked_facebook_automaticaly: "También, ten en cuenta que si inicias sesión en %{site_name} a través de Facebook, automáticamente enlazaremos las cuentas de tu  %{site_name} y de  Facebook. Parece razonable que si usas Facebook  quieres importar las fotos desde Facebook ¿cierto?"
-  linked_facebook_description: "Mantener tu cuenta de %{site_name} ligada a tu cuenta de Facebook te permite agregar varias fotos a tus observaciones. Por supuesto que si deseas desligar tus cuentas de %{site_name} y Facebook no lo impediremos, solamente no podrás agregar fotos. Algunas veces será lo mejor, como cuando se crea una cuenta nueva de Facebook que deseas ligar a %{site_name}."
-  linked_facebook_howto: "Para conectar Facebook con %{site_name}, haz clic en el vínculo de la derecha e ingresa a Facebook.com."
-  linked_facebook_password: "Nunca te pediremos tu contraseña de Facebook (pero Facebook podría hacerlo, confirma que la dirección a la que el botón te envía sea Facebook.com). Tampoco cambiaremos tus datos de Facebook a menos que quieras."
   linked_flickr: "Tu cuenta de %{site_name} está vinculada actualmente con tu cuenta de Flickr."
   linked_flickr_automatically: "También, ten en cuenta que si inicias sesión en %{site_name} a través de Flickr, enlazaremos automáticamente tus cuentas de %{site_name} y de Flickr. Parece razonable que si usas Flickr quieres importar las fotos desde Flickr ¿cierto?"
   linked_flickr_description: "Mantener tu cuenta de %{site_name} vinculada con tu cuenta de Flickr te permite agregar varias fotos a tus observaciones. Por supuesto, si alguna vez deseas desvincular tus cuentas de %{site_name} y Flickr, no te detendremos, solamente no podrás agregar fotos. A veces esto es lo mejor, como cuando creas una cuenta nueva de Flickr que deseas vincular con %{site_name}."
@@ -2522,6 +2509,9 @@ es-AR:
   must_have_photos: debe tener fotos
   must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenciar
+  #Mute is a noun here
   mute_removed: Silenciamiento eliminado
   muted_users: Usuarios silenciados
   n_ago: "hace %{n}"
@@ -2708,7 +2698,6 @@ es-AR:
   not_findig_what_you_want: '¿No encuentra lo que desea?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
   not_found: No encontrado
-  not_linked_facebook: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Facebook"
   not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr"
   not_on_this_list: No está en esta lista.
   not_recorded: No grabado
@@ -2918,7 +2907,7 @@ es-AR:
   optional: opcional
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: o
   or_choose_high_level_taxa: "... o seleccione de algunos taxones de alto nivel"
   orange: naranja
@@ -3464,7 +3453,6 @@ es-AR:
   post_from_your_journal_html: Publicación de <a href="%{url}">tu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
-  posted_on: Ingresado el
   posts: Ingresos
   potential_disagreement: Posible desacuerdo
   powered_by: Propulsado por
@@ -4191,7 +4179,6 @@ es-AR:
   tagging: 'Etiquetando…'
   tags: Etiquetas
   tags_are_a_way: 'Las etiquetas son palabras clave que puedes agregar a tus observaciones para hacerlas más fáciles de encontrar.'
-  take_me_facebook: '¡Sí, lléveme a Facebook!'
   take_me_flickr!: '¡Sí, lléveme a Flickr!'
   target_list_alert: '¿Estás seguro que intentaste observar todas las especies en la lista de objetivos? Recuerda que cualquier especie en tu lista de objetivos no observada será interpretada como ausente, así que es muy importante que tu lista de objetivos refleje con exactitud el conjunto de especies que intentaste detectar'
   target_list_warning: Recuerda que todo lo cubierto por tu lista de objetivos que no observaste dentro del radio o duración de este viaje será interpretado como una ausencia. Es muy importante que tu lista de objetivos refleje precisamente el conjunto de especies que intentaste detectar. Si no intentaste detectar una especie en tu lista de objetivos o todas las especies cubiertas por un grupo en tu lista de objetivos, por favor quítala.
@@ -4594,8 +4581,6 @@ es-AR:
   user_commented: "%{user} comentó"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} marcó como favorito %{noun} por %{owner}"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
@@ -4734,11 +4719,6 @@ es-AR:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerido
   was_it_captive_cultivated?: "¿Fue cautiva / cultivado?"
-  we_also_support: |
-    También admitimos <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> y
-    <a href="http://facebook.com">Facebook</a>
-    para alojamiento de imágenes.
   we_can_only_understand_csv_in: Sólo podemos entender CSV en el siguiente formato
   we_couldnt_find_a_user: No pudimos encontrar un usuario con esa dirección de correo.
   we_couldnt_find_a_user_with_that_activation_code: "No pudimos encontrar un usuario con ese código de activación. Puede que ya hayas activado tu cuenta. Intenta iniciar sesión."
@@ -5392,8 +5372,6 @@ es-AR:
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos sus descendientes'
         curator_coordinate_access_disabled_desc_html: |
           Este proyecto no permite observaciones con coordenadas que los curadores del proyecto no puedan ver. Si no quieres compartir las coordenadas de esta observación con los curadores del proyecto, debes eliminar la observación del proyecto.
-        data_quality_assessment_desc_html: |
-          La Evaluación de la Calidad de Datos es una evaluación del rigor de una observación. Las observaciones con Grado de Investigación pueden ser utilizadas por los científicos para sus investigaciones. Podés realizar la evaluación a continuación:
         disagreement_count_desc: "nº de taxones identificados que no están entre los ancestros de un taxón"
         identification_count_desc: '# de identificaciones para un taxón individual'
         flagged_photos_desc_html: |
@@ -6077,6 +6055,9 @@ es-AR:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        monthly_supporter_desc_html: |
+          Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
+          <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
         muting_desc_html: |
           <p>
           Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -6169,9 +6150,6 @@ es-AR:
       index:
         connect_with_nature: Conectate con la naturaleza
         explore_and_share: Explorá y compartí tus observaciones del mundo natural.
-        observations_to_date: 'Observaciones hasta la fecha'
-        species_observed: 'Especies observadas'
-        people_signed_up: 'Personas inscritas'
         how_it_works: Cómo funciona
         record_your_observations: Registra tus observaciones
         share_with_fellow_naturalists: Comparte con otros naturalistas
@@ -6245,14 +6223,8 @@ es-AR:
       6: vi
       7: sá
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%d.%b.%Y'
     month_names:
       - 
       - enero
@@ -6319,35 +6291,6 @@ es-AR:
       month: Mes
       second: Segundos
       year: Año
-  errors:
-    messages:
-      accepted: debe ser aceptado
-      blank: no puede estar en blanco
-      confirmation: no coincide la contraseña
-      empty: no puede estar vacío
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser mayor que %{count}
-      greater_than_or_equal_to: debe ser mayor que o igual a %{count}
-      inclusion: no está incluido en la lista
-      invalid: no es válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que o igual a %{count}
-      not_a_number: no es un número
-      not_an_integer: debe ser un entero
-      odd: debe ser impar
-      record_invalid: 'La validación falló: %{errors}'
-      requires_privilege_speech: |
-        Debe tener tres observaciones verificables o tres identificaciones
-        para que otros hagan eso
-      requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
-      taken: ya está en uso
-    template:
-      body: 'Se encontraron problemas con los siguientes campos:'
-      header:
-        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
-        other: 'No se pudo guardar este/a %{model} porque se encontraron %{count} errores'
   helpers:
     defaults:
       title: "ESTE ES UN TÍTULO"
@@ -6403,62 +6346,13 @@ es-AR:
   time:
     am: mañana
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%d %b %Y %H:%M:%S %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: debe ser aceptado
-        blank: no puede estar en blanco
-        confirmation: no coincide la contraseña
-        empty: no puede estar vacío
-        equal_to: debe ser igual a %{count}
-        even: debe ser par
-        exclusion: está reservado
-        greater_than: debe ser menor que %{count}
-        greater_than_or_equal_to: debe ser mayor o igual que %{count}
-        inclusion: no está incluido en la lista
-        invalid: no es válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor o igual que %{count}
-        not_a_number: no es un número
-        not_an_integer: debe ser un entero
-        odd: debe ser impar
-        record_invalid: 'Falló la validación: %{errors}'
-        requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
-        requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
-        taken: ya ha sido tomado.
-        too_long:
-          one: es demasiado largo (el máximo es 1 carácter)
-          other: es demasiado largo (el máximo son %{count} caracteres)
-        too_short:
-          one: es demasiado corto (el mínimo es 1 carácter)
-          other: es demasiado corto (el mínimo son %{count} caracteres)
-        wrong_length:
-          one: no tiene el tamaño correcto(debe ser de 1 carácter)
-          other: es de tamaño incorrecto (debe ser de %{count} caracteres)
-      template:
-        body: 'Hubo problemas con los siguientes campos:'
-        header:
-          one: 1 error prohibió este %{model} de ser salvado
-          other: '%{count} errores prohibieron este %{model} de ser salvado'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6611,20 +6505,17 @@ es-AR:
         blank: No puede quedar en blanco
         confirmation: No coincide la contraseña
         empty: no puede estar vacío
-        equal_to: debe ser igual a %{count}
         even: debe ser par
         exclusion: está reservado
-        greater_than: debe ser mayor de %{count}
-        greater_than_or_equal_to: debe ser mayor que o igual a %{count}
         inclusion: no está incluido en la lista
         invalid: no es válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor que o igual a %{count}
         not_a_number: no es un número
         not_an_integer: debe ser un número entero
         odd: debe ser impar
         record_invalid: 'Falló la validación: %{errors}'
-        requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
+        requires_privilege_speech: |
+          Debe tener tres observaciones verificables o tres identificaciones
+          para que otros hagan eso
         requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
         taken: ya está en uso
         too_long:
@@ -6639,7 +6530,7 @@ es-AR:
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
         header:
-          one: '%{count} error prohibió guardar este %{model}'
+          one: "%{count} error prohibió guardar este %{model}"
           other: '%{count} errores prohibieron guardar este %{model}'
       models:
         application:

@@ -127,7 +127,7 @@ function fetchObservations( ) {
       apiParams.fields = OBSERVATION_FIELDS;
     }
     _.each( apiParams, ( v, k ) => {
-      if ( _.isNull( v ) || v === "" || v === "any" ) {
+      if ( ( _.isNull( v ) || v === "" || v === "any" ) && !_.startsWith( k, "field:" ) ) {
         delete apiParams[k];
       } else if ( /license$/.test( k ) ) {
         apiParams[k] = _.toLower( v );

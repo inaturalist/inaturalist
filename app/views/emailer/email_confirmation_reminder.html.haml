@@ -1,0 +1,24 @@
+= render "header"
+
+%p=t :email_confirmation_reminder_please_confirm, site_name: @site.name, vow_or_con: @site.name[0].downcase
+%p{ style: "margin: 30px 0; text-align: center" }
+  = link_to t( "devise.mailer.confirmation_instructions.subject" ), user_confirmation_url( confirmation_token: @user.confirmation_token ), style: "width: auto; min-width: 50%; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;"
+%p
+  %strong=t :email_confirmation_reminder_account_details
+%p
+  =t :bold_label_colon_value_html, label: t( :login, scope: [:activerecord, :attributes, :user] ), value: @user.login
+  %br
+  =t :bold_label_colon_value_html, label: t( :email, scope: [:activerecord, :attributes, :user] ), value: @user.email
+  %br
+  =t :bold_label_colon_value_html, label: t( :date_joined ), value: l( @user.created_at.to_date, format: :long )
+  %br
+  =t :x_observations, count: @user.observations_count
+  %br
+  =t :x_identifications, count: @identifications_count
+  %br
+  =t :x_comments, count: @user.comments.count
+
+%p=t :email_confirmation_reminder_we_will_require, requirement_date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+%p=t :email_confirmation_reminder_any_questions_html, site_name: @site.name, vow_or_con: @site.name[0].downcase, faq_url: "https://help.inaturalist.org/support/solutions/folders/151000452263"
+
+= render "footer"
