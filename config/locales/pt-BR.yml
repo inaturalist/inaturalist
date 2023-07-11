@@ -1764,7 +1764,6 @@ pt-BR:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Detalhes da conta
-  email_copyright: "Copyright &copy; %{x}, todos os direitos reservados"
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
   embed_place_widget: Inserir widget de localização
@@ -2112,7 +2111,6 @@ pt-BR:
   heads_up_you_have_multiple: "Atenção: Existem várias marcações taxonômicas para categorias idênticas."
   help: Ajuda
   help_confirm_observations!: Ajude confirmar observações!
-  help_support_inaturalist: "Ajude a apoiar o iNaturalist"
   help_translate!: Ajude a Traduzir!
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_suggestions: Aqui estão nossas principais sugestões
@@ -2280,7 +2278,6 @@ pt-BR:
   inaturalist_activity_notifications: "Notificações de atividade do %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicativos do iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society."
   inaturalist_places: "%{site_name} Lugares"
   info: Informação
   input_taxon: Táxon de entrada
@@ -2725,9 +2722,6 @@ pt-BR:
   meet: Conhecer
   member_of_the_inaturalist_network_html: |
     Membro da <a href="%{url}">Rede iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membro da Rede iNaturalist do %{partial_inat_network_tag_html}</a>, uma
-    iniciativa conjunta dos %{cas_tag_html} e do %{nat_geo_tag_html}.
   #As in members of a project
   members: Membros
   membership_model: Modelo de adesão
@@ -4300,6 +4294,7 @@ pt-BR:
   refresh: Atualizar
   refreshing: atualizando
   regenerate_stats: Regenerar estatísticas
+  regional_names: Nomes Regionais
   register_for_this_event_at_x_html: "Registre sua participação neste evento em %{x}"
   reject?: Rejeitar?
   relative_observations: Observações Relacionadas
@@ -4648,13 +4643,6 @@ pt-BR:
     pode ser afiliada apenas a um membro da Rede. Você pode rever ou alterar
     sua afiliação em suas %{start_tag_settings}configurações da conta%{end_tag_settings}.
   sites_affiliation_title: Saiba Mais Sobre a Afiliação à Rede
-  sites_network_cas_and_nat_geo_html: |
-    A %{start_tag_cas}Academia de Ciências da Califórnia%{end_tag_cas} e a
-    %{start_tag_nat_geo}Sociedade Geográfica Nacional%{end_tag_nat_geo} têm
-    acordos formais com organizações em cada uma destas áreas geográficas para apoiar
-    o uso da plataforma iNaturalist. <strong>Se a sua organização estiver
-    interessada em aderir à Rede iNaturalist, você pode encontrar mais detalhes
-    %{start_tag_join}aqui%{end_tag_join}.</strong>
   sites_network_consists_of: "A Rede iNaturalist consiste em várias organizações:"
   sites_network_inaturalist_network_collection: |
     A Rede iNaturalist é uma coleção de sites localizados que estão totalmente
@@ -5693,6 +5681,7 @@ pt-BR:
   white: branco
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Por que você está fazendo esta alteração? (opcional)
+  why_are_you_making_this_change_cite_source_required: Por que você está fazendo esta alteração? Por favor, explique e cite uma fonte se possível. (Obrigatório)
   why_you_can_see_the_coordinates: Por que você pode ver as coordenadas
   who_can_add_observation_fields_to_my_obs: Quem pode adicionar campos de observação às minhas observações?
   who_can_add_observations_to_this_project?: Quem pode adicionar observações a este projeto?
@@ -5802,13 +5791,6 @@ pt-BR:
     Milhões de pessoas usaram o iNaturalist e o Seek do iNaturalist este ano para se conectar com a natureza
   yir_monthly_supporters_random_selection: |
     Aqui está uma seleção aleatória de membros da heróica comunidade do iNat que doam todos os meses.
-  yir_thank_your_for_being_generous: |
-    Obrigado por ser generoso com seu tempo, atenção, competência e
-    doações! iNaturalist é uma iniciativa conjunta sem fins lucrativos da
-    Academia de Ciências da Califórnia e da National Geographic Society. O
-    programa depende de inúmeros subsídios e doações, incluindo doações generosas
-    de uma pequena parcela da comunidade. Somos especialmente gratos
-    aos apoiadores mensais, cujos presentes recorrentes nos ajudam a planejar o futuro.
   yir_your_gift_sustains: |
     Sua doação sustenta este programa de alcance global e profundos impactos pessoais e
     ecológicos
@@ -5977,37 +5959,10 @@ pt-BR:
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
     donate:
       donate_short_desc: "Doe agora para mostrar seu apoio!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
-        </p>
-        <p class="lead">
-        Se você acredita no poder desta comunidade global de amantes da natureza para compartilhar conhecimento e gerar dados insubstituíveis sobre a biodiversidade, por favor considere um presente único ou recorrente online, ou veja <a
-        href="https://www.inaturalist.org/pages/giving">outras maneiras de doar</a>.
-        </p>
-        <p class="lead">
-        Sua doação ajuda a apoiar o iNaturalist a medida que a comunidade cresce, de avançar a visão computacional e implementar novos recursos até apoiar nossos servidores e equipe.
-        </p>
-        <p class="text-muted">
-        O iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society. Todas as doações serão recebidas pela Academia de Ciências da Califórnia, uma organização 501(c)(3) isenta de impostos e sem fins lucrativos baseada nos Estados Unidos da América (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Eu apoio o iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Torne-se um apoiador mensal do iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: TORNE-SE UM CONTRIBUINTE MENSAL DE INATURALISTA
-        desc_html: |
-          <p class="lead">
-          <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
-          </p>
-          <p class="lead">
-          Nós desejamos manter o iNaturalist gratuito para ser utilizado, mas ele não é gratuito para operar. Se você ama o iNaturalist, por favor considere se tornar um apoiador mensal. Doações recorrentes ajudam a garantir que o iNaturalist pode continuar a aumentar sua infraestrutura e equipe por prover uma renda previsível. Você também pode optar por mostrar seu status de apoiador mensal no seu perfil de usuário.
-          </p>
-          <p class="lead">
-          Suas doações generosas ajudam a apoiar o iNaturalist a medida que a comunidade cresce, de avançar a visão computacional e implementar novos recursos até apoiar nossos servidores e equipe. Se você prefere doar uma única vez, por favor <a href="%{donate_url}">clique aqui</a>.
-          </p>
-          <p class="text-muted">
-          O iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society. Todas as doações serão recebidas pela Academia de Ciências da Califórnia, uma organização 501(c)(3) isenta de impostos e sem fins lucrativos baseada nos Estados Unidos da América.
-          </p>
         thank_you_for_being_a_monthly_supporter: Obrigado por ser um Apoiador Mensal!
         thank_you_for_being_a_monthly_supporter_caps: OBRIGADO POR SER UM APOIADOR MENSAL
       temporarily_unavailable: |
@@ -6686,6 +6641,10 @@ pt-BR:
         view_original_html: |
           Você pode visualizar o original em <a href="%{url}">%{url}</a>. Por favor deixe alertas de infração de direitos autorais como não resolvido se esta foto estar de fato infringindo direitos.
     places:
+      kml_field_desc3: |
+        KML dos limites do local. Você pode gerar um KML utilizando Google Maps, Google
+        Earth ou a maioria dos aplicativos GIS. Deve ter pelo menos um polígono, ser
+        menos de 1 MB (5 MB para curadores do site), e ter uma área menor que ~700.000 quilometros quadrados, (aproximadamente a área do estado de Texas nos EUA).
       edit:
         complex_boundary_note_html: |
           Estes limites de fronteira são um pouco complexos para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download do KML</a>, e editar elas no aplicativo GIS que você escolher, depois fazer o upload do seu KML editado diretamente.
@@ -7068,12 +7027,6 @@ pt-BR:
           todos os anos.
         compared_to_previous_years: Comparar com anos anteriores
         donate_title: "Agradecimentos Especiais a Todos os Nossos Apoiadores"
-        donate_desc_html: |
-          Obrigado por ser generoso com seu tempo, atenção, competência e
-          doações! iNaturalist é uma iniciativa conjunta sem fins lucrativos da
-          Academia de Ciências da Califórnia e da National Geographic Society.
-          Ele é apoiado por uma <a href="%{team_url}">pequena equipe</a> que
-          faz todo o design e o software de web, móvel, e <a href="%{seek_url}">Seek de iNaturalist</a>, além de gerenciar o suporte da comunidade, colaborações, e integrações que mantêm coisas funcionando (e em crescimento rápido!). O programa depende de inúmeros subsídios e doações, incluindo presentes de caridade de uma pequena fração de contribuidores. Somos especialmente gratos aos apoiadores mensais cujos presentes recorrentes nos ajudam a planejar o futuro. Você pode doar em múltiplas moedas para apoiar as operações essenciais do iNaturalist. Obrigado a todos pela sua participação em fazer de %{year} o maior ano do iNaturalist!
         donors: Doadores
         donors_guide_label_our_goal_is_1000: A nossa meta é de 1.000 doadores recorrentes por mês
         inaturalist_network: Rede iNaturalist
@@ -7186,6 +7139,28 @@ pt-BR:
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizar este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
+        about_names_desc: |
+          <p>
+           A grande maioria dos organismos vivos possuem "nomes comuns" nas línguas faladas em seus locais de origem. Estes nomes são conhecidos popularmente, fáceis de pronunciar e não mudam ao longo do tempo. Mas muitos organismos possuem mais de um nome comum em diferentes locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar muito difícil o processo de comunicar qual espécie é qual, causando confusão. Os cientistas solucionaram este problema fazendo uso do "nome científico" para nomear cada uma das espécies do mundo, seguindo regras específicas conforme <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>, mas este nomes são normalmente baseados no Latim, uma língua que praticamente ninguém mais fala, então não são tão fáceis de memorizar como os nomes comuns, ou populares. Nomes científicos podem também refletir a posição taxonômica de um organismo, assim podem ser alterados sempre que pesquisadores, com base em novas tecnologias ou novos dados, desenvolvem novas teorias sobre a evolução de determinada espécie, o que novamente reduz a facilidade do seu uso na comunicação diária, mesmo entre especialistas.
+          </p>
+          <p>
+           Um velho ditado popular já dizia: "Nomes comuns mudam de um local para o outro; nomes científicos mudam de tempos em tempos."
+          </p>
+          <p>
+          Por esse motivo tentamos resolver esta questão exibindo ambos os nomes das espécies, tanto os comuns quanto os científicos, sempre que possível e, escolhendo os nomes comuns com base na localização e preferências geográficas do usuário. Os nomes são apresentados de acordo com a prioridade geral em cada Lingua / Tipo. </p>
+        about_regional_names_desc: |
+          <p>
+          Nomes podem ser adicionados a lugares (geralmente países) em casos onde
+          países ou regiões diferentes usam nomes comuns diferentes na
+          mesma língua. Por exemplo, o México e a Costa Rica podem ter diferentes
+          nomes comuns em espanhol para a mesma espécie.
+          </p>
+          <p>
+          Esta tabela mostra quais os nomes que foram adicionados a quais lugares, e
+          são listados em ordem de prioridade para cada local. Se dois nomes em espanhol
+          são listados para o México, o primeiro é o que aparecerá se a preferencia for
+          para ver nomes em espanhol adicionados ao México.
+          </p>
         about_conservation_status_desc: |
           O Estado de Conservação sintetiza o risco de extinção para um determinado grupo de organismos.
         about_establishment_desc: |
@@ -7425,16 +7400,6 @@ pt-BR:
         licensing_desc_html: |
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
-        monthly_supporter_desc_html: |
-          Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
-          recebidos pela Academia de Ciências da Califórnia (United
-          IRS EIN 94-1156258) para apoiar a operação sem fins lucrativos de
-          Sites da iNaturalist e da iNaturalist Network.
-          <a href="%{url}">Clique aqui para se tornar um apoiador mensal</a>.
-          Quando confirmarmos seu apoio, você poderá verificar isso
-          para exibir esse status no seu perfil. Nota: você precisará usar
-          exatamente o mesmo endereço de email no Donorbox que você usa no iNaturalist
-          para confirmarmos que você se tornou um Suporte mensal.
         muting_desc_html: |
           ↓
           <p>
@@ -8007,6 +7972,7 @@ pt-BR:
         position: Posição
         source_url: URL de origem
         source_identifier: Identificador de fonte
+        audit_comment: Nota
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8243,6 +8209,8 @@ pt-BR:
               bad_format: |
                 só pode conter caracteres latinos, hífens, espaços e
                 ×; note que táxons putativos e cultivares não são permitidos
+            audit_comment:
+              needs_to_be_at_least_10_characters: precisa ter pelo menos 10 caracteres
         taxon_photo:
           attributes:
             taxon:
@@ -8266,16 +8234,6 @@ pt-BR:
           attributes:
             base:
               user_already_blocked: Você já bloqueou esse usuário
-              user_cannot_be_staff: |
-                Você não pode bloquear a equipe do iNat. A equipe precisa ser capaz de
-                se comunicar com todos no iNat, ter acesso a todos os dados no
-                iNat, e são os mediadores finais de disputas, então bloqueá-los
-                não os impedirá de se comunicar com você. Se você tiver um
-                problema com um membro da equipe, por favor reporte-o a um dos
-                co-diretores do iNat, ou, se você tiver algum problema com um dos
-                co-diretores, você pode entrar em contato com o Chief of Science no
-                Instituto de Biodiversidade e Ciência da Sustentabilidade na
-                Academia de Ciências da Califórnia.
         user_parent:
           attributes:
             email:
