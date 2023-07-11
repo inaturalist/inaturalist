@@ -121,6 +121,7 @@ lb:
   a_to_z: "A bis Z"
   about: Iwwer
   about_charts: Iwwer Diagrammer
+  about_complete_taxa: Iwwer vollstänneg Taxa
   about_conservation_status: Iwert den Erhalungszoustand
   about_editing_observation_fields: Iwwer d'Editéiere vun den Observatiounsfelder
   about_license_options: Iwwert Lizenz-Optiounen
@@ -1015,7 +1016,6 @@ lb:
   inappropriate_content: Onubruechte Contenu?
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applikatiounen"
-  inaturalist_is_a_joint_initiative: "%{site_name} ass eng gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society."
   inaturalist_places: "%{site_name} Plazen"
   info: Informatioun
   insects: Insekten
@@ -1264,8 +1264,6 @@ lb:
   meet: Treffen
   member_of_the_inaturalist_network_html: |
     Member vum <a href="%{url}">iNaturalist Reseau</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Member vum %{partial_inat_network_tag_html}iNaturalist Netzwierk </a>, enger gemeinsamer Initiativ vun der %{cas_tag_html} and der %{nat_geo_tag_html}.
   #As in members of a project
   members: Memberen
   mentioned_you_in_noun_html: "%{user} huet Iech op %{noun} ernimmt."
@@ -2051,6 +2049,7 @@ lb:
   redo_search_in_map: Nach eng Kéier op der Kaart sichen
   refresh: Aktualiséieren
   regenerate_stats: Statistiken nei generéieren
+  regional_names: Regional Nimm
   reject?: Refuséieren?
   relationship: "Relatioun"
   relationships:
@@ -2388,6 +2387,7 @@ lb:
   where_were_you?: Wou war Dir?
   which_projects_can_add_your_observations?: Wat fir traditionell Projete kënnen Är Observatiounen derbäisetzen?
   white: wäiss
+  why_are_you_making_this_change_cite_source_required: Firwat wëllt Dir dës Ännerung maachen? Gitt wgl. Är Grënn an – wa méiglech – eng Quell un. (Obligatoresch)
   why_you_can_see_the_coordinates: Firwat Dir d'Koordinate gesi kënnt
   who_can_add_observation_fields_to_my_obs: Wien kann Observatiounsfelder bei Är Observatioune bäisetzen.
   who_can_see_the_coordinates: Wie kann d'Koordinate gesinn
@@ -2441,8 +2441,6 @@ lb:
     Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
   yir_millions_of_people_used_inaturalist: |
     Millioune Leit hunn dëst Joer iNaturalist a Seek vun iNaturalist benotzt fir sech mat der Natur ze verbannen
-  yir_thank_your_for_being_generous: |
-    Merci datt Dir esou generéis mat Ärer Zäit, Opmierksamkeet, Expertise a Spende sidd! iNaturalist ass eng nonprofit gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society. De Programm hänkt vu ville Boursen a Spenden of, dorënner karitativ Kaddoe vu enger ganz klenger Fraktioun vun der Gemeinschaft. Mir si besonnesch dankbar un déi di all Mount spenden, des widderhuelend Bäiträg hëllefen eis  fir d'Zukunft ze plangen.
   yir_your_gift_sustains: |
     Äre Kaddo ënnerstëtzt dëse Programm mat globaler Reechwäit an déiwem perséinlechen an ekologeschen Impakt
   you: Iech
@@ -2938,6 +2936,10 @@ lb:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+        taxon_name:
+          attributes:
+            audit_comment:
+              needs_to_be_at_least_10_characters: muss mindestens 10 Zeeche laang sinn
         taxon_photo:
           attributes:
             taxon:
