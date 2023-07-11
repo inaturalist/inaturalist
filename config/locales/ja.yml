@@ -778,6 +778,7 @@ ja:
     replace_with: '置換用:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 置換後
+    dropped: 無効化済み
     staged: 段階的な
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}は%{output_taxa}に分割されました"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}を%{output_taxa}に分割します"
@@ -911,6 +912,8 @@ ja:
   confirm_new_password: パスワード再入力
   confirm_now: 今すぐ確認
   confirm_your_info: 登録情報をご確認ください
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: '%{datetime} に確認メールを送信しました'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 確認日:%{date}
   confirming_ids: IDの確認
@@ -1012,6 +1015,8 @@ ja:
     molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
+    bone: |
+      脊椎動物の白骨化した骨格
     cannot_be_determined: 提供された証拠から判断することはできません
     dead: 生物は死んでいるか、瀕死である
     feather: 生物の本体から分離した羽毛
@@ -1329,6 +1334,10 @@ ja:
   deviation: 逸脱
   devise:
     confirmations:
+      confirmed: |
+        あなたのメールアドレスは正常に確認されました。
+        こちらのウェブサイトまたはiNaturalistまたはSeekモバイルアプリにログインできます。
+      send_instructions: "アカウントの有効化について数分以内にメールでご連絡します。"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1338,6 +1347,8 @@ ja:
       unauthenticated: '続行するにはログインするか、アカウントを作成してください。'
       invalid: 'メールアドレスかパスワードが正しくありません'
       invalid_token: '認証が無効です'
+      unconfirmed: |
+        当サイトからのメールのリンクをクリックしてアカウントを認証してください。
       user:
         suspended: あなたのアカウントは使用停止されました。
     sessions:
@@ -1356,13 +1367,29 @@ ja:
     registrations:
       destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
       signed_up: 'ようこそ！正常に登録完了しました。'
+      signed_up_but_inactive: "ログインするためには、アカウントを有効化してください。"
+      signed_up_but_locked: "アカウントがロックされているためログインできません。"
+      signed_up_but_unconfirmed: "確認リンクが記載されたメッセージがあなたのメールアドレスに送信されました。リンクに従ってアカウントを有効にしてください。"
       updated: 'アカウントを正常に更新しました。'
+      updated_but_not_signed_in: "アカウントが正常に更新されましたが、パスワードが変更されたため、再度ログインする必要があります。"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: メールアドレス確認の説明
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: メールアドレスの変更がリクエストされました
       reset_password_instructions:
         subject: 'パスワードの再設定について'
+  devise_confirmation_instructions_please_click: |
+    下にあるリンクをクリックして、メールアドレスの認証を行ってください。
+  devise_confirmation_instructions_resend_instructions: |
+    iNaturalistをご利用いただくにはメールアドレスが必要です。
+    アカウント登録時に入力されたメールアドレス宛に、本人確認のためのリンクが送信されていますので、本リンクをクリックし、認証を完了してください。
+    また、こちらから再度確認メールを送信できます。
+  devise_confirmation_instructions_send_confirmation_email: 本人確認用のメールを送信
+  devise_email_changed_you_requested: '%{old_email} から %{new_email} への変更をリクエストしました。'
   devise_reset_password_instructions_hello_email: '%{email}さん、こんにちは！'
   devise_reset_password_instructions_if_you_didnt_request_this: |
     なお、本メールにお心当たりがない場合は、本メールを無視してくださるようお願いいたします。
@@ -1531,7 +1558,6 @@ ja:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: アカウント詳細
-  email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'
   embed_place_widget: 場所ウィジェットを埋め込む
@@ -1766,6 +1792,7 @@ ja:
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
   geoprivacy_is_obscured_desc: 投稿者は、座標を曖昧にすることを選択しました。
   geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
+  geoprivacy_is_private_desc: 投稿者は座標を非表示にすることを選択しました。
   georeferenced: 位置データありますか？
   get_started: 始めよう
   getting_started_guide: 初めてのユーザーガイド
@@ -1822,7 +1849,6 @@ ja:
   heads_up_this_photo_is_already_associated_with: "注意: この写真は既に<a target='_blank' href='%{url}'>別の観察記録</a>と関連づけられている。"
   help: ヘルプ
   help_confirm_observations!: 観測を記録しましょう！
-  help_support_inaturalist: "iNaturalistを支援する"
   help_translate!: 翻訳を手伝ってください!
   here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
   here_are_our_top_suggestions: これらが上位の提案です
@@ -1886,6 +1912,7 @@ ja:
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
   identifiers: 同定者
   identotron: らくらく同定
+  identotron_for: らくらく同定
   identotron_help: らくらく同定ヘルプ
   ids: "ID"
   ids_made_for_others: 他のユーザーへ提案したID
@@ -1948,7 +1975,6 @@ ja:
   inaturalist_activity_notifications: "%{site_name} 件のアクティビティ通知"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist アプリケーション"
-  inaturalist_is_a_joint_initiative: "%{site_name} はカリフォルニア科学アカデミーとナショナル ジオグラフィック協会によって共同設立されたものです。"
   inaturalist_places: "%{site_name} 場所"
   info: 情報
   input_taxon: 分類群を入力
@@ -2098,12 +2124,14 @@ ja:
     georgian: ジョージア(グルジア)語
     german: ドイツ語
     greek: ギリシャ語
+    gujarati: グジャラート語
     hawaiian: ハワイ語
     hebrew: ヘブライ語
     herero: ヘレロ語
     hiligaynon: ヒリガイノン語
     hill_mari: 山地マリ語
     hodges_number: ホッジス番号
+    hokkien: 福建語
     hungarian: ハンガリー語
     icelandic: アイスランド語
     ilokano: イロカノ語
@@ -2112,6 +2140,7 @@ ja:
     italian: イタリア語
     japanese: 日本語
     kannada: カンナダ語
+    kazakh: カザフ語
     korean: 韓国語
     latvian: ラトビア語
     lithuanian: リトアニア語
@@ -2123,14 +2152,22 @@ ja:
     maltese: マルタ語
     maori: マオリ語
     marathi: マラーティー語
+    maya: マヤ
     misima_paneati: ミシマパネアティ語
+    mongolian: モンゴル語
+    nahuatl: ナワトル語
     navajo: ナバホ語
     norwegian: ノルウェー語
     occitan: オック語
+    ojibwe: オジブウェー語
+    palauan: パラオ語
     pangasinan: パンガシナン語
+    persian: ペルシャ語
+    polish: ポーランド語
     portuguese: ポルトガル語
     romanian: ルーマニア語
     russian: ロシア語
+    santali: サンターリー語
     scientific_names: 学名
     serbian: セルビア語
     shona: ショナ語
@@ -2153,7 +2190,9 @@ ja:
     tswana: ツワナ語
     turkish: トルコ語
     ukrainian: ウクライナ語
+    uyghur: ウイグル語
     venda: ヴェンダ語
+    vermont_flora_codes: バーモントのフローラコード
     vietnamese: ベトナム語
     waray_waray: ワライ語
     xhosa: コサ語
@@ -2361,8 +2400,6 @@ ja:
   meet: 会う
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalistネットワーク</a>のメンバーサイトです。
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist Network</a>のメンバーで、%{cas_tag_html}と%{nat_geo_tag_html}の共同イニシアチブです。
   #As in members of a project
   members: メンバー一覧
   membership_model: 会員制モデル
@@ -2592,6 +2629,7 @@ ja:
   no_identifications_added:
     current_user: まだ誰の観察記録にも同定を追加していません。
     user: "%{user}さんは別のユーザーの観察記録に追加した同定がありません"
+  no_ids: "同定数"
   no_ids_have_been_suggested_yet: 同定はまだ提案されていません
   no_interaction_data_available: 相互作用データはありません
   no_its_as_good_as_it_can_be: いいえ、このままで適切です。
@@ -2642,6 +2680,7 @@ ja:
   no_species_have_been_listed: この場所のリストに種がまだ含まれていません
   no_species_on_this_list: リストに種はまだありません！
   no_subject_parens: "（件名なし）"
+  no_such_wiki_page: そのようなページはありません
   no_suggestions_available: 提案はありません
   no_summary_from_wikipedia: ウィキペディアに記述ありません
   no_summary_has_been_set: 概要が指定されていません
@@ -2650,12 +2689,14 @@ ja:
   no_taxa_selected: 分類群は選択されていません
   no_taxa_with_unknown_relationships: 関係が不明な分類群はありません
   no_taxonomic_changes_match_those_criteria: 指定の条件に一致する分類群変更がありません
+  no_users_found_with_those_filters: これらの検索条件ではユーザーは見つかりませんでした
   no_wikipedia_page_for_taxon: ウィキペディアにこのタクソンに関するページがありません。
   noble_curators: "%{site}のキュレーター管理者の紹介"
   non_human?: 非人間？
   none: 該当する項目がありません
   none_found: 見つかりません
   normal: 通常
+  not_atlased: 分布域がまだ地図上にプロットされていません
   not_completed: 未完成
   not_confident: 信頼性のある提案ができません
   not_confident_top_suggestions: 信頼性は高くありませんが、これらが上位の提案です
@@ -2664,6 +2705,8 @@ ja:
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_found: 見つかりません
+  #Filter for observations not in a particular place
+  not_in_place: 場所に含まれていません
   not_linked_flickr: "現在あなたの%{site_name}アカウントはFlickrアカウントと連携されていません"
   not_on_this_list: このリストに含まれていません
   not_recorded: 記録されていません
@@ -2773,6 +2816,8 @@ ja:
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
+  observer_prefers_no_traditional_project_addition: |
+    この投稿者は他のユーザーが観察記録を手動プロジェクトへ追加することを許可していません。
   observer_short: 観察者
   occurence_status_describes_how: '分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）'
   occurrence_status: 分布状況
@@ -3639,6 +3684,7 @@ ja:
   refresh: 更新
   refreshing: 更新中...
   regenerate_stats: 統計を再生成
+  regional_names: 地域名
   register_for_this_event_at_x_html: "%{x}でこのイベントの参加登録を行う"
   reject?: 却下しますか?
   relative_observations: 関連した観察記録
@@ -4418,6 +4464,7 @@ ja:
   total_observations: 合計観察記録数
   total_observations_caps: 合計観察記録数
   total_species_observed_caps: 合計観察種数
+  total_unique_observers: 総投稿者数
   translated_languages: 翻訳言語：
   'true': '真'
   trending: トレンド入り：
@@ -4451,6 +4498,7 @@ ja:
   unhide_desc: |
     非表示を解除すると、この内容は再び公開されます。キュレーターは
     再度非表示にすることができます。
+  unique_observers: 総投稿者数
   unknown: 不明
   unknown_error: 不明なエラー
   unknown_rank: '(階級不明）'
@@ -4561,6 +4609,7 @@ ja:
   user_observed_on_on_date_in_place: |
     %{user} さんが %{date} に %{place} で観察しました
   user_suggested_an_id: "%{user} さんが 同定を提案しました"
+  user_trusts_this_project_for_none: ユーザーは、このプロジェクトのプロジェクト管理者に不明瞭化された位置情報を共有していません。
   user_trusts_this_project_for_any: |
     ユーザーはこのプロジェクトのプロジェクトキュレーター/管理者に不明瞭な場所が見えるようになる設定を行っています。
   user_trusts_this_project_for_taxon: |
@@ -4688,6 +4737,16 @@ ja:
   welcome_to_inat: "%{site_name}へようこそ！"
   welcome_to_guides: "%{site_name}のガイドへようこそ！"
   welcome_to_x_project: "%{project}へようこそ"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: AIによるとこの属の可能性が高い：
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: AIによるとこの科の可能性が高い：
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: AIによるとこの目の可能性が高い：
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: AIによるとこの亜科の可能性が高い：
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: AIによるとこの上科の可能性が高い：
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -4709,6 +4768,7 @@ ja:
   white: 白
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: 変更理由(任意)
+  why_are_you_making_this_change_cite_source_required: なぜこの変更を行うのですか？可能であれば出典を挙げて説明してください。(必須)
   why_you_can_see_the_coordinates: あなたがこの座標を見ることができる理由
   who_can_add_observation_fields_to_my_obs: 他のユーザーが自分の観察記録へ観察記録フィールドを追加することを許可しますか？
   who_can_add_observations_to_this_project?: このプロジェクトに観察記録を追加できるのは誰ですか？
@@ -4728,11 +4788,14 @@ ja:
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
+  #Filter for observations not in a particular taxon
+  without_taxon: 分類群に含まれていません
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: 撤回
   #Loading status while an identification is being withdrawn
   withdrawing: 撤回中...
+  worldwide: 世界中
   wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
   would_you_like_to: よかったら
   would_you_prefer_to_view_common_names_used_in_place_html: <strong>%{place}</strong>で使われる習慣的な名称で表示しますか?
@@ -4774,6 +4837,8 @@ ja:
     つまり、やり方さえわかれば誰でも貢献できるのです。
     今年、ボランティアでコードを書いてくださった方々を紹介します。
     コーダーの皆様、ありがとうございました。
+  yir_donate_banner_inaturalist_in_year: "%{year} のiNaturalist:"
+  yir_donate_banner_reaching_millions: 生物多様性を照らす。一億観察記録達成。全大陸対応！
   #"You" is singular
   yir_donate_banner_all_thanks: すべて皆様のおかげです！
   #"You" is singular
@@ -4791,9 +4856,27 @@ ja:
   you: あなた
   you_appear_offline_try_again: |
     現在はオフラインのようです。インタネットに接続したらまたお試しください。
+  youre_a_site_curator_which_means: |
+    あなたはサイトのキュレーターです。
+    私たちのデータをキュレーションし、コンテンツを監視・改善することをお手伝いいただいているということです。もしお時間があれば、これらの問題の改善にぜひご協力ください。
+    もしお時間があれば、ぜひご協力ください。もしコンテンツのキュレーションについて質問がある場合は、 %{email}までご連絡ください。
   you_are_now_following_x: "%{friend_user}をフォローし始めました。"
+  you_are_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> は %{project} の管理者になりました
+  you_are_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> は %{project} のプロジェクト管理者になりました
+  you_are_now_a_manager_for_project_html: |
+    <strong>you</strong> は %{project} のプロジェクト管理者になりました
   you_are_already_a_member_of_this_project: "このプロジェクトはすでに参加しています！"
   you_are_no_longer_following_x: "%{friend}はもうフォローしていません。"
+  you_are_setting_this_project_to_aggregate: |
+    以下のルールに%{rules}マッチするすべての観察記録を集約するように設定されています。
+    続行しますか?
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    ！
+    観察記録の一部に日時や位置情報が追加されていません。 
+    この情報がない観察記録は科学的価値がほぼ失われます。
+    位置情報を保護したい場合は、位置情報を不明瞭にする設定を使用されるか、地図上の誤差を示す赤い円を大きく設定されることを強く推奨します。
   you_are_subscribed_to_comments_on_this_flag: このフラグのコメントをフォローしています。
   you_are_subscribed_to_comments_on_this_post: この投稿のコメントをフォローしています。
   you_are_subscribed_to_comments_on_this_taxon_stage: コメントをフォローしています。
@@ -4801,10 +4884,13 @@ ja:
   you_are_subscribed_to_comments_on_this_taxon_merge: コメントをフォローしています。
   you_are_subscribed_to_comments_on_this_taxon_split: コメントをフォローしています。
   you_are_subscribed_to_comments_on_this_taxon_drop: コメントをフォローしています。
+  you_are_subscribed_to_observations_from_this_place: この場所へのコメントをフォローしています。
   you_arent_a_member_of_that_project: このプロジェクトに参加していません。
   you_arent_following_that_person: "そのユーザーをフォローしていません"
   you_can_accept_invitations: ここで招待を承諾することができます
   you_can_choose_observations_associated: この日記に関連付ける観察記録を選択することができます。
+  you_can_only_destroy_taxa_you_created2: |
+    あなたが完全削除できる分類群は、あなたが作成したもののうち他のユーザーによって更新されていないもののみです。
   you_can_only_block_three_users: ブロックの最大可能人数は3人です
   you_cant_compare_a_list_with_nothing: 比較先のリストがないと比較できません！
   you_cant_delete_a_project_list: "プロジェクトリストを削除することができません"
@@ -4929,6 +5015,9 @@ ja:
       unobserved_species: 観察されていない種
       all_unobserved_species: すべての観察されていない種
       all_observations: すべての観察記録
+      filter_by: 検索条件：
+      filtered_by: 検索条件：
+      reset_place_filter: 検索条件（場所）を解除
       dropdowns:
         sort: 並べ替え
         most_observed: 最も観察数が多い
@@ -4975,17 +5064,22 @@ ja:
         choose_columns_desc: エキスポート対象の列を選択してください
         ident_by_user_desc_html: |
           %{user}さんによる現在の同定の記入欄
+        be_patient: |
+          しばらくお待ちください。しばらくお待ちください。
+          時間がかかりすぎる場合は、次を実行できます。
         receive_an_email_with_your_data: メールで自分のデータを受信
         receive_an_email_with_your_data_help: 用意できたら、エキスポートデータが添付されたメールで送られます。
         well_email_you: "準備ができましたら電子メールでお知らせします。"
         created_on_help: "作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015"
       field_descriptions:
         scientific_name: "このサイトにより観察された分類群の学名"
+        iconic_taxon_name: 観察された分類群の上位分類群
         taxon_id: 観察された分類群の一意の識子
         num_identification_agreements: 観察者の同定と一致する同定
         num_identification_disagreements: 観察者の同定と一致しない同定
         observed_on_string: 観察者が入力した日時
         time_zone: 観察記録のタイムゾーン
+        place_guess: 投稿者によって入力された場所の説明
         latitude: 公開緯度
         longitude: 公開経度
         private_latitude: "非公開緯度（観察記録が非公開または不明瞭な場合）"
@@ -4993,6 +5087,9 @@ ja:
         taxon_geoprivacy: "現在設定されている複数の位置情報公開状況の中から、もっとも保守的な位置情報公開状況が適用されました。"
         user_id: 観察者の一意の識子
         user_login: 観察者のユーザネーム
+        user_name: |
+          投稿者の氏名（主にサイト内での投稿物の著作権表記に使用される）
+          これは任意の項目であり、また仮名である場合があります。
         created_at: 観察記録の作成日時
         updated_at: 観察記録の最新更新日時
         quality_grade: この観察記録のデータ品質レベル。詳しくはヘルプをご覧ください。
@@ -5085,13 +5182,22 @@ ja:
         submission_models:
           any: 誰でも
           curators: プロジェクトキュレーター
+        trust_help_desc: |-
+          このオプションを選択すると、このプロジェクトに参加したユーザーが、不明瞭化された位置情報の正確な位置の閲覧をプロジェクト管理者に許可できます。
+          ユーザーは、本プロジェクト内の観察記録の不明瞭化された位置情報のすべてをプロジェクト管理者に共有するか、絶滅危惧種等の理由により強制的に不明瞭化された位置情報のみをプロジェクト管理者に共有するか選択することができます。
+        trust_help_notification2: |-
+          注意：この設定を有効にすると、あなたがプロジェクトの設定を変更するたび、プロジェクトメンバーに通知が行われます。また、この場合、メンバーが新しい設定でも位置情報を共有しつづけたいかの確認のため、1週間の間、あなたは共有されている正確な不明瞭化された位置情報へのアクセスができなくなります（この期間は通常と同じように、不明瞭化された状態でしか見られなくなります）。
       new:
+        are_you_sure_you_want_to_delete: 本当にこのプロジェクトを削除してよろしいですか？
         check_the_box_to_include_member_observations: |
           このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
         collection_projects: コレクションプロジェクト
         custom_banner_icon_and_project_description: バナー画像・アイコン・プロジェクト概要の設定
         delete_project: プロジェクトを削除
         display_project_name: プロジェクト名を表示する
+        do_you_need_features_from_traditional: |
+          真の座標へのアクセスなど、手動プロジェクトの機能が必要ですか？
+          カスタム観測フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
         duplicate_project: プロジェクトの複製
         include_annotated_observations: |
           特定の属性（例：ライフステージ）、または特定の属性と値（例：ライフステージ＝成体）で注釈がつけられた観察記録のみを含めます。1つのプロジェクトにつき、1つの注釈のフィルターに制限されます。
@@ -5130,10 +5236,13 @@ ja:
         show_projects_as_flags: 傘下プロジェクトの場所を旗として地図上に表示する
         specify_project_filters: |
           プロジェクトに追加する観測記録のフィルターを指定します。複数の種（または分類群）、場所、日付、またはその他の条件を選択して、自動的に観測結果をプロジェクトに追加することができます。
+        traditional_projects_cannot_be_copied: 手動プロジェクトはコピーできません
         trusting_members_will_be_notified: |
           プロジェクトの要件やユーザーからの信頼に関する条件を変更しました。これにより、既に不明瞭の座標をプロジェクト管理者へ信頼して提供しているメンバーにも通知され、新しい要件でもプロジェクトを信頼するかどうかを判断する機会が与えられます。
         unique_url_for_outreach: アウトリーチのための独自のURLを発行できます
         users_can_follow_your_project: ユーザーはプロジェクトをフォローすることで、ニュースから最新の情報を得ることができます
+        use_this_link_to_create_html: |
+          <a href="%{url}">このリンク</a> を使用して手動プロジェクトを作成する
         we_have_redesigned_projects: |
           プロジェクトは、あなたが定義した「場所」「分類群」「ユーザー」「データ品質」「観測日
           」の要件に適合する全ての観察記録が自動で含まれるようデザインされています。
@@ -5294,8 +5403,6 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
-        monthly_supporter_desc_html: |
-          iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。
@@ -5694,6 +5801,8 @@ ja:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 この言語の名前は種の学名と一致してはいけません
+            audit_comment:
+              needs_to_be_at_least_10_characters: 少なくとも１０文字必要です
         user_block:
           attributes:
             base:
@@ -5703,5 +5812,6 @@ ja:
     previous_label: "&#8592; 前へ"
     next_label: "次へ &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "%{user} のフォロー・正確な位置情報の共有を停止します"
   zoom_in: 拡大
   zoom_out: 縮小
