@@ -409,6 +409,8 @@ tr:
   #Noun, title of a popup alerting you to something
   alert: Uyarı
   all: Tümü
+  #Title for a list of all 3rd party applications
+  all_applications: Tüm Uygulamalar
   all_comments: Tüm yorumlar
   all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
   all_life: Tüm yaşam
@@ -1702,7 +1704,6 @@ tr:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Hesap Ayrıntıları
-  email_copyright: "Telif hakkı &copy; %{x}, tüm hakları saklıdır"
   email_notifications: E-posta Bildirimleri
   embed: 'Yerleştir'
   embed_place_widget: Konum widgeti yerleştir
@@ -2032,7 +2033,6 @@ tr:
   heads_up_you_have_multiple: "Uyarı: Aynı düzeyler için birden çok sınıflandırmasal makine etiketine sahipsiniz. Düzeyler için aşağıda renkler kodlanmıştır."
   help: Yardım
   help_confirm_observations!: Gözlemleri doğrulamaya yardım et!
-  help_support_inaturalist: "iNaturalist'e Destek Ol"
   help_translate!: Çeviriye Yardım Et!
   here_are_3_examples: İşte iyi biçimlendirilmiş verilere 3 örnek
   here_are_our_top_suggestions: En iyi önerilerimiz şunlar
@@ -2187,7 +2187,6 @@ tr:
   inaturalist_activity_notifications: "%{site_name} Etkinlik Bildirimleri"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Uygulamaları"
-  inaturalist_is_a_joint_initiative: "%{site_name}; Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir."
   inaturalist_places: "%{site_name} Konumları"
   info: Bilgi
   input_taxon: Girdi sınıfı
@@ -2634,8 +2633,6 @@ tr:
   meet: Tanış
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist Ağı</a> üyesi
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist Ağı</a> üyesi, bir %{cas_tag_html} ve %{nat_geo_tag_html}'nin ortak girişimi.
   #As in members of a project
   members: Üyeler
   membership_model: Üyelik Modeli
@@ -2899,6 +2896,8 @@ tr:
   next_tab: Sonraki Sekme
   next_taxon_short: Sonraki
   'no': 'Hayır'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Henüz uygulama yok
   no_assessments_have_been_added_to_this_project_yet: Bu projeye henüz değerlendirme eklenmedi.
   no_but_it_is_a_member_of_taxon: "Hayır ama bir %{taxon} üyesi"
   no_comments_yet: Henüz yorum yok.
@@ -4153,6 +4152,7 @@ tr:
   refresh: Yenile
   refreshing: yenileme
   regenerate_stats: İstatistikleri Yeniden Oluştur
+  regional_names: Bölgesel Adlar
   register_for_this_event_at_x_html: "Bu etkinlik için %{x} adresinden kaydolun"
   reject?: Reddet?
   relative_observations: İlgili Gözlemler
@@ -4461,8 +4461,6 @@ tr:
   sites_affiliation_overview_you_can_continue_html: |
     iNaturalist.org ya da ağına özel web siten üzerinden giriş yapmaya devam edebilirsin. Üyeliğin ne olursa olsun, tüm verilerin aynı yerde barındırılacak ve daha geniş uluslararası iNaturalist topluluğu ile etkileşime girmeye devam edeceksin. Her iNaturalist hesabı yalnızca bir Ağ Üyesi'ne bağlı olabilir. %{start_tag_settings}Hesap ayarlarından%{end_tag_settings} üyeliğini gözden geçirebilir veya değiştirebilirsin.
   sites_affiliation_title: Üyelikle İlgili Daha Çok Bilgi Edin
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}Kaliforniya Bilimler Akademisi%{end_tag_cas} ve %{start_tag_nat_geo}National Geographic Topluluğu%{end_tag_nat_geo}, iNaturalist platformunun kullanımını desteklemek için bu coğrafi bölgelerin her birindeki kuruluşlarla resmi anlaşmalara sahiptir. <strong>Kuruluşunuz, iNaturalist Ağına katılmakla ilgileniyorsa, daha çok ayrıntıya %{start_tag_join}buradan%{end_tag_join} ulaşabilirsiniz.</strong>
   sites_network_consists_of: "iNaturalist Ağı çeşitli kuruluşlardan oluşur:"
   sites_network_inaturalist_network_collection: |
     iNaturalist Ağı, küresel iNaturalist topluluğuna tamamen bağlı olan yerelleştirilmiş web sitelerinden oluşan bir koleksiyondur. Ağ siteleri, yerel kullanımı teşvik eden ve yerel biyolojik çeşitliliğe yarar sağlamak için iNaturalist'ten gelen verilerin kullanımını kolaylaştıran yerel kurumlar tarafından desteklenmektedir. Tehdit altındaki türleri daha iyi korumak için kendi coğrafi bölgelerinde otomatik olarak kamudan gizlenen gerçek koordinatlara erişebilirler.
@@ -5471,6 +5469,7 @@ tr:
   white: beyaz
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Bu değişikliği neden yapıyorsunuz? (isteğe bağlı)
+  why_are_you_making_this_change_cite_source_required: Neden bu değişikliği yapıyorsun? Lütfen açıkla ve mümkün ise bir kaynağa atıf yap. (Gerekli)
   why_you_can_see_the_coordinates: Koordinatları Neden Görebiliyorsun
   who_can_add_observation_fields_to_my_obs: Gözlemlerime kimler gözlem alanı ekleyebilir?
   who_can_add_observations_to_this_project?: Bu projeye kim gözlem ekleyebilir?
@@ -5574,8 +5573,6 @@ tr:
     Bu yıl milyonlarca kişi iNaturalist ve Seek'i doğa ile bağlantı kurmak için kullandı
   yir_monthly_supporters_random_selection: |
     İşte iNat'ın her ay bağış yapan kahraman topluluk üyelerinden rastgele bir seçki.
-  yir_thank_your_for_being_generous: |
-    Zamanın, ilgin, uzmanlığın ve bağışlarınla cömert davrandığın için teşekkür ederiz! iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun kâr amacı gütmeyen ortak bir girişimidir. Program, toplumun çok küçük bir kısmından gelen hayırsever armağanlar da dahil olmak üzere çok sayıda hibe ve bağışa dayanmaktadır. Özellikle, yinelenen armağanlarla geleceği tasarlamamıza yardımcı olan Aylık Destekçilerimize minnettarız.
   yir_your_gift_sustains: |
     Armağanın, küresel erişime ve derin kişisel ve ekolojik etkilere sahip bu programı sürdürülebilir kılmaktadır.
   you: sen
@@ -5670,6 +5667,8 @@ tr:
   your_account_has_been_activated: Hesabın etkinleştirildi!
   your_account_has_been_verified: "%{site_name} hesabın doğrulandı! Lütfen devam etmek için giriş yap."
   your_activation_code_was_missing: "Etkinleştirme kodun eksikti. Lütfen e-postandaki URL'yi takip et."
+  #Title for a list of 3rd party applications you control
+  your_applications: Uygulamaların
   your_browser_does_not_support_the_audio_element: Tarayıcın ses ögesini desteklemiyor.
   your_comment_was_saved: İçeriğin kaydedildi
   your_content: İçeriğin
@@ -5733,39 +5732,14 @@ tr:
             Eğer öyleyse, öğrencilerle %{site_name} kullanımına ilişkin ipuçları için lütfen <a href="%{url}">Öğretmen Rehberimizi</a> okuyun.
     donate:
       donate_short_desc: "Desteğini göstermek için şimdi bağış yap!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
-        </p>
-        <p class="lead">
-        Doğaseverlerden oluşan bu küresel topluluğun bilgi paylaşma ve yeri doldurulamaz biyoçeşitlilik verileri üretme gücüne inanıyorsan, lütfen çevrim içi olarak tek seferlik ya da yinelenen bir bağış yapmayı düşün veya <a
-        href="https://www.inaturalist.org/pages/giving">bağış yapmanın diğer yollarına göz at</a>.
-        </p>
-        <p class="lead">
-        Bağışın, topluluk büyüdükçe bilgisayarlı görüyü geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur.
-        </p>
-        <p class="text-muted">
-        iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir. Tüm bağışlar, Amerika Birleşik Devletleri merkezli 501(c)(3) vergiden muaf kâr amacı gütmeyen bir kuruluş olan Kaliforniya Bilimler Akademisi tarafından alınacaktır (Vergi Kimliği: 94-1156258).
-        </p>
       post_donate_social_media_text: iNaturalist'i destekliyorum çünkü...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist'in Aylık Destekçisi Ol
         become_a_monthly_supporter_of_inaturalist_caps: INATURALIST'İN AYLIK DESTEKÇİSİ OL
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
-          </p>
-          <p class="lead">
-          iNaturalist'i kullanmanın ücretsiz olmasını istiyoruz ancak işletmesi ücretsiz değil. Eğer iNaturalist'i seviyorsan, lütfen aylık destekçi olmayı düşün. Yinelenen hediyeler, öngörülebilir gelir sağlayarak iNaturalist'in altyapısını ve personelini sürdürülebilir kılmaya yardımcı olur. Aylık destekçi statünü kullanıcı profilinde göstermeyi de tercih edebilirsin.
-          </p>
-          <p class="lead">
-          Hayırsever bağışın, topluluk büyüdükçe bilgisayarlı görüyü geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur. Tek seferlik bağış yapmayı tercih ediyorsan, lütfen <a href="%{donate_url}">buraya tıkla</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir. Tüm bağışlar, Amerika Birleşik Devletleri merkezli 501(c)(3) vergiden muaf kâr amacı gütmeyen bir kuruluş olan Kaliforniya Bilimler Akademisi tarafından alınacaktır.
-          </p>
         thank_you_for_being_a_monthly_supporter: Aylık Destekçi olduğun için teşekkür ederiz!
         thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
+      temporarily_unavailable: |
+        iNaturalist'i desteklemeye gösterdiğin ilgi için teşekkür ederiz! Bağış sistemlerimizi güncellerken iNaturalist'e bağış yapmak geçici olarak mümkün değildir. Lütfen yakında tekrar kontrol edin.
     flags:
       show:
         flaggable_content_desc: |
@@ -6433,8 +6407,8 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
-      kml_field_desc2: |
-        Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsin. En az bir çokgene sahip olmalı, 1 MB'nin altında olmalı (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olmalıdır.
+      kml_field_desc3: |
+        Yer sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsin. En az bir poligona sahip olmalı, 1 MB'ın altında olmalı (site küratörleri için 5 MB) ve ~700.000 kilometrekareden (kabaca Somali ya da ABD'nin Teksas eyaleti büyüklüğünde) daha küçük bir alana sahip olmalıdır.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
@@ -6778,8 +6752,6 @@ tr:
           Bu yıl geçen yıllara oranla nasıl? Yeşil çizgi bu yılı gösterir, beyaz yatay çizgi geçen yılı gösterir, gri arka plan alanı ise en düşük ve en yüksek yılları gösterirken aynı zamanda tüm yılların ortalamasını gösterir.
         compared_to_previous_years: Önceki Yıllara Kıyasla
         donate_title: "Tüm Destekçilerimize Özel Teşekkürlerimizle"
-        donate_desc_html: |
-          Zamanınız, ilginiz, uzmanlığınız ve bağışlarınız konusunda cömert olduğunuz için müteşekkiriz! iNaturalist; kar amacı gütmeyen, Kaliforniya Bilim Akademisi ve National Geographic Topluluğu ortak girişimidir. <a href="%{team_url}"> Küçük bir ekip </a> bütün web sitesi, mobil ve iNaturalist tarafından hazırlanan <a href="%{seek_url}"> Seek </a> uygulamalarının tasarımlarının ve yazılımlarının mühendisliğini yaparken, bir yandan topluluk desteklerini, işbirliklerini, bağlantıları ve her şeyin sağlıklı çalışabilmesi için gereken (bir yandan da hızla büyüyen!) entegrasyonlarını yönetiyor. Program; az da olsa hayırseverlerin hediyeleri de dahil olmak üzere, çeşitli hibeler ve bağışlarla yürütülüyor. Özellikle Aylık Destekleyenlere minnettarız, onların bağışları geleceği planlamamızda yardımcı oluyor. Siz de farklı kurlarla bağışlarda bulunarak iNaturalist'in ana çalışmasına katkıda bulunabilirsiniz. %{year} yılındaki katkılarınız ve iNaturalist'in en iyi yılı olmasında rol oynadığınız için hepinize teşekkür ederiz!
         donors: Bağışçılar
         donors_guide_label_our_goal_is_1000: Amacımız ayda 1.000 düzenli bağışçı
         inaturalist_network: iNaturalist Ağı
@@ -6886,13 +6858,20 @@ tr:
       show:
         about_names_desc: |
           <p>
-          Çoğu organizma kategorisinin konuşulan dillerde "yaygın adları" vardır. Bu adlar genellikle tanınabilir, söylenmesi kolay ve zaman içinde aynı kalır ancak birçok organizmanın değişik yerlerde hatta aynı dilde bile bu organizmalarla ilgili karışıklık olmadan iletişimini zorlaştırabilen birkaç değişik adı vardır. Bilim insanları, <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik terminoloji</a> kurallarına uyan her organizma kategorisi için tek bir "bilimsel ad" kullanarak bu sorunu çözüyorlar ancak bu adlar kimsenin konuşamadığı bir dil olan Latince'ye dayanmaktadır, bu yüzden birçok insan için yaygın adlar kadar akılda kalıcı değillerdir. Bilimsel adlar aynı zamanda bir organizmanın sınıflandırmasal yerleşimini yansıtabilir, böylece bilim insanları değişik organizmalar arasındaki evrimsel ilişkilerle ilgili daha doğru kuramlar geliştirdiklerinde bu adlar değişebilirler ve yine bilimsel adları bilen insanlar arasında bile iletişimdeki yararlarını azaltırlar.
+          Çoğu organizma kategorisinin konuşulan dillerde "yaygın adları" vardır. Bu adlar genellikle tanınabilir, telaffuzu kolay ve zaman içinde değişmezdir ancak birçok organizmanın farklı yerlerde, hatta aynı dilde bile birkaç farklı adı vardır, bu da bu organizmalar hakkında kafa karışıklığı olmadan iletişim kurmayı zorlaştırabilir. Bilim insanları bu sorunu, her bir organizma kategorisi için <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik adlandırma</a> kurallarına uygun tek bir "bilimsel ad" kullanarak ele almaktadır ancak bu isimler genellikle kimsenin konuşmadığı bir dil olan Latinceye dayanmaktadır, bu nedenle birçok insan için yaygın adlar kadar akılda kalıcı değildir. Bilimsel adlar aynı zamanda bir organizmanın taksonomik yerleşimini de yansıtabilir, bu nedenle bilim insanları farklı organizmalar arasındaki evrimsel ilişkiler hakkında daha doğru kuramlar geliştirdiklerinde değişebilirler, bu da bilimsel adları bilen insanlar arasında bile iletişimdeki yararlılıklarını azaltır.
           </p>
           <p>
-          Eski atasözü şöyle özetliyor: "Yaygın adlar bölgeden bölgeden değişiyor ve bilimsel adlar zaman zaman değişiyor."
+          Eski bir atasözü bunu özetler: "Yaygın adlar yerden yere, bilimsel adlar ise zamandan zamana değişir."
           </p>
           <p>
-          Olanaklı olan yerlerde hem yaygın hem de bilimsel adlar göstererek ve görüntüleyen kişinin dil ve coğrafi seçimlerine göre genel adlar seçerek bu eksiklikleri gidermeye çalışıyoruz.
+          Bu eksiklikleri, mümkün olan her yerde hem yaygın hem de bilimsel adları göstererek ve yaygın adları kullanıcının dil ve coğrafi tercihlerine göre seçerek gidermeye çalışıyoruz. Adlar, her bir Dil / Tür içindeki küresel önceliklerine göre listelenmiştir.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Farklı ülkelerin ya da bölgelerin aynı dilde farklı yaygın adlar kullandığı durumlarda, konumlara (genellikle ülkelere) adlar eklenebilir. Örneğin, Meksika ve Kosta Rika aynı tür için farklı İspanyolca adlara sahip olabilir.
+          </p>
+          <p>
+          Bu tablo hangi adların hangi konumlara eklendiğini gösterir ve her konum için öncelik sırasına göre listelenir. Meksika'ya iki İspanyolca ad eklenmiş ise Meksika'ya eklenen İspanyolca adları görmeyi tercih ediyorsan, önce listelenen ad görünecektir. 
           </p>
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
@@ -7090,10 +7069,6 @@ tr:
           Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtları <a href="http://www.gbif.org/">Küresel Biyoçeşitlilik 
           Danışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından 
           derleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.
-        monthly_supporter_desc_html: |
-          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin kâr amacı gütmeyen işleyişini desteklemek için California Academy of Sciences (United States IRS EIN 94-1156258) tarafından alınan otomatik aylık katkılarda bulunurlar.
-          <a href="%{url}">Aylık Destekçi olmak için buraya tıkla</a>.
-          Desteğini onayladığımızda, bu durumu profilinde görüntülemek için bu kutuyu işaretleyebileceksin. Not: Aylık Destekçi olduğunu teyit edebilmemiz için Donorbox ve iNaturalist'teki e-posta adresleri tam olarak eşleşmelidir. Eğer farklı ise birini diğeriyle eşleşecek şekilde değiştirin.
         muting_desc_html: |
           <p>
           Birini sessize almak; gözlemlerine yorum yapması, sana mesaj atması, senden bahsetmesi gibi benzer durumlar hakkında bildirim almanı önler. Sessize almak, kişinin herhangi bir şey yapmasını engellemeden onu görmezden gelmene yardımcı olur.
@@ -7499,6 +7474,8 @@ tr:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Site ID'leri
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Personelin dikkatine (test için)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
@@ -7656,6 +7633,7 @@ tr:
         position: Konum
         source_url: Kaynak URL
         source_identifier: Kaynak tanımlayıcısı
+        audit_comment: Not
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -7885,6 +7863,8 @@ tr:
                 geçerli bir bilimsel ad ise sınıf adıyla eşleşmelidir
               bad_format: |
                 yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+            audit_comment:
+              needs_to_be_at_least_10_characters: en az 10 karakter olmalı
         taxon_photo:
           attributes:
             taxon:
@@ -7908,8 +7888,6 @@ tr:
           attributes:
             base:
               user_already_blocked: Bu kullanıcıyı zaten engellediniz
-              user_cannot_be_staff: |
-                Personeli engelleyemezsin. iNat personelinin iNat'teki herkesle iletişim kurabilmesi, iNat'teki tüm verilere erişebilmesi ve anlaşmazlıkların nihai arabulucuları olması gerekir, bu nedenle engelleme onların sizinle iletişim kurmasını engellemez. Bir personel ile ilgili bir sorunun varsa, lütfen bunu iNat yardımcı direktörlerinden birine bildir ya da yardımcı direktörlerden biriyle ilgili bir sorunun varsa, Kaliforniya Bilimler Akademisi Biyoçeşitlilik ve Sürdürülebilirlik Bilimi Enstitüsü Bilim Şefi ile iletişime geçebilirsin.
         user_parent:
           attributes:
             email:

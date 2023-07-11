@@ -1677,7 +1677,6 @@ id:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Detail akun
-  email_copyright: "Hak Cipta &copy; %{x}, semua hak cipta dilindungi undang-undang"
   email_notifications: Notifikasi Email
   embed: 'Tanamkan'
   embed_place_widget: Tanamkan widget lokasi
@@ -2008,7 +2007,6 @@ id:
   heads_up_you_have_multiple: "PENTING: Anda memiliki beberapa label mesin taksonomi untuk tingkat serupa. Mereka diberikan kode warna di bawahnya berdasarkan tingkatannya."
   help: Bantuan
   help_confirm_observations!: Bantu konfirmasi pengamatan!
-  help_support_inaturalist: "Bantu Dukung iNaturalist"
   help_translate!: Bantu Terjemahkan!
   here_are_3_examples: Berikut adalah 3 contoh data yang dibentuk dengan baik
   here_are_our_top_suggestions: Berikut adalah rekomendasi terbaik dari kami
@@ -2167,7 +2165,6 @@ id:
   inaturalist_activity_notifications: "Notifikasi Aktivitas %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplikasi-aplikasi iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society."
   inaturalist_places: "Tempat-tempat %{site_name}"
   info: Informasi
   input_taxon: Takson Masukan
@@ -2615,8 +2612,6 @@ id:
   meet: Temui
   member_of_the_inaturalist_network_html: |
     Anggota dari <a href="%{url}">Jaringan iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Anggota dari %{partial_inat_network_tag_html}Jaringan iNaturalist</a>, inisiatif gabungan dari %{cas_tag_html} dan %{nat_geo_tag_html}
   #As in members of a project
   members: Anggota
   membership_model: Model Keanggotaan
@@ -4153,6 +4148,7 @@ id:
   refresh: Segarkan
   refreshing: menyegarkan
   regenerate_stats: Perbarui Statistik
+  regional_names: Nama Regional
   register_for_this_event_at_x_html: "Daftar untuk acara ini di %{x}"
   reject?: Tolak?
   relative_observations: Pengamatan Relatif
@@ -4459,8 +4455,6 @@ id:
   sites_affiliation_overview_you_can_continue_html: |
     Anda bisa melanjutkan dengan masuk melalui iNaturalist.org atau melalui situs jaringanmu. Semua data Anda akan disimpan di tempat yang sama dan Anda dapat terus berinteraksi dengan komunitas iNaturalist internasional yang lebih luas, tidak peduli apa afiliasi Anda. Setiap akun iNaturalist hanya dapat diafiliasikan dengan satu Anggota Jaringan. Anda dapat mempertimbangkan kembali atau mengganti afiliasi Anda di %{start_tag_settings}pengaturan akun%{end_tag_settings}.
   sites_affiliation_title: Pelajari Lebih Lanjut Tentang Afiliasi Jaringan
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} dan %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} memiliki perjanjian formal dengan organisasi pada tiap-tiap negara untuk mendukung penggunaan platform iNaturalist. <strong>Jika organisasi Anda tertarik untuk bergabung dengan Jaringan iNaturalist, Anda dapat menemukan detail lainnya di %{start_tag_join}sini%{end_tag_join}.</strong>
   sites_network_consists_of: "Jaringan iNaturalist terdiri dari beberapa organisasi:"
   sites_network_inaturalist_network_collection: |
     Jaringan iNaturalist adalah kumpulan situs web terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist secara global. Jaringan situs didukung oleh institusi-institusi lokal yang mempromosikan penggunaan lokal dan memfasilitasi penggunaan data dari iNaturalist untuk kebaikan keanekaragaman hayati lokal. Mereka memiliki akses ke koordinat yang tepat dari negara masing-masing yang terkaburkan secara otomatis dari publik untuk melindungi spesies yang terancam punah dengan baik.
@@ -5463,6 +5457,7 @@ id:
   white: putih
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
+  why_are_you_making_this_change_cite_source_required: Mengapa Anda membuat perubahan ini? Tolong jelaskan dan sertakan sebuah sumber jika ada. (Wajib)
   why_you_can_see_the_coordinates: Mengapa Anda Bisa Melihat Koordinatnya
   who_can_add_observation_fields_to_my_obs: Siapa yang dapat menambahkan bidang pengamatan ke pengamatan saya?
   who_can_add_observations_to_this_project?: Siapa yang dapat menambahkan pengamatan ke proyek ini?
@@ -5566,8 +5561,6 @@ id:
     Jutaan orang menggunakan iNaturalist dan Seek oleh iNaturalist tahun ini untuk bisa terhubung dengan alam
   yir_monthly_supporters_random_selection: |
     Inilah beberapa pilihan acak berisi anggota-anggota komunitas iNat berjiwa pahlawan yang berdonasi setiap bulannya.
-  yir_thank_your_for_being_generous: |
-    Terima kasih karena telah berbaik hati memberikan waktu, perhatian, dan donasi kalian! iNaturalist merupakan inisiatif gabungan nonprofit dari California Academy of Sciences dan National Geographic Society. Program ini bergantung pada hibah-hibah dan donasi, termasuk hadiah-hadiah dari sebagian kecil dari komunitas. Kami sangat berterima kasih khususnya untuk Pendukung Bulanan karena pemberian tiap bulannya telah menolong kami untuk bisa membuat rencana untuk ke depannya.
   yir_your_gift_sustains: |
     Hadiah Anda menyokong program ini untuk menjangkau secara global dan berdampak besar baik untuk individu maupun ekologi
   you: Anda
@@ -5727,36 +5720,10 @@ id:
             Jika ya, silakan membaca <a href="%{url}">Panduan Guru</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
     donate:
       donate_short_desc: "Donasi sekarang untuk memberikan dukungan!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
-        </p>
-        <p class="lead"> Jika Anda percaya akan kekuatan komunitas global pecinta alam untuk membagikan ilmu dan menghasilkan data keanekaragaman hayati yang tak tergantikan, pikirkan untuk memberikan hadiah daring sekali atau beberapa kali, atau lihat <a
-        href="https://www.inaturalist.org/pages/giving">cara-cara lainnya untuk memberi</a>.
-        </p>
-        <p class="lead">
-        Donasi Anda menolong iNaturalist seiring bertumbuhnya komunitas, dari memajukan penglihatan komputer serta mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami.
-        </p>
-        <p class="text-muted">
-        iNaturalist adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society. Semua donasi akan diterima oleh California Academy of Sciences, sebuah organisasi 501(c)(3) nirlaba yang tidak dipajaki yang berbasis di Amerika Serikat (ID Pajak: 94-1156258).
-        </p>
       post_donate_social_media_text: Saya mendukung iNaturalist karena...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: MENJADI PENDUKUNG BULANAN INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
-          </p>
-          <p class="lead"> 
-          Kami ingin tetap menjaga iNaturalist sebagai platform gratis, namun operasinya tidaklah gratis. Jika Anda mencintai iNaturalist, pikirkan untuk menjadi pendukung bulanan. Hadiah berulang akan membantu memastikan iNaturalist dapat melanjutkan perluasan infrastruktur dan stafnya dengan menyediakan pemasukan yang dapat diprediksi. Anda juga bisa memilih untuk menunjukkan status pendukung bulanan Anda pada profil pengguna Anda.
-          </p>
-          <p class="lead">
-          Donasi sosial Anda menolong iNaturalist seiring bertumbuhnya komunitas, dari memajukan penglihatan komputer serta mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami. Jika Anda lebih memilih untuk memberikan donasi satu kali saja, silakan <a href="%{donate_url}">klik di sini</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society. Semua donasi akan diterima oleh California Academy of Sciences, sebuah organisasi 501(c)(3) nirlaba yang tidak dipajaki yang berbasis di Amerika Serikat.
-          </p>
         thank_you_for_being_a_monthly_supporter: Terima kasih sudah menjadi Pendukung Bulanan!
         thank_you_for_being_a_monthly_supporter_caps: TERIMA KASIH SUDAH MENJADI PENDUKUNG BULANAN!
       temporarily_unavailable: |
@@ -6399,8 +6366,6 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
-      kml_field_desc2: |
-        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau kebanyakan aplikasi GIS lainnya. Harus memiliki setidaknya satu poligon, di bawah 1 MB (5MB untuk kurator situs), dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
@@ -6744,8 +6709,6 @@ id:
           Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun.
         compared_to_previous_years: Bandingkan Dengan Tahun Lalu
         donate_title: "Terima Kasih Khususnya Kepada Semua Pendukung Kami"
-        donate_desc_html: |
-          Terima kasih telah memberikan waktu, perhatian, keahlian, dan donasi Anda! iNaturalist adalah inisiatif nirlaba bersama dari California Academy of Sciences dan National Geographic Society. iNaturalist didukung oleh <a href="%{team_url}">tim kecil</a> yang melakukan semua desain dan pengembangan perangkat lunak untuk web, mobile, dan <a href="%{seek_url}">Seek oleh iNaturalist</a>, selain mengelola dukungan komunitas, kolaborasi, dan integrasi yang menjaga semuanya untuk bisa berjalan (juga berkembang dengan cepat!). Programnya bergantung kepada berbagai hibah serta donasi, termasuk hadiah amal dari sebagian kecil dari kontributor. Kami sangat berterima kasih kepada Pendukung Bulanan yang hadiah berkalanya telah menolong kami untuk merancang rencana ke depan. Anda dapat menyumbang melalui berbagai mata uang yang berbeda untuk mendukung operasi inti iNaturalist. Terima kasih semuanya untuk bagian kalian dalam membuat tahun %{year} tahun terbesar iNaturalist hingga kini!
         donors: Penyumbang
         donors_guide_label_our_goal_is_1000: Tujuan kami adalah 1.000 penyumbang rutin per bulan
         inaturalist_network: Jaringan iNaturalist
@@ -6828,7 +6791,7 @@ id:
           Pepatah zaman dulu pernah berkata: "Nama umum berubah dari tempat ke tempat, sedangkan nama ilmiah berubah dari waktu ke waktu."
           </p>
           <p>
-          Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna.
+          Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna. Namanya diurutkan berdasarkan prioritas global di dalam masing-masing bahasa / jenis.
           </p>
         about_conservation_status_desc: |
           Status konservasi merangkum risiko kepunahan untuk sekelompok organisme.
@@ -6992,16 +6955,6 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
-        monthly_supporter_desc_html: |
-          Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
-          yang diterima oleh California Academy of Sciences (United
-          States IRS EIN 94-1156258) untuk mendukung operasi nirlaba
-          iNaturalist dan situs-situs Jaringan iNaturalist.
-          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
-          Saat kami sudah mendapatkan dukungan Anda, Anda akan bisa mengecek kotak 
-          ini untuk menampilkan status ini di profil Anda. Catatan: alamat email Anda
-          di Donorbox dan iNaturalist harus sama supaya kita bisa mengonfirmasi bahwa
-          Anda adalah Pendukung Bulanan. Jika mereka berbeda, ubah salah satu supaya sama dengan yang lain.
         muting_desc_html: |
           <p>
           Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.
@@ -7529,6 +7482,7 @@ id:
         position: Posisi
         source_url: URL Sumber
         source_identifier: Pengidentifikasi sumber
+        audit_comment: Catatan
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -7747,6 +7701,8 @@ id:
                 harus sama dengan nama takson jika ini adalah nama ilmiah yang valid
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+            audit_comment:
+              needs_to_be_at_least_10_characters: minimal 10 karakter
         taxon_photo:
           attributes:
             taxon:
@@ -7770,8 +7726,6 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
-              user_cannot_be_staff: |
-                Anda tidak bisa memblokir staf. Staf iNat harus bisa berkomunikasi dengan semua orang di iNat, memiliki akses kepada semua data di iNat, dan adalah penengah perselisihan lapisan terakhir, jadi memblokir tidak akan menghalangi mereka untuk berkomunikasi dengan Anda. Jika Anda memiliki masalah dengan seorang anggota staf, silakan melaporkannya kepada salah satu wakil direktur iNat, atau, jika Anda memiliki masalah dengan seorang wakil direktur, Anda bisa menghubungi Kepala Bidang Sains di Institute for Biodiviersity and Sustainability Science di California Academy of Sciences.
         user_parent:
           attributes:
             email:

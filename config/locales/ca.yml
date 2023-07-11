@@ -1678,7 +1678,6 @@ ca:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag} Confirmeu la vostra adreça electrònica%{link_end_tag}</strong>.
     Tots els usuaris han de confirmar la seva adreça electrònica abans de %{date}. Després d'aquesta data, qualsevol persona que no hagi confirmat la seva adreça electrònica no podrà iniciar la sessió a menys que restableixi la contrasenya. Per confirmar la vostra adreça de correu electrònic, aneu a %{link_start_tag}paràmetres del compte%{link_end_tag}.
-  email_copyright: "Copyright &copy; %{x}, tots els drets reservats"
   email_notifications: Notificacions per correu electrònic
   embed: 'Insereix:'
   embed_place_widget: Insereix un giny de lloc
@@ -2009,7 +2008,6 @@ ca:
   heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
   help: Ajuda
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
-  help_support_inaturalist: "Ajudeu a iNaturalist"
   help_translate!: Ajuda'ns a traduir!
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_our_top_suggestions: Aquí estan els nostres principals suggeriments
@@ -2164,7 +2162,6 @@ ca:
   inaturalist_activity_notifications: "Notificacions d'Activitat de %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicacions d'iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} és una iniciativa conjunta de la California Academy of Sciences i National Geographic Society.."
   inaturalist_places: "Llocs %{site_name}"
   info: Informació
   input_taxon: Introduir tàxon
@@ -2591,8 +2588,6 @@ ca:
   meet: Conegueu-ne
   member_of_the_inaturalist_network_html: |
     Membre de la <a href="%{url}">Xarxa iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membre de la xarxa %{partial_inat_network_tag_html}iNaturalist</a>, una iniciativa conjunta de %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Membres
   membership_model: Model d'adhesió
@@ -4418,8 +4413,6 @@ ca:
   sites_affiliation_overview_you_can_continue_html: |
     Podeu continuar iniciant la sessió a través d’iNaturalist.org o a través del vostre lloc web específic de la xarxa. Independentment de la vostra afiliació, totes les vostres dades s’allotjaran al mateix lloc i podreu continuar interactuant amb la comunitat iNaturalist internacional, més àmplia. Cada compte d'iNaturalist només es pot afiliar a un únic membre de la xarxa. Podeu revisar o canviar la vostra afiliació a la %{start_tag_settings}configuració del compte%{end_tag_settings}.
   sites_affiliation_title: Coneix més sobre l'Afiliació a la Xarxa
-  sites_network_cas_and_nat_geo_html: |
-    L' %{start_tag_cas}Acadèmia de Ciències de Califòrnia%{end_tag_cas} i el %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tenen acords formals amb organitzacions de cadascuna d’aquestes àrees geogràfiques per donar suport a l’ús de la plataforma iNaturalist. <strong> Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu obtenir més detalls %{start_tag_join} aquí%{end_tag_join}. </strong>
   sites_network_consists_of: "La Xarxa iNaturalist està formada per moltes organitzacions:"
   sites_network_inaturalist_network_collection: |
     La xarxa iNaturalist és un conjunt de llocs web localitzats totalment connectats a la comunitat iNaturalist global. Els llocs de la xarxa tenen el suport d’institucions locals que promouen el seu ús local i faciliten l’ús de les dades d’iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades autèntiques dins de les seves àrees geogràfiques, les quals s’amaguen automàticament de la vista pública per protegir millor les espècies amenaçades.
@@ -5534,8 +5527,6 @@ ca:
     Milions de persones han emprat iNaturalist i Seek d'iNaturalist al llarg d'aquest any per connectar amb la natura
   yir_monthly_supporters_random_selection: |
     Aquí hi ha una selecció aleatòria dels heroics membres de la comunitat d'iNat que donen cada mes.
-  yir_thank_your_for_being_generous: |
-    Gràcies per ser generós amb el vostre temps, atenció, experiència i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre la California Academy of Sciences i la National Geographic Society. El programa es basa en nombroses subvencions i donacions, incloses les donacions benèfiques d'una petita part de la comunitat. Estem especialment agraïts als patrocinadors mensuals, les donacions recurrents dels quals ens ajuden a planificar el futur.
   yir_your_gift_sustains: |
     La vostra donació sosté aquest programa d'abast global i profunds impactes personals i ecològics
   you: vós
@@ -5693,38 +5684,10 @@ ca:
             Si és així, si us plau llegiu la nostra <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar %{site_name} amb els alumnes.
     donate:
       donate_short_desc: "Doneu ara per mostrar el vostre suport!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-        </p>
-        <p class="lead">
-        Si creus en el poder d'aquesta comunitat global d'amants de la natura per compartir el coneixement i generar dades irreemplaçables de biodiversitat, si us plau considera fer una donació puntual o periòdica en línia, o coneix <a
-        href="https://www.inaturalist.org/pages/giving">altres formes de donar</a>.
-        </p>
-        <p class="lead">
-        Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Convertiu-vos en un patrocinador Mensual d'iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: CONVERTEIX-TE EN UN PATROCINADOR MENSUAL D'INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-          </p>
-          <p class="lead">
-          Volem mantenir l'ús gratuït d'iNaturalist, però la seva operació no és gratis.
-          Si us agrada iNaturalist, si us plau considereu convertir-vos en un patrocinador mensual. Les donacions recurrents ens ajuden a assegurar que iNaturalist pot continuar augmentant la seva infraestructura i personal proporcionant ingressos previsibles. També podeu mostrar el vostre estat de patrocinador mensual en el vostre perfil d'usuari.
-          </p>
-          <p class="lead">
-          Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal. Si preferiu fer una donació única, si us plau <a href="%{donate_url}">premeu aquí</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-          </p>
         thank_you_for_being_a_monthly_supporter: Gràcies per ser un Patrocinador Mensual!
         thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
     flags:
@@ -6368,8 +6331,6 @@ ca:
         view_original_html: |
           Podeu veure l'original a <a href="%{url}">%{url}</a>. Si us plau no marqueu les caselles sobre violació dels drets d'autor si aquesta foto no els viola.
     places:
-      kml_field_desc2: |
-        KML del límit del lloc. Podeu crear-ne un mitjançant Google Maps, Google Earth o la majoria d'aplicacions SIG. Ha de tenir almenys un polígon, ocupar menys d'1 MB (5 MB per als supervisors del lloc) i tenir una àrea més petita que l'estat de Texas dels EUA.
       edit:
         complex_boundary_note_html: |
           Aquest límit és massa complicat per editar-ho al web. Malgrat això podeu <a href="%{url}">descarregar l'arxiu KML</a>, editar-ho en una aplicació SIG i pujar el KML editat directament.
@@ -6719,9 +6680,6 @@ ca:
           Com ha estat aquest any en comparació amb l'anterior? La barra verda mostra aquest any, la barra vertical blanca mostra l'any passat i l'àrea grisa mostra el menor i el major, així com la mitjana de tots els anys.
         compared_to_previous_years: Compara amb Anys Anteriors
         donate_title: "Moltes gràcies a tots els nostres Patrocinadors"
-        donate_desc_html: |
-          Gràcies per ser tant generós amb el vostre temps, atenció, expertesa i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre de l'Acadèmia de Ciències de Califòrnia de Ciències i la National Geographic Society.
-          Està recolzada per un <a href="%{team_url}">petit equip</a> que s'encarrega de tot el disseny i enginyeria del programari per a la web, el mòbil, i <a href="%{seek_url}">Seek d'iNaturalist</a>, a més de gestionar el suport comunitari, les col·laboracions, i integracions que mantenen tot elles en funcionament (i creixent ràpidament!). El programa confia en nombroses donacions i beques, incloent donacions benèfiques d'una petita part dels col·laboradors. Estem especialment agraïts als Patrocinadors Mensuals, les seves donacions recurrents ens permeten fer plans de futur. Podeu donar en diverses monedes per recolzar les operacions nuclears d'iNaturalist. Gràcies a tothom per a la vostra contribució a fer de l'any %{year} el millor any per a iNaturalist fins ara!
         donors: Donants
         donors_guide_label_our_goal_is_1000: El nostre objectiu és aconseguir 1.000 donants recurrents al mes
         inaturalist_network: Xarxa iNaturalist
@@ -6799,18 +6757,6 @@ ca:
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
       show:
-        about_names_desc: |
-          <p>
-          La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
-          Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
-          però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre la història evolutiva de les relacions entre els diferents organismes, reduint novament la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
-          </p>
-          <p>
-          El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."
-          </p>
-          <p>
-          Intentem respondre a aquestes mancances mostrant tant el nom comú com el científic, sempre que sigui possible, i elegint els noms comuns basant-nos en l'idioma i localització geogràfica de les preferències de l'usuari.
-          </p>
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
         about_establishment_desc: |
@@ -6970,9 +6916,6 @@ ca:
           <p> La <a href="%{url}" target="_blank"> xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment connectats a la comunitat global iNaturalist. Aquests llocs web compten amb el suport d’institucions locals que han signat un acord amb iNaturalist per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés a les coordenades reals dels seus països que queden automàticament ocultes al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d'usuari i contrasenya són els mateixo a tots els llocs que formen part de la xarxa iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions locals que operen en cada lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-vos les activitats del lloc) i accedir a les coordenades reals d'observacions tant siguin públiques o privades. </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de 1000 observacions. </p>
         licensing_desc_html: |
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
-        monthly_supporter_desc_html: |
-          Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i de la Xarxa d'iNaturalist.
-          <a href="%{url}"> Feu clic aquí per a convertir-vos en un Patrocinador Mensual</a>. Quan confirmem el vostre suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: Les adreces de correu electrònic a Donorbox i a iNaturalist hauran de ser exactament les mateixes perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual. Si són diferents, canviï una perquè sigui igual a l'altre.
         muting_desc_html: |
           <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
           <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
@@ -7756,8 +7699,6 @@ ca:
           attributes:
             base:
               user_already_blocked: Ja heu blocat aquest usuari
-              user_cannot_be_staff: |
-                No podeu blocar el personal d'iNat. El personal d'iNat s'ha de poder comunicar amb tots els usuaris d'iNat, tenir accés a totes les dades d'iNat i són els mediadors últims de les disputes, per tant, blocar-los no impedeix que es puguin comunicar amb vostè. Si teniu algun problema amb alguna persona d'iNat, si us plau, informeu algun dels codirectors d'iNat, o, si el problema és amb algun dels codirectors, podeu contactar amb el Responsable Científic de l'Institute for Biodiversity and Sustainability Science de la California Academy of Sciences.
         user_parent:
           attributes:
             email:

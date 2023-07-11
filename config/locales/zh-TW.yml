@@ -1551,7 +1551,6 @@ zh-TW:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: 帳號詳情
-  email_copyright: "版權所有 &copy; %{x}, 保留所有權利"
   email_notifications: 電子郵件通知
   embed: '內嵌'
   embed_place_widget: 內嵌地點小工具
@@ -1880,7 +1879,6 @@ zh-TW:
   heads_up_you_have_multiple: "注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。"
   help: 幫助
   help_confirm_observations!: 幫助確認觀察！
-  help_support_inaturalist: "協助支持 iNaturalist"
   help_translate!: 協助翻譯
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_suggestions: 以下是我們最佳的建議
@@ -2005,7 +2003,6 @@ zh-TW:
   inaturalist_activity_notifications: "%{site_name} 活動通知"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist 應用程式"
-  inaturalist_is_a_joint_initiative: "%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。"
   inaturalist_places: "%{site_name} 地點"
   info: 資訊
   input_taxon: 輸入分類群
@@ -2386,8 +2383,6 @@ zh-TW:
   meet: 會見
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist 網路</a> 的成員
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist 網路</a>之成員，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同計畫。
   #As in members of a project
   members: 成員
   membership_model: 成員模組
@@ -4116,12 +4111,6 @@ zh-TW:
     每個愛自然的使用者帳號都只能隸屬於一個國際網路成員。
     您可以在您的%{start_tag_settings}帳號設定%{end_tag_settings}中審閱或更動您的隸屬網站。
   sites_affiliation_title: 更多關於國際網路所屬成員的內容
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}加州科學院(California Academy of Sciences)%{end_tag_cas}和
-    %{start_tag_nat_geo}國家地理學會(National Geographic Society)%{end_tag_nat_geo}
-    和這些個別地理區域的組織有正式的協議來支援使用《愛自然》平台。
-    <strong>如果您的組織對於加入 iNaturalist 國際網路有興趣的話，
-    您可以在%{start_tag_join}此連結%{end_tag_join}中找到更多相關細節。</strong>
   sites_network_consists_of: "iNaturalist 國際網路包含以下許多組織單位："
   sites_network_inaturalist_network_collection: |
     《愛自然國際網路》是在地化網站的集合，這些網站全都連結到全球的《愛自然》社群。
@@ -5191,44 +5180,13 @@ zh-TW:
             若是如此，在與學生使用 %{site_name} 時，請閱讀我們的<a href="%{url}">教師指南</a>來取得提示。
     donate:
       donate_short_desc: "現在進行捐款來表現出您的支持！"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist 是世界上致力於生物多樣性探索的最大社群平台。
-        謝謝您成為我們的一員！</strong>
-        </p>
-        <p class="lead">
-        如果您相信這個自然愛好者所構成的全球性社群有能力來分享知識，
-        與產製無可取代的生物多樣性資料，請考慮一次性或線上定期捐款，
-        或是參考<a
-        href="https://www.inaturalist.org/pages/giving">其他方式來捐款</a>。
-        </p>
-        <p class="lead">
-        您的捐款可以支持 iNaturalist 成長茁壯，開發先進的人工智慧鑑定輔助和
-        實作新功能來支援我們的伺服器和工作人員。
-        </p><p class="text-muted">
-        iNaturalist 是加州科學院(California Academy of Sciences)和
-        國家地理學會(National Geographic Society)共同支持的專案。
-        所有的捐款皆會進到美國的加州科學院，是一個 501(c)3 的非營利組織(
-        稅藉編碼：94-1156258)。
-        </p>
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成為 iNaturalist 的每月贊助者
         become_a_monthly_supporter_of_inaturalist_caps: 成為 iNaturalist 的每月贊助者
-        desc_html: |
-          <p class="lead">
-          <strong>Naturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
-          </p>
-          <p class="lead">
-          我們希望能讓 iNaturalist 持續開放給各位自由使用，但在運作方面我們需要資金。若您喜愛 iNaturalist，歡迎考慮成為固定每月的贊助者。定期的捐款能協助確保讓 iNaturalist 透過可預期的收益，來持續擴充其基礎設備與人員。
-          </p>
-          <p class="lead">
-          您的慈善捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。若您有意做出單筆捐款，請點擊<a href="%{donate_url}">此</a>。
-          </p>
-          <p class="text-muted">
-          iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
-          </p>
         thank_you_for_being_a_monthly_supporter: 感謝您成為每月贊助者！
+      temporarily_unavailable: |
+        感謝您對 iNaturalist 的支持！在我們更新捐款系統期間，暫時無法向 iNaturalist 捐款。請等一下再回來看看。
     flags:
       show:
         flaggable_content_desc: |
@@ -6183,18 +6141,6 @@ zh-TW:
           比較今年和去年的差異如何？綠色長條代表今年，白色的垂直長條代表去年，灰色的背景區域顯示最低和最高的年份，以及所有年份的平均。
         compared_to_previous_years: 和前一年比較
         donate_title: "特別感謝我們所有的捐助者"
-        donate_desc_html: |
-          謝謝您如此慷慨付出您的時間、關注、專業還有捐款！
-          iNaturalist 是一個聯合加州科學院(California Academy of Science)
-          與國家地理學會(National Geographic Society)共同營運的非營利組織。
-          它是由一組<a href="%{team_url}">小團隊</a>
-          負責所有設計和網站、手機行動裝置與<a href="%{seek_url}">iNaturalist 探索(Seek)</a>
-          的開發工作，除此之外還有管理社群支援、協作
-          和讓所有事情運作(而且成長很快速！)的整合工作。
-          這個計畫仰賴眾多補助經費和捐款，包含許多捐款者一小部分的慈善捐贈。
-          我們特別感謝每月捐款者持續捐款來協助我們面對未來的規劃。
-          您可以用不同的貨幣來捐款以支持 iNaturalist 的核心營運。
-          謝謝您們大家參與和貢獻讓 %{year} 成為 iNaturalist 最盛大的一年！
         donors: 捐款者
         donors_guide_label_our_goal_is_1000: 我們的目標是每個月有 1,000 名定期捐款者
         inaturalist_network: iNaturalist 成員網路
@@ -6284,21 +6230,6 @@ zh-TW:
           簡短描述之無限期快取，直到手動更新頁面。重新整理此摘要也會立即更新
           我們顯示在網站上下方的維基百科內容快取，會在一週後自動更新。
       show:
-        about_names_desc: |
-          <p>
-          多數生物的分類在語言裡擁有「俗名」。這些名稱通常是易於辨別、容易唸出，而且長期穩定的，
-          但即使是在使用同一種語言的情形下，也會有多數生物在不同地點裡各擁有不同名稱的情況。這些在溝通有關這些生物時產生困難。因此科學家透過採取符合<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95">二名法</a>的單一「學名」在任一生物分類上來處理問題，
-          但這些名稱通常是建立於多數人不會講的拉丁文上，因此對於多數人來說，這些不像俗名一樣好記。
-          學名能反應出生物在分類法上的對應位置，因此它們能在科學家推導出有關不同生物之演化關係上
-          更精準的理論時可做出更改，但也因此降低在溝通上的實用性，即使是在了解學名的人士上。
-          </p>
-          <p>
-          古老的格言總結出：「俗名的變更來自於地點，學名的變更來自於時間。」
-          </p>
-          <p>
-          我們嘗試透過同時顯示俗名與學名來解決這些情況，並基於所使用的語言和地圖上的地理資料
-          偏好設定來挑選出俗名。
-          </p>
         about_conservation_status_desc: |
           保育狀態總結出一群生物的滅絕風險。
         about_establishment_desc: |
@@ -6447,9 +6378,6 @@ zh-TW:
           </p>
         licensing_desc_html: |
           授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
-        monthly_supporter_desc_html: |
-          iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
-          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
         muting_desc_html: |
           <p>
           禁言某人會防止您接受到到對方的通知，包含評論您的觀察、
@@ -7085,6 +7013,8 @@ zh-TW:
                 如果這是一個有效學名的話，它必須符合分類群的名稱
               bad_format: |
                 僅能包含標準拉丁字元、連字號、空白、以及 × 交叉符號，另外請注意不允許假定的分類群和栽培品種
+            audit_comment:
+              needs_to_be_at_least_10_characters: 至少需要 10 個字元
         taxon_photo:
           attributes:
             taxon:
@@ -7108,8 +7038,6 @@ zh-TW:
           attributes:
             base:
               user_already_blocked: 您已經封鎖該使用者
-              user_cannot_be_staff: |
-                您無法封鎖網站工作人員。iNat 工作人員需要和所有網站上的人溝通，在 iNat 上有存取所有資料的權限，而且他們是調解爭議的重要人物，所以封鎖他們無法防止他們與您溝通。如果您對工作人員中某人有任何問題，請向 iNat 共同理事之一回報，或是您對共同理事之一有問題的話，您還可以向加州科學院的生物多樣性與永續科學研究所(Institute for Biodiviersity and Sustainability Science)的科學主任(Chief of Science)聯絡。
         user_parent:
           attributes:
             email:

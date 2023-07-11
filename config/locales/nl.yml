@@ -1623,6 +1623,8 @@ nl:
   donate: DONEREN
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Doneer aan iNaturalist
   done: Klaar
   dont_have_an_account_sign_up_html: Heb je nog geen account?<strong>Meld je aan.</strong>
   dont_use_double_quotes: Gebruik geen dubbele aanhalingstekens op andere plaatsen
@@ -1778,7 +1780,6 @@ nl:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Accountgegevens
-  email_copyright: "Copyright &copy; %{x}, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
   embed_place_widget: Plaatswidget invoegen
@@ -2117,7 +2118,6 @@ nl:
   heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
   help_confirm_observations!: Help waarnemingen bevestigen!
-  help_support_inaturalist: "Help en ondersteun iNaturalist!"
   help_translate!: Help met vertalen!
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
   here_are_our_top_suggestions: Dit zijn onze topvoorstellen
@@ -2281,7 +2281,6 @@ nl:
   inaturalist_activity_notifications: "%{site_name} activiteitsnotificaties"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Toepassingen"
-  inaturalist_is_a_joint_initiative: "%{site_name} is een gezamelijk initiatief van de 'California Academy of Sciences' en 'National Geographic Society'."
   inaturalist_places: "%{site_name} Plaatsen"
   info: Informatie
   input_taxon: Invoer taxon
@@ -2715,8 +2714,6 @@ nl:
   meet: Ontmoeten
   member_of_the_inaturalist_network_html: |
     Lid van het <a href="%{url}">iNaturalist-netwerk</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Lid van het %{partial_inat_network_tag_html}iNaturalist netwerk</a>, een gezamenlijk initiatief van %{cas_tag_html} en %{nat_geo_tag_html}.
   #As in members of a project
   members: Leden
   membership_model: Lidmaatschapsmodel
@@ -4293,6 +4290,7 @@ nl:
   refresh: Vernieuwen
   refreshing: Aan het vernieuwen ...
   regenerate_stats: Regenereer statistieken
+  regional_names: Regionale namen
   register_for_this_event_at_x_html: "Registreer voor dit evenement op %{x}"
   reject?: Verwerpen?
   relative_observations: Verwante waarnemingen
@@ -4621,13 +4619,6 @@ nl:
     Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
     wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
   sites_affiliation_title: Meer informatie over netwerklidmaatschap
-  sites_network_cas_and_nat_geo_html: |
-    De %{start_tag_cas}California Academy of Sciences%{end_tag_cas} en de
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hebben
-    formele overeenkomsten met organisaties in elk van deze geografische gebieden om
-    het gebruik van het iNaturalist platform te ondersteunen. <strong>Als jouw organisatie
-    geïnteresseerd is in het toetreden tot het iNaturalist Network, dan kun je 
-    %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
   sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
   sites_network_inaturalist_network_collection: |
     Het iNaturalist netwerk is een verzameling van gelokaliseerde websites die volledig
@@ -5678,6 +5669,7 @@ nl:
   white: wit
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Waarom maak je deze wijziging? (optioneel)
+  why_are_you_making_this_change_cite_source_required: Waarom maakt u deze wijziging? Gelieve uit te leggen, en indien mogelijk een bron te citeren. (verplicht)
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
   who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
@@ -5787,9 +5779,6 @@ nl:
     de natuur te beleven
   yir_monthly_supporters_random_selection: |
     Hieronder is een willekeurige selectie van iNaturalist's heroïsche communityleden die elke maand doneren.
-  yir_thank_your_for_being_generous: |
-    Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder 
-    de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.
   yir_your_gift_sustains: |
     Je gift ondersteunt deze website met een wereldwijd bereik en diepgaande persoonlijke en
     ecologische effecten
@@ -5959,33 +5948,10 @@ nl:
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
-        </p>
-        <p class="lead">
-        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of zie <a
-        href="https://www.inaturalist.org/pages/giving">andere manieren om te geven</a>.
-        </p>
-        <p class="lead">
-        Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
-        </p>
-        <p class="text-muted">
-        iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V.S. (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WORD EEN MAANDELIJKSE SUPPORTER VAN INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
-          </p>
-          <p class="lead">We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis. Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen. Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren. Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
-          </p>
-          <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
       temporarily_unavailable: |
@@ -6665,10 +6631,10 @@ nl:
           Je kunt het origineel bekijken op <a href="%{url}">%{url}</a>. 
           Laat meldingen over schending van auteursrechten alsjeblieft als onopgelost staan als deze foto auteursrechten schendt.
     places:
-      kml_field_desc2: |
+      kml_field_desc3: |
         KML van de gebiedsgrens. Je kunt er één maken met behulp van Google Maps, Google
         Earth of met de meeste GIS-applicaties. Moet ten minste één polygoon hebben, 
-        minder dan 1 MB (5 MB voor website-curatoren) zijn en het gebied moet een oppervlakte kleiner dan de Amerikaanse staat Texas, dat is ongeveer twee keer Duitsland, hebben.
+        minder dan 1 MB (5 MB voor website-curatoren) zijn en het gebied moet een oppervlakte kleiner dan ~700,000 vierkante kilometers ( ongeveer de Amerikaanse staat Texas, dat is ongeveer twee keer Duitsland) hebben.
       edit:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
@@ -7048,9 +7014,6 @@ nl:
           alle jaren.
         compared_to_previous_years: Vergelijk met voorgaande jaren
         donate_title: "Speciale dank aan al onze supporters"
-        donate_desc_html: |
-          Bedankt dat je vrijgevig bent met je tijd, aandacht, expertise en donaties! iNaturalist is een gezamenlijk initiatief zonder winstoogmerk van de California Academy of Sciences en de National Geographic Society. Het wordt ondersteund door een <a href="%{team_url}">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel en
-          <a href="%{seek_url}">Seek van iNaturalist</a> plus het beheren van ondersteuning aan de gemeenschap, samenwerkingen en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van heel veel beurzen en donaties waaronder vrijwillige bijdragen van heel klein deel van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen met onze plannen voor de toekomst. Je kunt in heel veel valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in %{year} het grootste jaar voor iNaturalist tot nu toe maken!
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Ons doel is 1000 vaste donateurs per maand
         inaturalist_network: iNaturalist netwerk
@@ -7159,7 +7122,20 @@ nl:
             Het oude gezegde vat het samen: "lokale namen veranderen van plaats naar plaats en wetenschappelijke namen veranderen van tijd tot tijd."
           </p>
           <p>
-            We proberen deze tekortkomingen aan te pakken door ze beide te laten zien waar mogelijk. Lokale namen worden gekozen op basis van de taal en geografische voorkeuren van de gebruiker.
+            We proberen deze tekortkomingen aan te pakken door ze beide te laten zien waar mogelijk. Lokale namen worden gekozen op basis van de taal en geografische voorkeuren van de gebruiker. Namen worden vermeld op basis van hun wereldwijde prioriteit binnen elke taal / type.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Namen kunnen worden toegevoegd aan plaatsen (meestal landen) in gevallen waar
+          verschillende landen of regio's verschillende lokale namen gebruiken in de
+          dezelfde taal. Zo hebben Mexico en Costa Rica bijvoorbeeld verschillende
+          Spaanse namen voor dezelfde soort.
+          </p>
+          <p>
+          Deze tabel laat zien welke namen zijn toegevoegd aan welke plaatsen en
+          staan gesorteerd in volgorde van prioriteit voor elke plaats. Als er twee Spaanse namen
+          aan Mexico worden toegevoegd zal de naam die als eerste opgesomd wordt verschijnen als je instelling is dat je
+          Spaanse namen wilt die zijn toegevoegd aan Mexico.
           </p>
         about_conservation_status_desc: |
           De natuurbeschermingstatus vat het risico van uitsterven samen voor een groep organismen.
@@ -7366,11 +7342,6 @@ nl:
         licensing_desc_html: |
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
-        monthly_supporter_desc_html: |
-          Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS EIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.
-          <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
-          Als je steun door ons is bevestigd kun je deze checkbox aanvinken
-          zodat deze status in je profiel wordt weergegeven. Let op: het e-mailadres op Donorbox moet exact gelijk zijn aan die op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent. Als ze verschillend zijn, verander er dan één zodat ze gelijk zijn.
         muting_desc_html: |
           <p>
              Als je iemand dempt, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, berichten naar je sturen, je naam noemen, etc. Dempen helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.
@@ -7944,6 +7915,7 @@ nl:
         position: Positie
         source_url: Bron-URL
         source_identifier: Bron-id
+        audit_comment: Notitie
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8178,6 +8150,8 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+            audit_comment:
+              needs_to_be_at_least_10_characters: moet ten minste 10 tekens bevatten
         taxon_photo:
           attributes:
             taxon:
@@ -8201,9 +8175,6 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
-              user_cannot_be_staff: |
-                De staf kan niet worden geblokkeerd. iNat personeel moet kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op iNat en zijn de uiteindelijke bemiddelaars van geschillen dus het blokkeren van hen zal hen niet verhinderen om met jou te communiceren. Als je een probleem hebt met een staflid rapporteer dat dan aan één van de
-                iNat co-directeuren of als je een probleem hebt met één van de co-directeuren kun je contact opnemen met de Chief of Science op het Institute for Biodiversity and Sustainability Science van de California Academy of Science.
         user_parent:
           attributes:
             email:

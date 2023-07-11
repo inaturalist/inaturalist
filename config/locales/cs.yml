@@ -429,9 +429,9 @@ cs:
   #"one" refers to a photo
   add_one_now: Přidat nyní
   add_place: Přidat místo
-  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Živý"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
-  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Mrtvý"'
+  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živé nebo mrtvé: Živé"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živé nebo mrtvé: Nelze určit“'
+  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živé nebo mrtvé: Mrtvé"'
   add_plant_phenology_budding_annotation: 'Přidat anotaci „Fenologie rostliny: pučení“'
   add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostliny: pučící květ“'
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
@@ -1277,7 +1277,7 @@ cs:
     larva: Larva
     egg: Vejce
     juvenile: Mládě
-    alive_or_dead: Živý nebo mrtvý
+    alive_or_dead: Živé nebo mrtvé
     alive: Živé
     dead: Mrtvý
     cannot_be_determined: Nelze určit
@@ -1901,7 +1901,6 @@ cs:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Podrobnosti účtu
-  email_copyright: "Copyright &copy; %{x}, všechna práva vyhrazena"
   email_notifications: E-mailová upozornění
   embed: 'Vložit'
   embed_place_widget: Vložit widget místa
@@ -2240,7 +2239,6 @@ cs:
   heads_up_you_have_multiple: "Pozor: Máte několikanásobná automatické taxonomická označení pro stejné kategorie. Níže jsou jednotlivé kategorie barevně označeny."
   help: Nápověda
   help_confirm_observations!: Pomozte potvrdit pozorování!
-  help_support_inaturalist: "Nápověda iNaturalist"
   help_translate!: Pomozte s překladem!
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
   here_are_our_top_suggestions: Zde jsou naše nejlepší návrhy
@@ -2409,7 +2407,6 @@ cs:
   inaturalist_activity_notifications: "Oznámení o aktivitě %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplikace iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} je společná iniciativa Kalifornské akademie věd a Národní geografické společnosti."
   inaturalist_places: "%{site_name} Místa"
   info: Informace
   input_taxon: Vstupní taxon
@@ -2839,9 +2836,6 @@ cs:
   meet: setkat se
   member_of_the_inaturalist_network_html: |
     Člen sítě <a href="%{url}"> iNaturalist </a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Člen sítě %{partial_inat_network_tag_html}iNaturalist</a>, společná iniciativa
-     %{cas_tag_html} a %{nat_geo_tag_html}.
   #As in members of a project
   members: Členové
   membership_model: Členský model
@@ -4423,6 +4417,7 @@ cs:
   refresh: Obnovit
   refreshing: obnovování
   regenerate_stats: Obnovit statistiky
+  regional_names: Regionální názvy
   register_for_this_event_at_x_html: "Registrovat se na událost na %{x}"
   reject?: Odmítnout?
   relative_observations: Příbuzná pororování
@@ -4740,8 +4735,6 @@ cs:
   sites_affiliation_overview_you_can_continue_html: |
     Můžete se nadále přihlašovat prostřednictvím webu iNaturalist.org nebo na webových stránkách konkrétní sítě. Bez ohledu na vaši příslušnost budou všechna vaše data umístěna na stejném místě a vy budete moci i nadále komunikovat s širší mezinárodní komunitou iNaturalist. Každý účet iNaturalist může být přidružen pouze k jednomu členu sítě. Svou příslušnost si můžete zkontrolovat nebo změnit v %{start_tag_settings}nastavení účtu%{end_tag_settings}.
   sites_affiliation_title: Další informace o přiřazování k síti
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}Kalifornská akademie věd%{end_tag_cas} a %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} mají formální dohody s organizacemi v každé z těchto geografických oblastí na podporu používání platformy iNaturalist. <strong>Pokud má vaše organizace zájem o připojení k síti iNaturalist Network, další podrobnosti naleznete %{start_tag_join}zde%{end_tag_join}.</strong>
   sites_network_consists_of: "Síť iNaturalist Network se skládá z několika organizací:"
   sites_network_inaturalist_network_collection: |
     Síť iNaturalist je soubor lokalizovaných webových stránek, které jsou plně propojeny s celosvětovou komunitou iNaturalist. Stránky sítě jsou podporovány místními institucemi, které podporují místní využití a usnadňují využívání dat z iNaturalist ve prospěch místní biologické rozmanitosti. Mají přístup ke skutečným souřadnicím v rámci svých zeměpisných oblastí, které jsou automaticky zakryty před zraky veřejnosti, aby se lépe chránily ohrožené druhy.
@@ -5826,6 +5819,7 @@ cs:
   white: bílý
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Proč provádíte tuto změnu? (volitelné)
+  why_are_you_making_this_change_cite_source_required: Proč provádíte tuto změnu? Vysvětlete prosím a citujte zdroj, pokud je to možné. (Požadované)
   why_you_can_see_the_coordinates: Proč můžete vidět souřadnice
   who_can_add_observation_fields_to_my_obs: Kdo může přidat pole pozorování do mých pozorování?
   who_can_add_observations_to_this_project?: Kdo může přidávat pozorování k vašemu projektu?
@@ -5942,8 +5936,6 @@ cs:
     Miliony lidí použily tento rok iNaturalist a Seek od iNaturalist aby se propojili s přírodou
   yir_monthly_supporters_random_selection: |
     Zde je náhodný výběr hrdinných členů komunity iNat, kteří přispívají každý měsíc.
-  yir_thank_your_for_being_generous: |
-    Děkujeme vám za váš štědrý čas, pozornost, odborné znalosti a dary! iNaturalist je společná nezisková iniciativa Kalifornské akademie věd a National Geographic Society. Program je závislý na četných grantech a darech, včetně dobročinných darů od nevelkého zlomku komunity. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucnost.
   yir_your_gift_sustains: |
     Váš dar podporuje tento program s celosvětovým dosahem a hlubokým osobním a ekologickým dopadem.
   you: vy
@@ -6104,53 +6096,10 @@ cs:
             Pokud ano, přečtěte si prosím našeho <a href="%{url}">Průvodce pro učitele</a>, kde najdete tipy, jak používat %{site_name} se studenty.
     donate:
       donate_short_desc: "Darujte nyní, abyste ukázali, že nás podporujete!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist je jednou z největších světových komunit věnovaných
-        průzkumu biologické rozmanitosti. Děkujeme, že jste se na něm podíleli!</strong>
-        </p>
-        <p class="lead">
-        Pokud věříte v sílu této globální komunity přírody,
-        sdílejte znalosti a generujte nenahraditelné údaje o biologické rozmanitosti.
-        Zvažte prosím jednorázový nebo opakovaný dárek online, nebo viz <a
-        href="https://www.inaturalist.org/pages/giving">další způsoby, jak
-        darovat</a>.
-        </p>
-        <p class="lead">
-        Váš dar pomáhá podpořit iNaturalist s růstem komunity, od
-        pokročilé počítačové vize a implementace nových funkcí na podporu
-        našich serverů a zaměstnanců.
-        </p>
-        <p class="text-muted">
-        iNaturalist je společná iniciativa Kalifornské akademie věd
-        a Národní geografické společnosti. Všechny dary obdrží
-        Kalifornské akademie věd, organizace 501(c)(3) nezisková organizace osvobozená od daně
-        se sídlem ve Spojených státech amerických (Tax ID: 94–1156258).
-        </p>
       post_donate_social_media_text: Podporuji iNaturalist protože...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Staňte se měsíčním podporovatelem iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: STAŇTE SE MĚSÍČNÍM PODPOROVATELEM INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist je jednou z největších světových komunit věnovaných
-          průzkumu biologické rozmanitosti. Děkujeme, že jste se na něm podíleli!</strong>
-          </p>
-          <p class="lead">
-          Chceme, aby byl iNaturalist volně použitelný, ale nefunguje zadarmo. Pokud máte rádi iNaturalist, zvažte prosím možnost stát se měsíční podporovatelem. Opakované dary nám pomáhají zajistit pokračování iNaturalist. Můžete se také rozhodnout a ukazovat na
-          vašem uživatelském profilu, že patříte mezi měsíční podporovatele.
-          </p>
-          <p class="lead">
-          Váš dar pomáhá podpořit iNaturalist s růstem komunity, od
-          pokročilé počítačové vize a implementace nových funkcí na podporu
-          našich serverů a zaměstnanců. Jestliže preferujete jednorázový dar, prosím <a href="%{donate_url}">klikněte zde</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist je společná iniciativa Kalifornské akademie věd
-          a Národní geografické společnosti. Všechny dary obdrží
-          Kalifornské akademie věd, organizace 501(c)(3) nezisková organizace osvobozená od daně
-          se sídlem ve Spojených státech amerických.
-          </p>
         thank_you_for_being_a_monthly_supporter: Děkujeme, že jste měsíční podporovatel!
         thank_you_for_being_a_monthly_supporter_caps: DĚKUJEME ŽE JSTE SE STAL MĚSÍČNÍM PODPO|RO|VATELEM
       temporarily_unavailable: |
@@ -6881,11 +6830,6 @@ cs:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
     places:
-      kml_field_desc2: |
-        KML hranice místa. Můžete jej vytvořit pomocí Google Maps, Google
-        Earth, nebo většiny GIS aplikací. Musí obsahovat alespoň jeden polygon, být
-        menší než 1 MB (5 MB pro kurátory webu), a mít plochu menší než
-        stát Texas.
       edit:
         complex_boundary_note_html: |
           Toto ohraničení je pro editování na webu příliš složité. Můžete si ale
@@ -7259,8 +7203,6 @@ cs:
           za všechny roky.
         compared_to_previous_years: Porovnat s předchozími roky
         donate_title: "Zvláštní poděkování všem našim podporovatelům"
-        donate_desc_html: |
-          Děkujeme vám za váš štědrý čas, pozornost, odborné znalosti a dary! iNaturalist je společná nezisková iniciativa Kalifornské akademie věd a National Geographic Society. Podporuje ho <a href="%{team_url}">malý tým</a>, který se stará o veškerý design a softwarové inženýrství pro web, mobilní zařízení a <a href="%{seek_url}">Vyhledávání iNaturalist</a>, a navíc spravuje podporu komunity, spolupráci a integrace, které zajišťují chod (a rychlý růst!). Program je závislý na četných grantech a darech, včetně dobročinných darů od méně než nepatrného zlomku přispěvatelů. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucnost. Přispívat můžete v různých měnách a podpořit tak základní činnost iNaturalist. Děkujeme všem, kteří se podíleli na tom, že %{year} byl pro iNaturalist dosud největším rokem!
         donors: Dárci
         donors_guide_label_our_goal_is_1000: Naším cílem je 1000 pravidelných dárců měsíčně
         inaturalist_network: síť iNaturalist
@@ -7364,16 +7306,6 @@ cs:
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
-        about_names_desc: |
-          <p>
-            Většina kategorií organismů má v mluvené řeči své „obecné názvy“. Tyto názvy jsou obvykle srozumitelné, snadno se vyslovují a jsou trvalé, ale mnoho organismů má na různých místech několik různých názvů, a to i v jednom jazyce, což může komplikovat komunikaci o těchto organismech. Vědci tento problém řeší tak, že používají jeden „vědecký název“ pro každou kategorii organismů, která splňuje pravidla <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické terminologie</a>, ale tyto názvy většinou vycházejí z latiny, což je jazyk, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak snadno zapamatovatelné jako obecné názvy. Vědecké názvy mohou také odrážet taxonomické zařazení organismu, takže se mohou změnit, pokud vědci vytvoří přesnější teorie o evolučních vztazích mezi jednotlivými organismy, což opět snižuje jejich užitečnost při komunikaci, a to i mezi lidmi, kteří znají vědecké názvy.
-          </p>
-          <p>
-           \ Jak se říká: „Obecné názvy jsou různé na různých místech a vědecké názvy jsou různé v různých dobách.“ 
-          </p>
-          <p>
-            My se snažíme tyto nedostatky řešit tím, že zobrazujeme jak obecné tak vědecké názvy, kdykoliv je to možné, a obecné názvy vybíráme podle jazykových a geografických preferencích čtenáře.
-          </p>
         about_conservation_status_desc: |
           Ochranářský status shrnuje riziko vyhynutí pro skupinu organismů.
         about_establishment_desc: |
@@ -7397,7 +7329,7 @@ cs:
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
-          "Alive or Dead=Alive": Živý
+          "Alive or Dead=Alive": Živé
           "Alive or Dead=Dead": Mrtvý
           "Plant Phenology=Budding": Pučení
           "Plant Phenology=Flower Budding": Květinové pučení
@@ -7574,8 +7506,6 @@ cs:
         licensing_desc_html: |
           Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.
-        monthly_supporter_desc_html: |
-          Měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které dostává Kalifornská akademie věd (IRS EIN 94-1156258 Spojených států) na podporu neziskového provozu stránek sítě iNaturalist a iNaturalist Network. <a href="%{url}">Kliknutím sem se stanete měsíčním podporovatelem</a>. Jakmile potvrdíme vaši podporu, budete moci zaškrtnutím tohoto políčka zobrazit tento stav ve vašem profilu. Poznámka: E-mailové adresy na Donorbox a iNaturalist se musí přesně shodovat, abychom mohli potvrdit, že jste měsíčním podporovatelem. Pokud se liší, změňte jeden, aby odpovídal druhému.
         muting_desc_html: |
           <p>
             Když někoho ztlumíte, nebudete dostávat oznámení o tom, co dělají, včetně komentářů u vašich pozorování, zpráv, zmínek o vás atd. Ztlumením můžete někoho ignorovat, aniž byste mu bránili v nějaké činnosti. 
@@ -8177,6 +8107,7 @@ cs:
         position: Pozice
         source_url: URL zdroje
         source_identifier: Identifikátor zdroje
+        audit_comment: Poznámka
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8428,6 +8359,8 @@ cs:
                 musí odpovídat názvu taxonu, pokud se jedná o platný vědecký název
               bad_format: |
                 může obsahovat pouze standartní písmena Latinky, pomlčky, mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
+            audit_comment:
+              needs_to_be_at_least_10_characters: musí mít alespoň 10 znaků
         taxon_photo:
           attributes:
             taxon:
@@ -8452,9 +8385,6 @@ cs:
           attributes:
             base:
               user_already_blocked: Tohoto uživatele již blokujete
-              user_cannot_be_staff: |
-                Nemůžete blokovat zaměstnance. Zaměstnanci iNat musí být schopni
-                komunikovat se všemi na iNat, mít přístup ke všem údajům na iNat, a jsou konečnými mediátory sporů, takže blokování jim nebrání v komunikaci s Vámi. Pokud máte problém se zaměstnancem, prosím, nahlaste jej jednomu ze spoluředitelů iNat, nebo se, pokud máte problém s jedním ze spoluředitelů, můžete obrátit na vědeckého ředitele Institutu pro biologickou a udržitelnou vědu Kalifornské akademie věd.
         user_parent:
           attributes:
             email:

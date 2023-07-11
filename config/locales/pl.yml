@@ -1539,7 +1539,6 @@ pl:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Dostarczyliśmy Ci e-mail z potwierdzeniem dnia %{date}. Jeśli go nie otrzymałeś, oto kilka rzeczy, które możesz zrobić:
-  email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
@@ -1816,7 +1815,6 @@ pl:
   heads_up_this_photo_is_already_associated_with: "Uwaga: to zdjęcie jest już powiązane z <a target='_blank' href='%{url}'>inną obserwacją</a>"
   help: Pomoc
   help_confirm_observations!: Pomóż potwierdzić obserwacje!
-  help_support_inaturalist: "Wesprzyj iNaturalist"
   help_translate!: Pomóż w tłumaczeniu!
   here_are_3_examples: Tutaj są 3 przykłady dobrze przygotowanych danych
   here_are_our_top_species_suggestions: Nasze sugestie dot. gatunku
@@ -1917,7 +1915,6 @@ pl:
   inaturalist_activity_notifications: "Powiadomienia o aktywności na %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplikacje iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} to wspólna inicjatywa California Academy of Sciences i National Geographic Society."
   inaturalist_places: "Lokalizacje %{site_name}"
   info: Informacje
   input_taxon: Takson wejściowy
@@ -2300,8 +2297,6 @@ pl:
   meet: Poznaj
   member_of_the_inaturalist_network_html: |
     Członek <a href="%{url}">Sieci iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Członek %{partial_inat_network_tag_html}sieci iNaturalist</a> wspólnej inicjatywy %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Członkowie
   membership_model: Model Członkostwa
