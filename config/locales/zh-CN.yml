@@ -1349,6 +1349,8 @@ zh-CN:
   #short as possible
   donate: 捐款
   donate_again_caps: 再次捐款
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: 捐助 iNaturalist
   done: 完成
   dont_have_an_account_sign_up_html: 没有帐户？ <strong>注册</strong>
   dont_use_double_quotes: 不要在其他地方使用双引号
@@ -1439,7 +1441,6 @@ zh-CN:
   email: 电子邮件
   email_description: 您的电子邮件不会显示给其他iNaturalist用户
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
-  email_copyright: "版权所有 &copy; %{x}，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
   embed_place_widget: 嵌入地点小部件
@@ -1734,7 +1735,6 @@ zh-CN:
   heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
   help: 帮助
   help_confirm_observations!: 帮助确认观察！
-  help_support_inaturalist: "帮助支持 iNaturalist"
   help_translate!: 协助翻译
   here_are_3_examples: 这里是3个格式良好数据的例子
   here_are_our_top_suggestions: 这是我们的最佳建议
@@ -1857,7 +1857,6 @@ zh-CN:
   inaturalist_activity_notifications: "%{site_name} 活动通知"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist 应用程序"
-  inaturalist_is_a_joint_initiative: "%{site_name}由加利福尼亚州科学院与美国国家地理学会共同创办。"
   inaturalist_places: "%{site_name} 地点"
   info: 信息
   input_taxon: 输入分类单元
@@ -2244,8 +2243,6 @@ zh-CN:
   meet: 会见
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist网络</a>的成员
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist 网络</a>的成员，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同计划。
   #As in members of a project
   members: 成员
   membership_model: 成员模型
@@ -3609,6 +3606,7 @@ zh-CN:
   refresh: 刷新
   refreshing: 正在刷新
   regenerate_stats: 重新生成统计
+  regional_names: 地区名称
   register_for_this_event_at_x_html: "注册此事件于%{x}"
   reject?: 拒绝？
   relative_observations: 相关观察
@@ -3861,6 +3859,10 @@ zh-CN:
   site_staff: "%{site_name} 人员"
   site_stats: 网站统计
   site_taxon_page: "%{site_name}分类单元页"
+  sites_network_agreements_html: |
+    为了支持用户使用 iNaturalist 平台，iNaturalist 已经与这些地区的组织达成了正式协议。
+    <strong>如果您的组织有兴趣加入 iNaturalist 网络，您可以在%{start_tag_join}这里%{end_tag_join}了解更多细节。
+    </strong>
   some_agree: 部分同意
   some_observations_are_missing_media_or_identifications: |
     有些观察缺少媒体（照片/音频）或鉴定
@@ -4595,6 +4597,7 @@ zh-CN:
   where_were_you?: 您在哪里？
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
   white: 白色
+  why_are_you_making_this_change_cite_source_required: 你为什么要做此修改？如果可能的话，请解释原因并附上依据。（必须）
   why_you_can_see_the_coordinates: 为什么你可以看到坐标
   who_can_add_observation_fields_to_my_obs: 谁可以将观察字段添加到我的观察记录？
   who_can_add_observations_to_this_project?: 谁可以添加观察至此项目？
@@ -4674,6 +4677,8 @@ zh-CN:
   yes_reject_it: 好的，拒绝它
   yes_show_this_in_the_box: 是的，它会在/taxa顶部的大框中显示
   yesterday: 昨天
+  yir_thank_your_for_being_generous2: |
+    感谢您抽出宝贵的时间关注我们，也感谢您慷慨地分享专业知识与提供捐助！iNaturalist 是一个非营利的公益组织。这个项目依赖的是许多补助和捐助，包括来自社区极小一部分人的捐赠。我们非常感谢月捐人们，可持续的捐赠帮助我们规划 iNaturalist 的未来。
   you: 您
   you_: 您
   you_appear_offline_try_again: |
@@ -5567,6 +5572,23 @@ zh-CN:
         complete_rank_desc_html: |
           该分类单元完成的等级，例如，如果这个家族包含其所有属，但不包括其所有物种，那么这将被设定为“属”。物种是默认的。
       show:
+        about_names_desc: |
+          <p>
+          大多数类群的生物在口语中都有“俗名”。这些名字通常易识别，易发音，且长时间保持稳定，但即使是同种语言，许多生物在不同地区也会有不同的名字，这会让准确无混淆的沟通变得困难。对于遵从<a href="https://zh.wikipedia.org/wiki/二名法">双名法</a>命名的生物 ，科学家通过使用唯一的“学名”解决这个问题，但学名往往由拉丁语（一种没人说的语言）衍生而来，不如俗名容易记忆。学名也包含了生物的分类学位置，所以当研究者提出新的理论，更准确地描述演化学关系时，相关类群的学名也会改变，这又降低了它们在沟通中的可用性，即使是对熟悉学名的人而言。
+          </p>
+          <p>
+          用一句格言做个总结：“俗名异地而异，学名与时俱进。”
+          </p>
+          <p>
+          为了解决上述的问题，我们尽量同时展示俗名和学名，并基于用户的语言和地理位置偏好选择相应的俗名。物种名的排列顺序由其在全局或对应语言下的优先级决定。
+          </p>
+        about_regional_names_desc: |
+          <p>
+          对于使用相同语言的不同国家地区，其对物种的俗名选择也会有所不同，所以物种名需要分地区加入（通常以国家区分）。比如墨西哥和哥斯达黎加都使用西班牙语，但对同一物种可能有不同的称呼。
+          </p>
+          <p>
+          这张表包含了不同地区已加入的物种名，且每个地区的物种名根据优先级进行排列。假设有两个西班牙语的物种名被加入墨西哥地区，上方的会被优先展示。
+          </p>
         about_conservation_status_desc: |
           保护状况总结了一组生物灭绝的风险。
         about_establishment_desc: |
@@ -6018,6 +6040,7 @@ zh-CN:
         name_provider: 名称提供方
         source_url: 来源URL
         source_identifier: 来源标识符
+        audit_comment: 附注
       user:
         email: 电子邮件
         login: 用户名
@@ -6167,6 +6190,8 @@ zh-CN:
                 不能匹配指定此词汇的物种名
               must_match_the_taxon_if_valid: |
                 如果这是一个有效的学名那它一定符合分类群名称
+            audit_comment:
+              needs_to_be_at_least_10_characters: 请输入不少于10个字的内容
         taxon_photo:
           attributes:
             taxon:
@@ -6184,6 +6209,9 @@ zh-CN:
           attributes:
             base:
               user_already_blocked: 您已经屏蔽了该用户
+              user_cannot_be_staff2: |
+                您不能屏蔽工作人员。 iNat工作人员需要能够与iNat上的每个人进行
+                沟通，能够访问iNat上的所有数据， 且是争端的终极调解者，因此不能通过屏蔽来阻止其与您沟通。
         user_parent:
           attributes:
             email:
