@@ -1750,7 +1750,6 @@ es-MX:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Detalles de la cuenta
-  email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar:'
   embed_place_widget: Incluye el widget del lugar
@@ -2086,7 +2085,6 @@ es-MX:
   heads_up_you_have_multiple: "Atención: tienes etiquetas taxonómicas múltiples para identificar rangos. Tienen código de color abajo del rango."
   help: Ayuda
   help_confirm_observations!: '¡Ayúdame a confirmar las observaciones!'
-  help_support_inaturalist: "Apoya iNaturalist"
   help_translate!: '¡Ayúdanos a traducir!'
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_our_top_suggestions: Éstas son nuestras sugerencias principales
@@ -2248,7 +2246,6 @@ es-MX:
   inaturalist_activity_notifications: "Notificaciones de actividad de %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicaciones de iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society."
   inaturalist_places: "%{site_name} Lugares"
   info: Información
   input_taxon: Incluye al taxón
@@ -2700,9 +2697,6 @@ es-MX:
   meet: Conoce
   member_of_the_inaturalist_network_html: |
     Miembro de la <a href="%{url}">Red iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Miembro de la red %{partial_inat_network_tag_html} iNaturalist</a>, una
-    iniciativa conjunta de %{cas_tag_html} y %{nat_geo_tag_html}.
   #As in members of a project
   members: Miembros
   membership_model: Modelo de membresía
@@ -4580,8 +4574,6 @@ es-MX:
     Puedes continuar iniciando sesión a través de iNaturalist.org o a través de tu sitio web específico para la Red. Sin importa tu afiliación, todos tus datos estarán alojados en el mismo lugar y continuarás interactuando con la amplia comunidad internacional de iNaturalist. Cada cuenta de iNaturalist puede ser afiliada solo con un miembro de la Red. Puedes revisar o cambiar
     tu afiliación en la %{start_tag_settings}configuración de su cuenta%{end_tag_settings}.
   sites_affiliation_title: Más información sobre la afiliación de la Red
-  sites_network_cas_and_nat_geo_html: |
-    La %{start_tag_cas}Academia de Ciencias de California%{end_tag_cas} y la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tienen acuerdos formales con organizaciones en cada una de estas áreas geográficas para apoyar el uso de la plataforma iNaturalist. <strong>Si tu organización está interesada en unirse a la Red de iNaturalist, puedes encontrar más detalles %{start_tag_join}aquí%{end_tag_join}.</strong>
   sites_network_consists_of: "La Red de iNaturalist está conformada por varias organizaciones:"
   sites_network_inaturalist_network_collection: |
     La Red de iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad global de iNaturalist. Los sitios de la Red están apoyados por instituciones locales que promueven el uso local y facilitan el uso de datos de iNaturalist para beneficiar la biodiversidad en cada sitio. Tienen acceso a las coordenadas verdaderas dentro de sus áreas geográficas que se ocultan automáticamente de la vista pública con el fin de proteger mejor las especies amenazadas.
@@ -5723,13 +5715,6 @@ es-MX:
     conectar con la naturaleza
   yir_monthly_supporters_random_selection: |
     Aquí hay una selección aleatoria de miembros heroicos de la comunidad de iNat que donan cada mes.
-  yir_thank_your_for_being_generous: |
-    ¡Gracias por ser generoso con tu tiempo, atención, pericia y
-    donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la
-    Academia de Ciencias de California y la National Geographic Society. El programa
-    se basa en numerosas donaciones y becas, incluyendo donaciones de beneficencia
-    de menos de una pequeña fracción de la comunidad. Estamos especialmente agradecidos a
-    los donadores mensuales cuyos regalos recurrentes nos ayudan a planificar el futuro.
   yir_your_gift_sustains: |
     Tu regalo sostiene este programa con alcance global y profundos impactos ecológicos y personales
   you: Ti
@@ -5891,37 +5876,10 @@ es-MX:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para obtener sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
-        </p>
-        <p class="lead">
-        Si crees en la fuerza de esta comunidad global de amantes de la naturaleza que comparte conocimiento y genera datos de biodiversidad irremplazables, por favor considera hacer una donación única o recurrente, o conoce <a
-        href="https://www.inaturalist.org/pages/giving">otras formas de donar</a>.
-        </p>
-        <p class="lead">
-        Tu donación ayuda a iNaturalist a medida que la comunidad crece, incluyendo la visión computerizada avanzada, la implementación de nuevas características y los gastos de nuestros servidores y personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin fines de lucro, exenta de impuestos con sede en los Estados Unidos de América (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértete en un Patrocinador Mensual de iNaturalist.
         become_a_monthly_supporter_of_inaturalist_caps: CONVIÉRTETE EN UN PATROCINADOR MENSUAL DE INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>INaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de esto!</strong>
-          </p>
-          <p class="lead">
-          Queremos que iNaturalist sea de uso gratuito, pero no es libre de operar. Si amas iNaturalist, considera convertirte en un patrocinador mensual. Las donaciones recurrentes ayudan a garantizar que NaturaLista pueda seguir ampliando su infraestructura y su personal al proporcionar ingresos predecibles. También puedes optar por mostrar tu estado de patrocinador mensual en tu perfil de usuario.
-          </p>
-          <p class='lead'>
-          Tus donaciones ayudan a iNaturalist a medida que la comunidad crece, desde el avance de la visión por computadora y la implementación de nuevas funciones hasta el soporte de nuestros servidores y personal. Si prefieres hacer una donación única, por favor <a href="%{donate_url}"> haga clic aquí </a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización sin fines de lucro 501(c)(3) exenta de impuestos con sede en los Estados Unidos de América.
-          </p>
         thank_you_for_being_a_monthly_supporter: '¡Gracias por ser un Patrocinador Mensual!'
         thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
       temporarily_unavailable: |
@@ -7046,10 +7004,6 @@ es-MX:
           todos los años.
         compared_to_previous_years: Comparar con años anteriores
         donate_title: "Gracias a todos nuestros colaboradores"
-        donate_desc_html: |
-          ¡Gracias por ser tan generoso con su tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la Academia de Ciencias de California y la Sociedad Geográfica Nacional.
-          Es sostenido por un equipo <a href="%{team_url}">pequeño</a> que realiza todo el diseño y ingeniería de software para web, móvil, y <a href="%{seek_url}">Búsqueda de iNaturalist</a>, además de administrar el apoyo de la comunidad, colaboraciones e integraciones que mantienen el proyecto en funcionamiento (¡y creciendo rápidamente!). El programa se basa en numerosas donaciones, incluyendo donaciones de beneficencia de menos del 0.2% de los colaboradores. Agradecemos especialmente a los Donadores Mensuales, cuyos regalos recurrentes nos ayudan a planear para el futuro. Puedes donar en más de 30 monedas para apoyar las operaciones centrales de iNaturalist.
-          ¡Gracias a todos por hacer del 2019 el año más grande de iNaturalist hasta la fecha!
         donors: Donantes
         donors_guide_label_our_goal_is_1000: Nuestro objetivo es tener 1,000 donantes recurrentes al mes
         inaturalist_network: Red de iNaturalist
@@ -7350,9 +7304,6 @@ es-MX:
           con otros socios como <a href="http://www.gbif.org/">Global 
           Biodiversity Information Facility</a> (GBIF), una organización intergubernamental internacional, 
           que reúne y distriuye información sobre biodiversidad en todo el mundo.
-        monthly_supporter_desc_html: |
-          Los Patrocinadores mensuales de iNaturalist hacen contribuciones automáticas cada mes que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de iNaturalist y de la Red de iNaturalist.
-          <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en iNaturalist para que podamos confirmar que se ha convertido en un patrocinador mensual.
         muting_desc_html: |
           <p>
           Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -8165,8 +8116,6 @@ es-MX:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
-              user_cannot_be_staff: |
-                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
