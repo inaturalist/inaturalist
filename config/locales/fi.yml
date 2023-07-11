@@ -1653,7 +1653,6 @@ fi:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Tilin tiedot
-  email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
   embed_place_widget: Upota paikkapienoisohjelma
@@ -1959,7 +1958,6 @@ fi:
   heads_up_this_photo_is_already_associated_with: "Huomio: tämä kuva on jo yhdistetty <a target='_blank' href='%{url}'>toisen havainnon</a> kanssa"
   help: Apua
   help_confirm_observations!: Auta vahvistamaan havaintoja!
-  help_support_inaturalist: "Auta tukemaan iNaturalistia"
   help_translate!: Auta kääntämisessä!
   here_are_3_examples: Tässä on kolme esimerkkiä hyvin järjestetystä tiedosta
   here_are_our_top_suggestions: Tässä ovat parhaat suosituksemme
@@ -2079,7 +2077,6 @@ fi:
   inaturalist_activity_notifications: "%{site_name} tapahtumailmoitukset"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist sovellukset"
-  inaturalist_is_a_joint_initiative: "%{site_name} on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite."
   inaturalist_places: "%{site_name} Paikat"
   info: Tiedot
   input_taxon: Syötä taksoni
@@ -2486,8 +2483,6 @@ fi:
   meet: Tapaa
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist-verkoston</a> jäsen
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Tämä sivusto on osa %{partial_inat_network_tag_html}iNaturalist-verkostoa</a>, joka on %{cas_tag_html}:n ja %{nat_geo_tag_html}:n yhteishanke.
   #As in members of a project
   members: Jäsenet
   membership_model: Jäsenyysmalli
@@ -4149,10 +4144,6 @@ fi:
   site_staff: "%{site_name} ylläpitäjät"
   site_stats: Sivuston tilastot
   site_taxon_page: "%{site_name} taksonisivu"
-  sites_network_cas_and_nat_geo_html: |
-    The %{start_tag_cas}Kalifornian Tiedeakatemia%{end_tag_cas} ja
-    %{start_tag_nat_geo}National Geographic%{end_tag_nat_geo} ovat solmineet 
-    sopimuksen kaikkien niiden organisaatioiden kanssa, jotka ylläpitävät kansallista iNaturalist-sivustoa. <strong>Jos organisaatiosi on kiinnostunut liittymään iNaturalist-verkostoon, löydät lisätietoja %{start_tag_join}täältä%{end_tag_join}.</strong>
   sites_network_consists_of: "iNaturalist-verkosto koostuu useista organisaatioista:"
   sites_network_inaturalist_network_collection: |
     iNaturalist-verkosto koostuu kansallisista sivustoista, jotka toimivat yhteistyössä maailmanlaajuisen iNaturalist-yhteisön kanssa. Paikalliset instituutiot ylläpitävät verkkosivustoja, jotka edistävät iNaturalistin käyttöä alueellisesti. Nämä instituutiot ovat allekirjoittaneet sopimuksen iNaturalistin kanssa ja edistävät sen paikallista käyttöä luonnon monimuotoisuuden hyväksi. Paikalliset instituutiot pääsevät käsiksi havaintojen tarkkoihin koordinaatteihin oman valtionsa alueelta, vaikka koordinaatit muuten olisivat karkeistettuja uhattujen eliölajien suojelemiseksi.
@@ -5198,37 +5189,10 @@ fi:
             Jos niin, lue <a href="%{url}">Opettajan oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden kanssa.
     donate:
       donate_short_desc: "Lahjoita nyt näyttääksesi tukesi!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
-        </p>
-        <p class="lead">
-        Jos uskot tämän maailmanlaajuisen luonnonystävien yhteisön voimaan jakaa tietoa ja tuottaa korvaamatonta dataa monimuotoisuudesta, harkitse kertaluonteista tai toistuvaa lahjoitusta verkossa, tai katso<a
-        href="https://www.inaturalist.org/pages/giving"> muista lahjoitustavoista</a>.
-        </p>
-        <p class="lead">
-        Lahjoituksesi auttaaa tukemaan iNaturalistia yhteisön kasvaessa aina konenäön kehittämisestä ja uusien ominaisuuksien toteuttamisesta palvelinten ja henkilökunnan tukemiseen.
-        </p>
-        <p class="text-muted">
-        iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Tuen iNaturalistia koska...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Ryhdy iNaturalistin kuukausittaiseksi tukijaksi
         become_a_monthly_supporter_of_inaturalist_caps: KUUKAUSILAHJOITTAJAKSI
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
-          </p>
-          <p class="lead">
-          Haluamme säilyttää iNaturalistin käytön maksuttomana, mutta sen ylläpito ei ole ilmaista. Jos pidät iNaturalistista, harkitse kuukausilahjoittajaksi ryhtymistä. Toistuvat lahjoitukset tarjoavat ennustettavan tulon ja auttavat takaamaan, että iNaturalist voi jatkaa infrastruktuurinsa ja henkilökunnan määrän kasvattamista. Voit myös valita, että kuukausilahjoittajan statuksesi näytetään käyttäjäprofiilissasi.
-          </p>
-          <p class="lead">
-          Vapaaehtoiset lahjoituksesi auttavat tukemaan iNaturalistia yhteisön kasvaessa aina konenäön kehittämisestä ja uusien ominaisuuksien toteuttamisesta palvelinten ja henkilökunnan tukemiseen. Jos haluat mieluummin antaa kertaluonteisen lahjoituksen, ole hyvä ja<a href="%{donate_url}">klikkaa tästä</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa.
-          </p>
         thank_you_for_being_a_monthly_supporter: Kiitos, että olet kuukausilahjoittaja!
         thank_you_for_being_a_monthly_supporter_caps: KIITOS, ETTÄ OLET KUUKAUSILAHJOITTAJA!
     flags:
@@ -6126,11 +6090,6 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
-        monthly_supporter_desc_html: |
-          iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
-          States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
-          <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
-          Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
