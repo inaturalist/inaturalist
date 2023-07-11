@@ -52,11 +52,6 @@ class ComputerVisionDemoApp extends Component {
             </a>
           </div>
           <div className="logo">
-            <a href="https://www.calacademy.org/">
-              <img src={ SITE_ICONS.cas } />
-            </a>
-          </div>
-          <div className="logo">
             <a href="http://www.nvidia.com/object/machine-learning.html">
               <img src={ SITE_ICONS.nvidia } />
             </a>

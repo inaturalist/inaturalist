@@ -101,7 +101,7 @@
                       <td width="50%">
                         <%= raw custom_email_footer_leftside %>
                         <p>
-                          <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
+                          <em><%= t(:email_copyright2, year: Time.now.year).html_safe %>.</em>
                           <br/>
                           <a href="<%= generic_edit_user_url(notifications: true) %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
                           <br/>
@@ -119,8 +119,7 @@
                           <table width="100%">
                             <tr>
                               <td align="right">
-                                <%# Temporarily suspending donations %>
-                                <%- unless true || @skip_donate -%>
+                                <%- if @skip_donate -%>
                                   <%= link_to t(:donate), donate_url( utm_content: "footer-button", utm_campaign: "default", utm_source: @site.domain, utm_medium: "email", utm_term: "donate" ), title: t(:donate), style: "width: auto; min-width: 50%; margin-bottom: 20px; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
                                 <%- end -%>
                                 <%= link_to t(:store_caps), "https://store.inaturalist.org", title: t(:store), style: "width: auto; min-width: 50%; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 15px; text-decoration: none; display: inline-block; text-align: center; letter-spacing: 1px;" %>
@@ -135,24 +134,6 @@
                   </table>
                 </td>
               </tr>
-              <% if @site.id != 1 %>
-                <tr>
-                  <td>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
-                      <tr>
-                        <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 10px;padding-right: 0px;padding-bottom: 10px;padding-left: 0px;text-align: center;" align="center"> 
-                          <%= I18n.t(
-                            :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-                            partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">",
-                            cas_tag_html: "<a href=\"https://calacademy.org\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">California Academy of Sciences</a>",
-                            nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">National Geographic Society</a>"
-                            ).html_safe %>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              <% end %>
             </table>
           </td>
         </tr>
