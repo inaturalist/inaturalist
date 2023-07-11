@@ -837,7 +837,8 @@ inat-taxon { white-space: nowrap; }
 .quality_grade {
   display: inline-block;
   background-color: #ddd;
-  padding: 2px 0 1px 10px;
+  padding-block: 2px 1px;
+  padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
@@ -856,11 +857,13 @@ inat-taxon { white-space: nowrap; }
   z-index: -1;
 }
 #obs-container .quality_grade {
-  padding: 1px 0 1px 5px;
+  padding-block: 1px;
+  padding-inline: 5px 0;
   font-size: 10px !important;
   line-height: 14px !important;
   margin-inline-end: 20px;
 }
+
 #obs-container .quality_grade:after {
   bottom: 0;
   border-width: 8px;
