@@ -1774,7 +1774,6 @@ he:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: פרטי החשבון
-  email_copyright: "זכויות יוצרים של &copy; %{x}, כל הזכויות שמורות"
   email_notifications: התראות דוא"ל
   embed: 'הטמע'
   embed_place_widget: הטבעת וידג'ט מקום
@@ -2109,7 +2108,6 @@ he:
   heads_up_you_have_multiple: "יש לשים לב: יש לך תגי מכונה טקסנומיים מרובים עבור דרגות זהות. הם מסודרים בצבעים לפי דרגה למטה."
   help: עזרה
   help_confirm_observations!: עזרו לאשר תצפיות!
-  help_support_inaturalist: "תמיכה בiNaturalist"
   help_translate!: עזרו לתרגם!
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_suggestions: הנה ההצעות הטובות ביותר שלנו
@@ -2255,7 +2253,6 @@ he:
   inaturalist_activity_notifications: "התראות פעילות %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "אפליקציות iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} הוא מיזם משותף של האקדמיה למדעים של קליפורניה ונשיונל ג'יאוגרפיק"
   inaturalist_places: "מיקומי %{site_name}"
   info: מידע
   input_taxon: טקסון הקלט
@@ -2667,8 +2664,6 @@ he:
   meet: הכירו
   member_of_the_inaturalist_network_html: |
     חבר.ה ב<a href="%{url}">רשת iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    חבר %{partial_inat_network_tag_html}ברשת iNaturalist</a>, מיזם משותף של %{cas_tag_html} ו%{nat_geo_tag_html}.
   #As in members of a project
   members: חברות.ים
   membership_model: מודל חברות
@@ -4498,8 +4493,6 @@ he:
   sites_affiliation_overview_you_can_continue_html: |
     באפשרותך להמשיך להתחבר דרך iNaturalist.org או דרך אתר הכתובת הספציפית לרשת שלך. ללא קשר לשיוך, כל הנתונים שלך ישמרו באותו המקום ותוכל.י להמשיך לפעול בתוך קהילת iNaturalist הבינלאומית הרחבה. כל חשבון iNaturalist יכול להיות משויך לרשת אחת בלבד. ניתן לצפות בשיוך שלך או לשנות אותו %{start_tag_settings}בהגדרות החשבון%{end_tag_settings} שלך.
   sites_affiliation_title: מידע נוסף אודות שיוך לרשת
-  sites_network_cas_and_nat_geo_html: |
-    ל%{start_tag_cas}אקדמיה למדעים של קליפורניה%{end_tag_cas} ול%{start_tag_nat_geo}נשיונל ג'יאוגרפיק%{end_tag_nat_geo} יש הסכמים פורמאליים עם ארגונים בכל אחד מהאזורים הגאוגרפיים הללו כדי לתמוך בשימוש בפלטפורמת iNaturalist.<strong>אם הארגון שלך מעוניין להצטרף לרשת של iNaturalist, ניתן למצוא פרטים נוספים %{start_tag_join}כאן%{end_tag_join}.</strong>
   sites_network_consists_of: "רשת iNaturalist מורכבת ממספר ארגונים:"
   sites_network_inaturalist_network_collection: |
     רשת iNaturalist היא אוסף של אתרים מקומיים המחוברים במלואם לאתר קהילת iNaturalist העולמית. אתרי הרשת נתמכים על-ידי מוסדות מקומיים שמקדמים שימוש בנתוני iNaturalist ברמה המקומית לטובת שמירת טבע. הם בעלי גישה לקואורדינטות אמיתיות באזורם הגיאוגרפי שמוסתרות מהציבור באופן אוטומטי כדי להגן על מינים רגישים (בסיכון).
@@ -5653,8 +5646,6 @@ he:
     מיליוני א.נשים השתמשו ב-iNaturalist וב-Seek של iNaturalist השנה כדי להתחבר לטבע
   yir_monthly_supporters_random_selection: |
     הנה דגימה אקראית מתוך קהילת הגיבורות והגיבורים של iNaturalist אשר תומכות ותומכים מדי חודש.
-  yir_thank_your_for_being_generous: |
-    תודה על נדיבות לבך ועל שנתת מזמנך, תשומת לבך, מומחיותך וכספך! iNaturalist הוא מיזם ללא מטרות רווח של אקדמיית קליפורניה למדעים ונשיונל ג'אוגרפיק. המיזם נשען ברובו על מענקים ותרומות, כולל תרומות ישירות של חלק קטן מהמשתמשים. אנו מודות ומודים במיוחד לתומכים ולתומכות החודשיים שתרומתם.ן החוזרת עוזרת לנו לתכנן את עתידנו.
   yir_your_gift_sustains: |
     התרומה שלך מעניקה למיזם זה לפעול באופן גלובלי ולאפשר הפקת תועלת אקולוגית עצומה.
   you: אותך
@@ -5812,37 +5803,10 @@ he:
             במידה וכן, נא לקרוא את <a href="%{url}">מדריך המורות והמורים</a> שלנו לטיפים על השימוש ב%{site_name} עם תלמידות.ים.
     donate:
       donate_short_desc: "תרומה להבעת תמיכתך!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר מגוון ביולוגי. תודה על השתתפותך בה!</strong>
-        </p>
-        <p class="lead">
-        אם את.ה מאמינ.ה בכוחה של קהילה גלובלית זו של חובבות וחובבי טבע לשתף ידע ולייצר נתוני מגוון ביולוגי שאין להם תחליף, נא לשקול מתנה חד-פעמית או חוזרת באינטרנט. אפשר גם לראות <a
-        href="https://www.inaturalist.org/pages/giving">דרכים אחרות לתת</a>.
-        </p>
-        <p class="lead">
-        התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו.
-        </p>
-        <p class="text-muted">
-         iNaturalist הוא מיזם משותף של אקדמיית קליפורניה למדעים עם נשיונל ג'אוגרפיק. כל התרומות תתקבלנה על ידי אקדמיית קליפורניה למדעים, ארגון 501(c)(3) ללא מטרות רווח ופטור ממס המבוסס בארצות הברית (מזהה מיסים: 94-1156258).
-        </p>
       post_donate_social_media_text: אני תומכ.ת ב-iNaturalist כי...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: הצטרפ.י כתומכ.ת חודשי.ת של iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: להפוך לתומכ.ת חודשי.ת של iNaturalist
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר המגוון הביולוגי. תודה על השתתפותך בה!</strong>
-          </p>
-          <p class="lead">
-          ברצוננו לשמור על iNaturalist חינמי, אך התפעול שלו אינו חינם. את את.ה אוהב.ת את iNaturalist, נא לשקול להיות תומכ.ת חודשי.ת. מתנות חוזרות עוזרות לוודא ש-iNaturalist יוכל להמשיך להתאים את גודל התשתיות והצוות שלו כי הן מספקות הכנסה קבועה. באפשרותך גם לבחור להציג את הסטטוס שלך כתורמ.ת חודשי.ת בפרופיל המשתמש.ת שלך.
-          </p>
-          <p class="lead">
-          התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו. אם את.ה מעדיפ.ה לתת תרומה חד-פעמית, נא <a href="%{donate_url}">ללחוץ כאן</a>.
-          </p>
-          <p class="text-muted">
-           iNaturalist הוא מיזם משותף של אקדמיית קליפורניה למדעים עם נשיונל ג'אוגרפיק. כל התרומות תתקבלנה על ידי אקדמיית קליפורניה למדעים, ארגון 501(c)(3) ללא מטרות רווח ופטור ממס המבוסס בארצות הברית.
-          </p>
         thank_you_for_being_a_monthly_supporter: תודה על היותך תומכ.ת חודשי.ת!
         thank_you_for_being_a_monthly_supporter_caps: תודה על היותך תומכ.ת חודשי.ת!
     flags:
@@ -6835,8 +6799,6 @@ he:
           איך השנה משתווה לשנים קודמות? העמודה הירוקה מראה את השנה, העמודה האנכית הלבנה את שנה שעברה, ואזורי הרקע האפורים מראים את השנים הנמוכה והגבוהה, וכן את הממוצע של כל השנים.
         compared_to_previous_years: השוואה לשנים קודמות
         donate_title: "תודה מיוחדת לכל התומכות והתומכים בנו"
-        donate_desc_html: |
-          תודה שהיית נדיב.ה עם הזמן, תשומת הלב, המומחיות והתרומות שלך! iNaturalist הוא מיזם שיתופי ללא מטרות רווח של האקדמיה למדעים של קליפורניה עם נשיונל ג'יאוגרפיק. הוא נתמך על-ידי <a href="%{team_url}">צוות קטן</a> שעושה את כל העיצוב ופיתוח התוכנה של האתר, האפליקציה ו-<a href="%{seek_url}">Seek של iNaturalist</a>, בנוסף לניהול תמיכת הקהילה, שיתופי הפעולה, ואינטגרציה המבטיחים שהכול עובד חלק (וגדל בקצב מהיר!). המיזם נשען בעיקר על מענקים ותרומות, כולל תרומות נדיבות ממספר מזערי של תורמות ותורמים. אנו מודות במיוחד לתומכות ולתומכים החודשיים שתרומתן.ם החוזרת עוזרות לנו לתכנן את העתיד. באפשרותך לתרום בסוגי מטבעות רבים ובכך לתמוך בפעילות הליבה של iNaturalist. תודה לכולן ולכולם שהפכתם את %{year} לשנה הגדולה ביותר של iNaturalist!
         donors: תורמות ותורמים
         donors_guide_label_our_goal_is_1000: היעד שלנו הוא 1,000 תורמים חוזרים בחודש
         inaturalist_network: רשת iNaturalist
@@ -7085,10 +7047,6 @@ he:
           </p>
         licensing_desc_html: |
           מתן רשיוין לתוכן שלך נותן לכל אחת ואחד את הזכות החוקית להשתמש בו מבלי לבקש את רשותך במידה והם שומרות ושומרים על תנאי הרישיון. נוסף על כך, %{site_name} כולל את התוכן שלך שמורשה ב-Creative Commons בארכיונים המעודכנים בקביעות אשר מופקים עבור ארגונים שותפים שמעוניינים בנתונים שלנו. למשל, אנו כוללים רישומי No Copyright (CC0), Attribution (CC BY), ו-Attribution-NonCommercial (CC BY-NC) בארכיון שאנו מייצרים עבור <a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>, ארגון בינלאומי ובין-ממשלתי שמרכז ומפיץ מידע על המגוון הביולוגי ברחבי העולם.
-        monthly_supporter_desc_html: |
-          תומכות ותומכי iNaturalist על בסיס חודשי מבצעות.ים תרומות חודשיות המתקבלות על ידי האקדמיה למדעים של קליפורניה (United
-          States IRS EIN 94-1156258) לתמיכה בתפעול שאינו למטרת רווח של iNaturalist ואתרי רשת iNaturalist.
-          <a href="%{url}">לחצ.י כאן להפוך לתומכ.ת חודשי.ת של iNaturalist</a>. כאשר נאשר את התמיכה שלך תוכל.י לסמן תיבה זו להצגת סטטוס זה בפרופיל שלך. הערה: עליך להשתמש באותה כתובת הדוא"ל בדיוק ב-Donorbox כמו ב-iNaturalist על מנת שנוכל לאשר שהפכת לתומכ.ת חודשי.ת.
         muting_desc_html: |
           <p>
           השתקת משתמש.ת מונעת ממך לקבל התראות על פעילותם, כולל תגובות על תצפיות שלך, שליחת הודעות אליך, אזכורים עליך, וכו'. השתקה עוזרת לך להתעלם ממישהי או ממישהו מבלי למנוע מהם לעשות דבר.
@@ -7881,8 +7839,6 @@ he:
           attributes:
             base:
               user_already_blocked: כבר חסמת את היוזר ההוא
-              user_cannot_be_staff: |
-                אין ביכולתך לחסום צוות. צוות iNaturalist צריך להיות מסוגל לתקשר עם כולן.ם באתר, לגשת לכל הנתונים ב-iNaturalist, והצוות הוא המתווך האולטימטיבי של חילוקי דעות, לכן חסימה לא תמנע מהן.ם לתקשר עמך. אם יש לך בעיה עם חבר.ת צוות, נא לדווח עליה לבכיר.ת iNaturalist, או לחילופין אם יש לך בעיה עם בכיר.ה, באפשרותך ליצור קשר עם המדענ.ית הראשי.ת במתקן למדעי קיימות ומגוון ביולוגי באקדמיה למדעים של קליפורניה.
         user_parent:
           attributes:
             email:
