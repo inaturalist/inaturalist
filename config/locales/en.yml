@@ -2406,6 +2406,84 @@ en:
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
   inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
+  independence_email_subject: "Spreading Our Wings: iNaturalist is Now an Independent Nonprofit"
+  # Introductory line in an email. "Dear" doesn't have to be translated
+  # literally. Please just choose something that's conventional in your
+  # language.
+  independence_email_body_dear: Dear %{name},
+  independence_email_body_exciting_news: |
+    The iNaturalist team has exciting news! We’re pleased to share that thanks
+    to the support of this great community, iNaturalist is now operating as
+    an independent 501(c)(3) not-for-profit organization based in the United
+    States of America.
+  independence_email_body_since_launching: |
+    Since launching in 2008, the iNaturalist team and organization has
+    evolved, and we’re thrilled about this next milestone. iNaturalist began
+    as a master’s project at the University of California, Berkeley, became a
+    LLC, then joined the California Academy of Sciences in 2014. In 2017,
+    iNaturalist became a joint initiative with the California Academy of
+    Sciences and the National Geographic Society. Now, iNaturalist is an
+    independent organization.
+  independence_email_body_over_the_past: |
+    Over the past 15 years, the incredible contributions from the community
+    have made iNaturalist into one of the world’s most impactful nature
+    platforms.
+  independence_email_body_so_far: "So far, the iNaturalist community has:"
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Created over 146,000,000 verifiable observations (adding about 1 million per week!)
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Grown to 2.7 million contributors
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Observed more than 430,000 species
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Been cited more than 3,500 times
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    We thank the California Academy of Sciences and the National Geographic
+    Society for incubating iNaturalist as it grew dramatically over the last
+    9 years. We owe immense gratitude to these partners for their investment,
+    support, and stewardship. We look forward to collaborating with both
+    organizations in the future.
+  independence_email_body_the_way_html: |
+    <strong>The way you experience iNaturalist won’t change.</strong>
+    iNaturalist and Seek will continue to freely help you identify
+    biodiversity and build your own connection to the natural world. This new
+    organizational structure will enable us to support iNaturalist for years
+    to come as the iNaturalist community expands our collective knowledge of
+    biodiversity long into the future. We will continue partnering with
+    organizations around the world to support the iNaturalist Network.
+  independence_email_body_questions_html: |
+    You can <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">read
+    more on the blog</a> and check out the <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Frequently Asked
+    Questions</a> (in English). The <a
+    href="https://www.inaturalist.org/pages/terms">Terms of Use</a> and <a
+    href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a> have
+    been updated to reflect the new organization.
+  independence_email_body_thank_you: Thank you for being part of this community.
+  # Signature section of an email. "Onward" is a bit unconventional in
+  # English, so feel free to translate as "Sincerely" or whatever seems
+  # appropriate in your language. Note that these are proper names of people
+  # on iNat staff.
+  independence_email_body_signature_html: |
+    Onward,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalist Leadership Team</strong>
+  independence_email_body_ps: |
+    P.S. - Very soon we will announce a generous grant that will give
+    independent iNaturalist a solid start. The financial support of the
+    iNaturalist community made our evolution possible and will be vital for
+    long-term sustainability. Your donation now will celebrate this exciting
+    milestone and further secure iNaturalist’s future. Thank you!
+  # Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now:
+    Donate now
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
