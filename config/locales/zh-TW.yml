@@ -5180,10 +5180,41 @@ zh-TW:
             若是如此，在與學生使用 %{site_name} 時，請閱讀我們的<a href="%{url}">教師指南</a>來取得提示。
     donate:
       donate_short_desc: "現在進行捐款來表現出您的支持！"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist 是世界上致力於生物多樣性探索的最大社群平台。
+        謝謝您成為我們的一員！</strong>
+        </p>
+        <p class="lead">
+        如果您相信這個自然愛好者所構成的全球性社群有能力來分享知識，
+        與產製無可取代的生物多樣性資料，請考慮一次性或線上定期捐款，
+        或是探訪<a
+        href="https://www.inaturalist.org/pages/giving">其他方式來捐款</a>。
+        </p>
+        <p class="lead">
+        您的捐款可以支持 iNaturalist 成長茁壯，開發先進的人工智慧鑑定輔助和
+        實作新功能來支援我們的伺服器和工作人員。
+        </p><p class="text-muted">
+        iNaturalist 是一個註冊於美國的 501(c)3 的免稅非營利組織(
+        稅藉編碼：92-1296468)。
+        </p>
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成為 iNaturalist 的每月贊助者
         become_a_monthly_supporter_of_inaturalist_caps: 成為 iNaturalist 的每月贊助者
+        desc3_html: |
+          <p class="lead">
+          <strong>Naturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
+          </p>
+          <p class="lead">
+          我們希望能讓 iNaturalist 持續開放給各位自由使用，但在運作方面我們需要資金。若您喜愛 iNaturalist，歡迎考慮成為固定每月的贊助者。定期的捐款能協助確保讓 iNaturalist 透過可預期的收益，來持續擴充其基礎設備與人員。
+          </p>
+          <p class="lead">
+          您的慈善捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。若您有意做出單筆捐款，請點擊<a href="%{donate_url}">此</a>。
+          </p>
+          <p class="text-muted">
+          iNaturalist 是一個註冊於美國的 501(c)3 的免稅非營利組織(稅藉編碼：92-1296468)。
+          </p>
         thank_you_for_being_a_monthly_supporter: 感謝您成為每月贊助者！
       temporarily_unavailable: |
         感謝您對 iNaturalist 的支持！在我們更新捐款系統期間，暫時無法向 iNaturalist 捐款。請等一下再回來看看。
