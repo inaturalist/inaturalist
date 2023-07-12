@@ -1382,6 +1382,8 @@ ja:
         subject: メールアドレスの変更がリクエストされました
       reset_password_instructions:
         subject: 'パスワードの再設定について'
+  devise_confirmation_instructions_if_you_did_not: |
+    もしあなたが@%{site_name} として登録した覚えがない場合は、このメールを無視してください。
   devise_confirmation_instructions_please_click: |
     下にあるリンクをクリックして、メールアドレスの認証を行ってください。
   devise_confirmation_instructions_resend_instructions: |
