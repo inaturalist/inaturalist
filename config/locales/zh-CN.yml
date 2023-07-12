@@ -1790,6 +1790,18 @@ zh-CN:
   #Notification when an identification has been withdrawn
   identification_withdrawn: 身份验证已放弃。
   identifications: 鉴定
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    顺祝时祺！<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong></strong>
   computer_vision_suggestion: 电脑视觉建议
   identifiers: 标识符
   identotron: 鉴定器
@@ -5694,6 +5706,8 @@ zh-CN:
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
+        monthly_supporter_desc_html: |
+          iNaturalist 月捐人每月会自动向 iNaturalist （United States IRS EIN 92-1296468）进行捐赠，以支持 iNaturalist 和 iNaturalist 网站的非营利运营。<a href="%{url}">您可以点击这里成为 iNaturalist 月捐人</a>。当我们确认到您的捐助后，勾选这个选项，您就可以在个人主页展示月捐人的状态。注意：您在 Donorbox 使用的邮箱必须与您的 iNaturalist 账户邮箱一致，如果不同，请更改邮箱使二者匹配，否则我们将无法确认您的月捐人身份。
         muting_desc_html: |
           <p>
           禁言某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。

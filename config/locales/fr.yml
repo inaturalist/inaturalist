@@ -2157,6 +2157,37 @@ fr:
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   inaturalist_global_year_in_review: "Rétrospective de l'année %{year} de la communauté mondiale d'iNaturalist"
+  independence_email_subject: "Déployer nos ailes : iNaturalist devient indépendant"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: '%{name},'
+  independence_email_body_so_far: "Jusqu'à présent, la communauté iNaturalist a :"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Créé plus de 146 000 000 d'observations vérifiables (environ 1 million par semaine !)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Atteint 2,7 millions de contributeurs
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Observé 430 000 espèces
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    A été cité plus de 3 500 fois
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via le Système Mondial d'Information sur la Biodiversité (GBIF)</a>
+  independence_email_body_thank_you: Merci de faire partie de cette communauté.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Cordialement,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>L'équipe de direction d'iNaturalist</strong>
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Faites un don maintenant
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -4549,8 +4580,7 @@ fr:
     Vous pouvez continuer à vous connecter par l'intermédiaire d'iNaturalist.org ou de votre site web du réseau. Peu importe votre affiliation, toutes vos données seront hébergées au même endroit et vous pourrez continuer à interagir avec la communauté internationale iNaturalist. Chaque compte iNaturalist ne peut être affilié qu'à un seul membre du réseau. Vous pouvez consulter ou modifier votre affiliation dans les %{start_tag_settings}paramètres de votre compte%{end_tag_settings}.
   sites_affiliation_title: En savoir plus sur l'affiliation au réseau
   sites_network_agreements_html: |
-    iNaturalist a des accords officiels avec des organisations dans chacune de ces zones géographiques
-    pour soutenir l'utilisation de la plateforme iNaturalist. <strong>Si votre organisation souhaite se joindre au réseau iNaturalist, vous trouverez plus de détails %{start_tag_join}ici%{end_tag_join}.</strong>
+    iNaturalist dispose d'accords officiels avec des organisations dans chacune de ces zones géographiques pour soutenir l'utilisation de la plateforme iNaturalist. <strong>Si votre organisation souhaite se joindre au réseau iNaturalist, vous trouverez plus de détails %{start_tag_join}ici%{end_tag_join}.</strong>
   sites_network_consists_of: "Le réseau iNaturalist se compose de plusieurs organisations :"
   sites_network_inaturalist_network_collection: |
     Le réseau iNaturalist est un ensemble de sites Web localisés qui sont entièrement connectés à la communauté mondiale iNaturalist. Les sites du réseau sont soutenus par des institutions locales qui font la promotion à l'échelle locale et qui facilitent l'utilisation des données d'iNaturalist dans l'intérêt de la biodiversité locale. Dans leur zone géographique, ils ont accès aux coordonnées exactes qui sont automatiquement masquées pour le public afin de mieux protéger les espèces menacées.
@@ -5879,10 +5909,10 @@ fr:
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist est l'une des plus grandes communautés au monde consacrées à
-        l'exploration de la biodiversité. Merci d'en faire partie!</strong>
+        l'exploration de la biodiversité. Merci d'en faire partie !</strong>
         </p>
         <p class="lead">
-        Si vous croyez en la capacité de cette communauté mondiale d'amoureux de la nature d'échanger des connaissances et de générer des données irremplaçables sur la biodiversité,
+        Si vous croyez en la capacité de cette communauté mondiale d'amoureux de la nature à échanger des connaissances et à générer des données irremplaçables sur la biodiversité,
         merci d'envisager de faire un don ponctuel ou récurrent en ligne, ou d'envisager les <a
         href="https://www.inaturalist.org/pages/giving">autres façons de
         donner</a>.
@@ -5891,7 +5921,7 @@ fr:
         La communauté grandit et votre don aide à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en œuvre de nouvelles fonctionnalités.
         </p>
         <p class="text-muted">
-        iNaturalist est une organisation 501(c)(3) indépendante sans but lucratif exonérée d'impôts
+        iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts
         basée aux États-Unis d'Amérique (ID : 94-1156258).
         </p>
       post_donate_social_media_text: Je soutiens iNaturalist  parce que...
@@ -5907,10 +5937,10 @@ fr:
           Nous voulons que l'utilisation d'iNaturalist reste gratuite, mais son fonctionnement a un coût. Si vous aimez iNaturalist, merci d'envisager de faire un don chaque mois. Les dons récurrents apportent des ressources prévisibles qui permettent à iNaturalist de continuer à faire évoluer son infrastructure et ses équipes. Vous pouvez également afficher votre statut de parrain régulier sur votre profil d’utilisateur.
           </p>
           <p class="lead">
-          La communauté grandit et vos dons aident à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en oeuvre de nouvelles fonctionnalités. Si vous préférez effectuer un don ponctuel, veuillez <a href="%{donate_url}">cliquer ici</a>.
+          La communauté grandit et vos dons aident à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en œuvre de nouvelles fonctionnalités. Si vous préférez effectuer un don ponctuel, veuillez <a href="%{donate_url}">cliquer ici</a>.
           </p>
           <p class="text-muted">
-          iNaturalist est une organisation 501(c)(3) indépendante sans but lucratif exonérée d'impôts et basée aux États-Unis d’Amérique (ID : 92-1296468).
+          iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts et basée aux États-Unis d’Amérique (ID : 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Merci de faire un don chaque mois !
         thank_you_for_being_a_monthly_supporter_caps: MERCI DE FAIRE UN DON CHAQUE MOIS !
@@ -7151,6 +7181,8 @@ fr:
           Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte représente l'année en cours, la barre blanche l'année dernière, et les zones de fond gris les années les plus basses et les plus élevées, ainsi que la moyenne de toutes les années.
         compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        donate_desc2_html: |
+          Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et vos dons ! iNaturalist est une organisation 501(c)3 sans but lucratif, basée aux États-Unis. Le projet est porté par une <a href="%{team_url}">petite équipe</a> qui s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et <a href="%{seek_url}">Seek by iNaturalist</a>, et qui gère l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide !). Le programme est rendu possible par de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist à ce jour !
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Notre objectif est d'atteindre 1000 donateurs récurrents par mois
         inaturalist_network: Réseau iNaturalist
@@ -7568,7 +7600,7 @@ fr:
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
         monthly_supporter_desc_html: |
-          iNaturalist n'est possible que grâce au soutien des personnes qui font chaque mois un don automatique (code fiscal des États-Unis IRS EIN 94-1156258) pour appuyer les activités sant but lucratif d’iNaturalist et des sites du réseau iNaturalist. <a href="%{url}">Cliquez ici pour faire un don mensuel</a>. Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, veuillez en changer une.
+          L'existence et le fonctionnement d'iNaturalist ne sont possibles que grâce au soutien des personnes qui font chaque mois un don automatique (code fiscal des États-Unis IRS EIN 94-1156258) pour appuyer ses activités sans but lucratif et les sites du réseau iNaturalist. <a href="%{url}">Cliquez ici pour faire un don mensuel</a>. Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, veuillez en changer une.
         muting_desc_html: |
           <p>
           Passer quelqu’un en mode muet vous évite de recevoir des notifications sur ce
