@@ -227,6 +227,7 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_gbif_layer_maps: <%= current_user.prefers_gbif_layer_maps %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
