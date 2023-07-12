@@ -1271,6 +1271,7 @@ protected
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
+      :prefers_gbif_layer_maps,
       :prefers_identification_email_notification,
       :prefers_identify_side_bar,
       :prefers_message_email_notification,
