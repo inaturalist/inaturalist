@@ -1751,6 +1751,8 @@ cs:
   donate: DAROVAT
   donate_again_caps: DARUJTE ZNOVU
   donate_again_today_caps: DARUJTE ZNOVU JEŠTĚ DNES
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Přispět na iNaturalist
   done: Hotovo
   dont_have_an_account_sign_up_html: Nemáte účet? <strong> Zaregistrujte se. </strong>
   dont_use_double_quotes: Nikde jinde nepoužívejte dvojité uvozovky
@@ -1901,6 +1903,7 @@ cs:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Podrobnosti účtu
+  email_copyright2: "&copy; %{year} iNaturalist, všechna práva vyhrazena"
   email_notifications: E-mailová upozornění
   embed: 'Vložit'
   embed_place_widget: Vložit widget místa
@@ -2324,6 +2327,79 @@ cs:
   identification_withdrawn: Identifikace odstraněna.
   identifications: Identifikace
   inaturalist_global_year_in_review: "Globální přehled roku %{year} na iNaturalist"
+  independence_email_subject: "Rozšiřte mezi známými: iNaturalist je nyní nezávislá neziskovka"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Vážený %{name},
+  independence_email_body_exciting_news: |
+    Tým iNaturalist má vzrušující novinky! Jsme rádi, že se s vámi můžeme podělit o to, 
+    že díky podpoře této skvělé komunity nyní iNaturalist funguje jako 501(c)(3) 
+    nezávislá nezisková organizace se sídlem ve Spojených státech amerických.
+  independence_email_body_since_launching: |
+    Od svého založení v roce 2008 se tým a organizace iNaturalist rozrostla, 
+    proto jsme nadšeni z dalšího milníku. iNaturalist začal
+    jako magisterský projekt na Kalifornské univerzitě v Berkeley, stala se z něj
+    společnost s ručením omezeným, v roce 2014 se připojil ke Kalifornské akademii věd. 
+    V roce 2017 se iNaturalist stal společnou iniciativou Kalifornské akademie věd 
+    a National Geographic Society. Nyní je iNaturalist nezávislou organizací.
+  independence_email_body_over_the_past: |
+    V uplynulých 15 letech se díky neuvěřitelným příspěvkům komunity stal 
+    iNaturalist jednou z nejvlivnějších platforem pro výzkum přírody na světě.
+  independence_email_body_so_far: "Komunita iNaturalist dosud:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Vytvořila více než 146 000 000 ověřitelných pozorování (týdně jich přibývá přibližně 1 milion!).
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: se rozrostla na 2,7 milionu přispěvatelů
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Pozorovala více než 430 000 druhů
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Byla citována více než 3 500krát
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">prostřednictvím Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    Děkujeme Kalifornské akademii věd a National Geographic Society 
+    za rozvoj iNaturalist, který se v posledních devíti letech dramaticky zrychlil.
+    Těmto partnerům jsme nesmírně vděční za jejich investice, podporu a péči.
+    Těšíme se na spolupráci s oběma v budoucnu.
+  independence_email_body_the_way_html: |
+    <strong>Způsob, jakým iNaturalist používáte, se nezmění.</strong>
+    iNaturalist a Seek vám budou i nadále volně pomáhat identifikovat
+    biodiverzitu a budovat si vlastní vztah ke světu přírody. Tato nová
+    organizační struktura nám umožní podporovat iNaturalist po mnoho let,
+    protože komunita iNaturalist rozšiřuje naše kolektivní znalosti o přírodě.
+    biodiverzity dlouho do budoucna. Budeme i nadále spolupracovat s
+    organizacemi po celém světě na podporu sítě iNaturalist.
+  independence_email_body_questions_html: |
+    Můžete si <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">přečíst
+    více na blogu</a> a podívejte se na <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Často kladené
+     dotazy </a> (v angličtině). <a
+    href="https://www.inaturalist.org/pages/terms">Podmínky použití</a> a <a
+    href="https://www.inaturalist.org/pages/privacy">Zásady ochrany osobních údajů</a>
+    byly aktualizovány, aby odrážely novou organizaci.
+  independence_email_body_thank_you: Děkujeme vám, že jste součástí této komunity.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Dále,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>Tým vedení iNaturalist</strong>
+  independence_email_body_ps: |
+    P.S. - Velmi brzy oznámíme velkorysý grant, který poskytne
+    nezávislému iNaturalist pevný začátek. Finanční podpora
+    komunity iNaturalist umožnila náš vývoj a bude životně důležitá pro
+    dlouhodobou udržitelnost. Váš dar nyní oslaví tento vzrušující
+    milník a další bezpečnou budoucnost iNaturalist. Děkujeme!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Přispějte nyní
   computer_vision_suggestion: Návrh počítačového vidění
   computer_vision_suggestion_desc: |
     Počítačové vidění je proces, kterým se počítač učí rozpoznávat vzory v obrazech. Poskytujeme nástroje, které využívají modely počítačového vidění řízené fotografiemi z komunity, aby poskytly návrhy na identifikaci, jako jsou automatické úplnosti a funkce porovnání. Tento štítek označuje, kdy osoba přidala ID pomocí jednoho z těchto nástrojů.
@@ -4735,6 +4811,12 @@ cs:
   sites_affiliation_overview_you_can_continue_html: |
     Můžete se nadále přihlašovat prostřednictvím webu iNaturalist.org nebo na webových stránkách konkrétní sítě. Bez ohledu na vaši příslušnost budou všechna vaše data umístěna na stejném místě a vy budete moci i nadále komunikovat s širší mezinárodní komunitou iNaturalist. Každý účet iNaturalist může být přidružen pouze k jednomu členu sítě. Svou příslušnost si můžete zkontrolovat nebo změnit v %{start_tag_settings}nastavení účtu%{end_tag_settings}.
   sites_affiliation_title: Další informace o přiřazování k síti
+  sites_network_agreements_html: |
+    iNaturalist má formální dohody s organizacemi v každé z těchto
+    zeměpisných oblastí na podporu využívání platformy iNaturalist. 
+    <strong>Pokud má vaše organizace zájem připojit se k síti iNaturalist, 
+    naleznete další podrobnosti
+    %{start_tag_join}zde%{end_tag_join}.</strong>
   sites_network_consists_of: "Síť iNaturalist Network se skládá z několika organizací:"
   sites_network_inaturalist_network_collection: |
     Síť iNaturalist je soubor lokalizovaných webových stránek, které jsou plně propojeny s celosvětovou komunitou iNaturalist. Stránky sítě jsou podporovány místními institucemi, které podporují místní využití a usnadňují využívání dat z iNaturalist ve prospěch místní biologické rozmanitosti. Mají přístup ke skutečným souřadnicím v rámci svých zeměpisných oblastí, které jsou automaticky zakryty před zraky veřejnosti, aby se lépe chránily ohrožené druhy.
@@ -5936,6 +6018,10 @@ cs:
     Miliony lidí použily tento rok iNaturalist a Seek od iNaturalist aby se propojili s přírodou
   yir_monthly_supporters_random_selection: |
     Zde je náhodný výběr hrdinných členů komunity iNat, kteří přispívají každý měsíc.
+  yir_thank_your_for_being_generous2: |
+    Děkujeme, že jste velkoryse věnovali svůj čas, pozornost, odborné znalosti a zkušenosti.
+    iNaturalist je nezisková, veřejně prospěšná organizace. Náš program je
+    závislý na četných grantech a darech, včetně charitativních darů od menšího než nepatrného zlomku komunity. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucí rozvoj.
   yir_your_gift_sustains: |
     Váš dar podporuje tento program s celosvětovým dosahem a hlubokým osobním a ekologickým dopadem.
   you: vy
@@ -6096,6 +6182,28 @@ cs:
             Pokud ano, přečtěte si prosím našeho <a href="%{url}">Průvodce pro učitele</a>, kde najdete tipy, jak používat %{site_name} se studenty.
     donate:
       donate_short_desc: "Darujte nyní, abyste ukázali, že nás podporujete!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist je jednou z největších světových komunit věnovaných
+        průzkumu biologické rozmanitosti. Děkujeme, že jste se na něm podíleli!</strong>
+        </p>
+        <p class="lead">
+        Pokud věříte v sílu této globální komunity milovníků přírody,
+        sdílejte znalosti a vytvářejte nenahraditelná data o biologické rozmanitosti.
+        Zvažte prosím jednorázový nebo opakovaný příspěvek online, nebo prozkoumejte <a
+        href="https://www.inaturalist.org/pages/giving">další způsoby, jak
+        pomoci</a>.
+        </p>
+        <p class="lead">
+        Váš dar pomáhá iNaturalist v podpoře růstu komunity, od
+        zlepšování pokročilé počítačové identifikace a zavádění nových funkcí až po podporu
+        našich serverů a zaměstnanců.
+        </p>
+        <p class="text-muted">
+        iNaturalist je nezávislá nezisková organizace 501(c)(3) se sídlem ve 
+        Spojených státech amerických osvobozená od daně. (daňové identifikační číslo:
+        92-1296468).
+        </p>
       post_donate_social_media_text: Podporuji iNaturalist protože...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Staňte se měsíčním podporovatelem iNaturalist
@@ -6830,6 +6938,10 @@ cs:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
     places:
+      kml_field_desc3: |
+        KML hranic místa. KML je soubor pro distribuci geografických dat, můžete jej vytvořit pomocí Google Maps, Google Earth, nebo většiny GIS aplikací. Musí obsahovat alespoň jeden polygon, být
+        menší než 1 MB (5 MB pro kurátory webu), a mít plochu menší než ~700 000 km2
+         (zhruba velikost Somálska nebo státu Texas).
       edit:
         complex_boundary_note_html: |
           Toto ohraničení je pro editování na webu příliš složité. Můžete si ale
@@ -8385,6 +8497,11 @@ cs:
           attributes:
             base:
               user_already_blocked: Tohoto uživatele již blokujete
+              user_cannot_be_staff2: |
+                Nemůžete blokovat zaměstnance. iNat zaměstnanci musí být schopni
+                komunikovat se všemi na iNat, mít přístup ke všem údajům na
+                iNat, a jsou konečnými zprostředkovateli sporů, takže blokování
+                jim nebrání v komunikaci s vámi.
         user_parent:
           attributes:
             email:
