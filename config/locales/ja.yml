@@ -1437,6 +1437,8 @@ ja:
   donate: 寄付
   donate_again_caps: 再寄付する
   donate_again_today_caps: 今日再度寄付する
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: iNaturalistに寄付する
   done: 完了
   dont_have_an_account_sign_up_html: アカウントがありませんか？ <strong>新規登録</strong>
   dont_use_double_quotes: その他の場所で二重引用符を使用しないでください。
@@ -1560,6 +1562,7 @@ ja:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: アカウント詳細
+  email_copyright2: "&copy; %{year} iNaturalist, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'
   embed_place_widget: 場所ウィジェットを埋め込む
@@ -1909,6 +1912,43 @@ ja:
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
   inaturalist_global_year_in_review: "iNaturalistのグローバルな %{year} 年を振り返る"
+  independence_email_subject: "翼を広げる：iNaturalistは独立した非営利団体へ"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: '%{name} 様'
+  independence_email_body_exciting_news: |
+    iNaturalistチームから嬉しいお知らせです！iNaturalistはこの素晴らしいコミュニティーの皆様のご支援のおかげで、現在アメリカ合衆国を拠点とする独立した501(c)(3)非営利団体として運営されています。
+  independence_email_body_since_launching: |
+    2008年の発足以来、iNaturalistのチームと組織は進化してきました。iNaturalistはカリフォルニア大学バークレー校の修士プロジェクトとして始まり、LLCとなり、2014年にカリフォルニア科学アカデミーに加わりました。2017年、iNaturalistはカリフォルニア科学アカデミーとナショナルジオグラフィック協会との共同イニシアチブとなりました。現在、iNaturalistは独立した組織となっています。
+  independence_email_body_over_the_past: |
+    この15年間、コミュニティの素晴らしいご支援により、iNaturalistは世界で最も影響力のある自然科学のプラットフォームとなりました。
+  independence_email_body_so_far: "これまでのところ、iNaturalistのコミュニティは："
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: 1億4600万件以上の検証可能な観察記録を作成（1週間に約100万件追加！）
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: 270万人の貢献者に成長
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: 43万種以上を観察
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">世界生物多様性情報ファシリティ</a>を通じて3500回以上引用されている
+  independence_email_body_we_thank: |
+    カリフォルニア科学アカデミーとナショナル・ジオグラフィック・ソサエティには、iNaturalistがこの9年間で劇的に成長した際に、インキュベートしていただいたことに感謝いたします。私たちはこれらのパートナーの投資、サポート、スチュワードシップに計り知れない感謝の念を抱いています。今後も両組織とのコラボレーションを楽しみにしています。
+  independence_email_body_the_way_html: |
+    <strong>iNaturalistの利用方法はこれまでと変わりません。</strong>
+    iNaturalistとSeekは引き続き、皆様が生物多様性を特定し、自然界とのつながりを築くことを自由にお手伝いします。この新しい組織体制は、iNaturalistコミュニティが生物多様性に関する集合的な知識を将来にわたって拡大していく中で、iNaturalistを今後何年にもわたってサポートすることを可能にします。私たちはこれからも世界中の組織と提携し、iNaturalistネットワークをサポートしていきます。
+  independence_email_body_questions_html: |
+    詳しくは<a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">ブログ</a>と<a
+    href="https://www.inaturalist.org/pages/spinoff_faq">よくある質問（英語）</a>をご覧ください。新体制に伴い、<a
+    href="https://www.inaturalist.org/pages/terms">利用規約</a>と<a
+    href="https://www.inaturalist.org/pages/privacy">プライバシーポリシー</a>が更新されました。
+  independence_email_body_thank_you: このコミュニティに参加してくれてありがとう。
+  independence_email_body_ps: |
+    追伸 - 間もなく、独立したiNaturalistの確かなスタートを後押しする寛大な寄付をご案内いたします。iNaturalistコミュニティーの財政的支援は私たちの発展を可能にし、長期的な活動の継続に不可欠なものです。今ご寄付をいただければ、このエキサイティングなマイルストーンを祝い、iNaturalistの未来をさらに確かなものにすることができます。
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: 今すぐ寄付する
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
@@ -3941,6 +3981,8 @@ ja:
     iNaturalistは一部の種を騒動、採集、密猟から保護するために自動的に座標を隠しています。もし、種の保護のために観測座標が自動的に隠されただけであれば、iNaturalistはそれぞれの国からのすべての観測座標の真の座標をネットワークメンバーと共有します。
   sites_affiliation_more_user_hidden_coordinates: |
     投稿者によって不明瞭または非公開にされた位置情報
+  sites_network_agreements_html: |
+    iNaturalistはiNaturalistプラットフォームの利用をサポートするため、それぞれの地域の組織と正式な契約を結んでいます。<strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join}で詳細をご確認いただけます。</strong>
   some_agree: 一部が賛成
   some_observations_failed_to_be_added: いくつかの観察記録がプロジェクトへの追加に失敗しました
   some_observations_failed_to_save: 保存に失敗した観察記録があります
@@ -4855,6 +4897,8 @@ ja:
     今年、数百万人もの人々がiNaturalistとSeek by iNaturalistを使い自然とつながりました。
   yir_monthly_supporters_random_selection: |
     ここでは、毎月寄付をしてくださるiNatのヒーロー的なコミュニティメンバーをランダムにご紹介します。
+  yir_thank_your_for_being_generous2: |
+    あなたの時間、関心、専門知識、寄付を惜しみなく提供していただきありがとうございます！iNaturalistは非営利の公益団体であり、多くの助成金や寄付金に頼っています。特にマンスリーサポーターの皆様からの定期的なご寄付は、iNaturalistの将来計画に役立っています。
   you: あなた
   you_appear_offline_try_again: |
     現在はオフラインのようです。インタネットに接続したらまたお試しください。
@@ -4863,6 +4907,8 @@ ja:
     私たちのデータをキュレーションし、コンテンツを監視・改善することをお手伝いいただいているということです。もしお時間があれば、これらの問題の改善にぜひご協力ください。
     もしお時間があれば、ぜひご協力ください。もしコンテンツのキュレーションについて質問がある場合は、 %{email}までご連絡ください。
   you_are_now_following_x: "%{friend_user}をフォローし始めました。"
+  you_are_now_a_curator_for_project_html: |
+    <strong>you</strong> は %{project} のプロジェクト管理者になりました
   you_are_now_a_manager_for_project_html: |
     <strong>you</strong> は %{project} のプロジェクト管理者になりました
   you_are_already_a_member_of_this_project: "このプロジェクトはすでに参加しています！"
@@ -4975,8 +5021,35 @@ ja:
           please_read_the_teachers_guide_html: |
             もしそうであれば、<a href="%{url}">ティーチャーズ・ガイド</a>を読んで、%{site_name}を使うヒントにしてください。
     donate:
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalistは生物多様性の探求に特化した世界最大級のコミュニティです。その一員であることに感謝いたします！</strong>
+        </p>
+        <p class="lead">
+        この自然を愛する世界的なコミュニティが知識を共有し、かけがえのない生物多様性データを生成する力を信じてくださる方は、オンラインによる単発のご寄付または定期的なご寄付をご検討ください。または<a
+        href="https://www.inaturalist.org/pages/giving">他の寄付方法をご検討ください</a>。
+        </p>
+        <p class="lead">
+        皆様のご寄付は、コンピュータ・ビジョンの進歩や新機能の実装、サーバーやスタッフのサポートなど、iNaturalistのコミュニティの成長に役立ちます。
+        </p>
+        <p class="text-muted">
+        iNaturalistはアメリカ合衆国を拠点とする独立した501(c)(3)の非課税・非営利団体です（Tax ID：92-1296468）。
+        </p>
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalistのマンスリーサポーターになる
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalistは生物多様性の探求に特化した世界最大級のコミュニティです。その一員であることに感謝いたします！</strong>
+          </p>
+          <p class="lead">
+          iNaturalistのご利用は無料ですが、運営は無料ではありません。iNaturalistを気に入っていただけましたら、マンスリーサポーターになることをご検討ください。定期的なご寄付はiNaturalistのインフラとスタッフの拡充のために必要です。また、あなたのユーザープロフィールにマンスリーサポーターのステータスを表示することもできます。
+          </p>
+          <p class="lead">
+          皆様からのご寄付は、コンピュータ・ビジョンの発展や新機能の実装、サーバーやスタッフのサポートなど、iNaturalistのコミュニティの成長に役立ちます。一回限りの寄付をご希望の方は<a href="%{donate_url}">こちら</a>をクリックしてください。
+          </p>
+          <p class="text-muted">
+          iNaturalistはアメリカ合衆国を拠点とする独立した501(c)(3)の、非課税・非営利団体です（Tax ID：92-1296468）。
+          </p>
     guides:
       index:
         deprecated_banner: |
@@ -5328,6 +5401,8 @@ ja:
         compare_site_desc: |
           今年は例年と比べてどうでしたか？緑のバーは今年、白のバーは昨年を示し、グレーの背景の部分は最も低い年と最も高い年、そして全年の平均を示しています。
         compared_to_previous_years: 前年との比較
+        donate_desc2_html: |
+          iNaturalistは米国を拠点とする501(c)3非営利団体です。iNaturalistはウェブ、モバイル、<a href="%{seek_url}">Seek by iNaturalist</a>のデザイン、ソフトウェア・エンジニアリング、そしてコミュニティ・サポート、コラボレーション、インテグレーションを管理する<a href="%{team_url}">小さなチーム</a>によって支えられています。このプログラムは多くの助成金や寄付金に依存しており、その中にはごく一部の寄付者からのチャリティーギフトも含まれています。特にマンスリーサポーターの皆様からの定期的なご寄付は、将来の計画立案に役立っています。%{year}年がiNaturalistにとって過去最大の年となるよう、皆様のお力添えをよろしくお願いいたします！
         inaturalist_network: iNaturalistネットワーク
         growth_title: 成長
         new_species_desc_html: |
@@ -5401,6 +5476,8 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
+        monthly_supporter_desc_html: |
+          iNaturalistのマンスリーサポーターはiNaturalist（アメリカ合衆国 IRS EIN 92-1296468）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークサイトの非営利運営をサポートします。<a href="%{url}">マンスリーサポーターになるにはこちらをクリックしてください</a>。ご支援の確認後、このボックスにチェックを入れていただくと、あなたのプロフィールにこのステータスが表示されます。注意：DonorboxとiNaturalistのメールアドレスが正確に一致していないと、マンスリーサポーターであることが確認できません。もし異なる場合は、どちらかを変更してください。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。
@@ -5805,6 +5882,8 @@ ja:
           attributes:
             base:
               user_already_blocked: すでにそのユーザをブロックしています
+              user_cannot_be_staff2: |
+                iNatのスタッフはiNat上の全ての人とコミュニケーションを取ることができ、iNat上の全てのデータにアクセスすることができ、紛争の最終的な調停者である必要があります。
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"
