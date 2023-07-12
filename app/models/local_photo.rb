@@ -592,9 +592,7 @@ class LocalPhoto < Photo
       return false unless target_image
       return false unless target_image.size == source_image.size
       # ignore etag containing '-' (multi-part)
-      return false unless ( ( target_image.etag == source_image.etag ) 
-        || ( target_image.etag.index('-') >= 0 ) 
-        || ( source_image.etag.index('-') >= 0 ) )
+      return false unless ( ( target_image.etag == source_image.etag ) || ( target_image.etag.index('-') >= 0 ) || ( source_image.etag.index('-') >= 0 ) )
     end
     true
   end
