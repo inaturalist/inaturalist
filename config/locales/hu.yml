@@ -1275,6 +1275,8 @@ hu:
   donate: TÁMOGATÁS
   donate_again_caps: ADOMÁNYOZZ ÚJRA
   donate_again_today_caps: ADAKOZZ MA ÚJBÓL
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Az iNaturalist támogatása
   done: Kész
   dont_have_an_account_sign_up_html: Nincs még fiókod? <strong>Regisztrálj.</strong>
   dont_use_double_quotes: Ne használj idézőjelet sehol máshol
@@ -1383,6 +1385,7 @@ hu:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: A fiók részletei
+  email_copyright2: "&copy; %{year} iNaturalist, minden jog fenntartva"
   email_notifications: Email értesítések
   embed: 'Beágyazás'
   embed_place_widget: Helywidget beágyazása
@@ -1709,6 +1712,10 @@ hu:
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Kedves %{name},
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
