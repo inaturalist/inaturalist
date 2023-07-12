@@ -590,8 +590,11 @@ class LocalPhoto < Photo
     source_images.each do |source_image|
       target_image = target_images.find{ |target| target.key == source_image.key }
       return false unless target_image
-      return false unless target_image.etag == source_image.etag
       return false unless target_image.size == source_image.size
+      # ignore etag containing '-' (multi-part)
+      return false unless ( target_image.etag == source_image.etag )
+        || ( target_image.etag.index('-') >= 0 )
+        || ( source_image.etag.index('-') >= 0 )
     end
     true
   end
