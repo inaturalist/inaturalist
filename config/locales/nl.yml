@@ -2204,9 +2204,9 @@ nl:
   #language.
   independence_email_body_dear: Beste %{name},
   independence_email_body_exciting_news: |
-    Het iNaturalist team heeft opwindend nieuws! We zijn blij om te delen dat
+    Het iNaturalist team heeft opwindend nieuws! We zijn blij om mee te kunnen delen dat
     dankzij de steun van deze geweldige gemeenschap iNaturalist vanaf nu werkt als
-    een onafhankelijke 501(c)(3) not-for-profit organisatie in de Verenigde
+    een onafhankelijke 501(c)(3) not-for-profit organisatie gevestigd in de Verenigde
     Staten van Amerika.
   independence_email_body_since_launching: |
     Sinds de lancering in 2008 heeft het iNaturalist team en organisatie
@@ -2258,7 +2258,7 @@ nl:
   #appropriate in your language. Note that these are proper names of people
   #on iNat staff.
   independence_email_body_signature_html: |
-    Verder,<br/>
+    Met vriendelijke groet,<br/>
     <br/>
     <strong>Scott Loarie</strong><br/>
     <strong>Ken-ichi Ueda</strong><br/>
@@ -8247,6 +8247,11 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
+              user_cannot_be_staff2: |
+                Medewerkers kunnen niet worden geblokkeerd. iNat personeel moet in staat zijn om
+                te kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op
+                iNat en zijn de ultieme bemiddelaars van geschillen, dus het blokkeren van
+                zal hen niet verhinderen om met jou te communiceren.
         user_parent:
           attributes:
             email:
