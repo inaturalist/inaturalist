@@ -1564,6 +1564,8 @@ tr:
   donate: BAĞIŞ YAP
   donate_again_caps: TEKRAR BAĞIŞ YAP
   donate_again_today_caps: BUGÜN TEKRAR BAĞIŞ YAP
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: iNaturalist'e Bağış Yap
   done: Gönder
   dont_have_an_account_sign_up_html: Bir hesabın yok mu? <strong>Kayıt ol.</strong>
   dont_use_double_quotes: Başka hiçbir yerde çift tırnak kullanma
@@ -1704,6 +1706,7 @@ tr:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Hesap Ayrıntıları
+  email_copyright2: "&copy; %{year} iNaturalist, tüm hakları saklıdır"
   email_notifications: E-posta Bildirimleri
   embed: 'Yerleştir'
   embed_place_widget: Konum widgeti yerleştir
@@ -2108,6 +2111,54 @@ tr:
   identification_withdrawn: Tanımlama geri alındı.
   identifications: Tanımlamalar
   inaturalist_global_year_in_review: "iNaturalist'in Küresel %{year} Yılı Değerlendirmesi"
+  independence_email_subject: "Kanatlarımızı Açıyoruz: iNaturalist Artık Bağımsız Bir Kâr Amacı Gütmeyen Kuruluş"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Sayın %{name},
+  independence_email_body_exciting_news: |
+    iNaturalist ekibinin heyecan verici haberleri var! Bu büyük topluluğun desteği sayesinde iNaturalist'in artık Amerika Birleşik Devletleri merkezli bağımsız bir 501(c)(3) kâr amacı gütmeyen kuruluş olarak faaliyet gösterdiğini paylaşmaktan mutluluk duyuyoruz.
+  independence_email_body_since_launching: |
+    2008'de başladığından bu yana iNaturalist ekibi ve organizasyonu gelişti ve bir sonraki dönüm noktası için heyecanlıyız. iNaturalist, California Üniversitesi, Berkeley'de bir yüksek lisans projesi olarak başladı, bir LLC oldu ve ardından 2014'te California Bilimler Akademisi'ne katıldı. 2017'de iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Society ile ortak bir girişim haline geldi. Şimdi, iNaturalist bağımsız bir kuruluştur.
+  independence_email_body_over_the_past: |
+    Geçtiğimiz 15 yıl boyunca, topluluğun inanılmaz katkıları iNaturalist'i dünyanın en etkili doğa platformlarından biri haline getirdi.
+  independence_email_body_so_far: "Şimdiye dek, iNaturalist topluluğu:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: 146.000.000'dan çok doğrulanabilir gözlem oluşturuldu (haftada yaklaşık 1 milyon gözlem ekleniyor!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: 2.7 milyon katılımcıya ulaştı
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: 430.000'den çok tür gözlemledi
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">Küresel Biyoçeşitlilik Danışma Tesisi</a> aracılığıyla 3,500'den fazla kez alıntılandı
+  independence_email_body_we_thank: |
+    Kaliforniya Bilimler Akademisi ve National Geographic Society'ye iNaturalist'in son 9 yılda çarpıcı bir şekilde büyümesini sağladıkları için teşekkür ediyoruz. Yatırımları, destekleri ve yönetimleri için bu ortaklara büyük minnettarlık borçluyuz. Gelecekte her iki kuruluşla da iş birliği yapmayı dört gözle bekliyoruz.
+  independence_email_body_the_way_html: |
+    <strong>iNaturalist'i deneyimleme şeklin değişmeyecek.</strong> iNaturalist ve Seek, biyolojik çeşitliliği tanımlamana ve doğal dünya ile kendi bağlantını kurmana özgürce yardımcı olmaya devam edecek. Bu yeni organizasyon yapısı, iNaturalist topluluğu, biyoçeşitlilik konusundaki kolektif bilgimizi geleceğe doğru genişlettikçe, iNaturalist'i yıllarca desteklememizi sağlayacak. iNaturalist Ağı'nı desteklemek için dünyanın dört bir yanındaki kuruluşlarla ortaklık kurmaya devam edeceğiz.
+  independence_email_body_questions_html: |
+    <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">Daha çoğunu blogda okuyabilir</a> ve <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Sıkça Sorulan Sorular</a>'a (İngilizce) göz atabilirsin. <a
+    href="https://www.inaturalist.org/pages/terms">Kullanım Koşulları</a> ve <a
+    href="https://www.inaturalist.org/pages/privacy">Gizlilik Politikası</a> yeni organizasyonu yansıtacak şekilde güncellenmiştir.
+  independence_email_body_thank_you: Bu topluluğun bir parçası olduğun için teşekkür ederiz.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Saygılarımızla,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalist Liderlik Ekibi</strong>
+  independence_email_body_ps: |
+    Not: Çok yakında bağımsız iNaturalist'e sağlam bir başlangıç sağlayacak cömert bir hibeyi duyuracağız. iNaturalist topluluğunun finansal desteği, evrimimizi mümkün kıldı ve uzun vadeli sürdürülebilirlik için hayati önem taşıyacak. Şimdi yapacağın bağış, bu heyecan verici dönüm noktasını kutlayacak ve iNaturalist'in geleceğini daha da güvence altına alacaktır. Teşekkür ederiz!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Şimdi bağış yap
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -4461,6 +4512,8 @@ tr:
   sites_affiliation_overview_you_can_continue_html: |
     iNaturalist.org ya da ağına özel web siten üzerinden giriş yapmaya devam edebilirsin. Üyeliğin ne olursa olsun, tüm verilerin aynı yerde barındırılacak ve daha geniş uluslararası iNaturalist topluluğu ile etkileşime girmeye devam edeceksin. Her iNaturalist hesabı yalnızca bir Ağ Üyesi'ne bağlı olabilir. %{start_tag_settings}Hesap ayarlarından%{end_tag_settings} üyeliğini gözden geçirebilir veya değiştirebilirsin.
   sites_affiliation_title: Üyelikle İlgili Daha Çok Bilgi Edin
+  sites_network_agreements_html: |
+    iNaturalist, iNaturalist platformunun kullanımını desteklemek için bu coğrafi bölgelerin her birindeki kuruluşlarla resmi anlaşmalara sahiptir. <strong>Kuruluşunuz iNaturalist Ağı'na katılmakla ilgileniyor ise daha çok ayrıntıya %{start_tag_join}buradan%{end_tag_join} ulaşabilirsiniz.</strong>
   sites_network_consists_of: "iNaturalist Ağı çeşitli kuruluşlardan oluşur:"
   sites_network_inaturalist_network_collection: |
     iNaturalist Ağı, küresel iNaturalist topluluğuna tamamen bağlı olan yerelleştirilmiş web sitelerinden oluşan bir koleksiyondur. Ağ siteleri, yerel kullanımı teşvik eden ve yerel biyolojik çeşitliliğe yarar sağlamak için iNaturalist'ten gelen verilerin kullanımını kolaylaştıran yerel kurumlar tarafından desteklenmektedir. Tehdit altındaki türleri daha iyi korumak için kendi coğrafi bölgelerinde otomatik olarak kamudan gizlenen gerçek koordinatlara erişebilirler.
@@ -5573,6 +5626,8 @@ tr:
     Bu yıl milyonlarca kişi iNaturalist ve Seek'i doğa ile bağlantı kurmak için kullandı
   yir_monthly_supporters_random_selection: |
     İşte iNat'ın her ay bağış yapan kahraman topluluk üyelerinden rastgele bir seçki.
+  yir_thank_your_for_being_generous2: |
+    Zamanın, ilgin, uzmanlığın ve bağışların ile cömert davrandığın için teşekkür ederiz! iNaturalist kâr amacı gütmeyen, kamu yararına çalışan bir kuruluştur. Program, toplumun çok küçük bir kısmından gelen hayırsever hediyeler de dahil olmak üzere çok sayıda hibe ve bağışa dayanmaktadır. Özellikle, yinelenen hediyeleri ile geleceği planlamamıza yardımcı olan Aylık Destekçilerimize minnettarız.
   yir_your_gift_sustains: |
     Armağanın, küresel erişime ve derin kişisel ve ekolojik etkilere sahip bu programı sürdürülebilir kılmaktadır.
   you: sen
@@ -5732,10 +5787,37 @@ tr:
             Eğer öyleyse, öğrencilerle %{site_name} kullanımına ilişkin ipuçları için lütfen <a href="%{url}">Öğretmen Rehberimizi</a> okuyun.
     donate:
       donate_short_desc: "Desteğini göstermek için şimdi bağış yap!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bunun bir parçası olduğun için teşekkür ederiz!</strong>
+        </p>
+        <p class="lead">
+        Doğaseverlerden oluşan bu küresel topluluğun bilgi paylaşma ve yeri doldurulamaz biyoçeşitlilik verileri üretme gücüne inanıyorsan, lütfen çevrim içi olarak tek seferlik ya da yinelenen bir bağış yapmayı düşün ya da bağış yapmanın <a
+        href="https://www.inaturalist.org/pages/giving">diğer yollarını</a> keşfet.
+        </p>
+        <p class="lead">
+        Bağışın, topluluk büyüdükçe bilgisayarlı görüyü geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur.
+        </p>
+        <p class="text-muted">
+        iNaturalist, Amerika Birleşik Devletleri merkezli bağımsız bir 501(c)(3), vergiden muaf, kâr amacı gütmeyen bir kuruluştur (Vergi Kimliği: 92-1296468).
+        </p>
       post_donate_social_media_text: iNaturalist'i destekliyorum çünkü...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist'in Aylık Destekçisi Ol
         become_a_monthly_supporter_of_inaturalist_caps: INATURALIST'İN AYLIK DESTEKÇİSİ OL
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
+          </p>
+          <p class="lead">
+          iNaturalist'i kullanmanın ücretsiz olmasını istiyoruz ancak onu işletmesi ücretsiz değil. Eğer iNaturalist'i seviyorsan, lütfen aylık destekçi olmayı düşün. Yinelenen hediyeler, öngörülebilir gelir sağlayarak iNaturalist'in altyapısını ve personelini sürdürülebilir kılmaya yardımcı olur. Aylık destekçi statünü kullanıcı profilinde göstermeyi de tercih edebilirsin.
+          </p>
+          <p class="lead">
+          Hayırsever bağışın, topluluk büyüdükçe bilgisayarlı görüyü geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur. Tek seferlik bağış yapmayı tercih ediyorsan, lütfen <a href="%{donate_url}">buraya tıkla</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist, Amerika Birleşik Devletleri merkezli, vergiden muaf, kâr amacı gütmeyen bağımsız bir 501(c)(3) kuruluşudur (Vergi Kimliği: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Aylık Destekçi olduğun için teşekkür ederiz!
         thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
       temporarily_unavailable: |
@@ -6752,6 +6834,8 @@ tr:
           Bu yıl geçen yıllara oranla nasıl? Yeşil çizgi bu yılı gösterir, beyaz yatay çizgi geçen yılı gösterir, gri arka plan alanı ise en düşük ve en yüksek yılları gösterirken aynı zamanda tüm yılların ortalamasını gösterir.
         compared_to_previous_years: Önceki Yıllara Kıyasla
         donate_title: "Tüm Destekçilerimize Özel Teşekkürlerimizle"
+        donate_desc2_html: |
+          Zamanın, ilgin, uzmanlığın ve bağışların ile cömert davrandığın için teşekkür ederiz! iNaturalist, Amerika Birleşik Devletleri merkezli 501(c)3 kâr amacı gütmeyen bir kuruluştur. Web, mobil ve <a href="%{seek_url}">Seek by iNaturalist</a> için tüm tasarım ve yazılım mühendisliğini yapan <a href="%{team_url}">küçük bir ekip</a> tarafından desteklenmekte, ayrıca topluluk desteğini, iş birliklerini ve entegrasyonları yöneterek işlerin yürümesini (ve hızla büyümesini!) sağlamaktadır. Program, katkıda bulunanların çok küçük bir kısmından gelen hayırsever hediyeler de dahil olmak üzere çok sayıda hibe ve bağışa dayanmaktadır. Özellikle, yinelenen hediyeleriyle geleceği planlamamıza yardımcı olan Aylık Destekçilerimize minnettarız. iNaturalist'in temel faaliyetlerini desteklemek için birden çok para biriminde bağışta bulunabilirsin. %{year} yılının iNaturalist'in şimdiye kadarki en büyük yılı olmasındaki payın için herkese teşekkür ederiz!
         donors: Bağışçılar
         donors_guide_label_our_goal_is_1000: Amacımız ayda 1.000 düzenli bağışçı
         inaturalist_network: iNaturalist Ağı
@@ -7069,6 +7153,8 @@ tr:
           Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtları <a href="http://www.gbif.org/">Küresel Biyoçeşitlilik 
           Danışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından 
           derleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.
+        monthly_supporter_desc_html: |
+          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Ağı sitelerinin kâr amacı gütmeyen işleyişini desteklemek için iNaturalist'e (Amerika Birleşik Devletleri IRS EIN 92-1296468) otomatik aylık katkılarda bulunur. <a href="%{url}">Aylık Destekçi olmak için buraya tıklayın</a>. Desteğini onayladığımızda, bu durumu profilinde görüntülemek için bu kutuyu işaretleyebileceksin. Not: Aylık Destekçi olduğunu onaylamamız için Donorbox ve iNaturalist'teki e-posta adresleri tam olarak eşleşmelidir. Farklı ise birini diğeri ile eşleşecek şekilde değiştirin.
         muting_desc_html: |
           <p>
           Birini sessize almak; gözlemlerine yorum yapması, sana mesaj atması, senden bahsetmesi gibi benzer durumlar hakkında bildirim almanı önler. Sessize almak, kişinin herhangi bir şey yapmasını engellemeden onu görmezden gelmene yardımcı olur.
@@ -7888,6 +7974,8 @@ tr:
           attributes:
             base:
               user_already_blocked: Bu kullanıcıyı zaten engellediniz
+              user_cannot_be_staff2: |
+                Personeli engelleyemezsin. iNat personelinin iNat'taki herkes ile iletişim kurabilmesi, iNat'taki tüm verilere erişebilmesi ve anlaşmazlıkların nihai arabulucuları olması gerekir, bu nedenle, engelleme, onların seninle iletişim kurmasını engellemez.
         user_parent:
           attributes:
             email:

@@ -2198,10 +2198,16 @@ nl:
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
   inaturalist_global_year_in_review: "iNaturalist's %{year} Jaaroverzicht van de Wereld"
+  independence_email_subject: "We slaan onze vleugels uit: iNaturalist is nu een Onafhankelijke Nonprofit organisatie"
   #Introductory line in an email. "Dear" doesn't have to be translated
   #literally. Please just choose something that's conventional in your
   #language.
   independence_email_body_dear: Beste %{name},
+  independence_email_body_exciting_news: |
+    Het iNaturalist team heeft opwindend nieuws! We zijn blij om mee te kunnen delen dat
+    dankzij de steun van deze geweldige gemeenschap iNaturalist vanaf nu werkt als
+    een onafhankelijke 501(c)(3) not-for-profit organisatie gevestigd in de Verenigde
+    Staten van Amerika.
   independence_email_body_since_launching: |
     Sinds de lancering in 2008 heeft het iNaturalist team en organisatie
     zich ontwikkeld en we zijn blij over deze volgende mijlpaal. iNaturalist begon
@@ -2210,11 +2216,58 @@ nl:
     iNaturalist een gezamenlijk initiatief van de California Academy of
     Sciences en de National Geographic Society. Sinds vandaag is iNaturalist een
     onafhankelijke organisatie.
+  independence_email_body_over_the_past: |
+    De afgelopen 15 jaar hebben de ongelooflijke bijdragen van de gemeenschap
+    ervoor gezorgd dat iNaturalist één van 's werelds meest impactvolle natuurplatforms is geworden.
+  independence_email_body_so_far: "Tot nu toe heeft de iNaturalist gemeenschap:"
   #Item in a list beginning with "So far, the iNaturalist community has:"
   independence_email_body_created: Meer dan 146.000.000 verifieerbare waarnemingen (er komen er ongeveer 1 miljoen per week bij!)
   #Item in a list beginning with "So far, the iNaturalist community has:"
   independence_email_body_grown: Groei tot 2,7 miljoen bijdragers
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Meer dan 430.000 soorten waargenomen
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Meer dan 3.500 keer is 
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">geciteerd via de Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    We danken de California Academy of Sciences en de National Geographic
+    Society voor het incuberen van iNaturalist terwijl het dramatisch groeide in de afgelopen
+    9 jaar. We zijn deze partners enorm dankbaar voor hun investeringen,
+    steun en rentmeesterschap. We kijken ernaar uit om in de toekomst met beide organisaties van de
+    samen te werken.
+  independence_email_body_the_way_html: |
+    <strong>De manier waarop je iNaturalist ervaart zal niet veranderen.</strong>
+    iNaturalist en Seek zullen je vrij blijven helpen om
+    biodiversiteit te determineren en je eigen verbinding met de natuurlijke wereld te maken. Deze nieuwe
+    organisatiestructuur stelt ons in staat om iNaturalist voor de komende jaren
+    te ondersteunen, zodat de iNaturalist gemeenschap onze collectieve kennis van
+    biodiversiteit lang naar de toekomst kan uitbreiden. We zullen blijven samenwerken met
+    organisaties over de hele wereld om het iNaturalist netwerk te ondersteunen.
+  independence_email_body_questions_html: |
+    Je kunt <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit"> meer lezen op de blog</a> en de <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Veelgestelde vragen
+    Vragen</a> (in het Engels) bekijken. De <a
+    href="https://www.inaturalist.org/pages/terms">Gebruiksvoorwaarden</a> en <a
+    href="https://www.inaturalist.org/pages/privacy">Privacybeleid</a> zijn
+    bijgewerkt om de nieuwe organisatie weer te geven.
   independence_email_body_thank_you: Bedankt dat jij deel uitmaakt van deze gemeenschap.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Met vriendelijke groet,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalist Bestuur</strong>
+  independence_email_body_ps: |
+    PS - Zeer binnenkort zullen we een genereuze beurs ​​aankondigen die het onafhankelijk iNaturalist een solide start zal geven. De financiële steun van de iNaturalist-gemeenschap heeft onze ontwikkeling mogelijk gemaakt en zal van vitaal belang zijn voor
+    bestaanszekerheid op de lange termijn. Jouw donatie nu kan deze opwindende mijlpaal vieren en de toekomst van iNaturalist verder veilig stellen. Bedankt!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Doneer nu
   computer_vision_suggestion: Computer Vision Voorstel
@@ -8194,6 +8247,11 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
+              user_cannot_be_staff2: |
+                Medewerkers kunnen niet worden geblokkeerd. iNat personeel moet in staat zijn om
+                te kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op
+                iNat en zijn de ultieme bemiddelaars van geschillen, dus het blokkeren van
+                zal hen niet verhinderen om met jou te communiceren.
         user_parent:
           attributes:
             email:
