@@ -1603,6 +1603,8 @@ es-MX:
   donate: Haz una donación
   donate_again_caps: DONAR DE NUEVO
   donate_again_today_caps: DONAR DE NUEVO HOY
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Hacer una donación a iNaturalist
   done: Completo
   dont_have_an_account_sign_up_html: '¿No tienes una cuenta? <strong>Regístrate.</strong>'
   dont_use_double_quotes: No uses "entre comillas" en ningún lado
@@ -1750,6 +1752,7 @@ es-MX:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Detalles de la cuenta
+  email_copyright2: "&copy; %{year} iNaturalista, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar:'
   embed_place_widget: Incluye el widget del lugar
@@ -2165,6 +2168,60 @@ es-MX:
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
+  independence_email_subject: "Abriendo Nuestras Alas: iNaturalist es ahora una organización sin fines de lucro independiente"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Estimado/a %name,
+  independence_email_body_exciting_news: |
+    ¡El equipo de iNaturalist tiene noticias emocionantes! Nos complace compartir este agradecimiento al apoyo de esta gran comunidad. iNaturalist ahora está operando como
+    una organización independiente 501(c)(3) sin fines de lucro con sede en los Estados Unidos
+    de América.
+  independence_email_body_since_launching: |
+    Desde el 2008, el equipo y organización de iNaturalist a evolucionado, y estamos emocionados de este siguiente paso. iNaturalist comenzó como un proyecto de maestría en la Universidad de California, Berkeley, despues se convirtió en una LLC, después se unió a la Academia de Ciencias de Califoria en 2014. En 2017, iNaturalist se convirtió en una iniciativa conjunta entre la Academia de Ciencias de California y la National Geographic Society. Ahora, iNaturalist es una Organizacción Independiete.
+  independence_email_body_over_the_past: |
+    En los últimos 15 años, las increíbles contribuciones de la comunidad
+    han convertido a iNaturalist en una de las plataformas con
+    más impacto del mundo.
+  independence_email_body_so_far: "Hasta ahora, la comunidad iNaturalist tiene:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Creado más de 146,000.000 observaciones verificables (¡agregando alrededor de 1 millón por semana!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Creció a 2,7 millones de usuarios que contribuyen
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Más de 430.000 especies observadas
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Se citó más de 3,500 veces
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">a través del Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    Agradecemos a la Academia de Ciencias de California y a la National Geographic Society por incubar iNaturalist mientras crecia dramáticamente durante los últimos 9 años. Les tenemos una inmensa gratitud a estos aliados for su inversión, apoyo y guia. Esperamos colaborar cn ambas organizaciones en el futuro.
+  independence_email_body_the_way_html: |
+    <strong>La manera en que usas iNaturalist no cambiará.</strong>
+    iNaturalist y Seek seguirán ayudándoe gratuitamente a identificar la biodiversidad y a construir tu propia conexión con el mundo natural. Esta nueva estructura organizativa nos permitirá apoyar a iNaturalist por años y años a medida que la comunidad iNaturalist amplíe nuestro conocimiento colectivo de la biodiversidad en el futuro. Seguiremos colaborando con organizaciones de todo el mundo para apoyar la Red iNaturalist.
+  independence_email_body_questions_html: |
+    Puedes <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leer más en el blog</a>y revisar las <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Preguntas Frecuentes</a> (en ingles). Los<a
+    href="https://www.inaturalist.org/pages/terms">Términos de Uso</a> y la<a
+    href="https://www.inaturalist.org/pages/privacy">Política de Privacidad</a> ha sido actualziada para reflejar la nueva organización.
+  independence_email_body_thank_you: Gracias por ser parte de esta comunidad.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    A partir de ahora,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>Equipo de liderazgo de iNaturalist</strong>
+  independence_email_body_ps: |
+    P.D. - Muy pronto anunciaremos una generosa subvención que dará a iNaturalist independiente un sólido comienzo. El apoyo financiero de la comunidad iNaturalist hizo posible nuestra evolución y será vital para sostenibilidad a largo plazo. Su donación ahora celebrará este emocionante y asegurará el futuro de iNaturalist. Muchas gracias.
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Donar ahora
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     La visión artificial es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión artificial enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -4574,6 +4631,9 @@ es-MX:
     Puedes continuar iniciando sesión a través de iNaturalist.org o a través de tu sitio web específico para la Red. Sin importa tu afiliación, todos tus datos estarán alojados en el mismo lugar y continuarás interactuando con la amplia comunidad internacional de iNaturalist. Cada cuenta de iNaturalist puede ser afiliada solo con un miembro de la Red. Puedes revisar o cambiar
     tu afiliación en la %{start_tag_settings}configuración de su cuenta%{end_tag_settings}.
   sites_affiliation_title: Más información sobre la afiliación de la Red
+  sites_network_agreements_html: |
+    iNaturalist tiene acuerdos formales con organizaciones en cada una de las areas geográficas para apoyar el uso de la plataforma iNaturalist. <strong>Si tu organización está nteresada en unirse a la red de iNaturalist, puedes encontrar más detalles 
+    %{start_tag_join}aquí%{end_tag_join}.</strong>
   sites_network_consists_of: "La Red de iNaturalist está conformada por varias organizaciones:"
   sites_network_inaturalist_network_collection: |
     La Red de iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad global de iNaturalist. Los sitios de la Red están apoyados por instituciones locales que promueven el uso local y facilitan el uso de datos de iNaturalist para beneficiar la biodiversidad en cada sitio. Tienen acceso a las coordenadas verdaderas dentro de sus áreas geográficas que se ocultan automáticamente de la vista pública con el fin de proteger mejor las especies amenazadas.
@@ -5715,6 +5775,8 @@ es-MX:
     conectar con la naturaleza
   yir_monthly_supporters_random_selection: |
     Aquí hay una selección aleatoria de miembros heroicos de la comunidad de iNat que donan cada mes.
+  yir_thank_your_for_being_generous2: |
+    ¡Gracias por ser generoso con tu tiempo, atención, conocimiento y donaciones! iNaturalist es una iniciativa conjunta sin fines de lucro de la Academia de Ciencias de California y la National Geographic Society. El programa se basa en numerosas donaciones y becas, incluyendo donaciones de beneficencia de menos de una pequeña fracción de la comunidad. Estamos especialmente agradecidos a los donadores mensuales cuyos regalos recurrentes nos ayudan a planificar el futuro.
   yir_your_gift_sustains: |
     Tu regalo sostiene este programa con alcance global y profundos impactos ecológicos y personales
   you: Ti
@@ -5876,6 +5938,20 @@ es-MX:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para obtener sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
+        </p>
+        <p class="lead">
+        Si crees en la fuerza de esta comunidad global de amantes de la naturaleza que comparte conocimiento y genera datos de biodiversidad irremplazables, por favor considera hacer una donación única o recurrente, o conoce <a
+        href="https://www.inaturalist.org/pages/giving">otras formas de donar</a>.
+        </p>
+        <p class="lead">
+        Tu donación ayuda a iNaturalist a medida que la comunidad crece, incluyendo la visión computerizada avanzada, la implementación de nuevas características y los gastos de nuestros servidores y personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin fines de lucro, exenta de impuestos con sede en los Estados Unidos de América (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértete en un Patrocinador Mensual de iNaturalist.
@@ -7004,6 +7080,21 @@ es-MX:
           todos los años.
         compared_to_previous_years: Comparar con años anteriores
         donate_title: "Gracias a todos nuestros colaboradores"
+        donate_desc2_html: |
+          ¡Gracias por ser generoso con tu tiempo, atención, pericia,
+          y donaciones! iNaturalist es una organización sin fines de lucro 501(c)3
+          con sede en Estados Unidos. Está soportado por un equipo
+          <a href="%{team_url}">pequeño</a> que realiza todo el diseño y software
+          ingeniería para la web, móvil y <a href="%{seek_url}">Busca por
+          iNaturalist</a>, además de administrar el apoyo de la comunidad,
+          colaboraciones e integraciones que mantienen las cosas funcionando
+          (¡y creciendo rápidamente!). El programa se basa en numerosas donaciones, 
+          incluyendo donaciones de beneficencia de menos de la pequeña fracción
+          de los colaboradores. Agradecemos especialmente a los apoyos mensuales
+          cuyos regalos recurrentes nos ayudan a planificar el futuro. Puedes donar
+          en múltiples divisas para apoyar las operaciones centrales de iNaturalist.
+          Gracias a todos por tu parte para hacer %{year} de iNaturalist
+          el año más grande!
         donors: Donantes
         donors_guide_label_our_goal_is_1000: Nuestro objetivo es tener 1,000 donantes recurrentes al mes
         inaturalist_network: Red de iNaturalist
@@ -8116,6 +8207,8 @@ es-MX:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff2: |
+                No se puede bloquear al personal. El personal de iNat debe poder comunicarse con todo el mundo en iNat, tener acceso a todos los datos en iNat, y son los últimos mediadores de las disputas, por lo que el bloqueo no les impedirá comunicarse contigo.
         user_parent:
           attributes:
             email:
