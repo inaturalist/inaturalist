@@ -2251,12 +2251,6 @@ da:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>iNaturalist Ledelsesteam</strong>
-  independence_email_body_ps: |
-    P.S. — Vi annoncerer snart et generøst tilskud, der vil give den
-    uafhængige iNaturalist en solid start. Den økonomiske støtte fra
-    iNaturalist-fællesskabet muliggjorde vores mulig og vil være afgørende for
-    langsigtet bæredygtighed. Din donation vil nu fejre denne spændende
-    milepæl og yderligere sikre iNaturalists fremtid. Tak!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Donér nu
   computer_vision_suggestion: Computer vision forslag
@@ -6644,71 +6638,6 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
-        quality_assessment_help2_html: |
-          <p>
-          Datakvalitetsvurderingen er et sammendrag af en observations nøjagtighed. Alle observationer gradueres indledningsvis som <strong>"tilfældig"</strong>, og bliver så til <strong>"behøver ID"</strong>, når
-          </p>
-
-          <ul>
-          <li>observationen <strong>har en dato</strong></li>
-          <li>observationen <strong>georafgrænses</strong> (dvs. har br.gr./lg.gr. koordinater)</li>
-          <li>observationen <strong>har fotos eller lyde</strong></li>
-          <li>observationen <strong>er ikke fra et menneske</strong></li>
-          </ul>
-          <p>
-          Observationer bliver <strong>"forskningskvalitet"</strong>, når
-          </p>
-          <ul>
-          <li>
-           %{site_name} <strong>-fællesskabet er enig i artsniveau ID eller
-          lavere</strong>, dvs. ved konsensus blandt flere end 2/3 af de identificerende parter om en takson (hvis fællesskabet har stemt om, at Fællesskabets Takson ikke kan forbedres yderligere, 
-          reverseres dette til underfamilieniveau-ID eller lavere)
-          </li>
-          </ul>
-          <p>
-          Observationer reverseres til <strong>"tilfældig"</strong>, hvis ovenstående betingelser ikke er opfyldt, eller fællesskabet er enige om at
-          </p>
-          <ul>
-          <li>
-           <strong>placeringen ikke ser
-          præcis ud</strong> (f. eks. aber i midten af havet,
-          flodheste i kontorbygninger osv.)
-          </li>
-          <li>
-          <strong>organismen ikke er vild/naturaliseret</strong> (f. eks. fangenskab eller opdrættet af mennesker
-          eller intelligente rumvæsen)
-          </li>
-          <li>
-          observationen <strong>ikke præsenterer dokumentation for en
-          organisme</strong>, f.eks. billeder af vandsærpræg,
-          klipper, landskaber, som ikke omfatter organismen mv.
-          </li>
-          <li>
-          observationen <strong>ikke repræsenterer nyere (~100 år) tegn på
-          organismen</strong> (f.eks. fossiler, men spor, ekskrementer og døde blade
-          er OK)
-          </li>
-          <li>
-          observationen ikke længere behøver en ID <em>og</em> fællesskabs-ID'en er højere end familie
-          </li>
-          <li>
-          observatøren har fravalgt fællesskabs-ID, og fællesskabs-ID
-          taksonen ikke er en forfader eller efterkommer af den takson, der er tilknyttet
-          observatørens ID
-          </li>
-          </ul>
-          <p>
-          Og var dette ikke var kompliceret nok, så der er også situationer, hvor systemet får en stemme:
-          </p>
-          <ul>
-          <li>
-          Systemet vil stemme for, at observationen ikke er vild/naturaliseret, 
-          hvis der er mindst 10 andre observationer af en slægt eller færre i
-          det mindste amt, stat eller landeækvivalent sted, som
-          indeholder denne observation og 80% eller flere af disse observationer
-          er blevet markeret som ikke-vilde/-naturaliseret.
-          </li>
-          </ul>
         score_desc: "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
         observation_flagged_notice_html: |
           Denne observation er blevet markeret som spam og er ikke længere
@@ -7744,6 +7673,13 @@ da:
           Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
           Facility</a> (GBIF), en international, mellemstatslig organisation,
           der kompilerer og distribuerer information om biodiversitet fra hele verden.
+        monthly_supporter_desc_html: |
+          iNaturalist Monthly Supporters leverer automatiske månedlige bidrag
+          til iNaturalist (USA IRS EIN 92-1296468) for at støtte
+          non-profit driften af iNaturalist og iNaturalist Network-websteder. <a href="%{url}">Klik her for at blive månedlig
+          Supporter</a>. Når vi har bekræftet din støtte, vil du kunne markere dette felt for at vise denne status på din profil. Bemærk: E-mailadresserne på Donorbox og iNaturalist skal matche 100% for at vi
+          kan bekræfte, at du er en månedlig supporter. Er de forskellige,
+          ændres den ene, så begge er identiske.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
@@ -8593,6 +8529,11 @@ da:
           attributes:
             base:
               user_already_blocked: Du har allerede blokeret dén bruger
+              user_cannot_be_staff2: |
+                Personale kan ikke blokeres. iNat-personale skal kunne
+                kommunikere med alle på iNat, kunne tilgå alle data på
+                iNat og er de ultimative mæglere af tvister, så blokering
+                vil ikke forhindre dem i at kommunikere med dig.
         user_parent:
           attributes:
             email:
