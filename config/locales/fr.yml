@@ -2162,6 +2162,12 @@ fr:
   #literally. Please just choose something that's conventional in your
   #language.
   independence_email_body_dear: '%{name},'
+  independence_email_body_exciting_news: |
+    L'équipe d'iNaturalist a de bonnes nouvelles ! Nous avons le plaisir d'annoncer que, grâce au soutien de cette formidable communauté, iNaturalist est désormais un organisme sans but lucratif 501(c)(3) indépendant basé aux États-Unis.
+  independence_email_body_since_launching: |
+    Depuis le lancement d'iNaturalist en 2008, l'équipe et l'organisation ont évolué, et nous sommes ravis de franchir cette nouvelle étape. iNaturalist a d'abord été un projet de maîtrise à l'Université de Californie à Berkeley, puis est devenu une LLC avant de rejoindre la California Academy of Sciences en 2014. En 2017, iNaturalist est devenu une initiative conjointe de la California Academy of Sciences et de la National Geographic Society. Désormais, iNaturalist est une organisation indépendante.
+  independence_email_body_over_the_past: |
+    Au cours des 15 dernières années, les contributions incroyables de la communauté ont fait d'iNaturalist l'une des plateformes les plus influentes du monde dans le domaine de la nature.
   independence_email_body_so_far: "Jusqu'à présent, la communauté iNaturalist a :"
   #Item in a list beginning with "So far, the iNaturalist community has:"
   independence_email_body_created: Créé plus de 146 000 000 d'observations vérifiables (environ 1 million par semaine !)
@@ -2173,6 +2179,17 @@ fr:
   independence_email_body_cited_html: |
     A été cité plus de 3 500 fois
     <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via le Système Mondial d'Information sur la Biodiversité (GBIF)</a>
+  independence_email_body_we_thank: |
+    Nous remercions la California Academy of Sciences et la National Geographic Society d'avoir permis à iNaturalist de se développer de manière spectaculaire au cours des 9 dernières années. Nous ressentons une immense gratitude envers ces partenaires pour leur engagement, leur appui et leur guidance. Nous nous réjouissons des collaborations que nous aurons avec ces deux organisations.
+  independence_email_body_the_way_html: |
+    <strong>La façon d'utiliser iNaturalist ne changera pas.</strong>
+    iNaturalist et Seek continueront à vous aider gratuitement à identifier la biodiversité et à resserrer les liens qui vous unissent avec le monde naturel. Cette nouvelle structure organisationnelle nous permettra de pérenniser iNaturalist pour les années à venir et permettra à la communauté iNaturalist de continuer encore longtemps à élargir nos connaissances collectives de la biodiversité. Nous continuerons à travailler en partenariat avec des organisations du monde entier pour porter le réseau iNaturalist.
+  independence_email_body_questions_html: |
+    Pour en savoir plus, nous vous invitons à vous reporter au <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">blog</a> et à consulter la <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Foire aux questions</a> (en anglais). Les <a
+    href="https://www.inaturalist.org/pages/terms">Conditions d'utilisation</a> et la <a
+    href="https://www.inaturalist.org/pages/privacy">Politique de confidentialité</a> ont été mises à jour pour refléter le nouveau statut de l'organisation.
   independence_email_body_thank_you: Merci de faire partie de cette communauté.
   #Signature section of an email. "Onward" is a bit unconventional in
   #English, so feel free to translate as "Sincerely" or whatever seems
@@ -6490,56 +6507,6 @@ fr:
           Rejoindre le projet permettra aux responsables du projet de voir les coordonnées masquées de cette observation ou de toute
           autre observation incluse dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
-        quality_assessment_help2_html: |
-          <p>
-          L'évaluation de la qualité des données est un résumé de la précision d'une observation. Toutes les observations commencent au « <strong>Niveau informel</strong> ». Une observation passe au niveau « <strong>Identification nécessaire</strong> » quand :
-          </p>
-
-          <ul>
-          <li>l'observation a <strong>une date</strong>;</li>
-          <li>l'observation est <strong>géolocalisée</strong> (c.-à-d. qu'elle a des coordonnées de latitude et de longitude);</li>
-          <li>l'observation a <strong>une photo ou un son</strong>;</li>
-          <li>l'organisme observé <strong>n'est pas un être humain</strong>.</li>
-          </ul>
-          <p>
-          Les observations atteignent le « <strong>Niveau de recherche</strong> » quand :
-          </p>
-          <ul>
-          <li>
-          la communauté %{site_name} <strong>s'accorde sur l'identification de l'espèce ou d'un taxon à un rang inférieur</strong>, c.-à-d. quand plus des deux tiers des identificateurs sont du même avis à propos d'un taxon (si la communauté a indiqué par un vote que le taxon de la communauté ne pouvait pas être amélioré, l'identification nécessaire passe au rang de la sous-famille ou inférieur);
-          </li>
-          </ul>
-          <p>
-          Les observations repassent au « <strong>Niveau informel</strong> » si les conditions ci-dessus ne sont pas remplies ou si la communauté s'accorde à ce propos.
-          </p>
-          <ul>
-          <li>
-          la <strong>localisation ne semble pas exacte</strong> (des singes au milieu de l’océan, un hippopotame dans des bureaux, etc.);
-          </li>
-          <li>
-          l'<strong>organisme n'est pas sauvage ou naturalisé</strong> (il est en captivité ou cultivé par des être humains ou une espèce extraterrestre intelligente);
-          </li>
-          <li>
-          l'observation <strong>ne montre aucun signe d'un organisme</strong>, p. ex. des images de pièces d'eau, de pierres, de paysages, etc., qui ne contiennent pas l'organisme;
-          </li>
-          <li>
-          l'observation <strong>ne montre aucun signe récent (~100 ans) de l'organisme</strong> (p. ex. un fossile; en revanche, les empreintes, les excréments et les feuilles mortes ne posent pas de problème);
-          </li>
-          <li>
-          l'observation n'a plus besoin d'une identification <em>et</em> l'identification de la communauté a un rang supérieur à la famille;
-          </li>
-          <li>
-          l’observateur a refusé l’identification de la communauté et le taxon de cette dernière n’est pas un parent ni un descendant du taxon de l'identification de l’observateur.
-          </li>
-          </ul>
-          <p>
-          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système a voix au chapitre :
-          </p>
-          <ul>
-          <li>
-          Le système indique que l’observation ne concerne pas un organisme sauvage ou naturalisé s’il y a au moins 10 autres observations d'organismes de ce genre ou d'un rang inférieur dans la région ou, à défaut, l’état ou le pays de cette observation, et que, dans au moins 80 % des cas, ces organismes ont été marqués comme en captivité ou cultivés.
-          </li>
-          </ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
           Cette observation a été marquée comme pourriel et n’est plus
