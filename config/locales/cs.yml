@@ -2392,12 +2392,6 @@ cs:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>Tým vedení iNaturalist</strong>
-  independence_email_body_ps: |
-    P.S. - Velmi brzy oznámíme velkorysý grant, který poskytne
-    nezávislému iNaturalist pevný začátek. Finanční podpora
-    komunity iNaturalist umožnila náš vývoj a bude životně důležitá pro
-    dlouhodobou udržitelnost. Váš dar nyní oslaví tento vzrušující
-    milník a další bezpečnou budoucnost iNaturalist. Děkujeme!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Přispějte nyní
   computer_vision_suggestion: Návrh počítačového vidění
@@ -6705,73 +6699,6 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help2_html: |
-          <p>
-          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna
-          pozorování začínají jako <strong>"neformální"</strong> a stávají se
-          <strong>„vyžaduje ID“</strong> když
-          </p>
-
-          <ul>
-          <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky a délky)</li>
-          <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
-          <li>pozorování <strong>se netýká člověka</strong></li>
-          </ul>
-          <p>
-          Pozorování se stanou <strong>„výzkumným stupněm“</strong>, když
-          </p>
-          <ul>
-          <li>
-          komunita %{site_name} <strong>souhlasí s ID na úrovni druhu nebo
-          nižší</strong> tj. když se více než 2/3 identifikátorů shoduje na
-          taxonu (pokud komunita hlasovala, že komunitní taxon nemůže být dále vylepšen, pak se ID vrátí na úroveň podčeledi nebo nižší)
-          </li>
-          </ul>
-          <p>
-          Pokud nebudou splněny výše uvedené podmínky, nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„neformální“</strong>
-          </p>
-          <ul>
-          <li>
-          <strong>místo nevypadá
-          přesné</strong> (např. opice uprostřed oceánu,
-          hroši v kancelářských budovách atd.)
-          </li>
-          <li>
-          <strong>organismus není divoký/zdivočelý</strong> (např. v zajetí nebo kultivovaný lidmi
-          nebo inteligentní vesmírní mimozemšťané)
-          </li>
-          <li>
-          pozorování <strong>nepředkládá důkaz o 
-          organismu</strong>např. obrázky vodních prvků,
-          skály, krajiny, které nezahrnují organismus atd.
-          </li>
-          <li>
-          pozorování <strong>nepředkládá nedávné (~100 let) důkazy
-          organismu</strong>(např. fosilie, ale stopy, trus a odumřelé listy
-          jsou v pořádku)
-          </li>
-          <li>
-          pozorování již nepotřebuje ID <em>a</em> ID komunity je vyšší, než čeleď
-          </li>
-          <li>
-          pozorovatel se odhlásil z ID komunity a komunitní
-          ID taxonu není předkem ani potomkem souvisejícího taxonu
-          s ID pozorovatele
-          </li>
-          </ul>
-          <p>
-          A pokud to nebylo dost složité, existují také situace, kdy systém dostane hlas:
-          </p>
-          <ul>
-          <li>
-          Systém bude hlasovat, že pozorování není divoké/zdivočelé
-          pokud existuje alespoň 10 dalších pozorování rodu nebo nižší úrovně v
-          nejmenším ekvivalentu kraje, státu nebo země, které
-          obsahuje toto pozorování a 80 % nebo více těchto pozorování
-          byly označeny jako nikoli divoké/zdivočelé.
-          </li>
-          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,
