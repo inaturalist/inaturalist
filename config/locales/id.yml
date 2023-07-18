@@ -2133,8 +2133,6 @@ id:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>Tim Pengurus iNaturalist</strong>
-  independence_email_body_ps: |
-    Catatan - Kami akan segera mengumumkan sumbangan yang sangat dermawan yang memberikan iNaturalist independen batu loncatan. Dukungan finansial dari komunitas iNaturalist telah membuat perkembangan ini menjadi mungkin dan akan menjadi vital untuk ketahanan kami untuk jangka panjang. Sumbangan Anda akan ikut meramaikan pencapaian yang membanggakan ini dan mengamankan masa depan iNaturalist. Terima kasih!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Sumbang sekarang
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
@@ -6206,65 +6204,6 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
-        quality_assessment_help2_html: |
-          <p>
-          Penilaian kualitas data merupakan sebuah ringkasan tentang akurasi pengamatan. Semua 
-          pengamatan dimulai dengan kelas <strong>"kasual"</strong>, dan menjadi 
-          <strong>"butuh ID"</strong> ketika
-          </p>
-
-          <ul>
-          <li>pengamatan <strong>memiliki tanggal</strong></li>
-          <li>pengamatan <strong>memiliki georeferensi</strong> (memiliki koordinat lin/buj)</li>
-          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
-          <li>pengamatan <strong>bukan tentang manusia</strong></li>
-          </ul>
-          </p>
-          Pengamatan menjadi <strong>kelas "Riset"</strong> yang kuat ketika
-          </p>
-          <ul>
-          <li><strong>komunitas %{site_name} setuju dengan ID bertingkat spesies
-          atau di bawahnya</strong>. Hal ini dipenuhi ketika lebih dari 2/3
-          pengidentifikasi setuju dengan sebuah takson (jika komunitas telah 
-          memilih bahwa Takson Komunitas tidak dapat ditingkatkan lagi,
-          ID kembali ke ID bertingkat subfamili atau lebih rendah)
-          </li>
-          </ul>
-          <p>
-          Pengamatan akan kembali menjadi tingkat <strong>"kasual"</strong> jika kondisi-kondisi di atas tidak dipenuhi atau komunitas setuju bahwa
-          </p>
-          <ul>
-          <li><strong>lokasi tampak tidak akurat</strong> 
-          (misalkan monyet di tengah laut, kuda nil di bangunan kantor, dll.)
-          </li>
-          <li><strong>organisme tidak liar/dinaturalisasi</strong> (seperti organisme yang dipelihara 
-          atau dibudidayakan oleh manusia atau alien cerdas dari luar angkasa)
-          </li>
-          <li>pengamatan <strong>tidak menunjukkan adanya organisme</strong>,
-          seperti gambar-gambar pemandangan, perairan, batu, dll.
-          </li>
-          <li>pengamatan <strong>tidak menampilkan bukti suatu organisme 
-          yang diambil belakangan ini (~100 tahun)</strong> (seperti fosil,
-          namun bukti-bukti seperti jejak, tahi, dan daun mati diperbolehkan)
-          </li>
-          <li>pengamatan tidak lagi memerlukan ID <em>dan</em> ID komunitas berada di atas famili
-          </li>
-          <li>pengamat tidak memilih untuk menggunakan ID komunitas
-          dan takson ID komunitas bukan induk atau turunan dari takson
-          yang terkait dengan ID pengamat
-          </li>
-          </ul>
-          <p>
-          Dan jika ini semua masih belum ruwet, ada situasi-situasi lainnya di mana sistem dapat memilih:
-          </p>
-          <ul>
-          <li>Sistem bisa menentukan bahwa suatu pengamatan tidak liar/dinaturalisasi
-          jika terdapat setidaknya 10 pengamatan lainnya dari sebuah genus atau
-          tingkat di bawahnya yang berada di dalam suatu tempat setingkat kabupaten,
-          provinsi, atau negara yang paling kecil yang memiliki pengamatan ini dan
-          lebih dari 80% pengamatan tersebut telah ditandai sebagai tidak liar/dinaturalisasi.
-          </li>
-          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
