@@ -695,6 +695,7 @@ th:
   comments_on_my_observations: ความคิดเห็นในการสังเกตของฉัน
   common_name: ชื่อสามัญ
   community: ชุมชน
+  community_curated: สร้างโดยผู้ใช้งาน
   community_guidelines: วิธีใช้งานสำหรับชุมชน
   community_id_heading: หน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกัน
   community_id_at_species_or_lower?: เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า?
@@ -764,7 +765,7 @@ th:
     #As in the feather on a bird
     feather: ขนนก
     #Abnormal growth
-    gall: ปุ่มปม
+    gall: ปุ่มปมในพืช
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: ตัวสิ่งมีชีวิต
@@ -829,6 +830,11 @@ th:
   #curator
   curator_application_inelligible2: |
     ในการสมัครเป็น Curator คุณต้องเป็นผู้ใช้ 60 วันขึ้นไป และเพิ่มอย่างน้อย 5 flags และต้องมี 100 improving identifications ให้กับการสังเกตของทุกคน รวมถึงของคุณเอง (คุณได้เพิ่ม %{num_idents}) เมื่อมีคุณสมบัติตามเกณฑ์ที่กำหนด กลับมาหน้านี่และดำเนินการยื่นส่งใบสมัครได้
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    แก้ไขสถานที่ที่สร้างโดยผู้ใช้งานและอัปโหลดไฟล์ KML ที่ใหญ่กว่า 1 MB (แต่เล็กกว่า 5 MB)
   curators: ผู้ดูแล
   curator_identification: การจำแนกโดย Curator
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
@@ -2312,6 +2318,7 @@ th:
   taxon_framework_relationships: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
   taxon_history_notice: ประวัติหน่วยอนุกรมวิธานเริ่มใช้งานตั้งแต่กุมภาพันธ์ 2022 จึงไม่มีข้อมูลประวัติก่อนหน้านี้
   taxon_merge: ยุบรวมหน่วยอนุกรมวิธาน
+  taxon_photos_updated: อัปเดตรูปหน่วยอนุกรมวิธานแล้ว!
   taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN หรือไม่ ถ้าไม่ใช่ เพราะเหตุใด?
   taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: นี่ไม่ใช่แผนที่การกระจายของบัญชีแดง IUCN เนื่องจากแผนที่ไม่เหมาะสม
@@ -2364,6 +2371,8 @@ th:
   this_list_only_accepts_taxa_that_are_species: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่เป็นชนิดเท่านั้น
   this_list_only_accepts_taxa_that_are_species_or_lower: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่ระดับชนิดหรือต่ำกว่าเท่านั้น
   this_observation: การสังเกตนี้
+  this_observation_is_featured_on_x_sites:
+    other: มีการสังเกตนี้ใน %{count} เว็บไซต์
   this_observation_is_research_grade: การสังเกตนี้เป็นระดับงานวิจัย!
   this_observation_was_created_using: "การสังเกตนี้สร้างขึ้นมาด้วยการใช้:"
   this_place_has_no_check_list: "สถานที่นี้ไม่มีรายการตรวจสอบ"
@@ -2491,7 +2500,7 @@ th:
   today: วันนี้
   top_identifier_caps: ผู้ที่มีการจำแนกสูงสุด
   top_identifiers: ผู้ที่มีการจำแนกสูงสุด
-  top_identifiers_of_taxon: ผู้ที่มีการจำแนก%{taxon} สูงสุด
+  top_identifiers_of_taxon: ผู้ที่มีการจำแนก%{taxon}สูงสุด
   top_observer_caps: ผู้ที่มีการสังเกตสูงสุด
   top_observers: ผู้ที่มีการสังเกตสูงสุด
   totals: รวม
@@ -2518,6 +2527,7 @@ th:
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
   update_past: "อัปเดต%{type}ก่อนหน้า"
+  update_photos: อัปเดตรูป
   update_search: อัปเดตการค้นหา
   update_selected_taxa: อัปเดตหน่วยอนุกรมวิธานที่ถูกเลือก
   update_x_selected_taxa:
@@ -2789,52 +2799,6 @@ th:
           ระดับคุณภาพเป็นการสรุปภาพรวมความแม่นยำ ความเที่ยงตรง ความสมบูรณ์ ความเกี่ยวข้อง และความเหมาะสมของการสังเกตใน iNaturalist ให้เป็นข้อมูลความหลากหลายทางชีวภาพ คุณสมบัติบางรายการจะถูกกำหนดโดยอัตโนมัติ ในขณะที่รายการอื่น ๆ จะขึ้นอยู่กับการโหวตโดยผู้ใช้ iNat นอกจากนี้ iNaturalist จะแบ่งปันการสังเกต "ระดับงานวิจัย" ให้แก่พาร์ตเนอร์ทางข้อมูลจำนวนมากเพื่อใช้ในงานวิทยาศาสตร์และการอนุรักษ์
         flagged_photos_desc_html: |
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
-        quality_assessment_help2_html: |
-          <p>
-          การประเมินคุณภาพข้อมูลคือการสรุปความถูกต้องของการสังเกต ทุกการสังเกตจะเริ่มด้วยระดับ <strong>"ไม่เป็นทางการ"</strong> และจะกลายเป็น <strong>"รอจำแนกชนิด"</strong> เมื่อ
-          </p>
-
-          <ul>
-          <li>การสังเกต <strong>มีการระบุวันที่สังเกต</strong></li>
-          <li>การสังเกต <strong>มีการระบุตำแหน่ง</strong> (มีพิกัดละติจูด/ลองจิจูด)</li>
-          <li>การสังเกต <strong>มีรูปถ่ายหรือเสียง</strong></li>
-          <li>การสังเกต <strong>ไม่ใช่มนุษย์</strong></li>
-          </ul>
-          <p>
-          การสังเกตจะกลายเป็น <strong>"ระดับงานวิจัย"</strong> เมื่อ
-          </p>
-          <ul>
-          <li>
-          <strong>ชุมชน %{site_name} เห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า</strong> เมื่อมีผู้จำแนกเกิน 2/3 ของทั้งหมดเห็นด้วยกับหน่วยอนุกรมวิธานเดียวกัน (ถ้าชุมชนโหวตว่าหน่วยฯ ที่เห็นพ้องกันไม่สามารถจำแนกย่อยลงได้อีก หน่วยฯ ก็จะเลื่อนขึ้นไปเป็นระดับวงศ์ย่อยหรือต่ำกว่า)
-          </li>
-          </ul>
-          <p>
-          <strong>ตำแหน่งไม่ถูกต้อง</strong> (เช่น พบลิงกลางมหาสมุทร พบฮิปโปในอาคารสำนักงาน ฯลฯ)
-          </li>
-          <li>
-          <strong>สิ่งมีชีวิตไม่พบตามธรรมชาติ</strong> (เช่น ถูกจับมาหรือเพาะปลูกโดยมนุษย์หรือสิ่งมีชีวิตทรงภูมิปัญญาจากนอกโลก)
-          </li>
-          <li>
-          การสังเกต <strong>ขาดหลักฐานของสิ่งมีชีวิต</strong> เช่น รูปแหล่งน้ำ ก้อนหิน ภูมิทัศน์ที่ไม่พบสิ่งมีชีวิตปรากฏอยู่
-          </li>
-          <li>
-          การสังเกต <strong>ขาดหลักฐานที่ไม่เก่าเกินไป (~100 ปี)</strong> (เช่น ซากดึกดำบรรพ์ แต่จะยอมรับได้ถ้าเป็นรอยตามทาง มูลสัตว์ หรือใบไม้แห้ง)
-          </li>
-          <li>
-          การสังเกตไม่ต้องการการจำแนกแล้ว <em>และ</em> หน่วยฯ ที่ชุมชนเห็นพ้องกันอยู่สูงกว่าระดับวงศ์
-          </li>
-          <li>
-          ผู้สังเกตไม่ต้องการการจำแนกโดยชุมชน และหน่วยฯ ที่ชุมชนเห็นพ้องกันก็ไม่ใช่บรรพบุรุษหรือลูกหลานของหน่วยฯ ที่ผู้สังเกตจำแนกเอง
-          </li>
-          </ul>
-          <p>
-          ถ้าการสังเกตประเมินคุณภาพได้ยาก ก็จะแก้ปัญหาด้วยการให้ระบบเป็นผู้โหวต:
-          </p>
-          <ul>
-          <li>
-          ระบบจะโหวตว่าการสังเกตนี้ไม่พบตามธรรมชาติถ้ามีการสังเกตอื่น ๆ ในระดับสกุลหรือต่ำกว่าอย่างน้อย 10 การสังเกตที่พบในเขตการปกครอง รัฐ หรือเขตการปกครองที่เทียบเท่าประเทศที่เล็กที่สุด ซึ่งมีการสังเกตนี้อยู่ด้วย และการสังเกตเหล่านั้นอย่างน้อย 80% ถูกทำเครื่องหมายว่าไม่พบตามธรรมชาติ
-          </li>
-          </ul><strong>
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
