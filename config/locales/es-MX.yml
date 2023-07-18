@@ -2218,8 +2218,6 @@ es-MX:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>Equipo de liderazgo de iNaturalist</strong>
-  independence_email_body_ps: |
-    P.D. - Muy pronto anunciaremos una generosa subvención que dará a iNaturalist independiente un sólido comienzo. El apoyo financiero de la comunidad iNaturalist hizo posible nuestra evolución y será vital para sostenibilidad a largo plazo. Su donación ahora celebrará este emocionante y asegurará el futuro de iNaturalist. Muchas gracias.
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Donar ahora
   computer_vision_suggestion: Sugerencia de la visión artificial
@@ -6448,61 +6446,6 @@ es-MX:
           Algunas de estas fotos se han marcado por su contenido inapropiado o porque violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto, los curadores del proyecto podrán ver las coordenadas oscurecidas de cualquier observación en el proyecto y esto implica que tu estás de acuerdo a los <a href="%{url}" target="_blank">términos</a> del proyecto.
-        quality_assessment_help2_html: |
-          <p>
-          La evaluación de calidad de datos es un resumen de la precisión de la observación. Todas las observaciones empiezan como grado <strong>"Casual"</strong>, y se convierten en 
-          <strong>"Necesita identificación</strong> cuando
-          </p>
-
-          <ul>
-          <li>la observación <strong>tiene fecha</strong></li>
-          <li>la observación <strong>está georeferenciada</strong> (es decir, tiene coordenadas de latitud y longitud)</li>
-          <li>la observación <strong>tiene fotos o sonidos</strong></li>
-          <li>la observación <strong>no es un humano</strong></li>
-          </ul>
-          <p>
-          Las observaciones se convierten en <strong>"Grado de Investigación"</strong> cuando
-          </p>
-          <ul>
-          <li>
-          La comunidad de %{site_name} <strong>está de acuerdo en su identificación a nivel de especie o inferior</strong>, es decir, cuando más de 2/3 de los identificadores están de acuerdo en un taxón (si la comunidad ha votado que el Taxón Comunitario no puede ser mejorado, esto revierte la identificación nivel de subfamilia o más baja)
-          </li>
-          </ul>
-          <p>
-          Las observaciones regresarán a <strong>"Casual"</strong> si las condiciones anteriores no se cumplen o la comunidad está de acuerdo en que
-          </p>
-          <ul>
-          <li>
-          la <strong>ubicación no parece precisa</strong> (por ejemplo, monos a la mitad del océano, hipopotamos en edificios de oficinas, etc.)
-          </li>
-          <li>
-          el <strong>organismo no es silvestre/naturalizado</strong> (por ejemplo es cultivado o en cautiverio por humanos o vida alienígena inteligente)
-          </li>
-          <li>
-          la observación <strong>no presenta evidencia de un organismo</strong>, por ejemplo, imágenes de paisajes, rocas o agua que no incluyen un organismo, etc.
-          </li>
-          <li>
-          la observación <strong>no presenta evidencia reciente (~100 años) del organismo</strong> (por ejemplo, no fósiles, pero si estan bien huellas, excretas y hojas muertas)
-          </li>
-          <li>
-          la observación no requiere más de una identificación <em>y</em> la identificación de la comunidad es superior al nivel de familia
-          </li>
-          <li>
-          el observador ha optado por salir de la identificación comunitaria y el taxón de la identificación comunitaria no es ancestro o descendiente del taxón asociado con la identificación de quien hace la observación
-          </li>
-          </ul>
-          <p>
-          Y si no fuera suficientemente complicado, hay situaciones donde el sistema tiene su voto:
-          </p>
-          <ul>
-          <li>
-          El sistema votará que una observación no es silvestre/naturalizada
-          si hay al menos otras 10 observaciones de un género o categoría inferior en
-          el lugar más pequeño ya sea condado, estado, municipio o su equivalente que
-          contenga esta observación y 80% o más de esas observaciones
-          sean marcadas no como silvestres/naturalizadas.
-          </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
