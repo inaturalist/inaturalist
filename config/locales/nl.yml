@@ -2266,9 +2266,6 @@ nl:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>iNaturalist Bestuur</strong>
-  independence_email_body_ps: |
-    PS - Zeer binnenkort zullen we een genereuze beurs ​​aankondigen die het onafhankelijk iNaturalist een solide start zal geven. De financiële steun van de iNaturalist-gemeenschap heeft onze ontwikkeling mogelijk gemaakt en zal van vitaal belang zijn voor
-    bestaanszekerheid op de lange termijn. Jouw donatie nu kan deze opwindende mijlpaal vieren en de toekomst van iNaturalist verder veilig stellen. Bedankt!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Doneer nu
   computer_vision_suggestion: Computer Vision Voorstel
@@ -4692,6 +4689,11 @@ nl:
     Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
     wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
   sites_affiliation_title: Meer informatie over netwerklidmaatschap
+  sites_network_agreements_html: |
+    iNaturalist heeft formele overeenkomsten met organisaties in elk van deze
+    geografische gebieden om het gebruik van het iNaturalist platform te ondersteunen.
+    <strong>Als jouw organisatie geïnteresseerd is in het toetreden tot het iNaturalist
+    Netwerk, dan kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
   sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
   sites_network_inaturalist_network_collection: |
     Het iNaturalist netwerk is een verzameling van gelokaliseerde websites die volledig
@@ -6495,73 +6497,6 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help2_html: |
-          <p>
-          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
-          <strong>"ID nodig"</strong> als
-          </p>
-
-          <ul>
-          <li>de waarneming <strong>heeft een datum</strong></li>
-          <li>de waarneming <strong>heeft een geolocatie</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-          <li>de waarneming <strong>heeft foto's of geluiden</strong></li>
-          <li>de waarneming <strong>is geen mens</strong></li>
-          </ul>
-          <p>
-          Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-          </p>
-          <ul>
-          <li>
-          the %{site_name} <strong>community agrees on species-level ID or
-          lower</strong>, i.e. when more than 2/3 of identifiers agree on a
-          taxon (if the community has voted that the Community Taxon can no
-          longer be improved, this reverts to subfamily-level ID or lower)
-          </li>
-          </ul>
-          <p>
-          Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
-          </p>
-          <ul>
-          <li>
-          the <strong>location doesn't look
-          accurate</strong> (e.g. monkeys in the middle of the ocean,
-          hippos in office buildings, etc.)
-          </li>
-          <li>
-          the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
-          or intelligent space aliens)
-          </li>
-          <li>
-          the observation <strong>doesn't present evidence of an
-          organism</strong>, e.g. images of water features,
-          rocks, landscapes that don't include the organism, etc.
-          </li>
-          <li>
-          the observation <strong>doesn't present recent (~100 years) evidence of
-          the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
-          are ok)
-          </li>
-          <li>
-          the observation no longer needs an ID <em>and</em> the community ID is above family
-          </li>
-          <li>
-          the observer has opted out of the community ID and the community
-          ID taxon is not an ancestor or descendant of the taxon associated
-          with the observer's ID
-          </li>
-          </ul>
-          <p>
-          And if that wasn't complicated enough, there are also situations where the system gets a vote:
-          </p>
-          <ul>
-          <li>
-          The system will vote that the observation is not wild/naturalized
-          if there are at least 10 other observations of a genus or lower in
-          the smallest county-, state-, or country-equivalent place that
-          contains this observation and 80% or more of those observations
-          have been marked as not wild/naturalized.
-          </li>
-          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
