@@ -3974,57 +3974,6 @@ sr:
         identification_count_desc: 'broj identifikacija za individualni takson'
         flagged_photos_desc_html: |
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
-        quality_assessment_help2_html: |
-          <p>
-          Procena kvaliteta podataka je ocena verodostojnosti opservacije. Sve opservacije na početku imaju <strong>"Neobavezno"</strong> status i on se menja u <strong>"Potreban ID"</strong> ako
-          </p>
-
-          <ul>
-          <li>opservacija <strong>ima datum</strong></li>
-          <li>opservacija <strong>je georeferencirana</strong> (tj. ima GŠ/GD koordinate)</li>
-          <li>opservacija <strong>ima fotografije ili zvukove</strong></li>
-          <li>opservacija <strong>nije ljudske jedinke</strong></li>
-          </ul>
-          <p>
-          Opservacije postaju <strong>"istraživački nivo"</strong> ako
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>zajednica se slaže sa ID-jem na nivou vrste ili niže</strong>, tj. ako se više od 2/3 identifikatora slaže sa priloženim taksonom (ako je zajednica glasala da takson zajednice ne može biti bolji nego što jeste, to će biti nivo potporodice ili niže)
-          </li>
-          </ul>
-          <p>
-          Opservacije će automatski dobiti status <strong>"Neobavezno"</strong> ako navedeni uslovi nisu zadovoljeni ili se zajednica ne slaže.
-          </p>
-          <ul>
-          <li>
-          <strong>lokacija ne deluje tačna</strong> (npr. majmuni u sred okeana,
-          nilski konji u poslovnim zgradama, itd.)
-          </li>
-          <li>
-          <strong>organizam nije u divljini/naturalizovan</strong> (npr. u zatočeništvu/kultivisano od strane ljudi ili inteligentnih vanzemaljaca)
-          </li>
-          <li>
-          opservacija <strong>ne sadrži dokaz o prisustvu organizma</strong>, npr. fotografije vode, kamenja, pejzaža na kojima se vidi organizam itd.
-          </li>
-          <li>
-          opservacija <strong>ne sadrži nedavni (~100 godina) trag organizma</strong> (npr. fosile ali su tragovi, feces i uvelo lišće takođe prihvatljivi)
-          </li>
-          <li>
-          opservaciji više nije potreban ID <em>i</em> ID zajednice je iznad nivoa porodice
-          </li>
-          <li>
-          posmatrač je isključio/la opciju ID zajednice i takson ID-ja zajednice nije predak ni potomak taksona povezanog sa ID-jem posmatrača
-          </li>
-          </ul>
-          <p>
-          Ako to nije dovoljno komplikovano, ima situacija kada sistem automatski dodaje glas:
-          </p>
-          <ul>
-          <li>
-          Sistem će automatski pretpostaviti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem ekvivalentnom mestu u okrugu, državi ili zemlji koje sadrži tu opservaciju i 80% ili više takvih opservacija su označene da nisu u divljini/naturalizovane.
-          </li>
-          </ul>
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
