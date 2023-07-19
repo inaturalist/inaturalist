@@ -2057,6 +2057,8 @@ de:
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   inaturalist_global_year_in_review: "Globaler Rückblick auf das iNaturalist-Jahr %{year}"
+  independence_email_body_ps: |
+    P.S. - Bald werden wir eine großzügige Förderung ankündigen, die iNaturalist einen soliden Start in die Unabhängigkeit geben wird. Die finanzielle Unterstützung der iNaturalist-Community ermöglichte unsere Entwicklung und wird für die langfristige Nachhaltigkeit von entscheidender Bedeutung sein. Deine Spende wird jetzt Teil dieses aufregenden Meilensteins sein und die Zukunft von iNaturalist weiter sichern. Vielen Dank!
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -6209,6 +6211,55 @@ de:
           die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
           Beobachtung im Projekt zu sehen und impliziert, dass du
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
+        quality_assessment_help2_html: |
+          <p> Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
+          </p>
+
+          <ul>
+           <li>die Beobachtung <strong>ein Datum</strong> hat</li>
+           <li>die Beobachtung <strong>georeferenziert</strong> ist (d.h. Lat/Lon-Koordinaten enthält)</li>
+           <li>die Beobachtung <strong>Bilder oder Tonaufnahmen</strong> enthält</li>
+           <li>die Beobachtung <strong>nicht die ID 'Mensch'</strong> (Homo sapiens) hat</li>
+          </ul>
+          <p>
+          Beobachtungen erreichen <strong>"Forschungsqualität"</strong> wenn
+          </p>
+          <ul>
+          <li>
+          die %{site_name} <strong>iNat-Community der Bestimmung (ID) auf (Unter-)Artniveau</strong> zustimmt, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
+          </li>
+          </ul>
+          <p>
+          Beobachtungen erhalten <strong>"Hobbyqualität"</strong>-Status, falls die oben angeführten Bedingungen nicht erfüllt werden, oder die Community dahingehend übereinstimmt, dass
+          </p>
+          <ul>
+          <li>
+          der <strong>Standort als nicht korrekt</strong> erscheint (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
+          </li>
+          <li>
+          der <strong>Organismus nicht wild/verwildert</strong> ist (z.B. kultiviert oder in Haltung von Menschen oder auch von intelligenten Außerirdischen)
+          </li>
+          <li>
+          die Beobachtung <strong>keine Hinweise auf einen Organismus</strong> zeigt, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
+          </li>
+          <li>
+          die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus</strong> aufweist (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
+          </li>
+          <li>
+          die Beobachtung keine genauere ID erlaubt <em>und</em> die Community-ID auf Familienniveau oder höher ist
+          </li>
+          <li>
+          der Beobachter <strong>aus der "Community-ID" ausgetreten</strong> ist und die Community dem vom Beobachter bestimmten Taxon widerspricht
+          </li>
+          </ul>
+          <p>
+          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System mitbestimmen darf:
+          </p>
+          <ul>
+          <li>
+          Das System wird eine Beobachtung automatisch als nicht wild/verwildert kennzeichnen, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als nicht wild/verwildert markiert wurden.
+          </li>
+          </ul>
         score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
         observation_flagged_notice_html: |
           Diese Beobachtung ist als Spam gemeldet worden und ist nicht mehr
