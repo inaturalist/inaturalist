@@ -27,6 +27,15 @@ const OBSERVATION_FIELDS = {
     url: true
   },
   reviewed_by: true,
+  identifications: {
+    current: true,
+    user: {
+      id: true
+    },
+    taxon: {
+      id: true
+    }
+  },
   taxon: {
     id: true,
     uuid: true,
@@ -141,6 +150,7 @@ function fetchObservations( ) {
               // with Object.assign you lose all the Observation model stuff
               o.reviewedByCurrentUser = true;
             }
+            o.identifications_count = _.size( _.filter( o.identifications, "current" ) );
             return o;
           } );
         }

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
@@ -21,6 +22,7 @@ const Observation = ( {
   hideUserIcon
 } ) => {
   const observedDate = observation.time_observed_at || observation.observed_on;
+  const identificationsCount = _.size( _.filter( observation.identifications, "current" ) );
   const caption = (
     <div className={`caption ${hideUserIcon ? "no-icon" : ""}`}>
       <SplitTaxon
@@ -32,15 +34,15 @@ const Observation = ( {
       />
       { !hideUserIcon && ( <UserImage user={observation.user} /> ) }
       <div className="meta">
-        { observation.non_owner_ids.length > 0 && (
+        { identificationsCount > 0 && (
           <span
             className="count identifications"
             title={
-              I18n.t( "x_identifications", { count: observation.non_owner_ids.length } )
+              I18n.t( "x_identifications", { count: identificationsCount } )
             }
           >
             <i className="icon-identification" />
-            { observation.non_owner_ids.length }
+            { identificationsCount }
           </span>
         ) }
         { observation.comments.length > 0 && (

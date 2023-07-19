@@ -81,10 +81,10 @@
               <%=t :missing_date %>
             <% end -%>
           </span>
-          <% if observation.num_identifications_by_others > 0 -%>
+          <% if observation.current_identifications_count > 0 -%>
             <span class="ids_by_others">
               <i class="icon-identification"></i>
-              <%= observation.num_identifications_by_others %>
+              <%= observation.current_identifications_count %>
             </span>
           <% end -%>
           <%- if observation.research_grade? %>

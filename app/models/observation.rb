@@ -1367,6 +1367,10 @@ class Observation < ApplicationRecord
     key
   end
   
+  def current_identifications_count
+    identifications.select( &:current? ).length
+  end
+
   def num_identifications_by_others
     num_identification_agreements + num_identification_disagreements
   end
