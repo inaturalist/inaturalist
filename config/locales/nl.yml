@@ -6493,6 +6493,13 @@ nl:
         cumulative_count_desc: '# determinaties voor een individueel taxon en al zijn afstammelingen'
         curator_coordinate_access_disabled_desc_html: |
           Dit project staat geen waarnemingen toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Als je de coördinaten van deze waarneming niet wilt delen met de curatoren van dit project, moet je de waarneming uit het project verwijderen.
+        data_quality_assessment_desc3_html: |
+          Het kwaliteitsniveau vat de juistheid, nauwkeurigheid, volledigheid,
+          relevantie en de geschiktheid van een iNaturalist waarneming als
+          biodiversiteitsgegevens samen. Sommige attributen worden automatisch bepaald,
+          terwijl andere het resultaat zijn van aan een stemming door iNat-gebruikers. iNaturalist
+          deelt gelicenseerde "Onderzoekskwaliteit" waarnemingen met een aantal gegevenspartners
+          voor gebruik in de wetenschap en natuurbehoud.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
@@ -6500,6 +6507,62 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
+        quality_assessment_help2_html: |
+          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle
+          waarnemingen beginnen als <strong>"onvolledig"</strong> en kunnen
+          <strong>"ID nodig"</strong> worden als <p>
+          </p>
+
+          <ul>
+          <li>de waarneming <strong>een datum heeft</strong></li>
+          <li>de waarneming <strong>een locatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+          <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+          <li>de waarneming <strong>geen mens is</strong></li>
+          </ul>
+          <p>
+          Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
+          </p>
+          <ul>
+          <li>
+          de %{site_name} <strong>gemeenschap een determinatie overeenkomt op soortsniveau of lager
+          lower</strong>, dwz dat meer dan 2/3 van de determinaties hetzelfde taxon betreft (als de gemeenschap heeft gestemd dat het gemeenschapstaxon niet verder verbeterd kan worden gaat het terug op onderfamilie niveau of hoger)
+          </li>
+          </ul>
+          <p>
+          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap ermee instemt.
+          </p>
+          <ul>
+          <li>
+          de <strong>locatie niet nauwkeurig lijkt</strong> (bijv. apen in het midden van de oceaan, nijlpaarden in een kantoor, etc.)
+          </li>
+          <li>
+          het <strong>organisme is niet wild/verwilderd</strong> (dwz gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
+          </li>
+          <li>
+          de waarneming <strong>geen bewijs van het organisme toont</strong>, bijv. plaatjes van waterkenmerken, rotsen, landschappen dat geen organisme bevat, etc.
+          </li>
+          <li>
+          de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme toont</strong> (zoals bijvoorbeeld fossielen, maar sporen, poep en dood blad zijn wel goed)
+          </li>
+          <li>
+          de waarneming niet langer een ID nodig heeft <em>en</em> het gemeenschapsID is op familie niveau of hoger
+          </li>
+          <li>
+          de waarnemer heeft het gemeenschaps ID uitgezet en de gemeenschaps ID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemers ID
+          the observer has opted out of the community ID and the community
+          ID taxon is not an ancestor or descendant of the taxon associated
+          with the observer's ID
+          </li>
+          </ul>
+          <p>
+          En alsof dat niet moeilijk genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
+          </p>
+          <ul>
+          <li>
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er tenminste 10 
+          andere waarnemingen zijn van een genus of lager in de kleinste gemeente, provincie- of land-equivalente plaats dat deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/verwilderd.
+          </li>
+          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
