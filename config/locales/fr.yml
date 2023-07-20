@@ -2203,6 +2203,8 @@ fr:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>L'équipe de direction d'iNaturalist</strong>
+  independence_email_body_ps: |
+    P.S. - Nous annoncerons bientôt une subvention généreuse qui permettra à l'organisme indépendant iNaturalist de prendre un départ sur des bases solides. Notre évolution n'aurait pas été possible sans le soutien financier de la communauté iNaturalist et cet appui restera vital pour la pérennité du projet. Faites un don maintenant pour célébrer avec nous l'étape que nous franchissons et pour assurer l'avenir d'iNaturalist. Merci !
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Faites un don maintenant
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
@@ -6507,6 +6509,36 @@ fr:
           Rejoindre le projet permettra aux responsables du projet de voir les coordonnées masquées de cette observation ou de toute
           autre observation incluse dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
+        quality_assessment_help2_html: |
+          <p>L'évaluation de la qualité des données est un résumé de la qualité d'une observation. Toutes les observations sont d'abord <strong>« informelles » </strong> et passent à <strong>« Nécessite une ID »</strong> quand :
+          </p>
+
+          <ul>
+          	<li>L'observation a une <strong>date</strong>;</li>
+          	<li>L'observation est <strong>géolocalisée</strong> (c'est-à-dire qu'elle possède des coordonnées de latitude et longitude);</li>
+          	<li>L'observation comporte <strong>des photos ou des enregistrements audios</strong>;</li>
+          	<li>L'observation ne concerne pas un <strong>être humain</strong>.</li>
+          </ul>
+          <p>Les observations atteignent le <strong>« niveau de recherche »</strong> quand :
+          </p>
+          <ul>
+          	<li>La communauté %{site_name} s'accorde sur l'identification de l'espèce ou d'un taxon inférieur, c'est-à-dire lorsque plus des deux tiers des identificateurs sont d'accord sur un taxon (si la communauté a voté que le taxon de la communauté ne peut plus être amélioré, le niveau repasse à la sous-famille ou inférieur).</li>
+          </ul>
+          <p>Les observations redeviennent <strong>« informelles »</strong> si les conditions ci-dessus ne sont pas remplies ou si la communauté s'accorde sur le fait que :
+          </p>
+          <ul>
+          	<li>La <strong>localisation ne semble pas exacte</strong> (par exemple, des singes dans l'océan, des hippopotames dans un immeuble de bureaux);</li>
+          	<li>L'organisme n'est pas <strong>sauvage/naturalisé</strong> (par exemple, l'organisme est captif ou cultivé par des êtres humains ou extraterrestres);</li>
+          	<li>L'observation ne présente pas de <strong>preuve d'existence de l'organisme</strong>, par exemple photos d'étendues d'eau, de rochers, de paysages qui n'incluent pas l'organisme, etc. ;</li>
+          	<li>L'observation ne présente pas de <strong>preuve récente (~100 ans) de l'existence de l'organisme</strong> (par exemple, des fossiles ; en revanche, les empreintes, les excréments et les feuilles mortes sont des preuves d'existence acceptables) ;</li>
+          	<li>L'observation n'a plus besoin d'une identification <em>et</em> l'identification de la communauté est au niveau de la famille ou supérieur;</li>
+          	<li>L'observateur ou l'observatrice a refusé l'identification de la communauté et le taxon de l'identification de la communauté n'est ni un parent ni un descendant du taxon associé à l'identification.</li>
+          </ul>
+          <p>Et, comme si cela ne suffisait pas, il y a aussi des situations dans lesquelles le système a un avis :
+          </p>
+          <ul>
+          	<li>Le système considère que l'observation ne concerne pas un organisme <strong>sauvage/naturalisé</strong> s'il y a au moins 10 autres observations du genre ou d'un taxon inférieur dans la région ou, à défaut, l'État ou le pays et qu'au moins 80 % de ces organismes ont été marqués comme non sauvages/non naturalisés.</li>
+          </ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
           Cette observation a été marquée comme pourriel et n’est plus
