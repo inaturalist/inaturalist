@@ -798,6 +798,10 @@ pl:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atrybut
   attribution: Uznanie autorstwa
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, przesłane przez użytkownika %{user}"
   authority_list:
     iucn_red_list: Czerwona księga gatunków zagrożonych
     natureserve: NatureServe
@@ -806,6 +810,7 @@ pl:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Autoryzuj z PKCE
+  authorize_permissions_from_provider: "Autoryzuj uprawnienia od %{provider}"
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
@@ -937,19 +942,19 @@ pl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: włącz do
+    merge_into: scal w
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: scalone w
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zastąpione przez
+    replaced_by: zastąpiony przez
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: zastąp
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_with: zastąpione przez
+    replaced_with: zastąpiony przez
     dropped: odrzucone
     staged: etapy
     input_taxon_was_split_into_output_taxa_html: "takson %{input_taxon} został podzielony na taksony %{output_taxa}"
-    input_taxon_will_be_split_into_output_taxa_html: "takson %{input_taxon} zostanie podzielony na taksony %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "Takson %{input_taxon} zostanie podzielony na taksony %{output_taxa}"
     input_taxon_was_dropped_html: "takson %{input_taxon} został odrzucony"
     input_taxon_will_be_dropped_html: "takson %{input_taxon} zostanie odrzucony"
     input_taxon_will_be_activated_soon_html: "takson %{input_taxon} zostanie niedługo aktywowany"
@@ -1059,6 +1064,7 @@ pl:
   comprehensive_list: Kompleksowa lista
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Oczekujący
+  confidential: Poufne
   configure: Konfiguruj
   configure_a_widget_to_show: Skonfiguruj widget, aby pokazać obserwacje z %{site_name} na swojej stronie lub blogu. Być może będziesz musiał uwzględnić CSS w <code>&lt;nagłówku</code> HTMLa. Jeśli potrzebujesz, możesz dostosować CSS do własnych potrzeb.
   confirm: Potwierdź
@@ -2405,6 +2411,7 @@ pl:
   most_observed_species: Najczęściej obserwowany gatunek
   most_observed_introduced_species: Najczęściej obserwowany gatunek introdukowany
   most_observed_threatened_species: Najczęściej obserwowany gatunek zagrożony
+  move_input_children_to_output?: Przenieść taksony podrzędne do wyjściowego taksonu?
   multiple: wiele
   multiple_select_option: '-- wiele --'
   multiple_taxon_ids_separated_by_commas: 'Wiele identyfikatorów taksonów oddzielonych przecinkami, np. 123,654'
@@ -4512,6 +4519,12 @@ pl:
         trending_desc: Najczęściej obserwowane taksony w zeszłym miesiącu
         trending_in_place_desc_html: Najczęściej obserwowane taksony w zeszłym miesiącu w <a href="%{url}">%{place}</a>
         wanted_desc: Gatunki należące do tego taksonu, który nie zostały jeszcze zaobserwowane.
+    taxon_changes:
+      move_children_desc: |
+        Taksony podrzędne taksonu wejściowego, które są rodzajami lub taksonami wyższej rangi, zostaną przeniesione do taksonu wyjściowego; gatunki, podgatunki, odmiany itd. zostaną zastąpione odpowiadającymi im taksonami z nową nazwą rodzaju lub gatunku.
+      form:
+        move_children_desc_html: |
+          Zaznaczenie tego pola w przypadku zamian i scaleń taksonów spowoduje przeniesienie taksonów podrzędnych taksonu wejściowego do taksonu wyjściowego, gdy ta zmiana zostanie wykonana. Jeżeli zmiana dotyczy rodzaju lub taksonu niższej rangi, zostaną utworzone zamiany taksonów dla wszystkich taksonów podrzędnych, które mają sugerowaną zmianę nazwy. Na przykład, jeżeli zamienisz rodzinę Canidae na Dogidae, zostanie zamieniony takson nadrzędny dla rodzaju <i>Canis</i> z Canidae na Dogidae. Jeżeli zamienisz rodzaj <i>Canis</i> na <i>Dogis</i>, zostaną utworzone i wykonane zamiany taksonu w celu zmiany taksonu <i>Canis lupus</i> na <i>Dogis lupus</i> i <i>Canis lupus</i> ssp. <i>lupus</i> na <i>Dogis lupus</i> ssp. <i>lupus</i>. Może to spowodować niezły bałagan, dlatego używaj tej opcji ostrożnie.
     taxon_links:
       form:
         name_with_rank_desc: |
