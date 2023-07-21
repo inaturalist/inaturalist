@@ -13,7 +13,9 @@ iNatModels.Observation = function( attrs ) {
     };
   });
   this.identifications_count = _.size(
-    _.filter( this.identifications, i => ( i.current && !i.hidden ) )
+    _.filter( this.identifications, function( i ) {
+      return i.current && !i.hidden;
+    } )
   );
 };
 
