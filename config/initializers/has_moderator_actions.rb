@@ -22,7 +22,28 @@ module HasModeratorActions
     def hidden?
       moderator_actions.sort_by( &:id ).last.try( :action ) == ModeratorAction::HIDE
     end
+
+    def hideable_by?( u )
+      return false unless u
+      if self.is_a?( User )
+        return false if self === u
+      elsif self.user
+        return false if self.user === u
+      end
+      u.is_admin? || u.is_curator?
+    end
+
+    def hidden_content_viewable_by?( u )
+      return false unless u
+      return true if hideable_by?( u )
+      if self.is_a?( User )
+        return true if self == u
+      elsif self.user
+        return self.user === u
+      end
+    end
   end
+
 end
 
 ActiveRecord::Base.include HasModeratorActions

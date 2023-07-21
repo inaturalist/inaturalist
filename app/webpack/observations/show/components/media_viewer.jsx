@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Lightbox from "react-images";
@@ -67,7 +68,7 @@ class MediaViewer extends Component {
   render( ) {
     const { observation } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    let images = this.props.observation.photos.map( photo => {
+    let images = _.filter( this.props.observation.photos, p => !p.hidden ).map( photo => {
       let original = photo.photoUrl( "original" );
       let large = photo.photoUrl( "large" );
       let medium = photo.photoUrl( "medium" );

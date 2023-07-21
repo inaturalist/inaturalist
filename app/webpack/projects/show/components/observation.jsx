@@ -22,7 +22,9 @@ const Observation = ( {
   hideUserIcon
 } ) => {
   const observedDate = observation.time_observed_at || observation.observed_on;
-  const identificationsCount = _.size( _.filter( observation.identifications, "current" ) );
+  const identificationsCount = _.size(
+    _.filter( observation.identifications, i => ( i.current && !i.hidden ) )
+  );
   const caption = (
     <div className={`caption ${hideUserIcon ? "no-icon" : ""}`}>
       <SplitTaxon

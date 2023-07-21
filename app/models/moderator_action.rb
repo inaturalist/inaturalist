@@ -24,6 +24,7 @@ class ModeratorAction < ApplicationRecord
 
   after_save :touch_resource
   after_save :notify_resource
+  after_destroy :notify_resource_on_destroy
 
   def only_staff_can_unhide
     return unless user && action == UNHIDE && !user.is_admin?
@@ -64,7 +65,12 @@ class ModeratorAction < ApplicationRecord
 
   def notify_resource
     return unless resource.respond_to?( :moderated_with )
-
     resource.moderated_with( self )
   end
+
+  def notify_resource_on_destroy
+    return unless resource.respond_to?( :moderated_with )
+    resource.moderated_with( self, action: "destroyed" )
+  end
+
 end

@@ -21,6 +21,8 @@
   posted_at ||= item.created_at
   posted_at = item.updated_at if item.is_a?(Flag)
   html_class = "#{item.class.name.humanize.underscore}_activity_item item clear stacked"
+  item_hidden = item.respond_to?( :hidden? ) && item.hidden?
+  viewer_can_see_item = !item_hidden || item.hidden_content_viewable_by?( current_user )
   id_attr = if item.is_a? Comment
     "activity_comment_#{item.uuid}"
   elsif item.is_a? Identification
@@ -38,7 +40,9 @@
 -%>
 <div id="<%= id_attr  %>" class="<%= html_class %>">
   <div class="item_user column">
-    <% if user && !no_thumb -%>
+    <% if !viewer_can_see_item -%>
+      <span class="no-usericon" />
+    <% elsif user && !no_thumb -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>
     <% end -%>
   </div>
@@ -91,7 +95,7 @@
         item.description
       end -%>
     <% unless text.blank? -%>
-      <% if item.respond_to?(:hidden?) && item.hidden? %>
+      <% if !viewer_can_see_item %>
         <div class="quiet box">
           <%=t :content_hidden %>
         </div>
@@ -108,8 +112,10 @@
     
     <% unless no_meta -%>
       <div class="meta">
-        <%=t :posted_by %>
-        <%= link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
+        <% if viewer_can_see_item %>
+          <%=t :posted_by %>
+          <%= link_to( truncate( you_or_login( user ).downcase, length: 20 ), person_path( user ) ) %>
+        <% end %>
         <span class="when">
           <abbr class="date timeago" title="<%= posted_at.iso8601 %>">
             <%=t :n_ago, :n => time_ago_in_words(posted_at) %>
@@ -120,6 +126,17 @@
             <i class="fa fa-flag"></i>
             <%=t :flagged_ %>
           <% end %>
+        <% end %>
+        <% if item_hidden && viewer_can_see_item %>
+          <span
+            class="content-hidden"
+            data-content="<%= render( partial: "moderator_actions/popover", locals: { item: item } ).to_str %>"
+            data-placement="top"
+            data-toggle="popover"
+          >
+            <i class="fa fa-eye-slash" ></i>
+            <%= t :content_hidden %>
+          </span>
         <% end %>
         <span class="comment_actions">
           <%-
@@ -139,11 +156,14 @@
                           :method => :delete,
                           :id => "delete_comment_#{item.id}_button")
             end
-            if !item.is_a?(Flag) && Flag::TYPES.include?(item.class.name)
+            if !item.is_a?(Flag) && Flag::TYPES.include?(item.class.name) && current_user
               pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
             end
+            if item.is_a?( Comment ) && item.hideable_by?( current_user )
+              pieces << link_to( t( item_hidden ? :unhide_content : :hide ), hide_comment_path( item ) )
+            end
           -%>
-          (<%= pieces.join(' | ').html_safe %>)
+          <%= "(#{ pieces.join(' | ') })".html_safe unless pieces.empty? %>
         </span>
       </div>
     <% end -%>

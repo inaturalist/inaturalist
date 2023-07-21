@@ -169,6 +169,7 @@ class LocalPhoto < Photo
   def could_be_public
     return false unless Shared::LicenseModule::ODP_LICENSES.include?( self.license )
     return false if flags.any?{ |f| !f.resolved? }
+    return false if hidden?
     true
   end
 
@@ -487,6 +488,43 @@ class LocalPhoto < Photo
     puts "deleting photo #{id} [#{images.size} files] from S3"
     # delete the duplicates in the static bucket
     client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+  end
+
+  def presigned_url( size = "original" )
+    return unless CONFIG.usingS3
+    return if processing?
+    s3_credentials = LocalPhoto.new.file.s3_credentials
+    signer = Aws::Sigv4::Signer.new(
+      service: "s3",
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: CONFIG.s3_region
+    )
+    signer.presign_url(
+      http_method: "GET",
+      # creating the URL here instead of using an existing method like sized_url
+      # as that method will use custom URLs for hidden photos
+      url: "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}",
+      expires_in: 60,
+      body_digest: "UNSIGNED-PAYLOAD"
+    )
+  end
+
+  def set_acl
+    return unless CONFIG.usingS3
+    return if in_public_s3_bucket?
+    images = LocalPhoto.aws_images_from_bucket( s3_client, s3_bucket, self )
+    return if images.blank?
+    acl = hidden? ? "private" : "public-read"
+    images.each do |image|
+      s3_client.put_object_acl( bucket: s3_bucket, key: image.key, acl: acl )
+    end
+    if acl === "private"
+      LocalPhoto.delay(
+        priority: INTEGRITY_PRIORITY,
+        unique_hash: { "LocalPhoto::invalidate_cloudfront_cache_for": id }
+      ).invalidate_cloudfront_cache_for( id, :file, "photos/:id/*" )
+    end
   end
 
   def self.prune_odp_duplicates_batch( min_id, max_id )

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     only: [ :create, :update, :destroy ],
     if: lambda { authenticate_with_oauth? }
   before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :load_record, :only => [:show, :edit, :update, :destroy, :hide]
   before_action :owner_required, :only => [:edit, :update]
   before_action :curator_required, only: [:user]
   check_spam only: [:create, :update], instance: :comment
@@ -163,7 +163,10 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
+
+  def hide
+  end
+
   private
   def redirect_to_parent
     anchor = "activity_comment_#{@comment.uuid}"

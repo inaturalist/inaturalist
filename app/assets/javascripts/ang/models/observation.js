@@ -12,7 +12,9 @@ iNatModels.Observation = function( attrs ) {
       that[ attr ] = value
     };
   });
-  this.identifications_count = _.size( _.filter( this.identifications, "current" ) );
+  this.identifications_count = _.size(
+    _.filter( this.identifications, i => ( i.current && !i.hidden ) )
+  );
 };
 
 iNatModels.Observation.prototype.photo = function( ) {

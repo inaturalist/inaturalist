@@ -421,6 +421,9 @@ Rails.application.routes.draw do
   post "check_lists/:id/add_taxon_batch" => "check_lists#add_taxon_batch", :as => :check_list_add_taxon_batch,
     :constraints => { id: /\d+([\w\-%]*)/ }
   resources :comments, constraints: { id: id_param_pattern } do
+    member do
+      get "hide"
+    end
     resources :flags
   end
   get "comments/user/:login" => "comments#user", :as => :comments_by_login,
@@ -694,7 +697,11 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  resources :moderator_actions, only: [:create]
+  resources :moderator_actions, only: [:create] do
+    member do
+      get :resource_url, constraints: lambda {|req| req.format == :json }
+    end
+  end
 
   resource :lifelists, only: [] do
     collection do

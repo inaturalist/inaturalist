@@ -17,6 +17,7 @@ import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import TextEditor from "../../../shared/components/text_editor";
+import HiddenContentMessageContainer from "../../../shared/containers/hidden_content_message_container";
 
 class ActivityItem extends React.Component {
   constructor( props ) {
@@ -324,75 +325,13 @@ class ActivityItem extends React.Component {
     const headerItems = [];
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
     if ( item.hidden ) {
-      const moderatorAction = _.sortBy(
-        _.filter( item.moderator_actions, ma => ma.action === "hide" ),
-        ma => ma.id * -1
-      )[0];
-      const maUserLink = (
-        <a
-          href={`/people/${moderatorAction.user.login}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`@${moderatorAction.user.login}`}
-        </a>
-      );
       headerItems.push(
-        <OverlayTrigger
+        <HiddenContentMessageContainer
           key={`hidden-tooltip-${item.uuid}`}
-          container={$( "#wrapper.bootstrap" ).get( 0 )}
-          placement="top"
-          trigger="click"
-          rootClose
-          delayShow={200}
-          overlay={(
-            <Popover
-              id={`hidden-${item.uuid}`}
-              className="unhide-popover"
-            >
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "content_hidden_by_user_on_date_because_reason_html", {
-                    user: ReactDOMServer.renderToString( maUserLink ),
-                    date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
-                    reason: ReactDOMServer.renderToString( <UserText text={moderatorAction.reason} className="inline" /> )
-                  } )
-                }}
-              />
-              <div className="upstacked text-muted">
-                <a
-                  href={`/${this.isID ? "identifications" : "comments"}/${item.uuid}/flags`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="linky"
-                >
-                  {I18n.t( "view_flags" )}
-                </a>
-                {viewerIsActor && (
-                  <span>
-                    <br />
-                    <a
-                      href="/help"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="linky"
-                    >
-                      {I18n.t( "contact_support" )}
-                    </a>
-                  </span>
-                )}
-              </div>
-            </Popover>
-          )}
-        >
-          <span className="item-status hidden-status">
-            <i className="fa fa-eye-slash" title={I18n.t( "content_hidden" )} />
-            <span className="hidden-xs hidden-sm">
-              {" "}
-              {I18n.t( "content_hidden" )}
-            </span>
-          </span>
-        </OverlayTrigger>
+          item={item}
+          itemType={this.isID ? "identifications" : "comments"}
+          shrinkOnNarrowDisplays
+        />
       );
     }
     if ( unresolvedFlags.length > 0 ) {
