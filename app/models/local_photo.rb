@@ -504,7 +504,7 @@ class LocalPhoto < Photo
       http_method: "GET",
       # creating the URL here instead of using an existing method like sized_url
       # as that method will use custom URLs for hidden photos
-      url: "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}",
+      url: "https://s3.amazonaws.com/#{CONFIG.s3_bucket}/photos/#{id}/#{size}.#{file_extension.extension}",
       expires_in: 60,
       body_digest: "UNSIGNED-PAYLOAD"
     )

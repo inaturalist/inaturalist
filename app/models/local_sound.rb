@@ -91,7 +91,7 @@ class LocalSound < Sound
     )
     signer.presign_url(
       http_method: "GET",
-      url: file.url,
+      url: "https://s3.amazonaws.com/#{CONFIG.s3_bucket}/#{file.path}",
       expires_in: 60,
       body_digest: "UNSIGNED-PAYLOAD"
     )
