@@ -788,6 +788,7 @@ pl:
   assessment_x: "Ocena %{assessment}"
   assessments: oceny
   associations: Powiązania
+  atlased: W atlasie
   atlas_for_taxon_html: Atlas dla %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -857,6 +858,8 @@ pl:
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
+  become_a_donor_caps: ZOSTAŃ OFIARODAWCĄ
+  become_a_donor_today_caps: ZOSTAŃ OFIARODAWCĄ JUŻ DZISIAJ
   before_importing_photos: przed zaimportowaniem zdjęć
   bg_color: Kolor tła
   bio: O mnie
@@ -1402,6 +1405,7 @@ pl:
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
     registrations:
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+      signed_up: 'Witamy! Zarejestrowałeś się pomyślnie.'
       signed_up_but_inactive: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto nie zostało jeszcze aktywowane."
       signed_up_but_locked: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto jest zablokowane."
       updated: 'Pomyślnie zaktualizowałeś swoje konto'
@@ -1433,6 +1437,7 @@ pl:
   did_you_photos_flickr?: Czy dodałeś zdjęcia na Flickr?
   disable: Wyłącz
   disable_comments: Wyłącz komentarze
+  disable_comments_desc: Zablokuj użytkownikom możliwość dodawania komentarzy
   disagree_: Nie zgadzam się
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
@@ -1547,6 +1552,11 @@ pl:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Dostarczyliśmy Ci e-mail z potwierdzeniem dnia %{date}. Jeśli go nie otrzymałeś, oto kilka rzeczy, które możesz zrobić:
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Szczegóły konta
+  email_copyright2: "&copy; %{year} iNaturalist, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
@@ -1672,6 +1682,7 @@ pl:
   flag_as_non_spammer: To nie spamer
   #Label for the date/time when a flag was created
   flag_created: Flaga utworzona
+  flag_deleted: Zgłoszenie usunięte
   flag_description: Zgłoś tę zawartość, aby powiadomić kuratorów, że coś jest z nią nie tak.
   flag_for_check_list_title_html: |
     Zgłoszenie dla checklisty: %{title}
@@ -1763,6 +1774,7 @@ pl:
     few: grzyby
     many: grzybów
     other: grzyba
+  gbif: GBIF
   gbif_occurrences: Wystąpienia GBIF
   generate_taxonomic_tags_for_flickr: Wygeneruj taksonomiczne tagi do twoich zdjęć z Flickra.
   generate_widget: Wygeneruj Widget
