@@ -5857,6 +5857,8 @@ nl:
     de natuur te beleven
   yir_monthly_supporters_random_selection: |
     Hieronder is een willekeurige selectie van iNaturalist's heroïsche communityleden die elke maand doneren.
+  yir_thank_your_for_being_generous2: |
+    Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit openbare organisatie. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.
   yir_your_gift_sustains: |
     Je gift ondersteunt deze website met een wereldwijd bereik en diepgaande persoonlijke en
     ecologische effecten
@@ -7088,6 +7090,9 @@ nl:
           alle jaren.
         compared_to_previous_years: Vergelijk met voorgaande jaren
         donate_title: "Speciale dank aan al onze supporters"
+        donate_desc2_html: |
+          Bedankt dat je vrijgevig bent met je tijd, aandacht, kennis en donaties! iNaturalist is een 501(c)3 nonprofit organisatie uit de Verenigde Staten. Het wordt ondersteund door een <a href="%{team_url}">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel en
+          <a href="%{seek_url}">Seek van iNaturalist</a> plus het beheren van ondersteuning aan de gemeenschap, samenwerkingsverbanden en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van heel veel beurzen en donaties waaronder vrijwillige bijdragen van heel klein deel van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen met onze plannen voor de toekomst. Je kunt in heel veel valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in %{year} het grootste jaar voor iNaturalist tot nu toe maken!
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Ons doel is 1000 vaste donateurs per maand
         inaturalist_network: iNaturalist netwerk
@@ -7416,6 +7421,11 @@ nl:
         licensing_desc_html: |
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
+        monthly_supporter_desc_html: |
+          Maandelijkse supporters van iNaturalist doneren maandelijks automatisch aan iNaturalist (United States IRS EIN 92-1296468) ter ondersteuning van het not-for-profit-beheer van iNaturalist en de iNaturalist-netwerksites.
+          <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
+          Als je steun door ons is bevestigd kun je deze checkbox aanvinken
+          zodat deze status in je profiel wordt weergegeven. Let op: het e-mailadres op Donorbox moet exact gelijk zijn aan die op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent. Als ze verschillend zijn, verander er dan één zodat ze gelijk zijn.
         muting_desc_html: |
           <p>
              Als je iemand dempt, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, berichten naar je sturen, je naam noemen, etc. Dempen helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.
