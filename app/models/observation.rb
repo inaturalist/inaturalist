@@ -1852,7 +1852,7 @@ class Observation < ApplicationRecord
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
-      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+      self.species_guess = ( community_taxon.common_name( user: user ).try( :name ) || community_taxon.name )
     end
     true
   end
@@ -1938,9 +1938,7 @@ class Observation < ApplicationRecord
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats( skip_save: true )
       self.species_guess = if taxon
-        taxon.common_name.try(:name) || taxon.name
-      else
-        nil
+        taxon.common_name( user: user ).try( :name ) || taxon.name
       end
     end
     true
