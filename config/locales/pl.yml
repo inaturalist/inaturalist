@@ -788,6 +788,7 @@ pl:
   assessment_x: "Ocena %{assessment}"
   assessments: oceny
   associations: Powiązania
+  atlased: W atlasie
   atlas_for_taxon_html: Atlas dla %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -798,6 +799,10 @@ pl:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atrybut
   attribution: Uznanie autorstwa
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, przesłane przez użytkownika %{user}"
   authority_list:
     iucn_red_list: Czerwona księga gatunków zagrożonych
     natureserve: NatureServe
@@ -806,6 +811,7 @@ pl:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Autoryzuj z PKCE
+  authorize_permissions_from_provider: "Autoryzuj uprawnienia od %{provider}"
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
@@ -852,6 +858,8 @@ pl:
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
+  become_a_donor_caps: ZOSTAŃ OFIARODAWCĄ
+  become_a_donor_today_caps: ZOSTAŃ OFIARODAWCĄ JUŻ DZISIAJ
   before_importing_photos: przed zaimportowaniem zdjęć
   bg_color: Kolor tła
   bio: O mnie
@@ -937,19 +945,19 @@ pl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: włącz do
+    merge_into: scal w
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: scalone w
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zastąpione przez
+    replaced_by: zastąpiony przez
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: zastąp
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_with: zastąpione przez
+    replaced_with: zastąpiony przez
     dropped: odrzucone
     staged: etapy
     input_taxon_was_split_into_output_taxa_html: "takson %{input_taxon} został podzielony na taksony %{output_taxa}"
-    input_taxon_will_be_split_into_output_taxa_html: "takson %{input_taxon} zostanie podzielony na taksony %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "Takson %{input_taxon} zostanie podzielony na taksony %{output_taxa}"
     input_taxon_was_dropped_html: "takson %{input_taxon} został odrzucony"
     input_taxon_will_be_dropped_html: "takson %{input_taxon} zostanie odrzucony"
     input_taxon_will_be_activated_soon_html: "takson %{input_taxon} zostanie niedługo aktywowany"
@@ -1059,6 +1067,7 @@ pl:
   comprehensive_list: Kompleksowa lista
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Oczekujący
+  confidential: Poufne
   configure: Konfiguruj
   configure_a_widget_to_show: Skonfiguruj widget, aby pokazać obserwacje z %{site_name} na swojej stronie lub blogu. Być może będziesz musiał uwzględnić CSS w <code>&lt;nagłówku</code> HTMLa. Jeśli potrzebujesz, możesz dostosować CSS do własnych potrzeb.
   confirm: Potwierdź
@@ -1396,6 +1405,7 @@ pl:
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
     registrations:
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+      signed_up: 'Witamy! Zarejestrowałeś się pomyślnie.'
       signed_up_but_inactive: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto nie zostało jeszcze aktywowane."
       signed_up_but_locked: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto jest zablokowane."
       updated: 'Pomyślnie zaktualizowałeś swoje konto'
@@ -1427,6 +1437,7 @@ pl:
   did_you_photos_flickr?: Czy dodałeś zdjęcia na Flickr?
   disable: Wyłącz
   disable_comments: Wyłącz komentarze
+  disable_comments_desc: Zablokuj użytkownikom możliwość dodawania komentarzy
   disagree_: Nie zgadzam się
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
@@ -1541,6 +1552,11 @@ pl:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Dostarczyliśmy Ci e-mail z potwierdzeniem dnia %{date}. Jeśli go nie otrzymałeś, oto kilka rzeczy, które możesz zrobić:
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Szczegóły konta
+  email_copyright2: "&copy; %{year} iNaturalist, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
@@ -1666,6 +1682,7 @@ pl:
   flag_as_non_spammer: To nie spamer
   #Label for the date/time when a flag was created
   flag_created: Flaga utworzona
+  flag_deleted: Zgłoszenie usunięte
   flag_description: Zgłoś tę zawartość, aby powiadomić kuratorów, że coś jest z nią nie tak.
   flag_for_check_list_title_html: |
     Zgłoszenie dla checklisty: %{title}
@@ -1757,6 +1774,7 @@ pl:
     few: grzyby
     many: grzybów
     other: grzyba
+  gbif: GBIF
   gbif_occurrences: Wystąpienia GBIF
   generate_taxonomic_tags_for_flickr: Wygeneruj taksonomiczne tagi do twoich zdjęć z Flickra.
   generate_widget: Wygeneruj Widget
@@ -2405,6 +2423,7 @@ pl:
   most_observed_species: Najczęściej obserwowany gatunek
   most_observed_introduced_species: Najczęściej obserwowany gatunek introdukowany
   most_observed_threatened_species: Najczęściej obserwowany gatunek zagrożony
+  move_input_children_to_output?: Przenieść taksony podrzędne do wyjściowego taksonu?
   multiple: wiele
   multiple_select_option: '-- wiele --'
   multiple_taxon_ids_separated_by_commas: 'Wiele identyfikatorów taksonów oddzielonych przecinkami, np. 123,654'
@@ -4512,6 +4531,12 @@ pl:
         trending_desc: Najczęściej obserwowane taksony w zeszłym miesiącu
         trending_in_place_desc_html: Najczęściej obserwowane taksony w zeszłym miesiącu w <a href="%{url}">%{place}</a>
         wanted_desc: Gatunki należące do tego taksonu, który nie zostały jeszcze zaobserwowane.
+    taxon_changes:
+      move_children_desc: |
+        Taksony podrzędne taksonu wejściowego, które są rodzajami lub taksonami wyższej rangi, zostaną przeniesione do taksonu wyjściowego; gatunki, podgatunki, odmiany itd. zostaną zastąpione odpowiadającymi im taksonami z nową nazwą rodzaju lub gatunku.
+      form:
+        move_children_desc_html: |
+          Zaznaczenie tego pola w przypadku zamian i scaleń taksonów spowoduje przeniesienie taksonów podrzędnych taksonu wejściowego do taksonu wyjściowego, gdy ta zmiana zostanie wykonana. Jeżeli zmiana dotyczy rodzaju lub taksonu niższej rangi, zostaną utworzone zamiany taksonów dla wszystkich taksonów podrzędnych, które mają sugerowaną zmianę nazwy. Na przykład, jeżeli zamienisz rodzinę Canidae na Dogidae, zostanie zamieniony takson nadrzędny dla rodzaju <i>Canis</i> z Canidae na Dogidae. Jeżeli zamienisz rodzaj <i>Canis</i> na <i>Dogis</i>, zostaną utworzone i wykonane zamiany taksonu w celu zmiany taksonu <i>Canis lupus</i> na <i>Dogis lupus</i> i <i>Canis lupus</i> ssp. <i>lupus</i> na <i>Dogis lupus</i> ssp. <i>lupus</i>. Może to spowodować niezły bałagan, dlatego używaj tej opcji ostrożnie.
     taxon_links:
       form:
         name_with_rank_desc: |

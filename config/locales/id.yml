@@ -372,6 +372,8 @@ id:
   #Noun, title of a popup alerting you to something
   alert: Peringatan
   all: Semua
+  #Title for a list of all 3rd party applications
+  all_applications: Semua Aplikasi
   all_comments: Semua komentar
   all_flags_must_be_resolved: Seluruh tanda harus diselesaikan
   all_life: Semua kehidupan
@@ -1533,6 +1535,8 @@ id:
   donate: DONASI
   donate_again_caps: DONASI LAGI
   donate_again_today_caps: DONASI LAGI SEKARANG
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Beri sumbangan ke iNaturalist
   done: Selesai
   dont_have_an_account_sign_up_html: Belum punya akun? <strong>Buat akun.</strong>
   dont_use_double_quotes: Jangan menggunakan tanda kutip ganda di tempat lain
@@ -1677,6 +1681,7 @@ id:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Detail akun
+  email_copyright2: "&copy; %{year} iNaturalist, hak cipta dilindungi undang-undang"
   email_notifications: Notifikasi Email
   embed: 'Tanamkan'
   embed_place_widget: Tanamkan widget lokasi
@@ -2083,6 +2088,55 @@ id:
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
+  independence_email_subject: "Mengepakkan Sayap Kami: iNaturalist Sekarang Menjadi Perusahaan Nirlaba Independen"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Halo %{name},
+  independence_email_body_exciting_news: |
+    Tim iNaturalist memiliki kabar baik! Kami dengan senang hati ingin membagikan bahwa karena dukungan dari komunitas yang hebat ini, iNaturalist sekarang beroperasi sebagai organisasi nirlaba 501(c)(3) independen yang berbasis di Amerika Serikat.
+  independence_email_body_since_launching: |
+    Sejak peluncuran pada 2008, tim dan organisasi iNaturalist terus berkembang, dan kami sangat senang dengan pencapaian ini. iNaturalist dimulai sebagai sebuah proyek S2 di Universitas Kalifornia, Berkeley, kemudian menjadi PT, sebelum bergabung dengan Akademi Sains Kalifornia pada 2014. Pada 2017, iNaturalist menjadi inisiatif bersama dengan Akademi Sains Kalifornia dan Perkumpulan National Geographic. Sekarang, iNaturalist telah menjadi organisasi independen.
+  independence_email_body_over_the_past: |
+    Selama 15 tahun terakhir, kontribusi yang luar biasa dari komunitas ini telah membuat iNaturalist menjadi salah satu platform alam paling berpengaruh di dunia.
+  independence_email_body_so_far: "Sejauh ini, komunitas iNaturalist telah:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Menghasilkan lebih dari 146.000.000 pengamatan yang terverifikasi (bertambah sekitar 1 juta setiap minggunya!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Bertumbuh menjadi 2,7 juta kontributor
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Mengamati lebih dari 430.000 spesies
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Dikutip lebih dari 3.500 kali <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">melalui Fasilitas Informasi Keanekaragaman Hayati Global</a>
+  independence_email_body_we_thank: |
+    Kami berterima kasih kepada California Academy of Sciences and the National Geographic
+    Society karena telah memelihara iNaturalist selama ia bertumbuh secara drastis dalam 9 tahun ke belakang. Kami berutang banyak kepada mitra-mitra ini untuk investasi, dukungan, dan pelayanan mereka. Kami berharap untuk bisa berkolaborasi dengan kedua organisasi ini di masa yang akan datang.
+  independence_email_body_the_way_html: |
+    <strong>Cara Anda menggunakan iNaturalist tidak akan berubah.</strong> iNaturalist dan Seek akan terus membantu Anda secara cuma-cuma untuk mengidentifikasi keanekaragaman hayati dan membangun hubungan Anda dengan dunia alam. Struktur organisasi yang baru ini akan mengizinkan kami untuk mendukung iNaturalist di tahun-tahun yang akan datang supaya komunitasnya bisa memperluas pengetahuan kolektif kita tentang keanekaragaman hayati ke depannya. Kami akan terus bermitra dengan organisasi-organisasi di seluruh dunia untuk mendukung Jaringan iNaturalist.
+  independence_email_body_questions_html: |
+    Anda bisa <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">membaca lebih lanjut di blog</a> dan mengecek <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Pertanyaan Yang Sering Ditanyakan</a> (dalam bahasa Inggris). <a
+    href="https://www.inaturalist.org/pages/terms">Syarat dan Ketentuan Penggunaan</a> dan <a
+    href="https://www.inaturalist.org/pages/privacy">Kebijakan Privasi</a> telah diperbarui supaya mencerminkan organisasi yang baru.
+  independence_email_body_thank_you: Terima kasih sudah menjadi bagian dari komunitas ini.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Terus maju,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>Tim Pengurus iNaturalist</strong>
+  independence_email_body_ps: |
+    Catatan - Kami akan segera mengumumkan sumbangan yang sangat dermawan yang memberikan iNaturalist independen batu loncatan. Dukungan finansial dari komunitas iNaturalist telah membuat perkembangan ini menjadi mungkin dan akan menjadi vital untuk ketahanan kami untuk jangka panjang. Sumbangan Anda akan ikut meramaikan pencapaian yang membanggakan ini dan mengamankan masa depan iNaturalist. Terima kasih!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Sumbang sekarang
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2880,6 +2934,8 @@ id:
   next_tab: Tab Berikutnya
   next_taxon_short: Berikut
   'no': 'Tidak'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Belum ada aplikasi
   no_assessments_have_been_added_to_this_project_yet: Belum ada penilaian yang ditambahkan ke proyek ini.
   no_but_it_is_a_member_of_taxon: "Bukan, itu adalah anggota %{taxon}"
   no_comments_yet: Belum ada komentar.
@@ -5657,6 +5713,8 @@ id:
   your_account_has_been_activated: Akun Anda telah diaktifkan!
   your_account_has_been_verified: "Akun %{site_name} Anda telah diverifikasi! Silakan masuk untuk melanjutkan."
   your_activation_code_was_missing: "Kode aktivasi Anda tidak ada. Harap mengikuti URL dari email Anda."
+  #Title for a list of 3rd party applications you control
+  your_applications: Aplikasi Anda
   your_browser_does_not_support_the_audio_element: Browser Anda tidak mendukung elemen audionya.
   your_comment_was_saved: Konten anda telah disimpan
   your_content: Konten Anda
@@ -6148,65 +6206,6 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
-        quality_assessment_help2_html: |
-          <p>
-          Penilaian kualitas data merupakan sebuah ringkasan tentang akurasi pengamatan. Semua 
-          pengamatan dimulai dengan kelas <strong>"kasual"</strong>, dan menjadi 
-          <strong>"butuh ID"</strong> ketika
-          </p>
-
-          <ul>
-          <li>pengamatan <strong>memiliki tanggal</strong></li>
-          <li>pengamatan <strong>memiliki georeferensi</strong> (memiliki koordinat lin/buj)</li>
-          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
-          <li>pengamatan <strong>bukan tentang manusia</strong></li>
-          </ul>
-          </p>
-          Pengamatan menjadi <strong>kelas "Riset"</strong> yang kuat ketika
-          </p>
-          <ul>
-          <li><strong>komunitas %{site_name} setuju dengan ID bertingkat spesies
-          atau di bawahnya</strong>. Hal ini dipenuhi ketika lebih dari 2/3
-          pengidentifikasi setuju dengan sebuah takson (jika komunitas telah 
-          memilih bahwa Takson Komunitas tidak dapat ditingkatkan lagi,
-          ID kembali ke ID bertingkat subfamili atau lebih rendah)
-          </li>
-          </ul>
-          <p>
-          Pengamatan akan kembali menjadi tingkat <strong>"kasual"</strong> jika kondisi-kondisi di atas tidak dipenuhi atau komunitas setuju bahwa
-          </p>
-          <ul>
-          <li><strong>lokasi tampak tidak akurat</strong> 
-          (misalkan monyet di tengah laut, kuda nil di bangunan kantor, dll.)
-          </li>
-          <li><strong>organisme tidak liar/dinaturalisasi</strong> (seperti organisme yang dipelihara 
-          atau dibudidayakan oleh manusia atau alien cerdas dari luar angkasa)
-          </li>
-          <li>pengamatan <strong>tidak menunjukkan adanya organisme</strong>,
-          seperti gambar-gambar pemandangan, perairan, batu, dll.
-          </li>
-          <li>pengamatan <strong>tidak menampilkan bukti suatu organisme 
-          yang diambil belakangan ini (~100 tahun)</strong> (seperti fosil,
-          namun bukti-bukti seperti jejak, tahi, dan daun mati diperbolehkan)
-          </li>
-          <li>pengamatan tidak lagi memerlukan ID <em>dan</em> ID komunitas berada di atas famili
-          </li>
-          <li>pengamat tidak memilih untuk menggunakan ID komunitas
-          dan takson ID komunitas bukan induk atau turunan dari takson
-          yang terkait dengan ID pengamat
-          </li>
-          </ul>
-          <p>
-          Dan jika ini semua masih belum ruwet, ada situasi-situasi lainnya di mana sistem dapat memilih:
-          </p>
-          <ul>
-          <li>Sistem bisa menentukan bahwa suatu pengamatan tidak liar/dinaturalisasi
-          jika terdapat setidaknya 10 pengamatan lainnya dari sebuah genus atau
-          tingkat di bawahnya yang berada di dalam suatu tempat setingkat kabupaten,
-          provinsi, atau negara yang paling kecil yang memiliki pengamatan ini dan
-          lebih dari 80% pengamatan tersebut telah ditandai sebagai tidak liar/dinaturalisasi.
-          </li>
-          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
@@ -7325,6 +7324,8 @@ id:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID Situs
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Staf tujuan (untuk pengujian)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Target pengguna yang belum dikonfirmasi

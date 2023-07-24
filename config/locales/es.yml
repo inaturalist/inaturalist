@@ -6262,32 +6262,6 @@ es:
           que violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto los curadores podrán ver las coordenadas ocultas de esta o cualquier observación en el proyecto y esto implica que estás de acuerdo con los <a href="%{url}" target="_blank">términos </a>del proyecto.
-        quality_assessment_help2_html: |
-          <p>La evaluación de la calidad de los datos es un resumen sobre la precisión de una observación. Todas las observaciones empiezan calificadas como de tipo <strong>"casual"</strong>, y pasan a ser <strong>"necesita Identificación"</strong> cuando:</p>
-          <ul>
-          <li>La observación <strong>tiene una fecha</strong></li>
-          <li>La observación <strong>está georeferenciada</strong> (por ejemplo, tiene coordenadas de lat/long)</li>
-          <li>La observación <strong>se acompaña de fotos o sonidos</strong></li>
-          <li>La observación <strong>no es de un humano</strong>.
-          </li>
-          </ul>
-          <p>Las observaciones pasan ser de <strong>grado de investigación</strong>cuando:
-          <ul>
-          <li>La comunidad de %{site_name} está <strong>de acuerdo con la identificación específica o inferior</strong>, por ejemplo, más de 2/3 de los identificadores están de acuerdo con taxón (si la comunidad vota que el Taxón Comunitario no se puede mejorar más, se revierte a Identificación al nivel de subfamilia o inferior).</li>
-          </ul>
-          <p>Las observaciones revertirán a <strong>"casual"</strong> si las condiciones anteriores no se cumplen o la comunidad está de acuerdo en que:</p>
-          <ul>
-          <li>la <strong>localización no parece precisa</strong>(p.e. monos en medio del océano o hipopótamos en un edificio de oficinas)</li>
-          <li>el <strong>organismo no es salvaje o naturalizado</strong>(p.e. cautivo o cultivado por humanos o unos extraterrestres inteligentes)</li>
-          <li>la observación <strong>no presenta evidencias de un organismo</strong>, por ejemplo imágenes de figuras en el agua, piedras o paisajes, etc. que no incluyen el organismo</li>
-          <li>la observación <strong>no aporta evidencias recientes (~100 años) de presencia</strong>(p.e. fósiles, pero sí que son válidas las huellas, excrementos, restos u hojas muertas)</li>
-          <li>la observación no necesita más Identificaciones <em>y</em> la Identificación de la comunidad está por debajo de la familia</li>
-          <li>el observador ha desactivado la Identificación por la Comunidad y el taxón identificado por la comunidad no es un ancestro o descendiente del taxón asociado con la Identificación del observador.</li>
-          </ul>
-          <p>Y por si esto no fuera suficientemente complicado, aún hay situaciones en las que el sistema puede votar:</p>
-          <ul>
-          <li>El sistema puede votar que la observación es de un organismo que no es salvaje o naturalizado si, al menos hay 10 observaciones más de un género o inferior en el país, estado o provincia, lo que sea menor, que contiene esta observación y el 80% o más observaciones han sido marcadas como no salvaje o naturalizado.</li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.

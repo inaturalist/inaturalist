@@ -6415,65 +6415,6 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |
-          <p>
-          A avaliação da qualidade da informação é um sumário da precisão da observação. Todas as observações iniciam com grau <strong>"casual"</strong>, e vai a <strong>"precisa de identificação"</strong> quando
-          </p>
-
-          <ul>
-          <li>a observação <strong>tem uma data</strong></li>
-          <li>a observação <strong>é georeferenciada</strong> (i.e. tem coordenadas geográficas)</li>
-          <li>a observação <strong>tem fotos ou sons</strong></li>
-          <li>a observação <strong>não é de um humano</strong></li>
-          </ul>
-          <p>
-          Observações se tornam <strong>"nível de pesquisa"</strong> quando
-          </p>
-          <ul>
-          <li>
-          a comunidade %{site_name} <strong>concorda com a identificação pelo menos da espécie
-          </strong>, isto é, quando mais que 2/3 dos identificadores concordam com um
-          taxon (se a comunidade concordou que não é ´possível melhorar o Taxon da Comunidade, o nível sobe para identificação nível sub-familia ou mais baixa)
-          </li>
-          </ul>
-          <p>
-          Observações se tornam <strong>"casual"</strong> se as condições acima não forem mais atendidas ou a comunidade concorda que 
-          </p>
-          <ul>
-          <li>
-          <strong>local com inconformidade</strong> (por exemplo, macacos no oceano,
-          hipopótamos em edificios comerciais, etc.)
-          </li>
-          <li>
-          o <strong>organismo não é selvagem ou natural</strong> (por exemplo é cativo, ou cultivado, ou são seres alienígenas inteligentes)
-          </li>
-          <li>
-          a observação <strong>não apresenta evidencia de um organismo </strong>, por exemplo imagens de água, rochas, paisagens que não incluem o organismo, etc.
-          </li>
-          <li>
-          a observação <strong>não apresenta evidencia recente (por volta de 100 anos) de um organismo</strong> (por exemplo fósseis. Rastros, excrementos e folhas mortas são aceitáveis)
-          </li>
-          <li>
-          a observação não mais precisa de uma identificação <em>e</em> a identificação da comunidade é acima de familia
-          </li>
-          <li>
-          o observador discordou da identificação da comunidade e o taxon 
-          da identificação da comunidade não está na linha do taxon da 
-          identificação do observador
-          </li>
-          </ul>
-          <p>
-          E para complicar ainda mais, existem situações em que o sistema decide:
-          </p>
-          <ul>
-          <li>
-          O sistema considerará que a observação não é selvagem ou natural
-          se houver pelo menos 10 outras observações do mesmo gênero ou inferior em
-          um local correspondente a um condado, estado ou ao país em que 
-          foi feita a observação e 80% ou mais dessas observações
-          foram marcados como não selvagens ou naturais.
-          </li>
-          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.

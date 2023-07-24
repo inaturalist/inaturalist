@@ -5236,55 +5236,6 @@ et:
           Mõnedele neist fotodest on lisatud märge ebasobiva sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}
         join_project_desc_html: |
           Projektiga liitudes saavad projekti kuraatorid näha nii selle kui kõigi teiste projektis sisalduvate vaatluste peidetud koordinaate ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
-        quality_assessment_help2_html: |
-          <p>
-          Andmete kvaliteedihinnang on kokkuvõte vaatluse täpsusest. Kõik vaatlused on esmalt <strong>"juhuvaatlused"</strong> ning saavad endale märke <strong>"vajab määramist"</strong>, kui
-          </p>
-          <ul>
-          <li>vaatlusel on <strong>kuupäev</strong></li>
-          <li>vaatlusel on <strong>asukoha andmed</strong> (st sellel on pikkus-/laius-koordinaadid)</li>
-          <li>vaatlusel on <strong>fotod või helid</strong></li>
-          <li>vaatlus <strong>pole tehtud inimesest</strong></li>
-          </ul>
-          <p>
-          Vaatlused muutuvad <strong>"teaduskõlbulikuks"</strong>, kui
-          </p>
-          <ul>
-          <li>
-          lehe %{site_name} <strong>kogukond nõustub liigi või täpsema tasandi määratlusega</strong>. See tähendab, et 2/3 või rohkem määrajatest nõustub mingi taksoniga (kui kogukond on hinnanud, et kogukondlikust taksonist enam paremaks minna ei saa, siis on nõudeks alamsugukond või sellest täpsem määratlus)
-          </li>
-          </ul>
-          <p>
-          Vaatlused muutuvad taaskord <strong>"juhuvaatlusteks"</strong>, kui eeltoodud tingimused pole täidetud või kogukond nõustub, et
-          </p>
-          <ul>
-          <li>
-          <strong>asukoht ei tundu täpne</strong> (nt ahvid keset ookeanit, jõehobud kontorihoones jne)
-          </li>
-          <li>
-          <strong>organism ei ole metsik/kohandunud</strong> (nt inimeste või intelligentsete tulnukate poolt vangistatud või kasvatatud)
-          </li>
-          <li>
-          vaatlus <strong>ei näita organismi olemasolu</strong> (nt pildid veekogudest, kividest või maastikest, milles organism ei sisaldu jne)
-          </li>
-          <li>
-          vaatlus <strong>ei tõenda hiljutist (~100 aastat) organismi kohalolu</strong> (nt kivistised, kuigi jäljed, väljaheited ja surnud lehed sobivad)
-          </li>
-          <li>
-          vaatlus ei vaja enam määratlust <em>ja</em> kogukondlik määratlus on sugukonnast ebatäpsemal tasemel
-          </li>
-          <li>
-          vaatleja on keeldunud kogukondlikust määratlusest ning kogukondlik määratlus ei ole taksonipuus vaatleja määratluse madalam või kõrgem tase
-          </li>
-          </ul>
-          <p>
-          Kui see polnud veel piisavalt keeruline, siis on ka olukordi, kus hääletada saab süsteem:
-          </p>
-          <ul>
-          <li>
-          Süsteem hääletab, et vaatlus ei ole metsik/kohandunud, kui on vähemalt kümme teist vaatlust perekonna või täpsemal tasemel, mis asuvad antud vaatlust sisaldavas väikseimas omvalitsuse, osariigi või riigi tasandil üksuses ning kui 80% neist vaatlustest on märgitud mitte metsikuks/kohandunuks.
-          </li>
-          </ul>
         score_desc: "skoor = koguarv / (koguarv + erimeelsuste arv + alamtaksonite ebakõlad)"
         observation_flagged_notice_html: |
           Vaatlus on märgitud rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.

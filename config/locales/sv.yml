@@ -2220,6 +2220,13 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
+  independence_email_body_ps: |
+    P.S. - Snart kommer vi att tillkännage ett generöst bidrag som
+    kommer att ge det oberoende iNaturalist en stabil grund. Det
+    finansiella bidraget från iNaturalist-communityn gjorde det möjligt
+    för oss att utvecklas och kommer att vara livsviktigt för långsiktig
+    hållbarhet. Din donation nu kommer att prisa denna spännande
+    milstolpe och ytterligare säkra iNaturalists framtid. Tack!
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -6440,71 +6447,69 @@ sv:
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
         quality_assessment_help2_html: |
           <p>
-          Datakvalitetsbedömningen är en summering av ett fynds noggrannhet. Alla
-          fynd börjar som <strong>"grund</strong>klass och får
+          Bedömningen av datakvaliteten är en sammanfattning av ett fynds korrekthet. Alla
+          fynd börjar som <strong>"grund"</strong>klass, och blir
           <strong>"behöver bestämning"</strong> när
           </p>
 
           <ul>
-          <li>fyndet <strong>har datum</strong></li>
-          <li>fyndet <strong>är georefererat</strong> (d.v.s. har lat/long-koordinater)</li>
-          <li>fyndet <strong>har bilder eller ljud</strong></li>
-          <li>fyndet <strong>inte föreställer en människa</strong></li>
+          <li>fyndet<strong>har ett datum</strong></li>
+          <li>fyndet<strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
+          <li>fyndet<strong>har bilder eller ljud</strong></li>
+          <li>fyndet<strong>inte är en människa</strong></li>
           </ul>
           <p>
-          Fyndet får <strong>"forskningsklass"</strong> när
+          fynd får <strong>"forskningsklass"</strong> när
           </p>
           <ul>
           <li>
-          %{site_name}-<strong>communityn är överens om en bestämning till artnivå eller
-          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna håller med om ett
-          taxon (om communityn har röstat att community-taxonet inte längre kan
-          förbättras, återgår detta till bestämning på underfamiljsnivå eller lägre)
+          %{site_name} <strong>communityn håller med om bestämning till artnivå eller
+          lägre</strong>, dvs när fler än 2/3 av bestämmarna är överens om ett
+          taxon (om communityn har röstat om att Community-bestämningen inte längre kan
+          förbättras, återgår den till underfamiljsbestämning eller lägre)
           </li>
           </ul>
           <p>
-          Fynd återgår till <strong>"grundklass"</strong> om villkoren ovan inte är uppnådda
-          eller communityn är överens om att
+          Fynd återgår till <strong>"grund"</strong> om ovanstående villkor inte är uppfyllda
+          eller communityn håller med om att
           </p>
           <ul>
           <li>
-          <strong>fyndplatsen inte verkar
-          korrekt</strong> (t.ex. apor mitt i havet,
-          flodhästar på kontoret, etc.)
+           <strong>platsen ser inte
+          rätt ut</strong> (t.ex. apor mitt i havet,
+          flodhästar i kontorsbyggnader, etc.)
           </li>
           <li>
-          <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad
-          av människor eller intelligenta rymdvarelser)
+          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människan
+          eller intelligenta rymdvarelser)
           </li>
           <li>
-          fyndet <strong>inte visar några tecken på en
-          organism</strong>, t.ex. bilder av vattenformationer,
-          stenar, landskap som inte Innehåller organismen, osv.
+          fyndet <strong>inte utgör stöd för en
+          organism</strong>, t.ex. bilder av vattensamlingar,
+          klippor, landskap som inte inkluderar organismen, etc.
           </li>
           <li>
-          fyndet <strong>inte består av nutida (~100 years) belägg för
-          organismen</strong> (t.ex. fossil, men spår, avföring och döda löv
-          är ok)
+          fyndet <strong>utgör inte stöd för organismern i modern tid (~100 år)</strong> (t.ex. fossil, men spår, avföring och döda blad
+          är okej)
           </li>
           <li>
-          fyndet inte länger behöver bestämmas <em>och</em> communitybestämningen är över familj
+          fyndet behöver inte längre bestämmas <em>och</em> community-bestämningen är till familj eller högre
           </li>
           <li>
-          observatören har frånsagt sig communitybestämning och communitytaxonet
-          är vare sig en förfader eller ättling till det taxon som är knutet till observatörens
-          bestämning
-          </li>
+          observatören har valt bort community-bestämning samt community-
+          bestämningens taxon är inte en förfader eller ättling till det taxon
+          observatören bestämt
           </ul>
           <p>
-          Och som om det inte var krångligt nog, finns det även situationer där systemet får rösta:
+          Och om det inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
           </p>
           <ul>
           <li>
-          Systemet röstar att fyndet inte är vilt/naturaliserat
+          Systemet kommer att rösta för att fyndet inte är vilt/naturaliserat
           om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta plats motsvarande län, region eller land som
-          omfattar detta fynd och 80 % eller flera av dessa fynd har
-          markerats som ej vilda/naturaliserade.
+          den minsta län-, stat-, eller landmotsvarighet till plats som
+          innehåller detta fynd samt att 80% eller fler av dessa fynd
+          har markerats som inte vilt/naturaliserat.
           </li>
           </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"

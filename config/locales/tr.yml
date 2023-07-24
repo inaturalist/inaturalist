@@ -2156,7 +2156,7 @@ tr:
     <br/>
     <strong>iNaturalist Liderlik Ekibi</strong>
   independence_email_body_ps: |
-    Not: Çok yakında bağımsız iNaturalist'e sağlam bir başlangıç sağlayacak cömert bir hibeyi duyuracağız. iNaturalist topluluğunun finansal desteği, evrimimizi mümkün kıldı ve uzun vadeli sürdürülebilirlik için hayati önem taşıyacak. Şimdi yapacağın bağış, bu heyecan verici dönüm noktasını kutlayacak ve iNaturalist'in geleceğini daha da güvence altına alacaktır. Teşekkür ederiz!
+    Not: Yakında bağımsız iNaturalist'e sağlam bir başlangıç sağlayacak cömert bir hibeyi duyuracağız. iNaturalist topluluğunun finansal desteği gelişimimizi mümkün kıldı ve uzun vadeli sürdürülebilirlik için hayati önem taşıyacak. Şimdi yapacağın bağış, bu heyecan verici dönüm noktasını taçlandıracak ve iNaturalist'in geleceğini daha da güvence altına alacaktır. Teşekkür ederiz!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Şimdi bağış yap
   computer_vision_suggestion: Bilgisayar Görü Önerisi
@@ -6240,56 +6240,6 @@ tr:
           Bu fotoğraflardan bazıları uygunsuz içerik veya telif hakkı ihlali için işaretlendi. Ayrıntılar için bakınız %{links}
         join_project_desc_html: |
           Projeye katılmak, proje küratörlerine bu ya da projedeki diğer gözlemlerin gizli koordinatlarını görme yetkisi verir ve proje <a href="%{url}" target="_blank">şartlarını</a> kabul ettiğin anlamına gelir.
-        quality_assessment_help2_html: |
-          <p>
-          Veri niteliği değerlendirmesi, bir gözlemin doğruluğunun özetidir. Aşağıdaki durumlarda, tüm gözlemler <strong>"sıradan"</strong> sınıf olarak başlar ve <strong>"tanımlama gerekiyor"</strong> hâlini alır:
-          </p>
-
-          <ul>
-          <li>gözlemin <strong>bir tarihi vardır</strong></li>
-          <li>gözlem, <strong>coğrafi olarak işaretlenmiştir</strong> (örn. enlem/boylam koordinatları)</li>
-          <li>gözlem, <strong>fotoğraflara ya da seslere sahiptir</strong></li>
-          <li>gözlem, <strong>bir insana ait değildir</strong></li>
-          </ul>
-          <p>
-          Gözlemler aşağıdaki durumda <strong>"araştırma sınıfı"</strong> olur:
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>topluluğu tür düzeyinde ya da daha düşük bir düzeyde tanımlama üzerinde anlaştığında</strong>, yani tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde anlaştığında (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceği yönünde oy kullandı ise, alt familya düzeyine ya da daha düşük bir düzey tanımlamaya döner).
-          </li>
-          </ul>
-          <p>
-          Adı geçen koşullar yerine getirilmezse ya da topluluk kabul ederse gözlemler <strong>"sıradan"a</strong> dönecektir.
-          </p>
-          <ul>
-          <li>
-          <strong>konum doğru görünmemektedir</strong> (örn. okyanusun ortasındaki maymunlar, ofis binalarındaki su aygırları vb.)
-          </li>
-          <li>
-          <strong>organizma yabani ya da doğal değildir</strong> (örn. insanlar ya da akıllı uzaylılarca kısıtlanmış ya da ekilmiştir)
-          </li>
-          <li>
-          gözlem, <strong>bir organizma kanıtı sağlamamaktadır</strong>, örn. organizma içermeyen su ögeleri, kayalar, manzaralar vb.
-          </li>
-          <li>
-          gözlem, <strong>organizmaya ilişkin yakın tarihli (~100 yıl) kanıt sağlamamaktadır</strong> (örn. fosiller ancak izler, dışkılar ve ölü yapraklar geçerlidir)
-          </li>
-          <li>
-          gözlemin artık bir tanımlamaya ihtiyacı yoktur <em>ve</em> topluluk kimliği familyanın üstündedir
-          </li>
-          <li>
-          gözlemci topluluk tanımlamasından vazgeçmiştir ve topluluk tanımlaması sınıfı gözlemcinin tanımlamasıyla ilişkili sınıfın atası ya da alt soyundan değildir.
-          </li>
-          </ul>
-          <p>
-          Ve eğer bu yeterince karmaşık değilse, sistemin oy aldığı durumlar da vardır:
-          </p>
-          <ul>
-          <li>
-          Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri yerde bir cins ya da daha düşük düzey en az 10 gözlem varsa ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmişse, gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
-          </li>
-          </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + üst soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
           Bu gözlem gereksiz olarak işaretlendi ve artık herkes tarafından görülemiyor. Bunu görebilirsin çünkü sen oluşturdun veya bir site küratörüsün. Bunun bir hata olduğunu düşünüyorsan, lütfen bizimle <a href="mailto:%{help_email}" class="contact">iletişime geç</a>. <a href="/observations/%{observation_id}/flags">İşaretleri düzenle</a>

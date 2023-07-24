@@ -1780,6 +1780,7 @@ nl:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Accountgegevens
+  email_copyright2: "&copy; %{year} iNaturalist, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
   embed_place_widget: Plaatswidget invoegen
@@ -2266,8 +2267,8 @@ nl:
     <br/>
     <strong>iNaturalist Bestuur</strong>
   independence_email_body_ps: |
-    PS - Zeer binnenkort zullen we een genereuze beurs ​​aankondigen die het onafhankelijk iNaturalist een solide start zal geven. De financiële steun van de iNaturalist-gemeenschap heeft onze ontwikkeling mogelijk gemaakt en zal van vitaal belang zijn voor
-    bestaanszekerheid op de lange termijn. Jouw donatie nu kan deze opwindende mijlpaal vieren en de toekomst van iNaturalist verder veilig stellen. Bedankt!
+    PS - Binnenkort zullen we een genereuze beurs ​​aankondigen die het onafhankelijk iNaturalist een solide start zal geven. De financiële steun van de iNaturalist-gemeenschap heeft onze ontwikkeling mogelijk gemaakt en zal van vitaal belang zijn voor
+    bestaanszekerheid op de lange termijn. Vier door jouw donatie nu deze opwindende mijlpaal en stel de toekomst van iNaturalist verder veilig. Bedankt!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Doneer nu
   computer_vision_suggestion: Computer Vision Voorstel
@@ -4691,6 +4692,11 @@ nl:
     Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
     wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
   sites_affiliation_title: Meer informatie over netwerklidmaatschap
+  sites_network_agreements_html: |
+    iNaturalist heeft formele overeenkomsten met organisaties in elk van deze
+    geografische gebieden om het gebruik van het iNaturalist platform te ondersteunen.
+    <strong>Als jouw organisatie geïnteresseerd is in het toetreden tot het iNaturalist
+    Netwerk, dan kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
   sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
   sites_network_inaturalist_network_collection: |
     Het iNaturalist netwerk is een verzameling van gelokaliseerde websites die volledig
@@ -5708,13 +5714,13 @@ nl:
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
-  were_pretty_sure_this_is_in_the_genus: We zijn er vrij zeker van dat dit in dit genus zit
+  were_pretty_sure_this_is_in_the_genus: We zijn er bijna zeker van dat dit in dit genus zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
-  were_pretty_sure_this_is_in_the_family: We zijn er vrij zeker van dat dit in deze familie zit
+  were_pretty_sure_this_is_in_the_family: We zijn er bijna zeker van dat dit in deze familie zit
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: We zijn er vrij zeker van dat dit in deze orde zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
-  were_pretty_sure_this_is_in_the_subfamily: We zijn er vrij zeker van dat dit in deze subfamilie zit
+  were_pretty_sure_this_is_in_the_subfamily: We zijn er bijna zeker van dat dit in deze subfamilie zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
   were_pretty_sure_this_is_in_the_superfamily: We zijn er vrij zeker van dat dit in deze superfamilie zit
   #Falback label for the most probable taxon in the automated suggestions.
@@ -5851,6 +5857,8 @@ nl:
     de natuur te beleven
   yir_monthly_supporters_random_selection: |
     Hieronder is een willekeurige selectie van iNaturalist's heroïsche communityleden die elke maand doneren.
+  yir_thank_your_for_being_generous2: |
+    Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit openbare organisatie. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.
   yir_your_gift_sustains: |
     Je gift ondersteunt deze website met een wereldwijd bereik en diepgaande persoonlijke en
     ecologische effecten
@@ -6487,6 +6495,13 @@ nl:
         cumulative_count_desc: '# determinaties voor een individueel taxon en al zijn afstammelingen'
         curator_coordinate_access_disabled_desc_html: |
           Dit project staat geen waarnemingen toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Als je de coördinaten van deze waarneming niet wilt delen met de curatoren van dit project, moet je de waarneming uit het project verwijderen.
+        data_quality_assessment_desc3_html: |
+          Het kwaliteitsniveau vat de juistheid, nauwkeurigheid, volledigheid,
+          relevantie en de geschiktheid van een iNaturalist waarneming als
+          biodiversiteitsgegevens samen. Sommige attributen worden automatisch bepaald,
+          terwijl andere het resultaat zijn van aan een stemming door iNat-gebruikers. iNaturalist
+          deelt gelicenseerde "Onderzoekskwaliteit" waarnemingen met een aantal gegevenspartners
+          voor gebruik in de wetenschap en natuurbehoud.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
@@ -6495,70 +6510,59 @@ nl:
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
         quality_assessment_help2_html: |
-          <p>
-          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
-          <strong>"ID nodig"</strong> als
+          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle
+          waarnemingen beginnen als <strong>"onvolledig"</strong> en kunnen
+          <strong>"ID nodig"</strong> worden als <p>
           </p>
 
           <ul>
-          <li>de waarneming <strong>heeft een datum</strong></li>
-          <li>de waarneming <strong>heeft een geolocatie</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-          <li>de waarneming <strong>heeft foto's of geluiden</strong></li>
-          <li>de waarneming <strong>is geen mens</strong></li>
+          <li>de waarneming <strong>een datum heeft</strong></li>
+          <li>de waarneming <strong>een locatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+          <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+          <li>de waarneming <strong>geen mens is</strong></li>
           </ul>
           <p>
           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
           </p>
           <ul>
           <li>
-          the %{site_name} <strong>community agrees on species-level ID or
-          lower</strong>, i.e. when more than 2/3 of identifiers agree on a
-          taxon (if the community has voted that the Community Taxon can no
-          longer be improved, this reverts to subfamily-level ID or lower)
+          de %{site_name} <strong>gemeenschap een determinatie overeenkomt op soortsniveau of lager
+          lower</strong>, dwz dat meer dan 2/3 van de determinaties hetzelfde taxon betreft (als de gemeenschap heeft gestemd dat het gemeenschapstaxon niet verder verbeterd kan worden gaat het terug op onderfamilie niveau of hoger)
           </li>
           </ul>
           <p>
-          Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
+          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap ermee instemt.
           </p>
           <ul>
           <li>
-          the <strong>location doesn't look
-          accurate</strong> (e.g. monkeys in the middle of the ocean,
-          hippos in office buildings, etc.)
+          de <strong>locatie niet nauwkeurig lijkt</strong> (bijv. apen in het midden van de oceaan, nijlpaarden in een kantoor, etc.)
           </li>
           <li>
-          the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
-          or intelligent space aliens)
+          het <strong>organisme is niet wild/verwilderd</strong> (dwz gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
           </li>
           <li>
-          the observation <strong>doesn't present evidence of an
-          organism</strong>, e.g. images of water features,
-          rocks, landscapes that don't include the organism, etc.
+          de waarneming <strong>geen bewijs van het organisme toont</strong>, bijv. plaatjes van waterkenmerken, rotsen, landschappen dat geen organisme bevat, etc.
           </li>
           <li>
-          the observation <strong>doesn't present recent (~100 years) evidence of
-          the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
-          are ok)
+          de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme toont</strong> (zoals bijvoorbeeld fossielen, maar sporen, poep en dood blad zijn wel goed)
           </li>
           <li>
-          the observation no longer needs an ID <em>and</em> the community ID is above family
+          de waarneming niet langer een ID nodig heeft <em>en</em> het gemeenschapsID is op familie niveau of hoger
           </li>
           <li>
+          de waarnemer heeft het gemeenschaps ID uitgezet en de gemeenschaps ID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemers ID
           the observer has opted out of the community ID and the community
           ID taxon is not an ancestor or descendant of the taxon associated
           with the observer's ID
           </li>
           </ul>
           <p>
-          And if that wasn't complicated enough, there are also situations where the system gets a vote:
+          En alsof dat niet moeilijk genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
           </p>
           <ul>
           <li>
-          The system will vote that the observation is not wild/naturalized
-          if there are at least 10 other observations of a genus or lower in
-          the smallest county-, state-, or country-equivalent place that
-          contains this observation and 80% or more of those observations
-          have been marked as not wild/naturalized.
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er tenminste 10 
+          andere waarnemingen zijn van een genus of lager in de kleinste gemeente, provincie- of land-equivalente plaats dat deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/verwilderd.
           </li>
           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
@@ -7086,6 +7090,9 @@ nl:
           alle jaren.
         compared_to_previous_years: Vergelijk met voorgaande jaren
         donate_title: "Speciale dank aan al onze supporters"
+        donate_desc2_html: |
+          Bedankt dat je vrijgevig bent met je tijd, aandacht, kennis en donaties! iNaturalist is een 501(c)3 nonprofit organisatie uit de Verenigde Staten. Het wordt ondersteund door een <a href="%{team_url}">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel en
+          <a href="%{seek_url}">Seek van iNaturalist</a> plus het beheren van ondersteuning aan de gemeenschap, samenwerkingsverbanden en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van heel veel beurzen en donaties waaronder vrijwillige bijdragen van heel klein deel van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen met onze plannen voor de toekomst. Je kunt in heel veel valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in %{year} het grootste jaar voor iNaturalist tot nu toe maken!
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Ons doel is 1000 vaste donateurs per maand
         inaturalist_network: iNaturalist netwerk
@@ -7414,6 +7421,11 @@ nl:
         licensing_desc_html: |
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
+        monthly_supporter_desc_html: |
+          Maandelijkse supporters van iNaturalist doneren maandelijks automatisch aan iNaturalist (United States IRS EIN 92-1296468) ter ondersteuning van het not-for-profit-beheer van iNaturalist en de iNaturalist-netwerksites.
+          <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
+          Als je steun door ons is bevestigd kun je deze checkbox aanvinken
+          zodat deze status in je profiel wordt weergegeven. Let op: het e-mailadres op Donorbox moet exact gelijk zijn aan die op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent. Als ze verschillend zijn, verander er dan één zodat ze gelijk zijn.
         muting_desc_html: |
           <p>
              Als je iemand dempt, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, berichten naar je sturen, je naam noemen, etc. Dempen helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.
