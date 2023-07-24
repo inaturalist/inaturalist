@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
   ]
   before_action :limit_page_param_for_search, only: [:search]
   before_action :editor_required, only: [:edit, :update, :destroy]
-  before_action :curator_required, only: [:planner]
+  before_action :curator_required, only: [:planner, :merge]
   before_action :check_quota, only: [:create]
 
   QUOTA = 3
