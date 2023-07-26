@@ -1719,8 +1719,11 @@ fr:
   email_conf_required_after_grace_period: |
     La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
   email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Veuillez svp confirmer votre courriel.%{link_end_tag}</strong>.
-    Tous les usagers et usagères doivent confirmer leur adresse courriel d’ici le 1er juillet 2023. Après cette date, quiconque n’aura pas confirmé son courriel ne pourra se connecter à son compte et devra réinitialiser son mot de passe. Pour confirmer votre courriel, allez aux %{link_start_tag}paramètres de votre compte%{link_end_tag}.
+    <strong>%{link_start_tag}Veuillez confirmer votre adresse e-mail%{link_end_tag}</strong>.
+    Tous les utilisateurs doivent confirmer leur adresse e-mail d'ici le %{date}. Après cette date,
+    toute personne qui n'a pas confirmé son adresse e-mail ne pourra plus se connecter
+    à moins de réinitialiser son mot de passe. Pour confirmer votre adresse e-mail,
+    allez dans les %{link_start_tag}paramètres de votre compte%{link_end_tag}.
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmez votre adresse e-mail %{site_name} avant le %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
@@ -3173,7 +3176,6 @@ fr:
   observation_brief_something_from_place_in_month_year_by_user: "%{place} : quelque chose en %{month} %{year} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
-  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year: "%{taxon} en %{month} %{year}"
