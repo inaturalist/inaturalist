@@ -1635,7 +1635,7 @@ nl:
   download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Sjabloon downloaden</a> om in de 
-    <a href="/observations/import#csv_import">bulk-uploader</a> te gebruiken
+    <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
   download_kml: KML downloaden
@@ -6510,9 +6510,10 @@ nl:
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
         quality_assessment_help2_html: |
+          <p>
           De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle
           waarnemingen beginnen als <strong>"onvolledig"</strong> en kunnen
-          <strong>"ID nodig"</strong> worden als <p>
+          <strong>"ID nodig"</strong> worden als 
           </p>
 
           <ul>
@@ -6550,10 +6551,7 @@ nl:
           de waarneming niet langer een ID nodig heeft <em>en</em> het gemeenschapsID is op familie niveau of hoger
           </li>
           <li>
-          de waarnemer heeft het gemeenschaps ID uitgezet en de gemeenschaps ID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemers ID
-          the observer has opted out of the community ID and the community
-          ID taxon is not an ancestor or descendant of the taxon associated
-          with the observer's ID
+          de waarnemer heeft het gemeenschapsID uitgezet en de gemeenschapsID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemersID
           </li>
           </ul>
           <p>
@@ -6561,7 +6559,7 @@ nl:
           </p>
           <ul>
           <li>
-          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er tenminste 10 
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er tenminste 10
           andere waarnemingen zijn van een genus of lager in de kleinste gemeente, provincie- of land-equivalente plaats dat deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/verwilderd.
           </li>
           </ul>
