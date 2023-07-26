@@ -3283,7 +3283,7 @@ pl:
   rank_position: Ranga
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
-  rank_sciname: "%{name}"
+  rank_sciname: "%{rank} %{name}"
   ranks:
     kingdom: Królestwo
     x_kingdoms:
