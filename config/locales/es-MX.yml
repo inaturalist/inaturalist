@@ -106,8 +106,8 @@ es-MX:
     one: "1 Sugerencia Filtrada por:"
     other: "%{count} Sugerencia filtrada por:"
   x_taxa:
-    one: "taxón"
-    other: "taxones"
+    one: "1 taxón"
+    other: "%{count} taxones"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> especie o grupo observado"
     other: "<span class='count'>%{count}</span> especies o grupos observados"
@@ -118,8 +118,8 @@ es-MX:
     one: "<span class='count'>1</span> observación con grado de investigación identificada a especie o subespecie</span>"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación identificadas a especie o subespecie</span>"
   x_sounds:
-    one: "sonido"
-    other: "sonidos"
+    one: "1 sonido"
+    other: "%{count} sonidos"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón revisado"
     other: "<span class='count'>%{count}</span> taxones revisados"
@@ -1472,8 +1472,6 @@ es-MX:
   #Label for a button to delete a taxon range
   delete_range: Eliminar rango de distribución
   delete_selected: Borra seleccionado
-  delete_taxon_and_merge_most_data_html: |
-    Borra<i>%{taxon}</i> y combina su información con otra especie o grupo. Usa esta herramienta para remover especies o grupos duplicados y nombres desactualizados . <strong>¡SE CUIDADOSO!</strong> La eliminación de especies o grupos puede ser muy destructiva.
   delete_user: Borra este usuario
   delete_your_account: Borra tu cuenta
   deleted_synonyms: Sinónimos eliminados
@@ -1615,7 +1613,7 @@ es-MX:
   download_caps: DESCARGA
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga la plantilla</a> para usarla en
-    <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">la importaci&oacute;n de observaciones</a>
   download_csv: Descarga CSV
   download_csv_template: Descarga plantilla CSV
   download_kml: Descarga KML
@@ -2172,7 +2170,7 @@ es-MX:
   #Introductory line in an email. "Dear" doesn't have to be translated
   #literally. Please just choose something that's conventional in your
   #language.
-  independence_email_body_dear: Estimado/a %name,
+  independence_email_body_dear: Estimado/a %{name},
   independence_email_body_exciting_news: |
     ¡El equipo de iNaturalist tiene noticias emocionantes! Nos complace compartir este agradecimiento al apoyo de esta gran comunidad. iNaturalist ahora está operando como
     una organización independiente 501(c)(3) sin fines de lucro con sede en los Estados Unidos
@@ -2201,9 +2199,9 @@ es-MX:
     iNaturalist y Seek seguirán ayudándoe gratuitamente a identificar la biodiversidad y a construir tu propia conexión con el mundo natural. Esta nueva estructura organizativa nos permitirá apoyar a iNaturalist por años y años a medida que la comunidad iNaturalist amplíe nuestro conocimiento colectivo de la biodiversidad en el futuro. Seguiremos colaborando con organizaciones de todo el mundo para apoyar la Red iNaturalist.
   independence_email_body_questions_html: |
     Puedes <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leer más en el blog</a>y revisar las <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Preguntas Frecuentes</a> (en ingles). Los<a
-    href="https://www.inaturalist.org/pages/terms">Términos de Uso</a> y la<a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leer más en el blog</a> y revisar las <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Preguntas Frecuentes</a> (en ingles). Los <a
+    href="https://www.inaturalist.org/pages/terms">Términos de Uso</a> y la <a
     href="https://www.inaturalist.org/pages/privacy">Política de Privacidad</a> ha sido actualziada para reflejar la nueva organización.
   independence_email_body_thank_you: Gracias por ser parte de esta comunidad.
   #Signature section of an email. "Onward" is a bit unconventional in
@@ -2218,6 +2216,8 @@ es-MX:
     <strong>Carrie Seltzer</strong><br/>
     <br/>
     <strong>Equipo de liderazgo de iNaturalist</strong>
+  independence_email_body_ps: |
+    P.D. - Muy pronto anunciaremos una generosa donación que dará a iNaturalist independiente un sólido comienzo. El apoyo financiero de la comunidad iNaturalist hizo posible nuestra evolución y será vital para nuestra sostenibilidad a largo plazo. Tu donación ahora celebrará este emocionante hito y asegurará el futuro de iNaturalist. ¡Muchas gracias!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Donar ahora
   computer_vision_suggestion: Sugerencia de la visión artificial
@@ -3349,21 +3349,6 @@ es-MX:
     updates_by_you_panel_body: '¡Recuerda! , en la pestaña ''Todas las actualizaciones'' recibirás actualizaciones no sólo de tu contenido, sino también el contenido de las personas que te sigue, así como las especies o lugares en los que estes suscrito.'
     youve_got_updates_panel_title: '¡Tienes actualizaciones!'
     youve_got_updates_panel_body_p1: Mantener el mismo criterio sobre las actualizaciones en ...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li>
-      <strong>Tu contenido:</strong> La actividad en tus observaciones podría incluir comentarios , identificaciones o favoritos de la comunidad de NaturaLista. Además recibirás notificaciones cuando alguien añada tus observaciones a algun proyecto de su interes.
-      </li>
-      <li>
-      <strong>Gente:</strong> Nuevas observaciones o notas en el diario de gente que te sigue.
-      </li>
-      <li>
-      <strong>Especies, proyectos y lugares:</strong> Nuevas observaciones de ciertas especies o lugares a los que estás suscrito. Adicionalmente puedes unirte a proyectos para estar al corriente cuando publiquen notas en el diario.
-      </li>
-      <li>
-      <strong>Acerca de las discusiones:</strong> Comentar o añadir identificaciones en el contenido de alguien más, automáticamente te suscribe a cualquier nueva actividad de dicho contenido. Usa la herramienta 'Administra las suscripciones' para dejar de recibir notificaciones.
-      </li>
-      </ul>
   one_by_one: "Uno per uno"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
@@ -5060,8 +5045,6 @@ es-MX:
   theres_something_wrong_with_taxon_framework_relationship: Hay algo mal aquí - no podemos determinar la relación entre cualquier taxón interno y externo
   therefore_committing_additional_taxon_changes: Por lo tanto, no será necesario realizar cambios adicionales en los taxones después de haber realizado este intercambio de taxones.
   therefore_committing_taxon_changes: Por lo tanto, no es necesario realizar cambios en los taxones después de este cambio de ascendencia.
-  these_are_items_people_on: |
-    Son contenidos que la gente a puesto como advertencia para curación. Contenidos de spam serán borrados y el usuario que lo puso debería ser suspendido (ve a la pagina de su perfil y en la parte inferior izquierda selecciona el enlace "suspender usuario" para que ya no pueda entrar al sitio). Otro tipo de contenidos como que sea ilegal, engañoso, racial, étnico, etc, deberán ser borrados y respondidos con un comentario de una manera atenta. Gente que repita estos comentarios deberán ser reportados a
   these_are_taxa_that: |
     Son especies o grupos que %{site} no pudo añadir automáticamente
     al árbol taxonómico. Tu puedes añadirlos al árbol seleccionando el
@@ -5781,8 +5764,6 @@ es-MX:
   you_: Tú
   you_appear_offline_try_again: |
     Parece que no estás conectado. Por favor vuelva a intentarlo cuando estés conectado a Internet.
-  youre_a_site_curator_which_means: |
-    Eres un curador del sitio, lo que significa que eres voluntario para ayudar a curar los datos y monitorear el contenido del mismo. Por favor no te sientas obligado con todo lo que esto implica, pero si tienes tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna duda, comentario o simplemente ya no quieres ser un curador, contáctanos a
   you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>tú</strong> eres ahora administrador de %{project}
@@ -5901,8 +5882,6 @@ es-MX:
   your_subscriptions_to_this_place: Tus suscripciones a este lugar
   your_tags: Sus etiquetas
   yours: Tuyos
-  youre_not_following_anyone: |-
-    No estás siguiendo a nadie. Si sigues a otros naturalistas podrás ver fácilmente sus más recientes observaciones. Ve y encuentra que gente está
   youre_not_following_anyone_on_inat: '¡Aún no estás siguiendo a nadie en %{site_name}!'
   youve_linked_your_inaturalist_google_account: "Has vinculado tus cuentas de %{site_name} y de Google. Esto te permitirá asociar tus fotografías de Google con tus observaciones en %{site_name}."
   youve_successfully_linked_your_provider_account: "Has enlazado existosamente tu cuenta de  %{provider}"
@@ -7967,7 +7946,7 @@ es-MX:
         body: 'Hubo problemas con los siguientes campos:'
         header:
           one: "Un error no permitió que este %{model} se guardara"
-          other: '% {count} errores no permitieron que este %{model} se guardara'
+          other: '%{count} errores no permitieron que este %{model} se guardara'
       models:
         application:
           attributes:
