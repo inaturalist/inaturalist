@@ -462,8 +462,8 @@ class ObservationsController < ApplicationController
     if @taxon
       @observation.taxon = @taxon
       @observation.species_guess = if @taxon.common_name
-        @taxon.common_name.name
-      else 
+        @taxon.common_name( user: current_user ).name
+      else
         @taxon.name
       end
     elsif !params[:taxon_name].blank?

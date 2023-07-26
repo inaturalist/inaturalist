@@ -7,6 +7,16 @@ require "optimist"
   banner <<~HELP
     Send large quantities of email using a mailer method that only takes a user as an argument.
 
+    Examples:
+      # Mail all confirmed users the independence email
+      bundle exec rails r tools/mass_mailer.rb independence --confirmed
+
+      # Mail all Spanish locale users the independence email
+      bundle exec rails r tools/mass_mailer.rb independence --locale es
+
+      # Mail es and es-MX users the independence mailer (but not es-AR)
+      bundle exec rails r tools/mass_mailer.rb independence --locales es es-MX
+
     Usage:
       bundle exec rails r tools/mass_mailer.rb <mailer_method> [options]
 
@@ -23,7 +33,8 @@ require "optimist"
   opt :confirmed, "Only mail confirmed email addresses", type: :boolean
   opt :unconfirmed, "Only mail unconfirmed email addresses", type: :boolean
   opt :skip_recent, "Skip users created in the last month", type: :boolean
-  opt :locale, "Locale to filter users by. Matches sublocles, so `es` will match `es-MX`", type: :string
+  opt :locale, "Locale to filter users by. Matches sublocales, so `es` will match `es-MX`", type: :string
+  opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
 end
 
 mailer_method = ARGV.shift
@@ -60,6 +71,10 @@ if @opts.locale && ( @opts.english || @opts.non_english )
   Optimist.die "You can't specify a locale as well as the English or non-English filters"
 end
 
+if @opts.locale && @opts.locales
+  Optimist.die "You can't specify a locale and locales. Choose one."
+end
+
 test_users = @opts.users.to_s.split( "," )
 scope = User.default_scoped
 if test_users.size.positive?
@@ -94,6 +109,8 @@ elsif @opts.non_english
   scope = scope.where( "locale NOT LIKE 'en%'" )
 elsif @opts.locale
   scope = scope.where( "locale LIKE ?", "#{@opts.locale}%" )
+elsif @opts.locales
+  scope = scope.where( "locale IN (?)", @opts.locales )
 end
 
 @start = Time.now
