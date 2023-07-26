@@ -1446,7 +1446,7 @@ zh-TW:
   download_caps: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
-    <a href="/observations/import#csv_import">大量上傳</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">大量上傳</a>
   download_csv: 下載 CSV
   download_csv_template: 下載 CSV 模板
   download_kml: 下載 KML
@@ -2039,8 +2039,6 @@ zh-TW:
   join: 加入
   join_and_add_an_observation_to_project_html: 參與並加入一筆觀察記錄至%{project}專案
   join_project: 加入此專案
-  #Prompt to join a specific project
-  join_project?: 加入專案嗎?
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
   'joined!': 已加入！
@@ -2787,7 +2785,6 @@ zh-TW:
   observation_brief_something_from_place_in_month_year_by_user: "由使用者 %{user} 於 %{year} 年 %{month} 月在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
-  observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year: "在 %{year} 年 %{month} 月所記錄的 %{taxon}"
