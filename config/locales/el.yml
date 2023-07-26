@@ -95,9 +95,6 @@ el:
   x_species_link_html:
     one: "<a href='%{url}'>1 είδος</a>"
     other: "<a href='%{url}'>%{count} είδη</a>"
-  x_suggestions_filtered_by_colon:
-    one: "Πρόταση φιλτραρισμένη από:"
-    other: "Προτάσεις φιλτραρισμένες από:"
   x_taxa:
     one: "%{count}ταξινομική μονάδα"
     other: "%{count}ταξινομικές μονάδες"
@@ -110,9 +107,6 @@ el:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> παρατήρηση ερευνητικού επιπέδου ταυτοποιήθηκε σε επίπεδο είδους ή χαμηλότερα"
     other: "<span class='count'>%{count}</span> παρατηρήσεις ερευνητικού επιπέδου ταυτοποιήθηκαν σε επίπεδο είδους ή χαμηλότερα"
-  x_sounds:
-    one: "ήχος"
-    other: "ήχοι"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> ταξινομική μονάδα επιμελήθηκε"
     other: "<span class='count'>%{count}</span> οι ταξινομικές μονάδες επιμελήθηκαν"
@@ -1009,7 +1003,7 @@ el:
   copyright_infringement: Παραβίαση Δικαιωμάτων Δημιουργού
   copyright_infringement_desc: Παραβιάζει τον νόμο περί πνευματικών δικαιωμάτων ή δημιουργός είναι κάποιος άλλος και όχι ο παρατηρητής και στερείται αναφοράς στον δημιουργό
   covered_by_a_taxon_framework_html: "Καλύφθηκε από %{link}"
-  covered_by_a_taxon_framework_link: "Πλαίσιο Ταξινομικής Βαθμίδας για %{taxon_framework_rank}"
+  covered_by_a_taxon_framework_link: "Πλαίσιο ταξινομικής μονάδας για %{taxon_framework_rank}%{taxon_framework_name}"
   couldnt_change_your_password: "Δεν μπορεί να αλλάξει ο κωδικός:%{e}"
   couldnt_find_a_user_matching_x_param: "Δεν ήταν δυνατή η εύρεση χρήστη που να ταιριάζει με %{id}"
   couldnt_find_that_taxon: Δεν ήταν δυνατή η εύρεση ταξινομικής ομάδας.
@@ -3319,9 +3313,6 @@ el:
   project_was_successfully_updated: Το πρότζεκτ ενημερώθηκε επιτυχώς.
   project_x_was_delete: "%{project} διαγράφηκε (παρακαλούμε αφήστε μερικά λεπτά να περάσουν μέχρι να αφαιρεθεί από την ιστοσελίδα)"
   projects: Πρότζεκτ
-  projects_description: |
-    Η μελέτη σε αφήνει να μοιράζεσαι τις παρατηρήσεις σου με άλλους ανθρώπους στο.
-    Είτε ξεκινάς την προσπάθεια στην επιστήμη των πολιτών είτε παρατηρείς προσεκτικά τα πουλία στην γειτονία σου, η μελέτη είναι η κατάλληλη μέθοδος.
   #@vow_or_con should work on %{place}
   projects_from_place: "Πρότζεκτ από %{place}"
   #"admins" is equivalent to "administrates"
@@ -4041,8 +4032,6 @@ el:
     Τα παρακάτω είδη δεν βρέθηκαν στη βάση δεδομένων του %{site_name}.
   the_title_of_the_wikipedia_article_we_use: |
     Ο τίτλος από το άρθρο της Wikipedia που χρησιμοποιούμε για την περιγραφή. Εάν η διεύθυνση URL της Wikipedia είναι <code>http://en.wikipedia.org/wiki/Bird</code>, τότε αυτή η τιμή θα πρέπει να είναι <code>Bird</code>. Αν δεν έχει συμπληρωθεί το επιστημονικό όνομα αυτής της ταξινομικής βαθμίδας χρησιμοποιείτε (συνήθως λειτουργεί)
-  the_user_x_has_been_suspended: "Ο χρήστης έχει αποβληθεί"
-  the_user_x_has_been_unsuspended: "Ο χρήστης επανενεργοποιήθηκε"
   the_world: Ο Κόσμος
   the_world_is_full_of_interesting_places: |
     Ο κόσμος είναι γεμάτος από ενδιαφέροντα μέρη, το καθένα γεμάτο από περίεργες και υπέροχες μορφές ζωής. Κάποιες από αυτές βρίσκονται στην άλλη άκρη του κόσμου, ενώ άλλες δίπλα στο σπίτι μας!  %{site_name} Περιοχές σας επιτρέπουν να ανακαλύψετε τη ζωή που υπάρχει στον πλανήτη μας. Ξεκινήστε την εξερεύνηση!
@@ -4304,7 +4293,6 @@ el:
   user_flagged_as_a_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως σπάμερ"
   user_has_opted_out_of_community_id: Ο χρήστης απορρίπτει την κοινοτική ταξινομική μονάδα
   user_hasnt_joined_any_projects: "Ο/Η %{user} δεν συμμετέχει σε καμία εργασία"
-  user_helped_x_people_with_y_ids_html: "Ο/Η %{user} βοήθησε <strong> άτομα</strong> με <strong>%{y} ταυτοποιήσεις</strong>"
   user_invite_observation_to_project: 'Η/Ο %{user} θά ήθελε να προσκαλέσει την παρατήρησή σας "%{observation}" στο πρότζεκτ %{project}.'
   user_invited_you_to_join_html: "Ο/Η %{user}%{user}σας προσκάλεσε να συμμετέχετε"
   user_invited_you_to_join_project: "Η/Ο %{user} σας προσκάλεσε να εγγραφείτε στο %{project}"
@@ -4312,8 +4300,6 @@ el:
   user_is_a_naturalist: "Η/Ο %{user} είναι μια/ένας φυσιολάτρης!"
   user_is_now_the_admin_for_project_html: |
     Ο χρήστης <strong>%{user}</strong> είναι τώρα ο διαχειριστής του πρότζεκτ %{project}
-  user_is_now_a_manager_for_project_html: |
-    <strong>%{user}</strong> είναι τώρα ο διαχειριστής για
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong>είναι τώρα ο επιμελητής για%{project}
   user_muted: Ο χρήστης είναι σε σίγαση
