@@ -34,8 +34,6 @@ ja:
     other: '<span class="count">%{count}</span>件の該当する分類群'
   x_misidentifications_of_this_species:
     other: "この種の鑑定に間違いが%{count}件"
-  x_misidentifications_of_species_in_this_genus:
-    other: "この属における種の誤同定"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -1431,7 +1429,7 @@ ja:
     あなたは線虫の研究者ですか？ それともフジツボの世界一の分類専門家ですか？ かわいい花を見るのは好きですか？ プロフィールを記入すると、誰かの同定を手伝ったとき、あなたの人柄を信頼してもらいやすくなります。
   doesnt_have_default_photo: 規定の写真が定められていません
   doh_something_went_wrong: エラーが発生しました。
-  doh_something_went_wrong_error: "エラーが発生しました："
+  doh_something_went_wrong_error: "エラーが発生しました：%{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 寄付
@@ -1945,6 +1943,20 @@ ja:
     href="https://www.inaturalist.org/pages/terms">利用規約</a>と<a
     href="https://www.inaturalist.org/pages/privacy">プライバシーポリシー</a>が更新されました。
   independence_email_body_thank_you: このコミュニティに参加してくれてありがとう。
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    未来へ<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalistリーダーシップチーム</strong>
+  independence_email_body_ps: |
+    追伸 - 間もなく、独立したiNaturalistの確かなスタートを後押しする寛大な寄付についてご案内いたします。iNaturalistコミュニティーの財政的支援は私たちの発展を可能にし、長期的な活動の継続に不可欠なものです。今ご寄付をいただければ、このエキサイティングなマイルストーンを祝い、iNaturalistの未来をより確かなものにすることができます。よろしくお願いします！
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: 今すぐ寄付する
   computer_vision_suggestion: コンピュータビジョンの提案

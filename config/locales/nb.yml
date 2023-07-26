@@ -1336,7 +1336,7 @@ nb:
   download: Last ned
   download_caps: LAST NED
   download_bulk_import_template_html: |
-    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import#csv_import">bulk-opplasteren</a>
+    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-opplasteren</a>
   download_csv: Last ned CSV
   download_csv_template: Last ned CSV-mal
   download_kml: Last ned KML

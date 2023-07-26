@@ -1635,7 +1635,7 @@ nl:
   download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Sjabloon downloaden</a> om in de 
-    <a href="/observations/import#csv_import">bulk-uploader</a> te gebruiken
+    <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
   download_kml: KML downloaden
@@ -6028,10 +6028,33 @@ nl:
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
+        </p>
+        <p class="lead">
+        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of kijk op <a
+        href="https://www.inaturalist.org/pages/giving">andere manieren om te geven</a>.
+        </p>
+        <p class="lead">
+        Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
+        </p>
+        <p class="text-muted">
+        iNaturalist is een onafhankelijke, 501(c)(3) tax-exempt not-for-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WORD EEN MAANDELIJKSE SUPPORTER VAN INATURALIST
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
+          </p>
+          <p class="lead">We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis. Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen. Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren. Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
+          </p>
+          <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist is een onafhankelijke 501(c)(3) tax-exempt not-for-profit organisatie gevestigd in de Verenigde Staten van Amerika (Ruling: 92-1296468).</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
       temporarily_unavailable: |
@@ -6527,8 +6550,7 @@ nl:
           </p>
           <ul>
           <li>
-          de %{site_name} <strong>gemeenschap een determinatie overeenkomt op soortsniveau of lager
-          lower</strong>, dwz dat meer dan 2/3 van de determinaties hetzelfde taxon betreft (als de gemeenschap heeft gestemd dat het gemeenschapstaxon niet verder verbeterd kan worden gaat het terug op onderfamilie niveau of hoger)
+          de %{site_name} <strong>de gebruikers van iNaturalist een determinatie overeenkomen op soortsniveau of lager</strong>, dwz dat meer dan 2/3 van de determinaties hetzelfde taxon betreft (als de gemeenschap heeft gestemd dat het gemeenschapstaxon niet verder verbeterd kan worden gaat het terug op onderfamilie niveau of hoger)
           </li>
           </ul>
           <p>
@@ -6536,7 +6558,7 @@ nl:
           </p>
           <ul>
           <li>
-          de <strong>locatie niet nauwkeurig lijkt</strong> (bijv. apen in het midden van de oceaan, nijlpaarden in een kantoor, etc.)
+          de <strong>lokatie niet nauwkeurig lijkt</strong> (bijv. apen in het midden van de oceaan, nijlpaarden in een kantoor, etc.)
           </li>
           <li>
           het <strong>organisme is niet wild/verwilderd</strong> (dwz gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
@@ -6551,7 +6573,7 @@ nl:
           de waarneming niet langer een ID nodig heeft <em>en</em> het gemeenschapsID is op familie niveau of hoger
           </li>
           <li>
-          de waarnemer heeft het gemeenschapsID uitgezet en de gemeenschapsID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemersID
+          de waarnemer heeft het gemeenschapsID uitgezet en het gemeenschapsID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemersID
           </li>
           </ul>
           <p>

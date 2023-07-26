@@ -1627,7 +1627,8 @@ pt-BR:
   download: Baixar
   download_caps: BAIXAR
   download_bulk_import_template_html: |
-    <a href="%{url}">Baixar template</a> para uso no <a href="/observations/import#csv_import">carregador múltiplo</a>
+    <a href="%{url}">Descarregar modelo</a> para utilizar no
+    <a href="/observations/import?project_id=%{project_id}#csv_import">carregador múltiplo</a>
   download_csv: Baixar CSV
   download_csv_template: Baixar modelo CSV
   download_kml: Baixar KML

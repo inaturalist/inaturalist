@@ -1191,11 +1191,11 @@ mi:
     tooltips:
       select_all: Tīpakohia te mauhanga katoa
   uploading_num_of_count_photos:
-    other: E tukuatu ana i whakaahua...
+    other: E tukuatu ana %{num} o %{count} whakaahua...
   usage_stats: Tauanga whakamahi
   user: Kaiwhakamahi
   user_added_a_comment_html: "Nā %{user} tāpiritia tētahi kōrero"
-  user_added_a_flag_html: "Nā ${user} tāpiritia tētahi kara"
+  user_added_a_flag_html: "Nā %{user} tāpiritia tētahi kara"
   user_added_a_x: "Nā %{user} tāpiritia tētahi %{x}"
   user_added_a_x_to_noun_by_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
   user_added_a_x_to_noun_by_user_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"

@@ -1582,7 +1582,7 @@ es:
   download_caps: DESCARGA
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga plantilla</a> para usar en el
-    <a href="/observations/import#csv_import">cargador masivo</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">cargador masivo</a>
   download_csv: Descarga CSV
   download_csv_template: Descarga plantilla CSV
   download_kml: Descarga KML
@@ -2446,7 +2446,7 @@ es:
   #Template for a comma-separated list of items. We'll use this to generate
   #lists of this form for an arbitrary number of items, not just three.
   list_with_n_items: "%{one}, %{two} y %{three}"
-  list_with_two_items: "{one} y {two}"
+  list_with_two_items: "%{one} y %{two}"
   listed_taxa: Taxones listados
   listed_taxon: Taxón listado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
@@ -2851,7 +2851,7 @@ es:
   new_application: Nueva aplicación
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de verificación
-  new_check_list_for: "Crear lista de verificación nueva para {place} &raquo;"
+  new_check_list_for: "Crear lista de verificación nueva para %{place} &raquo;"
   new_check_list_record: "Si deseas marcar esta lista como exhaustiva, créala, agrega los taxones y luego modifícala y aquí tendrás la opción de marcarla como exhaustiva."
   new_comment_on_a_parent_by_user_link: Nuevo comentario en @vow_or_con{voto:un|un} %{parent} de %{user_link}
   new_conservation_status: Nuevo estado de conservación
@@ -4370,7 +4370,7 @@ es:
   select_one_or_more_photos: 'Selecciona una o más fotos'
   select_options: Selecciona opciones
   select_photos_from_your_photo_stream: |
-    Selecciona las fotos de sitios que comparten fotos para convertirlas en observaciones de {site_name}. Encontraremos la fecha, la  hora y lugar de los metadatos de la foto y trataremos de buscar los nombres de las especies de las etiquetas.
+    Selecciona las fotos de sitios que comparten fotos para convertirlas en observaciones de %{site_name}. Encontraremos la fecha, la  hora y lugar de los metadatos de la foto y trataremos de buscar los nombres de las especies de las etiquetas.
   selected: seleccionado(s)
   selected_photos: Fotos seleccionada
   selected_taxon: Grupo o especie seleccionada
