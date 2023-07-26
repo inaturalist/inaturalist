@@ -3249,7 +3249,6 @@ hu:
   project_requirements: Kritériumok
   project_rules: Projektszabályzat
   project_settings: Projektbeállítások
-  project_start_time_datetime: "Kezdete:"
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3833,7 +3832,6 @@ hu:
   taxonomy: Rendszertan
   taxon_change_commit_may_still_be_processing: |
     A taxonmódosítás még folyamatban lehet, ezért elképzelhető, hogy nem minden adatsor van frissítve
-  taxon_change_title_taxon_swap: Taxoncsere
   taxon_ids: Taxonazonosítók
   taxon_map:
     overlays: Rétegek
@@ -4158,8 +4156,8 @@ hu:
   user_added_a_fave_html: "%{user} kedvelte"
   user_added_a_flag_html: "%{user} bejelentést adott hozzá"
   user_added_a_x: "%{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  user_added_a_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  user_added_a_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_identification_html: "%{user} meghatározást javasolt"
@@ -4167,8 +4165,8 @@ hu:
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
   user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_x_observations_html: "%{user} hozzáadott %{x} megfigyelést"
