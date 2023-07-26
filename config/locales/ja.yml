@@ -34,8 +34,6 @@ ja:
     other: '<span class="count">%{count}</span>件の該当する分類群'
   x_misidentifications_of_this_species:
     other: "この種の鑑定に間違いが%{count}件"
-  x_misidentifications_of_species_in_this_genus:
-    other: "この属における種の誤同定"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -1431,7 +1429,6 @@ ja:
     あなたは線虫の研究者ですか？ それともフジツボの世界一の分類専門家ですか？ かわいい花を見るのは好きですか？ プロフィールを記入すると、誰かの同定を手伝ったとき、あなたの人柄を信頼してもらいやすくなります。
   doesnt_have_default_photo: 規定の写真が定められていません
   doh_something_went_wrong: エラーが発生しました。
-  doh_something_went_wrong_error: "エラーが発生しました："
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 寄付
