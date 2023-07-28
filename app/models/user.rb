@@ -92,6 +92,7 @@ class User < ApplicationRecord
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
   preference :captive_obs_maps, :boolean, default: false
+  preference :gbif_layer_maps, :boolean, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
   preference :monthly_supporter_badge, :boolean, default: false
   preference :map_tile_test, :boolean, default: false
