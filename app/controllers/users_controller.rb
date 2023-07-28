@@ -1043,7 +1043,10 @@ class UsersController < ApplicationController
   end
 
   def resend_confirmation
+    current_user.send( :generate_confirmation_token! )
     current_user.send_confirmation_instructions
+    current_user.wait_for_index_refresh = true
+    current_user.update( confirmation_sent_at: Time.now.utc )
     respond_to do | format |
       format.json do
         if current_user.valid?
