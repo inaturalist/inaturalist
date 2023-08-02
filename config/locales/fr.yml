@@ -5385,7 +5385,7 @@ fr:
   user_added_a_fave_html: "%{user} a ajouté un favori"
   user_added_a_flag_html: "%{user} a ajouté un signalement"
   user_added_a_x: "%{user} a ajouté un %{x}"
-  user_added_a_x_to_noun_by_html: "%{user} a ajouté une %{x} à %{noun} de %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} a ajouté @gender{m:un|une} %{x} à %{noun} de %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} a ajouté un %{x} à %{noun} par %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} a ajouté un %{x} à %{noun} par vous."
   user_added_a_x_to_noun_html: "%{user} a ajouté une %{x} à %{noun}"
@@ -7992,7 +7992,7 @@ fr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b, %k h %M min'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      compact: "%I:%M %p"
+      compact: "%k:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

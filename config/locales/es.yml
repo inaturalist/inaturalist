@@ -399,6 +399,8 @@ es:
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Todos
+  #Title for a list of all 3rd party applications
+  all_applications: Todas las aplicaciones
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben solucionar todos los indicadores
   all_life: Toda la vida
@@ -1572,6 +1574,8 @@ es:
   donate: HACER UNA DONACIÓN
   donate_again_caps: DONAR DE NUEVO
   donate_again_today_caps: DONAR DE NUEVO, HOY
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donar a iNaturalist
   done: Hecho
   dont_have_an_account_sign_up_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   dont_use_double_quotes: No utilices comillas dobles en ningún otro lugar
@@ -1699,6 +1703,11 @@ es:
     fecha, cualquiera que no haya confirmado su dirección de correo electrónico, no podrá
     iniciar sesión a menos que restablezca su contraseña. Para confirmar tu dirección de correo electrónico,
     ve a %{link_start_tag}la configuración de tu cuenta%{link_end_tag}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Detalles de la cuenta
+  email_copyright2: "&copy; %{year} iNaturalist, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Inserta'
   embed_place_widget: Integra widget de lugar
@@ -4494,6 +4503,8 @@ es:
     específico para la red. No importa tu afiliación, todos tus datos estarán alojados en el mismo lugar y continuarás interactuando con la comunidad internacional iNaturalist más amplia. Cada cuenta de NaturaLista puede ser afiliada con un solo miembro de la red. Puedes revisar o cambiar tu afiliación en la configuración de tu cuenta
     %{start_tag_settings}%{end_tag_settings}.
   sites_affiliation_title: Más información sobre afiliación de red
+  sites_network_agreements_html: |
+    iNaturalist mantiene acuerdos formales con organizaciones de esas áreas geográficas para apoyar el uso de la plataforma iNaturalist. <strong>Si tu organización está interesada en unirse a la Red iNaturalist, puedes encontrar más detalles %{start_tag_join}aquí%{end_tag_join}.</strong>
   sites_network_consists_of: "La red iNaturalist está formada por varias organizaciones:"
   sites_network_inaturalist_network_collection: |
     La red iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad iNaturalist global. Los sitios de red están soportados por instituciones locales que promueven el uso local y facilitan el uso de datos de 
@@ -5617,6 +5628,8 @@ es:
     Millones de personas han usado iNaturalist y Seek de iNaturalist durante este año para conectar con la naturaleza
   yir_monthly_supporters_random_selection: |
     Aquí hay una selección aleatoria de los miembros heroicos de la comunidad de iNat que hacen una donación cada mes.
+  yir_thank_your_for_being_generous2: |
+    ¡Gracias por ser tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una organización sin ánimo de lucro orientada al público. El programa depende de numerosas subvenciones y donaciones, incluidas las donaciones caritativas aportadas por una pequeña parte de la comunidad. Estamos especialmente agradecidos a los patrocinadores mensuales cuyas donaciones recurrentes nos ayudan a planificar el futuro.
   yir_your_gift_sustains: |
     Tu donación sostiene este programa de alcance global y profundos impactos personales y ecológicos
   you: tu

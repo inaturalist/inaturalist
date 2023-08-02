@@ -1618,6 +1618,8 @@ pt-BR:
   donate: Doar
   donate_again_caps: DOE NOVAMENTE
   donate_again_today_caps: DOE NOVAMENTE HOJE
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Doar ao iNaturalist
   done: Concluído
   dont_have_an_account_sign_up_html: Não tem uma conta? <strong>Cadastre-se.</strong>
   dont_use_double_quotes: Não utilize aspas em nenhum outro lugar
@@ -2198,6 +2200,18 @@ pt-BR:
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   inaturalist_global_year_in_review: "O ano %{year} do iNaturalist global em revisão"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Prezado(a) %{name},
+  independence_email_body_ps: |
+    P.S. - Em breve anunciaremos uma generosa doação que proporcionará
+    um sólido começo para um iNaturalist independente. O apoio financeiro da
+    comunidade iNaturalist possibilitou nossa evolução e será vital para a nossa
+    sustentabilidade a longo prazo. Sua doação agora celebrará este emocionante
+    marco e vai garantir ainda mais o futuro do iNaturalist. Obrigado!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Doar agora
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -6416,6 +6430,74 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help2_html: |
+          <p>
+          A avaliação da qualidade dos dados é um resumo da precisão de uma observação. Todos
+          as observações começam como grau <strong>"casual"</strong> e tornam-se
+          <strong>"precisa de ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>a observação <strong>tem datação</strong></li>
+          <li>a observação <strong>é georreferenciada</strong> (ou seja, tem coordenadas lat/lon)</li>
+          <li>a observação <strong>tem fotos ou sons</strong></li>
+          <li>a observação <strong>não é de um ser humano</strong></li>
+          </ul>
+          <p>
+          As observações se tornam <strong>"grau de pesquisa"</strong> quando
+          </p>
+          <ul>
+          <li>
+          a comunidade <strong>%{site_name} concorda com o ID de nível de espécie ou
+          inferior</strong>, ou seja, quando mais de 2/3 dos identificadores concordam com um
+          táxon (se a comunidade votou que o táxon comunitário não pode
+          não pode ser melhorado, isso reverte para ID de nível de subfamília ou inferior)
+          </li>
+          </ul>
+          <p>
+          As observações serão revertidas para <strong>"casual"</strong> se as condições acima não forem atendidas ou se a comunidade concordar
+          </p>
+          <ul>
+          <li>
+          o <strong>local não parece
+          preciso</strong> (por exemplo, macacos no meio do oceano,
+          hipopótamos em edifícios de escritórios, etc.)
+          </li>
+          <li>
+          o <strong>organismo não é selvagem/natural</strong> (por exemplo, cativo ou cultivado por humanos
+          ou alienígenas espaciais inteligentes)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidência de um
+          organismo</strong>, por ex. imagens de características da água,
+          rochas, paisagens que não incluem o organismo, etc.
+          </li>
+          <li>
+          a observação <strong>não apresenta evidências recentes (~100 anos) do
+          organismo</strong> (por exemplo, fósseis. Rastros, fezes e folhas mortas
+          estão OK)
+          </li>
+          <li>
+          a observação não precisa mais de um ID <em>e</em> o ID da comunidade é família ou superior
+          </li>
+          <li>
+          o observador optou por não receber o ID da comunidade e o ID da comunidade
+          não é um ancestral ou descendente do táxon associado
+          com o ID sugerido pelo observador
+          </li>
+          </ul>
+          <p>
+          E se isso não fosse complicado o suficiente, também há situações em que o sistema atua:
+          </p>
+          <ul>
+          <li>
+          O sistema considera que a observação não é selvagem/natural
+          se houver pelo menos 10 outras observações de um gênero ou inferior em
+          um local equivalente ou menor que um condado, estado ou país que
+          contém esta observação e 80% ou mais dessas observações
+          foram marcados como cultivado/em cativeiro.
+          </li>
+          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.

@@ -1168,7 +1168,7 @@ th:
       improving: |
         คำแนะนำแรกของหน่วยอนุกรมวิธานที่ชุมชนยอมรับ ซึ่งจะช่วยให้หน่วยฯ ที่เห็นพ้องกันได้รับการจำแนกย่อยลงไป
       maverick: |
-        หน่วยอนุกรมวิธานนี้ไม่ใช่ลูกหลานหรือบรรพบุรุษของหน่วยฯ ที่เห็นพ้องกัน แสดงว่าชุมชนไม่ยอมรับคำแนะนำนี้
+        หน่วยอนุกรมวิธานนี้ไม่ใช่สมาชิกหรือบรรพบุรุษของหน่วยฯ ที่เสียงส่วนใหญ่ของชุมชนเห็นพ้องกัน
   id_withdrawn: ถอนการจำแนก
   identify: จำแนกชนิด
   identify_observations: "จำแนกการสังเกต"
@@ -1209,6 +1209,7 @@ th:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: ไม่ใช้งาน
   inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
+  inaturalist_activity_notifications: "การแจ้งเตือนกิจกรรม %{site_name}"
   info: ข้อมูล
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
@@ -2271,6 +2272,8 @@ th:
   store_caps: ร้านค้า
   subject_affecting_stuff_html: "%{subject}ที่ส่งผลต่อ %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} ได้ทำการ%{thing}ที่ส่งผลต่อ %{stuff}"
+  submit_observations:
+    other: ส่ง %{count} การสังเกต
   submitted: ส่งเมื่อ
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่

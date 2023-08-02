@@ -1570,6 +1570,8 @@ it:
   donate: DONA
   donate_again_caps: DONA ANCORA
   donate_again_today_caps: DONA ANCORA OGGI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Dona a iNaturalist
   done: Fatto
   dont_have_an_account_sign_up_html: Non hai un'utenza? <strong>Registrati.</strong>
   dont_use_double_quotes: Non utilizzare le virgolette da nessun'altra parte
@@ -1717,6 +1719,7 @@ it:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Dettagli del Profilo
+  email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
   email_notifications: Notifiche Email
   embed: 'Incorpora'
   embed_place_widget: Incorpora widget del luogo
@@ -4561,6 +4564,11 @@ it:
   sites_affiliation_overview_you_can_continue_html: |
     Puoi continuare ad accedere tramite iNaturalist.org o tramite il tuo sito web specifico della rete. Non importa la tua affiliazione, tutti i tuoi dati saranno hostati nello stesso luogo e continuerai a poter interagire con la più ampia community internazionale di iNaturalist. Ogni profilo di iNaturalist è affiliabile con un solo Membro della Rete. Puoi revisionare o modificare la tua affiliazione nelle %{start_tag_settings}impostazioni del tuo profilo%{end_tag_settings}.
   sites_affiliation_title: Scopri di Più sull'Affiliazione della Rete
+  sites_network_agreements_html: |
+    iNaturalist ha stipulato accordi formali con organizzazioni in ognuna di queste
+    aree geografiche, per supportarre l'utilizzo della piattaforma di iNaturalist.
+    <strong>Se la tua organizzazione vorrebbe aderire alla Rete di iNaturalist,
+    puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
   sites_network_consists_of: "La Rete di iNaturalist consiste in diverse organizzazioni:"
   sites_network_inaturalist_network_collection: |
     La Rete di iNaturalist è una raccolta di siti web localizzati, completamente connessi alla community globale di iNaturalist. I siti della rete sono supportati dalle istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
@@ -5694,6 +5702,12 @@ it:
     Milioni di persone hanno usato iNaturalist e Seek by iNaturalist quest'anno per connettersi con la natura
   yir_monthly_supporters_random_selection: |
     Ecco una selezione casuale degli eroici membri della community di iNat, che donano ogni mese.
+  yir_thank_your_for_being_generous2: |
+    Grazie per esser generoso con il tuo tempo, la tua attenzione, esperienza e
+    donazioni! iNaturalist è un'organizzazione senza scopo di lucro e a beneficio del pubblico. Il
+    programma si affida a numerose sovvenzioni e donazioni, inclusi doni di beneficienza
+    da meno di una minima frazione della community. Siamo specialmente grati
+    ai Sostenitori del Mese, i cui doni ricorrenti ci aiutano a fare piani per il futuro.
   yir_your_gift_sustains: |
     I tuoi doni sostengono questo programma con la portata globale e profondi impatti personali ed ecologici
   you: te
@@ -5854,10 +5868,53 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist è una delle community più grandi al mondo, dedicate
+        all'esplorazione della biodiversità. Grazie per esserne parte!</strong>
+        </p>
+        <p class="lead">
+        Se credi nella potenza di questa community globale di amanti della natura
+        per la condivisione di conoscenza e per generare insostituibili dati sulla biodiversità,
+        ti preghiamo di considerare un dono una tantum o ricorrente online, o di esplorare <a
+        href="https://www.inaturalist.org/pages/giving">altri
+        metodi per donare</a>.
+        </p>
+        <p class="lead">
+        La tua donazione aiuta a supportare iNaturalist al crescere della community,
+        dall'avanzamanento della visione informatica e l'implementazione di nuove funzionalità, al supportare
+        i nostri server e membri dello staff.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle tasse, senza
+        scopi di lucro, con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
+        </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist è una delle più grandi community dedicate all'esplorazione
+          della biodiversità. Grazie per esserne parte!</strong>
+          </p>
+          <p class="lead">
+          Vogliamo mantenere iNaturalist gratuito da utilizzare, ma non è gratuito da operare.
+          Se ami iNaturalist, ti preghiamo di considerare di divenire un sostenitore mensile.
+          I doni ricorrenti aiutano ad assicurare che iNaturalist possa continuare a
+          ridimensionare la propria infrastruttura e staff, fornendo entrate prevedibili.
+          Inoltre, puoi optare per mostrare lo stato di sostenitore sul tuo profilo utente.
+          </p>
+          <p class="lead">
+          Le tue caritevoli donazioni aiutano a supportare iNaturalist al crescere della
+          community, dall'avanzamento della visione informatica e l'implementazione di nuove
+          funzionalità, al supporto dei nostri server e membri dello staff. Se preferisci effettuare una
+          donazione una tantum, ti preghiamo di <a href="%{donate_url}">cliccare qui</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist è un'organizzazione senza scopo di lucro, esente dalle tasse e indipendente
+          501(c)(3), con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Grazie per essere un Sostenitore Mensile!
         thank_you_for_being_a_monthly_supporter_caps: GRAZIE PER ESSERE UN SOSTENITORE MENSILE!
       temporarily_unavailable: |
@@ -6824,6 +6881,17 @@ it:
           anno, la barra verticale bianca mostra l'anno scorso, e le aree a sfondo grigio mostrano gli anni più bassi e più alti, così come la media per tutti gli anni.
         compared_to_previous_years: Confronta con Anni Precedenti
         donate_title: "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori"
+        donate_desc2_html: |
+          Grazie per essere generoso con il tuo tempo, la tua attenzione, esperienza e donazioni!
+          iNaturalist è un'organizzazione senza scopo di lucro 501(c)(3) negli Stati Uniti. È supportata da
+          un <a href="%{team_url}">piccolo team</a> che effettua tutte le scelte di progettazione e ingegneria software per web,
+          mobile e <a href="%{seek_url}">Seek di iNaturalist</a>, oltre alla gestione del supporto alla community, delle
+          collaborazioni e delle integrazioni che mantengono in funzione (e in rapida crescita!) le cose.
+          Il programma si affida a numerose sovvenzioni e donazioni, inclusi i caritatevoli doni da meno
+          di una minuscola frazione di collaboratori. Siamo specialmente grati ai Sostenitori Mensili, i cui
+          doni ricorrenti ci aiutano a pianificare per il futuro. Puoi donare in numerose valute
+          per supportare le operazioni principali di iNaturalist.
+          Grazie a tutti per la vostra parte nel rendere il %{year}, l'anno migliore di sempre di iNaturalist!
         donors: Donatori
         donors_guide_label_our_goal_is_1000: Il nostro obiettivo è 1'000 donatori ricorrenti al mese
         inaturalist_network: Il Network di iNaturalist
@@ -7088,6 +7156,15 @@ it:
           </p>
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
+        monthly_supporter_desc_html: |
+          I Sostenitori Mensili di iNaturalist effettuano contributi mensili automatici
+          a iNaturalist (Stati Uniti IRS EIN 92-1296468) per supportare l'operazione
+          senza scopo di lucro di iNaturalist e dei siti della Rete di iNaturalist.
+          <a href="%{url}">Clicca qui per diventare un Sostenitore Mensile</a>. Una volta confermato
+          il tuo supporto, potrai spuntare questa casella per mostrare questo stato sul
+          tuo profilo. Nota: gli indirizzi email su Donorbox e su iNaturalist, devono corrispondere
+          esattamente, affinché possiamo confermare che tu sia un Sostenitore Mensile. Se
+          differiscono, modifica uno dei due affinché corrisponda all'altro.
         muting_desc_html: |
           <p>
           Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.
@@ -7893,6 +7970,11 @@ it:
           attributes:
             base:
               user_already_blocked: Hai già bloccato questo utente
+              user_cannot_be_staff2: |
+                Non puoi bloccare lo staff. Lo staff di iNaturalist deve poter comunicare
+                con tutti su iNaturalist, avere accesso a tutti i dati su di esso, ed essere
+                i mediatori definitivi delle controversie, quindi, bloccarli non impedirà loro di
+                comunicare con te.
         user_parent:
           attributes:
             email:
