@@ -998,13 +998,7 @@ en:
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: split into
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: merge into
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: merged into
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: replaced by
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: replace with
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: replaced with
     dropped: dropped
@@ -2722,6 +2716,7 @@ en:
     davawenyo: Davawenyo
     dutch: Dutch
     english: English
+    esperanto: Esperanto
     estonian: Estonian
     faroese: Faroese
     fijian: Fijian
@@ -5891,19 +5886,29 @@ en:
   user_added_a_comment_html: "%{user} added a comment"
   user_added_a_fave_html: "%{user} added a fave"
   user_added_a_flag_html: "%{user} added a flag"
+  # @gender operates on %{x}
   user_added_a_x: "%{user} added a %{x}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} added a %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} added a %{x} to %{noun} by you"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
   user_added_an_identification_html: "%{user} added an identification"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_added_an_observation_field_value_html: "%{user} added an observation field value"
   user_added_an_observation_html: "%{user} added an observation"
+  # @gender operates on %{x}
   user_added_an_x: "%{user} added an %{x}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} added an %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated

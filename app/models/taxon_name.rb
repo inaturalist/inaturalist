@@ -64,6 +64,7 @@ class TaxonName < ApplicationRecord
     DAVAWENYO: "Davawenyo",
     DUTCH: "Dutch",
     ENGLISH: "English",
+    ESPERANTO: "Esperanto",
     ESTONIAN: "Estonian",
     FINNISH: "Finnish",
     FRENCH: "French",
