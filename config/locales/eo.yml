@@ -14,6 +14,12 @@ eo:
   x_identifications_:
     one: '1 Identigado'
     other: '%{count} Identigadoj'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Identigisto'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Identigistoj'
   x_languages:
     one: "%{count} lingvo"
     other: "%{count} lingvoj"
@@ -41,6 +47,9 @@ eo:
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observo</a>"
     other: "<a href='%{url}'>%{count} observoj</a>"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Observanto'
+    other: '<span class="count">%{count}</span> Observantoj'
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
@@ -295,6 +304,7 @@ eo:
   allowed_values: Permesataj valoroj
   alphabetical: Alfabeta
   alphabetical_order: Alfabeta Ordo
+  already_have_an_account_log_in_html: Ĉu vi jam havas konton? <strong>Ensaluti.</strong>
   amphibians: amfibioj
   and_other_taxa: "&amp; Aliaj Taksonoj"
   animals: Animaloj
@@ -343,6 +353,7 @@ eo:
   be_the_first_to_fave_this_observation: Estu la unua favoranto de ĉi tiu observo!
   bioblitz: Biofulmado
   birds: birdoj
+  birthday: Naskiĝtago
   black: nigra
   blue: blua
   blue_butterfly_etc: "blua, papilio, ktp."
@@ -424,6 +435,7 @@ eo:
   comprehensive?: Ĉu ampleksa?
   comprehensive_list: Ampleksa listo
   concept_status: Stato de Koncepto
+  confidential: Konfidenca
   configure: Agordi
   confirm: Konfirmi
   confirm_membership: Konfirmi anecon
@@ -577,6 +589,13 @@ eo:
   documentation_for_developers_html: Dokumentaro por <a href="/pages/developers">evoluigantoj</a>
   doh_something_went_wrong: Domaĝe, io misfunkciis.
   doh_something_went_wrong_error: "Domaĝe, io misfunkciis: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONACU
+  donate_again_caps: DONACU DENOVE
+  donate_again_today_caps: DONACU DENOVE HODIAŬ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donacu al iNaturalist
   done: Farita
   dont_have_an_account_sign_up_html: Ĉu vi ne havas konton? <strong>Registriĝu.</strong>
   download: Elŝuti
@@ -708,6 +727,7 @@ eo:
   go: Ek
   go_back: Reen
   got_it!: Komprenite!
+  grid: Krado
   group: Grupo
   grouping: Grupigado
   guides: Gvidiloj
@@ -728,6 +748,7 @@ eo:
   i_dont_know_but_i_am_sure_this_is_taxon: Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}
   icon: Ikono
   icon_size: Grando de ikono
+  id: ID
   identify: Identigi
   identify_title: "Identigi"
   identification: Identigo
@@ -738,6 +759,9 @@ eo:
   #Notification when an identification has been updated
   identification_updated: Identigo aktualiĝis!
   identifications: Identigoj
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Donacu nun
+  identifiers: Identigistoj
   ids: "Identigoj"
   ids_made_for_others: Identigoj por aliuloj
   ignore_and_continue: Ignori kaj daŭrigi
@@ -751,8 +775,10 @@ eo:
   invitation: Invito
   invite: inviti
   invite_people: Inviti homojn
+  jobs: Laborpostenoj
   join: Aliĝi
   join_project: Aliĝi al ĉi tiu projekto
+  join_the_largest_group_of_naturalists_in_the_world: Aliĝu al la plej granda grupo de naturistoj en la mondo!
   join_this_project: Aliĝi al ĉi tiu projekto
   'joined!': Aliĝis!
   journal: Ĵurnalo
@@ -771,6 +797,9 @@ eo:
   latitude_value: "Latitudo: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Tavoloj
+  leaderboard: Ĉampionejo
+  leaderboard_for_x: "Ĉampionejo por %{x}"
+  leaderboards: Ĉampionejoj
   learn: Lerni
   learn_more: Lerni Plu
   learn_more_raquo: "Lerni plu &raquo;"
@@ -887,8 +916,10 @@ eo:
   mammals: mamuloj
   manage_all_your_subscriptions: Mastrumi ĉiujn viajn abonojn
   manage_names: Mastrumi Nomojn
+  manage_your_projects: Administri Viajn Projektojn
   manager: Mastrumanto
   managers: Mastrumantoj
+  managing_projects: Administrado de Projektoj
   map: Mapo
   medium: meza
   meet: Renkonti
@@ -904,8 +935,13 @@ eo:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1s"
       #Short text representing %d minutes in the past
       mm: "%dmin"
+      #Short text representing 1 hour in the past
+      h: "1h"
       #Short text representing 1 day in the past
       d: "1t"
       #Short text representing %d days in the past
@@ -1028,6 +1064,13 @@ eo:
     medium: meza
     large: granda
     original: originala
+  pi_consent_desc_title: Pri Personaj Informoj
+  pi_consent_label: |
+    Mi konsentas permesi iNaturalist stoki kaj prilabori limigitajn specojn de
+    personaj informoj pri mi por administri mian konton
+  pi_consent_child_label: |
+    Mi konsentas permesi iNaturalist stoki kaj prilabori limigitajn specojn de
+    personaj informoj pri mia infano por administri la konton de mia infano
   pin_verb: Alpingli
   pink: roza
   place: Loko
@@ -1425,6 +1468,7 @@ eo:
   recent: Ĵusaj
   recent_post: Ĵusa afiŝo
   recently_active: Ĵus Aktiva
+  recently_created: Lastatempe Kreita
   recently_finished: Ĵus Finita
   red: ruĝa
   refresh: Refreŝigi
@@ -1450,6 +1494,9 @@ eo:
   required: deviga
   required_: Deviga
   required_field: deviga kampo
+  research: esplorado
+  research_: Esplorado
+  research_grade: Esplora Grado
   resolver_said_x_html: '<span class="meta">%{resolver} diris,</span> "%{x}"'
   restore: Restarigi
   restoring: Restariganta...
@@ -1591,6 +1638,10 @@ eo:
   start_typing_someones_name: "Ektajpu ies nomon..."
   stats: Statistiko
   status: Stato
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Vendejo
+  store_caps: VENDEJO
   submitted: Sendita
   subscribe_to_a_taxon: Aboni Taksonon
   subscribe_to_a_place: Aboni Lokon
@@ -1628,6 +1679,7 @@ eo:
   taxonomic_order: Taksonomia Ordo
   taxonomic_status: Taksonomia stato
   taxonomic_tags_for_flickr: Taksonomiaj Etikedoj por Flickr
+  teachers_guide: Gvidilo de instruisto
   terrain: tereno
   text: Teksto
   thanks!: Dankon!
@@ -1686,6 +1738,7 @@ eo:
   view_original: "Vidi originalon"
   view_place: Vidi lokon
   view_post: Vidi afiŝon
+  view_sample: Rigardu Ekzemplon
   view_stats: Vidi statistikon
   view_x: "Vidi %{x}n"
   view_your_dashboard: Vidi vian stirpanelon
@@ -1727,6 +1780,7 @@ eo:
   'yes': "Jes"
   yes_find_them!: "Jes, trovu ilin!"
   yes_i_want_to_join: Jes, mi volas aniĝi
+  yes_license_my_observations_so_scientists_can_use: Jes, licencu miajn fotojn, sonojn kaj observaĵojn, tiel ke sciencistoj povu uzi miajn datumojn (rekomenditajn).
   yesterday: Hieraŭ
   you: vi
   you_: Vi
@@ -1821,6 +1875,8 @@ eo:
         obs_in_year: Observoj en %{year}
     taxa:
       show:
+        frequency:
+          research: Esplora Grado
         trending_desc: Plej ofte observitaj taksonoj dum lasta monato
     users:
       edit:
@@ -1978,6 +2034,7 @@ eo:
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
       delimiter: ' '
+      precision: 3
       #The separator separates an integer from a decimal fraction, so if the
       #number is "one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "." is the separator. This should not be
@@ -1994,6 +2051,7 @@ eo:
           thousand: Mil
           trillion: Duiliono
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
@@ -2001,7 +2059,9 @@ eo:
           byte:
             one: bitoko
             other: bitokoj
+          gb: GB
           kb: kB
+          mb: MB
   support:
     array:
       last_word_connector: ', kaj'
@@ -2085,6 +2145,7 @@ eo:
         login: Uzantnomo
         name: Nomo
         locale: Lokaĵaro
+        time_zone: Horzono
         place_id: Loko
     errors:
       messages:
