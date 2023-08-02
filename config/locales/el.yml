@@ -4046,7 +4046,7 @@ el:
   there_was_a_problem_creating_this_account: |
     Προέκυψε πρόβλημα κατά τη δημιουργία του λογαριασμού. Παρακαλούμε επικοινωνήστε μαζί μας αν το πρόβλημα επιμένει.
   there_was_a_problem_saving_your_identification: "Προέκυψε πρόβλημα κατά την αποθήκευση της ταυτοποίησης σας: %{error}"
-  there_were_problems_adding_taxa: "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτών των taxa: %{errors}"
+  there_were_problems_adding_taxa: "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτών των ταξινομικών μονάδων: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτής της παρατήρησης σε αυτό το Πρότζεκτ: "
   there_were_problems_importing_that_place: "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή αυτού του τόπου: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
@@ -4293,6 +4293,7 @@ el:
   user_flagged_as_a_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως σπάμερ"
   user_has_opted_out_of_community_id: Ο χρήστης απορρίπτει την κοινοτική ταξινομική μονάδα
   user_hasnt_joined_any_projects: "Ο/Η %{user} δεν συμμετέχει σε καμία εργασία"
+  user_helped_x_people_with_y_ids_html: "Ο/Η %{user} βοήθησε <strong>%{x} άτομα</strong> με <strong>%{y} ταυτοποιήσεις</strong>"
   user_invite_observation_to_project: 'Η/Ο %{user} θά ήθελε να προσκαλέσει την παρατήρησή σας "%{observation}" στο πρότζεκτ %{project}.'
   user_invited_you_to_join_html: "Ο/Η %{user}%{user}σας προσκάλεσε να συμμετέχετε"
   user_invited_you_to_join_project: "Η/Ο %{user} σας προσκάλεσε να εγγραφείτε στο %{project}"
@@ -4300,6 +4301,8 @@ el:
   user_is_a_naturalist: "Η/Ο %{user} είναι μια/ένας φυσιολάτρης!"
   user_is_now_the_admin_for_project_html: |
     Ο χρήστης <strong>%{user}</strong> είναι τώρα ο διαχειριστής του πρότζεκτ %{project}
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> είναι τώρα ο διαχειριστής για %{project}
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong>είναι τώρα ο επιμελητής για%{project}
   user_muted: Ο χρήστης είναι σε σίγαση
