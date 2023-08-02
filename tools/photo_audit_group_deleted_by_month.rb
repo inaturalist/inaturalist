@@ -9,7 +9,7 @@ counts_by_month = Hash.new
 batch_index = 0
 
 # Process each batch of rows
-CSV.foreach(ids_csv_file_path, headers: false).each_slice(batch_size) do |batch_rows|
+CSV.foreach( ids_csv_file_path, headers: false ).each_slice( batch_size ) do |batch_rows|
   
   puts "#{batch_index}"
   batch_index += 1
@@ -20,12 +20,12 @@ CSV.foreach(ids_csv_file_path, headers: false).each_slice(batch_size) do |batch_
     batch_ids << row[0].to_i
   end
 
-  counts = DeletedPhoto.where(photo_id: batch_ids)
-  .group("DATE_TRUNC('month',created_at)")
+  counts = DeletedPhoto.where( photo_id: batch_ids )
+  .group( "DATE_TRUNC('month',created_at)" )
   .count
 
   counts.each do |k, v|
-  	if counts_by_month.key?(k) 
+  	if counts_by_month.key?( k ) 
   		counts_by_month[k] += v
   	else
   		counts_by_month[k] = v
@@ -36,7 +36,7 @@ end
 
 puts counts_by_month
 
-CSV.open(processed_csv_file_path, "w") do |processed_csv|
+CSV.open( processed_csv_file_path, "w" ) do |processed_csv|
 	counts_by_month.each do |k, v|
 		processed_csv << [k,v]
 	end

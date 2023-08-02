@@ -21,11 +21,9 @@ missing_photo_ids_csv_file_path = '/home/inaturalist/audit/missing_photo_ids.XXX
 # List "missing" photo IDs
 
 missing_ids = []
-CSV.foreach(missing_photo_ids_csv_file_path, headers: false).each do |row|
+CSV.foreach( missing_photo_ids_csv_file_path, headers: false ).each do |row|
   id = row[0].to_i
-  if id <= 305004718
-    missing_ids << id
-  end
+  missing_ids << id
 end
 missing_ids = missing_ids.uniq.sort
 puts "missing_ids = #{missing_ids.length()}"
@@ -43,8 +41,8 @@ not_orphan_old_photos_ids = []
 not_orphan_recent_photos_ids = []
 current_batch_id = 0
 
-missing_ids.each_slice(batch_size) do |batch_ids|
-  deleted_photos = DeletedPhoto.where(photo_id: batch_ids)
+missing_ids.each_slice( batch_size ) do |batch_ids|
+  deleted_photos = DeletedPhoto.where( photo_id: batch_ids )
   deleted_photos.each do |photo|
   	deleted_photo_ids << photo.photo_id
   	if photo.removed_from_s3
@@ -69,7 +67,7 @@ missing_ids.each_slice(batch_size) do |batch_ids|
   puts "Batch ##{current_batch_id}"
 end
 
-not_deleted_photo_ids = (missing_ids - deleted_photo_ids).uniq
+not_deleted_photo_ids = ( missing_ids - deleted_photo_ids ).uniq
 deleted_photo_ids = deleted_photo_ids.uniq
 removed_from_s3_photo_ids = removed_from_s3_photo_ids.uniq
 orphan_old_photos_ids = orphan_old_photos_ids.uniq
@@ -96,37 +94,37 @@ orphan_recent_photos_ids_csv_file_path = '/home/inaturalist/audit/orphan_recent_
 not_orphan_old_photos_ids_csv_file_path = '/home/inaturalist/audit/not_orphan_old_photos_ids.'+ts+'.csv'
 not_orphan_recent_photos_ids_csv_file_path = '/home/inaturalist/audit/not_orphan_recent_photos_ids.'+ts+'.csv'
 
-CSV.open(not_deleted_photo_ids_csv_file_path, "w") do |w_csv|
+CSV.open( not_deleted_photo_ids_csv_file_path, "w" ) do |w_csv|
   not_deleted_photo_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(deleted_photo_ids_csv_file_path, "w") do |w_csv|
+CSV.open( deleted_photo_ids_csv_file_path, "w" ) do |w_csv|
   deleted_photo_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(removed_from_s3_photo_ids_csv_file_path, "w") do |w_csv|
+CSV.open( removed_from_s3_photo_ids_csv_file_path, "w" ) do |w_csv|
   removed_from_s3_photo_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(orphan_old_photos_ids_csv_file_path, "w") do |w_csv|
+CSV.open( orphan_old_photos_ids_csv_file_path, "w" ) do |w_csv|
   orphan_old_photos_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(orphan_recent_photos_ids_csv_file_path, "w") do |w_csv|
+CSV.open( orphan_recent_photos_ids_csv_file_path, "w" ) do |w_csv|
   orphan_recent_photos_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(not_orphan_old_photos_ids_csv_file_path, "w") do |w_csv|
+CSV.open( not_orphan_old_photos_ids_csv_file_path, "w" ) do |w_csv|
   not_orphan_old_photos_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(not_orphan_recent_photos_ids_csv_file_path, "w") do |w_csv|
+CSV.open( not_orphan_recent_photos_ids_csv_file_path, "w" ) do |w_csv|
   not_orphan_recent_photos_ids.each do |ids|
     w_csv << [ids]
   end

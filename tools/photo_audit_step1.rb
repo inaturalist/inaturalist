@@ -18,7 +18,7 @@ bucket_prefix_id = FilePrefix.where( prefix: "https://static.inaturalist.org/pho
 
 original_ids_csv_file_path = '/home/inaturalist/audit/original_ids.csv'
 original_ids = []
-CSV.foreach(original_ids_csv_file_path, headers: false).each do |row|
+CSV.foreach( original_ids_csv_file_path, headers: false ).each do |row|
   original_ids << row[0].to_i
 end
 original_ids = original_ids.uniq.sort
@@ -31,8 +31,8 @@ photo_ids = []
 missing_photo_ids = []
 current_batch_id = 0
 
-original_ids.each_slice(batch_size) do |batch_ids|
-  found_ids = Photo.where(id: batch_ids, file_prefix_id: bucket_prefix_id).pluck(:id)
+original_ids.each_slice( batch_size ) do |batch_ids|
+  found_ids = Photo.where( id: batch_ids, file_prefix_id: bucket_prefix_id ).pluck( :id )
   photo_ids += found_ids
   missing_photo_ids += batch_ids - found_ids
   current_batch_id += 1
@@ -51,12 +51,12 @@ puts "missing_photo_ids = #{missing_photo_ids.length()}"
 photo_ids_csv_file_path = '/home/inaturalist/audit/photo_ids.'+ts+'.csv'
 missing_photo_ids_csv_file_path = '/home/inaturalist/audit/missing_photo_ids.'+ts+'.csv'
 
-CSV.open(photo_ids_csv_file_path, "w") do |w_csv|
+CSV.open( photo_ids_csv_file_path, "w" ) do |w_csv|
   photo_ids.each do |ids|
     w_csv << [ids]
   end
 end
-CSV.open(missing_photo_ids_csv_file_path, "w") do |w_csv|
+CSV.open( missing_photo_ids_csv_file_path, "w" ) do |w_csv|
   missing_photo_ids.each do |ids|
     w_csv << [ids]
   end
