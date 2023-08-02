@@ -174,6 +174,8 @@ zh-TW:
   acc_above: 在特定精確度數值以上
   #Filter for observations with positional accuracy below a certain value
   acc_below: 在特定精確度數值以下
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: 精確度在特定數值以下或未知
   account: 帳號
   account_creation: 帳號建立
   account_settings: 帳號設定
@@ -497,6 +499,8 @@ zh-TW:
   anyone: 任何人
   app_owner_application_explanation_required: |
     您必須對您想要打造的應用程式提供更詳細的解釋。
+  app_owner_application_about_p1a_html: |
+    愛自然的app允許經過驗證的使用愛自然API。這可允許您透過API來建立觀察記錄或進行鑑定。常見的使用案例如桌面應用程式或行動裝置app，包含了可以讓它們的使用者建立觀察記錄的功能。該內容必須在真實人類的參與或監督下產生。請在我們的 <a href="/pages/community+guidelines"target="_blank">社群守則</a> 閱讀更多有關禁止機器生成觀察記錄、鑑定，與留言的詳細資訊。
   app_owner_application_about_p2_html: |
     自2022年起，我們以人工審核方式審核想要使用API用戶端的使用者，為了創建第三方應用程式，您必須先提交申請才能成為"app擁有者"，申請內容必須描述該app的功能以及您計畫如何使用它，在提交申請前請確認您的帳號註冊時間至少2個月以上並且在過去一個月內完成至少10筆<a href="/pages/help#identification"
     target="_blank">改進中的鑑定</a>，我們可能會對您的申請內容提出後續問題，並保留以任何理由拒絕申請的權利。
@@ -681,6 +685,9 @@ zh-TW:
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    因為我們估計這個變動會導致超過10個以上的意外分歧，<strong>我們建議您也提交一個包含 %{old_parent}的分類群更改，如從 %{old_parent}拆分出 %{new_parent}</strong>.
   become_a_donor_caps: 成為捐款者
   become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
