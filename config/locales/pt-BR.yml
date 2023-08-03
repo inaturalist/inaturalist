@@ -884,13 +884,7 @@ pt-BR:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: foi dividido em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: convergir em
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: convergir em
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituido por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituir por
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: substituído por
     dropped: descartado
@@ -5431,19 +5425,29 @@ pt-BR:
   user_added_a_comment_html: "%{user} adicionou um comentário"
   user_added_a_fave_html: "%{user} adicionou um favorito"
   user_added_a_flag_html: "%{user} adicionou uma sinalização"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} adicionou um %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} adicionou um %{x} a %{noun} por você"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} adicionou um %{x} a %{noun}"
   user_added_an_identification_html: "%{user} adicionou uma identificação"
   user_added_an_observation_field_html: '%{user} adicionou um valor para "%{field_name}" em uma observação de %{owner}'
   user_added_an_observation_field_value_html: "%{user} adicionou um valor do campo de observação"
   user_added_an_observation_html: "%{user} adicionou uma observação"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} adicionou um %{x} a %{noun} por você"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou uma %{x} a %{noun}"
   user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O usuário já está autenticado
