@@ -876,13 +876,7 @@ tr:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: şuna bölündü
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: şununla birleşti
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: şununla birleşti
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: şununla değiştirildi
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: şununla değiştir
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: şununla değiştirildi
     dropped: etkisizleştirildi
@@ -5272,19 +5266,29 @@ tr:
   user_added_a_comment_html: "%{user} bir yorum ekledi"
   user_added_a_fave_html: "%{user} bir favori ekledi"
   user_added_a_flag_html: "%{user} bir işaret ekledi"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} bir %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_an_identification_html: "%{user} bir tanımlama ekledi"
   user_added_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlem için "%{field_name}" değeri ekledi'
   user_added_an_observation_field_value_html: "%{user} bir gözlem alan değeri ekledi"
   user_added_an_observation_html: "%{user} bir gözlem ekledi"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} bir %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_x_observations_html: "%{user}, %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
