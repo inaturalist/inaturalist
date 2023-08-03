@@ -54,4 +54,15 @@ class DeletedPhoto < ApplicationRecord
     end
   end
 
+  def self.remove_from_s3_batch( min_id, max_id )
+    client = LocalPhoto.new.s3_client
+    DeletedPhoto.still_in_s3.
+      where( "id >= ?", min_id ).
+      where( "id < ?", max_id ).
+      includes( :photo ).
+      find_each( batch_size: 1000 ) do |dp|
+      dp.remove_from_s3( s3_client: client )
+    end
+  end
+
 end
