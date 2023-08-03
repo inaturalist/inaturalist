@@ -888,13 +888,7 @@ da:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: opdelt til
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: sammenlæg i
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: sammenlagt i
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: erstattet af
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erstat med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: erstattet med
     dropped: droppet
@@ -2482,6 +2476,7 @@ da:
     davawenyo: Davawenyo
     dutch: Hollandsk
     english: Engelsk
+    esperanto: Esperanto
     estonian: Estisk
     faroese: Færøsk
     fijian: Fijiansk
@@ -5519,19 +5514,29 @@ da:
   user_added_a_comment_html: "%{user} tilføjede en kommentar"
   user_added_a_fave_html: "%{user} tilføjede en favorit"
   user_added_a_flag_html: "%{user} tilføjede en flag"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} tilføjede en %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_an_identification_html: "%{user} tilføjede en identifikation"
   user_added_an_observation_field_html: '%{user} tilføjede en værdi i "%{field_name}" til en observation af %{owner}'
   user_added_an_observation_field_value_html: "%{user} tilføjede en observationsfeltværdi"
   user_added_an_observation_html: "%{user} tilføjede en observation"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} tilføjede en %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
