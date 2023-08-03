@@ -689,10 +689,6 @@ sr:
     swap: Zameni
     stage: Faza
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zamenjen sa
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: zameni sa
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zamenjen sa
     input_taxon_was_dropped_html: "%{input_taxon} je poništen"
     input_taxon_will_be_dropped_html: "%{input_taxon} će biti poništen"
@@ -3486,16 +3482,25 @@ sr:
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} i %{x_others} su dodali opservaciju u favorite"
   user_added_a_comment_html: "%{user} je dodao komentar"
   user_added_a_fave_html: "%{user} je dodao/la nov favorit"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} je dodao/la %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} je dodao/la %{x} na tvoju %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun}"
   user_added_an_identification_html: "%{user} je dodao/la identifikaciju"
   user_added_an_observation_html: "%{user} je dodao/la opservaciju"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} je dodao/la %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun}"
   user_added_x_observations_html: "%{user} je dodao/la %{x} opservacija"
   user_autocomplete_placeholder: kueda, simon123, itd.
