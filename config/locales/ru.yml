@@ -987,13 +987,7 @@ ru:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: разделить на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: соединить в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: слились в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: заменены
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'Заменить на:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заменены на
     dropped: отброшено
@@ -5492,19 +5486,29 @@ ru:
   user_added_a_comment_html: "%{user} добавил комментарий"
   user_added_a_fave_html: "%{user} добавил к фаворитам"
   user_added_a_flag_html: "%{user} добавил флаг"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} добавил %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_an_identification_html: "%{user} добавил идентификацию"
   user_added_an_observation_field_html: '%{user} добавил значение "%{field_name}" к наблюдению %{owner}'
   user_added_an_observation_field_value_html: "%{user} добавил значение поля наблюдения"
   user_added_an_observation_html: "%{user} добавил наблюдение"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} добавил %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_x_observations_html: "%{user} добавил %{x} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
