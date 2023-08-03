@@ -1257,35 +1257,6 @@ mr:
         who_uses_site_name: "%{site_name} कोण वापरते?"
         what_are_you_waiting_for: कसली वाट पाहताय?
         join_today: आजच सहभागी व्हा
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   datetime:
     countdown_x_days:
       one: दिवस
@@ -1300,6 +1271,9 @@ mr:
       one: सेकंद
       other: सेकंद
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true
