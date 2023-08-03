@@ -19,6 +19,9 @@ class PhotoBrowser extends React.Component {
   constructor( ) {
     super( );
     this.addPhotoButton = this.addPhotoButton.bind( this );
+    this.state = {
+      slideIndex: 0
+    };
   }
 
   componentDidMount( ) {
@@ -89,14 +92,17 @@ class PhotoBrowser extends React.Component {
     if ( !observation || !observation.user ) { return ( <div /> ); }
     this.viewerIsObserver = config && config.currentUser
       && config.currentUser.id === observation.user.id;
-    const viewerIsAdmin = config && config.currentUser && (
-      config.currentUser.roles.indexOf( "admin" ) >= 0
-    );
     const viewerIsCurator = config && config.currentUser && (
       config.currentUser.roles.indexOf( "curator" ) >= 0
       || config.currentUser.roles.indexOf( "admin" ) >= 0
     );
+    let mediaViewerIndex = 0;
     const images = observation.photos.map( photo => {
+      if ( photo.api_status === "processing" ) {
+        return {
+          loading: true
+        };
+      }
       // extend photo to have a user property, but preserve its constructor type
       photo = new photo.constructor( { ...photo, user: observation.user } );
       let original = photo.photoUrl( "original" );
@@ -114,7 +120,6 @@ class PhotoBrowser extends React.Component {
         square = null;
       }
       let description;
-      let mediaViewerIndex = 0;
       if ( photo.id ) {
         description = (
           <div className="captions">
@@ -140,9 +145,11 @@ class PhotoBrowser extends React.Component {
                     ? unhideContent( photo )
                     : hideContent( photo )
                   )}
-                  title={I18n.t( "flag_as_inappropriate" )}
+                  title={photo.hidden
+                    ? I18n.t( "unhide_content" )
+                    : I18n.t( "hide_content" )}
                 >
-                  <i className="fa fa-eye-slash" />
+                  <i className={`fa ${photo.hidden ? "fa-eye" : "fa-eye-slash"}`} />
                 </button>
               ) }
               <a href={`/photos/${photo.id}`}>
@@ -194,6 +201,12 @@ class PhotoBrowser extends React.Component {
       return slideDetails;
     } );
     _.each( observation.sounds, sound => {
+      if ( sound.api_status === "processing" ) {
+        images.push( {
+          loading: true
+        } );
+        return;
+      }
       // extend sound to have a user property, but preserve its constructor type
       sound = new sound.constructor( { ...sound, user: observation.user } );
       let player;
@@ -288,7 +301,7 @@ class PhotoBrowser extends React.Component {
                 >
                   <i className="fa fa-flag" />
                 </button>
-                { viewerIsAdmin && (
+                { ( viewerIsCurator && !this.viewerIsObserver ) && (
                   <button
                     type="button"
                     className="btn btn-nostyle"
@@ -296,9 +309,11 @@ class PhotoBrowser extends React.Component {
                       ? unhideContent( sound )
                       : hideContent( sound )
                     )}
-                    title={I18n.t( "flag_as_inappropriate" )}
+                    title={sound.hidden
+                      ? I18n.t( "unhide_content" )
+                      : I18n.t( "hide_content" )}
                   >
-                    <i className="fa fa-eye-slash" />
+                    <i className={`fa ${sound.hidden ? "fa-eye" : "fa-eye-slash"}`} />
                   </button>
                 ) }
               </div>
@@ -335,6 +350,7 @@ class PhotoBrowser extends React.Component {
           showFullscreenButton={false}
           showPlayButton={false}
           slideDuration={0}
+          startIndex={this.state.slideIndex}
           renderCustomControls={this.addPhotoButton}
           onClick={e => {
             if ( !$( e.target ).is( "img" ) ) { return; }
@@ -347,6 +363,7 @@ class PhotoBrowser extends React.Component {
             }
           }}
           onSlide={currentIndex => {
+            this.state.slideIndex = currentIndex;
             if ( _.has( images[currentIndex], "mediaViewerIndex" ) ) {
               setMediaViewerState( { activeIndex: images[currentIndex].mediaViewerIndex } );
             }
@@ -391,8 +408,10 @@ class PhotoBrowser extends React.Component {
                 item.description && (
                   <span className="image-gallery-description">
                     {item.description}
-                  </span> )
+                  </span>
+                )
               }
+              { item.loading && ( <div className="loading_spinner" /> ) }
             </div>
           )}
           renderThumbInner={item => {

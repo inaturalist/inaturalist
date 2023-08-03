@@ -165,6 +165,8 @@ class CommentsController < ApplicationController
   end
 
   def hide
+    @item = @comment
+    render "moderator_actions/hide_content"
   end
 
   private

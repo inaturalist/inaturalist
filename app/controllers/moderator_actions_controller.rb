@@ -35,6 +35,14 @@ class ModeratorActionsController < ApplicationController
               t( :the_user_x_has_been_unsuspended, user: @moderator_action.resource.login )
             else default_notice
             end
+          when "Photo"
+            case @moderator_action.action
+            when ModeratorAction::HIDE then t( :photo_hidden )
+            when ModeratorAction::UNHIDE then t( :photo_unhidden )
+            else default_notice
+            end
+            redirect_to @moderator_action.resource.becomes( Photo )
+            return
           else
             default_notice
           end
@@ -49,6 +57,9 @@ class ModeratorActionsController < ApplicationController
             t( :failed_to_save_record_with_errors, errors: @moderator_action.errors.full_messages.to_sentence )
           if @moderator_action.resource_type === "Comment"
             redirect_to hide_comment_path( @moderator_action.resource )
+            return
+          elsif @moderator_action.resource_type === "Photo"
+            redirect_to hide_photo_path( @moderator_action.resource )
             return
           end
           redirect_back_or_default @moderator_action.resource

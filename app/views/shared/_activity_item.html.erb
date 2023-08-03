@@ -96,8 +96,18 @@
       end -%>
     <% unless text.blank? -%>
       <% if !viewer_can_see_item %>
-        <div class="quiet box">
-          <%=t :content_hidden %>
+        <div class="readable body content-hidden">
+          <p>
+            <span
+              class="content-hidden"
+              data-content="<%= render( partial: "moderator_actions/popover", locals: { item: item } ).to_str %>"
+              data-placement="top"
+              data-toggle="popover"
+            >
+              <i class="fa fa-eye-slash" ></i>
+              <%= t :content_hidden %>
+            </span>
+          </p>
         </div>
       <% else %>
         <div class="readable body">
@@ -141,7 +151,7 @@
         <span class="comment_actions">
           <%-
             pieces = []
-            if is_me?(item.user) && edit_url && !parent_comments_disabled
+            if is_me?(item.user) && edit_url && !parent_comments_disabled && !item_hidden
               pieces << link_to(t(:edit), edit_url)
             end
             if item.is_a?( Identification ) && is_me?( item.user )
@@ -150,7 +160,7 @@
               else
                 pieces << link_to( t(:restore), identification_path( item, identification: { current: true } ), method: :put, data: { loading_click: t(:restoring) } )
               end
-            elsif item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
+            elsif !item_hidden && ( ( item.respond_to?( :deletable_by? ) && item.deletable_by?( current_user ) ) || is_me?( item.user ) )
               pieces << link_to(t(:delete), item,
                           :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)},
                           :method => :delete,

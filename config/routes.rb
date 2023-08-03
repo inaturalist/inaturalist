@@ -235,6 +235,7 @@ Rails.application.routes.draw do
     end
     member do
       put :rotate
+      get :hide
     end
   end
 

@@ -128,9 +128,12 @@ class ActivityItem extends React.Component {
       currentUserID,
       addID,
       linkTarget,
+      hideUserIcon,
+      hideAgree,
       hideCompare,
       hideDisagreement,
       hideCategory,
+      hideMenu,
       noTaxonLink,
       onClickCompare,
       trustUser,
@@ -159,9 +162,11 @@ class ActivityItem extends React.Component {
     if ( item.hidden && this.isID && ( !canSeeHidden || !config.showHidden ) ) {
       return (
         <div className="ActivityItem">
-          <div className="icon">
-            <UserImage user={viewerIsActor ? item.user : null} />
-          </div>
+          { hideUserIcon ? null : (
+            <div className="icon">
+              <UserImage user={viewerIsActor ? item.user : null} />
+            </div>
+          ) }
           <Panel className="moderator-hidden">
             <Panel.Heading>
               <Panel.Title>
@@ -238,7 +243,7 @@ class ActivityItem extends React.Component {
           </a>
         ) );
       }
-      if ( loggedIn && ( canAgree || userAgreedToThis ) ) {
+      if ( loggedIn && ( canAgree || userAgreedToThis ) && !hideAgree ) {
         buttons.push( (
           <button
             type="button"
@@ -536,35 +541,40 @@ class ActivityItem extends React.Component {
         );
       }
     }
+    const menu = hideMenu ? null : (
+      <ActivityItemMenu
+        item={item}
+        observation={observation}
+        onEdit={e => this.onEdit( e )}
+        editing={editing}
+        config={config}
+        deleteComment={deleteComment}
+        withdrawID={withdrawID}
+        restoreID={restoreID}
+        setFlaggingModalState={setFlaggingModalState}
+        linkTarget={linkTarget}
+        trustUser={trustUser}
+        untrustUser={untrustUser}
+        hideContent={hideContent}
+        unhideContent={unhideContent}
+      />
+    );
     return (
       <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
-        <div className="icon">
-          {( !item.hidden || canSeeHidden || viewerIsActor ) && (
-            <UserImage user={item.user} linkTarget={linkTarget} />
-          )}
-        </div>
-        <Panel className={`${panelClass} ${item.api_status ? "loading" : ""}`}>
+        { hideUserIcon ? null : (
+          <div className="icon">
+            {( !item.hidden || canSeeHidden || viewerIsActor ) && (
+              <UserImage user={item.user} linkTarget={linkTarget} />
+            )}
+          </div>
+        ) }
+        <Panel className={`${panelClass}${item.api_status ? " loading" : ""}${hideUserIcon ? " no-user-icon" : ""}`}>
           <Panel.Heading>
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
-              {headerItems}
+              { headerItems }
               { time }
-              <ActivityItemMenu
-                item={item}
-                observation={observation}
-                onEdit={e => this.onEdit( e )}
-                editing={editing}
-                config={config}
-                deleteComment={deleteComment}
-                withdrawID={withdrawID}
-                restoreID={restoreID}
-                setFlaggingModalState={setFlaggingModalState}
-                linkTarget={linkTarget}
-                trustUser={trustUser}
-                untrustUser={untrustUser}
-                hideContent={hideContent}
-                unhideContent={unhideContent}
-              />
+              { menu }
             </Panel.Title>
           </Panel.Heading>
           <Panel.Body>
@@ -595,9 +605,12 @@ ActivityItem.propTypes = {
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,
+  hideUserIcon: PropTypes.bool,
+  hideAgree: PropTypes.bool,
   hideCompare: PropTypes.bool,
   hideDisagreement: PropTypes.bool,
   hideCategory: PropTypes.bool,
+  hideMenu: PropTypes.bool,
   noTaxonLink: PropTypes.bool,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,

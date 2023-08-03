@@ -192,6 +192,12 @@
           <%= link_to t(:flag_this_photo), new_photo_flag_path(@photo), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
         </p>
       <% end %>
+
+      <% if @photo.hideable_by?( current_user ) %>
+        <p class="description ui">
+          <%= link_to @photo.hidden? ? t( :unhide_content ) : t( :hide_content ), hide_photo_path( @photo ), rel: "nofollow" %>
+        </p>
+      <% end %>
     </td>
   </tr>
 </table>

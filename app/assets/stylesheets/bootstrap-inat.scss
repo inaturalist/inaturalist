@@ -118,8 +118,10 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
   display: block;
   height: 10px;
 }
-.comment_activity_item .meta .content-hidden {
+.comment_activity_item .meta .content-hidden, .item_content .content-hidden {
   cursor: pointer;
+}
+.comment_activity_item .meta .content-hidden {
   i.fa {
     margin-left: 10px;
   }

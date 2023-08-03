@@ -7,7 +7,7 @@ import {
   Photo,
   Sound
 } from "inaturalistjs";
-import UserText from "./user_text";
+import ActivityItem from "../../observations/show/components/activity_item";
 import HiddenContentMessageContainer from "../containers/hidden_content_message_container";
 
 const ModeratorActionModal = ( {
@@ -16,16 +16,15 @@ const ModeratorActionModal = ( {
   item,
   action,
   submit,
-  revealHiddenContent
+  revealHiddenContent,
+  config
 } ) => {
   if ( !item ) {
     return null;
   }
   let verb = I18n.t( "hide_content" );
-  const contentToHide = item ? item.body : "";
   let placeholder = I18n.t( "please_explain_why_you_want_to_hide_this" );
   let explanation = I18n.t( "hide_desc" );
-  const login = item ? item.user.login : "";
   if ( action === "unhide" ) {
     verb = I18n.t( "unhide_content" );
     placeholder = I18n.t( "please_explain_why_you_want_to_unhide_this" );
@@ -34,16 +33,14 @@ const ModeratorActionModal = ( {
   let contentPreview;
   if ( item instanceof Comment || item instanceof Identification ) {
     contentPreview = (
-      <div>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: I18n.t( "user_wrote_html", { user: login, url: `/people/${login}` } )
-          }}
-        />
-        <blockquote>
-          <UserText text={contentToHide} truncate={200} />
-        </blockquote>
-      </div>
+      <ActivityItem
+        item={item}
+        config={config}
+        hideUserIcon
+        hideCompare
+        hideMenu
+        hideAgree
+      />
     );
   } else if ( item.hidden && ( item instanceof Photo || item instanceof Sound ) ) {
     contentPreview = (
@@ -65,7 +62,7 @@ const ModeratorActionModal = ( {
   } else if ( item instanceof Photo ) {
     contentPreview = (
       <div className="image-preview">
-        <img src={item.photoUrl( "medium" )} alt="" />
+        <img src={item.photoUrl( "large" )} alt="" />
       </div>
     );
   } else if ( item instanceof Sound ) {
@@ -141,6 +138,7 @@ const ModeratorActionModal = ( {
 };
 
 ModeratorActionModal.propTypes = {
+  config: PropTypes.object,
   visible: PropTypes.bool,
   hide: PropTypes.func,
   action: PropTypes.string,

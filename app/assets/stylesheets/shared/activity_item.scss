@@ -262,6 +262,9 @@ body > [role="dialog"] .ActivityItem {
     margin-left: 60px;
     box-shadow: none;
     -webkit-box-shadow: none;
+    &.no-user-icon {
+      margin-left: 0px;
+    }
   }
   .id_body {
     margin-top: 15px;

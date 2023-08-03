@@ -6,9 +6,10 @@
         target: "_blank", rel: "noopener noreferrer" ),                     |
       date: l( action.created_at.to_date, format: :month_day_year ),        |
       reason: action.reason } )                                             |
-  %div
-    %a{ href: "/#{item.model_name.route_key}/#{item.id}/flags", target: "_blank", rel: "noopener noreferrer" }
-      = t( "view_flags" )
+  - if logged_in?
+    %div
+      %a{ href: "/#{item.model_name.route_key}/#{item.id}/flags", target: "_blank", rel: "noopener noreferrer" }
+        = t( "view_flags" )
   - if item.respond_to?( :user ) && current_user === item.user
     %div
       %a{ href: help_path, target: "_blank", rel: "noopener noreferrer" }
