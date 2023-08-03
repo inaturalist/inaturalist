@@ -171,36 +171,10 @@ sat:
         who_uses_site_name: "%{site_name} ᱚᱠᱚᱭ ᱵᱮᱵᱷᱟᱨᱮᱫᱟᱭ ?"
         what_are_you_waiting_for: ᱟᱢ ᱚᱠᱚᱭ ᱛᱟᱹᱝᱜᱤ ᱠᱟᱹᱫᱮᱭᱟᱢ ?
         join_today: ᱛᱮᱦᱮᱸᱧ ᱥᱮᱞᱮᱫᱚᱜ ᱢᱮ
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true
