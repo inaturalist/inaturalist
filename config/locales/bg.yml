@@ -681,8 +681,6 @@ bg:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: разделено на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: обедини във
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: обединени във
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заместено със
@@ -3890,19 +3888,29 @@ bg:
   user_added_a_comment_html: "%{user} добави коментар"
   user_added_a_fave_html: "%{user} добави харесване"
   user_added_a_flag_html: "%{user} добави маркер"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} добави %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_an_identification_html: "%{user} добави разпознаване"
   user_added_an_observation_field_html: '%{user} добави стойност на %{field_name} към наблюдение от %{owner}'
   user_added_an_observation_field_value_html: "%{user} добави стойност към поле за наблюдения"
   user_added_an_observation_html: "%{user} добави наблюдение"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} добави %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
