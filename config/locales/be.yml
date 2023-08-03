@@ -973,13 +973,7 @@ be:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: аддзяліць да
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: аб'яўднаць у
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: аб'яднана ў
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: заменена
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: заменена на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заменена на
     dropped: адкінута
@@ -4145,19 +4139,29 @@ be:
   user_added_a_comment_html: "%{user} дадаў каментар"
   user_added_a_fave_html: "%{user} дадаў упадабанне"
   user_added_a_flag_html: "%{user} дадаў пазнаку"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} дадаў %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_an_identification_html: "%{user} дадаў вызначэнне"
   user_added_an_observation_field_html: '%{user} дадаў значэнне "%{field_name}" да назірання %{owner}'
   user_added_an_observation_field_value_html: "%{user} дадаў значэнне поля назірання"
   user_added_an_observation_html: "%{user} дадаў назіранне"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} дадаў %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_x_observations_html: "%{user} дадаў %{x} назіранняў"
   user_suggested_an_id: "%{user} прапанаваў вызначэнне"
@@ -4341,15 +4345,15 @@ be:
       - Жні
       - Вер
       - Кас
-      - Nov
-      - Dec
+      - 
+      - 
     day_names:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
       - Субота
     day_names_min:
       1: Нд
