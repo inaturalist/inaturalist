@@ -904,13 +904,7 @@ sv:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: uppdelning till
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: slogs ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersattes av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersätt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersatt av
     dropped: inaktiverades
@@ -2526,6 +2520,7 @@ sv:
     davawenyo: Davawenyo
     dutch: Holländska
     english: Engelska
+    esperanto: Esperanto
     estonian: Estniska
     faroese: Färöiska
     fijian: Fijianska
@@ -5516,19 +5511,29 @@ sv:
   user_added_a_comment_html: "%{user} lade till en kommentar"
   user_added_a_fave_html: "%{user} lade till en favorit"
   user_added_a_flag_html: "%{user} lade till en flagga"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lade till en %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
   user_added_an_identification_html: "%{user} lade till en bestämning"
   user_added_an_observation_field_html: '%{user} lade till ett värde för "%{field_name}" till ett fynd av %{owner}'
   user_added_an_observation_field_value_html: "%{user} lade till ett värde i ett fyndfält"
   user_added_an_observation_html: "%{user} lade till ett fynd"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lade till en %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
   user_added_x_observations_html: "%{user} lade till %{x} fynd"
   user_already_authenticated: Användaren är redan autentiserad
