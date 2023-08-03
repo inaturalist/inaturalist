@@ -945,13 +945,7 @@ pl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: scal w
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: scalone w
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zastąpiony przez
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: zastąp
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zastąpiony przez
     dropped: odrzucone
@@ -4026,16 +4020,23 @@ pl:
   user_added_a_comment_html: "%{user} dodał komentarz"
   user_added_a_fave_html: "%{user} dodał obserwację do ulubionych"
   user_added_a_flag_html: "%{user} dodał zgłoszenie"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} dodał %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "Użytkownik %{user} dodał %{x} do %{noun} użytkownika %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
   user_added_an_identification_html: "%{user} dodał oznaczenie"
   user_added_an_observation_field_html: '%{user} dodał wartość dla "%{field_name}" do obserwacji przez %{owner}'
   user_added_an_observation_field_value_html: "%{user} dodał wartość pola obserwacji"
   user_added_an_observation_html: "%{user} dodał obserwację"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} dodał %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
   user_added_x_observations_html: "%{user} dodał %{x} obserwacji"
   user_already_authenticated: Użytkownik jest już uwierzytelniony
