@@ -1735,11 +1735,13 @@ hr:
       select_all: Odaberi sva opažanja
   user: Korisnik
   user_added_a_comment_html: "%{user} dodaje komentar"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
   user_added_an_identification_html: "%{user} dodaje identifikaciju"
   user_added_an_observation_field_html: '%{user} dodaje vrijednost za "%{field_name}" na opažanje od %{owner}'
   user_added_an_observation_field_value_html: "%{user} dodaje vrijednost u dodatno polje opažanja"
   user_added_an_observation_html: "%{user} dodaje opažanje"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
   user_added_x_observations_html: "%{user} dodaje %{x} opažanja"
   user_autocomplete_placeholder: marinolinic, sebcato, itd.
@@ -2091,7 +2093,7 @@ hr:
       - Veljača
       - Ožujak
       - Travanj
-      - May
+      - 
       - Lipanj
       - Srpanj
       - Kolovoz
