@@ -813,24 +813,18 @@ zh-CN:
     split: 拆分
     merge: 合并
     swap: 交换
-    stage: 举行
+    stage: 暂存
     drop: 放弃
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: 拆分自
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 拆分至
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 合并至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 已合并至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 取代自
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 替代为
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 替代为
     dropped: 已放弃
-    staged: 已上演
+    staged: 已暂存
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}已拆分至%{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}将被拆分至%{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon}已抛弃"
@@ -2705,7 +2699,7 @@ zh-CN:
   no_taxa_listed: 没有可列出的分类群
   no_taxa_selected: 尚未选择分类群！
   no_taxa_with_unknown_relationships: 没有带有未知关系的分类
-  no_taxon_framework_relationships: 没有物种分类框架关系
+  no_taxon_framework_relationships: 无分类单元框架关系
   no_taxonomic_changes_match_those_criteria: 没有分类学的改变符合这些标准
   no_users_found_with_those_filters: 没有找到符合过滤规则的用户
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
@@ -4595,19 +4589,29 @@ zh-CN:
   user_added_a_comment_html: "%{user} 添加了一条评论"
   user_added_a_fave_html: "%{user} 添加为喜爱"
   user_added_a_flag_html: "%{user} 添加了一个标记"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} 添加了一个 %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
   user_added_an_identification_html: "%{user}添加了一个鉴定"
   user_added_an_observation_field_html: '%{user}为%{owner}的观察的“%{field_name}”域添加了一个值'
   user_added_an_observation_field_value_html: "%{user}添加了一个观察字段值"
   user_added_an_observation_html: "%{user}添加了一个观察"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} 添加了一个 %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}将%{x}添加至%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
   user_added_x_observations_html: "%{user}添加了%{x}个观察"
   user_already_authenticated: 用户已通过身份验证
