@@ -134,6 +134,10 @@ class TaxonNamesController < ApplicationController
 
     respond_to do | format |
       if @taxon_name.update( params[:taxon_name] )
+        # attempt to fix a race condition where the names edit page will submit several requests
+        # to update names positions for each name separately, and based on the order the requests
+        # are processed, their taxa may end up indexed with non-final positions
+        Taxon.elastic_index!( delay: true, ids: [@taxon_name.taxon_id] )
         flash[:notice] = t( :taxon_name_was_successfully_updated )
         format.html { redirect_to( taxon_name_path( @taxon_name ) ) }
         format.json { head :ok }
