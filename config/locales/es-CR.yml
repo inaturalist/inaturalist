@@ -90,36 +90,10 @@ es-CR:
     donate:
       temporarily_unavailable: |
         ¡Gracias por el interés en apoyar a iNaturalist! Las donaciones para iNaturalist están temporalmente deshabilitadas mientras actualizamos nuestros sistemas de donación. Por favor, vuelva luego.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true
