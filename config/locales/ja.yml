@@ -804,13 +804,7 @@ ja:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 次に分割する
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 次に統合する
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 次に統合された
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 置き換えられた
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: '置換用:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 置換後
     dropped: 無効化済み
@@ -1678,6 +1672,7 @@ ja:
   Family: 科
   favorite_taxa: お気に入り分類群
   favorites: "お気に入り"
+  feature_this_project_: "このプロジェクトを紹介"
   featured: 注目
   #Title for a button or section describing the "featured" status of a project
   featuring: 特長
@@ -2227,6 +2222,7 @@ ja:
     davawenyo: ダバオ語
     dutch: オランダ語
     english: 英語
+    esperanto: エスペラント語
     estonian: エストニア語
     faroese: フェロー語
     fijian: フィジー語
@@ -2309,6 +2305,7 @@ ja:
     vietnamese: ベトナム語
     waray_waray: ワライ語
     xhosa: コサ語
+    zapoteco: サポテカ語
     zulu: ズールー語
   less: より少なく
   #Button show less text
@@ -4696,16 +4693,24 @@ ja:
   user_added_a_comment_html: "%{user} さんがコメントを追加しました"
   user_added_a_fave_html: "%{user}さんがお気に入りを追加しました"
   user_added_a_flag_html: "%{user}さんがフラグを追加しました"
+  #@gender operates on %{x}
   user_added_a_x: "%{user}さんが%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}さんは%{by}の%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_an_identification_html: "%{user}さんが同定を追加しました"
   user_added_an_observation_field_value_html: "%{user} が観察記録フィールドを追加しました"
   user_added_an_observation_html: "%{user}さんが観察記録を追加しました"
+  #@gender operates on %{x}
   user_added_an_x: "%{user}さんが%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}は%{by}の%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}は%{by}の%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}はあなたの%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
   user_already_authenticated: ユーザーは既に認証されています
