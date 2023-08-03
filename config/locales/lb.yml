@@ -530,10 +530,6 @@ lb:
     swap: Austauschen
     drop: Faleloosen
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersat duerch
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersetzen duerch
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
   #Plural noun, as in changes to a taxon record over time
@@ -2300,16 +2296,23 @@ lb:
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} huet e(n) %{x} derbäigesat"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} huet eng %{x} zu %{noun} vum %{by} bäigesat"
   user_added_an_identification_html: "%{user} huet eng Bestemmung bäigesat"
   user_added_an_observation_field_html: '%{user} huet een Wäert fir "%{field_name}" bei eng Observatioun vum %{owner} bäigesat'
   user_added_an_observation_field_value_html: "%{user} huet een Observatiounsfeldwert bäigesat"
   user_added_an_observation_html: "%{user} huet eng Observatioun bäigesat"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} huet eng %{x} derbäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} huet een %{x} bei %{noun} vum %{by} bäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} huet eng %{x} bei %{noun} vum %{by} bäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} huet eng %{x} bei %{noun} vun Iech bäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} huet eng %{x} bei %{noun} bäigesat"
   user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
