@@ -12,7 +12,7 @@ class DeletedPhoto < ApplicationRecord
     end
     # do not remove from S3 if the DeletedPhoto is still associated to a Photo 
     # (for example after resurrect)
-    return if photo?
+    return if photo
     client = options[:s3_client] || LocalPhoto.new.s3_client
     static_bucket = LocalPhoto.s3_bucket( false )
 
