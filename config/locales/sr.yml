@@ -888,6 +888,12 @@ sr:
   curator_application_what_curators_can_do_hide_comments_html: |
     Sakrij komentare ili suspenduj korisnike koji krše <a
     href="/pages/community+guidelines" target="_blank">Smernice zajednice</a>.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Kreiraj i uređuj wiki staranice, kao što je <a href="/pages/help"
+    target="_blank">iNaturalist - Često postavljena pitanja</a>
   #Description of the fact that a curator cannot change certain attributes of
   #observations any more than anyone else can; part of a list of things
   #curators can do, so you might imagine it is preceded with "Curators
@@ -1079,6 +1085,10 @@ sr:
   eligible_for_research_grade: Prihvatljivo za istraživački nivo
   email: Imejl
   email_description: Vaš imejl neće biti podeljen sa drugim iNaturalist korisnicima
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Ako imaš nekih pitanja, pogledaj <a href="%{faq_url}">Često postavljena pitanja</a>. Hvala što odvajaš vremene da se povežeš sa prirodom i sa %{site_name}.
   email_notifications: Imejl obaveštenja
   embed: 'Ugradi'
   enable_offline_access: Omogući offline pristup
@@ -1278,6 +1288,12 @@ sr:
   identification_withdrawn: Identifikacija povučena.
   identifications: Identifikacije
   inaturalist_global_year_in_review: "Globalni iNaturalist pregled godine %{year}"
+  independence_email_body_questions_html: |
+    Možeš <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">pročitati više na blogu</a> i pogledati <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Često postavljena pitanja</a> (na engleskom). <a
+    href="https://www.inaturalist.org/pages/terms">Uslovi korišćenja</a> i <a
+    href="https://www.inaturalist.org/pages/privacy">Politika privatnosti</a> su ažurirani u skladu sa novom organizacijom.
   computer_vision_suggestion: Predlog kompjuterske vizije
   computer_vision_suggestion_desc: |
     Kompjuterska vizija je proces učenja kompjutera da prepoznaju šablone na slikama. Mi obezbeđujemo alate koji koriste modele kompjuterske vizije trenirane na fotografijama zajednice kako bi dali predloge identifikacije, kao što je auto-complete i opcija za upoređivanje. Identifikacije koje neko doda pomoću nekog od ovih alata će imati ovu oznaku.
@@ -1677,6 +1693,8 @@ sr:
     target="_blank">Uslove korišćenja</a> ili se ne ponaša u skladu sa<a
     href="%{guidelines_url}" target="_blank"> Smernicama zajednice</a>, molimo te da prijaviš ovu poruku ispod.
   misidentifications: Pogrešne identifikacije
+  misleading_or_illegal_content_html: |
+    Obmanjujuć ili nezakonit sadržaj, uvrede bazirane na rasnoj ili etničkoj netrpeljivosti itd. Više informacija o našoj definiciji "prikladnog", možeš naći na strani <a href="/help#inappropriate">Često postavljena pitanja</a>.
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
   mobile: Mobilni
@@ -1753,6 +1771,8 @@ sr:
   #the observation must be in
   must_be_in_project: mora biti u projektu %{project}
   must_be_less_than_x_MB: "Mora biti manje od %{x} MB"
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "mora imati sledeći kvalitet podataka: %{grades}"
   must_have_x: "mora imati %{x}"
   muted_users: Ućutkani korisnici
   n_ago: "pre %{n}"
@@ -3468,6 +3488,10 @@ sr:
       remove_photo: Ukloni sliku
       select_all: Označi sve opservacije
       upload_failed: Otpremanje neuspešno
+  uploading_num_of_count_photos:
+    one: Otpremanje fotografije
+    few: Otpremanje %{num} od %{count} fotografije
+    other: Otpremanje %{num} od %{count} fotografija
   url_of_this_taxon_on_the_source_website: URL ovog taksona na veb sajtu izvora
   usage_stats: Statistika upotrebe
   #Taxon link [GENUS] / [SPECIES] variable instructions
@@ -3961,6 +3985,7 @@ sr:
         longitude: Javno vidljiva geografska dužina
         user_id: Jedinstveni identifikator posmatrača
         user_login: Korisničko ime posmatrača
+        quality_grade: Kvalitet podataka ove opservacije. Vidi sekciju Pomoć za više informacija
         url: URL opservacije
         image_url: URL podrazumevane slike
         positioning_method: Kako su koordinate određene
@@ -3972,6 +3997,8 @@ sr:
         date_column_format: DD-MM-GGGG HH:MM
         decimal_degrees_format: dd.dddd
       show:
+        data_quality_assessment_desc3_html: |
+          Kvalitet podataka objedinjuje tačnost, preciznost, potpunost, važnost i prikladnost iNaturalist opservacije kao podatka biodiverziteta. Neki atributi su automatski dodeljeni dok drugi zavise od glasova iNat korisnika. iNaturalist deli licencirane "Istraživački nivo" opservacije sa više partnera koji skupljaju podatke za potrebe nauke i konzervacije.
         identification_count_desc: 'broj identifikacija za individualni takson'
         flagged_photos_desc_html: |
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
@@ -4080,6 +4107,8 @@ sr:
         project_name: Naziv projekta
         project_summary: Rezime projekta
         project_summary_placeholder: Istraži i prati ptice parka Golden Gate...
+        select_quality_grade: |
+          Izaberi bar jedan kvalitet podataka. Detaljnije objašnjenje za svaki kvalitet podataka možeš naći na stranici <a href="%{url}">Često postavljena pitanja</a>.
         traditional_projects_cannot_be_copied: Tradicionalni projekti ne mogu biti kopirani
         umbrella_project_features: "Odlike skupnog projekta:"
         users_can_follow_your_project: Korisnici mogu pratiti tvoj projekat radi obaveštenja putem rubrika dnevnika
