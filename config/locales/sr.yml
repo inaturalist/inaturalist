@@ -696,6 +696,7 @@ sr:
   #Plural noun, as in changes to a taxon record over time
   changes: Izmene
   changing_the_geoprivacy: 'Promenom geoprivatnosti menjaš kako drugi ljudi vide lokaciju tvoje opservacije.'
+  check_out_the_inat_store: Pogledaj iNaturalist prodavnicu
   check_this_box_if_html: |
     Označi ovo polje ako želiš da primeniš <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -996,6 +997,9 @@ sr:
   details: Detalji
   deviation: Devijacija
   devise:
+    confirmations:
+      confirmed: |
+        Tvoja imejl adresa je uspešno potvrdđena. Možeš se ulogovati ovde na veb-sajtu ili na iNaturalist ili Seek mobilnim aplikacijama.
     failure:
       already_authenticated: 'Već si prijavljen/a.'
       invalid: 'Pogrešan imejl ili lozinka.'
@@ -1009,6 +1013,8 @@ sr:
     mailer:
       reset_password_instructions:
         subject: 'Uputstva za resetovanje lozinke'
+  devise_email_changed_you_will_receive: |
+    Dobićeš imejl na novoj adresi radi potvrde promene, ali takođe želimo da te obavestimo na staroj adresi u slučaju da neko ima pristup tvom nalogu i pokušava da je izmeni bez tvog znanja. Ako nisi lično pokrenuo/la promenu imejl adrese, odmah prosledi ovaj mejl na help@inaturalist.org kako bismo utvrdili šta se dešava.
   devise_reset_password_instructions_hello_email: Zdravo %{email}
   devise_unlock_instructions_unlock: Otključaj profil
   disable: Onemogući
@@ -1034,6 +1040,8 @@ sr:
   #short as possible
   donate: DONIRAJ
   donate_again_today_caps: DONIRAJ OPET DANAS
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Doniraj iNaturalist-u
   done: Pošalji
   dont_have_an_account_sign_up_html: Nemaš nalog? <strong>Registruj se.</strong>
   download: Preuzmi
@@ -1085,10 +1093,13 @@ sr:
   eligible_for_research_grade: Prihvatljivo za istraživački nivo
   email: Imejl
   email_description: Vaš imejl neće biti podeljen sa drugim iNaturalist korisnicima
+  email_confirmation_reminder_please_confirm: |
+    Molimo te da potvrdiš tvoji imejl adresu kako bi mogao/la da pristupaš tvom alogu. %{site_name} i mobilne aplikacije iNaturalist i Seek od iNaturalist-a povezuju ljude sa prirodom i jedne sa drugima putem deljenja opservacija biodiverziteta. Hvala ti što si deo iNaturalist zajednice!
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
   email_confirmation_reminder_any_questions_html: |
     Ako imaš nekih pitanja, pogledaj <a href="%{faq_url}">Često postavljena pitanja</a>. Hvala što odvajaš vremene da se povežeš sa prirodom i sa %{site_name}.
+  email_copyright2: "&copy; %{year} iNaturalist, sva prava zadržana"
   email_notifications: Imejl obaveštenja
   embed: 'Ugradi'
   enable_offline_access: Omogući offline pristup
@@ -1104,6 +1115,7 @@ sr:
     endemic: Endemski
     invasive: Alohton
     native: Autohton
+    naturalised: Naturalizovano
   establishment_means_descriptions:
     endemic: autohtono i ne sreće se nigde drugo
   everyone: sve
@@ -1118,6 +1130,7 @@ sr:
   exclude_users: Izostavi korisnike
   exclusion_filters: Izostavi filtere
   exit_full_screen: "izađi iz rеžima cеlog еkrana"
+  examples_of_data_use_by_network_members: Primeri upotrebe podataka od strane članova mreže
   explore: Istraži
   export: Izvezi
   export_observations: Izvezi opservacije
@@ -1288,6 +1301,10 @@ sr:
   identification_withdrawn: Identifikacija povučena.
   identifications: Identifikacije
   inaturalist_global_year_in_review: "Globalni iNaturalist pregled godine %{year}"
+  independence_email_subject: "Širimo naša krila: iNaturalist je sada nezavisna neprofitna organizacija"
+  independence_email_body_over_the_past: |
+    U poslednjih 15 godina, zajednica je dala veliki doprinos koji je od iNaturalist-a stvorio jednu od najuticajnijih prirodnjačkih platformi.
+  independence_email_body_so_far: "Do sada, iNaturalist zajednica ima:"
   independence_email_body_questions_html: |
     Možeš <a
     href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">pročitati više na blogu</a> i pogledati <a
@@ -1317,6 +1334,7 @@ sr:
   #As in a reason to flag something
   inappropriate: Neprikladno
   inaturalist_network: iNaturalist mreža
+  inaturalist_network_affiliation: iNaturalist mreža organizacija
   #Label for messages you've received
   inbox: Poruke
   include_places: Uključi ova mesta
@@ -1797,6 +1815,21 @@ sr:
   needs_id_expandable_html: "<span class='full'>Potreban </span>ID"
   needs_id_tooltip_html: '"Potreban ID" imaju medije, lokaciju i datum ali ipak zahtevaju slaganje zajednice oko tačne identifikacije. <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o kvalitetu podataka</a>'
   needs_to_be_identified: Potrebno identifikovati
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, deo međunarodne iNaturalist
+    mreže, ima u fokusu biodiverzitet i zajednicu u %{place}. Da li želiš da promeniš pripadnost tvog naloga sa <strong>%{inat_site_name}</strong> na
+    <strong>%{site_name}</strong> i podeliš podatke sa lokalnim institucijama tamo?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, deo međunarodne iNaturalist
+    mreže, ima u fokusu biodiverzitet i zajednicu u Finskoj. Da li želiš da promeniš pripadnost tvog naloga sa <strong>%{inat_site_name}</strong> na
+    <strong>iNaturalist Suomi</strong> i podeliš podatke sa lokalnim institucijama tamo?
+  network_affiliation_prompt_from_other_site_html: |
+    Da li želiš da promeniš pripadnost sa <strong>%{other_site_name}</strong> na
+    <strong>%{site_name}</strong>?
   #Column header in a table listing iNaturalist Network members
   network_member: Članovi mreže
   new: Novi
@@ -2611,6 +2644,12 @@ sr:
     one: Administrator projekta
     few: Administratori projekta
     other: Administratori projekta
+  project_coordinate_access_enabled: |
+    Trebalo bi da ti skrivene koordinate opservacija budu vidljiive poverivanjem članovima.
+  project_coordinate_access_disabled_until_datetime: |
+    Nisi u mogućnosti da pristupiš skrivenim koordinatama do %{datetime}
+  project_coordinate_access_warning: |
+    Pristup koordinatama je važan za naučnike ali ga lovokradice mogu zloupotrebiti. Poveri podatke ovom projektu samo ako imaš poverenja u sve kustose projekta.
   project_cover: Naslovna fotografija projekta
   project_created_on: je kreirao/la projekat %{date}
   project_curator_id: ID kustosa projekta
@@ -3036,10 +3075,19 @@ sr:
     Automatski skrivene koordinate (prikrivene ili privatne zbog "geoprivatnosti taksona")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
     iNaturalist automatski sakriva koordinate za neke vrste radi zaštite od uznemiravanja, prikupljanja i krivolova. Ako su koordinate opservacije automatski skrivene da bi se žaštitile vrste, iNaturalist deli koordinate svih opservacija u njihovim zemljama sa članovima mreže.
+  sites_affiliation_more_email_addresses: |
+    Imejl adrese se dele sa članovima mreže isključivo za potrebe komunikacije vezane za sajt.
+  sites_affiliation_more_twice_per_year: |
+    Dvaput godišnje, iNaturalist deli imejl adrese povezanih naloga i neke skrivene koordinate (tj. koordinate koje su prikrivene za javnost ili privatne) sa članovima iNaturalist mreže kako bi omogućili upotrebu iNaturalist podataka za potrebe istraživanja, konzervacije, i upravljanja u njihovima oblastima delovanja. Dva načina na koja se koordinacije mogu sakriti se dele odvojeno, kao što je ispod objašnjeno.
   sites_affiliation_more_user_hidden_coordinates: |
     Koordinate koje je korisnik sakrio (prikrivene ili privatne zbog podešavanja "geoprivatnosti")
+  sites_affiliation_overview_current_member_list_html: |
+    Možeš videti trenutnu listu članova %{start_tag_network}iNaturalist mreže%{end_tag_network}.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}iNaturalist mreža%{end_tag_network} je skup lokalizovanih veb-sajtova u %{start_tag_global}globalnoj iNaturalist zajednici%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Ako izabereš pripadnost određenom članu iNaturalist mreže, tvoja imejl adresa i tačne lokacije tvojih prikrivenih i privatnih lokacija se dele sa članom mreže. Ovo omogućava da tvoja opservacija bude vrednija lokalnim konzervacionim naporima. Ako živiš u ili često posećuješ oblast koja ima svog člana u iNaturalist mreži, preporučljivo je da izabereš pripadnost tom članu radi lakšeg deljenja podataka.
+  sites_affiliation_title: Saznaj više o iNaturalist mreži
   sites_network_consists_of: "iNaturalist mreža se sastoji od sledećih organizacija:"
   sites_network_inaturalist_network_collection: |
     iNaturalist mreža je kolekcija lokalnih sajtova koji su potpuno povezani sa globalnom iNaturalist zajednicom. Ti sajtovi imaju punu podršku lokalnih institucija koji promovišu lokalnu upotrebu i omogućavaju upotrebu podataka sa iNaturalist-a što ide u korist proučavanju lokalnog biodiverziteta. Imaju pristup pravim koordinatama u okviru njihovih geografskih oblasti koje su automatski skrivene od javnog pristupa kako bi se zaštitile ugrožene vrste.
@@ -3113,10 +3161,12 @@ sr:
   stop_editing: Prekini uređivanje
   stop_following_user: "Otprati %{user}"
   stop_testing: Prekini testiranje
+  stop_trusting_this_person_with_your_private_coordinates: Prekini poveravanje skrivenih koordinata ovoj osobi
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: Radnja
   store_caps: RADNJA
+  studies_that_used_inaturalist_data_in_year: Studije koje su koristile podatke sa iNaturalist-a u %{year}
   submission_model_description: Ko može dodati opservacije u tvoj projekat?
   submit_observations:
     one: Dodaj 1 opservaciju
@@ -3492,6 +3542,7 @@ sr:
     one: Otpremanje fotografije
     few: Otpremanje %{num} od %{count} fotografije
     other: Otpremanje %{num} od %{count} fotografija
+  url_for_your_app_outside_of_inaturalist: URL tvoje aplikacije izvan iNaturalist-a
   url_of_this_taxon_on_the_source_website: URL ovog taksona na veb sajtu izvora
   usage_stats: Statistika upotrebe
   #Taxon link [GENUS] / [SPECIES] variable instructions
@@ -3549,7 +3600,13 @@ sr:
   user_muted: Korisnik ućutkan
   user_suggested_an_id: "%{user} predlaže ID"
   user_trusts_this_project_for_none: Korisnik nije poverio svoje skrivene koordinate ovom projektu.
+  user_trusts_this_project_for_any: |
+    Korisnik je poverio skrivene koordinate ovom projektu koje su prikrivene iz nekog razloga.
+  user_trusts_this_project_for_taxon: |
+    Korisnik je ovom projektu poverio samo skrivene koordinate koje su prikrivene zbog ugroženog taksona.
   user_trusts_you_with_their_private_coordinates: "%{user} ti poverava njegove/njene skrivene koordinate"
+  user_trusts_you_with_their_private_coordinates_desc: |
+    Posmatrač je izabrao/la da ti poveri skrivene koordinate svih njegovih/njenih opservacija.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> je napisao/la,
   username: Korisničko ime
   username_description: Ovo korisničko ime ćeš koristiti da se loguješ i drugi iNaturalist korisnici te mogu prepoznati po njemu
@@ -3677,6 +3734,7 @@ sr:
   who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
   who_can_see_the_coordinates: Ko može videti koordinate
   who_can_see_the_coordinates_projects: Kustosi sledećih projekata
+  who_can_see_the_coordinates_trusted: Osobe kojima je posmatrač poverio/la skrivene koordinate
   who_helped_user_the_most: "Ko je najvie pomogao korisniku %{user}"
   who_user_helped_the_most: "Kome je %{user} najviše pomogao/la"
   why_the_coordinates_are_obscured: Zašto su koordinate sakrivene?
@@ -3720,6 +3778,8 @@ sr:
   x_project_journal: "%{project} %{name}"
   x_project_stats: "Statistika %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} ti je poslao/la novu poruku na %{y}: "
+  x_site_is_a_social_network_for_naturalist: |
+    %{site} je društvena mreža namenjena prirodnjacima! Zabeleži opservacije biljaka i životinja, podeli ih sa prijateljima i istraživačima, i nauči više o svetu prirode.
   x_wrote_a_new_post_html: "%{x} je napisao/la novu objavu"
   x_wrote_y_new_posts_html: "%{x} je napisao/la %{y} novih objava"
   year: Godina
@@ -3997,11 +4057,65 @@ sr:
         date_column_format: DD-MM-GGGG HH:MM
         decimal_degrees_format: dd.dddd
       show:
+        allow_curator_coordinate_access_desc_html: |
+          Dozvoli kustosima projekta da vide skrivene koordinate ove opservacije.
         data_quality_assessment_desc3_html: |
           Kvalitet podataka objedinjuje tačnost, preciznost, potpunost, važnost i prikladnost iNaturalist opservacije kao podatka biodiverziteta. Neki atributi su automatski dodeljeni dok drugi zavise od glasova iNat korisnika. iNaturalist deli licencirane "Istraživački nivo" opservacije sa više partnera koji skupljaju podatke za potrebe nauke i konzervacije.
         identification_count_desc: 'broj identifikacija za individualni takson'
         flagged_photos_desc_html: |
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
+        quality_assessment_help2_html: |
+          <p>
+          Procena kvaliteta podataka je indikator tačnosti opservacije. Sve opservacije isprva imaju <strong>"neobavezno"</strong> ocenu, i postaju
+          <strong>"potreban ID"</strong> kada
+          </p>
+
+          <ul>
+          <li>opservacija <strong>ima datum</strong></li>
+          <li>opservacija <strong>je georeferencirana</strong> (tj. ima gš/gd koordinate)</li>
+          <li>opservacija <strong>imas fotografije ili zvuke</strong></li>
+          <li>opservacija <strong>nije ljudske jedinke</strong></li>
+          </ul>
+          <p>
+          Opservacije postaju <strong>"istraživački nivo"</strong> kada se
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>zajednica složi oko ID-ja na nivou vrste ili niže</strong>, tj. kada se više od 2/3 identifikatora složi oko konkretnog taksona (ako je zajednica glasala da se dat takson zajednice ne može dalje unaprediti, tada je moguće i na nivou potporodice ili niže)
+          </li>
+          </ul>
+          <p>
+          Opservacija se vraća na <strong>"neobavezno"</strong> ako gorenavedeni uslovi nisu ispunjeni ili dok se zajednica ne složi
+          </p>
+          <ul>
+          <li>
+          <strong>lokacija ne deluje tačna</strong> (npr. majmuni u sred okeana,
+          nosorozi u poslovnim zgradama, etc.)
+          </li>
+          <li>
+          <strong>organizam nije u divljini/naturalizovan</strong> (npr. u zatočeništvu ili kultivisan od strane ljudi ili inteligentnih vanzemaljaca)
+          </li>
+          <li>
+          opservacija <strong>ne pruža dokaz prisustva organizma</strong>, npr. fotografije vode, stena, pejzaža na kojima organizam nije prisutan
+          </li>
+          <li>
+          opservacija <strong>ne pruža skorašnji (~100 godina) dokaz prisustva organizma</strong> (npr. fosili; ali su otisci, izmet, uvenuli listovi takođe prihvatljivi)
+          </li>
+          <li>
+          opservaciji nije više potreban ID <em>i</em> ID zajednice je na nivou porodice ili iznad
+          </li>
+          <li>
+          posmatrač je isključio opciju ID zajednice i takson ID-ja zajednice nije predak ni potomak taksona datog ID-jem posmatrača 
+          </li>
+          </ul>
+          <p>
+          Ako to nije dovoljno komplikovano, postoje situacije gde sistem automatski dodeljuje glas:
+          </p>
+          <ul>
+          <li>
+          Sistem će označiti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem geografskom području (okrug, zemlja, država) u kojoj se mesto gde je opservacija zabeležena nalazi i 80% ili više tih opservacija su označene da nisu u divljini/naturalizovane.
+          </li>
+          </ul>
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
@@ -4038,12 +4152,16 @@ sr:
           Šta želiš da uradiš sa opservacijama u ovom projektu?
         keep_observations_label: |
           Ostavi tvoje opservacije u ovom projektu
+        keep_observations_desc: |
+          Tvoje opservacije će ostati u projektu i kustosi će i dalje moći da vide njihove skrivene koordinate.
         project_requires_curator_coordinate_access_desc: |
           Ovaj projekat ne dozvoljava opservacije gde koordinate nisu vidljive kustosima projekta. Ako ne želiš da deliš koordinate tvojih opservacija sa kustostima ovog projekta, moraš ih ukloniti iz projekta.
         remove_observations_label: |
           Ukloni sve tvoje opservacije iz obog projekta
         revoke_observations_label: |
           Ostavi opservacije u ovom projektu ali spreči kustose da vide njihove skrivene koordinate
+        revoke_observations_desc: |
+          Ako je jedini razlog što napuštaš projekat da onemogućiš kustosima pristup tvojim skrivenim koordinatama.
       edit:
         admins_must_be_existing_members: Administrator mora biti neki član projekta.
         new_place_desc_html: |
@@ -4069,6 +4187,8 @@ sr:
         submission_models:
           any: bilo ko
           curators: kustosi projekta
+        trust_allow_members_to_trust: |-
+          Dozvoli članovima da povere skrivene koordinate ovom projektu
       join:
         invite_only_description: |
           Članstvo u ovom projektu je moguće samo po pozivu. Ako želiš da se pridružiš, kontaktiraj nekog od kustosa ispod i zatraži poziv.
