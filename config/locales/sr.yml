@@ -139,6 +139,8 @@ sr:
   _100_day_trends: Stodnevni pregled
   _percent_ID_d: "% Identifikovano"
   a_community_for_naturalist: Zajednica prirodnjaka
+  a_default_taxon_name_will_automatically_created: |
+    Podrazumevan naziv taksona će biti automatski kreiran na osnovu naučnog naziva ovog taksona. Kada sačuvaš ovaj novi takson, bićeš u mogućnosti da dodaš druge nazive (narodne nazive, zastarele naučne nazive itd.)
   a_member_of_taxon_html: "pripadnik taksona %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -168,6 +170,7 @@ sr:
   about_community_taxa: O taksonu zajednice
   about_complete_taxa: O kompletnim taksonima
   about_conservation_status: O statusu ugroženosti
+  about_editing_observation_fields: O uređivanju opservacionih polja
   about_license_options: O opcijama licenciranja
   about_licenses: O licencama
   #Header for a section describing taxon names
@@ -235,6 +238,8 @@ sr:
   add_a_numbered_list: Dodaj numerisanu listu
   add_a_single_observation: Dodaj opservaciju
   add_a_taxon: Dodaj takson
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Dodaj <a target="_blank" href="%{url}">zamenu taksona</a> ako želiš da promeniš ime
   add_an_assessment: Dodaj procenu
   add_an_identification: Dodaj identifikaciju
   add_an_observation: Dodaj opservaciju
@@ -327,6 +332,8 @@ sr:
   add_your_own_observations_at: "Dodaj svoju opservaciju na %{site_name}"
   added: Postavljeno
   added!: Dodato!
+  added_as_a_part_of_a_taxon_merge_html: |
+    Dodato kao deo <a target="%{target}" class="%{class}" href="%{url}">spoja taksona</a>
   added_by: Dodat od strane
   added_by_user_on_date_html: "Dodato od strane %{user} %{date}"
   added_on_datetime: "Dodato %{datetime}"
@@ -578,6 +585,7 @@ sr:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
   atom: Atom
+  attached_taxon: Prikačeni takson
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
@@ -639,6 +647,7 @@ sr:
   birds: ptice
   birthday: Rođendan
   black: crna
+  block: Blokiraj
   blocked_users: Blokirani korisnici
   blog_widget: Blog widget
   blue: plavo
@@ -874,6 +883,7 @@ sr:
   create_an_account: Krеiraj nalog
   create_new_taxon: Kreiraj novi takson
   created: Kreirano
+  created_on: Kreirano
   critically_endangered: Kritično ugrožena
   csv: CSV
   csv_file: CSV fajl
@@ -953,6 +963,7 @@ sr:
     nextText: Sledeće
     range: Opseg
   date_specified: Datum naznačen
+  date_time: Datum/Vreme
   date_updated: Datum ažuriranja
   day: Dan
   #Default option
@@ -1087,8 +1098,19 @@ sr:
   edit_your_default_settings: "Uredi podrazumevana podešavanja"
   edit_your_identification: Uredi tvoje identifikacije
   edit_your_settings_for_this_project: Uredi tvoja podešavanja za ovaj projekat
+  editing: Uređivanje
+  editing_observation_field: Uređivanje opservacionog polja
+  editing_observation_id: "Uređivanje opservacije %{obs_id}"
+  editing_observations:
+    one: 'Uređivanje <span class="count">1</span> opservacije:'
+    few: 'Uređivanje <span class="count">%{count}</span> opservacije:'
+    other: 'Uređivanje <span class="count">%{count}</span> opservacija:'
   editing_project: Uređivanje %{project}
   editing_taxon: Uređivanje %{taxon}
+  editing_taxon_link: Uredivanje linka taksona
+  editing_taxon_name_for_taxon_html: Uređivanje naziva taksona "%{name}" za %{taxon}
+  editing_this: Uređivanje %{elem}
+  editing_x_in_y: "Uređivanje %{x} u %{y}"
   editors: Urednici
   eligible_for_research_grade: Prihvatljivo za istraživački nivo
   email: Imejl
@@ -1135,6 +1157,7 @@ sr:
   export: Izvezi
   export_observations: Izvezi opservacije
   export_with_private_coordinates: Izvezi sa skrivenim koordinatama
+  exporting: "Izvoženje..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Spoljne aplikacije
@@ -1235,6 +1258,7 @@ sr:
   go_back: Nazad
   google: Google
   got_it!: Ok
+  graft: Nakalemi
   grid: Mreža
   grid_layout: Raspored mreže
   group: Grupa
@@ -1302,6 +1326,10 @@ sr:
   identifications: Identifikacije
   inaturalist_global_year_in_review: "Globalni iNaturalist pregled godine %{year}"
   independence_email_subject: "Širimo naša krila: iNaturalist je sada nezavisna neprofitna organizacija"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Dragi %{name},
   independence_email_body_over_the_past: |
     U poslednjih 15 godina, zajednica je dala veliki doprinos koji je od iNaturalist-a stvorio jednu od najuticajnijih prirodnjačkih platformi.
   independence_email_body_so_far: "Do sada, iNaturalist zajednica ima:"
@@ -1311,6 +1339,8 @@ sr:
     href="https://www.inaturalist.org/pages/spinoff_faq">Često postavljena pitanja</a> (na engleskom). <a
     href="https://www.inaturalist.org/pages/terms">Uslovi korišćenja</a> i <a
     href="https://www.inaturalist.org/pages/privacy">Politika privatnosti</a> su ažurirani u skladu sa novom organizacijom.
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Doniraj
   computer_vision_suggestion: Predlog kompjuterske vizije
   computer_vision_suggestion_desc: |
     Kompjuterska vizija je proces učenja kompjutera da prepoznaju šablone na slikama. Mi obezbeđujemo alate koji koriste modele kompjuterske vizije trenirane na fotografijama zajednice kako bi dali predloge identifikacije, kao što je auto-complete i opcija za upoređivanje. Identifikacije koje neko doda pomoću nekog od ovih alata će imati ovu oznaku.
@@ -1328,6 +1358,7 @@ sr:
   import_observations: Uvezi opservacije
   import_photos: Uvezi fotografije
   import_tags_from_csv: Uvezi oznake iz CSV-ja
+  importing: "Uvoženje..."
   improving: Unapređuje
   in_n: "u %{n}"
   in_place_x: u %{place}
@@ -1454,9 +1485,11 @@ sr:
   lexicon_cannot_contain_words: "ne može sadržati sledeće reči: %{words}"
   lexicons:
     afrikaans: Afrikans
+    alabama: Alabama
     albanian: Albanski
     arabic: arapski
     armenian: jermenski
+    basque: baskijski
     belarusian: beloruski
     bengali: bengalski
     bulgarian: bugarski
@@ -1472,11 +1505,13 @@ sr:
     davawenyo: davaoenjo
     dutch: holandski
     english: engleski
+    esperanto: esperanto
     estonian: estonski
     faroese: ferjarski
     finnish: finski
     french: francuski
     galician: galicijski
+    georgian: gruzijski
     german: nemački
     greek: grčki
     hawaiian: havajski
@@ -1485,9 +1520,11 @@ sr:
     icelandic: islandski
     ilokano: ilokano
     indonesian: indonežanski
+    irish: irski
     italian: italijanski
     japanese: japanski
     kannada: kanada
+    kazakh: kazaški
     korean: korejski
     latvian: letonski
     lithuanian: litvanski
@@ -1501,6 +1538,7 @@ sr:
     misima_paneati: misima-paneati
     mongolian: mongolski
     nahuatl: nahuatl
+    navajo: Navaho
     norwegian: norveški
     occitan: oksitanski
     ojibwe: odžibva
@@ -1513,6 +1551,7 @@ sr:
     santali: santali
     scientific_names: Naučni nazivi
     serbian: srpski
+    shona: Šona
     sinhala: sinhala
     slovak: slovački
     slovenian: slovenački
@@ -1521,11 +1560,15 @@ sr:
     swedish: švedski
     tagalog: tagalog
     tahitian: tahićanski
+    tamil: Tamil
     thai: tajlandski
     tokelauan: tokelauanski
     turkish: turski
     ukrainian: ukrajinski
+    uyghur: ujgurski
+    vietnamese: vijetnamski
     visayan: visajanski
+    zulu: Zulu
   less: Manje
   #Button show less text
   less__context_text: Manje
@@ -1595,6 +1638,8 @@ sr:
     id: indonežanski
     it: italijanski
     ja: japanski
+    ka: gruzijski
+    kk: kazaški
     kn: kanada
     ko: korejski
     lb: luksemburški
@@ -1629,6 +1674,7 @@ sr:
   location_is_obscured: Lokacija je prikrivena
   location_is_private: Lokacija je privatna
   location_specified: Lokacija naznačena
+  locked_taxa_will_not_allow_new: Zaključani taksoni neće dozvoliti dodavanje novih potomaka tog taksona. Stoga ako zaključaš Amphibia i neko pokuša da uveze <i>Rana catesbeiana</i> sa spoljašnjeg provajdera naziva, novi takson bi bio kreiran ali ne bi bio klasifikovan kao vodozemac. Kada se to desi, novododati takson treba označiti da bi kustosi bili obavešteni. Ovo se samo koristi za taksone kod kojih je prilično sigurno da su svi potomci već uneti. Kustos to može zaobići i izmeniti takson tako što će direktno uneti roditeljski ID ali imaj u vidu da je preporučljivije sjediniti novi takson sa postojećim.
   log_in: Uloguj se
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Uloguj se</a> ili <a href="/signup">prijavi</a> da dodaš komentar.
@@ -1642,6 +1688,7 @@ sr:
   #Status message shown while logging in
   logging_in: Prijavljivanjе...
   logo:
+    logo: Logo
     transparent_png: transparentan PNG
     none: nema
   long: GD
@@ -1652,6 +1699,8 @@ sr:
   lowest_rank: Najniži rang
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Glavni sadržaj
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Glavni sadržaj ide ovde
   make_a_new_place: Napravi novo mesto
   mammals: sisari
   manage_all_your_subscriptions: Upravljaj svojim praćenjima
@@ -1675,6 +1724,7 @@ sr:
   mark_all_as_reviewed: Označi sve kao pregledano
   mark_all_as_unreviewed: Označi sve kao nepregledano
   maverick: Kontraš
+  medium: srednje
   meet: Upoznaj
   member_of_the_inaturalist_network_html: |
     Deo <a href="%{url}">iNaturalist mreže</a>
@@ -1803,11 +1853,14 @@ sr:
   name_or_slug: "Naziv ili glavni deo URL-a, npr. my-project"
   name_providers:
     col: Katalog života
+  names_for_taxon_html: "Nazivi za %{taxon}"
   native: autohton
   native_to_place: "Autohton u %{place}"
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Nav
+  ne_lat: SI GŠ
+  ne_lon: SI GD
   near_threatened: Rizična
   nearby_observations_: Opservacije u blizini
   needs_id: potreban ID
@@ -1854,6 +1907,7 @@ sr:
   new_species_added_in_interval: Nova vrsta dodata u %{interval}
   new_taxon_change: Nova izmena taksona
   new_taxon_link: Novi link taksona
+  new_taxon_name_for: Nov naziv taksona za
   new_taxon_range: Novi opseg taksona
   new_updates_in_the_last_24_hours_from: "Novosti sa %{site_name} u protekla 24 sata"
   new_users: Novi korisnici
@@ -1911,6 +1965,7 @@ sr:
   no_taxa: Nema taksona
   none: Ništa
   none_found: Nije nađena nijedna
+  normal: normalno
   not_confident_top_suggestions: Ne možemo sa sigurnošću dati preporuku ali evo naših predloga
   not_found: Nije pronađeno
   not_on_this_list: Nije na ovoj listi.
@@ -1990,6 +2045,8 @@ sr:
   observations_can_only_have_n_photos: Opservacije mogu imati maksimalno %{limit} fotografija
   observation_date: Datum
   observation_date?: Datum?
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
   observation_field_type_text: Tekst
   observation_field_type_numeric: Numerički
   observation_field_type_date: Datum
@@ -2054,6 +2111,7 @@ sr:
     irregular: neredovno
     doubtful: upitno
     absent: odsutno
+  of_places: mesta
   of_this_taxon: Ovog taksona
   offensive_inappropriate: Uvredljivo / Neprikladno
   off_caps: "ISKLJUČI"
@@ -2321,6 +2379,7 @@ sr:
   place_name: Naziv mesta
   place_notes: Beleške o mestu
   place_updated: Mesto ažurirano!
+  placement: Položaj
   places: Mesta
   places_added_by_members_of_the_community: Mesta koja su dodali članovi zajednice
   places_name:
@@ -2964,6 +3023,7 @@ sr:
     other: Čuvanje %{num} od %{count} opservacija
   scale_colon: "Razmera:"
   schemes: Šeme
+  schemes_including: Šeme obuhvataju
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Naučni naziv
   search: Pretraga
@@ -2972,6 +3032,7 @@ sr:
   search_by_taxon_name_or_flickr_photo_id: Pretraži po nazivu taksona ili Flickr ID-ju fotografije
   search_catalogue_of_life: 'Pretraži <a href="http://www.catalogueoflife.org">Katalog života</a>'
   search_catalogue_of_life_raquo: "Pretraži Katalog života &raquo;"
+  search_external_name_providers: Pretraži spoljašnje provajdere naziva
   search_for_a_location: Pretraži lokaciju
   search_for_species: Pretraži vrste
   search_list: Pretraži listu
@@ -3097,6 +3158,7 @@ sr:
   some_rights_reserved: neka prava zadržana
   something: Nešto
   something_: nešto
+  something_went_wrong_deleting_the_taxon_name: "Nešto je pošlo po zlu prilikom brisanja naziva taksona '%{taxon_name}'!"
   somewhere_on_earth: negde na Zemlji
   somewhere: (Negde...)
   sorry_you_can_only_add_1000_at_a_time: "Pardon, možeš dodati maksimalno 1000 odjednom."
@@ -3104,6 +3166,7 @@ sr:
   sort_by: Sortiraj po
   sorting_by: Sortiraj po
   sounds:
+    add_media: Dodaj medij
     add_sounds: Dodaj zvukove
     before_importing_sounds: pre uvoženja zvukova
     import_sounds: Uvezi zvukove
@@ -3151,6 +3214,7 @@ sr:
   start: Od
   start_a_new_project: Započni novi projekat
   start_a_project: Započni projekat
+  start_typing_taxon_name: Počni da kucaš naziv taksona...
   start_typing_someones_name: "Počni da kucaš nečije ime..."
   stats: Statistika
   status: Status
@@ -3276,6 +3340,7 @@ sr:
   taxonomy: Taksonomija
   taxon_change_must_be_committed_to_update_records: Promena taksona mora biti potvrđena da bi se ažurirao registar
   taxon_change_title_taxon_drop: Poništen takson %{id}
+  taxon_change_title_taxon_merge: Taksonomski spoj %{id}
   taxon_change_title_taxon_swap: Zamena taksona %{id}
   taxon_deleted: Takson izbrisan.
   taxon_doesnt_have_a_range: Takson nema opseg
@@ -3304,6 +3369,8 @@ sr:
   taxon_range_guidelines_learn_more_about_taxon_ranges: Saznaj više o opsezima taksona
   taxon_ranks: Rangovi taksona
   taxon_removed_from_list: Takson uklonjen sa liste.
+  taxon_scheme: Taksonomska šema
+  taxon_schemes: "Taksonomske šeme"
   taxon_search: Pretraga taksona
   taxon_search_results_for: Rezultati pretrage taksona za
   taxon_split: podela taksona
@@ -3345,6 +3412,7 @@ sr:
   the_community_must_feel_that: |
     Zajednica mora steći utisak da je priložen takson zajednice najbolji to može biti na osnovu dokaza
   the_following_observations_could: "Sledeće opservacije nisu mogle biti dodate u %{link}"
+  the_name_of_the_taxon_including_space: Naziv taksona, uključujući razmak za vrstu i infravrstu.
   the_name_of_the_taxon_dashes: Ime taksona, razmaci zamenjeni crticama.
   the_name_of_the_taxon_underscores: Ime taksona, razmaci zamenjeni donjim crtama.
   the_observation_was_already_added_to_that_project: Opservacija nje već dodata u taj projekat.
@@ -3384,6 +3452,8 @@ sr:
   this_taxon_has_no_default_photo: Ovaj takson nema podrazumevanu fotografiju!
   this_taxon_is_inactive_this_means: |
     Ovaj takson je <strong>neaktivan</strong>. To znači da su ga %{site_name} kustosi zamenili sa aktuelnijim konceptom.
+  this_taxon_name_was_originally_imported: "Ovaj naziv taksona je prvobitno uvezen iz spoljašnjeg provajdera naziva:"
+  this_taxon_was_originally_imported_from: "Ovaj naziv taksona je prvobitno uvezen iz spoljašnjeg provajdera naziva:"
   this_user_has_been_suspended: Korisnik je suspendovan
   this_user_has_been_suspended_message: |
     Ako je ovo tvoj nalog i misliš da je u pitanju greška, molimo te da nas <a href="mailto:%{email}">kontaktiraš</a>.
@@ -3731,6 +3801,8 @@ sr:
   where_were_you?: Gde je to bilo?
   which_projects_can_add_your_observations?: Koji tradicionalni projekti mogu dodati tvoju opservaciju?
   white: bela
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Zašto praviš ovu promenu? (opciono)
   who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
   who_can_see_the_coordinates: Ko može videti koordinate
   who_can_see_the_coordinates_projects: Kustosi sledećih projekata
@@ -3816,6 +3888,8 @@ sr:
     <strong>ti</strong> si sada administrator projekta %{project}
   you_are_now_a_curator_for_project_html: |
     <strong>ti</strong> si sada kustos projekta %{project}
+  you_are_not_editing_any_guides_add_one_html: |
+    Ne uređuješ nijedan vodič. <a href="/guides/new">Dodaj vodič</a>
   you_are_already_a_member_of_this_project: "Već si član ovog projekta!"
   you_are_no_longer_following_x: "Više ne pratiš %{friend}."
   you_are_subscribed_to_comments_on_this_post: Pratiš komentare na ovoj objavi.
@@ -3876,6 +3950,7 @@ sr:
   your_comment_was_saved: Tvoj sadržaj je sačuvan
   your_content: Tvoj sadržaj
   your_contributions_to_project: "Tvoji doprinosi projektu %{project_title}"
+  your_default: tvoj podrazumevani
   your_email_address: Tvoja imejl adresa
   your_favorites: Tvoji favoriti
   your_flickr_account: tvoj Flickr nalog
@@ -4370,6 +4445,16 @@ sr:
         high_status_conservation_status_notice_html: |
           Dodavanje statusa ugroženosti višem nivou taksona utiče na opservacije svih vrsta unutar tog taksona. Molimo te da ne dodaješ statuse taksonima koji sadrže vrste koje nemaju status ugroženosti jer će tako koordinate opservacija tih vrsta biti nepotrebno skrivene.
       show:
+        about_names_desc: |
+          <p>
+          Većina kategorija organizama ima "narodne nazive" u govornim jezicima. Ta imena su obično prepoznatljiva, lako se izgovaraju i ne menjaju se tokom vremena ali mnogi organizmi imaju više različith imena u različitim mestima, čak i na istom jeziku, što može biti problematično i izazvati zabunu. Naučnici rešavaju taj problem koristeći jedinstveni "naučni naziv" za svaku kategoriju organizama koji je u skladu sa pravilima <a href=https://sr.wikipedia.org/wiki/%D0%91%D0%B8%D0%BD%D0%BE%D0%BC%D0%BD%D0%B0_%D0%BD%D0%BE%D0%BC%D0%B5%D0%BD%D0%BA%D0%BB%D0%B0%D1%82%D1%83%D1%80%D0%B0">binomne nomenklature</a> ali ti nazivi su obično zasnovani na latinskom jeziku koji skoro niko ne govori, pa ih tako za većinu ljudi nije baš lako zapamtiti kao narodne nazive. Naučni nazivi su takođe odraz taksonomskog položaja i mogu se promeniti kada naučnici razviju preciznije teorije o evolucionim odnosima između različitih organizama, što može da oteža njihovu upotrebu, čak i među onima koji znaju naučne nazive.
+          </p>
+          <p>
+          Stara izreka kaže: "Naučni nazivi se menjaju iz mesta u mesto a naučni nazivi se menjaju s vremena na vreme."
+          </p>
+          <p>
+          Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima korisnika. Nazivi su poređani po njihovoj učestalosti upotrebe u sklopu svakog jezika / tipa.
+          </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
         charts_help_other: |
@@ -4863,6 +4948,8 @@ sr:
         is_active: Aktivan?
         locked: Zaključano
         name: Naziv
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Provajder naziva
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: Fotografije zaključane?
@@ -4876,6 +4963,7 @@ sr:
         name: Ime
         position: Pozicija
         source_url: Izvorni URL
+        audit_comment: Napomena
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -5042,6 +5130,8 @@ sr:
               already_exists: već postoji za ovaj takson u ovom rečniku
               must_match_the_taxon_if_valid: |
                 mora se poklopiti sa nazivom taksona ako je naučni naziv ispravan
+            audit_comment:
+              needs_to_be_at_least_10_characters: mora imati najmanje 10 karaktera
         taxon_photo:
           attributes:
             taxon:
