@@ -1866,7 +1866,11 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
     // don't attempt aligning if we're not viewing the map
     if( $scope.mapLayersInitialized && $scope.$parent.viewing( "observations", "map" ) ) {
       if( $scope.$parent.mapBounds ) {
-        var { swlat, swlng, nelat, nelng } = $scope.$parent.mapBounds;
+        var bounds = $scope.$parent.mapBounds;
+        var swlat = bounds.swlat;
+        var swlng = bounds.swlng;
+        var nelat = bounds.nelat;
+        var nelng = bounds.nelng;
         $scope.map.fitBounds( new google.maps.LatLngBounds(
           new google.maps.LatLng( swlat, swlng ),
           new google.maps.LatLng( nelat, nelng )
