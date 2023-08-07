@@ -234,13 +234,15 @@ class PhotoBrowser extends React.Component {
         player = (
           <div className="hidden-media">
             {overlay}
-            <button
-              type="button"
-              className="btn btn-default btn-xs reveal-hidden"
-              onClick={( ) => revealHiddenContent( sound )}
-            >
-              { I18n.t( "show_hidden_content" ) }
-            </button>
+            { ( viewerIsCurator || this.viewerIsObserver ) && (
+              <button
+                type="button"
+                className="btn btn-default btn-xs reveal-hidden"
+                onClick={( ) => revealHiddenContent( sound )}
+              >
+                { I18n.t( "show_hidden_content" ) }
+              </button>
+            ) }
           </div>
         );
       } else if ( !sound.play_local && ( sound.subtype === "SoundcloudSound" || !sound.file_url ) ) {
