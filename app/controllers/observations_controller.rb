@@ -143,6 +143,7 @@ class ObservationsController < ApplicationController
             params[:taxon_id] = t.id
           end
         end
+        @asynchronous_google_maps_loading = true
         render layout: "bootstrap", locals: { params: params }
       end
 
