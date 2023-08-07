@@ -503,10 +503,10 @@ class User < ApplicationRecord
   # test to see if this user has authorized with the given provider
   # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
-  def has_provider_auth(provider)
+  def has_provider_auth( provider )
     provider = provider.downcase
-    provider_authorizations.detect do |p| 
-      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    provider_authorizations.detect do | p |
+      p.provider_name.match( provider ) || p.provider_uid&.match( provider )
     end
   end
 
