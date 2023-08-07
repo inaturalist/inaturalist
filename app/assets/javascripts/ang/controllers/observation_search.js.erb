@@ -800,7 +800,10 @@ var SearchController = function (
         && !$scope.params.swlat
       ) {
         var bounds = response.data.total_bounds;
-        var { swlat, swlng, nelat, nelng } = bounds;
+        var swlat = bounds.swlat;
+        var swlng = bounds.swlng;
+        var nelat = bounds.nelat;
+        var nelng = bounds.nelng;
         if ( swlat < -80 ) { swlat = -80; }
         if ( swlng < -179.9 ) { swlng = -179.9; }
         if ( nelat > 80 ) { nelat = 80; }
@@ -1272,7 +1275,7 @@ var SearchController = function (
       var location = $scope.searchedPlace.geometry.location;
       var bounds;
       if( $scope.searchedPlace.geometry.viewport ) {
-        var { viewport } = $scope.searchedPlace.geometry;
+        var viewport = $scope.searchedPlace.geometry.viewport;
         bounds = googleMapsBoundsToObject( viewport );
       } else {
         // use some bounds which equate roughly to zoom level 15
