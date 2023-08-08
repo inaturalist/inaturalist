@@ -774,6 +774,8 @@ ca:
   birds: aus
   birthday: Aniversari
   black: negre
+  block: Bloquejar
+  blocking_description: El bloqueig impedeix qualsevol comunicació entre vostè i un altre usuari. És per a situacions en què un altre usuari pot posar en risc la vostra seguretat, com ara l'assetjament o altres comportaments abusius.
   block_removed: Blocatge eliminat
   blocked_users: Usuaris bloquejats
   blog_widget: Giny del blog
@@ -1038,7 +1040,6 @@ ca:
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Connecteu el Flickr novament per a autoritzar els permesos d’escriptura
-  connecting_to_facebook: "Connectant-se a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecteu el vostre compte de %{site_name} amb comptes en altres llocs permetrà que entreu a %{site_name} amb les dades d'aquests llocs."
   cannot_be_changed_during_a_content_freeze: No es pot canviar mentre el contingut està congelat
   conservation_status: Estat de conservació
@@ -1128,21 +1129,21 @@ ca:
     molt: Muda
   controlled_term_definitions:
     alive: L'organisme està viu i no mostra signes de probable mort imminent
+    bone: |
+      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
+    cannot_be_determined: No es pot determinar a partir de les dades aportades
     dead: L'organisme està mort o mostra signes de probable mort imminent
+    feather: Una o més plomes, no unides a un organisme
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
+    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
+    molt: Restes de pell o exoesquelet
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
-    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
-    cannot_be_determined: No es pot determinar a partir de les dades aportades
-    feather: Una o més plomes, no unides a un organisme
     organism: Tot o part d'un organisme
     scat: Matèria fecal (no egagròpiles de rapinyaires o altres materials regurgitats)
+    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
     track: Impressió al terra o la neu feta per un organisme
-    bone: |
-      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
-    molt: Restes de pell o exoesquelet
-    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -1251,10 +1252,10 @@ ca:
     No demostra que tingui un comportament adequat.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies i afegit 100 millores de la identificació de les observacions, incloses les vostres (heu afegit %{num_idents}). Quan compliu els dos requisits, torneu aquí i podreu enviar la vostra sol·licitud.
-  curator_application_inelligible_error: |
-    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies i afegit 100 millores de la identificació de les observacions, incloses les vostres.
+  curator_application_inelligible2: |
+    Per sol·licitar ser un supervisor del lloc, heu d'haver tingut un compte durant 60 dies o més, heu d'haver afegit almenys 5 marques i heu d'haver afegit 100 identificacions de millora a les observacions de qualsevol persona, incloses les vostres pròpies (heu afegit %{num_idents}). Quan hàgiu complert aquests requisits, torneu aquí i podreu enviar la sol·licitud.
+  curator_application_inelligible_error2: |
+    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies, haver afegit almenys 5 marques i haver afegit 100 identificacions de millora a les observacions de qualsevol, incloses les vostres.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Sol·licitud com a Supervisor lliurada
   #Header
@@ -1313,6 +1314,8 @@ ca:
     Únicament podeu sol·licitar ser Supervisor si:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Heu estat afegint identificacions i/o observacions els darrers mesos i voleu continuar fent-ho.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Heu demostrat que enteneu el procés de supervisió afegint unes quantes marques.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1487,6 +1490,7 @@ ca:
       signed_up_but_locked: "Us heu registrat amb èxit. Però, no heu pogut iniciar la sessió perquè el vostre compte està bloquejat."
       signed_up_but_unconfirmed: "S'ha enviat un missatge amb un enllaç de confirmació a la vostra adreça de correu electrònic. Si us plau, seguiu l'enllaç per activar el vostre compte."
       updated: 'Heu actualitzat el vostre compte amb èxit.'
+      updated_but_not_signed_in: "El vostre compte s'ha actualitzat correctament, però com que s'ha canviat la contrasenya, heu de tornar a iniciar la sessió."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1576,6 +1580,8 @@ ca:
   draft: esborrany
   #Noun, as in a journal post that has not been published
   draft_: Esborrany
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Esborrany de %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Esborrany desat!
   #Noun, as in journal posts that has not been published
@@ -1672,7 +1678,6 @@ ca:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag} Confirmeu la vostra adreça electrònica%{link_end_tag}</strong>.
     Tots els usuaris han de confirmar la seva adreça electrònica abans de %{date}. Després d'aquesta data, qualsevol persona que no hagi confirmat la seva adreça electrònica no podrà iniciar la sessió a menys que restableixi la contrasenya. Per confirmar la vostra adreça de correu electrònic, aneu a %{link_start_tag}paràmetres del compte%{link_end_tag}.
-  email_copyright: "Copyright &copy; %{x}, tots els drets reservats"
   email_notifications: Notificacions per correu electrònic
   embed: 'Insereix:'
   embed_place_widget: Insereix un giny de lloc
@@ -1745,13 +1750,6 @@ ca:
   extra_properties: Propietats extres
   evidence_of_organism: Evidència d'organisme
   facebook: Facebook
-  facebook_account_information: Informació del vostre compte de Facebook
-  facebook_account_not_linked: "L'usuari %{user} no té un enllaç a un compte de facebook, per tant %{site_name} no té permís per accedir a aquesta foto."
-  facebook_access_token_expired: "L'accés ha caducat. %{user} ha de tornar a enllaçar amb el seu compte de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necessita la confirmació del propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
-  facebook_options: Opcions de Facebook
-  facebook_photo_import_disabled_notice: |
-    A partir de novembre de 2020 Facebook ens demana verificar que realment necessitem accedir a les fotos, però no hem estat capaços de completar el procés a causa de problemes amb el sistema de verificació de Facebook. Com a resultat, no podem donar suport a la importació de fotografies de Facebook.
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
@@ -1916,7 +1914,7 @@ ca:
   frequency: Freqüència
   from_a_place: d'un lloc
   from_eol_collection: De la col·lecció EOL
-  from_flickr_facebook_etc: Des de Flickr, Facebook, etc.
+  from_flickr_etc: Des de Flickr, etc.
   from_list: De la llista
   from_photos: De fotos
   from_place: Del lloc
@@ -2010,7 +2008,6 @@ ca:
   heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
   help: Ajuda
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
-  help_support_inaturalist: "Ajudeu a iNaturalist"
   help_translate!: Ajuda'ns a traduir!
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_our_top_suggestions: Aquí estan els nostres principals suggeriments
@@ -2165,7 +2162,6 @@ ca:
   inaturalist_activity_notifications: "Notificacions d'Activitat de %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicacions d'iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} és una iniciativa conjunta de la California Academy of Sciences i National Geographic Society.."
   inaturalist_places: "Llocs %{site_name}"
   info: Informació
   input_taxon: Introduir tàxon
@@ -2284,11 +2280,15 @@ ca:
   lexicon: Lèxic
   lexicon_cannot_contain_words: "no pot contenir les següents paraules: %{words}"
   lexicons:
-    scientific_names: Noms científics
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanès
+    aou_4_letter_codes: Codi AOU de 4 lletres
+    aou_6_letter_codes: Codi AOU de 6 lletres
     arabic: Àrab
     armenian: Armeni
+    asturian: Asturià
+    basque: Basc
     belarusian: Bielorús
     bengali: Bengalí
     bulgarian: Búlgar
@@ -2310,8 +2310,10 @@ ca:
     french: Francès
     galician: Gallec
     gela: Gela
+    georgian: Georgià
     german: Alemany
     greek: Grec
+    gujarati: Gujarati
     hawaiian: Hawaià
     hebrew: Hebreu
     hiligaynon: Híligaynon
@@ -2319,13 +2321,16 @@ ca:
     icelandic: Islandès
     ilokano: Ilocano
     indonesian: Indonesi
+    irish: Irlandès
     italian: Italià
     japanese: Japonès
     kannada: Kanarès
+    kazakh: Kazakh
     korean: Coreà
     latvian: Letó
     lithuanian: Lituà
     luxembourgish: Luxemburguès
+    malagasy: Malgaix
     malay: Malai
     malayalam: Malaiàlam
     maltese: Maltès
@@ -2346,8 +2351,8 @@ ca:
     romanian: Romanès
     russian: Rus
     santali: Santali
+    scientific_names: Noms científics
     serbian: Serbi
-    setswana: Setsuana
     sinhala: Singalès
     slovak: Eslovac
     slovenian: Eslovè
@@ -2356,12 +2361,17 @@ ca:
     swedish: Suec
     tagalog: Tagal
     tahitian: Tahitià
+    tamil: Tàmil
     thai: Tailandès
     tokelauan: Tokelauà
     turkish: Turc
+    u_s_d_a_symbol: Símbol de l'U.S.D.A.
     ukrainian: Ucraïnès
-    waray_waray: Samarà
+    vermont_flora_codes: Codis de la Flora de Vermont
+    vietnamese: Vietnamita
     visayan: Visayà
+    waray_waray: Samarà
+    zulu: Zulú
   less: Menys
   #Button show less text
   less__context_text: Menys
@@ -2377,14 +2387,8 @@ ca:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Enllaç al codi d'autorització
-  link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
   link_your_google_account: Vinculeu el compte de Google
-  linked_facebook: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Facebook."
-  linked_facebook_automaticaly: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Facebook, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Facebook. Sembla raonable que, si utilitzeu Facebook voldreu poder importar fotos de Facebook, és així?"
-  linked_facebook_description: "Mantenir el vostre compte d’%{site_name} vinculat al compte de Facebook us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Facebook en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Facebook i el voleu vincular a %{site_name}."
-  linked_facebook_howto: "Per connectar Facebook amb %{site_name}, feu clic a l’enllaç de la dreta i inicieu sessió a facebook.com."
-  linked_facebook_password: "Mai no us demanarem la contrasenya de Facebook (però Facebook podria demanar-vos-la; verifique que l’adreça on us redirigeix el botó és facebook.com). Tampoc no canviarem les vostres dades de Facebook, tret que ho sol·liciteu."
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
@@ -2402,6 +2406,10 @@ ca:
     taxonomic: taxonomia
     photo: fotos
   list_was_successfully_created: La llista s'ha creat amb èxit.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} i %{three}"
+  list_with_two_items: "%{one} i %{two}"
   listed_taxa: Tàxon llistat
   listed_taxon: Tàxon llistat
   listed_taxon_updated: S'ha actualitzat el llistat de tàxons
@@ -2453,6 +2461,7 @@ ca:
     id: Indonesi
     it: Italià
     ja: Japonès
+    ka: Georgià
     kn: Kanarès
     ko: Coreà
     lb: Luxemburguès
@@ -2552,6 +2561,7 @@ ca:
       every_publicly_visible_observation: Cada observació visible públicament creada a la xarxa iNaturalist
       featured_observations: Observacions destacades
       gbif_network: Xarxa GBIF
+      gbif_network_description2: Registres de museus i altres proveïdors de dades distribuïts per la Global Biodiversity Information Facility
       observations: Observacions
       place_boundary: Límit del lloc
       checklist_places: Llista de comprovació de llocs
@@ -2570,13 +2580,14 @@ ca:
   maximum_positional_accuracy_including_unknown: |
     Màxima precisió de la posició, incloent-hi les observacions sense precisió de la seva localització
   media: Multimèdia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: i
   media_type: Tipus de fitxer multimèdia
   medium: mitjà
   meet: Conegueu-ne
   member_of_the_inaturalist_network_html: |
     Membre de la <a href="%{url}">Xarxa iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membre de la xarxa %{partial_inat_network_tag_html}iNaturalist</a>, una iniciativa conjunta de %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Membres
   membership_model: Model d'adhesió
@@ -2735,9 +2746,12 @@ ca:
   must_have_quality_grades: "ha de tenir el grau de qualitat: %{grades}"
   must_have_sounds: ha de tenir sons
   must_have_x: "ha de tenir %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenciar
   #Mute is a noun here
   mute_removed: Emmudiment eliminat
   muted_users: Usuaris silenciats
+  muting_description: Silenciar algú impedeix que rebeu notificacions sobre cap activitat seva, incloses les mencions "@", els missatges o els comentaris i identificacions a les vostres observacions.
   n_ago: "fa %{n}"
   n_people_agrees: "%{amount} persones hi estan d'acord"
   n_people_disagrees: "%{amount} persones no hi estan d'acord"
@@ -2791,7 +2805,7 @@ ca:
   new_application: Nova aplicació
   new_assessment: Valoració nova
   new_check_list: Llista de comprovació nova
-  new_check_list_for: "Crea una nova llista de verificació per a {place} »"
+  new_check_list_for: "Crea una nova llista de verificació per a %{place} »"
   new_check_list_record: "Si vol marcar aquesta llista com a exhaustiva, creeu-la, afegiu-hi els tàxons i després modifiqueu-la per poder marcar-la com a exhaustiva."
   new_comment_on_a_parent_by_user_link: Nou comentari sobre @vow_or_con{vot:un|un} %{parent} de %{user_link}
   new_conservation_status: Nou estat de conservació
@@ -2940,7 +2954,6 @@ ca:
   not_found: No trobat
   #Filter for observations not in a particular place
   not_in_place: No està al lloc
-  not_linked_facebook: "El vostre compte a %{site_name} no està vinculat amb  Facebook."
   not_linked_flickr: "El vostre compte a %{site_name} no està vinculat amb Flickr"
   not_on_this_list: No sou en aquesta llista.
   not_recorded: No enregistrat
@@ -3204,7 +3217,7 @@ ca:
   options: Opcions
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
   orange: taronja
@@ -3260,6 +3273,7 @@ ca:
     invalid_email: Format de correu electrònic no vàlid
   password: Contrasenya
   password_confirmation: 'Confirmeu la contrasenya'
+  password_change_description: Canviar la vostra contrasenya, tancarà totes les sessions actives d'iNaturalist als vostres dispositius
   paste: Enganxa
   paste_in_a_bunch_of_names: Enganxa un grup de noms, 1 per línia i feu clic a l’enllaç!
   people: Persones
@@ -4399,8 +4413,6 @@ ca:
   sites_affiliation_overview_you_can_continue_html: |
     Podeu continuar iniciant la sessió a través d’iNaturalist.org o a través del vostre lloc web específic de la xarxa. Independentment de la vostra afiliació, totes les vostres dades s’allotjaran al mateix lloc i podreu continuar interactuant amb la comunitat iNaturalist internacional, més àmplia. Cada compte d'iNaturalist només es pot afiliar a un únic membre de la xarxa. Podeu revisar o canviar la vostra afiliació a la %{start_tag_settings}configuració del compte%{end_tag_settings}.
   sites_affiliation_title: Coneix més sobre l'Afiliació a la Xarxa
-  sites_network_cas_and_nat_geo_html: |
-    L' %{start_tag_cas}Acadèmia de Ciències de Califòrnia%{end_tag_cas} i el %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tenen acords formals amb organitzacions de cadascuna d’aquestes àrees geogràfiques per donar suport a l’ús de la plataforma iNaturalist. <strong> Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu obtenir més detalls %{start_tag_join} aquí%{end_tag_join}. </strong>
   sites_network_consists_of: "La Xarxa iNaturalist està formada per moltes organitzacions:"
   sites_network_inaturalist_network_collection: |
     La xarxa iNaturalist és un conjunt de llocs web localitzats totalment connectats a la comunitat iNaturalist global. Els llocs de la xarxa tenen el suport d’institucions locals que promouen el seu ús local i faciliten l’ús de les dades d’iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades autèntiques dins de les seves àrees geogràfiques, les quals s’amaguen automàticament de la vista pública per protegir millor les espècies amenaçades.
@@ -4586,7 +4598,6 @@ ca:
   tagging: 'Etiquetant...'
   tags: Etiquetes
   tags_are_a_way: 'Les etiquetes són paraules clau que podeu afegir a les observacions perquè sigui més fàcil trobar-les.'
-  take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   target_list_alert: Esteu segur que heu intentat observar totes les espècies incloses a la vostra llista d'objectius? Recordeu que qualsevol cosa que estigui en aquesta llista i que no hagueu observat s’interpretarà com una absència, de manera que és molt important que la vostra llista de objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar.
   target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius que no hagueu observat en el radi i la durada del viatge s’interpretarà com una absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una espècie a la vostra llista de destinataris o a totes les espècies inclosa en un grup de la vostra llista d'objectius, elimineu-la.
@@ -5358,10 +5369,9 @@ ca:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
-  we_also_support: |
-    També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Fotografies de Google</a> i
-    <a href="http://facebook.com">Facebook</a>.
+  we_also_support2: |
+    També admetem la importació de fotografies des de <a href="http://flickr.com">Flickr</a>
+    i des de <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
   we_couldnt_find_a_user_with_that_activation_code: "No hem trobat cap usuari amb aquest codi d'activació. Pot ser que el compte ja s’hagi activat; proveu d’entrar al sistema."
@@ -5517,8 +5527,6 @@ ca:
     Milions de persones han emprat iNaturalist i Seek d'iNaturalist al llarg d'aquest any per connectar amb la natura
   yir_monthly_supporters_random_selection: |
     Aquí hi ha una selecció aleatòria dels heroics membres de la comunitat d'iNat que donen cada mes.
-  yir_thank_your_for_being_generous: |
-    Gràcies per ser generós amb el vostre temps, atenció, experiència i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre la California Academy of Sciences i la National Geographic Society. El programa es basa en nombroses subvencions i donacions, incloses les donacions benèfiques d'una petita part de la comunitat. Estem especialment agraïts als patrocinadors mensuals, les donacions recurrents dels quals ens ajuden a planificar el futur.
   yir_your_gift_sustains: |
     La vostra donació sosté aquest programa d'abast global i profunds impactes personals i ecològics
   you: vós
@@ -5676,38 +5684,10 @@ ca:
             Si és així, si us plau llegiu la nostra <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar %{site_name} amb els alumnes.
     donate:
       donate_short_desc: "Doneu ara per mostrar el vostre suport!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-        </p>
-        <p class="lead">
-        Si creus en el poder d'aquesta comunitat global d'amants de la natura per compartir el coneixement i generar dades irreemplaçables de biodiversitat, si us plau considera fer una donació puntual o periòdica en línia, o coneix <a
-        href="https://www.inaturalist.org/pages/giving">altres formes de donar</a>.
-        </p>
-        <p class="lead">
-        Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Convertiu-vos en un patrocinador Mensual d'iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: CONVERTEIX-TE EN UN PATROCINADOR MENSUAL D'INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-          </p>
-          <p class="lead">
-          Volem mantenir l'ús gratuït d'iNaturalist, però la seva operació no és gratis.
-          Si us agrada iNaturalist, si us plau considereu convertir-vos en un patrocinador mensual. Les donacions recurrents ens ajuden a assegurar que iNaturalist pot continuar augmentant la seva infraestructura i personal proporcionant ingressos previsibles. També podeu mostrar el vostre estat de patrocinador mensual en el vostre perfil d'usuari.
-          </p>
-          <p class="lead">
-          Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal. Si preferiu fer una donació única, si us plau <a href="%{donate_url}">premeu aquí</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-          </p>
         thank_you_for_being_a_monthly_supporter: Gràcies per ser un Patrocinador Mensual!
         thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
     flags:
@@ -6139,60 +6119,12 @@ ca:
         cumulative_count_desc: '# d''identificacions per a un tàxon individual i els seus descendents'
         curator_coordinate_access_disabled_desc_html: |
           Aquest projecte no permet les observacions amb coordenades que no són accessibles als seus supervisors. Si no voleu compartir les coordenades d'aquesta observació amb els supervisors d'aquest projecte hauríeu de treure l'observació d'aquest projecte.
-        data_quality_assessment_desc_html: |
-          L'Anàlisi de la Qualitat de les Dades és una avaluació de la precisió d'una observació. Les observacions amb Grau de Recerca poden ser utilitzades pels científics per a la recerca.
-          Doneu el vostre vot sota:
         disagreement_count_desc: "# dels tàxons identificats que no estan entre els ancestres del tàxon"
         identification_count_desc: '# de les identificacions per a un tàxon individual'
         flagged_photos_desc_html: |
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
-        quality_assessment_help2_html: |
-          <p>
-          L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>"casual"</strong>, i es classifiquen com <strong>"necessita ID"</strong> quan
-          </p>
-
-          <ul>
-          <li>l'observació <strong>té una data</​1></li>
-          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
-          <li>l'observació <strong>s'acompanya de fotos o sons</strong></li>
-          <li>l'observació <strong>no és d'un humà</strong></li>
-          </ul>
-          <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
-          <ul>
-          <li>
-          la comunitat de %{site_name} <strong>està d'acord amb la ID donada a escala específica o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acord amb el tàxon (si la comunitat ha indicat que el Tàxon de la Comunitat no pot ser millorat més, es reverteix al nivell d'ID de subfamília o inferior)
-          </li>
-          </ul>
-          <p>
-          Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord a dir que:
-          </p>
-          <ul>
-          <li>
-          la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, etc.)
-          </li>
-          <li>
-          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents)
-          </li>
-          <li>
-          l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, etc. que no mostren cap organisme
-          </li>
-          <li>
-          l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organisme</strong> (p.ex. fòssils, però sí que s'accepten rastres, excrements i fulles mortes)
-          </li>
-          <li>
-          l'observació no necessita una ID <em>i</em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família
-          </li>
-          </ul>
-          <p>
-          I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
-          </p>
-          <ul>
-          <li>
-          El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitud (municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a no salvatge/naturalitzat.
-          </li>
-          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 
@@ -6703,9 +6635,6 @@ ca:
           Com ha estat aquest any en comparació amb l'anterior? La barra verda mostra aquest any, la barra vertical blanca mostra l'any passat i l'àrea grisa mostra el menor i el major, així com la mitjana de tots els anys.
         compared_to_previous_years: Compara amb Anys Anteriors
         donate_title: "Moltes gràcies a tots els nostres Patrocinadors"
-        donate_desc_html: |
-          Gràcies per ser tant generós amb el vostre temps, atenció, expertesa i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre de l'Acadèmia de Ciències de Califòrnia de Ciències i la National Geographic Society.
-          Està recolzada per un <a href="%{team_url}">petit equip</a> que s'encarrega de tot el disseny i enginyeria del programari per a la web, el mòbil, i <a href="%{seek_url}">Seek d'iNaturalist</a>, a més de gestionar el suport comunitari, les col·laboracions, i integracions que mantenen tot elles en funcionament (i creixent ràpidament!). El programa confia en nombroses donacions i beques, incloent donacions benèfiques d'una petita part dels col·laboradors. Estem especialment agraïts als Patrocinadors Mensuals, les seves donacions recurrents ens permeten fer plans de futur. Podeu donar en diverses monedes per recolzar les operacions nuclears d'iNaturalist. Gràcies a tothom per a la vostra contribució a fer de l'any %{year} el millor any per a iNaturalist fins ara!
         donors: Donants
         donors_guide_label_our_goal_is_1000: El nostre objectiu és aconseguir 1.000 donants recurrents al mes
         inaturalist_network: Xarxa iNaturalist
@@ -6783,18 +6712,6 @@ ca:
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
       show:
-        about_names_desc: |
-          <p>
-          La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
-          Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
-          però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre la història evolutiva de les relacions entre els diferents organismes, reduint novament la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
-          </p>
-          <p>
-          El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."
-          </p>
-          <p>
-          Intentem respondre a aquestes mancances mostrant tant el nom comú com el científic, sempre que sigui possible, i elegint els noms comuns basant-nos en l'idioma i localització geogràfica de les preferències de l'usuari.
-          </p>
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
         about_establishment_desc: |
@@ -6954,9 +6871,6 @@ ca:
           <p> La <a href="%{url}" target="_blank"> xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment connectats a la comunitat global iNaturalist. Aquests llocs web compten amb el suport d’institucions locals que han signat un acord amb iNaturalist per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés a les coordenades reals dels seus països que queden automàticament ocultes al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d'usuari i contrasenya són els mateixo a tots els llocs que formen part de la xarxa iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions locals que operen en cada lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-vos les activitats del lloc) i accedir a les coordenades reals d'observacions tant siguin públiques o privades. </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de 1000 observacions. </p>
         licensing_desc_html: |
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
-        monthly_supporter_desc_html: |
-          Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i de la Xarxa d'iNaturalist.
-          <a href="%{url}"> Feu clic aquí per a convertir-vos en un Patrocinador Mensual</a>. Quan confirmem el vostre suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: Les adreces de correu electrònic a Donorbox i a iNaturalist hauran de ser exactament les mateixes perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual. Si són diferents, canviï una perquè sigui igual a l'altre.
         muting_desc_html: |
           <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
           <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
@@ -7076,6 +6990,15 @@ ca:
       index:
         connect_with_nature: Connecta amb la Natura
         explore_and_share: Exploreu i compartiu les vostres observacions sobre el món natural
+        observations_to_date:
+          one: "Observació fins a la data"
+          other: "Observacions fins a la data"
+        species_observed:
+          one: "Espècie observada"
+          other: "Espècies observades"
+        people_signed_up:
+          one: "Persona registrada"
+          other: "Persones registrades"
         how_it_works: Com funciona
         record_your_observations: Deseu les vostres observacions
         share_with_fellow_naturalists: Compartiu amb companys naturalistes
@@ -7148,20 +7071,12 @@ ca:
       6: dv
       7: ds
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d de %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d de %B del %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d de %B de %Y'
     month_names:
       - 
       - gener
@@ -7213,17 +7128,17 @@ ca:
         one: "1 segon"
         other: '%{count} segons'
     countdown_x_days:
-      one: dia
-      other: dies
+      one: DIA
+      other: DIES
     countdown_x_hours:
-      one: hora
-      other: hores
+      one: HORA
+      other: HORES
     countdown_x_minutes:
-      one: min.
-      other: mins.
+      one: min
+      other: min
     countdown_x_seconds:
-      one: seg.
-      other: segs.
+      one: s
+      other: s
     prompts:
       day: Dia
       hour: Hora
@@ -7293,19 +7208,11 @@ ca:
   time:
     am: del matí
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b %Y %H:%M:%S %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d/%m/%Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %b. %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%I:%M %p %Z"
     pm: de la tarda
   activerecord:
@@ -7338,6 +7245,9 @@ ca:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Identificadors del lloc
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Per a usuaris sense confirmació.
       assessment:
         description: Descripció
       assessment_section:
@@ -7523,10 +7433,25 @@ ca:
         blank: no pot estar en blanc
         confirmation: no coincideix amb la contrasenya
         empty: no pot estar buit
+        equal_to:
+          one: ha de ser igual a %{count}
+          other: han de ser iguals a %{count}
         even: ha de ser parell
         exclusion: està reservat
+        greater_than:
+          one: ha de ser major que %{count}
+          other: han de ser majors que %{count}
+        greater_than_or_equal_to:
+          one: ha de ser major o igual a %{count}
+          other: han de ser majors o iguals a %{count}
         inclusion: no està inclòs a la llista
         invalid: no és vàlid
+        less_than:
+          one: ha de ser menor que %{count}
+          other: han de ser menors que %{count}
+        less_than_or_equal_to:
+          one: ha de ser menor o igual a %{count}
+          other: han de ser menors o iguals a %{count}
         new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
         not_a_number: no és un nombre
         not_an_integer: ha de ser un nombre sencer
@@ -7729,8 +7654,6 @@ ca:
           attributes:
             base:
               user_already_blocked: Ja heu blocat aquest usuari
-              user_cannot_be_staff: |
-                No podeu blocar el personal d'iNat. El personal d'iNat s'ha de poder comunicar amb tots els usuaris d'iNat, tenir accés a totes les dades d'iNat i són els mediadors últims de les disputes, per tant, blocar-los no impedeix que es puguin comunicar amb vostè. Si teniu algun problema amb alguna persona d'iNat, si us plau, informeu algun dels codirectors d'iNat, o, si el problema és amb algun dels codirectors, podeu contactar amb el Responsable Científic de l'Institute for Biodiversity and Sustainability Science de la California Academy of Sciences.
         user_parent:
           attributes:
             email:

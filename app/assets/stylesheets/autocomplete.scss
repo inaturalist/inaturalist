@@ -121,8 +121,15 @@ $label-start: 7px;
   img.user_image {
     width: 16px;
     height: 16px;
-    margin-right: 5px;
+    margin-inline-end: 5px;
     float: left;
+  }
+}
+
+[dir="rtl"] .ui-autocomplete .ac-result {
+  text-align: start;
+  img.user_image {
+    float: right;
   }
 }
 .ui-autocomplete .ac-result.active {
@@ -132,6 +139,12 @@ $label-start: 7px;
   padding: 2px 0 0 $label-start;
   line-height: 18px;
 }
+
+[dir="rtl"] .ac-result .ac-label {
+  padding: 2px $label-start 0 0;
+  line-height: 18px;
+}
+
 .ac-result.taxon .ac-label {
   display: inline-block;
 }
@@ -207,7 +220,7 @@ $label-start: 7px;
 }
 .ac-result.place .title {
   float: left;
-  margin-right: 8px;
+  margin-inline-end: 8px;
   max-width: 100%;
 }
 .ac-result.place .type {
@@ -215,6 +228,15 @@ $label-start: 7px;
   font-size: 0.9em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, .5);
+}
+
+[dir="rtl"] {
+  .ac-result.place .title{
+    float: right;
+  }
+  .ac-result.place .type {
+    float: right;
+  }
 }
 .ac-chooser {
   position: relative;

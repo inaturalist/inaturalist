@@ -77,8 +77,8 @@ describe "translations" do
           next
         end
 
-        variables = translation.scan( /%{.+?}/ )
-        variables.each do | variable |
+        translation_variables = translation.scan( /%{.+?}/ )
+        translation_variables.each do | variable |
           # Bit of a kludge, but a lot of our singular form translations look like
           # "1 observation" in the source string when they should probably look
           # like "%{count} observation". The localization libs handle the %{count}
@@ -92,7 +92,24 @@ describe "translations" do
 
           # it "#{variable} should be present in the source string"
           expect( en_translations[en_key] ).to match( /#{variable.encode( "utf-8" )}/ ),
-            "#{key}: #{variable} should be present in source string: \"#{en_translations[en_key]}\""
+            "#{key}: #{variable} is not in the source string: \"#{en_translations[en_key]}\""
+        end
+
+        source_variables = en_translations[en_key].scan( /%{.+?}/ )
+        source_variables.each do | variable |
+          # Bit of a kludge, but a lot of our singular form translations look like
+          # "1 observation" in the source string when they should probably look
+          # like "%{count} observation". The localization libs handle the %{count}
+          # variable regardless, so this is not really a problem worth raising
+          # alarms about
+          # rubocop:disable Style/FormatStringToken
+          next if en_key =~ /\.one/ && variable == "%{count}"
+          # rubocop:enable Style/FormatStringToken
+
+          next if translation =~ /#{variable.encode( "utf-8" )}/
+
+          expect( translation ).to match( /#{variable.encode( "utf-8" )}/ ),
+            "#{key}: #{variable} is missing in the translation: \"#{translation}\""
         end
 
         # https://stackoverflow.com/a/3314572

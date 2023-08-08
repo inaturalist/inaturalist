@@ -312,6 +312,7 @@ const App = ( {
             <Col xs={12}>
               <FlagAnItemContainer
                 item={project}
+                itemTypeLabel={I18n.t( "project" )}
                 manageFlagsPath={`/projects/${project.id}/flags`}
               />
             </Col>

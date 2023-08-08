@@ -602,7 +602,7 @@ a.UserImage,
     }
     .SplitTaxon {
       white-space: normal;
-      a.secondary-name {
+      a.secondary-name, .secondary-names {
         font-size: 20px;
         line-height: 24px;
         color: #747474;
@@ -614,10 +614,10 @@ a.UserImage,
         color: #000;
         white-space: normal;
       }
-      &.genus .comname.secondary-name,
-      &.species .comname.secondary-name,
-      &.subspecies .comname.secondary-name,
-      &.variety .comname.secondary-name {
+      &.genus .comname.secondary-names,
+      &.species .comname.secondary-names,
+      &.subspecies .comname.secondary-names,
+      &.variety .comname.secondary-names {
         margin-left: 0.25em;
       }
     }
@@ -1982,7 +1982,7 @@ time {
       }
       td {
         padding: 2px 8px;
-        .secondary-name {
+        .secondary-names {
           font-size: 12px;
         }
         .display-name {
@@ -2381,7 +2381,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.research:after {
   border-color: $inat-green;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 
 .PopoverWithHeader {
@@ -2432,6 +2432,17 @@ body > [role="dialog"] .easyzoom > a > img {
   width: 245px;
 }
 
+.obs .caption, .obs-highlight-link, .obs-modal-header {
+  .SplitTaxon.taxon {
+    .display-names .display-name + .display-name,
+    .secondary-names .secondary-name + .secondary-name {
+      &:before {
+        content: "";
+        display: inline;
+      }
+    }
+  }
+}
 
 @media (max-width: 1000px) {
   .bootstrap .container {

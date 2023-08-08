@@ -17,7 +17,7 @@ describe Users::RegistrationsController, "create" do
   elastic_models( Observation )
   # This is mildly insane, but here we're turning on forgery protection to test
   # that we're successfully turning it off in this controller. Theoretically
-  # someone who is not signed in doesn't have an active session that coulbe be
+  # someone who is not signed in doesn't have an active session that could be
   # exploited by CSRF, and someone who is signed in should be protected by our
   # own code that will cause registration to fail when you try to create
   # another account

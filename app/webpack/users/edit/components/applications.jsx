@@ -21,7 +21,13 @@ const Applications = ( { showModal, apps, providerApps } ) => {
     // if an app is already in their provider_authorizations list
     // the user will see an option to disconnect
     _.difference( Object.keys( AUTH_PROVIDER_URLS ), userAppNames ).forEach( appName => {
-      if ( !userAppNames.includes( appName ) ) {
+      if (
+        !userAppNames.includes( appName )
+        // As of Spring 2023 we can no longer connect to Facebook, so we
+        // should not show the option to connect, even though we should show
+        // the option to disconnect a pre-existing authorization
+        && appName !== "facebook"
+      ) {
         connectedApps.push( {
           id: null,
           provider_name: appName,

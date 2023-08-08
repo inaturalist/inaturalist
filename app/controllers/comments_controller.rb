@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :destroy ],
     if: lambda { authenticate_with_oauth? }
-  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
   before_action :load_record, :only => [:show, :edit, :update, :destroy]
   before_action :owner_required, :only => [:edit, :update]
   before_action :curator_required, only: [:user]

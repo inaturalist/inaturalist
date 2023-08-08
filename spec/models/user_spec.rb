@@ -170,8 +170,8 @@ describe User do
     end
 
     describe "email domain exists validation" do
-      before(:all) { enable_user_email_domain_exists_validation }
-      after(:all) { disable_user_email_domain_exists_validation }
+      before( :all ) { enable_user_email_domain_exists_validation }
+      after( :all ) { disable_user_email_domain_exists_validation }
 
       it "should allow email domains that exist" do
         [
@@ -192,9 +192,9 @@ describe User do
           "att.net",
           "cvcaroyals.org",
           "ymail.com"
-        ].each do |domain|
+        ].each do | domain |
           u = User.make!( email: "someone@#{domain}" )
-          expect( u ).to be_valid
+          expect( u ).to be_valid, "should allow email domain: #{domain}"
         end
       end
 
@@ -808,21 +808,33 @@ describe User do
 
     it "should update existing observations if requested" do
       u = User.make!
-      o = Observation.make!(:user => u)
+      o = Observation.make!( user: u )
       u.preferred_observation_license = Observation::CC_BY
-      u.update(:make_observation_licenses_same => true)
+      u.update( make_observation_licenses_same: true )
       o.reload
-      expect(o.license).to eq Observation::CC_BY
+      expect( o.license ).to eq Observation::CC_BY
     end
-    
+
     it "should update existing photo if requested" do
       u = User.make!
-      p = LocalPhoto.make!(:user => u)
+      p = LocalPhoto.make!( user: u )
       u.preferred_photo_license = Observation::CC_BY
-      u.update(:make_photo_licenses_same => true)
+      u.update( make_photo_licenses_same: true )
       p.reload
-      expect(p.license).to eq Photo.license_number_for_code(Observation::CC_BY)
+      expect( p.license ).to eq Photo.license_number_for_code( Observation::CC_BY )
     end
+
+    it "should queue moving photos if needed" do
+      u = User.make!
+      p = LocalPhoto.make!( user: u )
+      u.update( make_photo_licenses_same: true )
+      p.reload
+      expect( Delayed::Job.where(
+        queue: "photos",
+        unique_hash: "{:\"User::enqueue_photo_bucket_moving_jobs\"=>#{u.id}}"
+      ).any? ).to be true
+    end
+
 
     it "should not update GoogleStreetViewPhotos" do
       u = User.make!
@@ -986,7 +998,7 @@ describe User do
   end
 
   describe "suggest_login" do
-    it "should suggest logins that are too short" do
+    it "should not suggest logins that are too short" do
       suggestion = User.suggest_login("AJ")
       expect(suggestion).not_to be_blank
       expect(suggestion.size).to be >= User::MIN_LOGIN_SIZE
@@ -1020,10 +1032,13 @@ describe User do
       expect(suggestion).not_to be_blank
       expect(suggestion).to eq "naturalist1"
 
-      User.make!(login: "naturalist1")
+      # 9 is forbidden
+      (1..8).each do |i|
+        User.make!(login: "naturalist#{i}")
+      end
+      allow(User).to receive(:rand).and_return(12345)
       suggestion = User.suggest_login("")
-      expect(suggestion).not_to be_blank
-      expect(suggestion).to eq "naturalist2"
+      expect(suggestion).to eq "naturalist12345"
     end
 
   end

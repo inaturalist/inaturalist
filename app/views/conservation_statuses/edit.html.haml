@@ -4,6 +4,9 @@
 - content_for :extracss do
   = stylesheet_link_tag :taxa, media: "all", cache: true
 
+- content_for :extrajs do
+  = javascript_include_tag "taxa/conservation_statuses_form"
+
 .container
   .row
     .col-cs-12

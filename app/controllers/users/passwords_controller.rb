@@ -29,5 +29,43 @@ module Users
         end
       end
     end
+
+    # The following fixes a bug in Seek where the reset password form won't
+    # submit if the client passes an Authorization header, but i'm still not
+    # sure if https://github.com/inaturalist/inaturalist/pull/3280 contains a
+    # better fix
+
+    protected
+
+    # Overriding the method from Devise
+    def require_no_authentication
+      require_no_authentication_or_app_jwt
+    end
+
+    # Copy of the Devise equivalent except it checks if the
+    # authenticated "user" is an anonymous user resulting from application
+    # authentication. We should remove this if/when we build out
+    # https://github.com/inaturalist/iNaturalistAPI/issues/378
+    def require_no_authentication_or_app_jwt
+      assert_is_devise_resource!
+      return unless is_navigational_format?
+
+      no_input = devise_mapping.no_input_strategies
+
+      authenticated = if no_input.present?
+        args = no_input.dup.push scope: resource_name
+        warden.authenticate?( *args )
+      else
+        warden.authenticated?( resource_name )
+      end
+
+      if authenticated &&
+          ( resource = warden.user( resource_name ) ) &&
+          # This is the only different bit
+          !resource&.anonymous?
+        set_flash_message( :alert, "already_authenticated", scope: "devise.failure" )
+        redirect_to after_sign_in_path_for( resource )
+      end
+    end
   end
 end

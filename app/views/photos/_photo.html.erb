@@ -1,5 +1,4 @@
 <%-  
-  size ||= (photo.is_a?(FacebookPhoto) ? 'large' : 'medium' ) # fb 'large' is roughly equivalent to flickr 'medium'
   size_method ||= "#{size}_url" 
   photo_source = photo.class.to_s.underscore.humanize.split.first
 -%>

@@ -1,4 +1,4 @@
-.ui-multiselect { padding:2px 0 2px 4px; text-align:left }
+.ui-multiselect { padding:2px 0 2px 4px; text-align:start;}
 .ui-multiselect span.ui-icon { float:right }
 .ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
 .ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
@@ -9,9 +9,10 @@
 .ui-multiselect-header a { text-decoration:none }
 .ui-multiselect-header a:hover { text-decoration:underline }
 .ui-multiselect-header span.ui-icon { float:left }
+[dir="rtl"] .ui-multiselect-header span.ui-icon { float:right}
 .ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
 
-.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000; text-align: left }
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000; text-align: start}
 .ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:auto }
 .ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:3px 1px }
 .ui-multiselect-checkboxes label input { position:relative; top:1px }

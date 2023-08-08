@@ -28,13 +28,13 @@ es-CR:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: muda
   controlled_term_definitions:
+    bone: |
+      Predominantemente restos endoesqueletales; la exposición parcial de huesos en un organismo casi intacto debería etiquetarse "organismo"
     feather: Una o más plumas no unidas a un organismo
+    molt: Piel descartada o exoesqueleto
     organism: Organismo total o parcial
     scat: Materia fecal (no egagrópilas de búho u otra materia regurgitada)
     track: Impresión en suelo o nieve hecha por el organismo
-    bone: |
-      Predominantemente restos endoesqueletales; la exposición parcial de huesos en un organismo casi intacto debería etiquetarse "organismo"
-    molt: Piel descartada o exoesqueleto
   #The name of a computer file
   filename: Nombre de archivo
   flag_for_place_title_html: |
@@ -42,6 +42,8 @@ es-CR:
   flag_this_place: Marcar este lugar
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Se hizo visible el texto de identificación
+  independence_email_body_ps: |
+    P.D. - Próximamente anunciaremos una generosa donación que le dará a iNaturalist independiente un sólido comienzo. El apoyo financiero de la comunidad iNaturalist hizo posible nuestra evolución y será vital para la sostenibilidad a largo plazo. Su donación ahora celebrará este emocionante hito y asegurará aún más el futuro de iNaturalist. ¡Gracias!
   leaderboard_most:
     species_in_month_year: La mayoría de las especies en %{month_year}
     species_in_year: La mayoría de las especies en %{year}
@@ -84,6 +86,10 @@ es-CR:
     <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
     la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
     </p>
+  views:
+    donate:
+      temporarily_unavailable: |
+        ¡Gracias por el interés en apoyar a iNaturalist! Las donaciones para iNaturalist están temporalmente deshabilitadas mientras actualizamos nuestros sistemas de donación. Por favor, vuelva luego.
   date:
     abbr_month_names:
       - 

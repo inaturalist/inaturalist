@@ -1367,6 +1367,10 @@ class Observation < ApplicationRecord
     key
   end
   
+  def current_identifications_count
+    identifications.select( &:current? ).length
+  end
+
   def num_identifications_by_others
     num_identification_agreements + num_identification_disagreements
   end
@@ -1531,8 +1535,7 @@ class Observation < ApplicationRecord
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
-    return true if user_id == viewer.id
-    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
+    return true if user.trusts?( viewer )
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
@@ -1849,7 +1852,7 @@ class Observation < ApplicationRecord
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
-      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+      self.species_guess = ( community_taxon.common_name( user: user ).try( :name ) || community_taxon.name )
     end
     true
   end
@@ -1935,9 +1938,7 @@ class Observation < ApplicationRecord
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats( skip_save: true )
       self.species_guess = if taxon
-        taxon.common_name.try(:name) || taxon.name
-      else
-        nil
+        taxon.common_name( user: user ).try( :name ) || taxon.name
       end
     end
     true
@@ -2089,7 +2090,9 @@ class Observation < ApplicationRecord
     return true if species_guess =~ /\?$/
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    self.taxon_id = single_taxon_id_for_name(species_guess)
+    if taxon = single_taxon_for_name( species_guess )
+      self.taxon_id = taxon.try( :id ) if taxon.is_active?
+    end
     true
   end
 
@@ -2243,7 +2246,7 @@ class Observation < ApplicationRecord
       taxon_ids_including_ancestors.each do |tid|
         Taxon.delay(
           priority: INTEGRITY_PRIORITY,
-          run_at: 1.hour.from_now,
+          run_at: 2.hours.from_now,
           unique_hash: { "Taxon::update_observation_counts": tid }
         ).update_observation_counts( taxon_ids: [tid] )
       end
@@ -3384,29 +3387,14 @@ class Observation < ApplicationRecord
   end
 
   # this method will set the updated_at column on this observation to the current time,
-  # and re-index only the updated_at attribute of the observation doc in Elasticsearch
+  # and queue the observation to be re-indexed shortly
   def mark_as_updated
-    updated_time = Time.now
-    update_column( :updated_at, updated_time )
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Observation.__elasticsearch__.client.update_by_query(
-        index: Observation.index_name,
-        refresh: Rails.env.test?,
-        body: {
-          query: {
-            term: {
-              "id": id
-            }
-          },
-          script: {
-            source: "ctx._source.updated_at = params.updated_time",
-            params: {
-              updated_time: updated_time
-            }
-          }
-        }
-      )
-    end
+    update_column( :updated_at, Time.now )
+    Observation.delay(
+      run_at: 10.minutes.from_now,
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: { "Observation::elastic_index": id }
+    ).elastic_index!( ids: [id] )
   end
 
 end

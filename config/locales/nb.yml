@@ -948,7 +948,6 @@ nb:
   connected_accounts_titlecase: Koblete kontoer
   connecting_flickr: "Kobler til Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
-  connecting_to_facebook: "Kobler til Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Å koble din konto på %{site_name} til kontoer på andre sider lar deg logge på %{site_name} ved å bruke dine påloggingsopplysninger fra disse sidene."
   cannot_be_changed_during_a_content_freeze: Kan ikke endres under frysing av innhold
   conservation_status: Bevaringsstatus
@@ -1028,15 +1027,15 @@ nb:
     bone: Bein
   controlled_term_definitions:
     alive: Organisme lever og viser ikke tegn på en snarlig død
+    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
     dead: Organisme er død eller viser tegn på en snarlig død
+    feather: En eller flere fjær som ikke er knyttet til en organisme
     flower_budding: Blomsterknopper er synlige men ikke åpne
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
-    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
-    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
-    feather: En eller flere fjær som ikke er knyttet til en organisme
     organism: Hel eller del av organisme
+    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
     track: Avtrykk i bakken eller snø laget av organisme
   controls: Kontrollpanel
   convert: Konverter
@@ -1337,7 +1336,7 @@ nb:
   download: Last ned
   download_caps: LAST NED
   download_bulk_import_template_html: |
-    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import#csv_import">bulk-opplasteren</a>
+    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-opplasteren</a>
   download_csv: Last ned CSV
   download_csv_template: Last ned CSV-mal
   download_kml: Last ned KML
@@ -1423,7 +1422,6 @@ nb:
   email: E-post
   email_description: E-posten din er ikke delt med andre brukere på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadresse for kommentarer og andre tilbakemeldinger
-  email_copyright: "Opphavsrett &copy; %{x}, alle rettigheter forbeholdt"
   email_notifications: E-postvarslinger
   embed: 'Integrer'
   embed_place_widget: Integrer stedswidget
@@ -1486,11 +1484,6 @@ nb:
   extra_properties: Ekstra egenskaper
   evidence_of_organism: Bevis for organisme
   facebook: Facebook
-  facebook_account_information: Din Facebook-kontoinformasjon
-  facebook_account_not_linked: "%{user} har ikke en tilkoblet Facebookkonto lenger, så %{site_name} har ikke tilgang til dette bildet."
-  facebook_access_token_expired: "Adgangstoken er utløpt. %{user} må lenke opp Facebook-kontoen på nytt."
-  facebook_needs_the_owner_of_that_photo_to: Facebook trenger at bildets eier bekrefter sin kobling til %{site_name_short} på nytt.
-  facebook_options: Facebookvalg
   failed_to_find_your_location: Kunne ikke finne din posisjon.
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
@@ -1650,7 +1643,6 @@ nb:
   frequency: Frekvens
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
-  from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
   from_list: Fra ei liste
   from_photos: Fra bilder
   from_place: Fra sted
@@ -1729,7 +1721,6 @@ nb:
   heads_up_you_have_multiple: "Obs: Du har flere taksonomiske maskinmarkeringer for identiske ranger. De er fargekodert per rang nedenfor."
   help: Hjelp
   help_confirm_observations!: Hjelp å bekrefte observasjoner!
-  help_support_inaturalist: "Hjelp med å støtte iNaturalist"
   help_translate!: Hjelp med å oversette!
   here_are_3_examples: Her er 3 eksempler av bra utformede data
   here_are_our_top_suggestions: Her er våre beste forslag
@@ -1853,7 +1844,6 @@ nb:
   inaturalist_activity_notifications: "%{site_name} aktivitetsvarsler"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist applikasjoner"
-  inaturalist_is_a_joint_initiative: "%{site_name} er et felles initiativ av California Academy of Sciences og National Geographic Society."
   inaturalist_places: "%{site_name}-steder"
   info: Info
   input_taxon: Inputtakson
@@ -1968,7 +1958,6 @@ nb:
   lexicon: Leksikon
   lexicon_cannot_contain_words: "kan ikke inneholde følgende ord: %{words}"
   lexicons:
-    scientific_names: Vitenskapelige navn
     afrikaans: Afrikansk
     albanian: Albansk
     arabic: Arabisk
@@ -2021,6 +2010,7 @@ nb:
     portuguese: Portugisisk
     romanian: Rumensk
     russian: Russisk
+    scientific_names: Vitenskapelige navn
     serbian: Serbisk
     slovak: Slovakisk
     slovenian: Slovensk
@@ -2044,14 +2034,8 @@ nb:
   life_list: "Livsliste til %{user}"
   linear_scale_label: Lineær
   link: Lenker
-  link_your_facebook_account: Tilknytt din Facebook-konto
   link_your_flickr_account: Tilknytt din Flickr-konto
   link_your_google_account: Tilknytt din Google-konto
-  linked_facebook: "Din %{site_name}-konto er knyttet til din Facebook-konto."
-  linked_facebook_automaticaly: "Husk også at vi vil koble sammen din %{site_name} og Facebook kontoer på nytt automatisk hvis du logger inn på %{site_name} via Facebook. Når du bruker Facebook ønsker du jo å kunne importere Facebook-bilder, ikke sant?"
-  linked_facebook_description: "Å holde din %{site_name}-konto koblet til din Facebook-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Facebook og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Facebook-konto som du vil koble %{site_name} opp mot."
-  linked_facebook_howto: "For å koble Facebook til %{site_name}, klikk lenken til høyre og logg inn på Facebook.com."
-  linked_facebook_password: "Vi kommer aldri til å be deg om ditt Facebook-passord (men Facebook kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Facebook.com). Vi vil heller ikke endre Facebook-opplysningene dine med mindre du ønsker det."
   linked_flickr: "Din %{site_name}-konto er knyttet til din Flickr-konto."
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
@@ -2231,8 +2215,6 @@ nb:
   meet: Møt
   member_of_the_inaturalist_network_html: |
     Medlem av <a href="%{url}">iNaturalist-nettverket</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Medlem av %{partial_inat_network_tag_html}iNaturalist-nettverket</a>, et felles initiativ av %{cas_tag_html} og %{nat_geo_tag_html}.
   #As in members of a project
   members: Medlemmer
   membership_model: Medlemskapsmodell
@@ -2541,7 +2523,6 @@ nb:
   not_findig_what_you_want: Finner du ikke hva du ønsker?
   not_finding_place_you_want?: Finner du ikke stedet du ønsker?
   not_found: Ikke funnet
-  not_linked_facebook: "Din konto på %{site_name} er ikke koblet til din Facebook-konto"
   not_linked_flickr: "Din konto på %{site_name} er ikke koblet til din Flickr-konto"
   not_on_this_list: Ikke på denne lista.
   not_recorded: Ikke registrert
@@ -2763,7 +2744,7 @@ nb:
   optional: valgfritt
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller velg fra noen høyere taksa"
   orange: oransje
@@ -3998,7 +3979,6 @@ nb:
   tagging: 'Legger til etikett...'
   tags: Etiketter
   tags_are_a_way: 'Etiketter er en måte å organisere dine observasjoner på. Du vil for eksempel kanskje legge til etiketten "tidevann" til dine observasjoner gjort i tidevannet, slik at de blir lettere å finne igjen senere.'
-  take_me_facebook: Ja, ta meg til Facebook!
   take_me_flickr!: Ja, ta meg til Flickr!
   target_list_alert: Er du sikker på at du har forsøkt å observere alle arter dekt av din målliste? Husk at alt som dekkes av din målliste som du ikke observerer blir regnet som et fravær, så det er veldig viktig at din målliste kommer nøyaktig overens med artene som du forsøkte å finne
   target_list_warning: Husk at alt på din målliste som du ikke observerte under din innenfor området blir sett på som et fravær. Det er veldig viktig at din målliste nøyaktig representerer artene du prøvde å finne. Hvis du ikke forsøkte å finne en art på din målliste eller alle arter i en gruppe på din målliste, vennligst fjern den.
@@ -4532,8 +4512,6 @@ nb:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
-  we_also_support: |
-    Vi støtter også <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Bilder</a>, og <a href="http://facebook.com">Facebook</a> for bildelagring.
   we_can_only_understand_csv_in: Vi kan kun forstå csv i følgende format
   we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finne en bruker med den aktiveringskoden. Du har muligens allerede aktivert din konto, vennligst prøv å logge på."
@@ -4796,18 +4774,9 @@ nb:
             I så fall, vennligst les vår <a href="%{url}">guide for lærere</a> for tips på å bruke %{site_name} med studenter.
     donate:
       donate_short_desc: "Donér nå for å vise din støtte!"
-      donate_desc_html: |
-        <p class="lead"><strong>iNaturalist er ett av verdens største fellesskap dedikert til å utforske biodiversitet. Takk for at du er del av det!</strong></p><p class="lead">Hvis du tror på potensialet av dette verdensomspennende fellesskap av naturelskere til å dele kunnskap og generere uerstattelige data om biodiversitet, vennligst vurder en engangs- eller gjentagende donasjon, eller se <a href="https://www.inaturalist.org/pages/giving">andre måter å gi</a>.</p><p class="lead">Din donasjon hjelper med å støtte iNaturalist mens samfunnet blir større, fra å bringe computer vision og implementere ny funksjonalitet, til å støtte våre servere og ansatte. </p><p class="text-muted">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society. Alle donasjoner mottas av California Academy of Sciences, en 501(c)(3) tax-exempt not-for-profit
-        organization i USA (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli en månedlig supporter av iNaturalist
-        desc_html: |
-          <p class="lead"><strong>iNaturalist er ett av verdens største fellesskap dedikert til å utforske biodiversitet. Takk for at du er del av det!</strong></p><p class="lead">
-          Vi vil beholde iNaturalist gratis til bruk, men det er ikke gratis å drifte. Hvis du elsker iNaturalist, vennligst vurder å støtte oss månedlig. Gjentatt støtte hjelper oss med å sikre at iNaturalist kan fortsette å skalere sin infrastruktur og stab ved å gi forutsigbar inntekt. Du kan også velge å vise at du støtter oss månedlig på din brukerprofil. 
-          </p>
-          <p class="lead">
-          Din frivillige donasjoner hjelper å støtte iNaturalist mens fellesskapet vokser, fra å bringe computer vision og implementere ny funksjonalitet, til å støtte våre servere og ansatte. Hvis du foretrekker å donere et engangsbeløp, vennligst <a href="%{donate_url}">trykk her</a>.</p><p class="text-muted">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society.</p>
     flags:
       show:
         flaggable_content_desc: |
@@ -5239,9 +5208,6 @@ nb:
         cumulative_count_desc: 'Antall observasjoner for et individuelt takson og alle sine etterkommere'
         curator_coordinate_access_disabled_desc_html: |
           Dette prosjektet aksepterer ikke observasjoner med koordinater som prosjektkuratorene ikke kan se. Hvis du ikke vil dele koordinatene til denne observasjonen med kuratorene til dette prosjektet, må du fjerne observasjonen fra dette prosjektet.
-        data_quality_assessment_desc_html: |
-          Datakvalitetsvurderingen er en evaluering av observasjonens nøyaktighet.
-          Observasjoner av forskningskvalitet kan brukes av forskere innen forskning. Stem nedenfor:
         disagreement_count_desc: "antall identifiserte taksa som ikke er blant taksonets aner"
         identification_count_desc: 'Antall identifikasjoner for et individuelt takson'
         flagged_photos_desc_html: |
@@ -5734,8 +5700,6 @@ nb:
           bruk eller mer kan vi begynne å sammenligne årlige aktivitetstall.
         compared_to_previous_years: Sammenlign med foregående år
         donate_title: "Særlig takk til alle våre støttere"
-        donate_desc_html: |
-          Takk for at du er generøs med din tid, oppmerksomhet, ekspertise, og donasjoner! iNaturalist er et non-profit felles initiativ av California Academy of Sciences og National Geographic Society. Det støttes av et <a href="%{team_url}">lite team</a> som gjør all design og koding for nettet, mobil, og <a href="%{seek_url}">Seek av iNaturalist</a>, i tillegg til å administrere støtte til fellesskapet, og integreringer som holder ting i drift (og stadig vekst!) Programmet er avhengig av flere tilskudd og donasjoner, hvorunder frivillige gaver fra under 0,2% av bidragsytere. Vi er særlig takknemlig til våre månedlige givere, hvems gjentagende gaver hjelper oss i å planlegge for fremtiden. Du kan donere i over 30 valuta for å støtte kjerneoppgavene til iNaturalist. Takk til alle for ditt bidrag i å gjøre 2019 til det største året for iNaturalist hittil!
         donors: Givere
         donors_guide_label_our_goal_is_1000: Vårt mål er 1000 faste givere per måned
         inaturalist_network: iNaturalist-nettverk
@@ -5802,17 +5766,6 @@ nb:
         complete_rank_desc_html: |
           Rang hvor dette taksonet er fullstendig, f.eks hvis denne familien inneholder alle sine slekter men ikke alle arter, settes dette til "slekt". Standardverdi er art.
       show:
-        about_names_desc: |
-          <p>
-          De fleste kategorier organismer har "populærnavn" i muntlige språk. Disse navn er vanligvis gjenkjennelige, lett å uttale, og stabile over tid, men mange organismer har flere ulike navn på ulike steder, til og med på samme språket, noe som kan gjøre det vanskelig å kommunisere om disse organismer uten forvirring. Vitenskapsmenn og -kvinner håndterer dette problemet ved å bruke et eneste "vitenskapelig navn" for hver kategori organismer som kommer overens med reglene for
-          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk navngivelse</a>, men disse bruker å være basert på latin, et språk ingen snakker, så de er ikke like lett å huske som populærnavn for mange. Vitenskapelige navn kan også reflektere organismens taksonomiske plassering, så de kan endres når forskere utvikler mer nøyaktige teorier om de evolusjonære forhold mellom ulike organismer, noe som gjør de mindre nyttige i kommunikasjon, selv blant folk som kan vitenskapelige navn.
-          </p>
-          <p>
-          Den gamle regelen oppsummerer det: "Populærnavn endres fra sted til sted, og vitenskapelige navn endres fra tid til annen."
-          </p>
-          <p>
-          Vi prøver å håndtere disse mangler ved å vise både populærnavn og vitenskapelige navn hvor vi kan, og velge populærnavn basert på innstillingene for språk og region av publikumet.
-          </p>
         about_conservation_status_desc: |
           Bevaringsstatusen gir et sammendrag av risikoen for utdøing av en gruppe organismer.
         about_establishment_desc: |
@@ -6166,20 +6119,12 @@ nb:
       6: Fr
       7: Lø
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d. %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Januar
@@ -6311,19 +6256,11 @@ nb:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d. %b. %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d. %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
   activerecord:

@@ -422,7 +422,7 @@ class ListedTaxon < ApplicationRecord
 
   def index_taxon
     unless skip_index_taxon
-      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
         unique_hash: { "Taxon::elastic_index": taxon_id }).
         elastic_index!(ids: [taxon_id])
     end
@@ -852,22 +852,26 @@ class ListedTaxon < ApplicationRecord
   end
 
   def related_listed_taxa
+    return [] if place_id.blank?
     ListedTaxon.where(taxon_id: taxon_id, place_id: place_id).where("id != ?", id)
   end
 
   def other_primary_listed_taxa?
+    return false if place_id.blank?
     scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 0
   end
 
   def multiple_primary_listed_taxa?
+    return false if place_id.blank?
     scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 1
   end
 
   def primary_listed_taxon
+    return nil if place_id.blank?
     primary_listing ? self : ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true ).first
   end
 

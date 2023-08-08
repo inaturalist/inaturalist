@@ -982,7 +982,6 @@ gl:
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr outra vez para autorizar os permisos de escritura
-  connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar a túa conta de %{site_name} con contas noutros sitios permíteche entrar a %{site_name} empregando os datos deses sitios."
   cannot_be_changed_during_a_content_freeze: Non se pode mudar durante un conxelamento de contidos
   conservation_status: Categoría de risco
@@ -1065,20 +1064,20 @@ gl:
     molt: Muda
   controlled_term_definitions:
     alive: O organismo vive e non mostra sinais de morte inminente
+    bone: |
+      Restos endoesqueléticos predominantemente; exposición ósea parcial nun organismo sen outros danos debe ser etiquetado como "organismo"
+    cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
     dead: O organismo está morto ou mostra sinais de morte inminente
+    feather: Unha pluma ou máis non unidas a un organismo
     flower_budding: Os botóns das flores son visibles pero non están abertos
     flowering: As flores son visibles, están abertas e aínda están unidos á planta
     fruiting: Os froitos son visibles e aínda están unidos á planta
+    molt: Restos de pel ou exoesqueleto
     no_evidence_of_flowering: Os medios non amosan evidencias de estructuras reproductivas
-    teneral: Adulto que emerxeu hai pouco pero aínda non acadou a forma final de adulto
-    cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
-    feather: Unha pluma ou máis non unidas a un organismo
     organism: Organismo completo ou parte
     scat: Materia fecal (non egagrópilas ou outras materias regurxitadas)
+    teneral: Adulto que emerxeu hai pouco pero aínda non acadou a forma final de adulto
     track: Impresión no solo ou na neve feita por un organismo
-    bone: |
-      Restos endoesqueléticos predominantemente; exposición ósea parcial nun organismo sen outros danos debe ser etiquetado como "organismo"
-    molt: Restos de pel ou exoesqueleto
   controls: Controis
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1185,12 +1184,6 @@ gl:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Non demostra comportamentos axeitados.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para solicitar ser un administrador do site, debes ter tido unha conta durante 60 días ou máis e engadido 100 identificacións para mellorar observacións de calquera usuario, incluíndo as túas propias (engadiches %{num_idents}). Cando cumpras ámbolos dous requerimentos, volve aquí e serás quen de enviar a solicitude.
-  curator_application_inelligible_error: |
-    Para solicitar ser un administrador do sitio, debes ter tido unha conta durante 60 días ou máis e engadido 100 identificacións para mellorar as observacións de calquera usuario, incluído ti.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitude para administrador entregada
   #Header
@@ -1355,8 +1348,6 @@ gl:
   delete_photo: Eliminar foto
   delete_project: Eliminar este proxecto
   delete_selected: Eliminar seleccionados
-  delete_taxon_and_merge_most_data_html: |
-    Eliminar <i>%{taxon}</i> e combinar a maioría dos teus datos con outro taxón. Emprega esta ferramenta para eliminar taxóns duplicados e sinónimos desactualizados. <strong>TEN COIDADO!</strong > Eliminar taxóns podería destruír datos.
   delete_user: Eliminar usuario
   delete_your_account: Eliminar a túa conta
   deleted_synonyms: Sinónimos eliminados
@@ -1551,7 +1542,6 @@ gl:
   email: Correo
   email_description: O teu enderezo de email non é compartido con outros usuarios en iNaturalist
   email_address_for_comments_and_other_feedback: Enderezo de correo electrónico para comentarios e outras notificacións
-  email_copyright: "Dereitos de Autor &copy;%{x}, tódolos dereitos reservados"
   email_notifications: Notificacións por Email
   embed: 'Introducir:'
   embed_place_widget: Introducir un widget de lugar
@@ -1619,13 +1609,6 @@ gl:
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia dun organismo
   facebook: Facebook
-  facebook_account_information: Información da túa conta de Facebook
-  facebook_account_not_linked: "%{user} xa non ten unha conta de facebook asociada, asi que %{site_name} non ten permiso para acceder a esta foto."
-  facebook_access_token_expired: "O token de acceso caducou. %{user} necesita reasociar a súa conta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita a confirmación do propietario desta foto para poder realizar a conexión a %{site_name_short}.
-  facebook_options: Opcións de Facebook
-  facebook_photo_import_disabled_notice: |
-    En Novembro de 2020, Facebook pedíunos verificar a necesidade de acceder a fotos, e non puidemos completar o proceso debido a problemas có sistema de verificación de Facebook. Como resultado, non podemos seguir importando fotos dende Facebook.
   failed_to_find_your_location: Non se puido atopar a túa ubicación.
   failed_to_repair_photo: "Non se puido arranxar foto: %{errors}"
   failed_to_save_record: "Non se puido gardar o rexistro. Por favor, téntao logo de novo."
@@ -1780,7 +1763,6 @@ gl:
   frequency: Frecuencia
   from_a_place: dun lugar
   from_eol_collection: Da Colección EOL
-  from_flickr_facebook_etc: Dende Flickr, Facebook, etc.
   from_list: Da lista
   from_photos: De fotos
   from_place: dun lugar
@@ -1859,7 +1841,6 @@ gl:
   heads_up_you_have_multiple: "Avisos. Xeraches varias etiquetas taxonómicas para rangos idénticos. Están codificadas por cor máis adiante segundo o rango."
   help: Axuda
   help_confirm_observations!: Axúdenos a confirmar observacións!
-  help_support_inaturalist: "Axuda a Soster iNaturalist"
   help_translate!: '¡Axuda a Traducir!'
   here_are_3_examples: Aquí hai 3 exemplos de datos ben formados
   here_are_our_top_suggestions: Velaquí as nosas mellores suxestións
@@ -1983,7 +1964,6 @@ gl:
   inaturalist_activity_notifications: "%{site_name} Notificacións de Actividade"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicacións de iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} é unha iniciativa conxunta da Academia de Ciencias de California e da Sociedade National Geographic."
   inaturalist_places: "Lugares %{site_name}"
   info: Información
   input_taxon: Entrar taxon
@@ -2096,7 +2076,6 @@ gl:
   let_us_walk_you_through: Déixanos amosarte as principais características deste sitio.
   lexicon: Léxico
   lexicons:
-    scientific_names: Nomes científicos
     afrikaans: Afrikáans
     albanian: Albanés
     bengali: Bengalí
@@ -2138,6 +2117,7 @@ gl:
     portuguese: Portugués
     romanian: Romanés
     russian: Ruso
+    scientific_names: Nomes científicos
     spanish: Español
     swedish: Sueco
     tagalog: Tagalo
@@ -2155,14 +2135,8 @@ gl:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Linear
   link: Vínculo
-  link_your_facebook_account: Vincula a túa conta de Facebook
   link_your_flickr_account: Vincula a túa conta de Flickr
   link_your_google_account: Conecta a túa conta de Google
-  linked_facebook: "A túa conta de %{site_name} está actualmente vinculada coa túa conta de Facebook."
-  linked_facebook_automaticaly: "Ademáis, repara en que se accedes a %{site_name} a través de Facebook, automáticamente reconectaremos a túa %{site_name} e conta de Facebook. Semella razoable que se usas Facebook, queiras ser quen de importar as túas fotos de Facebook, ¿non si?"
-  linked_facebook_description: "Manter a túa conta de %{site_name} vinculada á túa conta de Facebook permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Facebook en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Facebook que desexas vincular a %{site_name}."
-  linked_facebook_howto: "Para conectar Facebook con %{site_name}, preme no vínculo da dereita e inicia sesión en facebook.com."
-  linked_facebook_password: "Non che pediremos nunca o teu contrasinal de Facebook (pero Facebook podería facelo, verifica que o enderezo ó cal o botón te redirixe é facebook.com). Tampouco cambiaremos os teus datos de Facebook, a menos que o solicites."
   linked_flickr: "A túa conta de %{site_name} está vinculada actualmente coa túa conta de Flickr."
   linked_flickr_automatically: "Ademáis, repara en que se accedes a %{site_name} a través de Flickr, automáticamente reconectaremos a túa %{site_name} e conta de Flickr. Semella razoable que se usas Flickr, queiras ser quen de importar as túas fotos de Flickr, ¿non si?"
   linked_flickr_description: "Manter a túa conta de %{site_name} vinculada coa túa conta de Flickr permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Flickr en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Flickr que desexes vincular con %{site_name}."
@@ -2338,8 +2312,6 @@ gl:
   meet: Coñece
   member_of_the_inaturalist_network_html: |
     Membro da <a href="%{url}">Rede iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membro da %{partial_inat_network_tag_html}Rede iNaturalist</a>, unha iniciativa conxunta de %{cas_tag_html} e %{nat_geo_tag_html}.
   #As in members of a project
   members: Membros
   membership_model: Modelo de Afiliación
@@ -2525,7 +2497,7 @@ gl:
   new_announcement: Novo anuncio
   new_assessment: Nova avaliación
   new_check_list: Nova lista de verificación
-  new_check_list_for: "Crear nova lista de verificación para {place} »"
+  new_check_list_for: "Crear nova lista de verificación para %{place} »"
   new_check_list_record: "Se desexas marcar esta lista coma exhaustiva, créaa, agrega os taxóns e logo modifícaa, e aquí terás a opción de marcala coma exhaustiva."
   new_comment_on_a_parent_by_user_link: Novo comentario en @gender{m:un|f:unha|n:un} %{parent} por %{user_link}
   new_flag_for: Nova Marca para
@@ -2665,7 +2637,6 @@ gl:
   not_findig_what_you_want: Non atopas o que desexas?
   not_finding_place_you_want?: '¿Non atopaches o lugar que buscabas?'
   not_found: Non se atopou
-  not_linked_facebook: "A túa conta de %{site_name} xa non está vinculada coa túa conta de Facebook."
   not_linked_flickr: "A túa conta de %{site_name} non está vinculada coa túa conta de Flickr"
   not_on_this_list: Non estás nesta lista.
   not_recorded: Non rexistrado
@@ -2896,7 +2867,7 @@ gl:
   optional: Opcional
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OU
   or_choose_high_level_taxa: "... Ou selecciona dalgúns taxóns de alto nivel"
   orange: Laranxa
@@ -4164,7 +4135,6 @@ gl:
   tagging: 'Etiquetando...'
   tags: Etiquetas
   tags_are_a_way: 'As etiquetas son palabras clave que podes engadir ás túas observacións para facelas máis fáciles de atopar.'
-  take_me_facebook: Si, ir a Facebook
   take_me_flickr!: Si, ir a Flickr
   target_list_alert: '¿Seguro que tentaches observar tódalas especies cubertas pola túa listaxe de obxectivos? Lembra que todo o que está cuberto na túa listaxe de obxectivos e non observaches, será interpretado como unha ausencia, polo que é moi importante que a túa listaxe de obxectivos reflicte con exactitude o conxunto de especies que trataches de detectar.'
   target_list_warning: Lembra que todo o que estea cuberto pola túa lista de obxectivos que non observaches no radio e duración desta excursión será interpretado como unha ausencia. É moi importante que a túa lista de obxectivos reflicta o conxunto de especies que intentaches detectar. Se non intentaches detectar unha especie ou tódalas especies cubertas por un grupo na túa listaxe de obxectivos, por favor, elimínaa.
@@ -4250,7 +4220,7 @@ gl:
   taxon_curators: Conservadores do Taxon
   taxon_framework_complete: "Completado: si"
   taxon_framework_deviations_with_count_html: "Desviacións: %{count}"
-  taxon_framework_relationships_with_count_html: "Relación entre Marcos Taxonómicos"
+  taxon_framework_relationships_with_count_html: "Relación entre Marcos Taxonómicos: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons marcados cubertos: %{count}"
   taxon_framework_notes: Notas do Marco Taxonómico
@@ -4363,8 +4333,6 @@ gl:
   there_were_some_problems_with_fields: "Houbo algúns problemas cos seguintes campos"
   there_were_some_problems_with_these_files: "Houbo algúns problemas con estes ficheiros:"
   theres_something_wrong_with_taxon_framework_relationship: Aquí hai algo errado - non podemos determinar a relación entre taxons internos e externos
-  these_are_items_people_on: |
-    Son contidos que a xente introduciu como advertencia para administración. Os contidos de correo lixo borraranse e o usuario que os introduciu debería ser suspendido (vai á páxina do seu perfil e na parte inferior esquerda selecciona o enlace Suspender usuario para que xa non poida entrar ao sitio). Os contidos de tipo ilegal, enganoso, racista, xenófobo, etc, deben borrarse e teñen que responderse cun comentario correcto. As persoas que repitan estes comentarios teñen que comunicarse a
   these_are_taxa_that: |
     Son especies ou grupos que %{site} non puido engadir automáticamente
     á árbore taxonómica. Podes engadilas á árbore editando o taxon e escollendo un rexistro do taxon superior. Por exemplo, o taxon superior de Homo sapiens podería ser
@@ -4715,11 +4683,6 @@ gl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Buscados
   was_it_captive_cultivated?: "Era cativa/cultivada?"
-  we_also_support: |
-    Tamén temos conexión con Flickr <a href="http://flickr.com"></a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para as túas imaxes.
   we_can_only_understand_csv_in: Só podemos importar CSV no seguinte formato
   we_couldnt_find_a_user: Non puidemos atopar un usuario con este enderezo de correo.
   we_couldnt_find_a_user_with_that_activation_code: "Non puidemos atopar ningún usuario con este código de activación. Pode que a túa conta xa fora activada, por favor trata de entrar no sistema."
@@ -4846,8 +4809,6 @@ gl:
   you_: Ti
   you_appear_offline_try_again: |
     Semella que estás sen conexión. Téntao outra vez logo, cando esteas conectado á Internet.
-  youre_a_site_curator_which_means: |
-    Es un administrador do sitio, o que significa que te ofreciches voluntario para axudar a xestionar os datos e supervisar o contido da páxina. Non te sintas obrigado con todo o que isto implica, pero se tes tempo de revisar algúns contidos de antemán, agradecémoscho. Se tes algunha dúbida, comentario ou simplemente xa non queres ser administrador, ponte en contacto connosco en
   you_are_now_following_x: "Estás seguindo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     Agora es <strong>ti</strong> o administrador de %{project}
@@ -4958,8 +4919,6 @@ gl:
   your_subscriptions_to_this_place: As túas subscricións a este lugar
   your_tags: As Túas Etiquetas
   yours: Teu
-  youre_not_following_anyone: |-
-    Non segues a ninguén. Seguir a outros naturalistas permitirache levar un control das túas observacións máis recentes. Pescuda o que a xente está facendo
   youre_not_following_anyone_on_inat: '¡Aínda non segues a ninguén en %{site_name}!'
   youve_linked_your_inaturalist_google_account: "Vinculaches a túa conta de %{site_name} e a túa conta de Google. Isto permitirache asociar as túas fotos de Google cás túas observacións de %{site_name}."
   youve_successfully_linked_your_provider_account: "Vinculaches correctamente a túa conta de %{provider}"
@@ -4996,36 +4955,9 @@ gl:
             Se é así, por favor, le as nosas <a href="%{url}">Guías do Mestre</a> para ver consellos de uso de %{site_name} cós estudantes.
     donate:
       donate_short_desc: "¡Doa agora para mostrar o teu apoio!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist é unha das comunidades meirandes do mundo dedicadas á exploración da biodiversidade. ¡Graciñas por formar parte dela!</strong>
-        </p>
-        <p class="lead">
-        Se cres no poder desta comunidade global de amantes da natureza para compartir saber e xerar dados irremplazables de biodiversidade, por favor, considera agasallarnos en liña unha vez ou de xeito periódico, ou ve en <a
-        href="https://www.inaturalist.org/pages/giving"> outros xeitos de doar</a>.
-        </p>
-        <p class="lead">
-        A túa doazón axuda a manter iNaturalist mentres a comunidade medra, dende a visión artificial avanzada e a implementación de novas características, ó apoio ós nosos servidores e traballadores.
-        </p>
-        <p class="text-muted">
-        iNaturalist é unha iniciativa conxunta da Academia de Ciencias de California e a Sociedade National Geographic. Tódalas doazóns recibiranas a Academia de Ciencias de California, unha organización sen ánimo de lucro baseada nos Estados Unidos de América exenta de impostos 501(c)(3) (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Eu apoio iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Faite Patrocinador Mensual de iNaturalist
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist é unha das comunidades meirandes do mundo dedicadas á exploración da biodiversidade. ¡Graciñas por formar parte dela!</strong>
-          </p>
-          <p class="lead">
-          Queremos manter a gratuidade de uso de iNaturalist, mais operalo non sae de balde. Se che gusta iNaturalist, pensa se queres convertirte nun patrocinador mensual. As doazóns recurrentes axúdannos a asegurármonos de poder ampliar as infraestructuras e ós traballadores de iNaturalist provendo uns ingresos predicibles. Tamén podes optar por mostrar o teu estado de patrocinador mensual no teu perfil.
-          </p>
-          <p class="lead">
-          As túas doazóns caritativas axúdannos a manter iNaturalist namentres a comunidade medra, dende evolucionar a visión artificial e implementar novas características, ó apoio ós nosos servidores e traballadores. Se prefires facer unha doazón puntual, por favor <a href="%{donate_url}">preme aquí</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist é unha iniciativa conxunta da Academia de Ciencias de California e a Sociedade National Geographic. Tódalas doazóns recibiranas a Academia de Ciencias de California, unha organización sen ánimo de lucro baseada nos Estados Unidos de América exenta de impostos 501(c)(3) (Tax ID: 94-1156258).
-          </p>
     flags:
       show:
         flaggable_content_desc: |
@@ -5438,8 +5370,6 @@ gl:
         cumulative_count_desc: 'Nº de identificacións para un taxon individual e tódolos seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
           Este proxecto non permite observacións con coordenadas que os conservadores non poidan ver. Se non queres compartit as coordenadas desta observación cós conservadores do proxecto, debes quitar a observación do proxecto.
-        data_quality_assessment_desc_html: |
-          A Avaliación da Calidade de Dados é unha avaliación da exactitude dunha observación. As observacións con Grao de Investigación poden ser usadas por científicos para a súa investigación. Vota embaixo:
         disagreement_count_desc: "Nº de taxons identificados que non están entre os ancestros dun taxon"
         identification_count_desc: 'Nº de identificacións para un taxon individual'
         flagged_photos_desc_html: |
@@ -5943,8 +5873,6 @@ gl:
           ¿Como foi este ano, comparado cós anos previos? A barra verde mostra este ano, a barra branca vertical mostra o ano pasado e as áreas grises de fondo mostran os anos de maior e menor actividade, así coma a media de tódolos anos.
         compared_to_previous_years: Comparar con Anos Anteriores
         donate_title: "Especial Agradecemento A Tódolos Nosos Colaboradores"
-        donate_desc_html: |
-          ¡Grazas por ser xeneroso có teu tempo, atención, habilidade e doazóns! iNaturalist é un emprendemento conxunto sen ánimo de lucro da Academia de Ciencias de California e a Sociedade National Geographic. É mantido por un <a href="%{team_url}">pequeno grupo</a> que fai todo o deseño e enxeñería de software para a web, mobil e <a href="%{seek_url}">Seek por iNaturalist</a>, alén da xestión do apoio á comunidade, colaboracións e integracións que fan que siga funcionando (¡e crecendo rapidamente!). O programa deepende de numerosas becas e doazóns, incluíndo regalos caritativos de menos dunha pequena fracción dos contribuíntes. Estámoslles particularmente agradecidos ós Patrocinadores Mensuais, xa que cós seus agasallos recorrentes podemos planificar o futuro. Podes doar en múltiples moedas para apoiar as operacións centrais de iNaturalist. ¡Graciñas a todos pola vosa aportación para facer do %{year} o meirande ano de iNaturalist ata o de agora!
         donors: Doantes
         donors_guide_label_our_goal_is_1000: O noso obxectivo é 1.000 doadores recorrentes ó mes
         inaturalist_network: Rede iNaturalist
@@ -6018,16 +5946,6 @@ gl:
           Breve resumo deste taxon baseado na sua <a target="_blank"
           href="%{url}">páxina da Wikipedia</a>, que almacenamos indefinidamente ata que se actualice manualmente. A actualización este resumo tamén recarga imediatamente o noso caché do contido da Wikipedia subxacente que mostramos no site, e que é actualizado automaticamente logo dunha semana.
       show:
-        about_names_desc: |
-          <p>
-          A maioría das categorías dos organismos teñen "nomes comúns" en línguas faladas. Estes nomes son recoñecibles a cotío, fáciles de pronunciar, e estables ó longo do tempo, pero moitos organismos teñen varios nomes distintos en lugares diferentes, incluso na mesma língua, o que pode dificultar a comunicación sobre estes organismos sen crear confusión. Os científicos resolven este problema empregando un único "nome científico" para cada categoría de organismos que conforma as regras da <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biolóxica</a>, mais estes nomes tenden a estar baseados no Latín, unha língua que xa ninguén fala, así que non son tan fáciles de lembrar para moita xente como os nomes comúns. Os nomes científicos tamén reflicten a localización taxonómica dun organismo, así que estes poden cambiar cando os científicos desenvolven teorías máis acertadas sobre as relacións evolutivas entre diferentes organismos, reducindo outra vez a súa utilidade na comunicación, incluso entre xente que coñece os nomes científicos.
-          </p>
-          <p>
-          Xa o di o vello adaxio: "Os nomes comúns cambian de lugar en lugar, os nomes científicos cambian de tempo en tempo."
-          </p>
-          <p>
-          Tentamos solucionar estes contratempos mostrando ámbolos nomes, científico e común, sempre que nos é posible, e escollendo os nomes comúns baseados na língua e área xeográfica preferidas do espectador.
-          </p>
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
         about_establishment_desc: |
@@ -6370,20 +6288,12 @@ gl:
       6: Ve
       7: Sá
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d de %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d %b,%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d de %B, %Y'
     month_names:
       - 
       - xaneiro
@@ -6515,19 +6425,11 @@ gl:
   time:
     am: Mañá
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b %Y %H:%M:%S %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d/%m/%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'ás %I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %b. %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: Tarde
   activerecord:
@@ -6846,8 +6748,6 @@ gl:
           attributes:
             base:
               user_already_blocked: Xa bloquearas a ese usuario.
-              user_cannot_be_staff: |
-                Non podes bloquear ós traballadores. Os traballadores de iNat precisan de ser quen de comunicarense con todos en iNat, ter acceso a tódolos dados en iNat e son os mediadores últimos das disputas, así que bloquealos non evitará que se comuniquen contigo. Se tes un problema con algún traballador, por favor, repórtao a algún dos co-directores de iNat, ou se tes un problema con algún dos co-directores, podes contactar con o Xefe de Ciencia no Instituto de Biodiversidade e Ciencia da Sostibilidade na Academia de Ciencias de California.
         user_parent:
           attributes:
             email:

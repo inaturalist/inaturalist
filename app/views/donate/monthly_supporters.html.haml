@@ -9,7 +9,7 @@
 - content_for :extracss do
   = stylesheet_link_tag :donate, media: "all", cache: true
 - content_for :extrahead do
-  %meta{ property: "og:title", content: t( :help_support_inaturalist ) }
+  %meta{ property: "og:title", content: t( "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist" ) }
   %meta{ property: "og:description", content: t( "views.donate.donate_short_desc" ) }
   %meta{ property: "og:image", content: @shareable_image_url }
   %meta{ property: "twitter:image", content: @shareable_image_url }
@@ -23,7 +23,7 @@
       - # Note: the donorbox iframe supports an amount param in the URL, but it does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
       %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/inaturalist-monthly-supporters?", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
     .col-md-5.col-xs-12
-      =t "views.donate.monthly_supporters.desc_html", donate_url: donate_url( utm_campaign: "monthly-supporters", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "one-time" )
+      =t "views.donate.monthly_supporters.desc3_html", donate_url: donate_url( utm_campaign: "monthly-supporters", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "one-time" )
       .sharing
         %p.lead.text-center=t :share_colon, default: t(:share)
         = link_to "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape( donate_url( utm_source: "facebook", utm_campaign: "share", utm_medium: "social" ) )}", class: "btn btn-inat btn-sm btn-facebook", target: "_blank" do

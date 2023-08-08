@@ -791,7 +791,6 @@ sr:
   connected_accounts_description: Povezani nalozi su nalozi na drugim aplikacijama ili veb-sajtovima kojima će iNaturalist imati pristup u tvoje ime kako bi se omogućilo logovanje, uvoz fotografija ili neka druga funkcionalnost.
   connected_accounts_titlecase: Povezani nalozi
   connecting_flickr: "Povezivanje sa Flickr... "
-  connecting_to_facebook: "Povezivanje sa Facebook-om..."
   conservation_status: Status ugroženosti
   conservation_status_created: Status ugroženosti kreiran
   conservation_status_deleted: Status ugroženosti izbrisan
@@ -846,9 +845,9 @@ sr:
   controlled_term_definitions:
     flower_budding: Cvetni pupoljci su vidljivi ali zatvoreni
     fruiting: Voćke vidljive i još uvek na biljci
+    molt: Odbačena koža ili egzoskelet
     organism: Ceo ili deo organizma
     track: Otisci organizma na zemlji ili snegu
-    molt: Odbačena koža ili egzoskelet
   controls: Kontrole
   convert: Konvertuj
   coordinates: Koordinate
@@ -1084,7 +1083,6 @@ sr:
   eligible_for_research_grade: Prihvatljivo za istraživački nivo
   email: Imejl
   email_description: Vaš imejl neće biti podeljen sa drugim iNaturalist korisnicima
-  email_copyright: "Copyright &copy; %{x}, sva prava zadržana"
   email_notifications: Imejl obaveštenja
   embed: 'Ugradi'
   enable_offline_access: Omogući offline pristup
@@ -1127,9 +1125,6 @@ sr:
   extinct_in_the_wild: Izumro u divljini
   evidence_of_organism: Dokaz prisustva organizma
   facebook: Facebook
-  facebook_account_information: Informacije sa tvog Facebook naloga
-  facebook_account_not_linked: "%{user} više nema povezan facebook nalog, stoga %{site_name} nema pristup ovoj slici."
-  facebook_options: Facebook opcije
   failed_to_find_your_location: Nije nađena tvoja lokacija.
   'false': 'Netačno'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
@@ -1198,7 +1193,6 @@ sr:
   forum_desc: |
     Forum je mesto gde se diskutije o iNaturalist-u; uključujući pomoć & podršku, zahteve za nove opcije, prijavu bagova, najave itd.
   frequency: Učestalosti
-  from_flickr_facebook_etc: Sa Flickr-a, Facebook-a itd.
   from_list: Sa liste
   from_photos: Iz slika
   from_place: Sa mesta
@@ -1244,7 +1238,6 @@ sr:
   heads_up_this_photo_is_already_associated_with: "Napomena: ova fotografija je već deo <a target='_blank' href='%{url}'>druge opservacije</a>"
   help: Pomoć
   help_confirm_observations!: Pomozi u potvrđivanju opservacija!
-  help_support_inaturalist: "Podrži iNaturalist"
   help_translate!: Pomozi u prevođenju!
   here_are_our_top_suggestions: Ovo su naši najbolji predlozi
   hex_color_eg: Hex kod boje, npr. 65644F
@@ -1336,7 +1329,6 @@ sr:
   inat_user_profile: "%{site_name}: %{user} profil"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist aplikacije"
-  inaturalist_is_a_joint_initiative: "%{site_name} je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva."
   inaturalist_places: "%{site_name} mesta"
   info: Informacije
   insects: insekti
@@ -1431,7 +1423,6 @@ sr:
   lexicon: Rečnik
   lexicon_cannot_contain_words: "ne može sadržati sledeće reči: %{words}"
   lexicons:
-    scientific_names: Naučni nazivi
     afrikaans: Afrikans
     albanian: Albanski
     arabic: arapski
@@ -1490,8 +1481,8 @@ sr:
     romanian: rumunski
     russian: ruski
     santali: santali
+    scientific_names: Naučni nazivi
     serbian: srpski
-    setswana: secvana
     sinhala: sinhala
     slovak: slovački
     slovenian: slovenački
@@ -1516,10 +1507,8 @@ sr:
   life_list: "Lista života korisnika %{user}"
   linear_scale_label: Linearno
   link: Link
-  link_your_facebook_account: Poveži svoj Facebook nalog
   link_your_flickr_account: Poveži svoj Fllickr nalog
   link_your_google_account: Poveži svoj Google nalog
-  linked_facebook: "Tvoj %{site_name} nalog je trenutno povezan sa tvojim Facebook nalogom."
   linked_flickr: "Tvoj %{site_name} nalog je trenutno povezan sa tvojim Flickr nalogom."
   linkedin: LinkedIn
   list: Lista
@@ -1659,8 +1648,6 @@ sr:
   meet: Upoznaj
   member_of_the_inaturalist_network_html: |
     Deo <a href="%{url}">iNaturalist mreže</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Član %{partial_inat_network_tag_html}iNaturalist mreže</a>, združena inicijativa %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Članovi
   membership_model: Tip članstva
@@ -1996,6 +1983,8 @@ sr:
   observations_total: Ukupno opservacija
   observations_w: Opservacije sa
   observations_was_successfully_updated: Opservacija/je uspešno ažurirana/e.
+  observations_with_this_field: Opservacije sa ovim poljem
+  observations_with_this_field_and_value: Opservacije sa ovim poljem i vrednošću
   observed: Zabeleženo
   observed_by: Opservacija od strane
   observed_on: Zabeleženo
@@ -2082,7 +2071,7 @@ sr:
   options: Opcije
   or: ili
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ILI
   orange: narandžasta
   order: Poređaj
@@ -2571,10 +2560,15 @@ sr:
   #Post is a noun
   post_from_your_journal_html: Objava iz <a href="%{url}">tvog dnevnika</a>
   posted_by: Postavio
+  #Shows the date a journal post was published
+  posted_on_date_html: Postavljeno %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Postavljeno %{date} od strane %{user}
   posts: Objave
   potential_disagreement: Potencijalno neslaganje
   powered_by: Pokreće
   powered_by_inaturalist_open_source_software_html: 'Pokreće <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist softver otvorenog koda</a>'
+  present: prisutno
   press: Štampa
   preview: Pregled
   previous_date_short: Prethodno
@@ -2602,6 +2596,7 @@ sr:
     few: Administratori projekta
     other: Administratori projekta
   project_cover: Naslovna fotografija projekta
+  project_created_on: je kreirao/la projekat %{date}
   project_curator_id: ID kustosa projekta
   project_curators: Kustosi projekta
   project_group_label: Grupa
@@ -2799,6 +2794,7 @@ sr:
   refreshing: osvežava se
   register_for_this_event_at_x_html: "Prijavi se za ovaj događaj %{x}"
   reject?: Odbaci?
+  relationship: "Odnos"
   relationship_x: "Odnos: %{relationship}"
   relationships:
     match: poklapanje
@@ -2849,6 +2845,9 @@ sr:
   research_grade_tooltip_html: 'Opservacije "Istraživački nivo" imaju medije, lokaciju, datum i slaganje zajednice oko identifikacije (obično na nivou vrste). <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o kvalitetu podataka</a>'
   research_grade_observations_have: 'Opservacije "Istraživački nivo" imaju datum, fotografiju, koordinate i ID podržan od strane zajednice. Klikni da pogledaš procenu kvaliteta podataka.'
   research_grade_qualification: Zahtevi za istraživački nivo
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Pošalji opet i odjavi me
   resend_confirmation_email: Ponovo pošalji imejl za potvrdu
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
@@ -2983,6 +2982,7 @@ sr:
   show_no_annotation: Prikaži "Bez pribeleške"
   show_off_your_recent_observations: Pokaži opservacije na tvom blogu ili sajtu!
   show_only: Prikaži samo
+  show_taxa_from_both: (prikaži taksone sa obe liste)
   show_taxa_from_everywhere: "Prikaži taksone od svuda"
   show_taxa_from_place: "Prikaži taksoni iz %{place}"
   show_uncountable_species: Prikaži nebrojive vrste
@@ -3137,7 +3137,6 @@ sr:
   #Noun, as in "add a tag to this observation"
   tag: oznaka
   tags: Oznake
-  take_me_facebook: Da, odvedi me na Facebook!
   take_me_flickr!: Da, odvedi me na Flickr!
   task_deleted: Zadatak izbrisan
   taxa: Taksoni
@@ -3473,10 +3472,6 @@ sr:
       remove_photo: Ukloni sliku
       select_all: Označi sve opservacije
       upload_failed: Otpremanje neuspešno
-  uploading_num_of_count_photos:
-    one: Otpremanje fotografije
-    few: Otpremanje fotografija
-    other: Otpremanje fotografija
   url_of_this_taxon_on_the_source_website: URL ovog taksona na veb sajtu izvora
   usage_stats: Statistika upotrebe
   #Taxon link [GENUS] / [SPECIES] variable instructions
@@ -3611,8 +3606,6 @@ sr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Tražene
   was_it_captive_cultivated?: "U zatoćeništvu / kultivisano?"
-  we_also_support: |
-    Takođe podržavamo <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google slike</a>, i <a href="http://facebook.com">Facebook</a> za hostovanje slika.
   we_can_only_understand_csv_in: CSV može biti prepoznat samo u sledećem formatu
   we_couldnt_find_a_user: Nema korisnika sa tom imejl adresom.
   weather: Vreme
@@ -3837,35 +3830,7 @@ sr:
             Ako je tako, pročitaj naš<a href="%{url}">Vodič za nastavnike</a> za savete o upotrebi %{site_name} u nastavne svrhe.
     donate:
       donate_short_desc: "Doniraj sada da bi podržao!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist je jedna od najvećih svetskih zajednica posvećena istraživanju biodiverziteta. Hvala ti što si deo nje!</strong>
-        </p>
-        <p class="lead">
-        Ako veruješ u snagu razmene znanja i stvaranja neprocenjivih podataka o biodiverzitetu ove globalne zajednice ljubitelja prirode, razmotri kupovinu jednog ili više poklona online, ili pogledaj <a
-        href="https://www.inaturalist.org/pages/giving">druge načine da pomogneš</a>.
-        </p>
-        <p class="lead">
-        Tvoja donacija pomaže iNaturalist kako se zajednica uvećava, od unapređenja kompjuterske vizije i uvođenja novih opcija do održavanja servera i plaćanja osoblja.
-        </p>
-        <p class="text-muted">
-        iNaturalist je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva. Sve donacije prima Akademija nauka u Kaliforniji, 501(c)(3) oslobađanje od poreza za neprofitne organizacije sa sedištem u Sjedinjenim Američkim Državama (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Podržavam iNaturalist zato što...
-      monthly_supporters:
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist je jedna od najvećih zajednica posvećenih istraživanju biodiverziteta. Hvala ti što si deo nje!</strong>
-          </p>
-          <p class="lead">
-          Iako mi želimo da iNaturalist ostane besplatan, svakako ga nije besplatno održavati. Ako voliš iNaturalist, razmisli o tome da postaneš mesečni donator. Takve donacije pomažu iNaturalist-u da uvećava svoju infrastrukturu i osoblje uz predvidivu dobit. Takođe možeš izabrati da tvoj status mesečnog donatora bude prikazan na tvom profilu.
-          </p>
-          <p class="lead">
-          Tvoja donacija pomaže iNaturalist kako se zajednica uvećava, od unapređenja kompjuterske vizije i uvođenja novih opcija do održavanja servera i plaćanja osoblja. Ako se pak odlučiš za jednokratnu donaciju <a href="%{donate_url}">klikni ovde</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva. Sve donacije prima Akademija nauka u Kaliforniji, 501(c)(3) oslobađanje od poreza za neprofitne organizacije sa sedištem u Sjedinjenim Američkim Državama.
-          </p>
     guides:
       edit:
         import_tags_from_csv_help_html: |
@@ -3908,6 +3873,7 @@ sr:
         alphaname: Alfabetski po naučnom imenu
     lifelists:
       observed_species: Zabeležene vrste
+      observed_rank: Zabeleženo %{rank}
       unobserved_species: Nezabeležena vrsta
       all_species: Sve vrste
       all_unobserved_species: Sve nezabeležene vrste
@@ -4001,62 +3967,9 @@ sr:
         date_column_format: DD-MM-GGGG HH:MM
         decimal_degrees_format: dd.dddd
       show:
-        data_quality_assessment_desc_html: |
-          Procena kvaliteta podataka je ocena verodostojnosti opservacije. Opservacije "Istraživačkog nivoa" naučnici mogu upotrebiti u istraživačke svrhe. Glasaj ispod:
         identification_count_desc: 'broj identifikacija za individualni takson'
         flagged_photos_desc_html: |
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
-        quality_assessment_help2_html: |
-          <p>
-          Procena kvaliteta podataka je ocena verodostojnosti opservacije. Sve opservacije na početku imaju <strong>"Neobavezno"</strong> status i on se menja u <strong>"Potreban ID"</strong> ako
-          </p>
-
-          <ul>
-          <li>opservacija <strong>ima datum</strong></li>
-          <li>opservacija <strong>je georeferencirana</strong> (tj. ima GŠ/GD koordinate)</li>
-          <li>opservacija <strong>ima fotografije ili zvukove</strong></li>
-          <li>opservacija <strong>nije ljudske jedinke</strong></li>
-          </ul>
-          <p>
-          Opservacije postaju <strong>"istraživački nivo"</strong> ako
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>zajednica se slaže sa ID-jem na nivou vrste ili niže</strong>, tj. ako se više od 2/3 identifikatora slaže sa priloženim taksonom (ako je zajednica glasala da takson zajednice ne može biti bolji nego što jeste, to će biti nivo potporodice ili niže)
-          </li>
-          </ul>
-          <p>
-          Opservacije će automatski dobiti status <strong>"Neobavezno"</strong> ako navedeni uslovi nisu zadovoljeni ili se zajednica ne slaže.
-          </p>
-          <ul>
-          <li>
-          <strong>lokacija ne deluje tačna</strong> (npr. majmuni u sred okeana,
-          nilski konji u poslovnim zgradama, itd.)
-          </li>
-          <li>
-          <strong>organizam nije u divljini/naturalizovan</strong> (npr. u zatočeništvu/kultivisano od strane ljudi ili inteligentnih vanzemaljaca)
-          </li>
-          <li>
-          opservacija <strong>ne sadrži dokaz o prisustvu organizma</strong>, npr. fotografije vode, kamenja, pejzaža na kojima se vidi organizam itd.
-          </li>
-          <li>
-          opservacija <strong>ne sadrži nedavni (~100 godina) trag organizma</strong> (npr. fosile ali su tragovi, feces i uvelo lišće takođe prihvatljivi)
-          </li>
-          <li>
-          opservaciji više nije potreban ID <em>i</em> ID zajednice je iznad nivoa porodice
-          </li>
-          <li>
-          posmatrač je isključio/la opciju ID zajednice i takson ID-ja zajednice nije predak ni potomak taksona povezanog sa ID-jem posmatrača
-          </li>
-          </ul>
-          <p>
-          Ako to nije dovoljno komplikovano, ima situacija kada sistem automatski dodaje glas:
-          </p>
-          <ul>
-          <li>
-          Sistem će automatski pretpostaviti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem ekvivalentnom mestu u okrugu, državi ili zemlji koje sadrži tu opservaciju i 80% ili više takvih opservacija su označene da nisu u divljini/naturalizovane.
-          </li>
-          </ul>
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
@@ -4303,16 +4216,6 @@ sr:
         high_status_conservation_status_notice_html: |
           Dodavanje statusa ugroženosti višem nivou taksona utiče na opservacije svih vrsta unutar tog taksona. Molimo te da ne dodaješ statuse taksonima koji sadrže vrste koje nemaju status ugroženosti jer će tako koordinate opservacija tih vrsta biti nepotrebno skrivene.
       show:
-        about_names_desc: |
-          <p>
-          Većina kategorija organizama ima "narodne nazive" u govornim jezicima. Ta imena su obično prepoznatljiva, lako se izgovaraju i ne menjaju se tokom vremena ali mnogi organizmi imaju više različith imena u različitim mestima, čak i na istom jeziku, što može biti problematično i izazvati zabunu. Naučnici rešavaju taj problem koristeći jedinstveni "naučni naziv" za svaku kategoriju organizama koji je u skladu sa pravilima <a href=https://sr.wikipedia.org/wiki/%D0%91%D0%B8%D0%BD%D0%BE%D0%BC%D0%BD%D0%B0_%D0%BD%D0%BE%D0%BC%D0%B5%D0%BD%D0%BA%D0%BB%D0%B0%D1%82%D1%83%D1%80%D0%B0">binomne nomenklature</a> ali ti nazivi su obično zasnovani na latinskom jeziku koji skoro niko ne govori, pa ih tako za većinu ljudi nije baš lako zapamtiti kao narodne nazive. Naučni nazivi su takođe odraz taksonomskog položaja i mogu se promeniti kada naučnici razviju preciznije teorije o evolucionim odnosima između različitih organizama, što može da oteža njihovu upotrebu, čak i među onima koji znaju naučne nazive.
-          </p>
-          <p>
-          Stara izreka kaže: "Naučni nazivi se menjaju iz mesta u mesto a naučni nazivi se menjaju s vremena na vreme."
-          </p>
-          <p>
-          Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima korisnika.
-          </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
         charts_help_other: |
@@ -4520,20 +4423,12 @@ sr:
       6: Pet
       7: Sub
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y.'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e. %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d. %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Januar
@@ -4681,19 +4576,11 @@ sr:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d. %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d. %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d. %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
   activerecord:

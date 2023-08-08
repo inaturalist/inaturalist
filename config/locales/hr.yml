@@ -638,7 +638,6 @@ hr:
   editing_announcement: Uređivanje obavijesti
   eligible_for_research_grade: Kvalificirano za istraživačku ocjenu
   email: E-pošta
-  email_copyright: "Autorska prava &copy; %{x}, sva prava pridržana."
   establishment:
     endemic: Endemičan
     establishment: Dolazak
@@ -735,7 +734,6 @@ hr:
   inappropriate_content: Neprikladan sadržaj?
   inat_user_profile: "%{site_name}: profil korisnika %{user}"
   inaturalist_activity_notifications: "%{site_name} obavijesti o aktivnostima"
-  inaturalist_is_a_joint_initiative: "%{site_name} je zajednička inicijativa Kalifornijske akademije znanosti i Društva National Geographic."
   insect_life_stage: Životno razdoblje kukca
   interactions: Interakcije
   introduced: Uvedeno
@@ -768,7 +766,6 @@ hr:
   leave_a_comment: Napiši komentar
   let_us_walk_you_through: Daj da te provedemo kroz glavne značajke naše stranice.
   lexicons:
-    scientific_names: Znanstveni nazivi
     afrikaans: Afrikaans
     albanian: Albanski
     arabic: Arapski
@@ -815,6 +812,7 @@ hr:
     romanian: Rumunjski
     russian: Ruski
     santali: Santali
+    scientific_names: Znanstveni nazivi
     serbian: Srpski
     slovak: Slovački
     slovenian: Slovenski
@@ -868,9 +866,6 @@ hr:
   meet: Upoznaj
   member_of_the_inaturalist_network_html: |
     Član/ica <a href="%{url}">iNaturalist mreže</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Član/ica %{partial_inat_network_tag_html}iNaturalist mreže</a>, 
-    zajedničke inicijative %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Članovi
   message_from_user_at_time: Od %{user} u %{time}
@@ -1007,7 +1002,7 @@ hr:
   only_showing_taxa_from: prikazana je samo taksa s ovog popisa
   or: ili
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ILI
   organism_is_wild: Organizam je divlji
   organisms: Organizmi
@@ -1622,7 +1617,6 @@ hr:
   subscriptions: Pretplate
   suggest_an_identification: Predloži identifikaciju
   summary: Sažetak
-  take_me_facebook: Da, povedi me na Facebook!
   taxa: Taksa
   taxa_info: Informacije o taksama
   taxa_needing_curation: Taksa koja treba kuraciju
@@ -1941,10 +1935,6 @@ hr:
           konzervativnijih identifikacija koje se ne slažu s finijim (nižim) taksonom. Za identificirane taksone koji
           imaju rezultat veći od 2/3 i najmanje 2 identifikacije, odabire najniže rangirani takson.
           </p>
-        data_quality_assessment_desc_html: |
-          Procjena kvalitete podataka je ocjena kvalitete i točnosti pronalazaka. 
-          Znanstvenici mogu koristiti opažanja ocijenjena istraživačkom ocjenom za svoja istraživanja. 
-          Glasuj ispod:
     projects:
       edit:
         admins_must_be_existing_members: Admini moraju biti postojeći članovi projekta
@@ -1972,33 +1962,6 @@ hr:
         observations_per_year_by_date_added: Po datumu dodavanja
     taxa:
       show:
-        about_names_desc: |
-          <p>
-          Većina kategorija organizama ima "zajedničke nazive" odnosno "uobičajena imena" u govornom jeziku. 
-          Ova imena su obično prepoznatljiva, laka za izgovor,
-          i ne mijenjaju se prečesto, ali mnogi organizmi imaju nekoliko različitih
-          imena na različitim mjestima, čak i na istom jeziku, što može učiniti 
-          komunikaciju o tim organizmima zbunjujućom.
-          Znanstvenici rješavaju ovaj problem koristeći jedan "znanstveni naziv"
-          za svaku kategoriju organizma koja je u skladu s pravilima
-          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biološke nomenklature</a>,
-          ali ti nazivi se obično temelje na latinskom, ničijem jeziku
-          govora, pa za mnoge nisu tako pamtljiva kao uobičajena, "narodna" imena. 
-          Znanstvena imena također mogu odražavati položaj organizma u taksonomiji, 
-          tako da se mogu mijenjati kada znanstvenici više razviju
-          točne teorije o evolucijskim odnosima između
-          različitih organizama, opet smanjujući njihovu korisnost u
-          komunikaciji, čak i među ljudima koji znaju znanstvena imena.
-          </p>
-          <p>
-          Stara poslovica to sažima: "Uobičajena imena mijenjaju se od mjesta do mjesta, 
-          a znanstvena imena mijenjaju se s vremena na vrijeme."
-          </p>
-          <p>
-          Pokušavamo se pozabaviti ovim nedostacima pokazujući i uobičajena
-          i znanstvena imena gdje god je to moguće, te odabir uobičajenih imena
-          na temelju jezičnih i geografskih preferencija gledatelja.
-          </p>
         frequency:
           research: Istraživačka ocjena
           verifiable: Provjerljivo

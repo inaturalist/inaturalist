@@ -413,6 +413,8 @@ sv:
   #Noun, title of a popup alerting you to something
   alert: OBS!
   all: Alla
+  #Title for a list of all 3rd party applications
+  all_applications: Alla applikationer
   all_comments: Alla kommentarer
   all_flags_must_be_resolved: Alla flaggor måste vara lösta
   all_life: Allt liv
@@ -1090,7 +1092,6 @@ sv:
   connected_accounts_titlecase: Kopplade Konton
   connecting_flickr: "Kopplar till Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koppla till Flickr igen för att godkänna skrivrättigheter
-  connecting_to_facebook: "Kopplar till Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Genom att koppla ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
   cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
   conservation_status: Bevarandestatus
@@ -1182,21 +1183,21 @@ sv:
     molt: Ömsskinn/exuvium
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
+    bone: |
+      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
+    cannot_be_determined: Kan inte bestämmas utifrån angiven information
     dead: Död organism eller visar tecken på snar död
+    feather: En eller flera fjädrar som inte sitter fast på en organism
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
+    gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
+    molt: Kvarlämning av skinn eller exoskelett
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
-    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
-    cannot_be_determined: Kan inte bestämmas utifrån angiven information
-    feather: En eller flera fjädrar som inte sitter fast på en organism
     organism: Hela eller delar av en organism
     scat: Avföring (inte spybollar eller andra uppstötningar)
+    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
     track: Avtryck i marken eller snön av en organism
-    bone: |
-      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
-    molt: Kvarlämning av skinn eller exoskelett
-    gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem
@@ -1308,10 +1309,10 @@ sv:
     Underlåter att själv uppträda på lämpligt sätt.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt båda dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
-  curator_application_inelligible_error: |
-    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna.
+  curator_application_inelligible2: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer, du måste ha lagt till minst 5 flaggor och du måste även ha lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
+  curator_application_inelligible_error2: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer, lagt till minst 5 flaggor och även lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Förvaltaransökan inskickad
   #Header
@@ -1372,6 +1373,9 @@ sv:
     Du bör endast söka för att bli förvaltare om:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Du har lagt till bestämningar och/eller fynd i några månader och har för avsikt att fortsätta.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Du har visat att du förstår förvaltningsprocessen genom att lägga till
+    några flaggor.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1633,6 +1637,8 @@ sv:
   donate: DONERA
   donate_again_caps: DONERA IGEN
   donate_again_today_caps: DONERA IGEN IDAG
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donera till iNaturalist
   done: Klar
   dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
   dont_use_double_quotes: Använd inte dubbla citat någon annanstans
@@ -1757,13 +1763,40 @@ sv:
   email_conf_banner_we_delivered_todos: |
     Vi levererade ett bekräftelsemejl till dig den %{date}. Om du inte
     fick det, är här några saker du kan göra:
+  email_conf_required_after_grace_period: |
+    E-postbekräftelse krävs från och med %{requirement_date} och du har inte
+    bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
+    för att komma åt ditt konto.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
     Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
     datumet kommer alla som inte har bekräftat sin e-postadress inte längre kunna
     logga in såvida de inte återställer sitt lösenord. För att bekräfta din e-postadress,
     gå till %{link_start_tag}kontoinställningar%{link_end_tag}.
-  email_copyright: "Upphovsrätt &copy; %{x}, alla rättigheter förbehållna"
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekräfta din %{site_name} e-postadress innan %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Vänligen bekräfta din e-postadress för att försäkra dig om fortsatt tillgång till
+    ditt konto. %{site_name} och mobilapparna iNaturalist och
+    Seek av iNaturalist kopplar ihop människor med naturen och varandra genom
+    att dela fynd av biologisk mångfald. Tack för att du är en del av iNaturalist-communityn!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Vi kommer att kräva bekräftade e-postadresser för alla konton med början
+    %{requirement_date}. Vänligen ta dig tid att bekräfta den nu.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Om du har några frågor, vänligen se
+    <a href="%{faq_url}">Vanliga frågor</a>. Tack för att du tog dig tid att anknyta
+    till naturen och %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Kontouppgifter
+  email_copyright2: "&copy; %{year} iNaturalist, alla rättigheter förbehållna"
   email_notifications: E-postaviseringar
   embed: 'Bädda in'
   embed_place_widget: Bädda in fyndplats-widget
@@ -1837,16 +1870,6 @@ sv:
   extra_properties: Ytterligare egenskaper
   evidence_of_organism: Belägg för organism
   facebook: Facebook
-  facebook_account_information: Din Facebook-kontoinformation
-  facebook_account_not_linked: "%{user} har inte längre ett kopplat Facebook-konto, varför %{site_name} inte har behörighet att komma åt denna bild."
-  facebook_access_token_expired: "Åtkomsttoken har löpt ut. %{user} måste länka sitt Facebook-konto igen."
-  facebook_needs_the_owner_of_that_photo_to: Facebook behöver få ägaren av den bilden att bekräfta sin koppling till %{site_name_short}.
-  facebook_options: Facebook-inställningar
-  facebook_photo_import_disabled_notice: |
-    I november 2020 krävde Facebook att vi skulle visa att vi verkligen behövde
-    tillgång till bilder, och vi kunde inte genomföra det på grund av
-    problem med Facebooks verifieringssystem. Det innebär att vi inte längre kan
-    stödja import av bilder från Facebook.
   failed_to_find_your_location: Kunde inte att hitta din position.
   failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
   failed_to_save_record: "Lyckades inte att spara posten. Försök igen senare."
@@ -2012,7 +2035,7 @@ sv:
   frequency: Frekvens
   from_a_place: från en fyndplats
   from_eol_collection: Från EOL-samling
-  from_flickr_facebook_etc: Från Flickr, Facebook, etc.
+  from_flickr_etc: Från Flickr, etc.
   from_list: Från lista
   from_photos: Från bilder
   from_place: Från fyndplats
@@ -2120,7 +2143,6 @@ sv:
   heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
   help: Hjälp
   help_confirm_observations!: Hjälp till att bekräfta fynd!
-  help_support_inaturalist: "Hjälp till att stödja iNaturalist"
   help_translate!: Hjälp till med översättning!
   here_are_3_examples: Här är 3 exempel på bra utformade data
   here_are_our_top_suggestions: Här är våra bästa förslag
@@ -2201,6 +2223,82 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
+  independence_email_subject: "Sprider Våra Vingar: iNaturalist är nu oberoende och icke-vinstdrivande"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Kära %{name},
+  independence_email_body_exciting_news: |
+    iNaturalist-teamet har spännande nyheter! Vi är glada att kunna meddela att
+    tack vare stödet från denna fantastiska community, drivs nu iNaturalist
+    som en oberoende 501(c)(3) icke-vinstdrivande organisation baserad i USA.
+  independence_email_body_since_launching: |
+    Sedan lanseringen 2008 har iNaturalist-teamet och organisationen
+    utvecklats, och vi är glada för nästa milstolpe. iNaturalist började
+    som ett magisterprojekt vid University of California, Berkeley, blev ett
+    LLC, samarbetade med California Academy of Sciences från 2014. År
+    2017 blev iNaturalist ett gemensamt initiativ med California Academy of
+    Sciences och National Geographic Society. Nu är iNaturalist en
+    oberoende organisation.
+  independence_email_body_over_the_past: |
+    Under de senaste 15 åren har de otroliga bidragen från communityn
+    gjort iNaturalist till en av världens mest inflytelserika naturplattformar.
+  independence_email_body_so_far: "Hittills har iNaturalist-communityn:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Skapat över 146 000 000 verifierbara fynd (ökar med cirka 1 miljon per vecka!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Vuxit till 2,7 miljoner bidragsgivare
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Observerat mer än 430 000 arter
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Har citerats mer än 3 500 gånger
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    Vi tackar California Academy of Sciences och National Geographic
+    Society för att de inkuberade iNaturalist då det växte dramatiskt under de senaste
+    9 åren. Vi är skyldiga dessa partner en enorm tacksamhet för deras investeringar,
+    stöd och förvaltarskap. Vi ser fram emot att samarbeta med båda
+    organisationerna i framtiden.
+  independence_email_body_the_way_html: |
+    <strong>Din användarupplevelse av iNaturalist kommer inte att förändras.</strong>
+    iNaturalist och Seek kommer att fortsätta att fritt hjälpa dig att bestämma
+    biologisk mångfald och bygga din egen koppling till naturen. Denna nya
+    organisationsstruktur kommer att göra det möjligt för oss att stödja iNaturalist i åratal
+    framöver alltmedan iNaturalist-communityn utökar vår samlade kunskap om
+    biologisk mångfald långt in i framtiden. Vi kommer att fortsätta vårt samarbete
+    med organisationer runt om i världen för att stödja iNaturalist-nätverket.
+  independence_email_body_questions_html: |
+    Du kan <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">läsa
+    mer på bloggen</a> och kolla på <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Vanliga
+    frågor</a> (på engelska). <a
+    href="https://www.inaturalist.org/pages/terms">Användarvillkor</a> och <a
+    href="https://www.inaturalist.org/pages/privacy">Integritetspolicy</a> har
+    uppdaterats för att återspegla den nya organisationen.
+  independence_email_body_thank_you: Tack för att du är en del av denna community.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Mot nya mål,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalist Leadership Team</strong>
+  independence_email_body_ps: |
+    P.S. - Snart kommer vi att tillkännage ett generöst bidrag som
+    kommer att ge det oberoende iNaturalist en stabil grund. Det
+    finansiella bidraget från iNaturalist-communityn gjorde det möjligt
+    för oss att utvecklas och kommer att vara livsviktigt för långsiktig
+    hållbarhet. Din donation nu kommer att prisa denna spännande
+    milstolpe och ytterligare säkra iNaturalists framtid. Tack!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Donera nu
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2284,7 +2382,6 @@ sv:
   inaturalist_activity_notifications: "%{site_name} aktivitetsaviseringar"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
-  inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
   inaturalist_places: "%{site_name}-fyndplatser"
   info: Info
   input_taxon: Ingångstaxon
@@ -2402,18 +2499,25 @@ sv:
   lexicon: Lexikon
   lexicon_cannot_contain_words: "kan inte innehålla följande ord: %{words}"
   lexicons:
-    scientific_names: Vetenskapliga namn
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanska
+    aou_4_letter_codes: AOU-koder med 4 bokstäver
+    aou_6_letter_codes: AOU-koder med 6 bokstäver
     arabic: Arabiska
     armenian: Armeniska
+    asturian: Asturiska
+    basque: Baskiska
     belarusian: Belarusiska
     bengali: Bengaliska
+    bikol: Bikol
     bulgarian: Bulgariska
+    carolinian: Karoliniska
     catalan: Katalanska
     cebuano: Cebuano
     chinese_simplified: Kinesiska (förenklad)
     chinese_traditional: Kinesiska (traditionell)
+    chuvash: Tjuvasjiska
     creole_french: kreol (Franska)
     creole_portuguese: kreol (Portugisiska)
     croatian: Kroatiska
@@ -2424,27 +2528,38 @@ sv:
     english: Engelska
     estonian: Estniska
     faroese: Färöiska
+    fijian: Fijianska
     finnish: Finska
     french: Franska
     galician: Galiciska
     gela: Gela
+    georgian: Georgiska
     german: Tyska
     greek: Grekiska
+    gujarati: Gujarati
     hawaiian: Hawaiiska
     hebrew: Hebreiska
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Västmariska
+    hodges_number: MONA-nummer
+    hokkien: Hokkien
     hungarian: Ungerska
     icelandic: Isländska
     ilokano: Ilokano
     indonesian: Indonesiska
+    irish: Irländska
     italian: Italienska
     japanese: Japanska
     kannada: Kannada
     kazakh: Kazakiska
     korean: Koreanska
+    kweyol: Fransk kreol
     latvian: Lettiska
     lithuanian: Litauiska
+    lozi: Lozi
     luxembourgish: Luxemburgiska
+    malagasy: Malagassiska
     malay: Malajiska
     malayalam: Malayalam
     maltese: Maltesiska
@@ -2454,6 +2569,8 @@ sv:
     misima_paneati: Misima-paneati
     mongolian: Mongoliska
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norska
     occitan: Occitanska
     ojibwe: Ojibwe
@@ -2465,22 +2582,38 @@ sv:
     romanian: Rumänska
     russian: Ryska
     santali: santali
+    scientific_names: Vetenskapliga namn
     serbian: Serbiska
-    setswana: Setswana
+    shona: Shona
     sinhala: Singalesiska
     slovak: Slovakiska
     slovenian: Slovenska
+    sotho: Sesotho
+    sotho_northern: Nordsotho
     spanish: Spanska
     swahili: Swahili
+    swati: Siswati
     swedish: Svenska
     tagalog: Tagalog
     tahitian: Tahitiska
+    tamil: Tamil
     thai: Thailändska
     tokelauan: Tokelauiska
+    totonaco: Totonac
+    tsonga: Tsonga
+    tswana: Setswana
     turkish: Turkiska
+    u_s_d_a_symbol: U.S.D.A.-symbol
     ukrainian: Ukrainska
-    waray_waray: Waray-Waray
+    uyghur: Uiguriska
+    venda: Venda
+    vermont_flora_codes: Vermonts florakoder
+    vietnamese: Vietnamesiska
     visayan: Cebuano
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapotekiska
+    zulu: Zulu
   less: Mindre
   #Button show less text
   less__context_text: Mindre
@@ -2496,14 +2629,8 @@ sv:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Länk till auktoriseringskod
-  link_your_facebook_account: Anslut ditt Facebook-konto
   link_your_flickr_account: Anslut ditt Flickr-konto
   link_your_google_account: Anslut ditt Google-konto
-  linked_facebook: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Facebook-konto."
-  linked_facebook_automaticaly: "Kom också ihåg att om du loggar in på %{site_name} via Facebook, kommer vi automatiskt att länka dina %{site_name}- och Facebook-konton. Verkar rimligt att om du använder Facebook du vill kunna importera Facebook-bilder, eller hur?"
-  linked_facebook_description: "Genom att hålla ditt %{site_name}-konto länkat till ditt Facebook-konto kan du lägga till flera bilder till dina fynd. Om du någonsin skulle vilja bryta kopplingen mellan %{site_name} och Facebook, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skulle skapa ett nytt Facebook-konto som du vill länka %{site_name} till."
-  linked_facebook_howto: "För att ansluta Facebook till %{site_name} klickar du på länken till höger och loggar in på Facebook.com."
-  linked_facebook_password: "Vi kommer aldrig att be dig om ditt Facebook-lösenord (men Facebook kanske gör det, kolla webbadressen som knappen skickar dig och se till att det är Facebook.com). Vi kommer inte heller att ändra dina Facebook-uppgifter om du inte vill att vi ska göra det."
   linked_flickr: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Flickr-konto."
   linked_flickr_automatically: "Tänk på, att om du loggar in på %{site_name} via Flickr, kommer vi automatiskt att länka dina %{site_name}- och Flickr-konton. Det verkar rimligt att om du använder Flickr du vill kunna importera Flickr-bilder, eller hur?"
   linked_flickr_description: "Genom att hålla ditt %{site_name}-konto kopplat till ditt Flickr-konto kan du lägga till flera bilder till ett fynd. Om du någonsin vill att kopplingen mellan %{site_name} och Flickr ska brytas, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skapar ett nytt Flickr-konto som du vill länka %{site_name} till."
@@ -2576,6 +2703,7 @@ sv:
     id: Indonesiska
     it: Italienska
     ja: Japanska
+    ka: Georgiska
     kk: Kazakiska
     kn: Kannada
     ko: Koreanska
@@ -2703,9 +2831,6 @@ sv:
   meet: Träffa
   member_of_the_inaturalist_network_html: |
     Medlem av <a href="%{url}">iNaturalist-nätverket</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Medlem av %{partial_inat_network_tag_html}iNaturalist-nätverket</a>, ett
-    gemensamt initiativ av %{cas_tag_html} och %{nat_geo_tag_html}.
   #As in members of a project
   members: Medlemmar
   membership_model: Modell för medlemskap
@@ -2981,6 +3106,8 @@ sv:
   next_tab: Nästa flik
   next_taxon_short: Nästa
   'no': 'Nej'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Inga applikationer än.
   no_assessments_have_been_added_to_this_project_yet: Inga bedömningar har lagts till detta projekt ännu.
   no_but_it_is_a_member_of_taxon: "Nej, men det är en medlem av %{taxon}"
   no_comments_yet: Inga kommentarer ännu.
@@ -3080,7 +3207,6 @@ sv:
   not_found: Hittades inte
   #Filter for observations not in a particular place
   not_in_place: Inte från plats
-  not_linked_facebook: "Ditt %{site_name}-konto är inte kopplat till ditt Facebook-konto"
   not_linked_flickr: "Ditt %{site_name}-konto är inte kopplat till ditt Flickr-konto"
   not_on_this_list: Inte på denna lista.
   not_recorded: Ingen uppgift
@@ -3344,7 +3470,7 @@ sv:
   options: Alternativ
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
   orange: orange
@@ -4281,6 +4407,7 @@ sv:
   refresh: Ladda om
   refreshing: laddar om
   regenerate_stats: Generera statistik igen
+  regional_names: Regionala namn
   register_for_this_event_at_x_html: "Registrera dig för denna händelse på %{x}"
   reject?: Förkasta?
   relative_observations: Fynd av närbesläktade
@@ -4575,7 +4702,7 @@ sv:
     Automatiskt dolda koordinater (diffuserade eller privata på grund av ett "taxons
     koordinatsekretess")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist döljer automatiskt koordinaterna för vissa arter för att skydda dem från störning, insamling eller tjuvjakt. Om observationskoordinaterna bara har dolts automatiskt för att skydda arter, delar iNaturalist de exakta koordinaterna för alla observationer från deras respektive länder med Nätverksmedlemmar.
+    iNaturalist döljer automatiskt koordinaterna för vissa arter för att skydda dem från störning, insamling eller tjuvjakt. Om fyndkoordinaterna bara har dolts automatiskt för att skydda arter, delar iNaturalist de exakta koordinaterna för alla fynd från deras respektive länder med Nätverksmedlemmar.
   sites_affiliation_more_email_addresses: |
     E-postadresser delas med Nätverksmedlemmar enbart för kommunikation relaterad till webbplatsen.
   sites_affiliation_more_twice_per_year: |
@@ -4601,11 +4728,11 @@ sv:
     Du kan fortsätta att logga in via iNaturalist.org eller via din nätverksspecifika webbplats. Oavsett din anknytning, kommer alla dina data att sparas på samma ställe och du kommer fortsätta att kunna interagera med hela den internationella iNaturalist-communityn. Varje iNaturalist-konto kan endast anknytas till en Nätverksmedlem. Du kan granska eller ändra din anknytning i dina 
     %{start_tag_settings}kontoinställningar%{end_tag_settings}.
   sites_affiliation_title: Läs mer om Nätverksanknytning
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} och
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} har
-    formella avtal med organisationer i vart och ett av dessa geografiska områden för att stöda användningen av iNaturalist-plattformen. <strong>Om din organisation är
-    intresserad av att gå med i iNaturalist-nätverket, kan du hitta mer information
+  sites_network_agreements_html: |
+    iNaturalist har formella avtal med organisationer i vart och ett av dessa
+    geografiska områden för att stödja användningen av iNaturalist-plattformen.
+    <strong>Om din organisation är intresserad av att gå med i iNaturalist-nätverket
+    kan du hitta mer information
     %{start_tag_join}här%{end_tag_join}.</strong>
   sites_network_consists_of: "iNaturalist-nätverket består av ett flertal organisationer:"
   sites_network_inaturalist_network_collection: |
@@ -4804,7 +4931,6 @@ sv:
   tagging: 'Taggar...'
   tags: Taggningar
   tags_are_a_way: 'Taggningar är ett sätt att organisera dina fynd. Till exempel kan du tagga alla dina hällkarsfynd med "hällkar" för att göra dem lättare att hitta senare.'
-  take_me_facebook: Ja, ta mig till Facebook!
   take_me_flickr!: Ja, ta mig till Flickr!
   target_list_alert: Är du säker på att du försökt hitta alla arter som finns på din mållista? Kom ihåg att allt på mållistan som du inte angett kommer att tolkas som ett nollfynd så det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta
   target_list_warning: Kom ihåg att allt som finns på din mållista som du inte uppgett från området under tidsperioden för denna utflykt kommer att tolkas som en nollfynd. Det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta. Om du inte försökte hitta en art, eller alla arter inom en grupp, på din mållista, ta då bort den från listan.
@@ -5602,11 +5728,9 @@ sv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Efterlyst
   was_it_captive_cultivated?: "Var den i fångenskap / odlad?"
-  we_also_support: |
-    Vi stöder också <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Foto</a>, och
-    <a href="http://facebook.com">Facebook</a>
-    med bildlagring.
+  we_also_support2: |
+    Vi stöder även import av bilder från <a href="http://flickr.com">Flickr</a>
+    och <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Vi kan bara förstå CSV i följande format
   we_couldnt_find_a_user: Vi kunde inte hitta någon användare med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunde inte hitta någon användare med den aktiveringskoden. Du kanske redan har aktiverat ditt konto, försök logga in."
@@ -5658,6 +5782,7 @@ sv:
   white: vit
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Varför gör du denna förändring? (valfritt)
+  why_are_you_making_this_change_cite_source_required: Varför gör du denna förändring? Förklara och citera en källa om möjligt. (Obligatoriskt)
   why_you_can_see_the_coordinates: Därför kan du se koordinaterna
   who_can_add_observation_fields_to_my_obs: Vem kan lägga till fyndfält till mina fynd?
   who_can_add_observations_to_this_project?: Vem kan lägga till fynd i detta projekt?
@@ -5768,8 +5893,12 @@ sv:
     I år använde miljontals personer iNaturalist och Seek av iNaturalist för att knyta an till naturen
   yir_monthly_supporters_random_selection: |
     Här är ett slumpmässigt urval av iNats heroiska community-medlemmar som donerar varje månad.
-  yir_thank_your_for_being_generous: |
-    Tack för att du bidrar med din tid, uppmärksamhet, expertis och donationer! iNaturalist är ett ideellt gemensamt initiativ av California Academy of Sciences och National Geographic Society. Programmet bygger på otaliga bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till Månatliga Bidragsgivare vars återkommande gåvor hjälper oss att planera inför framtiden.
+  yir_thank_your_for_being_generous2: |
+    Tack för att du är generös med din tid, uppmärksamhet, expertis och
+    donationer! iNaturalist är en icke-vinstdrivande organisation för allmännytta.
+    Upplägget bygger på många bidrag och donationer, inklusive välgörenhetsgåvor
+    från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till
+    Månatliga givare vars återkommande gåvor hjälper oss att planera för framtiden.
   yir_your_gift_sustains: |
     Din gåva upprätthåller detta program med global räckvidd och djup personlig och
     ekologisk inverkan
@@ -5866,6 +5995,8 @@ sv:
   your_account_has_been_activated: Ditt konto har aktiverats!
   your_account_has_been_verified: "Ditt %{site_name}-konto har verifierats! Logga in för att fortsätta."
   your_activation_code_was_missing: "Din aktiveringskod saknades. Följ URL:en i din e-post."
+  #Title for a list of 3rd party applications you control
+  your_applications: Dina applikationer.
   your_browser_does_not_support_the_audio_element: Din webbläsare stödjer inte ljudinslaget.
   your_comment_was_saved: Ditt innehåll sparades
   your_content: Ditt innehåll
@@ -5932,43 +6063,61 @@ sv:
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
-      donate_desc_html: |
+      donate_desc3_html: |
         <p class="lead">
-        <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
+        <strong>iNaturalist är en av världens största communitys som ägnar sig åt
+        att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
         </p>
         <p class="lead">
-        Om du tror på kraften hos denna globala community av naturälskare att dela kunskap och generera oersättlig biologisk mångfalds-data,
-        överväg en engångs- eller återkommande gåva online, eller se <a
+        Om du tror på kraften hos denna globala community av naturälskare
+        att dela kunskap och generera oersättlig biologisk mångfalds-data,
+        överväg då en engångs- eller återkommande gåva online, eller se <a
         href="https://www.inaturalist.org/pages/giving">andra sätt att
         ge</a>.
         </p>
         <p class="lead">
-        Din donation hjälper till att stödja iNaturalist när communityn växer, från framsteg inom bildigenkänning och implementering av nya funktioner till att stödja våra servrar och personal.
+        Din donation hjälper till att stödja iNaturalist när communityn växer, från
+        framsteg inom bildigenkänning och implementering av nya funktioner till
+        att stödja våra servrar och personal.
         </p>
         <p class="text-muted">
-        iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
-        California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater (Skatte-ID: 94-1156258).
+        iNaturalist är en oberoende 501(c)(3) skattebefriad icke-vinstdrivande
+        organisation baserad i USA (Skatte-ID: 92-1296468).
         </p>
       post_donate_social_media_text: Jag stöder iNaturalist eftersom...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
-        desc_html: |
+        desc3_html: |
           <p class="lead">
-          <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
+          <strong>iNaturalist är en av världens största communitys engagerad i att
+          utforska biologisk mångfald. Tack för att du är en del av den!</strong>
           </p>
           <p class="lead">
-          Vi vill behålla iNaturalist gratis för användning, men den är inte gratis att driva. Om du älskar iNaturalist, vänligen överväg att bli en månatlig bidragsgivare. Återkommande gåvor hjälper se till att iNaturalist kan fortsätta skala upp sin infrastruktur och personal genom att bidra till förutsägbara intäkter. Du kan också välja att visa din månatliga givarstatus i din användarprofil.
+          Vi vill behålla iNaturalist som gratis att använda, men det är inte gratis att
+          driva. Om du älskar iNaturalist, vänligen överväga att bli en månatlig
+          supporter. Återkommande gåvor bidrar till att iNaturalist kan fortsätta
+          skala upp sin infrastruktur och personal genom att förse oss med
+          förutsägbara intäkter. Du kan också välja att visa din månatliga
+          supporterstatus på din användarprofil.
           </p>
           <p class="lead">
-          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när communityn växer, från framsteg i bildigenkänning och implementera nya funktioner till att stödja våra servrar och personal. Om du föredrar att ge en engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
+          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när communityn
+          växer, från att främja bildigenkänning och implementera nya funktioner
+          till att stödja våra servrar och personal. Om du föredrar att ge en
+          engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
           </p>
           <p class="text-muted">
-          iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
-          California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater.
+          iNaturalist är en oberoende 501(c)(3), skattebefriad,
+          icke-vinstdrivande organisation baserad i USA (Skatte-ID:
+          92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Tack för att du är en Månatlig givare!
         thank_you_for_being_a_monthly_supporter_caps: TACK FÖR ATT DU ÄR EN MÅNATLIG GIVARE!
+      temporarily_unavailable: |
+        Tack för ditt intresse av att stödja iNaturalist! Att donera till
+        iNaturalist är tillfälligt avaktiverat medan vi uppdaterar våra
+        donationssystem. Vänligen kolla snart igen.
     flags:
       show:
         flaggable_content_desc: |
@@ -6412,8 +6561,13 @@ sv:
         cumulative_count_desc: 'Antal bestämning av ett enskilt taxon och alla underliggande'
         curator_coordinate_access_disabled_desc_html: |
           Detta projekt tillåter inte fynd med koordinater som förvaltarna inte kan se. Om du inte vill dela koordinaterna för detta fynd med förvaltarna av detta projekt, måste du ta bort fyndet från projektet.
-        data_quality_assessment_desc_html: |
-          Datakvalitetsbedömning är en utvärdering av ett fynd noggrannhet. Fyndav forskningsklass kan användas av vetenskapsmän för forskning. Rösta nedan:
+        data_quality_assessment_desc3_html: |
+          Kvalitetsklassen är en sammanfattning av noggrannhet, precision, fullständighet,
+          relevans och lämplighet av ett iNaturalist-fynd i egenskapen av data om
+          biologisk mångfald. Vissa egenskaper avgörs automatiskt, medan
+          andra bestäms genom röstning av iNat-användare. iNaturalist
+          delar fynd av "Forskningsklass" med ett antal datapartners
+          för användning inom vetenskap och naturvård.
         disagreement_count_desc: "Antal bestämda taxa som inte hör till ett taxons föräldrar"
         identification_count_desc: 'Antal bestämningar för ett enskilt taxon'
         flagged_photos_desc_html: |
@@ -6422,71 +6576,69 @@ sv:
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
         quality_assessment_help2_html: |
           <p>
-          Datakvalitetsbedömningen är en summering av ett fynds noggrannhet. Alla
-          fynd börjar som <strong>"grund</strong>klass och får
+          Bedömningen av datakvaliteten är en sammanfattning av ett fynds korrekthet. Alla
+          fynd börjar som <strong>"grund"</strong>klass, och blir
           <strong>"behöver bestämning"</strong> när
           </p>
 
           <ul>
-          <li>fyndet <strong>har datum</strong></li>
-          <li>fyndet <strong>är georefererat</strong> (d.v.s. har lat/long-koordinater)</li>
-          <li>fyndet <strong>har bilder eller ljud</strong></li>
-          <li>fyndet <strong>inte föreställer en människa</strong></li>
+          <li>fyndet<strong>har ett datum</strong></li>
+          <li>fyndet<strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
+          <li>fyndet<strong>har bilder eller ljud</strong></li>
+          <li>fyndet<strong>inte är en människa</strong></li>
           </ul>
           <p>
-          Fyndet får <strong>"forskningsklass"</strong> när
+          fynd får <strong>"forskningsklass"</strong> när
           </p>
           <ul>
           <li>
-          %{site_name}-<strong>communityn är överens om en bestämning till artnivå eller
-          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna håller med om ett
-          taxon (om communityn har röstat att community-taxonet inte längre kan
-          förbättras, återgår detta till bestämning på underfamiljsnivå eller lägre)
+          %{site_name} <strong>communityn håller med om bestämning till artnivå eller
+          lägre</strong>, dvs när fler än 2/3 av bestämmarna är överens om ett
+          taxon (om communityn har röstat om att Community-bestämningen inte längre kan
+          förbättras, återgår den till underfamiljsbestämning eller lägre)
           </li>
           </ul>
           <p>
-          Fynd återgår till <strong>"grundklass"</strong> om villkoren ovan inte är uppnådda
-          eller communityn är överens om att
+          Fynd återgår till <strong>"grund"</strong> om ovanstående villkor inte är uppfyllda
+          eller communityn håller med om att
           </p>
           <ul>
           <li>
-          <strong>fyndplatsen inte verkar
-          korrekt</strong> (t.ex. apor mitt i havet,
-          flodhästar på kontoret, etc.)
+           <strong>platsen ser inte
+          rätt ut</strong> (t.ex. apor mitt i havet,
+          flodhästar i kontorsbyggnader, etc.)
           </li>
           <li>
-          <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad
-          av människor eller intelligenta rymdvarelser)
+          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människan
+          eller intelligenta rymdvarelser)
           </li>
           <li>
-          fyndet <strong>inte visar några tecken på en
-          organism</strong>, t.ex. bilder av vattenformationer,
-          stenar, landskap som inte Innehåller organismen, osv.
+          fyndet <strong>inte utgör stöd för en
+          organism</strong>, t.ex. bilder av vattensamlingar,
+          klippor, landskap som inte inkluderar organismen, etc.
           </li>
           <li>
-          fyndet <strong>inte består av nutida (~100 years) belägg för
-          organismen</strong> (t.ex. fossil, men spår, avföring och döda löv
-          är ok)
+          fyndet <strong>utgör inte stöd för organismern i modern tid (~100 år)</strong> (t.ex. fossil, men spår, avföring och döda blad
+          är okej)
           </li>
           <li>
-          fyndet inte länger behöver bestämmas <em>och</em> communitybestämningen är över familj
+          fyndet behöver inte längre bestämmas <em>och</em> community-bestämningen är till familj eller högre
           </li>
           <li>
-          observatören har frånsagt sig communitybestämning och communitytaxonet
-          är vare sig en förfader eller ättling till det taxon som är knutet till observatörens
-          bestämning
-          </li>
+          observatören har valt bort community-bestämning samt community-
+          bestämningens taxon är inte en förfader eller ättling till det taxon
+          observatören bestämt
           </ul>
           <p>
-          Och som om det inte var krångligt nog, finns det även situationer där systemet får rösta:
+          Och om det inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
           </p>
           <ul>
           <li>
-          Systemet röstar att fyndet inte är vilt/naturaliserat
+          Systemet kommer att rösta för att fyndet inte är vilt/naturaliserat
           om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta plats motsvarande län, region eller land som
-          omfattar detta fynd och 80 % eller flera av dessa fynd har
-          markerats som ej vilda/naturaliserade.
+          den minsta län-, stat-, eller landmotsvarighet till plats som
+          innehåller detta fynd samt att 80% eller fler av dessa fynd
+          har markerats som inte vilt/naturaliserat.
           </li>
           </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
@@ -6665,8 +6817,12 @@ sv:
           Du kan se originalet på <a href="%{url}">%{url}</a>.
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
-      kml_field_desc2: |
-        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
+      kml_field_desc3: |
+        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google
+        Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB
+        (5 MB för webbplatsens förvaltare) och till ytan vara mindre än ~700 000
+        kvadratkilometer (ungefär storleken på Somalia eller amerikanska delstaten
+        Texas).
       edit:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
@@ -7027,10 +7183,21 @@ sv:
           Hur står sig detta år jämfört med tidigare år? Den gröna stapeln visar detta år, den vita lodräta stapeln visar förra året och de grå områdena i bakgrunden visar min och max för tidigare år, samt medel för alla år.
         compared_to_previous_years: Jämför med tidigare år
         donate_title: "Ett särskilt tack till alla våra supportrar"
-        donate_desc_html: |
-          Tack för att du bidrar med din tid, uppmärksamhet, expertis och dina donationer! iNaturalist är ett icke-kommersiellt initiativ som drivs gemensamt av California Academy of Sciences och National Geographic Society. Det supportas av ett
-          <a href="%{team_url}">litet team</a> som gör all design och mjukvaruutveckling för webben, mobiler, och <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom support till communityn, samarbeten och integrationer som håller saker igång (och som växer snabbt!). Initiativet förlitar sig på många bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan donera i flertalet valutor för att stödja iNaturalists kärnverksamhet.
-          Tack till alla för er medverkan till att göra %{year} till iNaturalists främsta år hittills!
+        donate_desc2_html: |
+          Tack för att du är generös med din tid, uppmärksamhet, expertis,
+          och donationer! iNaturalist är en 501(c)3 icke-vinstdrivande
+          organisation baserad i USA. Det stöds av en
+          <a href="%{team_url}">liten grupp</a> som gör all design och
+          mjukvaruutveckling för webben, mobil och <a href="%{seek_url}">Seek by
+          iNaturalist</a>, förutom att hantera stöd till communityn,
+          samarbeten och integrationer som håller saker igång
+          (och växer snabbt!). Upplägget förlitar sig på många bidrag och
+          donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel
+          bidragsgivare. Vi är särskilt tacksamma för Månatliga givare
+          vars återkommande gåvor hjälper oss att planera för framtiden. Du kan
+          donerai flera valutor för att stödja iNaturalists kärnverksamhet.
+          Tack till alla för er medverkan till att göra %{year} iNaturalists
+          största år hittills!
         donors: Givare
         donors_guide_label_our_goal_is_1000: Vårt mål är 1000 återkommande givare per månad
         inaturalist_network: iNaturalist-nätverket
@@ -7117,15 +7284,44 @@ sv:
       show:
         about_names_desc: |
           <p>
-          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn är vanligtvis förståeliga, lätta att uttala, och stabila över tid, men många organismer har flera olika namn på olika platser, även på samma språk, som kan göra det svårt att kommunicera om dessa organismer utan förvirring.
-          Vetenskapsmän försöker råda bot på detta genom att använda ett enda "vetenskapligt namn" för varje organismkategori som omfattas av reglerna för <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>, men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de är inte lika lätta att komma ihåg som vardagliga namn för många personer. Vetenskapliga namn kan också återspegla en organisms taxonomiska placering, så att de kan förändras när forskare lägger fram nya hypoteser om evolutionära förhållanden
-          mellan olika organismer, vilket minskar deras användbarhet för kommunikation, även bland människor som kan vetenskapliga namn.
+          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn
+          är vanligtvis förståeliga, lätta att uttala och stabila över tid, men många
+          organismer har flera olika namn på olika platser, även på samma språk,
+          vilket om kan göra det svårt att kommunicera om dessa organismer utan
+          förvirring.
+          Forskare försöker råda bot på detta genom att använda ett enda "vetenskapligt
+          namn" för varje organismgrupp som omfattas av reglerna för
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>,
+          men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de
+          är inte lika lätta att komma ihåg som vardagliga namn för de flesta.
+          Vetenskapliga namn kan också återspegla en organisms taxonomiska
+          placering, så de kan förändras när forskare tar fram nya hypoteser om
+          evolutionärt släktskap mellan olika organismer, vilket återigen minskar
+          deras användbarhet för kommunikation, även bland människor som kan
+          vetenskapliga namn.
           </p>
           <p>
-          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats till plats, medan vetenskapliga namn ändras då och då.
+          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats
+          till plats, medan vetenskapliga namn ändras då och då.
           </p>
           <p>
-          Vi försöker åtgärda dessa brister genom att visa både vardagliga och vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat på läsarens språkliga och geografiska preferenser.
+          Vi försöker åtgärda dessa brister genom att visa både vardagliga och
+          vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat
+          på läsarens språkliga och geografiska preferenser. Namn listas efter deras
+          globala prioritet inom varje Språk / Typ.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Namn kan läggas till platser (vanligtvis länder) i fall där
+          olika länder eller regioner använder olika vardagliga namn på
+          samma språk. Till exempel kan Mexiko och Costa Rica ha olika
+          spanska namn för samma art.
+          </p>
+          <p>
+          Denna tabell visar vilka namn som lagts till på vilka platser, och
+          listas i prioritetsordning för varje plats. Om två spanska namn
+          läggs till Mexiko, kommer det som listas först att visas om du föredrar
+          att se spanska namn som lagts till Mexiko.
           </p>
         about_conservation_status_desc: |
           Bevarandestatus sammanfattar risken för utrotning för en grupp organismer.
@@ -7314,10 +7510,15 @@ sv:
           för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
         monthly_supporter_desc_html: |
-          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS EIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
-          <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
-          När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
-          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
+          iNaturalist Månatliga givare ger automatiska månatliga bidrag
+          till iNaturalist (United States IRS EIN 92-1296468) för att stödja
+          icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets
+          webbplatser. <a href="%{url}">Klicka här för att bli en Månatlig
+          givare</a>. När vi har bekräftat ditt stöd kommer du att kunna
+          markera denna ruta för att visa denna status på din profil. Obs:
+          e-postadresserna på Donorbox och iNaturalist måste matcha
+          exakt för att vi ska kunna bekräfta att du är en Månatlig givare.
+          Om de skiljer sig, ändra den ena så att den matchar den andra.
         muting_desc_html: |
           <p>
           Att tysta någon hindrar dig från att få meddelanden om saker de gör, inklusive kommentera dina fynd, skicka meddelanden till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne utan att hindra dem från att göra något.
@@ -7522,19 +7723,19 @@ sv:
       6: Fre
       7: Lö
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%-d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%-d %B %Y'
     month_names:
       - 
@@ -7587,17 +7788,17 @@ sv:
         one: "%{count} sekund"
         other: '%{count} sekunder'
     countdown_x_days:
-      one: dag
-      other: dagar
+      one: DAG
+      other: DAGAR
     countdown_x_hours:
-      one: timme
-      other: timmar
+      one: TIMME
+      other: TIMMAR
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sek
-      other: sek
+      one: SEK
+      other: SEK
     prompts:
       day: Dag
       hour: Timme
@@ -7667,19 +7868,19 @@ sv:
   time:
     am: fm
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%-d %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%-d %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%-d %b %Y %H.%M.%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y %H.%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H.%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%-d %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: em
   activerecord:
@@ -7712,6 +7913,11 @@ sv:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: WebbplatsID:n
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Personalmålgrupp (för testning)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Riktat mot obekräftade användare
       assessment:
         description: Beskrivning
       assessment_section:
@@ -7866,6 +8072,7 @@ sv:
         position: Position
         source_url: Källans URL
         source_identifier: Källans identifierare
+        audit_comment: Anteckning
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8096,6 +8303,8 @@ sv:
                 måste matcha detta taxons namn om det är ett giltigt vetenskapligt namn
               bad_format: |
                 kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och ×; observera att preliminära taxa och sortnamn inte är tillåtna
+            audit_comment:
+              needs_to_be_at_least_10_characters: måste vara minst 10 tecken
         taxon_photo:
           attributes:
             taxon:
@@ -8119,8 +8328,11 @@ sv:
           attributes:
             base:
               user_already_blocked: Du har redan blockerat den användaren
-              user_cannot_be_staff: |
-                Du kan inte blockera personal. iNat-personal måste kunna kommunicera med alla på iNat, ha tillgång till all data på iNat, och är de slutgiltiga medlarna i tvister, så blockering kommer inte att hindra dem från att kommunicera med dig. Om du har ett problem med någon i personalen kan du rapportera det till en av iNats biträdande chefer, eller, om du har problem med en av de biträdande cheferna, kontakta forskningschefen på Institute for Biodiversity and Sustainability Science vid California Academy of Sciences.
+              user_cannot_be_staff2: |
+                Du kan inte blockera personal. iNat-personal måste kunna
+                kommunicera med alla på iNat, ha tillgång till all data på
+                iNat och är de ultimata medlarna av tvister, så blockering
+                kommer inte att hindra dem från att kommunicera med dig.
         user_parent:
           attributes:
             email:

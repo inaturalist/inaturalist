@@ -877,6 +877,7 @@ he:
   birds: עופות
   birthday: יום הולדת
   black: שחור
+  block: חסימה
   block_removed: חסימה הוסרה
   blocked_users: משתמשים חסומים
   blog_widget: יישומון בלוג
@@ -1140,7 +1141,6 @@ he:
   connected_accounts_titlecase: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
-  connecting_to_facebook: "מתחבר לפייסבוק..."
   connecting_your_inat_account_to_accounts_other_sites: "חיבור חשבון %{site_name} לחשבונות באתרים אחרים יאפשר לכם להתחבר ל%{site_name} בעזרת פרטי המשתמש של אתרים אלו."
   cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת הקפאת תוכן
   conservation_status: סטטוס שימור
@@ -1230,21 +1230,21 @@ he:
     molt: השלה
   controlled_term_definitions:
     alive: היצור חי ולא מראה סימנים של סכנת מוות מיידית
+    bone: |
+      בעיקר שרידי שלד פנימי; אורגניזם שהוא שלם למעט חשיפת עצמות חלקית צריך להיות מסומן "אורגניזם"
+    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
     dead: היצור מת או מראה שימנים של מוות מיידי
+    feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     flower_budding: רואים ניצני פרחים אך סגורים
     flowering: פרחים נראים לעין, פתוחים, ועוד מחוברים לצמח
     fruiting: פירות נראים ועוד מחוברים לצמח
+    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
+    molt: נשל או שלד חיצוני
     no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
-    teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
-    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
-    feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     organism: אורגניזם שלם או חלק ממנו
     scat: חומר גללי (לא כולל צנפות)
+    teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
     track: טביעה שנעשת על ידי אורגניזם בקרקע או שלג
-    bone: |
-      בעיקר שרידי שלד פנימי; אורגניזם שהוא שלם למעט חשיפת עצמות חלקית צריך להיות מסומן "אורגניזם"
-    molt: נשל או שלד חיצוני
-    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
   controls: פקדים
   convert: המרה
   coordinate_systems: מערכת קואורדינטות
@@ -1315,7 +1315,7 @@ he:
   curate_observations: אצירת תצפיות
   curate_taxa: אצירת טקסונים
   curate_user: אצירת משתמשים
-  curating: אצירה
+  curating: אוצרות
   curation: אוצרות
   curator: אוצר.ת
   #A paragraph summarizing what curators are
@@ -1351,12 +1351,6 @@ he:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     אינם מציגים התנהגות הולמת בעצמם.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    על מנת להגיש מועמדות לתפקיד אוצר.ת של האתר, עליך להיות בעל.ת חשבון מזה 60 ימים או יותר ולהוסיף 100 זיהויים משפרים לתצפיות כלשהן, כולל אלו של עצמך (הוספת עד כה %{num_idents}). כאשר תגיע.י לשני ההישגים הללו, יש לחזור הנה ותוכל.י להגיש את טופס הבקשה.
-  curator_application_inelligible_error: |
-    על מנת להגיש מועמדות להיות אוצר.ת האתר, עליך להיות בעל חשבון מזה 60 יום לפחות ולהוסיף 100 זיהויים משפרים לתצפיות, כולל של עצמך.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: בקשה לאוצרות הוגשה
   #Header
@@ -1383,7 +1377,7 @@ he:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    עריכת מקומות שהם באצירה קהילתית ולהעלות קובצי KML שגדולים מ-1MB (אך קטנים מ-5MB)
+    עריכת מקומות שהם באוצרות קהילתית ולהעלות קובצי KML שגדולים מ-1MB (אך קטנים מ-5MB)
   #Header
   curator_application_what_curators_cannot_do: מה אוצרים אינם יכולים לעשות
   #Description of the fact that a curator cannot change certain attributes of
@@ -1776,7 +1770,10 @@ he:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}נא לאשר את כתובת הדוא"ל שלך%{link_end_tag}</strong>.
     כל היוזרים חייבים לאשר את כתובת הדוא"ל שלהם עד %{date}. לאחר תאריך זה כל מי שטרם אישרו כתובות הדוא"ל לא יוכלו להתחבר עד שיאפסו סיסמה. לאישור כתובת הדוא"ל שלך, יש לגשת %{link_start_tag}להגדרות החשבון%{link_end_tag} שלך.
-  email_copyright: "זכויות יוצרים של &copy; %{x}, כל הזכויות שמורות"
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: פרטי החשבון
   email_notifications: התראות דוא"ל
   embed: 'הטמע'
   embed_place_widget: הטבעת וידג'ט מקום
@@ -1849,13 +1846,6 @@ he:
   extra_properties: תכונות נוספות
   evidence_of_organism: עדות לאורגניזם
   facebook: פייסבוק
-  facebook_account_information: פרטי חשבון הפייסבוק שלך
-  facebook_account_not_linked: "ל%{user} אין חשבון פייסבוק מקושר כעת, לכן ל%{site_name} אין גישה לתמונות."
-  facebook_access_token_expired: "פג התוקף של אסימון הגישה. %{user} צריכ.ה לקשר מחדש את חשבון הפייסבוק."
-  facebook_needs_the_owner_of_that_photo_to: פייסבוק צריך שהבעלים של התמונה ההיא יאשר מחדש את חיבורו ל%{site_name_short}
-  facebook_options: אפשרויות פייסבוק
-  facebook_photo_import_disabled_notice: |
-    בנובמבר 2020 פייסבוק דרש מאיתנו לאמת את הצורך האמיתי שלנו בגישה לתמונות, ולא הצלחנו להשלים את התהליך עקב בעיות עם מערכת האימות של פייסבוק. כתוצאה מכך, אין ביכולתנו לתמוך יותר בייבוא תמונות מפייסבוק.
   failed_to_find_your_location: לא ניתן למצוא את מיקומך
   failed_to_repair_photo: "לא ניתן היה לתקן את התמונה: %{errors}"
   failed_to_save_record: "לא ניתן היה לשמור את הרישום. נא לנסות שוב מאוחר יותר."
@@ -1971,7 +1961,7 @@ he:
   flag_this_place: סמן מקום זה
   flag_this_sound: סמן קול זה
   flagged_: סומן
-  flagged_for_curation: סומן לצורך אצירה
+  flagged_for_curation: סומן לצורך אוצרות
   flagged_taxon: טקסון שסומן
   flagged_thing_explanation: "משתמשים סימנו את %{thing} בגלל"
   flagging_desc: |
@@ -2021,7 +2011,6 @@ he:
   frequency: תדירות
   from_a_place: ממקום
   from_eol_collection: מאוסף אנציקלופדיית החיים (EOL)
-  from_flickr_facebook_etc: מתוך פייסבוק, פליקר, וכו'.
   from_list: מרשימה
   from_photos: מתמונות
   from_place: ממקום
@@ -2119,7 +2108,6 @@ he:
   heads_up_you_have_multiple: "יש לשים לב: יש לך תגי מכונה טקסנומיים מרובים עבור דרגות זהות. הם מסודרים בצבעים לפי דרגה למטה."
   help: עזרה
   help_confirm_observations!: עזרו לאשר תצפיות!
-  help_support_inaturalist: "תמיכה בiNaturalist"
   help_translate!: עזרו לתרגם!
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_suggestions: הנה ההצעות הטובות ביותר שלנו
@@ -2265,7 +2253,6 @@ he:
   inaturalist_activity_notifications: "התראות פעילות %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "אפליקציות iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} הוא מיזם משותף של האקדמיה למדעים של קליפורניה ונשיונל ג'יאוגרפיק"
   inaturalist_places: "מיקומי %{site_name}"
   info: מידע
   input_taxon: טקסון הקלט
@@ -2381,11 +2368,12 @@ he:
   lexicon: לקסיקון
   lexicon_cannot_contain_words: "לא יכול להכיל את המילים הבאות: %{words}"
   lexicons:
-    scientific_names: שמות מדעיים
     afrikaans: אפריקאנס
+    alabama: אלבמה
     albanian: אלבנית
     arabic: ערבית
     armenian: ארמנית
+    basque: באסקית
     belarusian: בלארוסית
     bengali: בנגלית
     bulgarian: בולגרית
@@ -2403,12 +2391,15 @@ he:
     english: אנגלית
     estonian: אסטונית
     faroese: פארואית
+    fijian: פיג'ית
     finnish: פינית
     french: צרפתית
     galician: גליציאנית
     gela: גלה
+    georgian: גרוזינית
     german: גרמנית
     greek: יוונית
+    gujarati: גוג'ראטית
     hawaiian: הוואית
     hebrew: עברית
     hiligaynon: היליגניון
@@ -2419,6 +2410,7 @@ he:
     italian: איטלקית
     japanese: יפנית
     kannada: קאנדה
+    kazakh: קזאחית
     korean: קוראנית
     latvian: לטבית
     lithuanian: ליטאית
@@ -2443,8 +2435,8 @@ he:
     romanian: רומנית
     russian: רוסית
     santali: סנטאלית
+    scientific_names: שמות מדעיים
     serbian: סרבית
-    setswana: טסואנה
     sinhala: סינהאלה
     slovak: סלובקית
     slovenian: סלובנית
@@ -2453,12 +2445,18 @@ he:
     swedish: שבדית
     tagalog: טגלוגית
     tahitian: טהיטית
+    tamil: טמילית
     thai: תאילנדית
     tokelauan: טוקלאואית
+    tsonga: טסונגה
     turkish: טורקית
+    u_s_d_a_symbol: סמל U.S.D.A.
     ukrainian: אוקראינית
-    waray_waray: ווראי-ווראי
+    uyghur: אויגור
+    vietnamese: וייטנאמית
     visayan: ויסאיאן
+    waray_waray: ווראי-ווראי
+    zulu: זולו
   less: פחות
   #Button show less text
   less__context_text: פחות
@@ -2474,14 +2472,8 @@ he:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: קישור לקוד הרשאה
-  link_your_facebook_account: קישור חשבון פייסבוק
   link_your_flickr_account: קישור חשבון Flickr
   link_your_google_account: קישור חשבון הגוגל שלך
-  linked_facebook: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון הפייסבוק שלך."
-  linked_facebook_automaticaly: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פייסבוק, נקשר מחדש בין חשבונות ה-%{site_name} והפייסבוק שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפייסבוק אז את.ה רוצה את היכולת לייבא תמונות פייסבוק, נכון?"
-  linked_facebook_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפייסבוק שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפייסבוק, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פייסבוק חדש שאת.ה רוצה לקשר אליו את %{site_name}."
-  linked_facebook_howto: "לחיבור של פייסבוק עם %{site_name}, יש ללחוץ על הקישור מימין ולהתחבר ל-Facebook.com."
-  linked_facebook_password: "לעולם לא נבקש את סיסמת הפייסבוק שלך (אך יתכן שפייסבוק כן יבקש, יש לבדוק את הקישור שהכפתור שולח לך ולוודא שהוא Facebook.com). גם לא נשנה את נתוני הפייסבוק שלך אלא אם תרצה בכך."
   linked_flickr: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון ה Flickr שלך."
   linked_flickr_automatically: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פליקר, נקשר מחדש בין חשבונות ה-%{site_name} והפליקר שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפליקר אז את.ה רוצה את היכולת לייבא תמונות פליקר, נכון?"
   linked_flickr_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפליקר שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפליקר, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פליקר חדש שאת.ה רוצה לקשר אליו את %{site_name}."
@@ -2499,6 +2491,10 @@ he:
     taxonomic: טקסונומי
     photo: תמונה
   list_was_successfully_created: הרשימה נוצרה בהצלחה.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, ו-%{three}"
+  list_with_two_items: "%{one} ו-%{two}"
   listed_taxa: טקסונים רשומים
   listed_taxon: טקסון רשום
   listed_taxon_updated: עודכן טקסון רשום
@@ -2550,6 +2546,8 @@ he:
     id: אינדונזית
     it: איטלקית
     ja: יפנית
+    ka: גרוזינית
+    kk: קזאחית
     kn: קאנדה
     ko: קוראנית
     lb: לוקסמבורגית
@@ -2665,13 +2663,14 @@ he:
   maximum_positional_accuracy_including_unknown: |
     דיוק מיקום מירבי כולל תצפיות ללא דיוק מיקום
   media: מדיה
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: וגם
   media_type: סוג המדיה
   medium: בינוני
   meet: הכירו
   member_of_the_inaturalist_network_html: |
     חבר.ה ב<a href="%{url}">רשת iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    חבר %{partial_inat_network_tag_html}ברשת iNaturalist</a>, מיזם משותף של %{cas_tag_html} ו%{nat_geo_tag_html}.
   #As in members of a project
   members: חברות.ים
   membership_model: מודל חברות
@@ -2829,6 +2828,8 @@ he:
   must_have_quality_grades: "חייבת להיות בדרגות איכות: %{grades}"
   must_have_sounds: חייב להכיל קולות
   must_have_x: "חייב להכיל %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: השתקה
   #Mute is a noun here
   mute_removed: ביטול השתקה
   muted_users: משתמשים מושתקים
@@ -3032,7 +3033,6 @@ he:
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
   not_finding_place_you_want?: לא מצאת את המקום שחיפשת?
   not_found: לא נמצא דבר
-  not_linked_facebook: "חשבון ה-%{site_name} אינו מחובר לחשבון הפייסבוק שלך."
   not_linked_flickr: "חשבון ה%{site_name} שלך אינו מקושר לחשבון ה Flickr שלך"
   not_on_this_list: לא ברשימה זו.
   not_recorded: לא נרשם
@@ -3056,7 +3056,7 @@ he:
   obscured_description: |
     קואורדינטות גלויות מוצגות כנקודה אקראית בתוך תא של 0.2x0.2 מעלות אורך/רוחב שמכיל את הקואורדינטות האמיתיות
   observation: תצפית
-  observation_: הבחנה
+  observation_: תצפית
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
   observation_aggregation: צבירת תצפית
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3121,6 +3121,10 @@ he:
   observation_curation: אצירת תצפית
   observation_date: תאריך
   observation_date?: תאריך?
+  #Basic observation export fields
+  observation_export_column_type_basic: בסיסי
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: טקסון
   observation_field: שדה התצפית
   observation_field_details: פרטי שדה התצפית
   observation_field_type_text: טקסט
@@ -3148,7 +3152,7 @@ he:
   observation_was_deleted: תצפית נמחקה
   observation_without_media: תצפית ללא מדיה
   observations: תצפיות
-  observations_: הבחנות
+  observations_: תצפיות
   observations_added_by_x_html: "תצפיות הוספו על ידי %{x}"
   observations_annotated_with_annotation: "תצפיות שסומנו בתווית %{annotation}"
   observations_by: התצפיות של
@@ -3164,7 +3168,7 @@ he:
   observation_must_dotdotdot: התצפית חייבת...
   observations_near_a_place_are: |
     תצפיות "בקרבת" מקום הן בתוך מלבן המצוייר מסביב לגבולות המקום, מה שעלול לגרום לכמה תוצאות לא מדויקות עבור מקומות שלא דומים למלבנים. זה בעקבות מגבלה של מאגר הנתונים שלנו שאנחנו עובדים לפתור.
-  observations_needing_curation: תצפיות שנדרשת אצירה עבורן
+  observations_needing_curation: תצפיות שדורשות אוצרות
   observations_observed_this_month: תצפיות <em>שנצפו</em> החודש, לא שנוספו החודש. צאו לטבע!
   observations_of_relatives: תצפיות של קרובים
   observations_of_taxon: "תצפיות של %{taxon_name}"
@@ -3283,7 +3287,7 @@ he:
   options: אפשרויות
   or: או
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
   orange: כתום
@@ -3928,7 +3932,7 @@ he:
   project_cover: עמוד השער של הפרויקט
   project_created_on: פרוייקט זה נוצר ב%{date}
   project_curator_id: מזהה אוצר.ת פרויקט
-  project_curator_tools: כלי אצירה לפרוייקט
+  project_curator_tools: כלי אוצרות לפרוייקט
   project_curators: אוצרות ואוצרי הפרוייקט
   project_group_label: קבוצה
   project_group_description: הקבוצה שאליה שייך הפרוייקט
@@ -4211,7 +4215,7 @@ he:
   remove_conservation_status: הסרת סטטוס שימור
   remove_from: הסרה מ
   remove_curator: הסרת אוצר
-  remove_curator_status: הסרת סטטוס אצירה
+  remove_curator_status: הסרת סטטוס אוצר.ת
   remove_from_featured: הסרה מרשימת המוצגים
   remove_from_guide: הסרה מהמגדיר
   remove_from_list: הסרה מהרשימה
@@ -4496,8 +4500,6 @@ he:
   sites_affiliation_overview_you_can_continue_html: |
     באפשרותך להמשיך להתחבר דרך iNaturalist.org או דרך אתר הכתובת הספציפית לרשת שלך. ללא קשר לשיוך, כל הנתונים שלך ישמרו באותו המקום ותוכל.י להמשיך לפעול בתוך קהילת iNaturalist הבינלאומית הרחבה. כל חשבון iNaturalist יכול להיות משויך לרשת אחת בלבד. ניתן לצפות בשיוך שלך או לשנות אותו %{start_tag_settings}בהגדרות החשבון%{end_tag_settings} שלך.
   sites_affiliation_title: מידע נוסף אודות שיוך לרשת
-  sites_network_cas_and_nat_geo_html: |
-    ל%{start_tag_cas}אקדמיה למדעים של קליפורניה%{end_tag_cas} ול%{start_tag_nat_geo}נשיונל ג'יאוגרפיק%{end_tag_nat_geo} יש הסכמים פורמאליים עם ארגונים בכל אחד מהאזורים הגאוגרפיים הללו כדי לתמוך בשימוש בפלטפורמת iNaturalist.<strong>אם הארגון שלך מעוניין להצטרף לרשת של iNaturalist, ניתן למצוא פרטים נוספים %{start_tag_join}כאן%{end_tag_join}.</strong>
   sites_network_consists_of: "רשת iNaturalist מורכבת ממספר ארגונים:"
   sites_network_inaturalist_network_collection: |
     רשת iNaturalist היא אוסף של אתרים מקומיים המחוברים במלואם לאתר קהילת iNaturalist העולמית. אתרי הרשת נתמכים על-ידי מוסדות מקומיים שמקדמים שימוש בנתוני iNaturalist ברמה המקומית לטובת שמירת טבע. הם בעלי גישה לקואורדינטות אמיתיות באזורם הגיאוגרפי שמוסתרות מהציבור באופן אוטומטי כדי להגן על מינים רגישים (בסיכון).
@@ -4683,7 +4685,6 @@ he:
   tagging: 'מתייג...'
   tags: תגיות
   tags_are_a_way: 'תגים הם דרך לסדר את התצפיות שלך. למשל, באפשרותך לתייג את כל התצפיות שלך מבריכות חורף "בריכות חורף" כדי להקל על מציאתן בהמשך.'
-  take_me_facebook: כן, קחו אותי לפייסבוק!
   take_me_flickr!: כן, קחו אותי ל Flickr!
   target_list_alert: האם את.ה בטוח.ה שניסית לתצפת על כל המינים המכוסים על ידי רשימת היעדים שלך? יש לזכור שכל מה שמכוסה על ידי הרשימה שלך ולא תצפתת עליו יתפרש כהיעדרות, לכן חשוב מאוד שרימת היעדים שלך תשקף בדיוק את סט המינים שניסית לגלות
   target_list_warning: יש לזכור שכל מה שמכוסה על ידי רשימת היעדים שלך ולא צפית בו בתוך רדיוס ומשך הטיול הזה יתפרש כהיעדרות. מאוד חשוב שרשימת היעדים שלך תשקף באופן מדויק את סט המינים שניסית למצוא. אם לא ניסית למצוא מין ברשימת היעדים שלך או כל המינים המכוסים על ידי קבוצה, יש להסיר אותו.
@@ -4693,7 +4694,7 @@ he:
     טיפ: להכניס את הזיהוי של תצפית בשדה החיפוש אם ברצונך לבחור תמונות מתצפית ספציפית.
   taxa_with_unknown_relationships: טקסונים עם מערכות יחסים לא ידועות
   taxa_info: מידע על טקסונים
-  taxa_needing_curation: טקסונים לאצירה
+  taxa_needing_curation: טקסונים לאוצרות
   taxa_observed: טקסונים שנצפו
   taxa_to_include: טקסונים להיכלל
   taxon: טקסון (רמה טקסונומית)
@@ -4813,7 +4814,6 @@ he:
   taxon_framework_notes: הערות על מסגרת הטקסון
   taxon_framework_relationship: יחס מסגרות טקסון
   taxon_framework_relationship_number: "יחס מסגרות טקסון %{number}"
-  taxon_framework_relationship_unknown_count_html: "מונה מערכות יחסים לא ידועות:"
   taxon_framework_relationships: יחסי מסגרת טקסון
   taxon_framework_taxon: טקסון של מסגרת הטקסון
   taxon_history_notice: היסטוריה התווספה בפברואר 2022, לכן נתוני היסטוריה אינם זמינים לפני מועד זה.
@@ -4936,7 +4936,6 @@ he:
   there_was_a_problem_creating_this_account: |
     פתיחת חשבון זה נתקלה בבעיה. במידה והסוגיה אינה נפתרת אנא צור קשר איתנו
   there_was_a_problem_saving_your_identification: "קיימת בעיה בשמירת הזיהוי: %{error}"
-  there_were_problems_adding_taxa: "אירעו בעיות בהוספת הטקסונים:"
   there_were_problems_adding_that_observation_to_this_project: "קיימות בעיות בהוספת תצפית זו לפרוייקט:"
   there_were_problems_importing_that_place: "קיימות בעיות ביבוא מקום זה: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
@@ -5492,8 +5491,6 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
-  we_also_support: |
-    אנחנו תומכים גם ב־<a href="http://flickr.com">Flickr</a>&rlm;, <a href="http://picasaweb.google.com">Picasa</a> ו־<a href="http://facebook.com">Facebook</a> כדי לאחסן תמונות.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
@@ -5565,6 +5562,8 @@ he:
   wikipedia_attribution_cc_by_sa_3_html: |
     ערך זה עושה שימוש בתוכן מערך הויקיפדיה <a href="%{url}">%{title}</a>, שפורסם תחת <a href="https://creativecommons.org/licenses/by-sa/3.0/">CreativeCommons Attribution-Share-Alike License 3.0</a>. יתכן כי תוכן הוחסר מהמקור, אך אף תוכן לא שונה או הוארך.
   with: עם
+  #Filter for observations not in a particular taxon
+  without_taxon: לא בטקסון
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: שלילה
@@ -5611,7 +5610,6 @@ he:
   x_site_is_a_social_network_for_naturalist: |
     %{site} הוא רשת חברתית לחובבות וחובבי טבע! דווחו על תצפיות של צמחים ובעלי חיים, שתפו אותן עם החבר'ה ועם חוקרות.ים, ולמדו על עולם הטבע.
   x_wrote_a_new_post_html: "פוסט חדש של %{x}"
-  x_wrote_y_new_posts_html: "%{y} פוסטים חדשים של %{y}"
   year: שנה
   year_in_review: "%{year} - סקירת השנה"
   year_in_review2: "סיכום שנה %{year}"
@@ -5652,8 +5650,6 @@ he:
     מיליוני א.נשים השתמשו ב-iNaturalist וב-Seek של iNaturalist השנה כדי להתחבר לטבע
   yir_monthly_supporters_random_selection: |
     הנה דגימה אקראית מתוך קהילת הגיבורות והגיבורים של iNaturalist אשר תומכות ותומכים מדי חודש.
-  yir_thank_your_for_being_generous: |
-    תודה על נדיבות לבך ועל שנתת מזמנך, תשומת לבך, מומחיותך וכספך! iNaturalist הוא מיזם ללא מטרות רווח של אקדמיית קליפורניה למדעים ונשיונל ג'אוגרפיק. המיזם נשען ברובו על מענקים ותרומות, כולל תרומות ישירות של חלק קטן מהמשתמשים. אנו מודות ומודים במיוחד לתומכים ולתומכות החודשיים שתרומתם.ן החוזרת עוזרת לנו לתכנן את עתידנו.
   yir_your_gift_sustains: |
     התרומה שלך מעניקה למיזם זה לפעול באופן גלובלי ולאפשר הפקת תועלת אקולוגית עצומה.
   you: אותך
@@ -5811,37 +5807,10 @@ he:
             במידה וכן, נא לקרוא את <a href="%{url}">מדריך המורות והמורים</a> שלנו לטיפים על השימוש ב%{site_name} עם תלמידות.ים.
     donate:
       donate_short_desc: "תרומה להבעת תמיכתך!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר מגוון ביולוגי. תודה על השתתפותך בה!</strong>
-        </p>
-        <p class="lead">
-        אם את.ה מאמינ.ה בכוחה של קהילה גלובלית זו של חובבות וחובבי טבע לשתף ידע ולייצר נתוני מגוון ביולוגי שאין להם תחליף, נא לשקול מתנה חד-פעמית או חוזרת באינטרנט. אפשר גם לראות <a
-        href="https://www.inaturalist.org/pages/giving">דרכים אחרות לתת</a>.
-        </p>
-        <p class="lead">
-        התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו.
-        </p>
-        <p class="text-muted">
-         iNaturalist הוא מיזם משותף של אקדמיית קליפורניה למדעים עם נשיונל ג'אוגרפיק. כל התרומות תתקבלנה על ידי אקדמיית קליפורניה למדעים, ארגון 501(c)(3) ללא מטרות רווח ופטור ממס המבוסס בארצות הברית (מזהה מיסים: 94-1156258).
-        </p>
       post_donate_social_media_text: אני תומכ.ת ב-iNaturalist כי...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: הצטרפ.י כתומכ.ת חודשי.ת של iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: להפוך לתומכ.ת חודשי.ת של iNaturalist
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר המגוון הביולוגי. תודה על השתתפותך בה!</strong>
-          </p>
-          <p class="lead">
-          ברצוננו לשמור על iNaturalist חינמי, אך התפעול שלו אינו חינם. את את.ה אוהב.ת את iNaturalist, נא לשקול להיות תומכ.ת חודשי.ת. מתנות חוזרות עוזרות לוודא ש-iNaturalist יוכל להמשיך להתאים את גודל התשתיות והצוות שלו כי הן מספקות הכנסה קבועה. באפשרותך גם לבחור להציג את הסטטוס שלך כתורמ.ת חודשי.ת בפרופיל המשתמש.ת שלך.
-          </p>
-          <p class="lead">
-          התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו. אם את.ה מעדיפ.ה לתת תרומה חד-פעמית, נא <a href="%{donate_url}">ללחוץ כאן</a>.
-          </p>
-          <p class="text-muted">
-           iNaturalist הוא מיזם משותף של אקדמיית קליפורניה למדעים עם נשיונל ג'אוגרפיק. כל התרומות תתקבלנה על ידי אקדמיית קליפורניה למדעים, ארגון 501(c)(3) ללא מטרות רווח ופטור ממס המבוסס בארצות הברית.
-          </p>
         thank_you_for_being_a_monthly_supporter: תודה על היותך תומכ.ת חודשי.ת!
         thank_you_for_being_a_monthly_supporter_caps: תודה על היותך תומכ.ת חודשי.ת!
     flags:
@@ -6281,64 +6250,12 @@ he:
         cumulative_count_desc: 'מספר הזיהויים עבור טקסון מסוים וכל צאצאיו'
         curator_coordinate_access_disabled_desc_html: |
           פרויקט זה אינו מרשה תצפיות עם קואורדינטות שאינן ניגשות לאוצרות ואוצרי הפרויקט. אם אינך רוצה לשתף את הקואורדינטות של תצפית זו עם אוצרות ואוצרי הפרויקט, עליך להסיר את התצפית מהפרויקט.
-        data_quality_assessment_desc_html: |
-          אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:
         disagreement_count_desc: "מספר הטקסונים המזוהים שאינם חולקים הורה משותף"
         identification_count_desc: 'מספר הזיהויים עבור טקסון מסוים'
         flagged_photos_desc_html: |
           חלק מתמונות אלה סומנו בגלל תוכן בלתי הולם או עקב הפרת זכויות יוצרים. לפרטים נוספים: %{links}
         join_project_desc_html: |
           הצטרפות לפרויקט תתן לאוצרות ולאוצרי הפרויקט יכולת לראות את הקואורדינטות המוסתרות של תצפית זו ושל כל תצפית אחרת בפרויקט, וגם מציינת את הסכמתך <a href="%{url}" target="_blank">לתנאי</a> הפרויקט.
-        quality_assessment_help2_html: |
-          <p>
-          הערכת איכות הנתונים היא סיכום של דיוק של תצפית. כל התצפיות מתחילות בדרגת <strong>"חסר"</strong>, והופכות ל<strong>"צריכות זיהוי"</strong> כאשר
-          </p>
-
-          <ul>
-          <li>לתצפית <strong>יש תאריך</strong></li>
-          <li>לתצפית <strong>יש ציון מיקום</strong> (כלומר קואורדינטות אורך ורוחב)</li>
-          <li>לתצפית <strong>יש תמונות או קולות</strong></li>
-          <li>התצפית <strong>אינה של בן אדם</strong></li>
-          </ul>
-          <p>
-          תצפיות הופכות ל<strong>"דרגת מחקר"</strong> כאשר
-          </p>
-          <ul>
-          <li>
-          <strong>קהילת %{site_name} מסכימה על זיהוי ברמת המין או יותר נמוך</strong>, כלומר כאשר יותר מ-2/3 מהמזהות והמזהים יסכימו על טקסון (אם הקהילה הצביעה שטקסון הקהילה לא יכול להשתפר עוד, זה חוזר לזיהוי ברמת תת-משפחה או נמוך יותר)
-          </li>
-          </ul>
-          <p>
-          תצפיות יחזרו להיות בדרגת <strong>"חסר"</strong> אם התנאים הנ"ל לא יתקיימו או אם הקהילה תסכים ש
-          </p>
-          <ul>
-          <li>
-          ה<strong>מיקום לא נראה מדויק</strong> (למשל קופים בלב הים, היפופוטמים בבנייני משרדים וכו')
-          </li>
-          <li>
-          <strong>האורגניזם אינו בר/מאוקלם</strong> (למשל בשבי או מתורבת על ידי בני אדם או חייזרים נבונים)
-          </li>
-          <li>
-          התצפית <strong>אינה מהווה הוכחה לאורגניזם</strong>, למשל תמונות של סימני מים, סלעים, נופים שלא כוללים את האורגניזם וכו'
-          </li>
-          <li>
-          התצפית <strong>אינה מהווה הוכחה עדכנית (~100 שנים) לאורגניזם</strong> (למשל מאובנים, אבל עקבות, גללים ועלים מתים הם בסדר)
-          </li>
-          <li>
-          התצפית לא צריכה יותר זיהוי <em>וגם</em> הזיהוי הקהילתי הוא מעל משפחה
-          </li>
-          <li>
-          המתצפת.ת בחר.ה שלא להשתתף בזיהוי הקהילתי וטקסון הזיהוי הקהילתי אינו הורה או צאצא של הטקסון המשוייך לזיהוי של המתצפת.ת.
-          </li>
-          </ul>
-          <p>
-          ואם זה לא היה מספיק מסובך, יש גם מצבים שבהם המערכת מקבלת קול הצבעה:
-          </p>
-          <ul>
-          <li>
-          המערכת תצביע שהתצפית אינה בר/מאוקלם אם יש לפחות 10 תצפיות אחרות של סוג או יותר נמוך במקום הקטן ביותר ברמת מחוז, מדינה או ארץ המכיל את התצפית הזו ו-80% או יותר מהתצפיות ההן סומנו כלא בר/מאוקלם.
-          </li>
-          </ul>
         score_desc: "ציון = ספירה מצטברת / (ספירה מצטברת + ספירת אי-הסכמות + אי-הסכמות הוריות)"
         observation_flagged_notice_html: |
           תצפית זו סומנה כספאם ואינה גלויה יותר לציבור. ביכולתך לראות אותה או כי יצרת אותה או כי את.ה אוצר.ת של האתר. אם לדעתך מדובר בטעות באפשרותך<a href="mailto:%{help_email}" class="contact">ליצור קשר</a>.<a href="/observations/%{observation_id}/flags">לנהל סימונים (דגלים)</a>
@@ -6731,7 +6648,7 @@ he:
         אם את.ה חושש.ת לגבי פרטיות המיקום, אין להצטרף לפרויקטים אלא אם את.ה סומכ.ת על אוצרות ואוצרי הפרויקט.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: כן, אבל רק אם אני מוסיף את התצפית לפרויקט בעצמי.
+        observer: כן, אבל רק אם אני מוסיפ.ה את התצפית לפרויקט בעצמי.
         any: כן, ולא משנה מי מוסיף את התצפית לפרוייקט.
         none: לא
       curator_coordinate_access_label: |
@@ -6836,8 +6753,6 @@ he:
           איך השנה משתווה לשנים קודמות? העמודה הירוקה מראה את השנה, העמודה האנכית הלבנה את שנה שעברה, ואזורי הרקע האפורים מראים את השנים הנמוכה והגבוהה, וכן את הממוצע של כל השנים.
         compared_to_previous_years: השוואה לשנים קודמות
         donate_title: "תודה מיוחדת לכל התומכות והתומכים בנו"
-        donate_desc_html: |
-          תודה שהיית נדיב.ה עם הזמן, תשומת הלב, המומחיות והתרומות שלך! iNaturalist הוא מיזם שיתופי ללא מטרות רווח של האקדמיה למדעים של קליפורניה עם נשיונל ג'יאוגרפיק. הוא נתמך על-ידי <a href="%{team_url}">צוות קטן</a> שעושה את כל העיצוב ופיתוח התוכנה של האתר, האפליקציה ו-<a href="%{seek_url}">Seek של iNaturalist</a>, בנוסף לניהול תמיכת הקהילה, שיתופי הפעולה, ואינטגרציה המבטיחים שהכול עובד חלק (וגדל בקצב מהיר!). המיזם נשען בעיקר על מענקים ותרומות, כולל תרומות נדיבות ממספר מזערי של תורמות ותורמים. אנו מודות במיוחד לתומכות ולתומכים החודשיים שתרומתן.ם החוזרת עוזרות לנו לתכנן את העתיד. באפשרותך לתרום בסוגי מטבעות רבים ובכך לתמוך בפעילות הליבה של iNaturalist. תודה לכולן ולכולם שהפכתם את %{year} לשנה הגדולה ביותר של iNaturalist!
         donors: תורמות ותורמים
         donors_guide_label_our_goal_is_1000: היעד שלנו הוא 1,000 תורמים חוזרים בחודש
         inaturalist_network: רשת iNaturalist
@@ -6909,16 +6824,6 @@ he:
           סיכום קצר של טקסון זה המבוסס של <a target="_blank"
           href="%{url}">עמוד הויקיפדיה</a> שלו הנמצא במטמון שלנו עד לרענון ידני. רענון סיכום זה גם מעדכן מייד את המטמון שלנו של תוכן ויקיפדיה יסודי המוצג באתר שלנו, המתעדכן אוטומטית לאחר שבוע.
       show:
-        about_names_desc: |
-          <p>
-          רוב הקטגוריות של אורגניזמים הן בעלות "שמות עממיים" בשפות מדוברות. שמות אלו הם בדרך כלל מוכרים, קלים להגייה, וקבועים לאורך זמן. אולם להרבה אורגניזמים יש כמה שמות במקומות שונים, אפילו באותה השפה, דבר אשר יכול להקשות על תקשורת בהירה אודות אורגניזמים אלו. מדעניות ומדענים מתייחסים לבעיה זו באמצעות שימוש ב"שם מדעי" אחד לכל קטגוריה של אורגניזם שמשתלבת בכללי <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">נומנקלטורה דו-שמית</a>, אבל שמות אלו נוטים להיות מבוססים על לטינית, שפה שאף אחד לא מדבר, ולכן הם לא קליטים כמו שמות עממיים עבור א.נשים רבים. שמות מדעיים יכולים גם לשקף מיקום טקסונומי של אורגניזם, ועקב כך הם יכולים להשתנות כאשר מדעניות ומדענים מפתחות.ים תיאוריות יותר מדויקות על היחסים האבולוציוניים בין אורגניזמים שונים, מה ששוב מוריד את השימושיות של שמות אלו בתקשורת, אפילו בין א.נשים שמכירות שמות מדעיים.
-          </p>
-          <p>
-          הפתגם הישן מסכם היטב: "שמות עממיים משתנים בין מקומות, ושמות מדעיים משתנים בזמן."
-          </p>
-          <p>
-          אנו משתדלים להתייחס לחסרונות הללו באמצעות הצגת גם שמות עממיים וגם שמות מדעיים היכן שאפשר, ובחירת שמות עממיים לפי השפה וההעדפות הגיאוגרפיות של המשתמש.ת.
-          </p>
         about_conservation_status_desc: |
           סטטוס השימור מסכם את סכנת ההכחדה עבור קבוצת אורגניזמים.
         about_establishment_desc: |
@@ -7284,20 +7189,12 @@ he:
       6: שישי
       7: שבת
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d %B, %Y'
     month_names:
       - 
       - ינואר
@@ -7372,22 +7269,22 @@ he:
         other: '%{count} שניות'
     countdown_x_days:
       one: יום
-      two: יומיים
+      two: ימים
       many: ימים
       other: ימים
     countdown_x_hours:
       one: שעה
-      two: שעתיים
+      two: שעות
       many: שעות
       other: שעות
     countdown_x_minutes:
       one: דקה
-      two: שתי דקות
+      two: דקות
       many: דקות
       other: דקות
     countdown_x_seconds:
       one: שניה
-      two: שתי שניות
+      two: שניות
       many: שניות
       other: שניות
     prompts:
@@ -7462,19 +7359,11 @@ he:
   time:
     am: לפנה"צ
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %B, %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: אחה"צ
   activerecord:
@@ -7859,7 +7748,7 @@ he:
                 ניתן לשינוי רק על ידי האוצר של טקסון זה
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                ניתן לשינוי רק על יד בעלי הרשאות אצירה של טקסון זה
+                ניתן לשינוי רק על יד בעלי הרשאות אוצרות של טקסון זה
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 ניתן לשינוי רק על ידי האוצר של טקסון זה
@@ -7904,8 +7793,6 @@ he:
           attributes:
             base:
               user_already_blocked: כבר חסמת את היוזר ההוא
-              user_cannot_be_staff: |
-                אין ביכולתך לחסום צוות. צוות iNaturalist צריך להיות מסוגל לתקשר עם כולן.ם באתר, לגשת לכל הנתונים ב-iNaturalist, והצוות הוא המתווך האולטימטיבי של חילוקי דעות, לכן חסימה לא תמנע מהן.ם לתקשר עמך. אם יש לך בעיה עם חבר.ת צוות, נא לדווח עליה לבכיר.ת iNaturalist, או לחילופין אם יש לך בעיה עם בכיר.ה, באפשרותך ליצור קשר עם המדענ.ית הראשי.ת במתקן למדעי קיימות ומגוון ביולוגי באקדמיה למדעים של קליפורניה.
         user_parent:
           attributes:
             email:

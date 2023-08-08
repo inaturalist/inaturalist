@@ -220,23 +220,6 @@ module ApplicationHelper
     dialog + link
   end
 
-  def link_to_tip(title, options = {}, &block)
-    id = title.gsub(/\W/, '').underscore
-    dialog = content_tag(:div, capture(&block), :class => "tip", :style => "display:none", :id => "#{id}_tip")
-    link_options = options.delete(:link) || {}
-    data = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
-    data['tip-options'] = {
-      content: {
-        text: "##{id}_tip"
-      },
-      show: {event: 'click'},
-      hide: {event: 'click unfocus'}
-    }.merge(options.delete(:tip_options) || {}).to_json
-    options = options.merge(data: data)
-    link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
-    dialog + link
-  end
-  
   # Generate a URL based on the current params hash, overriding existing values
   # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
@@ -312,6 +295,12 @@ module ApplicationHelper
     
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
+
+    # remove escaped underscores from mentions where Redcarpet didn't process markdown
+    mentions_with_escaped_underscores_regex = /(<a [^>]+>@[^\s]*)\\_/
+    while text.match( mentions_with_escaped_underscores_regex )
+      text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
+    end
     
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
@@ -464,39 +453,7 @@ module ApplicationHelper
     end
     block_given? ? concat(content.html_safe) : content.html_safe
   end
-  
-  def one_line_observation(o, options = {})
-    skip = (options.delete(:skip) || []).map(&:to_sym)
-    txt = ""
-    txt += "#{o.user.login} observed " unless skip.include?(:user)
-    unless skip.include?(:taxon)
-      txt += if o.taxon
-        render(:partial => 'shared/taxon', :locals => {
-          :taxon => o.taxon,
-          :include_article => true
-        })
-      else
-        t(:something)
-      end
-      txt += " "
-    end
-    unless skip.include?(:observed_on)
-      txt += if o.observed_on.blank?
-        t(:in_the_past).downcase
-      else
-        "#{t(:on_day, :default => "on")} #{l o.observed_on, format: :long} "
-      end
-    end
-    unless skip.include?(:place_guess)
-      txt += if o.place_guess.blank?
-        t(:somewhere_on_earth).downcase
-      else
-        "#{t(:in, :default => "in")} #{o.place_guess}"
-      end
-    end
-    txt
-  end
-  
+
   def html_attributize(txt)
     return txt if txt.blank?
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
@@ -1371,12 +1328,34 @@ module ApplicationHelper
     args.join('/').gsub(/\/+/, '/')
   end
 
-  def google_maps_js(options = {})
-    libraries = options[:libraries] || []
-    version = Rails.env.development? ? "weekly" : "3.48"
-    params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
-    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
-    "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
+  def google_maps_js(libraries: [])
+    javascript_include_tag google_maps_loader_uri(libraries: libraries)
+  end
+
+  # https://developers.google.com/maps/documentation/javascript/url-params
+  # https://developers.google.com/maps/documentation/javascript/libraries
+  # https://developers.google.com/maps/documentation/javascript/versions
+  def google_maps_loader_uri( libraries: [] )
+    URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
+      key: CONFIG.google.browser_api_key,
+      libraries: libraries.join( "," ),
+      v: "3.51",
+      language: I18n.locale,
+      region: cctld_from_locale( I18n.locale )
+    }.to_query
+  end
+
+  # Mostly for Google API regions
+  def cctld_from_locale( locale )
+    # return "il" if locale.to_s == "he"
+    return if locale.to_s.split( "-" ).size < 2
+
+    region = locale.to_s.split( "-" ).last
+    case region
+    # There are a few exceptions to ISO 3166-1 / ccTLD mapping
+    when "gb" then "uk"
+    else region
+    end
   end
 
   def leaflet_js(options = {})
@@ -1532,15 +1511,6 @@ module ApplicationHelper
       ).strip, 
       length: 1000
     ).strip
-  end
-  
-  def branding_statement
-    I18n.t(
-      :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\">",
-      cas_tag_html: "<a href=\"https://calacademy.org\">California Academy of Sciences</a>",
-      nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
-    ).html_safe
   end
 
   def responsive?

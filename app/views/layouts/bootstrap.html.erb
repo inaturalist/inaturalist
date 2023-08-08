@@ -32,12 +32,12 @@
     <% end -%>
     <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>
-    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
-    <% end %>
     <% if !@headless && @site && !@site.ios_app_id.blank? -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
+      <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
@@ -227,6 +227,7 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_gbif_layer_maps: <%= current_user.prefers_gbif_layer_maps %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
@@ -270,8 +271,10 @@
         $.fn.btn = btn;
       }
     </script>
-    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
+    <% unless @skip_external_connections %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+    <% end %>
     <%= yield :extrajs %>
     <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">

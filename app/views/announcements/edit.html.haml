@@ -4,5 +4,7 @@
 .container
   .row
     .col-xs-12
+      %span.breadcrumbs
+        = link_to t(:back), @announcement, class: "back crumb"
       %h1= t :editing_announcement
       = render :partial => 'form'

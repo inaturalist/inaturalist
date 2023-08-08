@@ -20,6 +20,15 @@ class PhotoBrowser extends React.Component {
     const domNode = ReactDOM.findDOMNode( this );
     // move the add-photo button into the thumbnail list
     $( ".add-photo", domNode ).appendTo( ".image-gallery-thumbnails-container", domNode );
+
+    // Remove the button role from slides that contain audio. This seems to
+    // actually cause Voice Over in Safari to ignore the audio controls
+    // inside of the button
+    $( ".image-gallery-slide", domNode ).each( ( slideIndex, slide ) => {
+      if ( $( "audio", slide ).length > 0 ) {
+        $( slide ).attr( "role", null );
+      }
+    } );
   }
 
   componentDidUpdate( ) {

@@ -783,12 +783,15 @@ $.fn.centerInContainer = function(options) {
       $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none', position: 'absolute'})
       $(this).css({left: 0, top: '50%', marginTop: '-' + (height / 2) + 'px'})
     } else if (w == 0 && h == 0) {
-      var that = this
+      if ( options.secondAttempt ) {
+        return;
+      }
+      var that = this;
       // hack for ff
-      setTimeout(function() {
-        $(that).centerInContainer(options)
-      }, 500)
-      return
+      setTimeout( function( ) {
+        $( that ).centerInContainer( _.extend( { }, options, { secondAttempt: true } ) )
+      }, 500 );
+      return;
     } else {
       $(this).css({width: $(this).parents(containerSelector).width(), maxWidth: 'none', maxHeight: 'none'})
       $(this).css({left: 0, top: 0, marginTop: '0px'})

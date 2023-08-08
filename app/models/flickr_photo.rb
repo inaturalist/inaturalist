@@ -153,7 +153,7 @@ class FlickrPhoto < Photo
     observation.taxon = to_taxon
     if t = observation.taxon
       t.current_user = observation.user
-      observation.species_guess = t.common_name.try(:name) || t.name
+      observation.species_guess = t.common_name( user: observation.user ).try( :name ) || t.name
     end
 
     observation.tag_list = to_tags

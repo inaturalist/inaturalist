@@ -2,6 +2,14 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
+import {
+  Identification,
+  Observation,
+  Photo,
+  Project,
+  Sound,
+  Comment
+} from "inaturalistjs";
 
 class FlaggingModal extends Component {
   constructor( props, context ) {
@@ -19,6 +27,29 @@ class FlaggingModal extends Component {
     this.props.setFlaggingModalState( { radioOption: name } );
   }
 
+  getItemClassName( ) {
+    const { state: propsState } = this.props;
+    const { item } = propsState;
+    let className;
+    if ( item instanceof Project ) {
+      className = "Project";
+    } else if ( item instanceof Observation || item.quality_grade ) {
+      className = "Observation";
+    } else if ( item instanceof Identification || item.taxon ) {
+      className = "Identification";
+    } else if ( item instanceof Photo || item.square_url ) {
+      className = "Photo";
+    } else if ( item instanceof Sound || item.file_url ) {
+      className = "Sound";
+    } else if ( item instanceof Comment ) {
+      className = "Comment";
+    }
+    if ( !className ) {
+      throw new Error( "Can't flag an unknown type of item" );
+    }
+    return className;
+  }
+
   close( ) {
     this.props.setFlaggingModalState( { show: false } );
   }
@@ -34,24 +65,6 @@ class FlaggingModal extends Component {
       body
     );
     this.close( );
-  }
-
-  getItemClassName( ) {
-    const { state: propsState } = this.props;
-    const { item } = propsState;
-    let className = "Comment";
-    if ( item.constructor.name === "Project" ) {
-      className = "Project";
-    } else if ( item.constructor.name === "Observation" || item.quality_grade ) {
-      className = "Observation";
-    } else if ( item.constructor.name === "Identification" || item.taxon ) {
-      className = "Identification";
-    } else if ( item.constructor.name === "Photo" || item.square_url ) {
-      className = "Photo";
-    } else if ( item.constructor.name === "Sound" || item.file_url ) {
-      className = "Sound";
-    }
-    return className;
   }
 
   render( ) {

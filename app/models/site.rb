@@ -322,6 +322,9 @@ class Site < ApplicationRecord
   # we've used them all
   preference :twitter_sign_in, :boolean, default: false
 
+  # fathom analytics, https://usefathom.com/
+  preference :fathom_analytics_tracker_id, :string
+
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in

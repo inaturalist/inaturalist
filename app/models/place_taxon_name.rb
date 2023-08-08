@@ -4,7 +4,7 @@ class PlaceTaxonName < ApplicationRecord
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   has_one :taxon, through: :taxon_name
   validates_uniqueness_of :place_id, :scope => :taxon_name_id
-  validates_presence_of :place_id, :taxon_name
+  validates_presence_of :place, :taxon_name
 
   before_create do |ptn|
     ptn.position = PlaceTaxonName.where( place: ptn.place ).joins(:taxon_name).

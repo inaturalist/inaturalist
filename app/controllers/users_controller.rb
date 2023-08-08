@@ -303,7 +303,10 @@ class UsersController < ApplicationController
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
       @favorite_listed_taxa = @favorites_list.listed_taxa.
-        includes(taxon: [:photos, :taxon_names ]).
+        includes(taxon: [
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ]).
         paginate(page: 1, per_page: 15).order("listed_taxa.id desc")
     end
 
@@ -533,8 +536,11 @@ class UsersController < ApplicationController
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
             includes(:user, :resolver, :comments).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
-            includes(:taxon_names).limit(5).active
+
+          # overfetching and limiting in Ruby to avoid an inefficient
+          # query plan when sorting by ID descending in PostgreSQL
+          @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
+            sort{ |t| t.id }[0...5]
         end
         render layout: "bootstrap"
       end
@@ -1037,7 +1043,10 @@ class UsersController < ApplicationController
   end
 
   def resend_confirmation
+    current_user.send( :generate_confirmation_token! )
     current_user.send_confirmation_instructions
+    current_user.wait_for_index_refresh = true
+    current_user.update( confirmation_sent_at: Time.now.utc )
     respond_to do | format |
       format.json do
         if current_user.valid?
@@ -1265,6 +1274,7 @@ protected
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
+      :prefers_gbif_layer_maps,
       :prefers_identification_email_notification,
       :prefers_identify_side_bar,
       :prefers_message_email_notification,

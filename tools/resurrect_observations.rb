@@ -260,10 +260,14 @@ bundle exec rails r "User.elastic_index!( ids: [#{@user.id}])"
   EOT
 end
 
+# we could also delete deleted_photos for photos that are being resurrected
+
 if OPTS.from_user_resurrection && @user
   puts
   puts "Indexing commands for a resurrected users data"
   puts "  Observation.elastic_index!( scope: Observation.where( user_id: #{@user.id} ) )"
   puts "  Observation.elastic_index!( scope: Observation.joins( :identifications ).where( \"identifications.user_id=#{@user.id}\" ) )"
+  puts "  User.update_identifications_counter_cache( #{@user.id} )"
+  puts "  User.update_observations_counter_cache( #{@user.id} )"
   puts "  User.find( #{@user.id} ).elastic_index!"
 end

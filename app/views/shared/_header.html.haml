@@ -122,7 +122,3 @@
             %li= link_to t(:account_settings), edit_person_path(current_user), :class => 'profile_link'
             %li.divider{role: "separator"}
             %li.signout= link_to t(:sign_out), logout_path
-  - # "initiative branding" should only appear in the header for signed out users and only if it doesn't appear in a more appropriate place, like the footer
-  - if !logged_in? && @footless && @site && @site.id == Site.default.id
-    #initiative-branding.navtabs
-      %img{ src: image_path( "nat-geo-cas-logos-color.svg" ), width: 179, height: 31 }

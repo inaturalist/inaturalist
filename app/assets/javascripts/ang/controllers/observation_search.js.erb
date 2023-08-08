@@ -346,7 +346,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.place_id = $scope.selectedPlace.id;
         $scope.updatePlaceAutocomplete( );
       }
-    } else if( !_.isArray( $scope.params.place_id) ) {
+    } else if( !Array.isArray( $scope.params.place_id) ) {
       $scope.alignMapOnSearch = false;
       $scope.params.place_id = "any";
       $scope.updatePlaceAutocomplete( );
@@ -385,13 +385,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( _.isString( $scope.params.place_id ) ) {
       $scope.params.place_id = _.filter( $scope.params.place_id.split(","), _.identity );
     }
-    if( _.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
+    if( Array.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
       $scope.params.place_id = $scope.params.place_id[0];
     }
-    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
+    if( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
       $scope.params.place_id = parseInt( $scope.params.place_id );
     }
-    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
+    if( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
       // load place name and polygon from ID
       PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
@@ -500,7 +500,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       var urlParams = ObservationsFactory.processParams( _.fromPairs( newParams ), $scope.possibleFields );
       urlParams = _.mapValues( urlParams, function( v, k ) {
         // arrays turned to comma-delimited lists for URLs
-        if( _.isArray( v ) ) { return v.join(","); }
+        if( Array.isArray( v ) ) { return v.join(","); }
         // allow `photos=any` when the default value of true is changed
         if( $scope.defaultParams[ k ] === true && v !== true ) { v = "any"; }
         return v;
@@ -682,6 +682,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.pagination.perPage = $scope.pagination.maxSections * $scope.pagination.perSection;
     $scope.pagination.searching = true;
     $scope.pagination.stopped = false;
+    $scope.identifiersPagination = $scope.identifiersPagination || { };
+    $scope.identifiersPagination.searching = true;
+    $scope.observersPagination = $scope.observersPagination || { };
+    $scope.observersPagination.searching = true;
     $scope.speciesPagination = $scope.speciesPagination || { };
     $scope.speciesPagination.page = 1;
     $scope.speciesPagination.perPage = 50;
@@ -777,11 +781,30 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         return;
       }
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      var speciesParams = _.extend( { }, statsParams, {
-        per_page: $scope.speciesPagination.perPage
-      } );
-      ObservationsFactory.speciesCounts( speciesParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
+      $scope.statsParams = statsParams;
+      $scope.statsParamsOnlyCount = _.extend( { }, statsParams, { per_page: 0 } );
+
+      var dataLoadPromises = [$scope.loadSpecies];
+      $scope.currentView === "identifiers"
+        ? dataLoadPromises.unshift( $scope.loadIdentifiers )
+        : dataLoadPromises.push( $scope.loadIdentifiers );
+      $scope.currentView === "observers"
+        ? dataLoadPromises.unshift( $scope.loadObservers )
+        : dataLoadPromises.push( $scope.loadObservers );
+
+      dataLoadPromises.reduce( function( p, promise ) {
+         return p.then( function( ) { return promise( thisSearchTime ); } );
+      }, Promise.resolve( ) );
+    } );
+  };
+
+  $scope.loadSpecies = function( searchTime ) {
+    var speciesParams = _.extend( { }, $scope.statsParams, {
+      per_page: $scope.speciesPagination.perPage
+    } );
+    return ObservationsFactory.speciesCounts( speciesParams )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
         $scope.taxa = _.map( response.data.results, function( r ) {
           var t = new iNatModels.Taxon( r.taxon );
@@ -790,59 +813,107 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         });
         $scope.speciesPagination.searching = false;
       } );
-      ObservationsFactory.identifiers( statsParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
+  }
+
+  $scope.loadIdentifiers = function( searchTime ) {
+    return ObservationsFactory
+      .identifiers( $scope.currentView === "identifiers"
+        ? $scope.statsParams
+        : $scope.statsParamsOnlyCount )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
         $scope.totalIdentifiers = response.data.total_results;
         $scope.identifiers = _.map( response.data.results, function( r ) {
           var u = new iNatModels.User( r.user );
           u.resultCount = r.count;
           return u;
-        });
-        // identifiers is currently on average a little faster than observers.
-        // Query for identifiers first, and only when that's done fetch observers
-        // to help spread out query load
-        ObservationsFactory.observers( statsParams ).then( function( response ) {
-          if( $scope.lastSearchTime != thisSearchTime ) { return; }
-          $scope.totalObservers = response.data.total_results;
+        } );
+        $scope.identifiersPagination.searching = false;
+      } );
+  }
+
+  $scope.loadObservers = function( searchTime ) {
+    return ObservationsFactory
+      .observers( $scope.currentView === "observers"
+        ? $scope.statsParams
+        : $scope.statsParamsOnlyCount )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
+        $scope.totalObservers = response.data.total_results;
+        $scope.observers = _.map( response.data.results, function( r ) {
+          var u = new iNatModels.User( r.user );
+          u.observationCount = r.observation_count;
+          u.speciesCount = r.species_count;
+          return u;
+        } );
+        $scope.observersPagination.searching = false;
+      } );
+  }
+
+  $scope.showMoreIdentifiers = function( ) {
+    $scope.identifiersPagination = $scope.identifiersPagination || { };
+    if ( $scope.totalIdentifiers > 0 && _.isEmpty( $scope.identifiers ) ) {
+      if ( $scope.identifiersPagination.searching === true ) { return; }
+      $scope.identifiersPagination.searching = true;
+      ObservationsFactory
+        .identifiers( _.extend( { }, $scope.statsParams, { no_total_hits: true } ) )
+        .then( function( response ) {
+          $scope.identifiers = _.map( response.data.results, function( r ) {
+            var u = new iNatModels.User( r.user );
+            u.resultCount = r.count;
+            return u;
+          } );
+          $scope.identifiersPagination.searching = false;
+      } );
+      return;
+    }
+    // simple "pagination" of results already fetched, so we're not
+    // rendering too many DOM elements, which need images fetched
+    $scope.numberIdentifiersShown += 20;
+  };
+
+  $scope.showMoreObservers = function( ) {
+    $scope.observersPagination = $scope.observersPagination || { };
+    if ( $scope.totalObservers > 0 && _.isEmpty( $scope.observers ) ) {
+      if ( $scope.observersPagination.searching === true ) { return; }
+      $scope.observersPagination.searching = true;
+      ObservationsFactory
+        .observers( _.extend( { }, $scope.statsParams, { no_total_hits: true } ) )
+        .then( function( response ) {
           $scope.observers = _.map( response.data.results, function( r ) {
             var u = new iNatModels.User( r.user );
             u.observationCount = r.observation_count;
             u.speciesCount = r.species_count;
             return u;
-          });
-        });
-      });
-    });
-  };
-  // simple "pagination" of results already fetched, so we're not
-  // rendering too many DOM elements, which need images fetched
-  $scope.showMoreIdentifiers = function( ) {
-    $scope.numberIdentifiersShown += 20;
-  };
-  $scope.showMoreObservers = function( ) {
+          } );
+          $scope.observersPagination.searching = false;
+      } );
+      return;
+    }
+    // simple "pagination" of results already fetched, so we're not
+    // rendering too many DOM elements, which need images fetched
     $scope.numberObserversShown += 20;
   };
+
   $scope.showMoreTaxa = function( ) {
     $scope.speciesPagination = $scope.speciesPagination || { };
-    if( !$scope.taxa || _.isEmpty( $scope.speciesPagination ) ) { return; }
+    if ( !$scope.taxa || _.isEmpty( $scope.speciesPagination ) ) { return; }
     if ( $scope.speciesPagination.page >= 20 ||
       ( $scope.speciesPagination.page * $scope.speciesPagination.perPage ) > $scope.totalSpecies ) {
       $scope.speciesPagination.stopped = true;
     }
-    if( $scope.speciesPagination.searching === true ) { return; }
-    if( $scope.speciesPagination.stopped === true ) { return; }
+    if ( $scope.speciesPagination.searching === true ) { return; }
+    if ( $scope.speciesPagination.stopped === true ) { return; }
     $scope.speciesPagination.searching = true;
     $scope.speciesPagination.page += 1;
 
-    var taxonParams = ObservationsFactory.processParamsForAPI( _.extend( { },
-      $scope.params,
-      iNaturalist.localeParams( ), {
+    var taxonParams = _.extend( { },
+      $scope.statsParams,
+      {
         page: $scope.speciesPagination.page,
         per_page: $scope.speciesPagination.perPage
       }
-    ), $scope.possibleFields );
-    taxonParams = _.omit( taxonParams, [ "order_by", "order" ] );
-
+    );
     ObservationsFactory.speciesCounts( taxonParams ).then( function( response ) {
       $scope.totalSpecies = response.data.total_results;
       $scope.taxa = $scope.taxa.concat( _.map( response.data.results, function( r ) {
@@ -866,10 +937,22 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.pagination.section += 1;
     $scope.pagination.searching = true;
     var processedParams = ObservationsFactory.processParamsForAPI(
-      _.extend( { }, $scope.params, iNaturalist.localeParams( ),
-        { page: $scope.apiPage( ), per_page: $scope.pagination.perSection } ), $scope.possibleFields);
+      _.extend(
+        { },
+        $scope.params,
+        iNaturalist.localeParams( ),
+        {
+          page: $scope.apiPage( ),
+          per_page: $scope.pagination.perSection
+        }
+      ), $scope.possibleFields);
+    var searchHasManyResults = $scope.pagination.total > 10000;
+    if ( searchHasManyResults ) {
+      processedParams.no_total_hits = true;
+    }
+
     ObservationsFactory.search( processedParams ).then( function( response ) {
-      if( ( response.data.total_results <= ( response.data.page * response.data.per_page ) ) ||
+      if( ( ( response.data.total_results <= ( response.data.page * response.data.per_page ) ) && !searchHasManyResults ) ||
           ( $scope.pagination.section >= $scope.pagination.maxSections ) ) {
         $scope.pagination.stopped = true;
       }
@@ -1020,6 +1103,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.drawing.dragIcon.setVisible(false);
     }
   };
+  $scope.searchForNearbyPlaces = function( ) {
+    $rootScope.$emit( "searchForNearbyPlaces" );
+  }
   $scope.orderBy = function( order ) {
     if ($scope.params.order_by == order) {
       $scope.params.order = ($scope.params.order == 'asc' ? 'desc' : 'asc');
@@ -1366,7 +1452,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.paramsForUrl = function( options ) {
     options = options || { };
     var urlParams = _.extend( { }, $scope.params );
-    if( urlParams.month && !_.isArray( urlParams.month ) ) {
+    if( urlParams.month && !Array.isArray( urlParams.month ) ) {
       urlParams.month = urlParams.month.split(",");
     }
     urlParams.iconic_taxa = _.keys( urlParams._iconic_taxa );
@@ -1582,7 +1668,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   });
   $scope.searchForNearbyPlaces = function( options, callback ) {
     if ( typeof ( google ) === "undefined" ) return;
-    $scope.$parent.searchingNearbyPlaces = true;
     var onMap = $scope.viewing("observations", "map");
     if( $scope.$parent.placeSearchBox && $scope.map && onMap ) {
       $scope.$parent.placeSearchBox.setBounds( $scope.map.getBounds( ) );
@@ -1594,7 +1679,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     } else if( $scope.mapBounds ) {
       options.bounds = options.bounds || $scope.mapBounds;
     }
-    if( options.bounds && $scope.drawing.currentShape !== "circle" ) {
+    if( options.bounds ) {
       options.params.swlat = options.bounds.getSouthWest( ).lat( );
       options.params.swlng = options.bounds.getSouthWest( ).lng( );
       options.params.nelat = options.bounds.getNorthEast( ).lat( );
@@ -1629,7 +1714,13 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $scope.nearbyPlaceSearch = function ( options, callback ) {
     callback = callback || $scope.nearbyPlaceCallback;
-    PlacesFactory.nearby( options.params ).then( callback );
+    $scope.$parent.nearbyPlaces = null;
+    $scope.$parent.searchingNearbyPlaces = true;
+    PlacesFactory.nearby( options.params )
+      .then( function( response ) {
+        $scope.$parent.searchingNearbyPlaces = false;
+        callback( response );
+      } );
   };
   $scope.nearbyPlaceCallback = function( response ) {
     if( !( response && response.data && response.data.results ) ) { return { }; }
@@ -1645,7 +1736,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       };
     }
     $scope.$parent.nearbyPlaces = nearbyPlaces;
-    $scope.$parent.searchingNearbyPlaces = false;
     $scope.lastMoveTime = null;
   };
   $rootScope.$on( "showNearbyPlace", function( event, place ) {
@@ -1689,20 +1779,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $scope.delayedOnMove = function( ) {
     // show the `Redo Search` button when the map moves
     if( !$scope.$parent.searchingNearbyPlaces ) {
-      $scope.$parent.searchingNearbyPlaces = true;
       if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
     }
     $scope.enableRedoSearchInMapButton( );
     var time = new Date( ).getTime( );
     $scope.lastMoveTime = time;
     $scope.mapBounds = $scope.map.getBounds( );
-    setTimeout( function( ) {
-      // only perform one nearby place search, once
-      // the map has stopped moving for a half second
-      if( $scope.lastMoveTime === time ) {
-        $rootScope.$emit( "searchForNearbyPlaces" );
-      }
-    }, 500 );
   };
   $scope.enableRedoSearchInMapButton = function( ) {
     var time = new Date( ).getTime( );
@@ -1756,7 +1838,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if ($scope.map) {
       $scope.$parent.disableRedoSearch = $scope.map.getZoom() <= 2;
     }
-    $rootScope.$emit( "searchForNearbyPlaces" );
   };
   $rootScope.$on( "showInfowindow", function( event, o ) {
     if ( typeof ( google ) === "undefined" ) return;
@@ -1822,7 +1903,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       var sw = $scope.selectedPlaceLayer.getBounds().getSouthWest();
       $scope.setRectBounds(ne, sw);
     }
-    $rootScope.$emit( "searchForNearbyPlaces" );
+    $scope.$apply( );
   };
 
   $scope.initDragIcon = function ( shape ) {

@@ -217,12 +217,6 @@ class ProjectsController < ApplicationController
       @list_numerator = list_observed_and_total[:numerator]
 
       format.html do
-        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
-          where("provider_authorizations.provider_name = 'facebook'").
-          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
-          map(&:provider_uid)
-        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
-        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         # check if the project can be previewed as a new-style project
         if params.has_key?(:collection_preview) && logged_in? && !@project.is_new_project?
           project_user = current_user.project_users.where(project_id: @project.id).first

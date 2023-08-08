@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "~> 3.0.4"
 
-gem "rails", "6.1.7.2"
+gem "rails", "6.1.7.4"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
@@ -24,9 +24,11 @@ gem "capistrano-passenger"
 gem "capistrano-rails"
 gem "capistrano-rvm"
 gem "chroma"
-gem "chronic"
+
+# DST crossover fixes: https://github.com/mojombo/chronic/pull/396
+gem "chronic", git: "https://github.com/stanhu/chronic.git", ref: "7ea371f"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
-gem "coffee-rails"
+# gem "coffee-rails"
 gem "daemons"
 gem "dalli"
 gem "dbf" # Needed for georuby shapefile support
@@ -59,7 +61,6 @@ gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
 gem "json"
-gem "koala"
 gem "makara", git: "https://github.com/instacart/makara.git", tag: "v0.6.0.pre"
 gem "multi_json", "~> 1.15.0"
 gem "nokogiri"
@@ -67,7 +68,6 @@ gem "non-stupid-digest-assets"
 gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"
 gem "omniauth"
 gem "omniauth-apple"
-gem "omniauth-facebook"
 gem "omniauth-flickr", git: "https://github.com/pleary/omniauth-flickr.git",
 ref: "fdfd81f47c33a21953ad97e0b5e2749b89989ef0"
 gem "omniauth-google-oauth2"

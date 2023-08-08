@@ -1,3 +1,4 @@
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
 import _ from "lodash";
 import React from "react";
 import inatjs from "inaturalistjs";
@@ -44,6 +45,9 @@ const OBSERVATION_FIELDS = {
   place_guess: true,
   latitude: true,
   longitude: true,
+  identifications: {
+    current: true
+  },
   quality_grade: true,
   photos: {
     id: true,
@@ -238,7 +242,8 @@ export function infiniteScrollObservations( previousScrollIndex, nextScrollIndex
     let params = {
       ...project.search_params,
       per_page: 50,
-      page: project.filtered_observations_page + 1
+      page: project.filtered_observations_page + 1,
+      no_total_hits: true
     };
     if ( config.observationFilters ) {
       params = Object.assign( params, config.observationFilters );
@@ -308,12 +313,24 @@ export function fetchSpecies( ) {
   };
 }
 
-export function fetchObservers( ) {
+export function fetchObservers( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
-    if ( !project ) { return null; }
-    const { testingApiV2 } = config;
-    const params = { ...project.search_params };
+    if ( !project
+      || project.all_observers_loaded
+      || project.observers_loading
+    ) { return null; }
+    const { testingApiV2, selectedTab } = config;
+    const params = {
+      ...project.search_params,
+      per_page: 0
+    };
+    if ( project.project_type !== "umbrella" || selectedTab === "observers" ) {
+      noPageLimit = true;
+    }
+    if ( noPageLimit ) {
+      delete params.per_page;
+    }
     if ( testingApiV2 ) {
       params.fields = {
         user: {
@@ -322,10 +339,13 @@ export function fetchObservers( ) {
         }
       };
     }
+    dispatch( setAttributes( { observers_loading: true } ) );
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
+        observers_loading: false,
         observers_loaded: true,
-        observers: response
+        observers: response,
+        all_observers_loaded: noPageLimit
       } ) );
     } ).catch( handleAPIError );
   };
@@ -351,6 +371,16 @@ export function fetchSpeciesObservers( ) {
         species_observers: response
       } ) );
     } ).catch( handleAPIError );
+  };
+}
+
+export function setObserversSort( observersSort ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( );
+    if ( observersSort === "species" && !project.species_observers_loaded ) {
+      dispatch( fetchSpeciesObservers( ) );
+    }
+    dispatch( setConfig( { observersSort } ) );
   };
 }
 
@@ -436,7 +466,7 @@ export function fetchIconicTaxaCounts( ) {
 export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.project_type !== "umbrella" ) { return Promise.resolve( ); }
     const { testingApiV2 } = config;
     const params = { ...project.search_params };
     if ( testingApiV2 ) {
@@ -502,25 +532,31 @@ export function fetchIdentificationCategories( ) {
 }
 
 export function fetchOverviewData( ) {
-  return ( dispatch, getState ) => {
-    const { project } = getState( );
+  return async ( dispatch, getState ) => {
+    const { project, config } = getState( );
     if ( project.hasInsufficientRequirements( )
       || ( project.startDate && !project.started && project.durationToEvent.asDays( ) > 1 ) ) {
       dispatch( fetchMembers( ) );
       dispatch( fetchPosts( ) );
       return;
     }
-    if ( project.project_type === "umbrella" ) {
-      dispatch( fetchUmbrellaStats( ) )
-        .then( ( ) => dispatch( fetchRecentObservations( ) ) );
-    } else {
-      dispatch( fetchRecentObservations( ) );
+    const dataFetchPromises = [];
+    dataFetchPromises.push( fetchRecentObservations );
+    dataFetchPromises.push( fetchUmbrellaStats );
+    config.selectedTab === "species"
+      ? dataFetchPromises.unshift( fetchSpecies )
+      : dataFetchPromises.push( fetchSpecies );
+    config.selectedTab === "observers"
+      ? dataFetchPromises.unshift( fetchObservers )
+      : dataFetchPromises.push( fetchObservers );
+    config.selectedTab === "identifiers"
+      ? dataFetchPromises.unshift( fetchIdentifiers )
+      : dataFetchPromises.push( fetchIdentifiers );
+    dataFetchPromises.unshift( fetchMembers );
+    for ( const dataFetchPromise of dataFetchPromises ) {
+      // eslint-disable-next-line no-await-in-loop
+      await dispatch( dataFetchPromise( ) );
     }
-    dispatch( fetchMembers( ) )
-      .then( ( ) => dispatch( fetchSpecies( ) ) );
-    dispatch( fetchObservers( ) )
-      .then( ( ) => dispatch( fetchIdentifiers( ) ) )
-      .then( ( ) => dispatch( fetchSpeciesObservers( ) ) );
   };
 }
 

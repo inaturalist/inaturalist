@@ -209,6 +209,42 @@ function translateWithConsistentCase( key, options = {} ) {
   return I18n.t( `${key}_`, options );
 }
 
+function parseRailsErrorsResponse( text ) {
+  const body = JSON.parse( text );
+  let railsErrors;
+  if ( body && body.errors && Array.isArray( body.errors ) && _.isObject( body.errors[0] )
+    && body.errors[0].from === "externalAPI" ) {
+    const railsErrorJson = JSON.parse( body.errors[0].message );
+    if ( railsErrorJson.errors ) {
+      // apiv2 passes on errors from rails in an object, e.g.:
+      //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
+      railsErrors = railsErrorJson.errors;
+    } else {
+      railsErrors = _.flatten( _.map( railsErrorJson, ( errors, attr ) => (
+        _.map( errors, error => `${attr}: ${error}` )
+      ) ) );
+    }
+  } else if ( body && body.error && body.error.original && body.error.original.errors ) {
+    // sometimes it's an array
+    railsErrors = body.error.original.errors;
+  } else if ( body && body.error && body.error.original && body.error.original.error ) {
+    // sometimes it's just a string
+    railsErrors = [body.error.original.error];
+  } else if ( body && body.error && body.error.original ) {
+    // sometimes we get rails errors keyed by attribute
+    railsErrors = _.flatten( _.map( body.error.original, ( errors, attr ) => (
+      _.map( errors, error => `${attr}: ${error}` )
+    ) ) );
+  } else if ( body && body.error ) {
+    if ( typeof ( body.error ) === "string" ) {
+      railsErrors = JSON.parse( body.error ).errors;
+    } else if ( body.error.errors ) {
+      railsErrors = body.error.errors;
+    }
+  }
+  return railsErrors;
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -261,6 +297,7 @@ export {
   isBlank,
   numberWithCommas,
   objectToComparable,
+  parseRailsErrorsResponse,
   resizeUpload,
   shortFormattedNumber,
   stripTags,

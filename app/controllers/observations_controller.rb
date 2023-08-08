@@ -436,16 +436,7 @@ class ObservationsController < ApplicationController
     if @place
       @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     end
-    
-    if params[:facebook_photo_id]
-      begin
-        sync_facebook_photo
-      rescue Koala::Facebook::APIError => e
-        raise e unless e.message =~ /OAuthException/
-        redirect_to url_for( controller: "facebook", action: "options" )
-        return
-      end
-    end
+
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
     sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
     sync_local_photo if params[:local_photo_id]
@@ -471,8 +462,8 @@ class ObservationsController < ApplicationController
     if @taxon
       @observation.taxon = @taxon
       @observation.species_guess = if @taxon.common_name
-        @taxon.common_name.name
-      else 
+        @taxon.common_name( user: current_user ).name
+      else
         @taxon.name
       end
     elsif !params[:taxon_name].blank?
@@ -503,16 +494,7 @@ class ObservationsController < ApplicationController
       @observation.longitude = @observation.private_longitude
       @observation.place_guess = @observation.private_place_guess
     end
-    
-    if params[:facebook_photo_id]
-      begin
-        sync_facebook_photo
-      rescue Koala::Facebook::APIError => e
-        raise e unless e.message =~ /OAuthException/
-        redirect_to url_for( controller: "facebook", action: "options" )
-        return
-      end
-    end
+
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
     sync_local_photo if params[:local_photo_id]
@@ -2346,7 +2328,6 @@ class ObservationsController < ApplicationController
       return true
     end
     if Rails.env.development?
-      FacebookPhoto
       PicasaPhoto
       LocalPhoto
       FlickrPhoto
@@ -2371,11 +2352,7 @@ class ObservationsController < ApplicationController
         @default_photo_source = 'local'
       end
     end
-    if params[:facebook_photo_id]
-      if @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /facebook/i}
-        @default_photo_source = 'facebook'
-      end
-    elsif params[:flickr_photo_id]
+    if params[:flickr_photo_id]
       if @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /flickr/i}
         @default_photo_source = 'flickr'
       end
@@ -2413,15 +2390,7 @@ class ObservationsController < ApplicationController
       if ident.respond_to?(:source_options)
         memo[ident.class.name.underscore.humanize.downcase.split.first] = ident.source_options
       elsif ident.is_a?(ProviderAuthorization)
-        if ident.provider_name == "facebook"
-          memo[:facebook] = {
-            :title => 'Facebook', 
-            :url => '/facebook/photo_fields', 
-            :contexts => [
-              ["Your photos", 'user']
-            ]
-          }
-        elsif ident.provider_name =~ /google/
+        if ident.provider_name =~ /google/
           memo[:picasa] = {
             :title => 'Google Photos', 
             :url => '/picasa/photo_fields', 

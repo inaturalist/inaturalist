@@ -28,6 +28,7 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
+  validate :user_submitted_names_need_notes
   SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
@@ -63,10 +64,12 @@ class TaxonName < ApplicationRecord
     DAVAWENYO: "Davawenyo",
     DUTCH: "Dutch",
     ENGLISH: "English",
+    ESPERANTO: "Esperanto",
     ESTONIAN: "Estonian",
     FINNISH: "Finnish",
     FRENCH: "French",
     GELA: "Gela",
+    GEORGIAN: "Georgian",
     GERMAN: "German",
     GREEK: "Greek",
     HAWAIIAN: "Hawaiian",
@@ -97,7 +100,7 @@ class TaxonName < ApplicationRecord
     RUSSIAN: "Russian",
     SANTALI: "Santali",
     SERBIAN: "Serbian",
-    SETSWANA: "Setswana",
+    TSWANA: "Tswana",
     SINHALA: "Sinhala",
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
@@ -198,6 +201,7 @@ class TaxonName < ApplicationRecord
   alias scientific? is_scientific_names?
 
   attr_accessor :skip_indexing
+  attr_accessor :user_submission
 
   def to_s
     "<TaxonName #{id}: #{name} in #{lexicon}>"
@@ -258,6 +262,7 @@ class TaxonName < ApplicationRecord
     json = {
       name: name.blank? ? nil : name,
       locale: locale_for_lexicon,
+      lexicon: parameterized_lexicon,
       position: position,
       place_taxon_names: place_taxon_names.map( &:as_indexed_json )
     }
@@ -491,6 +496,14 @@ class TaxonName < ApplicationRecord
     { locale: match_loc, lexicons: match_lexes }
   end
 
+  def self.all_lexicons
+    Rails.cache.fetch( "TaxonName::all_lexicons", expires_in: 1.hour ) do
+      Hash[TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do |l|
+        [l.parameterize, l]
+      end.sort].filter{ |k,v| !k.blank? }
+    end
+  end
+
   private
 
   def english_lexicon_if_exists
@@ -522,4 +535,26 @@ class TaxonName < ApplicationRecord
   def parameterized_lexicon_present
     errors.add( :lexicon, :should_be_in_english ) if lexicon.parameterize.empty?
   end
+
+  def user_submitted_names_need_notes( options = { } )
+    return unless user_submission
+    return unless options[:ignore_field_checks] || name_changed? ||
+      is_valid_changed? || lexicon_changed? ||
+      place_taxon_names.any?{ |ptn| ptn.changes.without( :position ).any? }
+    if audit_comment.blank? || audit_comment.length < 10
+      errors.add( :audit_comment, :needs_to_be_at_least_10_characters )
+    end
+  end
+
+  # audited was setting the audit_comment to nil before a `before_destroy` callback was being
+  # called. So even if the destroy was aborted and the audit transaction was rolled back, the
+  # audited_comment was nil after the abort, and that prevented the audit_comment from being
+  # displayed in the redisplayed taxon name edit form. This ensures the destroy validations
+  # happen before audited has a change to delete the audit_comment
+  def audit_destroy
+    user_submitted_names_need_notes( ignore_field_checks: true )
+    throw( :abort ) unless errors.details[:audit_comment].blank?
+    super
+  end
+
 end
