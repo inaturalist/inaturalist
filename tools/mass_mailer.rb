@@ -35,6 +35,7 @@ require "optimist"
   opt :skip_recent, "Skip users created in the last month", type: :boolean
   opt :locale, "Locale to filter users by. Matches sublocales, so `es` will match `es-MX`", type: :string
   opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
+  opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean, default: false
 end
 
 mailer_method = ARGV.shift
@@ -79,7 +80,8 @@ def sendgrid_validation_verdict( email )
   errors = [
     Timeout::Error,
     RestClient::ServiceUnavailable,
-    RestClient::TooManyRequests
+    RestClient::TooManyRequests,
+    RestClient::BadGateway
   ]
   response = begin
     try_and_try_again( errors, exponential_backoff: true, sleep: 3 ) do
@@ -198,18 +200,20 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       next
     end
 
-    verdict = sendgrid_validation_verdict( recipient.email )
-    unless verdict == "Valid"
-      puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict}" if debug
-      case verdict
-      when "Invalid"
-        sendgrid_invalid += 1
-      when "Risky"
-        sendgrid_risky += 1
-      else
-        sendgrid_failed += 1
+    unless @opts.skip_sendgrid_validation
+      verdict = sendgrid_validation_verdict( recipient.email )
+      unless verdict == "Valid"
+        puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict}" if debug
+        case verdict
+        when "Invalid"
+          sendgrid_invalid += 1
+        when "Risky"
+          sendgrid_risky += 1
+        else
+          sendgrid_failed += 1
+        end
+        next
       end
-      next
     end
 
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
