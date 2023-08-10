@@ -76,6 +76,10 @@ class Sound < ApplicationRecord
     user.id == user_id || observations.exists?(:user_id => user.id)
   end
 
+  def url
+    file&.url
+  end
+
   def self.from_observation_params(params, fieldset_index, owner)
     sounds = []
     unless Rails.env.production?
