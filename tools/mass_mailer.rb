@@ -35,6 +35,7 @@ require "optimist"
   opt :skip_recent, "Skip users created in the last month", type: :boolean
   opt :locale, "Locale to filter users by. Matches sublocales, so `es` will match `es-MX`", type: :string
   opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
+  opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean, default: false
 end
 
 mailer_method = ARGV.shift
@@ -73,6 +74,28 @@ end
 
 if @opts.locale && @opts.locales
   Optimist.die "You can't specify a locale and locales. Choose one."
+end
+
+def sendgrid_validation_verdict( email )
+  errors = [
+    Timeout::Error,
+    RestClient::ServiceUnavailable,
+    RestClient::TooManyRequests,
+    RestClient::BadGateway
+  ]
+  response = begin
+    try_and_try_again( errors, exponential_backoff: true, sleep: 3 ) do
+      RestClient.post(
+        "https://api.sendgrid.com/v3/validations/email",
+        { email: email }.to_json,
+        { "Authorization" => "Bearer #{CONFIG.sendgrid.validation_api_key}" }
+      )
+    end
+  rescue *errors
+    return "Failed"
+  end
+  json = JSON.parse( response )
+  json["result"]["verdict"]
 end
 
 test_users = @opts.users.to_s.split( "," )
@@ -117,6 +140,9 @@ end
 @emailed = 0
 @failed = 0
 @failures_by_user_id = {}
+@sendgrid_risky = 0
+@sendgrid_invalid = 0
+@sendgrid_failed = 0
 
 num_processes = @opts.num_processes
 min_id = @opts.min_id
@@ -137,6 +163,9 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
   process_emailed = 0
   process_failed = 0
   process_failures_by_user_id = {}
+  sendgrid_risky = 0
+  sendgrid_invalid = 0
+  sendgrid_failed = 0
   if debug
     puts "Query: #{scope.to_sql}"
   end
@@ -171,6 +200,22 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       next
     end
 
+    unless @opts.skip_sendgrid_validation
+      verdict = sendgrid_validation_verdict( recipient.email )
+      unless verdict == "Valid"
+        puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict}" if debug
+        case verdict
+        when "Invalid"
+          sendgrid_invalid += 1
+        when "Risky"
+          sendgrid_risky += 1
+        else
+          sendgrid_failed += 1
+        end
+        next
+      end
+    end
+
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
 
     begin
@@ -191,6 +236,9 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     emailed: process_emailed,
     failed: process_failed,
     failures_by_user_id: process_failures_by_user_id,
+    sendgrid_risky: sendgrid_risky,
+    sendgrid_invalid: sendgrid_invalid,
+    sendgrid_failed: sendgrid_failed,
     start: start,
     limit: limit,
     min_id: min_id
@@ -204,11 +252,15 @@ results.each do | result |
     "#{result[:emailed]} emailed, #{result[:failed]} failed"
   @emailed += result[:emailed]
   @failed += result[:failed]
+  @sendgrid_risky += result[:sendgrid_risky]
+  @sendgrid_invalid += result[:sendgrid_invalid]
+  @sendgrid_failed += result[:sendgrid_failed]
   @failures_by_user_id = @failures_by_user_id.merge( result[:failures_by_user_id] )
 end
 
 puts
 puts "#{@emailed} users emailed, #{@failed} failed in #{Time.now - @start}s"
+puts "Sendgrid validation: #{@sendgrid_risky} risky, #{@sendgrid_invalid} invalid, #{@sendgrid_failed} failed"
 unless @failures_by_user_id.blank?
   puts "Failure user IDs: #{@failures_by_user_id.keys.join( ', ' )}"
   puts "First 5 failures:"
