@@ -42,6 +42,8 @@ module DarwinCore
       FileUtils.mkdir_p @opts[:work_path], :mode => 0755
       logger.debug "Using working directory: #{@opts[:work_path]}"
 
+      @places_for_site = Site.find_by_id( @opts[:places_for_site].to_i )
+
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
       @taxa = [@opts[:taxon]].flatten.compact.map do |taxon|
@@ -232,7 +234,12 @@ module DarwinCore
     def observations_params
       params = {}
       params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
-      params[:place_id] = @place.id if @place
+      params[:place_id] = []
+      if @place
+        params[:place_id].push( @place.id )
+      elsif @places_for_site
+        params[:place_id] = ( [@places_for_site.place_id] + @places_for_site.export_places.map( &:id ) ).compact
+      end
       params[:taxon_ids] = @taxa.map(&:id) if @taxa
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]

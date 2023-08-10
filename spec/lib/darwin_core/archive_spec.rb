@@ -311,6 +311,30 @@ describe DarwinCore::Archive, "make_project_observations_data" do
   end
 end
 
+describe DarwinCore::Archive, "observations_params" do
+  it "should include parameters for place" do
+    p = make_place_with_geom
+    archive = DarwinCore::Archive.new( place: p.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
+  end
+
+  it "should include parameters for all site places" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id, site_place.place_id )
+  end
+
+  it "should prioritize place over places_for_site" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( place: p.id, places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
+  end
+end
+
 describe DarwinCore::Archive, "make_occurrence_data" do
   elastic_models( Observation, Project, Taxon )
 
