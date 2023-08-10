@@ -57,18 +57,15 @@ class ObservationModal extends React.Component {
     // was created while it wasn't visible
     const { tab, observation } = this.props;
     if ( tab === "info" && prevProps.tab !== "info" ) {
-      const that = this;
-      setTimeout( ( ) => {
-        const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
-        if ( typeof ( google ) === "undefined" ) { return; }
-        google.maps.event.trigger( map, "resize" );
-        if ( observation && observation.latitude ) {
-          map.setCenter( new google.maps.LatLng(
-            observation.latitude,
-            observation.longitude
-          ) );
-        }
-      }, 500 );
+      const map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+      if ( typeof ( google ) === "undefined" ) { return; }
+      google.maps.event.trigger( map, "resize" );
+      if ( observation && observation.latitude ) {
+        map.setCenter( new google.maps.LatLng(
+          observation.latitude,
+          observation.longitude
+        ) );
+      }
     }
     // This method fires *a lot* so we need to be very specific about when we
     // want to focus on the pane to support keyboard scrolling
