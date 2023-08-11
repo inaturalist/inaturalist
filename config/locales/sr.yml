@@ -80,6 +80,7 @@ sr:
     one: "%{count} osoba"
     few: "%{count} osobe"
     other: "%{count} osoba"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} ljudi</strong> je pomoglo %{user} sa <strong>%{y} ID-jeva</strong>"
   x_photos:
     one: "%{count} fotografija"
     few: "%{count} fotografije"
@@ -531,6 +532,8 @@ sr:
   are_you_really_sure_want_delete_this_user: Da li sasvim sigurno želiš da izbrišeš ovog korisnika i sav njegov/njen sadržaj?
   are_you_sure?: Da li ste sigurni?
   are_you_sure_no_undo: Da li si siguran/na? Ne može se povratiti.
+  are_you_sure_delete_conservation_status: |
+    Da li sigurno želiš da izbrišeš ovaj status ugroženosti? To može uticati na skrivanje koordinata opservacija ovog taksona i svih taksona koje on obuhvata.
   are_you_sure_delete_post: Da li sigurno želiš da izbrišeš ovu objavu?
   are_you_sure_delete_taxon_move_associates: "Da li sigurno želiš da izbrišeš %{taxonname} (%{taxonid}) i pomeriš sve njegove srodnike?"
   are_you_sure_delete_this_place: Da li sigurno želiš da izbrišeš ovo mesto?
@@ -563,6 +566,7 @@ sr:
   are_you_sure_you_want_to_delete_this_post: Da li sigurno želiš da izbrišeš ovu objavu?
   are_you_sure_you_want_to_delete_this_taxon_change: Da li sigurno želiš da izbrišeš ovu promenu taksona?
   are_you_sure_you_want_to_remove_all_tags: Da li sigurno želiš da ukloniš sve oznake?
+  are_you_sure_you_want_to_remove_curator: Da li sigurno želiš da ukloniš %{user} iz kustosa?
   are_you_sure_you_want_to_remove_from_project: Da li sigurno želiš da ukloniš %{user} iz ovog projekta?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Da li sigurno želiš da ukloniš ove %{x} taksone?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
@@ -775,8 +779,12 @@ sr:
   computer_vision_model: Model kompjuterske vizije
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Uključen
+  computer_vision_model_included_desc: |
+    Trenutni Model kompjuterske vizije obuhvata ovaj takson, tako da je možda vidljiv u automatskim predlozima sa oznakom "U blizini".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Na čekanju
+  computer_vision_model_pending_desc: |
+    Trenutni Model kompjuterske vizije ne obuhvata ovaj takson, tako da iako je možda vidljiv u automatskim predlozima sa oznakom "U blizini", neće imati "Vizuelno slični" oznaku. Uslovi za dodavanje u model se menjaju sa svakim novim modelom ali se generalno zasnivaju na broj opservacija. Da bi povećao šanse da se ovaj takson doda u proces učenja sledećeg modela, dodaj ili identifikuj što više opservacija ovog taksona.
   confidential: Poverljivo
   configure: Konfiguriši
   confirm: Potvrdi
@@ -888,12 +896,22 @@ sr:
   csv: CSV
   csv_file: CSV fajl
   cumulative_ids: "Kumulativni ID: %{count} od %{total}"
+  curating: Kustosiranje
+  curation: Kustosiranje
   curator: Kustos
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Moraš objasniti zašto želiš da postaneš kustos
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Zašto želiš da budeš kustos?
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
     Ako želiš da uređuješ ponašanje na iNaturalist-u, navedi dva primera povrede Smernica zajednice i kako bi postupio/la u takvoj situaciji
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Kako kustos gubi svoja ovlašćenja
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat osoblje može ukloniti kustoska ovlašćenja ako kusos u više navrata:
   #Header
   curator_application_what_curators_can_do: Ovlašćenja kustosa
   curator_application_what_curators_can_do_hide_comments_html: |
@@ -905,12 +923,19 @@ sr:
   curator_application_what_curators_can_do_edit_wiki_html: |
     Kreiraj i uređuj wiki staranice, kao što je <a href="/pages/help"
     target="_blank">iNaturalist - Često postavljena pitanja</a>
+  #Header
+  curator_application_what_curators_cannot_do: Šta kustosi ne mogu da urade
   #Description of the fact that a curator cannot change certain attributes of
   #observations any more than anyone else can; part of a list of things
   #curators can do, so you might imagine it is preceded with "Curators
   #cannot..."
   curator_application_what_curators_cannot_do_change_observations_html: |
     Više utiče na takson zajednice ili kvalitet podataka opservacije od bilo kog drugog korisnika.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Dokazao/la si da razumeš proces kustosiranja dodavanjem nekoliko prijava
+  curators_changed_for_x_html: "Kustosi promenjeni za %{x}"
+  curators: Kustosi
+  curator_identification: Identifikacija kustosa
   #Label for a custom boundary for an observation search
   custom_boundary: Posebna granica
   daily_users: Korisnika dnevno
@@ -1153,6 +1178,7 @@ sr:
   exclusion_filters: Izostavi filtere
   exit_full_screen: "izađi iz rеžima cеlog еkrana"
   examples_of_data_use_by_network_members: Primeri upotrebe podataka od strane članova mreže
+  examples_of_ranking_organizations: Primeri organizacija koje vrše rangiranje
   explore: Istraži
   export: Izvezi
   export_observations: Izvezi opservacije
@@ -1188,6 +1214,7 @@ sr:
   #The name of a computer file
   filename: Naziv fajla
   filter: Filter
+  filter_by_curator_identification: Filtriraj po identifikaciji kustosa
   filter_by_place: Filtriraj po mestu
   filter_by_taxon: Filtriraj po taksonu
   filter_by_place_taxon_and_color: Filtriraj po mestu, taksonu, i boji pomoću kontrola.
@@ -1211,9 +1238,11 @@ sr:
   first_inat_observation: "Prva %{site_name} opservacija"
   first_observer: Prvi posmatrač
   flag_as_inappropriate: Prijavi kao neprikladno
+  flag_for_curation: Označi za kustosiranje
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekat
   flag_resolution: Razrešenje
+  flagged_for_curation: Označeno za kustosiranje
   flickr_identity: Flickr identitet
   flickr_photo: Flickr fotografija
   flickr_photos: Flickr fotografije
@@ -1283,6 +1312,7 @@ sr:
   help_confirm_observations!: Pomozi u potvrđivanju opservacija!
   help_translate!: Pomozi u prevođenju!
   here_are_our_top_suggestions: Ovo su naši najbolji predlozi
+  here_are_our_top_species_suggestions: Evo naših najboljih predloga
   hex_color_eg: Hex kod boje, npr. 65644F
   hi_user: "Zdravo %{user}"
   #Verb, usually a button to hide an interface element
@@ -1295,6 +1325,10 @@ sr:
   highest_rank: Najviši rank
   history: Istorija
   home: Početna
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Međutim, nije licencirana na način koji omogućava njenu dalju upotrebu i neće biti podeljena sa bazama podataka koje poštuju izbor licence.
   i_dont_know_but_i_am_sure_this_is_taxon: Ne znam ali je sigurno %{taxon}
   icon: Ikonica
   icon_size: Veličina ikonice
@@ -1346,7 +1380,7 @@ sr:
     Kompjuterska vizija je proces učenja kompjutera da prepoznaju šablone na slikama. Mi obezbeđujemo alate koji koriste modele kompjuterske vizije trenirane na fotografijama zajednice kako bi dali predloge identifikacije, kao što je auto-complete i opcija za upoređivanje. Identifikacije koje neko doda pomoću nekog od ovih alata će imati ovu oznaku.
   identifiers: Identifikatori
   ids: "Identifikacije"
-  ids_made_for_others: ID-jevi dati za druge
+  ids_made_for_others: ID-jeva datih za druge
   ignore_and_continue: Zanemari i nastavi
   ignore_times: Ignoriši vremena
   image_must_be_exactly: Slika može biti maksimalno 950px x 400px
@@ -1926,9 +1960,11 @@ sr:
   'no': 'Ne'
   no_but_it_is_a_member_of_taxon: "Ne, ali pripada %{taxon} taksonu"
   no_comments_yet: Nema komentara.
+  no_curators_yet: Nema kustosa!
   no_description: Nema opisa
   no_identifications: Nema identifikacija
   no_ids: "Broj ID-jeva"
+  no_ids_have_been_suggested_yet: Nijedan ID nije još dodat
   no_its_as_good_as_it_can_be: Ne, najbolji je što može biti
   no_favorites_added:
     current_user: Nisi ništa dodao/la u favorite.
@@ -1962,6 +1998,7 @@ sr:
   no_relevant_annotations: Nema bitnih pribeleški
   no_reply_yet: Nema još odgovora
   no_subject_parens: "(Bez naslova)"
+  no_suggestions_available: Nijedan predlog nije dostupan
   no_taxa: Nema taksona
   none: Ništa
   none_found: Nije nađena nijedna
@@ -2043,6 +2080,7 @@ sr:
   observation_calendar_for: "Kalendar opservacija za %{user} u %{year}"
   #The limit is currently 20
   observations_can_only_have_n_photos: Opservacije mogu imati maksimalno %{limit} fotografija
+  observation_curation: Kustosiranje opservacije
   observation_date: Datum
   observation_date?: Datum?
   #Geographic observation export fields
@@ -2080,6 +2118,7 @@ sr:
   observations_in_this_project_must: 'Opservacije u ovom projektu moraju zadovoljiti sledeće kriterijume:'
   observations_map: Opservacije / mapa
   observation_must_dotdotdot: Opservacija mora...
+  observations_needing_curation: Opservacije kojima je potrebno kustosiranje
   observations_observed_this_month: Opservacije <em>načinjene</em> ovog meseca, ne dodate ovog meseca. Izađi u prirodu!
   observations_of_relatives: Opservacije srodnika
   observations_of_taxon: "Opservacije %{taxon_name}"
@@ -2191,7 +2230,7 @@ sr:
   other: Drugo
   other_animals: druge životinje
   other_names: Druga imena
-  other_species_commonly_misidentified_as_this_species: Druge vrste često pomešane sa ovom vrstom
+  other_species_commonly_misidentified_as_this_species: Druge vrste koje se često pomešaju sa ovom vrstom
   other_species_commonly_misidentified_as_this_species_in_place_html: Druge vrste često pomešane sa ovom vrstom u<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_complex: Drugi taksoni često pomešani sa ovim kompleksom
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: Drugi taksoni često pomešani sa ovim kompleksom u <a href="%{url}">%{place}</a>
@@ -2718,6 +2757,8 @@ sr:
   project_icon: Ikonica projekta
   project_journal: Dnevnik projekta
   project_list: Lista projekata
+  project_curators_added_some_of_your_observations_html: |
+    <a href="%{url}">%{project}</a> kustosi su dodali neku tvoju opservaciju
   project_members: "Članovi projekta %{project}"
   project_members_only: Samo za članove projekata
   project_membership_model_description: Da li je tvoj projekat otvoren za sve ili samo za ljude koje pozoveš?
@@ -2908,6 +2949,7 @@ sr:
   refreshing: osvežava se
   register_for_this_event_at_x_html: "Prijavi se za ovaj događaj %{x}"
   reject?: Odbaci?
+  relative_observations: Relativne opservacije
   relationship: "Odnos"
   relationship_x: "Odnos: %{relationship}"
   relationships:
@@ -3098,6 +3140,7 @@ sr:
   show_no_annotation: Prikaži "Bez pribeleške"
   show_off_your_recent_observations: Pokaži opservacije na tvom blogu ili sajtu!
   show_only: Prikaži samo
+  show_relative_proportions_of_all_observations: Prikaži relativne proporcije svih opservacija
   show_taxa_from_both: (prikaži taksone sa obe liste)
   show_taxa_from_everywhere: "Prikaži taksone od svuda"
   show_taxa_from_place: "Prikaži taksoni iz %{place}"
@@ -3253,6 +3296,7 @@ sr:
   subscriptions: Praćenja
   successfully_changed_your_password: Uspešno promenjena lozinka.
   suggest_an_identification: Predloži identifikaciju
+  suggest_or_require_that: Predloži ili uslovi saradnike da popune ova polja za opservacije koje dodaju u tvoj projekat.
   suggestions: Predlozi
   summary: Rezime
   supporting: Podržava
@@ -3271,6 +3315,7 @@ sr:
   task_deleted: Zadatak izbrisan
   taxa: Taksoni
   taxa_info: Informacije o taksonima
+  taxa_needing_curation: Taksoni kojima je potrebno kustosiranje
   taxa_observed: zabeleženi taksoni
   taxon: Takson
   taxon_geoprivacy: Geoprivatnost taksona
@@ -3336,7 +3381,11 @@ sr:
     few: "%{taxon} je carstvo života sa %{count} opservacije"
     other: "%{taxon} je carstvo života sa %{count} opservacija"
   taxon_is_threatened_coordinates_hidden: Takson je ugrožen, koordinate skrivene po podrazumevanim podešavanjima
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Jedan od taksona predložen u identifikacijama ili neki takson koji sadrži bilo koji od ovih taksona je redak i/ili ugrožen pa je lokacija opservacije skrivena.
   taxon_is_threatened_coordinates_obscured: Takson je ugrožen, koordinate prikrivene po podrazumevanim podešavanjima
+  taxon_is_threatened_coordinates_obscured_desc: |
+    Jedan od taksona predložen u identifikacijama ili neki takson koji sadrži bilo koji od ovih taksona je redak i/ili ugrožen pa je lokacija opservacije prikrivena.
   taxonomy: Taksonomija
   taxon_change_must_be_committed_to_update_records: Promena taksona mora biti potvrđena da bi se ažurirao registar
   taxon_change_title_taxon_drop: Poništen takson %{id}
@@ -3764,6 +3813,7 @@ sr:
   was_it_captive_cultivated?: "U zatoćeništvu / kultivisano?"
   we_can_only_understand_csv_in: CSV može biti prepoznat samo u sledećem formatu
   we_couldnt_find_a_user: Nema korisnika sa tom imejl adresom.
+  we_have_no_conservation_status_for_this_taxon: Nemamo definisan status ugroženosti za ovaj takson
   weather: Vreme
   website: Veb-sajt
   week_of_date: "Nedelja %{date}"
@@ -4129,6 +4179,8 @@ sr:
         review_all_tooltip: "Označi sve opservacije na strani kao pregledane"
         you_reviewed_message: "Pregledao/la si %{reviewed} od %{pageTotal} opservacija na ovoj strani od ukupno %{total} opservacija"
       import:
+        coordinate_systems_help: |
+          %{site_name} dozvoljava unos koordinata putem više različitih koordinatnih sistema. Kada unosiš koordinate u sistemu koji zasnovan na geografskoj širini / dužini, moraš naznačiti koji koordinatni sistem koristiš kako bi se mogao adekvatno interpretirati. Molimo te da dobro proveriš koji koordinatni sistem koristiš inače se lokacija može znatno razlikovati. Ako uzmeš koordinate sa svog GPS uređaja, proveri njegova podešavanja i trebalo bi biti naznačeno koji koordinatni sistem uređaj koristi. Imaj u vidu da mi ne čuvamo konkretne koordinate, samo njihove gš/gd konverzije.
         date_column_format: DD-MM-GGGG HH:MM
         decimal_degrees_format: dd.dddd
       show:
@@ -4191,6 +4243,7 @@ sr:
           Sistem će označiti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem geografskom području (okrug, zemlja, država) u kojoj se mesto gde je opservacija zabeležena nalazi i 80% ili više tih opservacija su označene da nisu u divljini/naturalizovane.
           </li>
           </ul>
+        observer_only_allows_curators_to_add_fields: Posmatrač dozvoljava samo kustosima sajta da dodaju opservaciona polja
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
@@ -4249,6 +4302,7 @@ sr:
           Trenutno nema kustosa projekta. Ako želiš da odrediš neku osobu kao administratora, oni se prvo moraju pridružiti ovom projektu i moraš ih postaviti za kustosa.
         rules:
           captive: biti u zatočeništvu / kultivisano
+          coordinates_shareable_by_project_curators: ima koordinate vidljive kustosima projekta
           georeferenced: imati koordinate
           has_a_photo: imati fotografiju
           has_a_sound: imati zvuk
@@ -4424,7 +4478,7 @@ sr:
         species_per_year_by_date_observed: Po datumu posmatranja
         stats_generated_datetime: Statistika generisana %{datetime}
         store_prompt: |
-          Hoćeš da pokažeš da si deo iNaturalist-a gde god odeš? Pogledaj iNat prodavnicu!
+          Hoćeš da pokažeš da si deo iNaturalist-a gde god odeš? Pogledaj iNat radnju!
         translators_title: Prevodioci
         translators_desc: |
           Da li znaš da je iNaturalist preveden na %{x_languages}, skoro u celosti su preveli %{x_people}, od kojih neki uopšte ne koriste iNat? Evo svih divnih prevodilaca koji su doprineli prevodu ove godine sa brojem reči koje je svaki od njih preveo za
@@ -4457,6 +4511,8 @@ sr:
           </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
+        charts_help_history: |
+          Ovaj grafikon prikazuje broj opservacija ovog taksona za svaki mesec u poslednjih 10 godina. Imaju u vidu da je pristrasan na osnovu broja ljudi koji dodaju opservacije ali ti može prikazati neobičan porast u broju opservacija, a ako izgleda ravno ili prikazuje pad uprkos rastućem broju posmatrača, to može ukazati na promenu u zastupljenosti.
         charts_help_other: |
           Takođe se prikazuju grafici sezonalnosti za pribeleške opservacija. Pribeleške služe da upotpune opservacije pomoću predefinisanih izraza, npr. da li je opservacijom zabeležena biljka koja je u fazi cvetanja ili u fazi rađanja ploda.
         discoveries_desc: "Najskorije novoidentifikovane vrste u ovom taksonu"
@@ -4485,6 +4541,9 @@ sr:
         trending_in_place_desc_html: Takson sa najviše opservacija u prethodnom mesecu u <a href="%{url}">%{place}</a>
         wanted_desc: Vrste u ovom taksonu još nisu zabeležene.
     users:
+      dashboard:
+        curators_can_see: |
+          Imaj u vidu da kustosi projekta mogu videti privatne i prikrivene koordinate opservacija koje dodaš u ovaj projekat.
       delete:
         by_deleting_your_account_you_will_remove: |
           Brisanjem tvog profila uklanjaš
@@ -5125,6 +5184,8 @@ sr:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: ne može sadržati tačku ili kosu crtu
+              should_match_english_translation: |
+                trebalo bi biti na engleskom ali se u ovom obliku poklapa sa %{suggested_locale} prevodom "%{suggested}". Koristi "%{suggested}" ako si baš na to mislio/la i biće prevedeno kada prebaciš veb-sajt na taj jezik.
               should_be_in_english: mora biti na engleskom
             name:
               already_exists: već postoji za ovaj takson u ovom rečniku
