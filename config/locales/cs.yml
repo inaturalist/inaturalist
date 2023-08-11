@@ -1024,13 +1024,7 @@ cs:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdělit na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: sloučit do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: sloučeno do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: nahrazeno
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: nahradit s
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradit
     dropped: zahozeno
@@ -5636,19 +5630,29 @@ cs:
   user_added_a_comment_html: "Uživatel %{user} přidal komentář"
   user_added_a_fave_html: "%{user} přidal oblíbené"
   user_added_a_flag_html: "%{user} přidal praporek"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} přidal(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} přidal %{x} k %{noun}"
   user_added_an_identification_html: "Uživatel %{user} přidal pozorování"
   user_added_an_observation_field_html: 'Uživatel %{user} přidal hodnotu pro "%{field_name}" k pozorování %{owner}'
   user_added_an_observation_field_value_html: "Uživatel %{user} přidal hodnotu pole pozorování"
   user_added_an_observation_html: "Uživatel %{user} přidal pozorování"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} přidal(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Uživatel %{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Uživatel %{user} přidal %{x} k %{noun}"
   user_added_x_observations_html: "Uživatel %{user} přidal %{x} pozorování"
   user_already_authenticated: Uživatel je již ověřen

@@ -345,6 +345,7 @@ hu:
   agree_: Egyetért
   agree?: Egyetértek
   agree_with_current_taxon: Egyetért a jelenlegi taxonnal
+  agree_with_observation_taxon: Egyetértés a megfigyelési taxonnal
   agreeing: Egyetértés...
   aka: más néven
   #Noun, title of a popup alerting you to something
@@ -742,13 +743,7 @@ hu:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Felosztva ezekre
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 'egyesítés ide:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 'egyesítve ide:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 'erre lecserélve:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'csere ezzel:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
     dropped: elejtve
@@ -1893,6 +1888,7 @@ hu:
     danish: Dán
     dutch: holland
     english: Angol
+    esperanto: Eszperantó
     estonian: Észt
     faroese: Feröer-szigeteki
     finnish: Finn
@@ -4160,19 +4156,29 @@ hu:
   user_added_a_comment_html: "%{user} hozzászólt"
   user_added_a_fave_html: "%{user} kedvelte"
   user_added_a_flag_html: "%{user} bejelentést adott hozzá"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_identification_html: "%{user} meghatározást javasolt"
   user_added_an_observation_field_html: 'Megfigyelés (%{owner}): %{user} kitöltötte a(z) "%{field_name}" adatmezőt'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
   user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_x_observations_html: "%{user} hozzáadott %{x} megfigyelést"
   user_already_authenticated: A felhasználó már hitelesítve van

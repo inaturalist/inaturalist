@@ -897,13 +897,7 @@ nl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: opgesplitst in
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: Samenvoegen met
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: samengevoegd met
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: vervangen door
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: vervang door
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: vervang door
     dropped: verwijderd
@@ -2495,6 +2489,7 @@ nl:
     davawenyo: Davaoeño
     dutch: Nederlands
     english: Engels
+    esperanto: Esperanto
     estonian: Estlands
     faroese: Faeröers
     finnish: Fins
@@ -5487,19 +5482,29 @@ nl:
   user_added_a_comment_html: "%{user} heeft een reactie toegevoegd"
   user_added_a_fave_html: "%{user} heeft dit als favoriet opgeslagen"
   user_added_a_flag_html: "%{user} heeft dit gemarkeerd"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} heeft een %{x} toegevoegd"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_an_identification_html: "%{user} heeft een determinatie toegevoegd"
   user_added_an_observation_field_html: '%{user} heeft een waarde toegevoegd voor "%{field_name}" aan een waarneming van %{owner}'
   user_added_an_observation_field_value_html: "%{user} heeft een waarnemingsveld toegevoegd"
   user_added_an_observation_html: "%{user} heeft een waarneming toegevoegd"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} heeft een %{x} toegevoegd"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} heeft %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd

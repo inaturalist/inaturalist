@@ -766,13 +766,7 @@ el:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: διάσπαση σε
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: συγχώνευση σε
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: συγχωνεύτηκε με
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: αντικαταστάθηκε από
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: αντικατάστησε με
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: αντικαταστάθηκε με
     dropped: εγκαταλείφθηκε
@@ -4263,19 +4257,29 @@ el:
   user_added_a_comment_html: "%{user} πρόσθεσε ένα σχόλιο"
   user_added_a_fave_html: "%{user} πρόσθεσε ένα αγαπημένο"
   user_added_a_flag_html: "%{user} πρόσθεσε μία αναφορά"
+  #@gender operates on %{x}
   user_added_a_x: "Ο/Η %{user} προσέθεσε ένα %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από την/τον %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από την/τον %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από εσάς"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun}"
   user_added_an_identification_html: "Η/Ο %{user} πρόσθεσε μια ταυτοποίηση"
   user_added_an_observation_field_html: 'Ο χρήστης %{user} προσέθεσε μια τιμή για το "%{field_name}" σε μια παρατήρηση του χρήστη %{owner}'
   user_added_an_observation_field_value_html: "Ο χρήστης %{user} προσέθεσε ένα πεδίο παρατήρησης"
   user_added_an_observation_html: "Η/Ο %{user} πρόσθεσε μια παρατήρηση"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} πρόσθεσε ένα %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από εσάς"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} πρόσθεσε ένα %{x} στο %{noun}"
   user_added_x_observations_html: "Η/Ο %{user} πρόσθεσε %{x} παρατηρήσεις"
   user_already_authenticated: Ο χρήστης είναι ήδη ταυτοποιημένος

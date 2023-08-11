@@ -967,13 +967,7 @@ he:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: מתפצל אל
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: למזג לתוך
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: מוזג לתוך
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: הוחלף על־ידי
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: החלף ב
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: הוחלף ב
     dropped: הושלך
@@ -5294,19 +5288,29 @@ he:
   user_added_a_comment_html: "הערה הוספה על ידי %{user}"
   user_added_a_fave_html: "%{user} הוסיפ.ה פייבוריט"
   user_added_a_flag_html: "הודעה סומנה על ידי %{user}"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} הוסיף/ה %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} הוסיפ.ה %{x} ל%{noun} שלך"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} הוסיפ.ה %{x} ל%{noun}"
   user_added_an_identification_html: "%{user} הוסיפ.ה זיהוי"
   user_added_an_observation_field_html: '%{user} הוסיפ.ה ערך עבור "%{field_name}" לתצפית של %{owner}'
   user_added_an_observation_field_value_html: "ערך בשדה תצפית הוסף על ידי %{user}"
   user_added_an_observation_html: "%{user}העלה תצפית"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} הוסיף/ה %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} הוסיפ.ה %{x} ל%{noun} שלך"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} הוסיפ.ה %{x} ל%{noun}"
   user_added_x_observations_html: "%{user} הוסיף %{x} תצפיות"
   user_already_authenticated: משתמש זה כבר אושר
@@ -5807,6 +5811,20 @@ he:
             במידה וכן, נא לקרוא את <a href="%{url}">מדריך המורות והמורים</a> שלנו לטיפים על השימוש ב%{site_name} עם תלמידות.ים.
     donate:
       donate_short_desc: "תרומה להבעת תמיכתך!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר מגוון ביולוגי. תודה על השתתפותך בה!</strong>
+        </p>
+        <p class="lead">
+        אם את.ה מאמינ.ה בכוחה של קהילה גלובלית זו של חובבות וחובבי טבע לשתף ידע ולייצר נתוני מגוון ביולוגי שאין להם תחליף, נא לשקול מתנה חד-פעמית או חוזרת באינטרנט. אפשר גם לחקור <a
+        href="https://www.inaturalist.org/pages/giving">דרכים אחרות לתת</a>.
+        </p>
+        <p class="lead">
+        התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו.
+        </p>
+        <p class="text-muted">
+         iNaturalist הוא ארגון עצמאי ללא מטרות רווח ופטור ממס מסוג 501(c)(3) המבוסס בארה"ב (מזהה מיסים: 92-1296468).
+        </p>
       post_donate_social_media_text: אני תומכ.ת ב-iNaturalist כי...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: הצטרפ.י כתומכ.ת חודשי.ת של iNaturalist

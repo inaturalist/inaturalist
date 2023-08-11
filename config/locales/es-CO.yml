@@ -801,13 +801,7 @@ es-CO:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusionado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplazado por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplazar con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplazado con
     dropped: abandonado
@@ -2956,36 +2950,10 @@ es-CO:
     slovakia: Eslovaquia
     slovenia: Eslovenia
     solomon_islands: Islas Salomón
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

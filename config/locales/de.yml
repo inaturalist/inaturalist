@@ -839,13 +839,7 @@ de:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: aufteilen in
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: zusammenführen zu
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: eingegliedert in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersetzt durch
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersetzen durch
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersetzt durch
     dropped: gelöscht
@@ -2280,6 +2274,7 @@ de:
     davawenyo: Davawenyo
     dutch: Niederländisch
     english: Englisch
+    esperanto: Esperanto
     estonian: Estnisch
     faroese: Färöisch
     fijian: Fidschi
@@ -5232,19 +5227,29 @@ de:
   user_added_a_comment_html: "Kommentar hinzugefügt von: %{user}"
   user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
   user_added_a_flag_html: "Meldung von %{user}"
+  #@gender operates on %{x}
   user_added_a_x: "%{user}: %{x} hinzugefügt"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}: %{x} zu %{noun} von dir hinzugefügt"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_an_identification_html: "Bestimmung hinzugefügt von: %{user}"
   user_added_an_observation_field_html: '%{user} hat einen Wert für "%{field_name}" zu einer Beobachtung von %{owner} hinzugefügt'
   user_added_an_observation_field_value_html: "%{user} hat einen Wert in einem Beobachtungsfeld hinzugefügt"
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
+  #@gender operates on %{x}
   user_added_an_x: "%{user}: %{x} hinzugefügt"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}: %{x} zu %{noun} von dir hinzugefügt"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_x_observations_html: "%{user} hat %{x} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert

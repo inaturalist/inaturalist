@@ -503,13 +503,7 @@ ko:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: '다음으로 분할:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: '다음으로 병합하기:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: '다음으로 병합됨:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: '다음으로 교체:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: '바꾸기:'
     dropped: 포기함
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}은(는) %{output_taxon}으(로) 병합되었습니다"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} 는 %{output_taxon}과 병합될 것입니다."
@@ -2298,17 +2292,27 @@ ko:
   uploading_num_of_count_photos:
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
+  #@gender operates on %{x}
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}님이 %{by}님의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_identification_html: "%{user} 님이 동정을 추가했습니다."
   user_added_an_observation_html: "%{user} 님이 관찰을 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}님이 %{by}님의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_x_observations_html: "%{user} 님이 %{x}개의 관찰을 추가했습니다."
   user_already_authenticated: 사용자는 이미 인증되었습니다
@@ -2676,6 +2680,9 @@ ko:
     submit:
       create: '%{model} 만들기'
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

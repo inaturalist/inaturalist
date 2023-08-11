@@ -789,13 +789,7 @@ zh-TW:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 分拆至
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 合併至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 已合併至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 替代由
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 替代為
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 替代為
     dropped: 已捨去
@@ -2387,7 +2381,7 @@ zh-TW:
   medium: 中
   meet: 會見
   member_of_the_inaturalist_network_html: |
-    <a href="%{url}">iNaturalist 網路</a> 的成員
+    <a href="%{url}">iNaturalist 網路</a>的成員
   #As in members of a project
   members: 成員
   membership_model: 成員模組
@@ -4755,19 +4749,29 @@ zh-TW:
   user_added_a_comment_html: "%{user} 新增了一個評論"
   user_added_a_fave_html: "%{user} 添加為最愛"
   user_added_a_flag_html: "%{user} 添加一個標記"
+  #@gender operates on %{x}
   user_added_a_x: "%{user}添加一個%{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
   user_added_an_identification_html: "%{user} 添加了一個鑑定"
   user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
   user_added_an_observation_field_value_html: "%{user} 新增一筆觀察欄位的值"
   user_added_an_observation_html: "%{user} 添加一個觀察"
+  #@gender operates on %{x}
   user_added_an_x: "%{user}添加一個%{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
   user_added_x_observations_html: "%{user}添加%{x}個觀察"
   user_already_authenticated: 使用者已驗證

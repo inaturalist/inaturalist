@@ -838,13 +838,7 @@ fi:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: jakaa
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: yhdistää
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: yhdistetty
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: korvattu
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'Korvaa seuraavalla:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 'korvattu seuraavalla:'
     dropped: pudonnut
@@ -4776,19 +4770,29 @@ fi:
   user_added_a_comment_html: "%{user} lisäsi kommentin"
   user_added_a_fave_html: "%{user} lisäsi suosikiksi"
   user_added_a_flag_html: "%{user} lisäsi lipun"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lisäsi %{x}n"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_an_identification_html: "%{user} lisäsi tunnistuksen"
   user_added_an_observation_field_html: '%{user} lisäsi arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
   user_added_an_observation_field_value_html: "%{user} lisäsi havaintokentän arvon"
   user_added_an_observation_html: "%{user} lisäsi havainnon"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lisäsi %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_x_observations_html: "%{user} lisäsi %{x} havaintoa"
   user_already_authenticated: Käyttäjä on jo todennettu

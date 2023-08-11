@@ -847,13 +847,7 @@ es-AR:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplazado por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplazar con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Reemplazado con
     dropped: eliminado
@@ -4724,14 +4718,20 @@ es-AR:
     one: Utilizado 1 vez
     other: Utilizado %{count} veces
   user: Usuario
+  #@gender operates on %{x}
   user_added_a_x: "%{user} añadió una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
   user_added_an_observation_html: "%{user} añadió una observación"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} añadió un %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} agregó %{x} observaciones"
   user_already_authenticated: El usuario ya está verificado

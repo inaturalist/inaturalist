@@ -795,13 +795,7 @@ nb:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: delt opp i
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå sammen til
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: slått sammen til
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: erstattet av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erstatt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: erstattet med
     dropped: fjernet
@@ -4376,19 +4370,29 @@ nb:
   user_added_a_comment_html: "%{user} har lagt til en kommentar"
   user_added_a_fave_html: "%{user} har lagt til en favoritt"
   user_added_a_flag_html: "%{user} har lagt til en markering"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_an_identification_html: "%{user} har lagt til en identifikasjon"
   user_added_an_observation_field_html: '%{user} har lagt til en verdi for "%{field_name}" i en observasjon av %{owner}'
   user_added_an_observation_field_value_html: "%{user} har lagt til en verdi for et observasjonsfelt"
   user_added_an_observation_html: "%{user} har lagt til en observasjon"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_already_authenticated: Brukeren er allerede autentisert

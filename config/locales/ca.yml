@@ -865,13 +865,7 @@ ca:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividit en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinat a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: es va combinar a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplaçat per
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplaçat amb
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplaçat per
     dropped: eliminat
@@ -5174,19 +5168,29 @@ ca:
   user_added_a_comment_html: "%{user} ha afegit un comentari"
   user_added_a_fave_html: "%{user} ha afegit un favorit"
   user_added_a_flag_html: "%{user} ha afegit una marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} per %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha afegit una identificació"
   user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}" a una observació de %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha afegit un valor a un camp d'observació"
   user_added_an_observation_html: "%{user} ha afegit una observació"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar

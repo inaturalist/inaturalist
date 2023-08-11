@@ -266,13 +266,7 @@ br:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Rannet e
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: Kendeuziñ e
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: Kendeuzet e
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: Erlerc'hiet gant
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erlerc'hiañ gant
     dropped: dilamet
     staged: kinniget
   change_your_password: Cheñch ar ger-tremen
@@ -1049,36 +1043,10 @@ br:
   this_year: Bloaz-mañ
   week_of_date: "Sizhun eus %{date}"
   who_helped_user_the_most: "Piv en deus sikouret ar muiañ %{user}"
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

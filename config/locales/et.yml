@@ -863,13 +863,7 @@ et:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: jagatud osadeks
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ühenda
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ühendatud
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: asendab
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: asenda
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: asendatud
     dropped: kustutatud
@@ -4540,14 +4534,20 @@ et:
   user: Kasutaja
   user1_and_user2_faved_this_observation: "Kasutajad %{user1} ja %{user2} märkisid selle vaatluse oma lemmikuks"
   user1_user2_and_x_others_faved_this_observation: "Kasutajad %{user1}, %{user2} ja veel %{x_others} märkisid selle vaatluse oma lemmikuks"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lisas %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
   user_added_an_observation_field_html: 'Kasutaja %{user} lisas kasutaja %{owner} vaatluse väljale "%{field_name}" väärtuse'
   user_added_an_observation_field_value_html: "Kasutaja %{user} lisas väärtuse vaatluse väljale"
   user_added_an_observation_html: "Kasutaja %{user} lisas vaatluse"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lisas %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
   user_added_x_observations_html: "Kasutaja %{user} lisas %{x} vaatlust"
   user_already_authenticated: Kasutajakonto on juba tõestatud
@@ -5949,6 +5949,9 @@ et:
       submit: Salvesta %{model}
       update: Värskenda %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:

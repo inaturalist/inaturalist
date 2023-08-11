@@ -740,13 +740,7 @@ kn:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ಇದರಂತೆ ವಿಭಜಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಿ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ಮೂಲಕ ಬದಲಿಸಲಾಗಿದೆ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಲಾಗಿದೆ
     dropped: ಕೈಬಿಡಲಾಗಿದೆ
@@ -4342,18 +4336,28 @@ kn:
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} ಮತ್ತು %{x_others} ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಚಿದ್ದಾರೆ"
   user_added_a_comment_html: "%{user} ಒಂದು ಅಭಿಪ್ರಾಯವನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_a_fave_html: "%{user} ಒಂದು ಮೆಚ್ಚುಗೆಯನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ಅವರು %{x} ಅನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_identification_html: "%{user} ಅವರು ಗುರುತಿಸುವಿಕೆಯೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_observation_field_value_html: "%{user} ಅವರು ವೀಕ್ಷಣೆ ಆವರಣವೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_observation_html: "%{user} ಅವರುವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ಅವರು %{x} ಅನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ

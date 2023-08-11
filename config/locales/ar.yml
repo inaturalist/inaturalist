@@ -447,13 +447,7 @@ ar:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: انقسام إلى
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: يندمج مع
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: معلومات الاندماج
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: حل محله
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: استبدال ب
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: اُستبدِل ب
     dropped: تم الإسقاط
@@ -3314,13 +3308,19 @@ ar:
     بعلامات اقتباس مزدوجة، يجب أن تقوم معظم تطبيقات جدول البيانات بتصدير ملف CSV بهذه 
     الصيغة.
   user: مستخدم
+  #@gender operates on %{x}
   user_added_a_x: "أضاف %{user} %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
   user_added_an_observation_field_html: 'أضاف %{user} قيمة ل"%{field_name}"إلى ملاحظة بواسطة %{owner}'
   user_added_an_observation_html: "أضاف %{user} ملاحظة"
+  #@gender operates on %{x}
   user_added_an_x: "أضاف %{user} %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
   user_added_x_observations_html: "أضاف %{user} %{x} ملاحظة"
   user_already_authenticated: المستخدم موثق بالفعل

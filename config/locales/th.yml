@@ -642,13 +642,7 @@ th:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: แยกเป็น
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ยุบรวมเป็น
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ถูกยุบรวมเป็น
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: แทนที่โดย
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: แทนที่ด้วย
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ถูกแทนที่ด้วย
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} จะถูกแยกเป็น %{output_taxa}"
@@ -1146,6 +1140,7 @@ th:
   help: ช่วยเหลือ
   help_confirm_observations!: ช่วยยืนยันการสังเกต!
   help_translate!: ช่วยแปล!
+  here_are_3_examples: 'ตัวอย่างข้อมูลที่มีรูปแบบเหมาะสม:'
   here_are_our_top_suggestions: นี่คือคำแนะนำอันดับแรกของเรา
   here_are_our_top_species_suggestions: นี่คือชนิดที่เราแนะนำเป็นอันดับแรก
   hi_user: "สวัสดี %{user}"
@@ -1245,6 +1240,7 @@ th:
   lat: ละติจูด
   latitude: ละติจูด
   latitude_in_decimals: 'ละติจูดแบบองศาทศนิยม เช่น 38.123'
+  latitude_slash_y_coord_slash_northing: ละจิจูด / แกน y / เหนือ
   latitude_value: "ละติจูด: %{latitude}"
   leaderboard: กระดานจัดอันดับ
   leaderboard_for_x: "กระดานจัดอันดับสำหรับ %{x}"
@@ -2204,6 +2200,7 @@ th:
   sign_out: ออกจากระบบ
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
+  single_observation: การสังเกตเดียว
   sizes: ขนาด
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
   small: เล็ก
@@ -2318,6 +2315,7 @@ th:
   taxon_framework_relationships: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
   taxon_history_notice: ประวัติหน่วยอนุกรมวิธานเริ่มใช้งานตั้งแต่กุมภาพันธ์ 2022 จึงไม่มีข้อมูลประวัติก่อนหน้านี้
   taxon_merge: ยุบรวมหน่วยอนุกรมวิธาน
+  taxon_name: ชื่อหน่วยอนุกรมวิธาน
   taxon_photos_updated: อัปเดตรูปหน่วยอนุกรมวิธานแล้ว!
   taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN หรือไม่ ถ้าไม่ใช่ เพราะเหตุใด?
   taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN
@@ -2344,6 +2342,7 @@ th:
   taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
   tell_the_world_a_little_about_yourself: บอกเราเกี่ยวกับตัวคุณ
   tell_us_why: อธิบายเหตุผล...
+  terms_and_rules_html: "ข้อตกลง & กฎ"
   terms_service: ข้อตกลงการใช้งาน
   terrain: ภูมิประเทศ
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
@@ -2561,11 +2560,14 @@ th:
   user1_user2_and_x_others_faved_this_observation: "%{user1} %{user2} และ %{x_others} ชอบการสังเกตนี้"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
   user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} เพิ่ม%{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"

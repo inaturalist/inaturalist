@@ -59,36 +59,10 @@ en-GB:
           Want to show off some of your favourite taxa? %{link_start_tag}Create a
           list%{link_end_tag} titled "Favourites" and the most recent additions
           will appear in this space.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

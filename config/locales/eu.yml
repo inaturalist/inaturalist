@@ -679,13 +679,7 @@ eu:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 'honela banatua:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 'honela nahastua:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 'hemen konbinatu zen:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 'honek ordezkatua:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'honekin ordezkatua:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: honengatik aldatua
     dropped: ezabatua
@@ -2374,10 +2368,14 @@ eu:
   use_this_if_the_url_needs_genus_species_separated: |
     Erabili hau URLak generoak eta espezieak modu berezian banatuta baldin baditu. Taxona espezie edo infraespezie bat ez baldin bada, [GENEROA] eta [ESPEZIEA] arteko guztia taxonaren izenarekin ordezkatuko denez, neurrian erabili. <br/><br/> <strong>Adibidea.</strong><br/>
   user: Erabiltzailea
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra"
   user_added_an_observation_html: "Honek behaketa gehitu zuen: %{user}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra"
   user_added_x_observations_html: "%{user}-(e)k %{x} behaketa gehitu zituen"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'

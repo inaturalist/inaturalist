@@ -899,13 +899,7 @@ lt:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: atskirti į
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: prijungti prie
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: prijungta prie
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: pakeista
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: pakeisti į
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: pakeista į
     dropped: išmestas
@@ -4079,13 +4073,19 @@ lt:
   user_added_a_comment_html: "%{user} pridėjo komentarą"
   user_added_a_fave_html: "%{user} pamėgo"
   user_added_a_flag_html: "%{user} pridėjo žymę"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} pridėjo %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} pridėjo %{x} prie %{by} %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} pridėjo %{x} prie jūsų %{noun}"
   user_added_an_identification_html: "%{user} pridėjo identifikaciją"
   user_added_an_observation_html: "%{user} pridėjo stebėjimą"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} pridėjo %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} pridėjo %{x} prie %{by} %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} pridėjo %{x} prie jūsų %{noun}"
   user_added_x_observations_html: "%{user} pridėjo %{x} stebėjimus(-ų)"
   user_already_authenticated: Vartotojas jau autentifikuotas

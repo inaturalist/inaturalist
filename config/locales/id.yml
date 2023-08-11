@@ -823,13 +823,7 @@ id:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: pisahkan menjadi
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: lebur menjadi
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: dilebur menjadi
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: digantikan oleh
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ganti dengan
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: diganti dengan
     dropped: dihapus
@@ -5259,19 +5253,29 @@ id:
   user_added_a_comment_html: "%{user} menambahkan komentar"
   user_added_a_fave_html: "%{user} menambahkan favorit"
   user_added_a_flag_html: "%{user} menambahkan sebuah tanda"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} menambahkan %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} menambahkan %{x} untuk %{noun} oleh %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} menambahkan %{x} untuk %{noun} oleh %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} menambahkan %{x} untuk %{noun} oleh Anda"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} menambahkan %{x} untuk %{noun}"
   user_added_an_identification_html: "%{user} menambahkan identifikasi"
   user_added_an_observation_field_html: '%{user} menambahkan nilai untuk "%{field_name}" kepada pengamatan oleh %{owner}'
   user_added_an_observation_field_value_html: "%{user} menambahkan sebuah nilai bidang pengamatan"
   user_added_an_observation_html: "%{user} menambahkan sebuah pengamatan"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} menambahkan sebuah %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh Anda"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} menambahkan %{x} kepada %{noun}"
   user_added_x_observations_html: "%{user} menambahkan %{x} pengamatan"
   user_already_authenticated: Pengguna sudah terautentikasi

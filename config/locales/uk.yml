@@ -944,13 +944,7 @@ uk:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: розділити на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: злити в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: об’єднано в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: замінено на
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: замінити на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: замінено на
     dropped: видалено
@@ -4801,19 +4795,29 @@ uk:
   user_added_a_comment_html: "%{user} додав/додала коментар"
   user_added_a_fave_html: "%{user} додав/додала уподобання"
   user_added_a_flag_html: "%{user} додав/додала прапорець"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} додав/додала %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
   user_added_an_identification_html: "%{user} додав/додала визначення"
   user_added_an_observation_field_html: '%{user} додав/додала значення до "%{field_name}" до спостереження %{owner}'
   user_added_an_observation_field_value_html: "%{user} додав/додала значення до поля спостереження"
   user_added_an_observation_html: "%{user} додав/додала спостереження"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} додав/додала %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
   user_added_x_observations_html: "%{user} додав/додала %{x} спостережень"
   user_already_authenticated: Користувача вже було автентифіковано
