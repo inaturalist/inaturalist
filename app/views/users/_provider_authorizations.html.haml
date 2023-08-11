@@ -1,21 +1,20 @@
 - extra ||= false
-.form-group.centered.bigtext
-  =t :or_all_caps
-.form-group.centered.provider-authorizations
-  = button_to ProviderAuthorization::AUTH_URLS["apple"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink apple", disabled: true, data: { enable_with_js: true } do
-    %span.img
-      %i.fa.fa-apple
-    .btntext=t :sign_in_with_apple
-  - if @site && @site.prefers_google_webmaster_dns_verified?
-    = button_to ProviderAuthorization::AUTH_URLS["google_oauth2"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink google", disabled: true, data: { enable_with_js: true } do
-      = image_tag "google-g-logo.svg"
-      .btntext=t :sign_in_with_google
-  - if extra
-    .extra
-      - providers = @site && @site.prefers_twitter_sign_in? ? %w{flickr twitter} : %w{flickr}
-      - providers.each do |provider_name|
-        - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
-        - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
-        - btn_label = t("sign_in_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
-        = button_to url, method: :post, class: "btn btn-circle providerlink #{provider_label}", disabled: true, data: { enable_with_js: true }, alt: btn_label, title: btn_label do
-          %i.fa{ class: "fa-#{provider_label}" }
+= link_to_toggle_box t( :show_more_login_options, default: t( :show_more ) ), class: "stacked inlineblock", container_options: { class: "text-center" } do
+  .form-group.centered.provider-authorizations
+    = button_to ProviderAuthorization::AUTH_URLS["apple"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink apple", disabled: true, data: { enable_with_js: true } do
+      %span.img
+        %i.fa.fa-apple
+      .btntext=t :sign_in_with_apple
+    - if @site && @site.prefers_google_webmaster_dns_verified?
+      = button_to ProviderAuthorization::AUTH_URLS["google_oauth2"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink google", disabled: true, data: { enable_with_js: true } do
+        = image_tag "google-g-logo.svg"
+        .btntext=t :sign_in_with_google
+    - if extra
+      .extra
+        - providers = @site && @site.prefers_twitter_sign_in? ? %w{flickr twitter} : %w{flickr}
+        - providers.each do |provider_name|
+          - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
+          - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
+          - btn_label = t("sign_in_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
+          = button_to url, method: :post, class: "btn btn-circle providerlink #{provider_label}", disabled: true, data: { enable_with_js: true }, alt: btn_label, title: btn_label do
+            %i.fa{ class: "fa-#{provider_label}" }

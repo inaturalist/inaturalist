@@ -185,17 +185,20 @@ module ApplicationHelper
       options
   end
 
-  def link_to_toggle_box(txt, options = {}, &block)
-    options[:class] ||= ''
-    options[:class] += ' togglelink'
-    if open = options.delete(:open)
-      options[:class] += ' open'
+  def link_to_toggle_box( txt, options = {}, &block )
+    options[:class] ||= ""
+    options[:class] += " togglelink"
+    options[:role] = "button"
+    options["aria-role"] = "button"
+    container_options = options.delete( :container_options ) || {}
+    if ( is_open = options.delete( :open ) )
+      options[:class] += " open"
     end
-    link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
-    hidden = content_tag(:div, capture(&block), :style => open ? nil : "display:none", :class => "togglebox")
-    content_tag :div, link + hidden
+    link = link_to_function( txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options )
+    hidden = content_tag( :div, capture( &block ), style: is_open ? nil : "display:none", class: "togglebox" )
+    content_tag :div, link + hidden, container_options
   end
-  
+
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]
     menu_id ||= options[:id].parameterize if options[:id]

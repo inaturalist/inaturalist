@@ -35,7 +35,8 @@ require "optimist"
   opt :skip_recent, "Skip users created in the last month", type: :boolean
   opt :locale, "Locale to filter users by. Matches sublocales, so `es` will match `es-MX`", type: :string
   opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
-  opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean, default: false
+  opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean
+  opt :include_risky, "Send to addresses Sendgrid considers Risky", type: :boolean
 end
 
 mailer_method = ARGV.shift
@@ -143,6 +144,7 @@ end
 @sendgrid_risky = 0
 @sendgrid_invalid = 0
 @sendgrid_failed = 0
+@sendgrid_valid = 0
 
 num_processes = @opts.num_processes
 min_id = @opts.min_id
@@ -166,6 +168,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
   sendgrid_risky = 0
   sendgrid_invalid = 0
   sendgrid_failed = 0
+  sendgrid_valid = 0
   if debug
     puts "Query: #{scope.to_sql}"
   end
@@ -202,16 +205,20 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
 
     unless @opts.skip_sendgrid_validation
       verdict = sendgrid_validation_verdict( recipient.email )
-      unless verdict == "Valid"
+      case verdict
+      when "Valid"
+        sendgrid_valid += 1
+      when "Invalid"
+        sendgrid_invalid += 1
+      when "Risky"
+        sendgrid_risky += 1
+      else
+        sendgrid_failed += 1
+      end
+      acceptable_verdits = %w(Valid)
+      acceptable_verdits << "Risky" if @opts.include_risky
+      unless acceptable_verdits.include?( verdict )
         puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict}" if debug
-        case verdict
-        when "Invalid"
-          sendgrid_invalid += 1
-        when "Risky"
-          sendgrid_risky += 1
-        else
-          sendgrid_failed += 1
-        end
         next
       end
     end
@@ -239,6 +246,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     sendgrid_risky: sendgrid_risky,
     sendgrid_invalid: sendgrid_invalid,
     sendgrid_failed: sendgrid_failed,
+    sendgrid_valid: sendgrid_valid,
     start: start,
     limit: limit,
     min_id: min_id
@@ -255,12 +263,14 @@ results.each do | result |
   @sendgrid_risky += result[:sendgrid_risky]
   @sendgrid_invalid += result[:sendgrid_invalid]
   @sendgrid_failed += result[:sendgrid_failed]
+  @sendgrid_valid += result[:sendgrid_valid]
   @failures_by_user_id = @failures_by_user_id.merge( result[:failures_by_user_id] )
 end
 
 puts
 puts "#{@emailed} users emailed, #{@failed} failed in #{Time.now - @start}s"
-puts "Sendgrid validation: #{@sendgrid_risky} risky, #{@sendgrid_invalid} invalid, #{@sendgrid_failed} failed"
+puts "Sendgrid validation: #{@sendgrid_valid} valid, #{@sendgrid_risky} risky, #{@sendgrid_invalid} invalid, " \
+  "#{@sendgrid_failed} failed"
 unless @failures_by_user_id.blank?
   puts "Failure user IDs: #{@failures_by_user_id.keys.join( ', ' )}"
   puts "First 5 failures:"
