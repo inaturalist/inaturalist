@@ -1,5 +1,5 @@
 - extra ||= false
-= link_to_toggle_box t( :show_more_login_options, default: t( :show_more ) ), class: "stacked inlineblock", container_options: { class: "text-center" } do
+= link_to_toggle_box has_t?( :show_more_login_options ) ? t( :show_more_login_options ) : t( :show_more ), class: "stacked inlineblock", container_options: { class: "text-center" } do
   .form-group.centered.provider-authorizations
     = button_to ProviderAuthorization::AUTH_URLS["apple"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink apple", disabled: true, data: { enable_with_js: true } do
       %span.img
