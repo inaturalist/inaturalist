@@ -384,7 +384,7 @@ class ObservationModal extends React.Component {
       { keys: ["x"], label: I18n.t( "organism_appears_captive_cultivated" ) },
       { keys: ["r"], label: I18n.t( "mark_as_reviewed" ) },
       { keys: ["c"], label: I18n.t( "comment_" ), skipBlind: true },
-      { keys: ["a"], label: I18n.t( "agree_" ), skipBlind: true },
+      { keys: ["a"], label: I18n.t( "agree_with_observation_taxon" ), skipBlind: true },
       { keys: ["i"], label: I18n.t( "add_id" ) },
       { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
