@@ -2124,6 +2124,11 @@ es:
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: 'Estimado/a %{name}:'
+  independence_email_body_so_far: "Hasta ahora, la comunidad de iNaturalist ha:"
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -2345,6 +2350,7 @@ es:
     davawenyo: Davaoeño
     dutch: Holandés
     english: Inglés
+    esperanto: Esperanto
     estonian: Estonio
     faroese: Feroés
     finnish: Finés
