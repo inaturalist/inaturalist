@@ -82,7 +82,8 @@ def sendgrid_validation_verdict( email )
     Timeout::Error,
     RestClient::ServiceUnavailable,
     RestClient::TooManyRequests,
-    RestClient::BadGateway
+    RestClient::BadGateway,
+    RestClient::InternalServerError
   ]
   response = begin
     try_and_try_again( errors, exponential_backoff: true, sleep: 3 ) do
@@ -172,7 +173,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
   if debug
     puts "Query: #{scope.to_sql}"
   end
-  scope.script_find_each( label: "[Proc #{process_index}]" ) do | recipient |
+  scope.script_find_each( label: "[Proc #{process_index} (#{start} - #{limit})]" ) do | recipient |
     if recipient.email.size.zero?
       puts "[DEBUG] Email is blank" if debug
       next
