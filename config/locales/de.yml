@@ -399,6 +399,7 @@ de:
   agree_: Zustimmen
   agree?: Zustimmen?
   agree_with_current_taxon: Bin mit aktuellem Taxon einverstanden
+  agree_with_observation_taxon: Der Beobachtungs-ID zustimmen
   agreeing: Zustimmung …
   aka: auch bekannt als
   #Noun, title of a popup alerting you to something
@@ -740,7 +741,7 @@ de:
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "mehrere Taxa für %{x} auf einmal bearbeiten"
   batch_operations: Stapeloperationen
-  be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
+  be_the_first_to_fave_this_observation: Diese Beobachtung favorisieren
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern verlinken
@@ -2017,7 +2018,7 @@ de:
     Du kannst deine Lizenzeinstellungen in deinen
     <a class="linky" href="/users/edit#content">Kontoeinstellungen ändern</a>.
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto ('%{taxon}' traue ich mir als Bestimmung zu)
+  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto, aber '%{taxon}' traue ich mir als Bestimmung zu
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -4202,7 +4203,7 @@ de:
   research_grade_short_html: "F<span class='full'>orschungs</span>Q<span class='full'>ualität</span>"
   research_grade_tooltip_html: '"Forschungsqualität (FQ)"-Beobachtungen erfüllen die Anforderungen: <br>- Koordinaten <br>- Datum <br>-Medien (Foto/Audio) <br> und die Community stimmt der genauen Bestimmung (gewöhnlich auf Artniveau) zu. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
-  research_grade_qualification: Forschungsqualität Qualifizierung
+  research_grade_qualification: Kriterien für Forschungsqualität
   #Label for a button that re-sends the account confirmation email and signs
   #you out until you do
   resend_and_sign_out: Erneut absenden & Ausloggen
@@ -6073,9 +6074,9 @@ de:
         taxa_observed_in_only_one_query: Nur in einer Abfrage beobachtete Taxa
         total_taxa: Gesamtanzahl Taxa
         total_taxa_desc: |
-          Das ist die Gesamtzahl der "Blatt"-Taxa, die in der Abfrage dargestellt werden. 
-          Manchmal wirst es mehr Zeilen geben, die keine Nullwerte haben, da höhere Taxa von anderen Abfragen hunzugefügt werden. 
-          Wenn Abfrage 1 beispielsweise eine Beobachtung der Art Homo sapiens ist und Abfrage 2 eine Beobachtung der Gattung Homo, werden beide Taxa in der Tabelle gezeigt. Für die Gattung Homo wird dabei eine zusätzliche Zeile angelegt, da in Abfrage 1 nur die Art Homo sapiens und nicht die Gattung enthält, welche das "Blatt"-Taxon der Art ist und daher nicht in Abfrage 1 angezeigt wird.
+          Das ist die Gesamtzahl der "End-Taxa" aus den Suchergebnissen.
+          Manchmal wird es mehr Zeilen geben, die keine Nullwerte haben, da höhere Taxa aus anderen Abfragen hinzugefügt wurden. 
+          Wenn Abfrage 1 beispielsweise eine Beobachtung der Art Homo sapiens enthält und Abfrage 2 eine Beobachtung der Gattung Homo, werden beide Taxa in der Tabelle angezeigt. Für die Gattung Homo wird dabei eine zusätzliche Zeile angelegt, da in Abfrage 1 nur die Art Homo sapiens (als "End-Taxon") und nicht die Gattung angezeigt wird.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: vertikal
         #Count of how many taxa several observation searches have in common

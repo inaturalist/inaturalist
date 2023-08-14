@@ -48,6 +48,20 @@ sr:
     one: '%{count} takson se poklapa'
     few: '%{count} taksona se poklapaju'
     other: '%{count} taksona se poklapa'
+  x_misidentifications_of_this_species:
+    one: "%{count} pogrešna identifikacija ove vrste"
+    few: "%{count} pogrešne identifikacije ove vrste"
+    other: "%{count} pogrešnih identifikacija ove vrste"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} pogrešna identifikacija ove vrste u okviru ovog roda"
+    few: "%{count} pogrešne identifikacije ove vrste u okviru ovog roda"
+    other: "%{count} pogrešnih identifikacija ove vrste u okviru ovog roda"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} pogrešna identifikacija ove vrste u okviru %{rank}"
+    few: "%{count} pogrešne identifikacije ove vrste u okviru %{rank}"
+    other: "%{count} pogrešniih identifikacija ove vrste u okviru %{rank}"
   x_observations:
     one: "%{count} opservacija"
     few: "%{count} opservacije"
@@ -351,6 +365,7 @@ sr:
   agree_: Slažem se
   agree?: Slažete se?
   agree_with_current_taxon: Složi se sa trenutnim taksonom
+  agree_with_observation_taxon: Složi se sa taksonom opservacije
   aka: zvani
   #Noun, title of a popup alerting you to something
   alert: Upozorenje
@@ -541,6 +556,8 @@ sr:
   are_you_sure_remove_photo: "Da li sigurno želiš da ukloniš ovu fotografiju?"
   are_you_sure_remove_relationship: Da li sigurno želiš da ukloniš ovaj odnos? Otpratićeš ovu osobu i povući pristup tvojim skrivenim koordinatama ako si odobrio pristup.
   are_you_sure_remove_taxon_from_list: "Da li sigurno želiš da ukloniš ovaj takson sa liste?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Da li si siguran/na? Strana će se ponovo učitati i možda će neke unete promene biti poništene.
   are_you_sure_want_delete_taxon: "Da li sigurno želiš da izbrišeš ovaj takson?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Da li sigurno želiš da izbrišeš ovaj takson? Ima taksone potomke.
@@ -2210,7 +2227,7 @@ sr:
   only_view_nearby_suggestions: Pogledaj samo preporuke iz okoline
   only_you: Samo ti
   open: otvoren
-  open_: Otvoren
+  open_: Otvoreno
   open_description: "Svi mogu videti koordinate osim u slučaju ugroženog taksona."
   open_street_map: OpenStreetMap
   optional: opciono
@@ -3747,6 +3764,7 @@ sr:
   view: Pogledaj
   view_all: Pogledaj sve
   view_all_caps: POGLEDAJ SVE
+  view_all_flags: Pogledaj sve prijave
   view_all_members: Pogledaj sve članove
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -3758,6 +3776,8 @@ sr:
   view_assessment: Pogledaj procenu
   view_details: Pogledaj detalje
   view_dynamic_lifelist_: VIDI DINAMIČNU LISTU ŽIVOTA
+  view_flags: Pogledaj prijave
+  view_flags_for_x_html: "Pogledaj prijave za %{x}"
   view_full_observation: Pogledaj celu opservaciju
   view_full_size_photo: Pogledaj fotografiju u punoj veličini
   view_inaturalist_global_year_in_review: Pogledaj globalni iNaturalist pregled godine %{year}

@@ -367,6 +367,7 @@ id:
   agree_: Setuju
   agree?: Setuju?
   agree_with_current_taxon: Setuju dengan takson saat ini
+  agree_with_observation_taxon: Setuju dengan takson pengamatan
   agreeing: Menyetujui...
   aka: alias
   #Noun, title of a popup alerting you to something
@@ -2355,6 +2356,7 @@ id:
     davawenyo: Davawenyo
     dutch: Belanda
     english: Inggris
+    esperanto: Esperanto
     estonian: Estonia
     faroese: Faroe
     fijian: Fiji
@@ -2519,6 +2521,7 @@ id:
     es: Spanyol
     es-AR: Spanyol (Argentina)
     es-CO: Spanyol (Kolombia)
+    es-CR: Spanyol (Kosta Rika)
     es-MX: Spanyol (Meksiko)
     et: Estonia
     eu: Basque
@@ -4426,6 +4429,8 @@ id:
   show_keyboard_shortcuts: Tampilkan Pintasan Papan Tik
   show_less: Tampilkan Lebih Sedikit
   show_more: Tampilkan Lebih Banyak
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Tampilkan lebih banyak opsi masuk
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Tampilkan "Tanpa Catatan"
@@ -6369,6 +6374,8 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
+      kml_field_desc3: |
+        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau kebanyakan aplikasi GIS lainnya. Harus memiliki setidaknya satu poligon, di bawah 1 MB (5MB untuk kurator situs), dan memiliki area yang lebih kecil dari ~700.000 kilometer persegi (kira-kira seluas negara bagian Texas/Pulau Kalimantan)
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.

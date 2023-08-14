@@ -963,12 +963,16 @@ th:
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
+  editing_announcement: แก้ไขประกาศ
   editing_observation_field: แก้ไขข้อมูลเสริมการสังเกต
   editing_observation_id: "แก้ไขการสังเกต %{obs_id}"
+  editing_observations:
+    other: 'แก้ไข <span class="count">%{count}</span> การสังเกต:'
   editing_project: แก้ไข %{project}
   editing_subscription_to_x_html: "แก้ไขการติดตาม %{x}"
   editing_taxon: แก้ไข %{taxon}
   editing_taxon_link: แก้ไขลิงก์หน่วยอนุกรมวิธาน
+  editing_taxon_name_for_taxon_html: แก้ไขชื่อ "%{name}" สำหรับ %{taxon}
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
@@ -1181,6 +1185,22 @@ th:
   #Notification when an identification has been withdrawn
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: สวัสดี คุณ %{name}
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    ขอแสดงความนับถือ<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>คณะทำงานหลัก iNaturalist</strong>
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   ids: "การจำแนก"
   ids_made_for_others: การจำแนกให้ผู้อื่น
@@ -1223,6 +1243,7 @@ th:
   journal: วารสาร
   journal_post: โพสต์วารสาร
   journal_posts: โพสต์วารสาร
+  keep_editing: แก้ไขต่อ
   labels: ป้ายกำกับ
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: ตำแหน่งเป็นส่วนตัว
@@ -1534,6 +1555,9 @@ th:
   names_for_taxon_html: "ชื่อสำหรับ %{taxon}"
   native: พื้นเมือง
   native_to_place: "ชนิดพันธุ์พื้นเมืองใน %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
+  nav: นำทาง
   near_threatened: ใกล้ถูกคุกคาม
   nearby_observations_: การสังเกตในบริเวณใกล้เคียง
   needs_id: รอจำแนกชนิด
