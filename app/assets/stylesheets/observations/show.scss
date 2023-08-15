@@ -1292,12 +1292,15 @@ time {
     padding: 8px;
     min-height: 56px;
     text-align: left;
-    a {
+    .SplitTaxon .display-name {
+      color: #000;
+    }
+    .SplitTaxon > .display-name, .display-names,
+    .SplitTaxon > .secondary-name, .secondary-names {
       display: block;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: #000;
     }
   }
   .view {
@@ -1353,10 +1356,18 @@ time {
 }
 .obs-highlight-link {
   .SplitTaxon {
-    a.display-name,
-    .noname {
+    & > .display-name, .display-names,
+    & > .secondary-name, .secondary-names {
       display: block;
+      white-space: inherit;
+    }
+    .display-name, .secondary-name {
+      white-space: inherit;
+    }
+    .display-name,
+    .noname {
       color: white;
+      font-weight: 700;
     }
   }
 }
