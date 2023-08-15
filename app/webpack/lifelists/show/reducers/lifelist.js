@@ -151,16 +151,19 @@ export function fetchAllCommonNames( callback ) {
       observed_by_user_id: lifelist.user.login,
       locale: I18n.locale
     } ).then( response => {
-      const commonNames = { };
+      const preferredCommonName = { };
+      const preferredCommonNames = { };
       const photos = { };
       _.each( response.results, t => {
-        commonNames[t.id] = t.preferred_common_name;
+        preferredCommonName[t.id] = t.preferred_common_name;
+        preferredCommonNames[t.id] = t.preferred_common_names;
         photos[t.id] = t.default_photo;
       } );
       const modifiedTaxa = _.each( lifelist.taxa, t => {
-        if ( t.id in commonNames ) {
+        if ( t.id in preferredCommonName ) {
           t.common_name_loaded = true;
-          t.preferred_common_name = commonNames[t.id];
+          t.preferred_common_name = preferredCommonName[t.id];
+          t.preferred_common_names = preferredCommonNames[t.id];
           t.default_photo = photos[t.id];
         }
         return t;

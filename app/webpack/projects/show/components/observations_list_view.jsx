@@ -105,6 +105,7 @@ const ObservationsListView = ( {
                           <div className="contents">
                             <SplitTaxon
                               taxon={o.taxon}
+                              noParens
                               url={`/observations/${o.id}`}
                               user={config.currentUser}
                             />

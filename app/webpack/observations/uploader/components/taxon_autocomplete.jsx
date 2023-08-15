@@ -263,7 +263,8 @@ class TaxonAutocomplete extends React.Component {
       // ensure the AC menu scrolls with the input
       appendTo: this.idElement( ).parent( ),
       minLength: 0,
-      renderMenu: renderMenuWithCategories
+      renderMenu: renderMenuWithCategories,
+      menuClass: "taxon-autocomplete"
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
@@ -602,7 +603,14 @@ class TaxonAutocomplete extends React.Component {
       && config.currentUser
       && config.currentUser.prefers_scientific_name_first
     ) ) {
-      name = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
+      if ( !_.isEmpty( result.preferred_common_names ) ) {
+        const names = _.map( result.preferred_common_names, taxonName => (
+          iNatModels.Taxon.titleCaseName( taxonName.name )
+        ) );
+        name = names.join( " · " );
+      } else {
+        name = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
+      }
     }
     return name;
   }
@@ -625,7 +633,14 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( result.title ) {
       if ( scinameFirst ) {
-        result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+        if ( !_.isEmpty( result.preferred_common_names ) ) {
+          const names = _.map( result.preferred_common_names, taxonName => (
+            iNatModels.Taxon.titleCaseName( taxonName.name )
+          ) );
+          result.subtitle = names.join( " · " );
+        } else {
+          result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+        }
       }
       if ( !result.subtitle && result.name !== result.title ) {
         if ( result.rank_level <= 20 ) {

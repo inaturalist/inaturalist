@@ -53,14 +53,18 @@
       position: relative;
       padding-right: 86px;
       white-space: nowrap;
-      .display-name {
+      .display-names, .display-name {
         font-size: 17px;
-        display: block;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+      .display-names, .SplitTaxon > .display-name {
+        display: block;
+      }
+      .sciname, .display-name, .secondary-name {
         color: inherit;
       }
-      .secondary-name {
+      .secondary-names {
         display: block;
         overflow: hidden;
         text-overflow: ellipsis;
