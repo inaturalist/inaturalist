@@ -248,6 +248,11 @@ class Emailer < ActionMailer::Base
     @user.send( :generate_confirmation_token! ) if @user.confirmation_token.blank?
     set_locale
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
+    # Since this email is sent en masse, we'll try to send from the alternate
+    # IP pool to preserve the reputation of other IPs
+    if CONFIG&.sendgrid&.alternate_ip_pool
+      @x_smtpapi_headers[:ip_pool] = CONFIG&.sendgrid&.alternate_ip_pool
+    end
     ident_response = Identification.elastic_search(
       size: 0,
       filters: [
@@ -363,7 +368,11 @@ class Emailer < ActionMailer::Base
       # when you put tags like this in a template
       sub: {
         "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
-      }
+      },
+      # Sendgrid IP pools allow us to partition delivery between different IPs
+      # if we need to preserve the reputation of one while sending a lot or
+      # riskier emails from another
+      ip_pool: CONFIG&.sendgrid&.primary_ip_pool
     }
   end
 end
