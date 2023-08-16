@@ -42,7 +42,7 @@ $label-start: 7px;
   .header-category:after {
     content: ":"
   }
-  .nearby-toggle {
+  .nearby-toggle, .toggle {
     list-style: none;
     border-top: 1px solid $border-grey;
     button {
@@ -51,6 +51,17 @@ $label-start: 7px;
       background-color: white;
       width: 100%;
       text-align: center;
+    }
+  }
+  .nearby-toggle, .toggle {
+    &.off button {
+      background: rgba(217, 83, 79, 0.5);
+    }
+    &.on button {
+      background: rgba(116, 172, 0, 0.5);
+    }
+    button:hover {
+      opacity: 0.8;
     }
   }
 }

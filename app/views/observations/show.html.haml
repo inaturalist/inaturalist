@@ -31,7 +31,8 @@
 - content_for :extrajs do
   - if logged_in?
     :ruby
-      js_current_user = { id: current_user.id,
+      js_current_user = {
+        id: current_user.id,
         login: current_user.login,
         curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
         icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
@@ -57,7 +58,7 @@
         blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::SHA256.hexdigest( ub.user_id.to_s ) },
         trusted_user_ids: current_user.friendships.where( "trust" ).pluck(:friend_id),
         testGroups: current_user.test_groups_array
-      }
+      }.merge( session.to_h.select{ |k, v| k.match( /^prefers_vision/ ) } )
   :javascript
     var INITIAL_OBSERVATION_ID = "#{@observation.id}";
     var INITIAL_OBSERVATION_UUID = "#{@observation.uuid}";

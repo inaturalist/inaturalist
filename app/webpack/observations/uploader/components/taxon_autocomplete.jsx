@@ -140,9 +140,6 @@ class TaxonAutocomplete extends React.Component {
     this.inputElement = this.inputElement.bind( this );
     this.inputValue = this.inputValue.bind( this );
     this.template = this.template.bind( this );
-    this.resultTemplate = TaxonAutocomplete.resultTemplate.bind( this );
-    this.placeholderTemplate = TaxonAutocomplete.placeholderTemplate.bind( this );
-    this.searchExternalTemplate = TaxonAutocomplete.searchExternalTemplate.bind( this );
     this.searchExternalElement = this.searchExternalElement.bind( this );
     this.thumbnailElement = this.thumbnailElement.bind( this );
     this.autocomplete = this.autocomplete.bind( this );
@@ -151,6 +148,10 @@ class TaxonAutocomplete extends React.Component {
     const { currentUser } = ( config || {} );
     this.state = {
       viewNotNearby: currentUser && currentUser.prefers_not_nearby_suggestions,
+      viewAggregatedResults: currentUser && currentUser.prefers_vision_aggregated_results,
+      viewGeoNearby: currentUser && currentUser.prefers_vision_geo_nearby,
+      skipIconicFilter: currentUser && currentUser.prefers_vision_skip_filter_iconic,
+      scoreWithoutGeo: currentUser && currentUser.prefers_vision_score_without_geo,
       // eslint-disable-next-line react/no-unused-state
       numNearby: 0
     };
@@ -159,11 +160,14 @@ class TaxonAutocomplete extends React.Component {
   componentDidMount( ) {
     const {
       afterUnselect,
-      initialSelection
+      initialSelection,
+      config
     } = this.props;
     const that = this;
     const getState = ( ) => that.state;
     const setState = updates => that.setState( updates );
+    const viewerIsAdmin = config.currentUser && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const renderMenuWithCategories = function ( ul, items ) {
       ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
       ul.addClass( "ac-menu" );
@@ -171,90 +175,130 @@ class TaxonAutocomplete extends React.Component {
         ul.append( `<li class="category non-option">${I18n.t( "loading_suggestions" )}</li>` );
         return;
       }
-      if ( items.length === 1 && items[0].label === "noResults" ) {
+      const noResults = ( items.length === 1 && items[0].label === "noResults" );
+      if ( noResults ) {
         ul.append(
           $( "<li />" ).addClass( "category non-option" ).text(
             I18n.t( "not_confident" )
           )
         );
-        return;
-      }
-      const isVisionResults = items[0] && items[0].isVisionResult;
-      let commonAncestorCategoryShown = false;
-      let suggestionsCategoryShown = false;
-      let experimantalWarningShown = false;
-      $.each( items, ( index, item ) => {
-        if ( isVisionResults ) {
-          if ( item.isExperimental && !experimantalWarningShown ) {
-            ul.append( `<li class='non-option warning'>Experimental: ${item.isExperimental}</li>` );
-            experimantalWarningShown = true;
-          }
-          if ( item.isCommonAncestor ) {
-            const snakeCaseRank = _.snakeCase( item.rank );
-            // Note: given the way we're doing fallbacks as of this writing on
-            // 2021-08-10, `defaultValue` only kicks in when the key doesn't
-            // exist in the current locale or any of the fallbacks... so if
-            // there's an English translation, that will be used instead of
-            // `defaultValue`. Here I'm achieving the desired behavior
-            // manually, but this is a problem with our fallback system, b/c
-            // this is *not* how defaultValue is supposed to work.
-            // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
-            // I18n.t( "were_pretty_sure_this_is_in_the_family" )
-            // I18n.t( "were_pretty_sure_this_is_in_the_order" )
-            const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
-            const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-              rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
-              gender: snakeCaseRank
-            } );
-            const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
-              defaultValue: labelInLocaleFallback
-            } );
-            let label = labelInLocale;
-            if ( I18n.locale !== "en" && label === labelInEnglish ) {
-              label = labelInLocaleFallback;
-            }
-            ul.append( `<li class='category header-category non-option'>${label}</li>` );
-            commonAncestorCategoryShown = true;
-          } else if ( !suggestionsCategoryShown ) {
-            let label = I18n.t( "here_are_our_top_species_suggestions" );
-            label = commonAncestorCategoryShown
-              ? I18n.t( "here_are_our_top_suggestions" )
-              : I18n.t( "not_confident_top_suggestions" );
-            ul.append( `<li class='category header-category non-option'>${label}</li>` );
-            suggestionsCategoryShown = true;
-          }
+        if ( !viewerIsAdmin ) {
+          return;
         }
-        this._renderItemData( ul, item );
-      } );
+      }
+      if ( !noResults ) {
+        const isVisionResults = items[0] && items[0].isVisionResult;
+        let commonAncestorCategoryShown = false;
+        let suggestionsCategoryShown = false;
+        let experimantalWarningShown = false;
+        $.each( items, ( index, item ) => {
+          if ( isVisionResults ) {
+            if ( item.isExperimental && !experimantalWarningShown ) {
+              ul.append( `<li class='non-option warning'>Experimental: ${item.isExperimental}</li>` );
+              experimantalWarningShown = true;
+            }
+            if ( item.isCommonAncestor ) {
+              const snakeCaseRank = _.snakeCase( item.rank );
+              // Note: given the way we're doing fallbacks as of this writing on
+              // 2021-08-10, `defaultValue` only kicks in when the key doesn't
+              // exist in the current locale or any of the fallbacks... so if
+              // there's an English translation, that will be used instead of
+              // `defaultValue`. Here I'm achieving the desired behavior
+              // manually, but this is a problem with our fallback system, b/c
+              // this is *not* how defaultValue is supposed to work.
+              // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
+              // I18n.t( "were_pretty_sure_this_is_in_the_family" )
+              // I18n.t( "were_pretty_sure_this_is_in_the_order" )
+              const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
+              const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+                rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
+                gender: snakeCaseRank
+              } );
+              const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
+                defaultValue: labelInLocaleFallback
+              } );
+              let label = labelInLocale;
+              if ( I18n.locale !== "en" && label === labelInEnglish ) {
+                label = labelInLocaleFallback;
+              }
+              ul.append( `<li class='category header-category non-option'>${label}</li>` );
+              commonAncestorCategoryShown = true;
+            } else if ( !suggestionsCategoryShown ) {
+              let label = I18n.t( "here_are_our_top_species_suggestions" );
+              label = commonAncestorCategoryShown
+                ? I18n.t( "here_are_our_top_suggestions" )
+                : I18n.t( "not_confident_top_suggestions" );
+              ul.append( `<li class='category header-category non-option'>${label}</li>` );
+              suggestionsCategoryShown = true;
+            }
+          }
+          this._renderItemData( ul, item );
+        } );
+      }
       const query = that.inputElement( ).val( );
       const manualQuery = query && query.length >= 0;
-      const { numNearby, numSuggested, viewNotNearby } = getState( );
-      if ( !manualQuery && numNearby > 0 && numNearby !== numSuggested ) {
-        const nearbyToggle = $( "<button />" ).attr( "type", "button" )
-          .append(
-            viewNotNearby
-              ? I18n.t( "only_view_nearby_suggestions" )
-              : I18n.t( "include_suggestions_not_seen_nearby" )
-          )
-          .click( e => {
-            e.preventDefault( );
-            const { viewNotNearby: innerViewNotNearby } = getState( );
-            $( e.target ).text(
-              innerViewNotNearby
-                ? I18n.t( "include_suggestions_not_seen_nearby" )
-                : I18n.t( "only_view_nearby_suggestions" )
-            );
-            setState( { viewNotNearby: !innerViewNotNearby } );
-            updateSession( { prefers_not_nearby_suggestions: !innerViewNotNearby } );
-            that.inputElement( ).autocomplete( "search" );
-            return false;
-          } );
-        ul.append(
-          $( "<li />" ).addClass( "non-option nearby-toggle" ).append( nearbyToggle )
-        );
+      const {
+        numNearby,
+        numSuggested,
+        viewNotNearby
+      } = getState( );
+      if ( !manualQuery ) {
+        if ( numNearby > 0 && numNearby !== numSuggested && !noResults ) {
+          const nearbyToggle = $( "<button />" ).attr( "type", "button" )
+            .append(
+              viewNotNearby
+                ? I18n.t( "only_view_nearby_suggestions" )
+                : I18n.t( "include_suggestions_not_seen_nearby" )
+            )
+            .click( e => {
+              e.preventDefault( );
+              const { viewNotNearby: innerViewNotNearby } = getState( );
+              $( e.target ).text(
+                innerViewNotNearby
+                  ? I18n.t( "include_suggestions_not_seen_nearby" )
+                  : I18n.t( "only_view_nearby_suggestions" )
+              );
+              setState( { viewNotNearby: !innerViewNotNearby } );
+              updateSession( { prefers_not_nearby_suggestions: !innerViewNotNearby } );
+              that.inputElement( ).autocomplete( "search" );
+              return false;
+            } );
+          ul.append(
+            $( "<li />" ).addClass( "non-option nearby-toggle" ).append( nearbyToggle )
+          );
+        }
+        if ( viewerIsAdmin ) {
+          ul.append( that.toggleFeatureButton(
+            "viewAggregatedResults",
+            "Show Aggregated Results",
+            "Showing Aggregated Results",
+            "prefers_vision_aggregated_results"
+          ) );
+          ul.append( that.toggleFeatureButton(
+            "viewGeoNearby",
+            "Use Geomodel nearby",
+            "Using Geomodel nearby",
+            "prefers_vision_geo_nearby"
+          ) );
+          ul.append( that.toggleFeatureButton(
+            "skipIconicFilter",
+            "Filter By Iconic Taxon",
+            "Filtering By Iconic Taxon",
+            "prefers_vision_skip_filter_iconic",
+            true
+          ) );
+          ul.append( that.toggleFeatureButton(
+            "scoreWithoutGeo",
+            "Geo does not affect score",
+            "Geo affects score",
+            "prefers_vision_score_without_geo",
+            true
+          ) );
+        }
       }
     };
-    const opts = Object.assign( { }, this.props, {
+    const opts = {
+      ...this.props,
       extraClass: "taxon",
       idEl: this.idElement( ),
       source: this.source,
@@ -265,7 +309,7 @@ class TaxonAutocomplete extends React.Component {
       minLength: 0,
       renderMenu: renderMenuWithCategories,
       menuClass: "taxon-autocomplete"
-    } );
+    };
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
     this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
@@ -294,7 +338,7 @@ class TaxonAutocomplete extends React.Component {
     this._mounted = true;
   }
 
-  componentDidUpdate( prevProps ) {
+  componentDidUpdate( prevProps, prevState ) {
     const { initialTaxonID, visionParams } = this.props;
     if (
       initialTaxonID
@@ -305,6 +349,17 @@ class TaxonAutocomplete extends React.Component {
     if ( !_.isEqual( visionParams, prevProps.visionParams ) ) {
       this.cachedVisionResponse = null;
     }
+    const toggleOptions = [
+      "viewAggregatedResults",
+      "viewGeoNearby",
+      "skipIconicFilter",
+      "scoreWithoutGeo"
+    ];
+    _.each( toggleOptions, toggleOption => {
+      if ( !_.isEqual( this.state[toggleOption], prevState[toggleOption] ) ) {
+        this.cachedVisionResponse = null;
+      }
+    } );
   }
 
   componentWillUnmount( ) {
@@ -316,6 +371,32 @@ class TaxonAutocomplete extends React.Component {
     // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
     this._mounted = false;
     this.inputElement( ).autocomplete( "destroy" );
+  }
+
+  // eslint-disable-next-line react/no-unused-class-component-methods
+  toggleFeatureButton( stateAttribute, onText, offText, userSetting, switchStates = false ) {
+    const currentSetting = this.state[stateAttribute];
+    const enabled = switchStates ? !currentSetting : currentSetting;
+    const that = this;
+    const getState = ( ) => that.state;
+    const toggle = $( "<button />" ).attr( "type", "button" )
+      .append(
+        enabled ? offText : onText
+      )
+      .click( e => {
+        e.preventDefault( );
+        const { [stateAttribute]: innerCurrentSetting } = getState( );
+        const innerEnabled = switchStates ? innerCurrentSetting : !innerCurrentSetting;
+        $( e.target ).text(
+          innerEnabled ? onText : offText
+        );
+        that.setState( { [stateAttribute]: !innerCurrentSetting } );
+        updateSession( { [userSetting]: !innerCurrentSetting } );
+        that.inputElement( ).autocomplete( "search" );
+        return false;
+      } );
+    return $( "<li />" ).addClass( `non-option toggle ${enabled ? "on" : "off"}` )
+      .append( toggle );
   }
 
   returnVisionResults( response, callback ) {
@@ -447,6 +528,18 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
+      if ( this.state.viewAggregatedResults ) {
+        baseParams.aggregated = true;
+      }
+      if ( this.state.viewGeoNearby ) {
+        baseParams.geo_nearby = true;
+      }
+      if ( this.state.skipIconicFilter ) {
+        baseParams.skip_iconic_filter = true;
+      }
+      if ( this.state.scoreWithoutGeo ) {
+        baseParams.score_without_geo = true;
+      }
       const viewerIsAdmin = config.currentUser && config.currentUser.roles
         && config.currentUser.roles.indexOf( "admin" ) >= 0;
       if ( viewerIsAdmin && config.testFeature ) {
