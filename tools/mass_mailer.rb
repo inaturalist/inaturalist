@@ -84,7 +84,8 @@ def sendgrid_validation_verdict( email )
     RestClient::TooManyRequests,
     RestClient::BadGateway,
     RestClient::InternalServerError,
-    RestClient::Exceptions::ReadTimeout
+    RestClient::Exceptions::ReadTimeout,
+    Net::OpenTimeout
   ]
   response = begin
     try_and_try_again( errors, exponential_backoff: true, sleep: 3 ) do
