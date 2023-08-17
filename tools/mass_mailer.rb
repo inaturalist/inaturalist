@@ -37,6 +37,7 @@ require "optimist"
   opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
   opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean
   opt :include_risky, "Send to addresses Sendgrid considers Risky", type: :boolean
+  opt :min_risky_score, "Miniumum score required to send to Risky addresses. Value btwn 0 and 1", type: :float
 end
 
 mailer_method = ARGV.shift
@@ -77,7 +78,11 @@ if @opts.locale && @opts.locales
   Optimist.die "You can't specify a locale and locales. Choose one."
 end
 
-def sendgrid_validation_verdict( email )
+if @opts.include_risky && @opts.min_risky_score
+  Optimist.die "You can't use include_risky and min_risky_score. Choose one."
+end
+
+def sendgrid_validation( email )
   errors = [
     Timeout::Error,
     RestClient::ServiceUnavailable,
@@ -99,7 +104,7 @@ def sendgrid_validation_verdict( email )
     return "Failed"
   end
   json = JSON.parse( response )
-  json["result"]["verdict"]
+  json["result"]
 end
 
 test_users = @opts.users.to_s.split( "," )
@@ -145,6 +150,7 @@ end
 @failed = 0
 @failures_by_user_id = {}
 @sendgrid_risky = 0
+@sendgrid_risky_approved = 0
 @sendgrid_invalid = 0
 @sendgrid_failed = 0
 @sendgrid_valid = 0
@@ -169,6 +175,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
   process_failed = 0
   process_failures_by_user_id = {}
   sendgrid_risky = 0
+  sendgrid_risky_approved = 0
   sendgrid_invalid = 0
   sendgrid_failed = 0
   sendgrid_valid = 0
@@ -207,7 +214,8 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     end
 
     unless @opts.skip_sendgrid_validation
-      verdict = sendgrid_validation_verdict( recipient.email )
+      result = sendgrid_validation( recipient.email )
+      verdict = result["verdict"]
       case verdict
       when "Valid"
         sendgrid_valid += 1
@@ -219,9 +227,19 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
         sendgrid_failed += 1
       end
       acceptable_verdits = %w(Valid)
-      acceptable_verdits << "Risky" if @opts.include_risky
+      above_risky_threshold = (
+        @opts.min_risky_score &&
+        verdict == "Risky" &&
+        result["score"] >= @opts.min_risky_score
+      )
+      if @opts.include_risky || above_risky_threshold
+        acceptable_verdits << "Risky"
+        sendgrid_risky_approved += 1
+      end
       unless acceptable_verdits.include?( verdict )
-        puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict}" if debug
+        if debug
+          puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict} (score: #{result['score']})"
+        end
         next
       end
     end
@@ -247,6 +265,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     failed: process_failed,
     failures_by_user_id: process_failures_by_user_id,
     sendgrid_risky: sendgrid_risky,
+    sendgrid_risky_approved: sendgrid_risky_approved,
     sendgrid_invalid: sendgrid_invalid,
     sendgrid_failed: sendgrid_failed,
     sendgrid_valid: sendgrid_valid,
@@ -264,6 +283,7 @@ results.each do | result |
   @emailed += result[:emailed]
   @failed += result[:failed]
   @sendgrid_risky += result[:sendgrid_risky]
+  @sendgrid_risky_approved += result[:sendgrid_risky_approved]
   @sendgrid_invalid += result[:sendgrid_invalid]
   @sendgrid_failed += result[:sendgrid_failed]
   @sendgrid_valid += result[:sendgrid_valid]
@@ -272,7 +292,9 @@ end
 
 puts
 puts "#{@emailed} users emailed, #{@failed} failed in #{Time.now - @start}s"
-puts "Sendgrid validation: #{@sendgrid_valid} valid, #{@sendgrid_risky} risky, #{@sendgrid_invalid} invalid, " \
+puts "Sendgrid validation: #{@sendgrid_valid} valid, " \
+  "#{@sendgrid_risky} risky (#{@sendgrid_risky_approved} approved), " \
+  "#{@sendgrid_invalid} invalid, " \
   "#{@sendgrid_failed} failed"
 unless @failures_by_user_id.blank?
   puts "Failure user IDs: #{@failures_by_user_id.keys.join( ', ' )}"

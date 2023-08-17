@@ -114,9 +114,13 @@
             </div>
           <% else %>
             <div class="bootstrap">
-              <div id="full-width-notice" class="bg-warning">
+              <div id="full-width-notice" class="bg-danger">
                 <div class="container">
-                  <p><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <p style="font-size: larger; margin: 20px 0;"><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
