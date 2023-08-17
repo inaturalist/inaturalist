@@ -268,13 +268,16 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   }
 }
 
-.image-size-large {
+#Identify .ObservationsGrid.image-size-large {
   .ObservationsGridItem,
   .ObservationsGridItem .media {
     width: 220px;
   }
   .ObservationsGridItem .media {
     height: 220px;
+  }
+  .ObservationsGridItem .UserImage {
+    top: 190px;
   }
 }
 
