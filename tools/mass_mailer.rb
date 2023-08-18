@@ -84,13 +84,14 @@ end
 
 def sendgrid_validation( email )
   errors = [
-    Timeout::Error,
+    Net::OpenTimeout,
+    RestClient::BadGateway,
+    RestClient::Exceptions::ReadTimeout,
+    RestClient::GatewayTimeout,
+    RestClient::InternalServerError,
     RestClient::ServiceUnavailable,
     RestClient::TooManyRequests,
-    RestClient::BadGateway,
-    RestClient::InternalServerError,
-    RestClient::Exceptions::ReadTimeout,
-    Net::OpenTimeout
+    Timeout::Error
   ]
   response = begin
     try_and_try_again( errors, exponential_backoff: true, sleep: 3 ) do
