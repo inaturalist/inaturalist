@@ -1126,7 +1126,7 @@ sr:
   delete_range: Izbriši opseg
   delete_selected: Izbriši označeno
   delete_user: Izbriši korisnika
-  delete_your_account: Izbriši profil
+  delete_your_account: Izbriši nalog
   deleted_synonyms: Izbriši sinonime
   deleted_user: izbriši korisnika
   deleted_vote: Izbrisan glas
@@ -1539,6 +1539,8 @@ sr:
   identifiers: Identifikatori
   ids: "Identifikacije"
   ids_made_for_others: ID-jeva datih za druge
+  if_for_some_reason_a_user_doesnt_agree: |
+    Ako se iz bilo kog razloga ne slažeš sa taksonom zajednice, možeš ga odbaciti na tvojim opservacijama što znači da će tvoj priložen ID biti korišćen za povezivanje sa drugim sličnim opservacijama, ažuriranje liste života itd. To takođe znači da tvoja opservacija može dobiti status istraživačkog nivoa samo ako se zajednica složi sa tobom.
   ignore_and_continue: Zanemari i nastavi
   ignore_times: Ignoriši vremena
   image_must_be_exactly: Slika može biti maksimalno 950px x 400px
@@ -3113,6 +3115,7 @@ sr:
   redo_search_in_map_area: Ponovi pretragu u oblasti mape
   refresh: Osveži
   refreshing: osvežava se
+  regional_names: Regionalni nazivi
   register_for_this_event_at_x_html: "Prijavi se za ovaj događaj %{x}"
   reject?: Odbaci?
   relative_observations: Relativne opservacije
@@ -3668,7 +3671,7 @@ sr:
     Postoji više od 1000 opservacija povezanih sa ovim taksonom tako da će promena potrajati. Da li si siguran/la da je neophodna?
   this_taxon_has_no_default_photo: Ovaj takson nema podrazumevanu fotografiju!
   this_taxon_is_inactive_this_means: |
-    Ovaj takson je <strong>neaktivan</strong>. To znači da su ga %{site_name} kustosi zamenili sa aktuelnijim konceptom.
+    Ovaj takson je <strong>neaktivan</strong>. To znači da su ga %{site_name} kustosi zamenili sa taksonomski aktuelnijim konceptom.
   this_taxon_name_was_originally_imported: "Ovaj naziv taksona je prvobitno uvezen iz spoljašnjeg provajdera naziva:"
   this_taxon_was_originally_imported_from: "Ovaj naziv taksona je prvobitno uvezen iz spoljašnjeg provajdera naziva:"
   this_user_has_been_suspended: Korisnik je suspendovan
@@ -3870,6 +3873,7 @@ sr:
   user_commented: "%{user} komentariše"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
+  user_faved_an_observation_by_you: "%{user} je dodao/la tvoju opservaciju u favorite"
   user_faved_this_observation: "%{user} je dodao/la opservaciju u favorite"
   user_has_opted_out_of_community_id: Korisnik/ca je isključio opciju taksona zajednice
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
@@ -4107,6 +4111,8 @@ sr:
     Milioni ljudi ove godine su koristili iNaturalist i Seek da se povežu sa prirodom
   you: tebe
   you_: Tebe
+  you_appear_offline_try_again: |
+    Izgleda da nisi povezan/a na Inernet. Molimo pokušaj opet kada se povežeš na Internet.
   you_are_now_following_x: "Sada pratiš %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>ti</strong> si sada administrator projekta %{project}
@@ -4349,6 +4355,13 @@ sr:
         disagreement_count: Brojač neslaganja
         identification_count: Brojač identifikacija
         score: Rezultat
+        explanation: |
+          <p>
+          Ako se iz bilo kog razloga korisnik ne slaže sa taksonom zajednice, može ga odbaciti, što znači da će njegov/njen priložen ID biti korišćen za povezivanje sa drugim sličnim opservacijama, ažuriranje liste života itd. To takođe znači da takva opservacija može dobiti status istraživačkog nivoa ako se zajednica složi sa tim korisnikom.
+          </p>
+          <p>
+          Međutim, ID zajednice će i dalje biti prikazan da bi svi mogli da vide ID-jeve koji su predloženi.
+          </p>
         you_have_opted_out: Izabrao/la si da ne dobijaš identifikacije zajednice
         your_id_does_not_match: |
           Tvoj ID (<span class="bold">%{taxon_name}</span>) se ne poklapa sa ID-jem zajednice
@@ -4402,6 +4415,18 @@ sr:
           Dozvoli kustosima projekta da vide skrivene koordinate ove opservacije.
         ancestor_disagreements_desc2: |
           broj identifikovanih taksona koji su među predacima konkretnog taksona, ali se ne slažu sa taksonom (tj. "slažem se da je ovaj rod ali se ne slažem da je ova vrsta")
+        community_taxon_desc_html: |
+          <p class="ui">
+          Takson zajednice (ili identifikacija zajednice) je odraz mišljenja %{site_name} zajednice koji je takson određene opservacije. Ako te interesuje kako izbor taksona zajednice funkcioniše, pogledaj beleške ispod, ali generalno pravilo je da ćemo <strong>izabrati takson sa kojim se više od 2/3 identifikatora slaže</strong>. To znači da će nekada biti izabran takson višeg nivoa koji sadrži taksone koji se ne slažu (npr. ti misliš da je u pitanju smukulja a ja mislim da je poskok, u tom slučaju iNat će izabrati podred Serpentes koji obuhvata sve zmije). Algoritam je blago pristrasan prema identifikacijama koje su drugačije od većine jer se u praksi pokazalo da su često osnovane.
+          </p>
+          <p class="ui">
+          Opservacija istraživačkog nivoa mora imati (između ostalog) takson zajednice. Ako opservacija ima samo jednu identifikaciju, neće imati takson zajednice. Sve opservacije sa bar jednom identifikacijom će takođe imati takson opservacije. Takson opservacije je takson koji koristimo kada delimo opservacije sa partnerima sa kojima delimo podatke, kada objedinjujemo opservacije istog taksona na sajtu, kada ažuriramo tvoju listu života itd. U većini slučajeva takson opservacije će na kraju biti zamenjen taksonom zajednice ali će se nekad razlikovati, posebno dok se zajednica ne složi oko identifikacije. Na primer, ako ti misliš da je u pitanju zmija (podred Serpentes) a ja mislim da je u pitanju smukulja (rod <i>Coronella</i>), takson opservacije će biti smukulja (na osnovu samo moje identifikacije) ali će takson zajednice ostati na Serpentes (na osnovu bar 2 identifikacije, iako je moja bila preciznija). Ako se iz bilo kog razloga ne slažeš sa taksonom zajednice, možeš ga odbaciti na tvojim opservacijama što znači da takson opservacije nikada neće biti zamenjen taksonom zajednice (biće definisan na osnovu tvog ID-ja). To takođe znači da tvoja opservacija može dobiti status istraživačkog nivoa samo ako se zajednica složi sa <em>tobom</em>. Ako ti se koncept taksona zajednice ne sviđa, možeš isključiti tu opciju
+          <a href="/users/edit" target="_blank">ažuriranjem tvojih podešavanja</a>.
+          </p>
+          <p class="ui">
+          <strong>Algoritam:</strong> za sve identifikovane taksone i taksone koji ih sadrže (npr. rod <i>Homo</i> sadrži <i>Homo sapiens</i>), 
+          svaki pojedinačno se računa kao odnos broja 'slaganja' - kumulativnih ID-jeva tog taksona nad sumom kumulativnih ID-jeva, 'neslaganja' - broj ID-jeva koji su potpuno drugačiji (tj. ID-jevi onih taksona koji ne sadrže takson za koji se računa), i 'neslaganja oko pretka' - broj ID-jeva koji su umereniji i kojima se stvara neslaganje sa preciznijim taksonom, nižeg nivoa. Za identifikovane taksone koji imaju rezultat preko 2/3 i bar 2 identifikacije, izaberi takson najnižeg nivoa.
+          </p>
         cumulative_count_desc: 'broj identifikacija određenog taksona i svih njegovih potomaka'
         data_quality_assessment_desc3_html: |
           Kvalitet podataka objedinjuje tačnost, preciznost, potpunost, važnost i prikladnost iNaturalist opservacije kao podatka biodiverziteta. Neki atributi su automatski dodeljeni dok drugi zavise od glasova iNat korisnika. iNaturalist deli licencirane "Istraživački nivo" opservacije sa više partnera koji skupljaju podatke za potrebe nauke i konzervacije.
@@ -4667,6 +4692,7 @@ sr:
         recent_w_7_obs: Skorašnji sa >= 7 opservacija
         recent_w_7_obs_desc: Registrovani u poslednjih 7 dana i sa >= 7 opservacija
         TTCID: VDIDZ
+        TTCID_desc: Vreme potrebno da neko doda identifikaciju koja se poklapa sa taksonom zajednice.
         TTID: VDID
         TTID_desc: Vreme do identifikacije nekog drugog
         website_desc_html: |
@@ -4731,6 +4757,13 @@ sr:
           </p>
           <p>
           Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima korisnika. Nazivi su poređani po njihovoj učestalosti upotrebe u sklopu svakog jezika / tipa.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Nazivi mogu biti dodati za mesta (obično države) u slučajevima gde različite zemlje ili regioni koriste različite narodne nazive na istom jeziku. Na primer, Meksiko i Kostarika mogu imati drugačije nazive za istu vrstu na španskom.
+          </p>
+          <p>
+          Ova tabela pokazuje koji nazivi su dodati za koja mesta, i navedeni su po prioritetu za svako mesto. Ako su dva naziva na španskom dodata za Meksiko, prvi po prioritetu će biti prikazan ako izabereš da ti se prikazuju nazivi za Meksiko na španskom.
           </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
@@ -5287,7 +5320,7 @@ sr:
         only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
         record_invalid: 'Potvrda neuspela: %{errors}'
         requires_privilege_speech: |
-          mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
+          mora imati 3 argumentovane opservacije ili 3 identifikacije za druge da bi to mogao/la uraditi
         requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
         taken: već postoji
         too_long:
