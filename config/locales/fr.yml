@@ -1444,7 +1444,7 @@ fr:
   default_time_zone_desc: |
     Il s'agit du fuseau horaire par défaut. Le fuseau horaire définitif sera attribué lors de l'enregistrement en fonction du lieu de l'observation.
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
-  defines_a_taxon_framework_for: Définit un cadre taxinomique pour %{taxon_name}
+  defines_a_taxon_framework_for: 'Définit un cadre taxinomique pour : %{taxon_name}'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Définit un cadre taxinomique pour %{taxon} provenant de %{source}
   definitions: Définitions
   delete: Supprimer
@@ -4887,7 +4887,7 @@ fr:
   taxon_framework_notes: Notes du cadre taxonomique
   taxon_framework_relationship: Relation du cadre taxonomique
   taxon_framework_relationship_number: "Relation du cadre taxonomique %{number}"
-  taxon_framework_relationship_unknown_count_html: "Nombre inconnu de relation : %{count}"
+  taxon_framework_relationship_unknown_count_html: "Nombre de relations inconnues : %{count}"
   taxon_framework_relationships: Relations du cadre taxonomique
   taxon_framework_taxon: Taxon du cadre taxonomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
@@ -5582,7 +5582,7 @@ fr:
   video_tutorials: Tutoriels vidéo
   visually_similar: Visuellement semblable
   vulnerable: Vulnérable
-  w00t_no_ungrafted_taxa: Oups! Pas de taxons non greffés!
+  w00t_no_ungrafted_taxa: Hourra! Pas de taxons non greffés!
   w_photos_only: avec photos
   w_sounds: avec sons
   wait_file_generation: Veuiller patienter pendant que le fichier est généré. Cette action peut prendre quelques minutes pour les longues listes.
