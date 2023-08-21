@@ -1809,24 +1809,6 @@ ru:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Пожалуйста, подтвердите свой адрес электронной почты%{link_end_tag}</strong>.
     Все пользователи должны подтвердить свой адрес электронной почты до %{date}. После этой даты любой, кто не подтвердил свой адрес электронной почты, не сможет войти в систему, пока не сбросит свой пароль. Чтобы подтвердить свой адрес электронной почты, перейдите в %{link_start_tag}настройки своей учетной записи%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Подтвердите ваш адрес электронной почты для %{site_name} до %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Пожалуйста, подтвердите ваш адрес электронной почты сегодня, чтобы убедиться, что будет продолжен доступ к вашей учетной записи. %{site_name} и мобильные приложения
-    iNaturalist и Seek от iNaturalist объединяют людей между собой и с природой, предоставляя общий доступ к наблюдениям за биоразнообразием. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Для всех учетных записей, начинающихся с %{requirement_date}, нам понадобится подтверждённый адрес электронной почты. Пожалуйста, подтвердите его сейчас.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Если у вас есть какие-либо вопросы, пожалуйста, обратитесь к разделу <a href="%{faq_url}">FAQs</a>. Спасибо за то, что находите время для общения с природой и с сайтом %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Параметры учетной записи
   email_copyright2: "&copy; %{year} iNaturalist, все права защищены"
   email_notifications: E-mail уведомления
   embed: 'Вставить на страницу'

@@ -1468,7 +1468,7 @@ id:
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: Petunjuk konfirmasi
+        subject: Konfirmasi alamat email Anda
       email_changed:
         #Subject of an email sent when you try to change the email address
         #associated with your account
@@ -1476,7 +1476,7 @@ id:
       reset_password_instructions:
         subject: 'Petunjuk pengaturan ulang kata sandi'
   devise_confirmation_instructions_if_you_did_not: |
-    Jika Anda tidak mendaftar untuk akun @vow_or_con{vow:an|a} %{site_name}, harap mengabaikan email ini.
+    Jika Anda tidak mendaftar untuk akun %{site_name}, abaikan email ini.
   devise_confirmation_instructions_please_click: |
     Silahkan klik tautan di bawah ini untuk mengonfirmasi alamat email Anda:
   devise_confirmation_instructions_resend_instructions: |
@@ -1663,11 +1663,11 @@ id:
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Konfirmasi alamat email %{site_name} Anda sebelum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_please_confirm: |
-    Harap mengonfirmasi alamat email Anda hari ini untuk memastikan bahwa Anda bisa mengakses akun Anda ke depannya. %{site_name}, aplikasi mobile iNaturalist, dan Seek by iNaturalist menghubungkan orang-orang dengan alam dan sesama dengan membagikan pengamatan-pengamatan keanekaragaman hayati. Terima kasih telah menjadi bagian dari komunitas iNaturalist!
+    Mohon konfirmasi alamat surel Anda hari ini supaya Anda dapat tetap mengakses akun Anda. %{site_name}, aplikasi mobile iNaturalist, dan Seek by iNaturalist menghubungkan orang dengan alam dan satu sama lain dengan membagikan pengamatan-pengamatan keanekaragaman hayati. Terima kasih telah menjadi bagian dari komunitas iNaturalist.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
   email_confirmation_reminder_we_will_require: |
-    Kami mewajibkan verifikasi alamat email mulai %{requirement_date}. Mohon luangkan waktu untuk mengonfirmasinya sekarang.
+    Kami mewajibkan verifikasi alamat email mulai dari %{requirement_date}. Mohon luangkan waktu Anda untuk mengonfirmasinya sekarang.
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
   email_confirmation_reminder_any_questions_html: |
@@ -4510,6 +4510,8 @@ id:
   sites_affiliation_overview_you_can_continue_html: |
     Anda bisa melanjutkan dengan masuk melalui iNaturalist.org atau melalui situs jaringanmu. Semua data Anda akan disimpan di tempat yang sama dan Anda dapat terus berinteraksi dengan komunitas iNaturalist internasional yang lebih luas, tidak peduli apa afiliasi Anda. Setiap akun iNaturalist hanya dapat diafiliasikan dengan satu Anggota Jaringan. Anda dapat mempertimbangkan kembali atau mengganti afiliasi Anda di %{start_tag_settings}pengaturan akun%{end_tag_settings}.
   sites_affiliation_title: Pelajari Lebih Lanjut Tentang Afiliasi Jaringan
+  sites_network_agreements_html: |
+    iNaturalist memiliki persetujuan formal dengan organisasi-organisasi di masing-masing wilayah ini untuk mendukung penggunaan platform iNaturalist. <strong>Jika organisasi Anda tertarik untuk bergabung dengan Jaringan iNaturalist, Anda bisa mendapatkan informasi lebih lanjut di %{start_tag_join}sini%{end_tag_join}.</strong>
   sites_network_consists_of: "Jaringan iNaturalist terdiri dari beberapa organisasi:"
   sites_network_inaturalist_network_collection: |
     Jaringan iNaturalist adalah kumpulan situs web terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist secara global. Jaringan situs didukung oleh institusi-institusi lokal yang mempromosikan penggunaan lokal dan memfasilitasi penggunaan data dari iNaturalist untuk kebaikan keanekaragaman hayati lokal. Mereka memiliki akses ke koordinat yang tepat dari negara masing-masing yang terkaburkan secara otomatis dari publik untuk melindungi spesies yang terancam punah dengan baik.
@@ -5626,6 +5628,8 @@ id:
     Jutaan orang menggunakan iNaturalist dan Seek oleh iNaturalist tahun ini untuk bisa terhubung dengan alam
   yir_monthly_supporters_random_selection: |
     Inilah beberapa pilihan acak berisi anggota-anggota komunitas iNat berjiwa pahlawan yang berdonasi setiap bulannya.
+  yir_thank_your_for_being_generous2: |
+    Terima kasih karena telah berbaik hati memberikan waktu, perhatian, dan donasi kalian! iNaturalist merupakan organisasi nirlaba yang bertujuan untuk kemaslahatan publik. Program ini bergantung pada hibah-hibah dan donasi, termasuk hadiah-hadiah dari sebagian kecil dari komunitas. Kami sangat berterima kasih khususnya untuk Pendukung Bulanan karena pemberian tiap bulannya telah menolong kami untuk bisa membuat rencana untuk ke depannya.
   yir_your_gift_sustains: |
     Hadiah Anda menyokong program ini untuk menjangkau secara global dan berdampak besar baik untuk individu maupun ekologi
   you: Anda
@@ -5787,10 +5791,36 @@ id:
             Jika ya, silakan membaca <a href="%{url}">Panduan Guru</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
     donate:
       donate_short_desc: "Donasi sekarang untuk memberikan dukungan!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
+        </p>
+        <p class="lead"> Jika Anda percaya akan kekuatan komunitas global pecinta alam untuk membagikan ilmu dan menghasilkan data keanekaragaman hayati yang tak tergantikan, pikirkan untuk memberikan hadiah daring sekali atau beberapa kali, atau lihat <a
+        href="https://www.inaturalist.org/pages/giving">cara-cara lainnya untuk memberi</a>.
+        </p>
+        <p class="lead">
+        Donasi Anda menolong iNaturalist seiring bertumbuhnya komunitas, dari memajukan penglihatan komputer serta mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami.
+        </p>
+        <p class="text-muted">
+        iNaturalist adalah sebuah organisasi 501(c)(3) nirlaba independen yang tidak dipajaki yang berbasis di Amerika Serikat (ID Pajak: 94-1156258).
+        </p>
       post_donate_social_media_text: Saya mendukung iNaturalist karena...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: MENJADI PENDUKUNG BULANAN INATURALIST
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
+          </p>
+          <p class="lead"> 
+          Kami ingin tetap menjaga iNaturalist sebagai platform gratis, namun operasinya tidaklah gratis. Jika Anda mencintai iNaturalist, pikirkan untuk menjadi pendukung bulanan. Hadiah berulang akan membantu memastikan iNaturalist dapat melanjutkan perluasan infrastruktur dan stafnya dengan menyediakan pemasukan yang dapat diprediksi. Anda juga bisa memilih untuk menunjukkan status pendukung bulanan Anda pada profil pengguna Anda.
+          </p>
+          <p class="lead">
+          Donasi sosial Anda menolong iNaturalist seiring bertumbuhnya komunitas, dari memajukan penglihatan komputer serta mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami. Jika Anda lebih memilih untuk memberikan donasi satu kali saja, silakan <a href="%{donate_url}">klik di sini</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist adalah sebuah organisasi 501(c)(3) nirlaba independen yang tidak dipajaki yang berbasis di Amerika Serikat.
+          </p>
         thank_you_for_being_a_monthly_supporter: Terima kasih sudah menjadi Pendukung Bulanan!
         thank_you_for_being_a_monthly_supporter_caps: TERIMA KASIH SUDAH MENJADI PENDUKUNG BULANAN!
       temporarily_unavailable: |
@@ -6215,6 +6245,74 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
+        quality_assessment_help2_html: |
+          <p>
+          Penilaian kualitas data merupakan ringkasan dari akurasi sebuah pengamatan. 
+          Semua pengamatan dimulai dengan tingkat <strong>"kasual"</strong> dan menjadi
+          <strong>"memerlukan ID"</strong> saat
+          </p>
+
+          <ul>
+          <li>pengamatan <strong>memiliki tanggal</strong></li>
+          <li>pengamatan <strong>memiliki referensi geografis</strong> (memiliki koordinat lin/buj)</li>
+          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
+          <li>pengamatan <strong>bukan tentang manusia</strong></li>
+          </ul>
+          <p>
+          Pengamatan menjadi <strong>"tingkat riset"</strong> ketika
+          </p>
+          <ul>
+          <li>
+          <strong>community %{site_name} setuju dengan ID tingkat spesies ke 
+          bawah</strong>, yaitu saat 2/3 pengidentifikasi setuju dengan suatu
+          takson (jika komunitas telah setuju bahwa Takson Komunitas tidak bisa
+          ditingkatkan lagi, ini merujuk kepada ID tingkat subfamili ke bawah)
+          </li>
+          </ul>
+          <p>
+          Pengamatan akan kembali ke <strong>"kasual"</strong> jika kondisi di atas tidak terpenuhi atau komunitas setuju bahwa
+          </p>
+          <ul>
+          <li>
+          <strong>lokasinya tidak terlihat
+          akurat</strong> (misalkan monyet di tengah laut,
+          hippo di kantor, dll.)
+          </li>
+          <li>
+          <strong>organismenya tidak liar/alami</strong> (ditangkar atau dibudidayakan 
+          oleh manusia atau alien yang cerdas)
+          </li>
+          <li>
+          pengamatannya <strong>tidak menunjukkan bukti dari suatu
+          organisme</strong>, seperti gambar air, batu
+          atau pemandangan yang tidak memiliki organisme
+          </li>
+          <li>
+          pengamatannya <strong>tidak menunjukkan bukti organisme yang masih baru 
+          (~100 tahun)</strong> (seperti fosil, tetapi jejak, tahi, dan daun mati
+          masih ok)
+          </li>
+          <li>
+          pengamatan tidak memerlukan ID lagi <em>dan</em> ID komunitas setingkat famili ke atas
+          </li>
+          <li>
+          pengamat telah memilih untuk tidak memakai ID komunitas dan 
+          takson ID komunitas bukan merupakan nenek moyang atau keturunan 
+          dari takson yang terkait dengan ID pengamat
+          </li>
+          </ul>
+          <p>
+          Dan kalau ini masih belum terasa rumit, masih ada situasi tertentu yang memberikan hak suara untuk sistem:
+          </p>
+          <ul>
+          <li>
+          Sistem akan menyatakan bahwa pengamatannya tidak liar/alami
+          jika ada setidaknya 10 pengamatan lain dari suatu genus atau 
+          tingkat di bawahnya di wilayah administratif setingkat desa, provinsi, 
+          atau negara yang mengandung pengamatan ini dan 80% pengamatannya 
+          atau lebih telah ditandai tidak liar/alami.
+          </li>
+          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
@@ -6719,6 +6817,8 @@ id:
           Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun.
         compared_to_previous_years: Bandingkan Dengan Tahun Lalu
         donate_title: "Terima Kasih Khususnya Kepada Semua Pendukung Kami"
+        donate_desc2_html: |
+          Terima kasih telah memberikan waktu, perhatian, keahlian, dan donasi Anda! iNaturalist adalah organisasi nirlaba 501(c)3 yang berbasis di Amerika Serikat. iNaturalist didukung oleh <a href="%{team_url}">tim kecil</a> yang melakukan semua desain dan pengembangan perangkat lunak untuk web, mobile, dan <a href="%{seek_url}">Seek oleh iNaturalist</a>, yang juga mengelola bantuan untuk komunitas, kolaborasi, dan integrasi yang menjaga semuanya untuk bisa berjalan (juga berkembang dengan cepat!). Programnya bergantung kepada berbagai hibah serta donasi, termasuk hadiah amal dari sebagian kecil kontributor. Kami sangat berterima kasih kepada Pendukung Bulanan yang hadiah berkalanya telah menolong kami untuk merancang rencana ke depan. Anda dapat menyumbang melalui berbagai mata uang yang berbeda untuk mendukung operasi inti iNaturalist. Terima kasih semuanya untuk bagian kalian dalam membuat tahun %{year} tahun terbesar iNaturalist hingga kini!
         donors: Penyumbang
         donors_guide_label_our_goal_is_1000: Tujuan kami adalah 1.000 penyumbang rutin per bulan
         inaturalist_network: Jaringan iNaturalist
@@ -6802,6 +6902,21 @@ id:
           </p>
           <p>
           Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna. Namanya diurutkan berdasarkan prioritas global di dalam masing-masing bahasa / jenis.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Nama dapat ditambahkan ke tempat-tempat (biasanya berupa negara) saat
+          negara-negara atau wilayah yang berbeda menggunakan nama umum yang
+          berbeda untuk bahasa yang sama. Contohnya, Meksiko dan Kosta Rika dapat
+          menggunakan nama yang berbeda dalam bahasa Spanyol untuk spesies yang
+          sama.
+          </p>
+          <p>
+          Tabel ini menunjukkan nama-nama apa saja yang sudah ditambahkan ke
+          tempat apa, dan diurutkan berdasarkan prioritas untuk masing-masing tempat.
+          Jika ada dua nama dalam bahasa Spanyol yang ditambahkan untuk Meksiko,
+          nama pertama dalam daftar akan ditampilkan jika Anda memilih untuk melihat
+          nama dalam bahasa Spanyol untuk daerah Meksiko.
           </p>
         about_conservation_status_desc: |
           Status konservasi merangkum risiko kepunahan untuk sekelompok organisme.
@@ -6965,6 +7080,16 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        monthly_supporter_desc_html: |
+          Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
+          ke iNaturalist (United States IRS EIN 92-1296468) untuk mendukung 
+          operasi nirlaba iNaturalist dan situs-situs Jaringan iNaturalist.
+          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
+          Saat kami sudah mendapatkan dukungan Anda, Anda akan bisa mengecek kotak 
+          ini untuk menampilkan status ini di profil Anda. Catatan: alamat email Anda
+          di Donorbox dan iNaturalist harus sama supaya kita bisa mengonfirmasi bahwa
+          Anda adalah Pendukung Bulanan. Jika mereka berbeda, ubah salah satu supaya 
+          sama dengan yang lain.
         muting_desc_html: |
           <p>
           Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.
@@ -7738,6 +7863,12 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
+              user_cannot_be_staff2: |
+                Anda tidak bisa memblokir staf. Staf iNat harus bisa 
+                berkomunikasi dengan semua orang di iNat, memiliki akses
+                ke semua data di iNat, dan menjadi mediator sengketa teratas, 
+                jadi memblokir staf tidak akan bisa mencegah mereka untuk 
+                menghubungi Anda.
         user_parent:
           attributes:
             email:

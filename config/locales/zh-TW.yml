@@ -1548,6 +1548,19 @@ zh-TW:
     從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}請確認您的電子郵件地址%{link_end_tag}</strong>。所有使用者必須在 %{date} 之前確認自己的電子郵件地址。在那之後，除非重設密碼，否則任何未確認自己電子郵件地址的人將無法登入。請到%{link_start_tag}帳號設定%{link_end_tag}確認電子郵件地址。
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: 請在 %{date} 之前確認您 %{site_name} 上的電子郵件地址 #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    請立即確認您的電子郵件地址，以確保您可以繼續存取您的帳號。%{site_name} 和行動版 iNaturalist 以及 Seek 藉由分享生物多樣性的觀察記錄，將人們與自然環境彼此聯繫起來。感謝您成為 iNaturalist 社群的成員！
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    從 %{requirement_date} 開始，我們將要求所有帳號使用驗證過的電子郵件地址。現在請花點時間確認一下。
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    如有疑問，請參閱<a href="%{faq_url}">常見問題</a>。感謝您花時間與大自然和 %{site_name} 結緣。
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
