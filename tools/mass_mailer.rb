@@ -17,6 +17,12 @@ require "optimist"
       # Mail es and es-MX users the independence mailer (but not es-AR)
       bundle exec rails r tools/mass_mailer.rb independence --locales es es-MX
 
+      # Mail everyone other than French and Spanish users, including es-MX, fr-CA, etc., but
+      # force them all to get the English version (e.g. if you already emailed es and fr
+      # users and you know none of the other languages are full translated, so you just want
+      # to send pure English to everyone else)
+      bunble exec rails r tools/mass_mailer.rb independence --exclude-locales es fr --force-locale en
+
     Usage:
       bundle exec rails r tools/mass_mailer.rb <mailer_method> [options]
 
@@ -35,9 +41,11 @@ require "optimist"
   opt :skip_recent, "Skip users created in the last month", type: :boolean
   opt :locale, "Locale to filter users by. Matches sublocales, so `es` will match `es-MX`", type: :string
   opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
+  opt :exclude_locales, "Locale patterns to exclude", type: :strings
   opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean
   opt :include_risky, "Send to addresses Sendgrid considers Risky", type: :boolean
   opt :min_risky_score, "Miniumum score required to send to Risky addresses. Value btwn 0 and 1", type: :float
+  opt :force_locale, "Force the email to send in this locale", type: :string
 end
 
 mailer_method = ARGV.shift
@@ -50,11 +58,19 @@ unless Emailer.method_defined?( mailer_method )
   Optimist.die "#{Emailer.name}##{mailer_method} is not defined"
 end
 
-if Emailer.instance_method( mailer_method ).arity != 1
+unless [1, -2].include?( Emailer.instance_method( mailer_method ).arity )
   Optimist.die <<~ERROR
     #{Emailer.name}##{mailer_method} requires more than one argument. This
      script only works with mailer methods that accept a user as the only
-     argument
+     argument, or mailer methods that accept a user as fixed argument and an
+     optional second `options` argument.
+  ERROR
+end
+
+if @opts.force_locale && Emailer.instance_method( mailer_method ).arity != -2
+  Optimist.die <<~ERROR
+    #{Emailer.name}##{mailer_method} does not accept a second `options`
+     argument so force_locale will not work.
   ERROR
 end
 
@@ -145,6 +161,15 @@ elsif @opts.locale
 elsif @opts.locales
   scope = scope.where( "locale IN (?)", @opts.locales )
 end
+
+if @opts.exclude_locales
+  puts "@opts.exclude_locales: #{@opts.exclude_locales.inspect}"
+  @opts.exclude_locales.each do | excluded_locale |
+    scope = scope.where( "locale NOT LIKE ?", "#{excluded_locale}%" )
+  end
+end
+
+puts "scope: scope.to_sql"
 
 @start = Time.now
 @emailed = 0
@@ -248,7 +273,13 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
 
     begin
-      Emailer.send( mailer_method, recipient ).deliver_now unless dry
+      unless dry
+        if Emailer.instance_method( mailer_method ).arity == -2
+          Emailer.send( mailer_method, recipient, { force_locale: @opts.force_locale } ).deliver_now
+        else
+          Emailer.send( mailer_method, recipient ).deliver_now
+        end
+      end
       process_emailed += 1
     rescue StandardError => e
       if debug
