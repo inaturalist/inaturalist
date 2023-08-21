@@ -1540,10 +1540,23 @@ zh-CN:
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
   email_conf_banner_email_delivered_click_link: |
     确认电子邮件已发送。请点击电子邮件中的链接。
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: 在 %{date} 之前确认您的 %{site_name} 电子邮件地址 #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    请在今天确认您的电子邮件地址，以确保您可以继续访问您的账户。 %{site_name} 以及移动应用程序 iNaturalist 和 Seek by iNaturalist，通过分享对生物多样性的观察，将人们与自然和彼此联系起来。感谢您成为 iNaturalist 社区的一员！
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    从 %{requirement_date} 开始，我们将要求所有账户都使用经过验证的电子邮件地址。 现在请花一点时间确认一下。
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    如果您有任何疑问，请参阅 <a href="%{faq_url}">FAQs</a>。 感谢您抽出时间与大自然和 %{site_name} 联系。
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
-  email_confirmation_reminder_account_details: 账户详细信息
+  email_confirmation_reminder_account_details: 账户详情
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
