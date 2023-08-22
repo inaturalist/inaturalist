@@ -96,6 +96,9 @@ class PhotoBrowser extends React.Component {
       config.currentUser.roles.indexOf( "curator" ) >= 0
       || config.currentUser.roles.indexOf( "admin" ) >= 0
     );
+    const viewerIsAdmin = config && config.currentUser && (
+      config.currentUser.roles.indexOf( "admin" ) >= 0
+    );
     let mediaViewerIndex = 0;
     const images = observation.photos.map( photo => {
       if ( photo.api_status === "processing" ) {
@@ -137,7 +140,11 @@ class PhotoBrowser extends React.Component {
               >
                 <i className="fa fa-flag" />
               </button>
-              { ( viewerIsCurator && !this.viewerIsObserver ) && (
+              { // observers never see hiding, curators do if its unhidden, admins always do
+                ( !this.viewerIsObserver && (
+                  ( !photo.hidden && viewerIsCurator )
+                  || ( photo.hidden && viewerIsAdmin )
+                ) ) && (
                 <button
                   type="button"
                   className="btn btn-nostyle"
@@ -151,7 +158,8 @@ class PhotoBrowser extends React.Component {
                 >
                   <i className={`fa ${photo.hidden ? "fa-eye" : "fa-eye-slash"}`} />
                 </button>
-              ) }
+                )
+              }
               <a href={`/photos/${photo.id}`}>
                 <Badge>
                   <i className="fa fa-info" />
@@ -303,7 +311,11 @@ class PhotoBrowser extends React.Component {
                 >
                   <i className="fa fa-flag" />
                 </button>
-                { ( viewerIsCurator && !this.viewerIsObserver ) && (
+                { // observers never see hiding, curators do if its unhidden, admins always do
+                  ( !this.viewerIsObserver && (
+                    ( !sound.hidden && viewerIsCurator )
+                    || ( sound.hidden && viewerIsAdmin )
+                  ) ) && (
                   <button
                     type="button"
                     className="btn btn-nostyle"
@@ -317,7 +329,8 @@ class PhotoBrowser extends React.Component {
                   >
                     <i className={`fa ${sound.hidden ? "fa-eye" : "fa-eye-slash"}`} />
                   </button>
-                ) }
+                  )
+                }
               </div>
             </div>
           </div>
@@ -376,35 +389,34 @@ class PhotoBrowser extends React.Component {
           // this is the standard renderItem, minus some attributes and adding draggable="false"
           renderItem={item => (
             <div className="image-gallery-image">
-              {
-                item.imageSet ? (
-                  <picture>
-                    {
-                      item.imageSet.map( ( source, index ) => (
-                        <source
-                          key={index}
-                          media={source.media}
-                          srcSet={source.srcSet}
-                          type={source.type}
-                        />
-                      ) )
-                    }
-                    <img
-                      alt={item.originalAlt}
-                      src={item.original}
-                    />
-                  </picture>
-                ) : (
+              { item.imageSet && (
+                <picture>
+                  {
+                    item.imageSet.map( ( source, index ) => (
+                      <source
+                        key={index}
+                        media={source.media}
+                        srcSet={source.srcSet}
+                        type={source.type}
+                      />
+                    ) )
+                  }
                   <img
-                    src={item.original}
                     alt={item.originalAlt}
-                    srcSet={item.srcSet}
-                    sizes={item.sizes}
-                    title={item.originalTitle}
-                    draggable="false"
+                    src={item.original}
                   />
-                )
-              }
+                </picture>
+              ) }
+              { !item.imageSet && item.original && (
+                <img
+                  src={item.original}
+                  alt={item.originalAlt}
+                  srcSet={item.srcSet}
+                  sizes={item.sizes}
+                  title={item.originalTitle}
+                  draggable="false"
+                />
+              ) }
 
               {
                 item.description && (

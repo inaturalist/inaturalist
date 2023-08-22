@@ -10,6 +10,7 @@ input[type=submit] {
 img.item-to-hide {
   margin: 0px auto;
   display: block;
+  max-height: 300px;
 }
 span.content-hidden {
   cursor: pointer;

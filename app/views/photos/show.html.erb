@@ -193,7 +193,7 @@
         </p>
       <% end %>
 
-      <% if @photo.hideable_by?( current_user ) %>
+      <% if ( @photo.hidden? && @photo.unhideable_by?( current_user ) ) || ( !@photo.hidden? && @photo.hideable_by?( current_user ) ) %>
         <p class="description ui">
           <%= link_to @photo.hidden? ? t( :unhide_content ) : t( :hide_content ), hide_photo_path( @photo ), rel: "nofollow" %>
         </p>

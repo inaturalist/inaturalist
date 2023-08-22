@@ -169,7 +169,7 @@
             if !item.is_a?(Flag) && Flag::TYPES.include?(item.class.name) && current_user
               pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
             end
-            if item.is_a?( Comment ) && item.hideable_by?( current_user )
+            if item.is_a?( Comment ) && ( item_hidden && item.unhideable_by?( current_user ) ) || ( !item_hidden && item.hideable_by?( current_user ) )
               pieces << link_to( t( item_hidden ? :unhide_content : :hide ), hide_comment_path( item ) )
             end
           -%>

@@ -33,6 +33,11 @@ module HasModeratorActions
       u.is_admin? || u.is_curator?
     end
 
+    def unhideable_by?( u )
+      return true if hideable_by?( u ) && u.is_admin?
+      false
+    end
+
     def hidden_content_viewable_by?( u )
       return false unless u
       return true if hideable_by?( u )
@@ -41,6 +46,7 @@ module HasModeratorActions
       elsif self.user
         return self.user === u
       end
+      false
     end
   end
 
