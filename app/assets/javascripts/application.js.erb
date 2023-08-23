@@ -1745,7 +1745,8 @@ $(document).ready(function() {
         // hide the popover
         $( this.previousSibling ).popover( "hide" );
         // reset the element state so it doesn't take two clicks to reopen
-        if ( $( this.previousSibling ).data( "bs.popover" ).inState
+        if ( $( this.previousSibling ).data( "bs.popover" )
+          && $( this.previousSibling ).data( "bs.popover" ).inState
           && $( this.previousSibling ).data( "bs.popover" ).inState.click ) {
           $( this.previousSibling ).data( "bs.popover" ).inState.click = false;
         }

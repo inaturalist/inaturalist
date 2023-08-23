@@ -50,7 +50,13 @@ const HiddenContentMessage = ( {
               __html: I18n.t( "content_hidden_by_user_on_date_because_reason_html", {
                 user: ReactDOMServer.renderToString( maUserLink ),
                 date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
-                reason: ReactDOMServer.renderToString( <UserText text={moderatorAction.reason} className="inline" /> )
+                reason: ReactDOMServer.renderToString(
+                  <UserText
+                    text={moderatorAction.reason}
+                    className="inline"
+                    stripWhitespace
+                  />
+                )
               } )
             }}
           />

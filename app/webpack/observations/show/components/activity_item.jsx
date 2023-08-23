@@ -159,7 +159,7 @@ class ActivityItem extends React.Component {
     let contents;
     let header;
     let className = "comment";
-    if ( item.hidden && this.isID && ( !canSeeHidden || !config.showHidden ) ) {
+    if ( item.hidden && ( !canSeeHidden || !config.showHidden ) ) {
       return (
         <div className="ActivityItem">
           { hideUserIcon ? null : (
@@ -170,7 +170,15 @@ class ActivityItem extends React.Component {
           <Panel className="moderator-hidden">
             <Panel.Heading>
               <Panel.Title>
-                <span className="title_text text-muted"><i>{I18n.t( "content_hidden" )}</i></span>
+                <span className="title_text text-muted">
+                  <i>
+                    <HiddenContentMessageContainer
+                      key={`hidden-tooltip-${item.uuid}`}
+                      item={item}
+                      itemType={this.isID ? "identifications" : "comments"}
+                    />
+                  </i>
+                </span>
                 {canSeeHidden && (
                   <button
                     href="#"
@@ -277,28 +285,10 @@ class ActivityItem extends React.Component {
         className = "withdrawn";
       }
       let idBody;
-      if ( item.hidden && !config.showHidden ) {
-        idBody = (
-          <div className="hidden-content upstacked text-muted well well-sm">
-            <i>{I18n.t( "content_hidden" )}</i>
-            {canSeeHidden && (
-              <button
-                href="#"
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={() => showHidden()}
-              >
-                {I18n.t( "show_hidden_content" )}
-              </button>
-            )}
-          </div>
-        );
-      } else if ( !item.hidden || canSeeHidden ) {
-        if ( editing ) {
-          idBody = this.editItemForm( );
-        } else if ( item.body && item.body.length > 0 ) {
-          idBody = <UserText text={item.body} className="id_body" />;
-        }
+      if ( editing ) {
+        idBody = this.editItemForm( );
+      } else if ( item.body && item.body.length > 0 ) {
+        idBody = <UserText text={item.body} className="id_body" />;
       }
       contents = (
         <div className="identification">
@@ -329,16 +319,6 @@ class ActivityItem extends React.Component {
     let panelClass;
     const headerItems = [];
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
-    if ( item.hidden ) {
-      headerItems.push(
-        <HiddenContentMessageContainer
-          key={`hidden-tooltip-${item.uuid}`}
-          item={item}
-          itemType={this.isID ? "identifications" : "comments"}
-          shrinkOnNarrowDisplays
-        />
-      );
-    }
     if ( unresolvedFlags.length > 0 ) {
       panelClass = "flagged";
       headerItems.push(
@@ -437,6 +417,16 @@ class ActivityItem extends React.Component {
           {" "}
           {I18n.t( "id_withdrawn" )}
         </span>
+      );
+    }
+    if ( item.hidden ) {
+      headerItems.push(
+        <HiddenContentMessageContainer
+          key={`hidden-tooltip-${item.uuid}`}
+          item={item}
+          itemType={this.isID ? "identifications" : "comments"}
+          shrinkOnNarrowDisplays
+        />
       );
     }
     let taxonChange;

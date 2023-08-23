@@ -44,6 +44,11 @@
     = f.hidden_field :user_id, value: current_user.id
     = f.hidden_field :resource_id, value: @item.id
     = f.hidden_field :resource_type, value: @item.class.base_class.name
-    .text.text-muted
-      = @item.hidden? ? t( :unhide_desc ) : t( :hide_desc )
+    - if @item.hidden?
+      .text.text-muted
+        = t( :unhide_desc )
+    - else
+      .text.text-muted
+        %p= t( :hide_desc )
+        %p= t( :hide_desc_staff_can_unhide )
     = f.submit t( @item.hidden? ? :unhide_content : :hide_content ), class: "default button submit-flag-button"

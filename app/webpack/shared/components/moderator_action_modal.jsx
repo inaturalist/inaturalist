@@ -24,11 +24,9 @@ const ModeratorActionModal = ( {
   }
   let verb = I18n.t( "hide_content" );
   let placeholder = I18n.t( "please_explain_why_you_want_to_hide_this" );
-  let explanation = I18n.t( "hide_desc" );
   if ( action === "unhide" ) {
     verb = I18n.t( "unhide_content" );
     placeholder = I18n.t( "please_explain_why_you_want_to_unhide_this" );
-    explanation = I18n.t( "unhide_desc" );
   }
   let contentPreview;
   if ( item instanceof Comment || item instanceof Identification ) {
@@ -122,7 +120,12 @@ const ModeratorActionModal = ( {
           {contentPreview}
           <textarea name="reason" className="form-control" placeholder={placeholder} required />
           <input type="hidden" name="action" value={action || ""} />
-          <div className="text upstacked text-muted">{ explanation }</div>
+          <div className="text upstacked text-muted">
+            <p>{ action === "unhide" ? I18n.t( "unhide_desc" ) : I18n.t( "hide_desc" ) }</p>
+            { action === "hide" && (
+              <p>{ I18n.t( "hide_desc_staff_can_unhide" ) }</p>
+            )}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <div className="buttons">
