@@ -16,7 +16,7 @@ export default function reducer( state = {
   filters: {
     following: "any",
     trusted: "any",
-    order_by: "users.login",
+    order_by: "friendships.id",
     order: "desc"
   },
   relationships: []
