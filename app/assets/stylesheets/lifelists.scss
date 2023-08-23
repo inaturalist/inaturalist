@@ -427,7 +427,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   }
   .SplitTaxon {
     cursor: pointer;
-    .secondary-name {
+    .secondary-name, .secondary-names {
       display: none;
     }
     &:not(:first-child):before {
@@ -439,8 +439,10 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   }
 }
 
-#TaxaList .name-row .SplitTaxon > a {
-  color: inherit;
+#TaxaList .name-row .SplitTaxon {
+  & > a, .display-name {
+    color: inherit;
+  }
 }
 
 
@@ -630,15 +632,18 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
           color: white;
         }
       }
-      .display-name {
-        display: block;
+      .SplitTaxon > .display-name, .display-names .display-name {
+        color: inherit;
+      }
+      .SplitTaxon > .display-name, .display-names {
         font-weight: 700;
         color: inherit;
         font-size: 16px;
       }
       .caption {
         height: 58px;
-        .display-name, .secondary-name {
+        .SplitTaxon > .display-name, .display-names,
+        .SplitTaxon > .secondary-name, .secondary-names {
           display: block;
           white-space: nowrap;
           overflow: hidden;

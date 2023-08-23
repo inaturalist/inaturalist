@@ -45,7 +45,7 @@ class SplitTaxon extends React.Component {
     let cssClass = "taxon";
     if ( taxon ) {
       cssClass += ` ${taxon.rank} ${taxon.iconic_taxon_name}`;
-      if ( taxon.preferred_common_name ) {
+      if ( !_.isEmpty( taxon.preferred_common_names ) || taxon.preferred_common_name ) {
         cssClass += " has-com-name";
       }
     } else {
@@ -70,9 +70,9 @@ class SplitTaxon extends React.Component {
         const commonNames = _.map( taxon.preferred_common_names, preferredCommonName => (
           _.trim( iNatModels.Taxon.titleCaseName( preferredCommonName.name ) ) ) );
         if ( user && user.prefers_scientific_name_first ) {
-          return `${title} (${commonNames.join( ", " )})`;
+          return `${title} (${commonNames.join( " · " )})`;
         }
-        return `${commonNames.join( "," )} (${_.trim( title )})`;
+        return `${commonNames.join( " · " )} (${_.trim( title )})`;
       }
       if ( taxon.preferred_common_name ) {
         const comName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
@@ -153,11 +153,13 @@ class SplitTaxon extends React.Component {
     }
     if ( !_.isEmpty( taxon.preferred_common_names ) ) {
       const comNamesClass = this.showScinameFirst( ) ? "secondary-names" : "display-names";
+      let comNames = _.map( taxon.preferred_common_names, ( preferredCommonName, index ) => (
+        this.comName( preferredCommonName.name, index )
+      ) );
+      comNames = comNames.reduce( ( prev, curr ) => [prev, " · ", curr] );
       return (
         <span key="comnames" className={`comname ${comNamesClass}`}>
-          {_.map( taxon.preferred_common_names, ( preferredCommonName, index ) => (
-            this.comName( preferredCommonName.name, index )
-          ) )}
+          {comNames}
         </span>
       );
     }
@@ -211,7 +213,8 @@ class SplitTaxon extends React.Component {
     const key = `${this.keyBase}-sciName`;
     const LinkElement = this.LinkElement( );
     let sciNameClass = `sciname ${taxon.rank}`;
-    if ( !taxon.preferred_common_name || this.showScinameFirst( ) ) {
+    if ( ( !taxon.preferred_common_name && _.isEmpty( taxon.preferred_common_names ) )
+      || this.showScinameFirst( ) ) {
       sciNameClass += ` display-name ${displayClassName || ""}`;
     } else {
       sciNameClass += " secondary-name";
@@ -373,7 +376,7 @@ class SplitTaxon extends React.Component {
   }
 
   render( ) {
-    const { taxon } = this.props;
+    const { taxon, componentClassName } = this.props;
 
     let firstName;
     let secondName;
@@ -393,8 +396,9 @@ class SplitTaxon extends React.Component {
       this.memberGroup( ),
       this.linkIcon( )
     ] );
+    const className = _.compact( ["SplitTaxon", this.taxonClass( )] ).join( " " );
     return (
-      <span title={this.title( )} className={`SplitTaxon ${this.taxonClass( )}`}>
+      <span title={this.title( )} className={className}>
         { _.flatten( _.map( nodes, ( n, i ) => ( i === 0 ? n : [" ", n] ) ) ) }
       </span>
     );

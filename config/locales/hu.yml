@@ -345,6 +345,7 @@ hu:
   agree_: Egyetért
   agree?: Egyetértek
   agree_with_current_taxon: Egyetért a jelenlegi taxonnal
+  agree_with_observation_taxon: Egyetértés a megfigyelési taxonnal
   agreeing: Egyetértés...
   aka: más néven
   #Noun, title of a popup alerting you to something
@@ -742,13 +743,7 @@ hu:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Felosztva ezekre
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 'egyesítés ide:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 'egyesítve ide:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 'erre lecserélve:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'csere ezzel:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
     dropped: elejtve
@@ -1275,6 +1270,8 @@ hu:
   donate: TÁMOGATÁS
   donate_again_caps: ADOMÁNYOZZ ÚJRA
   donate_again_today_caps: ADAKOZZ MA ÚJBÓL
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Az iNaturalist támogatása
   done: Kész
   dont_have_an_account_sign_up_html: Nincs még fiókod? <strong>Regisztrálj.</strong>
   dont_use_double_quotes: Ne használj idézőjelet sehol máshol
@@ -1383,6 +1380,7 @@ hu:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: A fiók részletei
+  email_copyright2: "&copy; %{year} iNaturalist, minden jog fenntartva"
   email_notifications: Email értesítések
   embed: 'Beágyazás'
   embed_place_widget: Helywidget beágyazása
@@ -1890,6 +1888,7 @@ hu:
     danish: Dán
     dutch: holland
     english: Angol
+    esperanto: Eszperantó
     estonian: Észt
     faroese: Feröer-szigeteki
     finnish: Finn
@@ -2208,7 +2207,7 @@ hu:
   #title for section describing people who donate to iNat every month
   monthly_supporters: Havi támogatók
   monthly_supporter_since_date_html: |
-    <a href="%{url}">Havi rendszerességű támogató</a>%{date} óta
+    <a href="%{url}">Havi rendszerességű támogató</a> %{date} óta
   months: Hónapok
   more: Továbbiak
   #Button to show more observations
@@ -3249,7 +3248,7 @@ hu:
   project_requirements: Kritériumok
   project_rules: Projektszabályzat
   project_settings: Projektbeállítások
-  project_start_time_datetime: "Kezdete:"
+  project_start_time_datetime: "Kezdete: %{datetime}"
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3833,7 +3832,7 @@ hu:
   taxonomy: Rendszertan
   taxon_change_commit_may_still_be_processing: |
     A taxonmódosítás még folyamatban lehet, ezért elképzelhető, hogy nem minden adatsor van frissítve
-  taxon_change_title_taxon_swap: Taxoncsere
+  taxon_change_title_taxon_swap: Taxoncsere %{id}
   taxon_ids: Taxonazonosítók
   taxon_map:
     overlays: Rétegek
@@ -4157,19 +4156,29 @@ hu:
   user_added_a_comment_html: "%{user} hozzászólt"
   user_added_a_fave_html: "%{user} kedvelte"
   user_added_a_flag_html: "%{user} bejelentést adott hozzá"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_identification_html: "%{user} meghatározást javasolt"
   user_added_an_observation_field_html: 'Megfigyelés (%{owner}): %{user} kitöltötte a(z) "%{field_name}" adatmezőt'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
   user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_x_observations_html: "%{user} hozzáadott %{x} megfigyelést"
   user_already_authenticated: A felhasználó már hitelesítve van
@@ -4809,55 +4818,6 @@ hu:
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
-        quality_assessment_help2_html: |
-          <p>
-          Az adatminőségi kiértékelés a megfigyelés pontosságát összegzi. Minden megfigyelés <strong>"hobbiszintű"</strong>ről indul, majd <strong>"meghatározásra vár"</strong>ra vált, ha teljesülnek az alábbi feltételek:
-          </p>
-          <ul>
-          <li>a megfigyelésnek <strong>van dátuma</strong></li>
-          <li>a megfigyelésnek vannak <strong>helyi koordinátái</strong> (szélességi és hosszúsági kör)</li>
-          <li>a megfigyeléshez tartozik <strong>kép és/vagy hang</strong></li>
-          <li>a megfigyelés tárgya <strong>nem ember</strong></li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"kutatási szint"</strong>re emelkedik, ha:
-          </p>
-          <ul>
-          <li>
-          az %{site_name} <strong>közössége egyetértésre jut faji szinten, vagy az alatt</strong>, vagy is ha a meghatározók több, mint kétharmada egyetért a taxonon (ha a közösség szerint a közösségi taxon nem javítható tovább, akkor a taxon alcsalád-szintűre vagy az alattira vált.
-          </li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"hobbiszintű"</strong>re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért a következőkben:
-          </p>
-          <ul>
-          <li>
-          a <strong>hely nem tűnik pontosnak</strong> (például majom van az ócián közepén, vagy víziló egy irodaközpontban)
-          </li>
-          <li>
-          az <strong>élőlény nem vadon vagy természetben fordul elő</strong> (például emberi kultiváció eredménye)
-          </li>
-          <li>
-          a megfigyelés <strong>nem szolgál bizonyítékul az élőlényről</strong>, például az élőlényt nem tartalmazó képek vízfelszínről, sziklákról, tájakról.
-          </li>
-          <li>
-          a megfigyelés <strong>túl régi (100 évnél régebbi) bizonyítékkal szolgál</strong> (például fosszíliák, viszont elfogadhatóak nyomok, ürülék, száradt levél)
-          </li>
-          <li>
-          a megfigyelésnek már nincs szüksége meghatározásra <em>és</em> a közösségi meghatározás családszintű vagy afeletti
-          </li>
-          <li>
-          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi taxon nem a felmenője vagy gyermeke a megfigyelő által kiválasztott taxonnak
-          </li>
-          </ul>
-          <p>
-          Ha ez még mindig nem lenne elég bonyolult:
-          </p>
-          <ul>
-          <li>
-          Bizonyos esetekben a rendszer automatikusan "nem vadonélő" szavazattal látja el a megfigyelést, ha az adott nemzetségnek vagy az alatt van legalább 10 egyéb megfigyelése az adott régióban/államban/országban, és ezen megfigyelések legalább 80 százaléka nem vadonélőként van megjelölve.
-          </li>
-          </ul>
         score_desc: "pontszám = összesített szám / (összesített szám + egyetnemértések száma + felmenői egyetnemértések)"
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását

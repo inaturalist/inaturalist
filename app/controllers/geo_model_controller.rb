@@ -48,16 +48,17 @@ class GeoModelController < ApplicationController
 
   def explain
     @taxon = Taxon.find( params[:id] )
+    @asynchronous_google_maps_loading = true
+    return render_404 unless @taxon
+    return render_404 unless @taxon.geo_model_taxon
     site_place = @site && @site.place
     user_place = current_user && current_user.place
     preferred_place = user_place || site_place
 
-    @raw_env_data = JSON.parse( File.read(
-      File.join( CONFIG.geo_model_data_path, "tf_env_maps/#{@taxon.id}.json" )
-    ) )
-    @presence_absence = JSON.parse( File.read(
-      File.join( CONFIG.geo_model_data_path, "tf_env_presence_maps/#{@taxon.id}.json" )
-    ) )
+    @raw_env_data = INatAPIService.get( "/computervision/taxon_h3_cells/#{@taxon.id}",
+      { authenticate: current_user }, json: true )
+    raise unless @raw_env_data
+
     taxon_range_data_path = File.join(
       CONFIG.geo_model_data_path, "taxon_range_maps/#{@taxon.id}.json"
     )

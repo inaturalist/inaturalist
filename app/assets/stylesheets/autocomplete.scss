@@ -54,6 +54,9 @@ $label-start: 7px;
     }
   }
 }
+.ui-autocomplete.taxon-autocomplete {
+  max-width: 500px;
+}
 .ac-message[data-type='message'] {
   cursor: default;
 }
@@ -147,6 +150,7 @@ $label-start: 7px;
 
 .ac-result.taxon .ac-label {
   display: inline-block;
+  overflow: hidden;
 }
 .ui-autocomplete .identification .ac-label {
   display: inline-block;
@@ -177,7 +181,8 @@ $label-start: 7px;
   font-size: 0.9em;
   display: block;
   color: #727272;
-  line-height: 17px;
+  line-height: 14px;
+  margin: 1px 0 3px;
 }
 .ui-widget-content .ui-state-focus {
   border: none;

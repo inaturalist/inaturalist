@@ -298,6 +298,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       description: options.taxonRangeLayerDescription,
       hover: options.taxonRangeLayerHover,
       controlPosition: options.controlPosition,
+      disabled: layer.ranges === "disabled",
       link: "/taxa/" + layer.taxon.id + "/range.html"
     }));
   }

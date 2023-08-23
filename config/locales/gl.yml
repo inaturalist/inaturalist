@@ -828,13 +828,7 @@ gl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinar en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: foi combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituído por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituído con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: substituído con
     dropped: Eliminado
@@ -1348,8 +1342,6 @@ gl:
   delete_photo: Eliminar foto
   delete_project: Eliminar este proxecto
   delete_selected: Eliminar seleccionados
-  delete_taxon_and_merge_most_data_html: |
-    Eliminar <i>%{taxon}</i> e combinar a maioría dos teus datos con outro taxón. Emprega esta ferramenta para eliminar taxóns duplicados e sinónimos desactualizados. <strong>TEN COIDADO!</strong > Eliminar taxóns podería destruír datos.
   delete_user: Eliminar usuario
   delete_your_account: Eliminar a túa conta
   deleted_synonyms: Sinónimos eliminados
@@ -2499,7 +2491,7 @@ gl:
   new_announcement: Novo anuncio
   new_assessment: Nova avaliación
   new_check_list: Nova lista de verificación
-  new_check_list_for: "Crear nova lista de verificación para {place} »"
+  new_check_list_for: "Crear nova lista de verificación para %{place} »"
   new_check_list_record: "Se desexas marcar esta lista coma exhaustiva, créaa, agrega os taxóns e logo modifícaa, e aquí terás a opción de marcala coma exhaustiva."
   new_comment_on_a_parent_by_user_link: Novo comentario en @gender{m:un|f:unha|n:un} %{parent} por %{user_link}
   new_flag_for: Nova Marca para
@@ -4222,7 +4214,7 @@ gl:
   taxon_curators: Conservadores do Taxon
   taxon_framework_complete: "Completado: si"
   taxon_framework_deviations_with_count_html: "Desviacións: %{count}"
-  taxon_framework_relationships_with_count_html: "Relación entre Marcos Taxonómicos"
+  taxon_framework_relationships_with_count_html: "Relación entre Marcos Taxonómicos: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons marcados cubertos: %{count}"
   taxon_framework_notes: Notas do Marco Taxonómico
@@ -4335,8 +4327,6 @@ gl:
   there_were_some_problems_with_fields: "Houbo algúns problemas cos seguintes campos"
   there_were_some_problems_with_these_files: "Houbo algúns problemas con estes ficheiros:"
   theres_something_wrong_with_taxon_framework_relationship: Aquí hai algo errado - non podemos determinar a relación entre taxons internos e externos
-  these_are_items_people_on: |
-    Son contidos que a xente introduciu como advertencia para administración. Os contidos de correo lixo borraranse e o usuario que os introduciu debería ser suspendido (vai á páxina do seu perfil e na parte inferior esquerda selecciona o enlace Suspender usuario para que xa non poida entrar ao sitio). Os contidos de tipo ilegal, enganoso, racista, xenófobo, etc, deben borrarse e teñen que responderse cun comentario correcto. As persoas que repitan estes comentarios teñen que comunicarse a
   these_are_taxa_that: |
     Son especies ou grupos que %{site} non puido engadir automáticamente
     á árbore taxonómica. Podes engadilas á árbore editando o taxon e escollendo un rexistro do taxon superior. Por exemplo, o taxon superior de Homo sapiens podería ser
@@ -4548,19 +4538,29 @@ gl:
   user_added_a_comment_html: "%{user} fixo un comentario"
   user_added_a_fave_html: "%{user} engadíu un favorito"
   user_added_a_flag_html: "%{user} engadíu unha marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} engadíu un %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} engadíu un %{x} a unha %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} engadíu un %{x} a unha %{noun} túa"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} engadíu un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} engadíu unha identificación"
   user_added_an_observation_field_html: '%{user} engadíu un valor para "%{field_name}" a unha observación de %{owner}'
   user_added_an_observation_field_value_html: "%{user} engadíu un valor nun campo de observación"
   user_added_an_observation_html: "%{user} engadíu unha observación"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} engadíu un %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} engadíu unha %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} engadíu un %{x} a %{noun} teu"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} engadíu unha %{x} a %{noun}"
   user_added_x_observations_html: "%{user} engadíu %{x} observacións"
   user_already_authenticated: O usuario xa está verificado
@@ -4813,8 +4813,6 @@ gl:
   you_: Ti
   you_appear_offline_try_again: |
     Semella que estás sen conexión. Téntao outra vez logo, cando esteas conectado á Internet.
-  youre_a_site_curator_which_means: |
-    Es un administrador do sitio, o que significa que te ofreciches voluntario para axudar a xestionar os datos e supervisar o contido da páxina. Non te sintas obrigado con todo o que isto implica, pero se tes tempo de revisar algúns contidos de antemán, agradecémoscho. Se tes algunha dúbida, comentario ou simplemente xa non queres ser administrador, ponte en contacto connosco en
   you_are_now_following_x: "Estás seguindo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     Agora es <strong>ti</strong> o administrador de %{project}
@@ -4925,8 +4923,6 @@ gl:
   your_subscriptions_to_this_place: As túas subscricións a este lugar
   your_tags: As Túas Etiquetas
   yours: Teu
-  youre_not_following_anyone: |-
-    Non segues a ninguén. Seguir a outros naturalistas permitirache levar un control das túas observacións máis recentes. Pescuda o que a xente está facendo
   youre_not_following_anyone_on_inat: '¡Aínda non segues a ninguén en %{site_name}!'
   youve_linked_your_inaturalist_google_account: "Vinculaches a túa conta de %{site_name} e a túa conta de Google. Isto permitirache asociar as túas fotos de Google cás túas observacións de %{site_name}."
   youve_successfully_linked_your_provider_account: "Vinculaches correctamente a túa conta de %{provider}"

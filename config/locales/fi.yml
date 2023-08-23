@@ -405,6 +405,8 @@ fi:
   #Noun, title of a popup alerting you to something
   alert: Varoitus
   all: Kaikki
+  #Title for a list of all 3rd party applications
+  all_applications: Kaikki sovellukset
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
@@ -836,13 +838,7 @@ fi:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: jakaa
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: yhdistää
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: yhdistetty
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: korvattu
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'Korvaa seuraavalla:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 'korvattu seuraavalla:'
     dropped: pudonnut
@@ -857,6 +853,8 @@ fi:
     input_taxa_were_merged_into_output_taxon_html: "taksonit %{input_taxa} yhdistettiin taksoniin %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "taksoni %{input_taxa} tullaan yhdistämään taksoniin %{output_taxon}"
   change_your_password: Vaihda salasanasi
+  #Plural noun, as in changes to a taxon record over time
+  changes: Muutokset
   changing_the_geoprivacy: 'Sijainnin tietosuojan muuttaminen vaikuttaa siihen miten muut ihmiset näkevät havaintopaikkasi sijainnin.'
   check_above_for_errors: Tarkista virheet ylempää
   check_back_soon: Tulethan pian takaisin!
@@ -871,6 +869,7 @@ fi:
   check_list_place: "%{place} Lajiluettelo"
   check_list_updated: Lajiluettelo päivitetty!
   check_lists_for: "Muut lajilistat paikalle %{place}"
+  check_out_the_inat_store: Tutustu iNaturalist-kauppaan
   check_out_what_the_observation: Katso, miltä havainnot, joita yrität tunnistaa, näyttävät
   check_this_box_if_html: |
     Laita ruksi tähän jos haluat käyttää <a
@@ -1485,6 +1484,8 @@ fi:
   disable_comments_desc: Estä käyttäjiä lisäämästä uusia kommentteja
   disagree_: Eri mieltä
   disconnect_provider: "Katkaise yhteys palveluun %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Hylkää
   display: Näyttö
   display_link_to_checklist: Näytä linkki projektiluetteloon projektisivulta
   display_monthly_supporter_badge: Näytä kuukausilahjoittajastatukseni profiilissani
@@ -1504,6 +1505,8 @@ fi:
   donate: LAHJOITA
   donate_again_caps: LAHJOITA UUDELLEEN
   donate_again_today_caps: LAHJOITA UUDELLEEN TÄNÄÄN
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Lahjoita iNaturalistille
   done: Valmis
   dont_have_an_account_sign_up_html: Eikö sinulla vielä ole käyttäjätunnusta? <strong>Rekisteröidy.</strong>
   dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
@@ -1653,6 +1656,7 @@ fi:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Tilin tiedot
+  email_copyright2: "&copy; %{year} iNaturalist, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
   embed_place_widget: Upota paikkapienoisohjelma
@@ -2010,6 +2014,13 @@ fi:
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
   inaturalist_global_year_in_review: "iNaturalistin %{year} vuosikatsaus"
+  independence_email_subject: "iNaturalist on nyt itsenäinen epäkaupallinen organisaatio"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Hyvä %{name},
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Lahjoita nyt
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -2214,6 +2225,7 @@ fi:
     davawenyo: Davawenyo
     dutch: Hollanti
     english: Englanti
+    esperanto: esperanto
     estonian: Viro
     faroese: Fääri
     finnish: Suomi
@@ -2345,6 +2357,7 @@ fi:
     es: espanja
     es-AR: espanja (Argentiina)
     es-CO: Espanja (Kolumbia)
+    es-CR: Espanja (Costa Rica)
     es-MX: espanja (Meksiko)
     et: viro
     eu: baski
@@ -2728,6 +2741,8 @@ fi:
   next_tab: Seuraava välilehti
   next_taxon_short: Seuraava
   'no': 'Ei'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Ei vielä sovelluksia
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä lisätty arviointeja.
   no_but_it_is_a_member_of_taxon: "Ei, mutta se kuuluu taksoniin %{taxon}"
   no_comments_yet: Ei vielä kommentteja.
@@ -3885,6 +3900,7 @@ fi:
   refresh: Päivitä
   refreshing: päivitetään
   regenerate_stats: Luo tilastot uudelleen
+  regional_names: Paikalliset nimet
   reject?: Hylkää?
   relative_observations: Vastaavat havainnot
   relationship: "Suhde"
@@ -4102,6 +4118,8 @@ fi:
   show_keyboard_shortcuts: Näytä pikanäppäimet
   show_less: Näytä vähemmän
   show_more: Näytä enemmän
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Näytä lisää kirjautumisvaihtoehtoja
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Näytä "Ei merkintöjä"
@@ -4705,7 +4723,6 @@ fi:
   update_existing_photos_with_new_license: Päivitä olemassa olevat kuvat uusilla lisenssivaihtoehdoilla
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
   update_observations: Päivitä havainnot
-  update_past: "Päivitä aikaisemmat"
   update_photos: Päivitä kuvat
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
@@ -4757,19 +4774,29 @@ fi:
   user_added_a_comment_html: "%{user} lisäsi kommentin"
   user_added_a_fave_html: "%{user} lisäsi suosikiksi"
   user_added_a_flag_html: "%{user} lisäsi lipun"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lisäsi %{x}n"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_an_identification_html: "%{user} lisäsi tunnistuksen"
   user_added_an_observation_field_html: '%{user} lisäsi arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
   user_added_an_observation_field_value_html: "%{user} lisäsi havaintokentän arvon"
   user_added_an_observation_html: "%{user} lisäsi havainnon"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lisäsi %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_x_observations_html: "%{user} lisäsi %{x} havaintoa"
   user_already_authenticated: Käyttäjä on jo todennettu
@@ -4983,6 +5010,7 @@ fi:
   where_were_you?: Missä olit?
   which_projects_can_add_your_observations?: Mitkä perinteiset projektit voivat lisätä havaintojasi ko. projektiin?
   white: valkoinen
+  why_are_you_making_this_change_cite_source_required: Miksi teet tämän muutoksen? Ole hyvä ja selitä, ja mainitse lähde jos mahdollista. (Pakollinen)
   why_you_can_see_the_coordinates: Miksi näet koordinaatit
   who_can_add_observation_fields_to_my_obs: Kuka voi lisätä havaintokenttiä havaintoihini?
   who_can_add_observations_to_this_project?: Kuka voi lisätä havaintoja tähän projektiin?
@@ -5137,6 +5165,8 @@ fi:
   youve_joined_the_x_project: "Olet liittynyt projektiin %{project_invitation} ja havaintosi on lisätty"
   your_account_has_been_activated: Tilisi on aktivoitu!
   your_account_has_been_verified: "%{site_name}-tilisi on varmistettu! Kirjaudu sisään jatkaaksesi."
+  #Title for a list of 3rd party applications you control
+  your_applications: Sovelluksesi
   your_browser_does_not_support_the_audio_element: Selaimesi ei tue äänielementtiä.
   your_comment_was_saved: Sisältösi tallennettiin
   your_content: Oma sisältö
@@ -5618,6 +5648,8 @@ fi:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
     places:
+      kml_field_desc3: |
+        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin 700 000 neliökilometriä (suunnilleen Somalian tai Teksasin kokoinen).
       edit:
         complex_boundary_note_html: |
           Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
@@ -5993,6 +6025,23 @@ fi:
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          Useimmilla eliöryhmillä on "yleiskielisiä" (eli kansankielisiä) nimiä eri kielillä. Nämä nimet ovat yleensä selkeitä ja vakiintuneita. Monista eliöistä kuitenkin käytetään monia erilaisia nimiä eri paikoissa ja jopa samalla kielellä. Tämä tekee keskustelusta hankalaa. Tutkijat ovar ratkaiseet tämän ongelman käyttämällä yhtä "tieteellistä nimeä" jokaisesta eliöryhmästä. Tieteellisten nimien käyttöä määrittelevät <a href="https://fi.wikipedia.org/wiki/Binominen_nimist%C3%B6">biologisten nimistöjen säännöt</a>. Tieteelliset nimet perustuvat yleensä latinaan, joten niiden muistaminen on usein vaikeaa. Tieteelliset nimet sisältävät myös tietoa eliön luokittelusta (taksonomiasta), joten ne muuttuvat kun tutkijat selvittävät eliöiden evolutiivisia sukulaisuussuhteita. Tämä taas tekee niiden käytöstä hankalampaa, myös niitä tuntevien ihmisten välillä.
+          </p>
+          <p>
+          Vanha sanonta kuvaa tätä hyvin: "Yleiskieliset nimet vaihtelevat paikasta paikkaan, ja tieteelliset nimet vaihtelevat ajassa."
+          </p>
+          <p>
+          Yritämme ratkaista näitä puutteita näyttämällä sekä yleiskieliset että tieteelliset nimet aina kun mahdollista, ja valitsemalla näytettävät yleiskieliset nimet perustuen käyttäjän valitsemaan kieleen ja maantieteelliseen paikkaan.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Nimiä voidaan lisätä paikkoihin (yleensä maihin), kun eri maat tai alueet käyttävät eri yleiskielisiä nimiä samalla kielellä. Esimerkiksi Meksikolla ja Costa Ricalla voi olla eri espanjankielinen nimi samalle lajille.
+          </p>
+          <p>
+          Tämä taulukko näyttää, mitkä nimet on lisätty mihinkin paikkaan ja ne on luetteloitu prioriteettijärjestyksessä kullekin paikalle. Jos kaksi espanjankielistä nimeä on lisätty Meksikolle, ensimmäisenä luetteloitu näytetään, kun haluat katsoa espanjankielisiä nimiä, jotka on lisätty Meksikolle.
+          </p>
         about_conservation_status_desc: |
           Uhanalaisuusluokitus tiivistää eliöryhmän sukupuuttoriskin.
         about_establishment_desc: |
@@ -6561,6 +6610,7 @@ fi:
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
+        audit_comment: Merkintä
       taxon_link:
         url: URL-osoite
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -6756,6 +6806,8 @@ fi:
             name:
               must_match_the_taxon_if_valid: |
                 pitää vastata taksonin nimeä, jos kyseessä on hyväksytty tieteellinen nimi
+            audit_comment:
+              needs_to_be_at_least_10_characters: oltava vähintään 10 merkkiä
         taxon_photo:
           attributes:
             taxon:

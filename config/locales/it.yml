@@ -876,13 +876,7 @@ it:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: suddividi in
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: unisci in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: unito in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: sostituito da
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: sostituisci con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: sostituito con
     dropped: eliminato
@@ -1570,6 +1564,8 @@ it:
   donate: DONA
   donate_again_caps: DONA ANCORA
   donate_again_today_caps: DONA ANCORA OGGI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Dona a iNaturalist
   done: Fatto
   dont_have_an_account_sign_up_html: Non hai un'utenza? <strong>Registrati.</strong>
   dont_use_double_quotes: Non utilizzare le virgolette da nessun'altra parte
@@ -1717,6 +1713,7 @@ it:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Dettagli del Profilo
+  email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
   email_notifications: Notifiche Email
   embed: 'Incorpora'
   embed_place_widget: Incorpora widget del luogo
@@ -2123,6 +2120,77 @@ it:
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
+  independence_email_subject: "Spieghiamo le Nostre Ali: iNaturalist è Ora una No-Profit Indipendente"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Caro %{name},
+  independence_email_body_exciting_news: |
+    Il team di iNaturalist ha delle entusiasmanti notizie! Siamo lieti di condividere che, grazie
+    al supporto di questa fantastica community, iNaturalist opera ora come
+    un'organizzazione senza scopo di lucro indipendente 501(c)(3), con sede negli Stati
+    Uniti d'America.
+  independence_email_body_since_launching: |
+    Dal suo lancio nel 2008, il team e l'organizzazione di iNaturalist si sono
+    evoluti, e siamo entusiasti su questa prossima tappa. iNaturalist è nata
+    come un progetto di master alla University of California, a Berkeley, è divenuta una
+    LLC, poi si è unita all'Accademia di Scienze della California nel 2014. Nel 2017,
+    iNaturalist è divenuta un'iniziativa congiunta con l'Accademia di Scienze della
+    California e la National Geographic Society. Ora, iNaturalist è
+    un'organizzazione indipendente.
+  independence_email_body_over_the_past: |
+    Negli ultimi 15 anni, gli incredibili contributi dalla community
+    hanno reso iNaturalist una delle piattaforme naturalistiche
+    più d'impatto al mondo.
+  independence_email_body_so_far: "Finora, la community di iNaturalist:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Ha creato oltre 146.000.000 osservazioni verificabili (aggiungendone circa 1 milione a settimana!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: È cresciuta a 2,7 milioni di collaboratori
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Ha osservato oltre 430.000 specie
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    È stata citata oltre 3.500 volte
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">tramite la Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    Ringraziamo l'Accademia di Scienze della California e la National Geographic
+    Society per aver incubato iNaturalist, mentre cresceva drasticamente, negli ultimi
+    9 anni. Dobbiamo immensa gratitudine a tali partner per il loro investimento,
+    supporto e amministrazione. Non vediamo l'ora di collaborare con entrambe
+    le organizzazioni, in futuro.
+  independence_email_body_the_way_html: |
+    <strong>Il modo in cui sperimenti iNaturalist, non cambierà.</strong>
+    iNaturalist e Seek continuerà ad aiutarti liberamente a identificare la
+    biodiversità e a creare la tua connessione al mondo naturale. Questa nuova
+    struttura organizzativa ci consentirà di supportare iNaturalist per gli anni
+    a venire, mentre la community di iNaturalist espande la nostra conoscenza collettiva
+    della biodiversità, a lungo nel futuro. Continueremo a collaborare con le
+    organizzazioni in tutto il mondo, per supportare la Rete di iNaturalist.
+  independence_email_body_questions_html: |
+    Puoi <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leggere di
+    più sul blog</a> e consultare le <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Domande
+    Frequenti</a> (in inglese). I <a
+    href="https://www.inaturalist.org/pages/terms">Termini di Utilizzo</a> e la <a
+    href="https://www.inaturalist.org/pages/privacy">Politica sulla Privacy</a> sono
+    stati aggiornati per riflettere la nuova organizzazione.
+  independence_email_body_thank_you: Grazie per essere parte di questa community.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Buon proseguimento,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>Team di Leadership di iNaturalist</strong>
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Dona ora
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -4490,6 +4558,11 @@ it:
   sites_affiliation_overview_you_can_continue_html: |
     Puoi continuare ad accedere tramite iNaturalist.org o tramite il tuo sito web specifico della rete. Non importa la tua affiliazione, tutti i tuoi dati saranno hostati nello stesso luogo e continuerai a poter interagire con la più ampia community internazionale di iNaturalist. Ogni profilo di iNaturalist è affiliabile con un solo Membro della Rete. Puoi revisionare o modificare la tua affiliazione nelle %{start_tag_settings}impostazioni del tuo profilo%{end_tag_settings}.
   sites_affiliation_title: Scopri di Più sull'Affiliazione della Rete
+  sites_network_agreements_html: |
+    iNaturalist ha stipulato accordi formali con organizzazioni in ognuna di queste
+    aree geografiche, per supportarre l'utilizzo della piattaforma di iNaturalist.
+    <strong>Se la tua organizzazione vorrebbe aderire alla Rete di iNaturalist,
+    puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
   sites_network_consists_of: "La Rete di iNaturalist consiste in diverse organizzazioni:"
   sites_network_inaturalist_network_collection: |
     La Rete di iNaturalist è una raccolta di siti web localizzati, completamente connessi alla community globale di iNaturalist. I siti della rete sono supportati dalle istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
@@ -5256,19 +5329,29 @@ it:
   user_added_a_comment_html: "%{user} ha aggiunto un commento"
   user_added_a_fave_html: "%{user} ha aggiunto un preferito"
   user_added_a_flag_html: "%{user} ha aggiunto un contrassegno"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha aggiunto una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha aggiunto un valore in un campo di un'osservazione"
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha aggiunto una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
@@ -5623,6 +5706,12 @@ it:
     Milioni di persone hanno usato iNaturalist e Seek by iNaturalist quest'anno per connettersi con la natura
   yir_monthly_supporters_random_selection: |
     Ecco una selezione casuale degli eroici membri della community di iNat, che donano ogni mese.
+  yir_thank_your_for_being_generous2: |
+    Grazie per esser generoso con il tuo tempo, la tua attenzione, esperienza e
+    donazioni! iNaturalist è un'organizzazione senza scopo di lucro e a beneficio del pubblico. Il
+    programma si affida a numerose sovvenzioni e donazioni, inclusi doni di beneficienza
+    da meno di una minima frazione della community. Siamo specialmente grati
+    ai Sostenitori del Mese, i cui doni ricorrenti ci aiutano a fare piani per il futuro.
   yir_your_gift_sustains: |
     I tuoi doni sostengono questo programma con la portata globale e profondi impatti personali ed ecologici
   you: te
@@ -5783,10 +5872,53 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist è una delle community più grandi al mondo, dedicate
+        all'esplorazione della biodiversità. Grazie per esserne parte!</strong>
+        </p>
+        <p class="lead">
+        Se credi nella potenza di questa community globale di amanti della natura
+        per la condivisione di conoscenza e per generare insostituibili dati sulla biodiversità,
+        ti preghiamo di considerare un dono una tantum o ricorrente online, o di esplorare <a
+        href="https://www.inaturalist.org/pages/giving">altri
+        metodi per donare</a>.
+        </p>
+        <p class="lead">
+        La tua donazione aiuta a supportare iNaturalist al crescere della community,
+        dall'avanzamanento della visione informatica e l'implementazione di nuove funzionalità, al supportare
+        i nostri server e membri dello staff.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle tasse, senza
+        scopi di lucro, con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
+        </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist è una delle più grandi community dedicate all'esplorazione
+          della biodiversità. Grazie per esserne parte!</strong>
+          </p>
+          <p class="lead">
+          Vogliamo mantenere iNaturalist gratuito da utilizzare, ma non è gratuito da operare.
+          Se ami iNaturalist, ti preghiamo di considerare di divenire un sostenitore mensile.
+          I doni ricorrenti aiutano ad assicurare che iNaturalist possa continuare a
+          ridimensionare la propria infrastruttura e staff, fornendo entrate prevedibili.
+          Inoltre, puoi optare per mostrare lo stato di sostenitore sul tuo profilo utente.
+          </p>
+          <p class="lead">
+          Le tue caritevoli donazioni aiutano a supportare iNaturalist al crescere della
+          community, dall'avanzamento della visione informatica e l'implementazione di nuove
+          funzionalità, al supporto dei nostri server e membri dello staff. Se preferisci effettuare una
+          donazione una tantum, ti preghiamo di <a href="%{donate_url}">cliccare qui</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist è un'organizzazione senza scopo di lucro, esente dalle tasse e indipendente
+          501(c)(3), con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Grazie per essere un Sostenitore Mensile!
         thank_you_for_being_a_monthly_supporter_caps: GRAZIE PER ESSERE UN SOSTENITORE MENSILE!
       temporarily_unavailable: |
@@ -6235,56 +6367,6 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help2_html: |
-          <p>
-          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"informale"</strong>, e diventano <strong>"serve ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>l'osservazione <strong>ha una data</strong></li>
-          <li>l'osservazione <strong>è georeferenziata</strong> (ad esempio: ha le coordinate lat/lon)</li>
-          <li>l'osservazione <strong>ha foto o suoni</strong></li>
-          <li>l'osservazione <strong>non è di un umano</strong></li>
-          </ul>
-          <p>
-          Le osservazioni raggiungono il <strong>"livello ricerca"</strong> quando
-          </p>
-          <ul>
-          <li>
-          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon (se la comunità ha votato che cil Taxon della Comunità non può essere migliorato ulteriormente, questo torna all'ID della sottofamiglia o inferiore)
-          </li>
-          </ul>
-          <p>
-          Le osservazioni torneranno al livello <strong>"informale"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che
-          </p>
-          <ul>
-          <li>
-          la <strong>localizzazione non sembra precisa</strong> (ad esempio: scimmie in mezzo all'oceano, ippopotami in ufficio, etc.)
-          </li>
-          <li>
-          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)
-          </li>
-          <li>
-          l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini digiochi d'acqua, paesaggi che non contengono organismi, ecc.
-          </li>
-          <li>
-          l'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)
-          </li>
-          <li>
-          l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a un livello superiore alla famiglia
-          </li>
-          <li>
-          l'osservatore ha rifiutato l'ID della community e il taxon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
-          </li>
-          </ul>
-          <p>
-          E come se non fosse già abbastanza complicato, ci sono anche situazioni in cui il sistema assegna un voto:
-          </p>
-          <ul>
-          <li>
-          Il sistema stabilirà che l'osservazione non è selvatica/naturalizzata se, nel luogo più piccolo che contiene questa osservazione (nazione, regione, provincia), ci sono almeno 10 altre osservazioni di un genere o taxon di rango inferiore di cui l'80% o più sono state marcate come non selvatiche/naturalizzate.
-          </li>
-          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
@@ -6803,6 +6885,17 @@ it:
           anno, la barra verticale bianca mostra l'anno scorso, e le aree a sfondo grigio mostrano gli anni più bassi e più alti, così come la media per tutti gli anni.
         compared_to_previous_years: Confronta con Anni Precedenti
         donate_title: "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori"
+        donate_desc2_html: |
+          Grazie per essere generoso con il tuo tempo, la tua attenzione, esperienza e donazioni!
+          iNaturalist è un'organizzazione senza scopo di lucro 501(c)(3) negli Stati Uniti. È supportata da
+          un <a href="%{team_url}">piccolo team</a> che effettua tutte le scelte di progettazione e ingegneria software per web,
+          mobile e <a href="%{seek_url}">Seek di iNaturalist</a>, oltre alla gestione del supporto alla community, delle
+          collaborazioni e delle integrazioni che mantengono in funzione (e in rapida crescita!) le cose.
+          Il programma si affida a numerose sovvenzioni e donazioni, inclusi i caritatevoli doni da meno
+          di una minuscola frazione di collaboratori. Siamo specialmente grati ai Sostenitori Mensili, i cui
+          doni ricorrenti ci aiutano a pianificare per il futuro. Puoi donare in numerose valute
+          per supportare le operazioni principali di iNaturalist.
+          Grazie a tutti per la vostra parte nel rendere il %{year}, l'anno migliore di sempre di iNaturalist!
         donors: Donatori
         donors_guide_label_our_goal_is_1000: Il nostro obiettivo è 1'000 donatori ricorrenti al mese
         inaturalist_network: Il Network di iNaturalist
@@ -7067,6 +7160,15 @@ it:
           </p>
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
+        monthly_supporter_desc_html: |
+          I Sostenitori Mensili di iNaturalist effettuano contributi mensili automatici
+          a iNaturalist (Stati Uniti IRS EIN 92-1296468) per supportare l'operazione
+          senza scopo di lucro di iNaturalist e dei siti della Rete di iNaturalist.
+          <a href="%{url}">Clicca qui per diventare un Sostenitore Mensile</a>. Una volta confermato
+          il tuo supporto, potrai spuntare questa casella per mostrare questo stato sul
+          tuo profilo. Nota: gli indirizzi email su Donorbox e su iNaturalist, devono corrispondere
+          esattamente, affinché possiamo confermare che tu sia un Sostenitore Mensile. Se
+          differiscono, modifica uno dei due affinché corrisponda all'altro.
         muting_desc_html: |
           <p>
           Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.
@@ -7872,6 +7974,11 @@ it:
           attributes:
             base:
               user_already_blocked: Hai già bloccato questo utente
+              user_cannot_be_staff2: |
+                Non puoi bloccare lo staff. Lo staff di iNaturalist deve poter comunicare
+                con tutti su iNaturalist, avere accesso a tutti i dati su di esso, ed essere
+                i mediatori definitivi delle controversie, quindi, bloccarli non impedirà loro di
+                comunicare con te.
         user_parent:
           attributes:
             email:

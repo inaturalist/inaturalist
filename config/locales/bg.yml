@@ -681,8 +681,6 @@ bg:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: разделено на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: обедини във
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: обединени във
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заместено със
@@ -3160,6 +3158,7 @@ bg:
   refresh: Опресни
   refreshing: опресняване
   regenerate_stats: Повторно генериране на статиката
+  regional_names: Регионални имена
   reject?: Отхвърли?
   relative_observations: Относителен дял на наблюденията
   relationships:
@@ -3889,19 +3888,29 @@ bg:
   user_added_a_comment_html: "%{user} добави коментар"
   user_added_a_fave_html: "%{user} добави харесване"
   user_added_a_flag_html: "%{user} добави маркер"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} добави %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_an_identification_html: "%{user} добави разпознаване"
   user_added_an_observation_field_html: '%{user} добави стойност на %{field_name} към наблюдение от %{owner}'
   user_added_an_observation_field_value_html: "%{user} добави стойност към поле за наблюдения"
   user_added_an_observation_html: "%{user} добави наблюдение"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} добави %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
@@ -4075,6 +4084,7 @@ bg:
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло
+  why_are_you_making_this_change_cite_source_required: Защо правите тази промяна? Обяснете, цитирайте източник, ако може. (изисква се)
   who_can_add_observation_fields_to_my_obs: Кой може да добавя полета за наблюдения към моите наблюдения?
   who_can_add_observations_to_this_project?: Кой може да добавя наблюдения към проекта?
   who_can_see_the_coordinates: Кой може да види координатите
@@ -5163,6 +5173,7 @@ bg:
         lexicon: Лексика
         name: Название
         position: Позиция
+        audit_comment: Бележка
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -5266,6 +5277,8 @@ bg:
             name:
               bad_format: |
                 може да съдържа единствено стандартни латински символи, тирета, интервали и ×; имайте предвид, че предполагаеми таксони и култивари не са позволени
+            audit_comment:
+              needs_to_be_at_least_10_characters: трябва да е поне 10 знака
         taxon_photo:
           attributes:
             taxon:

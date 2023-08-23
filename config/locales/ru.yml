@@ -987,13 +987,7 @@ ru:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: разделить на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: соединить в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: слились в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: заменены
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'Заменить на:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заменены на
     dropped: отброшено
@@ -1379,7 +1373,7 @@ ru:
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible2: |
-    Чтобы подать заявку на должность куратора сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, вы должны добавить как минимум 5 флагов и вы должны иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные (вы добавили % {num_idents}). Когда вы выполните эти требования, вернитесь сюда, и вы сможете подать заявку.
+    Чтобы подать заявку на должность куратора сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, вы должны добавить как минимум 5 флагов и вы должны иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные (вы добавили %{num_idents}). Когда вы выполните эти требования, вернитесь сюда, и вы сможете подать заявку.
   curator_application_inelligible_error2: |
     Чтобы стать куратором сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, добавить как минимум 5 флагов и иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные.
   #Message shown when a curator application has been succesfully submitted
@@ -1696,7 +1690,7 @@ ru:
   download_caps: СКАЧАТЬ
   download_bulk_import_template_html: |
     <a href="%{url}">Скачать шаблон</a> для использования в
-    <a href="/observations/import#csv_import">групповой загрузке</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">групповой загрузке</a>
   download_csv: Скачать как CSV
   download_csv_template: Загрузить шаблон в формате CSV
   download_kml: Загрузить в формате KML
@@ -1815,24 +1809,6 @@ ru:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Пожалуйста, подтвердите свой адрес электронной почты%{link_end_tag}</strong>.
     Все пользователи должны подтвердить свой адрес электронной почты до %{date}. После этой даты любой, кто не подтвердил свой адрес электронной почты, не сможет войти в систему, пока не сбросит свой пароль. Чтобы подтвердить свой адрес электронной почты, перейдите в %{link_start_tag}настройки своей учетной записи%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Подтвердите ваш адрес электронной почты для %{site_name} до %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Пожалуйста, подтвердите ваш адрес электронной почты сегодня, чтобы убедиться, что будет продолжен доступ к вашей учетной записи. %{site_name} и мобильные приложения
-    iNaturalist и Seek от iNaturalist объединяют людей между собой и с природой, предоставляя общий доступ к наблюдениям за биоразнообразием. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Для всех учетных записей, начинающихся с %{requirement_date}, нам понадобится подтверждённый адрес электронной почты. Пожалуйста, подтвердите его сейчас.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Если у вас есть какие-либо вопросы, пожалуйста, обратитесь к разделу <a href="%{faq_url}">FAQs</a>. Спасибо за то, что находите время для общения с природой и с сайтом %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Параметры учетной записи
   email_copyright2: "&copy; %{year} iNaturalist, все права защищены"
   email_notifications: E-mail уведомления
   embed: 'Вставить на страницу'
@@ -2247,6 +2223,54 @@ ru:
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   inaturalist_global_year_in_review: "Мировой обзор %{year} года iNaturalist"
+  independence_email_subject: "Расправляем крылья: iNaturalist теперь является независимой некоммерческой организацией"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Уважаемый %{name},
+  independence_email_body_exciting_news: |
+    У команды натуралистов есть потрясающие новости! Мы рады сообщить, что благодаря поддержке этого замечательного сообщества iNaturalist теперь работает как независимая некоммерческая организация 501(c)(3), базирующаяся в Соединенных Штатах Америки.
+  independence_email_body_since_launching: |
+    С момента запуска в 2008 году команда и организация iNaturalist эволюционировали, и мы в восторге от этой следующей вехи. iNaturalist начинал как магистерский проект в Калифорнийском университете в Беркли, стал ООО (LLC), затем в 2014 году присоединился к Калифорнийской академии наук. В 2017 году iNaturalist стал совместной инициативой Калифорнийской академии наук и Национального географического общества. Теперь iNaturalist - независимая организация.
+  independence_email_body_over_the_past: |
+    За последние 15 лет невероятный вклад сообщества превратил iNaturalist в одну из самых влиятельных платформ в мире в области природы.
+  independence_email_body_so_far: "На сегодня сообщество iNaturalist:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Создано более 146,000,000 проверяемых наблюдений (их число увеличивается примерно на 1 миллион в неделю!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Число участников сообщества выросло до 2,7 миллиона участников
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Имеются наблюдения более чем 430000 тысяч видов
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Было процитировано более 3500 раз <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">на сайте Глобального информационного центра по биоразнообразию (GBIF)</a>
+  independence_email_body_we_thank: |
+    Мы благодарим Калифорнийскую академию наук и Национальное географическое общество за поддержку проекта iNaturalist, что привело к значительному росту за последние 9 лет. Мы безмерно благодарны этим партнерам за их инвестиции, поддержку и руководство. Мы с нетерпением ожидаем сотрудничества с обеими организациями в будущем.
+  independence_email_body_the_way_html: |
+    <strong>То, как вы воспринимаете iNaturalist, не изменится.</strong> iNaturalist и Seek продолжат бесплатно помогать вам идентифицировать биологическое разнообразие и выстраивать вашу собственную связь с миром природы. Эта новая организационная структура позволит нам поддерживать iNaturalist в течение многих последующих лет, поскольку сообщество iNaturalist расширяет наши коллективные знания о биоразнообразии на долгие годы вперед. Мы продолжим сотрудничество с организациями по всему миру для поддержки сети iNaturalist.
+  independence_email_body_questions_html: |
+    Вы можете <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">читать больше в блоге</a> и просмотреть <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Часто задаваемые вопросы</a> (на английском языке). <a
+    href="https://www.inaturalist.org/pages/terms"> Условия предоставления услуг</a> и <a
+    href="https://www.inaturalist.org/pages/privacy">Политика конфиденциальности</a> была обновлена, чтобы отразить особенности новой оргвнизации.
+  independence_email_body_thank_you: Спасибо Вам за то, что вы являетесь частью этого сообщества.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Начиная с этого времени,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>команда лидеров iNaturalist</strong>
+  independence_email_body_ps: |
+    P.S. - Скоро мы объявим о щедром гранте, который даст независимому натуралисту солидный старт. Финансовая поддержка сообщества натуралистов сделала возможным наше развитие и будет иметь жизненно важное значение для долгосрочной устойчивости. Ваше пожертвование сейчас ознаменует эту захватывающую веху и еще больше обезопасит будущее iNaturalist. Спасибо!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Пожертвовать сейчас
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2470,6 +2494,7 @@ ru:
     davawenyo: Davawenyo
     dutch: Голландский
     english: Английский
+    esperanto: Эсперанто
     estonian: Эстонский
     faroese: Фарерский
     fijian: Фиджийский
@@ -5444,19 +5469,29 @@ ru:
   user_added_a_comment_html: "%{user} добавил комментарий"
   user_added_a_fave_html: "%{user} добавил к фаворитам"
   user_added_a_flag_html: "%{user} добавил флаг"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} добавил %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_an_identification_html: "%{user} добавил идентификацию"
   user_added_an_observation_field_html: '%{user} добавил значение "%{field_name}" к наблюдению %{owner}'
   user_added_an_observation_field_value_html: "%{user} добавил значение поля наблюдения"
   user_added_an_observation_html: "%{user} добавил наблюдение"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} добавил %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_x_observations_html: "%{user} добавил %{x} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
@@ -6477,53 +6512,53 @@ ru:
           Присоединяясь к проекту, вы даёте кураторам проекта возможность видеть скрытые координаты того или иного наблюдения в проекте, это означает, что вы согласны с условиями проекта <a href="%{url}" target="_blank">terms</a>.
         quality_assessment_help2_html: |
           <p>
-          Оценка качества данных это совокупность точности даных наблюдения. Все наблюдения изначально имеют <strong>"обыкновенный"</strong> уровень, а затем получают уровень
+          Оценка качества данных представляет собой краткое изложение точности наблюдений. Все наблюдения начинаются со степенью <strong>"обыкновенные"</strong> и получают статус
           <strong>"требуется идентификация"</strong> когда
           </p>
 
           <ul>
           <li>наблюдение <strong>содержит дату</strong></li>
-          <li>наблюдение <strong>содержит местоположение</strong> (т.е. координаты шир./дол.)</li>
-          <li>наблюдение <strong>содержит фото или звуки</strong></li>
-          <li>наблюдение <strong>не является наблюдением человека</strong></li>
+          <li>наблюдение <strong>имеет геолокацию (местонахождение)</strong> (т.е. имеет координаты широта/долгота)</li>
+          <li>наблюдение <strong>содержит фото или аудио</strong></li>
+          <li>наблюдение <strong>не содержит изображение человека</strong></li>
           </ul>
           <p>
-          Наблюдения получают <strong>"исследовательский уровень"</strong> когда
+          Наблюдению присваивается <strong>"исследовательский уровень"</strong> когда
           </p>
           <ul>
           <li>
-          Сообщество %{site_name} <strong> согласно с определением на уровне вида или ниже</strong>, т.е. когда более чем 2/3 экспертов соглашаются с таксоном (если сообщество проголосовало, что таксон сообщества не может быть улучшен, это применимо к определению на уровне подсемейства или ниже)
+          сообщество %{site_name} <strong>приходит к согласию относительно уровня таксона вид или ниже</strong>, т.е. когда 2/3 экспертов приходят к согласию (если сообщество проголосовало за то, что идентификатор таксона не может быть улучшен, он превращается в таксон уровня подсемейства или ниже)
           </li>
           </ul>
           <p>
-          Наблюдения вернутся к уровню <strong>"обыкновенный"</strong>, если вышеперечисленные условия не выполнены или если сообщество не пришло к согласию
+          Наблюдения получают уровень <strong>"обыкновенный"</strong> если с вышеукказанными условиями не соглашается сообщество
           </p>
           <ul>
           <li>
-           <strong>местоположение не кажется точным</strong> (например, обезьяны находятся посередине океана, бегемоты в офисных зданиях и т.д.)
+           <strong>местоположение не является точным</strong> (например, обезьяны находятся посреди океана, гиппопотамы в офисном здании, и т.п.)
           </li>
           <li>
-          <strong>организм не является диким/натурализованным</strong> (т.е. находящимся в неволе или культивируемом людьми или разумной инопланетной расой)
+           <strong>организм не является диким/натурализованным</strong> (например, находится в неволе или выращен человеком или разумными космическими пришельцами)
           </li>
           <li>
-          наблюдение <strong>не содержит доказательства существования организма</strong>, например, наблюдения водных каскадов, камней, ландшафтов без видимых организмов и т.д.
+          Наблюдение <strong>не содержит признаков присутствия организма</strong>, например, это изображение водной поверхности, скал или пейзаж, не включащие организм, и т.п.
           </li>
           <li>
-          наблюдение <strong>не представляет собой недавнее (~100 лет) доказательство существования организма</strong> (например, ископаемые останки, но следы, помёт и опавшие листья подходят)
+          наблюдение <strong>не содержит (~за период 100 лет) доказательств присутствия организма</strong> (например, окаменелости, но следы, экскременты и опавшие листья - это нормально)
           </li>
           <li>
-          наблюдение более не требует определения <em>и</em> определение сообщества ваше уровня семейства
+          наблюдение больше не нуждается в <em>и</em> в идентификации сообществом и идентификатор находится на уровне семейства или выше
           </li>
           <li>
-          наблюдатель отказался от таксона сообщества, и таксон сообщества не является предком или потомком таксона в идентификации наблюдателя
+          наблюдатель отказался от использования идентификатора сообщества и таксон с идентификатором сообщества не является предком или потомком таксона, связанного с идентификатором наблюдателя
           </li>
           </ul>
           <p>
-          И если это было недостаточно сложно, то бывают также ситуации, когда право голоса получает система:
+          И если это было недостаточно сложно, то бывают также ситуации, когда система получает право голоса:
           </p>
           <ul>
           <li>
-          Система проголосует за то, что организм не является диким/натурализованным, если существует не менее 10 других наблюдений рода или ниже в самом небольшом месте, эквивалентном району, региону или стране, которое содержит данное наблюдение и 80% или более этих наблюдений были помечены как не дикие/ненатурализованные. 
+          Система проголосует за то, что наблюдение не является диким/натурализованным, если есть по крайней мере 10 других наблюдений рода или ниже в самом маленьком округе, штате или эквивалентном стране месте, где содержится это наблюдение, и 80% или более из этих наблюдений были помечены как не дикие/натурализованные.
           </li>
           </ul>
         score_desc: "оценка = общее число / (общее число + число несогласий + число несогласий с таксонами-предками)"
@@ -7036,8 +7071,8 @@ ru:
         compared_to_previous_years: Сравнить с предыдущими годами
         donate_title: "Особая благодарность всем нашим спонсорам"
         donate_desc2_html: |
-          Спасибо вам за то, что вы щедро делитесь своим временем, вниманием, опытом и пожертвованиями! iNaturalist - это некоммерческая организация 501(c)3, базирующаяся в Соединенных Штатах. Она поддерживается <a href="%{team_url}">небольшой командой</a>, которая занимается дизайном и разработкой программного обеспечения для веб-сайтов, мобильных устройств, а <a href="%{seek_url}">Seek by iNaturalist</a>, в дополнение к управлению поддержкой сообщества, сотрудничеством, и интеграцией, что поддерживает работу системы (и является быстро растущим приложеннием!). Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем крошечной доли участников. Мы особенно благодарны ежемесячным спонсорам, чьи повторяющиеся донаты помогают нам планировать будущее. Вы можете делать пожертвования в нескольких валютах для поддержки основной деятельности Naturalist.
-          Спасибо всем за ваше участие в том, чтобы сделать год iNaturalist самым удачным за все время!
+          Спасибо вам за то, что вы щедро делитесь своим временем, вниманием, опытом и пожертвованиями! iNaturalist - это некоммерческая организация 501(c)3, базирующаяся в Соединенных Штатах. Она поддерживается <a href="%{team_url}">небольшой командой</a>, которая занимается дизайном и разработкой программного обеспечения для веб-сайтов, мобильных устройств, а <a href="%{seek_url}">Seek by iNaturalist</a>, в дополнение к управлению поддержкой сообщества, сотрудничеством, и интеграцией, что поддерживает работу системы (и является быстро растущим приложеннием!). Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем крошечной доли участников. Мы особенно благодарны ежемесячным спонсорам, чьи повторяющиеся донаты помогают нам планировать будущее. Вы можете делать пожертвования в нескольких валютах для поддержки основной деятельности iNaturalist.
+          Спасибо всем за ваше участие в создании самого масштабного на сегодняшний день %{year} года iNaturalist !
         donors: Спонсоры
         donors_guide_label_our_goal_is_1000: Наша цель-1000 постоянных спонсоров в месяц
         inaturalist_network: сеть iNaturalist

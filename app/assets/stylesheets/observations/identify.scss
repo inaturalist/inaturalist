@@ -268,13 +268,16 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   }
 }
 
-.image-size-large {
+#Identify .ObservationsGrid.image-size-large {
   .ObservationsGridItem,
   .ObservationsGridItem .media {
     width: 220px;
   }
   .ObservationsGridItem .media {
     height: 220px;
+  }
+  .ObservationsGridItem .UserImage {
+    top: 190px;
   }
 }
 
@@ -291,5 +294,34 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   margin: 7px 0;
   i.fa {
     margin-left: 5px;
+  }
+}
+
+#Identify {
+  .ObservationsGrid {
+    .col-xs-12 {
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+    .ObservationsGridItem {
+      .caption {
+        height: auto;
+        margin-bottom: 20px;
+      }
+      .UserImage {
+        bottom: auto;
+        top: 120px;
+      }
+      .SplitTaxon > .secondary-name {
+        display: flex;
+        flex: 1;
+      }
+      .taxon.has-com-name {
+        .secondary-name, .secondary-names {
+          white-space: wrap;
+        }
+      }
+    }
   }
 }

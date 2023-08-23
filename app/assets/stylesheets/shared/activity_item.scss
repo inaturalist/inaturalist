@@ -45,7 +45,8 @@ body > [role="dialog"] .ActivityItem {
       color: #000;
     }
     a.secondary-name,
-    .secondary-name {
+    .secondary-name,
+    .secondary-names {
       color: #000;
     }
     &.has-com-name .member-group:before {
@@ -197,7 +198,7 @@ body > [role="dialog"] .ActivityItem {
     }
     span.taxon {
       display: inline-block;
-      a.secondary-name {
+      .secondary-names, & > .secondary-name {
         font-size: 14px;
         line-height: 16px;
         // This is weird but it allows the secondary-name to be on a new line
@@ -207,7 +208,7 @@ body > [role="dialog"] .ActivityItem {
         display: table;
       }
       & > a.display-name,
-      & > .display-name, & > .display-names .display-name {
+      & > .display-name, & > .display-names {
         font-size: 20px;
         line-height: 25px;
       }

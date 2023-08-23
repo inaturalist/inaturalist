@@ -404,6 +404,7 @@ tr:
   agree_: Onayla
   agree?: Onaylansın mı?
   agree_with_current_taxon: Geçerli sınıfla onayla
+  agree_with_observation_taxon: Gözlem sınıfını kabul et
   agreeing: Onaylanıyor...
   aka: namıdiğer
   #Noun, title of a popup alerting you to something
@@ -876,13 +877,7 @@ tr:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: şuna bölündü
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: şununla birleşti
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: şununla birleşti
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: şununla değiştirildi
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: şununla değiştir
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: şununla değiştirildi
     dropped: etkisizleştirildi
@@ -2156,7 +2151,7 @@ tr:
     <br/>
     <strong>iNaturalist Liderlik Ekibi</strong>
   independence_email_body_ps: |
-    Not: Çok yakında bağımsız iNaturalist'e sağlam bir başlangıç sağlayacak cömert bir hibeyi duyuracağız. iNaturalist topluluğunun finansal desteği, evrimimizi mümkün kıldı ve uzun vadeli sürdürülebilirlik için hayati önem taşıyacak. Şimdi yapacağın bağış, bu heyecan verici dönüm noktasını kutlayacak ve iNaturalist'in geleceğini daha da güvence altına alacaktır. Teşekkür ederiz!
+    Not: Yakında bağımsız iNaturalist'e sağlam bir başlangıç sağlayacak cömert bir hibeyi duyuracağız. iNaturalist topluluğunun finansal desteği gelişimimizi mümkün kıldı ve uzun vadeli sürdürülebilirlik için hayati önem taşıyacak. Şimdi yapacağın bağış, bu heyecan verici dönüm noktasını taçlandıracak ve iNaturalist'in geleceğini daha da güvence altına alacaktır. Teşekkür ederiz!
   #Label for a button that links to the iNat donation web page
   independence_email_body_donate_now: Şimdi bağış yap
   computer_vision_suggestion: Bilgisayar Görü Önerisi
@@ -2379,6 +2374,7 @@ tr:
     davawenyo: Davaoeño
     dutch: Felemenkçe
     english: İngilizce
+    esperanto: Esperanto
     estonian: Estonca
     faroese: Faroece
     fijian: Fijice
@@ -2543,6 +2539,7 @@ tr:
     es: İspanyolca
     es-AR: İspanyolca (Arjantin)
     es-CO: İspanyolca (Kolombiya)
+    es-CR: İspanyolca (Kosta Rika)
     es-MX: İspanyolca (Meksika)
     et: Estonca
     eu: Baskça
@@ -4433,6 +4430,8 @@ tr:
   show_keyboard_shortcuts: Klavye Kısayollarını Göster
   show_less: Daha Az Göster
   show_more: Daha Fazla Göster
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Daha fazla giriş seçeneği göster
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"Açıklama Notu Olmayan"ları Göster'
@@ -5272,19 +5271,29 @@ tr:
   user_added_a_comment_html: "%{user} bir yorum ekledi"
   user_added_a_fave_html: "%{user} bir favori ekledi"
   user_added_a_flag_html: "%{user} bir işaret ekledi"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} bir %{x} ekledi"
-  user_added_a_x_to_noun_by_html: "%{user}, senin tarafından yapılan %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_an_identification_html: "%{user} bir tanımlama ekledi"
   user_added_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlem için "%{field_name}" değeri ekledi'
   user_added_an_observation_field_value_html: "%{user} bir gözlem alan değeri ekledi"
   user_added_an_observation_html: "%{user} bir gözlem ekledi"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} bir %{x} ekledi"
-  user_added_an_x_to_noun_by_html: "%{user}, senin tarafından yapılan %{noun}e %{x} ekledi"
-  user_added_an_x_to_noun_by_user_html: "%{user}, senin tarafından yapılan %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_x_observations_html: "%{user}, %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
@@ -6246,8 +6255,8 @@ tr:
           </p>
 
           <ul>
-          <li>gözlemin <strong>bir tarihi vardır</strong></li>
-          <li>gözlem, <strong>coğrafi olarak işaretlenmiştir</strong> (örn. enlem/boylam koordinatları)</li>
+          <li>gözlem, <strong>bir tarihe sahiptir</strong></li>
+          <li>gözlem, <strong>coğrafi olarak işaretlenmiştir</strong> (ör. enlem/boylam koordinatları)</li>
           <li>gözlem, <strong>fotoğraflara ya da seslere sahiptir</strong></li>
           <li>gözlem, <strong>bir insana ait değildir</strong></li>
           </ul>
@@ -6256,38 +6265,38 @@ tr:
           </p>
           <ul>
           <li>
-          %{site_name} <strong>topluluğu tür düzeyinde ya da daha düşük bir düzeyde tanımlama üzerinde anlaştığında</strong>, yani tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde anlaştığında (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceği yönünde oy kullandı ise, alt familya düzeyine ya da daha düşük bir düzey tanımlamaya döner).
+          %{site_name} topluluğu <strong>tür düzeyinde ya da daha düşük bir düzeyde</strong> tanımlama üzerinde anlaştığında, yani tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde anlaştığında (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceği yönünde oy kullandı ise alt familya düzeyine ya da daha düşük bir düzey tanımlamaya döner).
           </li>
           </ul>
           <p>
-          Adı geçen koşullar yerine getirilmezse ya da topluluk kabul ederse gözlemler <strong>"sıradan"a</strong> dönecektir.
+          Sözü edilen koşullar yerine getirilmez ise ya da topluluk kabul eder ise gözlemler <strong>"sıradan"</strong>a dönecektir.
           </p>
           <ul>
           <li>
-          <strong>konum doğru görünmemektedir</strong> (örn. okyanusun ortasındaki maymunlar, ofis binalarındaki su aygırları vb.)
+          <strong>konum doğru görünmemektedir</strong> (ör. okyanusun ortasındaki maymunlar, ofis binalarındaki su aygırları vb.)
           </li>
           <li>
-          <strong>organizma yabani ya da doğal değildir</strong> (örn. insanlar ya da akıllı uzaylılarca kısıtlanmış ya da ekilmiştir)
+          <strong>organizma yabani/doğal değildir</strong> (ör. insanlar ya da akıllı uzaylılarca kısıtlanmış ya da ekilmiştir)
           </li>
           <li>
-          gözlem, <strong>bir organizma kanıtı sağlamamaktadır</strong>, örn. organizma içermeyen su ögeleri, kayalar, manzaralar vb.
+          gözlem, <strong>bir organizma kanıtı sağlamamaktadır</strong>, ör. organizma içermeyen su ögeleri, kayalar, manzaralar vb.
           </li>
           <li>
-          gözlem, <strong>organizmaya ilişkin yakın tarihli (~100 yıl) kanıt sağlamamaktadır</strong> (örn. fosiller ancak izler, dışkılar ve ölü yapraklar geçerlidir)
+          gözlem, <strong>organizmaya ilişkin yakın tarihli (~100 yıl) kanıt sağlamamaktadır</strong> (ör. fosiller ancak izler, dışkılar ve ölü yapraklar geçerlidir)
           </li>
           <li>
-          gözlemin artık bir tanımlamaya ihtiyacı yoktur <em>ve</em> topluluk kimliği familyanın üstündedir
+          gözlemin artık bir tanımlamaya ihtiyacı yoktur <em>ve</em> topluluk tanımlaması familya ya da üzeridir
           </li>
           <li>
-          gözlemci topluluk tanımlamasından vazgeçmiştir ve topluluk tanımlaması sınıfı gözlemcinin tanımlamasıyla ilişkili sınıfın atası ya da alt soyundan değildir.
+          gözlemci topluluk tanımlamasından vazgeçmiştir ve topluluk tanımlaması sınıfı gözlemcinin tanımlaması ile ilişkili sınıfın üst ya da alt soyundan değildir.
           </li>
           </ul>
           <p>
-          Ve eğer bu yeterince karmaşık değilse, sistemin oy aldığı durumlar da vardır:
+          Ve bu yeterince karmaşık değil ise sistemin oy aldığı durumlar da vardır:
           </p>
           <ul>
           <li>
-          Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri yerde bir cins ya da daha düşük düzey en az 10 gözlem varsa ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmişse, gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
+          Sistem; bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri olan yerde, bir cins ya da daha düşük düzey en az 10 gözlem var ise ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmiş ise gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
           </li>
           </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + üst soy uyuşmazlıkları)"

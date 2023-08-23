@@ -174,6 +174,8 @@ zh-TW:
   acc_above: 在特定精確度數值以上
   #Filter for observations with positional accuracy below a certain value
   acc_below: 在特定精確度數值以下
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: 精確度在特定數值以下或未知
   account: 帳號
   account_creation: 帳號建立
   account_settings: 帳號設定
@@ -497,6 +499,8 @@ zh-TW:
   anyone: 任何人
   app_owner_application_explanation_required: |
     您必須對您想要打造的應用程式提供更詳細的解釋。
+  app_owner_application_about_p1a_html: |
+    愛自然的app允許經過驗證的使用愛自然API。這可允許您透過API來建立觀察記錄或進行鑑定。常見的使用案例如桌面應用程式或行動裝置app，包含了可以讓它們的使用者建立觀察記錄的功能。該內容必須在真實人類的參與或監督下產生。請在我們的 <a href="/pages/community+guidelines"target="_blank">社群守則</a> 閱讀更多有關禁止機器生成觀察記錄、鑑定，與留言的詳細資訊。
   app_owner_application_about_p2_html: |
     自2022年起，我們以人工審核方式審核想要使用API用戶端的使用者，為了創建第三方應用程式，您必須先提交申請才能成為"app擁有者"，申請內容必須描述該app的功能以及您計畫如何使用它，在提交申請前請確認您的帳號註冊時間至少2個月以上並且在過去一個月內完成至少10筆<a href="/pages/help#identification"
     target="_blank">改進中的鑑定</a>，我們可能會對您的申請內容提出後續問題，並保留以任何理由拒絕申請的權利。
@@ -681,6 +685,9 @@ zh-TW:
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    因為我們估計這個變動會導致超過10個以上的意外分歧，<strong>我們建議您也提交一個包含 %{old_parent}的分類群更改，如從 %{old_parent}拆分出 %{new_parent}</strong>.
   become_a_donor_caps: 成為捐款者
   become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
@@ -782,13 +789,7 @@ zh-TW:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 分拆至
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 合併至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 已合併至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 替代由
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 替代為
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 替代為
     dropped: 已捨去
@@ -1446,7 +1447,7 @@ zh-TW:
   download_caps: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
-    <a href="/observations/import#csv_import">大量上傳</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">大量上傳</a>
   download_csv: 下載 CSV
   download_csv_template: 下載 CSV 模板
   download_kml: 下載 KML
@@ -1547,6 +1548,19 @@ zh-TW:
     從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}請確認您的電子郵件地址%{link_end_tag}</strong>。所有使用者必須在 %{date} 之前確認自己的電子郵件地址。在那之後，除非重設密碼，否則任何未確認自己電子郵件地址的人將無法登入。請到%{link_start_tag}帳號設定%{link_end_tag}確認電子郵件地址。
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: 請在 %{date} 之前確認您 %{site_name} 上的電子郵件地址 #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    請立即確認您的電子郵件地址，以確保您可以繼續存取您的帳號。%{site_name} 和行動版 iNaturalist 以及 Seek 藉由分享生物多樣性的觀察記錄，將人們與自然環境彼此聯繫起來。感謝您成為 iNaturalist 社群的成員！
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    從 %{requirement_date} 開始，我們將要求所有帳號使用驗證過的電子郵件地址。現在請花點時間確認一下。
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    如有疑問，請參閱<a href="%{faq_url}">常見問題</a>。感謝您花時間與大自然和 %{site_name} 結緣。
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
@@ -2039,8 +2053,6 @@ zh-TW:
   join: 加入
   join_and_add_an_observation_to_project_html: 參與並加入一筆觀察記錄至%{project}專案
   join_project: 加入此專案
-  #Prompt to join a specific project
-  join_project?: 加入專案嗎?
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
   'joined!': 已加入！
@@ -2382,7 +2394,7 @@ zh-TW:
   medium: 中
   meet: 會見
   member_of_the_inaturalist_network_html: |
-    <a href="%{url}">iNaturalist 網路</a> 的成員
+    <a href="%{url}">iNaturalist 網路</a>的成員
   #As in members of a project
   members: 成員
   membership_model: 成員模組
@@ -2787,7 +2799,7 @@ zh-TW:
   observation_brief_something_from_place_in_month_year_by_user: "由使用者 %{user} 於 %{year} 年 %{month} 月在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
-  observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
+  observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year: "在 %{year} 年 %{month} 月所記錄的 %{taxon}"
@@ -4750,19 +4762,29 @@ zh-TW:
   user_added_a_comment_html: "%{user} 新增了一個評論"
   user_added_a_fave_html: "%{user} 添加為最愛"
   user_added_a_flag_html: "%{user} 添加一個標記"
+  #@gender operates on %{x}
   user_added_a_x: "%{user}添加一個%{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
   user_added_an_identification_html: "%{user} 添加了一個鑑定"
   user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
   user_added_an_observation_field_value_html: "%{user} 新增一筆觀察欄位的值"
   user_added_an_observation_html: "%{user} 添加一個觀察"
+  #@gender operates on %{x}
   user_added_an_x: "%{user}添加一個%{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
   user_added_x_observations_html: "%{user}添加%{x}個觀察"
   user_already_authenticated: 使用者已驗證

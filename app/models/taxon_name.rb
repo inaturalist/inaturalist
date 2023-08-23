@@ -64,6 +64,7 @@ class TaxonName < ApplicationRecord
     DAVAWENYO: "Davawenyo",
     DUTCH: "Dutch",
     ENGLISH: "English",
+    ESPERANTO: "Esperanto",
     ESTONIAN: "Estonian",
     FINNISH: "Finnish",
     FRENCH: "French",
@@ -538,7 +539,8 @@ class TaxonName < ApplicationRecord
   def user_submitted_names_need_notes( options = { } )
     return unless user_submission
     return unless options[:ignore_field_checks] || name_changed? ||
-      is_valid_changed? || lexicon_changed? || place_taxon_names.any?{ |ptn| ptn.changed? }
+      is_valid_changed? || lexicon_changed? ||
+      place_taxon_names.any?{ |ptn| ptn.changes.without( :position ).any? }
     if audit_comment.blank? || audit_comment.length < 10
       errors.add( :audit_comment, :needs_to_be_at_least_10_characters )
     end

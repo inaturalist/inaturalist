@@ -865,13 +865,7 @@ ca:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividit en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinat a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: es va combinar a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplaçat per
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplaçat amb
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplaçat per
     dropped: eliminat
@@ -2805,7 +2799,7 @@ ca:
   new_application: Nova aplicació
   new_assessment: Valoració nova
   new_check_list: Llista de comprovació nova
-  new_check_list_for: "Crea una nova llista de verificació per a {place} »"
+  new_check_list_for: "Crea una nova llista de verificació per a %{place} »"
   new_check_list_record: "Si vol marcar aquesta llista com a exhaustiva, creeu-la, afegiu-hi els tàxons i després modifiqueu-la per poder marcar-la com a exhaustiva."
   new_comment_on_a_parent_by_user_link: Nou comentari sobre @vow_or_con{vot:un|un} %{parent} de %{user_link}
   new_conservation_status: Nou estat de conservació
@@ -5174,19 +5168,29 @@ ca:
   user_added_a_comment_html: "%{user} ha afegit un comentari"
   user_added_a_fave_html: "%{user} ha afegit un favorit"
   user_added_a_flag_html: "%{user} ha afegit una marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} per %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha afegit una identificació"
   user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}" a una observació de %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha afegit un valor a un camp d'observació"
   user_added_an_observation_html: "%{user} ha afegit una observació"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
@@ -6125,51 +6129,6 @@ ca:
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
-        quality_assessment_help2_html: |
-          <p>
-          L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>"casual"</strong>, i es classifiquen com <strong>"necessita ID"</strong> quan
-          </p>
-
-          <ul>
-          <li>l'observació <strong>té una data</​1></li>
-          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
-          <li>l'observació <strong>s'acompanya de fotos o sons</strong></li>
-          <li>l'observació <strong>no és d'un humà</strong></li>
-          </ul>
-          <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
-          <ul>
-          <li>
-          la comunitat de %{site_name} <strong>està d'acord amb la ID donada a escala específica o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acord amb el tàxon (si la comunitat ha indicat que el Tàxon de la Comunitat no pot ser millorat més, es reverteix al nivell d'ID de subfamília o inferior)
-          </li>
-          </ul>
-          <p>
-          Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord a dir que:
-          </p>
-          <ul>
-          <li>
-          la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, etc.)
-          </li>
-          <li>
-          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents)
-          </li>
-          <li>
-          l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, etc. que no mostren cap organisme
-          </li>
-          <li>
-          l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organisme</strong> (p.ex. fòssils, però sí que s'accepten rastres, excrements i fulles mortes)
-          </li>
-          <li>
-          l'observació no necessita una ID <em>i</em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família
-          </li>
-          </ul>
-          <p>
-          I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
-          </p>
-          <ul>
-          <li>
-          El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitud (municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a no salvatge/naturalitzat.
-          </li>
-          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 

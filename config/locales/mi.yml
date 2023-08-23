@@ -1191,22 +1191,32 @@ mi:
     tooltips:
       select_all: Tīpakohia te mauhanga katoa
   uploading_num_of_count_photos:
-    other: E tukuatu ana i whakaahua...
+    other: E tukuatu ana %{num} o %{count} whakaahua...
   usage_stats: Tauanga whakamahi
   user: Kaiwhakamahi
   user_added_a_comment_html: "Nā %{user} tāpiritia tētahi kōrero"
-  user_added_a_flag_html: "Nā ${user} tāpiritia tētahi kara"
+  user_added_a_flag_html: "Nā %{user} tāpiritia tētahi kara"
+  #@gender operates on %{x}
   user_added_a_x: "Nā %{user} tāpiritia tētahi %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
   user_added_an_identification_html: "Nā %{user} tāpiritia tētahi tautuhi"
   user_added_an_observation_html: "Nā %{user} tāpiritia tētahi mauhanga"
+  #@gender operates on %{x}
   user_added_an_x: "Nā %{user} tāpiritia tētahi %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
   user_added_x_observations_html: "Nā %{user} tāpiritia ngā mauhanga e %{x}"
   username: Ingoa rorohiko
@@ -1463,6 +1473,9 @@ mi:
       second: Hākona
       year: Tau
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         format: '%n %u'

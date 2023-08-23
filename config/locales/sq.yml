@@ -472,13 +472,7 @@ sq:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ndaje në
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: bashko në
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: bashkuar në
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zëvendësohet nga
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: zëvendësoj me
     dropped: lëshuar
     staged: i ndarë në faza
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} u nda në %{output_taxa}"
@@ -2504,9 +2498,12 @@ sq:
   type_taxon_name: "Lloji i emrit të taxon"
   update_your_content: Përditëso përmbajten tuaj
   upload: Ngarko
+  #@gender operates on %{x}
   user_added_a_x: "%{user} shtoi një %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} shtoi një %{x} tek %{noun}"
   user_added_an_observation_html: "%{user} shtoi një vëzhgim"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} shtoi një %{x} tek %{noun} nga %{by}"
   user_added_x_observations_html: "%{user} shtoi %{x} vëzhgime"
   view_observation: Shiko vëzhgimin
@@ -2529,35 +2526,6 @@ sq:
       edit:
         licensing_desc_html: |
           Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   datetime:
     prompts:
       day: Dita
@@ -2574,6 +2542,9 @@ sq:
       submit: Ruaj %{model}
       update: Përditëso %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:

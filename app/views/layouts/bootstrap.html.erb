@@ -114,9 +114,13 @@
             </div>
           <% else %>
             <div class="bootstrap">
-              <div id="full-width-notice" class="bg-warning">
+              <div id="full-width-notice" class="bg-danger">
                 <div class="container">
-                  <p><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <p style="font-size: larger; margin: 20px 0;"><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -227,6 +231,7 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_gbif_layer_maps: <%= current_user.prefers_gbif_layer_maps %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
@@ -270,12 +275,16 @@
         $.fn.btn = btn;
       }
     </script>
-    <% unless @skip_external_connections %>
+    <% unless @skip_external_connections || @asynchronous_google_maps_loading %>
       <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
-      <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+      <%= javascript_include_tag "map_bundle" %>
+    <% end %>
+    <% if @asynchronous_google_maps_loading %>
+      <%= javascript_include_tag "map_bundle" %>
+      <%= google_maps_async_js %>
     <% end %>
     <%= yield :extrajs %>
-    <% if logged_in? && !@minimal_header -%>
+    <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setMessagesCount(<%= session[:messages_count].to_i %>)

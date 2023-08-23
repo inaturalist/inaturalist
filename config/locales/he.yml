@@ -967,13 +967,7 @@ he:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: מתפצל אל
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: למזג לתוך
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: מוזג לתוך
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: הוחלף על־ידי
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: החלף ב
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: הוחלף ב
     dropped: הושלך
@@ -1770,6 +1764,19 @@ he:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}נא לאשר את כתובת הדוא"ל שלך%{link_end_tag}</strong>.
     כל היוזרים חייבים לאשר את כתובת הדוא"ל שלהם עד %{date}. לאחר תאריך זה כל מי שטרם אישרו כתובות הדוא"ל לא יוכלו להתחבר עד שיאפסו סיסמה. לאישור כתובת הדוא"ל שלך, יש לגשת %{link_start_tag}להגדרות החשבון%{link_end_tag} שלך.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: יש לאשר את כתובת הדוא"ל שלך ב-%{site_name} לפני התאריך %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    נא לאשר את כתובת הדוא"ל שלך היום על מנת להבטיח שתוכל.י להמשיך לגשת לחשבונך. %{site_name} והאפליקציות iNaturalist ו-Seek של iNaturalist מחברות א.נשים לטבע וזה ולזה באמצעות שיתוף תצפיות של המגוון הביולוגי. תודה על השתתפותך בקהילת iNaturalist!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    נצטרך כתובות דוא"ל מאומתות עבור כל החשבונות החל מהתאריך %{requirement_date}. נא לקחת רגע לאשר אותה עכשיו.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    לכל שאלה, נא לפנות ל<a href="%{faq_url}">שאלות נפוצות</a>. תודה שלקחת את הזמן להתחבר לטבע ול-%{site_name}.
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
@@ -2369,9 +2376,11 @@ he:
   lexicon_cannot_contain_words: "לא יכול להכיל את המילים הבאות: %{words}"
   lexicons:
     afrikaans: אפריקאנס
+    alabama: אלבמה
     albanian: אלבנית
     arabic: ערבית
     armenian: ארמנית
+    basque: באסקית
     belarusian: בלארוסית
     bengali: בנגלית
     bulgarian: בולגרית
@@ -2389,6 +2398,7 @@ he:
     english: אנגלית
     estonian: אסטונית
     faroese: פארואית
+    fijian: פיג'ית
     finnish: פינית
     french: צרפתית
     galician: גליציאנית
@@ -2396,6 +2406,7 @@ he:
     georgian: גרוזינית
     german: גרמנית
     greek: יוונית
+    gujarati: גוג'ראטית
     hawaiian: הוואית
     hebrew: עברית
     hiligaynon: היליגניון
@@ -2441,11 +2452,14 @@ he:
     swedish: שבדית
     tagalog: טגלוגית
     tahitian: טהיטית
+    tamil: טמילית
     thai: תאילנדית
     tokelauan: טוקלאואית
+    tsonga: טסונגה
     turkish: טורקית
     u_s_d_a_symbol: סמל U.S.D.A.
     ukrainian: אוקראינית
+    uyghur: אויגור
     vietnamese: וייטנאמית
     visayan: ויסאיאן
     waray_waray: ווראי-ווראי
@@ -4807,7 +4821,6 @@ he:
   taxon_framework_notes: הערות על מסגרת הטקסון
   taxon_framework_relationship: יחס מסגרות טקסון
   taxon_framework_relationship_number: "יחס מסגרות טקסון %{number}"
-  taxon_framework_relationship_unknown_count_html: "מונה מערכות יחסים לא ידועות:"
   taxon_framework_relationships: יחסי מסגרת טקסון
   taxon_framework_taxon: טקסון של מסגרת הטקסון
   taxon_history_notice: היסטוריה התווספה בפברואר 2022, לכן נתוני היסטוריה אינם זמינים לפני מועד זה.
@@ -4930,7 +4943,6 @@ he:
   there_was_a_problem_creating_this_account: |
     פתיחת חשבון זה נתקלה בבעיה. במידה והסוגיה אינה נפתרת אנא צור קשר איתנו
   there_was_a_problem_saving_your_identification: "קיימת בעיה בשמירת הזיהוי: %{error}"
-  there_were_problems_adding_taxa: "אירעו בעיות בהוספת הטקסונים:"
   there_were_problems_adding_that_observation_to_this_project: "קיימות בעיות בהוספת תצפית זו לפרוייקט:"
   there_were_problems_importing_that_place: "קיימות בעיות ביבוא מקום זה: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
@@ -5289,19 +5301,29 @@ he:
   user_added_a_comment_html: "הערה הוספה על ידי %{user}"
   user_added_a_fave_html: "%{user} הוסיפ.ה פייבוריט"
   user_added_a_flag_html: "הודעה סומנה על ידי %{user}"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} הוסיף/ה %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} הוסיפ.ה %{x} ל%{noun} שלך"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} הוסיפ.ה %{x} ל%{noun}"
   user_added_an_identification_html: "%{user} הוסיפ.ה זיהוי"
   user_added_an_observation_field_html: '%{user} הוסיפ.ה ערך עבור "%{field_name}" לתצפית של %{owner}'
   user_added_an_observation_field_value_html: "ערך בשדה תצפית הוסף על ידי %{user}"
   user_added_an_observation_html: "%{user}העלה תצפית"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} הוסיף/ה %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} הוסיפ.ה %{x} ל%{noun} של %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} הוסיפ.ה %{x} ל%{noun} שלך"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} הוסיפ.ה %{x} ל%{noun}"
   user_added_x_observations_html: "%{user} הוסיף %{x} תצפיות"
   user_already_authenticated: משתמש זה כבר אושר
@@ -5605,7 +5627,6 @@ he:
   x_site_is_a_social_network_for_naturalist: |
     %{site} הוא רשת חברתית לחובבות וחובבי טבע! דווחו על תצפיות של צמחים ובעלי חיים, שתפו אותן עם החבר'ה ועם חוקרות.ים, ולמדו על עולם הטבע.
   x_wrote_a_new_post_html: "פוסט חדש של %{x}"
-  x_wrote_y_new_posts_html: "%{y} פוסטים חדשים של %{y}"
   year: שנה
   year_in_review: "%{year} - סקירת השנה"
   year_in_review2: "סיכום שנה %{year}"
@@ -5803,6 +5824,20 @@ he:
             במידה וכן, נא לקרוא את <a href="%{url}">מדריך המורות והמורים</a> שלנו לטיפים על השימוש ב%{site_name} עם תלמידות.ים.
     donate:
       donate_short_desc: "תרומה להבעת תמיכתך!"
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר מגוון ביולוגי. תודה על השתתפותך בה!</strong>
+        </p>
+        <p class="lead">
+        אם את.ה מאמינ.ה בכוחה של קהילה גלובלית זו של חובבות וחובבי טבע לשתף ידע ולייצר נתוני מגוון ביולוגי שאין להם תחליף, נא לשקול מתנה חד-פעמית או חוזרת באינטרנט. אפשר גם לחקור <a
+        href="https://www.inaturalist.org/pages/giving">דרכים אחרות לתת</a>.
+        </p>
+        <p class="lead">
+        התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו.
+        </p>
+        <p class="text-muted">
+         iNaturalist הוא ארגון עצמאי ללא מטרות רווח ופטור ממס מסוג 501(c)(3) המבוסס בארה"ב (מזהה מיסים: 92-1296468).
+        </p>
       post_donate_social_media_text: אני תומכ.ת ב-iNaturalist כי...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: הצטרפ.י כתומכ.ת חודשי.ת של iNaturalist
@@ -6252,56 +6287,6 @@ he:
           חלק מתמונות אלה סומנו בגלל תוכן בלתי הולם או עקב הפרת זכויות יוצרים. לפרטים נוספים: %{links}
         join_project_desc_html: |
           הצטרפות לפרויקט תתן לאוצרות ולאוצרי הפרויקט יכולת לראות את הקואורדינטות המוסתרות של תצפית זו ושל כל תצפית אחרת בפרויקט, וגם מציינת את הסכמתך <a href="%{url}" target="_blank">לתנאי</a> הפרויקט.
-        quality_assessment_help2_html: |
-          <p>
-          הערכת איכות הנתונים היא סיכום של דיוק של תצפית. כל התצפיות מתחילות בדרגת <strong>"חסר"</strong>, והופכות ל<strong>"צריכות זיהוי"</strong> כאשר
-          </p>
-
-          <ul>
-          <li>לתצפית <strong>יש תאריך</strong></li>
-          <li>לתצפית <strong>יש ציון מיקום</strong> (כלומר קואורדינטות אורך ורוחב)</li>
-          <li>לתצפית <strong>יש תמונות או קולות</strong></li>
-          <li>התצפית <strong>אינה של בן אדם</strong></li>
-          </ul>
-          <p>
-          תצפיות הופכות ל<strong>"דרגת מחקר"</strong> כאשר
-          </p>
-          <ul>
-          <li>
-          <strong>קהילת %{site_name} מסכימה על זיהוי ברמת המין או יותר נמוך</strong>, כלומר כאשר יותר מ-2/3 מהמזהות והמזהים יסכימו על טקסון (אם הקהילה הצביעה שטקסון הקהילה לא יכול להשתפר עוד, זה חוזר לזיהוי ברמת תת-משפחה או נמוך יותר)
-          </li>
-          </ul>
-          <p>
-          תצפיות יחזרו להיות בדרגת <strong>"חסר"</strong> אם התנאים הנ"ל לא יתקיימו או אם הקהילה תסכים ש
-          </p>
-          <ul>
-          <li>
-          ה<strong>מיקום לא נראה מדויק</strong> (למשל קופים בלב הים, היפופוטמים בבנייני משרדים וכו')
-          </li>
-          <li>
-          <strong>האורגניזם אינו בר/מאוקלם</strong> (למשל בשבי או מתורבת על ידי בני אדם או חייזרים נבונים)
-          </li>
-          <li>
-          התצפית <strong>אינה מהווה הוכחה לאורגניזם</strong>, למשל תמונות של סימני מים, סלעים, נופים שלא כוללים את האורגניזם וכו'
-          </li>
-          <li>
-          התצפית <strong>אינה מהווה הוכחה עדכנית (~100 שנים) לאורגניזם</strong> (למשל מאובנים, אבל עקבות, גללים ועלים מתים הם בסדר)
-          </li>
-          <li>
-          התצפית לא צריכה יותר זיהוי <em>וגם</em> הזיהוי הקהילתי הוא מעל משפחה
-          </li>
-          <li>
-          המתצפת.ת בחר.ה שלא להשתתף בזיהוי הקהילתי וטקסון הזיהוי הקהילתי אינו הורה או צאצא של הטקסון המשוייך לזיהוי של המתצפת.ת.
-          </li>
-          </ul>
-          <p>
-          ואם זה לא היה מספיק מסובך, יש גם מצבים שבהם המערכת מקבלת קול הצבעה:
-          </p>
-          <ul>
-          <li>
-          המערכת תצביע שהתצפית אינה בר/מאוקלם אם יש לפחות 10 תצפיות אחרות של סוג או יותר נמוך במקום הקטן ביותר ברמת מחוז, מדינה או ארץ המכיל את התצפית הזו ו-80% או יותר מהתצפיות ההן סומנו כלא בר/מאוקלם.
-          </li>
-          </ul>
         score_desc: "ציון = ספירה מצטברת / (ספירה מצטברת + ספירת אי-הסכמות + אי-הסכמות הוריות)"
         observation_flagged_notice_html: |
           תצפית זו סומנה כספאם ואינה גלויה יותר לציבור. ביכולתך לראות אותה או כי יצרת אותה או כי את.ה אוצר.ת של האתר. אם לדעתך מדובר בטעות באפשרותך<a href="mailto:%{help_email}" class="contact">ליצור קשר</a>.<a href="/observations/%{observation_id}/flags">לנהל סימונים (דגלים)</a>

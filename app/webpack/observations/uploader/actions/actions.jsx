@@ -286,8 +286,8 @@ const actions = class actions {
       _.each( obsCards, c => {
         // make a new card
         const id = serialId;
-        const newCard = new ObsCard( Object.assign( { },
-          _.pick( c, [
+        const newCard = new ObsCard( {
+          ..._.pick( c, [
             "accuracy",
             "bounds",
             "captive",
@@ -303,7 +303,8 @@ const actions = class actions {
             "tags",
             "zoom"
           ] ),
-          { id } ) );
+          id
+        } );
         // update that card with the old card's attributes
         dispatch( actions.appendObsCards( { [newCard.id]: newCard } ) );
         newCards.push( newCard );
@@ -322,8 +323,8 @@ const actions = class actions {
             // upload event should just upload all the local file records
             // associated with that upload
             if ( cf.uploadState === "uploaded" ) {
-              newFiles[serialId] = new DroppedFile( Object.assign( {},
-                _.pick( cf, [
+              newFiles[serialId] = new DroppedFile( {
+                ..._.pick( cf, [
                   "metadata",
                   "name",
                   "photo",
@@ -333,13 +334,13 @@ const actions = class actions {
                   "type",
                   "uploadState",
                   "visionThumbnail"
-                ] ), {
-                  id: serialId,
-                  cardID: newCard.id
-                } ) );
+                ] ),
+                id: serialId,
+                cardID: newCard.id
+              } );
             } else {
-              newFiles[serialId] = new DroppedFile( Object.assign( {},
-                _.pick( cf, [
+              newFiles[serialId] = new DroppedFile( {
+                ..._.pick( cf, [
                   "file",
                   "metadata",
                   "name",
@@ -349,11 +350,11 @@ const actions = class actions {
                   "sound",
                   "type",
                   "visionThumbnail"
-                ] ), {
-                  id: serialId,
-                  cardID: newCard.id,
-                  uploadState: "pending"
-                } ) );
+                ] ),
+                id: serialId,
+                cardID: newCard.id,
+                uploadState: "pending"
+              } );
             }
             serialId += 1;
           } );
@@ -405,7 +406,7 @@ const actions = class actions {
       const time = new Date( ).getTime( );
       dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 
-      const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
+      const fromCard = new ObsCard( { ...photo.obsCard } );
       delete fromCard.files[photo.file.id];
       // the card from where the photo was move can be removed if it has no data
       // or if its data is untouched from when it was imported
@@ -425,7 +426,7 @@ const actions = class actions {
         dispatch( actions.insertCardsBefore( [time], options.beforeCardId ) );
       }
 
-      const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
+      const fromCard = new ObsCard( { ...media.obsCard } );
       delete fromCard.files[media.file.id];
       // the card from where the photo was moved can be removed if it has no data
       // or if its data is untouched from when it was imported
@@ -542,7 +543,7 @@ const actions = class actions {
       } );
       dispatch( { type: types.SET_STATE, attrs: { saveCounts: stateCounts } } );
       if ( nextToSave && stateCounts.saving < s.dragDropZone.maximumNumberOfUploads ) {
-        nextToSave.save( dispatch, { refresh: stateCounts.pending === 1 } );
+        dispatch( nextToSave.save( { refresh: stateCounts.pending === 1 } ) );
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
@@ -683,12 +684,12 @@ const actions = class actions {
           dispatch( actions.updateFile( nextToUpload, {
             uploadState: "failed"
           } ) );
-          dispatch( actions.uploadFiles( ) );
         } else if ( nextToUpload.type.match( /audio/ ) ) {
           dispatch( actions.uploadSound( nextToUpload ) );
         } else {
           dispatch( actions.uploadImage( nextToUpload ) );
         }
+        dispatch( actions.uploadFiles( ) );
       } else if ( nextToUpload ) {
         // waiting for existing uploads to finish
       } else {
@@ -700,7 +701,6 @@ const actions = class actions {
   static uploadImage( file ) {
     return function ( dispatch ) {
       dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
-
       inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
         const serverMetadata = file.additionalPhotoMetadata( r );
         dispatch( actions.updateFile( file, {
@@ -718,35 +718,17 @@ const actions = class actions {
           }
         }, 100 );
       } ).catch( e => {
-        // console.log( "Upload failed:", e );
-        file.saveTries = ( parseInt( file.saveTries, 0 ) || 0 ) + 1;
-        if (
-          e.response
-          && e.response.status === 503
-          && [
-            // Request Timeout: we probably never respond with this, but just in case
-            408,
-            // Too Many Requests: theoretically normal users might hit our rate
-            // limits, but unlikely
-            429,
-            // Service Unavailable: this might happen during downtime, but is
-            // intended to handle intermittent cases where Varnish doesn't seem to
-            // find a working app server
-            503
-          ].indexOf( e.response.status ) >= 0
-          && file.saveTries <= 4
-        ) {
-          const waitFor = file.saveTries * 3000;
-          setTimeout( ( ) => {
-            dispatch( actions.uploadImage( file ) );
-          }, waitFor );
-          return;
-        }
-        file.saveTries = 0;
-        dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
-        setTimeout( ( ) => {
-          dispatch( actions.uploadFiles( ) );
-        }, 100 );
+        dispatch( actions.handleUploadFailure(
+          e,
+          file,
+          actions.uploadImage,
+          ( ) => {
+            dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
+            setTimeout( ( ) => {
+              dispatch( actions.uploadFiles( ) );
+            }, 100 );
+          }
+        ) );
       } );
     };
   }
@@ -767,12 +749,34 @@ const actions = class actions {
           // sound from playing via the URL in Safari and Firefox
         }, 100 );
       } ).catch( e => {
-        console.log( "Upload failed:", e );
-        dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
-        setTimeout( ( ) => {
-          dispatch( actions.uploadFiles( ) );
-        }, 100 );
+        dispatch( actions.handleUploadFailure(
+          e,
+          file,
+          actions.uploadSound,
+          ( ) => {
+            dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
+            setTimeout( ( ) => {
+              dispatch( actions.uploadFiles( ) );
+            }, 100 );
+          }
+        ) );
       } );
+    };
+  }
+
+  static handleUploadFailure( exception, item, retryMethod, onFail ) {
+    return function ( dispatch ) {
+      item.saveTries = ( parseInt( item.saveTries, 10 ) || 0 ) + 1;
+      if ( item.saveTries <= 10 ) {
+        // wait exponentially more time each retry up to a max of 3 seconds
+        const waitFor = _.min( [( 2 ** item.saveTries ) * 100, 3000] );
+        setTimeout( ( ) => {
+          dispatch( retryMethod( item ) );
+        }, waitFor );
+        return;
+      }
+      item.saveTries = 0;
+      onFail( );
     };
   }
 

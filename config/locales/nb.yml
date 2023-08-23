@@ -795,13 +795,7 @@ nb:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: delt opp i
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå sammen til
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: slått sammen til
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: erstattet av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erstatt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: erstattet med
     dropped: fjernet
@@ -1336,7 +1330,7 @@ nb:
   download: Last ned
   download_caps: LAST NED
   download_bulk_import_template_html: |
-    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import#csv_import">bulk-opplasteren</a>
+    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-opplasteren</a>
   download_csv: Last ned CSV
   download_csv_template: Last ned CSV-mal
   download_kml: Last ned KML
@@ -1422,6 +1416,28 @@ nb:
   email: E-post
   email_description: E-posten din er ikke delt med andre brukere på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadresse for kommentarer og andre tilbakemeldinger
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekreft din %{site_name} e-postadresse før %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Vennligst bekreft din e-postadresse i dag for å sikre at du fortsatt har
+    tilgang til din konto. %{site_name} og de mobile appene
+    iNaturalist og Seek kobler mennesker til naturen og hverandre ved å dele observasjoner av biologisk mangfold. Takk for at du er en del av iNaturalist-felleskapet!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Vi krever verifiserte e-postadresser for alle kontoer fra
+    %{requirement_date}. Ta et øyeblikk til å bekrefte nå.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Hvis du har noen spørsmål, se
+    <a href="%{faq_url}">ofte stilte spørsmål</a>. Takk for at du tar deg tid til å koble til
+    naturen og til %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Kontodetaljer
   email_notifications: E-postvarslinger
   embed: 'Integrer'
   embed_place_widget: Integrer stedswidget
@@ -4376,19 +4392,29 @@ nb:
   user_added_a_comment_html: "%{user} har lagt til en kommentar"
   user_added_a_fave_html: "%{user} har lagt til en favoritt"
   user_added_a_flag_html: "%{user} har lagt til en markering"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_an_identification_html: "%{user} har lagt til en identifikasjon"
   user_added_an_observation_field_html: '%{user} har lagt til en verdi for "%{field_name}" i en observasjon av %{owner}'
   user_added_an_observation_field_value_html: "%{user} har lagt til en verdi for et observasjonsfelt"
   user_added_an_observation_html: "%{user} har lagt til en observasjon"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_already_authenticated: Brukeren er allerede autentisert
