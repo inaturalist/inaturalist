@@ -279,11 +279,11 @@
       <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
       <%= javascript_include_tag "map_bundle" %>
     <% end %>
-    <%= yield :extrajs %>
     <% if @asynchronous_google_maps_loading %>
       <%= javascript_include_tag "map_bundle" %>
       <%= google_maps_async_js %>
     <% end %>
+    <%= yield :extrajs %>
     <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
