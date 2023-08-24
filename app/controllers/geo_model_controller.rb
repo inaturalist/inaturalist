@@ -60,10 +60,10 @@ class GeoModelController < ApplicationController
     raise unless @raw_env_data
 
     taxon_range_data_path = File.join(
-      CONFIG.geo_model_data_path, "taxon_range_maps/#{@taxon.id}.json"
+      CONFIG.geo_model_data_path, "taxon_range_csvs/#{@taxon.id}.csv"
     )
-    @taxon_range = File.exist?( taxon_range_data_path ) ?
-      JSON.parse( File.read( taxon_range_data_path ) ) : { }
+    @taxon_range_data = File.exist?( taxon_range_data_path ) ?
+      Hash[File.readlines( taxon_range_data_path, chomp: true ).map{ |v| [v, 1]}] : { }
     api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&locale=#{I18n.locale}"
     @node_taxon_json = INatAPIService.get_json( api_url )
     @geo_model_taxon = GeoModelTaxon.where( taxon_id: @taxon ).first
