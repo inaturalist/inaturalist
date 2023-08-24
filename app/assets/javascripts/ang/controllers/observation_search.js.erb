@@ -208,6 +208,7 @@ var SearchController = function (
   $scope.filtersInitialized = false;
   $scope.parametersInitialized = false;
   $scope.moreFiltersHidden = true;
+  $scope.mapNeedsAligning = true;
   $scope.moreFiltersToWatch = ["params.user_id", "params.project_id",
     "params.photo_license", "params.reviewed", "params.created_on",
     "params.created_month", "params.created_d1", "params.created_d2",
@@ -252,15 +253,16 @@ var SearchController = function (
   $scope.afterParametersInitialized = function ( ) {
     if ( $scope.taxonInitialized && $scope.placeInitialized
       && $scope.filtersInitialized && !$scope.parametersInitialized ) {
+      $scope.parametersInitialized = true;
       // fetch the observations
       $scope.searchAndUpdateStats( { browserStateOnly: true } );
       // set proper map layers for the search and orient the map
       $rootScope.$emit( "setMapLayers", true );
       // now we watch for param changes
       $scope.watchParams( );
-      $scope.parametersInitialized = true;
     }
   };
+
   // any time an initialization step finishes, attempt afterInitialize
   $scope.$watchGroup( [
     "taxonInitialized", "filtersInitialized", "placeInitialized"
@@ -1380,7 +1382,7 @@ var SearchController = function (
         $rootScope.$emit( "searchForNearbyPlaces", options, function ( response ) {
           if ( !response || !response.data || !response.data.results ) {
             $rootScope.$emit( "alignMap" );
-            return
+            return;
           }
           if ( response.data.results.standard.length > 0 ) {
             $scope.filterByPlace( response.data.results.standard[0] );
@@ -1741,62 +1743,52 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
     if ( defaultMapType === google.maps.MapTypeId.TERRAIN ) {
       $scope.$parent.mapTerrain = true;
     }
-    // waiting a bit after creating the map to initialize the layers
-    // to avoid issues with map aligning, letting the browser catch up
-    setTimeout( function ( ) {
-      if ( !$scope.mapLayersInitialized ) {
-        $scope.setMapLayers( true );
-        // more delays before enabling onMoves so setMapLayers
-        // can finish aligning the map if it needs to
-        setTimeout( function ( ) {
-          $scope.map.addListener( "dragend", function ( ) {
-            $scope.delayedOnMove( );
-          } );
-          $scope.map.addListener( "zoom_changed", function ( ) {
-            if ( $scope.drawing.dragIcon && $scope.selectedPlaceLayer ) {
-              $scope.positionDragDrawingIcon( $scope.selectedPlaceLayer, { reappear: true } );
-            }
-            $scope.delayedOnMove( );
-            $scope.$parent.disableRedoSearch = $scope.map.getZoom( ) <= 2;
-          } );
-          google.maps.event.addListener( $scope.drawing.manager, "rectanglecomplete", function ( rectangle ) {
-            $scope.drawing.pendingDrawing = null;
-            if ( $scope.selectedPlace ) {
-              $scope.$parent.selectedPlace = null;
-            }
-            if ( $scope.selectedPlaceLayer ) {
-              $scope.selectedPlaceLayer.setMap( null );
-            }
-            $scope.drawing.currentShape = "rectangle";
-            $scope.drawing.manager.setMap( null );
-            $scope.selectedPlaceLayer = rectangle;
-            $scope.refreshSelectedPlace( );
-          } );
-          google.maps.event.addListener( $scope.drawing.manager, "circlecomplete", function ( circle ) {
-            $scope.drawing.pendingDrawing = null;
-            if ( $scope.selectedPlace ) {
-              $scope.$parent.selectedPlace = null;
-            }
-            if ( $scope.selectedPlaceLayer ) {
-              $scope.selectedPlaceLayer.setMap( null );
-            }
-            if ( $scope.clearCircleIfInvalid( circle ) ) {
-              return;
-            }
-            $scope.drawing.currentShape = "circle";
-            $scope.drawing.manager.setMap( null );
-            $scope.clearShapeBounds( );
-            $scope.selectedPlaceLayer = circle;
-            $scope.refreshSelectedPlace( );
-          } );
-        }, 500 );
-        iNaturalist.Legend(
-          $( "#map-legend-container" ).get( 0 ),
-          $scope.map,
-          { hideFeatured: true }
-        );
+    $scope.setMapLayers( true );
+    $scope.map.addListener( "dragend", function ( ) {
+      $scope.delayedOnMove( );
+    } );
+    $scope.map.addListener( "zoom_changed", function ( ) {
+      if ( $scope.drawing.dragIcon && $scope.selectedPlaceLayer ) {
+        $scope.positionDragDrawingIcon( $scope.selectedPlaceLayer, { reappear: true } );
       }
-    }, 300 );
+      $scope.delayedOnMove( );
+      $scope.$parent.disableRedoSearch = $scope.map.getZoom( ) <= 2;
+    } );
+    google.maps.event.addListener( $scope.drawing.manager, "rectanglecomplete", function ( rectangle ) {
+      $scope.drawing.pendingDrawing = null;
+      if ( $scope.selectedPlace ) {
+        $scope.$parent.selectedPlace = null;
+      }
+      if ( $scope.selectedPlaceLayer ) {
+        $scope.selectedPlaceLayer.setMap( null );
+      }
+      $scope.drawing.currentShape = "rectangle";
+      $scope.drawing.manager.setMap( null );
+      $scope.selectedPlaceLayer = rectangle;
+      $scope.refreshSelectedPlace( );
+    } );
+    google.maps.event.addListener( $scope.drawing.manager, "circlecomplete", function ( circle ) {
+      $scope.drawing.pendingDrawing = null;
+      if ( $scope.selectedPlace ) {
+        $scope.$parent.selectedPlace = null;
+      }
+      if ( $scope.selectedPlaceLayer ) {
+        $scope.selectedPlaceLayer.setMap( null );
+      }
+      if ( $scope.clearCircleIfInvalid( circle ) ) {
+        return;
+      }
+      $scope.drawing.currentShape = "circle";
+      $scope.drawing.manager.setMap( null );
+      $scope.clearShapeBounds( );
+      $scope.selectedPlaceLayer = circle;
+      $scope.refreshSelectedPlace( );
+    } );
+    iNaturalist.Legend(
+      $( "#map-legend-container" ).get( 0 ),
+      $scope.map,
+      { hideFeatured: true }
+    );
   };
   $scope.updateParamsForCurrentRect = function ( ) {
     var bounds = $scope.$parent.mapBounds;
