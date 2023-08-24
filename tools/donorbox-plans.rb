@@ -66,6 +66,28 @@ loop do
       puts "\tNo user"
       next
     end
+
+    # Ensure donorbox_plan_started_at is the start date of the earliest
+    # monthly plan, even if that plan is currently cancelled
+    monthly_donorbox_plan_started_at = begin
+      plan["type"] == "monthly" ? Date.parse( plan["started_at"] ) : nil
+    rescue StandardError
+      puts "\tFailed to parse donorbox_plan_started_at from #{plan['started_at']}"
+      nil
+    end
+    min_donorbox_plan_started_at = [
+      monthly_donorbox_plan_started_at,
+      user.donorbox_plan_started_at,
+      changes.dig( user.id, :donorbox_plan_started_at )
+    ].compact.min
+    if min_donorbox_plan_started_at &&
+        user.donorbox_plan_started_at &&
+        min_donorbox_plan_started_at < user.donorbox_plan_started_at
+      puts "\tUpdating donorbox_plan_started_at to the start date of an earlier monthly plan" if opts.debug
+      changes[user.id] ||= {}
+      changes[user.id][:donorbox_plan_started_at] = min_donorbox_plan_started_at
+    end
+
     if user.donorbox_plan_type == "monthly" && plan["type"] != "monthly"
       # If the user has an existing monthly plan and this *isn't* a monthly
       # plan, just ignore it. We want to record all donors, but it's most
@@ -86,17 +108,13 @@ loop do
     user.donorbox_donor_id = donor["id"]
     user.donorbox_plan_type = plan["type"]
     user.donorbox_plan_status = plan["status"]
-    user.donorbox_plan_started_at = begin
-      Date.parse( plan["started_at"] )
-    rescue StandardError
-      puts "\tFailed to parse donorbox_plan_started_at from #{plan['started_at']}"
-    end
+    user.donorbox_plan_started_at = monthly_donorbox_plan_started_at
 
     # If we've already encountered a plan, we only want to replace it if this
     # plan is active
     puts "\tExisting change queued: #{changes[user.id]}" if opts.debug
     puts "\tPlan status: #{plan['status']}" if opts.debug
-    unless !changes[user.id] || plan["status"] == "active"
+    unless !changes.dig( user.id, :donorbox_donor_id ) || plan["status"] == "active"
       next
     end
 
@@ -104,7 +122,7 @@ loop do
       donorbox_donor_id: user.donorbox_donor_id,
       donorbox_plan_type: user.donorbox_plan_type,
       donorbox_plan_status: user.donorbox_plan_status,
-      donorbox_plan_started_at: user.donorbox_plan_started_at
+      donorbox_plan_started_at: min_donorbox_plan_started_at
     }
     if opts.debug
       puts "\tAdded/replaced changes for #{user}: #{changes[user.id]}"

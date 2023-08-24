@@ -289,6 +289,11 @@ Place.blueprint do
   longitude { rand(180) }
 end
 
+PlacesSite.blueprint do
+  place { make_place_with_geom }
+  site { Site.make! }
+end
+
 PlaceTaxonName.blueprint do
   place { make_place_with_geom }
   taxon_name { TaxonName.make! }

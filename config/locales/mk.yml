@@ -768,7 +768,6 @@ mk:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Неактивно
-  inaturalist_is_a_joint_initiative: "%{site_name} е заедничка иницијатива на Калифорниската академија на науките и Националното географско друштво."
   inaturalist_places: "Места на %{site_name}"
   info: Инфо
   input_taxon: Влезен таксон
@@ -1631,10 +1630,14 @@ mk:
   use_this_form_to_create_a_new: |
     Образецов е предвиден за правење на нацрт за нова таксономска промена. Притоа опишете го предложеното одвојување, спојување или замена на активните таксони што треба подоцна да се спроведе.
   user: Корисник
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_an_observation_html: "%{user} додаде набљудување"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_x_observations_html: "%{user} додаде %{x} набљудувања"
   username: Корисничко име

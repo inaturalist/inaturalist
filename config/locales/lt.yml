@@ -899,13 +899,7 @@ lt:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: atskirti į
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: prijungti prie
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: prijungta prie
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: pakeista
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: pakeisti į
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: pakeista į
     dropped: išmestas
@@ -1514,7 +1508,6 @@ lt:
   eligible_for_research_grade: Tinkamas identifikavimui
   email: El. paštas
   email_address_for_comments_and_other_feedback: El. pašto adresai komentarams ir kitiems atsiliepimams.
-  email_copyright: "Autorinės teisės &copy; %{x}, visos teisės saugomos"
   email_notifications: El. pašto pranešimai
   embed: 'Įterpti'
   embed_place_widget: Įterpti vietos valdiklį
@@ -1797,7 +1790,6 @@ lt:
   heads_up_this_photo_is_already_associated_with: "Dėmesio: ši nuotrauka jau yra susieta su <a target='_blank' href='%{url}'>kitu stebėjimu</a>"
   help: Pagalba
   help_confirm_observations!: Padėk identifikuoti stebėjimus!
-  help_support_inaturalist: "Padėkite palaikyti iNaturalist"
   help_translate!: Padėkite išversti!
   here_are_3_examples: Štai 3 gerai suformuotų duomenų pavyzdžiai
   here_are_our_top_species_suggestions: Čia yra mūsų top rūšies pasiūlymai
@@ -1902,7 +1894,6 @@ lt:
   inaturalist_activity_notifications: "Pranešimai apie %{site_name} veiklą"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist programėlės"
-  inaturalist_is_a_joint_initiative: "%{site_name} yra bendra California Academy of Sciences ir National Geographic Society iniciatyva."
   inaturalist_places: "%{site_name} vietos"
   info: Informacija
   insects: vabzdžiai
@@ -2232,8 +2223,6 @@ lt:
   meet: Susipažinti
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist tinklo</a> narys
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist tinklo</a>, %{cas_tag_html} ir %{nat_geo_tag_html} bendros iniciatyvos, narys.
   #As in members of a project
   members: Nariai
   membership_model: Narystės modelis
@@ -4084,13 +4073,19 @@ lt:
   user_added_a_comment_html: "%{user} pridėjo komentarą"
   user_added_a_fave_html: "%{user} pamėgo"
   user_added_a_flag_html: "%{user} pridėjo žymę"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} pridėjo %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} pridėjo %{x} prie %{by} %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} pridėjo %{x} prie jūsų %{noun}"
   user_added_an_identification_html: "%{user} pridėjo identifikaciją"
   user_added_an_observation_html: "%{user} pridėjo stebėjimą"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} pridėjo %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} pridėjo %{x} prie %{by} %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} pridėjo %{x} prie jūsų %{noun}"
   user_added_x_observations_html: "%{user} pridėjo %{x} stebėjimus(-ų)"
   user_already_authenticated: Vartotojas jau autentifikuotas
@@ -4387,36 +4382,9 @@ lt:
         Mes numatome, kad funkcija sugrįš iki %{date}.
     donate:
       donate_short_desc: "Paremkite mus paaukodami dabar!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist yra viena didžiausių biologinę įvairovę tiriančių bendruomenių pasaulyje. Ačiū, kad esate jos dalis!
-        </p>
-        <p class="lead">
-        Jeigu tikite šios pasaulinės gamtos mylėtojų bendruomenės galia dalintis žiniomis ir generuoti nepakeičiamus biologinės įvairovės duomenis, prašome prisidėti su vienkartine ar pasikartojančia dovana, arba žiūrėkite <a
-        href="https://www.inaturalist.org/pages/giving">kiti būdai teikti paramą</a>.
-        </p>
-        <p class="lead">
-        Jūsų parama padeda iNaturalist bendruomenei tobulinti kompiuterinio matymo sistemą ir realizuoti naujas idėjas, taip pat palaiko mūsų serverius ir personalą.
-        </p>
-        <p class="text-muted">
-        iNaturalist yra Kalifornijos Mokslų Akademijos ir Nacionalinės Geografijos Bendruomenės bendra iniciatyva. Visos aukos skiriamos Kalifornijos Mokslų Akademijai, neapmokestinamai, pelno nesiekiančiai organizacijai, įsikūrusiai Jungtinėse Amerikos Valstijose (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Aš remiu iNaturalist nes...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Tapkite mėnesiniu iNaturalist remėju
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist yra viena didžiausių biologinę įvairovę tiriančių bendruomenių pasaulyje. Ačiū, kad esate jos dalis!
-          </p>
-          <p class="lead">
-          Mes norime, kad iNaturalist liktu nemokama programa, tačiau ją valdyti kainuoja. Jeigu mėgstate iNaturalist, prašome tapti mėnesiniu remėju. Pasikartojanti parama užtikrina stabilias pajamas, kurios leidžia tobulinti iNaturalist infrastruktūrą ir personalą. Jūs taip pat galite rinktis demonstruoti savo mėnesinio remėjo statusą savo paskyros profilyje.
-          </p>
-          <p class="lead">
-          Jūsų parama padeda iNaturalist bendruomenei tobulinti kompiuterinio matymo sistemą ir realizuoti nauajs idėjas, taip pat palaiko mūsų serverius ir personalą. Jeigu norite suteikti vienkartinę paramą, prašome <a href="%{donate_url}">spausti čia</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist yra Kalifornijos Mokslų Akademijos ir Nacionalinės Geografijos Bendruomenės bendra iniciatyva. Visos aukos skiriamos Kalifornijos Mokslų Akademijai, 501(c)(3) neapmokestinamai, pelno nesiekiančiai organizacijai, įsikūrusiai Jungtinėse Amerikos Valstijose.
-          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -4673,7 +4641,7 @@ lt:
           Čia yra visi nuostabūs vertėjai, kurie šiais metais prisidėjo prie vertimo.
           Šalia parašytas skaičius parodo, kiek žodžių jie išvertė %{website_link_tag}tinklalapyje%{link_tag_end}, mūsų %{iphone_link_tag}iPhone%{link_tag_end} ir %{android_link_tag}Android%{link_tag_end} programėlėse bei %{seek_link_tag}Seek%{link_tag_end}. Jūs galite peržiūrėti visus žmones, kurie prisidėjo prie vertimo, įskaitant žmones, kurie padėjo versti ankstesniais metais ir Translatewiki platformoje, mūsų %{view_all_web_link_tag}tinklalapio%{link_tag_end} ir %{view_all_mobile_link_tag}mobilios programėlės%{link_tag_end} kodo saugykloje.
         translators_desc_for_site: |
-          Ar žinojote, kad iNaturalist išversti padėjo %{x_people}? Kai kurie iš jų net nesinaudoja iNat.
+          Ar žinojote, kad %{site_name} išversti padėjo %{x_people}? Kai kurie iš jų net nesinaudoja iNat.
           Čia yra visi nuostabūs vertėjai, kurie šiais metais prisidėjo prie vertimo.
           Šalia parašytas skaičius parodo, kiek žodžių jie išvertė %{website_link_tag}tinklalapyje%{link_tag_end}, mūsų %{iphone_link_tag}iPhone%{link_tag_end} ir %{android_link_tag}Android%{link_tag_end} programėlėse bei %{seek_link_tag}Seek%{link_tag_end}. Jūs galite peržiūrėti visus žmones, kurie prisidėjo prie vertimo, įskaitant žmones, kurie padėjo versti ankstesniais metais ir Translatewiki platformoje, mūsų %{view_all_web_link_tag}tinklalapio%{link_tag_end} ir %{view_all_mobile_link_tag}mobilios programėlės%{link_tag_end} kodo saugykloje.
         translators_prompt: |

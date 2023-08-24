@@ -121,6 +121,7 @@ lb:
   a_to_z: "A bis Z"
   about: Iwwer
   about_charts: Iwwer Diagrammer
+  about_complete_taxa: Iwwer vollstänneg Taxa
   about_conservation_status: Iwert den Erhalungszoustand
   about_editing_observation_fields: Iwwer d'Editéiere vun den Observatiounsfelder
   about_license_options: Iwwert Lizenz-Optiounen
@@ -529,10 +530,6 @@ lb:
     swap: Austauschen
     drop: Faleloosen
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersat duerch
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersetzen duerch
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
   #Plural noun, as in changes to a taxon record over time
@@ -779,6 +776,8 @@ lb:
   donate: SPENDEN
   donate_again_caps: NACH EEMOL SPENDEN
   donate_again_today_caps: HAUT NACH EEMOL SPENDEN
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: En Don un iNaturalist maachen
   done: Fäerdeg
   download: Eroflueden
   download_csv: CSV eroflueden
@@ -822,6 +821,23 @@ lb:
   editing_taxon_range_for_taxon_html: Verbreedungsgebiett fir %{taxon} beaarbechten
   editors: Auteuren
   email: E-Mail
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirméiert Är E-Mail-Adress %{site_name} virum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Wgl. confirméiert haut Är E-Mail-Adress, fir datt Dir nach weider op Äre Benotzerkont zougräife kënnt. %{site_name} an d'Appen iNaturalist a Seek vun iNaturalist verbannen d'Leit mat der Natur an ënnerteneen, andeems Observatioune vun der Biodiversitéit gedeelt ginn. Merci, datt Dir Deel vun der iNaturalist-Communautéit sidd!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Mir verlaangen ab dem %{requirement_date} fir all Benotzerkonte verifizéiert E-Mail-Adressen. Wgl. huelt Iech ee Moment Zäit fir se elo ze bestätegen.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Falls Dir iergendwellech Froen hutt, kuckt wgl. d'<a href="%{faq_url}">FAQen</a>. Merci, datt Dir Iech d'Zäit huelt Iech mat der Natur a mat %{site_name} ze connectéieren.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Detailer vum Benotzerkont
   embed: 'Abannen'
   end: Schluss
   endangered: Bedréit
@@ -986,6 +1002,7 @@ lb:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikatioun zréckgezunn.
   identifications: Bestemmungen
+  independence_email_body_thank_you: Merci, datt Dir Deel vun dëser Communautéit sidd!
   identifiers: Bestëmmer
   ids: "IDen"
   ids_made_for_others: IDs fir een aneren gemaach
@@ -1015,7 +1032,6 @@ lb:
   inappropriate_content: Onubruechte Contenu?
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applikatiounen"
-  inaturalist_is_a_joint_initiative: "%{site_name} ass eng gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society."
   inaturalist_places: "%{site_name} Plazen"
   info: Informatioun
   insects: Insekten
@@ -1264,8 +1280,6 @@ lb:
   meet: Treffen
   member_of_the_inaturalist_network_html: |
     Member vum <a href="%{url}">iNaturalist Reseau</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Member vum %{partial_inat_network_tag_html}iNaturalist Netzwierk </a>, enger gemeinsamer Initiativ vun der %{cas_tag_html} and der %{nat_geo_tag_html}.
   #As in members of a project
   members: Memberen
   mentioned_you_in_noun_html: "%{user} huet Iech op %{noun} ernimmt."
@@ -2051,6 +2065,7 @@ lb:
   redo_search_in_map: Nach eng Kéier op der Kaart sichen
   refresh: Aktualiséieren
   regenerate_stats: Statistiken nei generéieren
+  regional_names: Regional Nimm
   reject?: Refuséieren?
   relationship: "Relatioun"
   relationships:
@@ -2298,16 +2313,23 @@ lb:
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} huet e(n) %{x} derbäigesat"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} huet eng %{x} zu %{noun} vum %{by} bäigesat"
   user_added_an_identification_html: "%{user} huet eng Bestemmung bäigesat"
   user_added_an_observation_field_html: '%{user} huet een Wäert fir "%{field_name}" bei eng Observatioun vum %{owner} bäigesat'
   user_added_an_observation_field_value_html: "%{user} huet een Observatiounsfeldwert bäigesat"
   user_added_an_observation_html: "%{user} huet eng Observatioun bäigesat"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} huet eng %{x} derbäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} huet een %{x} bei %{noun} vum %{by} bäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} huet eng %{x} bei %{noun} vum %{by} bäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} huet eng %{x} bei %{noun} vun Iech bäigesat"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} huet eng %{x} bei %{noun} bäigesat"
   user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
@@ -2388,6 +2410,7 @@ lb:
   where_were_you?: Wou war Dir?
   which_projects_can_add_your_observations?: Wat fir traditionell Projete kënnen Är Observatiounen derbäisetzen?
   white: wäiss
+  why_are_you_making_this_change_cite_source_required: Firwat wëllt Dir dës Ännerung maachen? Gitt wgl. Är Grënn an – wa méiglech – eng Quell un. (Obligatoresch)
   why_you_can_see_the_coordinates: Firwat Dir d'Koordinate gesi kënnt
   who_can_add_observation_fields_to_my_obs: Wien kann Observatiounsfelder bei Är Observatioune bäisetzen.
   who_can_see_the_coordinates: Wie kann d'Koordinate gesinn
@@ -2441,8 +2464,6 @@ lb:
     Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
   yir_millions_of_people_used_inaturalist: |
     Millioune Leit hunn dëst Joer iNaturalist a Seek vun iNaturalist benotzt fir sech mat der Natur ze verbannen
-  yir_thank_your_for_being_generous: |
-    Merci datt Dir esou generéis mat Ärer Zäit, Opmierksamkeet, Expertise a Spende sidd! iNaturalist ass eng nonprofit gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society. De Programm hänkt vu ville Boursen a Spenden of, dorënner karitativ Kaddoe vu enger ganz klenger Fraktioun vun der Gemeinschaft. Mir si besonnesch dankbar un déi di all Mount spenden, des widderhuelend Bäiträg hëllefen eis  fir d'Zukunft ze plangen.
   yir_your_gift_sustains: |
     Äre Kaddo ënnerstëtzt dëse Programm mat globaler Reechwäit an déiwem perséinlechen an ekologeschen Impakt
   you: Iech
@@ -2938,6 +2959,10 @@ lb:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+        taxon_name:
+          attributes:
+            audit_comment:
+              needs_to_be_at_least_10_characters: muss mindestens 10 Zeeche laang sinn
         taxon_photo:
           attributes:
             taxon:

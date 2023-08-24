@@ -125,6 +125,10 @@ class EmailerPreview < ActionMailer::Preview
     Emailer.email_confirmation_reminder( User.last )
   end
 
+  def independence
+    Emailer.independence( User.where( "confirmed_at is not null" ).last )
+  end
+
   private
 
   def set_user

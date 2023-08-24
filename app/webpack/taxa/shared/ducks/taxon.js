@@ -413,7 +413,7 @@ export function fetchLinks( ) {
 export function fetchNames( taxon ) {
   return ( dispatch, getState ) => {
     const t = taxon || getState( ).taxon.taxon;
-    fetch( `/taxon_names.json?per_page=200&taxon_id=${t.id}` ).then(
+    fetch( `/taxon_names.json?per_page=400&taxon_id=${t.id}` ).then(
       response => {
         response.json( ).then( json => dispatch( setNames( json ) ) );
       },

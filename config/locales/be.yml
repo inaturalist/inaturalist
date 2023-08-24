@@ -973,13 +973,7 @@ be:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: аддзяліць да
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: аб'яўднаць у
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: аб'яднана ў
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: заменена
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: заменена на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заменена на
     dropped: адкінута
@@ -1737,7 +1731,6 @@ be:
   email: Эл. пошта
   email_description: Вашая э-пошта не бачная іншым карыстальнікам iNaturalist
   email_address_for_comments_and_other_feedback: Адрас электроннай пошты для каментараў і іншых водгукаў
-  email_copyright: "Аўтраскія правы &copy; %{x}, усе правы абаронены"
   email_notifications: Апавяшчэнні па электроннай пошце
   embed: 'Убудаваць'
   embed_place_widget: Убудаваць віджэт месца
@@ -2069,7 +2062,6 @@ be:
   heads_up_you_have_multiple: "Увага: у вас ёсць некалькі таксанамічных машынных тэгаў для аднолькавых рангаў. Яны пазначаны колерам ніжэй па рангу."
   help: Дапамога
   help_confirm_observations!: Дапамажыце пацвердзіць назіранні!
-  help_support_inaturalist: "Дапамажыце падтрымаць iNaturalist"
   help_translate!: Дапамагчы з перакладам!
   here_are_3_examples: Вось 3 прыклады добра сфармаваных дадзеных
   here_are_our_top_suggestions: Вось нашыя лепшыя прапановы
@@ -2196,7 +2188,6 @@ be:
   inaturalist_activity_notifications: "%{site_name} Апавяшчэнні аб дзейнасці"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Прыкладанні iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} - гэта сумесная ініцыятыва Каліфарнійскай акадэміі навук і Нацыянальнага Геаграфічнага Таварыства."
   inaturalist_places: "%{site_name} Месцы"
   info: Інфармацыя
   input_taxon: Уваходны таксон
@@ -2589,8 +2580,6 @@ be:
   meet: Пазнаёміцца
   member_of_the_inaturalist_network_html: |
     Удзельнік <a href="%{url}">сеткі iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Удзельнік %{partial_inat_network_tag_html}сеткі iNaturalist</a> - сумеснай ініцыятывы %{cas_tag_html} і %{nat_geo_tag_html}.
   #As in members of a project
   members: Удзельнікі
   membership_model: Мадэль удзелу
@@ -4150,19 +4139,29 @@ be:
   user_added_a_comment_html: "%{user} дадаў каментар"
   user_added_a_fave_html: "%{user} дадаў упадабанне"
   user_added_a_flag_html: "%{user} дадаў пазнаку"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} дадаў %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_an_identification_html: "%{user} дадаў вызначэнне"
   user_added_an_observation_field_html: '%{user} дадаў значэнне "%{field_name}" да назірання %{owner}'
   user_added_an_observation_field_value_html: "%{user} дадаў значэнне поля назірання"
   user_added_an_observation_html: "%{user} дадаў назіранне"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} дадаў %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_x_observations_html: "%{user} дадаў %{x} назіранняў"
   user_suggested_an_id: "%{user} прапанаваў вызначэнне"
@@ -4346,15 +4345,15 @@ be:
       - Жні
       - Вер
       - Кас
-      - Nov
-      - Dec
+      - 
+      - 
     day_names:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
       - Субота
     day_names_min:
       1: Нд

@@ -608,7 +608,7 @@ a.UserImage,
         color: #747474;
         white-space: normal;
       }
-      a.display-name, .noname {
+      .display-names, a.display-name, .noname {
         font-size: 32px;
         line-height: 36px;
         color: #000;
@@ -1346,12 +1346,15 @@ time {
     padding: 8px;
     min-height: 56px;
     text-align: start;
-    a {
+    .SplitTaxon .display-name {
+      color: #000;
+    }
+    .SplitTaxon > .display-name, .display-names,
+    .SplitTaxon > .secondary-name, .secondary-names {
       display: block;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: #000;
     }
   }
   .view {
@@ -1424,10 +1427,18 @@ time {
 
 .obs-highlight-link {
   .SplitTaxon {
-    a.display-name,
-    .noname {
+    & > .display-name, .display-names,
+    & > .secondary-name, .secondary-names {
       display: block;
+      white-space: inherit;
+    }
+    .display-name, .secondary-name {
+      white-space: inherit;
+    }
+    .display-name,
+    .noname {
       color: white;
+      font-weight: 700;
     }
   }
 }
@@ -2459,7 +2470,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.research:after {
   border-color: $inat-green;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 
 .PopoverWithHeader {

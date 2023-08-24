@@ -801,13 +801,7 @@ es-CO:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusionado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplazado por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplazar con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplazado con
     dropped: abandonado
@@ -1521,7 +1515,6 @@ es-CO:
   eligible_for_research_grade: Elegible para el grado de investigación
   email: Correo electrónico
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
-  email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar'
   embed_this_assessment: Insertar esta evaluación
@@ -1843,7 +1836,6 @@ es-CO:
   heads_up_this_photo_is_already_associated_with: "Atención: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   help: Ayuda
   help_confirm_observations!: '¡Ayúdanos a confirmar observaciones!'
-  help_support_inaturalist: "Apoya a iNaturalist"
   help_translate!: '¡Ayúdanos a traducir!'
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_our_top_suggestions: Estas son nuestras sugerencias principales
@@ -2285,9 +2277,6 @@ es-CO:
   meet: Conoce
   member_of_the_inaturalist_network_html: |
     Miembro de la <a href="%{url}">Red iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Miembro de la red %{partial_inat_network_tag_html} iNaturalist</a>, una
-    iniciativa conjunta de %{cas_tag_html} y %{nat_geo_tag_html}.
   #As in members of a project
   members: Miembros
   membership_model: Modelo de membresía
@@ -2961,36 +2950,10 @@ es-CO:
     slovakia: Eslovaquia
     slovenia: Eslovenia
     solomon_islands: Islas Salomón
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

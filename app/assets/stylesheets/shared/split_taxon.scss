@@ -56,13 +56,6 @@
       font-style: normal;
     }
   }
-  .display-names .display-name + .display-name,
-  .secondary-names .secondary-name + .secondary-name {
-    &:before {
-      content: ", ";
-      display: inline;
-    }
-  }
 }
 
 .taxon .altname { color: #aaa; }

@@ -408,6 +408,7 @@ sv:
   agree_: Håller med
   agree?: Håller du med?
   agree_with_current_taxon: Håll med om aktuellt taxon
+  agree_with_observation_taxon: Håll med om fyndtaxon
   agreeing: Håller med...
   aka: även känd som
   #Noun, title of a popup alerting you to something
@@ -904,13 +905,7 @@ sv:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: uppdelning till
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: slogs ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersattes av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersätt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersatt av
     dropped: inaktiverades
@@ -1637,6 +1632,8 @@ sv:
   donate: DONERA
   donate_again_caps: DONERA IGEN
   donate_again_today_caps: DONERA IGEN IDAG
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donera till iNaturalist
   done: Klar
   dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
   dont_use_double_quotes: Använd inte dubbla citat någon annanstans
@@ -1794,7 +1791,7 @@ sv:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Kontouppgifter
-  email_copyright: "Upphovsrätt &copy; %{x}, alla rättigheter förbehållna"
+  email_copyright2: "&copy; %{year} iNaturalist, alla rättigheter förbehållna"
   email_notifications: E-postaviseringar
   embed: 'Bädda in'
   embed_place_widget: Bädda in fyndplats-widget
@@ -2141,7 +2138,6 @@ sv:
   heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
   help: Hjälp
   help_confirm_observations!: Hjälp till att bekräfta fynd!
-  help_support_inaturalist: "Hjälp till att stödja iNaturalist"
   help_translate!: Hjälp till med översättning!
   here_are_3_examples: Här är 3 exempel på bra utformade data
   here_are_our_top_suggestions: Här är våra bästa förslag
@@ -2222,6 +2218,82 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
+  independence_email_subject: "Sprider Våra Vingar: iNaturalist är nu oberoende och icke-vinstdrivande"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Kära %{name},
+  independence_email_body_exciting_news: |
+    iNaturalist-teamet har spännande nyheter! Vi är glada att kunna meddela att
+    tack vare stödet från denna fantastiska community, drivs nu iNaturalist
+    som en oberoende 501(c)(3) icke-vinstdrivande organisation baserad i USA.
+  independence_email_body_since_launching: |
+    Sedan lanseringen 2008 har iNaturalist-teamet och organisationen
+    utvecklats, och vi är glada för nästa milstolpe. iNaturalist började
+    som ett magisterprojekt vid University of California, Berkeley, blev ett
+    LLC, samarbetade med California Academy of Sciences från 2014. År
+    2017 blev iNaturalist ett gemensamt initiativ med California Academy of
+    Sciences och National Geographic Society. Nu är iNaturalist en
+    oberoende organisation.
+  independence_email_body_over_the_past: |
+    Under de senaste 15 åren har de otroliga bidragen från communityn
+    gjort iNaturalist till en av världens mest inflytelserika naturplattformar.
+  independence_email_body_so_far: "Hittills har iNaturalist-communityn:"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Skapat över 146 000 000 verifierbara fynd (ökar med cirka 1 miljon per vecka!)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Vuxit till 2,7 miljoner bidragsgivare
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Observerat mer än 430 000 arter
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Har citerats mer än 3 500 gånger
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    Vi tackar California Academy of Sciences och National Geographic
+    Society för att de inkuberade iNaturalist då det växte dramatiskt under de senaste
+    9 åren. Vi är skyldiga dessa partner en enorm tacksamhet för deras investeringar,
+    stöd och förvaltarskap. Vi ser fram emot att samarbeta med båda
+    organisationerna i framtiden.
+  independence_email_body_the_way_html: |
+    <strong>Din användarupplevelse av iNaturalist kommer inte att förändras.</strong>
+    iNaturalist och Seek kommer att fortsätta att fritt hjälpa dig att bestämma
+    biologisk mångfald och bygga din egen koppling till naturen. Denna nya
+    organisationsstruktur kommer att göra det möjligt för oss att stödja iNaturalist i åratal
+    framöver alltmedan iNaturalist-communityn utökar vår samlade kunskap om
+    biologisk mångfald långt in i framtiden. Vi kommer att fortsätta vårt samarbete
+    med organisationer runt om i världen för att stödja iNaturalist-nätverket.
+  independence_email_body_questions_html: |
+    Du kan <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">läsa
+    mer på bloggen</a> och kolla på <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Vanliga
+    frågor</a> (på engelska). <a
+    href="https://www.inaturalist.org/pages/terms">Användarvillkor</a> och <a
+    href="https://www.inaturalist.org/pages/privacy">Integritetspolicy</a> har
+    uppdaterats för att återspegla den nya organisationen.
+  independence_email_body_thank_you: Tack för att du är en del av denna community.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Mot nya mål,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalist Leadership Team</strong>
+  independence_email_body_ps: |
+    P.S. - Snart kommer vi att tillkännage ett generöst bidrag som
+    kommer att ge det oberoende iNaturalist en stabil grund. Det
+    finansiella bidraget från iNaturalist-communityn gjorde det möjligt
+    för oss att utvecklas och kommer att vara livsviktigt för långsiktig
+    hållbarhet. Din donation nu kommer att prisa denna spännande
+    milstolpe och ytterligare säkra iNaturalists framtid. Tack!
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Donera nu
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2305,7 +2377,6 @@ sv:
   inaturalist_activity_notifications: "%{site_name} aktivitetsaviseringar"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
-  inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
   inaturalist_places: "%{site_name}-fyndplatser"
   info: Info
   input_taxon: Ingångstaxon
@@ -2450,6 +2521,7 @@ sv:
     davawenyo: Davawenyo
     dutch: Holländska
     english: Engelska
+    esperanto: Esperanto
     estonian: Estniska
     faroese: Färöiska
     fijian: Fijianska
@@ -2614,6 +2686,7 @@ sv:
     es: Spanska
     es-AR: Spanska (Argentina)
     es-CO: Spanska (Colombia)
+    es-CR: Spanska (Costa Rica)
     es-MX: Spanska (Mexiko)
     et: Estniska
     eu: Baskiska
@@ -2755,9 +2828,6 @@ sv:
   meet: Träffa
   member_of_the_inaturalist_network_html: |
     Medlem av <a href="%{url}">iNaturalist-nätverket</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Medlem av %{partial_inat_network_tag_html}iNaturalist-nätverket</a>, ett
-    gemensamt initiativ av %{cas_tag_html} och %{nat_geo_tag_html}.
   #As in members of a project
   members: Medlemmar
   membership_model: Modell för medlemskap
@@ -4334,6 +4404,7 @@ sv:
   refresh: Ladda om
   refreshing: laddar om
   regenerate_stats: Generera statistik igen
+  regional_names: Regionala namn
   register_for_this_event_at_x_html: "Registrera dig för denna händelse på %{x}"
   reject?: Förkasta?
   relative_observations: Fynd av närbesläktade
@@ -4563,6 +4634,8 @@ sv:
   show_keyboard_shortcuts: Visa kortkommandon
   show_less: Visa mindre
   show_more: Visa mer
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Visa fler inloggningsalternativ
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Visa "Ingen anteckning"
@@ -4654,11 +4727,11 @@ sv:
     Du kan fortsätta att logga in via iNaturalist.org eller via din nätverksspecifika webbplats. Oavsett din anknytning, kommer alla dina data att sparas på samma ställe och du kommer fortsätta att kunna interagera med hela den internationella iNaturalist-communityn. Varje iNaturalist-konto kan endast anknytas till en Nätverksmedlem. Du kan granska eller ändra din anknytning i dina 
     %{start_tag_settings}kontoinställningar%{end_tag_settings}.
   sites_affiliation_title: Läs mer om Nätverksanknytning
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} och
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} har
-    formella avtal med organisationer i vart och ett av dessa geografiska områden för att stöda användningen av iNaturalist-plattformen. <strong>Om din organisation är
-    intresserad av att gå med i iNaturalist-nätverket, kan du hitta mer information
+  sites_network_agreements_html: |
+    iNaturalist har formella avtal med organisationer i vart och ett av dessa
+    geografiska områden för att stödja användningen av iNaturalist-plattformen.
+    <strong>Om din organisation är intresserad av att gå med i iNaturalist-nätverket
+    kan du hitta mer information
     %{start_tag_join}här%{end_tag_join}.</strong>
   sites_network_consists_of: "iNaturalist-nätverket består av ett flertal organisationer:"
   sites_network_inaturalist_network_collection: |
@@ -5442,19 +5515,29 @@ sv:
   user_added_a_comment_html: "%{user} lade till en kommentar"
   user_added_a_fave_html: "%{user} lade till en favorit"
   user_added_a_flag_html: "%{user} lade till en flagga"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lade till en %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
   user_added_an_identification_html: "%{user} lade till en bestämning"
   user_added_an_observation_field_html: '%{user} lade till ett värde för "%{field_name}" till ett fynd av %{owner}'
   user_added_an_observation_field_value_html: "%{user} lade till ett värde i ett fyndfält"
   user_added_an_observation_html: "%{user} lade till ett fynd"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lade till en %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
   user_added_x_observations_html: "%{user} lade till %{x} fynd"
   user_already_authenticated: Användaren är redan autentiserad
@@ -5708,6 +5791,7 @@ sv:
   white: vit
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Varför gör du denna förändring? (valfritt)
+  why_are_you_making_this_change_cite_source_required: Varför gör du denna förändring? Förklara och citera en källa om möjligt. (Obligatoriskt)
   why_you_can_see_the_coordinates: Därför kan du se koordinaterna
   who_can_add_observation_fields_to_my_obs: Vem kan lägga till fyndfält till mina fynd?
   who_can_add_observations_to_this_project?: Vem kan lägga till fynd i detta projekt?
@@ -5818,8 +5902,12 @@ sv:
     I år använde miljontals personer iNaturalist och Seek av iNaturalist för att knyta an till naturen
   yir_monthly_supporters_random_selection: |
     Här är ett slumpmässigt urval av iNats heroiska community-medlemmar som donerar varje månad.
-  yir_thank_your_for_being_generous: |
-    Tack för att du bidrar med din tid, uppmärksamhet, expertis och donationer! iNaturalist är ett ideellt gemensamt initiativ av California Academy of Sciences och National Geographic Society. Programmet bygger på otaliga bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till Månatliga Bidragsgivare vars återkommande gåvor hjälper oss att planera inför framtiden.
+  yir_thank_your_for_being_generous2: |
+    Tack för att du är generös med din tid, uppmärksamhet, expertis och
+    donationer! iNaturalist är en icke-vinstdrivande organisation för allmännytta.
+    Upplägget bygger på många bidrag och donationer, inklusive välgörenhetsgåvor
+    från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till
+    Månatliga givare vars återkommande gåvor hjälper oss att planera för framtiden.
   yir_your_gift_sustains: |
     Din gåva upprätthåller detta program med global räckvidd och djup personlig och
     ekologisk inverkan
@@ -5984,40 +6072,54 @@ sv:
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
-      donate_desc_html: |
+      donate_desc3_html: |
         <p class="lead">
-        <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
+        <strong>iNaturalist är en av världens största communitys som ägnar sig åt
+        att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
         </p>
         <p class="lead">
-        Om du tror på kraften hos denna globala community av naturälskare att dela kunskap och generera oersättlig biologisk mångfalds-data,
-        överväg en engångs- eller återkommande gåva online, eller se <a
+        Om du tror på kraften hos denna globala community av naturälskare
+        att dela kunskap och generera oersättlig biologisk mångfalds-data,
+        överväg då en engångs- eller återkommande gåva online, eller se <a
         href="https://www.inaturalist.org/pages/giving">andra sätt att
         ge</a>.
         </p>
         <p class="lead">
-        Din donation hjälper till att stödja iNaturalist när communityn växer, från framsteg inom bildigenkänning och implementering av nya funktioner till att stödja våra servrar och personal.
+        Din donation hjälper till att stödja iNaturalist när communityn växer, från
+        framsteg inom bildigenkänning och implementering av nya funktioner till
+        att stödja våra servrar och personal.
         </p>
         <p class="text-muted">
-        iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
-        California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater (Skatte-ID: 94-1156258).
+        iNaturalist är en oberoende 501(c)(3) skattebefriad icke-vinstdrivande
+        organisation baserad i USA (Skatte-ID: 92-1296468).
         </p>
       post_donate_social_media_text: Jag stöder iNaturalist eftersom...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
-        desc_html: |
+        desc3_html: |
           <p class="lead">
-          <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
+          <strong>iNaturalist är en av världens största communitys engagerad i att
+          utforska biologisk mångfald. Tack för att du är en del av den!</strong>
           </p>
           <p class="lead">
-          Vi vill behålla iNaturalist gratis för användning, men den är inte gratis att driva. Om du älskar iNaturalist, vänligen överväg att bli en månatlig bidragsgivare. Återkommande gåvor hjälper se till att iNaturalist kan fortsätta skala upp sin infrastruktur och personal genom att bidra till förutsägbara intäkter. Du kan också välja att visa din månatliga givarstatus i din användarprofil.
+          Vi vill behålla iNaturalist som gratis att använda, men det är inte gratis att
+          driva. Om du älskar iNaturalist, vänligen överväga att bli en månatlig
+          supporter. Återkommande gåvor bidrar till att iNaturalist kan fortsätta
+          skala upp sin infrastruktur och personal genom att förse oss med
+          förutsägbara intäkter. Du kan också välja att visa din månatliga
+          supporterstatus på din användarprofil.
           </p>
           <p class="lead">
-          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när communityn växer, från framsteg i bildigenkänning och implementera nya funktioner till att stödja våra servrar och personal. Om du föredrar att ge en engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
+          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när communityn
+          växer, från att främja bildigenkänning och implementera nya funktioner
+          till att stödja våra servrar och personal. Om du föredrar att ge en
+          engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
           </p>
           <p class="text-muted">
-          iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
-          California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater.
+          iNaturalist är en oberoende 501(c)(3), skattebefriad,
+          icke-vinstdrivande organisation baserad i USA (Skatte-ID:
+          92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Tack för att du är en Månatlig givare!
         thank_you_for_being_a_monthly_supporter_caps: TACK FÖR ATT DU ÄR EN MÅNATLIG GIVARE!
@@ -6483,71 +6585,69 @@ sv:
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
         quality_assessment_help2_html: |
           <p>
-          Datakvalitetsbedömningen är en summering av ett fynds noggrannhet. Alla
-          fynd börjar som <strong>"grund</strong>klass och får
+          Bedömningen av datakvaliteten är en sammanfattning av ett fynds korrekthet. Alla
+          fynd börjar som <strong>"grund"</strong>klass, och blir
           <strong>"behöver bestämning"</strong> när
           </p>
 
           <ul>
-          <li>fyndet <strong>har datum</strong></li>
-          <li>fyndet <strong>är georefererat</strong> (d.v.s. har lat/long-koordinater)</li>
-          <li>fyndet <strong>har bilder eller ljud</strong></li>
-          <li>fyndet <strong>inte föreställer en människa</strong></li>
+          <li>fyndet<strong>har ett datum</strong></li>
+          <li>fyndet<strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
+          <li>fyndet<strong>har bilder eller ljud</strong></li>
+          <li>fyndet<strong>inte är en människa</strong></li>
           </ul>
           <p>
-          Fyndet får <strong>"forskningsklass"</strong> när
+          fynd får <strong>"forskningsklass"</strong> när
           </p>
           <ul>
           <li>
-          %{site_name}-<strong>communityn är överens om en bestämning till artnivå eller
-          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna håller med om ett
-          taxon (om communityn har röstat att community-taxonet inte längre kan
-          förbättras, återgår detta till bestämning på underfamiljsnivå eller lägre)
+          %{site_name} <strong>communityn håller med om bestämning till artnivå eller
+          lägre</strong>, dvs när fler än 2/3 av bestämmarna är överens om ett
+          taxon (om communityn har röstat om att Community-bestämningen inte längre kan
+          förbättras, återgår den till underfamiljsbestämning eller lägre)
           </li>
           </ul>
           <p>
-          Fynd återgår till <strong>"grundklass"</strong> om villkoren ovan inte är uppnådda
-          eller communityn är överens om att
+          Fynd återgår till <strong>"grund"</strong> om ovanstående villkor inte är uppfyllda
+          eller communityn håller med om att
           </p>
           <ul>
           <li>
-          <strong>fyndplatsen inte verkar
-          korrekt</strong> (t.ex. apor mitt i havet,
-          flodhästar på kontoret, etc.)
+           <strong>platsen ser inte
+          rätt ut</strong> (t.ex. apor mitt i havet,
+          flodhästar i kontorsbyggnader, etc.)
           </li>
           <li>
-          <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad
-          av människor eller intelligenta rymdvarelser)
+          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människan
+          eller intelligenta rymdvarelser)
           </li>
           <li>
-          fyndet <strong>inte visar några tecken på en
-          organism</strong>, t.ex. bilder av vattenformationer,
-          stenar, landskap som inte Innehåller organismen, osv.
+          fyndet <strong>inte utgör stöd för en
+          organism</strong>, t.ex. bilder av vattensamlingar,
+          klippor, landskap som inte inkluderar organismen, etc.
           </li>
           <li>
-          fyndet <strong>inte består av nutida (~100 years) belägg för
-          organismen</strong> (t.ex. fossil, men spår, avföring och döda löv
-          är ok)
+          fyndet <strong>utgör inte stöd för organismern i modern tid (~100 år)</strong> (t.ex. fossil, men spår, avföring och döda blad
+          är okej)
           </li>
           <li>
-          fyndet inte länger behöver bestämmas <em>och</em> communitybestämningen är över familj
+          fyndet behöver inte längre bestämmas <em>och</em> community-bestämningen är till familj eller högre
           </li>
           <li>
-          observatören har frånsagt sig communitybestämning och communitytaxonet
-          är vare sig en förfader eller ättling till det taxon som är knutet till observatörens
-          bestämning
-          </li>
+          observatören har valt bort community-bestämning samt community-
+          bestämningens taxon är inte en förfader eller ättling till det taxon
+          observatören bestämt
           </ul>
           <p>
-          Och som om det inte var krångligt nog, finns det även situationer där systemet får rösta:
+          Och om det inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
           </p>
           <ul>
           <li>
-          Systemet röstar att fyndet inte är vilt/naturaliserat
+          Systemet kommer att rösta för att fyndet inte är vilt/naturaliserat
           om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta plats motsvarande län, region eller land som
-          omfattar detta fynd och 80 % eller flera av dessa fynd har
-          markerats som ej vilda/naturaliserade.
+          den minsta län-, stat-, eller landmotsvarighet till plats som
+          innehåller detta fynd samt att 80% eller fler av dessa fynd
+          har markerats som inte vilt/naturaliserat.
           </li>
           </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
@@ -6726,8 +6826,12 @@ sv:
           Du kan se originalet på <a href="%{url}">%{url}</a>.
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
-      kml_field_desc2: |
-        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
+      kml_field_desc3: |
+        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google
+        Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB
+        (5 MB för webbplatsens förvaltare) och till ytan vara mindre än ~700 000
+        kvadratkilometer (ungefär storleken på Somalia eller amerikanska delstaten
+        Texas).
       edit:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
@@ -7088,10 +7192,21 @@ sv:
           Hur står sig detta år jämfört med tidigare år? Den gröna stapeln visar detta år, den vita lodräta stapeln visar förra året och de grå områdena i bakgrunden visar min och max för tidigare år, samt medel för alla år.
         compared_to_previous_years: Jämför med tidigare år
         donate_title: "Ett särskilt tack till alla våra supportrar"
-        donate_desc_html: |
-          Tack för att du bidrar med din tid, uppmärksamhet, expertis och dina donationer! iNaturalist är ett icke-kommersiellt initiativ som drivs gemensamt av California Academy of Sciences och National Geographic Society. Det supportas av ett
-          <a href="%{team_url}">litet team</a> som gör all design och mjukvaruutveckling för webben, mobiler, och <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom support till communityn, samarbeten och integrationer som håller saker igång (och som växer snabbt!). Initiativet förlitar sig på många bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan donera i flertalet valutor för att stödja iNaturalists kärnverksamhet.
-          Tack till alla för er medverkan till att göra %{year} till iNaturalists främsta år hittills!
+        donate_desc2_html: |
+          Tack för att du är generös med din tid, uppmärksamhet, expertis,
+          och donationer! iNaturalist är en 501(c)3 icke-vinstdrivande
+          organisation baserad i USA. Det stöds av en
+          <a href="%{team_url}">liten grupp</a> som gör all design och
+          mjukvaruutveckling för webben, mobil och <a href="%{seek_url}">Seek by
+          iNaturalist</a>, förutom att hantera stöd till communityn,
+          samarbeten och integrationer som håller saker igång
+          (och växer snabbt!). Upplägget förlitar sig på många bidrag och
+          donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel
+          bidragsgivare. Vi är särskilt tacksamma för Månatliga givare
+          vars återkommande gåvor hjälper oss att planera för framtiden. Du kan
+          donerai flera valutor för att stödja iNaturalists kärnverksamhet.
+          Tack till alla för er medverkan till att göra %{year} iNaturalists
+          största år hittills!
         donors: Givare
         donors_guide_label_our_goal_is_1000: Vårt mål är 1000 återkommande givare per månad
         inaturalist_network: iNaturalist-nätverket
@@ -7178,15 +7293,44 @@ sv:
       show:
         about_names_desc: |
           <p>
-          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn är vanligtvis förståeliga, lätta att uttala, och stabila över tid, men många organismer har flera olika namn på olika platser, även på samma språk, som kan göra det svårt att kommunicera om dessa organismer utan förvirring.
-          Vetenskapsmän försöker råda bot på detta genom att använda ett enda "vetenskapligt namn" för varje organismkategori som omfattas av reglerna för <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>, men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de är inte lika lätta att komma ihåg som vardagliga namn för många personer. Vetenskapliga namn kan också återspegla en organisms taxonomiska placering, så att de kan förändras när forskare lägger fram nya hypoteser om evolutionära förhållanden
-          mellan olika organismer, vilket minskar deras användbarhet för kommunikation, även bland människor som kan vetenskapliga namn.
+          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn
+          är vanligtvis förståeliga, lätta att uttala och stabila över tid, men många
+          organismer har flera olika namn på olika platser, även på samma språk,
+          vilket om kan göra det svårt att kommunicera om dessa organismer utan
+          förvirring.
+          Forskare försöker råda bot på detta genom att använda ett enda "vetenskapligt
+          namn" för varje organismgrupp som omfattas av reglerna för
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>,
+          men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de
+          är inte lika lätta att komma ihåg som vardagliga namn för de flesta.
+          Vetenskapliga namn kan också återspegla en organisms taxonomiska
+          placering, så de kan förändras när forskare tar fram nya hypoteser om
+          evolutionärt släktskap mellan olika organismer, vilket återigen minskar
+          deras användbarhet för kommunikation, även bland människor som kan
+          vetenskapliga namn.
           </p>
           <p>
-          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats till plats, medan vetenskapliga namn ändras då och då.
+          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats
+          till plats, medan vetenskapliga namn ändras då och då.
           </p>
           <p>
-          Vi försöker åtgärda dessa brister genom att visa både vardagliga och vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat på läsarens språkliga och geografiska preferenser.
+          Vi försöker åtgärda dessa brister genom att visa både vardagliga och
+          vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat
+          på läsarens språkliga och geografiska preferenser. Namn listas efter deras
+          globala prioritet inom varje Språk / Typ.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Namn kan läggas till platser (vanligtvis länder) i fall där
+          olika länder eller regioner använder olika vardagliga namn på
+          samma språk. Till exempel kan Mexiko och Costa Rica ha olika
+          spanska namn för samma art.
+          </p>
+          <p>
+          Denna tabell visar vilka namn som lagts till på vilka platser, och
+          listas i prioritetsordning för varje plats. Om två spanska namn
+          läggs till Mexiko, kommer det som listas först att visas om du föredrar
+          att se spanska namn som lagts till Mexiko.
           </p>
         about_conservation_status_desc: |
           Bevarandestatus sammanfattar risken för utrotning för en grupp organismer.
@@ -7375,10 +7519,15 @@ sv:
           för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
         monthly_supporter_desc_html: |
-          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS EIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
-          <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
-          När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
-          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
+          iNaturalist Månatliga givare ger automatiska månatliga bidrag
+          till iNaturalist (United States IRS EIN 92-1296468) för att stödja
+          icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets
+          webbplatser. <a href="%{url}">Klicka här för att bli en Månatlig
+          givare</a>. När vi har bekräftat ditt stöd kommer du att kunna
+          markera denna ruta för att visa denna status på din profil. Obs:
+          e-postadresserna på Donorbox och iNaturalist måste matcha
+          exakt för att vi ska kunna bekräfta att du är en Månatlig givare.
+          Om de skiljer sig, ändra den ena så att den matchar den andra.
         muting_desc_html: |
           <p>
           Att tysta någon hindrar dig från att få meddelanden om saker de gör, inklusive kommentera dina fynd, skicka meddelanden till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne utan att hindra dem från att göra något.
@@ -7932,6 +8081,7 @@ sv:
         position: Position
         source_url: Källans URL
         source_identifier: Källans identifierare
+        audit_comment: Anteckning
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8162,6 +8312,8 @@ sv:
                 måste matcha detta taxons namn om det är ett giltigt vetenskapligt namn
               bad_format: |
                 kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och ×; observera att preliminära taxa och sortnamn inte är tillåtna
+            audit_comment:
+              needs_to_be_at_least_10_characters: måste vara minst 10 tecken
         taxon_photo:
           attributes:
             taxon:
@@ -8185,8 +8337,11 @@ sv:
           attributes:
             base:
               user_already_blocked: Du har redan blockerat den användaren
-              user_cannot_be_staff: |
-                Du kan inte blockera personal. iNat-personal måste kunna kommunicera med alla på iNat, ha tillgång till all data på iNat, och är de slutgiltiga medlarna i tvister, så blockering kommer inte att hindra dem från att kommunicera med dig. Om du har ett problem med någon i personalen kan du rapportera det till en av iNats biträdande chefer, eller, om du har problem med en av de biträdande cheferna, kontakta forskningschefen på Institute for Biodiversity and Sustainability Science vid California Academy of Sciences.
+              user_cannot_be_staff2: |
+                Du kan inte blockera personal. iNat-personal måste kunna
+                kommunicera med alla på iNat, ha tillgång till all data på
+                iNat och är de ultimata medlarna av tvister, så blockering
+                kommer inte att hindra dem från att kommunicera med dig.
         user_parent:
           attributes:
             email:

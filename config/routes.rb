@@ -31,8 +31,10 @@ Rails.application.routes.draw do
   get "/donate", to: "donate#index"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
 
-  # get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
-  get "/donate-seek", to: redirect( "/donate", status: 302 )
+  get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
+
+  get "/independence", to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
+  get "/giving", to: redirect( "/pages/giving", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]

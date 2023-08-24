@@ -874,13 +874,7 @@ fr:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: diviser en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusionner en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fusionné en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: remplacé par
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: remplacer par
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: remplacé par
     dropped: retiré
@@ -999,7 +993,7 @@ fr:
   committing_this_swap_may_result: La validation peut entraîner des désaccords involontaires. Veuillez d'abord les analyser, ce qui peut prendre un certain temps.
   common_name: Nom vernaculaire
   community: Communauté
-  community_curated: Communauté organisée
+  community_curated: Organisés par la communauté
   community_guidelines: Règles de la communauté
   community_id_heading: Taxon de la communauté
   community_id_at_species_or_lower?: Taxon de la communauté au rang d’espèce ou inférieur ?
@@ -1187,9 +1181,9 @@ fr:
     some_rights_reserved_by: "(c) %{name}, certains droits réservés (%{license_short})"
     all_rights_reserved: "(c) %{name}, tous droits réservés"
     no_known_copyright_restrictions: "%{name}, aucune restriction de droit connue (%{license_name})"
-    no_known_copyright_restrictions_text: "Aucune restriction connue sur les droits d’auteur"
-    no_rights_reserved: aucun droits réservés
-    no_rights_reserved_by: "%{name}, aucun droits réservés (%{license_name})"
+    no_known_copyright_restrictions_text: "aucune restriction connue de droits d’auteur"
+    no_rights_reserved: aucun droit réservé
+    no_rights_reserved_by: "%{name}, aucun droit réservé (%{license_name})"
     anonymous: anonyme
     public_domain: domaine public
     copyright: droit d’auteur
@@ -1450,8 +1444,8 @@ fr:
   default_time_zone_desc: |
     Il s'agit du fuseau horaire par défaut. Le fuseau horaire définitif sera attribué lors de l'enregistrement en fonction du lieu de l'observation.
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
-  defines_a_taxon_framework_for: Définit un cadre de taxon pour %{taxon_name}
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Définit un cadre de taxon pour %{taxon} provenant de %{source}
+  defines_a_taxon_framework_for: 'Définit un cadre taxinomique pour : %{taxon_name}'
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Définit un cadre taxinomique pour %{taxon} provenant de %{source}
   definitions: Définitions
   delete: Supprimer
   delete_all: Supprimer tout
@@ -1594,6 +1588,8 @@ fr:
   donate: Faire un don
   donate_again_caps: DONNEZ DE NOUVEAU
   donate_again_today_caps: DONNEZ DE NOUVEAU AUJOURD'HUI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Faire un don à iNaturalist
   done: Valider
   dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
   dont_use_double_quotes: N’utilisez pas de guillemets anglais ailleurs
@@ -1717,8 +1713,11 @@ fr:
   email_conf_required_after_grace_period: |
     La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
   email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Veuillez svp confirmer votre courriel.%{link_end_tag}</strong>.
-    Tous les usagers et usagères doivent confirmer leur adresse courriel d’ici le 1er juillet 2023. Après cette date, quiconque n’aura pas confirmé son courriel ne pourra se connecter à son compte et devra réinitialiser son mot de passe. Pour confirmer votre courriel, allez aux %{link_start_tag}paramètres de votre compte%{link_end_tag}.
+    <strong>%{link_start_tag}Veuillez confirmer votre adresse e-mail%{link_end_tag}</strong>.
+    Tous les utilisateurs doivent confirmer leur adresse e-mail d'ici le %{date}. Après cette date,
+    toute personne qui n'a pas confirmé son adresse e-mail ne pourra plus se connecter
+    à moins de réinitialiser son mot de passe. Pour confirmer votre adresse e-mail,
+    allez dans les %{link_start_tag}paramètres de votre compte%{link_end_tag}.
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmez votre adresse e-mail %{site_name} avant le %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
@@ -1737,7 +1736,7 @@ fr:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: Détails du compte
-  email_copyright: "Copyright &copy; %{x}, tous droits réservés"
+  email_copyright2: "&copy; %{year} iNaturalist, tous droits réservés"
   email_notifications: Notifications par mail
   embed: 'Intégrer'
   embed_place_widget: Intégrer un widget du lieu
@@ -2072,7 +2071,6 @@ fr:
   heads_up_you_have_multiple: "Avertissement : Vous avez de multiples étiquettes taxinomiques automatiques pour des rangs identiques. Elles sont codées par couleur et par rang ci-dessous."
   help: Aide
   help_confirm_observations!: Aider à confirmer les observations!
-  help_support_inaturalist: "Aider à soutenir iNaturalist "
   help_translate!: Aidez-nous à traduire !
   here_are_3_examples: Voici 3 exemples de données bien formées
   here_are_our_top_suggestions: Voici nos meilleures suggestions.
@@ -2156,6 +2154,56 @@ fr:
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   inaturalist_global_year_in_review: "Rétrospective de l'année %{year} de la communauté mondiale d'iNaturalist"
+  independence_email_subject: "Déployer nos ailes : iNaturalist devient indépendant"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: '%{name},'
+  independence_email_body_exciting_news: |
+    L'équipe d'iNaturalist a de bonnes nouvelles ! Nous avons le plaisir d'annoncer que, grâce au soutien de cette formidable communauté, iNaturalist est désormais un organisme sans but lucratif 501(c)(3) indépendant basé aux États-Unis.
+  independence_email_body_since_launching: |
+    Depuis le lancement d'iNaturalist en 2008, l'équipe et l'organisation ont évolué, et nous sommes ravis de franchir cette nouvelle étape. iNaturalist a d'abord été un projet de maîtrise à l'Université de Californie à Berkeley, puis est devenu une LLC avant de rejoindre la California Academy of Sciences en 2014. En 2017, iNaturalist est devenu une initiative conjointe de la California Academy of Sciences et de la National Geographic Society. Désormais, iNaturalist est une organisation indépendante.
+  independence_email_body_over_the_past: |
+    Au cours des 15 dernières années, les contributions incroyables de la communauté ont fait d'iNaturalist l'une des plateformes les plus influentes du monde dans le domaine de la nature.
+  independence_email_body_so_far: "Jusqu'à présent, la communauté iNaturalist a :"
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Créé plus de 146 000 000 d'observations vérifiables (environ 1 million par semaine !)
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Atteint 2,7 millions de contributeurs
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Observé 430 000 espèces
+  #Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    A été cité plus de 3 500 fois
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via le Système Mondial d'Information sur la Biodiversité (GBIF)</a>
+  independence_email_body_we_thank: |
+    Nous remercions la California Academy of Sciences et la National Geographic Society d'avoir permis à iNaturalist de se développer de manière spectaculaire au cours des 9 dernières années. Nous ressentons une immense gratitude envers ces partenaires pour leur engagement, leur appui et leur guidance. Nous nous réjouissons des collaborations que nous aurons avec ces deux organisations.
+  independence_email_body_the_way_html: |
+    <strong>La façon d'utiliser iNaturalist ne changera pas.</strong>
+    iNaturalist et Seek continueront à vous aider gratuitement à identifier la biodiversité et à resserrer les liens qui vous unissent avec le monde naturel. Cette nouvelle structure organisationnelle nous permettra de pérenniser iNaturalist pour les années à venir et permettra à la communauté iNaturalist de continuer encore longtemps à élargir nos connaissances collectives de la biodiversité. Nous continuerons à travailler en partenariat avec des organisations du monde entier pour porter le réseau iNaturalist.
+  independence_email_body_questions_html: |
+    Pour en savoir plus, nous vous invitons à vous reporter au <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">blog</a> et à consulter la <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Foire aux questions</a> (en anglais). Les <a
+    href="https://www.inaturalist.org/pages/terms">Conditions d'utilisation</a> et la <a
+    href="https://www.inaturalist.org/pages/privacy">Politique de confidentialité</a> ont été mises à jour pour refléter le nouveau statut de l'organisation.
+  independence_email_body_thank_you: Merci de faire partie de cette communauté.
+  #Signature section of an email. "Onward" is a bit unconventional in
+  #English, so feel free to translate as "Sincerely" or whatever seems
+  #appropriate in your language. Note that these are proper names of people
+  #on iNat staff.
+  independence_email_body_signature_html: |
+    Cordialement,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>L'équipe de direction d'iNaturalist</strong>
+  independence_email_body_ps: |
+    P.S. - Nous annoncerons bientôt une subvention généreuse qui permettra à l'organisme indépendant iNaturalist de prendre un départ sur des bases solides. Notre évolution n'aurait pas été possible sans le soutien financier de la communauté iNaturalist et cet appui restera vital pour la pérennité du projet. Faites un don maintenant pour célébrer avec nous l'étape que nous franchissons et pour assurer l'avenir d'iNaturalist. Merci !
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Faites un don maintenant
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -2238,7 +2286,6 @@ fr:
   inaturalist_activity_notifications: "Notifications d'activité sur %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Applications iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} est une initiative conjointe de la California Academy of Sciences et de la National Geographic Society."
   inaturalist_places: "Lieux d’%{site_name}"
   info: Info
   input_taxon: Entrer un taxon
@@ -2385,6 +2432,7 @@ fr:
     davawenyo: davawenyo
     dutch: Néerlandais
     english: Anglais
+    esperanto: Espéranto
     estonian: Estonien
     faroese: féroïen
     fijian: Fidjien
@@ -2654,7 +2702,7 @@ fr:
   managers_can_do: Les gestionnaires peuvent faire tout ce que font les responsables de l’organisation, ainsi que modifier les paramètres du projet et écrire des articles de journal pour le projet.
   managing_projects: Gestion des projets
   map: Carte
-  map_legend: Légende de la Carte
+  map_legend: Légende de la carte
   map_marker_size: taille du marqueur sur la carte
   map_of_observations: Carte des observations
   maps:
@@ -2690,8 +2738,6 @@ fr:
   meet: Rencontrer
   member_of_the_inaturalist_network_html: |
     Membre du <a href="%{url}">Réseau iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membre du %{partial_inat_network_tag_html}Réseau iNaturalist</a>, une initiative conjointe de %{cas_tag_html} et de %{nat_geo_tag_html}.
   #As in members of a project
   members: Membres
   membership_model: Modèle d’adhésion
@@ -3057,7 +3103,7 @@ fr:
   not_completed: Incomplet
   not_confident: Notre certitude n'est pas suffisante pour faire une recommandation.
   not_confident_top_suggestions: Notre niveau de certitude n'est pas suffisant pour faire une recommandation, mais voici nos meilleures suggestions.
-  not_covered_by_any_taxon_frameworks: Couvert par aucun cadre de taxon
+  not_covered_by_any_taxon_frameworks: Couvert par aucun cadre taxinomique
   not_evaluated: non évalué
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous voulez ?
   not_finding_place_you_want?: Vous n’avez pas trouvé le lieu que vous vouliez ?
@@ -3125,7 +3171,7 @@ fr:
   observation_brief_something_from_place_in_month_year_by_user: "%{place} : quelque chose en %{month} %{year} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
-  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} à %{time} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year: "%{taxon} en %{month} %{year}"
@@ -3424,7 +3470,7 @@ fr:
   photo: Photo
   photo_attribution: "Photo de %{attribution}"
   photo_browser: Navigateur de photos
-  photo_by_id_attribution: "Photo %{id}, de %{attribution}"
+  photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_credits: Crédits photos
   photo_deleted: Photo supprimée
   photo_destroyed_because_it_was_deleted_from: "Photo détruite, car elle a été supprimée sur le site externe ou %{site_name} n’a plus le droit de la voir"
@@ -4241,6 +4287,7 @@ fr:
   refresh: Rafraîchir
   refreshing: rafraîchissement en cours
   regenerate_stats: Regénérer les statistiques
+  regional_names: Noms régionaux
   register_for_this_event_at_x_html: "Inscrivez-vous à cette activité à %{x}"
   reject?: Refuser ?
   relative_observations: Observations relatives
@@ -4549,9 +4596,8 @@ fr:
   sites_affiliation_overview_you_can_continue_html: |
     Vous pouvez continuer à vous connecter par l'intermédiaire d'iNaturalist.org ou de votre site web du réseau. Peu importe votre affiliation, toutes vos données seront hébergées au même endroit et vous pourrez continuer à interagir avec la communauté internationale iNaturalist. Chaque compte iNaturalist ne peut être affilié qu'à un seul membre du réseau. Vous pouvez consulter ou modifier votre affiliation dans les %{start_tag_settings}paramètres de votre compte%{end_tag_settings}.
   sites_affiliation_title: En savoir plus sur l'affiliation au réseau
-  sites_network_cas_and_nat_geo_html: |
-    La %{start_tag_cas}California Academy of Sciences%{end_tag_cas} et la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} ont conclu des accords officiels 
-    avec des organisations dans chacune de ces zones géographiques pour encourager l'utilisation de la plateforme iNaturalist. <strong>Si votre organisation souhaite se joindre au réseau iNaturalist, vous trouverez plus de détails %{start_tag_join}ici%{end_tag_join}</strong>.
+  sites_network_agreements_html: |
+    iNaturalist dispose d'accords officiels avec des organisations dans chacune de ces zones géographiques pour soutenir l'utilisation de la plateforme iNaturalist. <strong>Si votre organisation souhaite se joindre au réseau iNaturalist, vous trouverez plus de détails %{start_tag_join}ici%{end_tag_join}.</strong>
   sites_network_consists_of: "Le réseau iNaturalist se compose de plusieurs organisations :"
   sites_network_inaturalist_network_collection: |
     Le réseau iNaturalist est un ensemble de sites Web localisés qui sont entièrement connectés à la communauté mondiale iNaturalist. Les sites du réseau sont soutenus par des institutions locales qui font la promotion à l'échelle locale et qui facilitent l'utilisation des données d'iNaturalist dans l'intérêt de la biodiversité locale. Dans leur zone géographique, ils ont accès aux coordonnées exactes qui sont automatiquement masquées pour le public afin de mieux protéger les espèces menacées.
@@ -4841,7 +4887,7 @@ fr:
   taxon_framework_notes: Notes du cadre taxonomique
   taxon_framework_relationship: Relation du cadre taxonomique
   taxon_framework_relationship_number: "Relation du cadre taxonomique %{number}"
-  taxon_framework_relationship_unknown_count_html: "Nombre inconnu de relation : %{count}"
+  taxon_framework_relationship_unknown_count_html: "Nombre de relations inconnues : %{count}"
   taxon_framework_relationships: Relations du cadre taxonomique
   taxon_framework_taxon: Taxon du cadre taxonomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
@@ -4876,7 +4922,7 @@ fr:
   taxon_ranks: Rangs des taxons
   taxon_removed_from_list: Taxon enlevé de la liste.
   taxon_scheme: Inventaire taxinomique
-  taxon_schemes: "Inventaire taxinomiques"
+  taxon_schemes: "Inventaires taxinomiques"
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
   taxon_split: séparation de taxon
@@ -5333,19 +5379,29 @@ fr:
   user_added_a_comment_html: "%{user} a ajouté un commentaire"
   user_added_a_fave_html: "%{user} a ajouté un favori"
   user_added_a_flag_html: "%{user} a ajouté un signalement"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} a ajouté un %{x}"
-  user_added_a_x_to_noun_by_html: "%{user} a ajouté une %{x} à %{noun} de %{by}"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{user} a ajouté @gender{m:un|une} %{x} à %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} a ajouté un %{x} à %{noun} par %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} a ajouté un %{x} à %{noun} par vous."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} a ajouté une %{x} à %{noun}"
   user_added_an_identification_html: "%{user} a ajouté une identification"
   user_added_an_observation_field_html: '%{user} a ajouté une valeur à « %{field_name} » pour une observation de %{owner}'
   user_added_an_observation_field_value_html: "%{user} a ajouté une valeur de champ d'observation"
   user_added_an_observation_html: "%{user} a ajouté une observation"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} a ajouté un %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} a ajouté une %{x} à %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} a ajouté un %{x} à %{noun} par %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} a ajouté un %{x} à %{noun} par vous"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} a ajouté une %{x} à %{noun}"
   user_added_x_observations_html: "%{user} a ajouté %{x} observations"
   user_already_authenticated: L'utilisateur est déjà authentifié
@@ -5526,7 +5582,7 @@ fr:
   video_tutorials: Tutoriels vidéo
   visually_similar: Visuellement semblable
   vulnerable: Vulnérable
-  w00t_no_ungrafted_taxa: Oups! Pas de taxons non greffés!
+  w00t_no_ungrafted_taxa: Hourra! Pas de taxons non greffés!
   w_photos_only: avec photos
   w_sounds: avec sons
   wait_file_generation: Veuiller patienter pendant que le fichier est généré. Cette action peut prendre quelques minutes pour les longues listes.
@@ -5587,6 +5643,7 @@ fr:
   white: blanc
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Pourquoi faites-vous ce changement ? (Facultatif)
+  why_are_you_making_this_change_cite_source_required: Pourquoi apportez-vous ce changement ? Veuillez expliquer et, si possible, citer une source. (Obligatoire)
   why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
   who_can_add_observation_fields_to_my_obs: Qui peut ajouter des champs d’observation à mes observations ?
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce projet ?
@@ -5698,10 +5755,10 @@ fr:
     entrer en contact avec la nature.
   yir_monthly_supporters_random_selection: |
     Voici une sélection aléatoire de membres héroïques de la communauté iNat qui font un don chaque mois.
-  yir_thank_your_for_being_generous: |
-    Nous vous remercions pour votre générosité, votre temps, votre attention, votre expertise et votre appui financier ! iNaturalist est une initiative conjointe sans but lucratif de la California Academy of Sciences et de la National Geographic Society. Le programme
+  yir_thank_your_for_being_generous2: |
+    Nous vous remercions pour votre générosité, votre temps, votre attention, votre expertise et votre appui financier ! iNaturalist est une organisation d'intérêt public sans but lucratif. Le programme
     est rendu possible par de nombreux dons et subventions, y compris des dons de bienfaisance
-    qui proviennent d'une infime fraction de la communauté. Nous sommes particulièrement reconnaissants aux personnes qui donnent chaque mois et dont le soutien récurrent nous aide à préparer l'avenir.
+    qui proviennent d'une infime fraction de la communauté. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois et dont le soutien récurrent nous aide à préparer l'avenir.
   yir_your_gift_sustains: |
     Grâce à votre don, ce programme peut avoir une portée mondiale ainsi que des impacts personnels et écologiques profonds.
   you: vous
@@ -5876,54 +5933,41 @@ fr:
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
       donate_short_desc: "Faites un don maintenant pour montrer que vous nous soutenez  !"
-      donate_desc_html: |
+      donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist est l'une des plus grandes communautés au monde consacrées à
-        l'exploration de la biodiversité. Je vous remercie de faire partie de ce groupe!</strong>
+        l'exploration de la biodiversité. Merci d'en faire partie !</strong>
         </p>
         <p class="lead">
-        Si vous croyez en la puissance de cette communauté mondiale des amoureux de la nature
-        pour partager les connaissances et générer des données irremplaçables sur la biodiversité,
-        merci d'envisager un cadeau unique ou récurrent en ligne, ou de voir <a
+        Si vous croyez en la capacité de cette communauté mondiale d'amoureux de la nature à échanger des connaissances et à générer des données irremplaçables sur la biodiversité,
+        merci d'envisager de faire un don ponctuel ou récurrent en ligne, ou d'envisager les <a
         href="https://www.inaturalist.org/pages/giving">autres façons de
         donner</a>.
         </p>
         <p class="lead">
-        Votre don aide à soutenir iNaturalist au fur et à mesure de la croissance de la communauté, de
-        à l'avancement de la vision informatique et à la mise en œuvre de nouvelles fonctionnalités à la prise en charge
-        de nos serveurs et de notre personnel.
+        La communauté grandit et votre don aide à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en œuvre de nouvelles fonctionnalités.
         </p>
         <p class="text-muted">
-        iNaturalist est une initiative conjointe de la California Academy of Sciences
-        et de la National Geographic Society. Tous les dons seront reçus par
-        la California Academy of Sciences, une organisation sans but lucratif exonérée d'impôt 501(c)(3)
-        basée aux États-Unis d'Amérique (ID: 94-1156258).
+        iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts
+        basée aux États-Unis d'Amérique (ID : 94-1156258).
         </p>
       post_donate_social_media_text: Je soutiens iNaturalist  parce que...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Devenir un soutien mensuel de iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: FAITES UN DON CHAQUE MOIS À INATURALIST
-        desc_html: |
+        desc3_html: |
           <p class="lead">
           <strong>iNaturalist est une des plus grandes communautés du monde dédiées
-          à l’exploration de la biodiversité. Merci à vous pour en faire partie !</strong>
+          à l’exploration de la biodiversité. Merci d'en faire partie !</strong>
           </p>
           <p class="lead">
-          Nous désirons garder iNaturalist libre à l’utilisation, mais il n’est pas gratuit
-          à mettre en œuvre. Si vous aimez iNaturalist, merci de songer à en devenir un
-          parrain mensuel. Les dons récurrents aident à assurer qu’iNaturalist pourra
-          continuer à faire évoluer son infrastructure et ses équipes en fournissant des
-          ressources suffisantes et prévisibles. Vous pouvez accepter d’afficher votre
-          statut de parrain régulier sur votre profil d’utilisateur.
+          Nous voulons que l'utilisation d'iNaturalist reste gratuite, mais son fonctionnement a un coût. Si vous aimez iNaturalist, merci d'envisager de faire un don chaque mois. Les dons récurrents apportent des ressources prévisibles qui permettent à iNaturalist de continuer à faire évoluer son infrastructure et ses équipes. Vous pouvez également afficher votre statut de parrain régulier sur votre profil d’utilisateur.
           </p>
           <p class="lead">
-          Vos dons charitables aident à soutenir la croissance de la communauté, depuis
-          la vision informatique avancée, la mise en oeuvre de nouvelles fonctionnalités
-          et la prise en charge de nos serveurs et le soutien de nos personnels. Si vous
-          préférez effectuer un don en une fois, veuillez <a href="%{donate_url}">cliquer ici</a>.
+          La communauté grandit et vos dons aident à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en œuvre de nouvelles fonctionnalités. Si vous préférez effectuer un don ponctuel, veuillez <a href="%{donate_url}">cliquer ici</a>.
           </p>
           <p class="text-muted">
-          iNaturalist est une initiative conjointe de la California Academy of Sciences et de la National Geographic Society'. Tous les dons seront reçus par la California Academy of Sciences, une organisation sans but lucratif exemptée de taxes aux États-Unis d’Amérique selon le code fiscal américain 501(c)(3).
+          iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts et basée aux États-Unis d’Amérique (ID : 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Merci de faire un don chaque mois !
         thank_you_for_being_a_monthly_supporter_caps: MERCI DE FAIRE UN DON CHAQUE MOIS !
@@ -6474,54 +6518,34 @@ fr:
           autre observation incluse dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
         quality_assessment_help2_html: |
-          <p>
-          L'évaluation de la qualité des données est un résumé de la précision d'une observation. Toutes les observations commencent au « <strong>Niveau informel</strong> ». Une observation passe au niveau « <strong>Identification nécessaire</strong> » quand :
+          <p>L'évaluation de la qualité des données est un résumé de la qualité d'une observation. Toutes les observations sont d'abord <strong>« informelles » </strong> et passent à <strong>« Nécessite une ID »</strong> quand :
           </p>
 
           <ul>
-          <li>l'observation a <strong>une date</strong>;</li>
-          <li>l'observation est <strong>géolocalisée</strong> (c.-à-d. qu'elle a des coordonnées de latitude et de longitude);</li>
-          <li>l'observation a <strong>une photo ou un son</strong>;</li>
-          <li>l'organisme observé <strong>n'est pas un être humain</strong>.</li>
+          	<li>L'observation a une <strong>date</strong>;</li>
+          	<li>L'observation est <strong>géolocalisée</strong> (c'est-à-dire qu'elle possède des coordonnées de latitude et longitude);</li>
+          	<li>L'observation comporte <strong>des photos ou des enregistrements audios</strong>;</li>
+          	<li>L'observation ne concerne pas un <strong>être humain</strong>.</li>
           </ul>
-          <p>
-          Les observations atteignent le « <strong>Niveau de recherche</strong> » quand :
+          <p>Les observations atteignent le <strong>« niveau de recherche »</strong> quand :
           </p>
           <ul>
-          <li>
-          la communauté %{site_name} <strong>s'accorde sur l'identification de l'espèce ou d'un taxon à un rang inférieur</strong>, c.-à-d. quand plus des deux tiers des identificateurs sont du même avis à propos d'un taxon (si la communauté a indiqué par un vote que le taxon de la communauté ne pouvait pas être amélioré, l'identification nécessaire passe au rang de la sous-famille ou inférieur);
-          </li>
+          	<li>La communauté %{site_name} s'accorde sur l'identification de l'espèce ou d'un taxon inférieur, c'est-à-dire lorsque plus des deux tiers des identificateurs sont d'accord sur un taxon (si la communauté a voté que le taxon de la communauté ne peut plus être amélioré, le niveau repasse à la sous-famille ou inférieur).</li>
           </ul>
-          <p>
-          Les observations repassent au « <strong>Niveau informel</strong> » si les conditions ci-dessus ne sont pas remplies ou si la communauté s'accorde à ce propos.
+          <p>Les observations redeviennent <strong>« informelles »</strong> si les conditions ci-dessus ne sont pas remplies ou si la communauté s'accorde sur le fait que :
           </p>
           <ul>
-          <li>
-          la <strong>localisation ne semble pas exacte</strong> (des singes au milieu de l’océan, un hippopotame dans des bureaux, etc.);
-          </li>
-          <li>
-          l'<strong>organisme n'est pas sauvage ou naturalisé</strong> (il est en captivité ou cultivé par des être humains ou une espèce extraterrestre intelligente);
-          </li>
-          <li>
-          l'observation <strong>ne montre aucun signe d'un organisme</strong>, p. ex. des images de pièces d'eau, de pierres, de paysages, etc., qui ne contiennent pas l'organisme;
-          </li>
-          <li>
-          l'observation <strong>ne montre aucun signe récent (~100 ans) de l'organisme</strong> (p. ex. un fossile; en revanche, les empreintes, les excréments et les feuilles mortes ne posent pas de problème);
-          </li>
-          <li>
-          l'observation n'a plus besoin d'une identification <em>et</em> l'identification de la communauté a un rang supérieur à la famille;
-          </li>
-          <li>
-          l’observateur a refusé l’identification de la communauté et le taxon de cette dernière n’est pas un parent ni un descendant du taxon de l'identification de l’observateur.
-          </li>
+          	<li>La <strong>localisation ne semble pas exacte</strong> (par exemple, des singes dans l'océan, des hippopotames dans un immeuble de bureaux);</li>
+          	<li>L'organisme n'est pas <strong>sauvage/naturalisé</strong> (par exemple, l'organisme est captif ou cultivé par des êtres humains ou extraterrestres);</li>
+          	<li>L'observation ne présente pas de <strong>preuve d'existence de l'organisme</strong>, par exemple photos d'étendues d'eau, de rochers, de paysages qui n'incluent pas l'organisme, etc. ;</li>
+          	<li>L'observation ne présente pas de <strong>preuve récente (~100 ans) de l'existence de l'organisme</strong> (par exemple, des fossiles ; en revanche, les empreintes, les excréments et les feuilles mortes sont des preuves d'existence acceptables) ;</li>
+          	<li>L'observation n'a plus besoin d'une identification <em>et</em> l'identification de la communauté est au niveau de la famille ou supérieur;</li>
+          	<li>L'observateur ou l'observatrice a refusé l'identification de la communauté et le taxon de l'identification de la communauté n'est ni un parent ni un descendant du taxon associé à l'identification.</li>
           </ul>
-          <p>
-          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système a voix au chapitre :
+          <p>Et, comme si cela ne suffisait pas, il y a aussi des situations dans lesquelles le système a un avis :
           </p>
           <ul>
-          <li>
-          Le système indique que l’observation ne concerne pas un organisme sauvage ou naturalisé s’il y a au moins 10 autres observations d'organismes de ce genre ou d'un rang inférieur dans la région ou, à défaut, l’état ou le pays de cette observation, et que, dans au moins 80 % des cas, ces organismes ont été marqués comme en captivité ou cultivés.
-          </li>
+          	<li>Le système considère que l'observation ne concerne pas un organisme <strong>sauvage/naturalisé</strong> s'il y a au moins 10 autres observations du genre ou d'un taxon inférieur dans la région ou, à défaut, l'État ou le pays et qu'au moins 80 % de ces organismes ont été marqués comme non sauvages/non naturalisés.</li>
           </ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
@@ -6748,8 +6772,8 @@ fr:
           laisser les drapeaux de violation du droit d’auteur comme étant non résolues si cette photo
           viole les droits d’auteur.
     places:
-      kml_field_desc2: |
-        Fichier KML des limites géographiques du lieu. Vous pouvez le créer en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Doit contenir au moins un polygone, peser moins de 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une surface plus petite que l’état du Texas (États-Unis).
+      kml_field_desc3: |
+        Fichier KML des limites géographiques du lieu. Vous pouvez le créer en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Il doit contenir au moins un polygone, peser moins de 1 Mo (5 Mo pour les responsables de l’organisation du site), et représenter une surface inférieure à 700.000 km² environ (soit à peu près la surface de la Somalie ou bien du Texas aux États-Unis).
       edit:
         complex_boundary_note_html: |
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
@@ -7164,15 +7188,8 @@ fr:
           Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte représente l'année en cours, la barre blanche l'année dernière, et les zones de fond gris les années les plus basses et les plus élevées, ainsi que la moyenne de toutes les années.
         compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
-        donate_desc_html: |
-          Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et
-          vos dons! iNaturalist est une initiative conjointe sans but lucratif de la California Academy of Sciences et de la National Geographic Society.
-          Le projet est porté par une
-          <a href="%{team_url}">petite équipe</a> qui
-          s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et
-          <a href="%{seek_url}">Seek by iNaturalist</a>, et qui gère
-          l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide!). Le programme existe grâce à de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez
-          faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist jusqu'à présent!
+        donate_desc2_html: |
+          Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et vos dons ! iNaturalist est une organisation 501(c)3 sans but lucratif, basée aux États-Unis. Le projet est porté par une <a href="%{team_url}">petite équipe</a> qui s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et <a href="%{seek_url}">Seek by iNaturalist</a>, et qui gère l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide !). Le programme est rendu possible par de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist à ce jour !
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Notre objectif est d'atteindre 1000 donateurs récurrents par mois
         inaturalist_network: Réseau iNaturalist
@@ -7290,29 +7307,20 @@ fr:
       show:
         about_names_desc: |
           <p>
-          La plupart des catégories d’organismes ont des « noms communs » dans les langues
-          parlées. Ces noms sont reconnus couramment, faciles à prononcer,
-          et stables dans le temps, mais de nombreux organismes ont plusieurs noms
-          différents selon les endroits, même dans la même langue, ce qui peut rendre
-          difficile une communication claire sur ces organismes.
-          Les scientifiques résolvent ce problème en utilisant un « nom scientifique »
-          unique pour chaque catégorie d’organisme, qui se conforme aux règles de
-          <a href="https://fr.wikipedia.org/wiki/Nom_binominal">la nomenclature biologique</a>,
-          mais ces noms sont en général basés sur le latin, une langue que plus personne
-          ne parle, et ne sont donc pas mémorisables comme les noms communs pour la plupart d'entre nous. Les noms scientifiques peuvent aussi refléter l’emplacement taxinomique
-          d’un organisme, donc ils peuvent changer quand les scientifiques développent des théories
-          plus précises sur les relations d’évolution entre différents organismes, réduisant
-          encore l’utilité dans la communication, même parmi les personnes qui connaissent
-          les noms scientifiques.
+          La plupart des catégories d’organismes ont des noms « communs » dans les langues parlées. Ces noms sont en général connus, faciles à prononcer et stables dans le temps, mais de nombreux organismes ont plusieurs noms différents selon les endroits, même dans la même langue, ce qui peut rendre difficile une communication claire sur ces organismes.
+          Les scientifiques résolvent ce problème en utilisant pour chaque catégorie d’organisme un « nom scientifique » unique conforme aux règles de la <a href="https://fr.wikipedia.org/wiki/Nom_binominal">nomenclature biologique</a>, mais ces noms sont en général basés sur le latin, une langue que plus personne ne parle et, pour la plupart d'entre nous, il n'est donc pas aussi facile de les retenir que les noms communs. Les noms scientifiques peuvent aussi refléter le placement taxinomique d’un organisme. Ils peuvent donc changer quand les scientifiques développent des théories plus exactes sur les relations d’évolution entre différents organismes, ce qui réduit encore l’utilité des noms scientifiques dans la communication, même parmi les personnes qui les connaissent.
           </p>
           <p>
-          Le vieil adage le résume bien : « Les noms communs changent de lieu en
-          lieu, les noms scientifiques changent de temps en temps. »
+          Le vieil adage le résume bien : « Les noms communs changent de lieu en lieu, les noms scientifiques changent de temps en temps. »
           </p>
           <p>
-          Nous essayons de corriger ces lacunes en affichant à la fois les noms
-          communs et scientifiques quand c’est possible, et en choisissant des noms communs
-          basés sur la langue et les préférences géographiques du lecteur.
+          Nous essayons de remédier à ces inconvénients en affichant quand c’est possible à la fois les noms commun et scientifique, et en choisissant des noms communs basés sur la langue et les préférences géographiques du lecteur. Les noms sont classés en fonction de leur priorité globale dans chaque langue/type.</p>
+        about_regional_names_desc: |
+          <p>
+          Des noms peuvent être associés à des endroits (généralement des pays) dans les cas où des régions ou pays différents utilisent des noms communs différents dans la même langue. Par exemple, le Mexique et le Costa Rica peuvent avoir des noms différents en espagnol pour la même espèce.
+          </p>
+          <p>
+          Ce tableau montre quels noms ont été associés à quels endroits. Les noms sont classés par ordre de priorité pour chaque endroit. Si deux noms espagnols sont ajoutés au Mexique, celui listé en premier apparaîtra si vous préférez voir les noms espagnols ajoutés au Mexique.
           </p>
         about_conservation_status_desc: |
           L’état de conservation synthétise le risque d’extinction d’un groupe d’organismes.
@@ -7599,9 +7607,7 @@ fr:
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
         monthly_supporter_desc_html: |
-          Les personnes qui soutiennent iNaturalist en faisant chaque mois un don automatique à la California Academy of Sciences (code fiscal des États-Unis IRS EIN 94-1156258) appuient les activités à but non lucratif d’iNaturalist et les sites du réseau iNaturalist.
-          <a href="%{url}">Cliquez ici pour faire un don mensuel</a>.
-          Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, changez-en une.
+          L'existence et le fonctionnement d'iNaturalist ne sont possibles que grâce au soutien des personnes qui font chaque mois un don automatique (code fiscal des États-Unis IRS EIN 94-1156258) pour appuyer ses activités sans but lucratif et les sites du réseau iNaturalist. <a href="%{url}">Cliquez ici pour faire un don mensuel</a>. Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, veuillez en changer une.
         muting_desc_html: |
           <p>
           Passer quelqu’un en mode muet vous évite de recevoir des notifications sur ce
@@ -7991,7 +7997,7 @@ fr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b, %k h %M min'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      compact: "%I:%M %p"
+      compact: "%k:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8188,6 +8194,7 @@ fr:
         position: Position
         source_url: URL source
         source_identifier: Identifiant source
+        audit_comment: Note
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8427,6 +8434,8 @@ fr:
               bad_format: |
                 ne peut contenir que des caractères standards latins, des tirets, des espaces, et 
                 ×; notez que les taxons et cultivars putatifs ne sont pas autorisés
+            audit_comment:
+              needs_to_be_at_least_10_characters: doit compter au moins 10 caractères
         taxon_photo:
           attributes:
             taxon:
@@ -8450,16 +8459,9 @@ fr:
           attributes:
             base:
               user_already_blocked: Vous avez déjà bloqué cet utilisateur
-              user_cannot_be_staff: |
-                Vous ne pouvez pas bloquer le personnel. Les membres de l'équipe iNat doivent pouvoir
-                communiquer avec tout le monde sur iNat, avoir accès à toutes les données sur
-                iNat, et sont les médiateurs ultimes des différends, donc les bloquer
-                ne les empêchera pas de communiquer avec vous. Si vous avez un problème
-                avec un membre du personnel, veuillez le signaler à l'un des
-                codirecteurs iNat, ou, si vous avez un problème avec l'un des
-                codirecteurs, vous pouvez contacter le directeur scientifique à l’Institut
-                de Biodiviersité et de Science de la durabilité à la
-                California Academy of Sciences.
+              user_cannot_be_staff2: |
+                Vous ne pouvez pas bloquer les membres de l'équipe. L'équipe iNat doit être en mesure de
+                communiquer avec tout le monde et avoir accès à toutes les données sur iNat. Ses membres assurent la médiation en cas de différend. Les bloquer ne les empêchera pas de communiquer avec vous.
         user_parent:
           attributes:
             email:
