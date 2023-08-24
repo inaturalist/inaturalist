@@ -34,7 +34,7 @@
     [class*="header_"] {
       margin: 0 10px;
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
     }
     width: 100%;
     img {
@@ -202,7 +202,7 @@ a.UserImage,
   }
   display: inline-block;
   border-radius: 120px;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   min-width: 40px;
   width: 48px;
   height: 48px;
@@ -431,7 +431,7 @@ a.UserImage,
                   border: 2px solid $inat-green;
                 }
                 & + .image-gallery-thumbnail {
-                  margin-left: 4px;
+                  margin-inline-start: 4px;
                 }
                 .loading_spinner {
                   margin-left: 0;
@@ -891,7 +891,7 @@ time {
     }
   }
   .standard {
-    padding-right: 15px;
+    padding-inline-end: 15px;
   }
   .top_info,
   .places,
@@ -951,6 +951,12 @@ time {
         }
       }
     }
+  }
+}
+
+[dir="rtl"] .MapDetails{
+  .standard, .community {
+    float: right;
   }
 }
 
@@ -1379,7 +1385,7 @@ time {
     .UserWithIcon {
       padding-right: 15px;
       .icon {
-        margin-right: 5px;
+        margin-inline-end:  5px;
       }
       .title {
         font-size: 14px;
@@ -1395,7 +1401,7 @@ time {
         margin-top: 4px;
         i {
           font-size: 12px;
-          margin-right: 3px;
+          margin-inline-end: 3px;
         }
       }
     }
@@ -1585,6 +1591,14 @@ time {
       .separator {
         margin: 0px 5px;
       }
+    }
+  }
+}
+
+[dir="rtl"] .CommunityIdentification {
+  .info {
+    .photo{
+      float: left;
     }
   }
 }
@@ -2136,11 +2150,11 @@ time {
   margin-top: 23px;
   .previous {
     float: left;
-    padding-right: 3px;
+    padding-inline-end: 3px;
   }
   .next {
     float: left;
-    padding-left: 2px;
+    padding-inline-start: 2px;
   }
   .previous, .next {
     display: inline-block;
@@ -2156,12 +2170,22 @@ time {
       cursor: not-allowed;
     }
     &:not(:first-child) {
-      margin-left: 8px;
+      margin-inline-start: 8px;
     }
     .fa {
       font-size: 14px;
       color: white;
     }
+  }
+}
+
+[dir="rtl"] .PreviousNextButtons {
+  float: left;
+  .previous {
+    float: right;
+  }
+  .next {
+    float: right;
   }
 }
 
@@ -2264,7 +2288,7 @@ time {
       position: absolute;
       font-size: 14px;
       bottom: -6px;
-      right: -9px;
+      inset-inline-end: -9px;
       background: white;
       padding: 1px 2px;
       border-radius: 40px;
@@ -2346,14 +2370,15 @@ body > [role="dialog"] .easyzoom > a > img {
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding: 2px 0px 1px 10px;
+  padding-block: 2px 1px;
+  padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
   z-index: 1;
-  margin-right: 20px;
+  margin-inline-end: 20px;
   // added
-  margin-left: 10px;
+  margin-inline-start: 10px;
   vertical-align: text-bottom;
 }
 .quality_grade:after {
@@ -2362,9 +2387,9 @@ body > [role="dialog"] .easyzoom > a > img {
   display: block;
   bottom: 0;
   border: 10px solid $border-grey;
-  border-right-width: 5px;
-  border-right-color: transparent;
-  right: -15px;
+  border-inline-end-width: 5px;
+  border-inline-end-color: transparent;
+  inset-inline-end: -15px;
   z-index: -1;
 }
 .quality_grade.needs_id {
@@ -2373,7 +2398,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.needs_id:after {
   border-color: $needs-id-yellow;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 .quality_grade.research {
   background-color: $inat-green;
