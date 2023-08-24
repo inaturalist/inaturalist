@@ -1,47 +1,51 @@
-/* eslint-disable */
+/* global _ */
+/* global angular */
+/* global iNatAPI */
+/* global iNatModels */
+/* global CURRENT_USER */
 
-iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
-  var show = function( id, params ) {
+iNatAPI.factory( "ObservationsFactory", ["shared", function ( shared ) {
+  var show = function ( id, params ) {
     var url = "<%= CONFIG.node_api_url %>/observations/" + id;
-    if( params ) { url += "?" + $.param(params); }
+    if ( params ) { url += "?" + $.param( params ); }
     return shared.basicGet( url, { cache: true } );
   };
-  var search = function( params ) {
+  var search = function ( params ) {
     var url = "<%= CONFIG.node_api_url %>/observations";
-    if( params ) { url += "?" + $.param(params); }
+    if ( params ) { url += "?" + $.param( params ); }
     return shared.basicGet( url );
   };
-  var speciesCounts = function( params ) {
+  var speciesCounts = function ( params ) {
     var url = "<%= CONFIG.node_api_url %>/observations/species_counts";
-    if( params ) { url += "?" + $.param(params); }
+    if ( params ) { url += "?" + $.param( params ); }
     return shared.basicGet( url );
   };
-  var identifiers = function( params ) {
+  var identifiers = function ( params ) {
     var url = "<%= CONFIG.node_api_url %>/observations/identifiers";
-    if( params ) { url += "?" + $.param(params); }
+    if ( params ) { url += "?" + $.param( params ); }
     return shared.basicGet( url );
   };
-  var observers = function( params ) {
+  var observers = function ( params ) {
     var url = "<%= CONFIG.node_api_url %>/observations/observers";
-    if( params ) { url += "?" + $.param(params); }
+    if ( params ) { url += "?" + $.param( params ); }
     return shared.basicGet( url );
   };
-  var responseToInstances = function( response ) {
-    if( !( response && response.data && response.data.results ) ) {
+  var responseToInstances = function ( response ) {
+    if ( !( response && response.data && response.data.results ) ) {
       return { };
     }
-    return _.map( response.data.results, function( r ) {
+    return _.map( response.data.results, function ( r ) {
       return new iNatModels.Observation( r );
-    });
+    } );
   };
   // Convert an object literal of observation API parameters to keys and
   // values suitable for submission to the observations API endpoints
-  var processParamsForAPI = function( p, possibleFields ) {
+  var processParamsForAPI = function ( p, possibleFields ) {
     var params = _.extend( { }, this.processParams( p, possibleFields ) );
-    if( params.place_id == "any" ) {
+    if ( params.place_id === "any" ) {
       delete params.place_id;
     }
-    if( p.per_page ) { params.per_page = p.per_page; }
+    if ( p.per_page ) { params.per_page = p.per_page; }
     return params;
   };
   // Normalizes an object literal of observation query parameters into
@@ -49,96 +53,96 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
   // API. Since how params are displayed to the user will be controller-
   // specific, see the controllers for implementations (e.g.
   // updateBrowserLocation in ObservationsSearch.SearchController)
-  var processParams = function( p, possibleFields ) {
+  var processParams = function ( p, possibleFields ) {
     var params = _.extend( { }, p );
     // deal with iconic taxa
-    var keysToDelete = [ "taxon_name" ];
-    if( params._iconic_taxa ) {
-      var iconic_taxa = [ ];
-      angular.forEach( params._iconic_taxa, function( selected, name ) {
-        if( selected ) {
-          iconic_taxa.push( name )
+    var keysToDelete = ["taxon_name"];
+    if ( params.iconic_taxa_hash ) {
+      var iconicTaxa = [];
+      angular.forEach( params.iconic_taxa_hash, function ( selected, name ) {
+        if ( selected ) {
+          iconicTaxa.push( name );
         }
-      });
-      if( iconic_taxa.length > 0 ) {
-        params.iconic_taxa = iconic_taxa;
+      } );
+      if ( iconicTaxa.length > 0 ) {
+        params.iconic_taxa = iconicTaxa;
       } else {
-        params.iconic_taxa = [ ];
+        params.iconic_taxa = [];
       }
-      keysToDelete.push( "_iconic_taxa" );
+      keysToDelete.push( "iconic_taxa_hash" );
     }
     // date types
     // this looks and feels horrible, but I'm not sure what the angular way of doing it would be
-    switch( params.dateType ) {
-      case 'exact':
-        keysToDelete = keysToDelete.concat([ "d1", "d2", "month" ]);
+    switch ( params.dateType ) {
+      case "exact":
+        keysToDelete = keysToDelete.concat( ["d1", "d2", "month"] );
         break;
-      case 'range':
-        keysToDelete = keysToDelete.concat([ "on", "month" ]);
+      case "range":
+        keysToDelete = keysToDelete.concat( ["on", "month"] );
         break;
-      case 'month':
-        keysToDelete = keysToDelete.concat([ "on", "d1", "d2" ]);
+      case "month":
+        keysToDelete = keysToDelete.concat( ["on", "d1", "d2"] );
         break;
       default:
-        keysToDelete = keysToDelete.concat([ "on", "d1", "d2", "month" ]);
+        keysToDelete = keysToDelete.concat( ["on", "d1", "d2", "month"] );
     }
     keysToDelete.push( "dateType" );
-    switch( params.createdDateType ) {
-      case 'exact':
-        keysToDelete = keysToDelete.concat([ "created_d1", "created_d2" ]);
+    switch ( params.createdDateType ) {
+      case "exact":
+        keysToDelete = keysToDelete.concat( ["created_d1", "created_d2"] );
         break;
-      case 'range':
-        keysToDelete = keysToDelete.concat([ "created_on" ]);
+      case "range":
+        keysToDelete = keysToDelete.concat( ["created_on"] );
         break;
-      case 'month':
-        keysToDelete = keysToDelete.concat([ "created_on", "created_d1", "created_d2" ]);
+      case "month":
+        keysToDelete = keysToDelete.concat( ["created_on", "created_d1", "created_d2"] );
         break;
       default:
-        keysToDelete = keysToDelete.concat([ "created_on", "created_d1", "created_d2" ]);
+        keysToDelete = keysToDelete.concat( ["created_on", "created_d1", "created_d2"] );
     }
     keysToDelete.push( "createdDateType" );
     if ( params.observationFields ) {
       // remove all existing observation field params
-      _.each( _.keys( params ), function( k ) {
+      _.each( _.keys( params ), function ( k ) {
         if ( k.match( /field:.+/ ) ) {
-          delete params[ k ];
+          delete params[k];
         }
-      })
+      } );
       // add the ones that are actually in the scope
-      _.each( params.observationFields, function( v, k ) {
+      _.each( params.observationFields, function ( v, k ) {
         params[k] = v || "";
-      });
+      } );
       // make sure we don't keep around this stuff from the scope
       keysToDelete.push( "observationFields" );
     }
-    if( possibleFields ) {
+    if ( possibleFields ) {
       var unknownFields = _.difference( _.keys( params ), possibleFields );
-      _.each( unknownFields, function( f ) {
+      _.each( unknownFields, function ( f ) {
         if ( !f.match( /field:.+/ ) ) {
-          delete params[ f ];
+          delete params[f];
         }
-      });
+      } );
     }
-    _.each( _.keys( params ), function( k ) {
-      if( k == "verifiable" ) { return; }
+    _.each( _.keys( params ), function ( k ) {
+      if ( k === "verifiable" ) { return; }
       // _.isEmpty returns true for ints and floats
-      if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )
-          && !_.isNumber( params[ k ] ) ) {
+      if ( _.isEmpty( params[k] ) && !_.isBoolean( params[k] )
+          && !_.isNumber( params[k] ) ) {
         keysToDelete.push( k );
       }
-    });
-    _.each( keysToDelete, function( k ) {
+    } );
+    _.each( keysToDelete, function ( k ) {
       if ( !k.match( /field:.+/ ) ) {
-        delete params[ k ];
+        delete params[k];
       }
-    });
+    } );
     // use the current user's id as the basis for the `reviewed` param
-    if( params.reviewed !== undefined && !params.viewer_id && CURRENT_USER ) {
+    if ( params.reviewed !== undefined && !params.viewer_id && CURRENT_USER ) {
       params.viewer_id = CURRENT_USER.id;
     }
     return params;
   };
-  var hasSpatialParams = function( params ) {
+  var hasSpatialParams = function ( params ) {
     return params.place_id || params.latitude || params.lat || params.swlat;
   };
   return {
@@ -152,4 +156,4 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
     processParamsForAPI: processParamsForAPI,
     hasSpatialParams: hasSpatialParams
   };
-}]);
+}] );
