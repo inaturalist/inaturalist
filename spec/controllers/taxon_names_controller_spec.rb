@@ -91,7 +91,7 @@ describe TaxonNamesController do
       ).any? ).to eq true
     end
 
-    it "should not update names when there is no audit_comment" do
+    it "should not update some name attributes when there is no audit_comment" do
       tn = create :taxon_name, creator: user, lexicon: TaxonName::ENGLISH
       expect( tn.lexicon ).not_to eq TaxonName::SCIENTIFIC_NAMES
       sign_in user
@@ -101,6 +101,33 @@ describe TaxonNamesController do
       } }
       tn.reload
       expect( tn.lexicon ).not_to eq TaxonName::SCIENTIFIC_NAMES
+    end
+
+    it "does not require audit comment if only position is changed" do
+      tn = create :taxon_name, creator: user, lexicon: TaxonName::ENGLISH, position: 1
+      sign_in user
+      put :update, params: { id: tn.id, taxon_name: {
+        position: 2,
+      } }
+      tn.reload
+      expect( tn.position ).to eq 2
+    end
+
+    it "does not require audit comment if only place name position is changed" do
+      tn = create :taxon_name, creator: user, lexicon: TaxonName::ENGLISH, position: 1
+      place = make_place_with_geom
+      ptn = PlaceTaxonName.make!( place: place, taxon_name: tn )
+      sign_in user
+      put :update, params: { id: tn.id, taxon_name: {
+        place_taxon_names_attributes: {
+          "0": {
+            id: ptn.id,
+            position: 2
+          }
+        }
+      } }
+      ptn.reload
+      expect( ptn.position ).to eq 2
     end
   end
 

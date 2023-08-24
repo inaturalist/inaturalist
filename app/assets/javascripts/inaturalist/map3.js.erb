@@ -1,4 +1,4 @@
-(function(){
+var loadMap3 = function(){
 /**
  * iNaturalist map object
  * Copyright (c) iNaturalist, 2007-2008
@@ -11,7 +11,6 @@
 
 // requires GoogleMap classes
 if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
-  console.log( "The Google Maps libraries must be loaded to use the iNaturalist Map extensions." );
   return;
 }
 
@@ -1392,8 +1391,6 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
   iw.position = latLng;
   iw.setContent( content );
   iw.open( this );
-  // make sure the InfoWindow has focus
-  $( iw ).focus( );
   // remove any text highlighting, which happens when the user clicks around
   deselectText( );
   // setting infoWindowOpenTime to prevent rapid window toggling
@@ -1470,6 +1467,10 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
 }
 
 
+};
+
+( function( ) {
+  loadMap3( );
 })();
 
 function markerObscuredRectangle( marker, shapeOptions ) {

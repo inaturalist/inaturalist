@@ -1,15 +1,56 @@
 @import "../colors";
 @import "../shared/loading_spinner";
 
-#map {
-  height: 600px;
+.TaxonMap {
+  height: 500px;
 }
 
 #TaxonGeoExplain {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  width: 100%;
   min-width: 980px;
-  padding: 0px 30px;
+}
+
+.bootstrap h1 {
+  font-size: 30px;
+  .SplitTaxon {
+    font-weight: 300;
+    margin-left: 8px;
+    &.taxon.has-com-name > .secondary-name,
+    &.taxon a {
+      color: #1A1A1A;
+    }
+  }
+}
+
+.bootstrap strong {
+  font-weight: 600;
+}
+
+.tab-description {
+  font-size: 16px;
+  line-height: 1.8em;
+  margin-top: 30px;
+  .row + .row {
+    margin-top: 20px;
+  }
+  .row.color-legend, .row.stat-description {
+    margin-top: 5px;
+  }
+}
+
+.figure {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #333;
+  line-height: 200px;
+  text-align: center;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  display: inline-block;
+  top: 4px;
+  position: relative;
+  margin-right: 6px;
 }

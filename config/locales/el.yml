@@ -95,9 +95,6 @@ el:
   x_species_link_html:
     one: "<a href='%{url}'>1 είδος</a>"
     other: "<a href='%{url}'>%{count} είδη</a>"
-  x_suggestions_filtered_by_colon:
-    one: "Πρόταση φιλτραρισμένη από:"
-    other: "Προτάσεις φιλτραρισμένες από:"
   x_taxa:
     one: "%{count}ταξινομική μονάδα"
     other: "%{count}ταξινομικές μονάδες"
@@ -110,9 +107,6 @@ el:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> παρατήρηση ερευνητικού επιπέδου ταυτοποιήθηκε σε επίπεδο είδους ή χαμηλότερα"
     other: "<span class='count'>%{count}</span> παρατηρήσεις ερευνητικού επιπέδου ταυτοποιήθηκαν σε επίπεδο είδους ή χαμηλότερα"
-  x_sounds:
-    one: "ήχος"
-    other: "ήχοι"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> ταξινομική μονάδα επιμελήθηκε"
     other: "<span class='count'>%{count}</span> οι ταξινομικές μονάδες επιμελήθηκαν"
@@ -772,13 +766,7 @@ el:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: διάσπαση σε
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: συγχώνευση σε
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: συγχωνεύτηκε με
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: αντικαταστάθηκε από
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: αντικατάστησε με
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: αντικαταστάθηκε με
     dropped: εγκαταλείφθηκε
@@ -1009,7 +997,7 @@ el:
   copyright_infringement: Παραβίαση Δικαιωμάτων Δημιουργού
   copyright_infringement_desc: Παραβιάζει τον νόμο περί πνευματικών δικαιωμάτων ή δημιουργός είναι κάποιος άλλος και όχι ο παρατηρητής και στερείται αναφοράς στον δημιουργό
   covered_by_a_taxon_framework_html: "Καλύφθηκε από %{link}"
-  covered_by_a_taxon_framework_link: "Πλαίσιο Ταξινομικής Βαθμίδας για %{taxon_framework_rank}"
+  covered_by_a_taxon_framework_link: "Πλαίσιο ταξινομικής μονάδας για %{taxon_framework_rank}%{taxon_framework_name}"
   couldnt_change_your_password: "Δεν μπορεί να αλλάξει ο κωδικός:%{e}"
   couldnt_find_a_user_matching_x_param: "Δεν ήταν δυνατή η εύρεση χρήστη που να ταιριάζει με %{id}"
   couldnt_find_that_taxon: Δεν ήταν δυνατή η εύρεση ταξινομικής ομάδας.
@@ -1426,7 +1414,6 @@ el:
   email: Διεύθυνση ηλ. ταχυδρομείου
   email_description: Το email σας δεν κοινοποιείται στους άλλους χρήστες στο iNaturalist
   email_address_for_comments_and_other_feedback: Διευθύνσεις email για σχόλια και άλλη ανατροφοδότηση.
-  email_copyright: "Πνευματικά δικαιώματα &copy; %{x}, όλα τα δικαιώματα κατοχυρωμένα"
   email_notifications: Ειδοποιήσεις Email
   embed: 'Ενσωμάτωση'
   embed_place_widget: Ενσωματωμένο widget τόπου
@@ -1721,7 +1708,6 @@ el:
   heads_up_you_have_multiple: "Προσοχή: Έχετε πολλαπλές ταξινομικές μηχανικές ετικέτες για πανομοιότυπες κατατάξεις. Είναι κωδικοποιημένα με βάση τα χρώματα ανάλογα με την κατάταξή τους."
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
-  help_support_inaturalist: "Βοήθησε στην υποστήριξη του iNaturalist!"
   help_translate!: Βοηθήστε στη Μετάφραση!
   here_are_3_examples: Ορίστε 3 παραδείγματα από καλοσχηματισμένα δεδομένα
   here_are_our_top_species_suggestions: Εδώ είναι η προτεινόμενη λίστα των κορυφαίων μας ειδών
@@ -1835,7 +1821,6 @@ el:
   inaturalist_activity_notifications: "%{site_name} Ειδοποιήσεις Δραστηριότητας"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Εφαρμογές iNaturalist"
-  inaturalist_is_a_joint_initiative: "Το %{site_name} είναι μια κοινή πρωτοβουλία του California Academy of Sciences και του National Geographic Society."
   inaturalist_places: "Τόποι του %{site_name}"
   info: Πληροφορίες
   input_taxon: Εισάγετε ταξινομική βαθμίδα
@@ -2169,8 +2154,6 @@ el:
   meet: Συναντηθείτε
   member_of_the_inaturalist_network_html: |
     Μέλη του <a href="%{url}">Δικτύου του iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Μέλος του%{partial_inat_network_tag_html} δικτύου iNaturalist</a>, μια κοινή πρωτοβουλία του %{cas_tag_html} και του%{nat_geo_tag_html}.
   #As in members of a project
   members: Μέλη
   membership_model: Μοντέλο συμμετοχής ως μέλος
@@ -3324,9 +3307,6 @@ el:
   project_was_successfully_updated: Το πρότζεκτ ενημερώθηκε επιτυχώς.
   project_x_was_delete: "%{project} διαγράφηκε (παρακαλούμε αφήστε μερικά λεπτά να περάσουν μέχρι να αφαιρεθεί από την ιστοσελίδα)"
   projects: Πρότζεκτ
-  projects_description: |
-    Η μελέτη σε αφήνει να μοιράζεσαι τις παρατηρήσεις σου με άλλους ανθρώπους στο.
-    Είτε ξεκινάς την προσπάθεια στην επιστήμη των πολιτών είτε παρατηρείς προσεκτικά τα πουλία στην γειτονία σου, η μελέτη είναι η κατάλληλη μέθοδος.
   #@vow_or_con should work on %{place}
   projects_from_place: "Πρότζεκτ από %{place}"
   #"admins" is equivalent to "administrates"
@@ -4046,8 +4026,6 @@ el:
     Τα παρακάτω είδη δεν βρέθηκαν στη βάση δεδομένων του %{site_name}.
   the_title_of_the_wikipedia_article_we_use: |
     Ο τίτλος από το άρθρο της Wikipedia που χρησιμοποιούμε για την περιγραφή. Εάν η διεύθυνση URL της Wikipedia είναι <code>http://en.wikipedia.org/wiki/Bird</code>, τότε αυτή η τιμή θα πρέπει να είναι <code>Bird</code>. Αν δεν έχει συμπληρωθεί το επιστημονικό όνομα αυτής της ταξινομικής βαθμίδας χρησιμοποιείτε (συνήθως λειτουργεί)
-  the_user_x_has_been_suspended: "Ο χρήστης έχει αποβληθεί"
-  the_user_x_has_been_unsuspended: "Ο χρήστης επανενεργοποιήθηκε"
   the_world: Ο Κόσμος
   the_world_is_full_of_interesting_places: |
     Ο κόσμος είναι γεμάτος από ενδιαφέροντα μέρη, το καθένα γεμάτο από περίεργες και υπέροχες μορφές ζωής. Κάποιες από αυτές βρίσκονται στην άλλη άκρη του κόσμου, ενώ άλλες δίπλα στο σπίτι μας!  %{site_name} Περιοχές σας επιτρέπουν να ανακαλύψετε τη ζωή που υπάρχει στον πλανήτη μας. Ξεκινήστε την εξερεύνηση!
@@ -4062,7 +4040,7 @@ el:
   there_was_a_problem_creating_this_account: |
     Προέκυψε πρόβλημα κατά τη δημιουργία του λογαριασμού. Παρακαλούμε επικοινωνήστε μαζί μας αν το πρόβλημα επιμένει.
   there_was_a_problem_saving_your_identification: "Προέκυψε πρόβλημα κατά την αποθήκευση της ταυτοποίησης σας: %{error}"
-  there_were_problems_adding_taxa: "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτών των taxa: %{errors}"
+  there_were_problems_adding_taxa: "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτών των ταξινομικών μονάδων: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτής της παρατήρησης σε αυτό το Πρότζεκτ: "
   there_were_problems_importing_that_place: "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή αυτού του τόπου: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
@@ -4279,19 +4257,29 @@ el:
   user_added_a_comment_html: "%{user} πρόσθεσε ένα σχόλιο"
   user_added_a_fave_html: "%{user} πρόσθεσε ένα αγαπημένο"
   user_added_a_flag_html: "%{user} πρόσθεσε μία αναφορά"
+  #@gender operates on %{x}
   user_added_a_x: "Ο/Η %{user} προσέθεσε ένα %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από την/τον %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από την/τον %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από εσάς"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun}"
   user_added_an_identification_html: "Η/Ο %{user} πρόσθεσε μια ταυτοποίηση"
   user_added_an_observation_field_html: 'Ο χρήστης %{user} προσέθεσε μια τιμή για το "%{field_name}" σε μια παρατήρηση του χρήστη %{owner}'
   user_added_an_observation_field_value_html: "Ο χρήστης %{user} προσέθεσε ένα πεδίο παρατήρησης"
   user_added_an_observation_html: "Η/Ο %{user} πρόσθεσε μια παρατήρηση"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} πρόσθεσε ένα %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από εσάς"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} πρόσθεσε ένα %{x} στο %{noun}"
   user_added_x_observations_html: "Η/Ο %{user} πρόσθεσε %{x} παρατηρήσεις"
   user_already_authenticated: Ο χρήστης είναι ήδη ταυτοποιημένος
@@ -4309,7 +4297,7 @@ el:
   user_flagged_as_a_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως σπάμερ"
   user_has_opted_out_of_community_id: Ο χρήστης απορρίπτει την κοινοτική ταξινομική μονάδα
   user_hasnt_joined_any_projects: "Ο/Η %{user} δεν συμμετέχει σε καμία εργασία"
-  user_helped_x_people_with_y_ids_html: "Ο/Η %{user} βοήθησε <strong> άτομα</strong> με <strong>%{y} ταυτοποιήσεις</strong>"
+  user_helped_x_people_with_y_ids_html: "Ο/Η %{user} βοήθησε <strong>%{x} άτομα</strong> με <strong>%{y} ταυτοποιήσεις</strong>"
   user_invite_observation_to_project: 'Η/Ο %{user} θά ήθελε να προσκαλέσει την παρατήρησή σας "%{observation}" στο πρότζεκτ %{project}.'
   user_invited_you_to_join_html: "Ο/Η %{user}%{user}σας προσκάλεσε να συμμετέχετε"
   user_invited_you_to_join_project: "Η/Ο %{user} σας προσκάλεσε να εγγραφείτε στο %{project}"
@@ -4318,7 +4306,7 @@ el:
   user_is_now_the_admin_for_project_html: |
     Ο χρήστης <strong>%{user}</strong> είναι τώρα ο διαχειριστής του πρότζεκτ %{project}
   user_is_now_a_manager_for_project_html: |
-    <strong>%{user}</strong> είναι τώρα ο διαχειριστής για
+    <strong>%{user}</strong> είναι τώρα ο διαχειριστής για %{project}
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong>είναι τώρα ο επιμελητής για%{project}
   user_muted: Ο χρήστης είναι σε σίγαση
@@ -4692,36 +4680,9 @@ el:
             Αν ναι, παρακαλούμε διαβάστε το <a href="%{url}"> Οδηγός Εκπαιδευτικού </a> για βοήθεια όταν χρησιμοποιείτε το %{site_name} με μαθητές.
     donate:
       donate_short_desc: "Κάντε μια δωρεά για να στηρίξετε!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>το iNaturalist είναι μια από τις μεγαλύτερες κοινότητες παγκοσμίως φιερωμένη στην εξερεύνηση της βιοποικιλότητας. Ευχαριστούμε που συμμετέχετε σε αυτό!</strong></p>
-        <p class="lead">
-        Αν πιστεύετε στη δύναμη αυτής της παγκόσμιας κοινότητας φυσιολατρών να μοιράζεται τη γνώση και να δημιουργεί αναντικατάστατα δεδομένα βιοποικιλότητας, παρακαλούμε να σκεφτείτε μια μοναδική ή επαναλαμβανόμενη online δωρεά, ή δείτε<a
-        href="https://www.inaturalist.org/pages/giving"> άλλους τρόπους να δώσετε</a>.
-        </p>
-        <p class="lead">
-        Η δωρεά σας υπστηρίζει το iNaturalist καθώς η κοινότητα μεγαλώνει, από τη βελτίωση του διαδικτυακού μας οράματος και την εφαρμογή νέων λειτουργιών μέχρι την υποστήριξη προς τους διακομιστές και το προσωπικό.
-        </p>
-        <p class="text-muted">
-        Το iNaturalist αποτελεί μια συλλογική πρωτοβουλία των California Academy of Sciences
-        and the National Geographic Society. Όλες οι δωρεές θα γίνουν δεκτές από το California Academy of Sciences, μια 501(c)(3) φοροαπαλασσόμενη μη-κερδοσκοπική οργάνωση που εδράζεται στις Η.Π.Α. (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Υποστήριξα το iNaturalist επειδή...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Γίνετε ένας Μηνιαίος Υποστηρικτής του iNaturalist
-        desc_html: |
-          <p class="lead">
-          <strong>το iNaturalist είναι μια από τις μεγαλύτερες κοινότητες παγκοσμίως φιερωμένη στην εξερεύνηση της βιοποικιλότητας. Ευχαριστούμε που συμμετέχετε σε αυτό!</strong></p>
-          <p class="lead">
-          Θέλουμε να κρατήσουμε το iNaturalist δωρεάν χρήση, ωστόσο η λειτουργία του δεν μπορεί να γίνει δωρεάν. Αν αγαπάτε το iNaturalist, εξετάστε το ενδεχόμενο να γίνετε μηνιαίος υποστηρικτής. Επαναλαμβανόμενες δωρεές μας βοηθούν να διασφαλίσουμε ότι το iNaturalist μπορεί να συνεχίζει να αναπτύσσει τις υποδομές και το προσωπικό του παρέχοντας προβλέψιμα έσοδα. Μπορείτε ακόμα να επιλέξετε να φαίνεται στο προφίλ σας το στάτους του μηνιαίου υποστηρικτή.
-          </p>
-          <p class="text-muted">
-          Οι δωρεές σας υποστηρίζουν το iNaturalist καθώς η κοινότητα ολοένα μεγαλώνει, από τη βελτίωση του διαδικτυακού μας οράματος και την εφαρμογή νέων λειτουργιών μέχρι την υποστήριξη προς τους διακομιστές και το προσωπικό. Αν προτιμάτε να κάνετε μια και μοναδική δωρεά, παρακαλούμε<a href="%{donate_url}">πατήστε εδώ</a>.
-          </p>
-          <p class="text-muted">
-          Το iNaturalist αποτελεί μια συλλογική πρωτοβουλία των California Academy of Sciences
-          and the National Geographic Society. Όλες οι δωρεές θα γίνουν δεκτές από το California Academy of Sciences, μια 501(c)(3) φοροαπαλασσόμενη μη-κερδοσκοπική οργάνωση που εδράζεται στις Η.Π.Α. (Tax ID: 94-1156258).
-          </p>
     flags:
       show:
         flaggable_content_desc: |
@@ -5667,17 +5628,6 @@ el:
           δείχνουν τα χαμηλότερα και υψηλότερα χρόνια, καθώς και το μέσο όρο για όλα τα χρόνια.
         compared_to_previous_years: Συγκρίνετε με τα προηγούμενα χρόνια
         donate_title: "Ένα ιδιαίτερο ευχαριστώ σε όλους τους υποστηρικτές μας"
-        donate_desc_html: |
-          Σας ευχαριστούμε που είστε γενναιόδωροι με το χρόνο, την προσοχή, την τεχνογνωσία σας και τις
-          δωρεες! Το iNaturalist είναι μια μη κερδοσκοπική κοινή πρωτοβουλία του
-          California Academy of Sciences και του National Geographic Society.
-          Υποστηρίζεται από μια
-          <a href="%{team_url}"> μικρή ομάδα </a> που
-          κάνει όλο το σχεδιασμό και τη μηχανική λογισμικού (software engineering) για web, mobile και
-          <a href="%{seek_url}"> Seek από το iNaturalist </a>, εκτός από τη διαχείριση
-          της υποστήριξης της κοινότητας, τις συνεργασίες και τις ενσωματώσεις χάρη στα οποία η πλατφόρμα τρέχει (και αναπτύσσεται γρήγορα!). Το πρόγραμμα βασίζεται σε πολλές
-          επιχορηγήσεις και δωρεές, συμπεριλαμβανομένων φιλανθρωπικών συνεισφορών από μια μικρή μερίδα των συμβαλλόμενων. Είμαστε ιδιαίτερα ευγνώμονες για τους Μηνιαίους Υποστηρικτές των οποίων οι επαναλαμβανόμενα συνεισφορές μας βοηθούν να σχεδιάσουμε το μέλλον. Μπορείτε να
-          συνεισφέρετε σε διάφορα νομίσματα για να υποστηρίξετε τις λειτουργίες του iNaturalist. Σας ευχαριστούμε όλους για τη συμβολή σας στη %{year} μεγαλύτερη χρονιά του iNaturalist!
         donors: Δωρητές
         donors_guide_label_our_goal_is_1000: Στόχος μας είναι 1.000 επαναλαμβανόμενοι δωρητές ανά μήνα
         inaturalist_network: Δίκτυο iNaturalist
@@ -5773,29 +5723,6 @@ el:
           χειροκίνητα. Με την ανανέωση αυτής της περίληψης επίσης ενημερώνεται αμέσως η μνήμη 
           cache μας για το περιεχόμενο της Wikipedia που παρουσιάζουμε στην ιστοσελίδα μας, το οποίο ανανεώνεται αυτόματα μετά από μια εβδομάδα.
       show:
-        about_names_desc: |
-          <p>
-          Οι περισσότερες κατηγορίες οργανισμών έχουν "κοινές ονομασίες" σε διάφορες
-          γλώσσες. Οι ονομασίες αυτές είναι συνήθως αναγνωρίσιμες, εύκολες στην προφορά
-          και σταθερές στην πάροδο του χρόνου, αλλά πολλοί οργανισμοί έχουν πολλές διαφορετικές
-          ονομασίες σε διαφορετικά μέρη, ακόμη και στην ίδια γλώσσα, το οποίο μπορεί να κάνει
-          δύσκολη την επικοινωνία για αυτούς τους οργανισμούς χωρίς σύγχυση.
-          Οι επιστήμονες για να αντιμετωπίσουν αυτό το πρόβλημα χρησιμοποιούν ένα ενιαίο "επιστημονικό όνομα" για κάθε κατηγορία οργανισμών που συμμορφώνεται με τους κανόνες του
-          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">βιολογική ονοματολογία</a>,
-          αλλά αυτές οι ονόμασίες τείνουν να βασίζονται στα Λατινικά, μια γλώσσα που κανείςπλεόν δε
-          μιλάει, έτσι δεν είναι τόσο εύκολο να απομνημονευθούν όσο οι κοινές ονομασίες για πολλούς
-          ανθρώπους. Τα επιστημονικά ονόματα μπορούν επίσης να αντικατοπτρίζουν την ταξινόμηση ενός οργανισμού, ώστε να μπορούν να αλλάξουν όταν οι επιστήμονες αναπτύσσουν περισσότερες
-          ακριβείς θεωρίες σχετικά με τις εξελικτικές σχέσεις μεταξύ διαφορετικών οργανισμών, μειώνοντας ξανά τη χρησιμότητά τους στην επικοινωνία, ακόμη και μεταξύ ανθρώπων που γνωρίζουν τις επιστημονικές ονομασίες.
-          </p>
-          <p>
-          Ένα παλαιό ρητό συνοψίζει: "Οι κοινές ονομασίες αλλάζουν από τόπο σε
-          τόπο ενώ οι επιστημονικές ονομασίες αλλάζουν από καιρό σε καιρό.
-          </p>
-          <p>
-          Προσπαθούμε να αντιμετωπίσουμε αυτά τα "εμπόδια" δείχνοντας και τις κοινές
-          και τις επιστημονικές ονομασίες, όπου αυτό είναι δυνατό, και επιλέγοντας κοινές ονόμασίες
-          με βάση τη γλώσσα και τις γεωγραφικές προτιμήσεις του ενδιαφερόμενου.
-          </p>
         about_conservation_status_desc: |
           Το στάτους προστασίας συνοψίζει το ρίσκο εξαφάνισης για μια ομάδα οργανισμών.
         about_establishment_desc: |
@@ -5986,16 +5913,6 @@ el:
           <a href="http://www.gbif.org/">Υπηρεσία Παγκόσμιας Ενημέρωσης για τη Βιοποικιλότητα</a> (GBIF), που είναι ένας διεθνής, διακυβερνητικός οργανισμός
           που συγκεντρώνει και διανέμει πληροφορίες για τη βιοποικιλότητα από όλο τον κόσμο
           .
-        monthly_supporter_desc_html: |
-          Οι Μηνιαίοι Υποστηρικτές του iNaturalist κάνουν αυτόματες μηνιαίες εισφορές
-          που λαμβάνονται από το California Academy of Sciences (Ηνωμένες Πολιτείες
-          IRS EIN 94-1156258) για να υποστηρίξουν τη μη κερδοσκοπική λειτουργία των δικτυακών τόπων
-          iNaturalist και Δικτύου iNaturalist.
-          <a href="%{url}">Κάντε κλικ εδώ για να γίνετε Μηνιαίος Υποστηρικτής</a>.
-          Όταν επιβεβαιώσουμε την υποστήριξή σας, θα μπορείτε να τσεκάρετε αυτό το πλαίσιο
-          για να εμφανίσετε αυτό το στατους στο προφίλ σας. Σημείωση: θα χρειαστεί να χρησιμοποιήσετε
-          ακριβώς την ίδια διεύθυνση email στο Donorbox όπως κάνετε στο iNaturalist
-          για να επιβεβαιώσουμε ότι έχετε γίνει Μηνιαίος Υποστηρικτής.
         muting_desc_html: |
           <p>
           Με το να σιγάσετε κάποιον σταματάτε να λαμβάνετε ειδοποιήσεις για πράγματα
@@ -6664,14 +6581,6 @@ el:
           attributes:
             base:
               user_already_blocked: Έχετε ήδη αποκλείσει αυτόν το χρήστη
-              user_cannot_be_staff: |
-                Δεν μπορείτε να αποκλείσετε προσωπικό. Το προσωπικό του iNat πρέπει να είναι σε θέση να
-                επικοινωνεί με όλους τους χρήστες του iNat, να έχει πρόσβαση σε όλα τα δεδομένα στο
-                iNat και συνιστούν τους ανώτατους αρμοδίους για θέματα διαφωνιών, οπότε το μπλοκάρισμα
-                δεν θα τους εμποδίσει να επικοινωνήσουν μαζί σας. Αν έχετε πρόβλημα
-                με ένα μέλος του προσωπικού, παρακαλούμε να το αναφέρετε σε έναν από τους
-                συντονιστές iNat, ή, αν έχετε πρόβλημα με έναν από τους συντονιστές, μπορείτε να επικοινωνήσετε με τον Επιστημονικό Υπέυθυνο (Chief of Science) στο Ινστιτούτο Βιοποικιλότητας και Βιωσιμότητας στην Επιστημονική Ακαδημία της Καλοφόρνια (Institute for Biodiviersity and Sustainability Science ath
-                California Academy of Sciences).
         user_parent:
           attributes:
             email:

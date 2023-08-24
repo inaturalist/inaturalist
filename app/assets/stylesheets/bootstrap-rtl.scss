@@ -1,4 +1,8 @@
-.bootstrap{
+.bootstrap,
+body > div > [role="dialog"],
+body > [role="dialog"],
+body > .popover,
+body > div > .popover {
 .glyphicon-align-right:before {
   content: "\e052";
 }

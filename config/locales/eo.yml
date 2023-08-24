@@ -14,6 +14,12 @@ eo:
   x_identifications_:
     one: '1 Identigado'
     other: '%{count} Identigadoj'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Identigisto'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Identigistoj'
   x_languages:
     one: "%{count} lingvo"
     other: "%{count} lingvoj"
@@ -41,6 +47,9 @@ eo:
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observo</a>"
     other: "<a href='%{url}'>%{count} observoj</a>"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Observanto'
+    other: '<span class="count">%{count}</span> Observantoj'
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
@@ -160,7 +169,6 @@ eo:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Aldoni Unu Nun
-  add_photos: Aldoni Fotojn
   add_place: Aldoni Lokon
   add_alive_or_dead_alive_annotation: 'Aldoni komentaron "Morta aŭ Vivu: Vivu"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Aldonu komentaron "Morta aŭ Vivu: Ne eblas determini"'
@@ -296,8 +304,8 @@ eo:
   allowed_values: Permesataj valoroj
   alphabetical: Alfabeta
   alphabetical_order: Alfabeta Ordo
+  already_have_an_account_log_in_html: Ĉu vi jam havas konton? <strong>Ensaluti.</strong>
   amphibians: amfibioj
-  and: kaj
   and_other_taxa: "&amp; Aliaj Taksonoj"
   animals: Animaloj
   annotations: Komentarioj
@@ -343,15 +351,14 @@ eo:
   back_to_your_observations: Reen al viaj observoj
   back_to_your_profile: Reen al via profilo
   be_the_first_to_fave_this_observation: Estu la unua favoranto de ĉi tiu observo!
-  because_of: pro
   bioblitz: Biofulmado
   birds: birdoj
+  birthday: Naskiĝtago
   black: nigra
   blue: blua
   blue_butterfly_etc: "blua, papilio, ktp."
   brown: bruna
   browse: Foliumi
-  by: de
   by_user: "Far %{user}"
   by_you: De vi
   calendar: Kalendaro
@@ -428,16 +435,14 @@ eo:
   comprehensive?: Ĉu ampleksa?
   comprehensive_list: Ampleksa listo
   concept_status: Stato de Koncepto
+  confidential: Konfidenca
   configure: Agordi
   confirm: Konfirmi
   confirm_membership: Konfirmi anecon
   confirm_new_password: Konfirmi Novan Pasvorton
   confirm_now: Konfirmi nun
   confirm_your_info: Konfirmi vian informon
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Konektitaj kontoj
   connecting_flickr: "Konektanta Flickr..."
-  connecting_to_facebook: "Konektanta Facebook..."
   continue: Daŭrigi
   continue_to_site: Daŭrigi al %{site_name}
   contributor_cannot_be_found: Kontribuinto ne troviĝas
@@ -496,7 +501,6 @@ eo:
   created_by: Kreita de
   created_by_user_on_date: Kreita de %{user} je %{date}
   created_on: Kreita je
-  creating_your_account: "Kreanta vian konton..."
   csv_file: CSV-dosiero
   curator: Kuratoro
   curators: Kuratoroj
@@ -585,15 +589,26 @@ eo:
   documentation_for_developers_html: Dokumentaro por <a href="/pages/developers">evoluigantoj</a>
   doh_something_went_wrong: Domaĝe, io misfunkciis.
   doh_something_went_wrong_error: "Domaĝe, io misfunkciis: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONACU
+  donate_again_caps: DONACU DENOVE
+  donate_again_today_caps: DONACU DENOVE HODIAŬ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donacu al iNaturalist
   done: Farita
   dont_have_an_account_sign_up_html: Ĉu vi ne havas konton? <strong>Registriĝu.</strong>
   download: Elŝuti
   download_csv: Elŝuti kiel komo-apartigitaj valoroj
   download_csv_template: Elŝuti ŝablonon de Komo-Apartigitaj Valoroj
   download_kml: Elŝuti KML-dosieron
+  #Noun, as in a journal post that has not been published
   draft: malneto
+  #Noun, as in a journal post that has not been published
   draft_: Malneo
+  #Noun, as in a journal post that has not been published
   draft_saved: Konservis malneton!
+  #Noun, as in journal posts that has not been published
   drafts: Malnetoj
   drawings: Desegnaĵoj
   duplicate_verb: Duplikato
@@ -644,7 +659,6 @@ eo:
   exporting: "Elportanta..."
   extinct: formortinta
   evidence_of_organism: Atesto de organismo
-  facebook_account_information: Informo pri Via Konto ĉe Facebook
   failed_to_find_your_location: Malsukcesis trovi vian lokon.
   failed_to_repair_photo: "Malsukcesis ripari foton: %{errors}"
   'false': 'Malvera'
@@ -674,7 +688,6 @@ eo:
   flag: Flago
   flag_it!: Flagi ĝin!
   flag_this_photo: Flagi Tiun Foton
-  flagged: flagita
   flagged_: Flagita
   flagged_taxon: Flagita Taksono
   flagger: Flaginto
@@ -714,6 +727,7 @@ eo:
   go: Ek
   go_back: Reen
   got_it!: Komprenite!
+  grid: Krado
   group: Grupo
   grouping: Grupigado
   guides: Gvidiloj
@@ -726,7 +740,6 @@ eo:
   has_sound: Havas Sonon
   has_sounds: Havas Sonojn
   help: Helpo
-  help_support_inaturalist: "Helpi Subtenadon de iNaturalist"
   hex_color_eg: Deksesuma koloro, ekz. 65644F
   hi_user: "Saluton %{user}"
   high: Alta
@@ -735,14 +748,20 @@ eo:
   i_dont_know_but_i_am_sure_this_is_taxon: Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}
   icon: Ikono
   icon_size: Grando de ikono
+  id: ID
   identify: Identigi
   identify_title: "Identigi"
   identification: Identigo
   identification_by_user: Identigo far %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identigo foriĝis.
   identification_saved: "Identigo konserviĝis!"
+  #Notification when an identification has been updated
   identification_updated: Identigo aktualiĝis!
   identifications: Identigoj
+  #Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now: Donacu nun
+  identifiers: Identigistoj
   ids: "Identigoj"
   ids_made_for_others: Identigoj por aliuloj
   ignore_and_continue: Ignori kaj daŭrigi
@@ -756,8 +775,10 @@ eo:
   invitation: Invito
   invite: inviti
   invite_people: Inviti homojn
+  jobs: Laborpostenoj
   join: Aliĝi
   join_project: Aliĝi al ĉi tiu projekto
+  join_the_largest_group_of_naturalists_in_the_world: Aliĝu al la plej granda grupo de naturistoj en la mondo!
   join_this_project: Aliĝi al ĉi tiu projekto
   'joined!': Aliĝis!
   journal: Ĵurnalo
@@ -776,6 +797,9 @@ eo:
   latitude_value: "Latitudo: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Tavoloj
+  leaderboard: Ĉampionejo
+  leaderboard_for_x: "Ĉampionejo por %{x}"
+  leaderboards: Ĉampionejoj
   learn: Lerni
   learn_more: Lerni Plu
   learn_more_raquo: "Lerni plu &raquo;"
@@ -786,7 +810,6 @@ eo:
   leaves: folioj
   lexicon: Terminaro
   lexicons:
-    scientific_names: Sciencaj Nomoj
     afrikaans: afrikansa
     albanian: albana
     bengali: bengala
@@ -819,6 +842,7 @@ eo:
     portuguese: portugala
     romanian: rumana
     russian: rusa
+    scientific_names: Sciencaj Nomoj
     spanish: hispana
     swedish: sveda
     tagalog: filipina
@@ -892,8 +916,10 @@ eo:
   mammals: mamuloj
   manage_all_your_subscriptions: Mastrumi ĉiujn viajn abonojn
   manage_names: Mastrumi Nomojn
+  manage_your_projects: Administri Viajn Projektojn
   manager: Mastrumanto
   managers: Mastrumantoj
+  managing_projects: Administrado de Projektoj
   map: Mapo
   medium: meza
   meet: Renkonti
@@ -909,8 +935,13 @@ eo:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1s"
       #Short text representing %d minutes in the past
       mm: "%dmin"
+      #Short text representing 1 hour in the past
+      h: "1h"
       #Short text representing 1 day in the past
       d: "1t"
       #Short text representing %d days in the past
@@ -1002,7 +1033,7 @@ eo:
   open_: Malfermi
   or: aŭ
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: AŬ
   orange: oranĝkolora
   order: Ordo
@@ -1033,6 +1064,13 @@ eo:
     medium: meza
     large: granda
     original: originala
+  pi_consent_desc_title: Pri Personaj Informoj
+  pi_consent_label: |
+    Mi konsentas permesi iNaturalist stoki kaj prilabori limigitajn specojn de
+    personaj informoj pri mi por administri mian konton
+  pi_consent_child_label: |
+    Mi konsentas permesi iNaturalist stoki kaj prilabori limigitajn specojn de
+    personaj informoj pri mia infano por administri la konton de mia infano
   pin_verb: Alpingli
   pink: roza
   place: Loko
@@ -1378,8 +1416,8 @@ eo:
   project_was_successfully_created: Sukcese kreis projekton.
   project_was_successfully_updated: Sukcese ĝisdatigis projekton.
   projects: Projektoj
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projektoj ĉe %{place}"
-  projects_in_x: "Projektoj en %{x}"
   projects_you_admin: Projektoj Administrataj de Vi
   protozoans: protozooj
   public_domain: Publika Havaĵo
@@ -1430,6 +1468,7 @@ eo:
   recent: Ĵusaj
   recent_post: Ĵusa afiŝo
   recently_active: Ĵus Aktiva
+  recently_created: Lastatempe Kreita
   recently_finished: Ĵus Finita
   red: ruĝa
   refresh: Refreŝigi
@@ -1455,6 +1494,9 @@ eo:
   required: deviga
   required_: Deviga
   required_field: deviga kampo
+  research: esplorado
+  research_: Esplorado
+  research_grade: Esplora Grado
   resolver_said_x_html: '<span class="meta">%{resolver} diris,</span> "%{x}"'
   restore: Restarigi
   restoring: Restariganta...
@@ -1492,11 +1534,17 @@ eo:
   search_this_taxon: serĉi tiun taksonon
   searching: "Serĉante..."
   seasonality: Sezoneco
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Via %{noun}"
   seen_one: Ĉu vidis unu?
   select: Elekti
   select_all: Elekti Ĉiujn
   select_at_least_one: Elektu Almenaŭ Unu
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Elekti Neniun
   select_options: Elekti Opciojn
   selected: elektita
@@ -1590,6 +1638,10 @@ eo:
   start_typing_someones_name: "Ektajpu ies nomon..."
   stats: Statistiko
   status: Stato
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Vendejo
+  store_caps: VENDEJO
   submitted: Sendita
   subscribe_to_a_taxon: Aboni Taksonon
   subscribe_to_a_place: Aboni Lokon
@@ -1607,7 +1659,6 @@ eo:
   tag: Etikedo
   tagging: 'Aldonante etikedon...'
   tags: Etikedoj
-  take_me_facebook: Jes, ek al Facebook!
   take_me_flickr!: Jes, ek al Flickr!
   taxa: Taksonoj
   taxa_info: Informo pri Taksonoj
@@ -1628,6 +1679,7 @@ eo:
   taxonomic_order: Taksonomia Ordo
   taxonomic_status: Taksonomia stato
   taxonomic_tags_for_flickr: Taksonomiaj Etikedoj por Flickr
+  teachers_guide: Gvidilo de instruisto
   terrain: tereno
   text: Teksto
   thanks!: Dankon!
@@ -1666,8 +1718,6 @@ eo:
       remove_photo: Forigi foton
   user: Uzanto
   user_autocomplete_placeholder: kueda, simon123, ktp.
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} favoras %{noun} far %{owner}"
   user_suggested_an_id: "%{user} sugestis identigon"
   username: Uzantnomo
   username_or_email: Uzantnomo aŭ retpoŝta adreso
@@ -1688,6 +1738,7 @@ eo:
   view_original: "Vidi originalon"
   view_place: Vidi lokon
   view_post: Vidi afiŝon
+  view_sample: Rigardu Ekzemplon
   view_stats: Vidi statistikon
   view_x: "Vidi %{x}n"
   view_your_dashboard: Vidi vian stirpanelon
@@ -1729,6 +1780,7 @@ eo:
   'yes': "Jes"
   yes_find_them!: "Jes, trovu ilin!"
   yes_i_want_to_join: Jes, mi volas aniĝi
+  yes_license_my_observations_so_scientists_can_use: Jes, licencu miajn fotojn, sonojn kaj observaĵojn, tiel ke sciencistoj povu uzi miajn datumojn (rekomenditajn).
   yesterday: Hieraŭ
   you: vi
   you_: Vi
@@ -1823,6 +1875,8 @@ eo:
         obs_in_year: Observoj en %{year}
     taxa:
       show:
+        frequency:
+          research: Esplora Grado
         trending_desc: Plej ofte observitaj taksonoj dum lasta monato
     users:
       edit:
@@ -1848,9 +1902,6 @@ eo:
       index:
         connect_with_nature: Konektiĝi kun Naturo
         explore_and_share: Esploru kaj diskonigu viajn observojn de la natura mondo.
-        observations_to_date: 'Observoj ĝis Nun'
-        species_observed: 'Observitaj Specioj'
-        people_signed_up: 'Registriĝintoj'
         how_it_works: Kiel Ĝi Funkcias
         record_your_observations: Registri viajn observojn
         share_with_fellow_naturalists: Diskonigi al aliaj naturistoj
@@ -1910,15 +1961,6 @@ eo:
       5: ĵa
       6: ve
       7: sa
-    formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%e-a de %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%e %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%b-a de %B, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%e-a de %B %Y'
     month_names:
       - 
       - januaro
@@ -1969,18 +2011,6 @@ eo:
       x_seconds:
         one: "1 sekundo"
         other: '%{count} sekundoj'
-    countdown_x_days:
-      one: tago
-      other: tagoj
-    countdown_x_hours:
-      one: horo
-      other: horoj
-    countdown_x_minutes:
-      one: minuto
-      other: minutoj
-    countdown_x_seconds:
-      one: sekundo
-      other: sekundoj
     prompts:
       day: Tago
       hour: Horo
@@ -1988,16 +2018,6 @@ eo:
       month: Monato
       second: Sekundoj
       year: Jaro
-  errors:
-    messages:
-      accepted: devas esti akceptita
-      blank: ne povas esti malplena
-      empty: ne povas esti malplena
-      even: devas esti para
-      invalid: ne estas valida
-      not_a_number: ne estas nombro
-      not_an_integer: devas esti entjero
-      odd: devas esti nepara
   helpers:
     defaults:
       title: "TIO ESTAS TITOLO"
@@ -2014,6 +2034,7 @@ eo:
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
       delimiter: ' '
+      precision: 3
       #The separator separates an integer from a decimal fraction, so if the
       #number is "one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "." is the separator. This should not be
@@ -2030,6 +2051,7 @@ eo:
           thousand: Mil
           trillion: Duiliono
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
@@ -2037,7 +2059,9 @@ eo:
           byte:
             one: bitoko
             other: bitokoj
+          gb: GB
           kb: kB
+          mb: MB
   support:
     array:
       last_word_connector: ', kaj'
@@ -2046,19 +2070,6 @@ eo:
   time:
     am: atm
     pm: ptm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: devas esti akceptita
-        even: devas esti para
-        greater_than: devas esti pli granda ol %{count}
-        greater_than_or_equal_to: devas esti ne malpli granda ol %{count}
-        invalid: ne estas valida
-        not_a_number: ne estas nombro
-        not_an_integer: devas esti entjero
-        odd: devas esti nepara
-        record_invalid: 'Konfirmado de valideco malsukcesis: %{errors}'
   activerecord:
     models:
       Atlas: Atlaso
@@ -2078,7 +2089,9 @@ eo:
         url: Retadreso
         geoprivacy: Geografia privateco
       flag:
+        #The reason the item was flagged
         reason: Kialo
+        #The kind of flag that was made
         flag: Flago
       guide:
         source_url: Retadreso de fonto
@@ -2132,15 +2145,12 @@ eo:
         login: Uzantnomo
         name: Nomo
         locale: Lokaĵaro
+        time_zone: Horzono
         place_id: Loko
     errors:
       messages:
         even: devas esti para
-        greater_than: devas esti pli granda ol %{count}
-        greater_than_or_equal_to: devas esti ne malpli granda ol %{count}
         invalid: ne estas valida
-        less_than: devas esti malpli granda ol %{count}
-        less_than_or_equal_to: devas esti ne pli granda ol %{count}
         not_a_number: ne estas nombro
         not_an_integer: devas esti entjero
         odd: devas esti malpara

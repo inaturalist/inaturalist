@@ -489,6 +489,7 @@ en:
   agree_: Agree
   agree?: Agree?
   agree_with_current_taxon: Agree with current taxon
+  agree_with_observation_taxon: Agree with observation taxon
   agreeing: Agreeing...
   aka: aka
   # Noun, title of a popup alerting you to something
@@ -998,13 +999,7 @@ en:
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: split into
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: merge into
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: merged into
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: replaced by
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: replace with
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: replaced with
     dropped: dropped
@@ -1792,6 +1787,8 @@ en:
   donate: DONATE
   donate_again_caps: DONATE AGAIN
   donate_again_today_caps: DONATE AGAIN TODAY
+  # Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donate to iNaturalist
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
   dont_use_double_quotes: Don't use double quotes anywhere else
@@ -1953,7 +1950,7 @@ en:
   # start requiring confirmation. This preceeds some details about the
   # recipient's account.
   email_confirmation_reminder_account_details: Account Details
-  email_copyright: "Copyright &copy; %{x}, all rights reserved"
+  email_copyright2: "&copy; %{year} iNaturalist, all rights reserved"
   email_notifications: Email Notifications
   embed: 'Embed'
   embed_place_widget: Embed place widget
@@ -2313,7 +2310,6 @@ en:
   heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identical ranks. They're color-coded below by rank."
   help: Help
   help_confirm_observations!: Help confirm observations!
-  help_support_inaturalist: "Help Support iNaturalist"
   help_translate!: Help Translate!
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_our_top_suggestions: Here are our top suggestions
@@ -2405,6 +2401,84 @@ en:
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
   inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
+  independence_email_subject: "Spreading Our Wings: iNaturalist is Now an Independent Nonprofit"
+  # Introductory line in an email. "Dear" doesn't have to be translated
+  # literally. Please just choose something that's conventional in your
+  # language.
+  independence_email_body_dear: Dear %{name},
+  independence_email_body_exciting_news: |
+    The iNaturalist team has exciting news! We’re pleased to share that thanks
+    to the support of this great community, iNaturalist is now operating as
+    an independent 501(c)(3) not-for-profit organization based in the United
+    States of America.
+  independence_email_body_since_launching: |
+    Since launching in 2008, the iNaturalist team and organization has
+    evolved, and we’re thrilled about this next milestone. iNaturalist began
+    as a master’s project at the University of California, Berkeley, became a
+    LLC, then joined the California Academy of Sciences in 2014. In 2017,
+    iNaturalist became a joint initiative with the California Academy of
+    Sciences and the National Geographic Society. Now, iNaturalist is an
+    independent organization.
+  independence_email_body_over_the_past: |
+    Over the past 15 years, the incredible contributions from the community
+    have made iNaturalist into one of the world’s most impactful nature
+    platforms.
+  independence_email_body_so_far: "So far, the iNaturalist community has:"
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_created: Created over 146,000,000 verifiable observations (adding about 1 million per week!)
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_grown: Grown to 2.7 million contributors
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_observed: Observed more than 430,000 species
+  # Item in a list beginning with "So far, the iNaturalist community has:"
+  independence_email_body_cited_html: |
+    Been cited more than 3,500 times
+    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
+  independence_email_body_we_thank: |
+    We thank the California Academy of Sciences and the National Geographic
+    Society for incubating iNaturalist as it grew dramatically over the last
+    9 years. We owe immense gratitude to these partners for their investment,
+    support, and stewardship. We look forward to collaborating with both
+    organizations in the future.
+  independence_email_body_the_way_html: |
+    <strong>The way you experience iNaturalist won’t change.</strong>
+    iNaturalist and Seek will continue to freely help you identify
+    biodiversity and build your own connection to the natural world. This new
+    organizational structure will enable us to support iNaturalist for years
+    to come as the iNaturalist community expands our collective knowledge of
+    biodiversity long into the future. We will continue partnering with
+    organizations around the world to support the iNaturalist Network.
+  independence_email_body_questions_html: |
+    You can <a
+    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">read
+    more on the blog</a> and check out the <a
+    href="https://www.inaturalist.org/pages/spinoff_faq">Frequently Asked
+    Questions</a> (in English). The <a
+    href="https://www.inaturalist.org/pages/terms">Terms of Use</a> and <a
+    href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a> have
+    been updated to reflect the new organization.
+  independence_email_body_thank_you: Thank you for being part of this community.
+  # Signature section of an email. "Onward" is a bit unconventional in
+  # English, so feel free to translate as "Sincerely" or whatever seems
+  # appropriate in your language. Note that these are proper names of people
+  # on iNat staff.
+  independence_email_body_signature_html: |
+    Onward,<br/>
+    <br/>
+    <strong>Scott Loarie</strong><br/>
+    <strong>Ken-ichi Ueda</strong><br/>
+    <strong>Carrie Seltzer</strong><br/>
+    <br/>
+    <strong>iNaturalist Leadership Team</strong>
+  independence_email_body_ps: |
+    P.S. - Soon we will announce a generous grant that will give
+    independent iNaturalist a solid start. The financial support of the
+    iNaturalist community made our evolution possible and will be vital for
+    long-term sustainability. Your donation now will celebrate this exciting
+    milestone and further secure iNaturalist’s future. Thank you!
+  # Label for a button that links to the iNat donation web page
+  independence_email_body_donate_now:
+    Donate now
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2497,7 +2571,6 @@ en:
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
   # Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applications"
-  inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
   info: Info
   input_taxon: Input taxon
@@ -2644,6 +2717,7 @@ en:
     davawenyo: Davawenyo
     dutch: Dutch
     english: English
+    esperanto: Esperanto
     estonian: Estonian
     faroese: Faroese
     fijian: Fijian
@@ -2809,6 +2883,7 @@ en:
     es: Spanish
     es-AR: Spanish (Argentina)
     es-CO: Spanish (Colombia)
+    es-CR: Spanish (Costa Rica)
     es-MX: Spanish (Mexico)
     es: Spanish
     et: Estonian
@@ -2952,9 +3027,6 @@ en:
   meet: Meet
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Member of the %{partial_inat_network_tag_html}iNaturalist Network</a>, a
-    joint initiative of the %{cas_tag_html} and the %{nat_geo_tag_html}.
   # As in members of a project
   members: Members
   membership_model: Membership Model
@@ -4835,6 +4907,8 @@ en:
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_less: Show Less
   show_more: Show More
+  # Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Show more login options
   # Option to show data series that show "No Annotation" data, i.e. records that
   # have no annotation
   show_no_annotation: Show "No Annotation"
@@ -4973,12 +5047,11 @@ en:
     your affiliation in your
     %{start_tag_settings}account settings%{end_tag_settings}.
   sites_affiliation_title: Learn More About Network Affiliation
-  sites_network_cas_and_nat_geo_html: |
-    The %{start_tag_cas}California Academy of Sciences%{end_tag_cas} and the
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} have
-    formal agreements with organizations in each of these geographic areas to support
-    the use of the iNaturalist platform. <strong>If your organization is
-    interested in joining the iNaturalist Network, you can find more details
+  sites_network_agreements_html: |
+    iNaturalist has formal agreements with organizations in each of these
+    geographic areas to support the use of the iNaturalist platform.
+    <strong>If your organization is interested in joining the iNaturalist
+    Network, you can find more details
     %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "The iNaturalist Network consists of several organizations:"
   sites_network_inaturalist_network_collection: |
@@ -5817,19 +5890,29 @@ en:
   user_added_a_comment_html: "%{user} added a comment"
   user_added_a_fave_html: "%{user} added a fave"
   user_added_a_flag_html: "%{user} added a flag"
+  # @gender operates on %{x}
   user_added_a_x: "%{user} added a %{x}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} added a %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} added a %{x} to %{noun} by you"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
   user_added_an_identification_html: "%{user} added an identification"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_added_an_observation_field_value_html: "%{user} added an observation field value"
   user_added_an_observation_html: "%{user} added an observation"
+  # @gender operates on %{x}
   user_added_an_x: "%{user} added an %{x}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} added an %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
@@ -6207,10 +6290,9 @@ en:
     connect with nature
   yir_monthly_supporters_random_selection: |
     Here is a random selection of iNat's heroic community members who donate every month.
-  yir_thank_your_for_being_generous: |
+  yir_thank_your_for_being_generous2: |
     Thank you for being generous with your time, attention, expertise, and
-    donations! iNaturalist is a not-for-profit joint initiative of the
-    California Academy of Sciences and the National Geographic Society. The
+    donations! iNaturalist is a non-profit, public-benefit organization. The
     program relies on numerous grants and donations, including charitable gifts
     from less than a tiny fraction of the community. We are especially grateful
     to Monthly Supporters whose recurring gifts help us plan for the future.
@@ -6402,7 +6484,7 @@ en:
             tips on using %{site_name} with students.
     donate:
       donate_short_desc: "Donate now to show your support!"
-      donate_desc_html: |
+      donate_desc3_html: |
         <p class="lead">
           <strong>iNaturalist is one of the world's largest communities dedicated to
           exploring biodiversity. Thank you for being part of it!</strong>
@@ -6410,7 +6492,7 @@ en:
         <p class="lead">
           If you believe in the power of this global community of nature lovers
           to share knowledge and generate irreplaceable biodiversity data,
-          please consider a one-time or recurring gift online, or see <a
+          please consider a one-time or recurring gift online, or explore <a
           href="https://www.inaturalist.org/pages/giving">other ways to
           give</a>.
         </p>
@@ -6420,16 +6502,15 @@ en:
           our servers and staff.
         </p>
         <p class="text-muted">
-          iNaturalist is a joint initiative of the California Academy of Sciences
-          and the National Geographic Society. All donations will be received by
-          the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
-          organization based in the United States of America (Tax ID: 94-1156258).
+          iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+          organization based in the United States of America (Tax ID:
+          92-1296468).
         </p>
       post_donate_social_media_text: I support iNaturalist because...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Become a Monthly Supporter of iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BECOME A MONTHLY SUPPORTER OF INATURALIST
-        desc_html: |
+        desc3_html: |
           <p class="lead">
             <strong>iNaturalist is one of the world's largest communities dedicated to
             exploring biodiversity. Thank you for being part of it!</strong>
@@ -6449,10 +6530,9 @@ en:
             one-time donation, please <a href="%{donate_url}">click here</a>.
           </p>
           <p class="text-muted">
-            iNaturalist is a joint initiative of the California Academy of Sciences
-            and the National Geographic Society. All donations will be received by
-            the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
-            organization based in the United States of America.
+            iNaturalist is an independent 501(c)(3), tax-exempt,
+            not-for-profit organization based in the United States of
+            America (Tax ID: 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Thank you for being a Monthly Supporter!
         thank_you_for_being_a_monthly_supporter_caps: THANK YOU FOR BEING A MONTHLY SUPPORTER!
@@ -7150,7 +7230,7 @@ en:
               are ok)
             </li>
             <li>
-              the observation no longer needs an ID <em>and</em> the community ID is above family
+              the observation no longer needs an ID <em>and</em> the community ID is at family or above
             </li>
             <li>
               the observer has opted out of the community ID and the community
@@ -7910,23 +7990,21 @@ en:
           all years.
         compared_to_previous_years: Compare to Previous Years
         donate_title: "Special Thanks to All Our Supporters"
-        donate_desc_html: |
-          Thank you for being generous with your time, attention, expertise, and
-          donations! iNaturalist is a not-for-profit joint initiative of the
-          California Academy of Sciences and the National Geographic Society.
-          It’s supported by a
-          <a href="%{team_url}">small team</a> that
-          does all the design and software
-          engineering for web, mobile, and
-          <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
-          the community support, collaborations, and integrations that keep
-          things running (and growing rapidly!). The program relies on numerous
-          grants and donations, including charitable gifts from less than tiny
-          fraction of contributors. We are especially grateful to Monthly
-          Supporters whose recurring gifts help us plan for the future. You can
-          donate in multiple currencies to support iNaturalist’s core
-          operations. Thank you to everyone for your part in making %{year}
-          iNaturalist’s biggest year yet!
+        donate_desc2_html: |
+          Thank you for being generous with your time, attention, expertise,
+          and donations! iNaturalist is a 501(c)3 nonprofit organization
+          based in the United States. It’s supported by a
+          <a href="%{team_url}">small team</a> that does all the design and software
+          engineering for web, mobile, and <a href="%{seek_url}">Seek by
+          iNaturalist</a>, in addition to managing the community support,
+          collaborations, and integrations that keep things running
+          (and growing rapidly!). The program relies on numerous grants and
+          donations, including charitable gifts from less than tiny fraction
+          of contributors. We are especially grateful to Monthly Supporters
+          whose recurring gifts help us plan for the future. You can donate
+          in multiple currencies to support iNaturalist’s core operations.
+          Thank you to everyone for your part in making %{year} iNaturalist’s
+          biggest year yet!
         donors: Donors
         donors_guide_label_our_goal_is_1000: Our goal is 1,000 recurring donors per month
         inaturalist_network: iNaturalist Network
@@ -8441,14 +8519,14 @@ en:
           world.
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
-          which are received by the California Academy of Sciences (United
-          States IRS EIN 94-1156258) to support the not-for-profit operation of
-          iNaturalist and iNaturalist Network sites.
-          <a href="%{url}">Click here to become a Monthly Supporter</a>.
-          When we have confirmed your support you will be able to check this
-          box to display this status on your profile. Note: the email addresses
-          on Donorbox and iNaturalist must match exactly for us to confirm that
-          you are a Monthly Supporter. If they differ, change one to match the other.
+          to iNaturalist (United States IRS EIN 92-1296468) to support the
+          not-for-profit operation of iNaturalist and iNaturalist Network
+          sites. <a href="%{url}">Click here to become a Monthly
+          Supporter</a>. When we have confirmed your support you will be able
+          to check this box to display this status on your profile. Note: the
+          email addresses on Donorbox and iNaturalist must match exactly for
+          us to confirm that you are a Monthly Supporter. If they differ,
+          change one to match the other.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -9392,16 +9470,11 @@ en:
           attributes:
             base:
               user_already_blocked: You've already blocked that user
-              user_cannot_be_staff: |
+              user_cannot_be_staff2: |
                 You cannot block staff. iNat staff need to be able to
                 communicate with everyone on iNat, have access to all data on
                 iNat, and are the ultimate mediators of disputes, so blocking
-                will not prevent them from communicating with you. If you have a
-                problem with a member of staff, please report it to one of the
-                iNat co-directors, or, if you have a problem with one of the
-                co-directors, you can contact the Chief of Science at the
-                Institute for Biodiversity and Sustainability Science at the
-                California Academy of Sciences.
+                will not prevent them from communicating with you.
         user_parent:
           attributes:
             email:

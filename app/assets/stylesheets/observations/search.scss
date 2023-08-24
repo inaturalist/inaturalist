@@ -842,7 +842,8 @@ inat-taxon { white-space: nowrap; }
 .quality_grade {
   display: inline-block;
   background-color: #ddd;
-  padding: 2px 0 1px 10px;
+  padding-block: 2px 1px;
+  padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
@@ -855,21 +856,23 @@ inat-taxon { white-space: nowrap; }
   display: block;
   bottom: 0;
   border: 10px solid #ddd;
-  border-right-width: 5px;
-  border-right-color: transparent;
+  border-inline-end-width: 5px;
+  border-inline-end-color: transparent;
   inset-inline-end: -15px;
   z-index: -1;
 }
 #obs-container .quality_grade {
-  padding: 1px 0 1px 5px;
+  padding-block: 1px;
+  padding-inline: 5px 0;
   font-size: 10px !important;
   line-height: 14px !important;
   margin-inline-end: 20px;
 }
+
 #obs-container .quality_grade:after {
   bottom: 0;
   border-width: 8px;
-  border-right-width: 5px;
+  border-inline-end-width: 5px;
   inset-inline-end: -10px;
 }
 .quality_grade.needs_id {
@@ -879,7 +882,7 @@ inat-taxon { white-space: nowrap; }
 }
 .quality_grade.needs_id:after {
   border-color: #FFEE91;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 .quality_grade.research {
   background-color:#74ac00;
@@ -887,7 +890,7 @@ inat-taxon { white-space: nowrap; }
 }
 .quality_grade.research:after {
   border-color: #74ac00;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 
 #result-table th.media {width: 5%;}

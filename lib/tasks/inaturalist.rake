@@ -84,7 +84,7 @@ namespace :inaturalist do
       where("photos.id IS NULL").
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |dp|
+        6.months.ago, 1.month.ago).includes( :photo ).find_each do |dp|
       begin
         dp.remove_from_s3( s3_client: client )
       rescue

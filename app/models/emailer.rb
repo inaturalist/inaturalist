@@ -241,13 +241,18 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def email_confirmation_reminder( user )
+  def email_confirmation_reminder( user, options = {} )
     return if user&.confirmed?
 
     @user = user
     @user.send( :generate_confirmation_token! ) if @user.confirmation_token.blank?
-    set_locale
+    set_locale( force: options[:force_locale] )
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
+    # Since this email is sent en masse, we'll try to send from the alternate
+    # IP pool to preserve the reputation of other IPs
+    if CONFIG&.sendgrid&.alternate_ip_pool
+      @x_smtpapi_headers[:ip_pool] = CONFIG&.sendgrid&.alternate_ip_pool
+    end
     ident_response = Identification.elastic_search(
       size: 0,
       filters: [
@@ -262,7 +267,7 @@ class Emailer < ActionMailer::Base
       },
       track_total_hits: true
     )
-    @identifications_count = ident_response.total_entries
+    @identifications_count = ident_response&.total_entries || 0
     @skip_donate = true
     mail_with_defaults( set_site_specific_opts.merge(
       to: user.email,
@@ -272,6 +277,22 @@ class Emailer < ActionMailer::Base
         vow_or_con: @site.name[0].downcase,
         date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
       )
+    ) )
+    reset_locale
+  end
+
+  def independence( user )
+    return unless user&.confirmed?
+    return if user.prefers_no_email
+    return if user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
+    return if user.suspended?
+
+    @user = user
+    set_locale
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
+    mail_with_defaults( set_site_specific_opts.merge(
+      to: user.email,
+      subject: t( :independence_email_subject )
     ) )
     reset_locale
   end
@@ -306,9 +327,14 @@ class Emailer < ActionMailer::Base
     @site.name
   end
 
-  def set_locale
+  def set_locale( options = {} )
+    # Don't bother if set_locale already ran
+    return if @locale_was
+
     @locale_was = I18n.locale
-    I18n.locale = if !@user&.locale&.blank?
+    I18n.locale = if options[:force]
+      options[:force]
+    elsif !@user&.locale&.blank?
       @user&.locale
     elsif @user&.site && !@user&.site&.preferred_locale&.blank?
       @user&.site&.preferred_locale
@@ -320,6 +346,7 @@ class Emailer < ActionMailer::Base
 
   def reset_locale
     I18n.locale = @locale_was || I18n.default_locale
+    @locale_was = nil
   end
 
   # rubocop:disable Naming/MemoizedInstanceVariableName
@@ -347,7 +374,11 @@ class Emailer < ActionMailer::Base
       # when you put tags like this in a template
       sub: {
         "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
-      }
+      },
+      # Sendgrid IP pools allow us to partition delivery between different IPs
+      # if we need to preserve the reputation of one while sending a lot or
+      # riskier emails from another
+      ip_pool: CONFIG&.sendgrid&.primary_ip_pool
     }
   end
 end

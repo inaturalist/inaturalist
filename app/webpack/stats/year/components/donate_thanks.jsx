@@ -7,7 +7,7 @@ const DonateThanks = ( ) => (
         <span>{I18n.t( "views.stats.year.donate_title" )}</span>
       </a>
     </h3>
-    <p>{ I18n.t( "yir_thank_your_for_being_generous" ) }</p>
+    <p>{ I18n.t( "yir_thank_your_for_being_generous2" ) }</p>
   </>
 );
 

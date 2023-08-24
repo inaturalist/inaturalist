@@ -447,13 +447,7 @@ ar:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: انقسام إلى
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: يندمج مع
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: معلومات الاندماج
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: حل محله
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: استبدال ب
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: اُستبدِل ب
     dropped: تم الإسقاط
@@ -888,7 +882,6 @@ ar:
   eligible_for_research_grade: مؤهل للحصول على درجة البحث
   email: البريد الإلكتروني
   email_address_for_comments_and_other_feedback: عنوان البريد الإلكتروني للتعليقات وردود الفعل الأخرى
-  email_copyright: "حقوق النشر &copy; %{x}، جميع الحقوق محفوظة"
   embed: 'تضمين'
   embed_place_widget: تضمين مكان الأداة
   embed_this_assessment: تضمين هذا التقييم
@@ -1124,7 +1117,6 @@ ar:
   heads_up_you_have_multiple: "تنبيه: لديك عدة علامات تصنيفية للتصنيفات المميزة، إنها مرمزة بالألوان أدناه حسب الرتبة."
   help: مساعدة
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
-  help_support_inaturalist: "مساعدة دعم إيناتوراليست"
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
   hex_color_eg: لون Hex، على سبيل المثال 65644F
@@ -1237,7 +1229,6 @@ ar:
   inat_account_action: "%{site_name} &#58; الحساب &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "يعتقد %{site_name} أن هذه قائمة كاملة بأصناف هذا المكان."
   inat_user_profile: "%{site_name}: الملف الشخصي لـ%{user}"
-  inaturalist_is_a_joint_initiative: "%{site_name} هي مبادرة مشتركة بين أكاديمية كاليفورنيا للعلوم والجمعية الجغرافية الوطنية."
   inaturalist_places: "أماكن %{site_name}"
   info: معلومات
   input_taxon: إدخال الأصنوفة
@@ -3317,13 +3308,19 @@ ar:
     بعلامات اقتباس مزدوجة، يجب أن تقوم معظم تطبيقات جدول البيانات بتصدير ملف CSV بهذه 
     الصيغة.
   user: مستخدم
+  #@gender operates on %{x}
   user_added_a_x: "أضاف %{user} %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
   user_added_an_observation_field_html: 'أضاف %{user} قيمة ل"%{field_name}"إلى ملاحظة بواسطة %{owner}'
   user_added_an_observation_html: "أضاف %{user} ملاحظة"
+  #@gender operates on %{x}
   user_added_an_x: "أضاف %{user} %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
   user_added_x_observations_html: "أضاف %{user} %{x} ملاحظة"
   user_already_authenticated: المستخدم موثق بالفعل
@@ -3686,30 +3683,6 @@ ar:
       post_donate_social_media_text: أنا أدعم إيناتوراليست لأن.
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: كن داعما شهريا لإيناتوراليست
-        desc_html: |
-          <p class="lead">
-            <strong>إيناتوراليست هو أحد من أكبر المجتمعات في العالم المخصصة
-            لاستكشاف التنوع الحيوي، شكرا لك على مشاركتك فيه!</strong>
-          </p>
-          <p class="lead">
-            نريد أن نحافظ على استخدام إيناتوراليست مجانًا، لكنه ليس عملا 
-            مجانيا، إذا كنت تحب إيناتوراليست، يُرجَى التفكير في أن تصبح داعما 
-            شهريا، تساعد الهدايا المتكررة في ضمان استمرار إيناتوراليست
-            لتوسيع البنية التحتية والموظفين من خلال توفير إيرادات
-            يمكن التنبؤ بها، يمكنك أيضا اختيار إظهار حالة المؤيد الشهري على
-            ملف تعريف المستخدم الخاص بك.</p>
-          <p class="lead">
-            تبرعاتك الخيرية تساعد في دعم إيناتوراليست كمجتمع
-            ينمو، من تقدم رؤية الحاسوب وتنفيذ ميزات جديدة
-            لدعم خوادمنا وموظفينا، إذا كنت تفضل إعطاء
-            تبرع لمرة واحدة، يُرجَى <a href="%{donate_url}">النقر هنا</a>.
-          </p>
-          <p class="text-muted">
-            إيناتوراليست هي مبادرة مشتركة من أكاديمية كاليفورنيا للعلوم
-            والجمعية الجغرافية الوطنية، سيتم استلام جميع التبرعات بواسطة
-            أكاديمية كاليفورنيا للعلوم، 501(c)(3): منظمة معفاة من الضرائب غير هادفة للربح
-            مقرها في الولايات المتحدة الأمريكية.
-          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -4799,33 +4772,6 @@ ar:
           كل أجناسها ولكن ليس كل أنواعها، هذا سيتم تعيينه إلى "جنس". 
           الافتراضي هو النوع.
       show:
-        about_names_desc: |
-          <p> 
-            معظم فئات الكائنات الحية لها "أسماء مشتركة" 
-           \ باللغات المنطوقة، وعادة ما تكون هذه الأسماء يمكن التعرف عليها، وسهلة التنطق، 
-            ومستقرة مع مرور الوقت، ولكن العديد من الكائنات الحية لديها عدة 
-            أسماء مختلفة في أماكن مختلفة، حتى في نفس اللغة، والتي يمكن أن تجعل 
-            من الصعب التواصل عن هذه الكائنات دون ارتباك، 
-            ويعالج العلماء هذه المشكلة باستخدام "اسم علمي" واحد 
-            لكل فئة من الكائنات الحية التي تتوافق مع قواعد 
-           \ <a href="https://ar.wikipedia.org/wiki/تسمية_ثنائية">التسميات البيولوجية</a>، 
-            ولكن هذه الأسماء تميل إلى أن تكون على أساس اللاتينية، لغة لا أحد 
-           \ يتحدث بها; لذلك فهي ليست بارزة كأسماء شائعة للكثير منن
-            الاشخاص، ويمكن للأسماء العلمية أن تعكس أيضا وضع تصنيف الكائن الحي; 
-            حتى يمكن أن تتغير عندما يطور العلماء 
-            نظريات أكثر دقة حول العلاقات التطورية بين 
-            الكائنات الحية المختلفة، مما يقلل من جدواها في 
-            التواصل، حتى بين الأشخاص الذين يعرفون الأسماء العلمية. 
-          </p> 
-          <p> 
-            يقول القول المأثور القديم: "تتغير الأسماء الشائعة من مكان 
-            لآخر، وتتغير الأسماء العلمية من وقت لآخر". 
-          </p> 
-          <p> 
-            نحاول معالجة أوجه القصور هذه من خلال عرض كل من 
-            الأسماء الشائعة والعلمية حيثما أمكن، واختيار الأسماء الشائعة 
-            استنادا إلى اللغة والتفضيلات الجغرافية للمشاهد. 
-          </P>
         about_conservation_status_desc: |
           يلخص وضع الحفظ خطر الانقراض بالنسبة لمجموعة من الكائنات الحية.
         about_establishment_desc: |
@@ -5047,17 +4993,6 @@ ar:
           الحيوي</a> (GBIF)، وهي منظمة دولية حكومية دولية
           تقوم بجمع وتوزيع معلومات التنوع الحيوي من جميع أنحاء 
           العالم.
-        monthly_supporter_desc_html: |
-          يقدم داعمو إيناتوراليست شهريا مساهمات شهرية تلقائية
-          التي تستقبلها أكاديمية كاليفورنيا للعلوم (الولايات
-          المتحدة IRS EIN 94-1156258)
-          لدعم العملية غير الهادفة للربح إيناتوراليست
-          ومواقع شبكة إيناتوراليست،
-          <a href="%{url}">انقر هنا لتصبح داعما شهريا</a>.
-          عندما نؤكد دعمك، ستتمكن من التحقق من هذا
-          الصندوق لعرض هذه الحالة في ملفك الشخصي، ملاحظة: سوف تحتاج إلى استخدام
-          نفس عنوان البريد الإلكتروني بالضبط على صندوق المانحين كما تفعل في إيناتوراليست
-          لكي نؤكد أنك أصبحت داعمًا شهريا.
         muting_desc_html: |
           <p> 
             كتم شخص ما يمنعك من تلقي إشعارات حول الأشياء 

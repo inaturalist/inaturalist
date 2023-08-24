@@ -1043,7 +1043,10 @@ class UsersController < ApplicationController
   end
 
   def resend_confirmation
+    current_user.send( :generate_confirmation_token! )
     current_user.send_confirmation_instructions
+    current_user.wait_for_index_refresh = true
+    current_user.update( confirmation_sent_at: Time.now.utc )
     respond_to do | format |
       format.json do
         if current_user.valid?
@@ -1271,6 +1274,7 @@ protected
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
+      :prefers_gbif_layer_maps,
       :prefers_identification_email_notification,
       :prefers_identify_side_bar,
       :prefers_message_email_notification,

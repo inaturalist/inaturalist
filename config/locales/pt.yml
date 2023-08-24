@@ -777,13 +777,7 @@ pt:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fundir com
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fundido com
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituído por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituir com
     dropped: descartado
     staged: etapa concluída
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} dividiu-se em %{output_taxa}"
@@ -1356,7 +1350,6 @@ pt:
   email: Email
   email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
-  email_copyright: "Direitos de autor &copy; %{x}, todos os direitos reservados"
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
   embed_place_widget: Incorporar um componente de localização
@@ -1573,7 +1566,6 @@ pt:
   heads_up_you_have_multiple: "Aviso: Você tem múltiplas etiquetas de máquina para ordens idênticas. Elas são apresentadas por ordem com uma cor, em baixo."
   help: Ajuda
   help_confirm_observations!: Ajude a confirmar observações!
-  help_support_inaturalist: "Apoie o iNaturalist"
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_suggestions: Aqui estão nossas principais sugestões
   here_are_our_top_species_suggestions: Aqui pode ver a nossa selecção de espécies
@@ -3275,13 +3267,19 @@ pt:
       remove_photo: Remover a foto
   usage_stats: Estatísticas de utilização
   user: Utilizador
+  #@gender operates on %{x}
   user_added_a_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} adicionou um(a) %{x} ao %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
   user_added_an_observation_field_html: '%{user} adicionou um valor ao campo "%{field_name}" da observação de %{owner}'
   user_added_an_observation_html: "%{user} adicionou uma observação"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} adicionou um(a) %{x} a(o) %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
   user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O utilizador já está autenticado

@@ -309,7 +309,7 @@ describe Observation do
           observation.run_callbacks :validation
 
           expect( ActiveSupport::TimeZone[observation.time_zone].formatted_offset ).to eq opts[:offset]
-          expect( observation.observed_on.month ).to eq opts[:month]
+          expect( observation.observed_on.month ).to eq( opts[:month] )
           expect( observation.observed_on.day ).to eq opts[:day]
           expect( observation.time_observed_at.in_time_zone( observation.time_zone ).hour ).to eq opts[:hour]
         end

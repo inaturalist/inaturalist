@@ -590,8 +590,15 @@ class LocalPhoto < Photo
     source_images.each do |source_image|
       target_image = target_images.find{ |target| target.key == source_image.key }
       return false unless target_image
-      return false unless target_image.etag == source_image.etag
       return false unless target_image.size == source_image.size
+      # Large files uploaded in multipart have ETags containing a hyphen '-'
+      # When moving such object between buckets, copy_object will not use multipart requests
+      # and the generated ETag will be different, even though the files are the same
+      return false unless ( 
+        ( target_image.etag == source_image.etag ) || 
+        target_image.etag.include?( "-" ) ||
+        source_image.etag.include?( "-" )
+      )
     end
     true
   end

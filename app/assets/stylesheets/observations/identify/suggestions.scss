@@ -104,7 +104,7 @@
     display: inline-block;
     color: $bootstrap-link-color;
     label {
-      margin-right: 0.3em;
+      margin-inline-end: 0.3em;
       font-weight: normal;
       color: black;
     }
@@ -123,7 +123,7 @@
   }
 
   .filters > * {
-    margin-right: 10px;
+    margin-inline-end: 10px;
     margin-bottom: 0px;
   }
 
@@ -131,7 +131,7 @@
   .obs-modal-header a.direct-link,
   .taxon a.direct-link {
     color: $text-grey;
-    margin-left: 3px;
+    margin-inline-start: 3px;
   }
 
   .suggestion-row {

@@ -68,6 +68,7 @@ opts = Optimist.options do
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :taxon_private_coordinates, "Include private coordinates if obscured by taxon geoprivacy but not user geoprivacy", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
+  opt :places_for_site, "Export observations associated with this site's place and export places (lower priority than place_id)", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
   opt :with_taxa, "Include a taxa.csv file if the core is observations", type: :boolean

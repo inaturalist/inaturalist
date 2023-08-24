@@ -315,7 +315,7 @@ hu:
   add_tags: Címkék hozzáadása
   add_tags_to_selected_taxa: Címkék hozzáadása a kiválasztott taxonokhoz
   add_taxa: Taxonok hozzáadása
-  add_taxon_batch_to: "Taxonköteg hozzáadása ide %{list}"
+  add_taxon_batch_to: "Taxonok hozzáadása ide: %{list}"
   add_taxon_range: Taxonintervallum hozzáadás
   add_to_a_project: Hozzáadás projekthez
   add_to_calendar: Hozzáadás a Naptárhoz
@@ -345,6 +345,7 @@ hu:
   agree_: Egyetért
   agree?: Egyetértek
   agree_with_current_taxon: Egyetért a jelenlegi taxonnal
+  agree_with_observation_taxon: Egyetértés a megfigyelési taxonnal
   agreeing: Egyetértés...
   aka: más néven
   #Noun, title of a popup alerting you to something
@@ -742,13 +743,7 @@ hu:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Felosztva ezekre
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 'egyesítés ide:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 'egyesítve ide:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 'erre lecserélve:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'csere ezzel:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
     dropped: elejtve
@@ -1275,6 +1270,8 @@ hu:
   donate: TÁMOGATÁS
   donate_again_caps: ADOMÁNYOZZ ÚJRA
   donate_again_today_caps: ADAKOZZ MA ÚJBÓL
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Az iNaturalist támogatása
   done: Kész
   dont_have_an_account_sign_up_html: Nincs még fiókod? <strong>Regisztrálj.</strong>
   dont_use_double_quotes: Ne használj idézőjelet sehol máshol
@@ -1383,6 +1380,7 @@ hu:
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
   email_confirmation_reminder_account_details: A fiók részletei
+  email_copyright2: "&copy; %{year} iNaturalist, minden jog fenntartva"
   email_notifications: Email értesítések
   embed: 'Beágyazás'
   embed_place_widget: Helywidget beágyazása
@@ -1709,6 +1707,10 @@ hu:
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
+  #Introductory line in an email. "Dear" doesn't have to be translated
+  #literally. Please just choose something that's conventional in your
+  #language.
+  independence_email_body_dear: Kedves %{name},
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
@@ -1759,7 +1761,6 @@ hu:
   inaturalist_activity_notifications: "Értesítések %{site_name}-tevékenységekről"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Alkalmazások"
-  inaturalist_is_a_joint_initiative: "Az %{site_name} a California Academy of Sciences és a National Geographic Society közös kezdeményezése."
   inaturalist_places: "%{site_name} helyek"
   info: Leírás
   insects: rovarok
@@ -1887,6 +1888,7 @@ hu:
     danish: Dán
     dutch: holland
     english: Angol
+    esperanto: Eszperantó
     estonian: Észt
     faroese: Feröer-szigeteki
     finnish: Finn
@@ -2205,7 +2207,7 @@ hu:
   #title for section describing people who donate to iNat every month
   monthly_supporters: Havi támogatók
   monthly_supporter_since_date_html: |
-    <a href="%{url}">Havi rendszerességű támogató</a>%{date} óta
+    <a href="%{url}">Havi rendszerességű támogató</a> %{date} óta
   months: Hónapok
   more: Továbbiak
   #Button to show more observations
@@ -3246,7 +3248,7 @@ hu:
   project_requirements: Kritériumok
   project_rules: Projektszabályzat
   project_settings: Projektbeállítások
-  project_start_time_datetime: "Kezdete:"
+  project_start_time_datetime: "Kezdete: %{datetime}"
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3435,6 +3437,7 @@ hu:
   refresh: Frissít
   refreshing: frissül
   regenerate_stats: Statisztikák újragenerálása
+  regional_names: Regionális nevek
   reject?: Elutasítod?
   relative_observations: Relatív megfigyelésszám
   relationship: "Viszony"
@@ -3829,7 +3832,7 @@ hu:
   taxonomy: Rendszertan
   taxon_change_commit_may_still_be_processing: |
     A taxonmódosítás még folyamatban lehet, ezért elképzelhető, hogy nem minden adatsor van frissítve
-  taxon_change_title_taxon_swap: Taxoncsere
+  taxon_change_title_taxon_swap: Taxoncsere %{id}
   taxon_ids: Taxonazonosítók
   taxon_map:
     overlays: Rétegek
@@ -4153,19 +4156,29 @@ hu:
   user_added_a_comment_html: "%{user} hozzászólt"
   user_added_a_fave_html: "%{user} kedvelte"
   user_added_a_flag_html: "%{user} bejelentést adott hozzá"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_identification_html: "%{user} meghatározást javasolt"
   user_added_an_observation_field_html: 'Megfigyelés (%{owner}): %{user} kitöltötte a(z) "%{field_name}" adatmezőt'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
   user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_x_observations_html: "%{user} hozzáadott %{x} megfigyelést"
   user_already_authenticated: A felhasználó már hitelesítve van
@@ -4355,6 +4368,7 @@ hu:
   white: fehér
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Miért módosítasz? (opcionális)
+  why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
   who_can_see_the_coordinates: Ki láthatja a koordinátákat
@@ -4431,8 +4445,6 @@ hu:
     Idén emberek milliói használták az iNaturalist-ot és a Seek-et a természettel való kapcsolattartáshoz
   yir_monthly_supporters_random_selection: |
     Itt egy véletlenszerű válogatás az iNat közösségéből, akik havonta támogatják a programotot.
-  yir_thank_your_for_being_generous: |
-    Köszönettel tartozunk a ránk fordídott idődért, figyelmedért, szakértelmedért és támogatásodért. Az iNaturalist a California Academy of Science és a National Geographic Society közös, nonprofit kezdeményezése. A program működését támogatási alapok és adományok segítik, beleértve a felhasználói tábor töredékétől érkező adományokat. Külön hálával tartozunk a havi támogatóinknak, akik rendszeres felajánlásaikkal segítik a munkánkat hosszabb távon.
   yir_your_gift_sustains: |
     Az adományod révén hozzájárulsz a program globális fenntartásához és eredményeihez személyes és ökológiai szinten
   you: te
@@ -4806,55 +4818,6 @@ hu:
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
-        quality_assessment_help2_html: |
-          <p>
-          Az adatminőségi kiértékelés a megfigyelés pontosságát összegzi. Minden megfigyelés <strong>"hobbiszintű"</strong>ről indul, majd <strong>"meghatározásra vár"</strong>ra vált, ha teljesülnek az alábbi feltételek:
-          </p>
-          <ul>
-          <li>a megfigyelésnek <strong>van dátuma</strong></li>
-          <li>a megfigyelésnek vannak <strong>helyi koordinátái</strong> (szélességi és hosszúsági kör)</li>
-          <li>a megfigyeléshez tartozik <strong>kép és/vagy hang</strong></li>
-          <li>a megfigyelés tárgya <strong>nem ember</strong></li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"kutatási szint"</strong>re emelkedik, ha:
-          </p>
-          <ul>
-          <li>
-          az %{site_name} <strong>közössége egyetértésre jut faji szinten, vagy az alatt</strong>, vagy is ha a meghatározók több, mint kétharmada egyetért a taxonon (ha a közösség szerint a közösségi taxon nem javítható tovább, akkor a taxon alcsalád-szintűre vagy az alattira vált.
-          </li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"hobbiszintű"</strong>re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért a következőkben:
-          </p>
-          <ul>
-          <li>
-          a <strong>hely nem tűnik pontosnak</strong> (például majom van az ócián közepén, vagy víziló egy irodaközpontban)
-          </li>
-          <li>
-          az <strong>élőlény nem vadon vagy természetben fordul elő</strong> (például emberi kultiváció eredménye)
-          </li>
-          <li>
-          a megfigyelés <strong>nem szolgál bizonyítékul az élőlényről</strong>, például az élőlényt nem tartalmazó képek vízfelszínről, sziklákról, tájakról.
-          </li>
-          <li>
-          a megfigyelés <strong>túl régi (100 évnél régebbi) bizonyítékkal szolgál</strong> (például fosszíliák, viszont elfogadhatóak nyomok, ürülék, száradt levél)
-          </li>
-          <li>
-          a megfigyelésnek már nincs szüksége meghatározásra <em>és</em> a közösségi meghatározás családszintű vagy afeletti
-          </li>
-          <li>
-          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi taxon nem a felmenője vagy gyermeke a megfigyelő által kiválasztott taxonnak
-          </li>
-          </ul>
-          <p>
-          Ha ez még mindig nem lenne elég bonyolult:
-          </p>
-          <ul>
-          <li>
-          Bizonyos esetekben a rendszer automatikusan "nem vadonélő" szavazattal látja el a megfigyelést, ha az adott nemzetségnek vagy az alatt van legalább 10 egyéb megfigyelése az adott régióban/államban/országban, és ezen megfigyelések legalább 80 százaléka nem vadonélőként van megjelölve.
-          </li>
-          </ul>
         score_desc: "pontszám = összesített szám / (összesített szám + egyetnemértések száma + felmenői egyetnemértések)"
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
@@ -5089,13 +5052,20 @@ hu:
       show:
         about_names_desc: |
           <p>
-          Az élőlények nagy része rendelkezik névvel a beszélt nyelvek valamelyikén. Ezek a nevek általában könnyen felismerhetők, könnyen kiejthetők, és jellemzően nem módosulnak az idő folyamán. Viszont sok élőlényt számos különböző néven illetnek különféle helyeken, még ugyanazon a nyelven belül is, ami félreértésekhez vezethet. Ezt a problémát a tudósok azzal kerülik el, hogy minden egyes élőlény-kategóriát egy tudományos névvel illetnek, amely név megfelel a <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">Binomenális nómenklatúra</a> szabályainak. A tudományos név legtöbbször a latin nyelven alapszik, amelyet senki nem beszél, ezért azokat a legtöbb embernek nehezebb észben tartani. A tudományos nevek az élőlény rendszertani besorolására is utalhatnak, így azok módosításra szorulnak, amikor a tudósok rendszertanilag pontosabban be tudják kategorizálni az élőlényt. Ez szintén kommunikációs problémákhoz vezethet, még a tudományos neveket ismerők körében is.
+          Az élőlények nagy része rendelkezik köznyelvi névvel a beszélt nyelvek valamelyikén. Ezek a nevek általában könnyen felismerhetők, könnyen kiejthetők, és jellemzően nem módosulnak az idő folyamán. Viszont sok élőlényt számos különböző néven illetnek különféle helyeken, még ugyanazon a nyelven belül is, ami félreértésekhez vezethet. Ezt a problémát a tudósok azzal kerülik el, hogy minden egyes élőlény-kategóriát egy tudományos névvel illetnek, amely név megfelel a <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">Binomenális nómenklatúra</a> szabályainak. A tudományos név legtöbbször a latin nyelven alapszik, amelyet senki nem beszél, ezért azokat a legtöbb embernek nehezebb észben tartani. A tudományos nevek az élőlény rendszertani besorolására is utalhatnak, így azok módosításra szorulnak, amikor a tudósok rendszertanilag pontosabban be tudják kategorizálni az élőlényt. Ez szintén kommunikációs problémákhoz vezethet, még a tudományos neveket ismerők körében is.
           </p>
           <p>
-          Ami jól kifejezi a problémát: "A népies nevek helyről helyre, a tudományos nevek időről időre változnak."
+          Ami jól kifejezi a problémát: "A köznyelvi nevek helyről helyre, a tudományos nevek időről időre változnak."
           </p>
           <p>
-          Ezeket a problémákat mi azzal próbáljuk kiküszöbölni, hogy mind a népies, mind pedig a tudományos nevet megjelenítjük, a felhasználó nyelvi és földrajzi beállításai alapján.
+          Ezeket a problémákat mi azzal próbáljuk kiküszöbölni, hogy lehetőség szerint mind a köznyelvi, mind pedig a tudományos nevet megjelenítjük, a köznyelvi nevet a felhasználó nyelvi és földrajzi beállításai alapján. Az egyes nyelveken és típusokon belül a nevek sorrendje a globális prioritásukat tükrözi.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          A nevek különféle földrajzi helyekhez (legtöbbször országhoz) rendelhetők. Erre azért lehet szükség, mert ugyanazon nyelven belül is az egyes országokban elfogadott köznyelvi név eltérhet, például a spanyolon belül Costa Rica és Mexikó más neveket használhat.
+          </p>
+          <p>
+          Ez a táblázat az egyes földrajzi helyekhez hozzárendelt köznyelvi neveket mutatja, az adott helyen belüli prioritás szerint rendezve. Ha például két spanyol név van hozzáadva Mexikóhoz, az elsőként megjelenített fog neked megjelenni, feltéve ha spanyol nyelvet állítottál be Mexikóhoz.
           </p>
         about_conservation_status_desc: |
           A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
@@ -5584,6 +5554,7 @@ hu:
         name_provider: Névszolgáltató
         source_url: Forrás URL
         source_identifier: Forrás azonosító
+        audit_comment: Megjegyzés
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -5743,6 +5714,8 @@ hu:
               already_exists: már létezik ehhez a taxonhoz ebben a szókészletben
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nem lehet azonos a tudományos fajnévvel e lexikonban
+            audit_comment:
+              needs_to_be_at_least_10_characters: legalább 10 karakter hosszú kell legyen
         taxon_photo:
           attributes:
             taxon:
@@ -5766,8 +5739,6 @@ hu:
           attributes:
             base:
               user_already_blocked: Már blokkoltad azt a felhasznállót
-              user_cannot_be_staff: |
-                Nem blokkolhatod a személyzetet. Az iNat személyzete mindenkivel kapcsolatba kell léphessen és minden adathoz hozzá kell férjen az iNat-on, és mivel ők oldják meg a vitás helyzeteket, blokkolásuk nem akadályozza meg, hogy veled kapcsolatba lépjenek. Ha gondod van a szeméyzet egyik tagjával, kérünk számolj be erről az iNat egyik igazgatójának, vagy ha az egyik igazgatóval van problémád, akkor kapcsolatba léphetsz a Kaliforniai Tudományakadémia Biodiverzitás és Fenntarthatóságtudomány Intezetének a Tudományvezetőjével.
         user_parent:
           attributes:
             email:

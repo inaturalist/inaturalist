@@ -5,12 +5,12 @@
   %a{ class: "display-name {{ secondaryNames().length === 0 || user.prefers_scientific_name_first ? 'sciname' : 'comname' }}", href: "{{ url }}", target: "_self", "ng-show" => "taxon.id" }
     %span.rank{"ng-show" => "(secondaryNames().length === 0 || user.prefers_scientific_name_first) && showRank()"}><
       {{ rank() | capitalize }}<span> </span>
-    {{ displayNames().join( ", ") }}
+    {{ displayNames().join( " · ") }}
   %a{ class: "secondary-name", href: "{{ url }}", target: "_self", "ng-show" => "taxon.id && secondaryNames().length > 0" }
     %span{ class: "comname", "ng-show" => "user.prefers_scientific_name_first" }><
-      {{ secondaryNames().join( ", ") }}
+      {{ secondaryNames().join( " · ") }}
     %span{ class: "sciname", "ng-show" => "!user.prefers_scientific_name_first" }><
       %span.rank{"ng-show" => "taxon.preferred_common_name && showRank()"}><
         {{ rank() | capitalize }}<span> </span>
-      {{ secondaryNames().join( ", ") }}
+      {{ secondaryNames().join( " · ") }}
 

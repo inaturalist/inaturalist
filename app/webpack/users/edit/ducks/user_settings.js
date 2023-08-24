@@ -58,6 +58,13 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         return object;
       }, {} );
 
+      // We may have pre-set confirmation_sent_at before actually requesting
+      // it, so we're keeping it there until we get a new value from the
+      // server
+      if ( profile.confirmation_sent_at && !userSettings.confirmation_sent_at ) {
+        userSettings.confirmation_sent_at = profile.confirmation_sent_at;
+      }
+
       dispatch( setUserData( userSettings, savedStatus ) );
 
       if ( initialLoad ) {
@@ -285,8 +292,6 @@ export function changePassword( input ) {
 export function resendConfirmation( ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile.confirmation_sent_at = ( new Date( ) ).toISOString( );
-    dispatch( setUserData( profile ) );
     return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
       dispatch( fetchUserSettings( "saved" ) );
       // If we go back to signing people out after sending the confirmation,
@@ -315,6 +320,12 @@ export function confirmResendConfirmation( ) {
       //   defaultValue: I18n.t( "resend_and_sign_out" )
       // } ),
       onConfirm: async ( ) => {
+        // Preemptively set confirmation_sent_at so the user sees a change
+        // immediately
+        await dispatch( setUserData( {
+          ...getState( ).profile,
+          confirmation_sent_at: ( new Date( ) ).toISOString( )
+        } ) );
         await dispatch( saveUserSettings( ) );
         const { profile } = getState( );
         if ( !profile.errors || profile.errors.length <= 0 ) {

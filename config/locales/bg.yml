@@ -681,8 +681,6 @@ bg:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: разделено на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: обедини във
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: обединени във
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заместено със
@@ -1246,7 +1244,6 @@ bg:
     Изпратихме Ви потвърдителен имейл на %{date}. Ако не сте го получили, ето няколко неща които можете да направите:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Моля, потвърдете имейл адреса си%{link_end_tag}</strong>. Всички потребители трябва да потвърдят адреса си до %{date}. След това, тези които не са потвърдили адреса си няма да могат да влязат, освен ако не нулират паролата си. За да потвърдите Вашия имейл адрес отидете във вашите %{link_start_tag}настройки на акаунта%{link_end_tag}.
-  email_copyright: "Авторско право &copy; %{x}, всички права запазени"
   email_notifications: Известия по имейл
   embed_place_widget: Вмъкни приставка за място
   embed_widget_project: Вмъкни приставка за този проект на сайта си
@@ -1497,7 +1494,6 @@ bg:
   heads_up_this_photo_is_already_associated_with: "Внимание: тази снимка вече е свързана с <a target='_blank' href='%{url}'>друго наблюдение</a>"
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
-  help_support_inaturalist: "Подкрепете iNaturalist"
   help_translate!: Помогнете с превода!
   here_are_3_examples: Ето три добре форматирани примера
   here_are_our_top_suggestions: Ето най-добрите ни предложения
@@ -1589,7 +1585,6 @@ bg:
   inaturalist_activity_notifications: "Известия за активност на %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Приложения на iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} е съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество."
   inaturalist_places: "%{site_name} Места"
   info: Информация
   input_taxon: Входящ таксон
@@ -3163,6 +3158,7 @@ bg:
   refresh: Опресни
   refreshing: опресняване
   regenerate_stats: Повторно генериране на статиката
+  regional_names: Регионални имена
   reject?: Отхвърли?
   relative_observations: Относителен дял на наблюденията
   relationships:
@@ -3892,19 +3888,29 @@ bg:
   user_added_a_comment_html: "%{user} добави коментар"
   user_added_a_fave_html: "%{user} добави харесване"
   user_added_a_flag_html: "%{user} добави маркер"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} добави %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_an_identification_html: "%{user} добави разпознаване"
   user_added_an_observation_field_html: '%{user} добави стойност на %{field_name} към наблюдение от %{owner}'
   user_added_an_observation_field_value_html: "%{user} добави стойност към поле за наблюдения"
   user_added_an_observation_html: "%{user} добави наблюдение"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} добави %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
@@ -4078,6 +4084,7 @@ bg:
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло
+  why_are_you_making_this_change_cite_source_required: Защо правите тази промяна? Обяснете, цитирайте източник, ако може. (изисква се)
   who_can_add_observation_fields_to_my_obs: Кой може да добавя полета за наблюдения към моите наблюдения?
   who_can_add_observations_to_this_project?: Кой може да добавя наблюдения към проекта?
   who_can_see_the_coordinates: Кой може да види координатите
@@ -4161,8 +4168,6 @@ bg:
     Тази година милиони хора използваха iNaturalist, както и Seek от iNaturalist, за да се сближат с природата
   yir_monthly_supporters_random_selection: |
     Ето случайна извадка от героичните членове на общността на iNat, които даряват ежемесечно.
-  yir_thank_your_for_being_generous: |
-    Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Платформата разчита на множество субсидии и дарения, включително на благотворителни дарения на съвсем малка част от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие.
   yir_your_gift_sustains: |
     Вашето дарение поддържа тази платформа с глобален досег и значимо лично и екологично значение
   you: Вас
@@ -4253,36 +4258,10 @@ bg:
             Ако е така, моля прочетете нашето <a href="%{url}">Ръководство за учители</a> за съвети как да използвате %{site_name} с ученици и студенти.
     donate:
       donate_short_desc: "Дарете и покажете своята подкрепа!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим Ви, че сте част от нея!</strong>
-        </p>
-        <p class="lead">
-        Ако вярвате в способността на тази глобална общност от любители на природата да споделя знания и да генерира незаменими данни за биоразнообразието – моля, обмислете възможността да станете еднократен или редовен дарител или разгледайте<a
-        href="https://www.inaturalist.org/pages/giving">други начини да дарите</a>.
-        </p>
-        <p class="lead">
-        Вашите дарения помагат за поддръжката на iNaturalist и разрастващата се общност, за развиването на компютърното зрение, разработването на нови функции и поддържането на нашите сървъри и персонал.
-        </p>
-        <p class="text-muted">
-        iNaturalist e съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Всички дарения ще бъдат получени от Калифорнийската академия на науките - базирана в САЩ, некомерсиална и освободена от данъци организация според секция 501(c)(3) от Кодекса на САЩ (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Подкрепям iNaturalist, защото...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станете Ежемесечен поддръжник на iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: СТАНЕТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК НА INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим Ви, че сте част от нея!</strong>
-          </p>
-          <p class="lead">Искаме iNaturalist да остане безплатен за използване, но далеч не е безплатен за поддръжка. Ако харесвате iNaturalist, моля обмислете възможността да станете Ежемесечен поддръжник. Редовните дарения спомагат за поддръжката и развитието на инфраструктурата на iNaturalist и за осигуряване на редовно обезпечение на екипа. От настройките, можете да изберете да се изобразява Вашият статус на Ежемесечен поддръжник на Вашия потребителски профил.
-          </p>
-          <p class="lead">
-          Вашите благотворителни дарения помагат за поддръжката iNaturalist, чиято общност непрекъснато нараства - за развитието на компютърното зрение и разработването на нови функции, за обезпечаването на сървърите и екипа ни и др. Ако предпочитате да дадете еднократно дарение, моля <a href="%{donate_url}">щракнете тук</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist e съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Всички дарения ще бъдат получени от Калифорнийската академия на науките - базирана в САЩ, некомерсиална и освободена от данъци организация според секция 501(c)(3) от Кодекса на САЩ.
-          </p>
         thank_you_for_being_a_monthly_supporter: Благодарим Ви, че сте ежемесечен поддръжник!
         thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВИ, ЧЕ СТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК!
     guides:
@@ -4684,9 +4663,6 @@ bg:
           Каква беше тази година в сравнение с предходните години? Зеленият стълб показва тази година, белият вертикален стълб показва предходната година, а сивите площи на фона показват най-слабите и най-силните години, както и средните стойности за всички години.
         compared_to_previous_years: Сравни с предишни години
         donate_title: "Специални благодарности на всичките ни поддръжници"
-        donate_desc_html: |
-          Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество.
-          Поддържа се от <a href="%{team_url}">малък екип</a>, който разработва целия дизайн и софтуер на уебсайта, мобилните приложения, включително <a href="%{seek_url}">Seek от iNaturalist</a>, и освен това ръководи поддръжката на общността, сътрудничеството и интеграциите необходими за функционирането и разрастването на платформата. А тя разчита на множество субсидии и дарения, включително на благотворителни дарения на съвсем малка част от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие. Можете да дарите в множество валути, за да поддържате основната дейност на iNaturalist. Благодарим на всички, че превърнахте %{year} г. в най-успешната година на iNaturalist досега!
         donors: Дарители
         donors_guide_label_our_goal_is_1000: Целта ни е 1 000 редовни дарители на месец
         inaturalist_network: Мрежа на iNaturalist
@@ -4822,10 +4798,6 @@ bg:
           </p>
         licensing_desc_html: |
           Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.
-        monthly_supporter_desc_html: |
-          Ежемесечните поддръжници на iNaturalist правят автоматични приноси, получавани от Калифорнийската академия на науките (САЩ, IRS EIN 94-1156258), в поддръжка на некомерсиалната дейност на iNaturalist и другите сайтове от Мрежата на iNaturalist.
-          <a href="%{url}">Щракнете тук, ако искате да станете Ежемесечен поддръжник</a>.
-          Когато потвърдим Вашата поддръжка, ще можете да добавите отметка в тази кутийка и статусът ще се изобразява на Вашия профил. Забележка: трябва да използвате същия имейл в Donorbox, какъвто използвате и в iNaturalist, за да можем да потвърдим поддръжката Ви.
         muting_desc_html: |
           <p> Ако заглушите някого, вече няма да получавате известия за нещата които прави, включително когато коментира Ваши наблюдения, изпраща Ви съобщения, споменава Ви и т.н. Заглушаването ще Ви помогне да игнорирате някого, без да му попречите да прави каквото и да било. </p>
           <p> Можете да заглушите колкото хора искате, но имайте предвид, че така може да пропуснете потенциално важни известия, например за разпознавания които променят консенсусното разпознаване от общността на наблюденията Ви. </p>
@@ -5201,6 +5173,7 @@ bg:
         lexicon: Лексика
         name: Название
         position: Позиция
+        audit_comment: Бележка
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -5304,6 +5277,8 @@ bg:
             name:
               bad_format: |
                 може да съдържа единствено стандартни латински символи, тирета, интервали и ×; имайте предвид, че предполагаеми таксони и култивари не са позволени
+            audit_comment:
+              needs_to_be_at_least_10_characters: трябва да е поне 10 знака
         taxon_photo:
           attributes:
             taxon:

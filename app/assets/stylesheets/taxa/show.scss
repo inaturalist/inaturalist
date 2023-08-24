@@ -756,7 +756,8 @@ $nav-btn-dim: 40px;
 .PhotoModal .SplitTaxon a {
   color: black;
 }
-.PhotoModal .display-name {
+.PhotoModal .SplitTaxon > .display-names,
+.PhotoModal .SplitTaxon > .display-name {
   font-size: 150%;
 }
 .PhotoModal .photo-modal-content {
@@ -836,6 +837,10 @@ $nav-btn-dim: 40px;
 
 .TaxonThumbnail .taxon .display-name {
   color: black;
+}
+
+.TaxonThumbnail .taxon > .display-name,
+.TaxonThumbnail .taxon .display-names {
   display: block;
   font-size: 120%;
   font-weight: bold;

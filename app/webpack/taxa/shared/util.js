@@ -156,10 +156,15 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
     updateCurrentUser,
     observation
   } = options;
-  const currentUserPrefersMedialessObs = currentUser
-    && currentUser.prefers_medialess_obs_maps;
-  const currentUserPrefersCaptiveObs = currentUser
-    && currentUser.prefers_captive_obs_maps;
+  const {
+    prefers_captive_obs_maps: currentUserPrefersCaptiveObs,
+    prefers_gbif_layer_maps: currentUserPrefersGbifLayer,
+    prefers_medialess_obs_maps: currentUserPrefersMedialessObs,
+  } = currentUser || {
+    prefers_captive_obs_maps: false,
+    prefers_gbif_layer_maps: false,
+    prefers_medialess_obs_maps: false,
+  };
   return {
     taxon,
     observationLayers: [
@@ -196,7 +201,11 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
           && ( e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } ) )
       }
     ],
-    gbif: { disabled: true, legendColor: "#F7005A" },
+    gbif: {
+      disabled: !currentUserPrefersGbifLayer,
+      legendColor: "#F7005A",
+      onChange: currentUser && ( e => updateCurrentUser( { prefers_gbif_layer_maps: e.target.checked } ) ),
+    },
     places: true,
     ranges: true
   };

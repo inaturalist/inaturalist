@@ -57,18 +57,15 @@ class ObservationModal extends React.Component {
     // was created while it wasn't visible
     const { tab, observation } = this.props;
     if ( tab === "info" && prevProps.tab !== "info" ) {
-      const that = this;
-      setTimeout( ( ) => {
-        const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
-        if ( typeof ( google ) === "undefined" ) { return; }
-        google.maps.event.trigger( map, "resize" );
-        if ( observation && observation.latitude ) {
-          map.setCenter( new google.maps.LatLng(
-            observation.latitude,
-            observation.longitude
-          ) );
-        }
-      }, 500 );
+      const map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+      if ( typeof ( google ) === "undefined" ) { return; }
+      google.maps.event.trigger( map, "resize" );
+      if ( observation && observation.latitude ) {
+        map.setCenter( new google.maps.LatLng(
+          observation.latitude,
+          observation.longitude
+        ) );
+      }
     }
     // This method fires *a lot* so we need to be very specific about when we
     // want to focus on the pane to support keyboard scrolling
@@ -387,7 +384,7 @@ class ObservationModal extends React.Component {
       { keys: ["x"], label: I18n.t( "organism_appears_captive_cultivated" ) },
       { keys: ["r"], label: I18n.t( "mark_as_reviewed" ) },
       { keys: ["c"], label: I18n.t( "comment_" ), skipBlind: true },
-      { keys: ["a"], label: I18n.t( "agree_" ), skipBlind: true },
+      { keys: ["a"], label: I18n.t( "agree_with_observation_taxon" ), skipBlind: true },
       { keys: ["i"], label: I18n.t( "add_id" ) },
       { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },

@@ -740,13 +740,7 @@ kn:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ಇದರಂತೆ ವಿಭಜಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಿ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ಮೂಲಕ ಬದಲಿಸಲಾಗಿದೆ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಲಾಗಿದೆ
     dropped: ಕೈಬಿಡಲಾಗಿದೆ
@@ -1371,7 +1365,6 @@ kn:
   email: ಮಿಂಚೆ
   email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_address_for_comments_and_other_feedback: ಪ್ರತಿಕ್ರಿಯೆ ಮತ್ತು ಅಭಿಪ್ರಾಯಗಳಿಗಾಗಿ ಮಿಂಚೆ ವಿಳಾಸ
-  email_copyright: "ಹಕ್ಕುಸ್ವಾಮ್ಯ &copy; %{x}, ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ"
   email_notifications: ಮಿಂಚೆ ಅಧಿಸೂಚನೆಗಳು
   embed: 'ಅಡಕಗೊಳಿಸಿ'
   embed_place_widget: ಸ್ಥಳ ವಿಜೆಟ್ ಅನ್ನು ಅಡಕಗೊಳಿಸಿ
@@ -1599,7 +1592,6 @@ kn:
   heads_up_this_photo_is_already_associated_with: "ಮುನ್ಸೂಚನೆ: ಈ ಚಿತ್ರವು ಈಗಾಗಲೇ<a target='_blank' href='%{url}'>ಮತ್ತೊಂದು ವೀಕ್ಷಣೆ</a>ಯೊಂದಿಗೆ ಜೊತೆಯಾಗಿದೆ."
   help: ಸಹಾಯ
   help_confirm_observations!: ವೀಕ್ಷಣೆಗಳನ್ನು ಗುರುತಿಸಲು ಸಹಾಯಮಾಡಿ!
-  help_support_inaturalist: "iNaturalist ಬೆಂಬಲಿಸಲು ಸಹಾಯಮಾಡಿ"
   help_translate!: ಅನುವಾದಿಸಲು ಸಹಾಯ ಮಾಡಿ!
   here_are_3_examples: ವ್ಯವಸ್ಥಿತವಾಗಿಸಿರುವ ದತ್ತಾಂಶದ 3 ಉದಾಹರಣೆಗಳು ಇಲ್ಲಿವೆ
   here_are_our_top_suggestions: ನಮ್ಮ ಅಗ್ರ ಸಲಹೆಗಳು ಇಲ್ಲಿವೆ
@@ -1711,7 +1703,6 @@ kn:
   inaturalist_activity_notifications: "%{site_name} ಚಟುವಟಿಕೆ ಅಧಿಸೂಚನೆಗಳು"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist ಅಪ್ಲಿಕೇಷನ್‍ಗಳು"
-  inaturalist_is_a_joint_initiative: "%{site_name} ಇದು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ"
   inaturalist_places: "%{site_name} ಸ್ಥಳಗಳು"
   info: ಮಾಹಿತಿ
   insects: ಕೀಟಗಳು
@@ -2089,8 +2080,6 @@ kn:
   meet: ಭೇಟಿಯಾಗಿ
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist ಜಾಲ</a>ದ ಸದಸ್ಯ
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist ಜಾಲ</a> ದ ಸದಸ್ಯ, ಇದು %{cas_tag_html} ಮತ್ತು %{nat_geo_tag_html} ನ ಜಂಟಿ ಪ್ರಯತ್ನ.
   #As in members of a project
   members: ಸದಸ್ಯರು
   membership_model: ಸದಸ್ಯತ್ವದ ಮಾದರಿ
@@ -3713,8 +3702,6 @@ kn:
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}iNaturalist ಜಾಲ%{end_tag_network}ವು %{start_tag_global}ಜಾಗತಿಕ iNaturalist ಸಮುದಾಯ%{end_tag_global} ದಲ್ಲಿ ಪ್ರಾದೇಶೀಕರಣಗೊಂಡ ಜಾಲತಾಣಗಳ ಗುಂಪುಗಳಾಗಿದೆ.
   sites_affiliation_title: ಜಾಲದ ಸಹಭಾಗಿತ್ವದ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್%{end_tag_cas} ಮತ್ತು %{start_tag_nat_geo}ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿ%{end_tag_nat_geo} ಗಳು iNaturalist ವೇದಿಕೆಯ ಬಳಕೆಯನ್ನು ಬೆಂಬಲಿಸಲು ಈ ಪ್ರತಿಯೊಂದು ಭೌಗೋಳಿಕ ಪ್ರದೇಶದ ಸಂಸ್ಥೆಗಳೊಂದಿಗೆ ವಿಧ್ಯುಕ್ತವಾಗಿ ಒಪ್ಪಂದ ಮಾಡಿಕೊಂಡಿವೆ. <strong>ನಿಮ್ಮ ಸಂಸ್ಥೆಯು iNaturalist ಜಾಲಕ್ಕೆ ಸೇರಬಯಸಿದ್ದಲ್ಲಿ, ನೀವು ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು %{start_tag_join}ಇಲ್ಲಿ%{end_tag_join} ನೋಡಬಹುದು.</strong>
   sites_network_consists_of: "iNaturalist ಜಾಲವು ಹಲವಾರು ಸಂಘಸಂಸ್ಥೆಗಳನ್ನು ಒಳಗೊಂಡಿದೆ:"
   some_agree: ಕೆಲವರು ಸಮ್ಮತಿಸಿದ್ದಾರೆ
   some_observations_are_missing_media_or_identifications: |
@@ -4349,18 +4336,28 @@ kn:
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} ಮತ್ತು %{x_others} ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಚಿದ್ದಾರೆ"
   user_added_a_comment_html: "%{user} ಒಂದು ಅಭಿಪ್ರಾಯವನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_a_fave_html: "%{user} ಒಂದು ಮೆಚ್ಚುಗೆಯನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ಅವರು %{x} ಅನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_identification_html: "%{user} ಅವರು ಗುರುತಿಸುವಿಕೆಯೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_observation_field_value_html: "%{user} ಅವರು ವೀಕ್ಷಣೆ ಆವರಣವೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_observation_html: "%{user} ಅವರುವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ಅವರು %{x} ಅನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ
@@ -4731,44 +4728,10 @@ kn:
             ಹಾಗಿದ್ದಲ್ಲಿ, ವಿದ್ಯಾರ್ಥಿಗಳ ಜೊತೆ %{site_name} ನ ಬಳಕೆಯ ಸಲಹೆಗಳಿಗಾಗಿ ದಯವಿಟ್ಟು ನಮ್ಮ <a href="%{url}">ಶಿಕ್ಷಕರ ಕೈಪಿಡಿ </a> ಯನ್ನು ಓದಿರಿ.
     donate:
       donate_short_desc: "ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ಪ್ರದರ್ಶಿಸಲು ಈಗಲೇ ದೇಣಿಗೆ ನೀಡಿ!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist ಜೀವಿವೈವಿಧ್ಯದ ಅನ್ವೇಷಣೆಗೆ ಮೀಸಲಾದ ಜಗತ್ತಿನ ಅತಿದೊಡ್ಡ ಸಮುದಾಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀವಿದರ ಭಾಗವಾಗಿರುವುದಕ್ಕೆ ನಿಮಗೆ ಧನ್ಯವಾದಗಳು!</strong>
-        </p>
-        <p class="lead">
-        ನಿಮಗೆ ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಈ ಸಮುದಾಯದ ಜ್ಞಾನ ಪ್ರಸರಣ ಕಾರ್ಯದ ಮತ್ತು ಎಣೆಯಿಲ್ಲದ ಜೀವಿವೈವಿಧ್ಯ ದತ್ತಾಂಶ ರಚನಾ ಶಕ್ತಿಯ ಮೇಲೆ ವಿಶ್ವಾಸವಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಒಂದುಬಾರಿಯ ಅಥವಾ ಆವರ್ತನಾ ಆನ್‍ಲೈನ್ ಕೊಡುಗೆ ನೀಡಲು ಪರಿಗಣಿಸಿ ಅಥವಾ <a href="https://www.inaturalist.org/pages/giving">ಕೊಡುಗೆಗಳಿಗೆ ಅನ್ಯಮಾರ್ಗಗಳು</a> ಅನ್ನು ವೀಕ್ಷಿಸಿ.
-        </p>
-        <p class="lead">
-        ನಿಮ್ಮ ಕೊಡುಗೆಗಳು ಸಮುದಾಯವು ಬೆಳದಂತೆ iNaturalist ಅನ್ನು, ಸುಧಾರಿತ computer vision ಹಾಗೂ ಹೊಸ ವಿಶೇಷತೆಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವಲ್ಲಿ ಮತ್ತು ನಮ್ಮ ಸರ್ವರ್ ಹಾಗು ಸಿಬ್ಬಂದಿಯನ್ನು ಪೋಷಿಸುವಲ್ಲಿ ಬೆಂಬಲಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತವೆ.
-        </p>
-        <p class="text-muted">
-        iNaturalist ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ.
-        ನಿಮ್ಮೆಲ್ಲಾ ದೇಣಿಗೆಗಳು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ನ , a 501(c)(3) tax-exempt not-for-profit
-        organization based in the United States of America (Tax ID: 94-1156258) ಅಡಿಯಲ್ಲಿ ಸ್ವಿಕರಿಸಲ್ಪಡುತ್ತವೆ.
-        </p>
       post_donate_social_media_text: ನಾನು iNaturalist ಬೆಂಬಲಿಸುತ್ತೇನೆ ಏಕೆಂದರೆ...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist ನ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
         become_a_monthly_supporter_of_inaturalist_caps: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಗೆ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist ಜೀವಿವೈವಿಧ್ಯದ ಅನ್ವೇಷಣೆಗೆ ಮೀಸಲಾದ ಜಗತ್ತಿನ ಅತಿದೊಡ್ಡ ಸಮುದಾಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀವಿದರ ಭಾಗವಾಗಿರುವುದಕ್ಕೆ ನಿಮಗೆ ಧನ್ಯವಾದಗಳು!</strong>
-          </p>
-          <p class="lead">
-          ನಾವು iNaturalist ಉಚಿತ ಬಳಕೆಗೆ ತೆರೆದಿಡಲು ಇಚ್ಛಿಸುತ್ತೇವೆ, ಆದರೆ ಇದು ಕಾರ್ಯನಿರ್ವಹಣೆಗೆ ಉಚಿತವಿಲ್ಲ. ನೀವು iNaturalist ಬಗ್ಗೆ ಆಸಕ್ತಿಯಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಲು ಪರಿಗಣಿಸಿ.
-          Recurring gifts help ensure that iNaturalist can continue
-          to scale its infrastructure and staff by providing predictable
-          revenue. You can also opt to show your monthly supporter status on
-          your user profile.
-          </p>
-          <p class="lead">
-          ನಿಮ್ಮ ದತ್ತಿ ಕೊಡುಗೆಗಳು ಸಮುದಾಯವು ಬೆಳದಂತೆ iNaturalist ಅನ್ನು, ಸುಧಾರಿತ computer vision ಹಾಗೂ ಹೊಸ ವಿಶೇಷತೆಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವುದರಿಂದ ಹಿಡಿದು ನಮ್ಮ ಸರ್ವರ್ ಹಾಗು ಸಿಬ್ಬಂದಿಯನ್ನು ಪೋಷಿಸುವವರೆಗೂ ಸಹಕಾರಿಯಾಗುತ್ತವೆ. ನೀವು ಒಂದು-ಬಾರಿ ದೇಣಿಗೆಯನ್ನು ನೀಡಲು ಇಚ್ಛಿಸಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು <a href="%{donate_url}">ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ.
-          ನಿಮ್ಮೆಲ್ಲಾ ದೇಣಿಗೆಗಳು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ನ , a 501(c)(3) tax-exempt not-for-profit
-          organization based in the United States of America (Tax ID: 94-1156258) ಅಡಿಯಲ್ಲಿ ಸ್ವಿಕರಿಸಲ್ಪಡುತ್ತವೆ.
-          </p>
         thank_you_for_being_a_monthly_supporter: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
         thank_you_for_being_a_monthly_supporter_caps: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
     guides:
@@ -5313,16 +5276,6 @@ kn:
         complete_rank_desc_html: |
           ಈ ಜೀವಿವರ್ಗ ಸಂಪೂರ್ಣವಾಗಲಿರುವ ಶ್ರೇಣಿ, ಉದಾ. ಈ ಕುಟುಂಬ ಅದರ ಎಲ್ಲಾ ಕುಲಗಳನ್ನು ಒಳಗೊಂಡಿದ್ದು ಆದರೆ ಅದರ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಒಳಗೊಳ್ಳದೇ ಇರದಿದ್ದಲ್ಲಿ, ಇದನ್ನು "ಕುಲ" ವೆಂದು ಪರಿಗಣಿಸಲಾಗುವುದು. ಪ್ರಭೇದವು ನಿಯೋಜಿತವಾಗಿರುತ್ತದೆ.
       show:
-        about_names_desc: |
-          <p>
-          ಜೀವಜಾಲದ ಹೆಚ್ಚಿನ ಎಲ್ಲಾ ಜೀವಿಗಳು ಆಡುಭಾಷೆಯಲ್ಲಿನ "ಸಾಮಾನ್ಯ ಹೆಸರು"ಗಳನ್ನು ಹೊಂದಿವೆ.ಇವು ಸಾಮಾನ್ಯವಾಗಿ ಗುರುತಿಸಬಲ್ಲ, ಸುಲಭವಾಗಿ ಉಚ್ಛರಿಸಬಲ್ಲ ಹಾಗೂ ವರ್ಷಾನುಗಟ್ಟಲೆಯಿಂದ ಸ್ಥಿರವಾಗಿರುವ ಹೆಸರುಗಳಾಗಿರುತ್ತವೆ, ಆದರೆ ಕೆಲವು ಜೀವಿಗಳು ಒಂದೇ ಭಾಷೆಯಲ್ಲಿಯೂ ಸಹ ಹಲವು ಪ್ರದೇಶಗಳಲ್ಲಿ ವಿವಿಧ ಹೆಸರುಗಳಿಂದ ಪರಿಚಿತವಾಗಿರುತ್ತವೆ, ಇದು ಕೆಲವೊಮ್ಮೆ ಈ ಜೀವಿಗಳ ಬಗ್ಗೆ ಚರ್ಚಿಸುವ ವೇಳೆ ಗೊಂದಲವನ್ನುಂಟುಮಾಡುವ ಸಾಧ್ಯತೆಗಳಿವೆ. ವಿಜ್ಞಾನಿಗಳು ಈ ತೊಂದರೆಯನ್ನು ಪ್ರತಿ ಜೀವಿಗುಂಪುಗಳಿಗೆ <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature"> ಜೀವಶಾಸ್ತ್ರೀಯ ನಾಮಕರಣ</a>ದ ನಿಯಮಾವಳಿಗಳಿಗೆ ಬದ್ಢವಾದ ಏಕರೂಪದ "ವೈಜ್ಞಾನಿಕ ಹೆಸರು"ಗಳನ್ನು ಬಳಸುವುದರ ಮೂಲಕ ನಿವಾರಿಸಿದ್ದಾರೆ, ಆದರೆ ಈ ಹೆಸರುಗಳು ಯಾರೂ ವ್ಯವಹರಿಸದ ಲ್ಯಾಟಿನ್ ಭಾಷೆಯ ಮೂಲದವಾಗಿವೆ, ಹಾಗಾಗಿ ಹೆಚ್ಚಿನ ಜನರಿಗೆ ಇದನ್ನು ನೆನಪಿನಟ್ಟುಕೊಳ್ಳುವುದು ಸಾಮಾನ್ಯ ಹೆಸರುಗಳಿಗಿಂತಲೂ ಕಠಿಣ. ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳು ಜೀವಿಗಳ ವರ್ಗಶ್ರೇಣಿಯನ್ನು ಸಹ ಪ್ರತಿನಿಧಿಸುತ್ತವೆ, ಹಾಗಾಗಿ ಸಂಶೋಧಕರು ವಿವಿಧ ಜೀವಿಗಳ ನಡುವಿನ ವಿಕಸನ ಸಂಬಂಧಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ನಿಖರವಾದ ಸಿದ್ಧಾಂತಗಳನ್ನು ಪ್ರತಿಪಾದಿಸಿದಾಗ ಅವು ಬದಲಾಗುವ ಸಾಧ್ಯತೆಗಳಿವೆ, ಇದು ಮತ್ತೊಮ್ಮೆ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳನ್ನು ಅರಿತ ಜನರ ಮಧ್ಯೆಯೂ ಸಹ ಸಂವಹನದಲ್ಲಿ ಇವುಗಳ ಉಪಯುಕ್ತತೆಯನ್ನು ಕ್ಷೀಣವಾಗಿಸುತ್ತದೆ.
-          </p>
-          <p>
-          ಹಳೆಯ ನಾಣ್ಣುಡಿಯೊಂದರಂತೆ ಇದರ ಸಾರಾಂಶ : "ಸಾಮಾನ್ಯ ಹೆಸರುಗಳು ಪ್ರದೇಶದಿಂದ ಪ್ರದೇಶಕ್ಕೆ ಬದಲಾಗುತ್ತವೆ, ಹಾಗೂ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳು ಸಮಯದಿಂದ ಸಮಯಕ್ಕೆ ಬದಲಾಗುತ್ತವೆ".
-          </p>
-          <p>
-          ನಾವು ಈ ನ್ಯೂನತೆಗಳನ್ನು ಸಾಮಾನ್ಯ ಹಾಗೂ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳೆರಡನ್ನೂ ಹಾಗೂ ವೀಕ್ಷಕರ ಭಾಷೆ ಮತ್ತು ಭೌಗೋಳಿಕ ಆದ್ಯತೆಗಳ ಆಯ್ಕೆಯಾಧಾರಿತ ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಪ್ರದರ್ಶಿಸುವ ಮೂಲಕ ಸಾಧ್ಯವಿದ್ದಲ್ಲೆಲ್ಲಾ ಸರಿಪಡಿಸಲು ಯತ್ನಿಸುತ್ತೇವೆ.
-          </p>
         about_conservation_status_desc: |
           ಸಂರಕ್ಷಣಾ ಸ್ಥಿತಿಯು ಜೀವಿಗಳ ಒಂದು ಗುಂಪಿನ ವಿನಾಶದ ಅಪಾಯವನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ವಿವರಿಸುತ್ತದೆ.
         about_establishment_desc: |
