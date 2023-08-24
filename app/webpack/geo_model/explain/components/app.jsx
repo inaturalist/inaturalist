@@ -13,11 +13,17 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 
 const urlParams = new URLSearchParams( window.location.search );
 
-const NEARBY_COLOR = urlParams.get( "nearby_color" ) || "#007DFF";
+const NEARBY_COLOR = urlParams.get( "nearby_color" ) || "#5EACFF";
+const NEARBY_OPACITY = urlParams.get( "nearby_opacity" ) || 0.4;
 const RANGE_COLOR = urlParams.get( "range_color" ) || "#FF5EB0";
+const RANGE_OPACITY = urlParams.get( "range_opacity" ) || 0.4;
 const OVERLAP_COLOR = urlParams.get( "overlap_color" ) || "#ADA3E8";
+const OVERLAP_OPACITY = urlParams.get( "overlap_opacity" ) || 0.8;
 const SCORE_COLOR_LOWER = urlParams.get( "score_color_lower" ) || NEARBY_COLOR;
+const SCORE_OPACITY_LOWER = urlParams.get( "score_opacity_lower" ) || 0;
 const SCORE_COLOR_UPPER = urlParams.get( "score_color_upper" ) || NEARBY_COLOR;
+const SCORE_OPACITY_UPPER = urlParams.get( "score_opacity_upper" ) || 1;
+const SCORE_OPACITY = urlParams.get( "score_opacity" ) || 0.9;
 
 const logStretch = ( value, min, max ) => (
   ( Math.log( value ) - Math.log( min ) ) / ( Math.log( max ) - Math.log( min ) )
@@ -51,9 +57,9 @@ const baseMapStyle = [
 
 const customColorScale = ( lowColor, highColor, min, max ) => {
   const baseScale = chroma.scale( [
-    chroma( lowColor ).alpha( 0 ),
-    chroma( lowColor ).alpha( 1 ),
-    chroma( highColor ).alpha( 1 )
+    chroma( lowColor ).alpha( Number( SCORE_OPACITY_LOWER ) ),
+    chroma( lowColor ).alpha( Number( SCORE_OPACITY_UPPER ) ),
+    chroma( highColor ).alpha( Number( SCORE_OPACITY_UPPER ) )
   ] ).domain( [min, max] );
   return chroma.scale( [baseScale( min ), baseScale( max )] );
 };
@@ -68,7 +74,6 @@ class App extends React.Component {
   }
 
   componentDidMount( ) {
-    const { taxon } = this.props;
     this.map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
     this.map.setOptions( {
       styles: baseMapStyle,
@@ -82,10 +87,10 @@ class App extends React.Component {
       geomodelCellScores: _.mapValues( GEO_MODEL_CELL_SCORES, v => ( {
         value: v,
         color: colorScale( logStretch( v, min, max ) ),
-        opacity: 0.9
+        opacity: SCORE_OPACITY
       } ) ),
       expectedNearbyData: _.mapValues( GEO_MODEL_CELL_SCORES, v => ( {
-        opacity: 0.6,
+        opacity: NEARBY_OPACITY,
         value: v,
         color: NEARBY_COLOR
       } ) ),
@@ -142,16 +147,16 @@ class App extends React.Component {
       }
       comparisonData[cellKey] = {
         color: TAXON_RANGE_DATA[cellKey] ? OVERLAP_COLOR : NEARBY_COLOR,
-        opacity: TAXON_RANGE_DATA[cellKey] ? 0.8 : 0.6
+        opacity: TAXON_RANGE_DATA[cellKey] ? OVERLAP_OPACITY : NEARBY_OPACITY
       };
     } );
     // add data for all taxon range cells not also in the geo model
     _.each( TAXON_RANGE_DATA, ( value, cellKey ) => {
-      if ( !comparisonData[cellKey] && !GEO_MODEL_CELL_SCORES[cellKey] ) {
+      if ( !comparisonData[cellKey] ) {
         comparisonData[cellKey] = {
           color: RANGE_COLOR,
           value: 1,
-          opacity: 0.6
+          opacity: RANGE_OPACITY
         };
       }
     } );
