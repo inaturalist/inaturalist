@@ -34,7 +34,7 @@
     [class*="header_"] {
       margin: 0 10px;
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
     }
     width: 100%;
     img {
@@ -431,7 +431,7 @@ a.UserImage,
                   border: 2px solid $inat-green;
                 }
                 & + .image-gallery-thumbnail {
-                  margin-left: 4px;
+                  margin-inline-start: 4px;
                 }
                 .loading_spinner {
                   margin-left: 0;
@@ -897,7 +897,7 @@ time {
     }
   }
   .standard {
-    padding-right: 15px;
+    padding-inline-end: 15px;
   }
   .top_info,
   .places,
@@ -967,7 +967,7 @@ time {
     }
   }
 
-  .community{
+  .standard, .community{
     float: right;
   }
 }
@@ -1461,7 +1461,7 @@ time {
     .UserWithIcon {
       padding-inline-end: 15px;
       .icon {
-        margin-inline-end: 5px;
+        margin-inline-end:  5px;
       }
       .title {
         font-size: 14px;
@@ -1667,6 +1667,14 @@ time {
       .separator {
         margin: 0px 5px;
       }
+    }
+  }
+}
+
+[dir="rtl"] .CommunityIdentification {
+  .info {
+    .photo{
+      float: left;
     }
   }
 }
@@ -2218,11 +2226,11 @@ time {
   margin-top: 23px;
   .previous {
     float: left;
-    padding-right: 3px;
+    padding-inline-end: 3px;
   }
   .next {
     float: left;
-    padding-left: 2px;
+    padding-inline-start: 2px;
   }
   .previous, .next {
     display: inline-block;
@@ -2238,7 +2246,7 @@ time {
       cursor: not-allowed;
     }
     &:not(:first-child) {
-      margin-left: 8px;
+      margin-inline-start: 8px;
     }
     .fa {
       font-size: 14px;
@@ -2249,6 +2257,12 @@ time {
 
 [dir="rtl"] .PreviousNextButtons {
   float: left;
+  .previous {
+    float: right;
+  }
+  .next {
+    float: right;
+  }
 }
 
 .box.opt-out {
@@ -2350,7 +2364,7 @@ time {
       position: absolute;
       font-size: 14px;
       bottom: -6px;
-      right: -9px;
+      inset-inline-end: -9px;
       background: white;
       padding: 1px 2px;
       border-radius: 40px;
@@ -2432,10 +2446,8 @@ body > [role="dialog"] .easyzoom > a > img {
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding-top: 2px;
-  padding-inline-end: 0px;
-  padding-bottom: 1px;
-  padding-inline-start: 10px;
+  padding-block: 2px 1px;
+  padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
@@ -2452,7 +2464,7 @@ body > [role="dialog"] .easyzoom > a > img {
   bottom: 0;
   border: 10px solid $border-grey;
   border-inline-end-width: 5px;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
   inset-inline-end: -15px;
   z-index: -1;
 }

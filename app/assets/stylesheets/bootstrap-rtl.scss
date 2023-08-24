@@ -199,12 +199,12 @@ th {
 }
 
 .dropdown-menu-right {
-  inset-inline-end: 0;
-  inset-inline-start: auto;
-}
-.dropdown-menu-left {
   inset-inline-end: auto;
   inset-inline-start: 0;
+}
+.dropdown-menu-left {
+  inset-inline-end: 0;
+  inset-inline-start: auto;
 }
 
 .pull-right > .dropdown-menu {
@@ -223,6 +223,21 @@ th {
   }
 }
 
+.close {
+  float: left;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+
+.btn,
+.form-control,
+.ac-select-thumb img {border-radius: 2px;}
+
 .btn-group > .btn,
 .btn-group-vertical > .btn {
   float: right;
@@ -234,6 +249,8 @@ th {
 .btn-group .btn-group + .btn-group {
   margin-inline-start: -1px;
 }
+
+
 .btn-toolbar {
   margin-inline-start: -5px;
 }
@@ -274,6 +291,13 @@ th {
 .btn-group-vertical > .btn-group + .btn,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-inline-start: 0;
+}
+
+.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .dropdown-toggle:not(:first-child) {
+  border-radius: 2px;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
 }
 
 .btn-group-justified > .btn-group .dropdown-menu {
