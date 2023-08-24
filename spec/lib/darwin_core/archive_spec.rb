@@ -213,6 +213,60 @@ describe DarwinCore::Archive, "make_observation_fields_data" do
   end
 end
 
+describe DarwinCore::Archive, "make_resource_relationships_data" do
+  elastic_models( Observation )
+
+  let( :o ) { make_research_grade_observation }
+  let( :of_taxon ) { ObservationField.make!( datatype: "taxon" ) }
+  let( :of_taxon_non_numeric ) { ObservationField.make!( datatype: "taxon" ) }
+  let( :of_numeric ) { ObservationField.make!( datatype: "numeric" ) }
+  let!( :ofv_taxon ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_taxon, value: Taxon.make!.id )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+  let!( :ofv_taxon_non_numeric_value ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_taxon_non_numeric, value: "not_a_number" )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+  let!( :ofv_numeric ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_numeric )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+
+  before do
+    expect( ofv_taxon.observation ).to eq o
+  end
+
+  it "should add rows to the file" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    expect( CSV.read( path ).size ).to be > 1
+    CSV.foreach( path, headers: true ) do |row|
+      expect( row["identifier"] ).to eq ofv_taxon.id.to_s
+      expect( row["relationshipOfResource"] ).to eq ofv_taxon.observation_field.name
+      expect( row["relationshipEstablishedDate"] ).to eq ofv_taxon.created_at.iso8601
+    end
+  end
+
+  it "should set the first column to the observation_id" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    csv = CSV.read( path, headers: true )
+    row = csv.first
+    expect( row[0] ).to eq o.id.to_s
+  end
+
+  it "should only export observation field values for fields of datatype taxon with numeric values" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    expect( CSV.read( path ).select{ |r| r[0] != "id" }.size ).to eq 1
+    expect( ObservationFieldValue.count ).to be >= 3
+  end
+end
+
 describe DarwinCore::Archive, "make_project_observations_data" do
   elastic_models( Observation )
 
@@ -254,6 +308,30 @@ describe DarwinCore::Archive, "make_project_observations_data" do
     path = archive.extension_paths[:project_observations]
     csv = CSV.read( path, headers: true )
     expect( csv.size ).to eq 1
+  end
+end
+
+describe DarwinCore::Archive, "observations_params" do
+  it "should include parameters for place" do
+    p = make_place_with_geom
+    archive = DarwinCore::Archive.new( place: p.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
+  end
+
+  it "should include parameters for all site places" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id, site_place.place_id )
+  end
+
+  it "should prioritize place over places_for_site" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( place: p.id, places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
   end
 end
 

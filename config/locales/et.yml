@@ -863,13 +863,7 @@ et:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: jagatud osadeks
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ühenda
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ühendatud
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: asendab
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: asenda
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: asendatud
     dropped: kustutatud
@@ -1674,7 +1668,6 @@ et:
   #we start requiring confirmation.
   email_confirmation_reminder_any_questions_html: |
     Kui sul on küsimusi, siis vaata palun <a href="%{faq_url}">korduma kippuvaid küsimusi</a>. Aitäh, et leiad aega loodusega suhestumiseks ja lehe %{site_name} külastamiseks.
-  email_copyright: "&copy; %{x}, kõik õigused kaitstud"
   email_notifications: E-posti teavitused
   embed: 'Manusta'
   embed_place_widget: Manusta koha koodijupp
@@ -1795,7 +1788,7 @@ et:
   find_a_post: Leia postitus
   find_a_place: Leia koht
   find_guides: Leia juhendid
-  find_posts_for: "Leia päevikukanded:"
+  find_posts_for: "Leia päevikukanded: %{journal_name}"
   find_new_place_to_explore: Leia avasamiseks uus koht!
   find_observations: Leia vaatlused
   find_photos: Leia fotod
@@ -2004,7 +1997,6 @@ et:
   heads_up_you_have_multiple: "Pane tähele: Sul vastab mitu taksonoomilist masin-märksõna identsetele kategooriatele. Allpool on nad tasemete kaupa värviga eristatud."
   help: Abi
   help_confirm_observations!: Aita vaatlusi kinnitada!
-  help_support_inaturalist: "Toeta iNaturalisti"
   help_translate!: Aita tõlkida!
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
   here_are_our_top_suggestions: Meie parimad pakkumised
@@ -2159,7 +2151,6 @@ et:
   inaturalist_activity_notifications: "Lehe %{site_name} teavitused"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalisti rakendused"
-  inaturalist_is_a_joint_initiative: "%{site_name} on California Teaduste Akadeemia ja National Geographic Society ühisprojekt."
   inaturalist_places: "%{site_name} kohad"
   info: Teave
   input_taxon: Sisendtakson
@@ -2607,8 +2598,6 @@ et:
   meet: Teretulemast
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist võrgustiku</a> liige
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist võrgustiku</a> liige, mis on %{cas_tag_html} ja %{nat_geo_tag_html} ühisprojekt.
   #As in members of a project
   members: Liikmed
   membership_model: Liikmelisuse mudel
@@ -4545,14 +4534,20 @@ et:
   user: Kasutaja
   user1_and_user2_faved_this_observation: "Kasutajad %{user1} ja %{user2} märkisid selle vaatluse oma lemmikuks"
   user1_user2_and_x_others_faved_this_observation: "Kasutajad %{user1}, %{user2} ja veel %{x_others} märkisid selle vaatluse oma lemmikuks"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lisas %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
   user_added_an_observation_field_html: 'Kasutaja %{user} lisas kasutaja %{owner} vaatluse väljale "%{field_name}" väärtuse'
   user_added_an_observation_field_value_html: "Kasutaja %{user} lisas väärtuse vaatluse väljale"
   user_added_an_observation_html: "Kasutaja %{user} lisas vaatluse"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lisas %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
   user_added_x_observations_html: "Kasutaja %{user} lisas %{x} vaatlust"
   user_already_authenticated: Kasutajakonto on juba tõestatud
@@ -4836,8 +4831,6 @@ et:
     Milionid inimesed kasutasid looduses sellel aastal iNaturalisti ja meie Seek rakendust
   yir_monthly_supporters_random_selection: |
     Siin on juhuslik valik kangelaslikke iNati kogukonna liikmeid, kes meile igakuiselt annetavad.
-  yir_thank_your_for_being_generous: |
-    Täname, et oled lahkelt jaganud oma aega, tähelepanu, ekspertiisi ja annetusi. iNaturalist on California Teaduste Akadeemia ja National Geographic Society mittetulunduslik ühisprojekt. Programm sõltub paljudest stipendiumitest ja annetustest, millede hulgas olulist rolli mängib ka meie kogukonna ülitillukese osa vabatahtlik panus. Oleme eriti tänulikud oma igakuistele toetajatele, sest just nende pidev heatahtlikus lubab meil oma tulevikku planeerida.
   yir_your_gift_sustains: |
     Sinu panus aitab elus hoida üleilmset programmi, mille mõju nii üksikisikutele kui keskkonnale on tohutu
   you: sina
@@ -5243,55 +5236,6 @@ et:
           Mõnedele neist fotodest on lisatud märge ebasobiva sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}
         join_project_desc_html: |
           Projektiga liitudes saavad projekti kuraatorid näha nii selle kui kõigi teiste projektis sisalduvate vaatluste peidetud koordinaate ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
-        quality_assessment_help2_html: |
-          <p>
-          Andmete kvaliteedihinnang on kokkuvõte vaatluse täpsusest. Kõik vaatlused on esmalt <strong>"juhuvaatlused"</strong> ning saavad endale märke <strong>"vajab määramist"</strong>, kui
-          </p>
-          <ul>
-          <li>vaatlusel on <strong>kuupäev</strong></li>
-          <li>vaatlusel on <strong>asukoha andmed</strong> (st sellel on pikkus-/laius-koordinaadid)</li>
-          <li>vaatlusel on <strong>fotod või helid</strong></li>
-          <li>vaatlus <strong>pole tehtud inimesest</strong></li>
-          </ul>
-          <p>
-          Vaatlused muutuvad <strong>"teaduskõlbulikuks"</strong>, kui
-          </p>
-          <ul>
-          <li>
-          lehe %{site_name} <strong>kogukond nõustub liigi või täpsema tasandi määratlusega</strong>. See tähendab, et 2/3 või rohkem määrajatest nõustub mingi taksoniga (kui kogukond on hinnanud, et kogukondlikust taksonist enam paremaks minna ei saa, siis on nõudeks alamsugukond või sellest täpsem määratlus)
-          </li>
-          </ul>
-          <p>
-          Vaatlused muutuvad taaskord <strong>"juhuvaatlusteks"</strong>, kui eeltoodud tingimused pole täidetud või kogukond nõustub, et
-          </p>
-          <ul>
-          <li>
-          <strong>asukoht ei tundu täpne</strong> (nt ahvid keset ookeanit, jõehobud kontorihoones jne)
-          </li>
-          <li>
-          <strong>organism ei ole metsik/kohandunud</strong> (nt inimeste või intelligentsete tulnukate poolt vangistatud või kasvatatud)
-          </li>
-          <li>
-          vaatlus <strong>ei näita organismi olemasolu</strong> (nt pildid veekogudest, kividest või maastikest, milles organism ei sisaldu jne)
-          </li>
-          <li>
-          vaatlus <strong>ei tõenda hiljutist (~100 aastat) organismi kohalolu</strong> (nt kivistised, kuigi jäljed, väljaheited ja surnud lehed sobivad)
-          </li>
-          <li>
-          vaatlus ei vaja enam määratlust <em>ja</em> kogukondlik määratlus on sugukonnast ebatäpsemal tasemel
-          </li>
-          <li>
-          vaatleja on keeldunud kogukondlikust määratlusest ning kogukondlik määratlus ei ole taksonipuus vaatleja määratluse madalam või kõrgem tase
-          </li>
-          </ul>
-          <p>
-          Kui see polnud veel piisavalt keeruline, siis on ka olukordi, kus hääletada saab süsteem:
-          </p>
-          <ul>
-          <li>
-          Süsteem hääletab, et vaatlus ei ole metsik/kohandunud, kui on vähemalt kümme teist vaatlust perekonna või täpsemal tasemel, mis asuvad antud vaatlust sisaldavas väikseimas omvalitsuse, osariigi või riigi tasandil üksuses ning kui 80% neist vaatlustest on märgitud mitte metsikuks/kohandunuks.
-          </li>
-          </ul>
         score_desc: "skoor = koguarv / (koguarv + erimeelsuste arv + alamtaksonite ebakõlad)"
         observation_flagged_notice_html: |
           Vaatlus on märgitud rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
@@ -5345,8 +5289,6 @@ et:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun jäta autoriõiguste rikkumise märkused alles, kui see foto neid tõepoolest rikub.
     places:
-      kml_field_desc2: |
-        Koha piirjoone KML. Seda saab teha Google Maps, Google Earth või enamiku GIS-programmidega. Peab sisaldama vähemalt ühte hulknurka, olema vähem kui 1 MB (kuraatorite puhul vähem kui 5 MB) ning selle pindala peab olema väiksem kui USA Texase osariigil.
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
@@ -5632,6 +5574,8 @@ et:
           Kuidas see aasta oli võrdluses eelmiste aastatega? Roheline joon näitab käesolevat aastat, valge vertikaalne joon näitab eelmist aastat, hallid taustad näitavad madalaima ja kõrgeima aktiivsusega aastaid ning kõigi aastate keskmist.
         compared_to_previous_years: Võrreldes eelmiste aastatega
         donate_title: "Eriline tänu kõigile meie toetajatele"
+        donate_desc2_html: |
+          Aitäh, et jagad lahkelt oma aega, tähelepanu, ekspertiisi ja annetusi! iNaturalist on Ameerika Ühendriikides asuv mittetulundusorganisatsioon (501(c)3). Selle eest hoolitseb <a href="%{team_url}">väike meeskond</a>, kes teeb ära kogu kodulehe, mobiilirakenduse ja projekti <a href="%{seek_url}">Seek by iNaturalist</a> disaini ja programeerimise. Lisaks hoolitseme kogukonnatoe, koostööprojektide ja seoslahenduste eest, mille abil see kõik toimib (ja kiirelt kasvab!). Kogu programm rajaneb ohtratele stipendiumitele ja annetustele, mille hulgas on ka helded kingitused üliväikeselt osalt meie sisuloojatelt. Oleme eriti tänulikud igakuistele toetajatele, kelle jooksvad kingitused lubavad meil tulevikku planeerida. iNaturalisti põhitegevuse toetamiseks saad annetada erinevates valuutades. Aitäh kõigile, kes on andnud oma osa, et aasta %{year} oleks iNaturalisti kõigi aegada vägevaim.
         inaturalist_network: iNaturalisti võrgustik
         inaturalist_network_desc: |
           Vaata aastakokkuvõtet teiste iNaturalisti võrgustiku liikmete kohta.
@@ -5681,16 +5625,6 @@ et:
         complete_rank_desc_html: |
           Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
       show:
-        about_names_desc: |
-          <p>
-          Enamikel organismide kategooriatel on "rahvapärased nimed", mida kasutatakse kõnekeeltes. Need nimed on enamasti äratuntavad, lihtsasti hääldatavad ning läbi ajaloo samad, kuid paljudel organismidel on mitu erinevat nime, mida kasutatakse erinevates kohtades, isegi kui keel on sama, mis võib nendest rääkimise muuta keeruliseks. Teadlased on lahendanud selle probleemi kasutades ühte "teaduslikku nimetust" iga organismi kategooria puhul, mis vastab <a href="https://et.wikipedia.org/wiki/Binaarne_nomenklatuur">binaarse nomenklatuuri reeglitele</a>, kuid enamasti on need nimed ladina keeles ehk siis keeles, mida enam ei räägita, mistõttu pole nad paljudele samavõrd meeldejäävad kui rahvapärased nimed. Teaduslikud nimed võivad ka peegeldada organismi taksonoomilist asukohta, mis tähendab, et need võivad muutuda, kui teadlased loovad erinevate organismide evolutsiooniliste suhete kohta täpsemaid teooriaid. See vähendab taaskord nende kasulikust suhtlemisel ja seda isegi inimeste puhul, kes tunnevad teaduslikke nimesid.
-          </p>
-          <p>
-          Vana ütlus võtab selle kokku: "Rahvapärased nimed muutuvad kohast kohta ja teaduslikud nimed ajast aega."
-          </p>
-          <p>
-          Proovime neid probleeme leevendada näidates igal pool, kus võimalik, nii rahvapärast kui teaduslikku nime ning valides näidatavad rahvapärased nimed vastavalt lugeja keele ja geograafilistele eelistustele.
-          </p>
         about_conservation_status_desc: |
           Kaitsestaatus võtab kokku organismidegrupi hävimisohu.
         about_establishment_desc: |
@@ -5789,9 +5723,6 @@ et:
           </p>
         licensing_desc_html: |
           Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href="http://www.gbif.org/">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.
-        monthly_supporter_desc_html: |
-          iNaturalisti igakuised toetajad teevad automaatseid igakuiseid annetusi, mille adressaadiks on California Teaduste Akadeemia (Ameerika Ühendriikide maksuameti tunnus 94-1156258), millega toetatakse iNaturalisti ja iNaturalisti võrgustikku kuuluvate lehtede mittetulunduslikku tegevust.
-          <a href="%{url}">Igakuiseks toetajaks saamiseks vajuta siia</a>. Kui oleme sinu toetuse kinnitanud, saad panna sellesse kasti linnukese, et näidata oma profiili juures vastavat märget. NB! Pead Donorbox-i lehel kasutama täpselt sama e-posti aadressit nagu iNaturalistis, et saaksime kinnitada, et sinust on saanud igakuine toetaja.
         muting_desc_html: |
           <p>
           Kellegi vaigistamisel ei saa sa enam teateid nende tegevuse kohta nagu sinu vaatluste kommenteerimine, sulle sõnumite saatmine, sinu mainimine, jne. Vaigistamisega saad kedagi ignoreerida, ilma et sa neil midagi teha keelaks.
@@ -6018,6 +5949,9 @@ et:
       submit: Salvesta %{model}
       update: Värskenda %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:

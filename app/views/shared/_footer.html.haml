@@ -32,8 +32,7 @@
       %div{ class: t(:donate, default: "donate" ).size > 7 ? "col-xs-3 buttons-col" : "col-xs-3 buttons-col short-text" }
         - if Site.default && @site && @site.id == Site.default&.id
           .one-line
-            / Temporarily suspending donations until new infrastructure in place ~~~kueda 20230701
-            / = link_to t(:donate), donate_path( utm_content: "footer-button", utm_campaign: "default", utm_medium: "web" ), class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:donate)
+            = link_to t(:donate), donate_path( utm_content: "footer-button", utm_campaign: "default", utm_medium: "web" ), class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:donate)
             = link_to t(:store_caps, default: t( :store ) ), "https://store.inaturalist.org", class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:store)
         .social-media
           - unless site.facebook_url.blank?
@@ -50,17 +49,14 @@
     .row
       .col-xs-12
         .links.inlineblock
-          - if site.id == Site.default.id
-            =t :member_of_the_inaturalist_network_html, url: "/sites/network"
-            &nbsp;
-            |
-            &nbsp;
-            =t :powered_by_inaturalist_open_source_software_html
-            |
-            &nbsp;
-            =t :documentation_for_developers_html
-          - else
-            = branding_statement
+          =t :member_of_the_inaturalist_network_html, url: "/sites/network"
+          &nbsp;
+          |
+          &nbsp;
+          =t :powered_by_inaturalist_open_source_software_html
+          |
+          &nbsp;
+          =t :documentation_for_developers_html
         #footer-locale-chooser.btn-group.dropup.pull-right
           %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
             %i.icon-ios-world

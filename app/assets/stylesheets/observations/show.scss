@@ -396,10 +396,10 @@ a.UserImage,
             .badge {
               background: white;
               color: rgba(0,0,0,.75);
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
             .btn-nostyle {
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
           }
         }
@@ -505,7 +505,7 @@ a.UserImage,
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     border: 1px solid $border-grey;
-    margin-left: 60px;
+    margin-inline-start: 60px;
     margin-bottom: 15px;
     ul.nav-tabs {
       background-color: #f5f5f5;
@@ -608,7 +608,7 @@ a.UserImage,
         color: #747474;
         white-space: normal;
       }
-      a.display-name, .noname {
+      .display-names, a.display-name, .noname {
         font-size: 32px;
         line-height: 36px;
         color: #000;
@@ -661,6 +661,12 @@ a.UserImage,
   }
 }
 
+[dir = "rtl"] #ObservationShow {
+  .FollowButton {
+    float: left;
+  }
+}
+
 .more_from > .container > .row > .col-xs-12 {
   padding: 0;
 }
@@ -673,7 +679,7 @@ h3, h4 {
   &.collapsible {
     i.fa {
       color: $inat-green;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
     &.collapsible {
       cursor: pointer;
@@ -685,7 +691,7 @@ h3, h4 {
   i.fa-star, i.fa-star-o {
     font-size: 16px;
     color: $inat-green;
-    margin-right: 8px;
+    margin-inline-end: 8px;
     &:hover {
       cursor: pointer;
     }
@@ -906,7 +912,7 @@ time {
       display: block;
       float: left;
       min-width: 110px;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
   .links {
@@ -936,8 +942,8 @@ time {
         margin-bottom: 10px;
         i {
           position: absolute;
-          left: 0;
-          margin-right: 3px;
+          inset-inline-start: 0;
+          margin-inline-end: 3px;
           color: $inat-green;
           &.fa { top: 3px; }
           &.icon-person { top: -2px; }
@@ -954,8 +960,14 @@ time {
   }
 }
 
-[dir="rtl"] .MapDetails{
-  .standard, .community {
+[dir = "rtl"] .MapDetails{
+  .top_info {
+    .info {
+      float: right;
+    }
+  }
+
+  .standard, .community{
     float: right;
   }
 }
@@ -1042,15 +1054,15 @@ time {
     position: absolute;
     content: " ";
     display: block;
-    border-left: $activity-line-width solid $border-grey;
+    border-inline-start: $activity-line-width solid $border-grey;
     width: $activity-line-width;
     height: 100%;
-    left: 24px;
+    inset-inline-start: 24px;
     top: 0;
     z-index: 0;
   }
   .comment_id {
-    margin-left: 60px;
+    margin-inline-start: 60px;
   }
   .review {
     float: right;
@@ -1065,6 +1077,20 @@ time {
   .ac-select-thumb i {
     vertical-align: auto;
     line-height: 31px;
+  }
+}
+
+[dir="rtl"] .bootstrap .Activity {
+  > .icon {
+    float: right;
+  }
+  .review{
+    float:left;
+    input {
+      position: relative;
+      top: 2px;
+      right: -5px;
+    }
   }
 }
 
@@ -1093,16 +1119,16 @@ time {
     text-align: center;
     .separators {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       width: 100%;
       .left, .right {
         margin: 0;
       }
       .left {
-        padding-left: 38px;
+        padding-inline-start: 38px;
       }
       .right {
-        padding-right: 38px;
+        padding-inline-end: 38px;
       }
       .separator {
         display: inline-block;
@@ -1228,6 +1254,28 @@ time {
   }
 }
 
+[dir="rtl"] .ResearchGradeProgress{
+  .graphic{
+    .checks{
+      .check{
+        &.casual {
+          float: right;
+        }
+        &.research {
+          float: left;
+        }
+      }
+    }
+  }
+  ul.remaining {
+    li {
+      .reason_icon {
+        float: right;
+      }
+    }
+  }
+}
+
 .MoreFromUser {
   display: inline-block;
   padding-bottom: 30px;
@@ -1297,18 +1345,29 @@ time {
     background: #fff;
     padding: 8px;
     min-height: 56px;
-    text-align: left;
-    a {
+    text-align: start;
+    .SplitTaxon .display-name {
+      color: #000;
+    }
+    .SplitTaxon > .display-name, .display-names,
+    .SplitTaxon > .secondary-name, .secondary-names {
       display: block;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: #000;
     }
   }
   .view {
     font-weight: 700;
-    margin-right: 5px;
+    margin-inline-end: 5px;
+  }
+}
+
+[dir = "rtl"] .MoreFromUser{
+  h3 {
+    .links {
+      float: left;
+    }
   }
 }
 
@@ -1357,12 +1416,29 @@ time {
     }
   }
 }
+
+[dir = "rtl"] .ObservationsHighlight {
+  h3 {
+    a {
+      float: left;
+    }
+  }
+}
+
 .obs-highlight-link {
   .SplitTaxon {
-    a.display-name,
-    .noname {
+    & > .display-name, .display-names,
+    & > .secondary-name, .secondary-names {
       display: block;
+      white-space: inherit;
+    }
+    .display-name, .secondary-name {
+      white-space: inherit;
+    }
+    .display-name,
+    .noname {
       color: white;
+      font-weight: 700;
     }
   }
 }
@@ -1383,7 +1459,7 @@ time {
     display: inline-block;
     margin-bottom: 15px;
     .UserWithIcon {
-      padding-right: 15px;
+      padding-inline-end: 15px;
       .icon {
         margin-inline-end:  5px;
       }
@@ -2036,7 +2112,7 @@ time {
   .badge {
     min-width: 24px;
   }
-  margin-left: 10px;
+  margin-inline-start: 10px;
   cursor: pointer;
   vertical-align: text-bottom;
 }
@@ -2136,7 +2212,7 @@ time {
     .application {
       img {
         max-height: 14px;
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
       .name {
         vertical-align: middle;

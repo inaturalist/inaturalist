@@ -85,21 +85,20 @@
         = t :or
         = link_to t(:sign_up), signup_url, class: "signup_link"
     - else
-      - unless @minimal_header
-        %li#messagesnav.navtab.messages
-          .dropdown
-            #header-messages-dropdown-toggle.dropdown-toggle{ aria: { haspopup: "true", expanded: "false" } }
-              %i.fa.fa-envelope
-              %span.count 0
-            #messagessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-messages-dropdown-toggle" } }
-              .loadingwrapper= loading
-        %li#updatesnav.navtab.updates
-          .dropdown
-            #header-updates-dropdown-toggle.dropdown-toggle{ aria: { haspopup: "true", expanded: "false" } }
-              %i.fa.fa-comment
-              %span.count 0
-            #updatessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-updates-dropdown-toggle" } }
-              .loadingwrapper= loading
+      %li#messagesnav.navtab.messages
+        .dropdown
+          #header-messages-dropdown-toggle.dropdown-toggle{ aria: { haspopup: "true", expanded: "false" } }
+            %i.fa.fa-envelope
+            %span.count 0
+          #messagessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-messages-dropdown-toggle" } }
+            .loadingwrapper= loading
+      %li#updatesnav.navtab.updates
+        .dropdown
+          #header-updates-dropdown-toggle.dropdown-toggle{ aria: { haspopup: "true", expanded: "false" } }
+            %i.fa.fa-comment
+            %span.count 0
+          #updatessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-updates-dropdown-toggle" } }
+            .loadingwrapper= loading
       %li.navtab.user.menutab
         .dropdown
           #header-user-menu-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
@@ -122,7 +121,3 @@
             %li= link_to t(:account_settings), edit_person_path(current_user), :class => 'profile_link'
             %li.divider{role: "separator"}
             %li.signout= link_to t(:sign_out), logout_path
-  - # "initiative branding" should only appear in the header for signed out users and only if it doesn't appear in a more appropriate place, like the footer
-  - if !logged_in? && @footless && @site && @site.id == Site.default.id
-    #initiative-branding.navtabs
-      %img{ src: image_path( "nat-geo-cas-logos-color.svg" ), width: 179, height: 31 }

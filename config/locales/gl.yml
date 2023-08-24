@@ -828,13 +828,7 @@ gl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinar en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: foi combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituído por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituído con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: substituído con
     dropped: Eliminado
@@ -1348,8 +1342,6 @@ gl:
   delete_photo: Eliminar foto
   delete_project: Eliminar este proxecto
   delete_selected: Eliminar seleccionados
-  delete_taxon_and_merge_most_data_html: |
-    Eliminar <i>%{taxon}</i> e combinar a maioría dos teus datos con outro taxón. Emprega esta ferramenta para eliminar taxóns duplicados e sinónimos desactualizados. <strong>TEN COIDADO!</strong > Eliminar taxóns podería destruír datos.
   delete_user: Eliminar usuario
   delete_your_account: Eliminar a túa conta
   deleted_synonyms: Sinónimos eliminados
@@ -1544,7 +1536,6 @@ gl:
   email: Correo
   email_description: O teu enderezo de email non é compartido con outros usuarios en iNaturalist
   email_address_for_comments_and_other_feedback: Enderezo de correo electrónico para comentarios e outras notificacións
-  email_copyright: "Dereitos de Autor &copy;%{x}, tódolos dereitos reservados"
   email_notifications: Notificacións por Email
   embed: 'Introducir:'
   embed_place_widget: Introducir un widget de lugar
@@ -1844,7 +1835,6 @@ gl:
   heads_up_you_have_multiple: "Avisos. Xeraches varias etiquetas taxonómicas para rangos idénticos. Están codificadas por cor máis adiante segundo o rango."
   help: Axuda
   help_confirm_observations!: Axúdenos a confirmar observacións!
-  help_support_inaturalist: "Axuda a Soster iNaturalist"
   help_translate!: '¡Axuda a Traducir!'
   here_are_3_examples: Aquí hai 3 exemplos de datos ben formados
   here_are_our_top_suggestions: Velaquí as nosas mellores suxestións
@@ -1968,7 +1958,6 @@ gl:
   inaturalist_activity_notifications: "%{site_name} Notificacións de Actividade"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicacións de iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} é unha iniciativa conxunta da Academia de Ciencias de California e da Sociedade National Geographic."
   inaturalist_places: "Lugares %{site_name}"
   info: Información
   input_taxon: Entrar taxon
@@ -2317,8 +2306,6 @@ gl:
   meet: Coñece
   member_of_the_inaturalist_network_html: |
     Membro da <a href="%{url}">Rede iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membro da %{partial_inat_network_tag_html}Rede iNaturalist</a>, unha iniciativa conxunta de %{cas_tag_html} e %{nat_geo_tag_html}.
   #As in members of a project
   members: Membros
   membership_model: Modelo de Afiliación
@@ -2504,7 +2491,7 @@ gl:
   new_announcement: Novo anuncio
   new_assessment: Nova avaliación
   new_check_list: Nova lista de verificación
-  new_check_list_for: "Crear nova lista de verificación para {place} »"
+  new_check_list_for: "Crear nova lista de verificación para %{place} »"
   new_check_list_record: "Se desexas marcar esta lista coma exhaustiva, créaa, agrega os taxóns e logo modifícaa, e aquí terás a opción de marcala coma exhaustiva."
   new_comment_on_a_parent_by_user_link: Novo comentario en @gender{m:un|f:unha|n:un} %{parent} por %{user_link}
   new_flag_for: Nova Marca para
@@ -4227,7 +4214,7 @@ gl:
   taxon_curators: Conservadores do Taxon
   taxon_framework_complete: "Completado: si"
   taxon_framework_deviations_with_count_html: "Desviacións: %{count}"
-  taxon_framework_relationships_with_count_html: "Relación entre Marcos Taxonómicos"
+  taxon_framework_relationships_with_count_html: "Relación entre Marcos Taxonómicos: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons marcados cubertos: %{count}"
   taxon_framework_notes: Notas do Marco Taxonómico
@@ -4340,8 +4327,6 @@ gl:
   there_were_some_problems_with_fields: "Houbo algúns problemas cos seguintes campos"
   there_were_some_problems_with_these_files: "Houbo algúns problemas con estes ficheiros:"
   theres_something_wrong_with_taxon_framework_relationship: Aquí hai algo errado - non podemos determinar a relación entre taxons internos e externos
-  these_are_items_people_on: |
-    Son contidos que a xente introduciu como advertencia para administración. Os contidos de correo lixo borraranse e o usuario que os introduciu debería ser suspendido (vai á páxina do seu perfil e na parte inferior esquerda selecciona o enlace Suspender usuario para que xa non poida entrar ao sitio). Os contidos de tipo ilegal, enganoso, racista, xenófobo, etc, deben borrarse e teñen que responderse cun comentario correcto. As persoas que repitan estes comentarios teñen que comunicarse a
   these_are_taxa_that: |
     Son especies ou grupos que %{site} non puido engadir automáticamente
     á árbore taxonómica. Podes engadilas á árbore editando o taxon e escollendo un rexistro do taxon superior. Por exemplo, o taxon superior de Homo sapiens podería ser
@@ -4553,19 +4538,29 @@ gl:
   user_added_a_comment_html: "%{user} fixo un comentario"
   user_added_a_fave_html: "%{user} engadíu un favorito"
   user_added_a_flag_html: "%{user} engadíu unha marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} engadíu un %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} engadíu un %{x} a unha %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} engadíu un %{x} a unha %{noun} túa"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} engadíu un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} engadíu unha identificación"
   user_added_an_observation_field_html: '%{user} engadíu un valor para "%{field_name}" a unha observación de %{owner}'
   user_added_an_observation_field_value_html: "%{user} engadíu un valor nun campo de observación"
   user_added_an_observation_html: "%{user} engadíu unha observación"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} engadíu un %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} engadíu unha %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} engadíu un %{x} a %{noun} teu"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} engadíu unha %{x} a %{noun}"
   user_added_x_observations_html: "%{user} engadíu %{x} observacións"
   user_already_authenticated: O usuario xa está verificado
@@ -4818,8 +4813,6 @@ gl:
   you_: Ti
   you_appear_offline_try_again: |
     Semella que estás sen conexión. Téntao outra vez logo, cando esteas conectado á Internet.
-  youre_a_site_curator_which_means: |
-    Es un administrador do sitio, o que significa que te ofreciches voluntario para axudar a xestionar os datos e supervisar o contido da páxina. Non te sintas obrigado con todo o que isto implica, pero se tes tempo de revisar algúns contidos de antemán, agradecémoscho. Se tes algunha dúbida, comentario ou simplemente xa non queres ser administrador, ponte en contacto connosco en
   you_are_now_following_x: "Estás seguindo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     Agora es <strong>ti</strong> o administrador de %{project}
@@ -4930,8 +4923,6 @@ gl:
   your_subscriptions_to_this_place: As túas subscricións a este lugar
   your_tags: As Túas Etiquetas
   yours: Teu
-  youre_not_following_anyone: |-
-    Non segues a ninguén. Seguir a outros naturalistas permitirache levar un control das túas observacións máis recentes. Pescuda o que a xente está facendo
   youre_not_following_anyone_on_inat: '¡Aínda non segues a ninguén en %{site_name}!'
   youve_linked_your_inaturalist_google_account: "Vinculaches a túa conta de %{site_name} e a túa conta de Google. Isto permitirache asociar as túas fotos de Google cás túas observacións de %{site_name}."
   youve_successfully_linked_your_provider_account: "Vinculaches correctamente a túa conta de %{provider}"
@@ -4968,36 +4959,9 @@ gl:
             Se é así, por favor, le as nosas <a href="%{url}">Guías do Mestre</a> para ver consellos de uso de %{site_name} cós estudantes.
     donate:
       donate_short_desc: "¡Doa agora para mostrar o teu apoio!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist é unha das comunidades meirandes do mundo dedicadas á exploración da biodiversidade. ¡Graciñas por formar parte dela!</strong>
-        </p>
-        <p class="lead">
-        Se cres no poder desta comunidade global de amantes da natureza para compartir saber e xerar dados irremplazables de biodiversidade, por favor, considera agasallarnos en liña unha vez ou de xeito periódico, ou ve en <a
-        href="https://www.inaturalist.org/pages/giving"> outros xeitos de doar</a>.
-        </p>
-        <p class="lead">
-        A túa doazón axuda a manter iNaturalist mentres a comunidade medra, dende a visión artificial avanzada e a implementación de novas características, ó apoio ós nosos servidores e traballadores.
-        </p>
-        <p class="text-muted">
-        iNaturalist é unha iniciativa conxunta da Academia de Ciencias de California e a Sociedade National Geographic. Tódalas doazóns recibiranas a Academia de Ciencias de California, unha organización sen ánimo de lucro baseada nos Estados Unidos de América exenta de impostos 501(c)(3) (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Eu apoio iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Faite Patrocinador Mensual de iNaturalist
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist é unha das comunidades meirandes do mundo dedicadas á exploración da biodiversidade. ¡Graciñas por formar parte dela!</strong>
-          </p>
-          <p class="lead">
-          Queremos manter a gratuidade de uso de iNaturalist, mais operalo non sae de balde. Se che gusta iNaturalist, pensa se queres convertirte nun patrocinador mensual. As doazóns recurrentes axúdannos a asegurármonos de poder ampliar as infraestructuras e ós traballadores de iNaturalist provendo uns ingresos predicibles. Tamén podes optar por mostrar o teu estado de patrocinador mensual no teu perfil.
-          </p>
-          <p class="lead">
-          As túas doazóns caritativas axúdannos a manter iNaturalist namentres a comunidade medra, dende evolucionar a visión artificial e implementar novas características, ó apoio ós nosos servidores e traballadores. Se prefires facer unha doazón puntual, por favor <a href="%{donate_url}">preme aquí</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist é unha iniciativa conxunta da Academia de Ciencias de California e a Sociedade National Geographic. Tódalas doazóns recibiranas a Academia de Ciencias de California, unha organización sen ánimo de lucro baseada nos Estados Unidos de América exenta de impostos 501(c)(3) (Tax ID: 94-1156258).
-          </p>
     flags:
       show:
         flaggable_content_desc: |
@@ -5913,8 +5877,6 @@ gl:
           ¿Como foi este ano, comparado cós anos previos? A barra verde mostra este ano, a barra branca vertical mostra o ano pasado e as áreas grises de fondo mostran os anos de maior e menor actividade, así coma a media de tódolos anos.
         compared_to_previous_years: Comparar con Anos Anteriores
         donate_title: "Especial Agradecemento A Tódolos Nosos Colaboradores"
-        donate_desc_html: |
-          ¡Grazas por ser xeneroso có teu tempo, atención, habilidade e doazóns! iNaturalist é un emprendemento conxunto sen ánimo de lucro da Academia de Ciencias de California e a Sociedade National Geographic. É mantido por un <a href="%{team_url}">pequeno grupo</a> que fai todo o deseño e enxeñería de software para a web, mobil e <a href="%{seek_url}">Seek por iNaturalist</a>, alén da xestión do apoio á comunidade, colaboracións e integracións que fan que siga funcionando (¡e crecendo rapidamente!). O programa deepende de numerosas becas e doazóns, incluíndo regalos caritativos de menos dunha pequena fracción dos contribuíntes. Estámoslles particularmente agradecidos ós Patrocinadores Mensuais, xa que cós seus agasallos recorrentes podemos planificar o futuro. Podes doar en múltiples moedas para apoiar as operacións centrais de iNaturalist. ¡Graciñas a todos pola vosa aportación para facer do %{year} o meirande ano de iNaturalist ata o de agora!
         donors: Doantes
         donors_guide_label_our_goal_is_1000: O noso obxectivo é 1.000 doadores recorrentes ó mes
         inaturalist_network: Rede iNaturalist
@@ -5988,16 +5950,6 @@ gl:
           Breve resumo deste taxon baseado na sua <a target="_blank"
           href="%{url}">páxina da Wikipedia</a>, que almacenamos indefinidamente ata que se actualice manualmente. A actualización este resumo tamén recarga imediatamente o noso caché do contido da Wikipedia subxacente que mostramos no site, e que é actualizado automaticamente logo dunha semana.
       show:
-        about_names_desc: |
-          <p>
-          A maioría das categorías dos organismos teñen "nomes comúns" en línguas faladas. Estes nomes son recoñecibles a cotío, fáciles de pronunciar, e estables ó longo do tempo, pero moitos organismos teñen varios nomes distintos en lugares diferentes, incluso na mesma língua, o que pode dificultar a comunicación sobre estes organismos sen crear confusión. Os científicos resolven este problema empregando un único "nome científico" para cada categoría de organismos que conforma as regras da <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biolóxica</a>, mais estes nomes tenden a estar baseados no Latín, unha língua que xa ninguén fala, así que non son tan fáciles de lembrar para moita xente como os nomes comúns. Os nomes científicos tamén reflicten a localización taxonómica dun organismo, así que estes poden cambiar cando os científicos desenvolven teorías máis acertadas sobre as relacións evolutivas entre diferentes organismos, reducindo outra vez a súa utilidade na comunicación, incluso entre xente que coñece os nomes científicos.
-          </p>
-          <p>
-          Xa o di o vello adaxio: "Os nomes comúns cambian de lugar en lugar, os nomes científicos cambian de tempo en tempo."
-          </p>
-          <p>
-          Tentamos solucionar estes contratempos mostrando ámbolos nomes, científico e común, sempre que nos é posible, e escollendo os nomes comúns baseados na língua e área xeográfica preferidas do espectador.
-          </p>
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
         about_establishment_desc: |
@@ -6151,10 +6103,6 @@ gl:
           </p>
         licensing_desc_html: |
           A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.
-        monthly_supporter_desc_html: |
-          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
-          <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
-          Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
         muting_desc_html: |
           <p>
           Acalar a alguén evita que recibas notificacións sobre cousas que ese alguén faga, incluíndo comentarios nas túas observacións, enviarte mensaxes, mencionarte, etc. Acalar axúdache a ignorar a alguén sen que se lle impida facer nada.
@@ -6804,8 +6752,6 @@ gl:
           attributes:
             base:
               user_already_blocked: Xa bloquearas a ese usuario.
-              user_cannot_be_staff: |
-                Non podes bloquear ós traballadores. Os traballadores de iNat precisan de ser quen de comunicarense con todos en iNat, ter acceso a tódolos dados en iNat e son os mediadores últimos das disputas, así que bloquealos non evitará que se comuniquen contigo. Se tes un problema con algún traballador, por favor, repórtao a algún dos co-directores de iNat, ou se tes un problema con algún dos co-directores, podes contactar con o Xefe de Ciencia no Instituto de Biodiversidade e Ciencia da Sostibilidade na Academia de Ciencias de California.
         user_parent:
           attributes:
             email:

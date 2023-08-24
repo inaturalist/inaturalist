@@ -435,13 +435,7 @@ sk:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdeliť na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: nahradené
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: nahradiť s
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradiť s
     dropped: zahodené
@@ -838,7 +832,6 @@ sk:
   eligible_for_research_grade: Vhodné pre výskumný stupeň
   email: Email
   email_address_for_comments_and_other_feedback: E-mailové adresy pre komentáre a inú spätnú väzbu.
-  email_copyright: "Autorské práva &copy; %{x}, všetky práva vyhradené"
   embed: 'Vložiť'
   embed_place_widget: Vložiť widget miesta
   embed_this_assessment: Vložiť toto hodnotenie
@@ -1145,7 +1138,6 @@ sk:
   inappropriate_content: Nevhodný obsah?
   inat_account_action: "%{site_name} &#58; Účet &#58; %{action_name}"
   inat_user_profile: "%{site_name}: Profil užívateľa %{user}"
-  inaturalist_is_a_joint_initiative: "%{site_name} je spoločná iniciatíva California Academy of Sciences a National Geographic Society."
   inaturalist_places: "%{site_name} Miesta"
   info: Informácie
   input_taxon: Vstupný taxón
@@ -2855,12 +2847,17 @@ sk:
   updated: Aktualizované
   updated_daily: Aktualizované denne
   updated_photo: Aktualizovaná fotka
+  #@gender operates on %{x}
   user_added_a_x: "%{user} pridal(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} pridal(a) %{x} k %{noun}"
   user_added_an_identification_html: "%{user} pridal identifikáciu"
   user_added_an_observation_html: "Používateľ %{user} pridal pozorovanie"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} pridal(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} vložil %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Používateľ %{user} pridal %{x} k %{noun}"
   user_added_x_observations_html: "Užívateľ %{user} pridal %{x} pozorovaní"
   user_commented: "%{user} komentoval"
@@ -3042,18 +3039,18 @@ sk:
       - Sob
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
+      - 
+      - 
+      - 
+      - 
       - Máj
       - Jún
       - Júl
-      - Aug
-      - Sep
+      - 
+      - 
       - Okt
-      - Nov
-      - Dec
+      - 
+      - 
     day_names:
       - Nedeľa
       - Pondelok
@@ -3082,11 +3079,11 @@ sk:
       - Máj
       - Jún
       - Júl
-      - August
-      - September
+      - 
+      - 
       - Október
-      - November
-      - December
+      - 
+      - 
   datetime:
     prompts:
       day: Deň
@@ -3100,6 +3097,9 @@ sk:
       create: Vytvoriť %{model}
       update: Aktualizovať %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

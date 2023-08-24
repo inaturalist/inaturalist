@@ -102,15 +102,6 @@
                 = link_to people_path, :class => "morelink explorelink" do
                   = t(:meet)
                   %i.icon-arrow-right
-  #info.homesection
-    - if @site && @site == Site.default
-      .row
-        #ji_left.col-xs-6
-          .pull-right
-            %embed{ src: image_path( "nat-geo-cas-logos-white.svg" ), width: 307 }
-        #ji_right.col-xs-6
-          .pull-left
-            %p= t( :inaturalist_is_a_joint_initiative, site_name: @site.name )
   #how.homesection
     .row
       .col-xs-12

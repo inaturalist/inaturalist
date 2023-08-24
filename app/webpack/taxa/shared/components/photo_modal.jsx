@@ -17,14 +17,16 @@ import {
 
 class PhotoModal extends React.Component {
   componentDidMount( ) {
-    const { visible, showNext, showPrev } = this.props;
+    const { showNext, showPrev } = this.props;
     bindShortcut( "right", ( ) => {
-      if ( visible ) {
+      // using this.props so it will be evaluated at function call time
+      if ( this.props.visible ) {
         showNext( );
       }
     } );
     bindShortcut( "left", ( ) => {
-      if ( visible ) {
+      // using this.props so it will be evaluated at function call time
+      if ( this.props.visible ) {
         showPrev( );
       }
     } );

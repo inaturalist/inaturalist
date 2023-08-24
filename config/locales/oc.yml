@@ -334,13 +334,7 @@ oc:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: devesit en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusiona en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fusionat en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: remplaçat per
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: remplaçar per
     dropped: eliminat
     staged: presentat
   change_your_password: Modificar vòstre senhal
@@ -513,7 +507,6 @@ oc:
   editing: Modificacion
   email: Corrièr electronic
   email_address_for_comments_and_other_feedback: Adreça electronica pels comentaris
-  email_copyright: "Copyright &copy; %{x}, totes los dreits reservats"
   embed: 'Integrar'
   end: Fin
   endangered: en via de desaparicion
@@ -1152,20 +1145,6 @@ oc:
       show:
         this_user_was_banned: Aqueste utilizaire es estat suspendut
   date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
     day_names_min:
       1: Di
       2: Lu
@@ -1173,25 +1152,13 @@ oc:
       4: Me
       5: Jò
       6: Ve
-      7: Sa
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   helpers:
     select:
       prompt: Seleccionatz
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

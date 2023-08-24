@@ -143,6 +143,7 @@ class ObservationsController < ApplicationController
             params[:taxon_id] = t.id
           end
         end
+        @asynchronous_google_maps_loading = true
         render layout: "bootstrap", locals: { params: params }
       end
 
@@ -462,8 +463,8 @@ class ObservationsController < ApplicationController
     if @taxon
       @observation.taxon = @taxon
       @observation.species_guess = if @taxon.common_name
-        @taxon.common_name.name
-      else 
+        @taxon.common_name( user: current_user ).name
+      else
         @taxon.name
       end
     elsif !params[:taxon_name].blank?

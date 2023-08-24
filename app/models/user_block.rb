@@ -37,7 +37,7 @@ class UserBlock < ApplicationRecord
 
   def cant_block_staff
     if blocked_user && blocked_user.is_admin?
-      errors.add( :base, :user_cannot_be_staff )
+      errors.add( :base, :user_cannot_be_staff2 )
     end
     true
   end

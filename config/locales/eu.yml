@@ -679,13 +679,7 @@ eu:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 'honela banatua:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 'honela nahastua:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 'hemen konbinatu zen:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 'honek ordezkatua:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'honekin ordezkatua:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: honengatik aldatua
     dropped: ezabatua
@@ -987,8 +981,6 @@ eu:
   delete_photo: Argazkia ezabatu
   delete_project: Proiektua ezabatu
   delete_selected: Hautatutakoak ezabatu
-  delete_taxon_and_merge_most_data_html: |
-    <i>%{taxon}</i> ezabatu eta zure datu gehienak beste taxon batekin konbinatu. Tresna hau erabili bikoiztutako taxonak eta eguneratu gabeko sinonimoak ezabatzeko. <strong>KONTUZ!</strong > Taxonak ezabatzean datuak suntsitu daitezke.
   delete_user: Erabiltzailea ezabatu
   delete_your_account: Zure kontua ezabatu
   deleted_synonyms: Sinonimoak ezabatu egin dira
@@ -1526,7 +1518,7 @@ eu:
   near_threatened: Ia mehatxatuta
   new_announcement: Iragarpen berria
   new_check_list: Egiaztapen-zerrenda berria
-  new_check_list_for: "Egiaztapen-zerrenda berria sortu honako: {place} »"
+  new_check_list_for: "Egiaztapen-zerrenda berria sortu honako: %{place} »"
   new_check_list_record: "Zerrenda hau zehatz gisa markatu nahi baduzu, sortu, taxonak gehitu eta, ondoren, aldatu eta hor izango duzu zehatz gisa markatzeko aukera."
   new_flag_for: 'Marka berria honetarako:'
   new_journal_post: Artikulu berria egunkarian
@@ -2376,10 +2368,14 @@ eu:
   use_this_if_the_url_needs_genus_species_separated: |
     Erabili hau URLak generoak eta espezieak modu berezian banatuta baldin baditu. Taxona espezie edo infraespezie bat ez baldin bada, [GENEROA] eta [ESPEZIEA] arteko guztia taxonaren izenarekin ordezkatuko denez, neurrian erabili. <br/><br/> <strong>Adibidea.</strong><br/>
   user: Erabiltzailea
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra"
   user_added_an_observation_html: "Honek behaketa gehitu zuen: %{user}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra"
   user_added_x_observations_html: "%{user}-(e)k %{x} behaketa gehitu zituen"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
@@ -2491,8 +2487,6 @@ eu:
   yes_show_this_in_the_box: Bai, erakutsi hau taxonen gaineko laukian
   yesterday: Atzo
   you: zu
-  youre_a_site_curator_which_means: |
-    Guneko administratzailea zara eta datuak kudeatzen laguntzeko eta orrialdeko edukia gainbegiratzeko zure burua eskaini duzula esan nahi du horrek. Ez sentitu horrek dakarren guztiarekin behartuta, baina zenbait eduki aldez aurretik berrikusteko denbora baldin baduzu, eskertuko dizugu. Zalantzarik baldin baduzu, aipamenik baduzu edo besterik gabe, jada administratzaile izan nahi ez baduzu, jarri gurekin harremanetan hemen:
   you_are_now_following_x: "Honi jarraitzen ari zara: %{friend_user}."
   you_are_already_a_member_of_this_project: "Dagoeneko proiektuko kidea zara!"
   you_are_no_longer_following_x: "Dagoeneko ez zara honi jarraitzen ari: %{friend}."
@@ -2547,8 +2541,6 @@ eu:
   your_google_account_info: Zure Google kontuaren informazioa
   your_profile_was_successfully_updated: Zure profila behar bezala eguneratu da.
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} guneak hemendik datozen %{provider} baimen gehiago ematea behar du:"
-  youre_not_following_anyone: |-
-    Zuk ez duzu inor jarraitzen. Beste naturalista batzuk jarraitzeak azken behaketen kontrola eramatea ahalbidetuko du. Asmatu jendeak zer
   verifiable: Egiaztagarria
   views:
     views: 'Ikustaldiak'

@@ -1,5 +1,7 @@
 - content_for(:title) do
   =t :editing_taxon_name_for_taxon_html, name: @taxon_name.name, taxon: default_taxon_name( @taxon )
+= content_for :extrajs do
+  = javascript_include_tag "taxon_names/edit"
 .container
   .row
     #pageheader.col-md-12
