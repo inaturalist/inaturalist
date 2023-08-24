@@ -57,9 +57,9 @@ const baseMapStyle = [
 
 const customColorScale = ( lowColor, highColor, min, max ) => {
   const baseScale = chroma.scale( [
-    chroma( lowColor ).alpha( SCORE_OPACITY_LOWER ),
-    chroma( lowColor ).alpha( SCORE_OPACITY_UPPER ),
-    chroma( highColor ).alpha( SCORE_OPACITY_UPPER )
+    chroma( lowColor ).alpha( Number( SCORE_OPACITY_LOWER ) ),
+    chroma( lowColor ).alpha( Number( SCORE_OPACITY_UPPER ) ),
+    chroma( highColor ).alpha( Number( SCORE_OPACITY_UPPER ) )
   ] ).domain( [min, max] );
   return chroma.scale( [baseScale( min ), baseScale( max )] );
 };
@@ -90,7 +90,7 @@ class App extends React.Component {
         opacity: SCORE_OPACITY
       } ) ),
       expectedNearbyData: _.mapValues( GEO_MODEL_CELL_SCORES, v => ( {
-        opacity: RANGE_OPACITY,
+        opacity: NEARBY_OPACITY,
         value: v,
         color: NEARBY_COLOR
       } ) ),
