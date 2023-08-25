@@ -3160,6 +3160,7 @@ sr:
   reply: Odgovori
   reptiles: reptili
   request_failed: "Neuspešan zahtev"
+  request_timed_out: Zahtev istekao!
   required: obavеzno
   required_: Obavezno
   required_field: obavezno polje
@@ -3209,6 +3210,7 @@ sr:
     must_be_on_list: mora biti na listi
     must_be_in: mora biti u taksonu
     must_be_coordinates_shareable_by_project_curators: posmatrač mora dozvoliti kustosima projekta da vide koordinate.
+    must_be_verifiable: mora biti argumentovano
     must_be_wild: mora biti u divljini
   satellite: satelit
   save: Sačuvaj
@@ -3275,6 +3277,7 @@ sr:
   select_at_least_one: Označi bar jedno
   #select_one_or_more_photos: Select One Or More Photos
   select_none: Izaberi ništa
+  select_observations_to_edit: Označi opservacije koje želiš da urediš...
   select_one_of_friends_albums: Označi jedan od %{friend} albuma
   select_one_of_your_albums: Označi jedan od tvojih albuma
   select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
@@ -3344,6 +3347,8 @@ sr:
   site_staff: "%{site_name} osoblje"
   site_stats: Statistika sajta
   site_taxon_page: "%{site_name} strana taksona"
+  sites_affiliation_about_desc_html: |
+    Ako želiš da tvoja organizacija postane deo iNaturalist mreže, više detalja možeš pronaći %{start_tag_join}ovde%{end_tag_join}.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatski skrivene koordinate (prikrivene ili privatne zbog "geoprivatnosti taksona")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
@@ -3364,6 +3369,7 @@ sr:
   sites_network_consists_of: "iNaturalist mreža se sastoji od sledećih organizacija:"
   sites_network_inaturalist_network_collection: |
     iNaturalist mreža je kolekcija lokalnih sajtova koji su potpuno povezani sa globalnom iNaturalist zajednicom. Ti sajtovi imaju punu podršku lokalnih institucija koji promovišu lokalnu upotrebu i omogućavaju upotrebu podataka sa iNaturalist-a što ide u korist proučavanju lokalnog biodiverziteta. Imaju pristup pravim koordinatama u okviru njihovih geografskih oblasti koje su automatski skrivene od javnog pristupa kako bi se zaštitile ugrožene vrste.
+  some_agree: neki se slažu
   some_observations_failed_to_save: Neke opservacije nisu sačuvane
   some_of_those_photos_couldnt_be_saved: "Neke fotografije nisu mogle biti sačuvane: %{error}"
   some_other_reason: Neki drugi razlog (objasni ispod).
