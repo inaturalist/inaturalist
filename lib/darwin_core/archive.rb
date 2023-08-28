@@ -458,7 +458,7 @@ module DarwinCore
       preloads = [ {
         observation_photos: {
           photo: [
-            :file_prefix, :file_extension, :user, :flags, :photo_metadata
+            :file_prefix, :file_extension, :user, :flags, :photo_metadata, :moderator_actions
           ] }
         },
         {
@@ -483,6 +483,7 @@ module DarwinCore
             next if op.nil?
             next if op.created_at.nil?
             next if op.photo.nil?
+            next if op.photo.hidden?
             next unless op.created_at <= @generate_started_at
             if !@opts[:media_licenses].include?( "ignore" )
               next if op.photo.all_rights_reserved?

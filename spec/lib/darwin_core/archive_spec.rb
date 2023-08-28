@@ -150,6 +150,15 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
+  it "should not include hidden photos" do
+    ModeratorAction.make!( resource: p, action: "hide" )
+    expect( p.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    expect( csv.size ).to eq 1 # just the header
+  end
+
   describe "with photo_license is ignore" do
     it "should include CC_BY images" do
       expect( p.license ).to eq Photo::CC_BY
