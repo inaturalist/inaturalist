@@ -1708,6 +1708,8 @@ th:
     absent: ไม่พบในพื้นที่
     common: พบบ่อย
   of_this_taxon: ของหน่วยฯ นี้
+  onboarding:
+    following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
@@ -1922,7 +1924,7 @@ th:
   project_settings: การตั้งค่าโครงการ
   projects: โครงการ
   projects_description: |
-    โครงการช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าวัตถุประสงค์ของคุณจะเป็นการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือแค่จดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะตอบโจทย์ของคุณ
+    การสร้างโครงการจะช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าจะเป็นเพื่อการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือเพื่อจดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะช่วยตอบโจทย์คุณได้
   #@vow_or_con should work on %{place}
   projects_from_place: "โครงการจาก %{place}"
   #"admins" is equivalent to "administrates"
@@ -2883,6 +2885,8 @@ th:
           เลือกภาพไอคอน ควรมีขนาดอย่างน้อย 72px x 72px และจะถูกครอบตัดเป็นสี่เหลี่ยมจัตุรัส
         project_name: ชื่อโครงการ
         project_summary: คำอธิบายโครงการ
+        project_summary_help: |
+          อธิบายสั้น ๆ เกี่ยวกับโครงการของคุณ อักษรประมาณ 200 ตัวแรกจะแสดงทางขวาของภาพหน้าปกในหน้าหลักโครงการ ดังนั้นคำอธิบายที่สำคัญต้องมาก่อน!
         project_summary_placeholder: ค้นหาและติดตามนกในอุทยานโกลเดนเกต...
         select_native_to_include: |
           เลือก "พื้นเมือง" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์พื้นเมือง" ของสถานที่ในโครงการของคุณ เลือก "ต่างถิ่น" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์ต่างถิ่น" ของสถานที่ในโครงการของคุณ
@@ -3024,7 +3028,20 @@ th:
       index:
         connect_with_nature: เชื่อมโยงกับธรรมชาติ
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
+        how_it_works: หลักการทำงาน
+        record_your_observations: บันทึกการสังเกตของคุณ
+        share_with_fellow_naturalists: แชร์ให้นักธรรมชาติวิทยาคนอื่น ๆ
+        discuss_your_findings: พูดคุยเกี่ยวกับสิ่งที่พบเจอมา
         contribute_to_science: สนับสนุนวิทยาศาสตร์
+        nature_at_your_fingertips: ธรรมชาติอยู่แค่ปลายนิ้ว
+        keep_track: เฝ้าติดตาม
+        create_useful_data: สร้างข้อมูลที่เป็นประโยชน์
+        crowdsource_identifications: ให้ผู้คนช่วยจำแนกชนิด
+        become_a_citizen_scientist: ร่วมเป็นนักวิทยาศาสตร์พลเมือง
+        learn_about_nature: เรียนรู้ธรรมชาติ
+        run_a_bioblitz: จัดกิจกรรม Bioblitz
+        works_on_all_your_devices: ใช้งานได้กับทุกอุปกรณ์ของคุณ
+        what_are_you_waiting_for: รออะไรอยู่ล่ะ?
         join_today: เข้าร่วมวันนี้
   date:
     abbr_month_names:
