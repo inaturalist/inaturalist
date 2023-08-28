@@ -937,12 +937,12 @@ fr:
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   clashes_occur_for_moves_html: |
     Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
-    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxonomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxinomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
     comme des désaccords avec les ID existants du taxon dérivé déplacé.
   #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
   clashes_occur_for_swaps_html: |
     Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
-    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxonomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxinomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
     comme des désaccords avec les ID existants du taxon dérivé déplacé.
   classification: Classification
   clear: effacer
@@ -1201,7 +1201,7 @@ fr:
   copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: "Couvert par un %{link}"
-  covered_by_a_taxon_framework_link: "Cadre taxonomique pour %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_link: "Cadre taxinomique pour %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Impossible de modifier votre mot de passe : %{e}"
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
@@ -1246,8 +1246,8 @@ fr:
   curator_application_fields_explanation_html: Pourquoi voulez-vous être responsable?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Si vous souhaitez modifier la taxonomie d'iNaturalist, veuillez fournir un exemple ou deux
-    de changements taxonomiques que vous souhaitez apporter, en incluant des sources. Le cas échéant, veuillez citer les autorités taxonomiques
+    Si vous souhaitez modifier la taxinomie d'iNaturalist, veuillez fournir un exemple ou deux
+    de changements taxinomiques que vous souhaitez apporter, en incluant des sources. Le cas échéant, veuillez citer les autorités taxinomiques
     appropriées mentionnées dans le <a
     href="https://www.inaturalist.org/pages/curator+guide#policies">Guide du responsable de l'organisation</a>. Si vous n'incluez aucune source, votre demande
     ne sera pas prise en considération.
@@ -1579,7 +1579,7 @@ fr:
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">les développeurs</a>
   do_not_show_this_message_again: Ne plus afficher ce message
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Vous étudiez des nématodes ? Vous êtes le meilleur expert au monde de la taxonomie de la balane ? Vous aimez juste regarder de jolies fleurs ? Remplir votre profil le rend plus personnalisé et aide à vous crédibiliser lorsque vous aidez les gens pour leurs identifications.
+    Vous étudiez des nématodes ? Vous êtes le meilleur expert au monde de la taxinomie de la balane ? Vous aimez juste regarder de jolies fleurs ? Remplir votre profil le rend plus personnalisé et aide à vous crédibiliser lorsque vous aidez les gens pour leurs identifications.
   doesnt_have_default_photo: n’a pas encore de photo par défaut.
   doh_something_went_wrong: Oups, quelque chose s’est mal passé.
   doh_something_went_wrong_error: "Oh, quelque chose s’est mal passé : %{error}"
@@ -2288,7 +2288,7 @@ fr:
   inaturalist_applications: "Applications iNaturalist"
   inaturalist_places: "Lieux d’%{site_name}"
   info: Info
-  input_taxon: Entrer un taxon
+  input_taxon: Taxon en entrée
   insects: insectes
   insect_life_stage: Stade de l'insecte
   instagram: Instagram
@@ -4301,7 +4301,7 @@ fr:
     many_to_one: de plusieurs à un
     one_to_many: de un vers plusieurs
     not_external: pas externe
-    not_internal: non interne
+    not_internal: pas interne
     error: erreur
   relationships_user_settings: Relations
   relationship_html: "Relation : %{link}"
@@ -4884,12 +4884,12 @@ fr:
   taxon_framework_relationships_with_count_html: "Relations du cadre taxinomique : %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons couverts marqués : %{count}"
-  taxon_framework_notes: Notes du cadre taxonomique
-  taxon_framework_relationship: Relation du cadre taxonomique
-  taxon_framework_relationship_number: "Relation du cadre taxonomique %{number}"
+  taxon_framework_notes: Notes du cadre taxinomique
+  taxon_framework_relationship: Relation du cadre taxinomique
+  taxon_framework_relationship_number: "Relation du cadre taxinomique %{number}"
   taxon_framework_relationship_unknown_count_html: "Nombre de relations inconnues : %{count}"
-  taxon_framework_relationships: Relations du cadre taxonomique
-  taxon_framework_taxon: Taxon du cadre taxonomique
+  taxon_framework_relationships: Relations du cadre taxinomique
+  taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
@@ -4941,9 +4941,9 @@ fr:
   taxonomic_order: Ordre taxinomique
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
-  taxonomy_details: Détails de la taxonomie
-  taxonomy_details_for: Détail de la taxonomie pour
-  taxonomy_details_info: 'La page de détails de la taxonomie utilise les cadres de taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En savoir plus</a>.'
+  taxonomy_details: Détails de la taxinomie
+  taxonomy_details_for: Détail de la taxonimie pour
+  taxonomy_details_info: 'La page de détails de la taxinomie utilise les cadres de taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En savoir plus</a>.'
   taxonomy_settings: Configuration de taxinomie
   teachers_guide: Guide de l’enseignant
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
@@ -5565,10 +5565,10 @@ fr:
   view_stats: Afficher les statistiques
   view_taxon_change: Afficher la modification du taxon
   view_taxon_changes: Afficher les modifications de taxon
-  view_taxon_framework_relationship: Afficher la relation du cadre taxonomique
+  view_taxon_framework_relationship: Afficher la relation du cadre taxinomique
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
-  view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
+  view_taxononomy_details_for_taxon: "Afficher les détails de la taxinomie pour %{taxon}"
   view_user_observations: "Afficher les observations de %{user}"
   view_x: "Afficher %{x}"
   view_your_dashboard: Afficher votre tableau de bord
@@ -7330,7 +7330,7 @@ fr:
           humaine, alors qu’indigène signifie qu’elle est arrivée sans assistance humaine.
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
         about_taxon_curators_desc: |
-          Ces personnes gèrent la partie de l’arbre taxonomique qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer ce taxon ou contacter l'une de ces personnes.
+          Ces personnes gèrent la partie de l’arbre taxinomique qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer ce taxon ou contacter l'une de ces personnes.
         charts_help_seasonality: |
           Ce graphique affiche le nombre d’observations de ce taxon, groupées par
           mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
@@ -8156,7 +8156,7 @@ fr:
         #e.g. if Homonidae has complete_rank set to genus, you would expect
         #the genus Homo to be in the database, but not necessarily Homo
         #sapiens
-        complete_rank: Rang taxonomique complet
+        complete_rank: Rang taxinomique complet
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Statut de conservation
         #Datetime this taxon was featured for display on /taxa
