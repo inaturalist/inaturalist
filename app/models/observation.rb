@@ -2384,7 +2384,7 @@ class Observation < ApplicationRecord
   end
 
   def sound_url
-    if s = sounds.detect{|s| s.is_a?( LocalSound ) }
+    if s = sounds.select{ |s| !s.flagged? && !s.hidden? }.detect{|s| s.is_a?( LocalSound ) }
       return s.file.url
     end
   end

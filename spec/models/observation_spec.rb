@@ -1968,6 +1968,28 @@ describe Observation, "set_time_zone" do
   end
 end
 
+describe Observation, "sound_url" do
+  let( :observation ) { Observation.make! }
+  it "should return nil if there are no sounds" do
+    expect( observation.sound_url ).to be_nil
+  end
+
+  it "should return the URL of the first sound" do
+    sound = LocalSound.make!( user: observation.user )
+    os = ObservationSound.make!( observation: observation, sound: sound )
+    expect( observation.sound_url ).to eq os.sound.file.url
+  end
+
+  it "should not return hidden sounds" do
+    sound = LocalSound.make!( user: observation.user )
+    os = ObservationSound.make!( observation: observation, sound: sound )
+    ModeratorAction.make!( resource: sound, action: "hide" )
+    expect( sound.hidden? ).to be true
+    expect( observation.sound_url ).to be_nil
+  end
+end
+
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf

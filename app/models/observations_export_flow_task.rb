@@ -109,7 +109,9 @@ class ObservationsExportFlowTask < FlowTask
     if export_columns.detect{ |c| c == "image_url" }
       includes << { photos: [:user, :flags, :file_prefix, :file_extension, :moderator_actions] }
     end
-    includes << :sounds if export_columns.detect{ |c| c == "sound_url" }
+    if export_columns.detect{ |c| c == "sound_url" }
+      includes << { sounds: [:user, :flags, :moderator_actions] }
+    end
     includes << :quality_metrics if export_columns.detect{ |c| c == "captive_cultivated" }
     includes
   end

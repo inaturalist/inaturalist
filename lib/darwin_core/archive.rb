@@ -463,7 +463,9 @@ module DarwinCore
         },
         {
           observation_sounds: {
-            sound: :user
+            sound: [
+              :user, :flags, :moderator_actions
+            ]
           }
         }
       ]
@@ -496,6 +498,7 @@ module DarwinCore
             next if os.nil?
             next if os.created_at.nil?
             next if os.sound.nil?
+            next if os.sound.hidden?
             next unless os.sound.is_a?( LocalSound ) # Soundcloud sounds don't come with stable file URLs we can share
             next unless os.created_at <= @generate_started_at
             if !@opts[:media_licenses].include?( "ignore" )
