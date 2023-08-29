@@ -14,7 +14,7 @@ class Observation < ApplicationRecord
     { annotations: :votes_for },
     { photos: :flags },
     { sounds: :user },
-    { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
+    { identifications: [ :stored_preferences, :taxon, :moderator_actions ] }, :project_observations,
     { taxon: [ :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags, :moderator_actions ] } ) }
@@ -334,7 +334,7 @@ class Observation < ApplicationRecord
         for_identification: options[:for_identification]) : nil
     }
 
-    current_ids = identifications.select(&:current?)
+    current_ids = identifications.select( &:current? ).reject( &:hidden? )
     if options[:no_details]
       json.merge!({
         user_id: user.id

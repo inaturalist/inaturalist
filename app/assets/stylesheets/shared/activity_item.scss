@@ -152,6 +152,9 @@ body > [role="dialog"] .ActivityItem {
       }
     }
   }
+  .panel.moderator-hidden {
+    border-bottom: 0px;
+  }
   .panel-body {
     padding: 0px;
     line-height: 1;
@@ -260,6 +263,9 @@ body > [role="dialog"] .ActivityItem {
     margin-left: 60px;
     box-shadow: none;
     -webkit-box-shadow: none;
+    &.no-user-icon {
+      margin-left: 0px;
+    }
   }
   .id_body {
     margin-top: 15px;

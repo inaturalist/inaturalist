@@ -7,7 +7,10 @@ import ModeratorActionModal from "../../../shared/components/moderator_action_mo
 import { fetchCurrentObservation } from "../actions";
 
 function mapStateToProps( state ) {
-  return Object.assign( {}, state.moderatorActions );
+  return {
+    ...state.moderatorActions,
+    config: state.config
+  };
 }
 
 function mapDispatchToProps( dispatch ) {

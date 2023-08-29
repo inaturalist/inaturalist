@@ -9,5 +9,6 @@ NonStupidDigestAssets.whitelist += [
   /iconic_taxa/,
   /^homepage-/,
   /^donate-/,
-  /^copyright-infringement/
+  /^copyright-infringement/,
+  /^media-hidden/
 ]

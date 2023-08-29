@@ -1732,6 +1732,27 @@ $(document).ready(function() {
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default');
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
   $('.bootstrap .button').addClass('btn btn-default').removeClass('button');
+
+  // enable popover toggle behavior everywhere
+  $( '[data-toggle="popover"]' ).popover( { html: true } );
+
+  // close bootstrap popovers when clicking outside them and not on the opening toggle
+  $( "html" ).on( "mouseup", function( e ) {
+    if ( !$( e.target ).closest( "[data-toggle]" ).length
+      && !$( e.target ).closest( ".popover" ).length
+    ) {
+      $( ".popover" ).each( function( ) {
+        // hide the popover
+        $( this.previousSibling ).popover( "hide" );
+        // reset the element state so it doesn't take two clicks to reopen
+        if ( $( this.previousSibling ).data( "bs.popover" )
+          && $( this.previousSibling ).data( "bs.popover" ).inState
+          && $( this.previousSibling ).data( "bs.popover" ).inState.click ) {
+          $( this.previousSibling ).data( "bs.popover" ).inState.click = false;
+        }
+      });
+    }
+  });
 })
 if ($ && $.fn && typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') {
   var bootstrapButton = $.fn.button.noConflict();

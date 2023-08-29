@@ -1,4 +1,9 @@
 @import "../colors";
+
+body > div > [role="dialog"] .modal-body {
+  max-height: none;
+}
+
 .ConfirmModal.confirm, .FlaggingModal.modal {
   &.error {
     font-size: 14px;
@@ -85,6 +90,37 @@
         top: 3px;
         margin-left: 5px;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+.ModeratorActionModal {
+  .modal-body {
+    .hidden-media {
+      height: 150px;
+      padding-top: 45px;
+      .item-status {
+        display: block;
+      }
+      .reveal-hidden {
+        margin-top: 6px;
+      }
+    }
+    .image-preview img {
+      max-width: 90%;
+      max-height: 300px;
+      display: block;
+      margin: 0px auto;
+      margin-bottom: 15px;
+    }
+    .sound {
+      width: 90%;
+      margin: 0px auto;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      & audio {
+        width: 100%;
       }
     }
   }

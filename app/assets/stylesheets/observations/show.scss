@@ -327,6 +327,7 @@ a.UserImage,
           &.center {
             display: table-cell;
           }
+          cursor: auto;
         }
         .image-gallery-slides img {
           max-height: 420px;
@@ -344,7 +345,10 @@ a.UserImage,
           .sound-container {
             position: absolute;
             width: 100%;
-            top: 50%; 
+            top: 50%;
+            .captions {
+              margin-top: 10px;
+            }
           }
           .sound-container.sound-container-soundcloud {
             margin-top: -81px;
@@ -366,6 +370,13 @@ a.UserImage,
             bottom: 0;
             pointer-events: none;
             padding: 6px;
+            & > .hidden-media {
+              position: absolute;
+              width: 100%;
+              .captions {
+                margin-top: 10px;
+              }
+            }
           }
           .image-gallery-image {
             position: relative;
@@ -383,6 +394,11 @@ a.UserImage,
               display: inline-block;
               padding: 5px 9px;
               pointer-events: auto;
+              .btn:hover, .fa:hover {
+                text-decoration: none;
+                opacity: 0.8;
+                color: inherit;
+              }
             }
             .fa.license {
               vertical-align: middle;
@@ -667,6 +683,23 @@ a.UserImage,
 
 .other_observations > .container > .row > .col-xs-6 {
   padding: 0;
+}
+
+.hidden-media {
+  text-align: center;
+  .hidden-status {
+    color: #333;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .reveal-hidden {
+    display: block;
+    color: #333;
+    pointer-events: auto;
+    display: block;
+    margin: 0px auto;
+    margin-top: 9px;
+  }
 }
 
 h3, h4 {
@@ -2439,6 +2472,12 @@ body > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.image-gallery-image .loading_spinner {
+  width: 80px;
+  height: 80px;
+  border-width: 15px;
+}
+
 .observations.infowindow .observation {
   width: 245px;
 }
@@ -2452,6 +2491,12 @@ body > [role="dialog"] .easyzoom > a > img {
         display: inline;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery-slide .image-gallery-description {
+    font-size: 1em;
   }
 }
 

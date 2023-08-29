@@ -500,6 +500,7 @@ en:
   all_comments: All comments
   all_flags_must_be_resolved: All flags must be resolved
   all_life: All life
+  all_media_must_be_unhidden: All media must be unhidden
   all_names: All Names
   all_observations: All observations
   all_photos: All photos
@@ -2322,12 +2323,11 @@ en:
   hide_desc: |
     Hiding content will remove it from public view, but people will still be
     able to see that something was hidden, and site curators and the author of
-    the content will still be able to see the hidden content. Generally, this
-    only applies to written content, e.g. if you hide the content of an
-    identification, the identification is still visible but the identifier's
-    remarks are hidden. You cannot undo this, and only site staff can unhide
-    content once it has been hidden, so be careful and only use this for very
-    objectionable content.
+    the content will still be able to see the hidden content. Hidden
+    identifications will not contribute to an observation's Community Taxon.
+  hide_desc_staff_can_unhide: |
+    Only site staff can unhide content once it has been hidden, so only use this
+    for clear violations of the Community Guidelines.
   # Option to hide data series that show "No Annotation" data, i.e. records that
   # have no annotation
   hide_no_annotation: Hide "No Annotation"
@@ -3801,8 +3801,10 @@ en:
   photo_credits: Photo Credits
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed because it was deleted from the external site or %{site_name} no longer has permission to view it"
+  photo_hidden: Photo hidden
   photo_licensing: Photo Licensing
   photo_type: Photo type
+  photo_unhidden: Photo unhidden
   photo_urls_repaired: Photo URLs repaired
   photos_chosen_for_this_taxon: Photos chosen for this taxon
   photos_from: Photos from

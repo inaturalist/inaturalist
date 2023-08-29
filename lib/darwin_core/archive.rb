@@ -458,12 +458,14 @@ module DarwinCore
       preloads = [ {
         observation_photos: {
           photo: [
-            :file_prefix, :file_extension, :user, :flags, :photo_metadata
+            :file_prefix, :file_extension, :user, :flags, :photo_metadata, :moderator_actions
           ] }
         },
         {
           observation_sounds: {
-            sound: :user
+            sound: [
+              :user, :flags, :moderator_actions
+            ]
           }
         }
       ]
@@ -483,6 +485,7 @@ module DarwinCore
             next if op.nil?
             next if op.created_at.nil?
             next if op.photo.nil?
+            next if op.photo.hidden?
             next unless op.created_at <= @generate_started_at
             if !@opts[:media_licenses].include?( "ignore" )
               next if op.photo.all_rights_reserved?
@@ -495,6 +498,7 @@ module DarwinCore
             next if os.nil?
             next if os.created_at.nil?
             next if os.sound.nil?
+            next if os.sound.hidden?
             next unless os.sound.is_a?( LocalSound ) # Soundcloud sounds don't come with stable file URLs we can share
             next unless os.created_at <= @generate_started_at
             if !@opts[:media_licenses].include?( "ignore" )

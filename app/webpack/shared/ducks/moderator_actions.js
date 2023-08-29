@@ -1,4 +1,9 @@
 import _ from "lodash";
+import {
+  Comment,
+  Photo,
+  Sound
+} from "inaturalistjs";
 import { fetch } from "../util";
 
 const SHOW_MODERATOR_ACTION_FORM = "observations-shared/moderator_actions/show_moderator_action_form";
@@ -10,12 +15,9 @@ const moderatorActionReducer = ( state = {
   action: "hide"
 }, action ) => {
   if ( action.type === SHOW_MODERATOR_ACTION_FORM ) {
-    console.log( "[DEBUG] reducing SHOW_MODERATOR_ACTION_FORM" );
     state.visible = true;
     state.item = action.item;
-    if ( action.action === "unhide" ) {
-      state.action = "unhide";
-    }
+    state.action = ( action.action === "unhide" ) ? "unhide" : "hide";
   } else if ( action.type === HIDE_MODERATOR_ACTION_FORM ) {
     state.visible = false;
   }
@@ -37,8 +39,14 @@ const submitModeratorAction = ( item, action, reason ) => (
     const isID = !!item.taxon;
     if ( isID ) {
       data.append( "moderator_action[resource_type]", "Identification" );
-    } else {
+    } else if ( item instanceof Comment ) {
       data.append( "moderator_action[resource_type]", "Comment" );
+    } else if ( item instanceof Photo ) {
+      data.append( "moderator_action[resource_type]", "Photo" );
+    } else if ( item instanceof Sound ) {
+      data.append( "moderator_action[resource_type]", "Sound" );
+    } else {
+      throw new Error( "Can't submit moderator action on an unknown type" );
     }
     data.append( "moderator_action[resource_id]", item.id );
     data.append( "moderator_action[reason]", reason );
@@ -66,9 +74,45 @@ const hideModeratorActionForm = ( ) => ( {
   type: HIDE_MODERATOR_ACTION_FORM
 } );
 
+const revealHiddenContent = item => {
+  if ( !( item instanceof Photo || item instanceof Sound ) ) {
+    return null;
+  }
+  const relevantModeratorAction = _.first(
+    _.orderBy( item.moderator_actions, ["created_at", "desc"] )
+  );
+  if ( !relevantModeratorAction ) {
+    return null;
+  }
+  return ( ) => {
+    // open a new window now in the context of the user action so it doesn't get popup-blocked
+    const resourceWindow = window.open( );
+    return fetch( `/moderator_actions/${relevantModeratorAction.id}/resource_url`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "X-CSRF-Token": $( "meta[name=csrf-token]" ).attr( "content" )
+      }
+    } ).then( response => {
+      if ( response.status === 200 ) {
+        response.json( ).then( json => {
+          if ( json && json.resource_url ) {
+            // update the location of the already opened window
+            resourceWindow.location = json.resource_url;
+            resourceWindow.focus( );
+          }
+        } );
+      }
+    } ).catch( e => {
+      alert( I18n.t( "doh_something_went_wrong_error", { error: e.message } ) );
+    } );
+  };
+};
+
 export default moderatorActionReducer;
 export {
   showModeratorActionForm,
   hideModeratorActionForm,
-  submitModeratorAction
+  submitModeratorAction,
+  revealHiddenContent
 };
