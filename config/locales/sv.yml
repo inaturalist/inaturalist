@@ -419,6 +419,7 @@ sv:
   all_comments: Alla kommentarer
   all_flags_must_be_resolved: Alla flaggor måste vara lösta
   all_life: Allt liv
+  all_media_must_be_unhidden: All media måste tas fram
   all_names: Alla namn
   all_observations: Alla fynd
   all_photos: Alla bilder
@@ -2148,7 +2149,13 @@ sv:
   hide: Dölj
   hide_content: Dölj innehåll
   hide_desc: |
-    Att dölja innehåll kommer att ta bort det från publik visning, men man kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
+    Att dölja innehåll kommer att undanta det från publik visning, men man kommer
+    fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren
+    till innehållet kommer fortfarande att kunna se det dolda innehållet. Dolda bestämningar
+    räknas inte för ett fynds Gemenskapstaxon.
+  hide_desc_staff_can_unhide: |
+    Endast personal på webbplatsen kan ta fram innehåll när det har dolts, så använd
+    endast detta för klara överträdelser av Communityns riktlinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
@@ -3561,8 +3568,10 @@ sv:
   photo_credits: Fotograf
   photo_deleted: Bild raderad
   photo_destroyed_because_it_was_deleted_from: "Bilden förstördes eftersom den togs bort från den externa webbplatsen eller så har %{site_name} inte längre behörighet att visa den"
+  photo_hidden: Bild dold
   photo_licensing: Bildlicensiering
   photo_type: Bildtyp
+  photo_unhidden: Bild visas
   photo_urls_repaired: Bild-URL:er reparerade
   photos_chosen_for_this_taxon: Utvalda bilder för detta taxon
   photos_from: Bilder från
