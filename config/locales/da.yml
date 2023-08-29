@@ -408,6 +408,7 @@ da:
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
   all_life: Alt liv
+  all_media_must_be_unhidden: Alle medier skal være gjort synlige
   all_names: Alle navne
   all_observations: Alle observationer
   all_photos: Alle fotos
@@ -2118,7 +2119,9 @@ da:
   hide: Skjul
   hide_content: Skjul indhold
   hide_desc: |
-    Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.
+    Skjulning af indhold fjerner det fra offentligt skue, men folk vil stadig kunne se, at noget er blevet skjult, ligesom webstedskuratorer og indholdsforfatteren stadig vil kunne se det skjulte indhold. Skjulte identifikationer vil ikke bidrage en observations Fællesskabs Takson.
+  hide_desc_staff_can_unhide: |
+    Kun webstedspersonale kan gøre indhold synligt igen, efter det har været skjult, så brug kun denne ved klare overtrædelser af Fællesskabsretningslinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen annotation"
@@ -3528,8 +3531,10 @@ da:
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
   photo_destroyed_because_it_was_deleted_from: "Foto ødelagt fordi det blev slettet fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at se det"
+  photo_hidden: Foto skjult
   photo_licensing: Fotolicens
   photo_type: Foto type
+  photo_unhidden: Foto vises igen
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
