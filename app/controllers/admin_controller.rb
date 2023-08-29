@@ -19,7 +19,7 @@ class AdminController < ApplicationController
   def users
     @users = User.paginate( page: params[:page] ).order( id: :desc )
     @comment_counts_by_user_id = Comment.where( user_id: @users ).group( :user_id ).count
-    @q = params[:q].strip
+    @q = params[:q].try( :strip )
     @users = @users.where(
       "login ILIKE ? OR name ILIKE ? OR email ILIKE ? OR last_ip LIKE ?", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%"
     )
