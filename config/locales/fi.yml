@@ -410,6 +410,7 @@ fi:
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
+  all_media_must_be_unhidden: Kaikki mediat täytyy näyttää
   all_names: Kaikki Nimet
   all_observations: Kaikki havainnot
   all_photos: Kaikki kuvat
@@ -1971,6 +1972,11 @@ fi:
   #Verb, usually a button to hide an interface element
   hide: Piilota
   hide_content: Piilota sisältö
+  hide_desc: |
+    Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
+  hide_desc_staff_can_unhide: |
+    Vain sivuston henkilökunta voi poistaa piilotuksen, joten käytä tätä vain
+    yhteisön ohjeiden selviin rikkomuksiin.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Piilota "Ei merkintöjä"
@@ -3145,8 +3151,10 @@ fi:
   photo_credits: Kuvan tekijätiedot
   photo_deleted: Kuva poistettu
   photo_destroyed_because_it_was_deleted_from: "Kuva tuhottu b/c se poistettiin ulkoisesta sivustosta tai %{site_name}illa ei ole enää lupaa näyttää sitä."
+  photo_hidden: Kuva piilotettu
   photo_licensing: Kuvien lisensointi
   photo_type: Kuvan tyyppi
+  photo_unhidden: Kuva näytetään
   photo_urls_repaired: Valokuvien URLit korjattu
   photos_chosen_for_this_taxon: Tälle taksonille valitut kuvat
   photos_from: Kuvat sivustolta
