@@ -378,6 +378,7 @@ id:
   all_comments: Semua komentar
   all_flags_must_be_resolved: Seluruh tanda harus diselesaikan
   all_life: Semua kehidupan
+  all_media_must_be_unhidden: Semua media harus ditampilkan
   all_names: Semua Nama
   all_observations: Semua pengamatan
   all_photos: Semua foto
@@ -2016,6 +2017,10 @@ id:
   #Verb, usually a button to hide an interface element
   hide: Sembunyi
   hide_content: Sembunyikan konten
+  hide_desc: |
+    Menyembunyikan konten akan menghapusnya dari tampilan publik, tetapi orang-orang masih bisa melihat bahwa ada konten yang disembunyikan. Kurator situs serta penulis kontennya masih bisa melihat konten yang disembunyikan. Identifikasi yang disembunyikan tidak akan berkontribusi kepada pengamatan Takson Komunitas.
+  hide_desc_staff_can_unhide: |
+    Hanya staf situs yang bisa menampilkan kontennya kembali setelah disembunyikan, jadi harap gunakan fitur ini untuk pelanggaran Pedoman Komunitas yang jelas.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Sembunyikan "Tanpa Catatan"
@@ -3386,8 +3391,10 @@ id:
   photo_credits: Kredit Foto
   photo_deleted: Foto dihapus
   photo_destroyed_because_it_was_deleted_from: "Foto dihancurkan dikarenakan foto tersebut dihapus dari situs eksternal atau %{site_name} tidak lagi memiliki izin untuk melihatnya"
+  photo_hidden: Gambar disembunyikan
   photo_licensing: Lisensi Foto
   photo_type: Jenis foto
+  photo_unhidden: Gambar ditampilkan kembali
   photo_urls_repaired: URL foto diperbaiki
   photos_chosen_for_this_taxon: Foto yang dipilih untuk takson ini
   photos_from: Foto dari
