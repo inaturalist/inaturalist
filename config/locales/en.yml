@@ -1918,6 +1918,8 @@ en:
     Email confirmation is required as of %{requirement_date} and you did not
     confirm your email address before the cutoff. Please reset your password
     to access your account.
+  email_conf_faq_html: |
+    If you have questions, please refer to these <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
     All users must confirm their email address by %{date}. After that

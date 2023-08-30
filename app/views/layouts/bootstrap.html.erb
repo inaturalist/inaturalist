@@ -55,6 +55,9 @@
           <div class="container upstacked">
             <div class="alert alert-warning upstacked">
               <%= (flash[:notice] || flash[:alert]).html_safe %>
+              <%- if flash[:alert] == I18n.t( :email_conf_required_after_grace_period, requirement_date: I18n.l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long ) ) || flash[:alert] == I18n.t( "devise.failure.unconfirmed" ) %>
+                <%= I18n.t( :email_conf_faq_html, url: "https://help.inaturalist.org/en/support/solutions/folders/151000452263" ).html_safe %>
+              <% end %>
             </div>
           </div>
         </div>
