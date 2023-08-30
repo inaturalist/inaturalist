@@ -109,6 +109,24 @@ class SiteDataExporter
       user_id
       updater_id
       uuid
+    ),
+    photos: %w(
+      id
+      uuid
+      user_id
+      medium_url
+      license_url
+      attribution_name
+      created_at
+    ),
+    sounds: %w(
+      id
+      uuid
+      user_id
+      url
+      license_url
+      attribution_name
+      created_at
     )
   }.freeze
 
@@ -438,7 +456,7 @@ class SiteDataExporter
           observations,
           [
             :user,
-            { taxon: :taxon_names },
+            { taxon: { taxon_names: :place_taxon_names } },
             { identifications: [:stored_preferences] },
             { photos: [:flags, :file_prefix, :file_extension, :user] },
             :sounds,
