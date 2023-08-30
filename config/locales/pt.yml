@@ -1350,6 +1350,10 @@ pt:
   email: Email
   email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
+  email_conf_required_after_grace_period: |
+    Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
+    confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
+    para acessar sua conta.
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
   embed_place_widget: Incorporar um componente de localização
