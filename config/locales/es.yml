@@ -1691,6 +1691,8 @@ es:
   email_conf_banner_we_delivered_todos: |
     Te hemos enviado un correo electrónico de confirmación el %{date}. Si no lo has
     recibido, aquí hay algunas cosas que puedes hacer:
+  email_conf_required_after_grace_period: |
+    La confirmación del correo electrónico es necesaria a partir de %{requirement_date} y no confirmó su dirección de correo electrónico antes del corte. Por favor, restablezca su contraseña para acceder a su cuenta.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Por favor confirma tu dirección de correo electrónico%{link_end_tag}</strong>.
     Todos los usuarios deben confirmar su dirección de correo electrónico antes del %{date}. Después de esa
