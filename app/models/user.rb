@@ -426,7 +426,7 @@ class User < ApplicationRecord
   end
 
   def unconfirmed_grace_period_expired?
-    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    !confirmed? && created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATE
   end
 
   # Devise override for message to show the user when they can't log in b/c
