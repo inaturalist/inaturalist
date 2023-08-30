@@ -458,8 +458,12 @@ class SiteDataExporter
             :user,
             { taxon: { taxon_names: :place_taxon_names } },
             { identifications: [:stored_preferences] },
-            { photos: [:flags, :file_prefix, :file_extension, :user] },
-            :sounds,
+            { photos: [
+              :flags, :file_prefix, :file_extension, :user, :moderator_actions
+            ] },
+            { sounds: [
+              :flags, :moderator_actions, :user
+            ] },
             :quality_metrics,
             { observations_places: :place },
             {

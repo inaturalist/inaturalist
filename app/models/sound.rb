@@ -79,7 +79,7 @@ class Sound < ApplicationRecord
   end
 
   def url
-    file&.url
+    try( :file ).try( :url )
   end
 
   def self.from_observation_params(params, fieldset_index, owner)
