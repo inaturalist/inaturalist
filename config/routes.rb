@@ -123,7 +123,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :observation_field_values, only: [:create, :update, :destroy, :index]
+  resources :observation_field_values, only: [:create, :update, :destroy]
   resources :observation_fields do
     member do
       get :merge
