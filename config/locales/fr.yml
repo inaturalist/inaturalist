@@ -2952,7 +2952,7 @@ fr:
   new_check_list: Nouvelle check-list
   new_check_list_for: "Créer une nouvelle check-list pour %{place} &raquo;"
   new_check_list_record: "Si vous voulez indiquer que cette liste comme complète, créez-la, ajoutez les taxons, puis modifiez-la et vous aurez là la possibilité d’indiquer qu’elle est complète."
-  new_comment_on_a_parent_by_user_link: Nouveau commentaire sur @vow_or_con{vow:an|a} %{parent} par %{user_link}
+  new_comment_on_a_parent_by_user_link: Nouveau commentaire sur @gender{m:un|une} %{parent} par %{user_link}
   new_conservation_status: Nouveau statut de conservation
   new_flag_for: Nouveau signalement pour
   new_guide: Nouveau guide
@@ -3451,8 +3451,8 @@ fr:
       without_observation: a ajouté une <strong>identification</strong>
     post: a publié une %{post_link}
     comment:
-      with_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link} par %{by_link}
-      without_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link}
+      with_by: a commenté sur @gender{m:un|une} %{comment_subject_link} par %{by_link}
+      without_by: a commenté sur @gender{m:un|une} %{comment_subject_link}
   per_day: Par jour
   per_month: Par mois
   per_week: Par semaine
@@ -4726,7 +4726,7 @@ fr:
   stuff_just_added: "Trucs que vous venez d’ajouter…"
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
   subject_affecting_stuff_html: "%{subject} touchant %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} a validé @vow_or_con{vow:un} %{thing} concernant %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} a validé @gender{m:un|une} %{thing} concernant %{stuff}"
   submission_model: Modèle d'enregistrement
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit_observations:
