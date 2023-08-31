@@ -397,6 +397,7 @@ fr:
   agree_: Accepter
   agree?: Accepter ?
   agree_with_current_taxon: Accepter le taxon actuel
+  agree_with_observation_taxon: Approuver le taxon de l'observation
   agreeing: En cours d'acceptance...
   aka: alias
   #Noun, title of a popup alerting you to something
@@ -407,6 +408,7 @@ fr:
   all_comments: Tous les commentaires
   all_flags_must_be_resolved: Tous les signalements doivent être résolus
   all_life: Tous les êtres vivants
+  all_media_must_be_unhidden: Tous les médias doivent être non masqués
   all_names: Tous les noms
   all_observations: Toutes les observations
   all_photos: Toutes les photos
@@ -2080,6 +2082,10 @@ fr:
   #Verb, usually a button to hide an interface element
   hide: Cacher
   hide_content: Masquer le contenu
+  hide_desc: |
+    Masquer du contenu le rendra invisible au public, mais celui-ci pourra toujours voir que quelque chose a été masqué, et les responsables du site ainsi que le créateur du contenu pourront toujours voir le contenu masqué. Les identifications masquées d'une observation ne contribuent pas au taxon de la communauté.
+  hide_desc_staff_can_unhide: |
+    Seule l'équipe du site peut afficher de nouveau le contenu qui a été masqué. N'utilisez donc le masquage qu'en cas de violations manifestes des règles de la communauté.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
@@ -2136,8 +2142,6 @@ fr:
   #Notification when an identification has been deleted
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Texte d'identification non masqué
   #Notification when an identification has been updated
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
@@ -2588,6 +2592,7 @@ fr:
     es: Espagnol
     es-AR: Espagnol (Argentine)
     es-CO: Espagnol (Colombie)
+    es-CR: Espagnol (Costa Rica)
     es-MX: espagnol mexicain
     et: Estonien
     eu: Basque
@@ -3465,8 +3470,12 @@ fr:
   photo_credits: Crédits photos
   photo_deleted: Photo supprimée
   photo_destroyed_because_it_was_deleted_from: "Photo détruite, car elle a été supprimée sur le site externe ou %{site_name} n’a plus le droit de la voir"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Photo masquée
   photo_licensing: Licence de photo
   photo_type: Type de Photo
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Photo non masquée
   photo_urls_repaired: URL de photo réparées
   photos_chosen_for_this_taxon: Photos choisies pour ce taxon
   photos_from: Photos de
@@ -4508,6 +4517,8 @@ fr:
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_less: Afficher moins
   show_more: Afficher d'avantage
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Afficher plus d'options de connexion
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Montrer « Pas d'annotation »
@@ -7410,18 +7421,6 @@ fr:
     taxon_changes:
       move_children_desc: |
         Les enfants du taxon saisi qui sont des genres ou plus gros seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc. seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
-      form:
-        move_children_desc_html: |
-          Cocher cette case déplacera les enfants du taxon d’entrée vers le
-          taxon cible pour les Échanges et les Fusions, quand cette modification sera validée. Si
-          cela déplace vers un genre ou inférieur, cela créera un échange de taxons pour tous
-          les descendants qui ont un changement de nom implicite. Par exemple, si vous échangez
-          la famille Canidae en Dogidae, cela modifie le parent du genre
-          <i>Canis</i> de Canidae en Dogidae. Si vous changez le genre
-          <i>Canis</i> dans le genre <i>Dogis</i>, cela créera et validera
-          des échanges de taxon pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et
-          <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Cela peut provoquer une certaine confusion, donc à utiliser avec précaution.
     taxon_links:
       form:
         name_with_rank_desc: |
