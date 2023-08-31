@@ -2304,8 +2304,6 @@ cs:
   #Notification when an identification has been deleted
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text identifikace odkryt
   #Notification when an identification has been updated
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
@@ -7411,9 +7409,6 @@ cs:
     taxon_changes:
       move_children_desc: |
         Děti daného taxonu, které jsou rodové nebo ještě hruběji určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu s novým názvem rodu nebo druhu.
-      form:
-        move_children_desc_html: |
-          Zaškrtnutím tohoto políčka přesunete děti vstupního taxonu do cílového taxonu pro Swaps and Merges, pokud bude tato změna ověřena. Pokud se přesune na rod nebo níže, vytvoří se výměna taxonů pro všechny potomky, kteří mají implicitní změnu jména. Například, jestliže vy zaměníte rodinu Canidae do Dogidae, to modifikuje Canidae <i>Canis</i>rod do Dogidae. Změníte-li žánr <i>Canis</i>na<i>Dogis</i>, vytvoříte a validujete výměny taxonů pro změnu <i>Canis lupus </i> do <i>Dogis lupus</i> a <i>Canis lupus</i>ssp.<i>lupus</i>v<i>Dogis lupus</i>ssp.<i>lupus</i>do<i>Dogis lupus</i>ssp.<i>lupus</i>. To může způsobit určité nejasnosti, a proto to používejte opatrně.
     taxon_links:
       form:
         name_with_rank_desc: |
