@@ -6082,14 +6082,6 @@ es-AR:
     taxon_changes:
       move_children_desc: |
         Descendientes del taxón de entrada son géneros o más arriba, serán movidos a la salida; las especies, subespecies, variedades, etc. serán cambiadas a equivalentes con el nuevo género o nombre de la especie.
-      form:
-        move_children_desc_html: |
-          Al seleccionar esta caja se moverán los descendientes del taxón de entrada para intercambios y fusiones cuando el cambio se compromete. Si el cambio es a un género o menor, creará intercambios de taxón para todos los descendientes que tienen un cambio de nombre implicado. Por ejemplo, si intercambias la familia Canidae a Dogidae, esto cambia el padre del género 
-          <i>Canis</i> de Canidae a Dogidae. Si te intercambias el género 
-          <i>Canis</i> al género <i>Dogis,</i>  creará y comprometerá 
-          Taxon Intercambios para cambiar <i>Canis lupus</i> a <i>Dogis lupus</i> y
-          <i>Canis lupus </i>ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp.
-          <i>lupus.</i>. Esto puede causar bastante desorden, así que úsalo con cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |
