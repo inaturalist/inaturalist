@@ -2170,8 +2170,6 @@ he:
   #Notification when an identification has been deleted
   identification_deleted: הזיהוי נמחק.
   identification_saved: "זיהוי נשמר!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: בוטלה הסתרת טקסט הזיהוי
   #Notification when an identification has been updated
   identification_updated: זיהוי עודכן!
   identification_user_short: מזהה משתמש.ת
@@ -6908,9 +6906,6 @@ he:
     taxon_changes:
       move_children_desc: |
         צאצאים של טקסון הקלט שהם בדרגת סוג או מעליה יועברו לקלט; מינים, תת-מינים, זנים, וכו' יוחלפו לאקוויבלנטים עם שם הסוג או המין החדש.
-      form:
-        move_children_desc_html: |
-          סימון תיבה זו יעביר את הצאצאים של טקסון הקלט אל טקסון הפלט בשביל החלפות ואיחודים כאשר שינוי זה יאושר. אם שינוי זה הוא ברמת סוג או יותר נמוך, הוא יצור החלפות טקסון עבור כל הצאצאים שיש להם שינוי שם משתמע. למשל, אם תחליפ.י את המשפחה "Canidae" ב-"Dogidae", זה ישנה את ההורה של הסוג <i>Canis</i> מ-"Canidae" ל-"Dogidae". אם תחליפ.י את הסוג <i>Canis</i> בסוג <i>Dogis</i>, זה יצור ויאשר החלפות טקסון לשינוי <i>Canis lupus</i> אל <i>Dogis lupus</i> ו-<i>Canis lupus</i> ssp. <i>lupus</i> ל-<i>Dogis lupus</i> ssp.<i>lupus</i>. זה עלול ליצור בלגן, לכן יש לפעול בזהירות.
     taxon_links:
       form:
         name_with_rank_desc: |
