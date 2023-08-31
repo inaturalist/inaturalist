@@ -110,23 +110,25 @@ class SiteDataExporter
       updater_id
       uuid
     ),
-    photos: %w(
-      id
-      uuid
-      user_id
-      medium_url
-      license_url
-      attribution_name
-      created_at
+    observation_photos: %w(
+      observation_id
+      photo_id
+      photo.uuid
+      photo.user_id
+      photo.medium_url
+      photo.license_url
+      photo.attribution_name
+      photo.created_at
     ),
-    sounds: %w(
-      id
-      uuid
-      user_id
-      url
-      license_url
-      attribution_name
-      created_at
+    observation_sounds: %w(
+      observation_id
+      sound_id
+      sound.uuid
+      sound.user_id
+      sound.url
+      sound.license_url
+      sound.attribution_name
+      sound.created_at
     )
   }.freeze
 
@@ -506,7 +508,10 @@ class SiteDataExporter
           CSV.open( assoc_csv_paths[association], "a" ) do | csv |
             observations.each do | o |
               o.send( association ).each do | associate |
-                csv << cols.map {| col | associate.send( col ) }
+                csv << cols.map do | col |
+                  # allow dot-notation in column names, while still using the safer `send` method
+                  col.split( "." ).inject( associate, :send )
+                end
               end
             end
           end
