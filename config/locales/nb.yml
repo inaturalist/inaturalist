@@ -5847,10 +5847,6 @@ nb:
     taxon_changes:
       move_children_desc: |
         Etterkommere av input-taksonet som er slekter eller høyere blir flyttet til output'en; arter, underarter, varieteter, osv. vil bli byttet til tilsvarende taksa med det ny slekts- eller artsnavnet.
-      form:
-        move_children_desc_html: |
-          Å krysse av denne boksen vil flytte etterkommere av input-taksonet til output-taksonet ved bytting eller sammenslåing når endringen blir gjennomført. Hvis denne endringer er på slektsnivå eller lavere, vil det generere taksonbytter for alle etterkommere som har en implisitt navneendring. Hvis du for eksempel bytter familien Canidae til Hundidae, vil foreldretaksonet for slekta <i>Canis</i> fra Canidae til Hundidae. Hvis du bytter slekta <i>Canis</i> til slekta <i>Hundis</i> blir det opprettet og gjennomført taksonendringer for å endre <i>Canis lupus</i> til <i>Hundis lupus</i> og <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Hundis lupus</i> ssp.
-          <i>lupus</i>. Dette kan forårsake litt av et rot, så bruk med omhu.
     taxon_links:
       form:
         name_with_rank_desc: |
