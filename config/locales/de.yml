@@ -1643,6 +1643,8 @@ de:
     Bitte klicke auf den Link in deiner E-Mail, um deine E-Mail-Adresse zu verifizieren.
   email_conf_required_after_grace_period: |
     Ab dem %{requirement_date} ist eine E-Mail-Bestätigung erforderlich und du hast deine E-Mail-Adresse nicht vor Ablauf der Frist bestätigt. Bitte setze dein Passwort zurück, um wieder Zugriff auf dein Konto zu erhalten
+  email_conf_faq_html: |
+    Bei Fragen schau bitte in diesen <a href="%{url}">FAQs</a> nach.
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Bestätige deine E-Mail-Adresse für %{site_name} bevor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
@@ -1992,6 +1994,8 @@ de:
   #Verb, usually a button to hide an interface element
   hide: ausblenden
   hide_content: Inhalt ausblenden
+  hide_desc: |
+    Das Verbergen von Inhalten macht sie für die Öffentlichkeit unsichtbar. Es wird jedoch angezeigt, dass etwas verborgen wurde und Kuratoren und der Autor des Inhalts werden weiterhin in der Lage sein, den verdeckten Inhalt zu sehen. Bestimmungen, die verborgen wurden, tragen nicht zum Community Taxon einer Beobachtung bei.
   hide_desc_staff_can_unhide: |
     Nur die iNat-Admins können Inhalte wieder sichtbar machen, nachdem sie verborgen wurden. Daher diese Option bitte nur für klare Verstöße gegen die Richtlinien verwenden.
   #Option to hide data series that show "No Annotation" data, i.e. records that
@@ -2044,8 +2048,6 @@ de:
   #Notification when an identification has been deleted
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Bestimmungstext wieder sichtbar
   #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
@@ -3308,6 +3310,7 @@ de:
   photo_credits: Foto-Credits
   photo_deleted: Foto gelöscht
   photo_destroyed_because_it_was_deleted_from: "Foto zerstört weil es von der externen Seite gelöscht wurde oder %{site_name} nicht mehr die Berechtigung hat, darauf zuzugreifen"
+  #Message displayed after a photo has been hidden
   photo_hidden: Foto verborgen
   photo_licensing: Foto-Lizenzierung
   photo_type: Fototyp
@@ -6991,16 +6994,6 @@ de:
     taxon_changes:
       move_children_desc: |
         Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
-      form:
-        move_children_desc_html: |
-          Wenn du dieses Kästchen aktivierst, werden alle untergeordneten Taxa des Eingabetaxons in das
-          Ausgabetaxon für Tausche und Zusammenführungen verschoben, wenn diese Änderung durchgeführt wird. Wenn diese Änderung in einer Gattung oder niedriger durchgeführt wird, werden für alle
-          Nachkommen Taxon-Tausche erzeugt, die eine implizite Namensänderung haben. Zum Beispiel falls 
-          die Familie Canidae zu Dogidae getauscht wird, verändert diese Aktion das nächsthöhere Taxon der Gattung
-          <i>Canis</i> von Canidae zu Dogidae. Wenn du die Gattung 
-          <i>Canis</i> in die Gattung <i>Dogis</i> tauschst, wird es Taxon-Tausche zur Folge haben, die <i>Canis lupus</i> zu <i>Dogis lupus</i> und
-          <i>Canis lupus</i> ssp. <i>lupus</i> zu <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Das kann ein ziemliches Chaos verursachen, also bitte mit Vorsicht verwenden.
     taxon_links:
       form:
         name_with_rank_desc: |
