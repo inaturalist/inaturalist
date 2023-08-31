@@ -2109,8 +2109,6 @@ it:
   #Notification when an identification has been deleted
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Testo dell'identificazione mostrato
   #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
@@ -7063,9 +7061,6 @@ it:
     taxon_changes:
       move_children_desc: |
         I discendenti del taxon di ingresso che sono generi o di livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà, ecc. saranno cambiate negli equivalenti con il nuovo genere o nome della specie.
-      form:
-        move_children_desc_html: |
-          La selezione di questa casella sposterà i discendenti del taxon di ingresso al taxon di uscita per Cambi o Unioni, nel momento in cui questa modifica sarà confermata. Se questa modifica è applicata a un genere o a livelli inferiori, essa creerà dei Cambi di Taxon per tutti i discendenti implicati in una modifica del nome. Ad esempio, se tu Cambi la famiglia Canidae in Dogidae, questo cambierà l'antenato di <i>Canis</i> da Canidae a Dogidae. Se tu Cambi il genere <i>Canis</i> nel genere <i>Dogis</i>, questo creerà e applicherà un Cambio di Taxon da <i>Canis lupus</i> a <i>Dogis lupus</i> e da <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp. <i>lupus</i>. Questo può creare grandi pasticci, perciò usalo con attenzione.
     taxon_links:
       form:
         name_with_rank_desc: |
