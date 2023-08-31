@@ -2177,8 +2177,6 @@ pt-BR:
   #Notification when an identification has been deleted
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação salva!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Texto de identificação reexibido
   #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
   identification_user_short: Usuário ident.
@@ -7254,17 +7252,6 @@ pt-BR:
         Filhos do táxon de entrada que são mais ou menos generosos serão movidos para
         a saída; espécies, subespécies, variedades, etc. serão convertidos em
         equivalentes com o novo nome de gênero ou espécie.
-      form:
-        move_children_desc_html: |
-          Marcar esta caixa irá mover os filhos do táxon de entrada para o
-          táxon de saída para Trocas e Mesclas quando esta alteração for confirmada. Se
-          isso mudar para um gênero ou menor, vai criar Trocas de Táxon para todos os
-          descendentes que tenham uma mudança implícita de nome. Por exemplo, se você trocar a família Canidae por Dogidae, isto muda o pai do gênero
-          <i>Canis</i> de Canidae para Dogidae. Se você trocar o gênero
-          <i>Canis</i> pelo gênero <i>Dogis</i>, irá criar e cometer
-          Trocas de Táxon para mudar <i>Canis lupus</i> para <i>Dogis lupus</i> e
-          <i>Canis lupus</i> ssp. <i>lupus</i> em <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Isso pode causar uma grande bagunça, então use com cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |
