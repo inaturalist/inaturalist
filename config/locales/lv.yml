@@ -1998,8 +1998,6 @@ lv:
   #Verb, usually a button to hide an interface element
   hide: Slēpt
   hide_content: Slēpt saturu
-  hide_desc: |
-    Noslēpts saturs vairs nebūs publiski pieejams, bet lietotāji redzēs, ka kaut kas ir ticis noslēpts, toties šī satura autors un pārziņi šo saturu varēs apskatīt. Tas ir attiecināms tikai uz rakstveida saturu, piemēram, ja noslēpsi identifikācijas saturu, identifikācija būs pieejama, bet identificētāja piezīmes būs noslēptas. Tikai vietnes darbinieki var atsaukt šo darbību. Lietotājiem nav šādas iespējas, tāpēc esi uzmanīgs un lieto šo funkciju tikai tad, ja saturs ir patiešām nepieņemams.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Paslēpt "Bez piezīmēm"
@@ -2046,8 +2044,6 @@ lv:
   #Notification when an identification has been deleted
   identification_deleted: Identifikācija dzēsta
   identification_saved: "Identifikācija saglabāta"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identifikācijas teksts atjaunots
   #Notification when an identification has been updated
   identification_updated: Identifikācija izlabota
   identification_user_short: ID lietotājs
@@ -6557,10 +6553,6 @@ lv:
     taxon_changes:
       move_children_desc: |
         Ievades taksona apakšgrupas, kas ir ģints vai vispārējāka līmeņa, tiks pārvietotas uz izvades sadaļu. Sugas, apakšsugas, šķirnes u.c. tiks samainītas ar tās ekvivalentiem, pievienojot jaunās ģints vai sugas nosaukumu.
-      form:
-        move_children_desc_html: |
-          Atzīmē šo lodziņu, lai pārvietotu ievades taksona apakšgrupas uz izvades sadaļu, lai tur izmantotu samainīšanas un apvienošanas funkciju, kad izmaiņas būs apstiptinātas. Ja izmaiņas tiks veiktas ģints vai zemākā līmenī, tad tiks samainīti visi zemāku pakāpju taksonu nosaukumi. Piemēram, ja samainīsi Canidae dzimtu pret Dogidae dzimtu, tad <i>Canis</i> ģints virstaksons tiks nomainīts no Canidae uz Dogidae. Ja samainīsi <i>Canis</i> pret <i>Dogis</i> ģinti, taksons <i>Canis lupus</i> tiks samainīts pret <i>Dogis lupus</i> un <i>Canis lupus</i> ssp. <i>lupus</i> pret <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Šādi iespējams radīt visai lielu jucekli, tāpēc lieto šīs funkcijas atbildīgi.
     taxon_links:
       form:
         name_with_rank_desc: |

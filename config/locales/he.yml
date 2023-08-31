@@ -2124,8 +2124,6 @@ he:
   #Verb, usually a button to hide an interface element
   hide: הסתרה
   hide_content: הסתרת תוכן
-  hide_desc: |
-    הסתרת תוכן תוציא אותו מצפייה על ידי הציבור, אך א.נשים יוכלו עדיין לראות שמשהו הוסתר, ואוצרות ואוצרי האתר ומחבר.ת התוכן עדיין יוכלו לראות את התוכן המוסתר. באופן כללי, זה תקף רק לתוכן כתוב, למשל אם תסתיר.י תוכן של זיהוי, הזיהוי עדיין גלוי אבל תגובות המזהה הן מוסתרות. לא ניתן לבטל זאת, ורק צוות האתר יכול לבטל הסתרת תוכן לאחר שהוסתר, לכן יש להיזהר ולהשתמש בזה רק עבור תוכן מאוד מעורר התנגדות.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: הסתרת "ללא תוויות"
@@ -2172,8 +2170,6 @@ he:
   #Notification when an identification has been deleted
   identification_deleted: הזיהוי נמחק.
   identification_saved: "זיהוי נשמר!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: בוטלה הסתרת טקסט הזיהוי
   #Notification when an identification has been updated
   identification_updated: זיהוי עודכן!
   identification_user_short: מזהה משתמש.ת
@@ -6910,9 +6906,6 @@ he:
     taxon_changes:
       move_children_desc: |
         צאצאים של טקסון הקלט שהם בדרגת סוג או מעליה יועברו לקלט; מינים, תת-מינים, זנים, וכו' יוחלפו לאקוויבלנטים עם שם הסוג או המין החדש.
-      form:
-        move_children_desc_html: |
-          סימון תיבה זו יעביר את הצאצאים של טקסון הקלט אל טקסון הפלט בשביל החלפות ואיחודים כאשר שינוי זה יאושר. אם שינוי זה הוא ברמת סוג או יותר נמוך, הוא יצור החלפות טקסון עבור כל הצאצאים שיש להם שינוי שם משתמע. למשל, אם תחליפ.י את המשפחה "Canidae" ב-"Dogidae", זה ישנה את ההורה של הסוג <i>Canis</i> מ-"Canidae" ל-"Dogidae". אם תחליפ.י את הסוג <i>Canis</i> בסוג <i>Dogis</i>, זה יצור ויאשר החלפות טקסון לשינוי <i>Canis lupus</i> אל <i>Dogis lupus</i> ו-<i>Canis lupus</i> ssp. <i>lupus</i> ל-<i>Dogis lupus</i> ssp.<i>lupus</i>. זה עלול ליצור בלגן, לכן יש לפעול בזהירות.
     taxon_links:
       form:
         name_with_rank_desc: |

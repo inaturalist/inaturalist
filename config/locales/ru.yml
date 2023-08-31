@@ -2156,8 +2156,6 @@ ru:
   #Verb, usually a button to hide an interface element
   hide: Скрыть
   hide_content: Скрыть контент
-  hide_desc: |
-    Скрытие контента уберёт его из публичного просмотра, но люди все равно смогут увидеть, что что-то было скрыто, а кураторы сайта и автор контента все равно смогут увидеть скрытый контент. Как правило, это относится только к письменному содержимому, например, если вы скрываете содержимое идентификации, сама идентификация все же видна, но примечания к ней скрыты. Вы не можете отменить это, и только сотрудники сайта могут отобразить контент после его скрытия, поэтому будьте осторожны и используйте это только для очень нежелательного контента.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не показывать данные, где "Нет значения"
@@ -2214,8 +2212,6 @@ ru:
   #Notification when an identification has been deleted
   identification_deleted: Идентификация удалена.
   identification_saved: "Идентификация сохранена!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Идентификационный текст показан
   #Notification when an identification has been updated
   identification_updated: Идентификация обновлена!
   identification_user_short: Идент. пользователя
@@ -7254,9 +7250,6 @@ ru:
     taxon_changes:
       move_children_desc: |
         Потомки входного таксона, которые являются общими или более грубыми, будут перемещены на выход; виды, подвиды, разновидности и т. д. будут заменены на эквиваленты с новым названием рода или вида.
-      form:
-        move_children_desc_html: |
-          Установка этого флажка приведет к перемещению потомков входного таксона в выходной таксон для свопов и слияний, когда это изменение будет выполнено. Если это изменение будет применено на уровне рода или ниже, оно создаст таксонные свопы для всех потомков, у которых предполагается изменение имени. Например, если вы замените семейство Canidae на Dogidae, это изменит родителя рода <i>Canis</i> с Canidae до Dogidae. Если вы замените род <i>Canis</i> на род <i>Dogis</i>, это создаст и осуществит таксонные свопы, изменяющие <i>Canis lupus</i> на <i>Dogis lupus</i> и <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Это может вызвать путаницу, поэтому применяйте с осторожностью.
     taxon_links:
       form:
         name_with_rank_desc: |

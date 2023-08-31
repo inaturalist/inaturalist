@@ -1902,8 +1902,6 @@ zh-TW:
   #Verb, usually a button to hide an interface element
   hide: 隱藏
   hide_content: 隱藏內容
-  hide_desc: |
-    隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隱藏「沒有註記」
@@ -6354,11 +6352,6 @@ zh-TW:
     taxon_changes:
       move_children_desc: |
         子項若為屬或較粗略內容，因而移動到種、亞種、變種、等其它輸出的所輸入物種分類，將會對換至同等之新的屬、或種名稱。
-      form:
-        move_children_desc_html: |
-          當更改提交時，勾選此方框將會移動所輸入物種分類的子項至輸出物種分類來對換與合併。若此更改內容為屬或較低階級別，會給所有具有隱含名稱變更的派生建立物種分類對換。例如，如果您將 Canidae 科對換至 Dogidae 科，這會更改 <i>Canis</i> 屬從 Canidae 至 Dogidae 的父級項目。如果您對換
-          <i>Canis</i> 屬至 <i>Dogis</i> 屬，這將會建立並提交物種分類對換來把 <i>Canis lupus</i> 更改成 <i>Dogis lupus</i> ，以及 <i>Canis lupus</i> ssp. <i>lupus</i> 會更改成 <i>Dogis lupus</i> ssp.
-          <i>lupus</i>。這會有造成混亂情況的可能，因此請小心使用。
     taxon_links:
       form:
         name_with_rank_desc: |

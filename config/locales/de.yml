@@ -408,6 +408,7 @@ de:
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
   all_life: Alle Lebensformen
+  all_media_must_be_unhidden: Alle Medien müssen sichtbar sein
   all_names: Alle Namen
   all_observations: Alle Beobachtungen
   all_photos: Alle Fotos
@@ -1214,7 +1215,7 @@ de:
   curator_application_how_curators_lose_their_powers: |
     Wie ein Kurator seine Befugnisse verliert
   curator_application_how_curators_lose_their_powers_desc: |
-    iNat-Mitarbeiter können Kuratorbefugnisse entfernen, wenn ein Kurator wiederholt:
+    iNat-Admins können Kuratorbefugnisse entfernen, wenn ein Kurator wiederholt:
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -1642,6 +1643,8 @@ de:
     Bitte klicke auf den Link in deiner E-Mail, um deine E-Mail-Adresse zu verifizieren.
   email_conf_required_after_grace_period: |
     Ab dem %{requirement_date} ist eine E-Mail-Bestätigung erforderlich und du hast deine E-Mail-Adresse nicht vor Ablauf der Frist bestätigt. Bitte setze dein Passwort zurück, um wieder Zugriff auf dein Konto zu erhalten
+  email_conf_faq_html: |
+    Bei Fragen schau bitte in diesen <a href="%{url}">FAQs</a> nach.
   #Subject of an email prompting people to confirm their email address before
   #we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_confirm_your_site_email_address_before_date: Bestätige deine E-Mail-Adresse für %{site_name} bevor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
@@ -1805,7 +1808,7 @@ de:
   flag_as_spammer: Als Spammer melden
   flag_as_non_spammer: Als Nicht-Spammer markieren
   #Label for the date/time when a flag was created
-  flag_created: Meldung berichtet
+  flag_created: Meldung erstellt am
   flag_deleted: Meldung gelöscht
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
   flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
@@ -1840,9 +1843,9 @@ de:
   flag_it!: Melden!
   flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt </strong><span class="meta">gekennzeichnet</span>.'
   #Label for the object that was flagged, e.g. a table header
-  flag_object: Objekt
+  flag_object: Gegenstand der Meldung
   flag_reason: "&ldquo;I'm flagging this %{record} because"
-  flag_resolution: Auflösung
+  flag_resolution: Lösung
   flag_saved: Meldung abgegeben.
   flag_saved_thanks_html: Meldung gespeichert. Danke! <a href="%{url}" class="readmore">Meldung ansehen</a>
   flag_this_observation: Diese Beobachtung melden
@@ -1992,7 +1995,9 @@ de:
   hide: ausblenden
   hide_content: Inhalt ausblenden
   hide_desc: |
-    Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber andere Benutzer werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen gilt dies nur für schriftliche Inhalte, z.B. wenn du den Inhalt eines Artikels ausblendst, sind Bestimmungen immer noch sichtbar, aber die Bemerkungen nicht mehr. Du kannst dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.
+    Das Verbergen von Inhalten macht sie für die Öffentlichkeit unsichtbar. Es wird jedoch angezeigt, dass etwas verborgen wurde und Kuratoren und der Autor des Inhalts werden weiterhin in der Lage sein, den verdeckten Inhalt zu sehen. Bestimmungen, die verborgen wurden, tragen nicht zum Community Taxon einer Beobachtung bei.
+  hide_desc_staff_can_unhide: |
+    Nur die iNat-Admins können Inhalte wieder sichtbar machen, nachdem sie verborgen wurden. Daher diese Option bitte nur für klare Verstöße gegen die Richtlinien verwenden.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Beobachtungen ohne Angaben ausblenden
@@ -2043,8 +2048,6 @@ de:
   #Notification when an identification has been deleted
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Bestimmungstext wieder sichtbar
   #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
@@ -3307,6 +3310,8 @@ de:
   photo_credits: Foto-Credits
   photo_deleted: Foto gelöscht
   photo_destroyed_because_it_was_deleted_from: "Foto zerstört weil es von der externen Seite gelöscht wurde oder %{site_name} nicht mehr die Berechtigung hat, darauf zuzugreifen"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto verborgen
   photo_licensing: Foto-Lizenzierung
   photo_type: Fototyp
   photo_urls_repaired: Foto URLs repariert
@@ -3314,7 +3319,7 @@ de:
   photos_from: Fotos von
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Fotos gesperrt
-  photos_locked_desc: Nur iNat-Mitarbeiter können die Standard-Fotos für dieses Taxon ändern
+  photos_locked_desc: Nur iNat-Admins können die Standard-Fotos für dieses Taxon ändern
   photos_of_taxon_html: "Fotos von %{taxon}"
   photos_or_sounds: Bilder oder Audio
   photos_or_sounds?: Bilder oder Audio?
@@ -4407,7 +4412,7 @@ de:
   site_name_place: "%{site_name}-Gebiete"
   site_observations_export_from_date: "%{site_name}-Beobachtungsexport vom %{date}"
   site_site_admin: "%{site_name} Site-Administrator"
-  site_staff: "%{site_name}-Mitarbeiter"
+  site_staff: "%{site_name}-Admin"
   site_stats: Seitenstatistik
   site_taxon_page: "%{site_name} Taxonseite"
   sites_affiliation_about_desc_html: |
@@ -5801,7 +5806,7 @@ de:
     flags:
       show:
         flaggable_content_desc: |
-          Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Mitarbeiter können dies sehen. Nur Mitarbeiter können dies bei Nachrichten sehen.
+          Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Admins können dies sehen. Nur Admins können dies bei Nachrichten sehen.
         flags_that_should_not_be_resolved_desc_html: |
           Bitte <code>Spam</code> und <code>Copyright-Verletzungen</code> nur dann auflösen, wenn der Inhalt kein Spam ist oder keine Verletzung des Urheberrechts vorliegt.
     guides:
@@ -6989,16 +6994,6 @@ de:
     taxon_changes:
       move_children_desc: |
         Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
-      form:
-        move_children_desc_html: |
-          Wenn du dieses Kästchen aktivierst, werden alle untergeordneten Taxa des Eingabetaxons in das
-          Ausgabetaxon für Tausche und Zusammenführungen verschoben, wenn diese Änderung durchgeführt wird. Wenn diese Änderung in einer Gattung oder niedriger durchgeführt wird, werden für alle
-          Nachkommen Taxon-Tausche erzeugt, die eine implizite Namensänderung haben. Zum Beispiel falls 
-          die Familie Canidae zu Dogidae getauscht wird, verändert diese Aktion das nächsthöhere Taxon der Gattung
-          <i>Canis</i> von Canidae zu Dogidae. Wenn du die Gattung 
-          <i>Canis</i> in die Gattung <i>Dogis</i> tauschst, wird es Taxon-Tausche zur Folge haben, die <i>Canis lupus</i> zu <i>Dogis lupus</i> und
-          <i>Canis lupus</i> ssp. <i>lupus</i> zu <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Das kann ein ziemliches Chaos verursachen, also bitte mit Vorsicht verwenden.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7939,7 +7934,7 @@ de:
             base:
               user_already_blocked: Du hast diesen Benutzer bereits blockiert
               user_cannot_be_staff2: |
-                Du kannst iNat-Mitarbeiter nicht blockieren. Diese müssen in der Lage sein,
+                Du kannst iNat-Admis nicht blockieren. Diese müssen in der Lage sein,
                 mit allen auf iNat zu kommunizieren, haben Zugriff auf alle Daten auf
                 iNat, und sind die ultimativen Vermittler von Streitigkeiten, sodass eine Blockierung
                 sie nicht an der Kommunikation mit dir hindern kann.

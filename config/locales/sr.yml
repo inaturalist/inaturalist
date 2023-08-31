@@ -215,6 +215,8 @@ sr:
     Obuhvata opservacije gde je geoprivatnost postavljena na "prkriveno" ili "privatno", npr. opservacije iz tvog dvorišta ili mesta koje ne bi voleo/la da otkrivaš.
   about_trusting_projects_options_taxon: |-
     Samo za tvoje opservacije u ovom projektu koje imaju prikrivene koordinate zbog ugroženih taksona
+  about_trusting_projects_overview: |-
+    Davanjem pristupa tvojim skrivenim koordinatama omogućava menadžerima ovog projekta da vide prave, precizne lokacije tvojih opservacija dodatih u ovaj projekat. Ovo je vrlo važno u situacijama gde je naučnicima ili menadžerima resursa potreban pristup preciznim koordinatama za analize i donošenje odluka.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -222,6 +224,8 @@ sr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Možeš podeliti skrivene koordinate za
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: O nehotičnim neslaganjima
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -358,8 +362,17 @@ sr:
   add_your_own_observations_at: "Dodaj svoju opservaciju na %{site_name}"
   added: Postavljeno
   added!: Dodato!
+  added_as_a_part_of_a_taxon_change_html: |
+    Dodato kao deo
+    <a target="%{target}" class="%{class}" href="%{url}">promene taksona</a>
   added_as_a_part_of_a_taxon_merge_html: |
     Dodato kao deo <a target="%{target}" class="%{class}" href="%{url}">spoja taksona</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Dodato kao deo
+    <a target="%{target}" class="%{class}" href="%{url}">podele taksona</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Dodato kao deo
+    <a target="%{target}" class="%{class}" href="%{url}">zamene taksona</a>
   added_by: Dodat od strane
   added_by_user_on_date_html: "Dodato od strane %{user} %{date}"
   added_on_datetime: "Dodato %{datetime}"
@@ -382,6 +395,8 @@ sr:
   #Noun, title of a popup alerting you to something
   alert: Upozorenje
   all: Sve
+  #Title for a list of all 3rd party applications
+  all_applications: Sve aplikacije
   all_comments: Svi komentari
   all_life: Sav život
   all_names: Sva imena
@@ -593,6 +608,10 @@ sr:
     Da li sigurno želiš da izbrišeš ovaj takson? Ima identifikacije.
   are_you_sure_want_delete_taxon_identifications_observations: |
     Da li sigurno želiš da izbrišeš ovaj takson? Ima identifikacije i opservacije.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima pripadajuće taksone, identifikacije i opservacije.
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima pripadajuće taksone i opservacije.
   are_you_sure_want_delete_taxon_observations: |
     Da li sigurno želiš da izbrišeš ovaj takson? Ima opservacije.
   are_you_sure_want_delete_taxon_link: Da li sigurno želiš da izbrišeš ovaj link taksona?
@@ -686,10 +705,10 @@ sr:
   be_the_first_to_fave_this_observation: Prvi/va dodaj ovu opservaciju u favorite!
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
-    <strong>Preporučujemo da se takođe izvrši promena taksona koja obuhavata %{old_parent}, kao što je odvajanje %{new_parent} od %{old_parent}</strong> jer procenjujemo da će promena imati za rezultat više od 10 nenamernih neslaganja.
+    <strong>Preporučujemo da se takođe izvrši promena taksona koja obuhavata %{old_parent}, kao što je odvajanje %{new_parent} od %{old_parent}</strong> jer procenjujemo da će promena imati za rezultat više od 10 nehotičnih neslaganja.
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_dont_act_html: |
-    <strong>Verovatno nije potrebno izvršiti promenu taksona%{old_parent}</strong> jer procenjujemo da će promena imati za rezultat 10 ili manje nenamernih neslaganja.
+    <strong>Verovatno nije potrebno izvršiti promenu taksona%{old_parent}</strong> jer procenjujemo da će promena imati za rezultat 10 ili manje nehotičnih neslaganja.
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
   bg_color: BG boja
@@ -1420,6 +1439,7 @@ sr:
   forum_desc: |
     Forum je mesto gde se diskutije o iNaturalist-u; uključujući pomoć & podršku, zahteve za nove opcije, prijavu bagova, najave itd.
   frequency: Učestalosti
+  from_flickr_etc: Sa Flickr-a, itd.
   from_list: Sa liste
   from_photos: Iz slika
   from_place: Sa mesta
@@ -1432,6 +1452,8 @@ sr:
   gbif: GBIF
   Genus: Rod
   geoprivacy: Geoprivatnost
+  geoprivacy_is_obscured: Geoprivatnost je prikrivena
+  geoprivacy_is_private: Geoprivatnost je privatna
   get_started: Započni
   getting_started_guide: Vodič za početnike
   #Prompt to donate money on a montly basis
@@ -1507,8 +1529,6 @@ sr:
   #Notification when an identification has been deleted
   identification_deleted: Identifikacija izbrisana.
   identification_saved: "Identifikacija sačuvana!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Tekst identifikacije otkriven
   #Notification when an identification has been updated
   identification_updated: Identifikacija ažurirana!
   #Notification when an identification has been withdrawn
@@ -1520,6 +1540,8 @@ sr:
   #literally. Please just choose something that's conventional in your
   #language.
   independence_email_body_dear: Dragi %{name},
+  independence_email_body_exciting_news: |
+    iNaturalist tim ima odlične vesti! Zadovoljstvo nam je objaviti da zahvaljujući podršci naše divne zajednice iNaturalist postao nezavisna 501(c)(3) neprofitna organizacija sa sedištem u Sjedinjenim Državama.
   independence_email_body_over_the_past: |
     U poslednjih 15 godina, zajednica je dala veliki doprinos koji je od iNaturalist-a stvorio jednu od najuticajnijih prirodnjačkih platformi.
   independence_email_body_so_far: "Do sada, iNaturalist zajednica ima:"
@@ -3160,6 +3182,7 @@ sr:
   reply: Odgovori
   reptiles: reptili
   request_failed: "Neuspešan zahtev"
+  request_timed_out: Zahtev istekao!
   required: obavеzno
   required_: Obavezno
   required_field: obavezno polje
@@ -3209,6 +3232,7 @@ sr:
     must_be_on_list: mora biti na listi
     must_be_in: mora biti u taksonu
     must_be_coordinates_shareable_by_project_curators: posmatrač mora dozvoliti kustosima projekta da vide koordinate.
+    must_be_verifiable: mora biti argumentovano
     must_be_wild: mora biti u divljini
   satellite: satelit
   save: Sačuvaj
@@ -3275,6 +3299,7 @@ sr:
   select_at_least_one: Označi bar jedno
   #select_one_or_more_photos: Select One Or More Photos
   select_none: Izaberi ništa
+  select_observations_to_edit: Označi opservacije koje želiš da urediš...
   select_one_of_friends_albums: Označi jedan od %{friend} albuma
   select_one_of_your_albums: Označi jedan od tvojih albuma
   select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
@@ -3344,6 +3369,8 @@ sr:
   site_staff: "%{site_name} osoblje"
   site_stats: Statistika sajta
   site_taxon_page: "%{site_name} strana taksona"
+  sites_affiliation_about_desc_html: |
+    Ako želiš da tvoja organizacija postane deo iNaturalist mreže, više detalja možeš pronaći %{start_tag_join}ovde%{end_tag_join}.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatski skrivene koordinate (prikrivene ili privatne zbog "geoprivatnosti taksona")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
@@ -3364,6 +3391,7 @@ sr:
   sites_network_consists_of: "iNaturalist mreža se sastoji od sledećih organizacija:"
   sites_network_inaturalist_network_collection: |
     iNaturalist mreža je kolekcija lokalnih sajtova koji su potpuno povezani sa globalnom iNaturalist zajednicom. Ti sajtovi imaju punu podršku lokalnih institucija koji promovišu lokalnu upotrebu i omogućavaju upotrebu podataka sa iNaturalist-a što ide u korist proučavanju lokalnog biodiverziteta. Imaju pristup pravim koordinatama u okviru njihovih geografskih oblasti koje su automatski skrivene od javnog pristupa kako bi se zaštitile ugrožene vrste.
+  some_agree: neki se slažu
   some_observations_failed_to_save: Neke opservacije nisu sačuvane
   some_of_those_photos_couldnt_be_saved: "Neke fotografije nisu mogle biti sačuvane: %{error}"
   some_other_reason: Neki drugi razlog (objasni ispod).
@@ -3758,6 +3786,7 @@ sr:
   'true': 'Tačno'
   trending: Popularno
   trends: Trendovi
+  trip_target_list_info: 'Sve vrste obuhvaćene koje su obuhvaćene ovom ciljnom listom a koje nisu zabeležene u opsegu i trajanju ovog putovanja će biti protumačene kao odsutne. <a href="/pages/trips">Saznaj više</a>.'
   #Noun
   trust: Poverenje
   trusted: Pouzdanost
@@ -3865,6 +3894,8 @@ sr:
   user_added_an_x_to_noun_by_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_you_html: "%{user} je dodao/la %{x} na tvoju %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun}"
   user_added_x_observations_html: "%{user} je dodao/la %{x} opservacija"
@@ -4365,6 +4396,10 @@ sr:
         you_have_opted_out: Izabrao/la si da ne dobijaš identifikacije zajednice
         your_id_does_not_match: |
           Tvoj ID (<span class="bold">%{taxon_name}</span>) se ne poklapa sa ID-jem zajednice
+      captive_help_html: |
+        Da li je organizam <strong>kultivisan</strong> ili
+        <strong>u zatočeništvu</strong>? Na primer, da li je bio u <strong>bašti,
+        zoo vrtu, akvarijumu</strong> ili nekoj drugoj sredini u koju je dospeo <strong>dejstvom čoveka</strong>? Opservacije svih živih bića su dobrodošle ali želimo da znamo ako ona nisu u divljini / naturalizovana.
       compare:
         about_missing_taxa: O taksonima koji nedostaju
         #Label for a visualization that combines multiple series of data in a single chart
@@ -4489,6 +4524,7 @@ sr:
         score_desc: "rezultat = kumulativni brojač / (kumulativni brojač + brojač neslaganja + broj neslaganja oko pretka )"
         observation_flagged_notice_html: |
           Ova opservacija je označena kao nepoželjan sadržaj i više nije javno vidljiva. Tebi je vidljiva jer si je ti napravio/la ili si kustos sajta. Ako misliš da je u pitanju greška, <a href="mailto:%{help_email}" class="contact">kontaktiraj nas</a>. <a href="/observations/%{observation_id}/flags">Upravljaj prijavama</a>
+        observer_does_not_allow_observation_fields: Posmatrač ne dozvoljava dodavanje dodatnih opservacionih polja
         observer_only_allows_curators_to_add_fields: Posmatrač dozvoljava samo kustosima sajta da dodaju opservaciona polja
     emailer:
       collection_project_changed_for_trusting_member:
@@ -4572,7 +4608,7 @@ sr:
           Skupni projekat se može upotrebiti da se uporede statistike 2 ili više pretražnih ili tradicionalnih projekata. Projekat mora već postojati da bi se dodao u skupni projekat. Možeš dodati stotine projekata u jednu skupinu. Skupni projekti ne mogu sadržati druge skupne projekte.
         are_you_sure_you_want_to_delete: Da li sigurno želiš da izbrišeš ovaj projekat?
         can_be_included_in_multiple: Mogu biti uključeni u više skupnih projekata
-        collection_projects: Pretražni projekati
+        collection_projects: Pretražni projekti
         collection_project_features: "Odlike pretražnog projekta:"
         contain_entire_image_without_cropping: Zadrži celu sliku bez opsecanja
         data_visualizations: Vizuelizacija podataka
@@ -4707,6 +4743,12 @@ sr:
         growth_by_country_title: Rast po državi
         growth_in_year_obs: "Porast u %{year} (ops.)"
         growth_title: Rast
+        new_species_desc: |
+          Vrste koje su zabeležene na %{site_name} prvi put ove godine.
+          Prikazuje se %{x} od <a href="%{url}">%{y} vrsta</a>.
+        new_species_desc_html: |
+          Vrste koje su dodate prvi put ove godine. Klikni na mesec da pogledaš neke nove vrste dodate tog meseca. Takoće možeš videti ukupan broj neke vrste i pomerati klizač nazad u prošlost da vidiš druge novozabeležene vrste. Ovaj grafik prikazuje vrste na osnovu argumentovanih opservacija po mesecu u kom su dodate na %{site_name} (ne po mesecu u kom su zabeležene). Ne uključuje taksone višeg ni nižeg ranga tako da opservacija identifikovana kao Mammalia neće biti uzeta u obzir a opservacija <i>Canis lupus</i> ssp.
+          <i>arctos</i> će se računati kao <i>Canis lupus</i>.
         new_species_per_year: Nove vrste / godini
         new_species_per_year_by_date_added: Po datumu dodavanja
         new_species_per_year_by_date_observed: Po datumu zapažanja
@@ -4767,10 +4809,14 @@ sr:
           </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
+        charts_help_seasonality: |
+          Ovaj grafik prikazuje broj opservacija ovog taksona grupisanih po mesecu. Imaj u vidu da je to broj opservacija i zavisi kako od toga kada se neki organizam može zabeležiti kao i kada će neko imati nameru da ga zabeleži. Možeš primetiti puno opservacija neke ptice u maju ali to može biti zato što više ljudi posmatra ptice u maju koji kasnije neće obraćati pažnju na nju i neće dodavati opservacije nje. Slično, ako vidiš više opservacija vilinih konjica u junu nego u januaru, to je verovatno zato što imamo više posmatrača na severnoj hemisferi nego na južnoj a ne zato što su nužno aktivniji u junu, tako da uzmi ove podatke sa rezervom i proveri mapu kada gledaš ove grafike. Uvek je dobro biti skeptičan o ovim graficima kada postoji veliko odstupanje u broju "Argumentovano" i "Istraživački nivo" opservacija.
         charts_help_history: |
           Ovaj grafikon prikazuje broj opservacija ovog taksona za svaki mesec u poslednjih 10 godina. Imaju u vidu da je pristrasan na osnovu broja ljudi koji dodaju opservacije ali ti može prikazati neobičan porast u broju opservacija, a ako izgleda ravno ili prikazuje pad uprkos rastućem broju posmatrača, to može ukazati na promenu u zastupljenosti.
         charts_help_other: |
           Takođe se prikazuju grafici sezonalnosti za pribeleške opservacija. Pribeleške služe da upotpune opservacije pomoću predefinisanih izraza, npr. da li je opservacijom zabeležena biljka koja je u fazi cvetanja ili u fazi rađanja ploda.
+        charts_help_relative_observations: |
+          Prikazivanjem učestalosti kao relativne proporcije svih opservacija pomaže da se ublaži efekat generalnog rasta sajta. Na primer, ako sajt raste kako dobijamo sve više opservacija svakog taksona godinu za godinom, to ti ne govori ništa o tome da li tog taksona ima sve više u prirodi, samo da ima više ljudi koji će ga zabeležiti. Prikazivanjem relativnih proporcija znači da ako ima ukupno 100 opservacija a 20 opservacija tog taksona, proporcija je 0.2 (20 / 100). Ako ljudi naprave 2000 opservacija sledeće godine a 400 opservacija tog taksona, proporcija je i dalje 0.2 (400 / 2000). To izaziva određena odstupanja ako ima samo nekoliko posmatrača u nekoj oblasti ili za taksone koji se retko sreću ali to takođe važi i za ukupan broj.
         discoveries_desc: "Najskorije novoidentifikovane vrste u ovom taksonu"
         frequency:
           research: Istraživački nivo

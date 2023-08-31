@@ -408,6 +408,7 @@ da:
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
   all_life: Alt liv
+  all_media_must_be_unhidden: Alle medier skal være gjort synlige
   all_names: Alle navne
   all_observations: Alle observationer
   all_photos: Alle fotos
@@ -1740,6 +1741,8 @@ da:
   email_conf_required_after_grace_period: |
     Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
     for at tilgå kontoen.
+  email_conf_faq_html: |
+    Har du spørgsmål, tjek venligst disse <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
     Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
@@ -2118,7 +2121,9 @@ da:
   hide: Skjul
   hide_content: Skjul indhold
   hide_desc: |
-    Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.
+    Skjulning af indhold fjerner det fra offentligt skue, men folk vil stadig kunne se, at noget er blevet skjult, ligesom webstedskuratorer og indholdsforfatteren stadig vil kunne se det skjulte indhold. Skjulte identifikationer vil ikke bidrage en observations Fællesskabs Takson.
+  hide_desc_staff_can_unhide: |
+    Kun webstedspersonale kan gøre indhold synligt igen, efter det har været skjult, så brug kun denne ved klare overtrædelser af Fællesskabsretningslinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen annotation"
@@ -2176,8 +2181,10 @@ da:
   #Notification when an identification has been deleted
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identifikationstekst gjort synlig
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikation skjult
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identifikation gjort synlig
   #Notification when an identification has been updated
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
@@ -2838,6 +2845,10 @@ da:
     <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
     deres egen historik</strong>, så notater om en person bør aldrig være synlige
     for den pågældende person.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Skjul
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Ophæv udelukkelse
   moderator_note_desc: |
     Moderatornotater er optegnelser over moderationssvar eller evidensbaserede tvivl om en bruger, såsom om der er tale om en mulig fiktiv konto. Inkludér venligst ikke personlige meninger eller rygter om brugeren.
   #Person who executed a moderator action or flagged something
@@ -3528,8 +3539,12 @@ da:
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
   photo_destroyed_because_it_was_deleted_from: "Foto ødelagt fordi det blev slettet fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at se det"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto skjult
   photo_licensing: Fotolicens
   photo_type: Foto type
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto vises igen
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
@@ -7601,16 +7616,16 @@ da:
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
       form:
-        move_children_desc_html: |
-          Ved at tjekke denne boks flyttes underordnede i input taksonet til
-          output takson for skifte og fusioner, når denne ændring er udført. Hvis
-          denne ændres til slægt eller lavere, det vil resultere i takson skifte for alle
-          efterkommere, der har en underforstået navneændring. For eksempel, hvis du flytter
-          familien Canidae ind i Dogidae, ændrer det slægtens overordnede
-          <i>Canis</i> fra Canidae til Dogidae. 
-          Hvis du flytter slægten <i>Canis</i> ind i slægten <i>Dogis</i>, vil det udløse og udføre et takson skifte <i>Canis lupus</i> til <i>Dogis lupus</i> og
+        move_children_desc2_html: |
+          Markering dette afkrydsningsfelt flytter underordnede til input taksonet til
+          output taksonet for Taksonombytninger og Taksonfletninger, når denne ændring er udført. Er
+          dette en ændring til slægt eller lavere, vil det resultere i Taksonombytninger for alle
+          efterkommere med navne, som kræver ændring. Flyttes f.eks.
+          familien Canidae til Dogidae, ændrer det slægtens overordnede
+          <i>Canis</i> fra Canidae til Dogidae.
+          Flyttes slægten <i>Canis</i> til slægten <i>Dogis</i>, udløses og udføres en Taksonombytning fra <i>Canis lupus</i> til <i>Dogis lupus</i> og
           <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Dette kan medføre et værre roderi, så gør det med omtanke.
+          <i>lupus</i>. Dette kan medføre et værre rod, så brug muligheden med omtanke.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8165,9 +8180,11 @@ da:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       BlockedUser: Blokeret bruger
+      Comment: Kommentar
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
+      Identification: Identifikation
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -8179,6 +8196,7 @@ da:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
+      Photo: Foto
       TaxonLink: Takson link
     attributes:
       announcement:

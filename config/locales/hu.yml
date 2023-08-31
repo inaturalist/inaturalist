@@ -1651,8 +1651,6 @@ hu:
   #Verb, usually a button to hide an interface element
   hide: Elrejtés
   hide_content: Tartalom elrejtése
-  hide_desc: |
-    A tartalom elrejtésével megszűnik a publikus hozzáférés az adott tartalomhoz, de mások továbbra is látni fogják, hogy valami el van rejtve. Ezenkívűl a honlap kurátorai és a tartalom szerzője láthatják a rejtett tartalmat. Általánosságban ez csak az írott tartalmakra érvényes, például ha elrejted egy azonosítás tartalmát, az azonosítás maga látható marad, de az azonosító megjegyzései rejtve lesznek. Ha már el van rejtve egy tartalom, azt már csak a honlap kezelője állíthatja vissza, úgyhogy kérünk légy óvatos és csak kivételes esetben használd.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Megjelölés nélküli" elrejtése'
@@ -1698,8 +1696,6 @@ hu:
   #Notification when an identification has been deleted
   identification_deleted: Meghatározás törölve.
   identification_saved: "Meghatározás elmentve!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: A meghatározás szövege újra megjelenítve
   #Notification when an identification has been updated
   identification_updated: Meghatározás módosítva!
   identification_user_short: Meghatározó

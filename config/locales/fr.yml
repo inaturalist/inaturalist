@@ -397,6 +397,7 @@ fr:
   agree_: Accepter
   agree?: Accepter ?
   agree_with_current_taxon: Accepter le taxon actuel
+  agree_with_observation_taxon: Approuver le taxon de l'observation
   agreeing: En cours d'acceptance...
   aka: alias
   #Noun, title of a popup alerting you to something
@@ -407,6 +408,7 @@ fr:
   all_comments: Tous les commentaires
   all_flags_must_be_resolved: Tous les signalements doivent être résolus
   all_life: Tous les êtres vivants
+  all_media_must_be_unhidden: Tous les médias doivent être non masqués
   all_names: Tous les noms
   all_observations: Toutes les observations
   all_photos: Toutes les photos
@@ -937,12 +939,12 @@ fr:
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   clashes_occur_for_moves_html: |
     Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
-    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxonomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxinomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
     comme des désaccords avec les ID existants du taxon dérivé déplacé.
   #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
   clashes_occur_for_swaps_html: |
     Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
-    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxonomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxinomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
     comme des désaccords avec les ID existants du taxon dérivé déplacé.
   classification: Classification
   clear: effacer
@@ -1201,7 +1203,7 @@ fr:
   copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: "Couvert par un %{link}"
-  covered_by_a_taxon_framework_link: "Cadre taxonomique pour %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_link: "Cadre taxinomique pour %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Impossible de modifier votre mot de passe : %{e}"
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
@@ -1246,8 +1248,8 @@ fr:
   curator_application_fields_explanation_html: Pourquoi voulez-vous être responsable?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Si vous souhaitez modifier la taxonomie d'iNaturalist, veuillez fournir un exemple ou deux
-    de changements taxonomiques que vous souhaitez apporter, en incluant des sources. Le cas échéant, veuillez citer les autorités taxonomiques
+    Si vous souhaitez modifier la taxinomie d'iNaturalist, veuillez fournir un exemple ou deux
+    de changements taxinomiques que vous souhaitez apporter, en incluant des sources. Le cas échéant, veuillez citer les autorités taxinomiques
     appropriées mentionnées dans le <a
     href="https://www.inaturalist.org/pages/curator+guide#policies">Guide du responsable de l'organisation</a>. Si vous n'incluez aucune source, votre demande
     ne sera pas prise en considération.
@@ -1579,7 +1581,7 @@ fr:
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">les développeurs</a>
   do_not_show_this_message_again: Ne plus afficher ce message
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Vous étudiez des nématodes ? Vous êtes le meilleur expert au monde de la taxonomie de la balane ? Vous aimez juste regarder de jolies fleurs ? Remplir votre profil le rend plus personnalisé et aide à vous crédibiliser lorsque vous aidez les gens pour leurs identifications.
+    Vous étudiez des nématodes ? Vous êtes le meilleur expert au monde de la taxinomie de la balane ? Vous aimez juste regarder de jolies fleurs ? Remplir votre profil le rend plus personnalisé et aide à vous crédibiliser lorsque vous aidez les gens pour leurs identifications.
   doesnt_have_default_photo: n’a pas encore de photo par défaut.
   doh_something_went_wrong: Oups, quelque chose s’est mal passé.
   doh_something_went_wrong_error: "Oh, quelque chose s’est mal passé : %{error}"
@@ -2007,7 +2009,7 @@ fr:
   globally: A l’échelle mondiale
   go: Continuer
   go_back: Revenir en arrière
-  going_to_your_observations: Aller à vos observations…
+  going_to_your_observations: Retour à vos observations…
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
   google: Google
   google_maps_not_loaded_error: |
@@ -2081,14 +2083,9 @@ fr:
   hide: Cacher
   hide_content: Masquer le contenu
   hide_desc: |
-    Masquer du contenu le rendra invisible au public, mais celui-ci pourra
-    toujours voir que quelque chose a été masqué, et les utilisateurs du site
-    et le créateur du contenu pourront toujours voir le contenu masqué.
-    Généralement, cela s’applique uniquement au contenu écrit, ex. si vous
-    masquez le contenu d’une identification, celle-ci reste visible mais ses
-    remarques sont masquées. Cela n’est pas réversible, et seul le personnel
-    peut réafficher du contenu une fois masqué. Soyez donc prudent et ne le
-    faites que pour du contenu particulièrement répréhensible.
+    Masquer du contenu le rendra invisible au public, mais celui-ci pourra toujours voir que quelque chose a été masqué, et les responsables du site ainsi que le créateur du contenu pourront toujours voir le contenu masqué. Les identifications masquées d'une observation ne contribuent pas au taxon de la communauté.
+  hide_desc_staff_can_unhide: |
+    Seule l'équipe du site peut afficher de nouveau le contenu qui a été masqué. N'utilisez donc le masquage qu'en cas de violations manifestes des règles de la communauté.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
@@ -2145,8 +2142,6 @@ fr:
   #Notification when an identification has been deleted
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Texte d'identification non masqué
   #Notification when an identification has been updated
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
@@ -2288,7 +2283,7 @@ fr:
   inaturalist_applications: "Applications iNaturalist"
   inaturalist_places: "Lieux d’%{site_name}"
   info: Info
-  input_taxon: Entrer un taxon
+  input_taxon: Taxon en entrée
   insects: insectes
   insect_life_stage: Stade de l'insecte
   instagram: Instagram
@@ -2597,6 +2592,7 @@ fr:
     es: Espagnol
     es-AR: Espagnol (Argentine)
     es-CO: Espagnol (Colombie)
+    es-CR: Espagnol (Costa Rica)
     es-MX: espagnol mexicain
     et: Estonien
     eu: Basque
@@ -2961,7 +2957,7 @@ fr:
   new_check_list: Nouvelle check-list
   new_check_list_for: "Créer une nouvelle check-list pour %{place} &raquo;"
   new_check_list_record: "Si vous voulez indiquer que cette liste comme complète, créez-la, ajoutez les taxons, puis modifiez-la et vous aurez là la possibilité d’indiquer qu’elle est complète."
-  new_comment_on_a_parent_by_user_link: Nouveau commentaire sur @vow_or_con{vow:an|a} %{parent} par %{user_link}
+  new_comment_on_a_parent_by_user_link: Nouveau commentaire sur @gender{m:un|une} %{parent} par %{user_link}
   new_conservation_status: Nouveau statut de conservation
   new_flag_for: Nouveau signalement pour
   new_guide: Nouveau guide
@@ -3460,8 +3456,8 @@ fr:
       without_observation: a ajouté une <strong>identification</strong>
     post: a publié une %{post_link}
     comment:
-      with_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link} par %{by_link}
-      without_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link}
+      with_by: a commenté sur @gender{m:un|une} %{comment_subject_link} par %{by_link}
+      without_by: a commenté sur @gender{m:un|une} %{comment_subject_link}
   per_day: Par jour
   per_month: Par mois
   per_week: Par semaine
@@ -3474,8 +3470,12 @@ fr:
   photo_credits: Crédits photos
   photo_deleted: Photo supprimée
   photo_destroyed_because_it_was_deleted_from: "Photo détruite, car elle a été supprimée sur le site externe ou %{site_name} n’a plus le droit de la voir"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Photo masquée
   photo_licensing: Licence de photo
   photo_type: Type de Photo
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Photo non masquée
   photo_urls_repaired: URL de photo réparées
   photos_chosen_for_this_taxon: Photos choisies pour ce taxon
   photos_from: Photos de
@@ -4296,12 +4296,12 @@ fr:
   relationships:
     match: correspond
     one_to_one: de un à un
-    alternate_position: changer de position
+    alternate_position: autre position
     many_to_many: de plusieurs à plusieurs
     many_to_one: de plusieurs à un
     one_to_many: de un vers plusieurs
     not_external: pas externe
-    not_internal: non interne
+    not_internal: pas interne
     error: erreur
   relationships_user_settings: Relations
   relationship_html: "Relation : %{link}"
@@ -4456,7 +4456,7 @@ fr:
   search_results_for_query: 'Résultats de recherche pour « %{query} »'
   search_remote: Recherche à distance
   search_species: Rechercher des espèces
-  search_species_: Rechercher des espèces...
+  search_species_: Chercher une espèce...
   search_the_map: rechercher sur la carte
   search_this_taxon: rechercher ce taxon
   search_ubio_raquo: "Rechercher sur uBio &raquo;"
@@ -4517,6 +4517,8 @@ fr:
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_less: Afficher moins
   show_more: Afficher d'avantage
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Afficher plus d'options de connexion
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Montrer « Pas d'annotation »
@@ -4735,7 +4737,7 @@ fr:
   stuff_just_added: "Trucs que vous venez d’ajouter…"
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
   subject_affecting_stuff_html: "%{subject} touchant %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} a validé @vow_or_con{vow:un} %{thing} concernant %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} a validé @gender{m:un|une} %{thing} concernant %{stuff}"
   submission_model: Modèle d'enregistrement
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit_observations:
@@ -4884,12 +4886,12 @@ fr:
   taxon_framework_relationships_with_count_html: "Relations du cadre taxinomique : %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons couverts marqués : %{count}"
-  taxon_framework_notes: Notes du cadre taxonomique
-  taxon_framework_relationship: Relation du cadre taxonomique
-  taxon_framework_relationship_number: "Relation du cadre taxonomique %{number}"
+  taxon_framework_notes: Notes du cadre taxinomique
+  taxon_framework_relationship: Relation du cadre taxinomique
+  taxon_framework_relationship_number: "Relation du cadre taxinomique %{number}"
   taxon_framework_relationship_unknown_count_html: "Nombre de relations inconnues : %{count}"
-  taxon_framework_relationships: Relations du cadre taxonomique
-  taxon_framework_taxon: Taxon du cadre taxonomique
+  taxon_framework_relationships: Relations du cadre taxinomique
+  taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
@@ -4941,9 +4943,9 @@ fr:
   taxonomic_order: Ordre taxinomique
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
-  taxonomy_details: Détails de la taxonomie
-  taxonomy_details_for: Détail de la taxonomie pour
-  taxonomy_details_info: 'La page de détails de la taxonomie utilise les cadres de taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En savoir plus</a>.'
+  taxonomy_details: Détails de la taxinomie
+  taxonomy_details_for: Détail de la taxonimie pour
+  taxonomy_details_info: 'La page de détails de la taxinomie utilise les cadres de taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En savoir plus</a>.'
   taxonomy_settings: Configuration de taxinomie
   teachers_guide: Guide de l’enseignant
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
@@ -5565,10 +5567,10 @@ fr:
   view_stats: Afficher les statistiques
   view_taxon_change: Afficher la modification du taxon
   view_taxon_changes: Afficher les modifications de taxon
-  view_taxon_framework_relationship: Afficher la relation du cadre taxonomique
+  view_taxon_framework_relationship: Afficher la relation du cadre taxinomique
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
-  view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
+  view_taxononomy_details_for_taxon: "Afficher les détails de la taxinomie pour %{taxon}"
   view_user_observations: "Afficher les observations de %{user}"
   view_x: "Afficher %{x}"
   view_your_dashboard: Afficher votre tableau de bord
@@ -7330,7 +7332,7 @@ fr:
           humaine, alors qu’indigène signifie qu’elle est arrivée sans assistance humaine.
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
         about_taxon_curators_desc: |
-          Ces personnes gèrent la partie de l’arbre taxonomique qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer ce taxon ou contacter l'une de ces personnes.
+          Ces personnes gèrent la partie de l’arbre taxinomique qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer ce taxon ou contacter l'une de ces personnes.
         charts_help_seasonality: |
           Ce graphique affiche le nombre d’observations de ce taxon, groupées par
           mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
@@ -7419,18 +7421,6 @@ fr:
     taxon_changes:
       move_children_desc: |
         Les enfants du taxon saisi qui sont des genres ou plus gros seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc. seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
-      form:
-        move_children_desc_html: |
-          Cocher cette case déplacera les enfants du taxon d’entrée vers le
-          taxon cible pour les Échanges et les Fusions, quand cette modification sera validée. Si
-          cela déplace vers un genre ou inférieur, cela créera un échange de taxons pour tous
-          les descendants qui ont un changement de nom implicite. Par exemple, si vous échangez
-          la famille Canidae en Dogidae, cela modifie le parent du genre
-          <i>Canis</i> de Canidae en Dogidae. Si vous changez le genre
-          <i>Canis</i> dans le genre <i>Dogis</i>, cela créera et validera
-          des échanges de taxon pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et
-          <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Cela peut provoquer une certaine confusion, donc à utiliser avec précaution.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8156,7 +8146,7 @@ fr:
         #e.g. if Homonidae has complete_rank set to genus, you would expect
         #the genus Homo to be in the database, but not necessarily Homo
         #sapiens
-        complete_rank: Rang taxonomique complet
+        complete_rank: Rang taxinomique complet
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Statut de conservation
         #Datetime this taxon was featured for display on /taxa

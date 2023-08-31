@@ -2040,8 +2040,6 @@ tr:
   #Verb, usually a button to hide an interface element
   hide: Gizle
   hide_content: İçeriği Gizle
-  hide_desc: |
-    İçeriği gizlemek onu genel görünümden kaldırır ancak insanlar bir şeyin gizlendiğini görmeye devam edebilir ve site küratörleri ve içeriğin yazarı gizli içeriği görmeye devam edebilir. Genel olarak, bu yalnızca yazılı içerik için geçerlidir, örneğin bir tanımlamanın içeriğini gizlerseniz, tanımlama hâlâ görünür ancak tanımlayıcının açıklamaları gizlenir. Bunu geri alamazsınız ve yalnızca site personeli gizlendikten sonra içeriği kaldırabilir, bu nedenle dikkatli olun ve bunu yalnızca çok sakıncalı içerik için kullanın.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Açıklama Notu Olmayan"ları Gizle'
@@ -2097,8 +2095,6 @@ tr:
   #Notification when an identification has been deleted
   identification_deleted: Tanımlama silindi.
   identification_saved: "Tanımlama kaydedildi!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Tanımlama metni gizlenmemiş
   #Notification when an identification has been updated
   identification_updated: Tanımlama güncellendi!
   identification_user_short: Kullanıcı kimliği
@@ -7022,9 +7018,6 @@ tr:
     taxon_changes:
       move_children_desc: |
         Girdi sınıfının cins veya daha büyük olan çocukları çıktıya taşınacaktır; türler, alttürler, varyeteler vb. yeni cins veya tür adıyla eşdeğerleriyle değiştirilecektir.
-      form:
-        move_children_desc_html: |
-          Bu kutunun işaretlenmesi, bu değişiklik yapıldığında Yer Değiştirmeler ve Birleştirmeler için girdi sınıfının alt soyunu çıktı sınıfına taşıyacaktır. Bu değişiklik bir cinse ya da daha alt düzeye uygulanırsa, ima edilen ad değişikliğine sahip tüm alt soy için Sınıf Yer Değiştirme oluşturacaktır. Örneğin, Canidae familyasını Dogidae ile değiştirirsen, bu <i>Canis</i> cinsinin üst soyunu Canidae'den Dogidae'ye değiştirir. <i>Canis</i> cinsini <i>Dogis</i> cinsiyle değiştirirsen, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>Canis lupus</i> ssp. <i>lupus</i>'u <i>Dogis lupus</i> ssp. <i>lupus</i> olarak değiştirmek için Sınıf Yer Değiştirme oluşturacak ve uygulayacaktır. Bu oldukça karışıklığa neden olabilir, bu yüzden dikkatli kullanın.
     taxon_links:
       form:
         name_with_rank_desc: |

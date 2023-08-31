@@ -410,6 +410,7 @@ fi:
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
+  all_media_must_be_unhidden: Kaikki mediat täytyy näyttää
   all_names: Kaikki Nimet
   all_observations: Kaikki havainnot
   all_photos: Kaikki kuvat
@@ -1403,7 +1404,7 @@ fi:
     confirmations:
       confirmed: |
         Sähköpostiosoitteesi on vahvistettu onnistuneesti. Voit nyt kirjautua
-        tänne sivustolle tai iNaturalist- tai Seek-mobiilisovelluksiin.
+        tälle sivustolle sekä iNaturalist- ja Seek-mobiilisovelluksiin.
       send_instructions: "Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1613,23 +1614,24 @@ fi:
   email_conf_banner_email_delivered_click_link: |
     Vahvistussähköposti toimitettu. Ole hyvä ja klikkaa sähköpostin linkkiä.
   email_conf_banner_add_to_contacts_html: |
-    <strong>Lisää <code>%{email}</code> yhteystietoluetteloosi ja
-    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostiosoitteesi
-    tarjoaja on estänyt vahvistusviestin, tämä saattaa vakuuttaa heidät, että
-    haluat meiltä sähköpostia.
+    <strong>Lisää osoite <code>%{email}</code> yhteystietoluetteloosi ja
+    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostipalvelusi
+    tarjoaja on estänyt vahvistusviestin saapumisen, tämä voi saada sen saapumaan perille.
   email_conf_banner_check_your_spam_folder_html: <strong>Tarkista roskapostikansio</strong>
-  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email} , jotta voimme auttaa sinua.
+  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email}.
   email_conf_banner_please_click: |
     Ole hyvä ja klikkaa vahvistusviestissä olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
-  email_conf_banner_search_for_emails_html: <strong>Etsi sähköposteja osoitteesta <code>%{email}</code></strong>
+  email_conf_banner_search_for_emails_html: <strong>Etsi viestiä, joka on saapunut osoitteesta <code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
-    Toimitimme sinulle vahvistusviestin %{date}. Jos et
-    saanut sitä, tässä on joitain asioita, joita voit tehdä:
+    Toimitimme sinulle vahvistusviestin. Viestissä on päivämääränä %{date}. Jos et
+    saanut viestiä, toimi näin:
   email_conf_required_after_grace_period: |
     Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
-    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja nollaa salasanasi
-    päästäksesi tiliisi.
+    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja vaihda salasanasi
+    voidaksesi käyttää tiliäsi.
+  email_conf_faq_html: |
+    Jos sinulla on kysyttävää, katso nämä <a href="%{url}">usein kysytyt kysymykset</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
     Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
@@ -1973,6 +1975,9 @@ fi:
   hide_content: Piilota sisältö
   hide_desc: |
     Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
+  hide_desc_staff_can_unhide: |
+    Vain sivuston henkilökunta voi poistaa piilotuksen, joten käytä tätä vain
+    yhteisön ohjeiden selviin rikkomuksiin.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Piilota "Ei merkintöjä"
@@ -2005,8 +2010,10 @@ fi:
   #Notification when an identification has been deleted
   identification_deleted: Tunnistus poistettu.
   identification_saved: "Tunnistus tallennettu!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Määritysteksti piilotettu
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Tunnistus piilotettu
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Tunnistus näytetään
   #Notification when an identification has been updated
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
@@ -2545,6 +2552,10 @@ fi:
     <strong>näkyy vain kuraattoreille</strong> ja <strong>kuraattorit eivät voi katsella
     omaa historiaansa</strong>, joten henkilöä koskevien muistiinpanojen ei pitäisi koskaan näkyä
     kyseiselle henkilölle.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Piilota
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Poista jäädytys
   moderator_note_desc: |
     Valvojan muistiinpanot ovat tietoja moderaatiotoimista tai näyttöön perustuvia huolia käyttäjästä, kuten siitä, onko kyseessä mahdollisesti valehenkilötili. Älä sisällytä käyttäjää koskevia henkilökohtaisia mielipiteitä tai mielipiteitä.
   #Person who executed a moderator action or flagged something
@@ -3147,8 +3158,12 @@ fi:
   photo_credits: Kuvan tekijätiedot
   photo_deleted: Kuva poistettu
   photo_destroyed_because_it_was_deleted_from: "Kuva tuhottu b/c se poistettiin ulkoisesta sivustosta tai %{site_name}illa ei ole enää lupaa näyttää sitä."
+  #Message displayed after a photo has been hidden
+  photo_hidden: Kuva piilotettu
   photo_licensing: Kuvien lisensointi
   photo_type: Kuvan tyyppi
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Kuva näytetään
   photo_urls_repaired: Valokuvien URLit korjattu
   photos_chosen_for_this_taxon: Tälle taksonille valitut kuvat
   photos_from: Kuvat sivustolta
@@ -6490,9 +6505,11 @@ fi:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       BlockedUser: Estetty Käyttäjä
+      Comment: Kommentti
       CompleteSet: Täydellinen sarja
       #Noun
       Flag: Lippu
+      Identification: Tunnistus
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -6501,6 +6518,7 @@ fi:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Valvojien muistiinpanot
+      Photo: Valokuva
       TaxonLink: Taksonilinkki
     attributes:
       announcement:

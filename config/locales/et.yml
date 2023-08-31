@@ -2006,8 +2006,6 @@ et:
   #Verb, usually a button to hide an interface element
   hide: Peida
   hide_content: Peida sisu
-  hide_desc: |
-    Sisu peitmine varjab selle avalikkuse eest, kuid inimesed näevad siiski, et miskit on peidetud, ning lehe kuraatorid ja sisu autor näevad jätkuvalt varjatud sisu. Tavaliselt käib see ainult kirjaliku sisu kohta: kui sa näiteks varjad määratluse sisu, siis on määratus endiselt nähtav, kuid määratleja märkused varjatud. Seda sammu ei saa tagasi võtta ning ainult lehe meeskond saab peidetud sisu taas avalikuks teha, nii et ole ettevaatlik ja kasuta antud võimalust ainult väga sobimatu sisu puhul.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Peide märkuseta vaatlused
@@ -2063,8 +2061,6 @@ et:
   #Notification when an identification has been deleted
   identification_deleted: Määratlus kustutatud.
   identification_saved: "Määratlus salvestatud!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Määratluse tekst muudetud avalikuks
   #Notification when an identification has been updated
   identification_updated: Määratlus uuendatud!
   identification_user_short: Määratlenud kasutaja
@@ -5668,10 +5664,6 @@ et:
     taxon_changes:
       move_children_desc: |
         Sisendtaksoni alamtaksonid, mis on perekonnad või sellest kõrgemal tasemel, liigutatakse väljundi alla; liigid, alamliigid, teisendid, jne vahetatakse uue perekonna või liigi nimetusele vastavateks nimetusteks.
-      form:
-        move_children_desc_html: |
-          Sellesse kasti linnukese panemisel liigutatakse taksonite vahetamisel või ühendamisel sisendtaksoni alamtaksonid väljundtaksoni alla. Kui tegemist on perekonna või sellest madalama taseme muutusega, luuakse kõigi alamtaksonite puhul, mille nimi peaks muutuma, taksonivahetus. Kui sa näiteks vahetad sugukond Canidae Kutsudae vastu, muudetakse perekonna <i>Canis</i> ülemtakson lihtsalt Canidae-st Kutsudae-ks. Kui muudad perekonna <i>Canis</i> aga perekonnaks <i>Kutsis</i>, luuakse ja viiakse täitmisele taksonivahetus, mis muudaks liigi <i>Canis lupus</i> liigiks <i>Kutsis lupus</i> ning <i>Canis lupus</i> alamliigi <i>lupus</i> <i>Kutsis lupus</i> alamliigiks
-          <i>lupus</i>. See võib tekitada palju pahandust, nii et kasuta seda ettevaatlikult.
     taxon_links:
       form:
         name_with_rank_desc: |

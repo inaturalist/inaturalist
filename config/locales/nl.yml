@@ -2123,10 +2123,6 @@ nl:
   #Verb, usually a button to hide an interface element
   hide: Verbergen
   hide_content: Inhoud verbergen
-  hide_desc: |
-    Als je inhoud verbergt wordt deze niet meer openbaar weergegeven, maar mensen kunnen wel zien dat er iets verborgen  is. Site-curatoren en de auteur van de inhoud kunnen de verborgen inhoud nog steeds zien. Over het algemeen is dit
-    alleen van toepassing op geschreven inhoud, bijv. als je de een determinatie verbergt. De determinatie is nog steeds zichtbaar, maar de opmerkingen zijn verborgen. Je kunt dit niet ongedaan maken en alleen het personeel van de site kan de inhoud weer zichtbaar maken nadat deze is verborgen. Wees dus voorzichtig en gebruik dit alleen voor zeer
-    aanstootgevende inhoud.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Verberg "Geen aantekening"
@@ -2185,8 +2181,6 @@ nl:
   #Notification when an identification has been deleted
   identification_deleted: Determinatie verwijderd.
   identification_saved: "Determinatie opgeslagen!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Determinatietekst weer tonen
   #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
   identification_user_short: Det. gebr.
@@ -7326,10 +7320,6 @@ nl:
         Kinderen van het input-taxon die genera of grover zijn, worden verplaatst naar 
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
         equivalenten met de nieuwe genus- of soortnaam.
-      form:
-        move_children_desc_html: |
-          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor wissels en fusies wanneer deze wijziging is bevestigd. Als deze verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met een impliciete naamswijziging. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er 
-          taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
     taxon_links:
       form:
         name_with_rank_desc: |
