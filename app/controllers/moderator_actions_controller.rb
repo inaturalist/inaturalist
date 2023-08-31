@@ -23,8 +23,8 @@ class ModeratorActionsController < ApplicationController
             end
           when "Identification"
             case @moderator_action.action
-            when ModeratorAction::HIDE then t( :identification_text_hidden )
-            when ModeratorAction::UNHIDE then t( :identification_text_unhidden )
+            when ModeratorAction::HIDE then t( :identification_hidden )
+            when ModeratorAction::UNHIDE then t( :identification_unhidden )
             else default_notice
             end
           when "User"
@@ -55,10 +55,11 @@ class ModeratorActionsController < ApplicationController
         format.html do
           flash[:error] =
             t( :failed_to_save_record_with_errors, errors: @moderator_action.errors.full_messages.to_sentence )
-          if @moderator_action.resource_type === "Comment"
+          if @moderator_action.resource_type == "Comment"
             redirect_to hide_comment_path( @moderator_action.resource )
             return
-          elsif @moderator_action.resource_type === "Photo"
+          end
+          if @moderator_action.resource_type == "Photo"
             redirect_to hide_photo_path( @moderator_action.resource )
             return
           end
@@ -91,8 +92,9 @@ class ModeratorActionsController < ApplicationController
 
   def curator_or_creator_required
     return if @moderator_action.resource.hidden_content_viewable_by?( current_user )
+
     msg = t( :only_curators_can_access_that_page )
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         flash[:error] = msg
         redirect_back_or_default( root_url )
