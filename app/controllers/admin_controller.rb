@@ -76,23 +76,23 @@ class AdminController < ApplicationController
     return unless load_user_content_info
 
     @page = params[:page]
-    high_volume_models = %w(
-      Annotation
-      Comment
-      DeletedObservation
-      DeletedPhoto
-      DeletedSound
-      Identification
-      ObservationFieldValue
-      Photo
-      ProjectObservation
-      Sound
-      Subscriptions
-      UpdateAction
-      UpdateSubscription
-      Votes
+    high_volume_reflections = %w(
+      annotations
+      comments
+      deleted_observations
+      deleted_photos
+      deleted_sounds
+      identifications
+      observation_field_values
+      photos
+      project_observations
+      sounds
+      subscriptions
+      update_actions
+      update_subscriptions
+      votes
     )
-    if @display_user.observations_count > 100_000 && high_volume_models.include?( @reflection_name )
+    if @display_user.observations_count > 50_000 && high_volume_reflections.include?( @reflection_name )
       flash.now[:notice] = "Sorting disabled b/c this user has a lot of content"
     else
       @order = params[:order]
@@ -101,7 +101,7 @@ class AdminController < ApplicationController
       @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
     end
     @records = begin
-      if @reflection_name == "Observation"
+      if @reflection_name == "observations"
         search_params = Observation.get_search_params(
           page: @page,
           per_page: 200,
