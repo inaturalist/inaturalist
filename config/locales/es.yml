@@ -2114,8 +2114,6 @@ es:
   #Notification when an identification has been deleted
   identification_deleted: Identificación eliminada.
   identification_saved: "¡Identificación guardada!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Se hizo visible el texto identificatorio
   #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
   identification_user_short: Usuario ident.
@@ -6975,14 +6973,6 @@ es:
     taxon_changes:
       move_children_desc: |
         Descendientes del taxón de entrada son géneros o más arriba, serán movidos a la salida; las especies, subespecies, variedades, etc. serán cambiadas a equivalentes con el nuevo género o nombre de la especie.
-      form:
-        move_children_desc_html: |
-          Al seleccionar esta caja se moverán los descendientes del taxón de entrada para intercambios y fusiones cuando el cambio se compromete. Si el cambio es a un género o menor, creará intercambios de taxón para todos los descendientes que tienen un cambio de nombre implicado. Por ejemplo, si intercambias la familia Canidae a Dogidae, esto cambia el padre del género 
-          <i>Canis</i> de Canidae a Dogidae. Si te intercambias el género 
-          <i>Canis</i> al género <i>Dogis,</i>  creará y comprometerá 
-          Taxon Intercambios para cambiar <i>Canis lupus</i> a <i>Dogis lupus</i> y
-          <i>Canis lupus </i>ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp.
-          <i>lupus.</i>. Esto puede causar bastante desorden, así que úsalo con cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |
