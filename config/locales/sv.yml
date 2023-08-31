@@ -1763,6 +1763,8 @@ sv:
     E-postbekräftelse krävs från och med %{requirement_date} och du har inte
     bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
     för att komma åt ditt konto.
+  email_conf_faq_html: |
+    Om du har frågor, se dessa <a href="%{url}">Vanliga frågor och svar</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
     Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
@@ -2216,8 +2218,10 @@ sv:
   #Notification when an identification has been deleted
   identification_deleted: Bestämning raderad.
   identification_saved: "Bestämning sparad!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Bestämningstext synliggjord
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Bestämning dold
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Bestämning ej dold
   #Notification when an identification has been updated
   identification_updated: Bestämning uppdaterad!
   identification_user_short: Best. användare
@@ -2887,6 +2891,10 @@ sv:
     <strong>endast synligt för förvaltare</strong> och <strong>förvaltare kan inte se
     sin egen historik</strong>, så anteckningar om en person ska aldrig synas
     för den personen.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Dölj
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -3568,9 +3576,11 @@ sv:
   photo_credits: Fotograf
   photo_deleted: Bild raderad
   photo_destroyed_because_it_was_deleted_from: "Bilden förstördes eftersom den togs bort från den externa webbplatsen eller så har %{site_name} inte längre behörighet att visa den"
+  #Message displayed after a photo has been hidden
   photo_hidden: Bild dold
   photo_licensing: Bildlicensiering
   photo_type: Bildtyp
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
   photo_unhidden: Bild visas
   photo_urls_repaired: Bild-URL:er reparerade
   photos_chosen_for_this_taxon: Utvalda bilder för detta taxon
@@ -7402,9 +7412,17 @@ sv:
         Barn till valt taxon som är släkten eller högre kommer att flyttas till utdata; arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
         med det nya släkt- eller artnamnet.
       form:
-        move_children_desc_html: |
-          Om du markerar denna ruta kommer barn till valt taxon att flyttas till utdatataxon för Byten och Hopslagningar när denna ändring är bekräftad. Om denna ändring är till ett släkte eller lägre, kommer det
-          att skapa Taxonbyten för alla underliggande som antyds byta namn. Till exempel, om du byter från familjen Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd det med försiktighet.
+        move_children_desc2_html: |
+          Om du markerar denna ruta kommer barn till indatataxon att flyttas till
+          utdatataxon för Taxonbyten och Taxonhopslagningar när denna ändring är bekräftad. Om
+          denna ändring är till ett släkte eller lägre, kommer det att skapa Taxonbyten för alla
+          underliggande som behöver byta namn. Till exempel, om du byter från familjen
+          Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till
+          Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer
+          det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till
+          <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis
+          lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd
+          det med försiktighet.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7909,9 +7927,11 @@ sv:
       AssessmentSection: Bedömningsdel
       Atlas: Atlas
       BlockedUser: Blockerad användare
+      Comment: Kommentar
       CompleteSet: Fullständig uppsättning
       #Noun
       Flag: Flagga
+      Identification: Artbestämning
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7923,6 +7943,7 @@ sv:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
+      Photo: Bild
       TaxonLink: Taxonlänk
     attributes:
       announcement:
