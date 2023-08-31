@@ -4561,9 +4561,6 @@ pl:
     taxon_changes:
       move_children_desc: |
         Taksony podrzędne taksonu wejściowego, które są rodzajami lub taksonami wyższej rangi, zostaną przeniesione do taksonu wyjściowego; gatunki, podgatunki, odmiany itd. zostaną zastąpione odpowiadającymi im taksonami z nową nazwą rodzaju lub gatunku.
-      form:
-        move_children_desc_html: |
-          Zaznaczenie tego pola w przypadku zamian i scaleń taksonów spowoduje przeniesienie taksonów podrzędnych taksonu wejściowego do taksonu wyjściowego, gdy ta zmiana zostanie wykonana. Jeżeli zmiana dotyczy rodzaju lub taksonu niższej rangi, zostaną utworzone zamiany taksonów dla wszystkich taksonów podrzędnych, które mają sugerowaną zmianę nazwy. Na przykład, jeżeli zamienisz rodzinę Canidae na Dogidae, zostanie zamieniony takson nadrzędny dla rodzaju <i>Canis</i> z Canidae na Dogidae. Jeżeli zamienisz rodzaj <i>Canis</i> na <i>Dogis</i>, zostaną utworzone i wykonane zamiany taksonu w celu zmiany taksonu <i>Canis lupus</i> na <i>Dogis lupus</i> i <i>Canis lupus</i> ssp. <i>lupus</i> na <i>Dogis lupus</i> ssp. <i>lupus</i>. Może to spowodować niezły bałagan, dlatego używaj tej opcji ostrożnie.
     taxon_links:
       form:
         name_with_rank_desc: |
