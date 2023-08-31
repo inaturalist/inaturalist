@@ -73,7 +73,7 @@ class ProviderOauthController < ApplicationController
         error: "invalid_grant",
         error_description: I18n.t(
           :email_conf_required_after_grace_period,
-          requirement_date: I18n.l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+          requirement_date: I18n.l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
         )
       }
       return

@@ -275,7 +275,7 @@ class Emailer < ActionMailer::Base
         :email_confirmation_reminder_confirm_your_site_email_address_before_date,
         site_name: @site.name,
         vow_or_con: @site.name[0].downcase,
-        date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+        date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
       )
     ) )
     reset_locale

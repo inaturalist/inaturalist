@@ -18,7 +18,7 @@
   %br
   =t :x_comments, count: @user.comments.count
 
-%p=t :email_confirmation_reminder_we_will_require, requirement_date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+%p=t :email_confirmation_reminder_we_will_require, requirement_date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
 %p=t :email_confirmation_reminder_any_questions_html, site_name: @site.name, vow_or_con: @site.name[0].downcase, faq_url: "https://help.inaturalist.org/support/solutions/folders/151000452263"
 
 = render "footer"

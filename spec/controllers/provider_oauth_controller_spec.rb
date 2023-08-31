@@ -54,7 +54,7 @@ describe ProviderOauthController do
 
       it "should return a token for an unconfirmed user who never received a confirmation " \
         "email before the requirement date" do
-        if Date.today <= User::EMAIL_CONFIRMATION_REQUIREMENT_DATE
+        if Date.today <= User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
           u = create :user,
             email: google_response[:email],
             confirmed_at: nil,
@@ -71,7 +71,7 @@ describe ProviderOauthController do
 
       it "should not return a token for an unconfirmed user who never received a confirmation " \
         "email after the requirement date" do
-        if Date.today > User::EMAIL_CONFIRMATION_REQUIREMENT_DATE
+        if Date.today > User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
           u = create :user,
             email: google_response[:email],
             confirmed_at: nil,
