@@ -6003,9 +6003,6 @@ gl:
     taxon_changes:
       move_children_desc: |
         Os descendentes do taxon de entrada que sexan xénero ou superior serán movidos ós resultados; especies, subespecies, variedades, etc. cambiaranse por equivalentes có novo nome xenérico ou específico.
-      form:
-        move_children_desc_html: |
-          Marcando esta caixa moveranse os descendentes do taxon de entrada ó taxon do resultado para Intercambios e Fusións cando esta mudanza sexa feita. Se isto muda a un xénero ou nivel inferior, creará Intercambios de Taxon para tódolos descendentes que teñen un cambio de nome implicado. Por exemplo, se intercambias a familia Canidae pola Perridae, isto muda o parente do xénero <i>Canis</i> de Canidae a Perridae, Se intercambias o xénero <i>Canis</i> polo xénero <i>Perris</i>, creará e producirá un cambio de Intercambio de Taxon de <i>Canis lupus</i> a <i>Perris lupus</i> e <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Perris lupus</i> ssp. <i>lupus</i>. Isto pode causar unha embrolla, así que emprégao con tino.
     taxon_links:
       form:
         name_with_rank_desc: |
