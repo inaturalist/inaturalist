@@ -27,11 +27,11 @@ module Shared
       end
       if I18n.locale.to_s.starts_with?( "zh-" )
         # Map script subtags for Chinese to relevant Crowdin locales
-        if I18n.locale.to_s.includes?( "Hans" )
+        if I18n.locale.to_s.include?( "Hans" )
           I18n.locale = "zh-CN"
-        elsif I18n.locale.to_s.includes?( "Hant-HK" )
+        elsif I18n.locale.to_s.include?( "Hant-HK" )
           I18n.locale = "zh-HK"
-        elsif I18n.locale.to_s.includes?( "Hant" )
+        elsif I18n.locale.to_s.include?( "Hant" )
           I18n.locale = "zh-TW"
         end
       end
