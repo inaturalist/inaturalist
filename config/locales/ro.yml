@@ -1,36 +1,8 @@
 ro:
-  x_identifications:
-    one: 'identificare'
-    few: 'Identificări'
-    other: 'identificări'
-  x_identifications_:
-    one: 'identificare'
-    few: 'identificări'
-    other: 'identificări'
-  x_languages:
-    one: "limbă"
-    few: "limbi"
-    other: "limbă"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "prima dată în lista taxonomică"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "prima dată în lista taxonomică"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "prima dată în lista taxonomică"
   x_journal_posts_html:
     one: '<span class="număr">%{count}</span> postare jurnal'
     few: '<span class="număr">%{count}</span> postări jurnal'
     other: '<span class="număr">%{count}</span> postări jurnal'
-  x_matching_taxa:
-    one: 'asemănare taxon'
-    few: 'asemănări taxon'
-    other: 'asemănare taxon'
-  x_photos:
-    one: "foto"
-    few: "foto"
-    other: "foto"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observat"
     few: "<span class='count'>%{count}</span>taxoni observați"
