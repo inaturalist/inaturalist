@@ -281,22 +281,6 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def independence( user )
-    return unless user&.confirmed?
-    return if user.prefers_no_email
-    return if user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
-    return if user.suspended?
-
-    @user = user
-    set_locale
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
-    mail_with_defaults( set_site_specific_opts.merge(
-      to: user.email,
-      subject: t( :independence_email_subject )
-    ) )
-    reset_locale
-  end
-
   private
 
   def mail_with_defaults( defaults = {} )
