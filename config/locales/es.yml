@@ -2121,11 +2121,6 @@ es:
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: 'Estimado/a %{name}:'
-  independence_email_body_so_far: "Hasta ahora, la comunidad de iNaturalist ha:"
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -2350,6 +2345,7 @@ es:
     esperanto: Esperanto
     estonian: Estonio
     faroese: Feroés
+    fijian: Fiyiano
     finnish: Finés
     french: Francés
     galician: Gallego
@@ -2375,6 +2371,7 @@ es:
     latvian: Letón
     lithuanian: Lituano
     luxembourgish: Luxemburgués
+    malagasy: Malgache
     malay: Malayo
     malayalam: Malayalam
     maltese: Maltés
@@ -2385,6 +2382,7 @@ es:
     mongolian: Mongol
     nahuatl: Náhuatl
     navajo: Navajo
+    ndebele: Endebele
     norwegian: Noruego
     occitan: Occitano
     ojibwe: Ojibwa
@@ -2408,12 +2406,14 @@ es:
     tahitian: Tahitiano
     thai: Tailandés
     tokelauan: Tokelauano
+    totonaco: Totonaco
     turkish: Turco
     ukrainian: Ucraniano
     uyghur: Uyghur
     vietnamese: Vietnamita
     visayan: Bisayo
     waray_waray: Samareño
+    zapoteco: Zapoteco
     zulu: Zulú
   less: Menos
   #Button show less text
@@ -2491,6 +2491,7 @@ es:
     es: Español
     es-AR: Español (Argentina)
     es-CO: Español (Colombia)
+    es-CR: Español (Costa Rica)
     es-MX: Español (México)
     et: Estonio
     eu: Euskera
@@ -4179,6 +4180,7 @@ es:
   refresh: Refrescar
   refreshing: refrescando
   regenerate_stats: Regenerar estadísticas
+  regional_names: Nombres regionales
   register_for_this_event_at_x_html: "Registro para este evento en %{x}"
   reject?: '¿Rechazar?'
   relative_observations: Observaciones relativas
@@ -4408,6 +4410,8 @@ es:
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_less: Muestra menos
   show_more: Muestra más
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostrar más opciones de acceso
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostrar "Sin anotaciones"

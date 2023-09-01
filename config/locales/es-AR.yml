@@ -1388,6 +1388,7 @@ es-AR:
   default: Predeterminada
   #Default option
   default_: Predeterminada
+  default_display_time_zone: Zona horaria predeterminada
   default_invite_comment: "¡Que gran foto! Debe enviarla a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
   default_photo_license: 'Licencia para sus fotos:'
@@ -1486,6 +1487,8 @@ es-AR:
         subject: Cambio de dirección de correo electrónico solicitado
       reset_password_instructions:
         subject: 'Instrucciones para restablecer la contraseña'
+  devise_confirmation_instructions_if_you_did_not: |
+    Si no te registraste para tener una cuenta en %{site_name}, ignorá este correo electrónico.
   devise_confirmation_instructions_please_click: |
     Por favor, hacé clic en el siguiente enlace para confirmar tu cambio de dirección de correo electrónico.
   devise_confirmation_instructions_resend_instructions: |
@@ -1551,6 +1554,7 @@ es-AR:
   #add the file as, for example, a new photo in the Uploader
   drop_it: '¡Suéltalo!'
   download: Descarga
+  download_caps: DESCARGA
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga plantilla</a> para usar en el
     <a href="/observations/import?project_id=%{project_id}#csv_import">cargador masivo</a>
@@ -1568,6 +1572,8 @@ es-AR:
   draft: borrador
   #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Borrador de %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: '¡Guardado en borrador!'
   #Noun, as in journal posts that has not been published
@@ -1583,6 +1589,8 @@ es-AR:
   each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
   earliest_added: Añadidos primero
   edit: Edita
+  #Title of the moderation note editor
+  edit_moderator_note: Editar nota de moderador/a
   edit_a_batch_of_observations: Editá un grupo de observaciones
   edit_account_settings_and_profile: "Edita la cuenta y perfil"
   edit_assessment: Edita evaluación
@@ -1591,6 +1599,7 @@ es-AR:
   edit_body: Edita el cuerpo
   edit_comment: Modifica tu comentario
   edit_complete_set_for_taxon_in_place_html: "Editar lista completa para %{taxon} en %{place}"
+  edit_conservation_status: Editar estado de conservación
   edit_custom_project_fields: Modifica campos de proyecto personalizados
   edit_field: Edita el campo
   edit_license: Modifica licencia
@@ -1646,6 +1655,11 @@ es-AR:
   email: Correo
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo electrónico para comentarios y retroalimentación
+  email_conf_banner_email_delivered_click_link: |
+    Email de confirmación entregado. Por favor, hacé clic en el enlace del correo electrónico.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Agregá <code>%{email}</code> a tu lista de contactos y <a href="%{url}">solicitá otro email de confirmación</a>.</strong> Si tu proveedor de correo electrónico bloqueó el email de confirmación, esto podría convencerle de que realmente querés que te enviemos un mensaje.
+  email_conf_banner_check_your_spam_folder_html: <strong>Revisá tu carpeta de spam</strong>
   email_conf_banner_please_click: |
     Por favor, hacé clic en el enlace de tu correo electrónico para confirmar tu dirección de correo.
   email_conf_required_after_grace_period: |
@@ -1804,7 +1818,9 @@ es-AR:
   flag_as_non_spammer: Marca como productor de correos deseados
   #Label for the date/time when a flag was created
   flag_created: Marca creada
+  flag_deleted: Marca eliminada
   flag_description: Marca este contenido para hacer saber a los curadores que algo no anda bien.
+  flag_comment_description: Agregá un comentario opcional a esta marca que explique por qué la estás añadiendo y proporcioná enlaces que ayuden a su evidencia.
   flag_for_check_list_title_html: |
     Marca para la lista de verificación: %{title}
   flag_for_comment_id_html: Marcar para <a href="%{url}">comentario %{id}</a>
@@ -1896,6 +1912,7 @@ es-AR:
   frequency: Frecuencia
   from_a_place: de un lugar
   from_eol_collection: De colección EOL
+  from_flickr_etc: Desde Flickr, etc.
   from_list: De la lista
   from_photos: De fotos
   from_place: De lugar
@@ -2051,17 +2068,6 @@ es-AR:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Creado más de 146,000.000 observaciones verificables (¡agregando alrededor de 1 millón por semana!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Más de 430.000 especies observadas
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Se citó más de 3500 veces
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">a través del Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Agradecemos a la Academia de Ciencias de California y a National Geographic Society por incubar iNaturalist mientras creció dramáticamente en los últimos 9 años. Les debemos inmensa gratitud a estos socios por su inversión, soporte y acompañamiento. Esperamos colaborar con sendas organizaciones en el futuro.
-  independence_email_body_thank_you: Gracias por ser parte de esta comunidad.
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     Visión de computadora es el proceso de enseñar a las computadoras a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computadora enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, coomo el auto-completar y características de comparación. Esta etiqueta indica cuando una persona añadió una identificación usando una de estas herramientas.
@@ -2101,6 +2107,8 @@ es-AR:
   improving: Mejorando
   in_n: "en %{n}"
   in_place_x: en %{place}
+  #As in a reason to flag something
+  inappropriate: Inapropiado
   inaturalist_network: Red iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
@@ -2251,15 +2259,22 @@ es-AR:
   lexicons:
     afrikaans: Afrikáans
     albanian: Albanés
+    aou_4_letter_codes: Código AOU de 4 letras
+    aou_6_letter_codes: Código AOU de 6 letras
     arabic: Árabe
     armenian: Armenio
+    asturian: Asturiano
+    basque: Euskera
     belarusian: Bielorruso
     bengali: Bengalí
+    bikol: Bikol
     bulgarian: Búlgaro
+    carolinian: Carolinero
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
+    chuvash: Chuvash
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
     croatian: Croata
@@ -2268,21 +2283,30 @@ es-AR:
     davawenyo: Davaoeño
     dutch: Holandés
     english: Inglés
+    esperanto: Esperanto
     estonian: Estonio
     faroese: Faroés
+    fijian: Fiyiano
     finnish: Finés
     french: Francés
     galician: Gallego
     gela: Gela
+    georgian: Georgiano
     german: Alemán
     greek: Griego
+    gujarati: Gujarati
     hawaiian: Hawaiano
     hebrew: Hebreo
+    herero: Herero
     hiligaynon: Hiligainón
+    hill_mari: Mari de las colinas
+    hodges_number: Número de cartuchos
+    hokkien: Hokkien
     hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
     indonesian: Indonesio
+    irish: Irlandés
     italian: Italiano
     japanese: Japonés
     korean: Coreano
@@ -2317,6 +2341,7 @@ es-AR:
     tahitian: Tahitiano
     thai: Tailandés
     tokelauan: Tokelauano
+    tsonga: Tsonga
     turkish: Turco
     ukrainian: Ucraniano
     visayan: Bisayo
@@ -2349,6 +2374,7 @@ es-AR:
     taxonomic: taxonomía
     photo: fotos
   list_was_successfully_created: La lista fue creada exitosamente.
+  list_with_two_items: "%{one} y %{two}"
   listed_taxa: Taxones listados
   listed_taxon: Taxón listado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
@@ -2382,6 +2408,7 @@ es-AR:
     de: Alemán
     el: Griego
     en: Inglés
+    en-GB: Inglés (Reino unido)
     eo: Esperanto
     es: Español
     es-AR: Español (Argentina)
@@ -2394,14 +2421,21 @@ es-AR:
     fr-CA: Francés (Canadá)
     gl: Gallego
     he: Hebreo
+    hr: Croata
     hu: Húngaro
     id: Indonesio
     it: Italiano
     ja: Japonés
+    ka: Georgiano
+    kk: Kazajo
+    kn: Canarés
     ko: Coreano
     lb: Luxemburgués
     lt: Lituano
+    lv: Letón
+    mi: Maorí
     mk: Macedonio
+    mr: Maratí
     nb: Noruego Bokmål
     nl: Holandés
     oc: Occitano
@@ -2413,6 +2447,7 @@ es-AR:
     sk: Eslovaco
     sl: Esloveno
     sq: Albanés
+    sr: Serbio
     sv: Sueco
     th: Tailandés
     tr: Turco
@@ -2458,6 +2493,8 @@ es-AR:
   lookup: Buscar
   low: Baja
   lowest_rank: Rango más bajo
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Haz administrador
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenido principal

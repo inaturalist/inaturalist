@@ -514,6 +514,10 @@ sr:
   alphabetical_order: Alfabetski redosled
   already_have_an_account_log_in_html: Već ste registrovani? <strong>Ulogujte se</strong>
   amphibians: vodozemci
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analiziraj nehotična neslaganja
   analyze_ids: Analiziraj ID-jeve
   ancestor_taxon: Takson predak
   and_other_taxa: "&amp; drugi taksoni"
@@ -972,6 +976,7 @@ sr:
     some_rights_reserved: neka prava zadržana
     some_rights_reserved_by: "(c) %{name}, neka prava zadržana (%{license_short})"
     all_rights_reserved: "(c) %{name}, sva prava zadržana"
+    no_rights_reserved: prava nisu zadržana
     no_rights_reserved_by: "%{name}, nijedno pravo nije zadržano (%{license_name})"
     anonymous: anonimno
     public_domain: javno vlasništvo
@@ -1529,32 +1534,16 @@ sr:
   #Notification when an identification has been deleted
   identification_deleted: Identifikacija izbrisana.
   identification_saved: "Identifikacija sačuvana!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikacija sakrivena
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identifikacija otkrivena
   #Notification when an identification has been updated
   identification_updated: Identifikacija ažurirana!
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikacija povučena.
   identifications: Identifikacije
   inaturalist_global_year_in_review: "Globalni iNaturalist pregled godine %{year}"
-  independence_email_subject: "Širimo naša krila: iNaturalist je sada nezavisna neprofitna organizacija"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Dragi %{name},
-  independence_email_body_exciting_news: |
-    iNaturalist tim ima odlične vesti! Zadovoljstvo nam je objaviti da zahvaljujući podršci naše divne zajednice iNaturalist postao nezavisna 501(c)(3) neprofitna organizacija sa sedištem u Sjedinjenim Državama.
-  independence_email_body_over_the_past: |
-    U poslednjih 15 godina, zajednica je dala veliki doprinos koji je od iNaturalist-a stvorio jednu od najuticajnijih prirodnjačkih platformi.
-  independence_email_body_so_far: "Do sada, iNaturalist zajednica ima:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: zabeležila više od 430 000 vrsta
-  independence_email_body_questions_html: |
-    Možeš <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">pročitati više na blogu</a> i pogledati <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Često postavljena pitanja</a> (na engleskom). <a
-    href="https://www.inaturalist.org/pages/terms">Uslovi korišćenja</a> i <a
-    href="https://www.inaturalist.org/pages/privacy">Politika privatnosti</a> su ažurirani u skladu sa novom organizacijom.
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Doniraj
   computer_vision_suggestion: Predlog kompjuterske vizije
   computer_vision_suggestion_desc: |
     Kompjuterska vizija je proces učenja kompjutera da prepoznaju šablone na slikama. Mi obezbeđujemo alate koji koriste modele kompjuterske vizije trenirane na fotografijama zajednice kako bi dali predloge identifikacije, kao što je auto-complete i opcija za upoređivanje. Identifikacije koje neko doda pomoću nekog od ovih alata će imati ovu oznaku.
@@ -1609,6 +1598,7 @@ sr:
   inaturalist_places: "%{site_name} mesta"
   info: Informacije
   insects: insekti
+  insect_life_stage: Faze života insekta
   instagram: Instagram
   interactions: Interakcije
   internal_server_error: Interna grеška sеrvеra
@@ -1882,6 +1872,7 @@ sr:
     uk: ukrajinski
     zh-CN: kineski (pojednostavljen)
     zh-TW: kineski (tradicionalni)
+  locality_notes: Detalji lokacije
   localized_species_accounts: Lokalizovani profili vrsta
   location: Lokacija
   location_is_accurate: Lokacija je tačna
@@ -1982,6 +1973,10 @@ sr:
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
   mobile: Mobilni
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Sakrij
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Ukloni suspenziju
   mollusks: mekušci
   momentjs:
     shortRelativeTime:
@@ -4285,6 +4280,11 @@ sr:
           iNaturalist je nezavisna 501(c)(3), oslobođena od poreza, neprofitna organizacija sa sedištem u Sjedinjenim Američkim Državama (Tax ID: 94-1156258).
           </p>
     guides:
+      index:
+        deprecated_banner: |
+          Imaju u vidu da se od januara 2019 odeljak vodiči ostaje kakav jeste. Nemamo u planu da brišemo ovaj odeljak ali ni dalji razvoj.
+        welcome_message_html: |
+          Vodiči ti pomažu da upoznaš biodiverzitet širom sveta. Bilo da istražuješ Serengeti ili tvoj lokalni park (koji može biti Serengeti), vodiči ti pomažu da saznaš više o zadivljujućem diverzitetu života.
       edit:
         import_tags_from_csv_help_html: |
           <p>
@@ -4428,6 +4428,7 @@ sr:
         taxon_id: Jedinstveni identifikator zabeleženog taksona
         observed_on_string: Datum/Vreme uneto od strane posmatrača
         time_zone: Vremenska zona opservacije
+        place_guess: Posmatračev opis lokacije
         latitude: Javno vidljiva geografska širina
         longitude: Javno vidljiva geografska dužina
         user_id: Jedinstveni identifikator posmatrača
@@ -4710,6 +4711,7 @@ sr:
         android_desc_html: Kreirano pomoću <a href="%{url}">iNaturalist Android aplikacije</a>
         avg_ttcid: Prosečno VDIDZ
         avg_ttid: Prosečno VDID
+        identifiers_desc: Danas dodali ID na nečiju opservaciju
         iphone_desc_html: Kreirano pomoću <a href="%{url}">iNaturalist iPhone aplikacije</a>
         new_users_desc: Registrovani do danas
         obs_1_day: "Ops (1 dan)"
@@ -4720,17 +4722,21 @@ sr:
         obs_cid_d_to_genus_desc: Kreirano u poslednjih nedelju dana i ima ID zajednice na nivou roda ili niže
         obs_desc: Kreirane u poslednjih 7 dana
         obs_id_d_desc: Kreirane u poslednjih 7 dana i imaju ID (može biti i posmatračev)
-        observations_1_week_moving_window: Opservacije (za nedelju dana)
+        observations_1_week_moving_window: Opservacije (na nedeljnom nivou)
+        observers_desc: Danas dodali opservaciju
         other_desc_html: Kreirano pomoću drugih aplikacija <a href="%{url}">razvijenih od strane programera</a>
         recent_desc: Registrovani u prethodnih 7 dana
         recent_w_0_obs: Skorašnji bez opservacija
         recent_w_0_obs_desc: Registrovani u poslednjih 7 dana i bez opservacija
         recent_w_7_obs: Skorašnji sa >= 7 opservacija
         recent_w_7_obs_desc: Registrovani u poslednjih 7 dana i sa >= 7 opservacija
+        time_to_id_desc: Vreme do ID-ja (u satima, na nedeljnom nivou)
         TTCID: VDIDZ
         TTCID_desc: Vreme potrebno da neko doda identifikaciju koja se poklapa sa taksonom zajednice.
         TTID: VDID
-        TTID_desc: Vreme do identifikacije nekog drugog
+        TTID_desc: Vreme do identifikacije nekog drugog (ne posmatrača)
+        TTID_note: |
+          Ova statistika obuhvata opservacije dodate prethodne nedelje što znači da će izostaviti identifikacije dodate na opservacije posle više od nedelju dana i zbog toga statitstika može izgledati manja nego što bi bila da se obračuna na osnovu trenutnog stanja ali u svakom slučaju bi trebalo da bude dobar pokazatelj koliko brzo zajednica identifikuje na nedeljnom nivou. Imaj u vidu da je ova statistika samo za opservacije sa fotografijama.
         website_desc_html: |
           Kreirano pomoću <a href="https://www.inaturalist.org">iNaturalist-a</a>
           ili veb-sajtova <a href="%{url}">iNaturalist mreže</a>
@@ -4842,6 +4848,35 @@ sr:
         trending_desc: Takson sa najviše opservacija u prethodnom mesecu
         trending_in_place_desc_html: Takson sa najviše opservacija u prethodnom mesecu u <a href="%{url}">%{place}</a>
         wanted_desc: Vrste u ovom taksonu još nisu zabeležene.
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Potrudi se da dodaješ nazive koji su u upotrebi. Nemoj izmišljati nova imena.</p></li>
+          <li><p>Nemoj praviti duplikate, npr. nemoj za više vrsta sokolova dodavati naziv "soko"</p></li>
+          <li><p>Za taksone višeg ranga, potrudi se da koristiš naziv koji sadrži sve pretke, npr. "čaplje i srodnici" ili "porodica vresova"</p></li>
+          <li>
+          <p>
+          Nemoj dodavati informacije koje nisu deo naziva, npr. dodavanje objašnjena kako se naziv koristi u zagradi
+          </p>
+          </li>
+          <li>
+          <p>
+          Novi rečnici bi trebali biti na engleskom. Molimo nemoj dodavati prevedena imena jezika kao što je "francuski, Français" jer će to umnogome otežati ili će biti nemoguće za nas da prikažemo lokalizovana imena ljudima koji koriste sajt na drugim jezicima.
+          </p>
+          </li>
+          <li>
+          <p>
+          Narodni nazivi povezani sa prevedenim jezicima će biti prikazani kao podrazumevani za taj konkretan jezik (u skladu sa podešavanjem izabranog mesta, redosledom naziva itd.)
+          <a class="readmore" href="/pages/translate">Saznaj više o prevodu</a>
+          </p>
+          </li>
+          </ul>
+        places_help_html: |
+          Definiši naziv za neko mesto da bi bio prioritetan za sajtove i korisnike iz tog mesta. Ako postoji više naziva u određenom mestu, možeš im definisati prioritet <a href="%{url}">ovde</a>. Molimo te da <strong>ne dodaješ</strong> nazive za SVAKO mesto gde se neki naziv koristi, samo za mesta gde se on razlikuje.
+      taxon:
+        about_html: |
+          Taksoni mogu imati mnogo narodnih naziva. Dajemo prioritet jednom narodnom nazivu koji može biti promenjen prevlačenjem nekog drugog na vrh liste. Takođe se mogu definisati podrazumevani nazivi za različita mesta dodavanjem mesta za konkretan naziv ali to treba raditi samo ako različita mesta imaju primetno različite nazive.
     users:
       dashboard:
         curators_can_see: |
@@ -4864,6 +4899,16 @@ sr:
         about_third_party_tracking: O praćenju trećih strana
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ako se predomisliš, uvek možeš <a href='/users/edit'>izmeniti podešavanja</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">iNaturalist mreža</a> je skup lokalizovanih veb-sajtova koji su potpuno povezani u globalnu iNaturalist zajednicu. Sajtovi mreže su podržani od strane lokalnih institucija koje su potpisale sporazum sa iNaturalist-om da promovišu lokalnu upotrebu i doprinose lokalnom biodiverzitetu. Oni imaju pristup pravim koordinatama u njihovim zemljama koje su inače automatski prikrivene za javnost da bi se sačuvale ugrožene vrste.
+          </p>
+          <p>
+          Tvoje korisničko ime i lozinka rade na svim sajtovima koji su deo iNaturalist mreže. Ako iskažeš pripadnost nekom sajtu mreže, lokalne institucije koje upravljaju tim sajtom će moći da vide tvoju imejl adresu (samo radi komunikacije vezane za aktivnost za sajtu) i pristup pravim koordinatama opservacija koje su inače prikrivene za javnost ili privatne.
+          </p>
+          <p>
+          Napomena: Molimo te da ne menjaš pripadnost članu mreže ako imaš više od 1000 opservacija.
+          </p>
         name_place_help_html: |
           Daj priorite narodnim nazivima za ovo mesto.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5194,8 +5239,10 @@ sr:
       Announcement: Najave
       Atlas: Atlas
       BlockedUser: Blokirani korisnici
+      Comment: Komentar
       #Noun
       Flag: Pritužba
+      Identification: Identifikacija
       #Text note left by a moderator about another user recording a response to
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
@@ -5203,6 +5250,7 @@ sr:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikacija
+      Photo: Fotografija
     attributes:
       announcement:
         created_at: Kreirano

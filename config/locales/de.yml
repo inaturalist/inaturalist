@@ -405,6 +405,8 @@ de:
   #Noun, title of a popup alerting you to something
   alert: Hinweis
   all: Alle
+  #Title for a list of all 3rd party applications
+  all_applications: Alle Anwendungen
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
   all_life: Alle Lebensformen
@@ -2055,14 +2057,6 @@ de:
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   inaturalist_global_year_in_review: "Globaler Rückblick auf das iNaturalist-Jahr %{year}"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Liebe(r) %{name},
-  independence_email_body_ps: |
-    P.S. - Bald werden wir eine großzügige Förderung ankündigen, die iNaturalist einen soliden Start in die Unabhängigkeit geben wird. Die finanzielle Unterstützung der iNaturalist-Community ermöglichte unsere Entwicklung und wird für die langfristige Nachhaltigkeit von entscheidender Bedeutung sein. Deine Spende wird jetzt Teil dieses aufregenden Meilensteins sein und die Zukunft von iNaturalist weiter sichern. Vielen Dank!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Jetzt spenden
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -2443,6 +2437,7 @@ de:
     es: Spanisch
     es-AR: Spanisch (Argentinien)
     es-CO: Spanisch (Kolumbien)
+    es-CR: Spanisch (Costa Rica)
     es-MX: Spanisch (Mexiko)
     et: Estnisch
     eu: Baskisch
@@ -4832,7 +4827,7 @@ de:
   that_photo_doesnt_exist: Dieses Foto existiert nicht.
   that_observation_doesnt_exist: Diese Beobachtung existiert nicht.
   that_observation_doesnt_have_any_photos: "Diese Beobachtung hat keine Fotos."
-  that_observation_hasnt_been_added_this_project: Diese Beobachtung wurde nicht zu einem Projekt hinzugefügt.
+  that_observation_hasnt_been_added_this_project: Diese Beobachtung wurde nicht zu diesem Projekt hinzugefügt.
   that_observation_no_longer_exists: Diese Beobachtung existiert nicht mehr.
   that_project_doesnt_exist: "Dieses Projekt existiert nicht."
   that_role_doesnt_exist: Dieses Rolle existiert nicht.
