@@ -90,7 +90,6 @@ class SpeciesNoAPI extends Component {
                 className="flex-grow-1"
                 taxon={s}
                 config={config}
-                truncate={null}
                 height={210}
                 noInactive
                 onClick={onClick}

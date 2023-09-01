@@ -129,7 +129,7 @@ const Observation = ( {
 Observation.propTypes = {
   observation: PropTypes.object.isRequired,
   width: PropTypes.number,
-  height: PropTypes.number.isRequired,
+  height: PropTypes.number,
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,

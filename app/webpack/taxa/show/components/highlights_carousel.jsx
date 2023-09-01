@@ -21,7 +21,6 @@ const HiglightsCarousel = ( {
   const photosPerSlide = 4;
   const columnWidth = 3;
   const thumbnailHeight = 200;
-  const thumbnailTruncation = 27;
   const keyBase = _.snakeCase( title );
   if ( !taxa && !observations ) {
     return (
@@ -45,7 +44,6 @@ const HiglightsCarousel = ( {
                 <TaxonThumbnail
                   taxon={ taxon }
                   height={ thumbnailHeight }
-                  truncate={ thumbnailTruncation }
                   onClick={ e => {
                     if ( !showNewTaxon ) return true;
                     if ( e.metaKey || e.ctrlKey ) return true;

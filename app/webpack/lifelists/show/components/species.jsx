@@ -54,7 +54,6 @@ class Species extends Component {
               className="flex-grow-1"
               taxon={s.taxon}
               config={config}
-              truncate={null}
               height={210}
               noInactive
               onClick={onClick}

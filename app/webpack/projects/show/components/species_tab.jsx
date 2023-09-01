@@ -33,7 +33,6 @@ const SpeciesTab = function ( {
                     className="flex-grow-1"
                     taxon={s.taxon}
                     config={config}
-                    truncate={null}
                     height={210}
                     noInactive
                     overlay={(
