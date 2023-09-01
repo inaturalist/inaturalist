@@ -5,6 +5,13 @@ si:
   _100_day_trends: දින 100 ප්‍රවණතා
   about: පිළිබඳව
   about_charts: ප්‍රස්ථාර ගැන
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: '%{date} දිනට පෙර ඔබගේ %{site_name} වි-තැපැල් ලිපිනය තහවුරු කරන්න' #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: ගිණුමේ විස්තර
   number:
     format:
       significant: false
