@@ -14,9 +14,13 @@ body > [role="dialog"] .ObservationModal {
     display: inline-block;
     font-size: 90%;
   }
-  .SplitTaxon.taxon .display-name {
-    color: black;
+  .SplitTaxon.taxon > .display-name,
+  .SplitTaxon.taxon .display-names {
     font-size: 110%;
+  }
+  .SplitTaxon.taxon > .display-name,
+  .SplitTaxon.taxon .display-names .display-name {
+    color: black;
   }
   .modal-dialog {
     .modal-content {
@@ -66,6 +70,7 @@ body > [role="dialog"] .ObservationModal {
     .SplitTaxon.taxon {
       & > .display-name, .display-names {
         font-size: 180%;
+        line-height: 26px;
         display: inline-block;
         margin-bottom: 2px;
         color: black;

@@ -49,8 +49,9 @@ class Species extends Component {
           ? `&place_id=${lifelist.speciesPlaceFilter.id}`
           : "&place_id=any";
         return (
-          <div className="result" key={`grid_taxon_${s.taxon.id}`}>
+          <div className="result d-flex" key={`grid_taxon_${s.taxon.id}`}>
             <TaxonThumbnail
+              className="flex-grow-1"
               taxon={s.taxon}
               config={config}
               truncate={null}
@@ -88,7 +89,7 @@ class Species extends Component {
         );
     }
     return (
-      <div className="flex-container">
+      <div className="Details">
         <div className="SpeciesGrid unobserved">
           { view }
           <div className="more">

@@ -49,7 +49,7 @@ const OverviewRecentObservations = ( {
             </a>
           </h2>
           <div className="ObservationsGrid">
-            { instances.slice( 0, 5 ).map( o => {
+            { instances.slice( 0, 4 ).map( o => {
               const itemDim = 170;
               let width = itemDim;
               const dims = o.photos.length > 0 && o.photos[0].dimensions( );
@@ -63,7 +63,6 @@ const OverviewRecentObservations = ( {
                   key={`obs-${o.id}`}
                   observation={o}
                   width={width}
-                  height={itemDim}
                   config={config}
                 />
               );

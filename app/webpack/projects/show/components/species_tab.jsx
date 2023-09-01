@@ -25,11 +25,12 @@ const SpeciesTab = function ( {
               }}
               hasMore={species.length >= scrollIndex}
               loader={loader}
-              className="results"
+              className="results d-flex flex-wrap"
             >
               { _.map( species.slice( 0, scrollIndex ), s => (
-                <div className="result" key={`grid_taxon_${s.taxon.id}`}>
+                <div className="result d-flex" key={`grid_taxon_${s.taxon.id}`}>
                   <TaxonThumbnail
+                    className="flex-grow-1"
                     taxon={s.taxon}
                     config={config}
                     truncate={null}

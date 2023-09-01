@@ -201,6 +201,7 @@ body > [role="dialog"] .ActivityItem {
       .secondary-names, & > .secondary-name {
         font-size: 14px;
         line-height: 16px;
+        margin-top: 2px;
         // This is weird but it allows the secondary-name to be on a new line
         // without like it would if it was a block, but without filling the
         // width of the available space like it would with a span or inline-
@@ -208,7 +209,7 @@ body > [role="dialog"] .ActivityItem {
         display: table;
       }
       & > a.display-name,
-      & > .display-name, & > .display-names {
+      & > .display-name, & > .display-names .display-name {
         font-size: 20px;
         line-height: 25px;
       }

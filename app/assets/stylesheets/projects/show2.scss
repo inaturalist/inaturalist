@@ -23,6 +23,15 @@ body {
     }
   }
 }
+
+#ProjectsShow {
+  .ObservationFlexGridView, .ObservationsListView, .TopSpecies {
+    .taxon a {
+      color: inherit;
+    }
+  }
+}
+
 #header, #test-header {
   margin-bottom: 0px;
   border-bottom: 0px;
@@ -420,7 +429,6 @@ a {
 
 .OverviewTab {
   .ObservationsGrid {
-    height: 234px;
     overflow: hidden
   }
 }
@@ -524,12 +532,12 @@ a {
         display: inline-block;
       }
     }
-    &.taxon .contents {
-      min-height: 75px;
+    &.taxon {
       position: relative;
+      padding: 10px 10px 30px 10px;
       .meta {
         position: absolute;
-        bottom: 0;
+        bottom: 7px;
         white-space: nowrap;
         .count {
           i {
@@ -701,7 +709,7 @@ a {
       font-size: 16px;
       td.leader-name {
         padding-left: 8px;
-        max-width: 315px;
+        max-width: 230px;
 
         .userimage,
         .taxon-image {
@@ -744,7 +752,6 @@ a {
     margin-left: -10px;
     margin-right: -10px;
     .result {
-      display: inline-block;
       width: 20%;
       padding: 0px 10px 20px 10px;
       vertical-align: top;
@@ -754,12 +761,12 @@ a {
         position: relative;
         .overlay {
           position: absolute;
+          top: 180px;
           background-color: rgba(0,0,0,0.3);
           color: white;
           width: 100%;
           line-height: 30px;
           padding: 0 9px;
-          margin-top: -30px;
         }
         .display-name {
           font-weight: 700;
@@ -767,13 +774,9 @@ a {
           font-size: 16px;
         }
         .caption {
-          height: 58px;
           .SplitTaxon > .display-name, .display-names,
           .SplitTaxon > .secondary-name, .secondary-names {
             display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
           }
         }
         &.TaxonThumbnail .photo {
@@ -1379,7 +1382,7 @@ $nav-btn-dim: 40px;
   margin-right: 10px;
 }
 .PhotoModal .SplitTaxon a {
-  color: black;
+  color: inherit;
 }
 .PhotoModal .display-name {
   font-size: 150%;

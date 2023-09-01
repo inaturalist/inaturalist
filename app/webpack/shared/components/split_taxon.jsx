@@ -144,7 +144,14 @@ class SplitTaxon extends React.Component {
   }
 
   comNames( ) {
-    const { taxon, placeholder } = this.props;
+    const {
+      taxon,
+      placeholder,
+      displayClassName,
+      url,
+      target,
+      onClick
+    } = this.props;
     if ( !taxon ) {
       if ( placeholder ) {
         return this.placeholderName( );
@@ -154,12 +161,28 @@ class SplitTaxon extends React.Component {
     if ( !_.isEmpty( taxon.preferred_common_names ) ) {
       const comNamesClass = this.showScinameFirst( ) ? "secondary-names" : "display-names";
       let comNames = _.map( taxon.preferred_common_names, ( preferredCommonName, index ) => (
-        this.comName( preferredCommonName.name, index )
+        this.comName( preferredCommonName.name, index, { nolink: true } )
       ) );
       comNames = comNames.reduce( ( prev, curr ) => [prev, " · ", curr] );
+      let comNameClass = displayClassName || "";
+      const LinkElement = this.LinkElement( );
+      if ( this.showScinameFirst( ) ) {
+        comNameClass = `secondary-name ${comNameClass}`;
+      } else {
+        comNameClass = `display-name ${comNameClass}`;
+      }
+      const key = `${this.keyBase}-comNames`;
       return (
         <span key="comnames" className={`comname ${comNamesClass}`}>
-          {comNames}
+          <LinkElement
+            key={key}
+            className={`comname ${comNameClass}`}
+            href={url}
+            target={target}
+            onClick={onClick}
+          >
+            {comNames}
+          </LinkElement>
         </span>
       );
     }
@@ -169,7 +192,7 @@ class SplitTaxon extends React.Component {
     return null;
   }
 
-  comName( displayCommonName, index = 0 ) {
+  comName( displayCommonName, index = 0, options = { } ) {
     const {
       displayClassName,
       url,
@@ -185,6 +208,9 @@ class SplitTaxon extends React.Component {
       comNameClass = `display-name ${comNameClass}`;
     }
     const commonName = iNatModels.Taxon.titleCaseName( displayCommonName );
+    if ( options.nolink ) {
+      return this.truncateText( commonName );
+    }
     return (
       <LinkElement
         key={key}

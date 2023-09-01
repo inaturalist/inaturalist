@@ -25,9 +25,10 @@ $.fn.universalAutocomplete = function( options ) {
         $( "<div>" ).addClass( "ac-thumb" ).append(
           $( "<i>" ).addClass( "fa fa-search" )
         ),
-        $( "<div>" ).addClass( "ac-label" ).append(
-          $( "<a>" ).attr( "href", "/search?q=" + $( field ).val( ) ).html( I18n.t( "view_all" ) )
-        )
+        $( "<a>" )
+          .attr( "href", "/search?q=" + $( field ).val( ) )
+          .addClass( "view-all" )
+          .html( I18n.t( "view_all" ) )
       );
     }
     wrapperDiv.attr( "id", item.type + "-" + item.record.id );
@@ -99,6 +100,7 @@ $.fn.universalAutocomplete = function( options ) {
             + I18n.t( "place_geo.geo_planet_place_types." + matchingPlaceType.toString( ).replace( " ", "_" ), { defaultValue: I18n.t( "place" ) } )
             + "</span>";
         }
+        itemText = $( "<div></div>" ).append( itemText );
         break;
       case "Project":
         itemUrl = "/projects/" + ( item.record.slug || item.record.id );
@@ -113,6 +115,7 @@ $.fn.universalAutocomplete = function( options ) {
           );
         }
         itemText = item.record.title + " <span class='secondary-name'>" + I18n.t( "project" ) + "</span>";
+        itemText = $( "<div></div>" ).append( itemText );
         break;
       case "User":
         itemUrl = "/people/" + item.record.login;
@@ -126,6 +129,7 @@ $.fn.universalAutocomplete = function( options ) {
         if ( item.record.name ) {
           itemText += " <span class='secondary-name'>" + item.record.name.replace( /\<.*?\/.+\>/, '') + "</span>";
         }
+        itemText = $( "<div></div>" ).append( itemText );
         break;
     }
     wrapperDiv.append( $( "<div/>" ).addClass( "ac-thumb" ).append( acThumb ) );
@@ -137,12 +141,13 @@ $.fn.universalAutocomplete = function( options ) {
         .attr( "href", obsUrl )
         .addClass( "ac-view" )
         .addClass( "view-observations" )
-        .html( "<span>" + I18n.t( "view_observations") + "</span>" )
+        .html( I18n.t( "view_observations") )
     );
     wrapperDiv.append(
       $("<a></a>")
         .attr( "href", itemUrl )
         .addClass( "ac-view" )
+        .addClass( "about" )
         .html( I18n.t( "about") )
     );
     wrapperDiv.on( "mouseup", function( e ) {

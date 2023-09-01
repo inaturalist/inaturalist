@@ -8,6 +8,7 @@ import { urlForTaxon as utilUrlForTaxon } from "../../shared/util";
 
 const TaxonThumbnail = ( {
   taxon,
+  className,
   badgeText,
   badgeTip,
   height,
@@ -69,12 +70,16 @@ const TaxonThumbnail = ( {
   if ( overlay ) {
     overlayDiv = ( <div className="overlay">{ overlay }</div > );
   }
+  let elementClassName = "TaxonThumbnail thumbnail d-flex flex-column";
+  if ( className ) {
+    elementClassName = `${elementClassName} ${className}`;
+  }
   return (
-    <div key={`similar-taxon-thumbnail-${taxon.id}`} className="TaxonThumbnail thumbnail">
+    <div key={`similar-taxon-thumbnail-${taxon.id}`} className={elementClassName}>
       { badge }
       <a href={urlForTaxon( taxon )} onClick={onClick}>{ img }</a>
       { overlayDiv }
-      <div className="caption">
+      <div className="caption d-flex flex-column flex-grow-1 justify-content-between">
         <SplitTaxon
           taxon={taxon}
           url={urlForTaxon( taxon )}
@@ -92,6 +97,7 @@ const TaxonThumbnail = ( {
 
 TaxonThumbnail.propTypes = {
   taxon: PropTypes.object.isRequired,
+  className: PropTypes.string,
   badgeText: PropTypes.oneOfType( [
     PropTypes.object,
     PropTypes.string,

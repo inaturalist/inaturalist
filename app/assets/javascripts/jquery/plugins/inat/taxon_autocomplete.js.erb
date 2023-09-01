@@ -124,9 +124,11 @@ autocompleter.taxonTemplate = function( result, fieldValue, options ) {
     $( result.defaultPhoto ).appendTo( thumbDiv );
   }
   var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-  labelDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
-  labelDiv.append( $( "<span/>" ).addClass( "subtitle" ).
+  var labelInnerDiv = $( "<div/>" );
+  labelInnerDiv.append( $( "<span/>" ).addClass( "title" ).append( result.title ));
+  labelInnerDiv.append( $( "<span/>" ).addClass( "subtitle" ).
     append( result.subtitle ));
+  labelDiv.append( labelInnerDiv );
   // anything w/o an ID is some kind of message or non-result UI
   if( !result.id) {
     wrapperDiv.addClass( "ac-message" );
@@ -137,17 +139,16 @@ autocompleter.taxonTemplate = function( result, fieldValue, options ) {
     // consider the row active and clickable.
     labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
   }
-  if( result.id ) {
-    var rightElement = $( "<a/>" ).
-      attr( "target", "_blank" ).
-      attr( "rel", "noopener noreferrer" ).
-      attr( "href", "/taxa/" + result.id );
-    $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
-    wrapperDiv.append( rightElement );
-  }
   wrapperDiv.append( thumbDiv );
   wrapperDiv.append( labelDiv );
-  wrapperDiv.append( rightElement );
+  if( result.id ) {
+    var viewLink = $( "<a/>" ).
+      addClass( "ac-view" ).
+      attr( "target", "_blank" ).
+      attr( "rel", "noopener noreferrer" ).
+      attr( "href", "/taxa/" + result.id ).append( I18n.t("view") );
+    wrapperDiv.append( viewLink );
+  }
   return wrapperDiv;
 };
 
@@ -323,7 +324,10 @@ $.fn.taxonAutocomplete = function( options ) {
   field.bind( "assignSelection", function( e, t ) {
     options.idEl.val( t.id );
     autocompleter.setTitle( t, options );
-    field.val( t.type === "placeholder" ? t.placeholderTitle : ( t.textTitle || t.title ));
+    var title = t.type === "placeholder"
+      ? t.placeholderTitle
+      : _.first( ( t.textTitle || t.title ).split( " · " ) )
+    field.val( title );
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;

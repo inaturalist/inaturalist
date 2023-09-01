@@ -612,7 +612,6 @@ a.UserImage,
     display: inline-block;
     width: 100%;
     margin-bottom: 15px;
-    white-space: nowrap;
     & > div {
       display: inline-block;
     }
@@ -626,7 +625,7 @@ a.UserImage,
       }
       .display-names, a.display-name, .noname {
         font-size: 32px;
-        line-height: 36px;
+        line-height: 40px;
         color: #000;
         white-space: normal;
       }
@@ -1275,7 +1274,6 @@ time {
     }
   }
   .list {
-    display: inline-block;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -1287,10 +1285,10 @@ time {
   }
   .obs {
     width: 100%;
-    display: inline-block;
     vertical-align: top;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
+    background: #fff;
   }
   .photo {
     width: 100%;
@@ -1321,7 +1319,6 @@ time {
 
   }
   .caption {
-    background: #fff;
     padding: 8px;
     min-height: 56px;
     text-align: left;
@@ -1331,9 +1328,6 @@ time {
     .SplitTaxon > .display-name, .display-names,
     .SplitTaxon > .secondary-name, .secondary-names {
       display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
   }
   .view {
@@ -1500,9 +1494,6 @@ time {
     .taxon {
       font-size: 16px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
       margin-bottom: 5px;
@@ -2031,7 +2022,6 @@ time {
         }
         .display-name {
           font-size: 13px;
-          white-space: nowrap;
         }
         &.score {
           white-space: nowrap;

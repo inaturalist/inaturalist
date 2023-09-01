@@ -1,13 +1,13 @@
 #result-grid.grid.container.container-fixed{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || pagination.searching || pagination.stopped", "infinite-scroll-distance": 1 }
-  .row
-    .col-xs-3{ "ng-repeat": "o in observations" }
-      .thumbnail.borderless
+  .row.grid.d-flex.flex-wrap
+    .observation-grid-cell.d-flex{ "ng-repeat": "o in observations" }
+      .thumbnail.borderless.d-flex.flex-column
         %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.hasMedia( ) ? '' : 'iconic' }} {{ o.hasSound( ) ? 'sound' : '' }}  {{ o.photo( ) ? 'has-photo' : '' }}" }
           %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }
           %i{ :class => "sound-icon fa fa-volume-up" }
           %span.photo-count.ng-cloak{ "ng-show" => "o.photos.length > 1", title: "{{ shared.t( 'x_photos', { count: o.photos.length } )}}" }
             {{ o.photos.length > 9 ? "+" : o.photos.length }}
-        .caption
+        .caption.d-flex.flex-column.flex-grow-1.justify-content-between
           %a.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
           %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}", user: "{{ currentUser }}"}

@@ -824,10 +824,11 @@ $nav-btn-dim: 40px;
 .TaxonThumbnail.thumbnail {
   width: 100%;
   border: 1px solid #ddd;
-  display: inline-block;
   padding: 0;
   position: relative;
+  margin-bottom: 0px;
 }
+
 .TaxonThumbnail .photo {
   height: 130px;
   font-size: 100px;

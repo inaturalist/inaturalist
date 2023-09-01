@@ -85,7 +85,6 @@ class TaxonAutocomplete extends React.Component {
           <span className="title linky">
             { I18n.t( "search_external_name_providers" ) }
           </span>
-          <span className="subtitle" />
         </div>
       </div>
     );
@@ -118,13 +117,15 @@ class TaxonAutocomplete extends React.Component {
           { photo }
         </div>
         <div className="ac-label">
-          <span className="title">{ r.title }</span>
-          <span className="subtitle">{ r.subtitle }</span>
-          { extraSubtitle }
+          <div>
+            <span className="title">{ r.title }</span>
+            <span className="subtitle">{ r.subtitle }</span>
+            { extraSubtitle }
+          </div>
         </div>
         { r.type !== "message" && (
-          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
-            <div className="ac-view">{ I18n.t( "view" ) }</div>
+          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`} className="ac-view">
+            { I18n.t( "view" ) }
           </a>
         ) }
       </div>
@@ -408,7 +409,8 @@ class TaxonAutocomplete extends React.Component {
     }
     // show the best name in the search field
     if ( item.id ) {
-      this.inputElement( ).val( item.title || item.name );
+      const displayName = item.title || item.name;
+      this.inputElement( ).val( _.first( displayName.split( " · " ) ) );
     }
     // set the hidden taxon_id
     this.idElement( ).val( item.id );
