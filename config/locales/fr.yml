@@ -8266,11 +8266,6 @@ fr:
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "L'importation des données de cet utilisateur de Mushroom Observer est en cours ou en attente d'importation"
-              api_key_missing: "La clé API de Mushroom Observer est manquante"
         observation:
           attributes:
             base:
