@@ -7001,11 +7001,6 @@ zh-TW:
           attributes:
             user_id:
               must_be_a_curator: 必須是策展人
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Mushroom Observer 使用者匯入正在執行中或是等候匯入中"
-              api_key_missing: "缺少 Mushroom Observer 的 API 金鑰"
         observation:
           attributes:
             base:
