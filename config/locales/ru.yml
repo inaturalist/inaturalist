@@ -8093,11 +8093,6 @@ ru:
               staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
             user_id:
               must_be_a_curator: должен быть куратором
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Импорт ключей API или их ожидание в очереди на импорт"
-              api_key_missing: "Отсутствует ключ API Наблюдателя Грибов"
         observation:
           attributes:
             base:
