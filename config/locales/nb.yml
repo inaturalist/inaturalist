@@ -6464,10 +6464,6 @@ nb:
           attributes:
             user_id:
               must_be_a_curator: må være en kurator
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_missing: "Mushroom Observer API-nøkkel mangler"
         observation:
           attributes:
             base:
