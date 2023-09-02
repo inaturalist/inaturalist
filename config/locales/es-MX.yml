@@ -7928,11 +7928,6 @@ es-MX:
               staff_cannot_be_suspended: El staff no puede ser suspendido
             user_id:
               must_be_a_curator: debes ser un curador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
-              api_key_missing: "Falta la clave API de observador de hongos"
         observation:
           attributes:
             base:
