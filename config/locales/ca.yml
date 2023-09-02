@@ -7517,11 +7517,6 @@ ca:
               staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "La importació d'aquest usuari del 'Mushroom Observer' s'està realitzant o està en cua per a la importació"
-              api_key_missing: "Falta la clau API del 'Mushroom Observer'"
         observation:
           attributes:
             base:
