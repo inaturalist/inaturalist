@@ -7755,11 +7755,6 @@ it:
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "L'import per l'utente Osservatore Funghi è in corso o è accodato per l'importazione"
-              api_key_missing: "Manca la chiave API Osservatore Funghi"
         observation:
           attributes:
             base:
