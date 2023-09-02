@@ -7784,11 +7784,10 @@ de:
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Der Import für diesen Benutzer von Mushroom Observer läuft oder ist für den Import in der Warteschlange"
-              api_key_missing: "Der Mushroom Observer API-Schlüssel fehlt"
+            user:
+              must_be_a_curator: muss ein:e Kurator:in sein
         observation:
           attributes:
             base:
