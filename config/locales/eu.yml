@@ -2850,12 +2850,6 @@ eu:
         email: Posta
         name: Izena
         time_zone: Ordu-zona
-    errors:
-      models:
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_missing: "Onddoen Behatzailearen API gakoa galdu egin da"
   will_paginate:
     previous_label: "&#8592; Aurrekoa"
     next_label: "Hurrengoa &#8594;"
