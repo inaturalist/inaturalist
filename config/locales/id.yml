@@ -7693,11 +7693,10 @@ id:
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
               must_be_a_curator: harus merupakan kurator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Impor untuk pengguna Mushroom Observer itu sedang berjalan atau diantrekan untuk impor"
-              api_key_missing: "Kunci API Mushroom Observer tidak ditemukan"
+            user:
+              must_be_a_curator: harus merupakan kurator
         observation:
           attributes:
             base:
