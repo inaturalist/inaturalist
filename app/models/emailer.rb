@@ -141,15 +141,6 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def moimport_finished( mot, errors = {}, warnings = {} )
-    @user = mot.user
-    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
-    @errors = errors
-    @warnings = warnings
-    @exception = mot.exception
-    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
-  end
-
   def custom_email( user, subject, body )
     @user = user
     @subject = subject

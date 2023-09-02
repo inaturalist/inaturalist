@@ -9,7 +9,7 @@ class LocalPhoto < Photo
     record.rotation.blank? ? "-auto-orient" : nil
   }
   
-  file_options = {
+  FILE_OPTIONS = {
     preserve_files: true,
     styles: {
       original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator, :metadata_filter ] },
@@ -51,7 +51,7 @@ class LocalPhoto < Photo
     #   s3_public_acl: You can set this to `bucket-owner-full-control` to transfer ownership
     #     when moving photos to this bucket
 
-    has_attached_file :file, file_options.merge(
+    has_attached_file :file, FILE_OPTIONS.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
@@ -72,7 +72,7 @@ class LocalPhoto < Photo
     )
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
-    has_attached_file :file, file_options.merge(
+    has_attached_file :file, FILE_OPTIONS.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id/:style.:content_type_extension",
       url: "/attachments/:class/:attachment/:id/:style.:content_type_extension",
     )

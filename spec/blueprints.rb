@@ -224,10 +224,6 @@ ModeratorNote.blueprint do
   subject_user { User.make! }
 end
 
-MushroomObserverImportFlowTask.blueprint do
-  user { User.make! }
-end
-
 OauthApplication.blueprint do
   name { Faker::Lorem.sentence }
   owner { User.make }
