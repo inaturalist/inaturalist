@@ -821,7 +821,7 @@ sr:
   colors: Boje
   columns: Kolone
   combine: Kombinuj
-  comma_separated_please: Razdvojeni zarezom
+  comma_separated_please: razdvojene zarezom
   #Noun, used to label a comment or a comment field in a form
   comment: komentar
   #Verb, generally a label on a button that allows the user to add a comment
@@ -991,6 +991,7 @@ sr:
   couldnt_find_that_taxon: Takson nije pronađen
   create: Kreiraj
   create_a_guide: Kreiraj vodič
+  create_a_new_field: Kreiraj novo polje
   create_a_new_place: Kreiraj novo mesto
   create_a_new_taxon: Kreiraj novi takson
   create_an_account: Krеiraj nalog
@@ -1347,6 +1348,7 @@ sr:
   everywhere: svuda
   exact: Tačan
   exact_date: Tačan datum
+  exact_rank: Precizan rang
   except: osim
   exclude_places: Izostavi mesta
   exclude_projects: Izostavi projekte
@@ -2031,6 +2033,7 @@ sr:
   more__context_translators_caps: VIŠE
   more_caps: VIŠE
   more_about_sharing: Više o deljenju
+  more_fields: Dodatna polja
   more_filters: Više filtera
   more_from_x: Više od %{x}
   more_import_options: Više uvoznih opcija
@@ -2040,7 +2043,7 @@ sr:
   more_observations: Više opservacija
   more_photos: Više fotografija
   more_than_a_week_ago: Pre više od nedelju dana
-  most_agree: većinski potvrdne
+  most_agree: većina se slaže
   most_browser_print_pdf: "Napomena: većina pretraživača ima opciju da odštampa u PDF"
   most_disagree: većina se ne slaže
   most_comments_and_faves: Najviše komentara i favorita
@@ -2872,6 +2875,8 @@ sr:
     zambia: Zambija
     zimbabwe: Zimbabve
   places_of_interest: Mesta od značaja
+  places_warning_look_for_existing2_html: |
+    Pretraži <a href="/search?source[]=places">već uneta mesta</a> da bi se izbeglo pravljenje duplikata. Već su uneta mesta za sve kontinente i zemlje i mnoge druge političke entitete.
   places_warning_please_keep_in_mind: |
     Imaj u vidu sledeća ograničenja:
   places_warning_quota: |
@@ -2903,6 +2908,7 @@ sr:
   present: prisutno
   press: Štampa
   preview: Pregled
+  preview_of_synced_observation: "<strong>Pregled</strong> sinhronizovane opservacije. <a href=\"%{url}\">Otkaži?</a>"
   previous_date_short: Prethodno
   prev: Prethodno
   previous_observation: Prethodna opservacija
@@ -3257,6 +3263,7 @@ sr:
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Naučni naziv
   search: Pretraga
+  search_all_fields: pretraži sva polja
   search_by_name_or_email: Pretraži po imenu ili imejlu
   search_by_taxon_name_or_observation_id: Pretraži po nazivu taksona ili ID-ju opservacije
   search_by_taxon_name_or_flickr_photo_id: Pretraži po nazivu taksona ili Flickr ID-ju fotografije
@@ -3451,6 +3458,8 @@ sr:
   start: Od
   start_a_new_project: Započni novi projekat
   start_a_project: Započni projekat
+  start_typing_field_name: Počni da kucaš naziv polja...
+  start_typing_place_name: Počni da kucaš naziv mesta...
   start_typing_taxon_name: Počni da kucaš naziv taksona...
   start_typing_someones_name: "Počni da kucaš nečije ime..."
   stats: Statistika
@@ -3499,6 +3508,7 @@ sr:
   suspend_user_reason_instructions_html: |
     Objasni zašto suspenduješ ovaj nalog i navedi sve povrede %{link_start_tag}Smernica zajednice%{link_end_tag}. Molimo da izostaviš tvoje lično mišljenje.
   sync: Sinhronizuj?
+  sync_obs_with_photo_metadata: "Sinhronizuj opservaciju sa metapodacima fotografije?"
   synonyms: Sinonimi
   table: Tabela
   table_of_contents: Sadržaj
@@ -3675,6 +3685,8 @@ sr:
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: to
   this_bioblitz_beings_in: Bioblitz počinje u
+  this_is_a_more_convenient_way_to_find_a_taxon_id: |
+    Ovo je lakši način da nađeš ID taksona. Zapravo se čuva ID taksona kada se sačuva takson. Ova petraga radi samo za aktivne taksone.
   this_is_how_taxon_names_will_be_displayed: Kako će ti nazivi taksona biti prikazani na %{site_name}
   this_is_taking_forever: Ovo traje predugo. Molimo pokušaj kasnije.
   this_is_your_observation: Ovo je tvoja opservacija
@@ -3947,6 +3959,7 @@ sr:
   view: Pogledaj
   view_all: Pogledaj sve
   view_all_caps: POGLEDAJ SVE
+  view_all_fields: Pogledaj sva polja
   view_all_flags: Pogledaj sve prijave
   view_all_members: Pogledaj sve članove
   #As in "View all 5" to view all 5 observations, comments, or other
@@ -4014,6 +4027,9 @@ sr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Tražene
   was_it_captive_cultivated?: "U zatoćeništvu / kultivisano?"
+  we_also_support2: |
+    Takođe postoji mogućnost uvoza slika sa <a href="http://flickr.com">Flickr-a</a>
+    i <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: CSV može biti prepoznat samo u sledećem formatu
   we_couldnt_find_a_user: Nema korisnika sa tom imejl adresom.
   we_have_no_conservation_status_for_this_taxon: Nemamo definisan status ugroženosti za ovaj takson
@@ -4605,6 +4621,8 @@ sr:
         invite_only_description: |
           Članstvo u ovom projektu je moguće samo po pozivu. Ako želiš da se pridružiš, kontaktiraj nekog od kustosa ispod i zatraži poziv.
       new:
+        a_project_allows_you_to_gather: |
+          Pretražni projekat ti omogućava da skupiš i vizualizuješ opservacije pomoću iNaturalist opcija pretrage. Sve što zadovoljava postavljene projektne parametre će biti automatski uključeno.
         an_umbrella_project_can_be_used_to: |
           Skupni projekat se može upotrebiti da se uporede statistike 2 ili više pretražnih ili tradicionalnih projekata. Projekat mora već postojati da bi se dodao u skupni projekat. Možeš dodati stotine projekata u jednu skupinu. Skupni projekti ne mogu sadržati druge skupne projekte.
         are_you_sure_you_want_to_delete: Da li sigurno želiš da izbrišeš ovaj projekat?
@@ -5464,6 +5482,10 @@ sr:
               only_staff_can_unhide: Samo osoblje može da otkrije sakriven sadržaj
               staff_cannot_be_suspended: Osoblje ne može biti suspendovano
             user_id:
+              must_be_a_curator: mora biti kustos
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: mora biti kustos
         observation:
           attributes:
