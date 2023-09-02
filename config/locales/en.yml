@@ -9260,11 +9260,10 @@ en:
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import for that Mushroom Observer user is running or is queued for import"
-              api_key_missing: "Mushroom Observer API key is missing"
+            user:
+              must_be_a_curator: must be a curator
         observation:
           attributes:
             base:
