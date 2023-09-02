@@ -8078,11 +8078,6 @@ nl:
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Import voor deze \"Mushroom Observer\"-gebruiker is in onderhanden of staat in de wachtrij voor import"
-              api_key_missing: "\"Mushroom Observer\" API-sleutel ontbreekt"
         observation:
           attributes:
             base:
