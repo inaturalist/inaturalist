@@ -7135,11 +7135,6 @@ uk:
           attributes:
             user_id:
               must_be_a_curator: має бути куратором
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Імпорт для користувача Mushroom Observer запущений або поставлений в чергу для імпорту"
-              api_key_missing: "Відсутній ключ Mushroom Observer API"
         observation:
           attributes:
             base:
