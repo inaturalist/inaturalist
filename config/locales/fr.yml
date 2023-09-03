@@ -8266,6 +8266,10 @@ fr:
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: doit être un·e responsable de l’organisation
         observation:
           attributes:
             base:
