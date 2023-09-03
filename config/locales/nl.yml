@@ -7785,6 +7785,7 @@ nl:
       CompleteSet: Volledige set
       #Noun
       Flag: Melding
+      Identification: Determinatie
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -8077,6 +8078,10 @@ nl:
               only_staff_can_unhide: Alleen de staf kan verborgen inhoud weer laten tonen
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
+              must_be_a_curator: moet een curator zijn
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: moet een curator zijn
         observation:
           attributes:
