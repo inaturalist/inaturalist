@@ -8151,6 +8151,10 @@ sv:
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: måste vara förvaltare
         observation:
           attributes:
             base:
