@@ -6727,6 +6727,10 @@ fi:
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: on oltava kuraattori
         observation:
           attributes:
             base:
