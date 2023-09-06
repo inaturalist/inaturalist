@@ -3,7 +3,8 @@
 # Override of the Devise class to localize error responses based on HTTP headers
 class InatDeviseFailureApp < Devise::FailureApp
   def i18n_options( options )
-    options.merge( locale: normalize_locale( request_accept_language ) )
+    I18n.locale = normalize_locale( request_accept_language )
+    options
   end
 
   def request_accept_language
