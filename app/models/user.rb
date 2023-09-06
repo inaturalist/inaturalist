@@ -411,6 +411,8 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
+    return true if anonymous?
+
     # Temporary state to allow existing users to sign in. Probably redundant
     # with the next grandparent exception
     return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
@@ -422,11 +424,16 @@ class User < ApplicationRecord
   end
 
   def allowed_unconfirmed_grace_period?
-    Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME && created_at && created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+    Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   def unconfirmed_grace_period_expired?
-    !confirmed? && created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
+    Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      !confirmed? &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   # Devise override for message to show the user when they can't log in b/c
