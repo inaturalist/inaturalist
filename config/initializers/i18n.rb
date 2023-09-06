@@ -25,3 +25,35 @@ I18n.extend( I18nExtensions )
 I18n::Backend::Simple.include I18nCustomBackend
 
 I18n::JS.export_i18n_js_dir_path = "app/assets/javascripts"
+
+def normalize_locale( locale )
+  return if locale.blank?
+
+  locale = locale.split( /[;,]/ ).grep( /^[a-z-]+$/i ).first
+  return if locale.blank?
+
+  lang, region = locale.split( "-" ).map( &:downcase )
+  return lang if region.blank?
+
+  # These re-mappings will cause problem if these regions ever get
+  # translated, so be warned. Showing zh-TW for people in Hong Kong is
+  # *probably* fine, but Brazilian Portuguese for people in Portugal might
+  # be a bigger problem.
+  if lang == "es" && region == "xl"
+    region = "mx"
+  elsif lang == "zh"
+    if region == "hk" || region.downcase == "hant"
+      region = "tw"
+    elsif region.downcase == "hans"
+      region = "cn"
+    end
+  end
+  return "pt" if lang == "pt" && region == "pt"
+
+  locale = "#{lang.downcase}-#{region.upcase}"
+  if I18N_SUPPORTED_LOCALES.include?( locale )
+    locale
+  elsif I18N_SUPPORTED_LOCALES.include?( lang )
+    lang
+  end
+end
