@@ -76,13 +76,48 @@ class AdminController < ApplicationController
     return unless load_user_content_info
 
     @page = params[:page]
-    @order = params[:order]
-    @order = "desc" unless %w(asc desc).include?( @order )
-    @order_by = params[:order_by]
-    @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
+    high_volume_reflections = %w(
+      annotations
+      comments
+      deleted_observations
+      deleted_photos
+      deleted_sounds
+      identifications
+      observation_field_values
+      photos
+      project_observations
+      sounds
+      subscriptions
+      update_actions
+      update_subscriptions
+      votes
+    )
+    if @display_user.observations_count > 50_000 && high_volume_reflections.include?( @reflection_name )
+      flash.now[:notice] = "Sorting disabled b/c this user has a lot of content"
+    else
+      @order = params[:order]
+      @order = "desc" unless %w(asc desc).include?( @order )
+      @order_by = params[:order_by]
+      @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
+    end
     @records = begin
-      @display_user.send( @reflection_name ).
-        order( @order_by => @order ).page( params[:page] || 1 ).limit( 200 )
+      if @reflection_name == "observations"
+        search_params = Observation.get_search_params(
+          page: @page,
+          per_page: 200,
+          order: @order,
+          order_by: @order_by,
+          user_id: @display_user.id
+        )
+        Observation.page_of_results( search_params, track_total_hits: true )
+      else
+        scope = @display_user.
+          send( @reflection_name ).
+          page( params[:page] || 1 ).
+          limit( 200 )
+        scope = scope.order( @order_by => @order ) if @order_by
+        scope
+      end
     rescue StandardError
       []
     end
