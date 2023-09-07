@@ -2662,7 +2662,7 @@ fr:
       all_observations: Toutes les observations
       every_publicly_visible_observation: Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist
       featured_observations: Notre sélection
-      gbif_network: Réseau SMIB
+      gbif_network: Réseau GBIF
       gbif_network_description2: Enregistrements provenant de musées et autres fournisseurs d'occurences distribués par le Système mondial d’information sur la biodiversité
       observations: Observations
       place_boundary: Limites géographiques du lieu
@@ -8266,11 +8266,10 @@ fr:
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "L'importation des données de cet utilisateur de Mushroom Observer est en cours ou en attente d'importation"
-              api_key_missing: "La clé API de Mushroom Observer est manquante"
+            user:
+              must_be_a_curator: doit être un·e responsable de l’organisation
         observation:
           attributes:
             base:

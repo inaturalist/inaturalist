@@ -7787,11 +7787,6 @@ tr:
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Mushroom Observer kullanıcısı için içe aktarma çalışıyor ya da içe aktarma için sıraya alındı"
-              api_key_missing: "Mushroom Observer API anahtarı eksik"
         observation:
           attributes:
             base:

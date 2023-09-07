@@ -7779,11 +7779,6 @@ es:
               staff_cannot_be_suspended: No se puede suspender a miembros del personal
             user_id:
               must_be_a_curator: Debe ser un supervisor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "La importación para ese usuario Observador de Hongos está siendo ejecutada o en proceso de importación"
-              api_key_missing: "Falta la clave API de Mushroom Observer"
         observation:
           attributes:
             base:

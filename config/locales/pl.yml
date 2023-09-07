@@ -1865,6 +1865,10 @@ pl:
   #Notification when an identification has been deleted
   identification_deleted: Oznaczenie usunięte.
   identification_saved: "Oznaczenie zapisane!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Oznaczenie ukryte
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Oznaczenie odkryte
   #Notification when an identification has been updated
   identification_updated: Oznaczenie zaktualizowane!
   #Notification when an identification has been withdrawn
@@ -2335,6 +2339,8 @@ pl:
   #Label shown when a date has not been entered
   missing_date: Brak daty
   moderation_history_for_user_html: Historia moderacji dla %{user}
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Ukryj
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderator / Zgłaszający
   mollusks: mięczaki
@@ -4914,11 +4920,14 @@ pl:
       Announcement: Ogłoszenie
       Atlas: Atlas
       BlockedUser: Zablokowany użytkownik
+      Comment: Komentarz
       #Noun
       Flag: Zgłoszenie
+      Identification: Oznaczenie
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikacja
+      Photo: Zdjęcie
       TaxonLink: Link do taksonu
     attributes:
       announcement:
@@ -5119,6 +5128,10 @@ pl:
         moderator_action:
           attributes:
             user_id:
+              must_be_a_curator: musi być kuratorem
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: musi być kuratorem
         observation:
           attributes:

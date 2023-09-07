@@ -1998,7 +1998,7 @@ ja:
   hide: 非表示
   hide_content: コンテンツを非表示
   hide_desc_staff_can_unhide: |
-    一度非表示にしたコンテンツを解除できるのはサイトスタッフだけですので、コミュニティガイドラインに明確に違反した場合のみ使用してください。
+    一度非表示にされたコンテンツを解除できるのはサイトスタッフのみのため、本機能はコミュニティガイドラインへの明確な違反が行われている場合のみ使用してください。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '「情報なし」を非表示'
@@ -2522,6 +2522,8 @@ ja:
   lookup: 調べる
   low: 低
   lowest_rank: 最下位階級
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat.org
   make_admin: 管理者権限を付与
   #Header for main content section of the project detail page when editing custom project data.
   main_content: メインコンテンツ
@@ -2764,6 +2766,7 @@ ja:
   new_check_list: 新規チェックリスト
   new_check_list_for: "%{place}&raquo; の新しいチェックリストを作成"
   new_comment_on_a_parent_by_user_link: '%{user_link}さんから@vow_or_con{vow:an|a} %{parent}に新規コメントがあります'
+  new_conservation_status: 新しい保全状況
   new_flag_for: 新規フラグ：
   new_guide: 新規ガイド
   new_journal_post: 最近投稿された日記
@@ -2866,6 +2869,7 @@ ja:
   no_project_to_admin_current_user: "あなたが管理するプロジェクトはありません"
   no_project_to_admin_login: "%{login}が管理するプロジェクトはありません"
   no_projects_yet: プロジェクトはまだありません
+  no_attached_range: 生息範囲は追加されていません
   no_range_data_available: 分布・生息区域データありません
   no_recent_activity: 新着情報がありません
   no_reply_yet: 返事はまだありません
@@ -2877,6 +2881,7 @@ ja:
   no_species_on_this_list: リストに種はまだありません！
   no_subject_parens: "（件名なし）"
   no_such_wiki_page: そのようなページはありません
+  no_such_wiki_page_html: そのようなページは存在しません. <a href="%{new_url}">作成</a>しますか?
   no_suggestions_available: 提案はありません
   no_summary_from_wikipedia: ウィキペディアに記述ありません
   no_summary_has_been_set: 概要が指定されていません
@@ -2976,6 +2981,8 @@ ja:
   observation_curation: 観察記録キュレーション
   observation_date: 日付
   observation_date?: 日付？
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: 分類群
   observation_field: 観測記録フィールド
   observation_field_details: 観察記録フィールドの詳細
   observation_field_type_text: 説明
@@ -3171,9 +3178,11 @@ ja:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: <a href="%{url}">%{place}</a>でこの亜属と間違われることが多い分類群
   other_taxa_commonly_misidentified_as_this_subsection: この亜節と間違われることが多い分類群
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: <a href="%{url}">%{place}</a>でこの亜節と間違われることが多い分類群
+  outside_of_all_atlases: 登録されているどの生息域にも不該当
   our_blog: iNaturalistブログ
   output_taxon: 出力分類群
   overview: 概要
+  overlapping_atlases: 生息域に重複して該当
   overlapping_downstream_taxon_frameworks_html: "下位の分類群フレームワークの重複：%{count}"
   owner: 所有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3185,6 +3194,9 @@ ja:
     invalid_email: Eメールアドレスの形式が正しくありません。
   password: パスワード
   password_confirmation: 'パスワード確認'
+  password_change_description: パスワードを変更すると、すべてのデバイスにてiNaturalistから強制的にログアウトされます。
+  password_change_logout_warning: パスワードを変更すると、あなたは強制的にログアウトされ、新しいパスワードで再度ログインする必要があります。
+  password_change_observations_warning: また、iNaturalistモバイルアプリや、iNaturalistに代わって投稿するその他のアプリやウェブサイトからも強制的にログアウトされます。 そのため、保留中の観察記録がある場合はアップロードを行ってください。 アップロードされていない（入力途中の）観察記録は、ログアウトされた場合すべて失われます。
   paste: 貼り付け
   paste_in_a_bunch_of_names: たくさんの名称を、行ごとに一つずつを貼り付けた後、ボトンを押すとバッチで処理します
   people: ユーザー
@@ -4248,7 +4260,10 @@ ja:
   some_observations_are_missing_media_or_identifications: |
     一部の観察記録にメディアや同定の欠落があります
   some_observations_are_missing_media_or_identifications_desc: |
-    メディアや同定がない観察記録は、デフォルトでは検索に表示されず、特定の分類群を探している専門家からは見えないかもしれません。「植物界」のような非常に粗い同定でも、植物の専門家があなたの観察記録を見つけるのに役立ちます。
+    画像・音声が欠如していたり、同定欄が空欄の観察記録は、検索に引っかからず誰にも同定されない可能性が高くなります。
+    例え「植物界」や「昆虫綱」のような非常に粗い同定でも、あなたの地域で活動している植物や昆虫の専門家があなたの観察記録を見つけるのに役立ちます。
+
+    あなたの追加したい種名がiNaturalistにまだ登録されていない場合は、その上位分類群の同定を仮に追加しておき、その上位分類群にフラグを立ててください。
   some_observations_failed_to_be_added: いくつかの観察記録がプロジェクトへの追加に失敗しました
   some_observations_failed_to_save: 保存に失敗した観察記録があります
   some_of_those_photos_couldnt_be_saved: "いくつかの写真は保存できませんでした：%{error}"
@@ -4495,6 +4510,7 @@ ja:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: これはIUCNレッドリストからの分布マップではありません（IUCN上の分布マップは不適切）
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: これはIUCNレッドリストからの分布マップではありません（分類群はIUCNに登録されていません）
   taxon_range_guidelines_each_taxon_can_have: 各分類群は1つの分布域のみを持つことができます。分布域はその分類群の世界的な分布を表す必要があります。
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCNレッドリストによる生息域マップが不適切な場合
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
@@ -4886,6 +4902,7 @@ ja:
   uploading_num_of_count_photos:
     other: '%{num}/%{count}枚の写真をアップロード中...'
   url_for_your_app_outside_of_inaturalist: iNaturalist以外のアプリのURL
+  url_of_this_taxon_on_the_source_website: ソースのウェブサイト上のこの分類群のURL
   usage_stats: 利用状況
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>「%{name}」</span> をプレースホルダーとして使用します。
@@ -6016,7 +6033,14 @@ ja:
     taxon_changes:
       form:
         move_children_desc2_html: |
-          このボックスにチェックを入れると、この変更がコミットされたときに、入力分類群の子分類群が出力分類群に移動し、分類群のスワップおよび分類群のマージが行われます。これが属以下の変更である場合、変更が必要な名前を持つすべての子分類群に対して分類群のスワップが作成されます。例えば、Canidae を Dogidae に入れ替えた場合、<i>Canis</i> 属の親分類群は Canidae から Dogidae に変更されます。<i>Canis</i> 属を <i>Dogis</i> 属に入れ替えると、<i>Canis lupus</i> を <i>Dogis lupus</i> に、<i>Canis lupus</i> ssp. <i>lupus</i> を <i>Dogis lupus</i> ssp. <i>lupus</i> に変更する分類群のスワップが作成され、コミットされます。これはかなりの混乱を引き起こす可能性があるので、注意して使用してください。
+          ここにチェックを入れると、入力分類群へ行った変更が、入力分類群の下位分類群すべてにも適用されます。
+
+          例えば、Canidae を Dogidae に入れ替えた場合：
+          CanidaeがDogidaeに入れ替わるのみならず、Canidaeの下位分類群である<i>Canis</i> 属の上位分類群も、CanidaeからDogidaeに変更されます。
+
+          注意：入力分類群の分類階級が属以下の場合、ここにチェックを入れることにより学名が変更されることになります。例えば：
+          <i>Canis</i> 属を <i>Dogis</i> 属に入れ替えると、<i>Canis lupus</i> は <i>Dogis lupus</i> に、<i>Canis lupus</i> ssp. <i>lupus</i> は <i>Dogis lupus</i> ssp. <i>lupus</i> へと自動で変更されます。
+          これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -6136,7 +6160,7 @@ ja:
           あなたのお気に入りの分類群を紹介してみませんか？「%{link_start_tag}お気に入り%{link_end_tag}」というタイトルのリストを作成してみよう。最近追加されたものがこのスペースに表示されます。
     user_parents:
       confirm:
-        thanks_for_creating_a_minor_account: マイナーアカウントを作ってくれてありがとう！
+        thanks_for_creating_a_minor_account: マイナーアカウントを作成していただきありがとうございます!
         we_will_send_you_an_email: |
           お子様のアカウントが認証された際にはメールでお知らせいたします。
       new:

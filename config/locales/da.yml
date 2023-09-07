@@ -8411,11 +8411,10 @@ da:
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import for denne Mushroom Observer-bruger kører eller er sat i kø til import"
-              api_key_missing: "Champignonobservator API-nøgle mangler"
+            user:
+              must_be_a_curator: skal være kurator
         observation:
           attributes:
             base:

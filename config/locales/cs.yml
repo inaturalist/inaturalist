@@ -8208,11 +8208,6 @@ cs:
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Import nebo čekání na import API klíče"
-              api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
             base:

@@ -813,9 +813,11 @@ th:
   create_a_new_field: สร้างข้อมูลเสริมใหม่
   create_a_new_place: สร้างสถานที่ใหม่
   create_a_new_taxon: สร้างหน่วยอนุกรมวิธานใหม่
+  create_a_query: สร้างคิวรี
   create_an_account: สร้างบัญชีใหม่
   created_by: สร้างโดย
   created_by_user_on_date: สร้างโดย %{user} เมื่อ %{date}
+  created_on: สร้างเมื่อ
   critically_endangered: ใกล้สูญพันธุ์อย่างยิ่ง
   cumulative_ids: "การจำแนกสะสม: %{count} จาก %{total}"
   curation: จัดการอนุกรมวิธาน
@@ -1618,6 +1620,8 @@ th:
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
+  #Filter for observations not in a particular place
+  not_in_place: ยกเว้นสถานที่
   not_recorded: ไม่ได้บันทึก
   not_resolved: ไม่แก้ไข
   not_seeing_what_looking_for: ไม่พบสิ่งที่ค้นหา?
@@ -1649,6 +1653,10 @@ th:
   observations_by_you_on_date: "การสังเกตโดยคุณเมื่อ %{date}"
   observation_calendar_for: "ปฏิทินการสังเกตสำหรับ %{user} ในปี %{year}"
   observation_date: วันที่
+  #Basic observation export fields
+  observation_export_column_type_basic: พื้นฐาน
+  #Geographic observation export fields
+  observation_export_column_type_geo: ภูมิศาสตร์
   observation_field: ข้อมูลเสริมการสังเกต
   observation_field_details: รายละเอียดข้อมูลเสริม
   observation_field_type_datetime: วันที่และเวลา
@@ -1682,6 +1690,7 @@ th:
   observations_without_media: การสังเกตที่ไม่มีสื่อ
   observed: สังเกตเมื่อ
   observed_by: สังเกตโดย
+  observed_on: สังเกตเมื่อ
   observer: ผู้สังเกต
   observers: ผู้สังเกต
   observer_short: ผู้สังเกต
@@ -1817,6 +1826,7 @@ th:
     china: ประเทศจีน
     czech_republic: สาธารณรัฐเช็ก
     europe: ยุโรป
+    georgia: ประเทศจอร์เจีย
     germany: ประเทศเยอรมนี
     hong_kong: ฮ่องกง
     india: ประเทศอินเดีย
@@ -2265,6 +2275,7 @@ th:
   start_date_time: วันที่ / เวลาเริ่มต้น
   start_typing_field_name: พิมพ์ชื่อข้อมูลเสริม...
   start_typing_place_name: พิมพ์ชื่อสถานที่...
+  start_typing_taxon_name: พิมพ์ชื่อหน่วยอนุกรมวิธาน...
   start_typing_someones_name: "พิมพ์ชื่อคน..."
   stats: สถิติ
   status: สถานะ
@@ -2295,8 +2306,10 @@ th:
   taxa_with_unknown_relationships: หน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
   taxa_observed: หน่วยอนุกรมวิธานที่สังเกต
+  taxon: หน่วยอนุกรมวิธาน
   taxon_autocomplete_placeholder: นก ผีเสื้อหนอนใบรัก ฯลฯ
   taxon_geoprivacy: การเปิดเผยพิกัด
+  taxon_is_a_rank: "%{taxon} เป็น%{rank}"
   taxon_is_a_rank_of_plantae_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของพืชที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_animalia_with_x_observations:
@@ -2682,6 +2695,8 @@ th:
   widget_for: วิดเจ็ตสำหรับ
   wikipedia_attribution_cc_by_sa_3: |
     ที่มา: วิกิพีเดีย, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: ยกเว้นหน่วยฯ
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: ถอนออก
@@ -2795,6 +2810,10 @@ th:
         horizontal: แนวนอน
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: แนวตั้ง
+      export:
+        choose_columns_desc: เลือกคอลัมน์ที่คุณต้องการส่งออก
+        be_patient: |
+          โปรดรอสักครู่เนื่องจากใช้เวลาหลายนาที ถ้านานเกินไปคุณสามารถ
       field_descriptions:
         scientific_name: "ชื่อวิทยาศาสตร์ของหน่วยอนุกรมวิธานที่สังเกตอ้างอิงจากเว็บไซต์นี้"
         num_identification_disagreements: จำนวนการจำแนกที่ขัดแย้งกับการจำแนกโดยผู้สังเกต
@@ -3015,14 +3034,26 @@ th:
         share_with_fellow_naturalists: แชร์ให้นักธรรมชาติวิทยาคนอื่น ๆ
         discuss_your_findings: พูดคุยเกี่ยวกับสิ่งที่พบเจอมา
         contribute_to_science: สนับสนุนวิทยาศาสตร์
+        science_desc_html: |
+          การสังเกตทั้งหมดจะเป็นประโยชน์ต่อวิทยาศาสตร์ด้านความหลากหลายทางชีวภาพ ตั้งแต่ผีเสื้อที่หายากที่สุดไปจนถึงวัชพืชที่พบบ่อยที่สุดในสวนหลังบ้าน เราจะแชร์การสังเกตของคุณไปยังฐานเก็บข้อมูลทางวิทยาศาสตร์ เช่น <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> เพื่อช่วยให้นักวิทยาศาสตร์นำข้อมูลของคุณไปใช้ต่อได้ เพียงแค่ส่งการสังเกตมาให้เราเท่านั้น
         nature_at_your_fingertips: ธรรมชาติอยู่แค่ปลายนิ้ว
         keep_track: เฝ้าติดตาม
+        record_your_encounters: |
+          บันทึกการพบเจอสิ่งมีชีวิตและเก็บบันทึกรายการชนิดทั้งหมดไว้ในคลาวด์
         create_useful_data: สร้างข้อมูลที่เป็นประโยชน์
-        crowdsource_identifications: ให้ผู้คนช่วยจำแนกชนิด
+        help_scientists: ช่วยให้นักวิทยาศาสตร์และผู้จัดการทรัพยากรธรรมชาติรับรู้ว่ามีสิ่งมีชีวิตปรากฏอยู่ที่ไหนและเมื่อใด
+        crowdsource_identifications: ให้ผู้อื่นช่วยจำแนกชนิด
+        connect_with_experts: ปรึกษาผู้เชี่ยวชาญที่สามารถจำแนกชนิดของสิ่งมีชีวิตที่คุณพบเจอ
         become_a_citizen_scientist: ร่วมเป็นนักวิทยาศาสตร์พลเมือง
+        find_a_project: "ค้นหาโครงการที่มีภารกิจน่าสนใจ หรือสร้างโครงการของคุณเอง"
         learn_about_nature: เรียนรู้ธรรมชาติ
-        run_a_bioblitz: จัดกิจกรรม Bioblitz
+        build_your_knowledge: แลกเปลี่ยนความรู้กับนักธรรมชาติวิทยาและช่วยเหลือผู้อื่น
+        run_a_bioblitz: จัดกิจกรรมชีวะตะลุมบอน (Bioblitz)
+        hold_an_event: จัดกิจกรรมที่ชักชวนผู้คนมาร่วมสำรวจสิ่งมีชีวิตให้มากที่สุดเท่าที่จะทำได้
         works_on_all_your_devices: ใช้งานได้กับทุกอุปกรณ์ของคุณ
+        install_our_mobile_apps: |
+          ติดตั้งแอปฯ ของเราในโทรศัพท์แล้วออกไปสำรวจสิ่งมีชีวิตโดยไม่ต้องมีสัญญาณหรือไวไฟตลอดเวลา
+        who_uses_site_name: "ใครใช้ %{site_name} บ้าง?"
         what_are_you_waiting_for: รออะไรอยู่ล่ะ?
         join_today: เข้าร่วมวันนี้
   date:
@@ -3180,6 +3211,8 @@ th:
       project_observation:
         user_id: ผู้ส่ง
       place:
+        latitude: ละติจูด
+        longitude: ลองจิจูด
         place_type: ประเภทสถานที่
       source:
         title: หัวข้อ

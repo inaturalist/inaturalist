@@ -8151,11 +8151,10 @@ sv:
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import för den Mushroom Observer-användaren körs eller väntar på import"
-              api_key_missing: "Mushroom Observer API-nyckel saknas"
+            user:
+              must_be_a_curator: måste vara förvaltare
         observation:
           attributes:
             base:

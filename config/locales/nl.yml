@@ -7785,6 +7785,7 @@ nl:
       CompleteSet: Volledige set
       #Noun
       Flag: Melding
+      Identification: Determinatie
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -8078,11 +8079,10 @@ nl:
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import voor deze \"Mushroom Observer\"-gebruiker is in onderhanden of staat in de wachtrij voor import"
-              api_key_missing: "\"Mushroom Observer\" API-sleutel ontbreekt"
+            user:
+              must_be_a_curator: moet een curator zijn
         observation:
           attributes:
             base:
