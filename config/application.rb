@@ -149,6 +149,8 @@ end
 
 ActiveRecord::Base.include_root_in_json = false
 
+ActiveRecord::SessionStore::Session.primary_key = "session_id"
+
 Rack::Utils.multipart_part_limit = 2048
 
 # load SiteConfig class and config

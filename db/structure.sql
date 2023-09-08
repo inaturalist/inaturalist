@@ -3867,31 +3867,11 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE TABLE public.sessions (
-    id integer NOT NULL,
     session_id character varying NOT NULL,
     data text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sessions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 
 --
@@ -6026,13 +6006,6 @@ ALTER TABLE ONLY public.saved_locations ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
-
-
---
 -- Name: simplified_tree_milestone_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7037,7 +7010,7 @@ ALTER TABLE ONLY public.saved_locations
 --
 
 ALTER TABLE ONLY public.sessions
-    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (session_id);
 
 
 --
@@ -9146,13 +9119,6 @@ CREATE INDEX index_saved_locations_on_user_id ON public.saved_locations USING bt
 
 
 --
--- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
-
-
---
 -- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10370,6 +10336,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221214192739'),
 ('20221219015021'),
 ('20230224230316'),
-('20230407150700');
+('20230407150700'),
+('20230907210748');
 
 
