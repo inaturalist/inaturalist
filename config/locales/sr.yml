@@ -1199,10 +1199,18 @@ sr:
       destroyed: 'Doviđenja! Tvoj nalog je uspešno otkazan. Nadamo se da ćemo te uskoro opet videti.'
       signed_up: 'Dobro došli! Uspešno si se prijavio/la.'
       signed_up_but_inactive: "Uspešno si se registrovao/la. Međutim, ne možemo te ulogovati dok se tvoj nalog ne aktivira."
+      signed_up_but_unconfirmed: "Poruka sa linkom za potvrdu je poslata na tvoju imejl adresu. Prati link da aktiviraš tvoj nalog."
       updated: 'Uspešno si ažurirao/la tvoj profil.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Potvrdi tvoju imejl adresu
       reset_password_instructions:
         subject: 'Uputstva za resetovanje lozinke'
+  devise_confirmation_instructions_please_click: |
+    Klikni na link ispod da potvrdiš tvoju imejl adresu:
+  devise_confirmation_instructions_resend_instructions: |
+    Moraš imati imejl adresu u funkciji da bi koristio/la iNaturalist. Kada napraviš nalog, tada dobijaš imejl sa linkom za potvrdu i na taj način proveravamo da li ti je imejl adresa funkcionalna. Ako nisi dobio/la link, možeš izabrati da se on ponovo pošalje ovde.
   devise_email_changed_you_will_receive: |
     Dobićeš imejl na novoj adresi radi potvrde promene, ali takođe želimo da te obavestimo na staroj adresi u slučaju da neko ima pristup tvom nalogu i pokušava da je izmeni bez tvog znanja. Ako nisi lično pokrenuo/la promenu imejl adrese, odmah prosledi ovaj mejl na help@inaturalist.org kako bismo utvrdili šta se dešava.
   devise_reset_password_instructions_hello_email: Zdravo %{email}
@@ -3973,6 +3981,25 @@ sr:
   username_or_user_id: Korisničko ime ili ID korisnika
   users: Korisnici
   users_contributions_to_project_html: doprinosi <a href="%{url}">%{login}</a> projektu %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Kada se imejl za potvrdu ponvo pošalje, bićeš izlogovan i nećeš moći da se uloguješ na nalog dok ne klikneš na link za potvrdu u imejlu,. Molimo te da <strong>dobro proveriš da li je adresa ispravno uneta.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Dobro proveri da li je imejl adresa ispravno uneta. Poslaćemo imejl za potvrdu na ovu adresu:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Ako imejl nije stigao, evo šta možeš uraditi:
+    </p>
+    <ul>
+    <li><p>Proveri spam folder</p></li>
+    <li><p>Proveri da li imaš aktivirane filtere koji bi potencijalno blokirali naš imejl</p></li>
+    </ul>
+    <p>
+    Ako imejla za potvrdu i dalje nema, kontaktiraj nas na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    kako bismo ti pomogli.
+    </p>
   users_favorites: "Favoriti korisnika %{user}"
   users_id: "ID-jevi korisnika %{user}"
   users_identifications: "Identifikacije korisnika %{user}"
