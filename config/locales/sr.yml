@@ -319,8 +319,10 @@ sr:
   add_alive_or_dead_alive_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Živo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Nepoznato"'
   add_alive_or_dead_dead_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Mrtvo"'
-  add_plant_phenology_budding_annotation: 'Dodaj pribelešku za "Fenologija biljaka: Pupenje"'
-  add_plant_phenology_flowering_annotation: 'Dodaj pribelešku za "Fenologija biljaka: Cvetanje"'
+  add_plant_phenology_budding_annotation: 'Dodaj pribelešku "Fenologija biljaka: pupenje"'
+  add_plant_phenology_flower_budding_annotation: 'Dodaj "Fenologija biljaka: pupenje cveta" pribelešku'
+  add_plant_phenology_flowering_annotation: 'Dodaj pribelešku "Fenologija biljaka: cvetanje"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Dodaj pribelešku "Fenologija biljaka: nema dokaza cvetanja"'
   add_life_stage_adult_annotation: 'Dodaj pribelešku za "Faza života: Odraslo"'
   add_life_stage_pupa_annotation: 'Dodaj pribelešku za "Faza života: Lutka"'
   add_life_stage_nymph_annotation: 'Dodaj pribelešku za "Faza života: Nimfa"'
@@ -916,6 +918,8 @@ sr:
   continue: Nastavi
   continue_to_site: Nastavi do %{site_name}
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Sve
     sex: Pol
     male: Muški
     female: Ženski
@@ -1623,7 +1627,7 @@ sr:
   invited_x: "Pozvan %{x}"
   iphone: iPhone
   is_not_following_anyone: ne prati nikoga.
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Da li su navedeni dokazi potvrđuju da je ovo %{taxon}?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Da li navedeni dokazi potvrđuju da je ovo %{taxon}?
   is_this_offensive_html: 'Da li je ovo <a href="/help#inappropriate">neprikladno</a>, nepoželjan softver ili uvredljivo?'
   is_this_place_a_duplicate: Da li je ovo duplikat?
   it_can_now_be_used_for_research: Sada može biti upotrebljena za istraživanje i prikazana na drugim veb-sajtovima
@@ -4904,6 +4908,7 @@ sr:
           "Alive or Dead=Dead": Mrtvo
           "Plant Phenology=Budding": Pupenje
           "Plant Phenology=Flowering": Cvetanje
+          "Plant Phenology=No Evidence of Flowering": Nema dokaza cvetanja
           "Life Stage=Adult": Odraslo
           "Life Stage=Egg": Jaje
           "Life Stage=Larva": Larva
