@@ -7,6 +7,8 @@ class DonateController < ApplicationController
     @footless = true
     @no_footer_gap = true
     @shareable_image_url = helpers.image_url( "donate-banner.png" )
+    @moore_start_date = DateTime.parse( "2023-09-13T03:00:00-07:00" )
+    @moore_end_date = DateTime.parse( "2023-01-01T00:00:00-07:00" )
   end
 
   def index
