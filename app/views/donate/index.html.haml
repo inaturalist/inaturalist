@@ -11,8 +11,9 @@
   :css
     .daf-button-link {
       display: block !important;
-      max-width: 425px !important;
+      width: 100% !important;
       min-width: 320px !important;
+      margin-bottom: 20px !important;
     }
 - content_for :extrahead do
   %meta{ property: "og:title", content: t( :donate_to_inaturalist ) }
@@ -28,9 +29,10 @@
     .col-md-5.col-md-offset-1.col-xs-12
       - # Note: the donorbox iframe does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
       %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
-      %script{ type: "text/javascript" }
-        var _msdaf_id = "d54712882b88c";
-      %script{ type: "text/javascript", src: "https://app.dafwidget.com/api/js/source.js" }
+      - if I18n.locale.to_s =~ /^en/
+        %script{ type: "text/javascript" }
+          var _msdaf_id = "d54712882b88c";
+        %script{ type: "text/javascript", src: "https://app.dafwidget.com/api/js/source.js" }
 
     .col-md-5.col-xs-12
       - if params[:test] == "moore" || DateTime.now > @moore_start_date && DateTime.now < @moore_end_date
