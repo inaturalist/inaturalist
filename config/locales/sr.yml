@@ -319,8 +319,10 @@ sr:
   add_alive_or_dead_alive_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Živo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Nepoznato"'
   add_alive_or_dead_dead_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Mrtvo"'
-  add_plant_phenology_budding_annotation: 'Dodaj pribelešku za "Fenologija biljaka: Pupenje"'
-  add_plant_phenology_flowering_annotation: 'Dodaj pribelešku za "Fenologija biljaka: Cvetanje"'
+  add_plant_phenology_budding_annotation: 'Dodaj pribelešku "Fenologija biljaka: pupenje"'
+  add_plant_phenology_flower_budding_annotation: 'Dodaj "Fenologija biljaka: pupenje cveta" pribelešku'
+  add_plant_phenology_flowering_annotation: 'Dodaj pribelešku "Fenologija biljaka: cvetanje"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Dodaj pribelešku "Fenologija biljaka: nema dokaza cvetanja"'
   add_life_stage_adult_annotation: 'Dodaj pribelešku za "Faza života: Odraslo"'
   add_life_stage_pupa_annotation: 'Dodaj pribelešku za "Faza života: Lutka"'
   add_life_stage_nymph_annotation: 'Dodaj pribelešku za "Faza života: Nimfa"'
@@ -916,6 +918,8 @@ sr:
   continue: Nastavi
   continue_to_site: Nastavi do %{site_name}
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Sve
     sex: Pol
     male: Muški
     female: Ženski
@@ -1199,10 +1203,18 @@ sr:
       destroyed: 'Doviđenja! Tvoj nalog je uspešno otkazan. Nadamo se da ćemo te uskoro opet videti.'
       signed_up: 'Dobro došli! Uspešno si se prijavio/la.'
       signed_up_but_inactive: "Uspešno si se registrovao/la. Međutim, ne možemo te ulogovati dok se tvoj nalog ne aktivira."
+      signed_up_but_unconfirmed: "Poruka sa linkom za potvrdu je poslata na tvoju imejl adresu. Prati link da aktiviraš tvoj nalog."
       updated: 'Uspešno si ažurirao/la tvoj profil.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Potvrdi tvoju imejl adresu
       reset_password_instructions:
         subject: 'Uputstva za resetovanje lozinke'
+  devise_confirmation_instructions_please_click: |
+    Klikni na link ispod da potvrdiš tvoju imejl adresu:
+  devise_confirmation_instructions_resend_instructions: |
+    Moraš imati imejl adresu u funkciji da bi koristio/la iNaturalist. Kada napraviš nalog, tada dobijaš imejl sa linkom za potvrdu i na taj način proveravamo da li ti je imejl adresa funkcionalna. Ako nisi dobio/la link, možeš izabrati da se on ponovo pošalje ovde.
   devise_email_changed_you_will_receive: |
     Dobićeš imejl na novoj adresi radi potvrde promene, ali takođe želimo da te obavestimo na staroj adresi u slučaju da neko ima pristup tvom nalogu i pokušava da je izmeni bez tvog znanja. Ako nisi lično pokrenuo/la promenu imejl adrese, odmah prosledi ovaj mejl na help@inaturalist.org kako bismo utvrdili šta se dešava.
   devise_reset_password_instructions_hello_email: Zdravo %{email}
@@ -1615,7 +1627,7 @@ sr:
   invited_x: "Pozvan %{x}"
   iphone: iPhone
   is_not_following_anyone: ne prati nikoga.
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Da li su navedeni dokazi potvrđuju da je ovo %{taxon}?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Da li navedeni dokazi potvrđuju da je ovo %{taxon}?
   is_this_offensive_html: 'Da li je ovo <a href="/help#inappropriate">neprikladno</a>, nepoželjan softver ili uvredljivo?'
   is_this_place_a_duplicate: Da li je ovo duplikat?
   it_can_now_be_used_for_research: Sada može biti upotrebljena za istraživanje i prikazana na drugim veb-sajtovima
@@ -3973,6 +3985,25 @@ sr:
   username_or_user_id: Korisničko ime ili ID korisnika
   users: Korisnici
   users_contributions_to_project_html: doprinosi <a href="%{url}">%{login}</a> projektu %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Kada se imejl za potvrdu ponvo pošalje, bićeš izlogovan i nećeš moći da se uloguješ na nalog dok ne klikneš na link za potvrdu u imejlu,. Molimo te da <strong>dobro proveriš da li je adresa ispravno uneta.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Dobro proveri da li je imejl adresa ispravno uneta. Poslaćemo imejl za potvrdu na ovu adresu:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Ako imejl nije stigao, evo šta možeš uraditi:
+    </p>
+    <ul>
+    <li><p>Proveri spam folder</p></li>
+    <li><p>Proveri da li imaš aktivirane filtere koji bi potencijalno blokirali naš imejl</p></li>
+    </ul>
+    <p>
+    Ako imejla za potvrdu i dalje nema, kontaktiraj nas na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    kako bismo ti pomogli.
+    </p>
   users_favorites: "Favoriti korisnika %{user}"
   users_id: "ID-jevi korisnika %{user}"
   users_identifications: "Identifikacije korisnika %{user}"
@@ -4877,6 +4908,7 @@ sr:
           "Alive or Dead=Dead": Mrtvo
           "Plant Phenology=Budding": Pupenje
           "Plant Phenology=Flowering": Cvetanje
+          "Plant Phenology=No Evidence of Flowering": Nema dokaza cvetanja
           "Life Stage=Adult": Odraslo
           "Life Stage=Egg": Jaje
           "Life Stage=Larva": Larva

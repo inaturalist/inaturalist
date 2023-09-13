@@ -5895,6 +5895,29 @@ fr:
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
       donate_short_desc: "Faites un don maintenant pour montrer que vous nous soutenez  !"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Vous pouvez <u>doubler</u> ou <u>tripler</u> votre don ! Grâce à la
+        Gordon and Betty Moore Foundation, jusqu'au 31 décembre 2023, tous les dons récurrents mensuels, trimestriels et annuels sont triplés et les dons ponctuels sont doublés.
+        </strong>
+        </p>
+        <p class="lead">
+        iNaturalist est l'une des plus grandes communautés au monde consacrées à
+        l'exploration de la biodiversité. Merci d'en faire partie !
+        </p>
+        <p class="lead">
+        Si vous croyez en la capacité de cette communauté mondiale d'amoureux de la nature à échanger des connaissances et à générer des données irremplaçables sur la biodiversité,
+        merci d'envisager de faire un don ponctuel ou récurrent en ligne, ou d'envisager les <a
+        href="https://www.inaturalist.org/pages/giving">autres façons de
+        donner</a>.
+        </p>
+        <p class="lead">
+        La communauté grandit et votre don est vital pour iNaturalist. Il nous permet d'améliorer nos technologies pour identifier correctement les espèces et mettre en œuvre de nouvelles fonctionnalités, mais aussi de maintenir nos serveurs et de rémunérer du personnel.
+        </p>
+        <p class="text-muted">
+        iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts
+        basée aux États-Unis d'Amérique (ID : 94-1156258).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist est l'une des plus grandes communautés au monde consacrées à
@@ -5917,6 +5940,22 @@ fr:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Devenir un soutien mensuel de iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: FAITES UN DON CHAQUE MOIS À INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Vous pouvez <u>tripler</u> votre don ! Grâce à la Gordon and Betty
+          Moore Foundation, tous les dons mensuels sont triplés jusqu'au 31 décembre 2023.</strong>
+          </p>
+          <p class="lead">iNaturalist est une des plus grandes communautés du monde dédiées
+          à l’exploration de la biodiversité. Merci d'en faire partie !</strong>
+          </p>
+          <p class="lead">Si vous aimez iNaturalist, merci d'envisager de faire un don chaque mois. Les dons récurrents apportent des ressources prévisibles qui permettent à iNaturalist de continuer à agrandir son infrastructure et ses équipes. Et votre don mensuel a trois fois plus d'impact ! Vous pouvez également choisir d'afficher sur votre profil d’utilisateur que vous faites un don chaque mois.
+          </p>
+          <p class="lead">
+          La communauté grandit et vos dons aident à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en œuvre de nouvelles fonctionnalités. Vous pouvez également faire un <a href="%{donate_url}">don ponctuel</a> et envisager <a href="https://www.inaturalist.org/pages/giving">d'autres façons de faire un don</a>..
+          </p>
+          <p class="text-muted">
+          iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts et basée aux États-Unis d’Amérique (ID : 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist est une des plus grandes communautés du monde dédiées
