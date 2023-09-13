@@ -49,7 +49,7 @@ module ObservationSearch
         end
         break if batch.size == 0
         block.call(batch)
-        search_params[:min_id] = batch.last.id + 1
+        search_params[:id_above] = batch.last.id
       end
     end
 
@@ -145,7 +145,7 @@ module ObservationSearch
         api_params.delete(:taxon_ids)
       end
       unless api_params[:min_id].blank?
-        api_params[:id_above] = api_params[:min_id]
+        api_params[:id_above] = api_params[:min_id] - 1
         api_params.delete(:min_id)
       end
       api_params.delete(:partial)
