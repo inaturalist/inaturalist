@@ -20,6 +20,7 @@ describe AppleAppSiteAssociationController do
 
   it "should return the applinks if set in config" do
     allow( CONFIG ).to receive_message_chain( :apple, :team_id ) { "inat-team-ID" }
+    allow( CONFIG ).to receive_message_chain( :apple, :applinks2 )
     allow( CONFIG ).to receive_message_chain( :apple, :applinks ) do
       {
         "org.inaturalist.bundle": [

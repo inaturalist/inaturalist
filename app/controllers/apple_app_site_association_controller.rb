@@ -9,7 +9,21 @@ class AppleAppSiteAssociationController < ApplicationController
         apps: @site.preferred_ios_app_webcredentials.to_s.split( "," )
       }
     end
-    if ( applinks = CONFIG&.apple&.applinks ) && ( team_id = CONFIG&.apple&.team_id )
+    if ( applinks = CONFIG&.apple&.applinks2 ) && ( team_id = CONFIG&.apple&.team_id )
+      details = applinks.map do | applink |
+        {
+          appIDs: applink["bundle_ids"].map {| bundle_id | "#{team_id}.#{bundle_id}" },
+          components: applink["components"].map do | component |
+            {
+              "/": component["path"],
+              exclude: component["exclude"].yesish?,
+              comment: component["comment"]
+            }
+          end
+        }
+      end
+      response[:applinks] = { details: details }
+    elsif ( applinks = CONFIG&.apple&.applinks ) && ( team_id = CONFIG&.apple&.team_id )
       details = applinks.to_h.map do | bundle_id, paths |
         {
           appID: "#{team_id}.#{bundle_id}",
