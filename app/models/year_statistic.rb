@@ -55,8 +55,11 @@ class YearStatistic < ApplicationRecord
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
         accumulation: observed_species_accumulation(
-          site: options[:site],
-          verifiable: true
+          {
+            site: options[:site],
+            verifiable: true
+          },
+          options
         )
       },
       growth: {
@@ -222,6 +225,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observations_histogram( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] observations_histogram, year: #{year}, options: #{options}"
+    end
     params = {
       d1: "#{year}-01-01",
       d2: "#{year}-12-31",
@@ -243,6 +249,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.identifications_histogram( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] identifications_histogram, year: #{year}, options: #{options}"
+    end
     interval = options[:interval] || "day"
     es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
@@ -274,6 +283,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.identification_counts_by_category( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] identification_counts_by_category, year: #{year}, options: #{options}"
+    end
     es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         categories: { terms: { field: "category" } }
@@ -313,6 +325,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.obervation_counts_by_quality_grade( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] obervation_counts_by_quality_grade, year: #{year}, options: #{obervation_counts_by_quality_grade}"
+    end
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
     if ( site = options[:site] )
@@ -334,6 +349,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.leaf_taxa_count( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] leaf_taxa_count, year: #{year}, options: #{options}"
+    end
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if ( site = options[:site] )
@@ -349,6 +367,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.iconic_taxa_counts( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] iconic_taxa_counts, year: #{year}, options: #{options}"
+    end
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if ( site = options[:site] )
@@ -371,6 +392,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.popular_observations( year, options = {} )
+    if options[:debug]
+      puts "[DEBUG] popular_observations, year: #{year}, options: #{options}"
+    end
     params = options.merge( year: year, has_photos: true, verifiable: true )
     if ( user = params.delete( :user ) )
       params[:user_id] = user.id
@@ -948,8 +972,11 @@ class YearStatistic < ApplicationRecord
     Date.parse( "#{n.year}-#{n.month}-01" ) - 1.day
   end
 
-  def self.observed_species_accumulation( params = {} )
-    debug = params.delete( :debug )
+  def self.observed_species_accumulation( params = {}, options = {} )
+    debug = params.delete( :debug ) || options[:debug]
+    if debug
+      puts "[DEBUG] observed_species_accumulation, params: #{params}, options: #{options}"
+    end
     interval = params.delete( :interval ) || "month"
     date_field = params.delete( :date_field ) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
@@ -972,7 +999,7 @@ class YearStatistic < ApplicationRecord
             field: date_field,
             calendar_interval: interval,
             format: "yyyy-MM-dd",
-            time_zone: time_zone_for_options( params )
+            time_zone: YearStatistic.time_zone_for_options( params )
           },
           aggs: {
             taxon_ids: {
@@ -1007,7 +1034,7 @@ class YearStatistic < ApplicationRecord
         Rails.logger.info <<~MSG
           observed_species_accumulation results for #{d1} - #{d2}:
           #{buckets.size} buckets, #{bucket_dates.first} - #{bucket_dates.last},
-          #{species_ids.size} species"
+          #{species_ids.size} species
         MSG
       end
       buckets
@@ -1017,12 +1044,14 @@ class YearStatistic < ApplicationRecord
       bucketer,
       [histogram_params],
       [
+        Elasticsearch::Transport::Transport::Errors::BadRequest,
         Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Faraday::TimeoutError,
-        Elasticsearch::Transport::Transport::Errors::BadRequest
+        Elasticsearch::Transport::Transport::Errors::TooManyRequests,
+        Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
-      parallel: NUM_ES_WORKERS
+      parallel: YearStatistic::NUM_ES_WORKERS,
+      debug: debug
     ) do | args |
       es_params = args[0].dup
       d1_filter = es_params[:filters].detect {| f | f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
@@ -1052,7 +1081,9 @@ class YearStatistic < ApplicationRecord
       ]
       new_params = [es_params1, es_params2]
       if debug
+        puts
         puts "observed_species_accumulation partitions: #{d1_p1} - #{d2_p1}, #{d1_p2} - #{d2_p2}"
+        puts
       end
       new_params
     end
