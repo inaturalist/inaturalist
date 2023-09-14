@@ -326,7 +326,7 @@ class YearStatistic < ApplicationRecord
 
   def self.obervation_counts_by_quality_grade( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] obervation_counts_by_quality_grade, year: #{year}, options: #{obervation_counts_by_quality_grade}"
+      puts "[DEBUG] obervation_counts_by_quality_grade, year: #{year}, options: #{options}"
     end
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
