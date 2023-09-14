@@ -6603,25 +6603,36 @@ en:
           figure_alt_text: The Expected Nearby map and Taxon Range are compared
           combining_these_maps_produces: |
             Combining these maps produces 3 types of cells:
+          # Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences: True Presences
+          # Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             True Presences:
-          true_presences_definition: Both of the Expected Nearby Map and Taxon Range are present
+          true_presences_definition: Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          # Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences: False Presences
+          # Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             False Presences:
-          false_presences_definition: Only the Expected Nearby Map is present
+          false_presences_definition: Areas where only the Expected Nearby Map predicts the taxon exists
+          # Areas where only the Taxon Range is present
           false_absences: False Absences
+          # Areas where only the Taxon Range is present
           false_absences_colon: |
             False Absences:
-          false_absences_definition: Only the Taxon Range is present
+          false_absences_definition: Areas where only the Taxon Range is present
           evaluation_statistics_for_taxon: Evaluation statistics for %{taxon}
+          # The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Precision:
           precision_description: The fraction of the Expected Nearby Map that are True Presences
+          # The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Recall:
           recall_description: The fraction of the Taxon Range that are True Presences
+          # The average (harmonic mean) of Precision (fraction of the Expected
+          # Nearby Map that are True Presences) and Recall (fraction of the
+          # Taxon Range that are True Presences)
           f1_colon: |
             F1:
           f1_description: The average (harmonic mean) of Precision and Recall
