@@ -1737,6 +1737,7 @@ id:
   exit_full_screen: "Keluar Dari Layar Penuh"
   examples_of_data_use_by_network_members: Contoh Penggunaan Data Oleh Anggota Jaringan
   examples_of_ranking_organizations: Contoh Organisasi Penggolongan
+  expected_nearby: Terlihat Di Sekitar
   explore: Jelajah
   export: Ekspor
   export_observations: Ekspor Pengamatan
@@ -2149,6 +2150,7 @@ id:
   include_places: Sertakan Tempat
   include_projects: Sertakan Proyek
   include_suggestions_not_seen_nearby: Sertakan rekomendasi spesies yang tidak ditemukan di daerah sekitar
+  include_suggestions_not_expected_nearby: Sertakan usulan yang tidak ditemukan di sekitar
   include_taxa: Sertakan Taksa
   include_users: Sertakan Pengguna
   including: termasuk
@@ -5797,6 +5799,33 @@ id:
           Konten yang ditandai adalah atribut teks utama dari obyek yang ditandai pada saat tanda dibuat. Hanya kurator dan staf yang dapat melihat ini. Hanya staf yang dapat melihat pesan-pesan yang ditandai.
         flags_that_should_not_be_resolved_desc_html: |
           Harap mencabut tanda <code>spam</code> dan <code>pelanggaran hak cipta</code> hanya jika kontennya bukan merupakan spam atau bukan merupakan pelanggaran hak cipta.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Prediksi Geomodel %{taxon}
+        nearby_map:
+          expected_nearby_map: Peta Terlihat Di Sekitar
+        unthresholded_map:
+          unthresholded_map: Peta Tanpa Ambang
+        range_comparison:
+          expected_nearby_vs_taxon_range: Terlihat Di Sekitar vs Jangkauan Takson
+          true_presences: Keberadaan Benar
+          true_presences_colon: |
+            Keberadaan Benar:
+          false_presences: Keberadaan Salah
+          false_presences_colon: |
+            Keberadaan Salah:
+          false_absences: Ketidakberadaan Salah
+          false_absences_colon: |
+            Ketidakberadaan Salah:
+          evaluation_statistics_for_taxon: Statistik evaluasi untuk %{taxon}
+          precision_colon: |
+            Precision:
+          recall_colon: |
+            Recall:
+          f1_colon: |
+            F1:
+          f1_description: Rata-rata (harmonik) Precision dan Recall
     guides:
       index:
         deprecated_banner: |
