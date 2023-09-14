@@ -76,14 +76,14 @@ class YearStatistic < ApplicationRecord
           donors: donors( year, options )
         }
       end
-      json[:pull_requests] = github_pull_requests( year )
+      json[:pull_requests] = github_pull_requests( year, options )
       if year >= 2022
         json[:budget] ||= {}
         json[:budget][:monthly_supporters] = monthly_supporters( year, options )
       end
     end
     year_statistic.update( data: json )
-    year_statistic.generate_shareable_image
+    year_statistic.generate_shareable_image( options )
 
     # Streaks are the longest-running and most memory intensive piece to
     # calculate, and are probably not sustainable for the whole site in the
@@ -110,7 +110,7 @@ class YearStatistic < ApplicationRecord
   end
 
   # Generates stats for a specific user for a single year
-  def self.generate_for_user_year( user, year )
+  def self.generate_for_user_year( user, year, options = {} )
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
 
@@ -138,7 +138,7 @@ class YearStatistic < ApplicationRecord
         users_who_helped: users_who_helped_arr,
         total_users_who_helped: total_users_who_helped,
         total_ids_received: total_ids_received,
-        iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user )
+        iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user, options )
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
@@ -191,6 +191,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.tree_taxa( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] tree_taxa, year: #{year}, options: #{options}"
+    end
     params = { year: year }
     if ( user = options[:user] )
       params[:user_id] = user.id
@@ -226,7 +229,7 @@ class YearStatistic < ApplicationRecord
 
   def self.observations_histogram( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] observations_histogram, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] observations_histogram, year: #{year}, options: #{options}"
     end
     params = {
       d1: "#{year}-01-01",
@@ -250,7 +253,7 @@ class YearStatistic < ApplicationRecord
 
   def self.identifications_histogram( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] identifications_histogram, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] identifications_histogram, year: #{year}, options: #{options}"
     end
     interval = options[:interval] || "day"
     es_params = YearStatistic.identifications_es_base_params( year ).merge(
@@ -284,7 +287,7 @@ class YearStatistic < ApplicationRecord
 
   def self.identification_counts_by_category( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] identification_counts_by_category, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] identification_counts_by_category, year: #{year}, options: #{options}"
     end
     es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
@@ -307,7 +310,10 @@ class YearStatistic < ApplicationRecord
     end
   end
 
-  def self.identification_counts_by_iconic_taxon( year, user )
+  def self.identification_counts_by_iconic_taxon( year, user, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] identification_counts_by_iconic_taxon, year: #{year}, user: #{user}, options: #{options}"
+    end
     return unless user
 
     es_params = identifications_es_base_params( year )
@@ -326,7 +332,7 @@ class YearStatistic < ApplicationRecord
 
   def self.obervation_counts_by_quality_grade( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] obervation_counts_by_quality_grade, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] obervation_counts_by_quality_grade, year: #{year}, options: #{options}"
     end
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
@@ -350,7 +356,7 @@ class YearStatistic < ApplicationRecord
 
   def self.leaf_taxa_count( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] leaf_taxa_count, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] leaf_taxa_count, year: #{year}, options: #{options}"
     end
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
@@ -368,7 +374,7 @@ class YearStatistic < ApplicationRecord
 
   def self.iconic_taxa_counts( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] iconic_taxa_counts, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] iconic_taxa_counts, year: #{year}, options: #{options}"
     end
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
@@ -393,7 +399,7 @@ class YearStatistic < ApplicationRecord
 
   def self.popular_observations( year, options = {} )
     if options[:debug]
-      puts "[DEBUG] popular_observations, year: #{year}, options: #{options}"
+      puts "[#{Time.now}] popular_observations, year: #{year}, options: #{options}"
     end
     params = options.merge( year: year, has_photos: true, verifiable: true )
     if ( user = params.delete( :user ) )
@@ -521,20 +527,26 @@ class YearStatistic < ApplicationRecord
     [users, buckets.size, buckets.map( &:doc_count ).sum]
   end
 
-  def generate_shareable_image
+  def generate_shareable_image( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] generate_shareable_image, options: #{options}"
+    end
     timeout = 10.seconds
     Timeout.timeout timeout do
       if year >= 2020
-        generate_shareable_image_no_obs
+        generate_shareable_image_no_obs( options )
       else
-        generate_shareable_image_obs_grid
+        generate_shareable_image_obs_grid( options )
       end
     end
   rescue Timeout::Error
     Rails.logger.error "Failed to generate shareable image for YearStatistic #{id} in #{timeout}s"
   end
 
-  def generate_shareable_image_obs_grid
+  def generate_shareable_image_obs_grid( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] generate_shareable_image_obs_grid, options: #{options}"
+    end
     return unless ( popular_obs = data&.dig( :observations, :popular ) )
     return if popular_obs.blank?
 
@@ -683,6 +695,9 @@ class YearStatistic < ApplicationRecord
 
   def generate_shareable_image_no_obs( options = {} )
     debug = options.delete( :debug )
+    if debug
+      puts "[#{Time.now}] generate_shareable_image_no_obs, options: #{options}"
+    end
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
     FileUtils.mkdir_p work_path, mode: 0o755
     # Get the icon
@@ -975,7 +990,7 @@ class YearStatistic < ApplicationRecord
   def self.observed_species_accumulation( params = {}, options = {} )
     debug = params.delete( :debug ) || options[:debug]
     if debug
-      puts "[DEBUG] observed_species_accumulation, params: #{params}, options: #{options}"
+      puts "[#{Time.now}] observed_species_accumulation, params: #{params}, options: #{options}"
     end
     interval = params.delete( :interval ) || "month"
     date_field = params.delete( :date_field ) || "created_at"
@@ -1115,7 +1130,10 @@ class YearStatistic < ApplicationRecord
     end
   end
 
-  def self.publications( year, _options )
+  def self.publications( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
+    end
     # TODO: replace this with https://www.gbif.org/developer/literature
     gbif_endpont = "https://www.gbif.org/api/resource/search"
     gbif_params = {
@@ -1166,6 +1184,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observations_histogram_by_created_month( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observations_histogram_by_created_month, options: #{options}"
+    end
     filters = [
       { terms: { quality_grade: ["research", "needs_id"] } }
     ]
@@ -1201,6 +1222,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.users_histogram_by_created_month( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] users_histogram_by_created_month, options: #{options}"
+    end
     scope = User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
       where( "suspended_at IS NULL AND created_at > '2008-03-01' AND observations_count > 0" )
     if ( site = options[:site] )
@@ -1211,20 +1235,23 @@ class YearStatistic < ApplicationRecord
     end.sort.to_h
   end
 
-  def self.observation_counts_by_country( year, _params = {} )
+  def self.observation_counts_by_country( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observation_counts_by_country, year: #{year}, options: #{options}"
+    end
     Place.where( admin_level: 0 ).all.each_with_object( [] ) do | p, memo |
       r = INatAPIService.observations( per_page: 0, verifiable: true,
         created_d1: "#{year}-01-01",
         created_d2: "#{year}-12-31",
         place_id: p.id )
       year_count = r ? r.total_results : 0
+      next if year_count.to_i <= 0
+
       r = INatAPIService.observations( per_page: 0, verifiable: true,
         created_d1: "#{year - 1}-01-01",
         created_d2: "#{year - 1}-12-31",
         place_id: p.id )
       last_year_count = r ? r.total_results : 0
-      next if year_count.to_i <= 0
-
       memo << {
         place_id: p.id,
         place_code: p.code,
@@ -1237,6 +1264,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.streaks( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] streaks, year: #{year}, options: #{options}"
+    end
     options = options.clone
     debug = options[:debug]
     streak_length = 5
@@ -1437,6 +1467,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.translators( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] translators, year: #{year}, options: #{options}"
+    end
     return unless CONFIG.crowdin&.projects
 
     locale_to_ci_code = {
@@ -1508,6 +1541,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observed_taxa_counts( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observed_taxa_counts, year: #{year}, options: #{options}"
+    end
     params = options.merge( year: year, verifiable: true, page: 1 )
     params[:user_id] = options[:user].id if options[:user]
     data = {}
@@ -1533,6 +1569,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observed_taxa_changes( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observed_taxa_changes, year: #{year}, options: #{options}"
+    end
     # final number of top gains and losses to return
     final_cutoff = 30
     this_years_taxa = observed_taxa_counts( year, options )
@@ -1574,6 +1613,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.donors( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] donors, year: #{year}, options: #{options}"
+    end
     options = options.clone
     debug = options.delete( :debug )
     limit = options.delete( :limit )
@@ -1656,7 +1698,10 @@ class YearStatistic < ApplicationRecord
     end
   end
 
-  def self.monthly_supporters( _year, _options = {} )
+  def self.monthly_supporters( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] monthly_supporters, year: #{year}, options: #{options}"
+    end
     users = User.limit( 30 ).
       where( "donorbox_plan_type = 'monthly'" ).
       where( "donorbox_plan_status = 'active'" ).
@@ -1671,111 +1716,6 @@ class YearStatistic < ApplicationRecord
         icon_url: FakeView.image_url( user.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
       }
     end
-  end
-
-  # Maximum distance in meters between obs created by a single user for each
-  # month of the year. Calculates pairwise comparisons between all obs made by
-  # the user in that month so it's pretty slow.
-  def max_obs_distances_for_user( year, user )
-    data = []
-    ( 1..12 ).each do | month |
-      d1 = Date.new( year, month )
-      d2 = d1.end_of_month
-      sql = <<-SQL
-        SELECT
-          o1.id,
-          o2.id,
-          ST_DistanceSphere(o1.private_geom, o2.private_geom) AS distance
-        FROM
-          observations o1,
-          observations o2
-        WHERE
-          o1.user_id = #{user.id}
-          AND o2.user_id = #{user.id}
-          AND o1.id != o2.id
-          AND o1.geom IS NOT NULL
-          AND o2.geom IS NOT NULL
-          AND o1.observed_on BETWEEN '#{d1}' AND '#{d2}'
-          AND o2.observed_on BETWEEN '#{d1}' AND '#{d2}'
-        ORDER BY distance DESC
-        LIMIT 1
-      SQL
-      r = ActiveRecord::Base.connection.execute( sql )
-      data << [d1.to_s, ( r&.count&.positive? ? r[0]["distance"] : 0 ).to_f]
-    end
-    # CSV(STDOUT) do |csv|
-    #   csv << %w(date distance)
-    #   data.each do |row|
-    #     csv << row
-    #   end
-    # end
-    data
-  end
-
-  # Stats on maximum distance in meters between obs created by all users for
-  # each month of the year. Instead of pairwise comparisons, this just
-  # calculates the bounding box for each user's observations within a month and
-  # uses the box's diagonal as the "distance," so it's just an approximation.
-  def est_max_obs_distances( year, options = {} )
-    debug = options.clone.delete( :debug )
-    data = []
-    ( 1..12 ).each do | month |
-      d1 = Date.new( year, month )
-      d2 = d1.end_of_month
-      params = { geo: true, d1: d1.to_s, d2: d2.to_s }
-      elastic_params = Observation.params_to_elastic_query( params )
-      geo_bounds_params = elastic_params.merge(
-        size: 0,
-        track_total_hits: true,
-        aggs: {
-          user_ids: {
-            terms: {
-              field: "user.id",
-              size: 300_000
-            },
-            aggs: {
-              bounding_box: {
-                geo_bounds: {
-                  field: "private_location"
-                }
-              }
-            }
-          }
-        }
-      )
-      distances = []
-      buckets = Observation.elastic_search( geo_bounds_params ).response.aggregations.user_ids.buckets
-      puts "#{d1}, calculating distances for #{buckets.size} users..." if debug
-      buckets.each do | bucket |
-        next unless bucket.bounding_box&.bounds
-        next if bucket.doc_count <= 1
-
-        d = lat_lon_distance_in_meters(
-          bucket.bounding_box.bounds.bottom_right.lat,
-          bucket.bounding_box.bounds.bottom_right.lon,
-          bucket.bounding_box.bounds.top_left.lat,
-          bucket.bounding_box.bounds.top_left.lon
-        )
-        next if d.zero?
-
-        distances << d
-      end
-      data << {
-        date: d1.to_s,
-        avg: distances.sum / distances.size.to_f,
-        med: distances.median
-        # min: distances.min,
-        # max: distances.max
-      }
-    end
-    headers = data[0].keys
-    CSV( $stdout ) do | csv |
-      csv << headers
-      data.each do | row |
-        csv << headers.map {| h | row[h] }
-      end
-    end
-    data
   end
 
   def self.identifications_es_base_params( year )
@@ -1802,7 +1742,10 @@ class YearStatistic < ApplicationRecord
     tz.tzinfo.name
   end
 
-  def self.github_pull_requests( year )
+  def self.github_pull_requests( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] github_pull_requests, year: #{year}, options: #{options}"
+    end
     year_pulls = []
     repos = %w(
       inaturalist
