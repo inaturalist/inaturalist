@@ -1754,6 +1754,7 @@ class YearStatistic < ApplicationRecord
       INaturalistIOS
       inaturalistjs
       iNaturalistReactNative
+      SeekReactNative
     )
     repos.each do | repo |
       page = 1
@@ -1768,7 +1769,7 @@ class YearStatistic < ApplicationRecord
             !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
             # For some reason the MEMBER and COLLABOTOR filters don't always
             # filter out everyone on staff...
-            !%w(dependabot[bot] meru20 carrieseltzer).include?( pull["user"]["login"] ) &&
+            !%w(dependabot[bot] meru20 carrieseltzer sylvain-morin).include?( pull["user"]["login"] ) &&
             Date.parse( pull["merged_at"] ).year == year
         end
         if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
