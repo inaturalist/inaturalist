@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
 import chroma from "chroma-js";
 import { cellToBoundary, cellToLatLng } from "h3-js";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -10,18 +11,21 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 /* global GEO_MODEL_CELL_SCORES */
 /* global TAXON_RANGE_DATA */
 /* global GEO_MODEL_TAXON */
+/* global EXPECTED_NEARBY_FIGURE_URL */
+/* global WEIGHTING_FIGURE_URL */
+/* global RANGE_COMPARISON_FIGURE_URL */
 
 const urlParams = new URLSearchParams( window.location.search );
 
-const NEARBY_COLOR = urlParams.get( "nearby_color" ) || "#5EACFF";
+const NEARBY_COLOR = urlParams.get( "nearby_color" ) || "#007DFF";
 const NEARBY_OPACITY = urlParams.get( "nearby_opacity" ) || 0.4;
 const RANGE_COLOR = urlParams.get( "range_color" ) || "#FF5EB0";
 const RANGE_OPACITY = urlParams.get( "range_opacity" ) || 0.4;
-const OVERLAP_COLOR = urlParams.get( "overlap_color" ) || "#ADA3E8";
+const OVERLAP_COLOR = urlParams.get( "overlap_color" ) || "#5A57D1";
 const OVERLAP_OPACITY = urlParams.get( "overlap_opacity" ) || 0.8;
-const SCORE_COLOR_LOWER = urlParams.get( "score_color_lower" ) || NEARBY_COLOR;
+const SCORE_COLOR_LOWER = urlParams.get( "score_color_lower" ) || "#97CAFF";
 const SCORE_OPACITY_LOWER = urlParams.get( "score_opacity_lower" ) || 0;
-const SCORE_COLOR_UPPER = urlParams.get( "score_color_upper" ) || NEARBY_COLOR;
+const SCORE_COLOR_UPPER = urlParams.get( "score_color_upper" ) || "#1574D8";
 const SCORE_OPACITY_UPPER = urlParams.get( "score_opacity_upper" ) || 1;
 const SCORE_OPACITY = urlParams.get( "score_opacity" ) || 0.9;
 
@@ -84,7 +88,7 @@ class App extends React.Component {
     const min = _.min( _.values( GEO_MODEL_CELL_SCORES ) );
     const colorScale = customColorScale( SCORE_COLOR_LOWER, SCORE_COLOR_UPPER, min, max );
     const allData = {
-      geomodelCellScores: _.mapValues( GEO_MODEL_CELL_SCORES, v => ( {
+      unthresholdedMap: _.mapValues( GEO_MODEL_CELL_SCORES, v => ( {
         value: v,
         color: colorScale( logStretch( v, min, max ) ),
         opacity: SCORE_OPACITY
@@ -94,7 +98,7 @@ class App extends React.Component {
         value: v,
         color: NEARBY_COLOR
       } ) ),
-      rangeComparison: this.rangeComparisonData( )
+      expectedNearbyVsTaxonRange: this.expectedNearbyVsTaxonRangeData( )
     };
     let bounds;
     _.each( allData, ( data, key ) => {
@@ -103,7 +107,7 @@ class App extends React.Component {
       const threshold = key === "expectedNearbyData" ? GEO_MODEL_TAXON.threshold : null;
       const dataGeoJson = this.geoJSONFromData( data, key, threshold );
       drawLayer.addGeoJson( dataGeoJson );
-      if ( key === "geomodelCellScores" ) {
+      if ( key === "unthresholdedMap" ) {
         const latitudes = _.map( dataGeoJson.features, f => ( f.properties.centroid[0] ) );
         const minLat = _.min( latitudes );
         const maxLat = _.max( latitudes );
@@ -120,8 +124,13 @@ class App extends React.Component {
       drawLayer.setStyle( this.cellStyle );
     } );
 
-    this.setState( { layer: "geomodelCellScores" } );
+    this.setState( { layer: "expectedNearbyData" } );
     this.map.fitBounds( bounds );
+    // TODO: terrible hack to get tile layers to render over data layers
+    // After transition these data layers to tile layers, this can be removed
+    setTimeout( ( ) => (
+      $( $( "[aria-label='Map'] > div:first > div:first" )[0] ).css( "zIndex", 500 )
+    ), 1000 );
   }
 
   componentDidUpdate( prevProps, prevState ) {
@@ -138,7 +147,7 @@ class App extends React.Component {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  rangeComparisonData( ) {
+  expectedNearbyVsTaxonRangeData( ) {
     const comparisonData = { };
     // add data for all cells in the geo model
     _.each( GEO_MODEL_CELL_SCORES, ( value, cellKey ) => {
@@ -218,47 +227,219 @@ class App extends React.Component {
     const buttons = [];
     buttons.push( (
       <button
-        className={`btn btn-default${this.state.layer === "geomodelCellScores" ? " active" : ""}`}
-        type="button"
-        key="geomodelCellScores"
-        onClick={( ) => this.setState( { layer: "geomodelCellScores" } )}
-      >
-        Geomodel Score Map
-      </button>
-    ) );
-    buttons.push( (
-      <button
         className={`btn btn-default${this.state.layer === "expectedNearbyData" ? " active" : ""}`}
         type="button"
         key="expectedNearbyData"
         onClick={( ) => this.setState( { layer: "expectedNearbyData" } )}
       >
-        Expected Nearby Map
+        { I18n.t( "views.geo_model.explain.nearby_map.expected_nearby_map" ) }
+      </button>
+    ) );
+    buttons.push( (
+      <button
+        className={`btn btn-default${this.state.layer === "unthresholdedMap" ? " active" : ""}`}
+        type="button"
+        key="unthresholdedMap"
+        onClick={( ) => this.setState( { layer: "unthresholdedMap" } )}
+      >
+        { I18n.t( "views.geo_model.explain.unthresholded_map.unthresholded_map" ) }
       </button>
     ) );
     if ( !_.isEmpty( TAXON_RANGE_DATA ) ) {
       buttons.push( (
         <button
-          className={`btn btn-default${this.state.layer === "rangeComparison" ? " active" : ""}`}
+          className={`btn btn-default${this.state.layer === "expectedNearbyVsTaxonRange" ? " active" : ""}`}
           type="button"
-          key="rangeComparison"
-          onClick={( ) => this.setState( { layer: "rangeComparison" } )}
+          key="expectedNearbyVsTaxonRange"
+          onClick={( ) => this.setState( { layer: "expectedNearbyVsTaxonRange" } )}
         >
-          Expected Nearby Evaluation
+          { I18n.t( "views.geo_model.explain.range_comparison.expected_nearby_vs_taxon_range" ) }
         </button>
       ) );
     }
 
+    let tabDescription;
+    if ( this.state.layer === "unthresholdedMap" ) {
+      tabDescription = (
+        <div>
+          <p>
+            { I18n.t( "views.geo_model.explain.unthresholded_map.we_use_the_unthresholded_map" ) }
+          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.geo_model.explain.unthresholded_map.for_example" )
+            }}
+          />
+          <p className="figure">
+            <img
+              alt={I18n.t( "views.geo_model.explain.unthresholded_map.figure_alt_text" )}
+              src={WEIGHTING_FIGURE_URL}
+            />
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.unthresholded_map.you_can_think" ) }
+          </p>
+        </div>
+      );
+    } else if ( this.state.layer === "expectedNearbyData" ) {
+      tabDescription = (
+        <div>
+          <p>
+            { I18n.t( "views.geo_model.explain.nearby_map.we_use_this_map" ) }
+          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.geo_model.explain.nearby_map.for_example" )
+            }}
+          />
+          <p className="figure">
+            <img
+              alt={I18n.t( "views.geo_model.explain.nearby_map.figure_alt_text" )}
+              src={EXPECTED_NEARBY_FIGURE_URL}
+            />
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.nearby_map.you_can_think" ) }
+          </p>
+        </div>
+      );
+    } else if ( this.state.layer === "expectedNearbyVsTaxonRange" ) {
+      const truePresences = I18n.t( "views.geo_model.explain.range_comparison.true_presences" );
+      const falsePresences = I18n.t( "views.geo_model.explain.range_comparison.false_absences" );
+      const falseAbsences = I18n.t( "views.geo_model.explain.range_comparison.false_absences" );
+      const precision = _.round( GEO_MODEL_TAXON.precision, 2 );
+      const recall = _.round( GEO_MODEL_TAXON.recall, 2 );
+      const f1 = _.round( GEO_MODEL_TAXON.f1, 2 );
+      tabDescription = (
+        <div>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.this_map_shows" ) }
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.this_gridded_version" ) }
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.by_combining" ) }
+          </p>
+          <p className="figure comparison">
+            <img
+              alt={I18n.t( "views.geo_model.explain.range_comparison.figure_alt_text" )}
+              src={RANGE_COMPARISON_FIGURE_URL}
+            />
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.combining_these_maps_produces" ) }
+          </p>
+          <div className="row color-legend">
+            <div className="col-xs-12">
+              <div className="color-box" style={{ backgroundColor: NEARBY_COLOR, opacity: NEARBY_OPACITY }} />
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.false_presences_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.false_presences_definition" ) }
+            </div>
+          </div>
+          <div className="row color-legend">
+            <div className="col-xs-12">
+              <div className="color-box" style={{ backgroundColor: RANGE_COLOR, opacity: RANGE_OPACITY }} />
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.false_absences_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.false_absences_definition" ) }
+            </div>
+          </div>
+          <div className="row color-legend">
+            <div className="col-xs-12">
+              <div className="color-box" style={{ backgroundColor: OVERLAP_COLOR, opacity: OVERLAP_OPACITY }} />
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.true_presences_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.true_presences_definition" ) }
+            </div>
+          </div>
+          <div className="row">
+            <div
+              className="col-xs-12 evaluation-header"
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.geo_model.explain.range_comparison.evaluation_statistics_for_taxon", {
+                  taxon: ReactDOMServer.renderToString(
+                    <SplitTaxon
+                      taxon={taxon}
+                      user={config.currentUser}
+                      url={`/taxa/${taxon.id}`}
+                    />
+                  )
+                } )
+              }}
+            />
+          </div>
+          <div className="row stat-description">
+            <div className="col-xs-12">
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.precision_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.precision_description" ) }
+              <br />
+              {truePresences} / ({truePresences} + {falsePresences}) = <span className="strong-label">
+                {precision}
+              </span>
+            </div>
+          </div>
+          <div className="row stat-description">
+            <div className="col-xs-12">
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.recall_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.recall_description" ) }
+              <br />
+              {truePresences} / ({truePresences} + {falseAbsences}) = <span className="strong-label">
+                {recall}
+              </span>
+            </div>
+          </div>
+          <div className="row stat-description">
+            <div className="col-xs-12">
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.f1_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.f1_description" ) }
+              <br />
+              2 × {truePresences} / (2 × {truePresences} + {falsePresences} + {falseAbsences}) = <span className="strong-label">
+                {f1}
+              </span>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              { I18n.t( "views.geo_model.explain.range_comparison.perfect_overlap" ) }
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div id="TaxonGeoExplain" className="container">
-        <h1>
-          GeoModel Predictions of
-          <SplitTaxon
-            taxon={taxon}
-            user={config.currentUser}
-            url={`/taxa/${taxon.id}`}
-          />
-        </h1>
+        <h1
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.geo_model.explain.geomodel_predictions_of_taxon", {
+              taxon: ReactDOMServer.renderToString(
+                <SplitTaxon
+                  taxon={taxon}
+                  user={config.currentUser}
+                  url={`/taxa/${taxon.id}`}
+                />
+              )
+            } )
+          }}
+        />
+        <p>
+          { I18n.t( "views.geo_model.explain.the_geo_model_makes_predictions" ) }
+        </p>
+        <p dangerouslySetInnerHTML={{
+          __html: I18n.t( "views.geo_model.explain.the_geo_model_is_trained", { url: "/blog" } )
+        }}
+        />
         <TaxonMap
           placement="taxa-show"
           showAllLayer={false}
@@ -272,6 +453,7 @@ class App extends React.Component {
             ranges: "disabled"
           }]}
           gestureHandling="auto"
+          mapType={google.maps.MapTypeId.TERRAIN}
           showLegend
         />
         <div className="container">
@@ -280,6 +462,9 @@ class App extends React.Component {
               { buttons }
             </div>
           </div>
+        </div>
+        <div className="tab-description">
+          { tabDescription }
         </div>
       </div>
     );

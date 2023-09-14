@@ -10,7 +10,7 @@
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %> </title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %></title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>

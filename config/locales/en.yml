@@ -2014,6 +2014,7 @@ en:
   exit_full_screen: "Exit Full Screen"
   examples_of_data_use_by_network_members: Examples of Data Use by Network Members
   examples_of_ranking_organizations: Examples of Ranking Organizations
+  expected_nearby: Expected Nearby
   explore: Explore
   export: Export
   export_observations: Export Observations
@@ -2470,6 +2471,7 @@ en:
   include_places: Include Places
   include_projects: Include Projects
   include_suggestions_not_seen_nearby: Include suggestions not seen nearby
+  include_suggestions_not_expected_nearby: Include suggestions not expected nearby
   include_taxa: Include Taxa
   include_users: Include Users
   including: including
@@ -6545,6 +6547,87 @@ en:
           Please resolve <code>spam</code> and <code>copyright
           infringement</code> flags only if the content is not spam or not an
           infringement of copyright, respectively.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodel Predictions of %{taxon}
+        the_geo_model_makes_predictions: |
+          The Geomodel makes predictions about where species occur and where they are absent.
+          We use the Geomodel to apply the "Expected Nearby" label alongside suggestions and
+          to weight these suggestions based on the location of the observation.
+        the_geo_model_is_trained: |
+          Like the Computer Vision Model, the Geomodel is trained on iNaturalist observations
+          for the same set of species with roughly more than 100 photos. The Geomodel does not
+          make perfect predictions. You can read more about how the Geomodel is made
+          <a href="%{url}">here</a>.
+        nearby_map:
+          expected_nearby_map: Expected Nearby Map
+          we_use_this_map: |
+            We use this map to apply the Expected Nearby label to suggestions based on the
+            location of the observation.
+          for_example: |
+            For example, an observation of a lizard in the center of the United States might
+            have the Expected Nearby label applied to a suggestion of <i>Sceloporus consobrinus</i>
+            but not <i>Sceloporus occidentalis</i> based on their respective Expected Nearby Maps.
+          you_can_think: |
+            You can think of the Expected Nearby Map as an estimate of whether the species
+            is present somewhere inside the grid cell or entirely absent.
+          figure_alt_text: The Geomodel applies the Expected Nearby label
+        unthresholded_map:
+          unthresholded_map: Unthresholded Map
+          we_use_the_unthresholded_map: |
+            We use the Unthresholded Map to weight computer vision scores by location when
+            offering suggestions.
+          for_example: |
+            For example, an observation of a lizard in the center of the United States might
+            have the suggestions of <i>Sceloporus consobrinus</i> weighted more than suggestions
+            of <i>Sceloporus occidentalis</i> based on comparing the Unthresholded Maps, despite
+            being visually similar.
+          you_can_think: |
+            You can think of the Unthresholded Map as the relative probability that a species
+            occurs within a grid cell.
+          figure_alt_text: The Geomodel weights Computer Vision results
+        range_comparison:
+          expected_nearby_vs_taxon_range: Expected Nearby vs Taxon Range
+          this_map_shows: |
+            This map shows the Taxon Range for this species overlapping the Expected Nearby Map
+            that we use to evaluate the Geomodel.
+          this_gridded_version: |
+            This gridded version of the Taxon Range is a snapshot taken when the model was
+            trained and gridded at the same resolution as the Expected Nearby Map. We only
+            use the Taxon Ranges where at least 90% of the training data for that species
+            falls within the Taxon Range to control for errors in the Taxon Ranges.
+          by_combining: |
+            By combining the Expected Nearby Map to the Taxon Range, we calculate statistics
+            to estimate how well the Geomodel performs.
+          figure_alt_text: The Expected Nearby map and Taxon Range are compared
+          combining_these_maps_produces: |
+            Combining these maps produces 3 types of cells:
+          true_presences: True Presences
+          true_presences_colon: |
+            True Presences:
+          true_presences_definition: Both of the Expected Nearby Map and Taxon Range are present
+          false_presences: False Presences
+          false_presences_colon: |
+            False Presences:
+          false_presences_definition: Only the Expected Nearby Map is present
+          false_absences: False Absences
+          false_absences_colon: |
+            False Absences:
+          false_absences_definition: Only the Taxon Range is present
+          evaluation_statistics_for_taxon: Evaluation statistics for %{taxon}
+          precision_colon: |
+            Precision:
+          precision_description: The fraction of the Expected Nearby Map that are True Presences
+          recall_colon: |
+            Recall:
+          recall_description: The fraction of the Taxon Range that are True Presences
+          f1_colon: |
+            F1:
+          f1_description: The average (harmonic mean) of Precision and Recall
+          perfect_overlap: |
+            Perfect overlap would evaluate with a Precision, Recall and F1 of 1. No overlap
+            would evaluate with a Precision , Recall, and F1 of 0.
     guides:
       index:
         deprecated_banner: |
