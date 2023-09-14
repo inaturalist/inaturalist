@@ -1018,9 +1018,10 @@ class YearStatistic < ApplicationRecord
       [histogram_params],
       [
         Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Faraday::TimeoutError
+        Faraday::TimeoutError,
+        Elasticsearch::Transport::Transport::Errors::BadRequest
       ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
+      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
       parallel: NUM_ES_WORKERS
     ) do | args |
       es_params = args[0].dup
