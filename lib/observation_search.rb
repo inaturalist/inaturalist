@@ -49,7 +49,7 @@ module ObservationSearch
         end
         break if batch.size == 0
         block.call(batch)
-        search_params[:id_above] = batch.last.id
+        search_params[:min_id] = batch.last.id + 1
       end
     end
 
