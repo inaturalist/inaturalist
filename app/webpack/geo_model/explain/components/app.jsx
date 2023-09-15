@@ -304,9 +304,6 @@ class App extends React.Component {
         </div>
       );
     } else if ( this.state.layer === "expectedNearbyVsTaxonRange" ) {
-      const truePresences = I18n.t( "views.geo_model.explain.range_comparison.true_presences" );
-      const falsePresences = I18n.t( "views.geo_model.explain.range_comparison.false_absences" );
-      const falseAbsences = I18n.t( "views.geo_model.explain.range_comparison.false_absences" );
       const precision = _.round( GEO_MODEL_TAXON.precision, 2 );
       const recall = _.round( GEO_MODEL_TAXON.recall, 2 );
       const f1 = _.round( GEO_MODEL_TAXON.f1, 2 );
@@ -380,9 +377,13 @@ class App extends React.Component {
               </span>
               { I18n.t( "views.geo_model.explain.range_comparison.precision_description" ) }
               <br />
-              {truePresences} / ({truePresences} + {falsePresences}) = <span className="strong-label">
-                {precision}
-              </span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.geo_model.explain.range_comparison.precision_equation", {
+                    precision: ReactDOMServer.renderToString( <span className="strong-label">{precision}</span> )
+                  } )
+                }}
+              />
             </div>
           </div>
           <div className="row stat-description">
@@ -392,9 +393,13 @@ class App extends React.Component {
               </span>
               { I18n.t( "views.geo_model.explain.range_comparison.recall_description" ) }
               <br />
-              {truePresences} / ({truePresences} + {falseAbsences}) = <span className="strong-label">
-                {recall}
-              </span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.geo_model.explain.range_comparison.recall_equation", {
+                    recall: ReactDOMServer.renderToString( <span className="strong-label">{recall}</span> )
+                  } )
+                }}
+              />
             </div>
           </div>
           <div className="row stat-description">
@@ -404,9 +409,13 @@ class App extends React.Component {
               </span>
               { I18n.t( "views.geo_model.explain.range_comparison.f1_description" ) }
               <br />
-              2 × {truePresences} / (2 × {truePresences} + {falsePresences} + {falseAbsences}) = <span className="strong-label">
-                {f1}
-              </span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.geo_model.explain.range_comparison.f1_equation", {
+                    f1: ReactDOMServer.renderToString( <span className="strong-label">{f1}</span> )
+                  } )
+                }}
+              />
             </div>
           </div>
           <div className="row">
