@@ -5840,6 +5840,23 @@ de:
           Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Admins können dies sehen. Nur Admins können dies bei Nachrichten sehen.
         flags_that_should_not_be_resolved_desc_html: |
           Bitte <code>Spam</code> und <code>Copyright-Verletzungen</code> nur dann auflösen, wenn der Inhalt kein Spam ist oder keine Verletzung des Urheberrechts vorliegt.
+    geo_model:
+      explain:
+        range_comparison:
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Genauigkeit:
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Trefferquote:
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Der Durchschnitt (harmonisches Mittel) von Genauigkeit und Trefferquote
+          perfect_overlap: |
+            Eine perfekte Überlagerung würde mit einer Genauigkeit, Trefferquote und F1 von '1' gewertet werden; keine Überschneidung hingegen mit den Werten '0'
     guides:
       index:
         deprecated_banner: |
