@@ -17,12 +17,24 @@ class AdminController < ApplicationController
   end
 
   def users
-    @users = User.paginate( page: params[:page] ).order( id: :desc )
+    @q_login = params[:q_login].try( :strip )
+    @q_name = params[:q_name].try( :strip )
+    @q_email = params[:q_email].try( :strip )
+    @q_ip = params[:q_ip].try( :strip )
+    must = []     
+    must << { wildcard: { login_exact: { value: @q_login+"*" } } } unless @q_login.blank?
+    must << { wildcard: { name: { value: @q_name+"*" } } } unless @q_name.blank?
+    must << { wildcard: { email: { value: @q_email+"*" } } } unless @q_email.blank?
+    must << { wildcard: { last_ip: { value: @q_ip+"*" } } } unless @q_ip.blank?
+    search_result = User.elastic_search( 
+      filters: [
+        bool: {
+          must: must
+        }
+      ] 
+    ).page( params[:page] )
+    @users = User.result_to_will_paginate_collection(search_result)
     @comment_counts_by_user_id = Comment.where( user_id: @users ).group( :user_id ).count
-    @q = params[:q].try( :strip )
-    @users = @users.where(
-      "login ILIKE ? OR name ILIKE ? OR email ILIKE ? OR last_ip LIKE ?", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%"
-    )
     respond_to do | format |
       format.html { render layout: "admin" }
     end

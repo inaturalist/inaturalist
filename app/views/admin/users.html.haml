@@ -20,11 +20,31 @@
       padding: 3px 10px;
     }
 .container
-  .row
-    .col-xs-12
-      %form.form-inline{ method: "get" }
-        %input.form-control#id{ name: "q", type: "search", value: @q, placeholder: "Login, name, email, or IP" }
-        %input.btn.btn-default{ type: "submit", value: "Search" }
+  =form_tag( { controller: :admin, action: :users }, method: :get ) do
+    .row
+      .col-xs-3
+        =label_tag :q_login, "login"
+      .col-xs-9
+        =text_field_tag :q_login, @q_login, class: 'form-control'
+    .row
+      .col-xs-3
+        =label_tag :q_name, "name"
+      .col-xs-9
+        =text_field_tag :q_name, @q_name, class: 'form-control'
+    .row
+      .col-xs-3
+        =label_tag :q_email, "email"
+      .col-xs-9
+        =text_field_tag :q_email, @q_email, class: 'form-control'
+    .row
+      .col-xs-3
+        =label_tag :q_ip, "IP"  
+      .col-xs-9
+        =text_field_tag :q_ip, @q_ip, class: 'form-control'
+    .row
+      .col-xs-3
+      .col-xs-9
+        =button_tag 'Search', class: 'btn btn-default', type: :submit
   - if @users.blank?
     .nocontent=t :no_results_found
   - else
