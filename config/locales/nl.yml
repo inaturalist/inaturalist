@@ -6017,6 +6017,12 @@ nl:
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
         flags_that_should_not_be_resolved_desc_html: |
           Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
+    geo_model:
+      explain:
+        range_comparison:
+          true_presences_definition: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het Taxonbereik voorspelt dat het taxon voorkomt
+          false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
+          false_absences_definition: Gebieden waar alleen het taxonbereik aanwezig is
     guides:
       index:
         deprecated_banner: |
