@@ -1711,6 +1711,7 @@ fi:
   exclusion_filters: Poissulkevat suotimet
   existing_flags: Nykyiset liput
   exit_full_screen: "Poistu kokoruututilasta"
+  expected_nearby: Odotettavissa lähistöllä
   explore: Tutki
   export: Lataa
   export_observations: Lataa havaintotiedosto
@@ -2066,6 +2067,7 @@ fi:
   include_places: Sisällytä paikat
   include_projects: Sisällytä projektit
   include_suggestions_not_seen_nearby: Sisällytä ehdotukset, joita ei ole nähty lähistöllä
+  include_suggestions_not_expected_nearby: Anna ehdotuksia myös lajeista, joita ei ole odotettavissa lähistöllä
   include_taxa: Sisällytä taksonit
   include_users: Sisällytä käyttäjät
   including: mukaan lukien
@@ -5240,6 +5242,22 @@ fi:
           Huomautus (liputus) voi liittyä vain liputetun kohteen luontiaikaiseen alkuperäiseen sisältöön. Vain kuraattorit ja ylläpitäjät voivat nähdä näitä tietoja. Vain ylläpitäjät näkevät viestejä koskevat huomautukset.
         flags_that_should_not_be_resolved_desc_html: |
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomallin ennuste taksonista
+        the_geo_model_makes_predictions: |
+          Geomalli ennustaa, missä lajit esiintyvät ja missä niitä ei havaita.
+          Hyödynnämme geomallia tarjotessamme "Odotettavissa lähistöllä" -merkkiä ehdotusten rinnalla ja
+          painottamaan näitä ehdotuksia havainnon sijainnin perusteella.
+        the_geo_model_is_trained: |
+          Kuten konenäkömalli, myös geomalli on koulutettu iNaturalistin havainnoilla. Geomalli ei tee täydellisiä ennusteita. Voit lukea lisää geomallista <a href="%{url}">täältä</a>.
+        nearby_map:
+          expected_nearby_map: Odotettavissa lähistöllä -kartta
+          we_use_this_map: |
+            Käytämme tätä karttaa lisätessämme Odotettavissa lähistöllä -merkin ehdotuksiin, jotka perustuvat havainnon sijaintiin.
+          for_example: |
+            Esimerkiksi Yhdysvaltojen keskiosissa tehdyn liskohavainnon kohdalla saattaa olla "Odotettavissa lähistöllä" -merkki ehdotuksen <i>Sceloporus consobrinus</i> osalta, mutta ei <i>Sceloporus occidentalis</i> osalta perustuen lajien "Odotettavissa lähistöllä"-karttoihin.
     guides:
       index:
         deprecated_banner: |
