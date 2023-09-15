@@ -1824,6 +1824,7 @@ da:
   exit_full_screen: "Afslut fuld skærm"
   examples_of_data_use_by_network_members: Eksempler på Dataanvendelse af netværksmedlemmer
   examples_of_ranking_organizations: Eksempler på naturbeskyttelsesorganisationer
+  expected_nearby: Forventet i nærheden
   explore: Udforsk
   export: Eksportér
   export_observations: Eksportér observationer
@@ -2248,6 +2249,7 @@ da:
   include_places: Inkludér steder
   include_projects: Inkludér projekter
   include_suggestions_not_seen_nearby: Medtag forslag for ikke set i nærheden
+  include_suggestions_not_expected_nearby: Medtag forslag ikke forventet i nærheden
   include_taxa: Inkludér taksa
   include_users: Inkludér brugere
   including: inklusiv
@@ -6115,6 +6117,91 @@ da:
           Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
           markér kun hvis indholdet ikke er spam eller ikke er en krænkelse af
           ophavsret.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodelforudsigelser for %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodellen foretager forudsigelser om, hvor arter forekommer, og hvor de er fraværende.
+          Vi bruger Geomodellen til at tilføje etiketten "Forventet i nærheden" sammen med forslag, samt
+          til vægtning af disse forslag baseret på observationsplaceringen.
+        the_geo_model_is_trained: |
+          Som med Computervisionsmodellen, er Geomodellen trænet med iNaturalist-observationer
+          for det samme sæt arter med omkring 100 fotos. Geomodellen
+          foretager ikke perfekte forudsigelser. Læs evt. mere om, hvordan Geomodellen er lavet
+          <a href="%{url}">hér</a>.
+        nearby_map:
+          expected_nearby_map: Forventet i nærheden-kort
+          we_use_this_map: |
+            Vi bruger dette kort til at føje etiketten Forventede i nærheden til forslag baseret på
+            observationsplaceringen.
+          for_example: |
+            Eksempelvis kan en observation af et firben i central-USA 
+            have etiketten Forventet i nærheden føjet til et forslag af <i>Sceloporus consobrinus</i>,
+            men ikke <i>Sceloporus occidentalis</i>, baseret på deres respektive Forventet i nærheden-kort.
+          you_can_think: |
+            Man kan tænke på Forventet i nærheden-kortet som et skøn over, hvorvidt arten
+            er til stede et eller andet sted i gittercellen, eller er helt fraværende.
+          figure_alt_text: Geomodellen tilføjer etiketten Forventet i nærheden
+        unthresholded_map:
+          unthresholded_map: Uafgrænset-kort
+          we_use_the_unthresholded_map: |
+            Vi bruger Uafgrænset-kortet til at vægte computervisionsscorer efter placering, når
+            forslag tilbydes.
+          for_example: |
+            Eksempelvis kan en observation af et firben i central-USA måske
+            få forslaget <i>Sceloporus consobrinus</i> vægtet mere end forslaget
+            <i>Sceloporus occidentalis</i> baseret på sammenligning af Uafgrænset-kortene til trods for
+            visuel lighed.
+          you_can_think: |
+            Man kan tænke på det Uafgrænset-kortet som den relative sandsynlighed for, at en art
+            forekommer i en gittercelle.
+          figure_alt_text: Geomodellen vægter Computervisionsresultater
+        range_comparison:
+          expected_nearby_vs_taxon_range: Forventet i nærheden kontra Taksonudbredelse
+          this_map_shows: |
+            Dette kort viser Taksonudbredelsen for denne art overlapper det Uafgrænset-kort,
+            som vi bruger til at evaluere Geomodellen.
+          this_gridded_version: |
+            Gitterversionen af Taksonudbredelsen er et øjebliksbillede taget da modellen blev
+            trænet og gitteroverlejret i samme opløsning som Forventet i nærheden-kortet. Vi bruger kun
+            Taksonudbredelser, hvor mindst 90% af træningsdataene for den pågældende art
+            falder ind under Taksonudbredelse til at tjekke for fejl i Taksonudbredelser.
+          by_combining: |
+            Ved at kombinere Forventet i nærheden-kort til Taksonudbredelse, beregner vi statistik
+            for at vurdere, hvor god Geomodellens ydelse er.
+          figure_alt_text: Forventet i nærheden-kortet og Taksonudbredelse sammenlignes
+          combining_these_maps_produces: |
+            Kombination af disse kort producerer 3 typer af celler:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Sand tilstedeværelse:
+          true_presences_definition: Områder, hvor både Forventet i nærheden-kortet og Taksoudbredelsen forudser, at taksonen forefindes.
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falsk tilstedeværelse:
+          false_presences_definition: Områder, hvor kun Forventet i nærheden-kortet forudsiger, at taksonen forefindes
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falsk fravær:
+          false_absences_definition: Områder, hvor kun Taksonudbredelsen er til stede
+          evaluation_statistics_for_taxon: Evalueringsstatistik for %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Præcision:
+          precision_description: Den brøkdel af Forventet i nærheden-kortet, der er Sand tilstedeværelse
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Sammenfaldsrate (Recall):
+          recall_description: Den brøkdel af Taksonudbredelsen, der er Sand tilstedeværelse
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Gennemsnittet (harmonisk middel) af Præcision og Sammenfaldsrate
+          perfect_overlap: |
+            En perfekt overlapning ville modsvare en Præcision, Sammenfaldsrate og F1 på 1. Ingen overlapning ville modsvare en Præcision, Sammenfaldsrate og F1 på 0.
     guides:
       index:
         deprecated_banner: |
