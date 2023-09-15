@@ -856,6 +856,7 @@ sr:
   community_id_at_species_or_lower?: Takson zajednice na nivou vrste ili niže?
   community_id_at_species_level_or_lower: Takson zajednice na nivou vrste ili niže
   community_id_is_precise: Takson zajednice je precizan
+  community_moderation_settings: Podešavanja doprinosa zajednice
   community_supported_id: Takson podržala zajednica?
   compare: Uporedi
   compare_with: Uporedi sa
@@ -910,6 +911,7 @@ sr:
   contact_support: Kontaktiraj korisničku podršku
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Sadržaj
+  content_and_display: Sadržaj i prikaz
   content_author: Autor sadržaja
   content_hidden: Sadržaj sakriven
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1481,6 +1483,7 @@ sr:
   give_monthly_caps: DONIRAJ MESEČNO
   #Prompt to donate money once
   give_now_caps: DONIRAJ SAD
+  global_names: Globalni nazivi
   globally: Globalno
   go: Traži
   go_back: Nazad
@@ -1927,6 +1930,7 @@ sr:
   make_a_new_place: Napravi novo mesto
   mammals: sisari
   manage_all_your_subscriptions: Upravljaj svojim praćenjima
+  manage_names: Upravljaj nazivima
   manage_your_projects: Upravljaj tvojim projektima
   manage_your_relationships: Upravljaj tvojim odnosima
   managers_can_do: Menadžeri imaju ista ovlašćenja kao kustosi ali i uređivanje podešavanja projekta i kreiranje rubrika dnevnika projekta.
@@ -2084,6 +2088,7 @@ sr:
   name_or_slug: "Naziv ili glavni deo URL-a, npr. my-project"
   name_providers:
     col: Katalog života
+  names: Nazivi
   names_for_taxon_html: "Nazivi za %{taxon}"
   native: autohton
   native_to_place: "Autohton u %{place}"
@@ -2156,7 +2161,7 @@ sr:
   next_tab: Sledeća kartica
   next_taxon_short: Sledeći
   'no': 'Ne'
-  no_but_it_is_a_member_of_taxon: "Ne, ali pripada %{taxon} taksonu"
+  no_but_it_is_a_member_of_taxon: "Ne, ali je %{taxon}"
   no_comments_yet: Nema komentara.
   no_curators_yet: Nema kustosa!
   no_description: Nema opisa
@@ -4131,6 +4136,7 @@ sr:
   white: bela
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Zašto praviš ovu promenu? (opciono)
+  who_can_add_observation_fields_to_my_obs: Ko može da doda opservaciona polja na mojim opservacijama?
   who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
   who_can_see_the_coordinates: Ko može videti koordinate
   who_can_see_the_coordinates_observer: Osoba koja je napravila ovu opservaciju
