@@ -5244,8 +5244,6 @@ fi:
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     geo_model:
       explain:
-        geomodel_predictions_of_taxon: |
-          Geomallin ennuste taksonista
         the_geo_model_makes_predictions: |
           Geomalli ennustaa, missä lajit esiintyvät ja missä niitä ei havaita.
           Hyödynnämme geomallia tarjotessamme "Odotettavissa lähistöllä" -merkkiä ehdotusten rinnalla ja
