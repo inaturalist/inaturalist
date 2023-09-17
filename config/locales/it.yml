@@ -392,6 +392,7 @@ it:
   agree_: D'accordo
   agree?: D’accordo?
   agree_with_current_taxon: D'accordo con il taxon corrente
+  agree_with_observation_taxon: Concorda con il taxon d'osservazione
   agreeing: Accordo in corso...
   aka: o
   #Noun, title of a popup alerting you to something
@@ -402,6 +403,7 @@ it:
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
   all_life: Tutti gli esseri viventi
+  all_media_must_be_unhidden: Tutti i file multimediali non devono essere nascosti
   all_names: Tutti in Nomi
   all_observations: Tutte le osservazioni
   all_photos: Tutte le foto
@@ -2056,6 +2058,13 @@ it:
   #Verb, usually a button to hide an interface element
   hide: Nascondi
   hide_content: Nascondi il contenuto
+  hide_desc: |
+    Nascondere i contenuti, li nasconderà dalla vista pubblica, ma le persone potrebbero comunque
+    vedere che qualcosa è stato nascosto e, i curatori del sito e l'autore del
+    contenuto, potranno continuare a vedere i contenuti nascosti. Le identificazioni nascoste non contribuiranno al Taxon della Community di un'osservazione.
+  hide_desc_staff_can_unhide: |
+    Soltanto lo staff del sito può mostrare i contenuti nascosti, quindi utilizzalo soltanto
+    per le violazioni palesi delle Linee Guida della Community.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Nascondi «Nessuna annotazione»
@@ -2111,6 +2120,10 @@ it:
   #Notification when an identification has been deleted
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identificazione nascosta
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identificazione non nascosta
   #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
@@ -2340,6 +2353,7 @@ it:
     davawenyo: Davaoeño
     dutch: Olandese
     english: Inglese
+    esperanto: Esperanto
     estonian: Estone
     faroese: Faroese
     fijian: Fijano
@@ -2504,6 +2518,7 @@ it:
     es: Spagnolo
     es-AR: Spagnolo (Argentina)
     es-CO: Spagnolo (Colombia)
+    es-CR: Spagnolo (Costa Rica)
     es-MX: Spagnolo (Messico)
     et: Estone
     eu: Basco
@@ -2695,6 +2710,10 @@ it:
     e gli avvisi su tutto ciò che l'utente ha creato oltre ai taxa. Questo è 
     <strong>visibile solo ai curatori</strong> e <strong>i curatori non possono vedere la propria storia</strong>, quindi le note su una persona non dovrebbero mai essere visibili
     a quella persona.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Nascondi
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Annulla sospensione
   moderator_note_desc: |
     Le note dei moderatori sono registrazioni di risposte di moderazione o di preoccupazioni
     basate su prove circa un utente, ad esempio se sono un possibile account sockpuppet. Si prega di non includere le opinioni personali o dicerie sull'utente.
@@ -3372,8 +3391,12 @@ it:
   photo_credits: Crediti delle foto
   photo_deleted: Foto cancellata
   photo_destroyed_because_it_was_deleted_from: "Foto distrutta perché è stata eliminata dal sito esterno o perché %{site_name} non ha più il permesso di vederla"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto nascosta
   photo_licensing: Licenza delle foto
   photo_type: Tipo di foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto non nascosta
   photo_urls_repaired: URL della foto riparati
   photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
@@ -4405,6 +4428,8 @@ it:
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_less: Mostra meno
   show_more: Mostra di più
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostra più opzioni d'accesso
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostra «Nessuna annotazione»
@@ -6992,6 +7017,18 @@ it:
     taxon_changes:
       move_children_desc: |
         I discendenti del taxon di ingresso che sono generi o di livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà, ecc. saranno cambiate negli equivalenti con il nuovo genere o nome della specie.
+      form:
+        move_children_desc2_html: |
+          Spuntare questa cartella, sposterà i derivati del taxon di input al
+          taxon di output per gli Scambi e le Unioni di Txon, all'invio di questa modifica. Se
+          questa è una modifica a un genere o inferiore, creerà degli Scambi di Txon per tutti i
+          discendenti con nomi che necessitano di modifiche. Ad esempio, se scambi
+          la famiglia Canidae in Dogidae, ciò modificherà il genitore del genere
+          <i>Canis</i> da Canidae a Dogidae. Se scambi il genere
+          <i>Canis</i> nel genere <i>Dogis</i>, creerà e invierà
+          gli Scambi di Taxon, per modificare <i>Canis Lupus</i> in <i>Dogis lupus</i> e 
+          <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp.
+          <i>lupus</i>. Ciò può causare un gran disordine, quindi, utilizzalo con cura.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7462,9 +7499,11 @@ it:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
       BlockedUser: Utente Bloccato
+      Comment: Commento
       CompleteSet: Elenco Completo
       #Noun
       Flag: Contrassegno
+      Identification: Identificazione
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7476,6 +7515,7 @@ it:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applicazione
+      Photo: Foto
       TaxonLink: Link del Taxon
     attributes:
       announcement:
@@ -7757,6 +7797,10 @@ it:
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: dev'essere un curatore
         observation:
           attributes:
             base:
