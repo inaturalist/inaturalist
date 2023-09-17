@@ -6023,6 +6023,17 @@ nl:
           true_presences_definition: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het Taxonbereik voorspelt dat het taxon voorkomt
           false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
           false_absences_definition: Gebieden waar alleen het taxonbereik aanwezig is
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Echt Aanwezig / (Echt Aanwezig+ Fout Afwezig) = %{recall}
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Echt Aanwezig / (2 × Echt Aanwezigen + Fout Aanwezigen + Fout Afwezigen) = %{f1}
     guides:
       index:
         deprecated_banner: |
