@@ -1775,6 +1775,7 @@ it:
   exit_full_screen: "Esci dalla modalità a tutto schermo"
   examples_of_data_use_by_network_members: Esempi d'Uso dei Dati dai Membri della Rete
   examples_of_ranking_organizations: Esempi di organizzazioni di classificazione
+  expected_nearby: Attese Nelle Vicinanze
   explore: Esplora
   export: Esporta
   export_observations: Esporta le osservazioni
@@ -2187,6 +2188,7 @@ it:
   include_places: Includi Luoghi
   include_projects: Includi Progetti
   include_suggestions_not_seen_nearby: Includi suggerimenti non visti nelle vicinanze
+  include_suggestions_not_expected_nearby: Includi suggerimenti delle non attese nelle vicinanze
   include_taxa: Includi Taxa
   include_users: Includi Utenti
   including: incluso
@@ -5824,6 +5826,22 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Puoi <u>raddoppiare</u> o <u>triplicare</u> il tuo regalo! Grazie alla Fondazione Gordon e Betty Moore, tutte le donazioni ricorrenti mensili, trimestrali e annuali sono triplicate e le donazioni una tantum sono raddoppiate fino al 31 dicembre 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist è una delle più grandi comunità mondiali dedicate alla biodiversità. Grazie di farne parte!
+        </p>
+        <p class="lead">
+        Se credi nel potere di questa comunità globale di amanti della natura nel condividere le conoscenze e generare dati insostituibili di biodiversità, per favore considera un regalo una tantum o ricorrente online, o esplora <a href="https://www.inaturalist.org/pages/giving">altri modi per contribuire</a>.
+        </p>
+        <p class="lead">
+        La tua donazione è vitale per iNaturalist man mano che la nostra comunità cresce, sia per migliorare la nostra tecnologia per identificare accuratamente le specie sia per implementare nuove funzionalità per supportare i nostri server e il nostro personale.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un organizzazione indipendente 501(c)(3), esentasse, senza scopo dinlucro con sede negli Stati Uniti d'America (Tax ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist è una delle community più grandi al mondo, dedicate
@@ -5849,6 +5867,27 @@ it:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Puoi <u>triplicare</u> il tuo dono! Grazie alla Fondazione Gordon e Betty
+          Moore, tutte le donazioni mensili dei Sostenitori sono triplicate fino al 31 dicembre 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist è una delle più grandi comunità al mondo dedicate all'esplorazione della biodiversità. Grazie di farne parte!
+          </p>
+          <p class="lead">
+          Se ami iNaturalist, ti preghiamo di prendere in considerazione la possibilità di diventare un sostenitore mensile. I regali ricorrenti aiutano a garantire che iNaturalist possa continuare ad implementare le nostre infrastrutture e il nostro personale fornendo entrate prevedibili. E il tuo regalo mensile ha triplicato l'impatto!
+          Puoi anche scegliere di mostrare il tuo stato di Sostenitore Mensile sul tuo profilo utenteI.
+          </p>
+          <p class="lead">
+          Le tue donazioni di beneficenza contribuiscono a sostenere iNaturalist man mano che cresce la comunità, nell’avanzamento della visione informatica e nell’implementazione di nuove funzionalità
+          a supporto dei nostri server e del nostro personale. Puoi anche fare una <a href="%{donate_url}">donazione una tantum</a> o vedere gli
+          <a href="https://www.inaturalist.org/pages/giving">altri modi per contribuire</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist è un'organizzazione indipendente 501(c)(3), esente da imposte,
+          senza scopo di lucro e sede negli Stati Uniti diAmerica (Tax ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist è una delle più grandi community dedicate all'esplorazione
@@ -5881,6 +5920,93 @@ it:
           Il contenuto contrassegnabile è il l'attributo di testo principale dell'oggetto contrassegnato nel momento in cui il contrassegno è stato creato. Solo i curatori e lo staff lo possono vedere. Solo lo staff lo può vedere per i messaggi.
         flags_that_should_not_be_resolved_desc_html: |
           Per favore risolvi i contrassegni <code>spam</code> e <code> violazione del copyright</code> solo se il contenuto non è spam o violazione del copyright, rispettivamente.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Previsioni del Geomodello per %{taxon}
+        the_geo_model_makes_predictions: |
+          Il Geomodello fa previsioni su dove le specie sono presenti e dove sono assenti.
+          Usiamo il Geomodello per applicare l'etichetta "Attesa nelle vicinanze" accanto ai suggerimenti e per valutare questi suggerimenti in base alla posizione dell'osservazione.
+        the_geo_model_is_trained: |
+          CC
+          Ome il Modello di Visione Compiuterizzata, il Geomodelllo è addestrato dalle osservazioni iNaturalist per la stessa serie di specie con più di 100 foto. Il Geomodello non Ifa previsioni perfette. Puoi leggere di più su come il Geomodello è generato
+          <a href="%{url}">qui</a>.
+        nearby_map:
+          expected_nearby_map: Attese Nelle Vicinanze
+          we_use_this_map: |
+            Utilizziamo questa mappa per applicare l'etichetta Attese nelle Vicinanze, previste dai suggerimenti basati sulla posizione dell'osservazione.
+          for_example: |
+            Ad esempio, un'osservazione di una lucertola nel centro degli Stati Uniti potrebbe
+            avere l'etichetta Attesa nelle Vicinanze applicato ad un suggerimento di <i>Sceloporus consobrinus</i> ma non di <i>Sceloporus occidentalis</i> basandosi sulle rispettive mappe delle specie Attese nelle Vicinanze.
+          you_can_think: |
+            Puoi pensare alla Mappa delle Attese nelle Vicinanze come una valutazione se la specie sia presente da qualche parte nella cella della griglia o del tutto assente.
+          figure_alt_text: Il Geomodello applica l'etichetta Attese nelle Vicinanze
+        unthresholded_map:
+          unthresholded_map: Mappa Senza Soglia
+          we_use_the_unthresholded_map: |
+            Usiamo la Mappa Senza Soglia per pesare i punteggi per posizione della Visione Compiuterizzata quando offriamo i suggerimenti.
+          for_example: |
+            Ad esempio, un'osservazione di una lucertola nel centro degli Stati Uniti potrebbe dare suggerimento per <i>Sceloporus consobrinus</i> con maggior peso rispetto a <i>Sceloporus occidentalis</i> basandosi sul confronto delle Mappe Senza Soglia, anche se visivamente simili.
+          you_can_think: |
+            Puoi pensare alla Mappa Senza Soglia come la probabilità relativa che una specie
+            sia presente all'interno di una cella della griglia.
+          figure_alt_text: Il Geomodello pesa i risultati della Visione Compiuterizzata
+        range_comparison:
+          expected_nearby_vs_taxon_range: Attese nelle Vicinanze vs Areale del Taxon
+          this_map_shows: |
+            Questa mappa mostra l'Areale del Taxon per questa specie che si sovrappone alla Mappa delle Attese nelle Vicinanze che usiamo per valutare il Geomodello.
+          this_gridded_version: |
+            Questa versione a griglia dell'Areale del Taxon è un'istantanea scattata quando il modello era addestrato e grigliato alla stessa risoluzione della Mappa delle Attese nelle Vicinanze. Per controllare gli errori negli Areali, utilizziamo solo gli Areali dei Taxon in cui almeno il 90% dei dati per quella specie utilizzati per l'addestramento del modello rientra nell'Areale del Taxon.
+          by_combining: |
+            Combinando la Mappa delle Attese nelle Vicinanze con l'Areale del Taxon, calcoliamo le statistiche per stimare quanto funziona il Geomodello.
+          figure_alt_text: La mappa delle Attese nelle Vicinanze e l'Areale del Taxon sono confrontate
+          combining_these_maps_produces: |
+            La combinazione di queste mappe produce 3 tipi di celle:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Presenze Vere:
+          true_presences_definition: Aree in cui sia la mappa delle Attese nelle Vicinanze che l'Areale del Taxon prevedono che il taxon sia presente
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            False Presenze:
+          false_presences_definition: Aree in cui solo la Mappa delle Attese nelle Vicinanze prevede che il taxon sia presente
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            False Assenze:
+          false_absences_definition: Aree dove c'è solo l'Areale del Taxon
+          evaluation_statistics_for_taxon: Statistiche di valutazione per %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precisione:
+          precision_description: La frazione della Mappa delle Attese nelle Vicinanze che sono Vere Presenze
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Vere Presenze / (Vere Presenze + False Presenze) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Richiamo:
+          recall_description: La frazione dell'Areale del Taxon che sono Vere Presenze
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Vere Presenze / (Vere Presenze + False Assenze) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: La media (media armonica) di Precisione e Richiamo
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Vera Presenza / (2 × Vera Presenza + Falsa Presenza + Falsa Assenza) = %{f1}
+          perfect_overlap: |
+            Perfetta sovrapposizione valuterebbe con una Precisione, Richiamo e F1 di 1. Nessuna sovrapposizione valuterebbe con Precisione, Richiamo e F1 di 0.
     guides:
       index:
         deprecated_banner: |
@@ -6319,6 +6445,56 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
+        quality_assessment_help2_html: |
+          <p>
+          La valutazione della qualità dei dati è una sintesi dell'accuratezza di un'osservazione. Tutte le osservazioni iniziano come grado <strong>"Informale"</strong> e diventano <strong>"Ha bisogno di ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>l'osservazione <strong>ha una data</strong></li>
+          <li>l'osservazione <strong>è georeferenziata</strong> (cioè ha coordinate latitudine/longitudine)</li>
+          <li>l'osservazione <strong>ha foto o suoni</strong></li>
+          <li>l'osservazione <strong>non riguarda un essere umano</strong></li>
+          </ul>
+          <p>
+          Le osservazioni diventano <strong>"Livello Ricerca"</strong> quando
+          </p>
+          <ul>
+          <li>
+          la comunità %{site_name} <strong>è d'accordo sull'ID a livello di specie o inferiore</strong>, cioè quando più di 2/3 degli identificatori concordano su un taxon (se la comunità ha votato che il Taxon comunitario non può essere migliorato, questo ritorna all'ID di livello sottofamiglia o inferiore)
+          </li>
+          </ul>
+          <p>
+          Le osservazioni torneranno a essere <strong>"Informale"</strong> se le condizioni di cui sopra non vengono soddisfatte o se la community è d'accordo che
+          </p>
+          <ul>
+          <li>
+          la <strong>posizione non sembra accurata</strong> (ad esempio scimmie in mezzo all'oceano, ippopotami negli edifici per uffici, ecc.)
+          </li>
+          <li>
+          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio in cattività o coltivato dall'uomo o alieni spaziali intelligenti)
+          </li>
+          <li>
+          l'osservazione <strong>non presenta evidenza di un organismo</strong>, ad es. immagini di giochi d'acqua, rocce, paesaggi che non includono l'organismo, ecc.
+          </li>
+          <li>
+          l'osservazione <strong>non presenta prove recenti (~100 anni) della presenza dell'organismo</strong> (ad esempio fossili, ma tracce, escrementi e foglie morte sono ok)
+          </li>
+          <li>
+          l'osservazione non necessita più di una ID <em>e</em> l'ID della comunità è pari al livello Famiglia o superiore
+          </li>
+          <li>
+          l'osservatore ha rinunciato all'ID della comunità e l'ID del taxon della comunità non è un antenato o un discendente del taxon associato all'ID dell'osservatore
+          </li>
+          </ul>
+          <p>
+          E se ciò non fosse abbastanza complicato, ci sono anche situazioni in cui il sistema ottiene un voto:
+          </p>
+          <ul>
+          <li>
+          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se ci sono almeno altre 10 osservazioni a livello di genere o inferiore nel più piccolo luogo equivalente a una contea, uno stato o un paese che contiene questa osservazione, e l'80% o più di tali osservazioni sono state contrassegnate come non selvatiche/naturalizzate.
+          </li>
+          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
