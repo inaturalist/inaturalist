@@ -5244,6 +5244,8 @@ fi:
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     geo_model:
       explain:
+        geomodel_predictions_of_taxon: |
+          Geomallin ennuste taksonista %{taxon}
         the_geo_model_makes_predictions: |
           Geomalli ennustaa, missä lajit esiintyvät ja missä niitä ei havaita.
           Hyödynnämme geomallia tarjotessamme "Odotettavissa lähistöllä" -merkkiä ehdotusten rinnalla ja
@@ -5256,6 +5258,12 @@ fi:
             Käytämme tätä karttaa lisätessämme Odotettavissa lähistöllä -merkin ehdotuksiin, jotka perustuvat havainnon sijaintiin.
           for_example: |
             Esimerkiksi Yhdysvaltojen keskiosissa tehdyn liskohavainnon kohdalla saattaa olla "Odotettavissa lähistöllä" -merkki ehdotuksen <i>Sceloporus consobrinus</i> osalta, mutta ei <i>Sceloporus occidentalis</i> osalta perustuen lajien "Odotettavissa lähistöllä"-karttoihin.
+          you_can_think: |
+            Voit ajatella "Odotettavissa lähistöllä" -kartan arvioksi siitä, esiintyykö laji jossakin ruudukon solussa vai ei.
+        range_comparison:
+          true_presences_definition: Alueet, joilla sekä "Odotettavissa lähistöllä" -kartta että levinneisyysalue ennustavat taksonin esiintyvän
+          false_presences_definition: Alueet, joilla vain "Odotettavissa lähistöllä" -kartta ennustaa taksonin esiintyvän
+          false_absences_definition: Alueet, joilla vain levinneisyysalue ennustaa taksonin esiintyvän
     guides:
       index:
         deprecated_banner: |
