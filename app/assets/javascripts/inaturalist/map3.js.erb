@@ -1111,7 +1111,7 @@ function intereactionsServer( ) {
 // different clusters running the same code. node_api_url will
 // be faster for DB/postgis queries
 function postgisTileservers( ) {
-  var nodeApiURL = "<%= CONFIG.node_api_url %>";
+  var nodeApiURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>";
   if( nodeApiURL ) { return [ nodeApiURL ]; }
   return elasticsearchTileservers( );
 }
