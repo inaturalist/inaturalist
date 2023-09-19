@@ -397,6 +397,7 @@ da:
   agree_: Enig
   agree?: Enig?
   agree_with_current_taxon: Enig i den aktuelle takson
+  agree_with_observation_taxon: Acceptér observationstakson
   agreeing: Er enig...
   aka: også kendt som
   #Noun, title of a popup alerting you to something
@@ -407,6 +408,7 @@ da:
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
   all_life: Alt liv
+  all_media_must_be_unhidden: Alle medier skal være gjort synlige
   all_names: Alle navne
   all_observations: Alle observationer
   all_photos: Alle fotos
@@ -870,9 +872,9 @@ da:
     drop: Takson-konceptet er helt ugyldigt, og er opretholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt koncept for frigivelse som en del af en ændringsgruppe
   change_geoprivacy: 'Ændr geofortrolighed'
-  change_group: Ændre gruppe
+  change_group: Ændringsgruppe
   change_icon: Skift ikon
-  change_password: Ændre adgangskode
+  change_password: Skift adgangskode
   #Message shown after you change your email address
   change_to_email_requested_html: Skift til <strong>%{email}</strong> anmodet. Tjek denne e-mailadresse mhp. at bekræfte skiftet.
   change_types:
@@ -888,13 +890,7 @@ da:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: opdelt til
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: sammenlæg i
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: sammenlagt i
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: erstattet af
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erstat med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: erstattet med
     dropped: droppet
@@ -908,7 +904,7 @@ da:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} vil blive erstattet af %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} blev sammenlagt i %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bliver sammenlagt i %{output_taxon}"
-  change_your_password: Ændre din adgangskode
+  change_your_password: Skift din adgangskode
   #Plural noun, as in changes to a taxon record over time
   changes: Ændringer
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -1745,6 +1741,8 @@ da:
   email_conf_required_after_grace_period: |
     Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
     for at tilgå kontoen.
+  email_conf_faq_html: |
+    Har du spørgsmål, tjek venligst disse <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
     Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
@@ -2123,7 +2121,9 @@ da:
   hide: Skjul
   hide_content: Skjul indhold
   hide_desc: |
-    Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.
+    Skjulning af indhold fjerner det fra offentligt skue, men folk vil stadig kunne se, at noget er blevet skjult, ligesom webstedskuratorer og indholdsforfatteren stadig vil kunne se det skjulte indhold. Skjulte identifikationer vil ikke bidrage en observations Fællesskabs Takson.
+  hide_desc_staff_can_unhide: |
+    Kun webstedspersonale kan gøre indhold synligt igen, efter det har været skjult, så brug kun denne ved klare overtrædelser af Fællesskabsretningslinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen annotation"
@@ -2181,8 +2181,10 @@ da:
   #Notification when an identification has been deleted
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identifikationstekst gjort synlig
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikation skjult
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identifikation gjort synlig
   #Notification when an identification has been updated
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
@@ -2190,75 +2192,6 @@ da:
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
   inaturalist_global_year_in_review: "iNaturalists globale %{year} år i gennemgang"
-  independence_email_subject: "Spreder vores vinger: iNaturalist er nu en uafhængig nonprofitorganisation"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Kære %{name},
-  independence_email_body_exciting_news: |
-    iNaturalist-teamet har spændende nyheder! Vi glade for at dele, at takket være
-    støtten fra dette storartede fællesskab, fungerer iNaturalist nu som
-    en uafhængig 501(c)(3) non-profitorganisation baseret i USA.
-  independence_email_body_since_launching: |
-    Siden lanceringen i 2008 har iNaturalist-teamet og -organisationen
-    udviklet sig, og vi er begejstrede for denne næste milepæl. iNaturalist begyndte
-    som master's-projekt på University of California, Berkeley, blev er
-    LLC, dernæst blev California Academy of Sciences involveret i 2014. I 2017 blev
-    iNaturalist et fællesinitiativ med California Academy of
-    Sciences og National Geographic Society. Nu er iNaturalist så en
-    uafhængig organisation.
-  independence_email_body_over_the_past: |
-    I løbet af de seneste 15 år har de utrolige bidrag fra fællesskabet
-    gjort iNaturalist til en af verdens mest indflydelsesrige naturplatforme.
-  independence_email_body_so_far: "Indtil videre har iNaturalist-fællesskabet:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Oprettet flere end 146.000.000 verificerbare observationer (tilføjer omkring 1 million om ugen!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Vokset til 2,7 millioner bidragsydere
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Observeret flere end 430.000 arter
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Blev nævnt flere end 3.500 gange
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Vi takker California Academy of Sciences og National Geographic
-    Society for inkubationen af iNaturalist, da det voksede drastisk i løbet af de seneste 9 år. Vi skylder disse partnere umådelig stor taknemmelighed for deres investeringer, støtte og forvaltning. Vi ser frem til at samarbejde med begge organisationer i fremtiden.
-  independence_email_body_the_way_html: |
-    <strong>Måden iNaturalist opleves på vil ikke ændre sig.</strong>
-    iNaturalist og Seek vil fortsat frit hjælpe dig med at identificere
-    biodiversitet og opbygge din egen forbindelse til den naturlige verden. Denne nye organisationsstruktur vil tillade os at understøtte iNaturalist i årevis i takt med at iNaturalist-fællesskabet udvider vores kollektive viden om
-    biodiversitet langt ind i fremtiden. Vi vil fortsætte samarbejdet med
-    organisationer verden over for at støtte iNaturalist Network.
-  independence_email_body_questions_html: |
-    Du kan <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">læse
-    mere på bloggen</a> samt tjekke <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Ofte Stillede Spørgsmål (FAQ)</a> (på engelsk). Vores <a
-    href="https://www.inaturalist.org/pages/terms">Vilkår for Brug</a> og <a
-    href="https://www.inaturalist.org/pages/privacy">Fortrolighedspolitik</a> er
-    blevet opdateret for at afspejle den nye organisationsform.
-  independence_email_body_thank_you: Tak fordi du er en del af dette fællesskab!
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Så fremad,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Ledelsesteam</strong>
-  independence_email_body_ps: |
-    P.S. — Vi annoncerer snart et generøst tilskud, der vil give iNaturalist som 
-    uafhængig en solid start. Den økonomiske støtte fra
-    iNaturalist-fællesskabet gjorde vores udvikling mulig og vil være afgørende for
-    langsigtet bæredygtighed. Din donation nu vil fejre denne spændende
-    milepæl og yderligere sikre iNaturalists fremtid. Tak!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Donér nu
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -2482,6 +2415,7 @@ da:
     davawenyo: Davawenyo
     dutch: Hollandsk
     english: Engelsk
+    esperanto: Esperanto
     estonian: Estisk
     faroese: Færøsk
     fijian: Fijiansk
@@ -2646,6 +2580,7 @@ da:
     es: Spansk
     es-AR: Spansk (Argentina)
     es-CO: Spansk (Colombia)
+    es-CR: Spansk (Costa Rica)
     es-MX: Spansk (Mexico)
     et: Estisk
     eu: Baskisk
@@ -2841,6 +2776,10 @@ da:
     <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
     deres egen historik</strong>, så notater om en person bør aldrig være synlige
     for den pågældende person.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Skjul
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Ophæv udelukkelse
   moderator_note_desc: |
     Moderatornotater er optegnelser over moderationssvar eller evidensbaserede tvivl om en bruger, såsom om der er tale om en mulig fiktiv konto. Inkludér venligst ikke personlige meninger eller rygter om brugeren.
   #Person who executed a moderator action or flagged something
@@ -3531,8 +3470,12 @@ da:
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
   photo_destroyed_because_it_was_deleted_from: "Foto ødelagt fordi det blev slettet fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at se det"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto skjult
   photo_licensing: Fotolicens
   photo_type: Foto type
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto vises igen
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
@@ -4592,6 +4535,8 @@ da:
   show_keyboard_shortcuts: Vis tastaturgenveje
   show_less: Vis mindre
   show_more: Vis mere
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Vis flere indlogningsmuligheder
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Vis "Ingen annotation"
@@ -5519,19 +5464,29 @@ da:
   user_added_a_comment_html: "%{user} tilføjede en kommentar"
   user_added_a_fave_html: "%{user} tilføjede en favorit"
   user_added_a_flag_html: "%{user} tilføjede en flag"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} tilføjede en %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_an_identification_html: "%{user} tilføjede en identifikation"
   user_added_an_observation_field_html: '%{user} tilføjede en værdi i "%{field_name}" til en observation af %{owner}'
   user_added_an_observation_field_value_html: "%{user} tilføjede en observationsfeltværdi"
   user_added_an_observation_html: "%{user} tilføjede en observation"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} tilføjede en %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
@@ -6068,6 +6023,25 @@ da:
             tips til at bruge %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kan <u>fordoble</u> eller <u>tredoble</u> din gave! Takket være
+        Gordon og Betty Moore Foundation, tredobles fortløbende månedlige, kvartalsvise og årlige donationer — mens engangsdonationer
+        fordoblet — til og med 31. december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist er et af verdens største fællesskaber dedikeret til
+        biodiversitet. Tak fordi du er en del af det!
+        </p>
+        <p class="lead">
+        Såfremt du tror på styrken i dette globale fællesskab af naturelskere til at dele viden og generere uerstattelige biodiversitetsdata, overvej da en engangs eller løbende gave online, eller udforsk <a href="https://www.inaturalist.org/pages/giving">andre måder at give på</a>.
+        </p>
+        <p class="lead">
+        Din donation er essentiel for iNaturalist, efterhånden som fællesskabet vokser, fra at forbedre vores teknologi til præcis identifikation af arter og implementere nye funktioner til støtte for vores servere og personale.
+        </p>
+        <p class="text-muted">
+        iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profitorganisation baseret i USA (Skatte-ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist er et af verdens største fællesskaber dedikeret til udforskningen af biodiversitet. Tak fordi du er en del af det!</strong>
@@ -6086,6 +6060,27 @@ da:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLIV EN INATURALIST MÅNEDLIG SUPPORTER
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kan <u>tredoble</u> din gave! Takket være
+          Gordon og Betty Moore Foundation, tredobles alle Månedlig Supporter-donationer til og med 31. december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist er et af verdens største fællesskaber dedikeret til
+          biodiversitet. Tak fordi du er en del af det!
+          </p>
+          <p class="lead">
+          Synes du om iNaturalist, overvej da at blive Månedlig Supporter. Løbende gaver medvirker til at sikre, at iNaturalist fortsat kan skalere sin infrastruktur og personale via en forudsigelig indtjening. Månedlige gaver har desuden tredobbelt effekt! Du kan også vælge at vise din Månedlig Supporter-status på brugerprofilen.
+          </p>
+          <p class="lead">
+          Dine velgørende donationer hjælper med at støtte iNaturalist, mens
+          fællesskabet vokser, fra at fremme computervision og implementering
+          nye funktioner til at støtte vores servere og personale. Du kan også
+          give en <a href="%{donate_url}">engangsdonation</a> samt udforske <a href="https://www.inaturalist.org/pages/giving">andre måder at give på</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profitorganisation baseret i USA (Skatte-ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist er et af verdens største fællesskaber dedikeret til
@@ -7592,16 +7587,16 @@ da:
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
       form:
-        move_children_desc_html: |
-          Ved at tjekke denne boks flyttes underordnede i input taksonet til
-          output takson for skifte og fusioner, når denne ændring er udført. Hvis
-          denne ændres til slægt eller lavere, det vil resultere i takson skifte for alle
-          efterkommere, der har en underforstået navneændring. For eksempel, hvis du flytter
-          familien Canidae ind i Dogidae, ændrer det slægtens overordnede
-          <i>Canis</i> fra Canidae til Dogidae. 
-          Hvis du flytter slægten <i>Canis</i> ind i slægten <i>Dogis</i>, vil det udløse og udføre et takson skifte <i>Canis lupus</i> til <i>Dogis lupus</i> og
+        move_children_desc2_html: |
+          Markering dette afkrydsningsfelt flytter underordnede til input taksonet til
+          output taksonet for Taksonombytninger og Taksonfletninger, når denne ændring er udført. Er
+          dette en ændring til slægt eller lavere, vil det resultere i Taksonombytninger for alle
+          efterkommere med navne, som kræver ændring. Flyttes f.eks.
+          familien Canidae til Dogidae, ændrer det slægtens overordnede
+          <i>Canis</i> fra Canidae til Dogidae.
+          Flyttes slægten <i>Canis</i> til slægten <i>Dogis</i>, udløses og udføres en Taksonombytning fra <i>Canis lupus</i> til <i>Dogis lupus</i> og
           <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Dette kan medføre et værre roderi, så gør det med omtanke.
+          <i>lupus</i>. Dette kan medføre et værre rod, så brug muligheden med omtanke.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8156,9 +8151,11 @@ da:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       BlockedUser: Blokeret bruger
+      Comment: Kommentar
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
+      Identification: Identifikation
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -8170,6 +8167,7 @@ da:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
+      Photo: Foto
       TaxonLink: Takson link
     attributes:
       announcement:
@@ -8453,11 +8451,10 @@ da:
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import for denne Mushroom Observer-bruger kører eller er sat i kø til import"
-              api_key_missing: "Champignonobservator API-nøgle mangler"
+            user:
+              must_be_a_curator: skal være kurator
         observation:
           attributes:
             base:

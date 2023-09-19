@@ -1,4 +1,8 @@
 fr-CA:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} changement"
+    other: "%{count} changements"
   x_comments:
     one: '%{count} commentaire'
     other: '%{count} commentaires'
@@ -47,6 +51,9 @@ fr-CA:
   x_misidentifications_of_this_species:
     one: "%{count} mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} mauvaise identification d'une espèce dans ce genre"
+    other: "%{count} mauvaises identifications d'espèces dans ce genre"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -104,8 +111,54 @@ fr-CA:
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> observation de qualité recherche"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au rang de l'espèce ou à un rang inférieur"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche identifiées au rang de l'espèce ou à un rang inférieur"
+  x_sounds:
+    one: "%{count} son"
+    other: "%{count} sons"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> taxon modifié"
+    other: "<span class='count'>%{count}</span> taxons modifiés"
+  x_taxa_matching_current_filters:
+    one: "%{count} taxon correspondant aux filtres choisis"
+    other: "%{count} taxons correspondant aux filtres choisis"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> modification de taxon ajoutée"
+    other: "<span class='count'>%{count}</span> modifications de taxon ajoutées"
   _100_day_trends: Tendances de 100 jours
+  _percent_ID_d: "% ayant reçu une identification"
   a_community_for_naturalist: Une communauté pour naturalistes
+  a_default_taxon_name_will_automatically_created: |
+    Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut « nom scientifique » de ce taxon. Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms vernaculaires, noms scientifiques obsolètes, etc.).
+  a_flag_for_x: "un signalement pour %{x}"
+  a_member_of_taxon_html: "un membre des %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "De A à Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|une} %{resource}"
   about: À propos
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
@@ -880,36 +933,10 @@ fr-CA:
           comme « courriel du parent », nous activerons le compte de l’enfant et enverrons
           au parent un courriel avec les instructions de connexion. Ceci peut prendre 24
           heures.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

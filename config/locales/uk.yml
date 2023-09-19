@@ -944,13 +944,7 @@ uk:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: розділити на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: злити в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: об’єднано в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: замінено на
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: замінити на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: замінено на
     dropped: видалено
@@ -1972,15 +1966,6 @@ uk:
   #Verb, usually a button to hide an interface element
   hide: Приховати
   hide_content: Приховати вміст
-  hide_desc: |
-    Приховування матеріалів вилучить їх з публічного перегляду, але люди все одно будуть
-    у змозі побачити, що щось було приховане; куратори сайту і автор
-    матеріалів, як і раніше, зможуть бачити прихований вміст. Як правило, ця опція
-    застосовується лише до текстових матеріалів, тобто, якщо ви приховали вміст
-    визначення, ID все ще буде видно, але
-    зауваження того, хто визначив, будуть приховані. Ви не зможете відмінити цю дію і тільки працівники сайту зможуть після цього відмінити
-    приховання. Тому будьте обережні і використовуйте цю можливість тільки для дуже
-    недоречних матеріалів.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Сховати дані, для яких "Немає приміток"
@@ -4801,19 +4786,29 @@ uk:
   user_added_a_comment_html: "%{user} додав/додала коментар"
   user_added_a_fave_html: "%{user} додав/додала уподобання"
   user_added_a_flag_html: "%{user} додав/додала прапорець"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} додав/додала %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
   user_added_an_identification_html: "%{user} додав/додала визначення"
   user_added_an_observation_field_html: '%{user} додав/додала значення до "%{field_name}" до спостереження %{owner}'
   user_added_an_observation_field_value_html: "%{user} додав/додала значення до поля спостереження"
   user_added_an_observation_html: "%{user} додав/додала спостереження"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} додав/додала %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
   user_added_x_observations_html: "%{user} додав/додала %{x} спостережень"
   user_already_authenticated: Користувача вже було автентифіковано
@@ -6440,9 +6435,6 @@ uk:
     taxon_changes:
       move_children_desc: |
         Нащадків вхідного таксону на рівні роду або вище буде перенесено до оновленого таксону; види, підвиди, різновиди, тощо будуть замінені на еквіваленти з новою родовою або видовою назвою.
-      form:
-        move_children_desc_html: |
-          Якщо встановити цей прапорець, нащадків вхідного таксону буде переміщено до оновленого таксону для заміни чи злиття, коли ця зміна буде здійснена. Якщо ця зміна стосується роду або таксону нижчого рівня, це призведе до таксономічних замін для усіх нащадків, які мають у собі назву, що підлягає зміні. Наприклад, якщо змінити назву родини Canidae на Dogidae, це змінить батьківський таксон роду <i>Canis</i> з Canidae на Dogidae. Якщо змінити назву роду <i>Canis</i> на <i>Dogis</i>, це призведе до створення і здійснення таксономічних замін, які замінять <i>Canis lupus</i> на <i>Dogis lupus</i> та <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Це може спричинити неабиякий безлад, тому користуйтеся цим інструментом з обережністю.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7143,11 +7135,6 @@ uk:
           attributes:
             user_id:
               must_be_a_curator: має бути куратором
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Імпорт для користувача Mushroom Observer запущений або поставлений в чергу для імпорту"
-              api_key_missing: "Відсутній ключ Mushroom Observer API"
         observation:
           attributes:
             base:

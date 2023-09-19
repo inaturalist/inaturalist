@@ -51,7 +51,7 @@ ja:
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
   x_observers_html:
-    other: '<span class="count">%{count}</span> 投稿者'
+    other: '<span class="count">%{count}</span>投稿者'
   x_others:
     other: "その他%{count}人"
   x_people:
@@ -143,6 +143,24 @@ ja:
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
   about_this_project: このプロジェクトについて
+  about_trips_html: |
+    <h4>
+    トリップは観察記録に文脈を加えることで、存在-非存在データの収集を可能にします。
+    </h4>
+    <p>
+    <strong>なぜ</strong> 存在-非存在データには、分布モデリングなどの科学的分析に有用なサンプリング作業に関する情報が含まれます（iNaturalistの生の観察記録は「存在のみ」のデータです）。
+    </p>
+    <p>
+    <strong>どうやって</strong> トリップは記録することによって観察記録に文脈を加えます：
+    </p>
+    <ul>
+    <li><strong>何を</strong> 探索したか（ターゲットリスト）</li>
+    <li><strong>どこを</strong> 探索したか（探索エリア）</li>
+    <li><strong>いつ</strong> 探索したか（探索期間）</li>
+    </ul>
+    <p>
+    ターゲットリストにある種のうち、探索エリアと探索期間内に観察できた種は「存在」 と解釈します。一方、観察できなかったターゲットリストの種は非存在と解釈されます。「Tabulate Presence Absence Data From Trips（トリップの存在・非存在データを集計する）」をクリックすると、トリップと関連する観察記録から種の存在・非存在記録の表が作成されます。<a href='%{url}'>さらに詳しく</a>
+    </p>
   about_trusting_projects: Trust Projectsについて
   about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
   about_trusting_projects_options_any_desc: |-
@@ -157,6 +175,8 @@ ja:
   #of a project
   about_trusting_projects_project_managers_are: |-
     非表示の座標にアクセスできるプロジェクトマネージャーは次のとおりです。
+  about_trusting_projects_warning: |-
+    プロジェクトマネージャーは、あなたの観察記録を含むようにプロジェクトパラメータを変更することができ、いつでもプロジェクトマネージャーを追加または削除することができることに注意してください。このような変更に関する通知は届きますが、あなたは基本的にこのプロジェクトにあなたの個人的な位置情報を託すことになるので、注意が必要です。
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     非表示の座標を共有するか選択できます
@@ -356,6 +376,7 @@ ja:
   all_comments: すべてのコメント
   all_flags_must_be_resolved: すべてのフラグを解決する必要があります
   all_life: すべての生き物
+  all_media_must_be_unhidden: すべてのメディアを非表示にする必要があります
   all_names: すべての名前
   all_observations: すべての観察記録
   all_photos: すべての写真
@@ -652,6 +673,11 @@ ja:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: PKCEで認証
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (<code>%{code_challenge}</code>を<code>%{code_verifier_param}</code>として使う）注：これは基本的な例である。本番コードでは、<code>%{code_challenge_method}</code>を使用し、<code>%{code_challenge_param}</code>を正しくハッシュしなければならない。
   authorize_permissions_from_provider: "%{provider}の権限を承認"
   automatic_short: 自動
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
@@ -791,6 +817,8 @@ ja:
   change_group: グループを変更
   change_icon: アイコンを変更
   change_password: パスワードを変更
+  #Message shown after you change your email address
+  change_to_email_requested_html: <strong>%{email}</strong> への変更がリクエストされました。変更を確認するには、メールアドレスを確認してください。
   change_types:
     activated_soon: 準備中
     change_types: 変更の種類
@@ -804,13 +832,7 @@ ja:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 次に分割する
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 次に統合する
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 次に統合された
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 置き換えられた
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: '置換用:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 置換後
     dropped: 無効化済み
@@ -867,9 +889,15 @@ ja:
   choose_what_kind_of_change_youre_creating: "変更の種類を選択してください"
   cid_d_to_genus: 属レベルのコミュニティ同定
   citation: 引用
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    意図しない不一致は、親 <strong>(B)</strong> が子 <strong>(E)</strong> を分類樹の別の部分に移動させることによって間引かれるときに発生し、その結果、親の既存のIDが移動した子の既存のIDとの不一致として解釈される。
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    意図しない不一致は、親 <strong>(B)</strong> が子 <strong>(E)</strong> を分類樹の別の部分にスワップすることによって間引かれ、その結果、親の既存のIDがスワップされた子の既存のIDとの不一致として解釈されるときに発生する。
   classification: 分類
   clear: クリア
-  clear_filters: フィルタをクリア
+  clear_filters: 検索条件をクリア
   clear_search: 検索フィルターを解除
   click_the_map: "場所を追加するには、<strong>マップをクリック</strong>"
   close: 閉じる
@@ -879,6 +907,9 @@ ja:
   colors: 色
   columns: 列
   combine: 統合
+  comma_separated_list_of_tracking_codes: |
+    追跡コードのカンマ区切りリスト。%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123 などの新しい観察フォームに人々を送るときにトラッキングコードを追加したい場合は、これらを追加してください。
+    異なるソースからの参加を追跡するために使用できます。プロジェクトの観察記録をCSVでダウンロードするときに、これらのコードにアクセスできます。
   comma_separated_please: カンマ区切りでお願いします
   #Noun, used to label a comment or a comment field in a form
   comment: コメント
@@ -904,6 +935,9 @@ ja:
   committed_taxon_changes_cannot_be_deleted: 一度実行された分類群編集は削除できません
   #Status message while a taxon change is being committed
   committing: 確定中...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: コミットすることで、意図しない不一致が生じるかもしれません。時間がかかるかもしれませんが、まずは分析してみてください。
   common_name: 一般名
   community: コミュニティ
   community_curated: コミュニティ管理
@@ -928,6 +962,8 @@ ja:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: 完全？
+  comprehensive_check_list_for_taxon_html: |
+    %{taxon} の <span class="comprehensive_notice" data-tip="%{tip}">包括的な</span> チェックリスト
   comprehensive_list: 包括リスト
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
@@ -1076,6 +1112,8 @@ ja:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: 完全な緯度経度のみ
+  coords_viewable_for_proj_desc: |
+    このプロジェクトでは、不明瞭でない観察記録、あなたを信頼する人々による不明瞭な観察記録、このプロジェクトに一任する人々による不明瞭な観察記録、絶滅危惧分類群によって不明瞭にされた観察記録を見るためだけにこのプロジェクトを信頼する人々による絶滅危惧分類群によって不明瞭にされた観察記録を含む、「真の」座標を見ることができる観察記録だけを表示します。
   copy: コピー
   copy_and_paste_the_following_code_to: この評価を別のウェブページに埋め込めるには、以下のコードをコピーし、貼り付けてください。
   copy_and_paste_this_into_your_own_html: こちらをコピーし、自分のHTMLの中に貼り付けしてご利用ください。
@@ -1105,6 +1143,7 @@ ja:
   copyright_infringement: 著作権侵害
   copyright_infringement_desc: 著作権法に違反するか、またはオブザーバー以外の人が作成したものであり、帰属性がありません
   covered_by_a_taxon_framework_html: "%{link} に覆われています"
+  covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name} の分類群フレームワーク"
   couldnt_change_your_password: "パスワードを変えることができませんでした：%{e}"
   couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
@@ -1213,6 +1252,12 @@ ja:
   #cannot..."
   curator_application_what_curators_cannot_do_change_observations_html: |
     一般のユーザーが可能な以上に観察記録のコミュニティ分類群または観察記録のグレードに影響を与えること
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    <a href="/pages/curator+guide#completetaxa"
+    target="_blank">完全な分類群</a>に対して分類群の変更をコミットする。
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
@@ -1431,6 +1476,8 @@ ja:
     また、こちらから再度確認メールを送信できます。
   devise_confirmation_instructions_send_confirmation_email: 本人確認用のメールを送信
   devise_email_changed_you_requested: '%{old_email} から %{new_email} への変更をリクエストしました。'
+  devise_email_changed_you_will_receive: |
+    新しいアドレスには変更確認のメールが届きますが、万が一、誰かがあなたのアカウントにアクセスし、あなたが知らないうちに変更しようとしている場合に備えて、古いアドレスにもお知らせしておきます。もしあなたが故意にメールアドレスを変更したのでなければ、すぐに help@inaturalist.org までこのメールを転送してください。
   devise_reset_password_instructions_hello_email: '%{email}さん、こんにちは！'
   devise_reset_password_instructions_if_you_didnt_request_this: |
     なお、本メールにお心当たりがない場合は、本メールを無視してくださるようお願いいたします。
@@ -1595,8 +1642,24 @@ ja:
     受信していない場合は、以下の手順で確認できます。
   email_conf_required_after_grace_period: |
     %{requirement_date} の期限までにメールアドレスの確認が行われませんでした。アカウントにアクセスするには、パスワードをリセットしてください。
+  email_conf_faq_html: |
+    ご不明な点がございましたら、<a href="%{url}">よくある質問</a>をご参照ください。
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}メールアドレスの確認をお願いします。%{link_end_tag}</strong>
+    すべてのユーザーは、%{date}までにメールアドレスを確認する必要があります。それまでにメールアドレスを確認しなかった場合、パスワードをリセットしない限りサインインできなくなります。メールアドレスを確認するには、%{link_start_tag}アカウント設定%{link_end_tag}にアクセスしてください。
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: '%{date} までに%{site_name}のメールアドレスを確認してください' #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
   email_confirmation_reminder_please_confirm: |
     アカウントに引き続きアクセスできるようにするため、本日中にメールアドレスをご確認ください。%{site_name}とモバイルアプリのiNaturalistとSeek by iNaturalistは、生物多様性の観察を共有することで人々と自然、そして互いを繋いでいます。iNaturalistのコミュニティの一員であることに感謝します！
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    %{requirement_date} より、すべてのアカウントに認証済みメールアドレスの入力が必要となります。今すぐご確認ください。
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    ご不明な点がございましたら、<a href="%{faq_url}">よくある質問</a>をご覧ください。自然とのつながり、そして%{site_name}とのつながりに時間を割いていただき、ありがとうございます。
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
@@ -1634,6 +1697,9 @@ ja:
     native: この地域で進化または非人為的に到達（例：海流によって流され分布域を広げる）
     endemic: 他には生息しない固有種
     introduced: 人為的な外来種
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    入力分類群のどの同定が出力分類群の同定に置き換えられ、どの同定が分割された後に共通の祖先まで粗くされるかを推定します。これは計算するのに時間がかかるかもしれません。観察記録へのリンクは、200の部分集合に切り詰められます。
   event_in_progress: 進行中のイベント
   event_stats: イベントの統計情報
   event_url: イベントURL
@@ -1650,10 +1716,11 @@ ja:
   exclude_projects: プロジェクトを除く
   exclude_taxa: 分類群を除く
   exclude_users: ユーザーを除く
-  exclusion_filters: 除外フィルター
+  exclusion_filters: 除外検索
   existing_flags: 既存のフラグ
   exit_full_screen: "全画面表示を終了"
   examples_of_data_use_by_network_members: ネットワークメンバーによるデータ利用例
+  examples_of_ranking_organizations: ランク付け組織の例
   explore: 探索
   export: エクスポート
   export_observations: 観測記録をエクスポート
@@ -1662,6 +1729,8 @@ ja:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: 外部アプリケーション
+  external_applications_description: |
+    外部アプリケーションとは、あなたの代わりにiNaturalistアカウントにアクセスすることを許可したサードパーティのソフトウェアアプリケーションです。一般的に、外部アプリケーションはあなたのアカウントでできることは全てできますので、許可を与える前にアプリ開発者を信頼してください。
   extinct: 絶滅
   extinct_in_the_wild: 野生絶滅
   extra_properties: その他のプロパティー
@@ -1678,6 +1747,7 @@ ja:
   Family: 科
   favorite_taxa: お気に入り分類群
   favorites: "お気に入り"
+  feature_this_project_: "このプロジェクトを紹介"
   featured: 注目
   #Title for a button or section describing the "featured" status of a project
   featuring: 特長
@@ -1846,7 +1916,7 @@ ja:
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
   geoprivacy_is_obscured_desc: 投稿者は、座標を曖昧にすることを選択しました。
   geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
-  geoprivacy_is_private_desc: 投稿者は座標を非表示にすることを選択しました。
+  geoprivacy_is_private_desc: 投稿者は座標を不明瞭にすることを選択しました。
   georeferenced: 位置データありますか？
   get_started: 始めよう
   getting_started_guide: 初めてのユーザーガイド
@@ -1867,6 +1937,7 @@ ja:
   got_your_data_somewhere_else?: 別のところでデータを保存していますか？お手伝いできます。
   graft: 融合
   graft_taxon: '%{taxon}を結びつける'
+  grafting_attemps_to_insert_this_taxon: 分類群ツリーへの追加は、既存の親分類群を見つけて、あるいは既存の上位分類群に接続するために必要なすべての中間分類群を作成して、この分類群を分類群ツリーに挿入しようとするものです。
   grant_role: "に%{role}役割を%{grant}しました"
   grid: グリッド
   grid_layout: グリッドレイアウト
@@ -1901,6 +1972,18 @@ ja:
   header_your_projects: あなたのプロジェクト
   header_your_profile: あなたのプロフィール
   heads_up: お知らせ
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>警告：</strong>この変更をコミットすると、同定はアトラスに基づいて出力分類群に再割り当てされます。出力の一部または全部にアトラスがない場合、あるいはあるレコードでアトラスが重複している場合、同定は最も近い共通祖先分類群（%{taxon}）の同定に置き換えられます。
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>警告：</strong>この分類群の分割には、アトラスを持たないか、共通の祖先を持たない出力分類群があります。そのため、この分割がコミットされたときに、入力分類群に関連するレコードを出力分類群に自動的に割り当てることができず、コミュニティはこれらのレコードに新しい同定を追加する必要があります。
+  heads_up_automatable_split_notice_html: |
+    <strong>警告：</strong>このスプリットによって影響を受けた同定の一部またはすべてが%{taxon}の同定に置き換えられる可能性があります。これは、出力分類群の1つに同定を自動的に割り当てることができない場合に起こります。
+  heads_up_observose_taxon_change_html: |
+    <strong>警告：</strong>この変更に関係する入力分類群には、%{observose_taxon_threshold} 以上の下流の観察記録があります。この変更をコミットできるのは、管理者またはその分類群フレームワークのキュレーターだけです。
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>警告：</strong>この変更に関係する入力分類群のいくつかが<a href="%{framework_url}">分類群フレームワーク</a>内にあります。その分類群フレームワークの管理者またはキュレーターのみが、その分類群に影響する変更をコミットすることができます。この変更をコミットするには、その分類群のキュレーターの誰かに連絡してください。
+  heads_up_there_are_other_draft_taxon_changes_html:
+    other: "<strong>警告：</strong>同じ入力分類群による他の分類群変更の草案が %{count} 件あります："
   heads_up_this_photo_has_been_flagged: "お知らせ：この写真はフラグ付けられました"
   heads_up_this_photo_is_already_associated_with: "注意: この写真は既に<a target='_blank' href='%{url}'>別の観察記録</a>と関連づけられている。"
   help: ヘルプ
@@ -1914,8 +1997,8 @@ ja:
   #Verb, usually a button to hide an interface element
   hide: 非表示
   hide_content: コンテンツを非表示
-  hide_desc: |
-    コンテンツを非表示にすると、そのコンテンツはパブリックビューから削除されますが、ユーザーは何かが非表示になっていることを確認でき、サイト管理者およびコンテンツの作成者は非表示のコンテンツを確認できます。一般に、これは記述されたコンテンツにのみ適用されます。たとえば、同定のコンテンツを非表示にした場合、同定は表示されたままですが、同定者による注釈は非表示になります。元に戻すことはできず、一度非表示にしたコンテンツを再表示できるのはサイトのスタッフだけです。そのため操作には注意し、非常に好ましくないコンテンツにのみ使用してください。
+  hide_desc_staff_can_unhide: |
+    一度非表示にされたコンテンツを解除できるのはサイトスタッフのみのため、本機能はコミュニティガイドラインへの明確な違反が行われている場合のみ使用してください。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '「情報なし」を非表示'
@@ -1940,6 +2023,10 @@ ja:
   however_not_licensed_action_html: |
     <a class="linky" href="/users/edit#content">アカウント設定</a> からライセンス設定を変更することができます。
   however_there_were_some_issues: "しかし、問題がありました：%{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    しかし、%{old_parent} の適用範囲が薄くなったことを同定者に警告するために、上記のリンクにある意図しない不一致のある観察記録についてコメントしたい場合があるかもしれません。
   i_dont_know_but_i_am_sure_this_is_taxon: 私にはわかりません。しかし%{taxon} だと思います。
   icon: アイコン
   icon_size: アイコンの大きさ
@@ -1953,6 +2040,10 @@ ja:
         この分類群として最初に追加された同定であり、コミュニティが同意したもの。このような同定はコミュニティ分類群の改善に貢献しています。
       maverick: |
         分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "分類群 <strong>E</strong> のID2は、祖先の変更後、分類群 <strong>B</strong> のID1と意図しない不一致になります。"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "分類群 <strong>E</strong> のID2は、分類群の入れ替え後、分類群 <strong>B</strong> のID1と意図しない不一致になります。"
   id_withdrawn: 同定の撤回
   ids_by_taxon: 分類群別ID
   identify: 同定する
@@ -1964,6 +2055,10 @@ ja:
   #Notification when an identification has been deleted
   identification_deleted: 同定が削除されました
   identification_saved: "判定が保存されました！"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: 同定は非表示
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: 同定を非表示
   #Notification when an identification has been updated
   identification_updated: 同定が更新されました
   identification_user_short: 同定ユーザー
@@ -1971,55 +2066,6 @@ ja:
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
   inaturalist_global_year_in_review: "iNaturalistのグローバルな %{year} 年を振り返る"
-  independence_email_subject: "翼を広げる：iNaturalistは独立した非営利団体へ"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: '%{name} 様'
-  independence_email_body_exciting_news: |
-    iNaturalistチームから嬉しいお知らせです！iNaturalistはこの素晴らしいコミュニティーの皆様のご支援のおかげで、現在アメリカ合衆国を拠点とする独立した501(c)(3)非営利団体として運営されています。
-  independence_email_body_since_launching: |
-    2008年の発足以来、iNaturalistのチームと組織は進化してきました。iNaturalistはカリフォルニア大学バークレー校の修士プロジェクトとして始まり、LLCとなり、2014年にカリフォルニア科学アカデミーに加わりました。2017年、iNaturalistはカリフォルニア科学アカデミーとナショナルジオグラフィック協会との共同イニシアチブとなりました。現在、iNaturalistは独立した組織となっています。
-  independence_email_body_over_the_past: |
-    この15年間、コミュニティの素晴らしいご支援により、iNaturalistは世界で最も影響力のある自然科学のプラットフォームとなりました。
-  independence_email_body_so_far: "これまでのところ、iNaturalistのコミュニティは："
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: 1億4600万件以上の検証可能な観察記録を作成（1週間に約100万件追加！）
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: 270万人の貢献者に成長
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: 43万種以上を観察
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">世界生物多様性情報ファシリティ</a>を通じて3500回以上引用されている
-  independence_email_body_we_thank: |
-    カリフォルニア科学アカデミーとナショナル・ジオグラフィック・ソサエティには、iNaturalistがこの9年間で劇的に成長した際に、インキュベートしていただいたことに感謝いたします。私たちはこれらのパートナーの投資、サポート、スチュワードシップに計り知れない感謝の念を抱いています。今後も両組織とのコラボレーションを楽しみにしています。
-  independence_email_body_the_way_html: |
-    <strong>iNaturalistの利用方法はこれまでと変わりません。</strong>
-    iNaturalistとSeekは引き続き、皆様が生物多様性を特定し、自然界とのつながりを築くことを自由にお手伝いします。この新しい組織体制は、iNaturalistコミュニティが生物多様性に関する集合的な知識を将来にわたって拡大していく中で、iNaturalistを今後何年にもわたってサポートすることを可能にします。私たちはこれからも世界中の組織と提携し、iNaturalistネットワークをサポートしていきます。
-  independence_email_body_questions_html: |
-    詳しくは<a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">ブログ</a>と<a
-    href="https://www.inaturalist.org/pages/spinoff_faq">よくある質問（英語）</a>をご覧ください。新体制に伴い、<a
-    href="https://www.inaturalist.org/pages/terms">利用規約</a>と<a
-    href="https://www.inaturalist.org/pages/privacy">プライバシーポリシー</a>が更新されました。
-  independence_email_body_thank_you: このコミュニティに参加してくれてありがとう。
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    未来へ<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalistリーダーシップチーム</strong>
-  independence_email_body_ps: |
-    追伸 - 間もなく、独立したiNaturalistの確かなスタートを後押しする寛大な寄付についてご案内いたします。iNaturalistコミュニティーの財政的支援は私たちの発展を可能にし、長期的な活動の継続に不可欠なものです。今ご寄付をいただければ、このエキサイティングなマイルストーンを祝い、iNaturalistの未来をより確かなものにすることができます。よろしくお願いします！
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: 今すぐ寄付する
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
@@ -2031,6 +2077,14 @@ ja:
   ids_made_for_others: 他のユーザーへ提案したID
   if_for_some_reason_a_user_doesnt_agree: |
     何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ、研究用として使用可能になります。
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    親分類群を間引いた結果、意図しない不一致が10個以上になる場合は、子分類群を移動した後に親分類群を分割し、親分類群 <strong>(B)</strong> の既存のIDを不一致のないIDに置き換える必要があります。
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    親分類群を間引いた結果、意図しない不一致が10個以上になる場合は、子分類群を入れ替えた後に親分類群を分割し、親分類群 <strong>(B)</strong> の既存のIDを不一致のないIDに置き換える必要があります。
   if_matches_come_from_a_comprehensive_list: 包括的なリストからのマッチの場合、緑色のバーがここに表示されます。
   if_this_is_a_scientific_name: 学名の場合、現在認められているものでしょうか？
   if_you_have_any_trouble_with_the_site_check_out: 'ご質問がある場合は、<a href="%{help_url}">ヘルプセクション</a>を参照するか、<a href="%{feedback_url}">フィードバックグループ</a>にメッセージを投稿してください。'
@@ -2205,6 +2259,8 @@ ja:
     afrikaans: アフリカーンス語
     alabama: アラバマ語
     albanian: アルバニア語
+    aou_4_letter_codes: AOU 4文字コード
+    aou_6_letter_codes: AOU 6文字コード
     arabic: アラビア語
     armenian: アルメニア語
     asturian: アストゥリアス語
@@ -2227,6 +2283,7 @@ ja:
     davawenyo: ダバオ語
     dutch: オランダ語
     english: 英語
+    esperanto: エスペラント語
     estonian: エストニア語
     faroese: フェロー語
     fijian: フィジー語
@@ -2309,6 +2366,7 @@ ja:
     vietnamese: ベトナム語
     waray_waray: ワライ語
     xhosa: コサ語
+    zapoteco: サポテカ語
     zulu: ズールー語
   less: より少なく
   #Button show less text
@@ -2316,6 +2374,7 @@ ja:
   licensed_site_photos: "ライセンス付の%{site_name}写真"
   license: ライセンス
   licensing: ライセンス
+  licensing_your_content_gives_others_legal: "あなたのコンテンツにライセンスを付与することで、ライセンス条件を守れば、他者がそれを使用する法的権利が与えられます。%{site_name} は、クリエイティブ・コモンズ・ライセンスを取得したコンテンツを、以下のようなデータ・パートナーと共有するために使用します。 "
   life: 生命
   life_list: "%{user}さんのライフリスト"
   linear_scale_label: 線形
@@ -2328,6 +2387,8 @@ ja:
   link_your_google_account: Googleアカウントをリンクする
   linked_flickr: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されています"
   linked_flickr_automatically: "また、Flickrから%{site_name} にログインすると、%{site_name} とFlickrのアカウントが自動的に再リンクされます。Flickrを使っている人は、Flickrの写真をインポートできるようにしたいと思うでしょう。"
+  linked_flickr_description: "%{site_name} のアカウントをFlickrアカウントとリンクさせておくことで、複数の写真をオブザベーションに追加することができます。 もちろん、%{site_name} のアカウントとFlickrアカウントを分離したい場合は、写真を追加できなくなるだけです。新しいFlickrアカウントを作成し、%{site_name} とリンクさせたい場合など、この方法が最善である場合もあります。"
+  linked_flickr_password_html: "<strong>Flickrのパスワードをお尋ねすることはありません</strong>（ただし、Flickrがお尋ねすることはありますので、ボタンがあなたに送信するURLを確認し、Flickr.comであることをご確認ください）。"
   linkedin: LinkedIn
   list: リスト
   list_deleted: リスト削除されました
@@ -2338,6 +2399,10 @@ ja:
     taxonomic: 分類
     photo: 写真
   list_was_successfully_created: リストは無事作成されました
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}、 %{two}、 および %{three}"
+  list_with_two_items: "%{one} と %{two}"
   listed_taxa: 分類群一覧
   listed_taxon: リストの分類群
   listed_taxon_updated: リストの分類群が更新されました
@@ -2376,6 +2441,7 @@ ja:
     es: スペイン語
     es-AR: スペイン語 (アルゼンチン)
     es-CO: スペイン語（コロンビア）
+    es-CR: スペイン語 (コスタリカ)
     es-MX: スペイン語（メキシコ）
     et: エストニア語
     eu: バスク語
@@ -2426,6 +2492,7 @@ ja:
   location_is_obscured: 位置情報はカモフラージュ中
   location_is_private: 位置情報は非公開
   location_specified: 指定した位置
+  locked_taxa_will_not_allow_new: ロックされた分類群には新しい子孫分類群を追加することができません。そのため、両生類をロックしているときに誰かが外部の名前提供者から <i>Rana catesbeiana</i> をインポートしようとすると、新しい分類群が作成されますが、両生類として分類できません。このような場合、新しく追加された分類群にはキュレーターの注意を促すフラグが付けられるべきです。これは本当に、すでにすべての子分類群を持っていると考えられる分類群にのみ使用すべきです。キュレーターは分類群を編集して親分類群の ID を直接入力することでこれを上書きすることができますが、その代わりに新しい分類 群を既存の分類群にマージすることを検討してください。
   log_in: ログイン
   log_in_or_sign_up_to_add_comments_html: |
     コメントを追加するには、<a href="/login">ログイン</a>または<a href="/signup">ユーザー登録</a>をしてください。
@@ -2455,6 +2522,8 @@ ja:
   lookup: 調べる
   low: 低
   lowest_rank: 最下位階級
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat.org
   make_admin: 管理者権限を付与
   #Header for main content section of the project detail page when editing custom project data.
   main_content: メインコンテンツ
@@ -2486,6 +2555,7 @@ ja:
       every_publicly_visible_observation: iNaturalistネットワーク上のすべての公開中観察記録
       featured_observations: 注目の観察記録
       gbif_network: GBIFネットワーク
+      gbif_network_description2: GBIFが公開している博物館やその他の生物記録プロバイダーからの記録
       observations: 観察記録
       place_boundary: 場所範囲
       checklist_places: チェックリスト場所
@@ -2520,7 +2590,10 @@ ja:
   mentioned_you_in_noun_by_html: "%{user}さんは%{by}の%{noun} であなたにメンションしました"
   mentioned_you_in_noun_by_user_html: "%{user}さんは%{by}の%{noun} であなたにメンションしました"
   mentioned_you_in_noun_by_you_html: "%{user}さんはあなたの%{noun} にメンションしました"
+  mentioned_you_in_a_x_on_noun_html: "%{user} さんが %{x} の %{noun} であなたにメンションしました"
+  mentioned_you_in_an_x_on_noun_html: "%{user} さんが %{x} の %{noun} であなたにメンションしました"
   mentioned_you_in_a_x_on_noun_by_html: "%{user}さんは%{noun} 上の%{x} で%{by} によってあなたを言及しました"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} は %{by} による %{noun} の %{x} であなたにメンションしました。"
   mentioned_you_in_an_x_on_noun_by_html: "%{user}さんは%{noun} 上の%{x} で%{by} によってあなたに言及しました"
   merge: 統合
   merge_it_with_another_place: 他の場所と統合
@@ -2530,6 +2603,7 @@ ja:
   merging_places: 場所を統合しています
   message: メッセージ
   message_deleted: メッセージを削除しました
+  message_from_user_at_time: '%{user} さんから %{time} に'
   message_from_user_on_date: '%{user}さんから %{date} に'
   messages: メッセージ
   messages_new_correspondent_it_looks_like: |
@@ -2538,6 +2612,10 @@ ja:
     標本や非公開データの要求には注意が必要です。依頼者が誰であるかを確認するようにし、標本を要求している場合は許可証を見せてもらうようにしましょう。
   messages_new_correspondent_personal: |
     信頼できない人に自分の個人情報を開示しないようにしましょう。
+  messages_new_correspondent_actions_html: |
+    この人物が<a href="%{tos_url}"
+    target="_blank">利用規約</a>に違反している、または<a
+    href="%{guidelines_url}" target="_blank">コミュニティガイドライン</a>に反する行為をしていると思われる場合は、このメッセージにフラグを付けてください。
   minimum_positional_accuracy: 最小位置精度
   misidentifications: 誤同定
   misleading_or_illegal_content_html: |
@@ -2546,6 +2624,12 @@ ja:
   missing_date: 日付がありません
   mobile: モバイル
   moderation_history_for_user_html: '%{user} のモデレーション履歴'
+  moderation_history_desc_html: |
+    これには、モデレーターの操作（コメントの非表示や非表示解除など）、メモ、このユーザーが作成した分類群以外のすべてのフラグが含まれます。この履歴は<strong>キュレーターにのみ表示</strong>され、<strong>キュレーターは自分の履歴を見ることができません</strong>。
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: 非表示
+  moderator_note_desc: |
+    モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがソックパペット・アカウントの可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: モデレーター / フラグ作成者
   mollusks: 軟体動物
@@ -2640,6 +2724,7 @@ ja:
   #Mute is a noun here
   mute_removed: ミュートが解除されました
   muted_users: ミュートしたユーザー
+  muting_description: 誰かをミュートすると、「@」での言及、メッセージ、あなたの観察記録へのコメントや同定を含む、その人の活動に関する通知を受けることができなくなります。
   n_ago: "%{n}前"
   n_people_agrees: "%{amount}人が賛成"
   n_people_disagrees: "%{amount}人が反対"
@@ -2681,6 +2766,7 @@ ja:
   new_check_list: 新規チェックリスト
   new_check_list_for: "%{place}&raquo; の新しいチェックリストを作成"
   new_comment_on_a_parent_by_user_link: '%{user_link}さんから@vow_or_con{vow:an|a} %{parent}に新規コメントがあります'
+  new_conservation_status: 新しい保全状況
   new_flag_for: 新規フラグ：
   new_guide: 新規ガイド
   new_journal_post: 最近投稿された日記
@@ -2778,11 +2864,12 @@ ja:
   no_photos: 写真がありません
   no_photos_of_that_size: そのサイズの写真はありません。
   no_places_available: 有効な場所がありません
-  no_post_yet: 投稿まだありません
+  no_post_yet: 投稿がまだありません
   no_project_selected: プロジェクトは選択されていません
   no_project_to_admin_current_user: "あなたが管理するプロジェクトはありません"
   no_project_to_admin_login: "%{login}が管理するプロジェクトはありません"
   no_projects_yet: プロジェクトはまだありません
+  no_attached_range: 生息範囲は追加されていません
   no_range_data_available: 分布・生息区域データありません
   no_recent_activity: 新着情報がありません
   no_reply_yet: 返事はまだありません
@@ -2794,6 +2881,7 @@ ja:
   no_species_on_this_list: リストに種はまだありません！
   no_subject_parens: "（件名なし）"
   no_such_wiki_page: そのようなページはありません
+  no_such_wiki_page_html: そのようなページは存在しません. <a href="%{new_url}">作成</a>しますか?
   no_suggestions_available: 提案はありません
   no_summary_from_wikipedia: ウィキペディアに記述ありません
   no_summary_has_been_set: 概要が指定されていません
@@ -2847,14 +2935,40 @@ ja:
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: 観察 - %{user}
+  observation_belongs_to_project_requiring_field: |
+    観察記録はこのフィールドを必要とするプロジェクトに属しています。このフィールド値を削除する前に、そのプロジェクトから観察記録を削除する必要があります。
   observation_brief_something_on_day: "%{day} の何か"
   observation_brief_something_on_day_at_time: "%{day} %{time} の何か"
   observation_brief_something_on_day_at_time_by_user: "%{user}さんによる %{day} %{time} の何か"
   observation_brief_something_on_day_by_user: "%{user}さんによる %{day} の何か"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "%{year} 年 %{month} 月の何か"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "%{user} さんによる %{year} 年 %{month} 月の何か"
   observation_brief_something_by_user: "%{user}さんによる何か"
   observation_brief_something_from_place: "%{place} からの何か"
+  observation_brief_something_from_place_by_user: "%{user} さんによる %{place} での何か"
+  observation_brief_something_from_place_on_day: "%{day} 日の %{place} での何か"
+  observation_brief_something_from_place_on_day_by_user: "%{user} さんによる %{place} での %{day} 日の何か"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{place} での %{year} 年 %{month} 月の何か"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "%{user} による %{place} での %{year} 年 %{month} 月の何か"
+  observation_brief_taxon_on_day: "%{day} 日の %{taxon}"
+  observation_brief_taxon_on_day_by_user: "%{user} による %{day} 日の %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{year} 年 %{month} 月の %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{user} による %{year} 年 %{month} 月の %{taxon}"
+  observation_brief_taxon_by_user: "%{user} による %{taxon}"
   observation_brief_taxon_from_place: "%{place} の %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{user}さんによる %{place} の %{taxon}"
+  observation_brief_taxon_from_place_on_day: "%{place} での %{day} 日の %{taxon}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{user} による %{place} での %{day} 日の %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{place} での %{year} 年 %{month} 月の %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{user} による %{place} での %{year} 年 %{month} 月の %{taxon}"
   observations_by_category: "カテゴリ別観察記録"
   observations_by_app: アプリケーションによる観察記録
   observations_by_rank: 階級ごとの観察記録数
@@ -2867,6 +2981,8 @@ ja:
   observation_curation: 観察記録キュレーション
   observation_date: 日付
   observation_date?: 日付？
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: 分類群
   observation_field: 観測記録フィールド
   observation_field_details: 観察記録フィールドの詳細
   observation_field_type_text: 説明
@@ -2879,12 +2995,17 @@ ja:
   observation_fields_are_additional: 観察フィールドは観察記録に追加できる任意データフィールドです
   observation_fields_by_preferences_description: |
     観察記録フィールドはタグに少し似ていますが、初期設定ではだれでも観察記録に追加できます。自分だけができるようにしたい場合、またはサイトの管理者だけができるようにしたい場合は、これを変更します。
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    例：2019-10-29 13:12:21
   observation_removed_from_the_project: "観察記録は「%{project}」から除去されました"
   observation_requirements: 観察記録の要件
   #Label for a field showing the date when the observation requirements for a
   #project were last updated
   observation_requirements_updated_at: 観察記録の要件が更新されました：
   observation_rules: 観測記録ルール
+  observation_rules_description: |
+    あなたは、観察記録を特定の場所または分類群に制限するように、このプロジェクトに追加できる観察記録を決定するルールを選択できます。ルールのタイプに複数のルールがある場合、どちらかのルールが通れば観察記録は有効になります。たとえば、「両生類でなければならない」と「爬虫類でなければならない」というルールがある場合、 プロジェクトは爬虫類または両生類の観察記録を受け入れます。
   observation_was_deleted: 観察記録が削除されました
   observation_without_media: メディアなしの観察
   observations: 観察記録
@@ -2983,7 +3104,11 @@ ja:
       <li><strong>参加した議論:</strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツのフォロワーに登録されます。フォロー解除には「フォローの管理」ツールを使います。</li>
       </ul>
   one_by_one: "１個ずつ"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "以下のいずれかが真でなければならない："
   one_of_your_lists: "自分のリストに"
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    1つ以上の入力分類群が1000以上の観察記録に関連付けられているため、処理に時間がかかることがあります。この分類群の変更は本当に必要ですか？分類群の変更は元に戻せないことに注意してください。
   only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
   only_administrators_may_access_that_page: このページはサイト管理者以外の方はアクセスできません。
   only_an_admin_can_remove_project_users: プロジェクトユーザーを削除するのは、管理者のみです。
@@ -3053,9 +3178,11 @@ ja:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: <a href="%{url}">%{place}</a>でこの亜属と間違われることが多い分類群
   other_taxa_commonly_misidentified_as_this_subsection: この亜節と間違われることが多い分類群
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: <a href="%{url}">%{place}</a>でこの亜節と間違われることが多い分類群
+  outside_of_all_atlases: 登録されているどの生息域にも不該当
   our_blog: iNaturalistブログ
   output_taxon: 出力分類群
   overview: 概要
+  overlapping_atlases: 生息域に重複して該当
   overlapping_downstream_taxon_frameworks_html: "下位の分類群フレームワークの重複：%{count}"
   owner: 所有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3067,6 +3194,9 @@ ja:
     invalid_email: Eメールアドレスの形式が正しくありません。
   password: パスワード
   password_confirmation: 'パスワード確認'
+  password_change_description: パスワードを変更すると、すべてのデバイスにてiNaturalistから強制的にログアウトされます。
+  password_change_logout_warning: パスワードを変更すると、あなたは強制的にログアウトされ、新しいパスワードで再度ログインする必要があります。
+  password_change_observations_warning: また、iNaturalistモバイルアプリや、iNaturalistに代わって投稿するその他のアプリやウェブサイトからも強制的にログアウトされます。 そのため、保留中の観察記録がある場合はアップロードを行ってください。 アップロードされていない（入力途中の）観察記録は、ログアウトされた場合すべて失われます。
   paste: 貼り付け
   paste_in_a_bunch_of_names: たくさんの名称を、行ごとに一つずつを貼り付けた後、ボトンを押すとバッチで処理します
   people: ユーザー
@@ -3102,8 +3232,12 @@ ja:
   photo_credits: クレジット表記
   photo_deleted: 写真が削除されました
   photo_destroyed_because_it_was_deleted_from: "外部サイトから削除されたため、または%{site_name} に表示する権限がないため、写真は破棄されました"
+  #Message displayed after a photo has been hidden
+  photo_hidden: 写真を非表示
   photo_licensing: 写真ライセンス
   photo_type: 写真の種類
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: 写真は非表示
   photo_urls_repaired: 写真のURLは復元できました
   photos_chosen_for_this_taxon: この分類群に選択された写真
   photos_from: からの写真
@@ -3124,6 +3258,20 @@ ja:
     アカウントを管理するため、iNaturalistにいくつかの個人情報を保存し、処理させることに同意します。
   pi_consent_child_label: |
     子供のアカウントを管理するため、iNaturalistが子供に関するいくつかの個人情報を保存し、処理させることに同意します。
+  data_transfer_consent_desc_title: 個人情報の転送同意について
+  data_transfer_consent_desc_html: |
+    <p>
+    欧州連合の一般データ保護規則（GDPR）のように、一部のデータプライバシー法では、個人情報の法的保護が適切でないと考えられる法域から他の法域への個人情報の移転に明示的な同意を必要としています。<a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020年</a>現在、欧州連合（EU）は米国を個人情報の適切な法的保護を提供する法域とはみなしていません。特に、米国に入るデータを米国政府が監視する可能性があるためです。他の司法管轄区も同じ意見を持つ可能性があります。
+    </p>
+    <p>
+    iNaturalistを使用するには、お客様のEメールアドレスのような個人情報の保存が必要です。iNaturalistのデータは全て米国に保存され、お客様がiNaturalistを使用している時、どの法的管轄区域にいるかはわかりません。GDPRのようなプライバシー法を遵守するために、お客様はこのリスクを理解し、受け入れることを認め、お客様の個人情報が米国にあるiNaturalistのサーバーに転送されることに同意する必要があります。
+    </p>
+    <p>
+    弊社がどのような情報を収集し、どのように使用するかについては、弊社の<a href='%{privacy_url}' target='_blank'>プライバシーポリシー</a>および<a href='%{terms_url}' target='_blank'>利用規約</a>をご覧ください。
+    </p>
+    <p>
+    個人情報を保存せずにiNaturalistのアカウントを持つ方法はありませんので、この同意を取り消す唯一の方法はアカウントを削除することです。
+    </p>
   data_transfer_consent_label: |
     個人情報をアメリカ合衆国へ転送することを許可・同意します
   data_transfer_consent_child_label: |
@@ -3518,8 +3666,20 @@ ja:
     zimbabwe: ジンバブエ
   places_of_interest: 注目の場所
   places_merged_successfully: 場所は無事統合できました！
+  places_warning_export_complex_boundary_html: |
+    複雑な境界から観察記録をエクスポートしようとしている場合は、<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">代わりにGBIFからダウンロードする</a>ことを検討してください。iNatから既存の場所や境界線を使用してエクスポートし、一度ダウンロードしたデータを再度フィルタリングすることもできます。
+  places_warning_look_for_existing2_html: |
+    <a href="/search?source[]=places">既存の場所</a>を探して、重複を作らないようにしましょう。私たちはすでに、すべての大陸や国、その他多くの政治的境界線に対応する場所を用意しています。
   places_warning_please_keep_in_mind: |
     以下の説明をご確認ください:
+  places_warning_projects_can_have_multiple_places: |
+    プロジェクトの境界線に場所を作ろうとする場合、プロジェクトは複数の場所から構成することができます。例えば、ニュージーランドとオーストラリアのプロジェクトを作りたい場合、新しいプロジェクトを作るのではなく、2つの場所の要件を追加すればよいのです。
+  places_warning_new_places_are_slow_html: |
+    新しい場所はiNatを遅くする最大の原因の一つなので、<strong>新しい場所を作らないことを検討してください</strong>。わずか数千の観察記録を含む小さな場所はたいてい大丈夫ですが、たくさんの観察記録を含む新しい場所を作ると、他のみんなのためにiNatの速度を落とすことになります。以下はその代替方法です：
+  places_warning_editing_places_is_slow: |
+    場所の境界線の編集は、iNatの速度低下の最大の原因のひとつです。避けられるのであれば、絶対に必要でない限り、場所の境界線を追加したり、変更したり、削除したりしないでください。
+  places_warning_quota: |
+    1日に作成できる場所は3か所までです。
   plants: 植物
   play_first_sound: 最初の音声を再生する
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
@@ -3552,6 +3712,7 @@ ja:
   powered_by: 搭載ソフト：
   powered_by_inaturalist_open_source_software_html: '<a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalistオープンソースソフト</a>搭載'
   present: 生息
+  press: プレスリリース
   preview: プレビュー
   preview_observations_with_these_observation_requirements: これらの観察条件で観察記録をプレビューする
   preview_of_synced_observation: "同期済の観察記録の<strong>プレビュー</strong>です。<a href=\\\"%{url}\\\">取り消しますか？</a>"
@@ -3569,6 +3730,7 @@ ja:
   privacy: プライバシー
   private: 非公開
   private_: 非公開
+  private_description: "座標はパブリックマップから完全に非表示で、本当の座標はあなたとあなたが観察記録を追加したプロジェクトのキュレーターだけが見ることができます。座標が隠された観察記録は、場所のチェックリストの検証に使用されます。"
   probably_spam: スパムの可能性あり
   proceed: 続行
   processing: 処理中
@@ -3580,8 +3742,14 @@ ja:
   project: プロジェクト
   project_admins:
     other: プロジェクト管理者
+  project_aggregator_filter_error: |
+    プロジェクトが適度な規模の場所と関連しているか、特定の分類群またはリスト上の分類群の観察記録のみを許可していない限り、プロジェクトは自動的な観察記録を集計することはできません。
   project_assessments: プロジェクト評定
   project_assets: プロジェクトアセット
+  project_coordinate_access_enabled: |
+    メンバーを信頼することで、観察記録の非表示座標を見ることができるようになります。
+  project_coordinate_access_disabled_until_datetime: |
+    %{datetime} まで非表示の座標にアクセスできません
   project_coordinate_access_warning: |
     位置情報のアクセスは科学者にとって重要ですが、密猟者に悪用される可能性もあります。このプロジェクトを信頼する前に、すべてのプロジェクトキュレーターを信頼するようにしてください。
   project_cover: プロジェクトカバー
@@ -3611,6 +3779,8 @@ ja:
   project_settings: プロジェクト設定
   project_start_time_datetime: "開始時刻：%{datetime}"
   project_that_does_not_contain_these_observations: これらの観察を含んでいないプロジェクト
+  project_type_description: |
+    アセスメントとは、通常、保全上の重要性を評価するために、一連の種の評価を共同で行うことです。
   project_user_cannot_be_found: プロジェクトユーザーが見つかりません
   project_user_was_invalid: "プロジェクトユーザーは無効です：%{project_user}"
   project_was_successfully_created: プロジェクトは無事作成されました
@@ -3628,6 +3798,8 @@ ja:
   proposed_taxa_that_support_the_community_id: コミュニティ同定に対応した分類群の提案
   protozoans: 原生動物
   provider_authorizations: プロバイダの承認
+  provider_without_email_error_apple: |
+    Appleはこれに必要なアカウントのメールアドレスを提供していません。Apple経由でない方法でアカウントを作成してください。
   provider_without_email_error_flickr: |
     Flickerはこれに必要なアカウントのメールアドレスを提供していません。Flicker経由でない方法でアカウントを作成してください。
   provider_without_email_error_google_oauth2: |
@@ -3742,6 +3914,8 @@ ja:
   ranks_lowercase_subtribe: 亜族
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: 属
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: 属間雑種
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: 亜属
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
@@ -3776,6 +3950,7 @@ ja:
   receive_updates_from_this_project: このプロジェクトより新着情報を受信する
   recent: 新着
   recent_evidence_of_organism: 生物の最近の証拠
+  recent_exports: 最近のエクスポート
   recent_new_users: 最近の新規ユーザー
   recent_observations: 最新の観察記録
   recent_observations_: 最近の観察記録
@@ -3801,6 +3976,8 @@ ja:
   register_for_this_event_at_x_html: "%{x}でこのイベントの参加登録を行う"
   reject?: 却下しますか?
   relative_observations: 関連した観察記録
+  relationship: "関係性"
+  relationship_x: "関係性：%{relationship}"
   relationships:
     match: 一致
     one_to_one: 1対1
@@ -3809,6 +3986,7 @@ ja:
     one_to_many: 一対多
     error: エラー
   relationships_user_settings: ユーザーとの関係
+  relationship_html: "関係性：%{link}"
   reload_from_observations: 観察記録から再度読み込みします
   reload_timed_out: '再読み込みがタイムアウトしました。しばらくしてから再度お試しください。'
   remarks_optional: '備考<span class="small description">(オプション)</span>'
@@ -3864,6 +4042,8 @@ ja:
   #you out until you do
   resend_and_sign_out: 再送信してサインアウト
   resend_confirmation_email: 確認メールを再送信
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: リセット
   reset_filters_short: リセット
   reset_brightness: 明るさをリセット
   reset_search_filters: 検索フィルターを解除
@@ -3874,8 +4054,11 @@ ja:
   resolved_by_user_on_date_html: '%{user}さんによって %{date} に解決済み'
   restore: 復元
   restoring: 復旧中...
+  result_window_too_large_error: |
+    1ページあたりの検索結果数が10,000を超えています。フィルタを適用して数を減らしてみてください。
   review_all: すべてを確認済みに
   reviewed: 確認済み
+  revoke_privacy_consent_warning: "この同意を取り消す唯一の方法は、お客様のアカウントおよび関連するすべてのデータを削除することです。"
   rg_observations: 研究用グレード観察記録のみ
   role: 役割
   rotate_left: 左回転
@@ -3999,10 +4182,16 @@ ja:
   show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
   show_hidden_content: 非表示コンテンツを表示
   show_history_by_this_user: このユーザーの履歴を表示
+  show_history_for_this_kind_of_action: この種のアクションの履歴を表示
   show_history_for_this_record: この記録の履歴を表示
   show_keyboard_shortcuts: キーボードショートカットを表示
   show_less: 一部のみ表示
   show_more: もっと表示
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: その他のログインオプションを表示する
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: '「注釈なし」を表示'
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
@@ -4046,15 +4235,36 @@ ja:
   site_staff: "%{site_name} スタッフ"
   site_stats: サイト統計
   site_taxon_page: "%{site_name}分類群のページ"
+  sites_affiliation_about_desc_html: |
+    iNaturalistネットワークへの参加にご興味のある団体は、%{start_tag_join}こちら%{end_tag_join}から詳細をご覧いただけます。
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalistカナダ%{end_tag_inat_canada} では、iNaturalistのデータを保全データセンター（CDC）が管理する州レベルの安全なシステムに組み込むことができます。これらのシステムは、絶滅危惧種や絶滅危惧種の重要生息地を決定する際だけでなく、種のリスク状態を決定するための評価（年2回）を実施する際にも使用されます。その結果、危険にさらされている種の交通事故による死亡のホットスポットを特定し、それを軽減すること、生物多様性重点地域を画定し、最終的に保護すること、数十年間報告されていなかった種の存在を再確認することも可能になりました。
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalistエクアドル%{end_tag_ecuador} はエクアドル国立生物多様性データベース（BNDB）-科学的記録と市民科学からのデータの大規模なリポジトリ- にデータを提供しています。その目的は、エクアドルの動植物の環境理解を深めるための知識とデータを統合することです。
+  sites_affiliation_examples_mexico_nbis_html: |
+    メキシコの %{start_tag_naturalista}Naturalista%{end_tag_naturalista} による観察記録は、eBirdの記録とともに生物多様性情報システム（CONABIO、国立生物多様性委員会）に送られます。人々は科学的記録と市民科学的記録の両方を %{start_tag_enciclovida}Eniclovida%{end_tag_enciclovida} で見つけることができます。
+  sites_affiliation_examples_portugal_atlas_html: |
+    ポルトガルのiNaturalistネットワーク・メンバーである %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} は、ポルトガルの渡り鳥アトラス、哺乳類アトラス、その他いくつかのポルトガルの科学研究論文の記録データを共有します。
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動で不明瞭または非公開に設定されている位置情報（分類群に設定されている位置情報公開状況による）
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
     iNaturalistは一部の種を騒動、採集、密猟から保護するために自動的に座標を隠しています。もし、種の保護のために観測座標が自動的に隠されただけであれば、iNaturalistはそれぞれの国からのすべての観測座標の真の座標をネットワークメンバーと共有します。
+  sites_affiliation_more_email_addresses: |
+    メールアドレスは、本サイトに関連する連絡のためにのみ、ネットワークメンバーと共有されます。
+  sites_affiliation_more_twice_per_year: |
+    iNaturalistは年に2回、iNaturalistのデータを各地域の研究、保全、管理のために利用しやすくするために、iNaturalistネットワーク・メンバーと提携しているアカウントのメールアドレスと一部の非表示座標（公開されていない座標や非公開の座標）を共有しています。座標を隠すことができる2つの方法は以下に説明するように共有方法が異なります。
   sites_affiliation_more_user_hidden_coordinates: |
     投稿者によって不明瞭または非公開にされた位置情報
   sites_network_agreements_html: |
     iNaturalistはiNaturalistプラットフォームの利用をサポートするため、それぞれの地域の組織と正式な契約を結んでいます。<strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join}で詳細をご確認いただけます。</strong>
   some_agree: 一部が賛成
+  some_observations_are_missing_media_or_identifications: |
+    一部の観察記録にメディアや同定の欠落があります
+  some_observations_are_missing_media_or_identifications_desc: |
+    画像・音声が欠如していたり、同定欄が空欄の観察記録は、検索に引っかからず誰にも同定されない可能性が高くなります。
+    例え「植物界」や「昆虫綱」のような非常に粗い同定でも、あなたの地域で活動している植物や昆虫の専門家があなたの観察記録を見つけるのに役立ちます。
+
+    あなたの追加したい種名がiNaturalistにまだ登録されていない場合は、その上位分類群の同定を仮に追加しておき、その上位分類群にフラグを立ててください。
   some_observations_failed_to_be_added: いくつかの観察記録がプロジェクトへの追加に失敗しました
   some_observations_failed_to_save: 保存に失敗した観察記録があります
   some_of_those_photos_couldnt_be_saved: "いくつかの写真は保存できませんでした：%{error}"
@@ -4274,6 +4484,7 @@ ja:
   taxon_is_threatened_coordinates_obscured_desc: |
     同定で提案された分類群、またはその下位の分類群には、希少および/または絶滅の恐れがあることが知られているため、この観察記録の座標は不明瞭にされています。
   taxonomy: 分類
+  taxon_change_must_be_committed_to_update_records: 記録を更新するには分類群の変更をコミットする必要があります
   taxon_deleted: 分類群（taxon）が削除されました
   taxon_doesnt_have_a_range: 分類群には分布・生息区域がありません
   taxon_drop: 分類群の無効化
@@ -4300,6 +4511,7 @@ ja:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: これはIUCNレッドリストからの分布マップではありません（IUCN上の分布マップは不適切）
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: これはIUCNレッドリストからの分布マップではありません（分類群はIUCNに登録されていません）
   taxon_range_guidelines_each_taxon_can_have: 各分類群は1つの分布域のみを持つことができます。分布域はその分類群の世界的な分布を表す必要があります。
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCNレッドリストによる生息域マップが不適切な場合
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
@@ -4308,6 +4520,8 @@ ja:
   taxon_search: 分類群検索
   taxon_search_results_for: 分類群検索結果を表示中ー検索された分類群：
   taxon_split: 分類群分割
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
+  taxon_stage: 分類群ステージ
   taxon_swap: 分類群の入れ替え
   taxon_swap_only_has_one_input: 入れ替えするために一つのインプットしか認められていません
   taxon_swap_has_inputs_and_outputs: 入れ替えするにはインプットとアウトプットが必要です
@@ -4353,6 +4567,8 @@ ja:
     コミュニティは、証拠に基づいたコミュニティ分類群は最善だと確信する必要があります
   the_following_observations_could: "次の観察記録は%{link}に追加できませんでした"
   the_following_photos_have_been_tagged: "次の写真はタグ付けされました"
+  the_identotron_is_a_tool_to: |
+    Identotronは、%{site_name}のチェックリストデータに基づいた観察を特定するためのツールです。上位分類群と場所（例：インドの哺乳類）を指定すると、%{site_name}はその場所でその分類群に一致するチェックリストの項目を探します。ほとんどのチェックリストは現在作成中ですが、包括的なもの、つまりその場所にいるその分類群の代表を<em>すべて</em>リストアップしているものがあれば、Identotronにその旨が表示されます。
   the_observation_was_already_added_to_that_project: この観察記録はすでにプロジェクトに追加されています。
   the_people_of_inat: "%{site_name}のユーザー紹介"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4432,6 +4648,8 @@ ja:
   this_user_has_been_suspended: この利用者は利用停止されました
   this_user_has_been_suspended_message: |
     これがあなたのアカウントで、間違って操作されたと思われる場合は、<a href="mailto:%{email}">お問い合わせ</a>をお願いします。
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    これにより、再度アクセスを許可するまで、iNaturalistがあなたに代わってこのアカウントにアクセスする機能はなくなります。アクセスを完全に防ぐには外部サイトの設定を変更する必要があるかもしれません。
   this_will_try_to_add_tags_to_your_flickr: Flickr上の写真にタグ追加を試みます。実行しますか？
   this_year: 今年
   those_observations_no_longer_exist: お探しの観測記録は存在しません
@@ -4668,6 +4886,7 @@ ja:
   uploaded_by: アップロードしたユーザー：
   uploader:
     errors:
+      file_too_big: ファイルは %{megabytes} MB 未満でなければなりません
       unsupported_file_type: ファイルの種類に対応していません。JPG、PNG、GIF、WAV、AAC、MP3、MP4（音声のみ）を受け付けています。
     resize_tip: |
       写真ファイルが大きすぎる場合は、最大2048×2048ピクセルまでトリミングしてみてください。これはサーバー上のすべての写真に適用され、より速くアップロードすることができます。
@@ -4684,10 +4903,13 @@ ja:
   uploading_num_of_count_photos:
     other: '%{num}/%{count}枚の写真をアップロード中...'
   url_for_your_app_outside_of_inaturalist: iNaturalist以外のアプリのURL
+  url_of_this_taxon_on_the_source_website: ソースのウェブサイト上のこの分類群のURL
   usage_stats: 利用状況
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>「%{name}」</span> をプレースホルダーとして使用します。
   use_unique_file_names_for_separate_uploads: 個別のアップロードの場合、一意のファイル名をご使用ください
+  use_well_formed_csv: |
+    整形式CSVを使用してください。つまり、カンマを含むテキストはダブルクォーテーションで囲む必要があります。ほとんどの表計算アプリケーションはこの形式でCSVをエクスポートすることができるはずです。
   used_x_times:
     other: '%{count}回使用'
   user: ユーザー
@@ -4696,16 +4918,24 @@ ja:
   user_added_a_comment_html: "%{user} さんがコメントを追加しました"
   user_added_a_fave_html: "%{user}さんがお気に入りを追加しました"
   user_added_a_flag_html: "%{user}さんがフラグを追加しました"
+  #@gender operates on %{x}
   user_added_a_x: "%{user}さんが%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}さんは%{by}の%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_an_identification_html: "%{user}さんが同定を追加しました"
   user_added_an_observation_field_value_html: "%{user} が観察記録フィールドを追加しました"
   user_added_an_observation_html: "%{user}さんが観察記録を追加しました"
+  #@gender operates on %{x}
   user_added_an_x: "%{user}さんが%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}は%{by}の%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}は%{by}の%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}はあなたの%{noun}に%{x}を追加しました"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
   user_already_authenticated: ユーザーは既に認証されています
@@ -4754,6 +4984,22 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
   users: ユーザー
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    メールアドレスが正しいことをご確認ください。こちらが確認メールを送信するメールアドレスです：
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    メールが届かない場合は、以下のヒントをご参照ください：
+    </p>
+    <ul>
+    <li><p>迷惑メールフォルダを確認する</p></li>
+    <li><p>迷惑メールフォルダをチェックしてください。</p>
+    </li>
+    </ul>
+    <p>
+    それでも確認メールが届かない場合は、<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>までご連絡ください。
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>サインアウトしようとしています</h3>
     <p>
@@ -4870,6 +5116,7 @@ ja:
   weather: 天候
   website: ウェブサイト
   welcome: ようこそ
+  welcome_back!: おかえりなさい！
   welcome_to_inat: "%{site_name}へようこそ！"
   welcome_to_guides: "%{site_name}のガイドへようこそ！"
   welcome_to_x_project: "%{project}へようこそ"
@@ -4900,7 +5147,7 @@ ja:
   where: どこ
   where_were_they?: 場所は？
   where_were_you?: 場所は？
-  which_projects_can_add_your_observations?: どのプロジェクトに自分の観察記録の追加を許可しますか？
+  which_projects_can_add_your_observations?: どの手動プロジェクトに自分の観察記録の追加を許可しますか？
   white: 白
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: 変更理由(任意)
@@ -5050,11 +5297,13 @@ ja:
   you_dont_have_permission_to_edit_those_photos: 写真を編集する権限がありません
   you_faved_this: これをお気に入りにしました！
   you_have_left_x_project: "%{project}を退会しました"
+  you_havent_linked_your_inaturalist_google_account: "%{site_name} アカウントとGoogleアカウントはまだリンクされていません"
   you_joined_this_project: このプロジェクトに参加しました！
   you_must_be_a_member_of_this_project_to_do_that: この操作はプロジェクトメンバーでなければできません
   you_must_choose_an_observation_field: 観察フィールドを選択しなければなりません
   you_must_fill_out_the_required_fields: 必須フィールドを全て入力してください
   you_must_have_a_header_row: 見出し行が必要です。
+  you_must_select_a_place_to_merge_with: マージする場所を選択する必要があります。
   you_must_select_at_least_one_taxon: 一つ以上の分類群を選択しなければなりません
   you_must_specify_and_confirm_a_new_password: 新しいパスワードを指定して確認する必要があります。
   you_need_to_have_linked_flickr_account: 写真をタグするにはFlickrアカウントと連携している必要があります。
@@ -5111,6 +5360,7 @@ ja:
   youre_not_following_anyone: |-
     あなたはまだ誰もフォローしていません。他のナチュラリストをフォローすることで、最近の観察記録を追跡することができます。みんなが何を<a href="%{observations_path}">観察</a>しているか調べて、新しい<a href="%{people_path}">知り合い</a>を作りましょう。
   youre_not_following_anyone_on_inat: '%{site_name} では誰もフォローしていません'
+  youve_linked_your_inaturalist_google_account: "%{site_name} アカウントとGoogleアカウントをリンクしました。これにより、Googleの写真と %{site_name} の観察記録とを関連付けることができます。"
   youve_successfully_linked_your_provider_account: "あなたの%{provider}アカウントと無事接続できました。"
   verifiable: 研究用+要同定
   views:
@@ -5290,6 +5540,8 @@ ja:
         opt_in_for_this_observation: この観察記有効にする有効にする
         your_id_does_not_match: |
           あなたの同定（<span class="bold">%{taxon_name}</span>）はコミュニティ同定と一致しません
+      captive_help_html: |
+        その生物は<strong>栽培</strong>されたものなのか、<strong>飼育</strong>されたものなのか。例えば、<strong>庭や動物園、水族館</strong>など、<strong>人間が意図してそこに存在させた</strong>ものなのか？生き物の観察記録はすべて歓迎しますが、野生でない場合は教えてください。
       compare:
         some_queries_missing_taxa_desc: |
           クエリごとに最も多く観察された分類群から500個しか読み込むことができません。
@@ -5351,6 +5603,11 @@ ja:
         date_column_format: YYYY-MM-DD HH:MM
         geoprivacy_must_be_in_english: |
           位置情報公開状況の列は英語でなければなりません。空白または「obscured」（不明瞭）または「private」（非公開）の値である必要があります。
+        google_photos_notice_html: |
+          2019年2月、グーグルはAPIを変更し、GPS座標、ライセンス情報、同定を追加するために使用できるほとんどすべての情報（タグなど）にアクセスできなくなりました。また、テキスト検索と数値によるページネーションも削除されました。さらに、彼らはすべての接続アカウントに追加の許可を要求し、サードパーティがユーザーにその許可を要求する前に、そのサードパーティは検証されなければなりません。現在認証待ちですが、認証が下りるまではGoogleから写真をインポートすることはできません。私たちが承認されれば、写真をインポートできるようになりますが、Googleフォトで見ることができるような位置情報やライセンス情報は含まれません。これについては、<a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>で詳しく説明されています。元のファイルをダウンロードし、<a
+          href="/observations/upload">アップローダー</a>を使って追加するのが最善の回避策です。
       show:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
@@ -5366,10 +5623,15 @@ ja:
           <p class="ui">
           <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
+        curator_coordinate_access_disabled_desc_html: |
+          このプロジェクトでは、プロジェクトのキュレーターが見ることのできない座標を持つ観測記録を許可していません。このプロジェクトのキュレーターとこの観測記録の座標を共有したくない場合は、プロジェクトからこの観測記録を削除してください。
         data_quality_assessment_desc3_html: |
           品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
+        observation_flagged_notice_html: |
+          この観察記録はスパムとしてフラグが立てられ、公開されていません。あなたが見ることができるのは、あなたが作成したか、あなたがサイトのキュレーターだからです。これが間違いであると思われる場合は、<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。
+          <a href="/observations/%{observation_id}/flags">フラグを管理する</a>
         observer_does_not_allow_observation_fields: 観察者は観察フィールドを他人が追加することを許可していません
         observer_only_allows_curators_to_add_fields: 観察者はサイトキュレーターのみに観察フィールドの追加を許可しています
     emailer:
@@ -5388,14 +5650,82 @@ ja:
           <a href="%{url}">プロジェクトページ</a>から、設定の変更やプロジェクトの退会をすることができます。
       parental_consent:
         subject: あなたのお子様が iNaturalist を使用したい
+        content_html: |
+          <p>
+          あなたのお子様は教育アプリ <strong>Seek by iNaturalist</strong> を使用しており、iNaturalistの市民科学プラットフォームとデータを共有しようとしています。iNaturalistへの投稿は個人を特定できる情報を公開するため、iNaturalistは13歳未満の方が親の同意なしに使用することはできません。
+          </p>
+          <p>
+          <strong>Seek by iNaturalist</strong> はアカウントを作成することなく利用することができ、個人を特定する情報は共有されませんが、お子様はiNaturalistに観察記録を投稿することはできません。iNaturalistは市民科学ソーシャルネットワークで、参加者は生物の観察記録や同定を共有し、自然について教え合い、科学のための生物多様性データを作成します。
+          </p>
+          <p>
+          お子様がiNaturalistを利用することに同意される場合、以下のことを行っていただく必要があります：
+          </p>
+          <ol>
+          <li>
+          <p>
+          このリンクからお子様が使用するiNaturalistアカウントを作成してください：
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          お子様のアカウントを作成後、あなたが大人であることを確認するため、iNaturalistにクレジットカードで1米ドルの少額寄付をお願いしております。ご寄付の際は、サインアップの際に「保護者のEメール」欄にご入力いただいたメールアドレスを必ずご使用ください。
+          </p>
+          </li>
+          <li>
+          <p>
+          ご寄付の手続きが完了しましたら、お子様のアカウントが有効化されたことをお知らせするメールをお送りいたしますので、作成したiNaturalistのユーザー名とパスワードを使ってお子様のSeekアプリにログインしてください。
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalistは以下の個人情報を収集します：
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>メールアドレス（非公開）</strong>：すべてのiNaturalistアカウントには公開されないメールアドレスが関連付けられています。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>ユーザー名（公開、必須）</strong>：すべてのiNaturalistアカウントには公開ユーザー名とユーザー識別番号があります。ユーザーネームはその人の本名と似ている必要はありませんが、パブリックコメントやプライベートダイレクトメッセージでその人と連絡を取るのに使うことができます。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>IPアドレス（非公開、必須）</strong>：iNaturalistはユーザーのIPアドレスを保存しますが、（都市レベルの精度で）位置情報のような個人識別情報を導き出すために使用することはできますが、公開はしません。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>プロフィール写真 (公開, 任意)</strong>：iNaturalistアカウントには任意でプロフィール写真を設定することができます。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>観察場所（公開または非公開、必須）</strong>：iNaturalistの観察記録は観察が行われた場所の情報を含んでいます。これは公開することも非公開にすることもできますが、デフォルトでは公開になっています。
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalistはまた、ユーザーが自分のアカウントに関連する公開画像、公開コメント、非公開ダイレクトメッセージを共有できるようにしています。このようなユーザー作成コンテンツに個人識別情報が含まれる可能性があります。
+          </p>
+          <p>
+          iNaturalistのプライバシーポリシーについては <a href="%{privacy_policy_url}">こちら</a> をご覧ください。
+          </p>
       photos_missing:
         subject: いくつかの写真を修復する必要があります
+        please_address: |
+          <b>30日以内に</b>これらの問題に対処してください。30日後、iNaturalistが壊れた写真を削除し始めます。観察結果はすべて残ります。写真が削除された後、それらは再評価され、写真がなくなった場合、研究用の観察記録がカジュアルになる可能性があります。
       user_parent_confirmation:
         subject: お子様の iNaturalist アカウントがアクティベートされました
       users_updates_suspended:
         message: |
           しばらくのあいだ%{site_name}で活動をお休みしていたようなので、フォローを停止しました。再びサイト活動の更新情報を受けるには、<a href="%{login_url}">ご自分のアカウントにログインし直して</a>ください。
     places:
+      kml_field_desc3: |
+        場所の境界線のKML。Google Maps、Google Earth、またはほとんどのGISアプリケーションを使って作成できます。少なくとも1つのポリゴンを持ち、1MB以下（サイトキュレーターの場合は5MB以下）で、面積が70万平方キロメートル（およそソマリアかアメリカのテキサス州の大きさ）以下でなければなりません。
       new:
         check_list_note: "注意: 非常に大きな場所では、チェックリストは自動的に無効になります。"
         coordinates_desc: 境界線を描かない場合や、KMLファイル（Google Earthにて作成、ダウンロード可能） をアップロードしない場合は、座標を指定する必要があります。
@@ -5415,6 +5745,8 @@ ja:
           プロジェクトの観察記録をそのまま残します
         keep_observations_desc: |
           観察記録がそのままプロジェクト内に残り、キュレーター管理者が引き続き非公開の位置情報を閲覧できます。
+        project_requires_curator_coordinate_access_desc: |
+          このプロジェクトでは、プロジェクトのキュレーターが見ることのできない座標での観測記録を許可していません。もしこのプロジェクトのキュレーターと観測記録の座標を共有したくないのであれば、プロジェクトから削除してください。
         remove_observations_label: |
           このプロジェクトから自分の全ての観察記録を取り除く
         revoke_observations_label: |
@@ -5437,8 +5769,29 @@ ja:
         icon_desc: "正方形にトリミングされます"
         #Label for button to make another user the owner of a project
         make_owner: 所有者に設定
+        no_curators: |
+          プロジェクトのキュレーターはいません。新しい人を管理者にしたい場合は、まずその人をこのプロジェクトに参加させ、キュレーターにする必要があります。
+        observation_aggregation_desc_html: |
+          <p class="description">
+          観察記録の集約は、プロジェクト・ルールで指定されたように、適切な観察記録を自動的にプロジェクトに追加します。一度にプロジェクトからたくさんの観察記録を削除する方法がないので、これは潜在的に危険です。したがって、あなたが望む場所と分類群のルールを選択していることを確認してください。
+          </p>
+          <p class="description">
+          アグリゲータは、以下の条件が満たされている場合にのみ動作します：
+          </p>
+          <ol>
+          <li class="readable description">
+          あなたのプロジェクトに、小・中規模の場所（テキサス州やウクライナくらいの大きさ）の「その場所で観察されなければならない（must be observed in place）」ルールが少なくとも1つある。
+          </li>
+          <li class="readable description">
+          または、プロジェクトに少なくとも1つの「must be in taxon」ルールがある。
+          </li>
+          </ol>
         project_assets_desc_html: |
           <p class=\"description\">プロジェクトアセットはプロジェクトに関わるファイルです。ただし、次のように特別な決まりがあります</p>\n<ol class=\"description\">\n <li>ファイル名が.logo.jpg, .logo.png,などで終わるものはプロジェクトページでプロジェクトアイコンの代わりに使用されます</li>\n<li>KML及びKMZファイルはプロジェクトページ上のマップに追加されます</li>\n</ol>
+        project_list_desc_html: |
+          <p class="description">
+          分類群のカスタムプロジェクトリストを作成して、プロジェクトにリンクすることができます。これは、プロジェクトに追加される観察記録を、「プロジェクト・リスト上の分類群でなければならない」ルールによって、リスト上の分類群にマッチするものに制限するのに便利です。
+          </p>
         rules:
           captive: 飼育/栽培
           coordinates_shareable_by_project_curators: プロジェクトキュレーターが不明瞭/非公開になっている位置情報を閲覧できます
@@ -5521,6 +5874,8 @@ ja:
         trusting_members_will_be_notified: |
           プロジェクトの要件やユーザーからの信頼に関する条件を変更しました。これにより、既に不明瞭の座標をプロジェクト管理者へ信頼して提供しているメンバーにも通知され、新しい要件でもプロジェクトを信頼するかどうかを判断する機会が与えられます。
         unique_url_for_outreach: アウトリーチのための独自のURLを発行できます
+        use_this_for_a_time_limited_event: |
+          期間限定のイベント、バイオブリッツ、または季節的なプロジェクトに使用します。単一の日付、日付の範囲、または観察が行われなければならない月のいずれかを選択します（年に関係なく）。「日付範囲」セクションを使用する場合は、正しい時刻とタイムゾーンが選択されていることを確認するか、時刻/タイムゾーンのテキストを削除して、その日全体の観察記録を含めるようにしてください。1つの日付のみでプロジェクトを制限したい場合は、開始日または終了日を空白のままにすることができます。
         users_can_follow_your_project: ユーザーはプロジェクトをフォローすることで、ニュースから最新の情報を得ることができます
         use_this_link_to_create_html: |
           <a href="%{url}">このリンク</a> を使用して手動プロジェクトを作成する
@@ -5596,7 +5951,7 @@ ja:
         obs_cid_d_to_genus: 属レベル以下のコミュニティ同定がある観察記録
         obs_cid_d_to_genus_desc: 過去7日間に作成された属レベル以下のコミュニティ同定がある観察記録
         obs_desc: 過去7日間に作成された観察記録
-        obs_id_d_desc: 過去7日間に作成されたIDを持つ観察記録(観察者によるIDを含める)
+        obs_id_d_desc: 過去7日間に作成された同定済みの観察記録（投稿者自身による同定を含める）
         observations_1_week_moving_window: 1週間ごとの観察記録数
         observers_desc: 当日に観察記録を投稿したユーザー数
         other_desc_html: <a href="%{url}">開発者が作成した</a>他のアプリケーションを経由して作成
@@ -5622,6 +5977,8 @@ ja:
         donors_guide_label_our_goal_is_1000: 私たちの目標は、月あたり1,000人の定期的な寄付者です
         inaturalist_network: iNaturalistネットワーク
         include_usa: 米国を含める
+        growth_by_country_desc_html: |
+          成長はどこで起きているのでしょうか？この地図と図表はこれを国別に分解しようとするものですが、国別の成長は非常に不均衡になりやすいため、複雑なことがわかります。ここでは米国を省き、他の国との違いを強調するためにデフォルトで対数目盛りを使用することにします。ある国が黒く塗られている場合、それはパーセンテージに有意に寄与しなかったか、今年の成長がなかったか、昨年よりも今年の観測数が多くなかったことを意味します（国にカーソルを合わせると、もう少し詳細が表示されます）。<strong>"% of total growth"</strong> とは、世界全体の成長のうち、特定の国からどれだけの成長がもたらされたかを意味します。例えば、2018年に20件の観察記録があり、2017年に10件の観察記録があった場合、それは10件の観察記録の成長となり、それらの観察記録のうち5件がベナンからのものであった場合、ベナンは総成長の50％に貢献したことになります。<strong>「％成長」</strong>は、その国での昨年の観察記録数に対する、その国での今年の観察記録数のパーセンテージを意味します。従って、ラオスでの昨年の観察記録数が10件で、今年の観察記録数が20件であれば、それは100％の成長であり、昨年が0件で今年が1件であれば、それは無限大の％成長となります。
         growth_by_country_title: 国ごとの成長
         growth_title: 成長
         new_species_desc_html: |
@@ -5647,6 +6004,8 @@ ja:
       show:
         about_establishment_desc: |
           「定着方法」とは、ある種がどのように現在の場所で棲息することになったかを示します。「外来種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固有種」とは、特定の場所にしか存在しないことを表します。
+        charts_help_seasonality: |
+          このグラフは、この分類群の観察記録数を月ごとに分類したものです。これらは観察記録数なので、その生物が観察できる時期と、積極的に観察する人の時期の両方に影響されることに留意してください。つまり、ある鳥は5月に非常に活発になるように見えるかもしれませんが、それは5月に野鳥を観察する人が多く、それ以降の月にはその種を無視する傾向があるためかもしれません。同様に、1月よりも6月にトンボを多く見かけたとしても、それはおそらく北半球で観察する人が南半球よりも多いからであって、6月にトンボがより活発になるからではありません。観察記録数が少なかったり、「要同定」と「研究用」の観察記録数に大きな乖離がある場合は、これらのチャートに対して常に懐疑的になることをお勧めします。
         frequency:
           research: 研究用
           verifiable: 研究用+要同定
@@ -5672,6 +6031,17 @@ ja:
           分類群は最大%{max}枚の写真のみ追加できます。他の写真を追加するには、既存の写真を削除してください。
         photo_chooser_modal_desc: |
           写真を左からここにドラッグするか、写真をここにドラッグして再配置できます。
+    taxon_changes:
+      form:
+        move_children_desc2_html: |
+          ここにチェックを入れると、入力分類群へ行った変更が、入力分類群の下位分類群すべてにも適用されます。
+
+          例えば、Canidae を Dogidae に入れ替えた場合：
+          CanidaeがDogidaeに入れ替わるのみならず、Canidaeの下位分類群である<i>Canis</i> 属の上位分類群も、CanidaeからDogidaeに変更されます。
+
+          注意：入力分類群の分類階級が属以下の場合、ここにチェックを入れることにより学名が変更されることになります。例えば：
+          <i>Canis</i> 属を <i>Dogis</i> 属に入れ替えると、<i>Canis lupus</i> は <i>Dogis lupus</i> に、<i>Canis lupus</i> ssp. <i>lupus</i> は <i>Dogis lupus</i> ssp. <i>lupus</i> へと自動で変更されます。
+          これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -5701,6 +6071,8 @@ ja:
           場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:
       delete:
+        by_deleting_your_account_you_will_remove: |
+          アカウントを削除することにより、以下を削除することになります
         x_comments_html:
           other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
         settings_and_mute_html: |
@@ -5768,18 +6140,28 @@ ja:
         prefers_coordinate_interpolation_protection_desc: |
           観測記録の位置情報公開状況を「不明瞭」または「非公開」に設定した場合、特定を防ぐため日付も月までしか表示されなくなります。
         prefers_no_tracking_label: サードパーティのサービスを使用して安定性や利用状況のデータを収集しない
+        prefers_no_tracking_label_desc_limits: |
+          このオプションは私たちが明示的にこれらの企業に送信している分析およびクラッシュ・データにのみ適用されることに注意してください。iNaturalistの全てのサーバーはマイクロソフト社によって提供され、ホストされています。iNaturalistの全ての画像はアマゾン社によってホストされ、iNaturalistのほぼ全ての地図はグーグル社によって提供されています。つまり、あなたがiNaturalistで観測を見るたびに、あなたはこれらの企業が提供するサービスに接続し、少なくともあなたのIPアドレスをこれらの企業に公開していることになります（iPhoneアプリではアップル社の地図を使用しています）。iNaturalistはおそらくこれらの企業が提供するサービスなしには存在しないでしょうし、iNatの使用中にあなたがこれらの企業と共有するデータの量と種類を制限することはできますが、データの流れを完全に止めることはできません。
         project_settings_desc: |
           これは、あなたが非表示/不明瞭にした座標にアクセスしたり、更新情報を送信したりすることをプロジェクトに許可するものではないことを覚えておいてください。これらの許可を与えるためには、プロジェクトに参加するか、状況次第で許可を与える必要があります。
         taxon_change_desc: |
           分類群が%{site_name}で統合や改名されると、変化が明確であれば、あなたの観察記録、一覧にした分類群や同定などは自動的に新しいものに更新されます。通知の解除または変更があいまい（例：分割）な場合は、更新通知が届き、手動でコンテンツを更新するツールへのリンクから、自分で更新ができます。
         this_only_applies_to_traditional_projects: |
           これは従来のプロジェクトにのみ適用されます。基本的に保存された検索であるコレクションやアンブレラプロジェクト（親プロジェクト）から観察記録を除外することはできません。詳細は<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">こちら</a>をご覧ください。
+      recent:
+        definitions_html: <dl> <dt>スパムの疑い</dt> <dd> おそらくスパマーであろうと思われるユーザー。つまり、観察結果や識別情報はないが、プロフィールの説明はあるということです。 </dd> <dt>自動スパム</dt> <dd> システムによって自動的にスパムとしてマークされたユーザー。 </dd> <dt> 手動スパム</dt> <dd> サイトキュレーターが手動でスパムとしてマークしたスパム。 </dd> <dt>誤検知</dt> <dd> スパマーとしてフラグが立てられたが、実際にはスパマーではなかったため、サイトキュレーターによってフラグが解消されたユーザー。 </dd> </dl>
+        recent_users_desc_html: |
+          <p>
+          我々は新しいユーザーを歓迎したいが、同時にスパマーとも戦いたい。このツールがその両方に役立つことを願っています。私たちは<a
+          href="https://akismet.com/">Akismet</a>を使って多くのユーザーを自動的にスパマーとしてフラグを立てていますが、Akismetは完璧ではありません。そのため、新しいアカウントをスパマーかスパマーでないかマークするのに少しお時間をいただけると助かります。
+          </p>
       show:
         this_user_was_banned: このユーザーは利用停止されました
         favorites_list_prompt_html: |
           あなたのお気に入りの分類群を紹介してみませんか？「%{link_start_tag}お気に入り%{link_end_tag}」というタイトルのリストを作成してみよう。最近追加されたものがこのスペースに表示されます。
     user_parents:
       confirm:
+        thanks_for_creating_a_minor_account: マイナーアカウントを作成していただきありがとうございます!
         we_will_send_you_an_email: |
           お子様のアカウントが認証された際にはメールでお知らせいたします。
       new:
@@ -5787,6 +6169,8 @@ ja:
         parent_name_private: 保護者の名前（非公開）
         parent_email: 保護者のメール（非公開）
         step1_title: お子様のアカウントを作成する
+        step1_desc: |
+          個人情報保護規則を遵守するため、13歳未満の方のアカウント作成には親または法的保護者の同意が必要です。お子様がiNaturalistをご利用いただく場合は、身分証明書と連絡先情報をご提供ください。
         step2_title: クレジットカードで身元確認を行う
         step3_title: 確認メールをお待ちください
     welcome:
@@ -5977,8 +6361,10 @@ ja:
       #on the web site, mostly on the dashboard
       Announcement: お知らせ
       BlockedUser: ブロックしたユーザー
+      Comment: コメント 
       #Noun
       Flag: フラグ
+      Identification: 同定
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -5987,6 +6373,7 @@ ja:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: モデレーターノート
+      Photo: 写真
     attributes:
       announcement:
         created_at: '作成:'
@@ -6098,6 +6485,8 @@ ja:
       messages:
         blank: 空白にできません
         confirmation: パスワードが一致しませんでした
+        equal_to:
+          other: は %{count} と等しくなければなりません
         even: 偶数でなければなりません
         greater_than:
           other: '%{count}より大きい必要がある'
@@ -6118,6 +6507,7 @@ ja:
         requires_privilege_speech: |
           3つの確認可能な観察記録、もしくは3つの同定
           が必要です
+        requires_privilege_organizer: そのためには、50の検証可能な観察記録が必要です
         taken: 既に取得されています
         too_long:
           other: 長すぎます（最大は%{count}文字）
@@ -6147,6 +6537,8 @@ ja:
               guide_has_too_many_taxa: "ガイドは最大５００件の分類群までとなっています"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: この種のコンテンツには対応していません
             base:
               only_staff_can_unhide: サイトスタッフのみが非表示にされた内容を再度表示できます。
               staff_cannot_be_suspended: スタッフは利用停止できません
@@ -6163,6 +6555,8 @@ ja:
           attributes:
             value:
               dna_only_atcg: "DNAは次の値のみ有効です: A, T, C, G"
+              date_format: |
+                日付フィールドはYYYY-MM-DD形式でなければなりません。（「%{observation_species_guess}」の観察記録における「%{observation_field_name}」）
             observation_id:
               user_does_not_accept_fields_from_others: ユーザーは他人が観察記録フィールドを追加することを受け入れていません
               user_only_accepts_fields_from_site_curators: ユーザーはサイトキュレーターのみから観察記録フィールドの追加を受け付けています
@@ -6191,6 +6585,9 @@ ja:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: 新しいコメントは許可されていません
+            user:
+              must_be_on_site_long_enough: |
+                を公開するには、24時間以上前に登録している必要があります。スパマーが多いので、これは一種の簡易的な対処法です。下書きを保存しておけば、1日経ってもまだサイトを利用していれば、公開できるようになります。
         project_observation:
           attributes:
             user_id:

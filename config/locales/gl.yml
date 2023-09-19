@@ -828,13 +828,7 @@ gl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinar en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: foi combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituído por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituído con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: substituído con
     dropped: Eliminado
@@ -1850,8 +1844,6 @@ gl:
   #Verb, usually a button to hide an interface element
   hide: Ocultar
   hide_content: Ocultar Contido
-  hide_desc: |
-    Ocultar contido vai sacalo da vista pública, pero a xente aínda vai poder ver que algo foi agochado, e os conservadores do sitio e o autor do contido aínda poderán ver o contido oculto. Xeralmente, isto só se aplica ó contido escrito, p.e. se ocultares o contido dunha identificación, a identificación aínda será visible pero as anotacións do identificador estarán agochadas. Non podes desfacer isto, e só os traballadores do sitio poden desvelar o contido unha vez foi oculto, asi que ten tino e usa isto só para contidos moi ofensivos.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Agochar "Sen Anotacións"
@@ -4544,19 +4536,29 @@ gl:
   user_added_a_comment_html: "%{user} fixo un comentario"
   user_added_a_fave_html: "%{user} engadíu un favorito"
   user_added_a_flag_html: "%{user} engadíu unha marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} engadíu un %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} engadíu un %{x} a unha %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} engadíu un %{x} a unha %{noun} túa"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} engadíu un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} engadíu unha identificación"
   user_added_an_observation_field_html: '%{user} engadíu un valor para "%{field_name}" a unha observación de %{owner}'
   user_added_an_observation_field_value_html: "%{user} engadíu un valor nun campo de observación"
   user_added_an_observation_html: "%{user} engadíu unha observación"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} engadíu un %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} engadíu unha %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} engadíu un %{x} a %{noun} teu"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} engadíu unha %{x} a %{noun}"
   user_added_x_observations_html: "%{user} engadíu %{x} observacións"
   user_already_authenticated: O usuario xa está verificado
@@ -6001,9 +6003,6 @@ gl:
     taxon_changes:
       move_children_desc: |
         Os descendentes do taxon de entrada que sexan xénero ou superior serán movidos ós resultados; especies, subespecies, variedades, etc. cambiaranse por equivalentes có novo nome xenérico ou específico.
-      form:
-        move_children_desc_html: |
-          Marcando esta caixa moveranse os descendentes do taxon de entrada ó taxon do resultado para Intercambios e Fusións cando esta mudanza sexa feita. Se isto muda a un xénero ou nivel inferior, creará Intercambios de Taxon para tódolos descendentes que teñen un cambio de nome implicado. Por exemplo, se intercambias a familia Canidae pola Perridae, isto muda o parente do xénero <i>Canis</i> de Canidae a Perridae, Se intercambias o xénero <i>Canis</i> polo xénero <i>Perris</i>, creará e producirá un cambio de Intercambio de Taxon de <i>Canis lupus</i> a <i>Perris lupus</i> e <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Perris lupus</i> ssp. <i>lupus</i>. Isto pode causar unha embrolla, así que emprégao con tino.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6621,11 +6620,6 @@ gl:
           attributes:
             user_id:
               must_be_a_curator: debe ser un conservador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "A importación para ese usuario Observador de Cogomelos está en curso ou en fila para ser importado."
-              api_key_missing: "Falta a chave API do Observador de Cogomelos"
         observation:
           attributes:
             base:

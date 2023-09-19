@@ -406,6 +406,7 @@ et:
   all_comments: Kõik kommentaarid
   all_flags_must_be_resolved: Kõik märkused peavad olema lahendatud
   all_life: Kogu elusloodus
+  all_media_must_be_unhidden: Kogu meedia peab olema nähtav
   all_names: Kõik nimed
   all_observations: Kõik vaatlused
   all_photos: Kõik fotod
@@ -863,13 +864,7 @@ et:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: jagatud osadeks
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ühenda
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ühendatud
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: asendab
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: asenda
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: asendatud
     dropped: kustutatud
@@ -1667,13 +1662,28 @@ et:
     Saatsime kuupäeval %{date} sulle kinnituskirja. Kui sa seda kätte ei saanud, siis siin on sulle mõned soovitused:
   email_conf_required_after_grace_period: |
     E-posti aadressi kinnitamine on alates kuupäevast %{requirement_date} kohustuslik ning sa ei kinnitanud enne tähtaja saabumist oma aadressit. Kontole sisenemiseks palun lähtesta oma salasõna.
+  email_conf_faq_html: |
+    Kui sul on küsimusi, siis külastan palun <a href="%{url}">KKK-d</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Palun kinnita oma e-posti aadress%{link_end_tag}</strong>.
     Kõik kasutajad peavad oma e-posti aadressi kinnitama kuupäevaks %{date}. Peale seda kuupäeva ei saa aadressi mitte kinnitanud kasutajad enne sisse logida, kui uuendavad oma salasõna. E-posti aadressi kinnitamiseks külasta oma %{link_start_tag}konto sätteid%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Kinnita oma lehe %{site_name} e-posti aadress enne kuupäeva %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Palun kinnita oma e-posti aadress juba täna kindlustamaks, et saad ka edaspidi oma kontole sisse. %{site_name} ning mobiilirakendused iNaturalist ja Seek by iNaturalist ühendavad elurikkuse vaatluste jagamise kaudu inimesed looduse ja üksteisega. Aitäh, et oled osa iNaturalisti kogukonnast!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Alates kuupäevast %{requirement_date} nõuame, et kõik kontod oleks oma e-posti aadressid kinnitanud. Võta palun hetk ja kinnita enda oma kohe:
   #Paragraph in an email prompting people to confirm their email address before
   #we start requiring confirmation.
   email_confirmation_reminder_any_questions_html: |
     Kui sul on küsimusi, siis vaata palun <a href="%{faq_url}">korduma kippuvaid küsimusi</a>. Aitäh, et leiad aega loodusega suhestumiseks ja lehe %{site_name} külastamiseks.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Konto üksikasjad
   email_notifications: E-posti teavitused
   embed: 'Manusta'
   embed_place_widget: Manusta koha koodijupp
@@ -2012,8 +2022,8 @@ et:
   #Verb, usually a button to hide an interface element
   hide: Peida
   hide_content: Peida sisu
-  hide_desc: |
-    Sisu peitmine varjab selle avalikkuse eest, kuid inimesed näevad siiski, et miskit on peidetud, ning lehe kuraatorid ja sisu autor näevad jätkuvalt varjatud sisu. Tavaliselt käib see ainult kirjaliku sisu kohta: kui sa näiteks varjad määratluse sisu, siis on määratus endiselt nähtav, kuid määratleja märkused varjatud. Seda sammu ei saa tagasi võtta ning ainult lehe meeskond saab peidetud sisu taas avalikuks teha, nii et ole ettevaatlik ja kasuta antud võimalust ainult väga sobimatu sisu puhul.
+  hide_desc_staff_can_unhide: |
+    Ainult meeskond saab sisu peale peitmist nähtavaks muuta, nii et kasuta seda ainult kogukonna reeglite selgete rikumiste puhul.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Peide märkuseta vaatlused
@@ -2069,8 +2079,10 @@ et:
   #Notification when an identification has been deleted
   identification_deleted: Määratlus kustutatud.
   identification_saved: "Määratlus salvestatud!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Määratluse tekst muudetud avalikuks
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Määratlus varjatud
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Määratlus avalik
   #Notification when an identification has been updated
   identification_updated: Määratlus uuendatud!
   identification_user_short: Määratlenud kasutaja
@@ -2300,6 +2312,7 @@ et:
     davawenyo: Davavenjo
     dutch: Hollandi
     english: Inglise
+    esperanto: Esperanto
     estonian: Eesti
     faroese: Fääri
     fijian: Fidži
@@ -2648,6 +2661,10 @@ et:
   missing_date: Kuupäev puudub
   mobile: Mobiil
   moderation_history_for_user_html: Kasutaja %{user} modereerimisajalugu
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Peida
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Aktiveeri kasutaja
   mollusks: molluskid
   momentjs:
     shortRelativeTime:
@@ -3181,8 +3198,12 @@ et:
   photo_credits: Foto andmed
   photo_deleted: Foto kustutatud
   photo_destroyed_because_it_was_deleted_from: "Foto on hävinud, sest see kustutati algselt leheküljelt või pole lehel %{site_name} enam õigust seda näha"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto peidetud
   photo_licensing: Foto litsenseerimine
   photo_type: Foto tüüp
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto nähtav
   photo_urls_repaired: Fotode URLid parandatud
   photos_chosen_for_this_taxon: Selle taksoni juurde valitud fotod
   photos_from: Fotod lehelt
@@ -4540,14 +4561,20 @@ et:
   user: Kasutaja
   user1_and_user2_faved_this_observation: "Kasutajad %{user1} ja %{user2} märkisid selle vaatluse oma lemmikuks"
   user1_user2_and_x_others_faved_this_observation: "Kasutajad %{user1}, %{user2} ja veel %{x_others} märkisid selle vaatluse oma lemmikuks"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lisas %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
   user_added_an_observation_field_html: 'Kasutaja %{user} lisas kasutaja %{owner} vaatluse väljale "%{field_name}" väärtuse'
   user_added_an_observation_field_value_html: "Kasutaja %{user} lisas väärtuse vaatluse väljale"
   user_added_an_observation_html: "Kasutaja %{user} lisas vaatluse"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lisas %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
   user_added_x_observations_html: "Kasutaja %{user} lisas %{x} vaatlust"
   user_already_authenticated: Kasutajakonto on juba tõestatud
@@ -5669,9 +5696,8 @@ et:
       move_children_desc: |
         Sisendtaksoni alamtaksonid, mis on perekonnad või sellest kõrgemal tasemel, liigutatakse väljundi alla; liigid, alamliigid, teisendid, jne vahetatakse uue perekonna või liigi nimetusele vastavateks nimetusteks.
       form:
-        move_children_desc_html: |
-          Sellesse kasti linnukese panemisel liigutatakse taksonite vahetamisel või ühendamisel sisendtaksoni alamtaksonid väljundtaksoni alla. Kui tegemist on perekonna või sellest madalama taseme muutusega, luuakse kõigi alamtaksonite puhul, mille nimi peaks muutuma, taksonivahetus. Kui sa näiteks vahetad sugukond Canidae Kutsudae vastu, muudetakse perekonna <i>Canis</i> ülemtakson lihtsalt Canidae-st Kutsudae-ks. Kui muudad perekonna <i>Canis</i> aga perekonnaks <i>Kutsis</i>, luuakse ja viiakse täitmisele taksonivahetus, mis muudaks liigi <i>Canis lupus</i> liigiks <i>Kutsis lupus</i> ning <i>Canis lupus</i> alamliigi <i>lupus</i> <i>Kutsis lupus</i> alamliigiks
-          <i>lupus</i>. See võib tekitada palju pahandust, nii et kasuta seda ettevaatlikult.
+        move_children_desc2_html: |
+          Sellesse kasti linnukese panemisel liigutatakse taksonite vahetamisel või ühendamisel sisendtaksoni alamtaksonid väljundtaksoni alla. Kui tegemist on perekonna või sellest madalama taseme muutusega, luuakse kõigi alamtaksonite puhul, mille nimi peaks muutuma, taksonivahetus. Kui sa näiteks vahetad sugukond Canidae Kutsudae vastu, muudetakse perekonna <i>Canis</i> ülemtakson lihtsalt Canidae-st Kutsudae-ks. Kui muudad perekonna <i>Canis</i> aga perekonnaks <i>Kutsis</i>, luuakse ja viiakse täitmisele taksonivahetus, mis muudaks liigi <i>Canis lupus</i> liigiks <i>Kutsis lupus</i> ning <i>Canis lupus</i> alamliigi <i>lupus</i> <i>Kutsis lupus</i> alamliigiks <i>lupus</i>. See võib tekitada palju pahandust, nii et kasuta seda ettevaatlikult.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -5949,6 +5975,9 @@ et:
       submit: Salvesta %{model}
       update: Värskenda %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:
@@ -5989,7 +6018,10 @@ et:
       Announcement: Teadaanne
       AssessmentSection: Hinnangu osa
       Atlas: Atlas
+      Comment: Kommentaar
       CompleteSet: Täiskomplekt
+      Identification: Määratlus
+      Photo: Foto
       TaxonLink: Taksoni link
     attributes:
       announcement:

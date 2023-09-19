@@ -402,7 +402,7 @@ class User < ApplicationRecord
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
-  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-09-01" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2023-09-06 12:00" )
 
   # Override of method from devise to implement some custom restrictions like
   # parent/child permission and gradual confirmation requirement rollout
@@ -411,9 +411,11 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
+    return true if anonymous?
+
     # Temporary state to allow existing users to sign in. Probably redundant
     # with the next grandparent exception
-    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
 
     # Temporary state to allow existing users to sign in
     return true if allowed_unconfirmed_grace_period?
@@ -422,11 +424,16 @@ class User < ApplicationRecord
   end
 
   def allowed_unconfirmed_grace_period?
-    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   def unconfirmed_grace_period_expired?
-    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      !confirmed? &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   # Devise override for message to show the user when they can't log in b/c
@@ -435,7 +442,7 @@ class User < ApplicationRecord
     if unconfirmed_grace_period_expired?
       return I18n.t(
         :email_conf_required_after_grace_period,
-        requirement_date: I18n.l( EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+        requirement_date: I18n.l( EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
       )
     end
 

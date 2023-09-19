@@ -435,13 +435,7 @@ sk:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdeliť na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: nahradené
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: nahradiť s
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradiť s
     dropped: zahodené
@@ -1066,12 +1060,6 @@ sk:
   hex_color_eg: Farba hex, napr. 65644F
   hi_user: "Ahoj %{user}"
   hide_content: Skryť obsah
-  hide_desc: |
-    Skrytím obsahu ho odstránite z verejného zobrazenia, ale ľudia budú stále
-    vidieť, že niečo bolo skryté, a kurátori stránok a autor
-    obsahu bude naďalej môcť vidieť skrytý obsah. Všeobecne platí, že sa to
-    vzťahuje iba na písomný obsah, napr. ak skryjete obsah
-    identifikácie, identifikácia je stále viditeľná, ale poznámky identifikátora sú skryté. Nemôžete to vrátiť späť a iba pracovníci stránok môžu skryť obsah, keď bude skrytý, takže buďte opatrní a používajte ho iba pri obsahu, ktorý je nevhodný.
   hide_uncountable_species: Skryť nespočítateľné druhy
   high: Vysoká
   highest_rank: Najvyššie poradie
@@ -2853,12 +2841,17 @@ sk:
   updated: Aktualizované
   updated_daily: Aktualizované denne
   updated_photo: Aktualizovaná fotka
+  #@gender operates on %{x}
   user_added_a_x: "%{user} pridal(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} pridal(a) %{x} k %{noun}"
   user_added_an_identification_html: "%{user} pridal identifikáciu"
   user_added_an_observation_html: "Používateľ %{user} pridal pozorovanie"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} pridal(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} vložil %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Používateľ %{user} pridal %{x} k %{noun}"
   user_added_x_observations_html: "Užívateľ %{user} pridal %{x} pozorovaní"
   user_commented: "%{user} komentoval"
@@ -3040,18 +3033,18 @@ sk:
       - Sob
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
+      - 
+      - 
+      - 
+      - 
       - Máj
       - Jún
       - Júl
-      - Aug
-      - Sep
+      - 
+      - 
       - Okt
-      - Nov
-      - Dec
+      - 
+      - 
     day_names:
       - Nedeľa
       - Pondelok
@@ -3080,11 +3073,11 @@ sk:
       - Máj
       - Jún
       - Júl
-      - August
-      - September
+      - 
+      - 
       - Október
-      - November
-      - December
+      - 
+      - 
   datetime:
     prompts:
       day: Deň
@@ -3098,6 +3091,9 @@ sk:
       create: Vytvoriť %{model}
       update: Aktualizovať %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

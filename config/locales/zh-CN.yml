@@ -813,24 +813,18 @@ zh-CN:
     split: 拆分
     merge: 合并
     swap: 交换
-    stage: 举行
+    stage: 暂存
     drop: 放弃
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: 拆分自
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: 拆分至
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 合并至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 已合并至
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 取代自
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 替代为
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: 替代为
     dropped: 已放弃
-    staged: 已上演
+    staged: 已暂存
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}已拆分至%{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}将被拆分至%{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon}已抛弃"
@@ -1147,6 +1141,9 @@ zh-CN:
   curating: 助理
   curation: 管理
   curator: 管理员
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist网站管理员是官方授信的志愿者，有编辑iNaturalist分类学系统和修改用户内容的权限。网站管理员对iNaturalist十分重要，他们保持网站分类系统的及时更新，用户发言的合适与文明。想了解成为管理员意味着什么，请参阅以下内容，如果您也想成为管理员，请仔细浏览<a href="/pages/curator+guide" target="_blank">管理员指南</a>，然后填写本页面的申请。
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     您需要解释为什么要成为管理员
@@ -1350,7 +1347,7 @@ zh-CN:
   destination: 目标地点
   destroy: 破坏
   details: 详情
-  deviation: 偏差
+  deviation: 偏离
   devise:
     confirmations:
       confirmed: |
@@ -1463,7 +1460,7 @@ zh-CN:
   download_csv_template: 下载CSV模板
   download_kml: 下载KML
   downstream_coverage_rank: 下游覆盖率等级
-  downstream_deviations: 下游偏差
+  downstream_deviations: 下游偏离
   #Noun, as in a journal post that has not been published
   draft: 草稿
   #Noun, as in a journal post that has not been published
@@ -1546,10 +1543,23 @@ zh-CN:
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
   email_conf_banner_email_delivered_click_link: |
     确认电子邮件已发送。请点击电子邮件中的链接。
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: 在 %{date} 之前确认您的 %{site_name} 电子邮件地址 #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    请在今天确认您的电子邮件地址，以确保您可以继续访问您的账户。 %{site_name} 以及移动应用程序 iNaturalist 和 Seek by iNaturalist，通过分享对生物多样性的观察，将人们与自然和彼此联系起来。感谢您成为 iNaturalist 社区的一员！
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    从 %{requirement_date} 开始，我们将要求所有账户都使用经过验证的电子邮件地址。 现在请花一点时间确认一下。
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    如果您有任何疑问，请参阅 <a href="%{faq_url}">FAQs</a>。 感谢您抽出时间与大自然和 %{site_name} 联系。
   #Header in email prompting people to confirm their email address before we
   #start requiring confirmation. This preceeds some details about the
   #recipient's account.
-  email_confirmation_reminder_account_details: 账户详细信息
+  email_confirmation_reminder_account_details: 账户详情
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
@@ -1580,6 +1590,8 @@ zh-CN:
   establishment_means_describes_how: |
     确立意思是描述如何在一个地区建立分类单元。
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
+  establishment_means_descriptions:
+    endemic: 本土物种，且无其他地区记录
   event_in_progress: 正在进行中的活动
   event_stats: 活动统计
   event_url: 活动URL
@@ -1632,6 +1644,8 @@ zh-CN:
   feedback: 反馈
   #Plural noun, as in Atom and RSS feeds
   feeds: '源'
+  #Button to show fewer places
+  fewer__context_places: 更少的
   failed: 失败
   field_note: |
     <strong>请注意：</strong>如果您要创建一个新字段，请检查是否其他人已经创建过，以避免重复。
@@ -1658,6 +1672,7 @@ zh-CN:
   find_a_guide: 查找一个指南
   find_a_place: 找到一个地点
   find_guides: 查找指南
+  find_posts_for: "搜索相关帖子：%{journal_name}"
   find_new_place_to_explore: 去探索新的地点！
   find_observations: 寻找观察
   find_photos: 查找照片
@@ -1681,7 +1696,9 @@ zh-CN:
   flag_as_non_spammer: 标记为非破坏者
   #Label for the date/time when a flag was created
   flag_created: 标记已创建
+  flag_deleted: 标记已删除
   flag_description: 标记此内容以让馆长知道它有些东西是错误的。
+  flag_comment_description: 向这个标记添加一个可选的注释，进一步解释你为什么要添加它，并提供支持证据的链接。
   flag_for_check_list_title_html: |
     标记检查列表： %{title}
   flag_for_comment_id_html: 标记此 <a href="%{url}">评论 %{id}</a>
@@ -1698,6 +1715,8 @@ zh-CN:
   flag_for_observation_title_html: |
     标记此观察记录：%{title}
   flag_for_photo_id_html: 标记此 <a href="%{url}">照片 %{id}</a>
+  flag_for_place_title_html: |
+    标记此地点：%{title}
   flag_for_post_title_html: |
     标记此帖：%{title}
   flag_for_project_title_html: |
@@ -1718,6 +1737,7 @@ zh-CN:
   flag_saved_thanks_html: 标记已储存，谢谢！<a href="%{url}" class="readmore">检查标记</a>
   flag_this_observation: 标记此观察
   flag_this_photo: 标记这张照片
+  flag_this_place: 标记此地点
   flag_this_sound: 标记此声音
   flagged_: 已标记
   flagged_for_curation: 已标记管理
@@ -1768,6 +1788,7 @@ zh-CN:
   frequency: 频率
   from_a_place: 来自一个地方
   from_eol_collection: 来自EOL收藏
+  from_flickr_etc: 来自 Flickr，等。
   from_list: 来自列表
   from_photos: 来自照片
   from_place: 来自地方
@@ -1801,6 +1822,8 @@ zh-CN:
   going_to_your_observations: 去往您的观察记录……
   good_choice_for_sharing: 感谢和科学家们共享数据
   google: Google
+  google_maps_not_loaded_error: |
+    Google 地图未初始化。 您可能已使用浏览器扩展程序或防火墙阻止了对 Google 地图的访问，或者其他因素（例如互联网服务提供商）阻止了访问。
   got_it!: 明白了！
   got_your_data_somewhere_else?: 在别的地方找到了您的数据？我们可以帮助。
   graft: 移植
@@ -1904,20 +1927,7 @@ zh-CN:
   #Notification when an identification has been withdrawn
   identification_withdrawn: 身份验证已放弃。
   identifications: 鉴定
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    顺祝时祺！<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong></strong>
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: 现在捐赠
+  inaturalist_global_year_in_review: "iNaturalist 全球 %{year} 年度回顾"
   computer_vision_suggestion: 电脑视觉建议
   identifiers: 标识符
   identotron: 鉴定器
@@ -1975,7 +1985,7 @@ zh-CN:
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
   inactive_complete_set_status: 未启用
-  inactive_taxon: 不活跃的分类单元
+  inactive_taxon: 无效分类单元
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: 无效
@@ -2124,6 +2134,7 @@ zh-CN:
     davawenyo: Davawenyo语
     dutch: 荷兰语
     english: 英语
+    esperanto: 世界语
     estonian: 爱沙尼亚语
     faroese: 法罗语
     fijian: 斐济语
@@ -2280,6 +2291,7 @@ zh-CN:
     es: 西班牙语
     es-AR: 西班牙语(阿根廷)
     es-CO: 西班牙语(哥伦比亚)
+    es-CR: 西班牙语（哥斯达黎加）
     es-MX: 西班牙语（墨西哥）
     et: 爱沙尼亚语
     eu: 巴斯克语
@@ -2293,12 +2305,14 @@ zh-CN:
     id: 印尼语
     it: 意大利语
     ja: 日语
+    ka: 格鲁吉亚
     kk: 哈萨克语
     kn: 卡纳达语
     ko: 韩语
     lb: 卢森堡语
     lt: 立陶宛语
     lv: 拉脱维亚语
+    mi: 毛利
     mk: 马其顿语
     mr: 马拉地语
     nb: 挪威语(博克马尔语)
@@ -2312,6 +2326,7 @@ zh-CN:
     sk: 斯洛伐克
     sl: 斯洛文尼亚语
     sq: 阿尔巴尼亚语
+    sr: 塞尔维亚
     sv: 瑞典语
     th: 泰语
     tr: 土耳其语
@@ -2357,6 +2372,8 @@ zh-CN:
   lookup: 查找
   low: 低
   lowest_rank: 最低级
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: 做为管理员
   #Header for main content section of the project detail page when editing custom project data.
   main_content: 主内容
@@ -2403,11 +2420,14 @@ zh-CN:
   matching_species_will_shown_up_here: 匹配的物种将出现在这里。如果%{place}有一个物种，地图将显示出一个范围。
   maverick: 未烙印动物
   media: 媒体
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: 和
   media_type: 媒体类型
   medium: 中
   meet: 会见
   member_of_the_inaturalist_network_html: |
-    <a href="%{url}">iNaturalist网络</a>的成员
+    <a href="%{url}">iNaturalist网络</a>的成員
   #As in members of a project
   members: 成员
   membership_model: 成员模型
@@ -2440,6 +2460,7 @@ zh-CN:
     请注意那些向您索取样品或隐藏数据的请求。如果有人想要获取样本，尝试要求查看他们的许可证来验证他们的身份。
   messages_new_correspondent_personal: |
     不要向您不信任的人泄露您的个人信息。
+  minimum_positional_accuracy: 最小位置精度
   misidentifications: 错误识别
   misleading_or_illegal_content_html: |
     误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href="/help#inappropriate">常见问题</a>。
@@ -2495,10 +2516,22 @@ zh-CN:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: 月
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: 每月支持者
   monthly_supporter_since_date_html: |
     <a href="%{url}">每月捐款者</a> 自从 %{date}
   months: 月
   more: 更多
+  #Button to show more observations
+  more__context_observations_caps: 更多
+  #Button to show more places
+  more__context_places: 更多
+  #Button to show more text
+  more__context_text: 更多
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: 更多
+  more_caps: 更多
+  more_about_sharing: 关于共享的更多信息
   more_fields: 更多字段
   more_filters: 更多过滤器
   more_from_x: 更多来自 %{x}
@@ -2705,7 +2738,7 @@ zh-CN:
   no_taxa_listed: 没有可列出的分类群
   no_taxa_selected: 尚未选择分类群！
   no_taxa_with_unknown_relationships: 没有带有未知关系的分类
-  no_taxon_framework_relationships: 没有物种分类框架关系
+  no_taxon_framework_relationships: 无分类单元框架关系
   no_taxonomic_changes_match_those_criteria: 没有分类学的改变符合这些标准
   no_users_found_with_those_filters: 没有找到符合过滤规则的用户
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
@@ -2795,6 +2828,8 @@ zh-CN:
   observation_curation: 观察策展
   observation_date: 日期
   observation_date?: 日期？
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: 分类阶元
   observation_field: 观察字段
   observation_field_details: 观察地区详情
   observation_field_type_text: 文本
@@ -3984,6 +4019,8 @@ zh-CN:
   show_keyboard_shortcuts: 显示键盘快捷键
   show_less: 显示更少
   show_more: 显示更多
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: 显示更多登录选项
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: 显示“无批注”
@@ -4173,7 +4210,10 @@ zh-CN:
   subscribe_to_comments_on_this_flag_html: "%{tag_start}订阅%{tag_end} 关于此标记的评论"
   subscribe_to_comments_on_this_post_html: "%{tag_start}订阅%{tag_end} 对此帖发表的评论"
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}订阅%{tag_end} 对此分类单元的评论"
-  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}订阅%{tag_end}关于该分类阶元拆分的评论"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}订阅%{tag_end}对此分类阶元交换的评论"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}订阅%{tag_end}对此分类阶元合并的评论"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}订阅%{tag_end}对此分类阶元拆分的评论"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}订阅%{tag_end}对此分类阶元剔除的评论"
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
   subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
   subscribe_to_this: 订阅此
@@ -4249,8 +4289,10 @@ zh-CN:
   taxon_assessments_are: |
     分类评估是评估物种现状的文档，通常是其保护状况。
     例如，一个区域保护组织可能会利用它们来组织信息并调查关于该地区几个受威胁的分类群状况的反馈。
+  taxon_change_title_taxon_drop: 分类学剔除 %{id}
   taxon_change_title_taxon_split: 分类的拆分 %{id}
   taxon_change_title_taxon_stage: 分类的阶段 %{id}
+  taxon_change_title_taxon_swap: 分类学交换 %{id}
   taxon_deleted: 分类单元已删除。
   taxon_doesnt_have_a_range: 分类单元没有范围
   taxon_drop: 分类单元分段
@@ -4464,7 +4506,7 @@ zh-CN:
   tools: 工具
   top_contributors: 顶尖贡献者
   top_identifier_caps: 最多鉴定记录的用户
-  top_identifiers: 顶端标识符
+  top_identifiers: 最佳鉴定者们
   top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
   top_observer_caps: 最多观察记录的用户
   top_observers: 最多观察者
@@ -4595,19 +4637,29 @@ zh-CN:
   user_added_a_comment_html: "%{user} 添加了一条评论"
   user_added_a_fave_html: "%{user} 添加为喜爱"
   user_added_a_flag_html: "%{user} 添加了一个标记"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} 添加了一个 %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
   user_added_an_identification_html: "%{user}添加了一个鉴定"
   user_added_an_observation_field_html: '%{user}为%{owner}的观察的“%{field_name}”域添加了一个值'
   user_added_an_observation_field_value_html: "%{user}添加了一个观察字段值"
   user_added_an_observation_html: "%{user}添加了一个观察"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} 添加了一个 %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}将%{x}添加至%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
   user_added_x_observations_html: "%{user}添加了%{x}个观察"
   user_already_authenticated: 用户已通过身份验证
@@ -4774,6 +4826,8 @@ zh-CN:
   where_were_you?: 您在哪里？
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
   white: 白色
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: 你为什么要做此修改？（可选）
   why_are_you_making_this_change_cite_source_required: 你为什么要做此修改？如果可能的话，请解释原因并附上依据。（必须）
   why_you_can_see_the_coordinates: 为什么你可以看到坐标
   who_can_add_observation_fields_to_my_obs: 谁可以将观察字段添加到我的观察记录？
@@ -4854,6 +4908,8 @@ zh-CN:
   yes_reject_it: 好的，拒绝它
   yes_show_this_in_the_box: 是的，它会在/taxa顶部的大框中显示
   yesterday: 昨天
+  yir_code_contributors_desc_html: |
+    我们的 <a href="%{url}">软件</a> 几乎都是开源的，这意味着任何人都可以贡献自己的力量。以下是今年自愿提供代码的人员。谢谢你们，编码员们！
   yir_thank_your_for_being_generous2: |
     感谢您抽出宝贵的时间关注我们，也感谢您慷慨地分享专业知识与提供捐助！iNaturalist 是一个非营利的公益组织。这个项目依赖的是许多补助和捐助，包括来自社区极小一部分人的捐赠。我们非常感谢月捐人们，可持续的捐赠帮助我们规划 iNaturalist 的未来。
   you: 您
@@ -4880,6 +4936,10 @@ zh-CN:
   you_are_subscribed_to_comments_on_this_flag: 您已订阅此标记的评论。
   you_are_subscribed_to_comments_on_this_post: 您已订阅此帖子的评论。
   you_are_subscribed_to_comments_on_this_taxon_stage: 您已订阅此分类单元阶段的评论
+  you_are_subscribed_to_comments_on_this_taxon_swap: 您已订阅对此分类阶元交换的评论
+  you_are_subscribed_to_comments_on_this_taxon_merge: 您已订阅对此分类阶元合并的评论
+  you_are_subscribed_to_comments_on_this_taxon_split: 您已订阅对此分类阶元拆分的评论
+  you_are_subscribed_to_comments_on_this_taxon_drop: 您已订阅对此分类阶元剔除的评论
   you_are_subscribed_to_observations_from_this_place: 您已订阅此处的评论。
   you_arent_a_member_of_that_project: 您不是那个项目的成员。
   you_arent_following_that_person: "您尚未关注那个人。"
@@ -5708,6 +5768,8 @@ zh-CN:
       year:
         compared_to_previous_years: 与往年相比
         donate_title: "特别感谢我们所有的支持者"
+        donate_desc2_html: |
+          感谢您慷慨地投入时间、注意力、专业知识和捐款！ iNaturalist 是一家总部位于美国的 501(c)3 非营利组织。它由一个 <a href="%{team_url}">小型团队</a> 提供支持，该团队负责网络、移动和 <a href="%{seek_url}">Seek by iNaturalist</a>, 的所有设计和软件工程，此外还负责管理社区支持、 合作和集成，以保证各项工作的运行 (并迅速发展!）。该计划依赖于大量的资助和捐款，包括来自不到一小部分捐助者的慈善捐赠。我们特别感谢月度支持者，他们的经常性捐赠帮助我们规划未来。您可以使用多种货币捐款，以支持 iNaturalist 的核心业务。感谢大家的参与，使 %{year} 年成为iNaturalist最辉煌的一年！
         donors: 捐赠者
         donors_guide_label_our_goal_is_1000: 我们的目标是1000 个月捐人
         inaturalist_network: iNaturalist 网络

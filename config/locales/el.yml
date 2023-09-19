@@ -766,13 +766,7 @@ el:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: διάσπαση σε
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: συγχώνευση σε
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: συγχωνεύτηκε με
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: αντικαταστάθηκε από
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: αντικατάστησε με
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: αντικαταστάθηκε με
     dropped: εγκαταλείφθηκε
@@ -1722,8 +1716,6 @@ el:
   #Verb, usually a button to hide an interface element
   hide: Απόκρυψη
   hide_content: Απόκρυψη Περιεχομένου
-  hide_desc: |
-    Το να αποκρύψετε το περιεχόμενο θα το αφαιρέσει από την κοινή θέα, αλλά άλλοι θα μπορούν ακόμα να δουν ότι κάτι έχει κρυφτεί, και οι επιμελητές της σελίδας και ο συγγραφέας του περιεχομένου θα μπορούν ακόμα να δουν το κρυφό περιεχόμενο. Γενικά, αυτό ισχύει μόνο για γραπτό περιεχόμενο, π.χ. αν αποκρύψετε το περιεχόμενο από μια ταυτοποίηση, η ταυτοποίηση θα φαίνεται ακόμα αλλά τα σχόλια του ταυτοποιητή θα είναι κρυμμένα, για αυτό δείξτε προσοχή και χρησιμοποιείστε αυτό μόνο για πολύ ανάρμοστο περιεχόμενο.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Απόκρυψη "Χωρίς Σημείωση"
@@ -4263,19 +4255,29 @@ el:
   user_added_a_comment_html: "%{user} πρόσθεσε ένα σχόλιο"
   user_added_a_fave_html: "%{user} πρόσθεσε ένα αγαπημένο"
   user_added_a_flag_html: "%{user} πρόσθεσε μία αναφορά"
+  #@gender operates on %{x}
   user_added_a_x: "Ο/Η %{user} προσέθεσε ένα %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από την/τον %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από την/τον %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun} από εσάς"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "Η/Ο %{user} πρόσθεσε μια %{x} σε %{noun}"
   user_added_an_identification_html: "Η/Ο %{user} πρόσθεσε μια ταυτοποίηση"
   user_added_an_observation_field_html: 'Ο χρήστης %{user} προσέθεσε μια τιμή για το "%{field_name}" σε μια παρατήρηση του χρήστη %{owner}'
   user_added_an_observation_field_value_html: "Ο χρήστης %{user} προσέθεσε ένα πεδίο παρατήρησης"
   user_added_an_observation_html: "Η/Ο %{user} πρόσθεσε μια παρατήρηση"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} πρόσθεσε ένα %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} πρόσθεσε ένα %{x} στο %{noun} από εσάς"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} πρόσθεσε ένα %{x} στο %{noun}"
   user_added_x_observations_html: "Η/Ο %{user} πρόσθεσε %{x} παρατηρήσεις"
   user_already_authenticated: Ο χρήστης είναι ήδη ταυτοποιημένος
@@ -5787,10 +5789,6 @@ el:
       move_children_desc: |
         Οι απόγονοι της εισακτέας ταξινομικής μονάδας που είναι γένη ή πιο γενικευμένα θα μετακινηθούν στην εξακτέα ταξινομική μοναδα. Είδος, υποείδος, ποικιλίες κ.λπ. θα τροποποιούνται σε
         ισοδύναμα με το νέο γένος ή το νέο όνομα του είδους.
-      form:
-        move_children_desc_html: |
-          Τσεκάροντας αυτό το πεδίο, οι απόγονοι της εισακτέας ταξινομικής μονάδας θα μετακινηθούν στην εξακτέα ταξινομική μονάδα για Ανταλλαγές και Συγχωνεύσεις όταν η αλλαγή αυτή πραγματοποιείται. Αν η αλλαγή σε επίπεδο γένους ή χαμηλότερο, θα δημιουργηθεί μια Ανταλλαγή Ταξινομικής Μονάδας για όλες τις ταξινομικέ μονάδες-απογόνους που έχουν δεχθεί μια αλλαγή στο όνομα. Για παράδειγμα, αν αλλάξετη την οικογένεια Canidae σε Dogidae, αυτόθα επιφέρει αλλαγή στο γονέα του γλενους <i>Canis</i> από Canidae σε Dogidae. Αν αλλάξετε το γένος<i>Canis</i> σε γένος <i>Dogis</i> αυτό θα επιφέρει την αλλαγή του <i>Canis lupus</i> σε<i>Dogis lupus</i> και του
-          <i>Canis lupus</i> ssp. <i>lupus</i> σε<i>Dogis lupus</i> ssp.<i>lupus</i>. Κάτι τέτοιο ίσως επιφέρει μεγάλο μπέρδεμα οπότε να το χρησιμοποιείτε με προσοχή.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6454,11 +6452,6 @@ el:
           attributes:
             base:
               guide_has_too_many_taxa: "ο οδηγός μπορεί να έχει μόνο 500 ταξινομικές βαθμίδες"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "H eισαγωγή για το χρήστη Mushroom Observer βρίσκεται σε εξέλιξη ή βρίσκεται στην ουρά για εισαγωγή"
-              api_key_missing: "Το κλειδί Mushroom Observer API λείπει"
         observation:
           attributes:
             base:

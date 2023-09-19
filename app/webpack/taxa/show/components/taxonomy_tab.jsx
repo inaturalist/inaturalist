@@ -33,6 +33,9 @@ const TaxonomyTab = ( {
       return;
     }
     _.each( n.place_taxon_names, ptn => {
+      if ( !ptn.place ) {
+        return;
+      }
       places[ptn.place.id] = ptn.place;
       namesGroupedByPlace[ptn.place_id] = namesGroupedByPlace[ptn.place_id] || [];
       namesGroupedByPlace[ptn.place_id].push( { ...n, position: ptn.position } );

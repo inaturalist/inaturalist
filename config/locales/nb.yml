@@ -795,13 +795,7 @@ nb:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: delt opp i
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå sammen til
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: slått sammen til
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: erstattet av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erstatt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: erstattet med
     dropped: fjernet
@@ -1422,6 +1416,28 @@ nb:
   email: E-post
   email_description: E-posten din er ikke delt med andre brukere på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadresse for kommentarer og andre tilbakemeldinger
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekreft din %{site_name} e-postadresse før %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Vennligst bekreft din e-postadresse i dag for å sikre at du fortsatt har
+    tilgang til din konto. %{site_name} og de mobile appene
+    iNaturalist og Seek kobler mennesker til naturen og hverandre ved å dele observasjoner av biologisk mangfold. Takk for at du er en del av iNaturalist-felleskapet!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Vi krever verifiserte e-postadresser for alle kontoer fra
+    %{requirement_date}. Ta et øyeblikk til å bekrefte nå.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Hvis du har noen spørsmål, se
+    <a href="%{faq_url}">ofte stilte spørsmål</a>. Takk for at du tar deg tid til å koble til
+    naturen og til %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Kontodetaljer
   email_notifications: E-postvarslinger
   embed: 'Integrer'
   embed_place_widget: Integrer stedswidget
@@ -1730,8 +1746,6 @@ nb:
   #Verb, usually a button to hide an interface element
   hide: Skjul
   hide_content: Skjul innhold
-  hide_desc: |
-    Skjuling av innhold vil fjerne det fra offentlig visning, men folk vil fortsatt kunne se, at noe er blitt skjult, og sidekuratorer og innholdets forfatter vil fortsatt kunne se det skjulte innholdet. Generelt gelder dette kun for skrevet innhold, dvs. hvis du skjuler innholdet i en identifikasjon, vil selve identifikasjonen fortsatt være synlig, men merknader fra personen bak identifikasjonen vil være skjult. Du kan ikke angre dette, og kun hjemmesidens personale kan gjøre innhold synlig igjen når det først er blitt skjult, så vær forsiktig og bruk dette kun ved veldig støtende innhold.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen merknad"
@@ -4376,19 +4390,29 @@ nb:
   user_added_a_comment_html: "%{user} har lagt til en kommentar"
   user_added_a_fave_html: "%{user} har lagt til en favoritt"
   user_added_a_flag_html: "%{user} har lagt til en markering"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_an_identification_html: "%{user} har lagt til en identifikasjon"
   user_added_an_observation_field_html: '%{user} har lagt til en verdi for "%{field_name}" i en observasjon av %{owner}'
   user_added_an_observation_field_value_html: "%{user} har lagt til en verdi for et observasjonsfelt"
   user_added_an_observation_html: "%{user} har lagt til en observasjon"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_already_authenticated: Brukeren er allerede autentisert
@@ -5823,10 +5847,6 @@ nb:
     taxon_changes:
       move_children_desc: |
         Etterkommere av input-taksonet som er slekter eller høyere blir flyttet til output'en; arter, underarter, varieteter, osv. vil bli byttet til tilsvarende taksa med det ny slekts- eller artsnavnet.
-      form:
-        move_children_desc_html: |
-          Å krysse av denne boksen vil flytte etterkommere av input-taksonet til output-taksonet ved bytting eller sammenslåing når endringen blir gjennomført. Hvis denne endringer er på slektsnivå eller lavere, vil det generere taksonbytter for alle etterkommere som har en implisitt navneendring. Hvis du for eksempel bytter familien Canidae til Hundidae, vil foreldretaksonet for slekta <i>Canis</i> fra Canidae til Hundidae. Hvis du bytter slekta <i>Canis</i> til slekta <i>Hundis</i> blir det opprettet og gjennomført taksonendringer for å endre <i>Canis lupus</i> til <i>Hundis lupus</i> og <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Hundis lupus</i> ssp.
-          <i>lupus</i>. Dette kan forårsake litt av et rot, så bruk med omhu.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6444,10 +6464,6 @@ nb:
           attributes:
             user_id:
               must_be_a_curator: må være en kurator
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_missing: "Mushroom Observer API-nøkkel mangler"
         observation:
           attributes:
             base:

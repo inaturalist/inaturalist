@@ -1278,8 +1278,7 @@ describe Observation do
       it "s1 should be s1" do
         Identification.make!( observation: @o, taxon: @s1 )
         @o.reload
-        o = Observation.find( @o.id )
-        expect( o.probable_taxon ).to eq @s1
+        expect( @o.probable_taxon ).to eq @s1
       end
       it "s1 g1.disagreement_true should be g1" do
         Identification.make!( observation: @o, taxon: @s1 )
@@ -1413,11 +1412,31 @@ describe Observation do
         @o.reload
         expect( @o.probable_taxon ).to eq @g1
       end
+
       it "g2 f.disagreement_true s1" do
         i1 = Identification.make!( observation: @o, taxon: @g2 )
         Identification.make!( observation: @o, taxon: @f, disagreement: true )
         Identification.make!( observation: @o, taxon: @s1, user: i1.user )
         expect( @o.probable_taxon ).to eq @s1
+      end
+
+      it "ignores hidden identifications" do
+        i = Identification.make!( observation: @o, taxon: @s1 )
+        @o = Observation.find( @o.id )
+        expect( @o.taxon ).to eq @s1
+        ModeratorAction.make!( resource: i, action: ModeratorAction::HIDE )
+        @o = Observation.find( @o.id )
+        expect( @o.taxon ).to be_nil
+      end
+
+      it "resets after hiding identifications" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        i2 = Identification.make!( observation: @o, taxon: @s2 )
+        @o = Observation.find( @o.id )
+        expect( @o.taxon ).to eq @g1
+        ModeratorAction.make!( resource: i2, action: ModeratorAction::HIDE )
+        @o = Observation.find( @o.id )
+        expect( @o.taxon ).to eq @s1
       end
     end
   end
@@ -1948,6 +1967,28 @@ describe Observation, "set_time_zone" do
     expect( o.zic_time_zone ).to eq "Etc/GMT+8"
   end
 end
+
+describe Observation, "sound_url" do
+  let( :observation ) { Observation.make! }
+  it "should return nil if there are no sounds" do
+    expect( observation.sound_url ).to be_nil
+  end
+
+  it "should return the URL of the first sound" do
+    sound = LocalSound.make!( user: observation.user )
+    os = ObservationSound.make!( observation: observation, sound: sound )
+    expect( observation.sound_url ).to eq os.sound.file.url
+  end
+
+  it "should not return hidden sounds" do
+    sound = LocalSound.make!( user: observation.user )
+    os = ObservationSound.make!( observation: observation, sound: sound )
+    ModeratorAction.make!( resource: sound, action: "hide" )
+    expect( sound.hidden? ).to be true
+    expect( observation.sound_url ).to be_nil
+  end
+end
+
 
 def setup_test_case_taxonomy
   # Tree:

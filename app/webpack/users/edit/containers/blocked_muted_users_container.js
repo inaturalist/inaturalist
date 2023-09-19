@@ -6,7 +6,7 @@ import {
   muteUser,
   unblockUser,
   unmuteUser
-} from "../ducks/relationships";
+} from "../ducks/blocked_muted_users";
 import { showAlert } from "../../../shared/ducks/alert_modal";
 
 function mapStateToProps( state ) {

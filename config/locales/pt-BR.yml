@@ -394,6 +394,7 @@ pt-BR:
   agree_: Concordar
   agree?: Concordar?
   agree_with_current_taxon: Concordar com o táxon atual
+  agree_with_observation_taxon: Concordo com táxon da observação
   agreeing: Concordando...
   aka: também conhecido como
   #Noun, title of a popup alerting you to something
@@ -884,13 +885,7 @@ pt-BR:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: foi dividido em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: convergir em
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: convergir em
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituido por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituir por
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: substituído por
     dropped: descartado
@@ -1745,6 +1740,8 @@ pt-BR:
     Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
     confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
     para acessar sua conta.
+  email_conf_faq_html: |
+    Se tiver dúvidas, consulte estas <a href="%{url}">Perguntas Frequentes</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Por favor, confirme o seu endereço eletrônico %{link_end_tag}</strong>.
     Todos os usuários devem confirmar seu endereço eletrônico até %{date}. Depois dessa
@@ -2123,15 +2120,6 @@ pt-BR:
   #Verb, usually a button to hide an interface element
   hide: Esconder
   hide_content: Ocultar conteúdo
-  hide_desc: |
-    Esconder conteúdo irá removê-lo da exibição pública, mas as pessoas ainda serão
-    capaz de ver que algo estava escondido, e curadores do site e autor de
-    o conteúdo ainda poderá ver o conteúdo oculto. Geralmente, isso
-    aplica-se apenas ao conteúdo escrito, por ex. se você ocultar o conteúdo de um
-    identificação, a identificação ainda é visível, mas o identificador
-    observações estão ocultas. Você não pode desfazer isso e somente a equipe do site pode exibir
-    conteúdo, uma vez que tenha sido escondido, por isso tenha cuidado e use-o apenas para
-    conteúdo censurável.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sem Anotação"
@@ -2191,8 +2179,6 @@ pt-BR:
   #Notification when an identification has been deleted
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação salva!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Texto de identificação reexibido
   #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
   identification_user_short: Usuário ident.
@@ -2200,18 +2186,6 @@ pt-BR:
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   inaturalist_global_year_in_review: "O ano %{year} do iNaturalist global em revisão"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Prezado(a) %{name},
-  independence_email_body_ps: |
-    P.S. - Em breve anunciaremos uma generosa doação que proporcionará
-    um sólido começo para um iNaturalist independente. O apoio financeiro da
-    comunidade iNaturalist possibilitou nossa evolução e será vital para a nossa
-    sustentabilidade a longo prazo. Sua doação agora celebrará este emocionante
-    marco e vai garantir ainda mais o futuro do iNaturalist. Obrigado!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Doar agora
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -2436,6 +2410,7 @@ pt-BR:
     davawenyo: Davao Chavacano
     dutch: Holandês
     english: Inglês
+    esperanto: Esperanto
     estonian: Estônio
     faroese: Ferôes
     fijian: Fijiano
@@ -2595,6 +2570,7 @@ pt-BR:
     es: Espanhol
     es-AR: Espanhol (Argentina)
     es-CO: Espanhol (Colômbia)
+    es-CR: Espanhol (Costa Rica)
     es-MX: Espanhol (México)
     et: Estônio
     eu: Basco
@@ -4539,6 +4515,8 @@ pt-BR:
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_less: Mostrar menos
   show_more: Mostrar mais
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostrar mais opções de acesso à conta
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostrar "Sem Anotação"
@@ -5431,19 +5409,29 @@ pt-BR:
   user_added_a_comment_html: "%{user} adicionou um comentário"
   user_added_a_fave_html: "%{user} adicionou um favorito"
   user_added_a_flag_html: "%{user} adicionou uma sinalização"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} adicionou um %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} adicionou um %{x} a %{noun} por você"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} adicionou um %{x} a %{noun}"
   user_added_an_identification_html: "%{user} adicionou uma identificação"
   user_added_an_observation_field_html: '%{user} adicionou um valor para "%{field_name}" em uma observação de %{owner}'
   user_added_an_observation_field_value_html: "%{user} adicionou um valor do campo de observação"
   user_added_an_observation_html: "%{user} adicionou uma observação"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} adicionou um %{x} a %{noun} por você"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou uma %{x} a %{noun}"
   user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O usuário já está autenticado
@@ -7254,17 +7242,6 @@ pt-BR:
         Filhos do táxon de entrada que são mais ou menos generosos serão movidos para
         a saída; espécies, subespécies, variedades, etc. serão convertidos em
         equivalentes com o novo nome de gênero ou espécie.
-      form:
-        move_children_desc_html: |
-          Marcar esta caixa irá mover os filhos do táxon de entrada para o
-          táxon de saída para Trocas e Mesclas quando esta alteração for confirmada. Se
-          isso mudar para um gênero ou menor, vai criar Trocas de Táxon para todos os
-          descendentes que tenham uma mudança implícita de nome. Por exemplo, se você trocar a família Canidae por Dogidae, isto muda o pai do gênero
-          <i>Canis</i> de Canidae para Dogidae. Se você trocar o gênero
-          <i>Canis</i> pelo gênero <i>Dogis</i>, irá criar e cometer
-          Trocas de Táxon para mudar <i>Canis lupus</i> para <i>Dogis lupus</i> e
-          <i>Canis lupus</i> ssp. <i>lupus</i> em <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Isso pode causar uma grande bagunça, então use com cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8115,11 +8092,6 @@ pt-BR:
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Importação para este usuário de Mushroom Observer está em execução ou está na fila para importar"
-              api_key_missing: "A chave do Mushroom Observer API está faltando"
         observation:
           attributes:
             base:

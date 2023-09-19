@@ -801,13 +801,7 @@ es-CO:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusionado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplazado por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplazar con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplazado con
     dropped: abandonado
@@ -1851,9 +1845,6 @@ es-CO:
   #Verb, usually a button to hide an interface element
   hide: Ocultar
   hide_content: Ocultar contenido
-  hide_desc: |
-    Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los curadores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede desocultar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para
-    contenido indeseado.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
@@ -2956,36 +2947,10 @@ es-CO:
     slovakia: Eslovaquia
     slovenia: Eslovenia
     solomon_islands: Islas Salomón
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

@@ -878,13 +878,7 @@ es-MX:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fue combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplazado por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplazado con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplazar con
     dropped: eliminado
@@ -2095,9 +2089,6 @@ es-MX:
   #Verb, usually a button to hide an interface element
   hide: Ocultar
   hide_content: Ocultar contenido
-  hide_desc: |
-    Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los administradores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede revelar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para
-    contenido censurable.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotación"
@@ -2157,8 +2148,6 @@ es-MX:
   #Notification when an identification has been deleted
   identification_deleted: Identificación eliminada.
   identification_saved: "¡Identificación guardada!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Texto de identificación no oculto
   #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
   identification_user_short: Usuario ident.
@@ -2166,60 +2155,6 @@ es-MX:
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
-  independence_email_subject: "Abriendo Nuestras Alas: iNaturalist es ahora una organización sin fines de lucro independiente"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Estimado/a %{name},
-  independence_email_body_exciting_news: |
-    ¡El equipo de iNaturalist tiene noticias emocionantes! Nos complace compartir este agradecimiento al apoyo de esta gran comunidad. iNaturalist ahora está operando como
-    una organización independiente 501(c)(3) sin fines de lucro con sede en los Estados Unidos
-    de América.
-  independence_email_body_since_launching: |
-    Desde el 2008, el equipo y organización de iNaturalist a evolucionado, y estamos emocionados de este siguiente paso. iNaturalist comenzó como un proyecto de maestría en la Universidad de California, Berkeley, despues se convirtió en una LLC, después se unió a la Academia de Ciencias de Califoria en 2014. En 2017, iNaturalist se convirtió en una iniciativa conjunta entre la Academia de Ciencias de California y la National Geographic Society. Ahora, iNaturalist es una Organizacción Independiete.
-  independence_email_body_over_the_past: |
-    En los últimos 15 años, las increíbles contribuciones de la comunidad
-    han convertido a iNaturalist en una de las plataformas con
-    más impacto del mundo.
-  independence_email_body_so_far: "Hasta ahora, la comunidad iNaturalist tiene:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Creado más de 146,000.000 observaciones verificables (¡agregando alrededor de 1 millón por semana!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Creció a 2,7 millones de usuarios que contribuyen
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Más de 430.000 especies observadas
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Se citó más de 3,500 veces
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">a través del Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Agradecemos a la Academia de Ciencias de California y a la National Geographic Society por incubar iNaturalist mientras crecia dramáticamente durante los últimos 9 años. Les tenemos una inmensa gratitud a estos aliados for su inversión, apoyo y guia. Esperamos colaborar cn ambas organizaciones en el futuro.
-  independence_email_body_the_way_html: |
-    <strong>La manera en que usas iNaturalist no cambiará.</strong>
-    iNaturalist y Seek seguirán ayudándoe gratuitamente a identificar la biodiversidad y a construir tu propia conexión con el mundo natural. Esta nueva estructura organizativa nos permitirá apoyar a iNaturalist por años y años a medida que la comunidad iNaturalist amplíe nuestro conocimiento colectivo de la biodiversidad en el futuro. Seguiremos colaborando con organizaciones de todo el mundo para apoyar la Red iNaturalist.
-  independence_email_body_questions_html: |
-    Puedes <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leer más en el blog</a> y revisar las <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Preguntas Frecuentes</a> (en ingles). Los <a
-    href="https://www.inaturalist.org/pages/terms">Términos de Uso</a> y la <a
-    href="https://www.inaturalist.org/pages/privacy">Política de Privacidad</a> ha sido actualziada para reflejar la nueva organización.
-  independence_email_body_thank_you: Gracias por ser parte de esta comunidad.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    A partir de ahora,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Equipo de liderazgo de iNaturalist</strong>
-  independence_email_body_ps: |
-    P.D. - Muy pronto anunciaremos una generosa donación que dará a iNaturalist independiente un sólido comienzo. El apoyo financiero de la comunidad iNaturalist hizo posible nuestra evolución y será vital para nuestra sostenibilidad a largo plazo. Tu donación ahora celebrará este emocionante hito y asegurará el futuro de iNaturalist. ¡Muchas gracias!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Donar ahora
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     La visión artificial es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión artificial enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -5387,19 +5322,29 @@ es-MX:
   user_added_a_comment_html: "%{user} añadió un comentario"
   user_added_a_fave_html: "%{user} añadió un favorito"
   user_added_a_flag_html: "%{user} añadió una advertencia"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} añadió una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} hecha por %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} añadió un/a %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
   user_added_an_observation_field_value_html: "%{user} añadió un valor en un campo de la observación"
   user_added_an_observation_html: "%{user} añadió una observación"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} añadió un %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} hecha por %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} añadió un/a %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} añadió %{x} observaciones"
   user_already_authenticated: El usuario ya está verificado
@@ -7202,14 +7147,6 @@ es-MX:
     taxon_changes:
       move_children_desc: |
         Descendientes del taxón de entrada son géneros o más arriba, serán movidos a la salida; las especies, subespecies, variedades, etc. serán cambiadas a equivalentes con el nuevo género o nombre de la especie.
-      form:
-        move_children_desc_html: |
-          Al seleccionar esta caja se moverán los descendientes del taxón de entrada para intercambios y fusiones cuando el cambio se compromete. Si el cambio es a un género o menor, creará intercambios de taxón para todos los descendientes que tienen un cambio de nombre implicado. Por ejemplo, si intercambias la familia Canidae a Dogidae, esto cambia el padre del género 
-          <i>Canis</i> de Canidae a Dogidae. Si te intercambias el género 
-          <i>Canis</i> al género <i>Dogis,</i>  creará y comprometerá 
-          Taxon Intercambios para cambiar <i>Canis lupus</i> a <i>Dogis lupus</i> y
-          <i>Canis lupus </i>ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp.
-          <i>lupus.</i>. Esto puede causar bastante desorden, así que úsalo con cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7991,11 +7928,6 @@ es-MX:
               staff_cannot_be_suspended: El staff no puede ser suspendido
             user_id:
               must_be_a_curator: debes ser un curador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
-              api_key_missing: "Falta la clave API de observador de hongos"
         observation:
           attributes:
             base:

@@ -408,6 +408,7 @@ sv:
   agree_: Håller med
   agree?: Håller du med?
   agree_with_current_taxon: Håll med om aktuellt taxon
+  agree_with_observation_taxon: Håll med om fyndtaxon
   agreeing: Håller med...
   aka: även känd som
   #Noun, title of a popup alerting you to something
@@ -418,6 +419,7 @@ sv:
   all_comments: Alla kommentarer
   all_flags_must_be_resolved: Alla flaggor måste vara lösta
   all_life: Allt liv
+  all_media_must_be_unhidden: All media måste tas fram
   all_names: Alla namn
   all_observations: Alla fynd
   all_photos: Alla bilder
@@ -904,13 +906,7 @@ sv:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: uppdelning till
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: slogs ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersattes av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersätt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersatt av
     dropped: inaktiverades
@@ -1767,6 +1763,8 @@ sv:
     E-postbekräftelse krävs från och med %{requirement_date} och du har inte
     bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
     för att komma åt ditt konto.
+  email_conf_faq_html: |
+    Om du har frågor, se dessa <a href="%{url}">Vanliga frågor och svar</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
     Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
@@ -2153,7 +2151,13 @@ sv:
   hide: Dölj
   hide_content: Dölj innehåll
   hide_desc: |
-    Att dölja innehåll kommer att ta bort det från publik visning, men man kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
+    Att dölja innehåll kommer att undanta det från publik visning, men man kommer
+    fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren
+    till innehållet kommer fortfarande att kunna se det dolda innehållet. Dolda bestämningar
+    räknas inte för ett fynds Gemenskapstaxon.
+  hide_desc_staff_can_unhide: |
+    Endast personal på webbplatsen kan ta fram innehåll när det har dolts, så använd
+    endast detta för klara överträdelser av Communityns riktlinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
@@ -2214,8 +2218,10 @@ sv:
   #Notification when an identification has been deleted
   identification_deleted: Bestämning raderad.
   identification_saved: "Bestämning sparad!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Bestämningstext synliggjord
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Bestämning dold
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Bestämning ej dold
   #Notification when an identification has been updated
   identification_updated: Bestämning uppdaterad!
   identification_user_short: Best. användare
@@ -2223,82 +2229,6 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
-  independence_email_subject: "Sprider Våra Vingar: iNaturalist är nu oberoende och icke-vinstdrivande"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Kära %{name},
-  independence_email_body_exciting_news: |
-    iNaturalist-teamet har spännande nyheter! Vi är glada att kunna meddela att
-    tack vare stödet från denna fantastiska community, drivs nu iNaturalist
-    som en oberoende 501(c)(3) icke-vinstdrivande organisation baserad i USA.
-  independence_email_body_since_launching: |
-    Sedan lanseringen 2008 har iNaturalist-teamet och organisationen
-    utvecklats, och vi är glada för nästa milstolpe. iNaturalist började
-    som ett magisterprojekt vid University of California, Berkeley, blev ett
-    LLC, samarbetade med California Academy of Sciences från 2014. År
-    2017 blev iNaturalist ett gemensamt initiativ med California Academy of
-    Sciences och National Geographic Society. Nu är iNaturalist en
-    oberoende organisation.
-  independence_email_body_over_the_past: |
-    Under de senaste 15 åren har de otroliga bidragen från communityn
-    gjort iNaturalist till en av världens mest inflytelserika naturplattformar.
-  independence_email_body_so_far: "Hittills har iNaturalist-communityn:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Skapat över 146 000 000 verifierbara fynd (ökar med cirka 1 miljon per vecka!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Vuxit till 2,7 miljoner bidragsgivare
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Observerat mer än 430 000 arter
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Har citerats mer än 3 500 gånger
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Vi tackar California Academy of Sciences och National Geographic
-    Society för att de inkuberade iNaturalist då det växte dramatiskt under de senaste
-    9 åren. Vi är skyldiga dessa partner en enorm tacksamhet för deras investeringar,
-    stöd och förvaltarskap. Vi ser fram emot att samarbeta med båda
-    organisationerna i framtiden.
-  independence_email_body_the_way_html: |
-    <strong>Din användarupplevelse av iNaturalist kommer inte att förändras.</strong>
-    iNaturalist och Seek kommer att fortsätta att fritt hjälpa dig att bestämma
-    biologisk mångfald och bygga din egen koppling till naturen. Denna nya
-    organisationsstruktur kommer att göra det möjligt för oss att stödja iNaturalist i åratal
-    framöver alltmedan iNaturalist-communityn utökar vår samlade kunskap om
-    biologisk mångfald långt in i framtiden. Vi kommer att fortsätta vårt samarbete
-    med organisationer runt om i världen för att stödja iNaturalist-nätverket.
-  independence_email_body_questions_html: |
-    Du kan <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">läsa
-    mer på bloggen</a> och kolla på <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Vanliga
-    frågor</a> (på engelska). <a
-    href="https://www.inaturalist.org/pages/terms">Användarvillkor</a> och <a
-    href="https://www.inaturalist.org/pages/privacy">Integritetspolicy</a> har
-    uppdaterats för att återspegla den nya organisationen.
-  independence_email_body_thank_you: Tack för att du är en del av denna community.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Mot nya mål,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Leadership Team</strong>
-  independence_email_body_ps: |
-    P.S. - Snart kommer vi att tillkännage ett generöst bidrag som
-    kommer att ge det oberoende iNaturalist en stabil grund. Det
-    finansiella bidraget från iNaturalist-communityn gjorde det möjligt
-    för oss att utvecklas och kommer att vara livsviktigt för långsiktig
-    hållbarhet. Din donation nu kommer att prisa denna spännande
-    milstolpe och ytterligare säkra iNaturalists framtid. Tack!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Donera nu
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2526,6 +2456,7 @@ sv:
     davawenyo: Davawenyo
     dutch: Holländska
     english: Engelska
+    esperanto: Esperanto
     estonian: Estniska
     faroese: Färöiska
     fijian: Fijianska
@@ -2690,6 +2621,7 @@ sv:
     es: Spanska
     es-AR: Spanska (Argentina)
     es-CO: Spanska (Colombia)
+    es-CR: Spanska (Costa Rica)
     es-MX: Spanska (Mexiko)
     et: Estniska
     eu: Baskiska
@@ -2883,6 +2815,10 @@ sv:
     <strong>endast synligt för förvaltare</strong> och <strong>förvaltare kan inte se
     sin egen historik</strong>, så anteckningar om en person ska aldrig synas
     för den personen.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Dölj
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -3564,8 +3500,12 @@ sv:
   photo_credits: Fotograf
   photo_deleted: Bild raderad
   photo_destroyed_because_it_was_deleted_from: "Bilden förstördes eftersom den togs bort från den externa webbplatsen eller så har %{site_name} inte längre behörighet att visa den"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Bild dold
   photo_licensing: Bildlicensiering
   photo_type: Bildtyp
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Bild visas
   photo_urls_repaired: Bild-URL:er reparerade
   photos_chosen_for_this_taxon: Utvalda bilder för detta taxon
   photos_from: Bilder från
@@ -4507,7 +4447,7 @@ sv:
   #access their iNat account
   revoke_external_application: "Återkalla %{site_name}?"
   revoke_privacy_consent_warning: "Det enda sättet att återkalla detta samtycke är genom att ta bort ditt konto och all tillhörande data."
-  rg_observations: RG-fynd
+  rg_observations: FK-fynd
   role: Roll
   rotate_left: Rotera åt vänster
   rotate_right: Rotera åt höger
@@ -4637,6 +4577,8 @@ sv:
   show_keyboard_shortcuts: Visa kortkommandon
   show_less: Visa mindre
   show_more: Visa mer
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Visa fler inloggningsalternativ
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Visa "Ingen anteckning"
@@ -5516,19 +5458,29 @@ sv:
   user_added_a_comment_html: "%{user} lade till en kommentar"
   user_added_a_fave_html: "%{user} lade till en favorit"
   user_added_a_flag_html: "%{user} lade till en flagga"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} lade till en %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
   user_added_an_identification_html: "%{user} lade till en bestämning"
   user_added_an_observation_field_html: '%{user} lade till ett värde för "%{field_name}" till ett fynd av %{owner}'
   user_added_an_observation_field_value_html: "%{user} lade till ett värde i ett fyndfält"
   user_added_an_observation_html: "%{user} lade till ett fynd"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} lade till en %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} lade till en %{x} till %{noun} av %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
   user_added_x_observations_html: "%{user} lade till %{x} fynd"
   user_already_authenticated: Användaren är redan autentiserad
@@ -6063,6 +6015,33 @@ sv:
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kan <u>fördubbla</u> eller <u>tredubbla</u> din gåva! Tack vare
+        Gordon and Betty Moore-stiftelsen tredubblas alla månatliga, kvartals- och
+        årligen återkommande donationer, samtidigt som engångsdonationer fördubblas,
+        fram till 31 december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist är en av världens största communitys som ägnar sig
+        åt biologisk mångfald. Tack för att du är en del av den!
+        </p>
+        <p class="lead">
+        Om du tror på kraften hos denna globala community av naturälskare
+        att dela kunskap och generera oersättlig biologisk mångfalds-data,
+        överväg en engångs- eller återkommande gåva online, eller se
+        <a href="https://www.inaturalist.org/pages/giving">andra sätt att
+        ge</a>.
+        </p>
+        <p class="lead">
+        Din donation hjälper till att stödja iNaturalist när communityn växer, från
+        förbättringar av vår teknologi för att korrekt bestämma arter och
+        implementering av nya funktioner till att stödja våra servrar och personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist är en oberoende 501(c)(3) skattebefriad icke-vinstdrivande
+        organisation baserad i Amerikas förenta stater (Skatte-ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist är en av världens största communitys som ägnar sig åt
@@ -6088,6 +6067,34 @@ sv:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kan <u>tredubbla</u> din gåva! Tack vare Gordon and Betty
+          Moore-stiftelsen tredubblas alla månatliga donationer fram till 31
+          december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist är en av världens största communitys som ägnar sig
+          åt att utforska biologisk mångfald. Tack för att du är en del av den!
+          </p>
+          <p class="lead">
+          Om du älskar iNaturalist, överväg att bli en Månatlig givare. Återkommande
+          gåvor hjälper så att iNaturalistkan fortsätta skala upp vår infrastruktur
+          och personal genom att bidra med förutsägbara inkomster.
+          Och din månatliga gåva får ett tredubbelt genomslag! Du kan också
+          välja att visa din status som Månatlig givare på din användarprofil.
+          </p>
+          <p class="lead">
+          Din välgörenhetsdonation hjälper till att stödja iNaturalist när communityn
+          växer, från framsteg inom bildigenkänning och implementering av nya
+          funktioner till att stödja våra servrar och personal. Du kan även ge en
+          <a href="%{donate_url}">engångsdonation</a> och se
+          <a href="https://www.inaturalist.org/pages/giving">andra sätt att ge</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist är en oberoende 501(c)(3) skattebefriad, icke-vinstdrivande
+          organisation baserad i Amerikas förenta stater (Skatte-ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist är en av världens största communitys engagerad i att
@@ -7384,9 +7391,17 @@ sv:
         Barn till valt taxon som är släkten eller högre kommer att flyttas till utdata; arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
         med det nya släkt- eller artnamnet.
       form:
-        move_children_desc_html: |
-          Om du markerar denna ruta kommer barn till valt taxon att flyttas till utdatataxon för Byten och Hopslagningar när denna ändring är bekräftad. Om denna ändring är till ett släkte eller lägre, kommer det
-          att skapa Taxonbyten för alla underliggande som antyds byta namn. Till exempel, om du byter från familjen Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd det med försiktighet.
+        move_children_desc2_html: |
+          Om du markerar denna ruta kommer barn till indatataxon att flyttas till
+          utdatataxon för Taxonbyten och Taxonhopslagningar när denna ändring är bekräftad. Om
+          denna ändring är till ett släkte eller lägre, kommer det att skapa Taxonbyten för alla
+          underliggande som behöver byta namn. Till exempel, om du byter från familjen
+          Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till
+          Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer
+          det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till
+          <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis
+          lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd
+          det med försiktighet.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7891,9 +7906,11 @@ sv:
       AssessmentSection: Bedömningsdel
       Atlas: Atlas
       BlockedUser: Blockerad användare
+      Comment: Kommentar
       CompleteSet: Fullständig uppsättning
       #Noun
       Flag: Flagga
+      Identification: Artbestämning
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7905,6 +7922,7 @@ sv:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
+      Photo: Bild
       TaxonLink: Taxonlänk
     attributes:
       announcement:
@@ -8188,11 +8206,10 @@ sv:
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import för den Mushroom Observer-användaren körs eller väntar på import"
-              api_key_missing: "Mushroom Observer API-nyckel saknas"
+            user:
+              must_be_a_curator: måste vara förvaltare
         observation:
           attributes:
             base:

@@ -1024,13 +1024,7 @@ cs:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdělit na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: sloučit do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: sloučeno do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: nahrazeno
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: nahradit s
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradit
     dropped: zahozeno
@@ -2251,14 +2245,6 @@ cs:
   #Verb, usually a button to hide an interface element
   hide: Skrýt
   hide_content: Skrýt obsah
-  hide_desc: |
-    Skrytí obsahu ho odstraní z veřejného náhledu, ale lidé budou i nadále
-    vidět, že něco bylo skryto, a kurátoři stránek a autor
-    bude stále moci vidět skrytý obsah. Obecně to
-    platí pouze pro psaný obsah, např. pokud skryjete obsah
-    identifikace, identifikace je stále viditelná, ale 
-    poznámky identifikátora jsou skryté. Tuto akci nelze vrátit zpět a pouze pracovníci webu mohou obsah odkrýt, jakmile je skrytý, proto buďte opatrní a používejte jej jen pro velmi
-    nevhodný obsah.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
@@ -2318,8 +2304,6 @@ cs:
   #Notification when an identification has been deleted
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text identifikace odkryt
   #Notification when an identification has been updated
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
@@ -2327,79 +2311,6 @@ cs:
   identification_withdrawn: Identifikace odstraněna.
   identifications: Identifikace
   inaturalist_global_year_in_review: "Globální přehled roku %{year} na iNaturalist"
-  independence_email_subject: "Rozšiřte mezi známými: iNaturalist je nyní nezávislá neziskovka"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Vážený %{name},
-  independence_email_body_exciting_news: |
-    Tým iNaturalist má vzrušující novinky! Jsme rádi, že se s vámi můžeme podělit o to, 
-    že díky podpoře této skvělé komunity nyní iNaturalist funguje jako 501(c)(3) 
-    nezávislá nezisková organizace se sídlem ve Spojených státech amerických.
-  independence_email_body_since_launching: |
-    Od svého založení v roce 2008 se tým a organizace iNaturalist rozrostla, 
-    proto jsme nadšeni z dalšího milníku. iNaturalist začal
-    jako magisterský projekt na Kalifornské univerzitě v Berkeley, stala se z něj
-    společnost s ručením omezeným, v roce 2014 se připojil ke Kalifornské akademii věd. 
-    V roce 2017 se iNaturalist stal společnou iniciativou Kalifornské akademie věd 
-    a National Geographic Society. Nyní je iNaturalist nezávislou organizací.
-  independence_email_body_over_the_past: |
-    V uplynulých 15 letech se díky neuvěřitelným příspěvkům komunity stal 
-    iNaturalist jednou z nejvlivnějších platforem pro výzkum přírody na světě.
-  independence_email_body_so_far: "Komunita iNaturalist dosud:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Vytvořila více než 146 000 000 ověřitelných pozorování (týdně jich přibývá přibližně 1 milion!).
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: se rozrostla na 2,7 milionu přispěvatelů
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Pozorovala více než 430 000 druhů
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Byla citována více než 3 500krát
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">prostřednictvím Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Děkujeme Kalifornské akademii věd a National Geographic Society 
-    za rozvoj iNaturalist, který se v posledních devíti letech dramaticky zrychlil.
-    Těmto partnerům jsme nesmírně vděční za jejich investice, podporu a péči.
-    Těšíme se na spolupráci s oběma v budoucnu.
-  independence_email_body_the_way_html: |
-    <strong>Způsob, jakým iNaturalist používáte, se nezmění.</strong>
-    iNaturalist a Seek vám budou i nadále volně pomáhat identifikovat
-    biodiverzitu a budovat si vlastní vztah ke světu přírody. Tato nová
-    organizační struktura nám umožní podporovat iNaturalist po mnoho let,
-    protože komunita iNaturalist rozšiřuje naše kolektivní znalosti o přírodě.
-    biodiverzity dlouho do budoucna. Budeme i nadále spolupracovat s
-    organizacemi po celém světě na podporu sítě iNaturalist.
-  independence_email_body_questions_html: |
-    Můžete si <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">přečíst
-    více na blogu</a> a podívejte se na <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Často kladené
-     dotazy </a> (v angličtině). <a
-    href="https://www.inaturalist.org/pages/terms">Podmínky použití</a> a <a
-    href="https://www.inaturalist.org/pages/privacy">Zásady ochrany osobních údajů</a>
-    byly aktualizovány, aby odrážely novou organizaci.
-  independence_email_body_thank_you: Děkujeme vám, že jste součástí této komunity.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Dále,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Tým vedení iNaturalist</strong>
-  independence_email_body_ps: |
-    P.S. - Brzy oznámíme velkorysý grant, který poskytne
-    nezávislému iNaturalist pevný začátek. Finanční podpora
-    komunity iNaturalist umožnila náš vývoj a bude životně důležitá pro
-    dlouhodobou udržitelnost. Váš dar nyní oslaví tento vzrušující
-    milník a další bezpečnou budoucnost iNaturalist. Děkujeme!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Přispějte nyní
   computer_vision_suggestion: Návrh počítačového vidění
   computer_vision_suggestion_desc: |
     Počítačové vidění je proces, kterým se počítač učí rozpoznávat vzory v obrazech. Poskytujeme nástroje, které využívají modely počítačového vidění řízené fotografiemi z komunity, aby poskytly návrhy na identifikaci, jako jsou automatické úplnosti a funkce porovnání. Tento štítek označuje, kdy osoba přidala ID pomocí jednoho z těchto nástrojů.
@@ -2624,6 +2535,7 @@ cs:
     davawenyo: Davawenyo
     dutch: Holandština
     english: Angličtina
+    esperanto: Esperanto
     estonian: Estonština
     faroese: Faerština
     fijian: Fidžijština
@@ -2770,6 +2682,7 @@ cs:
     es: španělsky
     es-AR: španělsky (Argentina)
     es-CO: španělsky (Kolumbie)
+    es-CR: Španělština (Kostarika)
     es-MX: španělsky (Mexiko)
     et: estonsky
     eu: baskicky
@@ -4728,6 +4641,8 @@ cs:
   show_keyboard_shortcuts: Zobrazit klávesové zkratky
   show_less: Zobrazit méně
   show_more: Zobrazit více
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Zobrazit další možnosti přihlášení
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Zobrazit "Bez anotace"
@@ -5636,19 +5551,29 @@ cs:
   user_added_a_comment_html: "Uživatel %{user} přidal komentář"
   user_added_a_fave_html: "%{user} přidal oblíbené"
   user_added_a_flag_html: "%{user} přidal praporek"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} přidal(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} přidal %{x} k %{noun}"
   user_added_an_identification_html: "Uživatel %{user} přidal pozorování"
   user_added_an_observation_field_html: 'Uživatel %{user} přidal hodnotu pro "%{field_name}" k pozorování %{owner}'
   user_added_an_observation_field_value_html: "Uživatel %{user} přidal hodnotu pole pozorování"
   user_added_an_observation_html: "Uživatel %{user} přidal pozorování"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} přidal(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Uživatel %{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Uživatel %{user} přidal %{x} k %{noun}"
   user_added_x_observations_html: "Uživatel %{user} přidal %{x} pozorování"
   user_already_authenticated: Uživatel je již ověřen
@@ -7411,9 +7336,6 @@ cs:
     taxon_changes:
       move_children_desc: |
         Děti daného taxonu, které jsou rodové nebo ještě hruběji určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu s novým názvem rodu nebo druhu.
-      form:
-        move_children_desc_html: |
-          Zaškrtnutím tohoto políčka přesunete děti vstupního taxonu do cílového taxonu pro Swaps and Merges, pokud bude tato změna ověřena. Pokud se přesune na rod nebo níže, vytvoří se výměna taxonů pro všechny potomky, kteří mají implicitní změnu jména. Například, jestliže vy zaměníte rodinu Canidae do Dogidae, to modifikuje Canidae <i>Canis</i>rod do Dogidae. Změníte-li žánr <i>Canis</i>na<i>Dogis</i>, vytvoříte a validujete výměny taxonů pro změnu <i>Canis lupus </i> do <i>Dogis lupus</i> a <i>Canis lupus</i>ssp.<i>lupus</i>v<i>Dogis lupus</i>ssp.<i>lupus</i>do<i>Dogis lupus</i>ssp.<i>lupus</i>. To může způsobit určité nejasnosti, a proto to používejte opatrně.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8286,11 +8208,6 @@ cs:
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Import nebo čekání na import API klíče"
-              api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
             base:

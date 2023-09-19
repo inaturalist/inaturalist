@@ -876,13 +876,7 @@ it:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: suddividi in
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: unisci in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: unito in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: sostituito da
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: sostituisci con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: sostituito con
     dropped: eliminato
@@ -1693,6 +1687,8 @@ it:
     Ti abbiamo inviato un'email di conferma il %{date}. Se non l'hai ricevuto, ecco alcune cose che puoi fare:
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
+  email_conf_faq_html: |
+    Se hai domande, ti preghiamo di fare riferimento a queste <a href="%{url}">Domande Frequenti</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Per favore conferma il tuo indirizzo email%{link_end_tag}</strong>. Tutti gli utenti devono confermare il loro indirizzo email entro il %{date}. Dopo tale data chiunque non abbia confermato il proprio indirizzo email non potrà accedere a meno che non abbia reimpostato la propria password. Per confermare il tuo indirizzo email, vai alle impostazioni del tuo account %{link_start_tag}%{link_end_tag}.
   #Subject of an email prompting people to confirm their email address before
@@ -2060,8 +2056,6 @@ it:
   #Verb, usually a button to hide an interface element
   hide: Nascondi
   hide_content: Nascondi il contenuto
-  hide_desc: |
-    Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto. In generale, questo si applica solo al contenuto scritto, ad esempio se avete nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa operazione, e solamente il personale del sito può annullare l'occultamento di contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti particolarmente sgradevoli.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Nascondi «Nessuna annotazione»
@@ -2117,8 +2111,6 @@ it:
   #Notification when an identification has been deleted
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Testo dell'identificazione mostrato
   #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
@@ -2126,77 +2118,6 @@ it:
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
-  independence_email_subject: "Spieghiamo le Nostre Ali: iNaturalist è Ora una No-Profit Indipendente"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Caro %{name},
-  independence_email_body_exciting_news: |
-    Il team di iNaturalist ha delle entusiasmanti notizie! Siamo lieti di condividere che, grazie
-    al supporto di questa fantastica community, iNaturalist opera ora come
-    un'organizzazione senza scopo di lucro indipendente 501(c)(3), con sede negli Stati
-    Uniti d'America.
-  independence_email_body_since_launching: |
-    Dal suo lancio nel 2008, il team e l'organizzazione di iNaturalist si sono
-    evoluti, e siamo entusiasti su questa prossima tappa. iNaturalist è nata
-    come un progetto di master alla University of California, a Berkeley, è divenuta una
-    LLC, poi si è unita all'Accademia di Scienze della California nel 2014. Nel 2017,
-    iNaturalist è divenuta un'iniziativa congiunta con l'Accademia di Scienze della
-    California e la National Geographic Society. Ora, iNaturalist è
-    un'organizzazione indipendente.
-  independence_email_body_over_the_past: |
-    Negli ultimi 15 anni, gli incredibili contributi dalla community
-    hanno reso iNaturalist una delle piattaforme naturalistiche
-    più d'impatto al mondo.
-  independence_email_body_so_far: "Finora, la community di iNaturalist:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Ha creato oltre 146.000.000 osservazioni verificabili (aggiungendone circa 1 milione a settimana!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: È cresciuta a 2,7 milioni di collaboratori
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Ha osservato oltre 430.000 specie
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    È stata citata oltre 3.500 volte
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">tramite la Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Ringraziamo l'Accademia di Scienze della California e la National Geographic
-    Society per aver incubato iNaturalist, mentre cresceva drasticamente, negli ultimi
-    9 anni. Dobbiamo immensa gratitudine a tali partner per il loro investimento,
-    supporto e amministrazione. Non vediamo l'ora di collaborare con entrambe
-    le organizzazioni, in futuro.
-  independence_email_body_the_way_html: |
-    <strong>Il modo in cui sperimenti iNaturalist, non cambierà.</strong>
-    iNaturalist e Seek continuerà ad aiutarti liberamente a identificare la
-    biodiversità e a creare la tua connessione al mondo naturale. Questa nuova
-    struttura organizzativa ci consentirà di supportare iNaturalist per gli anni
-    a venire, mentre la community di iNaturalist espande la nostra conoscenza collettiva
-    della biodiversità, a lungo nel futuro. Continueremo a collaborare con le
-    organizzazioni in tutto il mondo, per supportare la Rete di iNaturalist.
-  independence_email_body_questions_html: |
-    Puoi <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leggere di
-    più sul blog</a> e consultare le <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Domande
-    Frequenti</a> (in inglese). I <a
-    href="https://www.inaturalist.org/pages/terms">Termini di Utilizzo</a> e la <a
-    href="https://www.inaturalist.org/pages/privacy">Politica sulla Privacy</a> sono
-    stati aggiornati per riflettere la nuova organizzazione.
-  independence_email_body_thank_you: Grazie per essere parte di questa community.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Buon proseguimento,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Team di Leadership di iNaturalist</strong>
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Dona ora
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -5335,19 +5256,29 @@ it:
   user_added_a_comment_html: "%{user} ha aggiunto un commento"
   user_added_a_fave_html: "%{user} ha aggiunto un preferito"
   user_added_a_flag_html: "%{user} ha aggiunto un contrassegno"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha aggiunto una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha aggiunto un valore in un campo di un'osservazione"
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha aggiunto una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
@@ -7061,9 +6992,6 @@ it:
     taxon_changes:
       move_children_desc: |
         I discendenti del taxon di ingresso che sono generi o di livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà, ecc. saranno cambiate negli equivalenti con il nuovo genere o nome della specie.
-      form:
-        move_children_desc_html: |
-          La selezione di questa casella sposterà i discendenti del taxon di ingresso al taxon di uscita per Cambi o Unioni, nel momento in cui questa modifica sarà confermata. Se questa modifica è applicata a un genere o a livelli inferiori, essa creerà dei Cambi di Taxon per tutti i discendenti implicati in una modifica del nome. Ad esempio, se tu Cambi la famiglia Canidae in Dogidae, questo cambierà l'antenato di <i>Canis</i> da Canidae a Dogidae. Se tu Cambi il genere <i>Canis</i> nel genere <i>Dogis</i>, questo creerà e applicherà un Cambio di Taxon da <i>Canis lupus</i> a <i>Dogis lupus</i> e da <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp. <i>lupus</i>. Questo può creare grandi pasticci, perciò usalo con attenzione.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7829,11 +7757,6 @@ it:
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "L'import per l'utente Osservatore Funghi è in corso o è accodato per l'importazione"
-              api_key_missing: "Manca la chiave API Osservatore Funghi"
         observation:
           attributes:
             base:

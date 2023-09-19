@@ -78,7 +78,9 @@ const ObservationsListView = ( {
                     } else {
                       displayPlace = I18n.t( "unknown" );
                     }
-                    const identificationsCount = _.size( _.filter( o.identifications, "current" ) );
+                    const identificationsCount = _.size(
+                      _.filter( o.identifications, i => ( i.current && !i.hidden ) )
+                    );
                     return (
                       <tr className={index % 2 === 0 ? "even" : ""} key={`obs_list_row_${o.id}`}>
                         <td className="photo">
@@ -105,6 +107,7 @@ const ObservationsListView = ( {
                           <div className="contents">
                             <SplitTaxon
                               taxon={o.taxon}
+                              noParens
                               url={`/observations/${o.id}`}
                               user={config.currentUser}
                             />

@@ -404,6 +404,7 @@ tr:
   agree_: Onayla
   agree?: Onaylansın mı?
   agree_with_current_taxon: Geçerli sınıfla onayla
+  agree_with_observation_taxon: Gözlem sınıfını kabul et
   agreeing: Onaylanıyor...
   aka: namıdiğer
   #Noun, title of a popup alerting you to something
@@ -876,13 +877,7 @@ tr:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: şuna bölündü
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: şununla birleşti
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: şununla birleşti
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: şununla değiştirildi
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: şununla değiştir
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: şununla değiştirildi
     dropped: etkisizleştirildi
@@ -2045,8 +2040,6 @@ tr:
   #Verb, usually a button to hide an interface element
   hide: Gizle
   hide_content: İçeriği Gizle
-  hide_desc: |
-    İçeriği gizlemek onu genel görünümden kaldırır ancak insanlar bir şeyin gizlendiğini görmeye devam edebilir ve site küratörleri ve içeriğin yazarı gizli içeriği görmeye devam edebilir. Genel olarak, bu yalnızca yazılı içerik için geçerlidir, örneğin bir tanımlamanın içeriğini gizlerseniz, tanımlama hâlâ görünür ancak tanımlayıcının açıklamaları gizlenir. Bunu geri alamazsınız ve yalnızca site personeli gizlendikten sonra içeriği kaldırabilir, bu nedenle dikkatli olun ve bunu yalnızca çok sakıncalı içerik için kullanın.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Açıklama Notu Olmayan"ları Gizle'
@@ -2102,8 +2095,6 @@ tr:
   #Notification when an identification has been deleted
   identification_deleted: Tanımlama silindi.
   identification_saved: "Tanımlama kaydedildi!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Tanımlama metni gizlenmemiş
   #Notification when an identification has been updated
   identification_updated: Tanımlama güncellendi!
   identification_user_short: Kullanıcı kimliği
@@ -2111,54 +2102,6 @@ tr:
   identification_withdrawn: Tanımlama geri alındı.
   identifications: Tanımlamalar
   inaturalist_global_year_in_review: "iNaturalist'in Küresel %{year} Yılı Değerlendirmesi"
-  independence_email_subject: "Kanatlarımızı Açıyoruz: iNaturalist Artık Bağımsız Bir Kâr Amacı Gütmeyen Kuruluş"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Sayın %{name},
-  independence_email_body_exciting_news: |
-    iNaturalist ekibinin heyecan verici haberleri var! Bu büyük topluluğun desteği sayesinde iNaturalist'in artık Amerika Birleşik Devletleri merkezli bağımsız bir 501(c)(3) kâr amacı gütmeyen kuruluş olarak faaliyet gösterdiğini paylaşmaktan mutluluk duyuyoruz.
-  independence_email_body_since_launching: |
-    2008'de başladığından bu yana iNaturalist ekibi ve organizasyonu gelişti ve bir sonraki dönüm noktası için heyecanlıyız. iNaturalist, California Üniversitesi, Berkeley'de bir yüksek lisans projesi olarak başladı, bir LLC oldu ve ardından 2014'te California Bilimler Akademisi'ne katıldı. 2017'de iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Society ile ortak bir girişim haline geldi. Şimdi, iNaturalist bağımsız bir kuruluştur.
-  independence_email_body_over_the_past: |
-    Geçtiğimiz 15 yıl boyunca, topluluğun inanılmaz katkıları iNaturalist'i dünyanın en etkili doğa platformlarından biri haline getirdi.
-  independence_email_body_so_far: "Şimdiye dek, iNaturalist topluluğu:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: 146.000.000'dan çok doğrulanabilir gözlem oluşturuldu (haftada yaklaşık 1 milyon gözlem ekleniyor!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: 2.7 milyon katılımcıya ulaştı
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: 430.000'den çok tür gözlemledi
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">Küresel Biyoçeşitlilik Danışma Tesisi</a> aracılığıyla 3,500'den fazla kez alıntılandı
-  independence_email_body_we_thank: |
-    Kaliforniya Bilimler Akademisi ve National Geographic Society'ye iNaturalist'in son 9 yılda çarpıcı bir şekilde büyümesini sağladıkları için teşekkür ediyoruz. Yatırımları, destekleri ve yönetimleri için bu ortaklara büyük minnettarlık borçluyuz. Gelecekte her iki kuruluşla da iş birliği yapmayı dört gözle bekliyoruz.
-  independence_email_body_the_way_html: |
-    <strong>iNaturalist'i deneyimleme şeklin değişmeyecek.</strong> iNaturalist ve Seek, biyolojik çeşitliliği tanımlamana ve doğal dünya ile kendi bağlantını kurmana özgürce yardımcı olmaya devam edecek. Bu yeni organizasyon yapısı, iNaturalist topluluğu, biyoçeşitlilik konusundaki kolektif bilgimizi geleceğe doğru genişlettikçe, iNaturalist'i yıllarca desteklememizi sağlayacak. iNaturalist Ağı'nı desteklemek için dünyanın dört bir yanındaki kuruluşlarla ortaklık kurmaya devam edeceğiz.
-  independence_email_body_questions_html: |
-    <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">Daha çoğunu blogda okuyabilir</a> ve <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Sıkça Sorulan Sorular</a>'a (İngilizce) göz atabilirsin. <a
-    href="https://www.inaturalist.org/pages/terms">Kullanım Koşulları</a> ve <a
-    href="https://www.inaturalist.org/pages/privacy">Gizlilik Politikası</a> yeni organizasyonu yansıtacak şekilde güncellenmiştir.
-  independence_email_body_thank_you: Bu topluluğun bir parçası olduğun için teşekkür ederiz.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Saygılarımızla,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Liderlik Ekibi</strong>
-  independence_email_body_ps: |
-    Not: Yakında bağımsız iNaturalist'e sağlam bir başlangıç sağlayacak cömert bir hibeyi duyuracağız. iNaturalist topluluğunun finansal desteği gelişimimizi mümkün kıldı ve uzun vadeli sürdürülebilirlik için hayati önem taşıyacak. Şimdi yapacağın bağış, bu heyecan verici dönüm noktasını taçlandıracak ve iNaturalist'in geleceğini daha da güvence altına alacaktır. Teşekkür ederiz!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Şimdi bağış yap
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -2379,6 +2322,7 @@ tr:
     davawenyo: Davaoeño
     dutch: Felemenkçe
     english: İngilizce
+    esperanto: Esperanto
     estonian: Estonca
     faroese: Faroece
     fijian: Fijice
@@ -2543,6 +2487,7 @@ tr:
     es: İspanyolca
     es-AR: İspanyolca (Arjantin)
     es-CO: İspanyolca (Kolombiya)
+    es-CR: İspanyolca (Kosta Rika)
     es-MX: İspanyolca (Meksika)
     et: Estonca
     eu: Baskça
@@ -4433,6 +4378,8 @@ tr:
   show_keyboard_shortcuts: Klavye Kısayollarını Göster
   show_less: Daha Az Göster
   show_more: Daha Fazla Göster
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Daha fazla giriş seçeneği göster
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"Açıklama Notu Olmayan"ları Göster'
@@ -5272,19 +5219,29 @@ tr:
   user_added_a_comment_html: "%{user} bir yorum ekledi"
   user_added_a_fave_html: "%{user} bir favori ekledi"
   user_added_a_flag_html: "%{user} bir işaret ekledi"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} bir %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_an_identification_html: "%{user} bir tanımlama ekledi"
   user_added_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlem için "%{field_name}" değeri ekledi'
   user_added_an_observation_field_value_html: "%{user} bir gözlem alan değeri ekledi"
   user_added_an_observation_html: "%{user} bir gözlem ekledi"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} bir %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_x_observations_html: "%{user}, %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
@@ -7013,9 +6970,6 @@ tr:
     taxon_changes:
       move_children_desc: |
         Girdi sınıfının cins veya daha büyük olan çocukları çıktıya taşınacaktır; türler, alttürler, varyeteler vb. yeni cins veya tür adıyla eşdeğerleriyle değiştirilecektir.
-      form:
-        move_children_desc_html: |
-          Bu kutunun işaretlenmesi, bu değişiklik yapıldığında Yer Değiştirmeler ve Birleştirmeler için girdi sınıfının alt soyunu çıktı sınıfına taşıyacaktır. Bu değişiklik bir cinse ya da daha alt düzeye uygulanırsa, ima edilen ad değişikliğine sahip tüm alt soy için Sınıf Yer Değiştirme oluşturacaktır. Örneğin, Canidae familyasını Dogidae ile değiştirirsen, bu <i>Canis</i> cinsinin üst soyunu Canidae'den Dogidae'ye değiştirir. <i>Canis</i> cinsini <i>Dogis</i> cinsiyle değiştirirsen, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>Canis lupus</i> ssp. <i>lupus</i>'u <i>Dogis lupus</i> ssp. <i>lupus</i> olarak değiştirmek için Sınıf Yer Değiştirme oluşturacak ve uygulayacaktır. Bu oldukça karışıklığa neden olabilir, bu yüzden dikkatli kullanın.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7833,11 +7787,6 @@ tr:
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Mushroom Observer kullanıcısı için içe aktarma çalışıyor ya da içe aktarma için sıraya alındı"
-              api_key_missing: "Mushroom Observer API anahtarı eksik"
         observation:
           attributes:
             base:

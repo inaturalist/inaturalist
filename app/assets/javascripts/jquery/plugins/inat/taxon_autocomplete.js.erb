@@ -51,6 +51,11 @@ autocompleter.setTitle = function( result, options ) {
     } else {
       result.title = result.name;
     }
+  } else if ( !_.isEmpty( result.preferred_common_names ) ) {
+    names = _.map( result.preferred_common_names, function( taxonName ) {
+      return iNatModels.Taxon.titleCaseName( taxonName.name )
+    } );
+    result.title = names.join( " · " );
   } else {
     result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
   }
@@ -61,7 +66,14 @@ autocompleter.setSubtitle = function( result, options ) {
   options = options || {};
   if ( !result.title ) { return; }
   if ( options.user && options.user.prefers_scientific_name_first ) {
-    result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+    if ( !_.isEmpty( result.preferred_common_names ) ) {
+      names = _.map( result.preferred_common_names, function( taxonName ) {
+        return iNatModels.Taxon.titleCaseName( taxonName.name )
+      } );
+      result.subtitle = names.join( " · " );
+    } else {
+      result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+    }
   } else if ( result.name != result.title ) {
     if( result.rank_level <= 10 ) {
       result.subtitle = "<i>" + result.name + "</i>";
@@ -305,6 +317,7 @@ $.fn.taxonAutocomplete = function( options ) {
     select: select,
     focus: focus,
     createWrappingDiv: autocompleter.createWrappingDiv,
+    menuClass: "taxon-autocomplete"
   }, options ));
   if( !ac ) { return; }
   field.bind( "assignSelection", function( e, t ) {

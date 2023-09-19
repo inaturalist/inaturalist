@@ -394,6 +394,8 @@ ca:
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Tots
+  #Title for a list of all 3rd party applications
+  all_applications: Totes les aplicacions
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
   all_life: Tota la vida
@@ -865,13 +867,7 @@ ca:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividit en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinat a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: es va combinar a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplaçat per
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplaçat amb
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplaçat per
     dropped: eliminat
@@ -1556,6 +1552,8 @@ ca:
   donate: DONAR
   donate_again_caps: DONEU DE NOU
   donate_again_today_caps: DONEU DE NOU, AVUI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Feu una donació a iNaturalist
   done: Fet
   dont_have_an_account_sign_up_html: No teniu un compte?<strong>Registreu-vos</strong>
   dont_use_double_quotes: No utilitzeu cometes dobles en cap altre lloc
@@ -2017,8 +2015,6 @@ ca:
   #Verb, usually a button to hide an interface element
   hide: Amaga
   hide_content: Amaga Contingut
-  hide_desc: |
-    Amagant el contingut eviteu que el públic ho vegi, però poden saber que s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden veure el contingut amagat. Normalment, això únicament afecta el contingut escrit, p.e. si amagueu el contingut d'una identificació, la identificació encara és visible però les marques de l'identificador s'amaguen. No podeu desfer això, únicament els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos, i useu-lo únicament per continguts molt objectivables.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Amaga "Sense anotacions"
@@ -2074,8 +2070,6 @@ ca:
   #Notification when an identification has been deleted
   identification_deleted: Identificació eliminada.
   identification_saved: "Identificació desada!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text de la identificació mostrat de nou
   #Notification when an identification has been updated
   identification_updated: Identificació actualitzada!
   identification_user_short: Ident. Usuari
@@ -2304,6 +2298,7 @@ ca:
     davawenyo: Davawenyo
     dutch: Holandès
     english: Anglès
+    esperanto: Esperanto
     estonian: Estonià
     faroese: Feroès
     finnish: Finès
@@ -5174,19 +5169,29 @@ ca:
   user_added_a_comment_html: "%{user} ha afegit un comentari"
   user_added_a_fave_html: "%{user} ha afegit un favorit"
   user_added_a_flag_html: "%{user} ha afegit una marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} per %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha afegit una identificació"
   user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}" a una observació de %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha afegit un valor a un camp d'observació"
   user_added_an_observation_html: "%{user} ha afegit una observació"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
@@ -6770,9 +6775,6 @@ ca:
     taxon_changes:
       move_children_desc: |
         Els tàxons d’entrada que són gèneres o superiors es dirigiran als tàxons de destí; les espècies, les subespècies, les varietats, etc. es canviaran amb els noms equivalents amb el nom del nou gènere o espècie.
-      form:
-        move_children_desc_html: |
-          Marcant aquesta opció mourà els fills del tàxon indicat al nou tàxon per Intercanviar i Mesclar quan el canvi s'hagi produït. Si el canvi afecta un gènere o categoria inferior, crearà un Intercanvi de Tàxons de tots els fills que tinguin el nom implicat. Per exemple, i canvieu la família Canidae a la Dogidae, aixó suposa el canvi de la tàxon superior del gènere <i>Canis</i> de Canidae a Dogidae. Si canvieu el gènere el gènere <i>Canis</i> al gènere <i>Dogis</i> crearà i produirà un Tàxon d'inercanvi per canviar <i>Canis lupus</i> a <i>Dogis lupus</i>i <i>Canis lupus</i> ssp.<i>lupus</i> a <i>Dogis lupus</i> ssp.<i>lupus</i>. El que suposarà introduir un gran desordre taxonòmic, així que aneu amb cura.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7515,11 +7517,6 @@ ca:
               staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "La importació d'aquest usuari del 'Mushroom Observer' s'està realitzant o està en cua per a la importació"
-              api_key_missing: "Falta la clau API del 'Mushroom Observer'"
         observation:
           attributes:
             base:

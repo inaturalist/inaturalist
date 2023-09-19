@@ -642,13 +642,7 @@ th:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: แยกเป็น
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ยุบรวมเป็น
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ถูกยุบรวมเป็น
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: แทนที่โดย
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: แทนที่ด้วย
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ถูกแทนที่ด้วย
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} จะถูกแยกเป็น %{output_taxa}"
@@ -819,9 +813,11 @@ th:
   create_a_new_field: สร้างข้อมูลเสริมใหม่
   create_a_new_place: สร้างสถานที่ใหม่
   create_a_new_taxon: สร้างหน่วยอนุกรมวิธานใหม่
+  create_a_query: สร้างคิวรี
   create_an_account: สร้างบัญชีใหม่
   created_by: สร้างโดย
   created_by_user_on_date: สร้างโดย %{user} เมื่อ %{date}
+  created_on: สร้างเมื่อ
   critically_endangered: ใกล้สูญพันธุ์อย่างยิ่ง
   cumulative_ids: "การจำแนกสะสม: %{count} จาก %{total}"
   curation: จัดการอนุกรมวิธาน
@@ -969,12 +965,16 @@ th:
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
+  editing_announcement: แก้ไขประกาศ
   editing_observation_field: แก้ไขข้อมูลเสริมการสังเกต
   editing_observation_id: "แก้ไขการสังเกต %{obs_id}"
+  editing_observations:
+    other: 'แก้ไข <span class="count">%{count}</span> การสังเกต:'
   editing_project: แก้ไข %{project}
   editing_subscription_to_x_html: "แก้ไขการติดตาม %{x}"
   editing_taxon: แก้ไข %{taxon}
   editing_taxon_link: แก้ไขลิงก์หน่วยอนุกรมวิธาน
+  editing_taxon_name_for_taxon_html: แก้ไขชื่อ "%{name}" สำหรับ %{taxon}
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
@@ -1146,6 +1146,7 @@ th:
   help: ช่วยเหลือ
   help_confirm_observations!: ช่วยยืนยันการสังเกต!
   help_translate!: ช่วยแปล!
+  here_are_3_examples: 'ตัวอย่างข้อมูลที่มีรูปแบบเหมาะสม:'
   here_are_our_top_suggestions: นี่คือคำแนะนำอันดับแรกของเรา
   here_are_our_top_species_suggestions: นี่คือชนิดที่เราแนะนำเป็นอันดับแรก
   hi_user: "สวัสดี %{user}"
@@ -1179,8 +1180,6 @@ th:
   #Notification when an identification has been deleted
   identification_deleted: ลบการจำแนกแล้ว
   identification_saved: "บันทึกการจำแนกแล้ว!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: เลิกซ่อนข้อความประกอบการจำแนก
   #Notification when an identification has been updated
   identification_updated: อัปเดตการจำแนกแล้ว!
   #Notification when an identification has been withdrawn
@@ -1228,6 +1227,7 @@ th:
   journal: วารสาร
   journal_post: โพสต์วารสาร
   journal_posts: โพสต์วารสาร
+  keep_editing: แก้ไขต่อ
   labels: ป้ายกำกับ
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: ตำแหน่งเป็นส่วนตัว
@@ -1245,6 +1245,7 @@ th:
   lat: ละติจูด
   latitude: ละติจูด
   latitude_in_decimals: 'ละติจูดแบบองศาทศนิยม เช่น 38.123'
+  latitude_slash_y_coord_slash_northing: ละจิจูด / แกน y / เหนือ
   latitude_value: "ละติจูด: %{latitude}"
   leaderboard: กระดานจัดอันดับ
   leaderboard_for_x: "กระดานจัดอันดับสำหรับ %{x}"
@@ -1538,6 +1539,9 @@ th:
   names_for_taxon_html: "ชื่อสำหรับ %{taxon}"
   native: พื้นเมือง
   native_to_place: "ชนิดพันธุ์พื้นเมืองใน %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
+  nav: นำทาง
   near_threatened: ใกล้ถูกคุกคาม
   nearby_observations_: การสังเกตในบริเวณใกล้เคียง
   needs_id: รอจำแนกชนิด
@@ -1616,6 +1620,8 @@ th:
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
+  #Filter for observations not in a particular place
+  not_in_place: ยกเว้นสถานที่
   not_recorded: ไม่ได้บันทึก
   not_resolved: ไม่แก้ไข
   not_seeing_what_looking_for: ไม่พบสิ่งที่ค้นหา?
@@ -1647,6 +1653,10 @@ th:
   observations_by_you_on_date: "การสังเกตโดยคุณเมื่อ %{date}"
   observation_calendar_for: "ปฏิทินการสังเกตสำหรับ %{user} ในปี %{year}"
   observation_date: วันที่
+  #Basic observation export fields
+  observation_export_column_type_basic: พื้นฐาน
+  #Geographic observation export fields
+  observation_export_column_type_geo: ภูมิศาสตร์
   observation_field: ข้อมูลเสริมการสังเกต
   observation_field_details: รายละเอียดข้อมูลเสริม
   observation_field_type_datetime: วันที่และเวลา
@@ -1680,6 +1690,7 @@ th:
   observations_without_media: การสังเกตที่ไม่มีสื่อ
   observed: สังเกตเมื่อ
   observed_by: สังเกตโดย
+  observed_on: สังเกตเมื่อ
   observer: ผู้สังเกต
   observers: ผู้สังเกต
   observer_short: ผู้สังเกต
@@ -1688,6 +1699,8 @@ th:
     absent: ไม่พบในพื้นที่
     common: พบบ่อย
   of_this_taxon: ของหน่วยฯ นี้
+  onboarding:
+    following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
@@ -1813,6 +1826,7 @@ th:
     china: ประเทศจีน
     czech_republic: สาธารณรัฐเช็ก
     europe: ยุโรป
+    georgia: ประเทศจอร์เจีย
     germany: ประเทศเยอรมนี
     hong_kong: ฮ่องกง
     india: ประเทศอินเดีย
@@ -1902,7 +1916,7 @@ th:
   project_settings: การตั้งค่าโครงการ
   projects: โครงการ
   projects_description: |
-    โครงการช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าวัตถุประสงค์ของคุณจะเป็นการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือแค่จดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะตอบโจทย์ของคุณ
+    การสร้างโครงการจะช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าจะเป็นเพื่อการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือเพื่อจดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะช่วยตอบโจทย์คุณได้
   #@vow_or_con should work on %{place}
   projects_from_place: "โครงการจาก %{place}"
   #"admins" is equivalent to "administrates"
@@ -2204,6 +2218,7 @@ th:
   sign_out: ออกจากระบบ
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
+  single_observation: การสังเกตเดียว
   sizes: ขนาด
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
   small: เล็ก
@@ -2260,6 +2275,7 @@ th:
   start_date_time: วันที่ / เวลาเริ่มต้น
   start_typing_field_name: พิมพ์ชื่อข้อมูลเสริม...
   start_typing_place_name: พิมพ์ชื่อสถานที่...
+  start_typing_taxon_name: พิมพ์ชื่อหน่วยอนุกรมวิธาน...
   start_typing_someones_name: "พิมพ์ชื่อคน..."
   stats: สถิติ
   status: สถานะ
@@ -2290,8 +2306,10 @@ th:
   taxa_with_unknown_relationships: หน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
   taxa_observed: หน่วยอนุกรมวิธานที่สังเกต
+  taxon: หน่วยอนุกรมวิธาน
   taxon_autocomplete_placeholder: นก ผีเสื้อหนอนใบรัก ฯลฯ
   taxon_geoprivacy: การเปิดเผยพิกัด
+  taxon_is_a_rank: "%{taxon} เป็น%{rank}"
   taxon_is_a_rank_of_plantae_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของพืชที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_animalia_with_x_observations:
@@ -2318,6 +2336,7 @@ th:
   taxon_framework_relationships: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
   taxon_history_notice: ประวัติหน่วยอนุกรมวิธานเริ่มใช้งานตั้งแต่กุมภาพันธ์ 2022 จึงไม่มีข้อมูลประวัติก่อนหน้านี้
   taxon_merge: ยุบรวมหน่วยอนุกรมวิธาน
+  taxon_name: ชื่อหน่วยอนุกรมวิธาน
   taxon_photos_updated: อัปเดตรูปหน่วยอนุกรมวิธานแล้ว!
   taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN หรือไม่ ถ้าไม่ใช่ เพราะเหตุใด?
   taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN
@@ -2344,6 +2363,7 @@ th:
   taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
   tell_the_world_a_little_about_yourself: บอกเราเกี่ยวกับตัวคุณ
   tell_us_why: อธิบายเหตุผล...
+  terms_and_rules_html: "ข้อตกลง & กฎ"
   terms_service: ข้อตกลงการใช้งาน
   terrain: ภูมิประเทศ
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
@@ -2561,11 +2581,14 @@ th:
   user1_user2_and_x_others_faved_this_observation: "%{user1} %{user2} และ %{x_others} ชอบการสังเกตนี้"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
   user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} เพิ่ม%{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"
@@ -2672,6 +2695,8 @@ th:
   widget_for: วิดเจ็ตสำหรับ
   wikipedia_attribution_cc_by_sa_3: |
     ที่มา: วิกิพีเดีย, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: ยกเว้นหน่วยฯ
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: ถอนออก
@@ -2785,6 +2810,10 @@ th:
         horizontal: แนวนอน
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: แนวตั้ง
+      export:
+        choose_columns_desc: เลือกคอลัมน์ที่คุณต้องการส่งออก
+        be_patient: |
+          โปรดรอสักครู่เนื่องจากใช้เวลาหลายนาที ถ้านานเกินไปคุณสามารถ
       field_descriptions:
         scientific_name: "ชื่อวิทยาศาสตร์ของหน่วยอนุกรมวิธานที่สังเกตอ้างอิงจากเว็บไซต์นี้"
         num_identification_disagreements: จำนวนการจำแนกที่ขัดแย้งกับการจำแนกโดยผู้สังเกต
@@ -2857,6 +2886,8 @@ th:
           เลือกภาพไอคอน ควรมีขนาดอย่างน้อย 72px x 72px และจะถูกครอบตัดเป็นสี่เหลี่ยมจัตุรัส
         project_name: ชื่อโครงการ
         project_summary: คำอธิบายโครงการ
+        project_summary_help: |
+          อธิบายสั้น ๆ เกี่ยวกับโครงการของคุณ อักษรประมาณ 200 ตัวแรกจะแสดงทางขวาของภาพหน้าปกในหน้าหลักโครงการ ดังนั้นคำอธิบายที่สำคัญต้องมาก่อน!
         project_summary_placeholder: ค้นหาและติดตามนกในอุทยานโกลเดนเกต...
         select_native_to_include: |
           เลือก "พื้นเมือง" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์พื้นเมือง" ของสถานที่ในโครงการของคุณ เลือก "ต่างถิ่น" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์ต่างถิ่น" ของสถานที่ในโครงการของคุณ
@@ -2998,7 +3029,32 @@ th:
       index:
         connect_with_nature: เชื่อมโยงกับธรรมชาติ
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
+        how_it_works: หลักการทำงาน
+        record_your_observations: บันทึกการสังเกตของคุณ
+        share_with_fellow_naturalists: แชร์ให้นักธรรมชาติวิทยาคนอื่น ๆ
+        discuss_your_findings: พูดคุยเกี่ยวกับสิ่งที่พบเจอมา
         contribute_to_science: สนับสนุนวิทยาศาสตร์
+        science_desc_html: |
+          การสังเกตทั้งหมดจะเป็นประโยชน์ต่อวิทยาศาสตร์ด้านความหลากหลายทางชีวภาพ ตั้งแต่ผีเสื้อที่หายากที่สุดไปจนถึงวัชพืชที่พบบ่อยที่สุดในสวนหลังบ้าน เราจะแชร์การสังเกตของคุณไปยังฐานเก็บข้อมูลทางวิทยาศาสตร์ เช่น <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> เพื่อช่วยให้นักวิทยาศาสตร์นำข้อมูลของคุณไปใช้ต่อได้ เพียงแค่ส่งการสังเกตมาให้เราเท่านั้น
+        nature_at_your_fingertips: ธรรมชาติอยู่แค่ปลายนิ้ว
+        keep_track: เฝ้าติดตาม
+        record_your_encounters: |
+          บันทึกการพบเจอสิ่งมีชีวิตและเก็บบันทึกรายการชนิดทั้งหมดไว้ในคลาวด์
+        create_useful_data: สร้างข้อมูลที่เป็นประโยชน์
+        help_scientists: ช่วยให้นักวิทยาศาสตร์และผู้จัดการทรัพยากรธรรมชาติรับรู้ว่ามีสิ่งมีชีวิตปรากฏอยู่ที่ไหนและเมื่อใด
+        crowdsource_identifications: ให้ผู้อื่นช่วยจำแนกชนิด
+        connect_with_experts: ปรึกษาผู้เชี่ยวชาญที่สามารถจำแนกชนิดของสิ่งมีชีวิตที่คุณพบเจอ
+        become_a_citizen_scientist: ร่วมเป็นนักวิทยาศาสตร์พลเมือง
+        find_a_project: "ค้นหาโครงการที่มีภารกิจน่าสนใจ หรือสร้างโครงการของคุณเอง"
+        learn_about_nature: เรียนรู้ธรรมชาติ
+        build_your_knowledge: แลกเปลี่ยนความรู้กับนักธรรมชาติวิทยาและช่วยเหลือผู้อื่น
+        run_a_bioblitz: จัดกิจกรรมชีวะตะลุมบอน (Bioblitz)
+        hold_an_event: จัดกิจกรรมที่ชักชวนผู้คนมาร่วมสำรวจสิ่งมีชีวิตให้มากที่สุดเท่าที่จะทำได้
+        works_on_all_your_devices: ใช้งานได้กับทุกอุปกรณ์ของคุณ
+        install_our_mobile_apps: |
+          ติดตั้งแอปฯ ของเราในโทรศัพท์แล้วออกไปสำรวจสิ่งมีชีวิตโดยไม่ต้องมีสัญญาณหรือไวไฟตลอดเวลา
+        who_uses_site_name: "ใครใช้ %{site_name} บ้าง?"
+        what_are_you_waiting_for: รออะไรอยู่ล่ะ?
         join_today: เข้าร่วมวันนี้
   date:
     abbr_month_names:
@@ -3155,6 +3211,8 @@ th:
       project_observation:
         user_id: ผู้ส่ง
       place:
+        latitude: ละติจูด
+        longitude: ลองจิจูด
         place_type: ประเภทสถานที่
       source:
         title: หัวข้อ

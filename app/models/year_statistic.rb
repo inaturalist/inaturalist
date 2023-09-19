@@ -1412,7 +1412,7 @@ class YearStatistic < ApplicationRecord
       "pt" => "pt-PT"
     }
     data = { languages: {}, users: {} }
-    staff_usernames = User.admins.pluck( :login ) + %w(alexinat)
+    staff_usernames = User.admins.pluck( :login ) + %w(alexinat inaturalist)
     CONFIG.crowdin.projects.to_h.each_key do | project_name |
       project = CONFIG.crowdin.projects.send( project_name )
       info_r = RestClient.get(

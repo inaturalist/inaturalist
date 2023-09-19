@@ -221,6 +221,7 @@ class TaxaController < ApplicationController
         site_place = @site && @site.place
         user_place = current_user && current_user.place
         preferred_place = user_place || site_place
+        options[:authenticate] = current_user
         @node_taxon_json = INatAPIService.get_json(
           "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}",
           options
