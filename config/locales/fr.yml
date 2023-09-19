@@ -6035,16 +6035,32 @@ fr:
           precision_colon: |
             Précision :
           precision_description: La proportion de la carte de présence attendue à proximité correspondant à des vraies présences
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Vraies présences / (vraies présences + fausses présences) = %{precision}
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Rappel :
           recall_description: La proportion de l'aire de répartition correspondant à des vraies présences
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Vraies présences / (vraies présences + fausses absences) = %{rappel}
           #The average (harmonic mean) of Precision (fraction of the Expected
           #Nearby Map that are True Presences) and Recall (fraction of the
           #Taxon Range that are True Presences)
           f1_colon: |
             F1 :
           f1_description: La moyenne (moyenne harmonique) de la précision et du rappel
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × vraies présences / (2 × vraies présences + fausses présences + fausses absences) = %{f1}
           perfect_overlap: |
             Un chevauchement parfait serait évalué avec une précision, un rappel et un F1 de 1. Une absence totale de chevauchement
             serait évaluée avec une précision, un rappel et un F1 de 0.
