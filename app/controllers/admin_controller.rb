@@ -23,9 +23,9 @@ class AdminController < ApplicationController
     @q_ip = params[:q_ip].try( :strip )
     must = []     
     must << { wildcard: { login_exact: { value: @q_login+"*" } } } unless @q_login.blank?
-    must << { wildcard: { name: { value: @q_name+"*" } } } unless @q_name.blank?
     must << { wildcard: { email: { value: @q_email+"*" } } } unless @q_email.blank?
     must << { wildcard: { last_ip: { value: @q_ip+"*" } } } unless @q_ip.blank?
+    must << { match: { name_autocomplete: { query: @q_name, operator: "and" } } } unless @q_name.blank?
     search_result = User.elastic_search( 
       filters: [
         bool: {
