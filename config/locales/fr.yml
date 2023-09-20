@@ -6048,7 +6048,7 @@ fr:
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Absences: areas where only the Taxon Range is present
           recall_equation: |
-            Vraies présences / (vraies présences + fausses absences) = %{rappel}
+            Vraies présences / (vraies présences + fausses absences) = %{recall}
           #The average (harmonic mean) of Precision (fraction of the Expected
           #Nearby Map that are True Presences) and Recall (fraction of the
           #Taxon Range that are True Presences)
