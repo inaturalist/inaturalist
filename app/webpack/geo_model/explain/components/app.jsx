@@ -446,7 +446,7 @@ class App extends React.Component {
           { I18n.t( "views.geo_model.explain.the_geo_model_makes_predictions" ) }
         </p>
         <p dangerouslySetInnerHTML={{
-          __html: I18n.t( "views.geo_model.explain.the_geo_model_is_trained", { url: "/blog" } )
+          __html: I18n.t( "views.geo_model.explain.the_geo_model_is_trained", { url: "/posts/84677" } )
         }}
         />
         <TaxonMap
