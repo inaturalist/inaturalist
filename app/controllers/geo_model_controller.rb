@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class GeoModelController < ApplicationController
-  before_action :authenticate_user!
-  before_action :admin_required
 
   def index
     respond_to do | format |
