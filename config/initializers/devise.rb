@@ -238,7 +238,6 @@ Devise.setup do | config |
     manager.default_strategies( scope: :user ).unshift :ajwt
     manager.strategies.add( :jwt, Devise::Strategies::JsonWebToken )
     manager.default_strategies( scope: :user ).unshift :jwt
-    manager.failure_app = InatDeviseFailureApp
   end
 
   # ==> Mountable engine configurations

@@ -13,10 +13,9 @@
   font-size: 30px;
   .SplitTaxon {
     font-weight: 300;
-    margin-left: 8px;
     &.taxon.has-com-name > .secondary-name,
     &.taxon a {
-      color: #1A1A1A;
+      color: inherit;
     }
   }
 }
@@ -29,20 +28,33 @@
   font-size: 16px;
   line-height: 1.8em;
   margin-top: 30px;
-  .row + .row {
-    margin-top: 20px;
+  p.figure {
+    text-align: center;
+    img {
+      width: 85%;
+    }
+    &.comparison img {
+      width: 75%;
+    }
   }
-  .row.color-legend, .row.stat-description {
-    margin-top: 5px;
+  .row.color-legend > div {
+    margin-left: 20px;
   }
-}
-
-.figure {
-  width: 300px;
-  height: 200px;
-  border: 1px solid #333;
-  line-height: 200px;
-  text-align: center;
+  .row.stat-description {
+    margin-bottom: 10px;
+    line-height: 24px;
+  }
+  .evaluation-header {
+    font-size: 1.2em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    .taxon a {
+      color: inherit;
+    }
+  }
+  .strong-label {
+    font-weight: 600;
+  }
 }
 
 .color-box {

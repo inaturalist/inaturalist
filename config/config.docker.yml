@@ -1,0 +1,180 @@
+# Example services and site config. Keys in all caps are globally scoped
+# You must replace these values with ones tailored to your own site.
+# For external services, follow the link in the note to go to the signup
+# page for the service.
+
+base: &base
+
+    priority_zones:
+      - US
+      - Arizona
+      - Indiana
+      - Hawaii
+      - Alaska
+
+    rest_auth:
+        # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
+        REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
+        REST_AUTH_DIGEST_STRETCHES: 10
+
+    rails:
+        # Issue {rake secret} to get a new one
+        session_key: _yoursite_session
+        secret: 09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af
+
+    # google_analytics:
+    #     # http://www.google.com/analytics/sign_up.html
+    #     tracker_id: UA-090909-9
+    #     domain_name: yoursite.org
+
+    ubio:
+        # http://www.ubio.org/index.php?pagename=form
+        key: 09af09af09af09af09af09af09af09af09af09af
+
+    tile_servers:
+        # EXPERIMENTAL: These endpoints should return map tiles when hit with
+        # requests like /{Z}/{X}/{Y}.png.
+        # See http://bitbucket.org/springmeyer/tilelite/
+        observations: 'http://localhost:8000'
+        tilestache: 'http://localhost:8080'
+        elasticsearch: http://localhost:4000
+
+    google_webmaster:
+        verification: abiglongkey
+
+    s3_bucket: yourbucketname
+    s3_protocol: https
+    s3_region: us-east-1
+
+    memcached: memcached
+
+    # Key for spam filtering with akismet. See http://akismet.com/development/api/
+    rakismet:
+      key: abc123
+      site_url: http://www.yoursite.com
+
+    # facebook:
+    #     app_id: 00000000000
+    #     app_secret: 09af09af09af09af09af09af09af09af09af09af
+    #     # facebook user IDs of people who can admin pages on the site
+    #     admin_ids: [1,2]
+    #     namespace: appname # your facebook app's namespace, used for open graph tags
+
+    # twitter:
+    #     key: 09af09af09af09af09af09af09af09af09af09af
+    #     secret: 09af09af09af09af09af09af09af09af09af09af
+    #     username: your_twitter_username
+
+    # cloudmade:
+    #     key: 09af09af09af09af09af09af09af09af09af09af
+
+    # bing:
+    #     # http://www.bingmapsportal.com/
+    #     key: 09af09af09af09af09af09af09af09af09af09af
+
+    flickr:
+        # http://www.flickr.com/services/api/keys/apply/
+        key: 09af09af09af09af09af09af09af09af
+        shared_secret: 09af09af09af09af
+
+    soundcloud:
+        # http://soundcloud.com/you/apps/new
+        client_id: 09af09af09af09af09af09af09af09af
+        secret: 09af09af09af09af09af09af09af09af
+
+    google:
+        # This should be a Google API key that can use Google maps
+        # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+        browser_api_key: 09af09af09af09af09af09af09af09af
+        # client_id and secret should come from a Google OAuth 2.0 client ID
+        # https://console.developers.google.com/apis/credentials
+        client_id: 09af09af09af09af09af09af09af09af
+        secret: 09af09af09af09af09af09af09af09af
+
+    metadata_provider:
+
+    creator:
+
+    # natureserve:
+    #     key: 0x0x0x0x0x0x0x0x
+
+    # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
+    x_sendfile_header: 'X-Sendfile'
+
+    # # GBIF login credentials. Currently only used in 
+    # # tools/gbif_observation_links.rb, so only useful if you send data 
+    # # to GBIF
+    # gbif:
+    #     username: yourusername
+    #     password: yourpassword
+    #     notification_address: you@you.com
+    
+    # Elastic search for search indexing, other performance improvements
+    # ES also runs a syncing service on port 9300 by default. You want to use 
+    # the API port. See 
+    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
+    # for more details
+    elasticsearch_host: http://es:9200
+
+    # An instance of https://github.com/inaturalist/iNaturalistAPI, the
+    # same code running at CONFIG.tile_servers.elasticsearch
+    node_api_url: http://api:4000/v1
+    public_node_api_url: http://localhost:4000/v1
+
+    # The secrets used to sign the JWT for authenticated requests to the
+    # iNaturalistAPI. These need to be same as in the API's config.js.
+    jwt_secret: secret
+    jwt_application_secret: application_secret
+
+    # # Path to the CA .crt file
+    # ca_file: "/path/to/certs/ca-bundle.crt"
+    # # Path to the certificates directory
+    # ca_path: "/path/to/certs/"
+
+    # # Options for interacting with orcid.org
+    # orcid:
+    #     client_id: YOUR_CLIENT_ID
+    #     client_secret: YOUR_CLIENT_SECRET
+
+    # # Options for interacting with donorbox.org donation platform
+    # donorbox:
+    #     email: you@domain.com
+    #     key: YOUR_DONORBOX_KEY
+
+
+    # Options for interacting with crowdin.com translation projects
+    # crowdin:
+    #     projects:
+    #         web:
+    #             identifier: inaturalistweb
+    #             key: 1234
+    #         mobile:
+    #             identifier: inaturalistios
+    #             key: 5678
+    #         seek:
+    #             identifier: seek
+    #             key: 4321
+
+    # Sendgrid-specific options if using sendgrid.com to send email
+    sendgrid:
+        api_key: some-api-key
+        # Unsubscribe groups configured on Sendgrid
+        asm_group_ids:
+            # The unsubscribe group used as a default for all emails sent from
+            # the web app
+            default: 1234
+
+development:
+    <<: *base
+
+test:
+    <<: *base
+    # We shouldn't assume a working instance of the node API is running in a
+    # test environment, so use different defaults to ensure we don't get fooled
+    # when a test passes in a development environment where the node API *is*
+    # running
+    node_api_host: "api:5000/v1"
+    node_api_url: http://api:5000/v1
+
+production:
+    <<: *base

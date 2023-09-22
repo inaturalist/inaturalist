@@ -1740,6 +1740,8 @@ pt-BR:
     Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
     confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
     para acessar sua conta.
+  email_conf_faq_html: |
+    Se tiver dúvidas, consulte estas <a href="%{url}">Perguntas Frequentes</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Por favor, confirme o seu endereço eletrônico %{link_end_tag}</strong>.
     Todos os usuários devem confirmar seu endereço eletrônico até %{date}. Depois dessa

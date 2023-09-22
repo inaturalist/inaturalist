@@ -4447,7 +4447,7 @@ sv:
   #access their iNat account
   revoke_external_application: "Återkalla %{site_name}?"
   revoke_privacy_consent_warning: "Det enda sättet att återkalla detta samtycke är genom att ta bort ditt konto och all tillhörande data."
-  rg_observations: RG-fynd
+  rg_observations: FK-fynd
   role: Roll
   rotate_left: Rotera åt vänster
   rotate_right: Rotera åt höger
@@ -6015,6 +6015,33 @@ sv:
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kan <u>fördubbla</u> eller <u>tredubbla</u> din gåva! Tack vare
+        Gordon and Betty Moore-stiftelsen tredubblas alla månatliga, kvartals- och
+        årligen återkommande donationer, samtidigt som engångsdonationer fördubblas,
+        fram till 31 december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist är en av världens största communitys som ägnar sig
+        åt biologisk mångfald. Tack för att du är en del av den!
+        </p>
+        <p class="lead">
+        Om du tror på kraften hos denna globala community av naturälskare
+        att dela kunskap och generera oersättlig biologisk mångfalds-data,
+        överväg en engångs- eller återkommande gåva online, eller se
+        <a href="https://www.inaturalist.org/pages/giving">andra sätt att
+        ge</a>.
+        </p>
+        <p class="lead">
+        Din donation hjälper till att stödja iNaturalist när communityn växer, från
+        förbättringar av vår teknologi för att korrekt bestämma arter och
+        implementering av nya funktioner till att stödja våra servrar och personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist är en oberoende 501(c)(3) skattebefriad icke-vinstdrivande
+        organisation baserad i Amerikas förenta stater (Skatte-ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist är en av världens största communitys som ägnar sig åt
@@ -6040,6 +6067,34 @@ sv:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kan <u>tredubbla</u> din gåva! Tack vare Gordon and Betty
+          Moore-stiftelsen tredubblas alla månatliga donationer fram till 31
+          december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist är en av världens största communitys som ägnar sig
+          åt att utforska biologisk mångfald. Tack för att du är en del av den!
+          </p>
+          <p class="lead">
+          Om du älskar iNaturalist, överväg att bli en Månatlig givare. Återkommande
+          gåvor hjälper så att iNaturalistkan fortsätta skala upp vår infrastruktur
+          och personal genom att bidra med förutsägbara inkomster.
+          Och din månatliga gåva får ett tredubbelt genomslag! Du kan också
+          välja att visa din status som Månatlig givare på din användarprofil.
+          </p>
+          <p class="lead">
+          Din välgörenhetsdonation hjälper till att stödja iNaturalist när communityn
+          växer, från framsteg inom bildigenkänning och implementering av nya
+          funktioner till att stödja våra servrar och personal. Du kan även ge en
+          <a href="%{donate_url}">engångsdonation</a> och se
+          <a href="https://www.inaturalist.org/pages/giving">andra sätt att ge</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist är en oberoende 501(c)(3) skattebefriad, icke-vinstdrivande
+          organisation baserad i Amerikas förenta stater (Skatte-ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist är en av världens största communitys engagerad i att

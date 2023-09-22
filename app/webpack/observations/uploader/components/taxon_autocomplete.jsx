@@ -108,7 +108,7 @@ class TaxonAutocomplete extends React.Component {
         subtitles.push( I18n.t( "visually_similar" ) );
       }
       if ( r.frequencyScore ) {
-        subtitles.push( I18n.t( "seen_nearby" ) );
+        subtitles.push( I18n.t( "expected_nearby" ) );
       }
       extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
     }
@@ -234,14 +234,14 @@ class TaxonAutocomplete extends React.Component {
           .append(
             viewNotNearby
               ? I18n.t( "only_view_nearby_suggestions" )
-              : I18n.t( "include_suggestions_not_seen_nearby" )
+              : I18n.t( "include_suggestions_not_expected_nearby" )
           )
           .click( e => {
             e.preventDefault( );
             const { viewNotNearby: innerViewNotNearby } = getState( );
             $( e.target ).text(
               innerViewNotNearby
-                ? I18n.t( "include_suggestions_not_seen_nearby" )
+                ? I18n.t( "include_suggestions_not_expected_nearby" )
                 : I18n.t( "only_view_nearby_suggestions" )
             );
             setState( { viewNotNearby: !innerViewNotNearby } );

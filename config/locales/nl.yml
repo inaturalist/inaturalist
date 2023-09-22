@@ -2770,6 +2770,8 @@ nl:
     hun eigen geschiedenis niet inzien</strong>, notities over een persoon mogen dus nooit zichtbaar zijn voor die persoon.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verbergen
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Haal schorsing weg
   moderator_note_desc: |
     Moderatornotities zijn records van moderatie antwoorden of op bewijs gebaseerde
     zorgen over een gebruiker, zoals of het een mogelijk sockpuppet
@@ -7268,6 +7270,10 @@ nl:
         Kinderen van het input-taxon die genera of grover zijn, worden verplaatst naar 
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
         equivalenten met de nieuwe genus- of soortnaam.
+      form:
+        move_children_desc2_html: |
+          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
+          taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7782,6 +7788,7 @@ nl:
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
       BlockedUser: Geblokkeerde gebruiker
+      Comment: Reactie
       CompleteSet: Volledige set
       #Noun
       Flag: Melding

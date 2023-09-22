@@ -4181,7 +4181,7 @@ de:
   remove_section: Abschnitt entfernen
   remove_selected: Ausgewählte entfernen
   remove_tags: Stichwörter entfernen
-  removed: Entfernet
+  removed: Entfernt
   removed_project_user: Projektbenutzer entfernen
   removing: "Entferne…"
   reorder_by_taxonomy: Neuordnen nach Taxonomie
@@ -5759,6 +5759,24 @@ de:
             Dann lies bitte unseren <a href="%{url}" >Lehrerenden-Guide</a> für Tipps zur Verwendung von %{site_name} mit Schülern.
     donate:
       donate_short_desc: "Spende jetzt um Deine Unterstützung zu zeigen!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kannst dein Geschenk <u>verdoppeln</u> oder <u>verdreifachen</u>! Dank der Gordon und Betty Moore Foundation werden alle monatlichen, vierteljährlichen und jährlich wiederkehrenden Spenden verdreifacht, und Einzelspenden werden bis zum 31. Dezember 2023 verdoppelt.</strong>
+        </p>
+        <p class="lead">
+        Naturalist ist eine der größten weltweiten Gemeinschaften, die sich der Artenvielfalt widmet. Vielen Dank, dass du dabei mitmachst!
+        </p>
+        <p class="lead">
+        Wenn du von der Notwendigkeit einer solchen globalen Community überzeugt bist, in welcher Naturliebhaber Wissen mit anderen teilen und unschätzbare Daten zur Biodiversität liefern, dann erwäge doch bitte eine einmalige oder regelmäßige Spende online, oder erkundige dich hier <a
+        href="https://www.inaturalist.org/pages/giving">nach anderen Möglichkeiten um zu spenden</a>.
+        </p>
+        <p class="lead">
+        Mit deiner Spende unterstützt du die immer größer werdende iNaturalist-Gemeinschaft, und ermöglichst z.B. eine verbesserte Technologie um Arten korrekt zu identifizieren, neue Features zu implementieren oder unsere Server und Mitarbeiter zu unterstützen.
+        </p>
+        <p class="text-muted">
+        iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+        organization based in the United States of America (Tax ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmen. Vielen Dank, dass du dabei mitmachst!</strong>
@@ -5778,6 +5796,24 @@ de:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WERDE EIN MONATLICHER UNTERSTÜTZER VON INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kannst dein Geschenk <u>verdreifachen</u>! Dank der Gordon und Betty Moore Foundation werden alle monatlich wiederkehrenden Spenden verdreifacht, mit dem Stichtag 31. Dezember 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmet. Vielen Dank, dass du dabei mitmachst!</strong>
+          </p>
+          <p class="lead">
+          Wenn du iNaturalist wertschätzt, bitte erwäge doch, ein monatlicher Unterstützer zu werden. Regelmäßige Spenden helfen dabei, sicherzustellen, dass iNaturalist durch ein kalkulierbares Einkommen weiterhin seine Infrastruktur und Mitarbeiter an das Wachsen der Seite anpassen kann. Und deine monatliche Spende hat die dreifache Wirkung! Du kannst auch auswählen, den 'monatlichen Unterstützer'-Status auf deinem Benutzer-Profil anzeigen zu lassen.
+          </p>
+          <p class="lead">
+          Mit deinen wohltätigen Spenden unterstützt du die immer größer werdende iNaturalist-Gemeinschaft, um z.B. eine verbesserte Computer Vision und neue Features zu implementieren oder unsere Server und Mitarbeiter zu unterstützen. Wenn du lieber einmalig spenden möchtest, bitte <a href="%{donate_url}">hier klicken</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist is an independent 501(c)(3), tax-exempt,
+          not-for-profit organization based in the United States of
+          America (Tax ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmen. Vielen Dank, dass du dabei mitmachst!</strong>

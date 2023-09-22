@@ -123,5 +123,9 @@ body > div > [role="dialog"] .modal-body {
         width: 100%;
       }
     }
+    .UserText {
+      max-height: 300px;
+      overflow: auto;
+    }
   }
 }
