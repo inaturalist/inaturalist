@@ -1835,6 +1835,7 @@ nl:
   exit_full_screen: "Volledig Schermmodus Verlaten"
   examples_of_data_use_by_network_members: Voorbeelden van gebruik van gegevens door leden van het netwerk
   examples_of_ranking_organizations: Voorbeelden van organisaties die statussen vaststellen
+  expected_nearby: In de buurt verwacht
   explore: Verkennen
   export: Exporteren
   export_observations: Waarnemingen exporteren
@@ -2262,6 +2263,7 @@ nl:
   include_places: Inclusief de plaatsen
   include_projects: Inclusief de projecten
   include_suggestions_not_seen_nearby: Alle soorten
+  include_suggestions_not_expected_nearby: Voeg suggesties toe die niet in de buurt worden verwacht
   include_taxa: Inclusief de taxa
   include_users: Inclusief de gebruikers
   including: inclusief
@@ -6022,21 +6024,36 @@ nl:
           Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
     geo_model:
       explain:
+        unthresholded_map:
+          unthresholded_map: Drempelloze kaart
         range_comparison:
+          expected_nearby_vs_taxon_range: In de buurt verwacht versus Taxonbereik
           true_presences_definition: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het Taxonbereik voorspelt dat het taxon voorkomt
           false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
           false_absences_definition: Gebieden waar alleen het taxonbereik aanwezig is
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Nauwkeurigheid:
           #Equation showing how we calculate recall of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Absences: areas where only the Taxon Range is present
           recall_equation: |
             Echt Aanwezig / (Echt Aanwezig+ Fout Afwezig) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Het gemiddelde (harmonische betekenis) van Precision en Recall.
           #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
           #False Absences: areas where only the Taxon Range is present
           f1_equation: |
             2 × Echt Aanwezig / (2 × Echt Aanwezigen + Fout Aanwezigen + Fout Afwezigen) = %{f1}
+          perfect_overlap: |
+            Perfecte overlap zou een Precision, Recall en F1 van 1 opleveren. Geen overlap
+            levert een Precision , Recall en F1 van 0 op.
     guides:
       index:
         deprecated_banner: |
