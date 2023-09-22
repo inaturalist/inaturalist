@@ -972,8 +972,8 @@ de:
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Enthalten
   computer_vision_model_included_desc: |
-    Das aktuelle Computer-Erkennungsmodell hat dieses Taxon gelernt, daher könnte es
-    in automatisierten Vorschläge mit dem Label "visuell ähnlich" enthalten sein.
+    Diese Taxon ist im aktuellen Computer-Erkennungsmodell enthalten, daher könnte es
+    in automatisierten Vorschläge mit dem Label "sieht ähnlich aus" auftauchen.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Ausstehend
   computer_vision_model_pending_desc: |
@@ -1723,6 +1723,7 @@ de:
   exit_full_screen: "Vollbild beenden"
   examples_of_data_use_by_network_members: Beispiele der Verwendung von Daten durch Netzwerk-Mitglieder
   examples_of_ranking_organizations: Beispiele für Verzeichnisse gefährdeter Arten
+  expected_nearby: in der Umgebung zu erwarten
   explore: Entdecken
   export: Exportieren
   export_observations: Beobachtungen exportieren
@@ -1921,7 +1922,7 @@ de:
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
   Genus: Gattung
   geomodel_expected_nearby_label_is_derived: |
-    Das Label "in der Umgebung zu erwarten" wird von dem Geomodell abgeleitet.
+    Die Einstufung "in der Umgebung zu erwarten" wird von dem Geomodell abgeleitet.
     <a href="%{url}">Erfahre mehr über das Geomodell hier</a>.
   geoprivacy: Geo-Privatsphäre
   geoprivacy_is_obscured: Geo-Privatsphäre ist verborgen
@@ -2108,6 +2109,7 @@ de:
   include_places: Gebiete einbeziehen
   include_projects: Projekte einbeziehen
   include_suggestions_not_seen_nearby: Vorschläge einbeziehen, die nicht aus der Nähe stammen
+  include_suggestions_not_expected_nearby: Vorschläge einbeziehen, die nicht in der Nähe erwartet werden
   include_taxa: Taxa einbeziehen
   include_users: Benutzer einbeziehen
   including: beinhaltet
@@ -5845,6 +5847,8 @@ de:
           Bitte <code>Spam</code> und <code>Copyright-Verletzungen</code> nur dann auflösen, wenn der Inhalt kein Spam ist oder keine Verletzung des Urheberrechts vorliegt.
     geo_model:
       explain:
+        nearby_map:
+          expected_nearby_map: Karte mit erwarteter Verbreitung
         range_comparison:
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
@@ -6753,7 +6757,7 @@ de:
         users_can_follow_your_project: Benutzer können deinem Projekt folgen, und über Neuigkeiten durch Journalbeiträge informiert zu werden
         use_this_link_to_create_html: |
           Verwende <a href="%{url}">diesen Link</a> um stattdessen ein <strong>traditionelles Projekt</strong> zu erstellen.
-        visual_comparison_of_data_among: Visuelle Vergleiche zwischen den Projekten innerhalb eines Dachprojekts
+        visual_comparison_of_data_among: Visuelle Vergleiche von Daten zwischen Projekten innerhalb eines Dachprojekts
         we_have_redesigned_projects: |
           Projekte sind so gestaltet, dass sie automatisch alle Beobachtungen einbeziehen, die zu den von dir definierten Orten, Taxa, Benutzern, Qualität und Daten passen. Wähle zwischen zwei Haupttypen:
           Sammel-Projekte und Dach-Projekte, die folgende Funktionen gemeinsam haben:
