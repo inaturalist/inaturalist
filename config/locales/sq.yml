@@ -472,13 +472,7 @@ sq:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ndaje në
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: bashko në
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: bashkuar në
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zëvendësohet nga
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: zëvendësoj me
     dropped: lëshuar
     staged: i ndarë në faza
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} u nda në %{output_taxa}"
@@ -583,7 +577,6 @@ sq:
   confirm_your_info: Konfirmo informacionin tënd
   connect_to_provider: "Lidhu me %{provider}"
   connecting_flickr: "Duke u lidhur me Flickr..."
-  connecting_to_facebook: "Duke u lidhur me Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Lidhja e llogarisë tuaj %{site_name} me llogaritë në faqe tjera do t'u mundësojë të qaseni në %{site_name} duke shfrytëzuar kredencialet tuaja nga këto faqe."
   conservation_status: Statusi i ruajtjes
   conservation_status_descriptions:
@@ -857,7 +850,6 @@ sq:
   either_that_user_doesnt_exist_or: "Ose ky përdorues nuk ekziston ose jeni duke i ndjekur ato."
   eligible_for_research_grade: I pranueshëm për Nivel Kërkimor
   email_address_for_comments_and_other_feedback: Postë eletronike për komentet dhe reagimet tjera
-  email_copyright: "Të drejtat e autorit &copy;%{x} të gjitha të drejtat e rezervuara"
   embed: 'E ndërfutur'
   embed_place_widget: Fut vendin e widget
   embed_this_assessment: Ndërfut këtë vlerësim
@@ -907,11 +899,6 @@ sq:
   extinct_in_the_wild: të zhdukur në natyrë
   extra_properties: Karakteristikat ekstra
   evidence_of_organism: Dëshmia e organizmit
-  facebook_account_information: Informacioni i llogarisë tuaj në Facebook
-  facebook_account_not_linked: "%{user} nuk ka më një llogari të lidhur me facebook, kështu që %{site_name} nuk ka leje për të parë këtë foto."
-  facebook_access_token_expired: "Qasja juaj ka skaduar. %{user} i nevojitet te lidhet perseri me llogarine e Facebook-ut."
-  facebook_needs_the_owner_of_that_photo_to: Facebook-u ka nevojë për poseduesin e kësaj foto për të ri-konfirmuar lidhjen e tij me %{site_name_short}.
-  facebook_options: Opsionet e Facebook
   failed_to_find_your_location: Dështoi në gjetjen e vendndodhjes tënde.
   failed_to_repair_photo: "Dështoi në riparimin e fotos: %{errors}"
   failed_to_save_record: "Dështoi në ruajtjen e regjistrimit. Ju lutem provoni përsëri më vonë."
@@ -1007,7 +994,6 @@ sq:
   frequency: Shpeshtësia
   from_a_place: nga një vend
   from_eol_collection: Nga koleksioni EOL
-  from_flickr_facebook_etc: Nga Flickr, Facebook, etc.
   from_list: Nga lista
   from_photos: Nga fotot
   from_place: nga një vend
@@ -1269,14 +1255,8 @@ sq:
   life: Jeta
   life_list: "%{user}lista Jetësore"
   link: Vegëza
-  link_your_facebook_account: Lidh llogarinë tuaj në Facebook
   link_your_flickr_account: Lidh llogarinë tuaj në Flickr
   link_your_google_account: Lidh llogarinë tuaj në Google
-  linked_facebook: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Facebook"
-  linked_facebook_automaticaly: "Po ashtu, mos harroni që nëse hyni (me emrin e përdoruesit dhe fjalëkalim) në %{site_name} përmes Facebook, ne do të lidhim automatikisht llogaritë tuaja në %{site_name} dhe në Facebook."
-  linked_facebook_description: "Mbajtja e llogarisë suaj në %{site_name} të lidhur me llogarinë tuaj në Facebook ju mundëson të shtoni shumë foto përnjëherësh në vëzhgimet tuaja. Natyrisht, nëse doni t’i ndani nga njëra-tjetra ne nuk jua ndalojmë, vetëm se nuk do të mund të shtoni më foto. Nganjëherë kjo mund të jetë gjë e mirë, p.sh. nëse krijoni një Facebook të ri me të cilin doni ta lidhni %{site_name}."
-  linked_facebook_howto: "Që ta lidhni Facebook-un me %{site_name}, klikoni në linkun në të djathtë dhe qasuni në Facebook.com."
-  linked_facebook_password: "Nuk do t’ju kërkojmë asnjëherë fjalëkalimin e llogarisë suaj në Facebook (por Facebook mund të kontrollojë URL-në që ju dërgohet për t’u siguruar që vjen nga Facebook.com). Gjithashu, nuk do të ndryshojmë të dhënat tuaja në Facebook nëse nuk doni."
   linked_flickr: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Flickr."
   linked_flickr_automatically: "Gjithashtu, të keni parasysh se nëse qaseni në llogarinë tuaj në %{site_name} përmes Flickr, ne automatikisht do ta rilidhim llogarinë tuaj në %{site_name} me llogarinë tuaj në Flickr. Duket e arsyeshme që nëse përdoni Flickr ju gjithashtu do të dëshironi të mundeni të importoni Fotonga Flickr, e saktë?"
   linked_flickr_description: "Mbajtja e llogarisë suaj në %{site_name} të lidhur me llogarinë tuaj në Flickr mundëson shtimin e shumë fotove përnjëherësh në vëzhgimet tuaja. Natyrisht, nëse doni t’i ndani nga njëra-tjetra ne nuk jua ndalojmë, vetëm se nuk do të mund të shtoni më foto. Nganjëherë kjo mund të jetë gjë e mirë, p.sh. nëse krijoni një Flickr të ri me të cilin doni ta lidhni %{site_name}."
@@ -1624,7 +1604,6 @@ sq:
   not_findig_what_you_want: Nuk gjetët atë që dëshiron?
   not_finding_place_you_want?: Nuk gjetët vendin që dëshiron?
   not_found: Nuk u gjet
-  not_linked_facebook: "Llogaria e juaj në %{site_name} nuk është e lidhur me llogarinë tuaj në Facebook"
   not_linked_flickr: "Llogaria juaj në %{site_name} nuk është e lidhur me llogarinë tuaj në Flickr"
   not_on_this_list: Jo në këtë listë.
   not_recorded: Nuk regjistrohet
@@ -2519,9 +2498,12 @@ sq:
   type_taxon_name: "Lloji i emrit të taxon"
   update_your_content: Përditëso përmbajten tuaj
   upload: Ngarko
+  #@gender operates on %{x}
   user_added_a_x: "%{user} shtoi një %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} shtoi një %{x} tek %{noun}"
   user_added_an_observation_html: "%{user} shtoi një vëzhgim"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} shtoi një %{x} tek %{noun} nga %{by}"
   user_added_x_observations_html: "%{user} shtoi %{x} vëzhgime"
   view_observation: Shiko vëzhgimin
@@ -2544,35 +2526,6 @@ sq:
       edit:
         licensing_desc_html: |
           Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   datetime:
     prompts:
       day: Dita
@@ -2589,6 +2542,9 @@ sq:
       submit: Ruaj %{model}
       update: Përditëso %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:

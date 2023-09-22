@@ -12,6 +12,11 @@ iNatModels.Observation = function( attrs ) {
       that[ attr ] = value
     };
   });
+  this.identifications_count = _.size(
+    _.filter( this.identifications, function( i ) {
+      return i.current && !i.hidden;
+    } )
+  );
 };
 
 iNatModels.Observation.prototype.photo = function( ) {

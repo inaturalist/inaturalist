@@ -3,7 +3,6 @@
 = content_for(:extracss) do
   :css
     #controls { display: flex; justify-content: space-between; }
-    #controls .btn-primary { margin-right: 20px; }
     #controls form { max-width: 50%; }
     .sidebar-body { max-width: 360px; }
     .sidebar-body img, .general-body img { max-width: 100%; }
@@ -13,7 +12,15 @@
       %h1= t :announcements
       #controls.stacked
         = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"
-        = form_tag url_for, method: :get, class: "pull-right" do
+        = form_tag url_for, method: :get, id: "filters", class: "form-inline" do
+          .form-group
+            %label{ for: "placement" }=t :placement
+            = select_tag :placement, options_for_select( [[t( :any ), nil]] + Announcement::PLACEMENTS.map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:placement] || nil ), class: "form-control", id: "placement", data: { autosubmit: true }
+          .form-group
+            %label
+              = check_box_tag :active, !@active, @active, data: { autosubmit: true }
+              =t :active
+        = form_tag url_for, method: :get do
           = hidden_fields_for_params
           .input-group
             = text_field_tag :q, params[:q], class: "form-control"
@@ -22,6 +29,7 @@
       %table.table
         %thead
           %tr
+            %th= t :id
             %th= t :placement
             %th= t :sites, default: "Sites"
             %th= t :start
@@ -30,10 +38,14 @@
         %tbody
           - @announcements.each do |announcement|
             %tr
+              %td= link_to announcement.id, announcement
               %td= h announcement.placement
               %td= announcement.site_ids.empty? ? t(:all)  : announcement.sites.map(&:name).join(", ")
               %td=l announcement.start
-              %td=l announcement.end
+              %td
+                =l announcement.end
+                - if announcement.end > Time.now
+                  %span.label.label-success=t :active
               %td
                 - if announcement.placement === "users/dashboard#sidebar"
                   %div.sidebar-body=raw announcement.body

@@ -718,7 +718,6 @@ kk:
   connect_to_provider: "%{provider} желісіне қосылу"
   connected_accounts_titlecase: Қосылған аккаунттар
   connecting_flickr: "Flickr желісіне қосылуда... "
-  connecting_to_facebook: "Facebook желісіне қосылуда..."
   conservation_status: Қорғау статусы
   conservation_status_created: Қорғау статусы құрылды
   conservation_status_deleted: Қорғау статусы жойылды
@@ -1025,7 +1024,6 @@ kk:
   identify: Анықтау
   identification: идентификация
   identifications: Идентификациялар
-  inaturalist_is_a_joint_initiative: "%{site_name} California Academy of Sciences пен National Geographic Society бірлескен бастамасы."
   insects: жәндіктер
   instagram: Instagram
   iphone: iPhone
@@ -1251,7 +1249,7 @@ kk:
   options: Опциялар
   or: немесе
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: НЕМЕСЕ
   or_choose_high_level_taxa: "... немесе жоғары деңгейлі таксондардан таңдаңыз"
   orange: қызғылт сары
@@ -1686,7 +1684,17 @@ kk:
   potential_disagreement: Ықтимал келіспеушілік
   privacy: Құпиялылық
   profile: Профиль
+  profile_picture: Профиль суреті
+  project: Жоба
+  project_admins:
+    one: Жоба әкімшісі
+    other: Жоба әкімшілері
+  project_assessments: Жобаны бағалау
+  project_assets: Жоба активтері
+  project_coordinate_access_warning: |
+    Координаттарға қол жеткізу ғалымдар үшін маңызды, бірақ оны браконьерлер теріс пайдалануы мүмкін. Бұл жобаға сенбес бұрын барлық жоба кураторларына сенетініңізге көз жеткізіңіз.
   project_cover: Жоба мұқабасы
+  project_created_on: осы жобаны %{date} жасады
   project_curator_id: Жоба кураторының идентификациясы
   project_curator_tools: Жоба кураторының құралдары
   project_curators: Жоба кураторлары
@@ -1694,6 +1702,8 @@ kk:
   project_icon: Жоба белгішесі
   project_journal: Жоба журналы
   project_list: Жобалар тізімі
+  project_list_defaults:
+    description: '%{owner_name} үшін түрлер тізімі'
   project_observations: Жоба бақылаулары
   project_requirements: Жоба талаптары
   project_rules: Жоба ережелері
@@ -2141,20 +2151,12 @@ kk:
       6: Жм.
       7: Сб.
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - Қаңтар

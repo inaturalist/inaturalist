@@ -51,6 +51,11 @@ autocompleter.setTitle = function( result, options ) {
     } else {
       result.title = result.name;
     }
+  } else if ( !_.isEmpty( result.preferred_common_names ) ) {
+    names = _.map( result.preferred_common_names, function( taxonName ) {
+      return iNatModels.Taxon.titleCaseName( taxonName.name )
+    } );
+    result.title = names.join( " · " );
   } else {
     result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
   }
@@ -61,7 +66,14 @@ autocompleter.setSubtitle = function( result, options ) {
   options = options || {};
   if ( !result.title ) { return; }
   if ( options.user && options.user.prefers_scientific_name_first ) {
-    result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+    if ( !_.isEmpty( result.preferred_common_names ) ) {
+      names = _.map( result.preferred_common_names, function( taxonName ) {
+        return iNatModels.Taxon.titleCaseName( taxonName.name )
+      } );
+      result.subtitle = names.join( " · " );
+    } else {
+      result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+    }
   } else if ( result.name != result.title ) {
     if( result.rank_level <= 10 ) {
       result.subtitle = "<i>" + result.name + "</i>";
@@ -188,7 +200,7 @@ $.fn.taxonAutocomplete = function( options ) {
     if ( options.notIDs) {
       params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
     }
-    var apiBaseURL = "<%= CONFIG.node_api_url %>";
+    var apiBaseURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>";
     if ( options.useAPIv2 ) {
       apiBaseURL = apiBaseURL.replace( "/v1", "/v2" );
       headers["X-HTTP-Method-Override"] = "GET";
@@ -305,6 +317,7 @@ $.fn.taxonAutocomplete = function( options ) {
     select: select,
     focus: focus,
     createWrappingDiv: autocompleter.createWrappingDiv,
+    menuClass: "taxon-autocomplete"
   }, options ));
   if( !ac ) { return; }
   field.bind( "assignSelection", function( e, t ) {
@@ -330,7 +343,7 @@ $.fn.taxonAutocomplete = function( options ) {
   }
 
   if ( $( options.idEl ).val( ) ) {
-    var url = "<%= CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( )
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( )
     var jsonpCallback = "initialTaxonCallback";
     // try to make jsonp callback unique to handle multiple taxon autocompletes on a page
     if ( options.idEl.id && options.idEl.id != "" ) {

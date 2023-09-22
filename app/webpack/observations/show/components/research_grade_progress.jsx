@@ -56,12 +56,14 @@ class ResearchGradeProgress extends React.Component {
         remainingCriteria.rank_or_needs_id = true;
       }
     }
+    remainingCriteria["hidden-media"] = _.some( _.flatten( [observation.photos, observation.sounds] ), "hidden" );
     remainingCriteria = _.pickBy( remainingCriteria, bool => ( bool === true ) );
-    const sortedCriteria = _.sortBy(
-      _.map( remainingCriteria, ( bool, type ) => ( { type, bool } ) ), c => (
-        this.criteriaOrder[c.type]
-      )
-    );
+    const sortedCriteria = _.sortBy( _.map(
+      remainingCriteria,
+      ( bool, type ) => ( { type, bool } )
+    ), c => (
+      this.criteriaOrder[c.type]
+    ) );
     return (
       <ul className="remaining">
         { _.map( sortedCriteria, c => {
@@ -144,6 +146,10 @@ class ResearchGradeProgress extends React.Component {
             case "flags":
               icon = "fa-flag danger";
               label = I18n.t( "all_flags_must_be_resolved" );
+              break;
+            case "hidden-media":
+              icon = "fa-eye-slash danger";
+              label = I18n.t( "all_media_must_be_unhidden" );
               break;
             default:
               return null;

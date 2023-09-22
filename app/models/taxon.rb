@@ -104,6 +104,7 @@ class Taxon < ApplicationRecord
   # deprecated, remove when we're sure transition to taxon frameworks is complete
   has_many :taxon_curators, inverse_of: :taxon
   has_one :simplified_tree_milestone_taxon, dependent: :destroy
+  has_one :geo_model_taxon
 
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_photos, allow_destroy: true

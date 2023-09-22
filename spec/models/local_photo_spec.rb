@@ -359,7 +359,45 @@ describe LocalPhoto, "flagging" do
   it "should re-index the observation" do
     o = make_research_grade_observation
     original_last_indexed_at = o.last_indexed_at
-    without_delay { Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
+    Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
+    o.reload
+    expect( o.last_indexed_at ).to be > original_last_indexed_at
+  end
+end
+
+describe LocalPhoto, "hiding" do
+
+  elastic_models( Observation )
+  let( :lp ) { LocalPhoto.make! }
+
+  it "should change the value returned by URL methods for hidden photos" do
+    ModeratorAction.make!( resource: lp, action: ModeratorAction::HIDE )
+    lp.reload
+    %w(original large medium small thumb square).each do | size |
+      expect( lp.send( "#{size}_url" ) ).to be =~ /media-hidden/
+    end
+  end
+
+  it "should not change the actual photo URLs for hidden photos" do
+    ModeratorAction.make!( resource: lp, action: ModeratorAction::HIDE )
+    lp.reload
+    %w(original large medium small thumb square).each do | size |
+      expect( lp["#{size}_url"] ).not_to be =~ /media-hidden/
+    end
+  end
+
+  it "should make associated observations casual grade when hidden" do
+    o = make_research_grade_candidate_observation
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    ModeratorAction.make!( resource: o.photos.first, action: ModeratorAction::HIDE )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
+  end
+
+  it "should re-index the observation" do
+    o = make_research_grade_observation
+    original_last_indexed_at = o.last_indexed_at
+    ModeratorAction.make!( resource: o.photos.first, action: ModeratorAction::HIDE )
     o.reload
     expect( o.last_indexed_at ).to be > original_last_indexed_at
   end

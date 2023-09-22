@@ -40,8 +40,6 @@ es-CR:
   flag_for_place_title_html: |
     Marca para Lugar: %{title}
   flag_this_place: Marcar este lugar
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Se hizo visible el texto de identificación
   leaderboard_most:
     species_in_month_year: La mayoría de las especies en %{month_year}
     species_in_year: La mayoría de las especies en %{year}
@@ -84,36 +82,14 @@ es-CR:
     <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
     la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
     </p>
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+  views:
+    donate:
+      temporarily_unavailable: |
+        ¡Gracias por el interés en apoyar a iNaturalist! Las donaciones para iNaturalist están temporalmente deshabilitadas mientras actualizamos nuestros sistemas de donación. Por favor, vuelva luego.
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

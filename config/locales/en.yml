@@ -489,14 +489,18 @@ en:
   agree_: Agree
   agree?: Agree?
   agree_with_current_taxon: Agree with current taxon
+  agree_with_observation_taxon: Agree with observation taxon
   agreeing: Agreeing...
   aka: aka
   # Noun, title of a popup alerting you to something
   alert: Alert
   all: All
+  # Title for a list of all 3rd party applications
+  all_applications: All Applications
   all_comments: All comments
   all_flags_must_be_resolved: All flags must be resolved
   all_life: All life
+  all_media_must_be_unhidden: All media must be unhidden
   all_names: All Names
   all_observations: All observations
   all_photos: All photos
@@ -996,13 +1000,7 @@ en:
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: split into
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: merge into
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: merged into
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: replaced by
-    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: replace with
     # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: replaced with
     dropped: dropped
@@ -1193,7 +1191,6 @@ en:
   connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
-  connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   cannot_be_changed_during_a_content_freeze: Cannot be changed during a content freeze
   conservation_status: Conservation Status
@@ -1436,16 +1433,16 @@ en:
     Fails to demonstrate appropriate behavior themselves.
   # Message shown when the viewer is not yet elligible to apply to become a
   # curator
-  curator_application_inelligible: |
+  curator_application_inelligible2: |
     In order to apply to be a site curator you must have had an account for 60
-    days or more and have added 100 improving identifications to anyone's
-    observations, including your own (you've added %{num_idents}). When you've
-    met both of those requirements, return here and you'll be able to submit the
-    application.
-  curator_application_inelligible_error: |
+    days or more, you must have added at least 5 flags, and you must have
+    added 100 improving identifications to anyone's observations, including
+    your own (you've added %{num_idents}). When you've met those
+    requirements, return here and you'll be able to submit the application.
+  curator_application_inelligible_error2: |
     In order to apply to be a site curator you must have an account for 60
-    days or more and have added 100 improving identifications to anyone's
-    observations, including your own.
+    days or more, added at least 5 flags, and added 100 improving
+    identifications to anyone's observations, including your own.
   # Message shown when a curator application has been succesfully submitted
   curator_application_success: Curator application submitted
   # Header
@@ -1517,6 +1514,9 @@ en:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     You have been adding identifications and/or observations for a few months
     and intend to continue.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    You have demonstrated that you understand the curation process by adding a
+    few flags.
   # A requirement for becoming a curator; part of a list, so you might imagine
   # it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1788,6 +1788,8 @@ en:
   donate: DONATE
   donate_again_caps: DONATE AGAIN
   donate_again_today_caps: DONATE AGAIN TODAY
+  # Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Donate to iNaturalist
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
   dont_use_double_quotes: Don't use double quotes anywhere else
@@ -1912,13 +1914,46 @@ en:
   email_conf_banner_we_delivered_todos: |
     We delivered a confirmation email to you on %{date}. If you did not
     receive it, here are some things you can do:
+  email_conf_required_after_grace_period: |
+    Email confirmation is required as of %{requirement_date} and you did not
+    confirm your email address before the cutoff. Please reset your password
+    to access your account.
+  email_conf_faq_html: |
+    If you have questions, please refer to these <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
     All users must confirm their email address by %{date}. After that
     date anyone who has not confirmed their email address will be unable to
     sign in unless they reset their password. To confirm your email address,
     go to your %{link_start_tag}account settings%{link_end_tag}.
-  email_copyright: "Copyright &copy; %{x}, all rights reserved"
+  # Subject of an email prompting people to confirm their email address before
+  # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date:
+    Confirm your %{site_name} email address before %{date}
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Please confirm your email address today to ensure that you can continue to
+    access your account. %{site_name} and the mobile apps
+    iNaturalist and Seek by iNaturalist connect people to nature and each
+    other by sharing observations of biodiversity. Thank you for being a part
+    of the iNaturalist community!
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    We will require verified email addresses for all accounts starting on
+    %{requirement_date}. Please take a moment to confirm it now.
+  # Paragraph in an email prompting people to confirm their email address before
+  # we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    If you have any questions, please refer to the
+    <a href="%{faq_url}">FAQs</a>. Thank you for taking the time to connect
+    with nature and with %{site_name}.
+  # Header in email prompting people to confirm their email address before we
+  # start requiring confirmation. This preceeds some details about the
+  # recipient's account.
+  email_confirmation_reminder_account_details: Account Details
+  email_copyright2: "&copy; %{year} iNaturalist, all rights reserved"
   email_notifications: Email Notifications
   embed: 'Embed'
   embed_place_widget: Embed place widget
@@ -1979,6 +2014,7 @@ en:
   exit_full_screen: "Exit Full Screen"
   examples_of_data_use_by_network_members: Examples of Data Use by Network Members
   examples_of_ranking_organizations: Examples of Ranking Organizations
+  expected_nearby: Expected Nearby
   explore: Explore
   export: Export
   export_observations: Export Observations
@@ -1998,16 +2034,6 @@ en:
   extra_properties: Extra Properties
   evidence_of_organism: Evidence of organism
   facebook: Facebook
-  facebook_account_information: Your Facebook Account Information
-  facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
-  facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
-  facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
-  facebook_options: Facebook Options
-  facebook_photo_import_disabled_notice: |
-    In November 2020 Facebook required us to verify that we really needed
-    access to photos, and we were unable to complete the process due to
-    problems with Facebook's verification system. As a result, we can no longer
-    support importing photos from Facebook.
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
@@ -2176,7 +2202,7 @@ en:
   frequency: Frequency
   from_a_place: from a place
   from_eol_collection: From EOL collection
-  from_flickr_facebook_etc: From Flickr, Facebook, etc.
+  from_flickr_etc: From Flickr, etc.
   from_list: From list
   from_photos: From photos
   from_place: From place
@@ -2192,6 +2218,9 @@ en:
   generate_your_stats: Generate Your Stats
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
+  geomodel_expected_nearby_label_is_derived: |
+    The "Expected Nearby" label is derived from the Geomodel.
+    <a href="%{url}">Learn more about the Geomodel here</a>.
   geoprivacy: Geoprivacy
   geoprivacy_is_obscured: Geoprivacy is obscured
   geoprivacy_is_obscured_desc: Observer has chosen to obscure the coordinates.
@@ -2288,7 +2317,6 @@ en:
   heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identical ranks. They're color-coded below by rank."
   help: Help
   help_confirm_observations!: Help confirm observations!
-  help_support_inaturalist: "Help Support iNaturalist"
   help_translate!: Help Translate!
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_our_top_suggestions: Here are our top suggestions
@@ -2301,12 +2329,11 @@ en:
   hide_desc: |
     Hiding content will remove it from public view, but people will still be
     able to see that something was hidden, and site curators and the author of
-    the content will still be able to see the hidden content. Generally, this
-    only applies to written content, e.g. if you hide the content of an
-    identification, the identification is still visible but the identifier's
-    remarks are hidden. You cannot undo this, and only site staff can unhide
-    content once it has been hidden, so be careful and only use this for very
-    objectionable content.
+    the content will still be able to see the hidden content. Hidden
+    identifications will not contribute to an observation's Community Taxon.
+  hide_desc_staff_can_unhide: |
+    Only site staff can unhide content once it has been hidden, so only use this
+    for clear violations of the Community Guidelines.
   # Option to hide data series that show "No Annotation" data, i.e. records that
   # have no annotation
   hide_no_annotation: Hide "No Annotation"
@@ -2369,10 +2396,10 @@ en:
   # Notification when an identification has been deleted
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
-  # Notice when the text content of an identification has been hidden by moderators
-  identification_text_hidden: Identification text hidden
-  # Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identification text unhidden
+  # Notice when an identification has been hidden by moderators
+  identification_hidden: Identification hidden
+  # Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identification unhidden
   # Notification when an identification has been updated
   identification_updated: Identification updated!
   identification_user_short: Ident. user
@@ -2447,6 +2474,7 @@ en:
   include_places: Include Places
   include_projects: Include Projects
   include_suggestions_not_seen_nearby: Include suggestions not seen nearby
+  include_suggestions_not_expected_nearby: Include suggestions not expected nearby
   include_taxa: Include Taxa
   include_users: Include Users
   including: including
@@ -2472,7 +2500,6 @@ en:
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
   # Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applications"
-  inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
   info: Info
   input_taxon: Input taxon
@@ -2619,6 +2646,7 @@ en:
     davawenyo: Davawenyo
     dutch: Dutch
     english: English
+    esperanto: Esperanto
     estonian: Estonian
     faroese: Faroese
     fijian: Fijian
@@ -2723,14 +2751,8 @@ en:
   # user to iNat to authorize the app's use of their iNat account. "Link" is
   # a noun.
   link_to_authorization_code: Link to authorization code
-  link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
   link_your_google_account: Link your Google account
-  linked_facebook: "Your %{site_name} account is currently linked to your Facebook account."
-  linked_facebook_automaticaly: "Also, keep in mind that if you log in to %{site_name} via Facebook, we will automatically re-link your %{site_name} and Facebook accounts. Seems reasonable that if you use Facebook you'll want to be able to import Facebook photos, right?"
-  linked_facebook_description: "Keeping your %{site_name} account linked to your Facebook account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Facebook to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Facebook account that you want to link %{site_name} to."
-  linked_facebook_howto: "To connect Facebook with %{site_name}, click the link on the right and sign into Facebook.com."
-  linked_facebook_password: "We will never ask you for your Facebook password (but Facebook might, check the url that the button sends you and make sure it's Facebook.com). We will also won't change your Facebook data unless you want us to."
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
@@ -2790,6 +2812,7 @@ en:
     es: Spanish
     es-AR: Spanish (Argentina)
     es-CO: Spanish (Colombia)
+    es-CR: Spanish (Costa Rica)
     es-MX: Spanish (Mexico)
     es: Spanish
     et: Estonian
@@ -2933,9 +2956,6 @@ en:
   meet: Meet
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Member of the %{partial_inat_network_tag_html}iNaturalist Network</a>, a
-    joint initiative of the %{cas_tag_html} and the %{nat_geo_tag_html}.
   # As in members of a project
   members: Members
   membership_model: Membership Model
@@ -2993,6 +3013,14 @@ en:
     <strong>only visible to curators</strong> and <strong>curators cannot view
     their own history</strong>, so notes about a person should never be visible
     to that person.
+  # Action a moderator can take to hide content; verb
+  moderator_actions_hide: Hide
+  # Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide: Unhide
+  # Action a moderator can take to suspend a user; verb
+  moderator_actions_unhide: Suspend
+  # Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Unsuspend
   moderator_note_desc: |
     Moderator notes are records of moderation responses or evidence-based
     concerns about a user, such as whether they are a possible sockpuppet
@@ -3223,6 +3251,8 @@ en:
   next_tab: Next Tab
   next_taxon_short: Next
   'no': 'No'
+  # Shown when a list of 3rd party applications has no applications
+  no_applications_yet: No applications yet
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
   no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}"
   no_comments_yet: No comments yet.
@@ -3322,7 +3352,6 @@ en:
   not_found: Not found
   # Filter for observations not in a particular place
   not_in_place: Not in place
-  not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
@@ -3609,7 +3638,7 @@ en:
   options: Options
   or: or
   # Usually used to separate buttons or functional areas of the interface, e.g.
-  # sign in fields OR sign in with Facebook
+  # sign in with Apple OR Google
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   orange: orange
@@ -3709,8 +3738,12 @@ en:
   photo_credits: Photo Credits
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed because it was deleted from the external site or %{site_name} no longer has permission to view it"
+  # Message displayed after a photo has been hidden
+  photo_hidden: Photo hidden
   photo_licensing: Photo Licensing
   photo_type: Photo type
+  # Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Photo unhidden
   photo_urls_repaired: Photo URLs repaired
   photos_chosen_for_this_taxon: Photos chosen for this taxon
   photos_from: Photos from
@@ -4380,10 +4413,6 @@ en:
     required. Please create a account on this site instead of signing
     in via Apple.
   provider_without_email_error_flickr: |
-    Facebook did not provide an email address for that account, which is
-    required. Please create a account on this site instead of signing
-    in via Facebook.
-  provider_without_email_error_flickr: |
     Flickr did not provide an email address for that account, which is
     required. Please create a account on this site instead of signing
     in via Flickr.
@@ -4586,6 +4615,7 @@ en:
   refresh: Refresh
   refreshing: refreshing
   regenerate_stats: Regenerate Stats
+  regional_names: Regional Names
   register_for_this_event_at_x_html: "Register for this event at %{x}"
   reject?: Reject?
   relative_observations: Relative Observations
@@ -4818,6 +4848,8 @@ en:
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_less: Show Less
   show_more: Show More
+  # Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Show more login options
   # Option to show data series that show "No Annotation" data, i.e. records that
   # have no annotation
   show_no_annotation: Show "No Annotation"
@@ -4956,12 +4988,11 @@ en:
     your affiliation in your
     %{start_tag_settings}account settings%{end_tag_settings}.
   sites_affiliation_title: Learn More About Network Affiliation
-  sites_network_cas_and_nat_geo_html: |
-    The %{start_tag_cas}California Academy of Sciences%{end_tag_cas} and the
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} have
-    formal agreements with organizations in each of these geographic areas to support
-    the use of the iNaturalist platform. <strong>If your organization is
-    interested in joining the iNaturalist Network, you can find more details
+  sites_network_agreements_html: |
+    iNaturalist has formal agreements with organizations in each of these
+    geographic areas to support the use of the iNaturalist platform.
+    <strong>If your organization is interested in joining the iNaturalist
+    Network, you can find more details
     %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "The iNaturalist Network consists of several organizations:"
   sites_network_inaturalist_network_collection: |
@@ -5170,7 +5201,6 @@ en:
   tagging: 'Tagging...'
   tags: Tags
   tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
-  take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
   target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
@@ -5801,19 +5831,29 @@ en:
   user_added_a_comment_html: "%{user} added a comment"
   user_added_a_fave_html: "%{user} added a fave"
   user_added_a_flag_html: "%{user} added a flag"
+  # @gender operates on %{x}
   user_added_a_x: "%{user} added a %{x}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} added a %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} added a %{x} to %{noun} by you"
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
   user_added_an_identification_html: "%{user} added an identification"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_added_an_observation_field_value_html: "%{user} added an observation field value"
   user_added_an_observation_html: "%{user} added an observation"
+  # @gender operates on %{x}
   user_added_an_x: "%{user} added an %{x}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} added an %{x} to %{noun} by %{by}"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
@@ -6017,11 +6057,9 @@ en:
   # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
-  we_also_support: |
-    We also support <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, and
-    <a href="http://facebook.com">Facebook</a>
-    for image hosting.
+  we_also_support2: |
+    We also support importing photos from <a href="http://flickr.com">Flickr</a>
+    and <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
@@ -6073,6 +6111,7 @@ en:
   white: white
   # Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Why are you making this change? (optional)
+  why_are_you_making_this_change_cite_source_required: Why are you making this change? Please explain, and cite a source if possible. (Required)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
@@ -6192,10 +6231,9 @@ en:
     connect with nature
   yir_monthly_supporters_random_selection: |
     Here is a random selection of iNat's heroic community members who donate every month.
-  yir_thank_your_for_being_generous: |
+  yir_thank_your_for_being_generous2: |
     Thank you for being generous with your time, attention, expertise, and
-    donations! iNaturalist is a not-for-profit joint initiative of the
-    California Academy of Sciences and the National Geographic Society. The
+    donations! iNaturalist is a non-profit, public-benefit organization. The
     program relies on numerous grants and donations, including charitable gifts
     from less than a tiny fraction of the community. We are especially grateful
     to Monthly Supporters whose recurring gifts help us plan for the future.
@@ -6308,6 +6346,8 @@ en:
   your_account_has_been_activated: Your account has been activated!
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
+  # Title for a list of 3rd party applications you control
+  your_applications: Your Applications
   your_browser_does_not_support_the_audio_element: Your browser does not support the audio element.
   your_comment_was_saved: Your content was saved
   your_content: Your Content
@@ -6385,7 +6425,35 @@ en:
             tips on using %{site_name} with students.
     donate:
       donate_short_desc: "Donate now to show your support!"
-      donate_desc_html: |
+      donate_desc_moore_html: |
+        <p class="lead">
+          <strong>You can <u>double</u> or <u>triple</u> your gift! Thanks to the
+          Gordon and Betty Moore Foundation, all monthly, quarterly, and
+          annual recurring donations are tripled and one-time donations are
+          doubled through December 31, 2023.</strong>
+        </p>
+        <p class="lead">
+          iNaturalist is one of the world's largest communities dedicated to
+          biodiversity. Thank you for being part of it!
+        </p>
+        <p class="lead">
+          If you believe in the power of this global community of nature
+          lovers to share knowledge and generate irreplaceable biodiversity
+          data, please consider a one-time or recurring gift online, or
+          explore <a href="https://www.inaturalist.org/pages/giving">other
+          ways to give</a>.
+        </p>
+        <p class="lead">
+          Your donation is vital to iNaturalist as our community grows, from
+          improving our technology to accurately identify species and
+          implementing new features to supporting our servers and staff.
+        </p>
+        <p class="text-muted">
+          iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+          organization based in the United States of America (Tax ID:
+          92-1296468).
+        </p>
+      donate_desc3_html: |
         <p class="lead">
           <strong>iNaturalist is one of the world's largest communities dedicated to
           exploring biodiversity. Thank you for being part of it!</strong>
@@ -6393,7 +6461,7 @@ en:
         <p class="lead">
           If you believe in the power of this global community of nature lovers
           to share knowledge and generate irreplaceable biodiversity data,
-          please consider a one-time or recurring gift online, or see <a
+          please consider a one-time or recurring gift online, or explore <a
           href="https://www.inaturalist.org/pages/giving">other ways to
           give</a>.
         </p>
@@ -6403,16 +6471,46 @@ en:
           our servers and staff.
         </p>
         <p class="text-muted">
-          iNaturalist is a joint initiative of the California Academy of Sciences
-          and the National Geographic Society. All donations will be received by
-          the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
-          organization based in the United States of America (Tax ID: 94-1156258).
+          iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+          organization based in the United States of America (Tax ID:
+          92-1296468).
         </p>
       post_donate_social_media_text: I support iNaturalist because...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Become a Monthly Supporter of iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BECOME A MONTHLY SUPPORTER OF INATURALIST
-        desc_html: |
+        desc_moore_html: |
+          <p class="lead">
+            <strong>You can <u>triple</u> your gift! Thanks to the Gordon and Betty
+            Moore Foundation, all Monthly Supporter donations are
+            tripled through December 31, 2023.</strong>
+          </p>
+          <p class="lead">
+            iNaturalist is one of the world's largest communities dedicated to
+            exploring biodiversity. Thank you for being part of it!
+          </p>
+          <p class="lead">
+            If you love iNaturalist, please consider becoming a Monthly
+            Supporter. Recurring gifts help ensure that iNaturalist can
+            continue to scale our infrastructure and staff by providing
+            predictable revenue. And your monthly gift has triple the impact!
+            You can also opt to show your Monthly Supporter status on your
+            user profile.
+          </p>
+          <p class="lead">
+            Your charitable donations help support iNaturalist as the
+            community grows, from advancing computer vision and implementing
+            new features to supporting our servers and staff. You can also
+            give a <a href="%{donate_url}">one-time donation</a> and explore
+            <a href="https://www.inaturalist.org/pages/giving">other ways to
+            give</a>.
+          </p>
+          <p class="text-muted">
+            iNaturalist is an independent 501(c)(3), tax-exempt,
+            not-for-profit organization based in the United States of
+            America (Tax ID: 92-1296468).
+          </p>
+        desc3_html: |
           <p class="lead">
             <strong>iNaturalist is one of the world's largest communities dedicated to
             exploring biodiversity. Thank you for being part of it!</strong>
@@ -6432,13 +6530,16 @@ en:
             one-time donation, please <a href="%{donate_url}">click here</a>.
           </p>
           <p class="text-muted">
-            iNaturalist is a joint initiative of the California Academy of Sciences
-            and the National Geographic Society. All donations will be received by
-            the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
-            organization based in the United States of America.
+            iNaturalist is an independent 501(c)(3), tax-exempt,
+            not-for-profit organization based in the United States of
+            America (Tax ID: 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Thank you for being a Monthly Supporter!
         thank_you_for_being_a_monthly_supporter_caps: THANK YOU FOR BEING A MONTHLY SUPPORTER!
+      temporarily_unavailable: |
+        Thank you for your interest in supporting iNaturalist! Donating to
+        iNaturalist is temporarily unavailable while we update our donation
+        systems. Please check back soon.
     flags:
       show:
         flaggable_content_desc: |
@@ -6449,6 +6550,108 @@ en:
           Please resolve <code>spam</code> and <code>copyright
           infringement</code> flags only if the content is not spam or not an
           infringement of copyright, respectively.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodel Predictions of %{taxon}
+        the_geo_model_makes_predictions: |
+          The Geomodel makes predictions about where species occur and where they are absent.
+          We use the Geomodel to apply the "Expected Nearby" label alongside suggestions and
+          to weight these suggestions based on the location of the observation.
+        the_geo_model_is_trained: |
+          Like the Computer Vision Model, the Geomodel is trained on iNaturalist observations
+          for the same set of species with roughly more than 100 photos. The Geomodel does not
+          make perfect predictions. You can read more about how the Geomodel is made
+          <a href="%{url}">here</a>.
+        nearby_map:
+          expected_nearby_map: Expected Nearby Map
+          we_use_this_map: |
+            We use this map to apply the Expected Nearby label to suggestions based on the
+            location of the observation.
+          for_example: |
+            For example, an observation of a lizard in the center of the United States might
+            have the Expected Nearby label applied to a suggestion of <i>Sceloporus consobrinus</i>
+            but not <i>Sceloporus occidentalis</i> based on their respective Expected Nearby Maps.
+          you_can_think: |
+            You can think of the Expected Nearby Map as an estimate of whether the species
+            is present somewhere inside the grid cell or entirely absent.
+          figure_alt_text: The Geomodel applies the Expected Nearby label
+        unthresholded_map:
+          unthresholded_map: Unthresholded Map
+          we_use_the_unthresholded_map: |
+            We use the Unthresholded Map to weight computer vision scores by location when
+            offering suggestions.
+          for_example: |
+            For example, an observation of a lizard in the center of the United States might
+            have the suggestions of <i>Sceloporus consobrinus</i> weighted more than suggestions
+            of <i>Sceloporus occidentalis</i> based on comparing the Unthresholded Maps, despite
+            being visually similar.
+          you_can_think: |
+            You can think of the Unthresholded Map as the relative probability that a species
+            occurs within a grid cell.
+          figure_alt_text: The Geomodel weights Computer Vision results
+        range_comparison:
+          expected_nearby_vs_taxon_range: Expected Nearby vs Taxon Range
+          this_map_shows: |
+            This map shows the Taxon Range for this species overlapping the Expected Nearby Map
+            that we use to evaluate the Geomodel.
+          this_gridded_version: |
+            This gridded version of the Taxon Range is a snapshot taken when the model was
+            trained and gridded at the same resolution as the Expected Nearby Map. We only
+            use the Taxon Ranges where at least 90% of the training data for that species
+            falls within the Taxon Range to control for errors in the Taxon Ranges.
+          by_combining: |
+            By combining the Expected Nearby Map to the Taxon Range, we calculate statistics
+            to estimate how well the Geomodel performs.
+          figure_alt_text: The Expected Nearby map and Taxon Range are compared
+          combining_these_maps_produces: |
+            Combining these maps produces 3 types of cells:
+          # Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            True Presences:
+          true_presences_definition: Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          # Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            False Presences:
+          false_presences_definition: Areas where only the Expected Nearby Map predicts the taxon exists
+          # Areas where only the Taxon Range is present
+          false_absences_colon: |
+            False Absences:
+          false_absences_definition: Areas where only the Taxon Range is present
+          evaluation_statistics_for_taxon: Evaluation statistics for %{taxon}
+          # The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precision:
+          precision_description: The fraction of the Expected Nearby Map that are True Presences
+          # Equation showing how we calculate precision of the Expected Nearby Map
+          # True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          # False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            True Presences / (True Presences + False Presences) = %{precision}
+          # The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Recall:
+          recall_description: The fraction of the Taxon Range that are True Presences
+          # Equation showing how we calculate recall of the Expected Nearby Map
+          # True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          # False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            True Presences / (True Presences + False Absences) = %{recall}
+          # The average (harmonic mean) of Precision (fraction of the Expected
+          # Nearby Map that are True Presences) and Recall (fraction of the
+          # Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: The average (harmonic mean) of Precision and Recall
+          # Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          # True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          # False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          # False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × True Presences / (2 × True Presences + False Presences + False Absences) = %{f1}
+          perfect_overlap: |
+            Perfect overlap would evaluate with a Precision, Recall and F1 of 1. No overlap
+            would evaluate with a Precision , Recall, and F1 of 0.
     guides:
       index:
         deprecated_banner: |
@@ -7129,7 +7332,7 @@ en:
               are ok)
             </li>
             <li>
-              the observation no longer needs an ID <em>and</em> the community ID is above family
+              the observation no longer needs an ID <em>and</em> the community ID is at family or above
             </li>
             <li>
               the observer has opted out of the community ID and the community
@@ -7396,11 +7599,12 @@ en:
           leave copyright infringement flags as unresolved if this photo does
           infringe copyright.
     places:
-      kml_field_desc2: |
+      kml_field_desc3: |
         KML of the place boundary. You can make one using Google Maps, Google
         Earth, or most GIS applications. Must have at least one polygon, be
-        under 1 MB (5 MB for site curators), and have an area smaller than the
-        US state of Texas.
+        under 1 MB (5 MB for site curators), and have an area smaller than
+        ~700,000 square kilometers (roughly the size of Somalia or the US state of
+        Texas).
       edit:
         complex_boundary_note_html: |
           This boundary is a bit too complex to edit on the web. However, you can
@@ -7888,23 +8092,21 @@ en:
           all years.
         compared_to_previous_years: Compare to Previous Years
         donate_title: "Special Thanks to All Our Supporters"
-        donate_desc_html: |
-          Thank you for being generous with your time, attention, expertise, and
-          donations! iNaturalist is a not-for-profit joint initiative of the
-          California Academy of Sciences and the National Geographic Society.
-          It’s supported by a
-          <a href="%{team_url}">small team</a> that
-          does all the design and software
-          engineering for web, mobile, and
-          <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
-          the community support, collaborations, and integrations that keep
-          things running (and growing rapidly!). The program relies on numerous
-          grants and donations, including charitable gifts from less than tiny
-          fraction of contributors. We are especially grateful to Monthly
-          Supporters whose recurring gifts help us plan for the future. You can
-          donate in multiple currencies to support iNaturalist’s core
-          operations. Thank you to everyone for your part in making %{year}
-          iNaturalist’s biggest year yet!
+        donate_desc2_html: |
+          Thank you for being generous with your time, attention, expertise,
+          and donations! iNaturalist is a 501(c)3 nonprofit organization
+          based in the United States. It’s supported by a
+          <a href="%{team_url}">small team</a> that does all the design and software
+          engineering for web, mobile, and <a href="%{seek_url}">Seek by
+          iNaturalist</a>, in addition to managing the community support,
+          collaborations, and integrations that keep things running
+          (and growing rapidly!). The program relies on numerous grants and
+          donations, including charitable gifts from less than tiny fraction
+          of contributors. We are especially grateful to Monthly Supporters
+          whose recurring gifts help us plan for the future. You can donate
+          in multiple currencies to support iNaturalist’s core operations.
+          Thank you to everyone for your part in making %{year} iNaturalist’s
+          biggest year yet!
         donors: Donors
         donors_guide_label_our_goal_is_1000: Our goal is 1,000 recurring donors per month
         inaturalist_network: iNaturalist Network
@@ -8081,6 +8283,21 @@ en:
             We try to address these shortcomings by showing both common
             and scientific names wherever possible, and choosing common names
             based on the language and geographic preferences of the viewer.
+            Names are listed by their global priority within each Language /
+            Type.
+          </p>
+        about_regional_names_desc: |
+          <p>
+            Names may be added to places (usually countries) in cases where
+            different countries or regions use different common names in the
+            same language. For example, Mexico and Costa Rica may have different
+            Spanish names for the same species.
+          </p>
+          <p>
+            This table shows which names have been added to which places, and
+            are listed in order of priority for each place. If two Spanish names
+            are added to Mexico, the one listed first will appear if you prefer
+            to see Spanish names added to Mexico.
           </p>
         about_conservation_status_desc: |
           The conservation status summarizes the risk of extinction for a group of organisms.
@@ -8191,12 +8408,12 @@ en:
         the output; species, subspecies, varieties, etc. will be swapped into
         equivalents with the new genus or species name.
       form:
-        move_children_desc_html: |
+        move_children_desc2_html: |
           Checking this box will move the children of the input taxon to the
-          output taxon for Swaps and Merges when this change is committed. If
-          this change to a genus or lower, it will create Taxon Swaps for all
-          descendants that have an implied name change. For example, if you swap
-          the family Canidae into Dogidae, this change the parent of the genus
+          output taxon for Taxon Swaps and Taxon Merges when this change is committed. If
+          this is a change to a genus or lower, it will create Taxon Swaps for all
+          descendants with names that need to change. For example, if you swap
+          the family Canidae into Dogidae, this will change the parent of the genus
           <i>Canis</i> from Canidae to Dogidae. If you swap the genus
           <i>Canis</i> into the genus <i>Dogis</i>, it will create and commit
           Taxon Swaps to change <i>Canis lupus</i> to <i>Dogis lupus</i> and
@@ -8404,14 +8621,14 @@ en:
           world.
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
-          which are received by the California Academy of Sciences (United
-          States IRS EIN 94-1156258) to support the not-for-profit operation of
-          iNaturalist and iNaturalist Network sites.
-          <a href="%{url}">Click here to become a Monthly Supporter</a>.
-          When we have confirmed your support you will be able to check this
-          box to display this status on your profile. Note: the email addresses
-          on Donorbox and iNaturalist must match exactly for us to confirm that
-          you are a Monthly Supporter. If they differ, change one to match the other.
+          to iNaturalist (United States IRS EIN 92-1296468) to support the
+          not-for-profit operation of iNaturalist and iNaturalist Network
+          sites. <a href="%{url}">Click here to become a Monthly
+          Supporter</a>. When we have confirmed your support you will be able
+          to check this box to display this status on your profile. Note: the
+          email addresses on Donorbox and iNaturalist must match exactly for
+          us to confirm that you are a Monthly Supporter. If they differ,
+          change one to match the other.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -8725,20 +8942,20 @@ en:
       6: Fr
       7: Sa
     formats:
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %-d'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%b %-d, %Y'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%B %d, %Y'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%B %-d, %Y'
     month_names:
       -
       - January
@@ -8882,19 +9099,19 @@ en:
   time:
     am: am
     formats:
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%b. %d, %Y %H:%M:%S %z'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y %I:%M %p'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %-d, %Y %H:%M:%S %z'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y %I:%M %p'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%B %d, %Y"
-      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %-d, %Y"
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
   activerecord:
@@ -8905,9 +9122,11 @@ en:
       AssessmentSection: Assessment Section
       Atlas: Atlas
       BlockedUser: Blocked User
+      Comment: Comment
       CompleteSet: Complete Set
       # Noun
       Flag: Flag
+      Identification: Identification
       # Action taken by a moderator in response to a flag or concern with
       # immediate consequences in functionality, e.g. hiding an offensive
       # comment without deleting it
@@ -8919,6 +9138,7 @@ en:
       # Software application that operates iNat on a user's behalf, e.g. the
       # iNaturalist Android app or an app made by a third party
       OauthApplication: Application
+      Photo: Photo
       TaxonLink: Taxon Link
     attributes:
       announcement:
@@ -8927,6 +9147,11 @@ en:
         # Numerical IDs of the iNaturalist Network partner sites the
         # announcement should be shown on
         site_ids: Site IDs
+        # Preference for an announcement that is only shown to staff
+        prefers_target_staff: Target staff (for testing)
+        # Preference for an announcement that is only shown to users who have
+        # not confirmed their email address
+        prefers_target_unconfirmed_users: Target unconfirmed users
       assessment:
         description: Description
       assessment_section:
@@ -9084,6 +9309,7 @@ en:
         position: Position
         source_url: Source URL
         source_identifier: Source identifier
+        audit_comment: Note
       taxon_link:
         url: URL
         # Name of the web site being linked to bey a taxon link, e.g. Global
@@ -9200,11 +9426,10 @@ en:
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import for that Mushroom Observer user is running or is queued for import"
-              api_key_missing: "Mushroom Observer API key is missing"
+            user:
+              must_be_a_curator: must be a curator
         observation:
           attributes:
             base:
@@ -9323,6 +9548,8 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+            audit_comment:
+              needs_to_be_at_least_10_characters: needs to be at least 10 characters
         taxon_photo:
           attributes:
             taxon:
@@ -9347,16 +9574,11 @@ en:
           attributes:
             base:
               user_already_blocked: You've already blocked that user
-              user_cannot_be_staff: |
+              user_cannot_be_staff2: |
                 You cannot block staff. iNat staff need to be able to
                 communicate with everyone on iNat, have access to all data on
                 iNat, and are the ultimate mediators of disputes, so blocking
-                will not prevent them from communicating with you. If you have a
-                problem with a member of staff, please report it to one of the
-                iNat co-directors, or, if you have a problem with one of the
-                co-directors, you can contact the Chief of Science at the
-                Institute for Biodiversity and Sustainability Science at the
-                California Academy of Sciences.
+                will not prevent them from communicating with you.
         user_parent:
           attributes:
             email:

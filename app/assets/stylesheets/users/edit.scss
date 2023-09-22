@@ -485,6 +485,33 @@ select.dropdown {
   }
 }
 
+.TaxonNamePriorities {
+  .alert {
+    margin: 0px 0px 5px;
+  }
+  .TaxonNamePriority {
+    min-height: 30px;
+    &.dragging {
+      opacity: 0.3;
+    }
+    .index {
+      display: inline-block;
+      width: 20px;
+    }
+    .place {
+      &:before {
+        content: " ("
+      }
+      &:after {
+        content: ")"
+      }
+    }
+    button {
+      float: right;
+    }
+  }
+}
+
 #user_password {
   .btn {
     margin-bottom: 5px;

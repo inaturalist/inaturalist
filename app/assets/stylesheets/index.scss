@@ -1024,7 +1024,8 @@ ul.leafylist li li:first-child {
 .taxon.Chromista a,
 .taxon.Chromista .display_name        { color: #993300;  }
 
-.taxon.has-com-name .secondary-name { 
+.taxon.has-com-name .secondary-names,
+.taxon.has-com-name > .secondary-name {
   color: #aaa;
   white-space: nowrap;
 }
@@ -1281,7 +1282,6 @@ button.button.providerlink {
 }
 ul a.providerlink, ul a.button.providerlink { width: 190px; }
 ul input.providerlink, ul input.button.providerlink { width: 230px; }
-.providerlink.facebook { background-image: image-url('external/facebook_favicon.png'); }
 .providerlink.twitter { background-image: image-url('external/twitter_favicon.png'); }
 .providerlink.google { background-image: image-url('external/google_favicon.png'); }
 .providerlink.yahoo { background-image: image-url('external/yahoo_favicon.png'); }
@@ -1639,7 +1639,15 @@ ul.plain {list-style:none;margin:0;padding:0}
 .leftmenu .count.right {
   margin: 5px 10px 0 0;
 }
-.topmenu {float: right; list-style: none; padding:0; margin:0;position: relative; z-index: 1;}
+.topmenu {
+  float: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+}
 .topmenu  li { display: inline-block;}
 .topmenu li a {display:inline-block; padding: 5px 10px; margin-left: 10px;}
 .topmenu li a.active {font-weight:bold; border-bottom: 2px solid #eee;}

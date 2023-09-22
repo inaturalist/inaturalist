@@ -3,7 +3,7 @@
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
   = stylesheet_link_tag "projects/stats_slideshow"
   = javascript_include_tag 'i18n'
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
     SLIDESHOW_PROJECT = #{ @slideshow_project.to_json.html_safe };

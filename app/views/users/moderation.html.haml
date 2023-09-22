@@ -53,15 +53,16 @@
                 = surround "[", "]" do
                   =t :resolved
           - elsif record.is_a?( ModeratorAction )
+            - translated_resource_type = t( record.resource_type, scope: [:activerecord, :models], default: t( record.resource_type ) )
             = surround "(", ")" do
               - if record.resource
-                = link_to record.resource_type, record.resource
+                = link_to translated_resource_type, record.resource
               - else
-                = record.resource_type
+                = translated_resource_type
                 &mdash;
                 =t :removed
             = surround "[", "]" do
-              = record.action
+              =t "moderator_actions_#{record.action}"
         %td
           - if record.user_id == 0 && record.is_a?( Flag )
             = @site.site_name_short

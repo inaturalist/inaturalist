@@ -1,0 +1,19 @@
+- content_for :title do
+  = render( partial: "taxa/taxon", handlers: [:erb], formats: [:txt], locals: { taxon: @taxon } )
+- content_for :extracss do
+  = stylesheet_link_tag "taxa/geo_explain"
+- content_for :extrajs do
+  :javascript
+    var SERVER_PAYLOAD = {
+      taxon: #{ @node_taxon_json.encode.html_safe }.results[0]
+    };
+    var GEO_MODEL_TAXON = #{ @geo_model_taxon.to_json.html_safe };
+    var GEO_MODEL_CELL_SCORES = #{ @raw_env_data.to_json.html_safe };
+    var TAXON_RANGE_DATA = #{ @taxon_range_data.to_json.html_safe };
+    var EXPECTED_NEARBY_FIGURE_URL = "#{ asset_path( "geo_model/expected_nearby_figure.png" ) }";
+    var WEIGHTING_FIGURE_URL = "#{ asset_path( "geo_model/weighting_figure.png" ) }";
+    var RANGE_COMPARISON_FIGURE_URL = "#{ asset_path( "geo_model/range_comparison_figure.png" ) }";
+  = javascript_include_tag "geo-model-explain-webpack"
+#app
+  #initial-loading.text-center
+    .loading_spinner

@@ -397,6 +397,8 @@ it:
   #Noun, title of a popup alerting you to something
   alert: Avviso
   all: Tutto
+  #Title for a list of all 3rd party applications
+  all_applications: Tutte le Applicazioni
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
   all_life: Tutti gli esseri viventi
@@ -874,13 +876,7 @@ it:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: suddividi in
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: unisci in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: unito in
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: sostituito da
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: sostituisci con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: sostituito con
     dropped: eliminato
@@ -1047,7 +1043,6 @@ it:
   connected_accounts_titlecase: Account Connessi
   connecting_flickr: "Connessione a Flickr in corso..."
   connect_to_flickr_again_to_authorize_write_permissions: Connettiti nuovamente a Flickr per autorizzare i permessi di scrittura
-  connecting_to_facebook: "Connessione a Facebook in corso..."
   connecting_your_inat_account_to_accounts_other_sites: "La connessione del tuo account di %{site_name} ad altri account su altri siti ti permetterà di accedere a %{site_name} usando le credenziali di quei siti."
   cannot_be_changed_during_a_content_freeze: Non può essere modificato durante un blocco dei contenuti
   conservation_status: Stato di conservazione
@@ -1260,12 +1255,10 @@ it:
     Non riesce a dimostrare lui stesso un comportamento appropriato.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni e aver aggiunto 100 identificazioni "di affinamento" alle
-    osservazioni di chiunque, incluso le tue (ne hai aggiunte %{num_idents}). Quando hai soddisfatto entrambi i requisiti, torna qui e sarai in grado di inviare la domanda.
-  curator_application_inelligible_error: |
-    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni e aver aggiunto 100 identificazioni "di affinamento" alle
-    osservazioni di chiunque, incluso le tue.
+  curator_application_inelligible2: |
+    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni o più, devi aver aggiunto 100 identificazioni "di affinamento" alle osservazioni di chiunque, incluse le tue (ne hai aggiunte %{num_idents}). Quando hai soddisfatto entrambi i requisiti, torna qui e sarai in grado di inviare la domanda.
+  curator_application_inelligible_error2: |
+    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni e aver aggiunto almeno 5 contrasegni e 100 identificazioni "di affinamento" alle osservazioni di chiunque, incluse le tue.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Domanda curatore presentata
   #Header
@@ -1327,6 +1320,8 @@ it:
     Dovresti candidarti per essere un curatore solo se:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Hai aggiunto identificazioni e/o osservazioni per alcuni mesi e hai intenzione di continuare.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Hai dimostrato di capire il processo di curatela aggiungendo alcuni contrassegni.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1569,6 +1564,8 @@ it:
   donate: DONA
   donate_again_caps: DONA ANCORA
   donate_again_today_caps: DONA ANCORA OGGI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Dona a iNaturalist
   done: Fatto
   dont_have_an_account_sign_up_html: Non hai un'utenza? <strong>Registrati.</strong>
   dont_use_double_quotes: Non utilizzare le virgolette da nessun'altra parte
@@ -1688,9 +1685,37 @@ it:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Ti abbiamo inviato un'email di conferma il %{date}. Se non l'hai ricevuto, ecco alcune cose che puoi fare:
+  email_conf_required_after_grace_period: |
+    La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
+  email_conf_faq_html: |
+    Se hai domande, ti preghiamo di fare riferimento a queste <a href="%{url}">Domande Frequenti</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Per favore conferma il tuo indirizzo email%{link_end_tag}</strong>. Tutti gli utenti devono confermare il loro indirizzo email entro il %{date}. Dopo tale data chiunque non abbia confermato il proprio indirizzo email non potrà accedere a meno che non abbia reimpostato la propria password. Per confermare il tuo indirizzo email, vai alle impostazioni del tuo account %{link_start_tag}%{link_end_tag}.
-  email_copyright: "Copyright &copy; %{x}, tutti i diritti riservati"
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Conferma il tuo indirizzo email di %{site_name}, entro il %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Sei pregato di confermare il tuo indirizzo email oggi, per assicurarti di poter continuare ad
+    accedere al tuo profilo. %{site_name} e le app mobili
+    di iNaturalist e Seek by iNaturalist, connettono le persone alla natura e tra
+    loro, condividendo osservazioni sulla biodiversità. Grazie per aver preso parte
+    alla community di iNaturalist!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Richiederemo degli indirizzi email verificati a tutti i profili a partire dal
+    %{requirement_date}. Sei pregato di prenderti un momento per confermarlo adesso.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Se hai domande, sei pregato di fare riferimento alle
+    <a href="%{faq_url}">FAQ</a>. Grazie per aver dedicato del tempo a connetterti
+    con la natura e con %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Dettagli del Profilo
+  email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
   email_notifications: Notifiche Email
   embed: 'Incorpora'
   embed_place_widget: Incorpora widget del luogo
@@ -1764,13 +1789,6 @@ it:
   extra_properties: Proprietà aggiuntive
   evidence_of_organism: Evidenza della presenza dell'organismo
   facebook: Facebook
-  facebook_account_information: Informazioni del tuo account Facebook
-  facebook_account_not_linked: "%{user} ha scollegato l'account Facebook, pertanto %{site_name} non ha il permesso di accedere alla foto."
-  facebook_access_token_expired: "Il token di accesso è scaduto. %{user} deve ricollegare il proprio account Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook ha bisogno che il proprietario di quella foto ri-confermi la propria connessione a %{site_name_short}.
-  facebook_options: Opzioni di Facebook
-  facebook_photo_import_disabled_notice: |
-    Nel novembre 2020 Facebook ci ha richiesto di verificare che ci fosse davvero bisogno di accesso alle foto, e non siamo stati in grado di completare il processo a causa di problemi con il sistema di verifica di Facebook. Di conseguenza, non possiamo più supportare l'importazione di foto da Facebook.
   failed_to_find_your_location: Impossibile trovare la tua posizione.
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
@@ -1934,7 +1952,7 @@ it:
   frequency: Frequenza
   from_a_place: da un luogo
   from_eol_collection: Da una collezione EOL
-  from_flickr_facebook_etc: Da Flickr, Facebook, etc.
+  from_flickr_etc: Da Flickr, ecc.
   from_list: Da una lista
   from_photos: Da foto
   from_place: Dal luogo
@@ -2029,7 +2047,6 @@ it:
   heads_up_you_have_multiple: "Avviso: hai delle etichette tassonomiche multiple automatiche per dei ranghi identici. Sono codificate per colore qui sotto per rango."
   help: Aiuto
   help_confirm_observations!: Aiuta a confermare le osservazioni!
-  help_support_inaturalist: "Aiuta a sostenere iNaturalist"
   help_translate!: Aiuta a tradurre!
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
   here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
@@ -2039,8 +2056,6 @@ it:
   #Verb, usually a button to hide an interface element
   hide: Nascondi
   hide_content: Nascondi il contenuto
-  hide_desc: |
-    Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto. In generale, questo si applica solo al contenuto scritto, ad esempio se avete nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa operazione, e solamente il personale del sito può annullare l'occultamento di contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti particolarmente sgradevoli.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Nascondi «Nessuna annotazione»
@@ -2096,8 +2111,6 @@ it:
   #Notification when an identification has been deleted
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Testo dell'identificazione mostrato
   #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
@@ -2184,7 +2197,6 @@ it:
   inaturalist_activity_notifications: "Notifiche Attività %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Applicazioni iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society."
   inaturalist_places: "Luoghi di %{site_name}"
   info: Info
   input_taxon: Inserisci un taxon
@@ -2302,16 +2314,24 @@ it:
   lexicon_cannot_contain_words: "non può contenere le seguenti parole: %{words}"
   lexicons:
     afrikaans: Africano
+    alabama: Alabama
     albanian: Albanese
+    aou_4_letter_codes: Codici AOU a 4 Lettere
+    aou_6_letter_codes: Codici Aou a 6 Lettere
     arabic: Arabo
     armenian: Armeno
+    asturian: Asturiano
+    basque: Basco
     belarusian: Bielorusso
     bengali: Bengalese
+    bikol: Bikol
     bulgarian: Bulgaro
+    carolinian: Caroliniano
     catalan: Catalano
     cebuano: Cebuano
     chinese_simplified: Cinese (semplificato)
     chinese_traditional: Cinese (tradizionale)
+    chuvash: Chuvash
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
     croatian: Croato
@@ -2322,27 +2342,38 @@ it:
     english: Inglese
     estonian: Estone
     faroese: Faroese
+    fijian: Fijano
     finnish: Finlandese
     french: Francese
     galician: Galiziano
     gela: Gela
+    georgian: Georgiano
     german: Tedesco
     greek: Greco
+    gujarati: Gujarati
     hawaiian: Hawaiano
     hebrew: Ebraico
+    herero: Herero
     hiligaynon: Ilongo
+    hill_mari: Hill Mari
+    hodges_number: Numero di Hodges
+    hokkien: Hokkien
     hungarian: Ungherese
     icelandic: Islandese
     ilokano: Ilokano
     indonesian: Indonesiano
+    irish: Irlandese
     italian: Italiano
     japanese: Giapponese
     kannada: Kannada
     kazakh: Kazako
     korean: Coreano
+    kweyol: Kwéyòl
     latvian: Lettone
     lithuanian: Lituano
+    lozi: Lozi
     luxembourgish: Lussemburghese
+    malagasy: Malgascio
     malay: Malese
     malayalam: Malayalam
     maltese: Maltese
@@ -2352,6 +2383,8 @@ it:
     misima_paneati: Misima-Panaeati
     mongolian: Mongolo
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norvegese
     occitan: Occitano
     ojibwe: Ojibwe
@@ -2365,20 +2398,36 @@ it:
     santali: Santali
     scientific_names: Nomi scientifici
     serbian: Serbo
+    shona: Shona
     sinhala: Singalese
     slovak: Slovacco
     slovenian: Sloveno
+    sotho: Sotho
+    sotho_northern: Sotho (Nord)
     spanish: Spagnolo
     swahili: Swahili
+    swati: Swati
     swedish: Svedese
     tagalog: Tagalog
     tahitian: Tahitiano
+    tamil: Tamil
     thai: Thailandese
     tokelauan: Tokelau
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turco
+    u_s_d_a_symbol: Simboli U.S.D.A.
     ukrainian: Ucraino
+    uyghur: Uiguro
+    venda: Venda
+    vermont_flora_codes: Codici Flora Vermont
+    vietnamese: Vietnamita
     visayan: Visayan
     waray_waray: Wáray-Wáray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Meno
   #Button show less text
   less__context_text: Di meno
@@ -2394,14 +2443,8 @@ it:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link al codice di autorizzazione
-  link_your_facebook_account: Collega il tuo account Facebook
   link_your_flickr_account: Collega il tuo account Flickr
   link_your_google_account: Collega il tuo account Google
-  linked_facebook: "Il tuo account %{site_name} è attualmente collegato col tuo account Facebook."
-  linked_facebook_automaticaly: "Inoltre, ricordati che se tu accedi a %{site_name} via Facebook, automaticamente ricollegheremo i tuoi account %{site_name} e Facebook. Se usi Facebook è probabile che tu voglia poter importare le foto di Facebook, vero?"
-  linked_facebook_description: "Mantenendo il tuo account %{site_name} collegato a quello di Facebook ti permette di aggiungere foto multiple alle tue osservazioni. Se vuoi mantenere %{site_name} e Facebook separati, non è un problema, ma non ti sarà possibile aggiungere foto. In alcuni casi è addirittura preferibile, ad esempio quando crei un nuovo account Facebook che vuoi collegare a %{site_name}."
-  linked_facebook_howto: "Per collegare Facebook con %{site_name}, clicca sulla destra e loggati su Facebook.com."
-  linked_facebook_password: "Non ti chiederemo mai la tua password Facebook (ma Facebook potrebbe farlo, controlla che ti invia il pulsante e assicurati che sia Facebook.com). Non cambieremo i tuoi dati Facebook a meno che tu non lo voglia."
   linked_flickr: "Il tuo account %{site_name} è attualmente collegato a quello di Flickr."
   linked_flickr_automatically: "Inoltre, ricordati che se tu accedi a %{site_name} via Flickr, automaticamente ricollegheremo i tuoi account %{site_name} e Flickr. Se usi Flickr è probabile che tu voglia poter importare le foto di Flickr, vero?"
   linked_flickr_description: "Mantenere il tuo account %{site_name} collegato a quello di Flickr ti permette di aggiungere foto multiple alle tue osservazioni. Se vuoi mantenere %{site_name} e Flickr separati, non è un problema, ma non ti sarà possibile aggiungere foto. In alcuni casi è addirittura preferibile, ad esempio quando crei un nuovo account Flickr che vuoi collegare a %{site_name}."
@@ -2474,6 +2517,7 @@ it:
     id: Indonesiano
     it: Italiano
     ja: Giapponese
+    ka: Georgiano
     kk: Kazako
     kn: Kannada
     ko: Coreano
@@ -2602,8 +2646,6 @@ it:
   meet: Incontra
   member_of_the_inaturalist_network_html: |
     Membri del <a href="%{url}">Network iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membro del %{partial_inat_network_tag_html}Network iNaturalist</a>, un'iniziativa congiunta di %{cas_tag_html} e di %{nat_geo_tag_html}.
   #As in members of a project
   members: Membri
   membership_model: Modello di adesione
@@ -2872,6 +2914,8 @@ it:
   next_tab: Scheda successiva
   next_taxon_short: Successivo
   'no': 'No'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Ancora nessuna applicazione
   no_assessments_have_been_added_to_this_project_yet: Nessuna valutazione è stata ancora aggiunta al progetto.
   no_but_it_is_a_member_of_taxon: "No, ma questo è un membro di %{taxon}"
   no_comments_yet: Ancora nessun commento.
@@ -2971,7 +3015,6 @@ it:
   not_found: Non trovato
   #Filter for observations not in a particular place
   not_in_place: Non in luogo
-  not_linked_facebook: "La tua utenza %{site_name} non è attualmente collegata col tuo account Facebook"
   not_linked_flickr: "La tua utenza %{site_name} non è collegato al tuo account Flickr"
   not_on_this_list: Non sulla lista.
   not_recorded: Non registrata
@@ -3235,7 +3278,7 @@ it:
   options: Opzioni
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o scegli da taxa di livello superiore"
   orange: arancione
@@ -4132,6 +4175,7 @@ it:
   refresh: Aggiorna
   refreshing: aggiornamento in corso
   regenerate_stats: Rigenera statistiche
+  regional_names: Nomi Regionali
   register_for_this_event_at_x_html: "Registrati per questo evento in %{x}"
   reject?: Rifiuta?
   relative_observations: Osservazioni relative
@@ -4420,6 +4464,8 @@ it:
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} ha condiviso i dati dei registri per l'atlante portoghese degli uccelli migratori, per l'atlante dei mammiferi, nonché per diversi altri documenti di ricerca scientifica portoghesi.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordinate nascoste automaticamente (oscurate o private per la "geoprivacy del taxon")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist nasconde automaticamente le coordinate per alcune specie per proteggerle dall'essere disturbate, raccolte o braccate. Se le coordinate dell'osservazione sono state nascoste automaticamente solo per proteggere le specie, iNaturalist condivide le coordinate reali di tutte le osservazioni per i loro rispettivi paesi coi Membri della Rete.
   sites_affiliation_more_email_addresses: |
     Gli indirizzi email sono condivisi con i Membri della Rete solo per gli scopi delle comunicazioni correlate al sito.
   sites_affiliation_more_twice_per_year: |
@@ -4439,8 +4485,11 @@ it:
   sites_affiliation_overview_you_can_continue_html: |
     Puoi continuare ad accedere tramite iNaturalist.org o tramite il tuo sito web specifico della rete. Non importa la tua affiliazione, tutti i tuoi dati saranno hostati nello stesso luogo e continuerai a poter interagire con la più ampia community internazionale di iNaturalist. Ogni profilo di iNaturalist è affiliabile con un solo Membro della Rete. Puoi revisionare o modificare la tua affiliazione nelle %{start_tag_settings}impostazioni del tuo profilo%{end_tag_settings}.
   sites_affiliation_title: Scopri di Più sull'Affiliazione della Rete
-  sites_network_cas_and_nat_geo_html: |
-    L'%{start_tag_cas}Accademia di Scienze della California%{end_tag_cas} e la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hanno accordi formali con le organizzazioni in ognuna di queste aree geografiche per supportare l'uso della piattaforma di iNaturalist. <strong>Se la tua organizzazione è interessata a unirsi alla Rete di iNaturalist, puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
+  sites_network_agreements_html: |
+    iNaturalist ha stipulato accordi formali con organizzazioni in ognuna di queste
+    aree geografiche, per supportarre l'utilizzo della piattaforma di iNaturalist.
+    <strong>Se la tua organizzazione vorrebbe aderire alla Rete di iNaturalist,
+    puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
   sites_network_consists_of: "La Rete di iNaturalist consiste in diverse organizzazioni:"
   sites_network_inaturalist_network_collection: |
     La Rete di iNaturalist è una raccolta di siti web localizzati, completamente connessi alla community globale di iNaturalist. I siti della rete sono supportati dalle istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
@@ -4632,7 +4681,6 @@ it:
   tagging: 'Etichettatura in corso...'
   tags: Etichette
   tags_are_a_way: 'Le Etichette sono un modo per organizzare le tue osservazioni. Per esempio, puoi etichettare tutte le tue osservazioni relative alle pozze di marea con l''etichetta "pozze di marea" per trovarle più velocemente.'
-  take_me_facebook: Si, vai a Facebook!
   take_me_flickr!: Si, vai a Flickr!
   target_list_alert: Sei sicuro di aver tentato di osservare tutte le specie nella tua lista di obbiettivi? Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato sarà interpretato come un'assenza, perciò è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare
   target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà interpretato come un'assenza. Per questo è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare. Se non hai cercato una specie nella tua lista di obbiettivi o ogni specie inclusa in un gruppo della tua lista di obbiettivi, per favore rimuovila.
@@ -5208,19 +5256,29 @@ it:
   user_added_a_comment_html: "%{user} ha aggiunto un commento"
   user_added_a_fave_html: "%{user} ha aggiunto un preferito"
   user_added_a_flag_html: "%{user} ha aggiunto un contrassegno"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha aggiunto una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha aggiunto un valore in un campo di un'osservazione"
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha aggiunto una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
@@ -5416,11 +5474,8 @@ it:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
-  we_also_support: |
-    Supportiamo anche <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Google Foto</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    per l'hosting delle immagini.
+  we_also_support2: |
+    Supportiamo anche l'importazione di foto da <a href="http://flickr.com">Flickr</a> e <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente formattazione
   we_couldnt_find_a_user: Non siamo riusciti a trovare alcun utente con questo indirizzo email.
   we_couldnt_find_a_user_with_that_activation_code: "Non siamo riusciti a trovare alcun utente con questo codice di attivazione. Potresti già aver attivato il tuo account, per favore prova ad accedere."
@@ -5472,6 +5527,7 @@ it:
   white: bianco
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Perché stai effettuando questa modifica? (facoltativo)
+  why_are_you_making_this_change_cite_source_required: Perché stai effettuando questa modifica? Ti preghiamo di spiegarcelo, citando, se possibile, una fonte. (Obbligatorio)
   why_you_can_see_the_coordinates: Perché puoi vedere le coordinate
   who_can_add_observation_fields_to_my_obs: Chi può aggiungere campi di osservazione alle mie osservazioni?
   who_can_add_observations_to_this_project?: Chi può aggiungere osservazioni al questo progetto?
@@ -5577,8 +5633,12 @@ it:
     Milioni di persone hanno usato iNaturalist e Seek by iNaturalist quest'anno per connettersi con la natura
   yir_monthly_supporters_random_selection: |
     Ecco una selezione casuale degli eroici membri della community di iNat, che donano ogni mese.
-  yir_thank_your_for_being_generous: |
-    Grazie per esser generoso col tuo tempo, la tua attenzione, esperienza e donazioni! iNaturalist è un'iniziativa congiunta non profit della California Academy of Sciences e la National Geographic Society. Il programma si basa su numerosi sussidi e donazioni, inclusi caritevoli doni da meno che una minima frazione della community. Siamo specialmente grati ai Sostenitori del Mese, i cui doni ricorrenti ci aiutano a pianificare il futuro.
+  yir_thank_your_for_being_generous2: |
+    Grazie per esser generoso con il tuo tempo, la tua attenzione, esperienza e
+    donazioni! iNaturalist è un'organizzazione senza scopo di lucro e a beneficio del pubblico. Il
+    programma si affida a numerose sovvenzioni e donazioni, inclusi doni di beneficienza
+    da meno di una minima frazione della community. Siamo specialmente grati
+    ai Sostenitori del Mese, i cui doni ricorrenti ci aiutano a fare piani per il futuro.
   yir_your_gift_sustains: |
     I tuoi doni sostengono questo programma con la portata globale e profondi impatti personali ed ecologici
   you: te
@@ -5673,6 +5733,8 @@ it:
   your_account_has_been_activated: La tua utenza è stata attivata!
   your_account_has_been_verified: "Il tuo account %{site_name} è stato verificato! Effettua l'accesso per continuare."
   your_activation_code_was_missing: "Manca il tuo codice di attivazione. Per favore vai al link presente sulla tua email."
+  #Title for a list of 3rd party applications you control
+  your_applications: Le Tue Applicazioni
   your_browser_does_not_support_the_audio_element: Il tuo browser non supporta l'elemento audio.
   your_comment_was_saved: Il tuo contenuto è stato salvato
   your_content: Il Tuo Contenuto
@@ -5737,39 +5799,57 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
-      donate_desc_html: |
+      donate_desc3_html: |
         <p class="lead">
-        <strong>iNaturalist è una delle comunità più grandi al mondo dedicate ad esplorare la biodiversità. Grazie per esserne parte!</strong>
+        <strong>iNaturalist è una delle community più grandi al mondo, dedicate
+        all'esplorazione della biodiversità. Grazie per esserne parte!</strong>
         </p>
         <p class="lead">
-        Se credi nella forza di questa comunità globale di amanti della natura per condividere la conoscenza e generare dati di biodiversità insostituibili, per favore considera una donazione una tantum o ricorrente, oppure considera <a
-        href="https://www.inaturalist.org/pages/giving">altre modalità per contribuire</a>.
+        Se credi nella potenza di questa community globale di amanti della natura
+        per la condivisione di conoscenza e per generare insostituibili dati sulla biodiversità,
+        ti preghiamo di considerare un dono una tantum o ricorrente online, o di esplorare <a
+        href="https://www.inaturalist.org/pages/giving">altri
+        metodi per donare</a>.
         </p>
         <p class="lead">
-        La tua donazione aiuta a sostenere iNaturalist mentre la comunità cresce, dall'implementazione della computer vision alle nuove caratteristiche per supportare i nostri server e il nostro staff.
+        La tua donazione aiuta a supportare iNaturalist al crescere della community,
+        dall'avanzamanento della visione informatica e l'implementazione di nuove funzionalità, al supportare
+        i nostri server e membri dello staff.
         </p>
         <p class="text-muted">
-        iNaturalist è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no-profit esente tasse 501(c)(3) con base negli United States of America (Tax ID: 94-1156258).
+        iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle tasse, senza
+        scopi di lucro, con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
         </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
-        desc_html: |
+        desc3_html: |
           <p class="lead">
-          <strong>iNaturalist è una delle più grandi comunità al mondo dedicate all'esplorazione della biodiversità. Grazie di farne parte!</strong>
+          <strong>iNaturalist è una delle più grandi community dedicate all'esplorazione
+          della biodiversità. Grazie per esserne parte!</strong>
           </p>
           <p class="lead">
-          Vogliamo mantenere iNaturalist gratuito, ma non è gratuito il suo funzionamento. Se ami iNaturalist, valuta di diventare un sostenitore mensile. Le donazioni ricorrenti contribuiscono a garantire che iNaturalist possa continuare ingrandire la propria infrastruttura e il proprio personale fornendo introiti regolari. Puoi anche decidere di mostrare il tuo stato di sostenitore mensile sul il tuo profilo utente.
+          Vogliamo mantenere iNaturalist gratuito da utilizzare, ma non è gratuito da operare.
+          Se ami iNaturalist, ti preghiamo di considerare di divenire un sostenitore mensile.
+          I doni ricorrenti aiutano ad assicurare che iNaturalist possa continuare a
+          ridimensionare la propria infrastruttura e staff, fornendo entrate prevedibili.
+          Inoltre, puoi optare per mostrare lo stato di sostenitore sul tuo profilo utente.
           </p>
           <p class="lead">
-          Le tue donazioni aiutano iNaturalist durante la crescita della sua comunità, dal miglioramento della Visione Artificiale e all'implementazione di nuove funzionalità a supporto dei nostri server e del personale. Se preferisci fare una donazione una tantum, per favore <a href="%{donate_url}">clicca qui</a>.
+          Le tue caritevoli donazioni aiutano a supportare iNaturalist al crescere della
+          community, dall'avanzamento della visione informatica e l'implementazione di nuove
+          funzionalità, al supporto dei nostri server e membri dello staff. Se preferisci effettuare una
+          donazione una tantum, ti preghiamo di <a href="%{donate_url}">cliccare qui</a>.
           </p>
           <p class="text-muted">
-          iNaturalist è un'iniziatica congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no profit esente da tasse 501(c)(3) con base negli Stati Uniti d'America.
+          iNaturalist è un'organizzazione senza scopo di lucro, esente dalle tasse e indipendente
+          501(c)(3), con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Grazie per essere un Sostenitore Mensile!
         thank_you_for_being_a_monthly_supporter_caps: GRAZIE PER ESSERE UN SOSTENITORE MENSILE!
+      temporarily_unavailable: |
+        Grazie per il tuo interesse nel supportare iNaturalist! Le donazioni a iNaturalist non sono temporaneamente disponibili, mentre aggiorniamo il nostro sistema di donazioni. Ti preghiamo di ricontrollare presto.
     flags:
       show:
         flaggable_content_desc: |
@@ -6206,62 +6286,14 @@ it:
         cumulative_count_desc: '# di identificazioni per un singolo taxon e per tutti i suoi discendenti'
         curator_coordinate_access_disabled_desc_html: |
           Questo progetto non permette di aggiungere osservazioni con coordinate non visibili dai curatori. Se non vuoi condividere le coordinate di questa osservazione con i curatori, devi rimuoverla dal progetto.
+        data_quality_assessment_desc3_html: |
+          La Qualità dei Dati riassume l'accuratezza, la precisione, la completezza, la rilevanza e l'appropriatezza di un osservazione iNaturalist come dato di biodiversità. Alcuni attributi sono determinati in automatico, mentre altri sono oggetto di votazione da parte degli utenti di iNat. iNaturalist condivide le osservazioni "Livello Ricerca" licenziate con alcuni partner di gestione dati per il loro uso nella scienza e nella conservazione.
         disagreement_count_desc: "# di taxa identificati che non sono tra gli antenati del taxon"
         identification_count_desc: '# di identificazioni per un singolo taxon'
         flagged_photos_desc_html: |
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help2_html: |
-          <p>
-          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"informale"</strong>, e diventano <strong>"serve ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>l'osservazione <strong>ha una data</strong></li>
-          <li>l'osservazione <strong>è georeferenziata</strong> (ad esempio: ha le coordinate lat/lon)</li>
-          <li>l'osservazione <strong>ha foto o suoni</strong></li>
-          <li>l'osservazione <strong>non è di un umano</strong></li>
-          </ul>
-          <p>
-          Le osservazioni raggiungono il <strong>"livello ricerca"</strong> quando
-          </p>
-          <ul>
-          <li>
-          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon (se la comunità ha votato che cil Taxon della Comunità non può essere migliorato ulteriormente, questo torna all'ID della sottofamiglia o inferiore)
-          </li>
-          </ul>
-          <p>
-          Le osservazioni torneranno al livello <strong>"informale"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che
-          </p>
-          <ul>
-          <li>
-          la <strong>localizzazione non sembra precisa</strong> (ad esempio: scimmie in mezzo all'oceano, ippopotami in ufficio, etc.)
-          </li>
-          <li>
-          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)
-          </li>
-          <li>
-          l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini digiochi d'acqua, paesaggi che non contengono organismi, ecc.
-          </li>
-          <li>
-          l'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)
-          </li>
-          <li>
-          l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a un livello superiore alla famiglia
-          </li>
-          <li>
-          l'osservatore ha rifiutato l'ID della community e il taxon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
-          </li>
-          </ul>
-          <p>
-          E come se non fosse già abbastanza complicato, ci sono anche situazioni in cui il sistema assegna un voto:
-          </p>
-          <ul>
-          <li>
-          Il sistema stabilirà che l'osservazione non è selvatica/naturalizzata se, nel luogo più piccolo che contiene questa osservazione (nazione, regione, provincia), ci sono almeno 10 altre osservazioni di un genere o taxon di rango inferiore di cui l'80% o più sono state marcate come non selvatiche/naturalizzate.
-          </li>
-          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
@@ -6421,8 +6453,9 @@ it:
         view_original_html: |
           Puoi vedere l'originale al link <a href="%{url}">%{url}</a>. Per favore lascia la segnalazione di violazione del copyright come "non risolto" se la foto viola il copyright.
     places:
-      kml_field_desc2: |
-        File KML del perimetro del luogo. Ne puoi fare uno usando Google Maps, Google Earth, o la maggior parte delle applicazioni GIS. Deve essere formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori del sito) ed avere un'area più piccola di quella dello stato statunitense del Texas.
+      kml_field_desc3: |
+        KML del perimetro del luogo. Puoi crearne uno utilizzando Google Maps, Google
+        Earth o gran parte delle applicazioni GIS. Deve essere formato da almeno un poligono, avere dimensioni inferiori a 1 MB (5 MB per i curatori del sito), e deve avere un'area inferiore a circa 700.000 chilometri quadrati (approssimativamente le dimensioni della Somalia o dello stato statunitense del Texas).
       edit:
         complex_boundary_note_html: |
           Questo perimetro è un po' troppo complesso per essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
@@ -6779,9 +6812,17 @@ it:
           anno, la barra verticale bianca mostra l'anno scorso, e le aree a sfondo grigio mostrano gli anni più bassi e più alti, così come la media per tutti gli anni.
         compared_to_previous_years: Confronta con Anni Precedenti
         donate_title: "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori"
-        donate_desc_html: |
-          Grazie per il tuo tempo, la tua attenzione, la tua competenza e le tue donazioni! iNaturalist è un'iniziativa no profit congiunta della California Academy of Sciences e della National Geographic Society. È supportato da un <a href="%{team_url}">piccolo team</a> che si occupa del design e dell'ingenieria software per il web, per l'app mobile e per l'app <a href="%{seek_url}">Seek by iNaturalist</a>, oltre che della gestione del supporto alla comunità, delle collaborazioni e delle integrazioni che mantengono le cose in funzione (e che crescono rapidamente!). Il programma conta su numerose sovvenzioni e donazioni, compresa la beneficenza da parte di una piccolissima frazione dei collaboratori. Siamo particolarmente grati ai Sostenitori Sensili, le cui donazioni ricorrenti ci aiutano a fare progetti per il futuro. Puoi fare una donazione in moltissime valute per sostenere le operazioni base di iNaturalist.
-          Grazie a tutti per aver reso il %{year} il miglior anno iNaturalist di sempre!
+        donate_desc2_html: |
+          Grazie per essere generoso con il tuo tempo, la tua attenzione, esperienza e donazioni!
+          iNaturalist è un'organizzazione senza scopo di lucro 501(c)(3) negli Stati Uniti. È supportata da
+          un <a href="%{team_url}">piccolo team</a> che effettua tutte le scelte di progettazione e ingegneria software per web,
+          mobile e <a href="%{seek_url}">Seek di iNaturalist</a>, oltre alla gestione del supporto alla community, delle
+          collaborazioni e delle integrazioni che mantengono in funzione (e in rapida crescita!) le cose.
+          Il programma si affida a numerose sovvenzioni e donazioni, inclusi i caritatevoli doni da meno
+          di una minuscola frazione di collaboratori. Siamo specialmente grati ai Sostenitori Mensili, i cui
+          doni ricorrenti ci aiutano a pianificare per il futuro. Puoi donare in numerose valute
+          per supportare le operazioni principali di iNaturalist.
+          Grazie a tutti per la vostra parte nel rendere il %{year}, l'anno migliore di sempre di iNaturalist!
         donors: Donatori
         donors_guide_label_our_goal_is_1000: Il nostro obiettivo è 1'000 donatori ricorrenti al mese
         inaturalist_network: Il Network di iNaturalist
@@ -6877,15 +6918,20 @@ it:
       show:
         about_names_desc: |
           <p>
-            La maggior parte degli organismi hanno "nomi comuni" nel   linguaggio parlato. Questi nomi sono spesso riconoscibili, facili da pronunciare stabili nel tempo, ma molti organismi hanno nomi differenti nei diversi luoghi, anche nella stessa lingua, che possono creare alcune confusioni. 
-            Gli scienziati risolvono il problema utilizzando un singolo "nome scientifico" per ogni specie che segue le regole della
-            <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura binomiale</a>; ma questi nomi sono in Latino, una lingua che non parla nessuno, e pertanto non sono facilmente memorizzabili per la maggior parte delle persone. I nomi scientifici possono anche riflettere la posizione tassonomica di un organismo, e così possono cambiare quando gli scienziati sviluppano teorie più accurate sulle relazioni evoluzionistiche tra gli organismi, riducendone ancora la loro utilità, anche tra le persone che ne conoscono il loro nome scientifico.
+          Gran parte delle categorie di organismi hanno dei "nomi comuni" nelle lingue parlate. Questi nomi sono solitamente riconoscibili, facili da pronunciare e stabili nel tempo, ma molti organismi hanno svariati nomi differenti in luoghi differenti, anche nella stessa lingua, il che rende difficile comunicare a riguardo di essi, senza confusione. Gli scienziati risolvono questo problema utilizzando un singolo "nome scientifico" per ogni categoria di organismi, conforme alle regole della <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biologica</a>, ma questi nomi tendono a basarsi sul Latino, una lingua che non è parlata da nessuno, quindi non sono altrettanto memorizzabili quanto i nomi comuni per molti. I nomi scientifici, inoltre, possono riflettere il posizionamento tassonomico di un organismo, così che possano cambiare quando gli scienziati sviluppano teorie più accurate sulle relazioni evolutive tra organismi differenti, riducendone ulteriormente l'utiliità nella comunicazione, persino tra le persone che conoscono i nomi scientifici.
           </p>
           <p>
-            Un vecchio detto dice così: "I nomi comuni cambiano da luogo a luogo, quelli scientifici di anni in anni"
+          Un vecchio detto lo riassume: "I nomi comuni cambiano di luogo in luogo e i nomi scientifici cambiano con il tempo."
           </p>
           <p>
-           \ Noi cerchiamo di compensare questa carenza permettendo, se possibile, di visualizzare sia i nomi comuni che quelli scientifici, e scegliendo il nome comune in base alla lingua e alle preferenze geografiche dell'utente.
+          Proviamo a risolvere questi difetti mostrando sia i nomi comuni che scientifici (laddove possibile), e scegliendo nomi comuni a seconda delle preferenze linguistiche e geografiche del visualizzatore. I nomi sono elencati a seconda della loro priorità globale, entro ogni Lingua / Tipo.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          I nomi potrebbero essere aggiunti ai luoghi (solitamente paesi), nei casi in cui paesi o regioni diversi, utilizzino nomi comuni differenti, nonostante la lingua sia la stessa. Ad esempio, Messico e Costa Rica potrebbero avere nomi spagnoli differenti per la stessa specie.
+          </p>
+          <p>
+          Questa tabella mostra quali nomi sono stati aggiunti a quali luoghi e sono elencati in ordine di priorità per ogni luogo. Se due nomi spagnoli sono aggiunti al Messico, quello elencato per primo apparirà se preferisci visualizzare i nomi spagnoli aggiunti per il Messico.
           </p>
         about_conservation_status_desc: |
           Lo stato di conservazione riassume il rischio di estinzione per un gruppo di organismi.
@@ -6946,9 +6992,6 @@ it:
     taxon_changes:
       move_children_desc: |
         I discendenti del taxon di ingresso che sono generi o di livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà, ecc. saranno cambiate negli equivalenti con il nuovo genere o nome della specie.
-      form:
-        move_children_desc_html: |
-          La selezione di questa casella sposterà i discendenti del taxon di ingresso al taxon di uscita per Cambi o Unioni, nel momento in cui questa modifica sarà confermata. Se questa modifica è applicata a un genere o a livelli inferiori, essa creerà dei Cambi di Taxon per tutti i discendenti implicati in una modifica del nome. Ad esempio, se tu Cambi la famiglia Canidae in Dogidae, questo cambierà l'antenato di <i>Canis</i> da Canidae a Dogidae. Se tu Cambi il genere <i>Canis</i> nel genere <i>Dogis</i>, questo creerà e applicherà un Cambio di Taxon da <i>Canis lupus</i> a <i>Dogis lupus</i> e da <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp. <i>lupus</i>. Questo può creare grandi pasticci, perciò usalo con attenzione.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7042,9 +7085,14 @@ it:
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
         monthly_supporter_desc_html: |
-          I Sostenitori Mensili di iNaturalist effettuano contributi mensili automatici ricevuti dall'Accedemia di Scienze della California (Stati Uniti IRS EIN 94-1156258), per supportare l'operazione senza scopi di lucro dei siti di iNaturalist e della Rete di iNaturalist.
-          <a href="%{url}">Clicca qui per diventare un Sostenitore Mensile</a>.
-          Una volta confermato il tuo supporto, potrai spuntare questa casella per mostrare questo stato sul tuo profilo. Nota che gli indirizzi email su Donorbox e iNaturalist devono corrispondere esattamente, affinché possiamo confermare che tu sia un Sostenitore Mensile. Se differiscono, modifica l'una affinché corrisponda all'altra.
+          I Sostenitori Mensili di iNaturalist effettuano contributi mensili automatici
+          a iNaturalist (Stati Uniti IRS EIN 92-1296468) per supportare l'operazione
+          senza scopo di lucro di iNaturalist e dei siti della Rete di iNaturalist.
+          <a href="%{url}">Clicca qui per diventare un Sostenitore Mensile</a>. Una volta confermato
+          il tuo supporto, potrai spuntare questa casella per mostrare questo stato sul
+          tuo profilo. Nota: gli indirizzi email su Donorbox e su iNaturalist, devono corrispondere
+          esattamente, affinché possiamo confermare che tu sia un Sostenitore Mensile. Se
+          differiscono, modifica uno dei due affinché corrisponda all'altro.
         muting_desc_html: |
           <p>
           Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.
@@ -7246,20 +7294,20 @@ it:
       6: Ve
       7: Sa
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %-d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d %b, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%b %-d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d %B, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%B %-d, %Y'
     month_names:
       - 
       - Gennaio
@@ -7310,6 +7358,18 @@ it:
       x_seconds:
         one: "1 secondo"
         other: '%{count} secondi'
+    countdown_x_days:
+      one: GIORNO
+      other: GIORNI
+    countdown_x_hours:
+      one: ORA
+      other: ORE
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEC
+      other: SEC
     prompts:
       day: Giorno
       hour: Ora
@@ -7379,19 +7439,19 @@ it:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b., %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %-d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %B, %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %-d, %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
   activerecord:
@@ -7424,6 +7484,11 @@ it:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID Sito
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Staff di destinazione (per il test)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Utenti di destinazione non confermati
       assessment:
         description: Descrizione
       assessment_section:
@@ -7578,6 +7643,7 @@ it:
         position: Posizione
         source_url: URL sorgente
         source_identifier: Identificatore della fonte
+        audit_comment: Nota
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -7691,11 +7757,6 @@ it:
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "L'import per l'utente Osservatore Funghi è in corso o è accodato per l'importazione"
-              api_key_missing: "Manca la chiave API Osservatore Funghi"
         observation:
           attributes:
             base:
@@ -7807,6 +7868,8 @@ it:
                 deve corrispondere al nome del taxon se questo è un nome scientifico valido
               bad_format: |
                 può solo contenere caratteri Latino standard, trattini, spazi, e ×; nota che taxa presunti e cultivar non sono permessi
+            audit_comment:
+              needs_to_be_at_least_10_characters: deve contenere almeno 10 caratteri
         taxon_photo:
           attributes:
             taxon:
@@ -7830,8 +7893,11 @@ it:
           attributes:
             base:
               user_already_blocked: Hai già bloccato questo utente
-              user_cannot_be_staff: |
-                Non puoi bloccare lo staff. Il personale iNat deve essere in grado di comunicare con tutti su iNat, di avere accesso a tutti i dati su iNat, e rappresentano i mediatori finali delle controversie, quindi bloccarli non impedirà loro di comunicare con voi. Se avete un problema con un membro del personale, siete pregati di segnalarlo a uno dei co-direttori di iNat, o, se avete un problema con uno dei co-direttori, potete contattare il Direttore scientifico dell'Institute for Biodiversity and Sustainability Science della California Academy of Sciences.
+              user_cannot_be_staff2: |
+                Non puoi bloccare lo staff. Lo staff di iNaturalist deve poter comunicare
+                con tutti su iNaturalist, avere accesso a tutti i dati su di esso, ed essere
+                i mediatori definitivi delle controversie, quindi, bloccarli non impedirà loro di
+                comunicare con te.
         user_parent:
           attributes:
             email:

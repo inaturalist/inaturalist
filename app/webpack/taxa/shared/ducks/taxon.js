@@ -2,6 +2,7 @@ import inatjs from "inaturalistjs";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
+import utf8 from "utf8";
 import { fetch } from "../../../shared/util";
 import { defaultObservationParams } from "../util";
 
@@ -377,7 +378,8 @@ export function fetchDescription( ) {
     fetch( url ).then(
       response => {
         const source = response.headers.get( "X-Describer-Name" );
-        const describerUrl = response.headers.get( "X-Describer-URL" );
+        // the URL is being sent in an HTTP header, which does not support UTF-8, so force encoding
+        const describerUrl = utf8.decode( response.headers.get( "X-Describer-URL" ) );
         response.text( ).then( body => {
           if ( body && body.length > 0 ) {
             dispatch( setDescription( source, describerUrl, body ) );
@@ -413,7 +415,7 @@ export function fetchLinks( ) {
 export function fetchNames( taxon ) {
   return ( dispatch, getState ) => {
     const t = taxon || getState( ).taxon.taxon;
-    fetch( `/taxon_names.json?per_page=200&taxon_id=${t.id}` ).then(
+    fetch( `/taxon_names.json?per_page=400&taxon_id=${t.id}` ).then(
       response => {
         response.json( ).then( json => dispatch( setNames( json ) ) );
       },

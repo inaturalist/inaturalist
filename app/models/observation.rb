@@ -935,6 +935,7 @@ class Observation < ApplicationRecord
     end
     # Only re-interpret the date if observed_on_string or time_zone changed
     return unless observed_on_string_changed? || time_zone_changed?
+
     date_string = observed_on_string.strip
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
@@ -1065,53 +1066,61 @@ class Observation < ApplicationRecord
     date_string.sub!( /\s#{I18n.t( "time.am" )}\s/i, " AM " )
     date_string.sub!( /\s#{I18n.t( "time.pm" )}$/i, " PM" )
     date_string.sub!( /\s#{I18n.t( "time.pm" )}\s/i, " PM " )
-    
+
     # Set the time zone appropriately
     old_time_zone = Time.zone
     begin
-      Time.zone = time_zone || user.try(:time_zone)
+      Time.zone = time_zone || user.try( :time_zone )
     rescue ArgumentError
       # Usually this would happen b/c of an invalid time zone being specified
       self.time_zone = time_zone_was || old_time_zone.name
     end
     puts "Setting Chronic time_class to #{Time.zone}" if debug
     Chronic.time_class = Time.zone
-    
+
     begin
       # Start parsing...
-      t = begin
+      candidate_datetime = begin
         puts "Parsing #{date_string}" if debug
         Chronic.parse( date_string, context: :past )
       rescue ArgumentError
         nil
       end
-      t = Chronic.parse( date_string.split[0..-2].join(' '), context: :past ) unless t 
-      if !t && (locale = user.locale || I18n.locale)
-        date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-        t = Chronic.parse( date_string, context: :past )
-      end
-
-      if !t
-        I18N_SUPPORTED_LOCALES.each do |locale|
-          next if locale =~ /^en.*/
-          new_date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-          break if t = Chronic.parse( new_date_string, context: :past )
+      candidate_datetime ||= Chronic.parse( date_string.split[0..-2].join( " " ), context: :past )
+      if !candidate_datetime && ( locale = user.locale || I18n.locale )
+        englishized_date_string = englishize_month_abbrevs_for_locale( date_string, locale )
+        candidate_datetime = Chronic.parse( englishized_date_string, context: :past )
+        if candidate_datetime
+          date_string = englishized_date_string
         end
       end
-      return true unless t
-    
+
+      unless candidate_datetime
+        I18N_SUPPORTED_LOCALES.each do | supported_locale |
+          next if supported_locale =~ /^en.*/
+
+          englishized_date_string = englishize_month_abbrevs_for_locale( date_string, supported_locale )
+          candidate_datetime = Chronic.parse( englishized_date_string, context: :past )
+          if candidate_datetime
+            date_string = englishized_date_string
+            break
+          end
+        end
+      end
+      return true unless candidate_datetime
+
       # Re-interpret future dates as being in the past
-      t = Chronic.parse( date_string, context: :past) if t > Time.now
-      
-      self.observed_on = t.to_date if t
+      candidate_datetime = Chronic.parse( candidate_datetime.to_s, context: :past ) if candidate_datetime > Time.now
+
+      self.observed_on = candidate_datetime.to_date if candidate_datetime
       puts "Set observed_on to #{observed_on}" if debug
-    
+
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
-      if tspan = Chronic.parse( date_string, context: :past, guess: false )
+      if ( tspan = Chronic.parse( date_string, context: :past, guess: false ) )
         # If tspan is less than a day and the string wasn't 'today', set time
-        if tspan.width < 86400 && date_string.strip.downcase != 'today'
-          self.time_observed_at = t
+        if tspan.width < 86400 && date_string.strip.downcase != "today"
+          self.time_observed_at = candidate_datetime
         else
           self.time_observed_at = nil
         end
@@ -1121,37 +1130,42 @@ class Observation < ApplicationRecord
       # ignore these, just don't set the date
       return true
     end
-    
+
     # don't store relative observed_on_strings, or they will change
     # every time you save an observation!
     if date_string =~ /today|yesterday|ago|last|this|now|monday|tuesday|wednesday|thursday|friday|saturday|sunday/i
-      self.observed_on_string = self.observed_on.to_s
-      if self.time_observed_at
-        self.observed_on_string = self.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
+      self.observed_on_string = observed_on.to_s
+      if time_observed_at
+        self.observed_on_string = time_observed_at.strftime( "%Y-%m-%d %H:%M:%S" )
       end
     end
-    
+
     # Set the time zone back the way it was
     Time.zone = old_time_zone
     true
   end
 
-  def englishize_month_abbrevs_for_locale(date_string, locale)
+  def englishize_month_abbrevs_for_locale( date_string, locale )
     # HACK attempt to translate month abbreviations into English. 
     # A much better approach would be add Spanish and any other supported
     # locales to https://github.com/olojac/chronic-l10n and switch to the
     # 'localized' branch of Chronic, which seems to clear our test suite.
     return date_string if locale.to_s =~ /^en/
-    return date_string unless I18N_SUPPORTED_LOCALES.include?(locale)
-    I18n.t('date.abbr_month_names', :locale => :en).each_with_index do |en_month_name,i|
-      next if i == 0
-      localized_month_name = I18n.t('date.abbr_month_names', :locale => locale)[i]
+    return date_string unless I18N_SUPPORTED_LOCALES.include?( locale )
+
+    new_date_string = date_string.clone
+    I18n.t( "date.abbr_month_names", locale: :en ).each_with_index do | en_month_name, i |
+      next if i.zero?
+
+      localized_month_name = I18n.t( "date.abbr_month_names", locale: locale )[i]
+      next if localized_month_name.blank?
       next if localized_month_name == en_month_name
-      date_string.gsub!(/#{localized_month_name}([\s\,])/, "#{en_month_name}\\1")
+
+      new_date_string.gsub!( /#{localized_month_name}([\s,])/, "#{en_month_name}\\1" )
     end
-    date_string
+    new_date_string
   end
-  
+
   #
   # Adds, updates, or destroys the identification corresponding to the taxon
   # the user selected.
@@ -1367,14 +1381,18 @@ class Observation < ApplicationRecord
     key
   end
   
+  def current_identifications_count
+    identifications.select( &:current? ).reject( &:hidden? ).length
+  end
+
   def num_identifications_by_others
     num_identification_agreements + num_identification_disagreements
   end
   
   def appropriate?
     return false if flagged?
-    return false if photos.detect{ |p| p.flagged? }
-    return false if sounds.detect{ |p| p.flagged? }
+    return false if photos.detect{ |p| p.flagged? || p.hidden? }
+    return false if sounds.detect{ |s| s.flagged? || s.hidden? }
     true
   end
   
@@ -1778,7 +1796,9 @@ class Observation < ApplicationRecord
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
-    working_idents = ids.select{|i| i.taxon.is_active }.sort_by(&:id)
+    working_idents = ids.select do |i|
+      i.taxon.is_active && !i.hidden?
+    end.sort_by( &:id )
     if options[:before].to_i > 0
       working_idents = working_idents.select{|i| i.id < options[:before].to_i }
     elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
@@ -1848,7 +1868,7 @@ class Observation < ApplicationRecord
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
-      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+      self.species_guess = ( community_taxon.common_name( user: user ).try( :name ) || community_taxon.name )
     end
     true
   end
@@ -1934,9 +1954,7 @@ class Observation < ApplicationRecord
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats( skip_save: true )
       self.species_guess = if taxon
-        taxon.common_name.try(:name) || taxon.name
-      else
-        nil
+        taxon.common_name( user: user ).try( :name ) || taxon.name
       end
     end
     true
@@ -2088,7 +2106,9 @@ class Observation < ApplicationRecord
     return true if species_guess =~ /\?$/
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    self.taxon_id = single_taxon_id_for_name(species_guess)
+    if taxon = single_taxon_for_name( species_guess )
+      self.taxon_id = taxon.try( :id ) if taxon.is_active?
+    end
     true
   end
 
@@ -2364,7 +2384,7 @@ class Observation < ApplicationRecord
   end
 
   def sound_url
-    if s = sounds.detect{|s| s.is_a?( LocalSound ) }
+    if s = sounds.select{ |s| !s.flagged? && !s.hidden? }.detect{|s| s.is_a?( LocalSound ) }
       return s.file.url
     end
   end
@@ -2774,21 +2794,27 @@ class Observation < ApplicationRecord
   def owners_identification
     if identifications.loaded?
       # if idents are loaded, the most recent current identification might be a new record
-      identifications.sort_by{|i| i.created_at || 1.minute.from_now}.select {|ident| 
-        ident.user_id == user_id && ident.current?
-      }.last
+      identifications.sort_by do |i|
+        i.created_at || 1.minute.from_now
+      end.select do |ident|
+        ident.user_id == user_id && ident.current? && !ident.hidden?
+      end.last
     else
-      identifications.current.by(user_id).last
+      identifications.current.by( user_id ).select do |i|
+        !i.hidden?
+      end.last
     end
   end
 
   def others_identifications
     if identifications.loaded?
       identifications.select do |i|
-        i.current? && i.user_id != user_id
+        i.current? && i.user_id != user_id && !i.hidden?
       end
     else
-      identifications.current.not_by(user_id)
+      identifications.current.not_by( user_id ).select do |i|
+        !i.hidden?
+      end
     end
   end
 
@@ -3108,10 +3134,16 @@ class Observation < ApplicationRecord
     end
   end
 
-  def observation_photos_finished_processing
+  def publicly_viewable_observation_photos
     observation_photos.select do |op|
-      ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
+      ! ( op.photo.is_a?( LocalPhoto ) && op.photo.processing? ) &&
+      !op.photo.flagged? &&
+      !op.photo.hidden?
     end
+  end
+
+  def publicly_viewable_observation_sounds
+    observation_sounds.select{ |os| !os.sound.flagged? && !os.sound.hidden? }
   end
 
   def interpolate_coordinates
@@ -3383,29 +3415,14 @@ class Observation < ApplicationRecord
   end
 
   # this method will set the updated_at column on this observation to the current time,
-  # and re-index only the updated_at attribute of the observation doc in Elasticsearch
+  # and queue the observation to be re-indexed shortly
   def mark_as_updated
-    updated_time = Time.now
-    update_column( :updated_at, updated_time )
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Observation.__elasticsearch__.client.update_by_query(
-        index: Observation.index_name,
-        refresh: Rails.env.test?,
-        body: {
-          query: {
-            term: {
-              "id": id
-            }
-          },
-          script: {
-            source: "ctx._source.updated_at = params.updated_time",
-            params: {
-              updated_time: updated_time
-            }
-          }
-        }
-      )
-    end
+    update_column( :updated_at, Time.now )
+    Observation.delay(
+      run_at: 10.minutes.from_now,
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: { "Observation::elastic_index": id }
+    ).elastic_index!( ids: [id] )
   end
 
 end

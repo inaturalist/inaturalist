@@ -17,6 +17,7 @@ import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import TextEditor from "../../../shared/components/text_editor";
+import HiddenContentMessageContainer from "../../../shared/containers/hidden_content_message_container";
 
 class ActivityItem extends React.Component {
   constructor( props ) {
@@ -127,9 +128,12 @@ class ActivityItem extends React.Component {
       currentUserID,
       addID,
       linkTarget,
+      hideUserIcon,
+      hideAgree,
       hideCompare,
       hideDisagreement,
       hideCategory,
+      hideMenu,
       noTaxonLink,
       onClickCompare,
       trustUser,
@@ -155,16 +159,26 @@ class ActivityItem extends React.Component {
     let contents;
     let header;
     let className = "comment";
-    if ( item.hidden && this.isID && ( !canSeeHidden || !config.showHidden ) ) {
+    if ( item.hidden && ( !canSeeHidden || !config.showHidden ) ) {
       return (
         <div className="ActivityItem">
-          <div className="icon">
-            <UserImage user={viewerIsActor ? item.user : null} />
-          </div>
+          { hideUserIcon ? null : (
+            <div className="icon">
+              <UserImage user={viewerIsActor ? item.user : null} />
+            </div>
+          ) }
           <Panel className="moderator-hidden">
             <Panel.Heading>
               <Panel.Title>
-                <span className="title_text text-muted"><i>{I18n.t( "content_hidden" )}</i></span>
+                <span className="title_text text-muted">
+                  <i>
+                    <HiddenContentMessageContainer
+                      key={`hidden-tooltip-${item.uuid}`}
+                      item={item}
+                      itemType={this.isID ? "identifications" : "comments"}
+                    />
+                  </i>
+                </span>
                 {canSeeHidden && (
                   <button
                     href="#"
@@ -237,7 +251,7 @@ class ActivityItem extends React.Component {
           </a>
         ) );
       }
-      if ( loggedIn && ( canAgree || userAgreedToThis ) ) {
+      if ( loggedIn && ( canAgree || userAgreedToThis ) && !hideAgree ) {
         buttons.push( (
           <button
             type="button"
@@ -271,28 +285,10 @@ class ActivityItem extends React.Component {
         className = "withdrawn";
       }
       let idBody;
-      if ( item.hidden && !config.showHidden ) {
-        idBody = (
-          <div className="hidden-content upstacked text-muted well well-sm">
-            <i>{I18n.t( "content_hidden" )}</i>
-            {canSeeHidden && (
-              <button
-                href="#"
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={() => showHidden()}
-              >
-                {I18n.t( "show_hidden_content" )}
-              </button>
-            )}
-          </div>
-        );
-      } else if ( !item.hidden || canSeeHidden ) {
-        if ( editing ) {
-          idBody = this.editItemForm( );
-        } else if ( item.body && item.body.length > 0 ) {
-          idBody = <UserText text={item.body} className="id_body" />;
-        }
+      if ( editing ) {
+        idBody = this.editItemForm( );
+      } else if ( item.body && item.body.length > 0 ) {
+        idBody = <UserText text={item.body} className="id_body" />;
       }
       contents = (
         <div className="identification">
@@ -323,78 +319,6 @@ class ActivityItem extends React.Component {
     let panelClass;
     const headerItems = [];
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
-    if ( item.hidden ) {
-      const moderatorAction = _.sortBy(
-        _.filter( item.moderator_actions, ma => ma.action === "hide" ),
-        ma => ma.id * -1
-      )[0];
-      const maUserLink = (
-        <a
-          href={`/people/${moderatorAction.user.login}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {`@${moderatorAction.user.login}`}
-        </a>
-      );
-      headerItems.push(
-        <OverlayTrigger
-          key={`hidden-tooltip-${item.uuid}`}
-          container={$( "#wrapper.bootstrap" ).get( 0 )}
-          placement="top"
-          trigger="click"
-          rootClose
-          delayShow={200}
-          overlay={(
-            <Popover
-              id={`hidden-${item.uuid}`}
-              className="unhide-popover"
-            >
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "content_hidden_by_user_on_date_because_reason_html", {
-                    user: ReactDOMServer.renderToString( maUserLink ),
-                    date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
-                    reason: ReactDOMServer.renderToString( <UserText text={moderatorAction.reason} className="inline" /> )
-                  } )
-                }}
-              />
-              <div className="upstacked text-muted">
-                <a
-                  href={`/${this.isID ? "identifications" : "comments"}/${item.uuid}/flags`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="linky"
-                >
-                  {I18n.t( "view_moderation_history" )}
-                </a>
-                {viewerIsActor && (
-                  <span>
-                    <br />
-                    <a
-                      href="/help"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="linky"
-                    >
-                      {I18n.t( "contact_support" )}
-                    </a>
-                  </span>
-                )}
-              </div>
-            </Popover>
-          )}
-        >
-          <span className="item-status hidden-status">
-            <i className="fa fa-eye-slash" title={I18n.t( "content_hidden" )} />
-            <span className="hidden-xs hidden-sm">
-              {" "}
-              {I18n.t( "content_hidden" )}
-            </span>
-          </span>
-        </OverlayTrigger>
-      );
-    }
     if ( unresolvedFlags.length > 0 ) {
       panelClass = "flagged";
       headerItems.push(
@@ -493,6 +417,16 @@ class ActivityItem extends React.Component {
           {" "}
           {I18n.t( "id_withdrawn" )}
         </span>
+      );
+    }
+    if ( item.hidden ) {
+      headerItems.push(
+        <HiddenContentMessageContainer
+          key={`hidden-tooltip-${item.uuid}`}
+          item={item}
+          itemType={this.isID ? "identifications" : "comments"}
+          shrinkOnNarrowDisplays
+        />
       );
     }
     let taxonChange;
@@ -597,35 +531,40 @@ class ActivityItem extends React.Component {
         );
       }
     }
+    const menu = hideMenu ? null : (
+      <ActivityItemMenu
+        item={item}
+        observation={observation}
+        onEdit={e => this.onEdit( e )}
+        editing={editing}
+        config={config}
+        deleteComment={deleteComment}
+        withdrawID={withdrawID}
+        restoreID={restoreID}
+        setFlaggingModalState={setFlaggingModalState}
+        linkTarget={linkTarget}
+        trustUser={trustUser}
+        untrustUser={untrustUser}
+        hideContent={hideContent}
+        unhideContent={unhideContent}
+      />
+    );
     return (
       <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
-        <div className="icon">
-          {( !item.hidden || canSeeHidden || viewerIsActor ) && (
-            <UserImage user={item.user} linkTarget={linkTarget} />
-          )}
-        </div>
-        <Panel className={`${panelClass} ${item.api_status ? "loading" : ""}`}>
+        { hideUserIcon ? null : (
+          <div className="icon">
+            {( !item.hidden || canSeeHidden || viewerIsActor ) && (
+              <UserImage user={item.user} linkTarget={linkTarget} />
+            )}
+          </div>
+        ) }
+        <Panel className={`${panelClass}${item.api_status ? " loading" : ""}${hideUserIcon ? " no-user-icon" : ""}`}>
           <Panel.Heading>
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
-              {headerItems}
+              { headerItems }
               { time }
-              <ActivityItemMenu
-                item={item}
-                observation={observation}
-                onEdit={e => this.onEdit( e )}
-                editing={editing}
-                config={config}
-                deleteComment={deleteComment}
-                withdrawID={withdrawID}
-                restoreID={restoreID}
-                setFlaggingModalState={setFlaggingModalState}
-                linkTarget={linkTarget}
-                trustUser={trustUser}
-                untrustUser={untrustUser}
-                hideContent={hideContent}
-                unhideContent={unhideContent}
-              />
+              { menu }
             </Panel.Title>
           </Panel.Heading>
           <Panel.Body>
@@ -656,9 +595,12 @@ ActivityItem.propTypes = {
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,
+  hideUserIcon: PropTypes.bool,
+  hideAgree: PropTypes.bool,
   hideCompare: PropTypes.bool,
   hideDisagreement: PropTypes.bool,
   hideCategory: PropTypes.bool,
+  hideMenu: PropTypes.bool,
   noTaxonLink: PropTypes.bool,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,

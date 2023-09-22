@@ -201,7 +201,7 @@ $.fn.universalAutocomplete = function( options ) {
           return;
         }
         $.ajax({
-          url: "<%= CONFIG.node_api_url %>/search",
+          url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/search",
           dataType: "json",
           cache: true,
           headers: headers,

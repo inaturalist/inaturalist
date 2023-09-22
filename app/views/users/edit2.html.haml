@@ -4,6 +4,7 @@
     var TIMEZONES = #{ ActiveSupport::TimeZone.all.map{|tz| { zic: tz.tzinfo.name, label: tz.to_s, value: tz.name } }.to_json.html_safe };
     var AUTH_PROVIDER_NAMES = #{ ProviderAuthorization::PROVIDER_NAMES.to_json.html_safe };
     var AUTH_PROVIDER_URLS = #{ ProviderAuthorization::AUTH_URLS.reject {|provider,url| %w(soundcloud yahoo twitter).include?( provider ) || ( provider =~ /google/ && !@site.google_oauth_allowed? )}.to_json.html_safe };
+    var TAXON_NAME_LEXICONS = #{ TaxonName.all_lexicons.to_json.html_safe };
   = javascript_include_tag "users-edit-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "users/edit"

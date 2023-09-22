@@ -185,17 +185,20 @@ module ApplicationHelper
       options
   end
 
-  def link_to_toggle_box(txt, options = {}, &block)
-    options[:class] ||= ''
-    options[:class] += ' togglelink'
-    if open = options.delete(:open)
-      options[:class] += ' open'
+  def link_to_toggle_box( txt, options = {}, &block )
+    options[:class] ||= ""
+    options[:class] += " togglelink"
+    options[:role] = "button"
+    options["aria-role"] = "button"
+    container_options = options.delete( :container_options ) || {}
+    if ( is_open = options.delete( :open ) )
+      options[:class] += " open"
     end
-    link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
-    hidden = content_tag(:div, capture(&block), :style => open ? nil : "display:none", :class => "togglebox")
-    content_tag :div, link + hidden
+    link = link_to_function( txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options )
+    hidden = content_tag( :div, capture( &block ), style: is_open ? nil : "display:none", class: "togglebox" )
+    content_tag :div, link + hidden, container_options
   end
-  
+
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]
     menu_id ||= options[:id].parameterize if options[:id]
@@ -1332,15 +1335,66 @@ module ApplicationHelper
     javascript_include_tag google_maps_loader_uri(libraries: libraries)
   end
 
+  def google_maps_async_js
+    # javascript for setting up functions to load Google Maps libraries asynchronously.
+    # This does not load the libraries, and they must be loaded on demand with e.g.
+    #   google.maps.importLibrary( "maps" ).then( ... )
+    #
+    # Multiple libraries need to be loaded separately, e.g:
+    #   google.maps.importLibrary( "maps" ).then( function ( ) {
+    #     return google.maps.importLibrary( "drawing" );
+    #   } ).then( function ( ) {
+    #     return google.maps.importLibrary( "geometry" );
+    #   } ).then( function ( ) {
+    #    return google.maps.importLibrary( "places" );
+    #   } ).then( function ( ) {
+    #     loadMap3( );
+    #     *** the code that creates and uses maps ***
+    #   } )
+
+    raw <<-HTML
+      <script type="text/javascript">
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",
+          m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,
+          e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{
+            await (a=m.createElement("script"));e.set("libraries",[...r]+"");
+            for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);
+              e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;
+            d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));
+            a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));
+          d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)
+          &&u().then(()=>d[l](f,...n))})({
+          key: "#{CONFIG.google.browser_api_key}",
+          v: "weekly"
+        });
+      </script>
+    HTML
+  end
+
   # https://developers.google.com/maps/documentation/javascript/url-params
   # https://developers.google.com/maps/documentation/javascript/libraries
   # https://developers.google.com/maps/documentation/javascript/versions
-  def google_maps_loader_uri(libraries: [])
+  def google_maps_loader_uri( libraries: [] )
     URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
       key: CONFIG.google.browser_api_key,
-      libraries: libraries.join(","),
+      libraries: libraries.join( "," ),
       v: "3.51",
+      language: I18n.locale,
+      region: cctld_from_locale( I18n.locale )
     }.to_query
+  end
+
+  # Mostly for Google API regions
+  def cctld_from_locale( locale )
+    # return "il" if locale.to_s == "he"
+    return if locale.to_s.split( "-" ).size < 2
+
+    region = locale.to_s.split( "-" ).last
+    case region
+    # There are a few exceptions to ISO 3166-1 / ccTLD mapping
+    when "gb" then "uk"
+    else region
+    end
   end
 
   def leaflet_js(options = {})
@@ -1496,15 +1550,6 @@ module ApplicationHelper
       ).strip, 
       length: 1000
     ).strip
-  end
-  
-  def branding_statement
-    I18n.t(
-      :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\">",
-      cas_tag_html: "<a href=\"https://calacademy.org\">California Academy of Sciences</a>",
-      nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
-    ).html_safe
   end
 
   def responsive?

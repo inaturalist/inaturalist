@@ -207,19 +207,9 @@ $( function( ) {
     DASHBOARD.closePanel( this, panelType );
   });
 
-  $( "[data-toggle=popover]" ).popover( );
-
   $( ".dashboard_tab" ).click( function( ) {
      $( ".dashboard_tab" ).removeClass( "active" );
      $( this ).addClass( "active" );
-  });
-
-  $( "html" ).on( "mouseup", function( e ) {
-    if ( !$( e.target ).closest( ".popover" ).length ) {
-      $( ".popover" ).each( function( ) {
-        $( this.previousSibling ).popover( "hide" );
-      });
-    }
   });
 
   $( "#forum-topics" ).on( "show.bs.collapse", function( e ) {

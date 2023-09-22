@@ -118,12 +118,10 @@ if (
   }
 }
 
-const threshold = Number( urlParams.get( "vision_threshold" ) );
-if ( threshold ) {
+const testFeature = urlParams.get( "test_feature" );
+if ( testFeature ) {
   store.dispatch( setConfig( {
-    visionThreshold: threshold,
-    visionThresholdType: urlParams.get( "vision_threshold_type" ) === "percentage"
-      ? "percentage" : "absolute"
+    testFeature: testFeature
   } ) );
 }
 
