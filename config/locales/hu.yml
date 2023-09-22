@@ -36,9 +36,9 @@ hu:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} életlista első"
+    one: "%{count} életmű első"
     #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} életlista első"
+    other: "%{count} életmű első"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> bejegyzés'
     other: '<span class="count">%{count}</span> bejegyzés'
@@ -1459,6 +1459,7 @@ hu:
   existing_flags: Létező bejelentések
   exit_full_screen: "Kilépés teljes képernyőből"
   examples_of_ranking_organizations: Példa besoroló szervezetekre
+  expected_nearby: A közelben előfordulhat
   explore: Felfedezés
   export: Exportálás
   export_observations: Megfigyelések exportálása
@@ -1540,7 +1541,7 @@ hu:
     Útmutató bejelentése: %{title}
   flag_for_identification_id_html: <a href="%{url}">%{id} meghatározás</a> bejelentése
   flag_for_life_list_title_html: |
-    Életlista bejelentése: %{title}
+    Életmű bejelentése: %{title}
   flag_for_list_title_html: |
     Lista bejelentése: %{title}
   flag_for_message_id_html: <a href="%{url}">%{id} üzenet</a> bejelentése
@@ -1614,6 +1615,9 @@ hu:
   generate_widget: Modul létrehozása
   generate_your_stats: Saját statisztika készítése
   Genus: Nemzetség
+  geomodel_expected_nearby_label_is_derived: |
+    "A közelben előfordulhat" megjelölés a Geomodellből származik.
+    <a href="%{url}">További információ a Geomodellről</a>
   geoprivacy: Pozíció láthatósága
   geoprivacy_is_obscured: A helymegjelenítés kitakart
   geoprivacy_is_obscured_desc: A megfigyelő úgy döntött, hogy kitakarja a koordinátákat.
@@ -1768,6 +1772,7 @@ hu:
   include_places: Helyek felvétele
   include_projects: Projekteket tartalmazza
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
+  include_suggestions_not_expected_nearby: A közelben nem valószínűsíthető taxonok megjelenítése
   include_taxa: Taxonok felvétele
   include_users: Felhasználók felvétele
   including: beleértve
@@ -1985,7 +1990,7 @@ hu:
   license: Licenc
   licensing: Engedélyezés
   life: Élet
-  life_list: "%{user} életlistája"
+  life_list: "%{user} életműve"
   linear_scale_label: Lineáris
   link: Hivatkozás
   #Text for a link that provides an example of how an application can send a
@@ -3257,12 +3262,12 @@ hu:
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} hírmondó</a> bejegyzései
   #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Hírmondód</a> bejegyzései
-  post_published: Bejegyzés közzétéve
+  post_published: Bejegyzés publikálva
   posted_by: 'Írta:'
   #Shows the date a journal post was published
-  posted_on_date_html: 'Közzétéve ekkor: %{date}'
+  posted_on_date_html: 'Publikálva ekkor: %{date}'
   #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
-  posted_on_date_by_user_html: 'Közzétéve %{user} által ekkor: %{date}'
+  posted_on_date_by_user_html: '%{user} publikálta ekkor: %{date}'
   posts: Bejegyzések
   potential_disagreement: Lehetséges konfliktus
   powered_by: 'Működteti:'
@@ -4344,7 +4349,7 @@ hu:
   view_all_photocount_photos: "%{photo_count} fotó megtekintése"
   view_check_list_page: Lista megjelenítése
   view_details: Részletek
-  view_dynamic_lifelist_: DINAMUKUS ÉLETFA MEGTEKINTÉSE
+  view_dynamic_lifelist_: DINAMUKUS ÉLETMŰ MEGTEKINTÉSE
   view_field_options: Mező beállítások
   view_flag: Bejelentés megtekintése
   view_flags: Bejelentések megjelenítése
@@ -4627,6 +4632,33 @@ hu:
         thank_you_for_being_a_monthly_supporter_caps: KÖSZÖNJÜK A RENDSZERES TÁMOGATÁSODAT!
       temporarily_unavailable: |
         Köszönjük, hogy támogatni szeretnéd az iNaturalistot! Az adományozást az iNaturalisthoz pillanatnyilag felfüggesztettük ameddig frissítjük az adományozó rendszerünket. Kérünk látogass vissza hamarosan.
+    geo_model:
+      explain:
+        nearby_map:
+          expected_nearby_map: Valószínűsíthető előfordulási térkép
+          we_use_this_map: |
+            E térkép, valamint a megfigyelés helye képezi az alapját "A közelben előfordulhat" megjelölésnek.
+          for_example: |
+            Például egy gyík megfigyelése az Egyesült Államok középső részén "A közelben előfordulhat" megjelöléssel dobhatja fel a <i>Sceloporus consobrinus</i> fajt, a <i>Sceloporus occidentalis</i> fajt viszont nem, a Valószínűsíthető előfordulási térképük szerint.
+          you_can_think: |
+            A Valószínűsíthető előfordulási térkép azt illusztrálja, hogy a faj nagy valószínűséggel előfordul-e a térképrácson belül, vagy nem.
+          figure_alt_text: A Geomodell hozza létre "A közelben előfordulhat" megjelöléseket.
+        range_comparison:
+          expected_nearby_vs_taxon_range: Valószínűsíthető előfordulás vs. taxonrégió
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Valós előfordulás
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Hamis előfordulás
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Pontosság:
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
     guides:
       index:
         deprecated_banner: |
@@ -4718,7 +4750,7 @@ hu:
           Biztos vagy benne? Ez megváltoztatja a lista MINDEN taxonjának honossági státuszát, amelyek e helyen belül léteznek. Sok munka mehet kárba.
     lists:
       edit:
-        lifelist_titles_cannot_be_changed: Az életlisták nevén nem lehet módosítani
+        lifelist_titles_cannot_be_changed: Az életmű nevén nem lehet módosítani
     messages:
       from: Feladó
       to: Címzett
@@ -4894,6 +4926,55 @@ hu:
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
+        quality_assessment_help2_html: |
+          <p>
+          Az adatminőségi kiértékelés a megfigyelés pontosságát összegzi. Minden megfigyelés <strong>"hobbiszintű"</strong>-ről indul, majd <strong>"meghatározásra vár"</strong>-ra vált, ha teljesülnek az alábbi feltételek:
+          </p>
+          <ul>
+          <li>a megfigyelésnek <strong>van dátuma</strong></li>
+          <li>a megfigyelésnek vannak <strong>helyi koordinátái</strong> (szélességi és hosszúsági kör)</li>
+          <li>a megfigyeléshez tartozik <strong>kép és/vagy hang</strong></li>
+          <li>a megfigyelés tárgya <strong>nem ember</strong></li>
+          </ul>
+          <p>
+          A megfigyelés <strong>"kutatási szintű"</strong>-re emelkedik, ha:
+          </p>
+          <ul>
+          <li>
+          az %{site_name} <strong>közössége egyetértésre jut faji szinten, vagy az alatt</strong>, vagy is ha a meghatározók több, mint kétharmada egyetért a taxonban. (Ha a közösség szerint a közösségi taxon nem javítható tovább, akkor a taxon alcsalád-szintűre vagy az alattira vált.
+          </li>
+          </ul>
+          <p>
+          A megfigyelés <strong>"hobbiszintű"</strong>-re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért a következőkben:
+          </p>
+          <ul>
+          <li>
+          a <strong>hely nem tűnik pontosnak</strong> (például majom van az ócián közepén, vagy víziló egy irodaközpontban)
+          </li>
+          <li>
+          az <strong>élőlény nem vadon vagy természetben fordul elő</strong> (például emberi kultiváció vagy fogvatartás eredménye)
+          </li>
+          <li>
+          a megfigyelés <strong>nem szolgál bizonyítékul az élőlényről</strong>, például az élőlényt nem tartalmazó képek vízfelszínről, sziklákról, tájakról.
+          </li>
+          <li>
+          a megfigyelés <strong>túl régi (100 évnél régebbi) bizonyítékkal szolgál</strong> (például fosszíliák, viszont elfogadhatóak nyomok, ürülék, száradt levél)
+          </li>
+          <li>
+          a megfigyelésnek már nincs szüksége meghatározásra <em>és</em> a közösségi meghatározás családszintű vagy afeletti
+          </li>
+          <li>
+          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi taxon nem a felmenője vagy gyermeke a megfigyelő által kiválasztott taxonnak
+          </li>
+          </ul>
+          <p>
+          Ha ez még mindig nem lenne elég bonyolult:
+          </p>
+          <ul>
+          <li>
+          Bizonyos esetekben a rendszer automatikusan "nem vadonélő" szavazattal látja el a megfigyelést, ha az adott nemzetségnek vagy az alatt van legalább 10 egyéb megfigyelése az adott régióban/államban/országban, és ezen megfigyelések legalább 80 százaléka nem vadonélőként van megjelölve.
+          </li>
+          </ul>
         score_desc: "pontszám = összesített szám / (összesített szám + egyetnemértések száma + felmenői egyetnemértések)"
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
