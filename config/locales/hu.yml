@@ -3753,6 +3753,7 @@ hu:
   source_wikipedia: "Forrás: Wikipedia"
   source_list_: "Forrás"
   source_list:
+    catalogue_of_life: Az élet katalógusa
     inaturalist: iNaturalist
     catalogue_of_life_2012_annual_checklist: 'Az élet katalógusa: 2012 évi lista'
     catalogue_of_life_2013_annual_checklist: 'Az élet katalógusa: 2013 évi lista'
@@ -4728,6 +4729,7 @@ hu:
       no_unobserved_species_in_place: 'Nem megfigyelt fajok itt: %{place}.'
       no_unobserved_species_within_this_taxon_in_place: 'Nincs megfigyelés nélküli faj e taxonon belül innen: %{place}'
       reset_place_filter: Helyszűrő visszaállítása
+      all_observations_in_this_taxon: E taxon minden megfigyelése
       observations_of_exactly_this_taxon: Pontosan e taxon megfigyelései
       focus_tree_on_this_taxon: A fa erre a taxonra fókuszáljon
       expand_all_nodes_in_this_branch: Ezen ágon belül minden elem kinyitása
@@ -4922,6 +4924,8 @@ hu:
           </p>
 
         cumulative_count_desc: 'A meghatározások száma az egyéni taxon szintjén és az alatt'
+        data_quality_assessment_desc3_html: |
+          Az adatminőségi értékelés összegzi egy iNaturalist-megfigyelés mint biodiverzitási adat pontosságát, teljességét, relevanciáját és megfelelőségét. Egyes tulajdonságok automatikusan meghatározhatók, míg mások az iNat-felhasználók szavazásához kötöttek. Az iNaturalist a licencelt "Tudományos szintű" megfigyeléseket több adatpartnerrel is megosztja tudományos és természetvédelmi célokra.
         disagreement_count_desc: "Azon meghatározási taxonok száma, amelyek a magasabb szintű taxonokon is kívül esnek"
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
