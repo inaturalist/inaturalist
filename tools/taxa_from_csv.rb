@@ -44,6 +44,7 @@ OPTS = Optimist.options do
   opt :source_id, "Source ID of source to use for these names these names", type: :integer, short: "-s"
   opt :lexicon_first, "Allow file to be of format sciname, lexicon, comname", type: :boolean
   opt :lexicon, "Lexicon that will override the lexicon in the file", type: :string, short: "-l"
+  opt :ancestor_taxon_id, "ID of taxon that is supposed to contain all these taxa", type: :integer, short: "-a"
 end
 
 start = Time.now
@@ -74,6 +75,14 @@ unless OPTS.source_id.blank?
     puts "Found source: #{@source}"
   else
     Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
+  end
+end
+
+unless OPTS.ancestor_taxon_id.blank?
+  if ( @ancestor_taxon = Taxon.find_by_id( OPTS.ancestor_taxon_id ) )
+    puts "Found ancestor taxon: #{@ancestor_taxon}"
+  else
+    Optimist::DIE "Couldn't find ancestor taxon: #{OPTS.ancestor_taxon_id}"
   end
 end
 
@@ -197,6 +206,11 @@ def import_taxa
         @errors << [sciname, "inactive taxon with no single active synonym"]
         next
       end
+    end
+
+    if @ancestor_taxon && !taxon&.ancestor_ids&.include?( @ancestor_taxon.id )
+      @errors << [sciname, "not in ancestor taxon: #{@ancestor_taxon}"]
+      next
     end
 
     if taxon
