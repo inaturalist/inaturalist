@@ -2014,6 +2014,7 @@ en:
   exit_full_screen: "Exit Full Screen"
   examples_of_data_use_by_network_members: Examples of Data Use by Network Members
   examples_of_ranking_organizations: Examples of Ranking Organizations
+  expected_nearby: Expected Nearby
   explore: Explore
   export: Export
   export_observations: Export Observations
@@ -2217,6 +2218,9 @@ en:
   generate_your_stats: Generate Your Stats
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
+  geomodel_expected_nearby_label_is_derived: |
+    The "Expected Nearby" label is derived from the Geomodel.
+    <a href="%{url}">Learn more about the Geomodel here</a>.
   geoprivacy: Geoprivacy
   geoprivacy_is_obscured: Geoprivacy is obscured
   geoprivacy_is_obscured_desc: Observer has chosen to obscure the coordinates.
@@ -2403,84 +2407,6 @@ en:
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
   inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
-  independence_email_subject: "Spreading Our Wings: iNaturalist is Now an Independent Nonprofit"
-  # Introductory line in an email. "Dear" doesn't have to be translated
-  # literally. Please just choose something that's conventional in your
-  # language.
-  independence_email_body_dear: Dear %{name},
-  independence_email_body_exciting_news: |
-    The iNaturalist team has exciting news! We’re pleased to share that thanks
-    to the support of this great community, iNaturalist is now operating as
-    an independent 501(c)(3) not-for-profit organization based in the United
-    States of America.
-  independence_email_body_since_launching: |
-    Since launching in 2008, the iNaturalist team and organization has
-    evolved, and we’re thrilled about this next milestone. iNaturalist began
-    as a master’s project at the University of California, Berkeley, became a
-    LLC, then joined the California Academy of Sciences in 2014. In 2017,
-    iNaturalist became a joint initiative with the California Academy of
-    Sciences and the National Geographic Society. Now, iNaturalist is an
-    independent organization.
-  independence_email_body_over_the_past: |
-    Over the past 15 years, the incredible contributions from the community
-    have made iNaturalist into one of the world’s most impactful nature
-    platforms.
-  independence_email_body_so_far: "So far, the iNaturalist community has:"
-  # Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Created over 146,000,000 verifiable observations (adding about 1 million per week!)
-  # Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Grown to 2.7 million contributors
-  # Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Observed more than 430,000 species
-  # Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Been cited more than 3,500 times
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    We thank the California Academy of Sciences and the National Geographic
-    Society for incubating iNaturalist as it grew dramatically over the last
-    9 years. We owe immense gratitude to these partners for their investment,
-    support, and stewardship. We look forward to collaborating with both
-    organizations in the future.
-  independence_email_body_the_way_html: |
-    <strong>The way you experience iNaturalist won’t change.</strong>
-    iNaturalist and Seek will continue to freely help you identify
-    biodiversity and build your own connection to the natural world. This new
-    organizational structure will enable us to support iNaturalist for years
-    to come as the iNaturalist community expands our collective knowledge of
-    biodiversity long into the future. We will continue partnering with
-    organizations around the world to support the iNaturalist Network.
-  independence_email_body_questions_html: |
-    You can <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">read
-    more on the blog</a> and check out the <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Frequently Asked
-    Questions</a> (in English). The <a
-    href="https://www.inaturalist.org/pages/terms">Terms of Use</a> and <a
-    href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a> have
-    been updated to reflect the new organization.
-  independence_email_body_thank_you: Thank you for being part of this community.
-  # Signature section of an email. "Onward" is a bit unconventional in
-  # English, so feel free to translate as "Sincerely" or whatever seems
-  # appropriate in your language. Note that these are proper names of people
-  # on iNat staff.
-  independence_email_body_signature_html: |
-    Onward,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Leadership Team</strong>
-  independence_email_body_ps: |
-    P.S. - Soon we will announce a generous grant that will give
-    independent iNaturalist a solid start. The financial support of the
-    iNaturalist community made our evolution possible and will be vital for
-    long-term sustainability. Your donation now will celebrate this exciting
-    milestone and further secure iNaturalist’s future. Thank you!
-  # Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now:
-    Donate now
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2548,6 +2474,7 @@ en:
   include_places: Include Places
   include_projects: Include Projects
   include_suggestions_not_seen_nearby: Include suggestions not seen nearby
+  include_suggestions_not_expected_nearby: Include suggestions not expected nearby
   include_taxa: Include Taxa
   include_users: Include Users
   including: including
@@ -6498,6 +6425,34 @@ en:
             tips on using %{site_name} with students.
     donate:
       donate_short_desc: "Donate now to show your support!"
+      donate_desc_moore_html: |
+        <p class="lead">
+          <strong>You can <u>double</u> or <u>triple</u> your gift! Thanks to the
+          Gordon and Betty Moore Foundation, all monthly, quarterly, and
+          annual recurring donations are tripled and one-time donations are
+          doubled through December 31, 2023.</strong>
+        </p>
+        <p class="lead">
+          iNaturalist is one of the world's largest communities dedicated to
+          biodiversity. Thank you for being part of it!
+        </p>
+        <p class="lead">
+          If you believe in the power of this global community of nature
+          lovers to share knowledge and generate irreplaceable biodiversity
+          data, please consider a one-time or recurring gift online, or
+          explore <a href="https://www.inaturalist.org/pages/giving">other
+          ways to give</a>.
+        </p>
+        <p class="lead">
+          Your donation is vital to iNaturalist as our community grows, from
+          improving our technology to accurately identify species and
+          implementing new features to supporting our servers and staff.
+        </p>
+        <p class="text-muted">
+          iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+          organization based in the United States of America (Tax ID:
+          92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
           <strong>iNaturalist is one of the world's largest communities dedicated to
@@ -6524,6 +6479,37 @@ en:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Become a Monthly Supporter of iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BECOME A MONTHLY SUPPORTER OF INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+            <strong>You can <u>triple</u> your gift! Thanks to the Gordon and Betty
+            Moore Foundation, all Monthly Supporter donations are
+            tripled through December 31, 2023.</strong>
+          </p>
+          <p class="lead">
+            iNaturalist is one of the world's largest communities dedicated to
+            exploring biodiversity. Thank you for being part of it!
+          </p>
+          <p class="lead">
+            If you love iNaturalist, please consider becoming a Monthly
+            Supporter. Recurring gifts help ensure that iNaturalist can
+            continue to scale our infrastructure and staff by providing
+            predictable revenue. And your monthly gift has triple the impact!
+            You can also opt to show your Monthly Supporter status on your
+            user profile.
+          </p>
+          <p class="lead">
+            Your charitable donations help support iNaturalist as the
+            community grows, from advancing computer vision and implementing
+            new features to supporting our servers and staff. You can also
+            give a <a href="%{donate_url}">one-time donation</a> and explore
+            <a href="https://www.inaturalist.org/pages/giving">other ways to
+            give</a>.
+          </p>
+          <p class="text-muted">
+            iNaturalist is an independent 501(c)(3), tax-exempt,
+            not-for-profit organization based in the United States of
+            America (Tax ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
             <strong>iNaturalist is one of the world's largest communities dedicated to
@@ -6564,6 +6550,108 @@ en:
           Please resolve <code>spam</code> and <code>copyright
           infringement</code> flags only if the content is not spam or not an
           infringement of copyright, respectively.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodel Predictions of %{taxon}
+        the_geo_model_makes_predictions: |
+          The Geomodel makes predictions about where species occur and where they are absent.
+          We use the Geomodel to apply the "Expected Nearby" label alongside suggestions and
+          to weight these suggestions based on the location of the observation.
+        the_geo_model_is_trained: |
+          Like the Computer Vision Model, the Geomodel is trained on iNaturalist observations
+          for the same set of species with roughly more than 100 photos. The Geomodel does not
+          make perfect predictions. You can read more about how the Geomodel is made
+          <a href="%{url}">here</a>.
+        nearby_map:
+          expected_nearby_map: Expected Nearby Map
+          we_use_this_map: |
+            We use this map to apply the Expected Nearby label to suggestions based on the
+            location of the observation.
+          for_example: |
+            For example, an observation of a lizard in the center of the United States might
+            have the Expected Nearby label applied to a suggestion of <i>Sceloporus consobrinus</i>
+            but not <i>Sceloporus occidentalis</i> based on their respective Expected Nearby Maps.
+          you_can_think: |
+            You can think of the Expected Nearby Map as an estimate of whether the species
+            is present somewhere inside the grid cell or entirely absent.
+          figure_alt_text: The Geomodel applies the Expected Nearby label
+        unthresholded_map:
+          unthresholded_map: Unthresholded Map
+          we_use_the_unthresholded_map: |
+            We use the Unthresholded Map to weight computer vision scores by location when
+            offering suggestions.
+          for_example: |
+            For example, an observation of a lizard in the center of the United States might
+            have the suggestions of <i>Sceloporus consobrinus</i> weighted more than suggestions
+            of <i>Sceloporus occidentalis</i> based on comparing the Unthresholded Maps, despite
+            being visually similar.
+          you_can_think: |
+            You can think of the Unthresholded Map as the relative probability that a species
+            occurs within a grid cell.
+          figure_alt_text: The Geomodel weights Computer Vision results
+        range_comparison:
+          expected_nearby_vs_taxon_range: Expected Nearby vs Taxon Range
+          this_map_shows: |
+            This map shows the Taxon Range for this species overlapping the Expected Nearby Map
+            that we use to evaluate the Geomodel.
+          this_gridded_version: |
+            This gridded version of the Taxon Range is a snapshot taken when the model was
+            trained and gridded at the same resolution as the Expected Nearby Map. We only
+            use the Taxon Ranges where at least 90% of the training data for that species
+            falls within the Taxon Range to control for errors in the Taxon Ranges.
+          by_combining: |
+            By combining the Expected Nearby Map to the Taxon Range, we calculate statistics
+            to estimate how well the Geomodel performs.
+          figure_alt_text: The Expected Nearby map and Taxon Range are compared
+          combining_these_maps_produces: |
+            Combining these maps produces 3 types of cells:
+          # Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            True Presences:
+          true_presences_definition: Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          # Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            False Presences:
+          false_presences_definition: Areas where only the Expected Nearby Map predicts the taxon exists
+          # Areas where only the Taxon Range is present
+          false_absences_colon: |
+            False Absences:
+          false_absences_definition: Areas where only the Taxon Range is present
+          evaluation_statistics_for_taxon: Evaluation statistics for %{taxon}
+          # The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precision:
+          precision_description: The fraction of the Expected Nearby Map that are True Presences
+          # Equation showing how we calculate precision of the Expected Nearby Map
+          # True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          # False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            True Presences / (True Presences + False Presences) = %{precision}
+          # The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Recall:
+          recall_description: The fraction of the Taxon Range that are True Presences
+          # Equation showing how we calculate recall of the Expected Nearby Map
+          # True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          # False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            True Presences / (True Presences + False Absences) = %{recall}
+          # The average (harmonic mean) of Precision (fraction of the Expected
+          # Nearby Map that are True Presences) and Recall (fraction of the
+          # Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: The average (harmonic mean) of Precision and Recall
+          # Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          # True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          # False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          # False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × True Presences / (2 × True Presences + False Presences + False Absences) = %{f1}
+          perfect_overlap: |
+            Perfect overlap would evaluate with a Precision, Recall and F1 of 1. No overlap
+            would evaluate with a Precision , Recall, and F1 of 0.
     guides:
       index:
         deprecated_banner: |
@@ -9338,11 +9426,10 @@ en:
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import for that Mushroom Observer user is running or is queued for import"
-              api_key_missing: "Mushroom Observer API key is missing"
+            user:
+              must_be_a_curator: must be a curator
         observation:
           attributes:
             base:

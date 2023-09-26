@@ -5,7 +5,7 @@
   = stylesheet_link_tag "projects/stats_slideshow"
   = stylesheet_link_tag "stats/search_slideshow"
   = javascript_include_tag 'i18n'
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
     SLIDESHOW_PARAMS = { created_d1: "2017-06-01", created_d2: "2017-06-12", verifiable: true };

@@ -50,7 +50,7 @@ CSV.foreach( ARGV[0], headers: headers ) do | line |
   end
 end
 
-inat_author_pattern = /kueda|alexinat|loarie|carrieseltzer|kroodsmad|REMOVED_USER|albullington|jtklein/
+inat_author_pattern = /kueda|alexinat|loarie|carrieseltzer|kroodsmad|REMOVED_USER|albullington|jtklein|inaturalist/
 
 ci_authors.keys.sort.each do | language |
   locale = locale_codes_by_name[language.parameterize]

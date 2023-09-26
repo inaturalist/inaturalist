@@ -400,6 +400,7 @@ fi:
   agree_: Samaa mieltä
   agree?: Samaa mieltä?
   agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
+  agree_with_observation_taxon: Hyväksy havaintotaksoni
   agreeing: Samaa mieltä...
   aka: tunnetaan myös nimellä
   #Noun, title of a popup alerting you to something
@@ -2021,13 +2022,6 @@ fi:
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
   inaturalist_global_year_in_review: "iNaturalistin %{year} vuosikatsaus"
-  independence_email_subject: "iNaturalist on nyt itsenäinen epäkaupallinen organisaatio"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Hyvä %{name},
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Lahjoita nyt
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -6733,10 +6727,10 @@ fi:
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_missing: "Mushroom Observer API-key puuttuu."
+            user:
+              must_be_a_curator: on oltava kuraattori
         observation:
           attributes:
             base:

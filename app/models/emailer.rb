@@ -141,15 +141,6 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def moimport_finished( mot, errors = {}, warnings = {} )
-    @user = mot.user
-    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
-    @errors = errors
-    @warnings = warnings
-    @exception = mot.exception
-    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
-  end
-
   def custom_email( user, subject, body )
     @user = user
     @subject = subject
@@ -277,22 +268,6 @@ class Emailer < ActionMailer::Base
         vow_or_con: @site.name[0].downcase,
         date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
       )
-    ) )
-    reset_locale
-  end
-
-  def independence( user )
-    return unless user&.confirmed?
-    return if user.prefers_no_email
-    return if user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
-    return if user.suspended?
-
-    @user = user
-    set_locale
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
-    mail_with_defaults( set_site_specific_opts.merge(
-      to: user.email,
-      subject: t( :independence_email_subject )
     ) )
     reset_locale
   end

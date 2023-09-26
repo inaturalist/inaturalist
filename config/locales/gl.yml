@@ -6620,11 +6620,6 @@ gl:
           attributes:
             user_id:
               must_be_a_curator: debe ser un conservador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "A importación para ese usuario Observador de Cogomelos está en curso ou en fila para ser importado."
-              api_key_missing: "Falta a chave API do Observador de Cogomelos"
         observation:
           attributes:
             base:

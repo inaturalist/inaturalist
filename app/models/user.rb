@@ -403,7 +403,6 @@ class User < ApplicationRecord
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
   EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2023-09-06 12:00" )
-  STAFF_EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2023-08-01 12:00" )
 
   # Override of method from devise to implement some custom restrictions like
   # parent/child permission and gradual confirmation requirement rollout
@@ -412,9 +411,11 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
+    return true if anonymous?
+
     # Temporary state to allow existing users to sign in. Probably redundant
     # with the next grandparent exception
-    return true if confirmation_sent_at.blank? && Time.now < email_confirmation_requirement_datetime
+    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
 
     # Temporary state to allow existing users to sign in
     return true if allowed_unconfirmed_grace_period?
@@ -422,20 +423,17 @@ class User < ApplicationRecord
     super
   end
 
-  def email_confirmation_requirement_datetime
-    if email.to_s.ends_with? "@inaturalist.org"
-      STAFF_EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
-    else
-      EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
-    end
-  end
-
   def allowed_unconfirmed_grace_period?
-    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < email_confirmation_requirement_datetime
+    Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   def unconfirmed_grace_period_expired?
-    !confirmed? && created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= email_confirmation_requirement_datetime
+    Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      !confirmed? &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   # Devise override for message to show the user when they can't log in b/c

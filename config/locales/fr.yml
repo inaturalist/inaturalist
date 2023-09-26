@@ -1714,6 +1714,8 @@ fr:
     Nous vous avons envoyé un e-mail de confirmation le %{date}. Si vous ne l'avez pas reçu, voici ce que vous pouvez faire :
   email_conf_required_after_grace_period: |
     La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
+  email_conf_faq_html: |
+    Si vous avez des questions, merci de vous référer à ces <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Veuillez confirmer votre adresse e-mail%{link_end_tag}</strong>.
     Tous les utilisateurs doivent confirmer leur adresse e-mail d'ici le %{date}. Après cette date,
@@ -2142,6 +2144,10 @@ fr:
   #Notification when an identification has been deleted
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identification masquée
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identification non masquée
   #Notification when an identification has been updated
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
@@ -2149,56 +2155,6 @@ fr:
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   inaturalist_global_year_in_review: "Rétrospective de l'année %{year} de la communauté mondiale d'iNaturalist"
-  independence_email_subject: "Déployer nos ailes : iNaturalist devient indépendant"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: '%{name},'
-  independence_email_body_exciting_news: |
-    L'équipe d'iNaturalist a de bonnes nouvelles ! Nous avons le plaisir d'annoncer que, grâce au soutien de cette formidable communauté, iNaturalist est désormais un organisme sans but lucratif 501(c)(3) indépendant basé aux États-Unis.
-  independence_email_body_since_launching: |
-    Depuis le lancement d'iNaturalist en 2008, l'équipe et l'organisation ont évolué, et nous sommes ravis de franchir cette nouvelle étape. iNaturalist a d'abord été un projet de maîtrise à l'Université de Californie à Berkeley, puis est devenu une LLC avant de rejoindre la California Academy of Sciences en 2014. En 2017, iNaturalist est devenu une initiative conjointe de la California Academy of Sciences et de la National Geographic Society. Désormais, iNaturalist est une organisation indépendante.
-  independence_email_body_over_the_past: |
-    Au cours des 15 dernières années, les contributions incroyables de la communauté ont fait d'iNaturalist l'une des plateformes les plus influentes du monde dans le domaine de la nature.
-  independence_email_body_so_far: "Jusqu'à présent, la communauté iNaturalist a :"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Créé plus de 146 000 000 d'observations vérifiables (environ 1 million par semaine !)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Atteint 2,7 millions de contributeurs
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Observé 430 000 espèces
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    A été cité plus de 3 500 fois
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via le Système Mondial d'Information sur la Biodiversité (GBIF)</a>
-  independence_email_body_we_thank: |
-    Nous remercions la California Academy of Sciences et la National Geographic Society d'avoir permis à iNaturalist de se développer de manière spectaculaire au cours des 9 dernières années. Nous ressentons une immense gratitude envers ces partenaires pour leur engagement, leur appui et leur guidance. Nous nous réjouissons des collaborations que nous aurons avec ces deux organisations.
-  independence_email_body_the_way_html: |
-    <strong>La façon d'utiliser iNaturalist ne changera pas.</strong>
-    iNaturalist et Seek continueront à vous aider gratuitement à identifier la biodiversité et à resserrer les liens qui vous unissent avec le monde naturel. Cette nouvelle structure organisationnelle nous permettra de pérenniser iNaturalist pour les années à venir et permettra à la communauté iNaturalist de continuer encore longtemps à élargir nos connaissances collectives de la biodiversité. Nous continuerons à travailler en partenariat avec des organisations du monde entier pour porter le réseau iNaturalist.
-  independence_email_body_questions_html: |
-    Pour en savoir plus, nous vous invitons à vous reporter au <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">blog</a> et à consulter la <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Foire aux questions</a> (en anglais). Les <a
-    href="https://www.inaturalist.org/pages/terms">Conditions d'utilisation</a> et la <a
-    href="https://www.inaturalist.org/pages/privacy">Politique de confidentialité</a> ont été mises à jour pour refléter le nouveau statut de l'organisation.
-  independence_email_body_thank_you: Merci de faire partie de cette communauté.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Cordialement,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>L'équipe de direction d'iNaturalist</strong>
-  independence_email_body_ps: |
-    P.S. - Nous annoncerons bientôt une subvention généreuse qui permettra à l'organisme indépendant iNaturalist de prendre un départ sur des bases solides. Notre évolution n'aurait pas été possible sans le soutien financier de la communauté iNaturalist et cet appui restera vital pour la pérennité du projet. Faites un don maintenant pour célébrer avec nous l'étape que nous franchissons et pour assurer l'avenir d'iNaturalist. Merci !
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Faites un don maintenant
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -2706,7 +2662,7 @@ fr:
       all_observations: Toutes les observations
       every_publicly_visible_observation: Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist
       featured_observations: Notre sélection
-      gbif_network: Réseau SMIB
+      gbif_network: Réseau GBIF
       gbif_network_description2: Enregistrements provenant de musées et autres fournisseurs d'occurences distribués par le Système mondial d’information sur la biodiversité
       observations: Observations
       place_boundary: Limites géographiques du lieu
@@ -2786,6 +2742,10 @@ fr:
     <strong>uniquement visible par les superviseurs</strong> et <strong>les superviseurs ne peuvent pas visualiser
     leur propre historique</strong>, donc les notes sur une personne ne devraient jamais être visibles
     par cette personne.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Masquer
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Retirer la suspension
   moderator_note_desc: |
     Les notes du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
   #Person who executed a moderator action or flagged something
@@ -7421,6 +7381,9 @@ fr:
     taxon_changes:
       move_children_desc: |
         Les enfants du taxon saisi qui sont des genres ou plus gros seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc. seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
+      form:
+        move_children_desc2_html: |
+          Cocher cette case déplacera les enfants du taxon d'entrée vers le taxon cible pour les Échanges de Taxons et les Fusions de Taxons lorsque cette modification est validée. Si cela concerne un changement au niveau d'un genre ou inférieur, cela créera des Échanges de Taxons pour tous les descendants dont les noms doivent être modifiés. Par exemple, si vous échangez la famille Canidae par Dogidae, cela changera le parent du genre <i>Canis</i> de Canidae à Dogidae. Si vous échangez le genre <i>Canis</i> par le genre <i>Dogis</i>, cela créera et validera des échanges de taxons pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp. <i>lupus</i>. Cela peut créer beaucoup de confusion, alors utilisez-le avec précaution.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8003,9 +7966,11 @@ fr:
       AssessmentSection: Section d’évaluation
       Atlas: Atlas
       BlockedUser: Utilisateur bloqué
+      Comment: Commentaire
       CompleteSet: Ensemble complet
       #Noun
       Flag: Signalement
+      Identification: Identification
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -8017,6 +7982,7 @@ fr:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Application
+      Photo: Photo
       TaxonLink: Lien de taxon
     attributes:
       announcement:
@@ -8300,11 +8266,10 @@ fr:
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "L'importation des données de cet utilisateur de Mushroom Observer est en cours ou en attente d'importation"
-              api_key_missing: "La clé API de Mushroom Observer est manquante"
+            user:
+              must_be_a_curator: doit être un·e responsable de l’organisation
         observation:
           attributes:
             base:

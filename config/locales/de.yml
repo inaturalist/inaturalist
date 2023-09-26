@@ -405,6 +405,8 @@ de:
   #Noun, title of a popup alerting you to something
   alert: Hinweis
   all: Alle
+  #Title for a list of all 3rd party applications
+  all_applications: Alle Anwendungen
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
   all_life: Alle Lebensformen
@@ -2055,14 +2057,6 @@ de:
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   inaturalist_global_year_in_review: "Globaler Rückblick auf das iNaturalist-Jahr %{year}"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Liebe(r) %{name},
-  independence_email_body_ps: |
-    P.S. - Bald werden wir eine großzügige Förderung ankündigen, die iNaturalist einen soliden Start in die Unabhängigkeit geben wird. Die finanzielle Unterstützung der iNaturalist-Community ermöglichte unsere Entwicklung und wird für die langfristige Nachhaltigkeit von entscheidender Bedeutung sein. Deine Spende wird jetzt Teil dieses aufregenden Meilensteins sein und die Zukunft von iNaturalist weiter sichern. Vielen Dank!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Jetzt spenden
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -2443,6 +2437,7 @@ de:
     es: Spanisch
     es-AR: Spanisch (Argentinien)
     es-CO: Spanisch (Kolumbien)
+    es-CR: Spanisch (Costa Rica)
     es-MX: Spanisch (Mexiko)
     et: Estnisch
     eu: Baskisch
@@ -4186,7 +4181,7 @@ de:
   remove_section: Abschnitt entfernen
   remove_selected: Ausgewählte entfernen
   remove_tags: Stichwörter entfernen
-  removed: Entfernet
+  removed: Entfernt
   removed_project_user: Projektbenutzer entfernen
   removing: "Entferne…"
   reorder_by_taxonomy: Neuordnen nach Taxonomie
@@ -4832,7 +4827,7 @@ de:
   that_photo_doesnt_exist: Dieses Foto existiert nicht.
   that_observation_doesnt_exist: Diese Beobachtung existiert nicht.
   that_observation_doesnt_have_any_photos: "Diese Beobachtung hat keine Fotos."
-  that_observation_hasnt_been_added_this_project: Diese Beobachtung wurde nicht zu einem Projekt hinzugefügt.
+  that_observation_hasnt_been_added_this_project: Diese Beobachtung wurde nicht zu diesem Projekt hinzugefügt.
   that_observation_no_longer_exists: Diese Beobachtung existiert nicht mehr.
   that_project_doesnt_exist: "Dieses Projekt existiert nicht."
   that_role_doesnt_exist: Dieses Rolle existiert nicht.
@@ -5764,6 +5759,24 @@ de:
             Dann lies bitte unseren <a href="%{url}" >Lehrerenden-Guide</a> für Tipps zur Verwendung von %{site_name} mit Schülern.
     donate:
       donate_short_desc: "Spende jetzt um Deine Unterstützung zu zeigen!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kannst dein Geschenk <u>verdoppeln</u> oder <u>verdreifachen</u>! Dank der Gordon und Betty Moore Foundation werden alle monatlichen, vierteljährlichen und jährlich wiederkehrenden Spenden verdreifacht, und Einzelspenden werden bis zum 31. Dezember 2023 verdoppelt.</strong>
+        </p>
+        <p class="lead">
+        Naturalist ist eine der größten weltweiten Gemeinschaften, die sich der Artenvielfalt widmet. Vielen Dank, dass du dabei mitmachst!
+        </p>
+        <p class="lead">
+        Wenn du von der Notwendigkeit einer solchen globalen Community überzeugt bist, in welcher Naturliebhaber Wissen mit anderen teilen und unschätzbare Daten zur Biodiversität liefern, dann erwäge doch bitte eine einmalige oder regelmäßige Spende online, oder erkundige dich hier <a
+        href="https://www.inaturalist.org/pages/giving">nach anderen Möglichkeiten um zu spenden</a>.
+        </p>
+        <p class="lead">
+        Mit deiner Spende unterstützt du die immer größer werdende iNaturalist-Gemeinschaft, und ermöglichst z.B. eine verbesserte Technologie um Arten korrekt zu identifizieren, neue Features zu implementieren oder unsere Server und Mitarbeiter zu unterstützen.
+        </p>
+        <p class="text-muted">
+        iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+        organization based in the United States of America (Tax ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmen. Vielen Dank, dass du dabei mitmachst!</strong>
@@ -5783,6 +5796,24 @@ de:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WERDE EIN MONATLICHER UNTERSTÜTZER VON INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kannst dein Geschenk <u>verdreifachen</u>! Dank der Gordon und Betty Moore Foundation werden alle monatlich wiederkehrenden Spenden verdreifacht, mit dem Stichtag 31. Dezember 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmet. Vielen Dank, dass du dabei mitmachst!</strong>
+          </p>
+          <p class="lead">
+          Wenn du iNaturalist wertschätzt, bitte erwäge doch, ein monatlicher Unterstützer zu werden. Regelmäßige Spenden helfen dabei, sicherzustellen, dass iNaturalist durch ein kalkulierbares Einkommen weiterhin seine Infrastruktur und Mitarbeiter an das Wachsen der Seite anpassen kann. Und deine monatliche Spende hat die dreifache Wirkung! Du kannst auch auswählen, den 'monatlichen Unterstützer'-Status auf deinem Benutzer-Profil anzeigen zu lassen.
+          </p>
+          <p class="lead">
+          Mit deinen wohltätigen Spenden unterstützt du die immer größer werdende iNaturalist-Gemeinschaft, um z.B. eine verbesserte Computer Vision und neue Features zu implementieren oder unsere Server und Mitarbeiter zu unterstützen. Wenn du lieber einmalig spenden möchtest, bitte <a href="%{donate_url}">hier klicken</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist is an independent 501(c)(3), tax-exempt,
+          not-for-profit organization based in the United States of
+          America (Tax ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmen. Vielen Dank, dass du dabei mitmachst!</strong>
@@ -7789,11 +7820,10 @@ de:
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Der Import für diesen Benutzer von Mushroom Observer läuft oder ist für den Import in der Warteschlange"
-              api_key_missing: "Der Mushroom Observer API-Schlüssel fehlt"
+            user:
+              must_be_a_curator: muss ein:e Kurator:in sein
         observation:
           attributes:
             base:

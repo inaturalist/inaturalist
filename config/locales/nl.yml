@@ -423,6 +423,7 @@ nl:
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
   all_life: Alle leven
+  all_media_must_be_unhidden: Alle media moeten zichtbaar gemaakt worden
   all_names: Alle namen
   all_observations: Alle waarnemingen
   all_photos: Alle foto's
@@ -1747,6 +1748,8 @@ nl:
     E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
     je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
     om toegang te behouden tot je account.
+  email_conf_faq_html: |
+    Als u vragen heeft, raadpleeg dan deze <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
     Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
@@ -2123,6 +2126,14 @@ nl:
   #Verb, usually a button to hide an interface element
   hide: Verbergen
   hide_content: Inhoud verbergen
+  hide_desc: |
+    Het verbergen van inhoud zal deze uit de publieke weergave verwijderen, maar mensen zullen nog steeds
+    kunnen zien dat iets verborgen was, en de site curatoren en de auteur van
+    zal de inhoud nog steeds de verborgen inhoud kunnen zien. Verborgen
+    determinaties zullen niet bijdragen aan het gemeenschapstaxon van een waarneming.
+  hide_desc_staff_can_unhide: |
+    Alleen site-medewerkers kunnen inhoud zichtbaar maken zodra deze verborgen is, dus gebruik deze
+    alleen voor duidelijke schendingen van de Gemeenschapsrichtlijnen.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Verberg "Geen aantekening"
@@ -2188,77 +2199,6 @@ nl:
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
   inaturalist_global_year_in_review: "iNaturalist's %{year} Jaaroverzicht van de Wereld"
-  independence_email_subject: "We slaan onze vleugels uit: iNaturalist is nu een Onafhankelijke Nonprofit organisatie"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Beste %{name},
-  independence_email_body_exciting_news: |
-    Het iNaturalist team heeft opwindend nieuws! We zijn blij om mee te kunnen delen dat
-    dankzij de steun van deze geweldige gemeenschap iNaturalist vanaf nu werkt als
-    een onafhankelijke 501(c)(3) not-for-profit organisatie gevestigd in de Verenigde
-    Staten van Amerika.
-  independence_email_body_since_launching: |
-    Sinds de lancering in 2008 heeft het iNaturalist team en organisatie
-    zich ontwikkeld en we zijn blij over deze volgende mijlpaal. iNaturalist begon
-    als een master-project aan de Universiteit van Californië, Berkeley, werd een
-    LLC en trad vervolgens toe tot de California Academy of Sciences in 2014. In 2017 werd
-    iNaturalist een gezamenlijk initiatief van de California Academy of
-    Sciences en de National Geographic Society. Sinds vandaag is iNaturalist een
-    onafhankelijke organisatie.
-  independence_email_body_over_the_past: |
-    De afgelopen 15 jaar hebben de ongelooflijke bijdragen van de gemeenschap
-    ervoor gezorgd dat iNaturalist één van 's werelds meest impactvolle natuurplatforms is geworden.
-  independence_email_body_so_far: "Tot nu toe heeft de iNaturalist gemeenschap:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: meer dan 146.000.000 verifieerbare waarnemingen (er komen er ongeveer 1 miljoen per week bij!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: meer dan 2,7 miljoen deelnemers
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: meer dan 430.000 soorten waargenomen
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    meer dan 3.500 
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">bronvermeldingen in de Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    We zijn de 'California Academy of Sciences' en de 'National Geographic
-    Society' dankbaar voor het zijn van onze incubator in de afgelopen
-    9 jaar. iNaturalist groeide enorm in deze periode. We zijn deze partners enorm dankbaar voor hun investeringen,
-    steun en rentmeesterschap. We kijken ernaar uit om in de toekomst met beide organisaties van de
-    samen te werken.
-  independence_email_body_the_way_html: |
-    <strong>De manier waarop je iNaturalist ervaart zal niet veranderen.</strong>
-    iNaturalist en Seek zullen je vrij blijven helpen om
-    biodiversiteit te determineren en je eigen verbinding met de natuurlijke wereld te maken. Deze nieuwe
-    organisatiestructuur stelt ons in staat om iNaturalist voor de komende jaren
-    te ondersteunen, zodat de iNaturalist gemeenschap onze collectieve kennis van
-    biodiversiteit lang naar de toekomst kan uitbreiden. We zullen blijven samenwerken met
-    organisaties over de hele wereld om het iNaturalist netwerk te ondersteunen.
-  independence_email_body_questions_html: |
-    Je kunt <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit"> meer lezen op de blog</a> en de <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Veelgestelde Vragen</a> (in het Engels) bekijken. De <a
-    href="https://www.inaturalist.org/pages/terms">Gebruiksvoorwaarden</a> en <a
-    href="https://www.inaturalist.org/pages/privacy">Privacybeleid</a> zijn
-    bijgewerkt om de nieuwe organisatie weer te geven.
-  independence_email_body_thank_you: Bedankt dat jij deel uitmaakt van deze gemeenschap.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Met vriendelijke groet,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Bestuur</strong>
-  independence_email_body_ps: |
-    PS - Binnenkort zullen we een genereuze beurs ​​aankondigen die het onafhankelijk iNaturalist een solide start zal geven. De financiële steun van de iNaturalist-gemeenschap heeft onze ontwikkeling mogelijk gemaakt en zal van vitaal belang zijn voor
-    bestaanszekerheid op de lange termijn. Vier door jouw donatie nu deze opwindende mijlpaal en stel de toekomst van iNaturalist verder veilig. Bedankt!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Doneer nu
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |
     Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
@@ -2828,6 +2768,10 @@ nl:
     en markeringen van alles wat deze gebruiker heeft gemaakt behalve taxa. Dit is
     <strong>alleen zichtbaar voor curatoren</strong> en <strong>curatoren kunnen
     hun eigen geschiedenis niet inzien</strong>, notities over een persoon mogen dus nooit zichtbaar zijn voor die persoon.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Verbergen
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Haal schorsing weg
   moderator_note_desc: |
     Moderatornotities zijn records van moderatie antwoorden of op bewijs gebaseerde
     zorgen over een gebruiker, zoals of het een mogelijk sockpuppet
@@ -3527,8 +3471,12 @@ nl:
   photo_credits: Foto credits
   photo_deleted: Foto verwijderd
   photo_destroyed_because_it_was_deleted_from: "Foto vernietigd omdat het is verwijderd van de externe site of omdat\n%{site_name} geen toestemming meer heeft om het te bekijken"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto verborgen
   photo_licensing: Fotolicentie
   photo_type: Foto type
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto zichtbaar gemaakt
   photo_urls_repaired: Foto URL's hersteld
   photos_chosen_for_this_taxon: Foto's gekozen voor dit taxon
   photos_from: Foto's van
@@ -4584,6 +4532,8 @@ nl:
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
   show_more: Meer weergeven
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Toon meer aanmeldingsopties
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Toon "Geen aantekening"
@@ -7320,6 +7270,10 @@ nl:
         Kinderen van het input-taxon die genera of grover zijn, worden verplaatst naar 
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
         equivalenten met de nieuwe genus- of soortnaam.
+      form:
+        move_children_desc2_html: |
+          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
+          taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7834,9 +7788,11 @@ nl:
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
       BlockedUser: Geblokkeerde gebruiker
+      Comment: Reactie
       CompleteSet: Volledige set
       #Noun
       Flag: Melding
+      Identification: Determinatie
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7848,6 +7804,7 @@ nl:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Toepassing
+      Photo: Foto
       TaxonLink: Taxonlink
     attributes:
       announcement:
@@ -8129,11 +8086,10 @@ nl:
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import voor deze \"Mushroom Observer\"-gebruiker is in onderhanden of staat in de wachtrij voor import"
-              api_key_missing: "\"Mushroom Observer\" API-sleutel ontbreekt"
+            user:
+              must_be_a_curator: moet een curator zijn
         observation:
           attributes:
             base:

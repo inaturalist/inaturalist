@@ -478,6 +478,7 @@ ru:
   agree_: Согласен
   agree?: Согласны?
   agree_with_current_taxon: Согласен с текущим таксоном
+  agree_with_observation_taxon: Согласен с таксоном наблюдения
   agreeing: Соглашаемся...
   aka: ака
   #Noun, title of a popup alerting you to something
@@ -488,6 +489,7 @@ ru:
   all_comments: Все комментарии
   all_flags_must_be_resolved: Все флаги должны быть разрешены
   all_life: Вся жизнь
+  all_media_must_be_unhidden: Все медиафайлы должны быть доступны
   all_names: Все Имена
   all_observations: Все наблюдения
   all_photos: Все фото
@@ -1806,9 +1808,29 @@ ru:
   email_conf_required_after_grace_period: |
     Подтверждение электронной почты необходимо для %{requirement_date}, и вы не
     подтвердили ваш адрес электронной почты до истечения заданного времени. Пожалуйста, сбросьте пароль для доступа к вашей учетной записи.
+  email_conf_faq_html: |
+    Если у вас есть вопросы, обратитесь к <a href="%{url}">часто задаваемым вопросам</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Пожалуйста, подтвердите свой адрес электронной почты%{link_end_tag}</strong>.
     Все пользователи должны подтвердить свой адрес электронной почты до %{date}. После этой даты любой, кто не подтвердил свой адрес электронной почты, не сможет войти в систему, пока не сбросит свой пароль. Чтобы подтвердить свой адрес электронной почты, перейдите в %{link_start_tag}настройки своей учетной записи%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Подтвердите ваш адрес электронной почты для %{site_name} до %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Пожалуйста, подтвердите ваш адрес электронной почты сегодня, чтобы убедиться, что будет продолжен доступ к вашей учетной записи. %{site_name} и мобильные приложения
+    iNaturalist и Seek от iNaturalist объединяют людей между собой и с природой, предоставляя общий доступ к наблюдениям за биоразнообразием. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    Для всех учетных записей, начинающихся с %{requirement_date}, нам понадобится подтверждённый адрес электронной почты. Пожалуйста, подтвердите его сейчас.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Если у вас есть какие-либо вопросы, пожалуйста, обратитесь к разделу <a href="%{faq_url}">FAQs</a>. Спасибо за то, что находите время для общения с природой и с сайтом %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Параметры учетной записи
   email_copyright2: "&copy; %{year} iNaturalist, все права защищены"
   email_notifications: E-mail уведомления
   embed: 'Вставить на страницу'
@@ -2156,6 +2178,8 @@ ru:
   #Verb, usually a button to hide an interface element
   hide: Скрыть
   hide_content: Скрыть контент
+  hide_desc_staff_can_unhide: |
+    Только сотрудники сайта могут отобразить контент после того, как он был скрыт, поэтому используйте это только в случае явных нарушений правил сообщества.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не показывать данные, где "Нет значения"
@@ -2212,6 +2236,10 @@ ru:
   #Notification when an identification has been deleted
   identification_deleted: Идентификация удалена.
   identification_saved: "Идентификация сохранена!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Идентификация скрыта
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Идентификация открыта
   #Notification when an identification has been updated
   identification_updated: Идентификация обновлена!
   identification_user_short: Идент. пользователя
@@ -2219,54 +2247,6 @@ ru:
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   inaturalist_global_year_in_review: "Мировой обзор %{year} года iNaturalist"
-  independence_email_subject: "Расправляем крылья: iNaturalist теперь является независимой некоммерческой организацией"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Уважаемый %{name},
-  independence_email_body_exciting_news: |
-    У команды натуралистов есть потрясающие новости! Мы рады сообщить, что благодаря поддержке этого замечательного сообщества iNaturalist теперь работает как независимая некоммерческая организация 501(c)(3), базирующаяся в Соединенных Штатах Америки.
-  independence_email_body_since_launching: |
-    С момента запуска в 2008 году команда и организация iNaturalist эволюционировали, и мы в восторге от этой следующей вехи. iNaturalist начинал как магистерский проект в Калифорнийском университете в Беркли, стал ООО (LLC), затем в 2014 году присоединился к Калифорнийской академии наук. В 2017 году iNaturalist стал совместной инициативой Калифорнийской академии наук и Национального географического общества. Теперь iNaturalist - независимая организация.
-  independence_email_body_over_the_past: |
-    За последние 15 лет невероятный вклад сообщества превратил iNaturalist в одну из самых влиятельных платформ в мире в области природы.
-  independence_email_body_so_far: "На сегодня сообщество iNaturalist:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Создано более 146,000,000 проверяемых наблюдений (их число увеличивается примерно на 1 миллион в неделю!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Число участников сообщества выросло до 2,7 миллиона участников
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Имеются наблюдения более чем 430000 тысяч видов
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Было процитировано более 3500 раз <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">на сайте Глобального информационного центра по биоразнообразию (GBIF)</a>
-  independence_email_body_we_thank: |
-    Мы благодарим Калифорнийскую академию наук и Национальное географическое общество за поддержку проекта iNaturalist, что привело к значительному росту за последние 9 лет. Мы безмерно благодарны этим партнерам за их инвестиции, поддержку и руководство. Мы с нетерпением ожидаем сотрудничества с обеими организациями в будущем.
-  independence_email_body_the_way_html: |
-    <strong>То, как вы воспринимаете iNaturalist, не изменится.</strong> iNaturalist и Seek продолжат бесплатно помогать вам идентифицировать биологическое разнообразие и выстраивать вашу собственную связь с миром природы. Эта новая организационная структура позволит нам поддерживать iNaturalist в течение многих последующих лет, поскольку сообщество iNaturalist расширяет наши коллективные знания о биоразнообразии на долгие годы вперед. Мы продолжим сотрудничество с организациями по всему миру для поддержки сети iNaturalist.
-  independence_email_body_questions_html: |
-    Вы можете <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">читать больше в блоге</a> и просмотреть <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Часто задаваемые вопросы</a> (на английском языке). <a
-    href="https://www.inaturalist.org/pages/terms"> Условия предоставления услуг</a> и <a
-    href="https://www.inaturalist.org/pages/privacy">Политика конфиденциальности</a> была обновлена, чтобы отразить особенности новой оргвнизации.
-  independence_email_body_thank_you: Спасибо Вам за то, что вы являетесь частью этого сообщества.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Начиная с этого времени,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>команда лидеров iNaturalist</strong>
-  independence_email_body_ps: |
-    P.S. - Скоро мы объявим о щедром гранте, который даст независимому натуралисту солидный старт. Финансовая поддержка сообщества натуралистов сделала возможным наше развитие и будет иметь жизненно важное значение для долгосрочной устойчивости. Ваше пожертвование сейчас ознаменует эту захватывающую веху и еще больше обезопасит будущее iNaturalist. Спасибо!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Пожертвовать сейчас
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2655,6 +2635,7 @@ ru:
     es: Испанский
     es-AR: Испанский (Аргентина)
     es-CO: Испанский (Колумбия)
+    es-CR: Испанский (Коста-Рика)
     es-MX: Испанский (Мексика)
     et: Эстонский
     eu: Баскский
@@ -2841,6 +2822,10 @@ ru:
   moderation_history_for_user_html: История модерации %{user}
   moderation_history_desc_html: |
     Это включает в себя действия модератора (например, скрытие или отображение комментариев), заметки и флаги для всего, что создал этот пользователь, кроме таксонов. Это <strong>видно только кураторам</strong>, а <strong>кураторы не могут просматривать свою собственную историю</strong>, поэтому заметки о человеке никогда не должны быть видны этому человеку.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Скрыть
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Разблокировано
   moderator_note_desc: |
     Заметки модератора - это записи ответов модератора или основанные на фактических данных опасения по поводу пользователя, например, являются ли они возможной учетной записью бота. Пожалуйста, не включайте личные мнения или слухи о пользователе.
   #Person who executed a moderator action or flagged something
@@ -3515,8 +3500,12 @@ ru:
   photo_credits: Благодарности за фото
   photo_deleted: Фото удалено
   photo_destroyed_because_it_was_deleted_from: "Фото либо удалено с внешнего сайта, либо %{site_name} больше не имеет разрешения на его просмотр"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Фото скрыто
   photo_licensing: Лицензия фото
   photo_type: Тип фото
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Скрытое фото сделано доступным
   photo_urls_repaired: URL фото восстановлены
   photos_chosen_for_this_taxon: Фото, выбранные для этого таксона
   photos_from: Фото из
@@ -4574,6 +4563,8 @@ ru:
   show_keyboard_shortcuts: Показывать сочетания клавиш
   show_less: Показать меньше
   show_more: Показать больше
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Показать другие способы входа
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Показывать данные, где "Нет значения"
@@ -6008,6 +5999,25 @@ ru:
             Если так, ознакомьтесь с нашим <a href="%{url}">Руководством для преподавателя</a>, чтобы получить советы по использованию %{site_name} студентами.
     donate:
       donate_short_desc: "Пожертвуйте сейчас, чтобы показать свою поддержку!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Вы можете <u>удвоить</u> или <u>утроить</u> ваш подарок! Благодаря
+        фонду Гордона и Бетти Мур, все периодические ежемесячные, ежеквартальные и ежегодные донаты утраиваются, а одноразовые донаты удваиваются до 31 декабря 2023 года.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist - одно из крупнейших в мире сообществ, занимающихся вопросами биоразнообразия. Спасибо вам за то, что вы являетесь его частью!
+        </p>
+        <p class="lead">
+        Если вы верите в способность этого глобального сообщества любителей природы делиться знаниями и генерировать незаменимые данные о биоразнообразии, пожалуйста, подумайте о разовом или повторяющемся подарке онлайн или изучите<a href="https://www.inaturalist.org/pages/giving"> другие способы дарения</a>.
+        </p>
+        <p class="lead">
+        Ваше пожертвование жизненно важно для iNaturalist по мере роста нашего сообщества - от
+        совершенствования наших технологий для точной идентификации видов и
+        внедрения новых функций до поддержки наших серверов и персонала.
+        </p>
+        <p class="text-muted">
+        iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки (налоговый идентификационный номер: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо вам за то, что вы являетесь частью этого!</strong>
@@ -6026,6 +6036,28 @@ ru:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте ежемесячным спонсором iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: СТАНЬТЕ ЕЖЕМЕСЯЧНЫМ СПОНСОРОМ INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Вы можете <u>утроить</u> ваш подарок! Благодаря
+          фонду Гордона и Бетти Мур, все донаты ежемесячных жертвователей утраиваются до 31 декабря 2023 года.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist - один из крупненйших мировых сообществ по изучению биоразнообразия. Спасибо, что являетесь частью этого сообщества!
+          </p>
+          <p class="lead">
+          Если вам нравится iNaturalist, рассмотрите пожалуста возможность стать ежемесячным спонсором. Регулярные дарения помогут гарантировать, что iNaturalist сможет
+          продолжать расширять нашу инфраструктуру и штат сотрудников, обеспечивая
+          предсказуемый доход. И ваш ежемесячный подарок окажет тройное воздействие!
+          Вы также можете указать статус ежемесячного спонсора в своем профиле пользователя.
+          </p>
+          <p class="lead">
+          Ваши благотворительные пожертвования помогают поддерживать iNaturalist по
+          мере роста сообщества - от совершенствования компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала. Вы также можете сделать <a href="%{donate_url}">однократный взнос</a> другие 
+          <a href="https://www.inaturalist.org/pages/giving">способы дарения</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки (налоговый идентификационный номер: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо вам за то, что вы являетесь частью этого!</strong>
@@ -7250,6 +7282,10 @@ ru:
     taxon_changes:
       move_children_desc: |
         Потомки входного таксона, которые являются общими или более грубыми, будут перемещены на выход; виды, подвиды, разновидности и т. д. будут заменены на эквиваленты с новым названием рода или вида.
+      form:
+        move_children_desc2_html: |
+          Установка этой отметки переместит дочерние элементы входного таксона в выходной таксон при операциях замен и слияний таксонов, как только это изменение будет зафиксировано. Если это изменение произойдёт на уровне рода или ниже, это приведёт к замене таксонов для всех потомков с именами, которые необходимо изменить. Например, если вы замените семейство Canidae на Dogidae, это изменит родителя рода.
+          <i>Canis</i> от Canidae до Dogidae. Если вы замените род <i>Canis</i> на род <i>Dogis</i>, он создаст и зафиксирует замену таксонов, чтобы изменить <i>Canis lupus</i> на <i>Dogis lupus</i> и <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Это может привести к изрядному беспорядку, поэтому используйте с осторожностью.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7782,9 +7818,11 @@ ru:
       AssessmentSection: Раздел оценки
       Atlas: Атлас
       BlockedUser: Заблокированный пользователь
+      Comment: Комментарий
       CompleteSet: Полный набор
       #Noun
       Flag: Флаг
+      Identification: Идентификация
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7796,6 +7834,7 @@ ru:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Приложение
+      Photo: Фото
       TaxonLink: Ссылка на таксон
     attributes:
       announcement:
@@ -8095,11 +8134,10 @@ ru:
               staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
             user_id:
               must_be_a_curator: должен быть куратором
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Импорт ключей API или их ожидание в очереди на импорт"
-              api_key_missing: "Отсутствует ключ API Наблюдателя Грибов"
+            user:
+              must_be_a_curator: должен быть куратором
         observation:
           attributes:
             base:

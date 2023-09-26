@@ -1740,6 +1740,8 @@ pt-BR:
     Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
     confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
     para acessar sua conta.
+  email_conf_faq_html: |
+    Se tiver dúvidas, consulte estas <a href="%{url}">Perguntas Frequentes</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Por favor, confirme o seu endereço eletrônico %{link_end_tag}</strong>.
     Todos os usuários devem confirmar seu endereço eletrônico até %{date}. Depois dessa
@@ -2184,18 +2186,6 @@ pt-BR:
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   inaturalist_global_year_in_review: "O ano %{year} do iNaturalist global em revisão"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Prezado(a) %{name},
-  independence_email_body_ps: |
-    P.S. - Em breve anunciaremos uma generosa doação que proporcionará
-    um sólido começo para um iNaturalist independente. O apoio financeiro da
-    comunidade iNaturalist possibilitou nossa evolução e será vital para a nossa
-    sustentabilidade a longo prazo. Sua doação agora celebrará este emocionante
-    marco e vai garantir ainda mais o futuro do iNaturalist. Obrigado!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Doar agora
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -8102,11 +8092,6 @@ pt-BR:
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Importação para este usuário de Mushroom Observer está em execução ou está na fila para importar"
-              api_key_missing: "A chave do Mushroom Observer API está faltando"
         observation:
           attributes:
             base:

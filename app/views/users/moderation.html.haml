@@ -35,7 +35,6 @@
       %th=t :actions
   %tbody
     - for record in @records
-      - translated_resource_type = t( record.resource_type, scope: [:activerecord, :models], default: t( record.resource_type ) )
       %tr{ style: record.is_a?( Flag ) && record.resolved? ? "opacity: 0.5" : ""}
         %td.nobr
           %time.datetime{ datetime: record.created_at.iso8601, title: record.created_at.iso8601 }=l record.created_at, format: :long
@@ -54,6 +53,7 @@
                 = surround "[", "]" do
                   =t :resolved
           - elsif record.is_a?( ModeratorAction )
+            - translated_resource_type = t( record.resource_type, scope: [:activerecord, :models], default: t( record.resource_type ) )
             = surround "(", ")" do
               - if record.resource
                 = link_to translated_resource_type, record.resource

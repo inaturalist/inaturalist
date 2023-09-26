@@ -365,6 +365,7 @@ mr:
   agree_: सहमत
   agree?: सहमत ?
   agree_with_current_taxon: सध्याच्या वर्गाशी सहमती दर्शवा
+  agree_with_observation_taxon: निरीक्षण वर्गाशी सहमत
   agreeing: सहमती दर्शवत आहे...
   aka: उर्फ
   #Noun, title of a popup alerting you to something
@@ -570,6 +571,23 @@ mr:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     आम्ही आपल्याला %{date} रोजी पुष्टीकरण ईमेल पाठवले. आपल्याला जर ते मिळाले नसेल, तर आपण पुढील गोष्टी करू शकता:
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: तुमच्या %{site_name} ईमेल पत्त्याची %{date} पूर्वी खात्री करा #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    आपले खाते नियमित चालू ठेवण्यासाठी कृपया आजच आपल्या ईमेल पत्त्याची पुष्टी करा. %{site_name} आणि मोबाइल अॅप्स iNaturalist आणि Seek द्वारा iNaturalist च्यायोगे आपापसांत जैवविविधतेची निरीक्षणे शेअर करून लोकांना निसर्गाशी आणि परस्परांशी जोडतात. iNaturalist समुदायात सहभागी असल्याबद्दल धन्यवाद!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    आम्हाला सर्व खात्यांसाठी सत्यापित ईमेल पत्ते आवश्यक असतील सदर तारखेपासून %{requirement_date}. कृपया आपल्या खात्याची पुष्टी करण्यासाठी थोडासा वेळ काढा.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    आपल्याला काही प्रश्न असल्यास, कृपया पहा <a href="%{faq_url}">FAQ</a>. निसर्गासह आणि %{site_name} सह संपर्कात राहण्यासाठी वेळ दिल्याबद्दल धन्यवाद.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: अकाउंटची माहिती
   email_copyright2: "&copy; %{year} iNaturalist, सर्व हक्क राखीव"
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
@@ -600,8 +618,6 @@ mr:
   identify: ओळखा
   identifications: ओळखलेली निरीक्षणे
   inaturalist_global_year_in_review: "iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन"
-  independence_email_body_ps: |
-    ता.क. - लवकरच आम्ही एक भरीव अनुदान जाहीर करू ज्यायोगे स्वतंत्र iNaturalist ला एक सबळ सुरुवात मिळेल. iNaturalist समुदायाने दिलेल्या आर्थिक पाठबळामुळे आमची प्रगती शक्य झाली आहे आणि दीर्घकालीन वाटचालीसाठीही ती अत्यावश्यक असेल. आपले योगदान ह्या वाटचालीमध्ये मैलाचा दगड ठरेल आणि iNaturalist चे भविष्य आणखी सुरक्षित बनवेल. धन्यवाद!
   #As in a reason to flag something
   inappropriate: अयोग्य
   #Status of a complete set that is not available for general use on iNat, e.g.
@@ -625,6 +641,7 @@ mr:
     bikol: बिकोल
     carolinian: कॅरोलिनियन
     chuvash: चुवाश
+    esperanto: एस्पेरांतो
     fijian: फिजीयन
     georgian: जॉर्जियन
     gujarati: गुजराती
@@ -677,6 +694,7 @@ mr:
   lists: याद्या
   locales:
     en-GB: इंग्रजी (युके)
+    es-CR: स्पॅनिश (कोस्टा रिका)
     hr: क्रोएशिअन
     ka: जॉर्जियन
     mi: माओरी
@@ -811,6 +829,8 @@ mr:
   send_and_sign_out: पाठवा आणि साइन आउट करा
   send_confirmation_email: पुष्टीकरण ईमेल पाठवा
   share_caps: शेअर करा
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: अधिक लॉगिन पर्याय दाखवा
   sign_out: साइन आउट करा
   sign_up: साइन अप करा
   #@vow_or_con should work with %{site}

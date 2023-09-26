@@ -1,8 +1,26 @@
 ro:
+  x_journal_posts_html:
+    one: '<span class="număr">%{count}</span> postare jurnal'
+    few: '<span class="număr">%{count}</span> postări jurnal'
+    other: '<span class="număr">%{count}</span> postări jurnal'
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observat"
     few: "<span class='count'>%{count}</span>taxoni observați"
     other: "<span class='count'>%{count}</span> taxon observat"
+  _percent_ID_d: "% ID"
+  a_community_for_naturalist: O comunitate pentru naturaliști
+  a_default_taxon_name_will_automatically_created: |
+    Un nume implicit de taxon va fi creat automat din atributul științific al acestui taxon.
+    Când ai salvat acest taxon nou, vei putea adăuga alte nume aici (nume comune, nume științifice învechite etc.).
+  a_flag_for_x: "un steag pentru %{x}"
+  a_member_of_taxon_html: "un membru al %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A la Z"
+  about: Despre
+  about_charts: Despre Diagrame
+  about_places: Despre Locuri
+  agree_with_observation_taxon: De acord cu taxonul observat
   number:
     format:
       significant: false

@@ -139,7 +139,11 @@ eu:
   about_licenses: Lizentzien inguruan
   #Header for a section describing taxon names
   about_names: Izenei buruz
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place}-ri buruz"
   about_places: Tokiei buruz
+  about_the_network: Sare honi buruz
   about_this_bioblitz: Bioblitz honi buruz
   about_this_map: Mapa honi buruz
   about_this_project: Proiektu honi buruz
@@ -147,6 +151,12 @@ eu:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Zehaztasuna (metroak)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Zeh. ona
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Zeh. txarra
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Zeh. txarra edo ezezaguna
   account: Kontua
   account_creation: Kontua sortzea
   account_settings: Kontuaren ezarpenak
@@ -244,11 +254,14 @@ eu:
   add_life_stage_nymph_annotation: 'Gehitu "Bizi Aroa: Ninfa" oharra'
   add_life_stage_larva_annotation: 'Gehitu "Bizi Aroa: Larba" oharra'
   add_life_stage_egg_annotation: 'Gehitu: "Bizi aroa: Arrautza" oharra'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Gehitu harremana'
   #As in a Guide Section
   add_section: Gehitu atala
   add_several_observations_at_once: Hainbat ohar gehitu aldi berean
   add_sex_female_annotation: 'Gehitu: "Sexua: Emakumezkoa" oharra'
   add_sex_male_annotation: 'Gehitu: "Sexua: Gizonezkoa" oharra'
+  add_sex_cannot_be_determined_annotation: 'Gehitu "Sexua: ezin da zehaztu" oharra'
   add_some_now: Batzuk orain gehitu
   add_tag: Etiketa gehitu
   add_tags: Etiketak gehitu
@@ -2837,12 +2850,6 @@ eu:
         email: Posta
         name: Izena
         time_zone: Ordu-zona
-    errors:
-      models:
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_missing: "Onddoen Behatzailearen API gakoa galdu egin da"
   will_paginate:
     previous_label: "&#8592; Aurrekoa"
     next_label: "Hurrengoa &#8594;"

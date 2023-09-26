@@ -688,6 +688,9 @@ zh-TW:
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     因為我們估計這個變動會導致超過10個以上的意外分歧，<strong>我們建議您也提交一個包含 %{old_parent}的分類群更改，如從 %{old_parent}拆分出 %{new_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    因為我們估計這個改變會導致10個或更少的意外分歧，<strong>可能沒有必要提交涉及%{old_parent}的分類單元更改</strong>。
   become_a_donor_caps: 成為捐款者
   become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
@@ -1039,6 +1042,7 @@ zh-TW:
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    gall: 由寄生生物引發的植物組織變形生長
     molt: 蛻下的表皮或外骨骼
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
     organism: 整個或部分生物體
@@ -1151,6 +1155,12 @@ zh-TW:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     他們本身做了不良的示範。
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    若要申請成為網站的策展人，您必須持有帳號60天以上，且必須添加最少5個標記，還有，您必須為任意使用者「需要鑑定」的觀察記錄新增100筆以上的鑑定，包含您自己（您已經新增 %{num_idents} 筆鑑定）。當您已符合這些條件，回到此頁後您將能提交策展人申請。
+  curator_application_inelligible_error2: |
+    若要申請成為網站的策展人，您必須持有帳號60天以上，添加至少5個標記，以及必須為任意使用者「需要鑑定」的觀察記錄新增100筆以上的鑑定，包含您自己的觀察記錄。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: 策展人申請已提交
   #Header
@@ -1209,6 +1219,8 @@ zh-TW:
     若符合以下條件，您能申請成為策展人：
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     您在過去幾個月間持續新增鑑定和(或)上傳觀察紀錄，接下來也願意持續這麼做。
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    您必須藉由新增一些旗號標記，來展示您了解策展的流程。
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1350,6 +1362,7 @@ zh-TW:
     confirmations:
       confirmed: |
         已成功確認電子郵件地址。您現在可以登入此網站或行動端的 iNaturalist 及 Seek 應用程式。
+      send_instructions: "您將在幾分鐘後收到一封電子郵件，內有驗證帳號的步驟說明。"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1359,6 +1372,8 @@ zh-TW:
       unauthenticated: '您必須登入或是註冊才能繼續使用。'
       invalid: '無效的電子郵件或密碼。'
       invalid_token: '無效的認證安全碼。'
+      unconfirmed: |
+        請確認您的電子郵件，並點選郵件內附帶的連結，以驗證您的帳號。
       user:
         suspended: 您的帳號已被停用
     sessions:
@@ -1376,7 +1391,11 @@ zh-TW:
     registrations:
       destroyed: '再會！您的帳號已成功取消。我們希望很快能再與您相會。'
       signed_up: '歡迎！您已成功註冊。'
+      signed_up_but_inactive: "您已註冊成功，但由於您的帳號尚未啟用，我們暫時無法讓您登入。"
+      signed_up_but_locked: "您已註冊成功，但由於您的帳戶已被鎖定，我們無法讓您登入。"
+      signed_up_but_unconfirmed: "確認信件已送至您的電子郵件信箱，請點擊信件內連結以啟用您的帳號。"
       updated: '您已成功更新您的帳戶。'
+      updated_but_not_signed_in: "您已成功更新帳號資訊，但因為密碼變更，您需要重新登入。"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1392,6 +1411,9 @@ zh-TW:
   devise_confirmation_instructions_please_click: |
     請按此鏈結確認您的電子郵件地址：
   devise_confirmation_instructions_send_confirmation_email: 傳送確認電子郵件
+  devise_email_changed_you_requested: 您提交將 %{old_email} 改為 %{new_email} 。
+  devise_email_changed_you_will_receive: |
+    您將在新的信箱收到一封電子郵件來確認變更，但我們想從您的舊信箱通知您，以避免其他人在您不知情的情況下，透過您的帳號來嘗試更改您的帳號資訊。如果您沒有嘗試變更您的信箱位置，請將此信件立即轉寄到 help@inaturalist.org，以便我們進行調查。
   devise_reset_password_instructions_hello_email: 您好 %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您沒有要求重設密碼，請忽略這封 email。
@@ -1544,6 +1566,15 @@ zh-TW:
   email: 電子郵件
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
+  email_conf_banner_email_delivered_click_link: |
+    認證信已發送。請點開信件中的連結。
+  email_conf_banner_add_to_contacts_html: |
+    <strong>新增<code>%{email}</code>到您的聯絡人名單，並<a href="%{url}">請求另一封驗證信</a>。</strong> 如果您的信箱提供者封鎖了驗證信，這可能會讓他們相信您確實需要我們發送的這封電子郵件。
+  email_conf_banner_check_your_spam_folder_html: <strong>確認您的垃圾信件匣</strong>
+  email_conf_banner_contact_us_html: 仍然卡關了？寄郵件到 %{email} ，我們能幫助您解決。
+  email_conf_banner_please_click: |
+    請點擊按您信件中的鏈結，以確認您的電子郵件地址。
+  email_conf_banner_search_for_emails_html: <strong>從<code>%{email}</code>中搜尋郵件</strong>
   email_conf_required_after_grace_period: |
     從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
   email_confirmation_banner_html: |
@@ -2149,6 +2180,7 @@ zh-TW:
     davawenyo: Davawenyo 語
     dutch: 荷蘭語
     english: 英語
+    esperanto: 世界語
     estonian: 愛沙尼亞語
     faroese: 法羅文
     finnish: 芬蘭語
@@ -2268,6 +2300,7 @@ zh-TW:
     es: 西班牙語
     es-AR: 西班牙文 (阿根廷)
     es-CO: 西班牙文 (哥倫比亞)
+    es-CR: 西班牙文（哥斯大黎加）
     es-MX: 西班牙語 (墨西哥)
     et: 愛沙尼亞語
     eu: 巴斯克語
@@ -4036,6 +4069,7 @@ zh-TW:
   set_license: 設定許可協議
   settings: 設定
   share: 分享
+  share_caps: 分享
   share_colon: "分享："
   short_code_for_this_place: 此地點的簡短代碼，例如 US 用於代表美國
   short_or_abbreviated_title_for_display: 用於顯示在內容有限區域裡的簡短或縮寫標題。最多 10 個字元。
@@ -4045,6 +4079,8 @@ zh-TW:
   show_keyboard_shortcuts: 顯示鍵盤快捷鍵
   show_less: 顯示較少
   show_more: 顯示更多
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: 顯示更多登入選項
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: 顯示「沒有註記」
@@ -4320,6 +4356,8 @@ zh-TW:
   target_list_warning: "請記住，在你的行程期間和半徑範圍裡未觀察到在你的目標名錄中所涵蓋的任何物種，\n會被視為不出現紀錄。因此，讓你的目標名錄能精準反映出是您所嘗試發覺的物種集合，是非常重要的。如果你不打算發掘在你的目標名錄上、或在其中分類群內所涵蓋的物種，請將它移除。"
   task_deleted: 任務已刪除
   taxa: 物種分類
+  taxa_show_obs_photo_search_tip: |
+    小秘訣：如果您想從一個特定的觀察記錄選擇照片，在搜尋欄位輸入觀察記錄的ID
   taxa_with_unknown_relationships: 帶有未知關聯的分類
   taxa_info: 物種分類群訊息
   taxa_needing_curation: 物種分類群需要策展
@@ -4630,6 +4668,8 @@ zh-TW:
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer_caps: 最高紀錄之觀察者
   top_observers: 熱門觀察者
+  tos_privacy_guidelines_label: |
+    我同意<a href="/terms" target="_blank">使用條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
   total: 總計
   totals: 總計
   total_ids_on_input_taxon: "輸入分類群的所有 ID："
@@ -6030,6 +6070,7 @@ zh-TW:
           請指定添加至此專案的觀察之需求。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
+        project_banner: 專案的橫幅（PNG或JPG格式）
         project_banner_help: 選用的橫幅圖片。理想尺寸是 760 x 320 像素。
         project_details: 專案細節
         project_icon: 專案圖標（PNG、JPG、或 GIF 檔案）
@@ -6960,11 +7001,6 @@ zh-TW:
           attributes:
             user_id:
               must_be_a_curator: 必須是策展人
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Mushroom Observer 使用者匯入正在執行中或是等候匯入中"
-              api_key_missing: "缺少 Mushroom Observer 的 API 金鑰"
         observation:
           attributes:
             base:

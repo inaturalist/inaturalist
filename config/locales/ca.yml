@@ -394,6 +394,8 @@ ca:
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Tots
+  #Title for a list of all 3rd party applications
+  all_applications: Totes les aplicacions
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
   all_life: Tota la vida
@@ -1550,6 +1552,8 @@ ca:
   donate: DONAR
   donate_again_caps: DONEU DE NOU
   donate_again_today_caps: DONEU DE NOU, AVUI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Feu una donació a iNaturalist
   done: Fet
   dont_have_an_account_sign_up_html: No teniu un compte?<strong>Registreu-vos</strong>
   dont_use_double_quotes: No utilitzeu cometes dobles en cap altre lloc
@@ -2294,6 +2298,7 @@ ca:
     davawenyo: Davawenyo
     dutch: Holandès
     english: Anglès
+    esperanto: Esperanto
     estonian: Estonià
     faroese: Feroès
     finnish: Finès
@@ -7512,11 +7517,6 @@ ca:
               staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "La importació d'aquest usuari del 'Mushroom Observer' s'està realitzant o està en cua per a la importació"
-              api_key_missing: "Falta la clau API del 'Mushroom Observer'"
         observation:
           attributes:
             base:

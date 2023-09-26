@@ -52,23 +52,6 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-      it "should return a token for an unconfirmed user who never received a confirmation " \
-        "email before the requirement date" do
-        if Date.today <= User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
-          u = create :user,
-            email: google_response[:email],
-            confirmed_at: nil,
-            created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.week )
-          User.where( id: u.id ).update_all( confirmation_sent_at: nil )
-          u.reload
-          expect( u ).not_to be_confirmed
-          expect( u.confirmation_sent_at ).to be_blank
-          post :assertion, format: :json, params: assertion_params
-          expect( response ).to be_successful
-          expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
-        end
-      end
-
       it "should not return a token for an unconfirmed user who never received a confirmation " \
         "email after the requirement date" do
         if Date.today > User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
