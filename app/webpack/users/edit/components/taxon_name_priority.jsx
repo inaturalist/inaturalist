@@ -72,18 +72,29 @@ class TaxonNamePriority extends React.Component {
     }
     return connectDragSource( connectDropTarget(
       <div className={className}>
-        <span className="lexicon">{ lexicon }</span>
-        { taxonNamePriority.place && (
-          <span className="place">
-            { taxonNamePriority.place.display_name }
-          </span>
-        ) }
-        <button
-          type="button"
-          onClick={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
-        >
-          Delete
-        </button>
+        <div className="move-icons">
+          <div>
+            <span className="glyphicon glyphicon-triangle-top" />
+            <span className="glyphicon glyphicon-triangle-bottom" />
+          </div>
+        </div>
+        <div className="lexicon">
+          { lexicon }
+          { taxonNamePriority.place && (
+            <span className="place">
+              { taxonNamePriority.place.display_name }
+            </span>
+          ) }
+        </div>
+        <div className="delete-button">
+          <button
+            type="button"
+            className="btn btn-default"
+            onClick={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
+          >
+            { I18n.t( "delete" ) }
+          </button>
+        </div>
       </div>
     ) );
   }
