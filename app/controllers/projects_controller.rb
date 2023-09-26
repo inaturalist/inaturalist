@@ -823,7 +823,7 @@ class ProjectsController < ApplicationController
         year_months: {
           date_histogram: {
             field: "created_at",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM",
             keyed: true
           }
@@ -840,7 +840,7 @@ class ProjectsController < ApplicationController
         year_months: {
           date_histogram: {
             field: "created_at",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM",
             keyed: true
           },
