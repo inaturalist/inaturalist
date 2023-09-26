@@ -1029,6 +1029,21 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addPostgisLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
+google.maps.Map.prototype.addTaxonGeomodelLayer = function( options ) {
+  _.defaults( options, { validParams: [ "thresholded", "tile_size" ] });
+  return this.addPostgisLayerByEndpoint( "geomodel", options.taxon.id, options );
+};
+
+google.maps.Map.prototype.addTaxonGeomodelTaxonRangeLayer = function( options ) {
+  _.defaults( options, { validParams: [ "tile_size" ] });
+  return this.addPostgisLayerByEndpoint( "geomodel_taxon_range", options.taxon.id, options );
+};
+
+google.maps.Map.prototype.addTaxonGeomodelComparisonLayer = function( options ) {
+  _.defaults( options, { validParams: [ "tile_size" ] });
+  return this.addPostgisLayerByEndpoint( "geomodel_comparison", options.taxon.id, options );
+};
+
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
