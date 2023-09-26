@@ -2087,6 +2087,9 @@ ru:
   generate_your_stats: Сгенерировать вашу статистику
   generating_mobile_archive: "Генерация мобильного архива"
   Genus: Род
+  geomodel_expected_nearby_label_is_derived: |
+    Метка "Встречается поблизости" взята из Геомодели.
+    <a href="%{url}">Подробнее о Геомодели можно узнать здесь</a>.
   geoprivacy: Приватность местоположения
   geoprivacy_is_obscured: Информация о местоположении скрыта
   geoprivacy_is_obscured_desc: Наблюдатель решил скрыть координаты.
@@ -4518,7 +4521,7 @@ ru:
   see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_nearby: Увиденные поблизости
+  seen_nearby: Встречаются поблизости
   seen_one: Видели такое?
   select: Выбрать
   select_all: Выбрать все
@@ -6084,6 +6087,25 @@ ru:
         flags_that_should_not_be_resolved_desc_html: |
           Пожалуйста, снимайте флаги <code>spam</code> и <code>copyright
           infringement</code>, только если содержимое не является спамом или нарушением авторских прав, соответственно.
+    geo_model:
+      explain:
+        range_comparison:
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Присутствие истинно / (Присутствие истинно + Присутствие ложно) = %{precision}
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Присутствие истинно / (Присутствие истинно + Отсутствие ложно) = %{recall}
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 x Присутствие истинно / (2 x Присутствие истинно + Присутствие ложно + Отсутствие ложно) = %{f1}
     guides:
       index:
         deprecated_banner: |

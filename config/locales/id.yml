@@ -5809,20 +5809,25 @@ id:
           unthresholded_map: Peta Tanpa Ambang
         range_comparison:
           expected_nearby_vs_taxon_range: Terlihat Di Sekitar vs Jangkauan Takson
-          true_presences: Keberadaan Benar
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Keberadaan Benar:
-          false_presences: Keberadaan Salah
+          #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Keberadaan Salah:
-          false_absences: Ketidakberadaan Salah
+          #Areas where only the Taxon Range is present
           false_absences_colon: |
             Ketidakberadaan Salah:
           evaluation_statistics_for_taxon: Statistik evaluasi untuk %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Precision:
+          #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Recall:
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
           f1_colon: |
             F1:
           f1_description: Rata-rata (harmonik) Precision dan Recall

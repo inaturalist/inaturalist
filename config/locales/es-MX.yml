@@ -5891,6 +5891,13 @@ es-MX:
           marcado en el momento en que se creó la marca. Solo los curadores y el personal pueden ver esto. Sólo el personal puede ver esto para mensajes.
         flags_that_should_not_be_resolved_desc_html: |
           Por favor resolver advertencias de <code>spam</code> y <code>contravenciones de derechos de autor</code> solamente si el contenido no es spam o no es una contravención de los derechos de autor, respectivamente.
+    geo_model:
+      explain:
+        unthresholded_map:
+          unthresholded_map: Mapa sin umbral
+          we_use_the_unthresholded_map: |
+            Utilizamos el Mapa sin umbral para dar peso a las puntuaciones de visión de computadora por ubicación para
+            ofrecer sugerencias.
     guides:
       index:
         deprecated_banner: |

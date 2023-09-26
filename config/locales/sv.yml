@@ -1852,6 +1852,7 @@ sv:
   exit_full_screen: "Avsluta helskärmsläge"
   examples_of_data_use_by_network_members: Exempel på dataanvändning av Nätverksmedlemmar
   examples_of_ranking_organizations: Exempel på hotbedömande organisationer
+  expected_nearby: Förväntad i närheten
   explore: Utforska
   export: Exportera
   export_observations: Exportera fynd
@@ -2049,6 +2050,9 @@ sv:
   generate_your_stats: Generera din statistik
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
+  geomodel_expected_nearby_label_is_derived: |
+    Etiketten "Förväntad i närheten" härstammar från Geomodellen.
+    <a href="%{url}">Lär dig mer om Geomodellen här</a>.
   geoprivacy: Koordinatsekretess
   geoprivacy_is_obscured: Koordinatsekretess är diffuserad
   geoprivacy_is_obscured_desc: Observatören har valt att diffusera koordinaterna.
@@ -2289,6 +2293,7 @@ sv:
   include_places: Inkludera fyndplatser
   include_projects: Inkludera projekt
   include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
+  include_suggestions_not_expected_nearby: Inkludera förslag som inte förväntas i närheten
   include_taxa: Inkludera taxa
   include_users: Inkludera användare
   including: inklusive
@@ -6131,6 +6136,107 @@ sv:
           Det innehåll som kan flaggas är det primära textattributet för det flaggade objektet när flaggan skapades. Endast förvaltare och personal kan se detta. Endast personal kan se detta för meddelanden.
         flags_that_should_not_be_resolved_desc_html: |
           Vänligen fixa endast <code>spam-</code> och <code>upphovsrättsintrångs</code>flaggor om innehållet faktiskt inte är spam eller verkligen inte ett intrång på upphovsrätten.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodellens förutsägelser av %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodellen gör förutsägelser om var arter förekommer och var de saknas.
+          Vi använder Geomodellen för att sätta etiketten "Förväntad i närheten" tillsammans med förslag och
+          för att vikta dessa förslag baserat på fyndplatsen.
+        the_geo_model_is_trained: |
+          Liksom Bildigenkänningsmodellen, är Geomodellen tränad på iNaturalist-fynd
+          för samma uppsättning arter med lite mer än 100 bilder. Geomodellen gör inte
+          perfekta förutsägelser. Du kan läsa mer om hur Geomodellen är gjord
+          <a href="%{url}">här</a>.
+        nearby_map:
+          expected_nearby_map: Förväntad i närheten-karta
+          we_use_this_map: |
+            Vi använder denna karta för att sätta Förväntade i närheten-etiketten på förslag baserat på
+            fyndplatsen.
+          for_example: |
+            Till exempel kan ett fynd av en ödla i mitten av USA
+            ha Förväntad i närheten-etiketten satt på ett förslag av <i>Sceloporus consobrinus</i>
+            men inte <i>Sceloporus occidentalis</i> baserat på deras respektive Förväntad i näheten-kartor.
+          you_can_think: |
+            Du kan se på Förväntad i närheten-kartan som en bedömning av om arten
+            förekommer någonstans i en rutcell eller är helt frånvarande.
+          figure_alt_text: Geomodellen tillämpar Förväntad i närheten-etiketten
+        unthresholded_map:
+          unthresholded_map: Karta utan tröskelvärden
+          we_use_the_unthresholded_map: |
+            Vi använder Kartan utan tröskelvärden för att vikta bildigenkänningsvärden efter plats när
+            vi visar förslag.
+          for_example: |
+            Till exempel kan ett fynd av en ödla i mitten av USA få förslaget <i>Sceloporus
+            consobrinus</i> viktat mer än förslaget <i>Sceloporus occidentalis</i> baserat
+            på en jämförelse av Kartor utan tröskelvärde, trots att de är visuellt liknande.
+          you_can_think: |
+            Föreställ dig Karta utan tröskelvärden som den relativa sannolikheten att en art
+            förekommer i en rutcell.
+          figure_alt_text: Geomodellen viktar Bildigenkänningens resultat
+        range_comparison:
+          expected_nearby_vs_taxon_range: Förväntad i närheten vs Taxonutbredning
+          this_map_shows: |
+            Denna karta visar hur Taxonutbredningen för denna art överlappar Förväntad i närheten-kartan
+            som vi använder för att utvärdera Geomodellen.
+          this_gridded_version: |
+            Denna rutnätsversion av Taxonutbredningen är en ögonblicksbild tagen när modellen
+            var tränad och rutad med samma upplösning som Förväntad i närheten-kartan. Vi
+            använder bara Taxonutbredningar där minst 90% av träningsdata för den arten
+            faller inom Taxonutbredningen för att kontrollera för fel i Taxonutbredningar.
+          by_combining: |
+            Genom att kombinera Förväntad i närheten-kartan med Taxonutbredningen, kan vi
+            räkna ut statistik för att uppskatta hur väl Geomodellen presterar.
+          figure_alt_text: Förväntad i närheten-kartan och Taxonutbredning jämförs
+          combining_these_maps_produces: |
+            Kombinationen av dessa kartor ger 3 typer av celler:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Sann förekomst:
+          true_presences_definition: Områden där både Förväntad i närheten-kartan och Taxonutbredningen förutspår att ett taxon finns
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falsk förekomst:
+          false_presences_definition: Områden där endast Förväntad i närheten-kartan förutspår att ett taxon finns
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falsk avsaknad:
+          false_absences_definition: Områden där endast Taxonutbredningen finns
+          evaluation_statistics_for_taxon: Utvärderingsstatistik för %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Träffsäkerhet:
+          precision_description: Andelen av Förväntad i närheten-kartan som är Sann förekomst
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Sann förekomst / (Sann förekomst + Falsk förekomst) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Överensstämmelse:
+          recall_description: Andelen av Taxonutbredningen som är Sann förekomst
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Sann förekomst / (Sann förekomst + Falsk avsaknad) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: 'Medelvärdet (det harmoniska) av Precision och Överensstämmelse:'
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Sann förekomst / (2 × Sann förekomst + Falska förekomst + Falsk avsaknad) = %{f1}
+          perfect_overlap: |
+            Perfekt överlapp skulle resultera i 1 för Precision, Överensstämmelse och F1.
+            Inget överlapp skulle innebära 0 i Precision , Överensstämmelse, och F1.
     guides:
       index:
         deprecated_banner: |

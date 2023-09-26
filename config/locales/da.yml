@@ -185,7 +185,7 @@ da:
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
   about_trips_html: |
-    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din målliste, som du var i stand til at observere inden for søgeområdet og intervallet tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur' for at generere en tabel over tilstedeværende-fraværende registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
+    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværelse-fravær kriterium ved at føje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværelse-fravær data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt ifm. videnskabelige analyser såsom udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur føjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på mållisten, som kunne observeres inden for søgeområdet og intervallet tolkes som tilstedeværelse. Derimod tolkes arter, som ikke kunne observere, som fravær. Klik på 'Tabellér tilstedeværelse-fravær data fra tur' for at generere en tabel over tilstedeværelse-fravær registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Læs mere</a></p>
   about_trusting_projects: Om Tillid til Projekter
   about_trusting_projects_options_any: Alle dine observationer i dette projekt
   about_trusting_projects_options_any_desc: |-
@@ -1824,6 +1824,7 @@ da:
   exit_full_screen: "Afslut fuld skærm"
   examples_of_data_use_by_network_members: Eksempler på Dataanvendelse af netværksmedlemmer
   examples_of_ranking_organizations: Eksempler på naturbeskyttelsesorganisationer
+  expected_nearby: Forventet i nærheden
   explore: Udforsk
   export: Eksportér
   export_observations: Eksportér observationer
@@ -2022,6 +2023,9 @@ da:
   generate_your_stats: Generér dine statistikker
   generating_mobile_archive: "Genererer mobil arkiv"
   Genus: Slægt
+  geomodel_expected_nearby_label_is_derived: |
+    Etiketten "Forventet i nærheden" stammer fra Geomodellen.
+    <a href="%{url}">Læs mere om Geomodellen her</a>.
   geoprivacy: geofortrolighed
   geoprivacy_is_obscured: Geofortrolighed er sløret
   geoprivacy_is_obscured_desc: Observatør har valgt at sløre koordinaterne.
@@ -2248,6 +2252,7 @@ da:
   include_places: Inkludér steder
   include_projects: Inkludér projekter
   include_suggestions_not_seen_nearby: Medtag forslag for ikke set i nærheden
+  include_suggestions_not_expected_nearby: Medtag forslag ikke forventet i nærheden
   include_taxa: Inkludér taksa
   include_users: Inkludér brugere
   including: inklusiv
@@ -4858,8 +4863,8 @@ da:
   tags: Tags
   tags_are_a_way: 'Tags er en måde hvorpå du organisere dine observationer. Du kan for eksempel tagge alle dine tidevandssøer observationer med "tidevandssøer", for at gøre det nemmere at finde dem senere.'
   take_me_flickr!: Ja, før mig til Flickr!
-  target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt, at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
-  target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
+  target_list_alert: Sikker på, at du forsøgte at observere alle arter på mållisten? Husk, at alt indeholdt på din målliste, som ikke blev observeret, tolkes som fravær, så det er meget vigtigt, at mållisten nøjagtigt afspejler det sæt arter, der blev forsøgt registreret
+  target_list_warning: Husk, at alt dækket af mållisten, som ikke blev observeret inden for denne rejses radius og varighed, tolkes som et fravær. Det er meget vigtigt, at mållisten afspejler præcis de arter, som blev forsøgt observeret. Forsøgte du ikke at observere en art på din målliste, eller alle arter dækket af en gruppe på din målliste, så fjern den venligst.
   task_deleted: Opgave slettet
   taxa: Taksa
   taxa_show_obs_photo_search_tip: |
@@ -5334,7 +5339,7 @@ da:
   'true': 'Sandt'
   trending: Tendenser
   trends: Tendenser
-  trip_target_list_info: 'Dette er et ikke overlappende sæt af det groveste taxa på din målliste. Alle taksa repræsenteret af slørede observationer er ekskluderet.'
+  trip_target_list_info: 'Enhver art indeholdt på denne målliste, som ikke blev observeret inden for denne rejses radius og varighed, tolkes som fravær. <a href="/pages/trips">Læs mere</a>.'
   #Noun
   trust: Hav tillid til
   trusted: Betroet
@@ -6115,6 +6120,107 @@ da:
           Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
           markér kun hvis indholdet ikke er spam eller ikke er en krænkelse af
           ophavsret.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodelforudsigelser for %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodellen foretager forudsigelser om, hvor arter forekommer, og hvor de er fraværende.
+          Vi bruger Geomodellen til at tilføje etiketten "Forventet i nærheden" sammen med forslag, samt
+          til vægtning af disse forslag baseret på observationsplaceringen.
+        the_geo_model_is_trained: |
+          Som med Computervisionsmodellen, er Geomodellen trænet med iNaturalist-observationer
+          for det samme sæt arter med omkring 100 fotos. Geomodellen
+          foretager ikke perfekte forudsigelser. Læs evt. mere om, hvordan Geomodellen er lavet
+          <a href="%{url}">hér</a>.
+        nearby_map:
+          expected_nearby_map: Forventet i nærheden-kort
+          we_use_this_map: |
+            Vi bruger dette kort til at føje etiketten Forventede i nærheden til forslag baseret på
+            observationsplaceringen.
+          for_example: |
+            Eksempelvis kan en observation af et firben i central-USA 
+            have etiketten Forventet i nærheden føjet til et forslag af <i>Sceloporus consobrinus</i>,
+            men ikke <i>Sceloporus occidentalis</i>, baseret på deres respektive Forventet i nærheden-kort.
+          you_can_think: |
+            Man kan tænke på Forventet i nærheden-kortet som et skøn over, hvorvidt arten
+            er til stede et eller andet sted i gittercellen, eller er helt fraværende.
+          figure_alt_text: Geomodellen tilføjer etiketten Forventet i nærheden
+        unthresholded_map:
+          unthresholded_map: Uafgrænset-kort
+          we_use_the_unthresholded_map: |
+            Vi bruger Uafgrænset-kortet til at vægte computervisionsscorer efter placering, når
+            forslag tilbydes.
+          for_example: |
+            Eksempelvis kan en observation af et firben i central-USA måske
+            få forslaget <i>Sceloporus consobrinus</i> vægtet mere end forslaget
+            <i>Sceloporus occidentalis</i> baseret på sammenligning af Uafgrænset-kortene til trods for
+            visuel lighed.
+          you_can_think: |
+            Man kan tænke på det Uafgrænset-kortet som den relative sandsynlighed for, at en art
+            forekommer i en gittercelle.
+          figure_alt_text: Geomodellen vægter Computervisionsresultater
+        range_comparison:
+          expected_nearby_vs_taxon_range: Forventet i nærheden kontra Taksonudbredelse
+          this_map_shows: |
+            Dette kort viser Taksonudbredelsen for denne art overlapper det Uafgrænset-kort,
+            som vi bruger til at evaluere Geomodellen.
+          this_gridded_version: |
+            Gitterversionen af Taksonudbredelsen er et øjebliksbillede taget da modellen blev
+            trænet og gitteroverlejret i samme opløsning som Forventet i nærheden-kortet. Vi bruger kun
+            Taksonudbredelser, hvor mindst 90% af træningsdataene for den pågældende art
+            falder ind under Taksonudbredelse til at tjekke for fejl i Taksonudbredelser.
+          by_combining: |
+            Ved at kombinere Forventet i nærheden-kort til Taksonudbredelse, beregner vi statistik
+            for at vurdere, hvor god Geomodellens ydelse er.
+          figure_alt_text: Forventet i nærheden-kortet og Taksonudbredelse sammenlignes
+          combining_these_maps_produces: |
+            Kombination af disse kort producerer 3 typer af celler:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Sand tilstedeværelse:
+          true_presences_definition: Områder, hvor både Forventet i nærheden-kortet og Taksoudbredelsen forudser, at taksonen forefindes.
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falsk tilstedeværelse:
+          false_presences_definition: Områder, hvor kun Forventet i nærheden-kortet forudsiger, at taksonen forefindes
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falsk fravær:
+          false_absences_definition: Områder, hvor kun Taksonudbredelsen er til stede
+          evaluation_statistics_for_taxon: Evalueringsstatistik for %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Præcision:
+          precision_description: Den brøkdel af Forventet i nærheden-kortet, der er Sand tilstedeværelse
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Sand tilstedeværelse / (Sand tilstedeværelse + Falsk tilstedeværelse) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Sammenfaldsrate (Recall):
+          recall_description: Den brøkdel af Taksonudbredelsen, der er Sand tilstedeværelse
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Sand tilstedeværelse / (Sand tilstedeværelse + Falsk fravær) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Gennemsnittet (harmonisk middel) af Præcision og Sammenfaldsrate
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Sand tilstedeværelse / (2 × Sand tilstedeværelse + Falsk tilstedeværelse + Falsk fravær) = %{f1}
+          perfect_overlap: |
+            En perfekt overlapning ville modsvare en Præcision, Sammenfaldsrate og F1 på 1. Ingen overlapning ville modsvare en Præcision, Sammenfaldsrate og F1 på 0.
     guides:
       index:
         deprecated_banner: |

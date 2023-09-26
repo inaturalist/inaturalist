@@ -1799,6 +1799,7 @@ fr:
   exit_full_screen: "Sortir du mode plein écran"
   examples_of_data_use_by_network_members: Exemples d'utilisation des données par les membres du réseau
   examples_of_ranking_organizations: Exemples d’organisations de classement
+  expected_nearby: Présence attendue à proximité
   explore: Explorer
   export: Exporter
   export_observations: Exporter les observations
@@ -1995,6 +1996,9 @@ fr:
   generate_your_stats: Générer vos statistiques
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
+  geomodel_expected_nearby_label_is_derived: |
+    L'étiquette "Attendu à proximité" est dérivée du Geomodel.
+    <a href="%{url}">En savoir plus sur le Geomodel ici</a>.
   geoprivacy: Géoconfidentialité
   geoprivacy_is_obscured: La géoconfidentialité est masquée
   geoprivacy_is_obscured_desc: L'observateur a choisi de griser les coordonnées.
@@ -2214,6 +2218,7 @@ fr:
   include_places: Ajouter des lieux
   include_projects: Ajouter des projets
   include_suggestions_not_seen_nearby: Inclure les suggestions de taxons qui n'ont pas été observés à proximité
+  include_suggestions_not_expected_nearby: Inclure les taxons dont la présence n'est pas attendue à proximité
   include_taxa: Ajouter des taxons
   include_users: Ajouter des utilisateurs
   including: y compris
@@ -5895,6 +5900,26 @@ fr:
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
       donate_short_desc: "Faites un don maintenant pour montrer que vous nous soutenez  !"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Vous pouvez <u>doubler</u> ou <u>tripler</u> votre don ! Grâce à la
+        Gordon and Betty Moore Foundation, jusqu'au 31 décembre 2023, tous les dons récurrents mensuels, trimestriels et annuels sont triplés et les dons ponctuels sont doublés.
+        </strong>
+        </p>
+        <p class="lead">
+        iNaturalist est l'une des plus grandes communautés au monde consacrées à
+        l'exploration de la biodiversité. Merci d'en faire partie !
+        </p>
+        <p class="lead">
+        Si vous croyez en la capacité de cette communauté mondiale d'amoureux de la nature à échanger des connaissances et à générer des données irremplaçables sur la biodiversité, merci d'envisager de faire un don ponctuel ou récurrent en ligne, ou d'envisager les <a href="https://www.inaturalist.org/pages/giving">autres façons de
+        donner</a>.
+        </p>
+        <p class="lead">
+        La communauté grandit et votre don est vital pour iNaturalist. Il nous permet d'améliorer nos technologies pour identifier correctement les espèces et mettre en œuvre de nouvelles fonctionnalités, mais aussi de couvrir le coût de nos serveurs et du personnel.
+        </p>
+        <p class="text-muted">
+        iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts basée aux États-Unis d'Amérique (ID : 94-1156258).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist est l'une des plus grandes communautés au monde consacrées à
@@ -5917,6 +5942,21 @@ fr:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Devenir un soutien mensuel de iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: FAITES UN DON CHAQUE MOIS À INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Vous pouvez <u>tripler</u> votre don ! Grâce à la Gordon and Betty Moore Foundation, tous les dons mensuels sont triplés jusqu'au 31 décembre 2023.</strong>
+          </p>
+          <p class="lead">iNaturalist est une des plus grandes communautés du monde dédiées
+          à l’exploration de la biodiversité. Merci d'en faire partie !
+          </p>
+          <p class="lead">Si vous aimez iNaturalist, merci d'envisager de faire un don chaque mois. Les dons récurrents apportent des ressources prévisibles qui permettent à iNaturalist de continuer à agrandir son infrastructure et ses équipes. Et votre don mensuel a trois fois plus d'impact ! Vous pouvez également choisir d'afficher sur votre profil d’utilisateur que vous faites un don chaque mois.
+          </p>
+          <p class="lead">
+          La communauté grandit et vos dons aident à soutenir iNaturalist, du développement de la vision par ordinateur à nos serveurs et au personnel, en passant par la mise en œuvre de nouvelles fonctionnalités. Vous pouvez également faire un <a href="%{donate_url}">don ponctuel</a> et envisager d'<a href="https://www.inaturalist.org/pages/giving">autres façons de faire un don</a>..
+          </p>
+          <p class="text-muted">
+          iNaturalist est une organisation 501(c)(3) indépendante, sans but lucratif, exonérée d'impôts et basée aux États-Unis d’Amérique (ID : 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist est une des plus grandes communautés du monde dédiées
@@ -5944,6 +5984,89 @@ fr:
         flags_that_should_not_be_resolved_desc_html: |
           Veuillez résoudre les marques <code>spam</code> et <code>copyright
           infringement</code> uniquement si le contenu n’est pas du pourriel ou une violation de droit d’auteur, respectivement.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Prédictions du modèle géographique pour %{taxon}
+        the_geo_model_makes_predictions: |
+          Le modèle géographique réalise des prédictions concernant les lieux où les espèces sont présentes ou absentes. Nous l'utilisons pour appliquer l'étiquette « Présence attendue à proximité » aux suggestions et pour pondérer ces suggestions en fonction du lieu de l'observation.
+        the_geo_model_is_trained: |
+          Tout comme le modèle de vision par ordinateur, le modèle géographique est entraîné sur les observations d'iNaturalist avec le même ensemble d'espèces ayant plus d'une centaine de photos chacune. Le modèle géographique ne réalise pas des prédictions parfaites. Pour en savoir plus sur le fonctionnement du modèle géographique, c'est par <a href="%{url}">ici</a>.
+        nearby_map:
+          expected_nearby_map: Carte de présence attendue à proximité
+          we_use_this_map: |
+            Nous utilisons cette carte pour appliquer aux suggestions l'étiquette « Présence attendue à proximité », en fonction du lieu de l'observation.
+          for_example: |
+            Par exemple, si un lézard est observé au centre des États-Unis, l'étiquette « Présence attendue à proximité » pourrait être appliquée à la suggestion <i>Sceloporus consobrinus</i>, mais pas à <i>Sceloporus occidentalis</i> sur la base de leur carte respective de présence attendue à proximité.
+          you_can_think: |
+            Vous pouvez considérer la carte de présence attendue à proximité comme une estimation de la présence ou de l'absence complète de l'espèce à l'intérieur de chaque cellule de la grille.
+          figure_alt_text: Le modèle géographique applique l'étiquette « Présence attendue à proximité »
+        unthresholded_map:
+          unthresholded_map: Carte non seuillée
+          we_use_the_unthresholded_map: |
+            Nous utilisons la carte non seuillée pour pondérer en fonction du lieu les scores de la vision par ordinateur avant d'offrir des suggestions.
+          for_example: |
+            Par exemple, si un lézard est observé au centre des États-Unis, la suggestion <i>Sceloporus consobrinus</i> pourrait obtenir une pondération supérieure à la suggestion <i>Sceloporus occidentalis</i> sur la base d'une comparaison de leur carte non seuillée respective, bien que tous deux soient visuellement similaires.
+          you_can_think: |
+            Vous pouvez considérer la carte non seuillée comme la probabilité relative qu'une espèce soit présente à l'intérieur d'une cellule de grille.
+          figure_alt_text: Le modèle géographique pondère les résultats de la vision par ordinateur.
+        range_comparison:
+          expected_nearby_vs_taxon_range: Présence attendue à proximité contre Aire de répartition du taxon
+          this_map_shows: |
+            Cette carte montre l'aire de répartition de cette espèce, qui se superpose à la carte de présence attendue à proximité que nous utilisons pour évaluer le modèle géographique.
+          this_gridded_version: |
+            Cette version en grille de l'aire de répartition est un instantané pris lors de l'entraînement du modèle et transposé sur la grille à la même résolution que la carte de présence attendue à proximité. Nous n'utilisons les aires de répartition que lorsqu'au moins 90 % des données d'entraînement pour l'espèce considérée sont à l'intérieur de l'aire de répartition, pour tenir compte des erreurs dans les aires de répartition.
+          by_combining: |
+            En combinant la carte de présence attendue à proximité et l'aire de répartition, nous calculons des statistiques pour estimer la performance du modèle géographique.
+          figure_alt_text: La carte de présence attendue à proximité et l'aire de répartition sont comparées
+          combining_these_maps_produces: |
+            La combinaison de ces cartes produit 3 types de cellules :
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Vraies présences :
+          true_presences_definition: Zones où la carte de présence attendue à proximité et l'aire de répartition prédisent la présence du taxon
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Fausses présences :
+          false_presences_definition: Zones où seule la carte de présence attendue à proximité prédit la présence du taxon
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Fausses absences :
+          false_absences_definition: Zones où seule l'aire de répartition prédit la présence du taxon
+          evaluation_statistics_for_taxon: Statistiques d'évaluation pour %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Précision :
+          precision_description: La proportion de la carte de présence attendue à proximité correspondant à des vraies présences
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Vraies présences / (vraies présences + fausses présences) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Rappel :
+          recall_description: La proportion de l'aire de répartition correspondant à des vraies présences
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Vraies présences / (vraies présences + fausses absences) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1 :
+          f1_description: La moyenne (moyenne harmonique) de la précision et du rappel
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × vraies présences / (2 × vraies présences + fausses présences + fausses absences) = %{f1}
+          perfect_overlap: |
+            Un chevauchement parfait serait évalué avec une précision, un rappel et un F1 de 1. Une absence totale de chevauchement
+            serait évaluée avec une précision, un rappel et un F1 de 0.
     guides:
       index:
         deprecated_banner: |

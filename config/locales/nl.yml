@@ -177,9 +177,9 @@ nl:
   #should work here
   about_place: "Over %{place}"
   about_places: Over plaatsen
-  about_taxon_ranges: Over taxonverspreidingen
+  about_taxon_ranges: Over de verspreidingen van het taxon
   about_taxon_ranges_desc: |
-    Taxonverspreiding geeft de globale verdeling van een taxon weer. Taxonverspreiding zijn
+    Taxonverspreidingsgebieden geven de globale verdeling van een taxon weer. Taxon verspreidingsgebieden zijn
     meestal afkomstig uit de IUCN Rode Lijst.
   about_the_network: Over het netwerk
   about_this_bioblitz: Over deze bioblitz
@@ -369,7 +369,7 @@ nl:
   add_tags_to_selected_taxa: Labels aan geselecteerde taxa toevoegen
   add_taxa: Taxa toevoegen
   add_taxon_batch_to: "Taxonbatch toevoegen aan %{list}"
-  add_taxon_range: Taxonreeks toevoegen
+  add_taxon_range: De verspreiding van een taxon toevoegen
   add_taxonomic_tags_to: "Voeg taxonomische tags toe aan de geselecteerde Flickr fotos &raquo;"
   add_to_a_scheme: Toevoegen aan een schema
   add_to_a_project: Aan een project toevoegen
@@ -1694,7 +1694,7 @@ nl:
   edit_taxon: Taxon bewerken
   edit_taxon_framework: Taxonkader bewerken
   edit_taxon_link: Taxon koppeling bewerken
-  edit_taxon_range: Taxonreeks bewerken
+  edit_taxon_range: Bewerk de verspreiding van een taxon
   edit_the_observation: Waarneming bewerken
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     Bewerk dit taxon nadat je het hebt aangemaakt om de natuurbeschermingsstatus toe te voegen
@@ -1720,7 +1720,7 @@ nl:
   editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
-  editing_taxon_range_for_taxon_html: Taxonverspreiding voor %{taxon} bewerken
+  editing_taxon_range_for_taxon_html: Bewerk de verspreiding van %{taxon}
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
@@ -1835,6 +1835,7 @@ nl:
   exit_full_screen: "Volledig Schermmodus Verlaten"
   examples_of_data_use_by_network_members: Voorbeelden van gebruik van gegevens door leden van het netwerk
   examples_of_ranking_organizations: Voorbeelden van organisaties die statussen vaststellen
+  expected_nearby: In de buurt verwacht
   explore: Verkennen
   export: Exporteren
   export_observations: Waarnemingen exporteren
@@ -2031,6 +2032,9 @@ nl:
   generate_your_stats: Genereer je statistieken
   generating_mobile_archive: "Genereren van het mobiele archief"
   Genus: Geslacht
+  geomodel_expected_nearby_label_is_derived: |
+    Het "In de buurt verwacht" label is afgeleid van het Geomodel.
+    <a href="%{url}">Meer informatie over het Geomodel</a>.
   geoprivacy: Geoprivacy
   geoprivacy_is_obscured: Geoprivacy is vervaagd
   geoprivacy_is_obscured_desc: Waarnemer heeft ervoor gekozen de coördinaten te vervagen.
@@ -2192,6 +2196,10 @@ nl:
   #Notification when an identification has been deleted
   identification_deleted: Determinatie verwijderd.
   identification_saved: "Determinatie opgeslagen!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Determinatie verborgen
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Determinatietekst weer tonen
   #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
   identification_user_short: Det. gebr.
@@ -2259,6 +2267,7 @@ nl:
   include_places: Inclusief de plaatsen
   include_projects: Inclusief de projecten
   include_suggestions_not_seen_nearby: Alle soorten
+  include_suggestions_not_expected_nearby: Voeg suggesties toe die niet in de buurt worden verwacht
   include_taxa: Inclusief de taxa
   include_users: Inclusief de gebruikers
   including: inclusief
@@ -2385,8 +2394,8 @@ nl:
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
-  learn_more: Lees meer
-  learn_more_raquo: "Leer meer &raquo;"
+  learn_more: Meer informatie
+  learn_more_raquo: "Meer informatie &raquo;"
   learn_what_these_licenses_mean: Leer meer over de betekenis van deze licenties
   least_concern: Niet bedreigd (veilig)
   leave: Verlaat
@@ -2974,7 +2983,7 @@ nl:
   new_taxon_change: Nieuwe Taxonwijziging
   new_taxon_link: Nieuwe taxon koppeling
   new_taxon_name_for: Nieuwe Taxon Naam voor
-  new_taxon_range: Nieuwe Taxonreeks
+  new_taxon_range: Nieuw verspreiding van een taxon
   new_taxonomic_change: Nieuwe Taxon Wijzinging (Concept)
   new_trip: Nieuwe route
   new_updates_in_the_last_24_hours_from: "Nieuwe updates op %{site_name} in de afgelopen 24 uur"
@@ -4919,7 +4928,7 @@ nl:
   taxon_change_title_taxon_stage: Taxonomische fase %{id}
   taxon_change_title_taxon_swap: Taxonomisch omwisselen %{id}
   taxon_deleted: Taxon verwijderd.
-  taxon_doesnt_have_a_range: Taxon heeft geen reeks
+  taxon_doesnt_have_a_range: Taxon heeft geen verspreidingsgebied
   taxon_drop: taxonverwijdering
   taxon_id: Taxon-ID
   taxon_ids: Taxon ID's
@@ -4950,9 +4959,9 @@ nl:
     <a href="%{url}">%{taxon}</a> waargenomen door
   taxon_observed_by_user: "%{taxon} waargenomen door %{user}"
   taxon_photos_updated: Taxon foto's bijgewerkt!
-  taxon_range: Taxon reeks
-  taxon_range_created_notice: Het taxon-bereik is succesvol gemaakt. Wacht een paar minuten voordat dit op de kaarten verschijnt.
-  taxon_range_for_taxon_html: Taxonverspreiding voor %{taxon}
+  taxon_range: Taxonverspreidingsgebied
+  taxon_range_created_notice: De de verspreiding van het taxon is succesvol gemaakt. Wacht een paar minuten voordat dit op de kaarten verschijnt.
+  taxon_range_for_taxon_html: Taxonverspreidingsgebied voor %{taxon}
   taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Is dit een verspreidingskaart van de IUCN Rode Lijst en zo niet waarom niet?
   taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Dit is een verspreidingskaart van de IUCN Rode Lijst
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Dit is geen verspreidingskaart van de IUCN Rode Lijst omdat die kaart niet geschikt is
@@ -4971,7 +4980,7 @@ nl:
   taxon_range_guidelines_please_provide_details: |
     Gebruik de beschrijving om uit te leggen hoe de kaart is afgeleid en link naar alle relevante vlaggen, taxonomische splitsingen of andere discussies of waarom de gepubliceerde IUCN Rode Lijst verspreiding moet worden gewijzigd.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Meer informatie over de verspreiding van het taxon
-  taxon_range_updated_notice: Het taxon-bereik is succesvol bijgewerkt. Wacht een paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
+  taxon_range_updated_notice: De verspreiding van het taxon is succesvol bijgewerkt. Wacht een paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
   taxon_ranks: Taxon Rangen
   taxon_removed_from_list: Taxon uit lijst verwijderd.
   taxon_scheme: Taxonschema
@@ -5978,6 +5987,24 @@ nl:
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Je kunt je gift nu <u>verdubbelen</u> of <u>verdriedubbelen</u>! Dankzij de
+        Gordon en Betty Moore Foundation worden alle maandelijkse, driemaandelijkse en
+        jaarlijkse terugkerende donaties verdrievoudigd en eenmalige donaties verdubbeld tot 31 december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist is een van 's werelds grootste gemeenschappen voor het ontdekken van de biodiversiteit. Bedankt dat u er deel van uitmaakt!
+        </p>
+        <p class="lead">
+        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of kijk op <a
+        href="https://www.inaturalist.org/pages/giving"> voor andere manieren om te geven</a>.
+        </p>
+        <p class="lead">
+        Met jouw donatie steun je iNaturalist en help je de gemeenschap te groeien, het verder ontwikkelen van geavanceerde technologie zoals het bevorderen van Computer Vision en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
+        </p>
+        <p class="text-muted">
+        iNaturalist is een onafhankelijke, 501(c)(3) tax-exempt not-for-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
@@ -5995,6 +6022,34 @@ nl:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WORD EEN MAANDELIJKSE SUPPORTER VAN INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Je kunt je gift nu <u>verdriedubbelen</u>! Dankzij de
+          Gordon en Betty Moore Foundation worden alle maandelijks terugkerende donaties verdrievoudigd tot 31 december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist is een van 's werelds grootste gemeenschappen voor het ontdekken van de biodiversiteit. Bedankt dat u er deel van uitmaakt!
+          </p>
+          <p class="lead">
+          Als je van iNaturalist houdt, overweeg dan om een maandelijkse
+          Supporter te worden. Terugkerende giften zorgen ervoor dat iNaturalist
+          door kan gaan met het opschalen van de infrastructuur en personeel door de 
+          voorspelbare inkomsten. En je maandelijkse cadeau heeft drievoudig de impact!
+          Je kan ook kiezen om je maandelijkse supporter status op je gebruikersprofiel te tonen.
+          </p>
+          <p class="lead">
+          Jouw charitatieve donaties helpen iNaturalist en de
+          groeiende gemeenschap, bijvoorbeeld door het verbeteren van computervisie of het implementeren van
+          nieuwe functies om onze servers en medewerkers te ondersteunen. U kunt ook
+          een <a href="%{donate_url}">eenmalige donatie doen</a> of
+          <a href="https://www.inaturalist.org/pages/giving">andere manieren verkennen om
+          </a>te geven.
+          </p>
+          <p class="text-muted">
+          iNaturalist is een onafhankelijke 501(c)(3), belastingvrijstelling,
+          non-profit organisatie gevestigd in de Verenigde Staten van
+          Amerika (Belasting-ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
@@ -6017,6 +6072,89 @@ nl:
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
         flags_that_should_not_be_resolved_desc_html: |
           Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodel voorspellingen voor %{taxon}
+        the_geo_model_makes_predictions: |
+          Het Geomodel maakt voorspellingen over waar soorten voorkomen en waar ze ontbreken.
+          Het Geomodel wordt gebruikt om de suggesties van Computer Vision te voorzien van het "In de buurt verwacht"-label en om deze suggesties te wegen op basis van de locatie van de waarneming.
+        the_geo_model_is_trained: |
+          Net zoals het Computer Vision Model is het Geomodel getraind op iNaturalist waarnemingen
+          voor dezelfde set soorten met grofweg meer dan 100 foto's. Het Geomodel maakt geen 
+          perfecte voorspellingen. Je kunt <a href="%{url}">hier</a> meer lezen over hoe de Geomodel is gemaakt.
+        nearby_map:
+          expected_nearby_map: '''In de buurt verwacht''-kaart'
+          we_use_this_map: |
+            We gebruiken deze kaart om het 'In de buurt verwacht'-label toe te passen op suggesties op basis van de
+            locatie van de waarneming.
+          for_example: |
+            Bijvoorbeeld een waarneming van een hagedis in het centrum van de Verenigde Staten van Amerika kan
+            het 'In de buurt verwacht'-label laten toepassen op een suggestie van <i>Sceloporus consobrinus</i>
+            maar niet <i>Sceloporus occidentalis</i> op basis van hun respectieve 'In de buurt verwacht'-lkaarten.
+          you_can_think: |
+            Je kunt de "In de buurt verwacht"-kaart zien als een schatting van of de soort
+            ergens in de rastercel aanwezig is of helemaal niet.
+          figure_alt_text: Het Geomodel past het 'In de buurt verwacht'-label toe
+        unthresholded_map:
+          unthresholded_map: Drempelloze kaart
+          we_use_the_unthresholded_map: |
+            We gebruiken de Drempelloze kaart om de computer visioning scores per locatie te wegen wanneer
+            suggesties worden aangeboden.
+          for_example: |
+            Bijvoorbeeld een waarneming van een hagedis in het centrum van de Verenigde Staten zou
+            de suggesties van <i>Sceloporus consobrinus</i> zwaarder hebben gewogen dan suggesties
+            van <i>Sceloporus occidentalis</i> op basis van het vergelijken met de Drempelloze Kaarten, ondanks het feit dat ze
+            visueel vergelijkbaar is.
+          you_can_think: |
+            Je kunt de Drempelloze Kaarten zien als de relatieve waarschijnlijkheid dat een soort
+            binnen een rastercel voorkomt.
+          figure_alt_text: Het Geomodel weegt de Computer Vision resultaten
+        range_comparison:
+          expected_nearby_vs_taxon_range: In de buurt verwacht versus de verspreiding van het taxon
+          this_map_shows: |
+            Deze kaart toont de verspreiding van het taxon voor deze soort samen met de overlap van de 'In de buurt verwacht'-kaart
+            die we gebruiken om het Geomodel te evalueren.
+          this_gridded_version: |
+            Deze gridkaart versie van de verspreiding van het taxon is een momentopname die genomen werd toen het model
+            getraind en gegrid werd op dezelfde resolutie als de "In de buurt verwacht"-kaart. We gebruiken alleen
+            de verspreiding van het taxon als ten minste 90% van de trainingsgegevens voor die soort
+            binnen de verspreiding van het taxon valt zodat we de fouten in de verspreiding van het taxon kunnen beheersen.
+          by_combining: |
+            Door het combineren van de "In de buurt verwacht"-kaart met het verspreiding van het taxon berekenen we statistieken
+            om te schatten hoe goed de prestaties van het Geomodel zijn.
+          figure_alt_text: De 'In de buurt verwacht'-kaart en het verspreiding van het taxon worden vergeleken
+          combining_these_maps_produces: |
+            Het combineren van deze kaarten levert 3 soorten cellen:
+          true_presences_definition: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het verspreiding van het taxon voorspelt dat het taxon voorkomt
+          false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
+          false_absences_definition: Gebieden waar alleen de verspreiding van het taxon aanwezig is
+          evaluation_statistics_for_taxon: Evaluatie statistieken van %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Nauwkeurigheid:
+          precision_description: Het deel van de 'In de buurt verwacht'-kaart dat True Presences zijn
+          recall_description: Het deel van de verspreiding van het taxon dat True Presences zijn
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Echt Aanwezig / (Echt Aanwezig+ Fout Afwezig) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Het gemiddelde (harmonische betekenis) van Precision en Recall.
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Echt Aanwezig / (2 × Echt Aanwezigen + Fout Aanwezigen + Fout Afwezigen) = %{f1}
+          perfect_overlap: |
+            Perfecte overlap zou een Precision, Recall en F1 van 1 opleveren. Geen overlap
+            levert een Precision , Recall en F1 van 0 op.
     guides:
       index:
         deprecated_banner: |
@@ -6596,7 +6734,7 @@ nl:
         subject: Vereisten voor projectwaarnemingen gewijzigd voor %{project}
         wondering_what_this_means_html: |
           Vraag je je af wat "geoprivacy" is?
-          <a href="%{url}">Lees meer in onze documentatie</a>.
+          <a href="%{url}">Meer informatie in onze documentatie</a>.
         you_can_change_html: |-
           Je kan jouw voorkeuren wijzigen of het project verlaten op de 
           <a href="%{url}">pagina van het project</a>.
