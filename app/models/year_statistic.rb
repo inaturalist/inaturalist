@@ -1759,24 +1759,31 @@ class YearStatistic < ApplicationRecord
     repos.each do | repo |
       page = 1
       loop do
-        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100"
-        puts "Getting #{url}"
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100&direction=desc"
+        puts "Getting #{url}" if options[:debug]
         pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
           JSON.parse( RestClient.get( url ) )
         end
-        page_pulls = ( pulls || [] ).select do | pull |
+        relevant_pulls = ( pulls || [] ).select do | pull |
           pull["merged_at"] &&
             !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
             # For some reason the MEMBER and COLLABOTOR filters don't always
             # filter out everyone on staff...
-            !%w(dependabot[bot] meru20 carrieseltzer sylvain-morin).include?( pull["user"]["login"] ) &&
-            Date.parse( pull["merged_at"] ).year == year
+            !%w(
+              albullington
+              budowski
+              carrieseltzer
+              dependabot[bot]
+              jtklein
+              meru20
+              sylvain-morin
+            ).include?( pull["user"]["login"] ) &&
+            ( merge_date = Date.parse( pull["merged_at"] ) ) &&
+            merge_date.year == year
         end
-        if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
-          break
-        end
+        break if relevant_pulls.blank? && !year_pulls.blank?
 
-        year_pulls += page_pulls
+        year_pulls += relevant_pulls
         page += 1
       end
     end
