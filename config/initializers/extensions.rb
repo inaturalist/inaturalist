@@ -42,9 +42,11 @@ class Array
   end
 
   def median
+    return nil if length.zero?
+
     sorted = dup.sort
     len = sorted.length
-    (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
+    ( sorted[( len - 1 ) / 2] + sorted[len / 2] ) / 2.0
   end
 end
 
