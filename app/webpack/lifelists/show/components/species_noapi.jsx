@@ -85,11 +85,11 @@ class SpeciesNoAPI extends Component {
             }
           };
           return (
-            <div className="result" key={`grid_taxon_${s.id}`}>
+            <div className="result d-flex" key={`grid_taxon_${s.id}`}>
               <TaxonThumbnail
+                className="flex-grow-1"
                 taxon={s}
                 config={config}
-                truncate={null}
                 height={210}
                 noInactive
                 onClick={onClick}

@@ -54,8 +54,13 @@ body {
   margin-bottom: 30px;
   border: 1px solid #ddd;
 }
+.grid .taxon-grid-cell {
+  width: 194px;
+  padding: 0px 10px;
+}
 .grid .thumbnail {
   position: relative;
+  width: 100%;
 }
 .grid .photo {
   display: block;
@@ -106,11 +111,18 @@ body {
   line-height: 110px;
   font-size: 60px;
 }
+.grid .observation-grid-cell {
+  padding: 0px 15px;
+  width: 245px;
+}
 @media (min-width: 768px) {
   .grid .photo {
     height: 157.5px;
     line-height: 140px;
     font-size: 90px;
+  }
+  #result-grid .caption .userimage {
+    top: 120px;
   }
 }
 @media (min-width: 992px) {
@@ -119,12 +131,30 @@ body {
     font-size: 135px;
     line-height: 200px;
   }
+  .grid .taxon-grid-cell {
+    width: 192px;
+  }
+  .grid .observation-grid-cell {
+    width: 242.5px;
+  }
+  #result-grid .caption .userimage {
+    top: 175px;
+  }
 }
 @media (min-width: 1200px) {
   .grid .photo {
     height: 262.5px;
     line-height: 240px;
     font-size: 180px;
+  }
+  .grid .taxon-grid-cell {
+    width: 232px;
+  }
+  .grid .observation-grid-cell {
+    width: 292.5px;
+  }
+  #result-grid .caption .userimage {
+    top: 225px;
   }
 }
 
@@ -134,33 +164,44 @@ body {
   font-size: 75px;
 }
 @media (min-width: 768px) {
-  .bootstrap-10 .grid .photo {
-    height: 128px;
-    line-height: 98px;
+  #taxa-grid.bootstrap-10 .grid {
+    .photo {
+      height: 128px;
+      line-height: 98px;
+    }
+    .photometa {
+      top: 98px;
+    }
   }
 }
 @media (min-width: 992px) {
-  .bootstrap-10 .grid .photo {
-    height: 172px;
-    line-height: 142px;
-    font-size: 112px;
-  }
-  .bootstrap .container {
-    width: 100%;
+  #taxa-grid.bootstrap-10 .grid {
+    .photo {
+      height: 172px;
+      line-height: 142px;
+      font-size: 112px;
+    }
+    .photometa {
+      top: 142px;
+    }
   }
 }
 @media (min-width: 1200px) {
-  .bootstrap-10 .grid .photo {
-    height: 212px;
-    line-height: 180px;
-    font-size: 112px;
+  #taxa-grid.bootstrap-10 .grid {
+    .photo {
+      height: 212px;
+      line-height: 180px;
+      font-size: 112px;
+    }
+    .photometa {
+      top: 182px;
+    }
   }
   .bootstrap .container {
     width: 1170px;
   }
 }
 .grid .caption {
-  height: 85px;
   padding: 12px;
 }
 .grid .title {
@@ -174,26 +215,16 @@ body {
   #stats-container .statcol .stat-title {
     font-size: 0.7em;
   }
-  .bootstrap .container {
-    width: 100%;
-  }
 }
 inat-taxon.split-taxon .display-name {
   font-weight: bold;
   display: block;
   font-size: 15px;
   color: black;
-  width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 inat-taxon.split-taxon .secondary-name {
   display: block;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 #result-grid inat-taxon.split-taxon .display-name {
@@ -201,17 +232,7 @@ inat-taxon.split-taxon .secondary-name {
   line-height: 22px;
 }
 #result-grid inat-taxon.split-taxon .has-com-name .secondary-name {
-  line-height: 24px;
-}
-#result-grid inat-taxon.split-taxon .no-com-name .display-name {
-  margin-bottom: 24px;
-}
-#result-table inat-taxon.split-taxon .secondary-name {
-  margin-bottom: 15px;
-}
-#result-table inat-taxon.split-taxon .no-com-name .display-name,
-#result-table inat-taxon.split-taxon .noname.display-name {
-  margin-bottom: 34px;
+  line-height: 22px;
 }
 inat-taxon.split-taxon .icon {display: none;}
 .bootstrap .userimage {
@@ -231,7 +252,7 @@ inat-taxon.split-taxon .icon {display: none;}
 #result-grid .userimage {
   position: absolute;
   inset-inline-end: 15px;
-  bottom: 65px;
+  top: 82px;
 }
 .bootstrap .userimage:hover,
 .bootstrap .userimage:active {opacity: 1; color: #eee;}
@@ -528,6 +549,7 @@ inat-taxon.split-taxon .icon {display: none;}
   overflow: hidden;
   font-size: 26px;
   line-height: 28px;
+  margin-left: 5px;
 }
 #obs-container .observation .userimage:hover {
   border-color: #74ac00;
@@ -566,49 +588,30 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #obs-container .media-left {
   padding: 0;
+  a {
+    outline: none;
+  }
 }
 #obs-container .media-body {
-  padding: 10px;
-}
-#obs-container #obs .media-body {
-  border-top: 1px solid #eee;
+  padding: 5px 10px 26px 10px;
+  border-top: 1px solid #eee
 }
 
-#obs-container inat-taxon.split-taxon .display-name,
-#obs-container inat-taxon.split-taxon .secondary-name {
-  width: 100%;
-}
 #obs-container .userimage {
   display: none;
 }
 
-@media (min-width: 768px) {
-  #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .secondary-name {
-    width: 60%;
-  }
-}
 @media (min-width: 992px) {
-  #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .secondary-name {
-    width: 75%;
-  }
   #obs-container .userimage {
     display: block;
   }
 }
-@media (min-width: 1200px) {
-  #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .secondary-name {
-    width: 80%;
-  }
+
+#obs-container .observation .meta {
+  clear: both;
+  position: absolute;
+  bottom: 7px;
 }
-
-
-#obs-container .observation .meta { clear: both;  }
-
-
-inat-taxon { white-space: nowrap; }
 
 .bootstrap label.sectionlabel {
   display: block;
@@ -858,7 +861,7 @@ inat-taxon { white-space: nowrap; }
   border: 10px solid #ddd;
   border-inline-end-width: 5px;
   border-inline-end-color: transparent;
-  inset-inline-end: -15px;
+  inset-inline-end: -14px;
   z-index: -1;
 }
 #obs-container .quality_grade {
@@ -893,10 +896,26 @@ inat-taxon { white-space: nowrap; }
   border-inline-end-color: transparent;
 }
 
-#result-table th.media {width: 5%;}
-#result-table td { padding: 10px; }
+#result-table th.media {
+ width: 5%;
+}
+#result-table th.name {
+  width: 100%;
+}
+#result-table th.added, #result-table th.observed {
+  min-width: 120px;
+}
+#result-table td {
+  padding: 10px;
+  position: relative;
+}
+#result-table td.taxon {
+  padding: 10px 10px 35px 10px;
+}
 #result-table {
   .meta {
+    position: absolute;
+    bottom: 10px;
     .icon-chatbubble {
       position: relative;
       top: -1.2px;
@@ -1062,12 +1081,8 @@ $photo-count-line-width: 1px;
   }
 }
 
-#taxa-grid .thumbnail { overflow: visible; }
 #taxa-grid .tooltip-inner { min-width: 200px; }
 #filters .tooltip-inner { white-space: nowrap; }
-#taxa-grid .grid .caption {
-  height: 60px;
-}
 #taxa-grid .corner {
   position: absolute;
   top: 0;
@@ -1099,7 +1114,7 @@ $photo-count-line-width: 1px;
 
 #taxa-grid .photometa {
   position: absolute;
-  bottom: 60px;
+  top: 182px;
   background-color: rgba(0,0,0,0.3);
   color: white;
   width: 100%;
@@ -1145,6 +1160,14 @@ $photo-count-line-width: 1px;
 }
 .bootstrap .infowindow {
   width: 360px;
+}
+#obs-container .infowindow .observation .media-body {
+  padding-top: 1px;
+  padding-bottom: 18px;
+  border-top: 0px;
+}
+#obs-container .infowindow .observation .meta {
+  bottom: 0px;
 }
 .infowindow.loading {
   text-align: center;

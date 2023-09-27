@@ -6,7 +6,6 @@
 .taxon.has-com-name {
   .secondary-name, .secondary-names {
     color: #aaa;
-    white-space: nowrap;
   }
 }
 
@@ -27,7 +26,7 @@
   &.parens .secondary-name:before,
   .secondary-names:before {
     content: '(';
-    display: inline-block;
+    display: contents;
   }
   .secondary-names .secondary-name:before,
   &.parens .secondary-names .secondary-name:before {
@@ -37,7 +36,7 @@
   &.parens .secondary-name:after,
   .secondary-names:after {
     content: ')';
-    display: inline-block;
+    display: contents;
   }
   .secondary-names .secondary-name:after,
   &.parens .secondary-names  .secondary-name:after {

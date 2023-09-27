@@ -321,7 +321,7 @@ class PlacesController < ApplicationController
     params[:per_page] ||= 30
     if @q.blank?
       scope = if site_place
-        Place.where( site_place.child_conditions )
+        Place.children_of( site_place )
       else
         Place.where( "place_type = ?", Place::CONTINENT ).order( "updated_at desc" )
       end

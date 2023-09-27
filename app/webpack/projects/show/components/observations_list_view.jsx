@@ -104,49 +104,47 @@ const ObservationsListView = ( {
                           </a>
                         </td>
                         <td className="taxon">
-                          <div className="contents">
-                            <SplitTaxon
-                              taxon={o.taxon}
-                              noParens
-                              url={`/observations/${o.id}`}
-                              user={config.currentUser}
-                            />
-                            <div className="meta">
-                              { o.quality_grade === "research" && (
-                                <span className="quality_grade research">
-                                  { I18n.t( "research_grade" ) }
-                                </span>
-                              ) }
-                              { identificationsCount > 0 && (
-                                <span
-                                  className="count identifications"
-                                  title={
-                                    I18n.t( "x_identifications", { count: identificationsCount } )
-                                  }
-                                >
-                                  <i className="icon-identification" />
-                                  { identificationsCount }
-                                </span>
-                              ) }
-                              { o.comments.length > 0 && (
-                                <span
-                                  className="count comments"
-                                  title={I18n.t( "x_comments", { count: o.comments.length } )}
-                                >
-                                  <i className="icon-chatbubble" />
-                                  { o.comments.length }
-                                </span>
-                              ) }
-                              { o.faves.length > 0 && (
-                                <span
-                                  className="count favorites"
-                                  title={I18n.t( "x_faves", { count: o.faves.length } )}
-                                >
-                                  <i className="fa fa-star" />
-                                  { o.faves.length }
-                                </span>
-                              ) }
-                            </div>
+                          <SplitTaxon
+                            taxon={o.taxon}
+                            noParens
+                            url={`/observations/${o.id}`}
+                            user={config.currentUser}
+                          />
+                          <div className="meta">
+                            { o.quality_grade === "research" && (
+                              <span className="quality_grade research">
+                                { I18n.t( "research_grade" ) }
+                              </span>
+                            ) }
+                            { identificationsCount > 0 && (
+                              <span
+                                className="count identifications"
+                                title={
+                                  I18n.t( "x_identifications", { count: identificationsCount } )
+                                }
+                              >
+                                <i className="icon-identification" />
+                                { identificationsCount }
+                              </span>
+                            ) }
+                            { o.comments.length > 0 && (
+                              <span
+                                className="count comments"
+                                title={I18n.t( "x_comments", { count: o.comments.length } )}
+                              >
+                                <i className="icon-chatbubble" />
+                                { o.comments.length }
+                              </span>
+                            ) }
+                            { o.faves.length > 0 && (
+                              <span
+                                className="count favorites"
+                                title={I18n.t( "x_faves", { count: o.faves.length } )}
+                              >
+                                <i className="fa fa-star" />
+                                { o.faves.length }
+                              </span>
+                            ) }
                           </div>
                         </td>
                         <td className="user">

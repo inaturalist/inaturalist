@@ -86,7 +86,7 @@ const SuggestionRow = ( {
   obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
   return (
     <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
-      <h3 className="clearfix">
+      <h3 className="d-flex justify-content-between">
         <SplitTaxon
           taxon={taxon}
           target="_blank"
