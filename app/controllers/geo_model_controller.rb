@@ -58,18 +58,8 @@ class GeoModelController < ApplicationController
     user_place = current_user&.place
     preferred_place = user_place || site_place
 
-    @raw_env_data = INatAPIService.get( "/computervision/taxon_h3_cells/#{@taxon.id}",
-      { authenticate: current_user }, json: true )
-    raise unless @raw_env_data
+    @thresholded_bounds = INatAPIService.get_json( "/computervision/taxon_geomodel_bounds/#{@taxon.id}" )
 
-    taxon_range_data_path = CONFIG&.geo_model_data_path && File.join(
-      CONFIG.geo_model_data_path, "taxon_range_csvs/#{@taxon.id}.csv"
-    )
-    @taxon_range_data = if taxon_range_data_path && File.exist?( taxon_range_data_path )
-      File.readlines( taxon_range_data_path, chomp: true ).map {| v | [v, 1] }.to_h
-    else
-      {}
-    end
     api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try( :id )}&locale=#{I18n.locale}"
     @node_taxon_json = INatAPIService.get_json( api_url )
     @geo_model_taxon = GeoModelTaxon.where( taxon_id: @taxon ).first
