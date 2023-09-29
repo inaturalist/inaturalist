@@ -7,7 +7,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 
 /* global GEO_MODEL_TAXON */
-/* global TAXON_RANGE_DATA */
+/* global GEO_MODEL_BOUNDS */
 /* global EXPECTED_NEARBY_FIGURE_URL */
 /* global WEIGHTING_FIGURE_URL */
 /* global RANGE_COMPARISON_FIGURE_URL */
@@ -65,6 +65,15 @@ class App extends React.Component {
       mapTypeControl: false
     } );
     this.setState( { layer: "expectedNearbyLayer" } );
+    if ( GEO_MODEL_BOUNDS && GEO_MODEL_BOUNDS.total_bounds ) {
+      const {
+        nelat, nelng, swlat, swlng
+      } = GEO_MODEL_BOUNDS.total_bounds;
+      this.map.fitBounds( new google.maps.LatLngBounds(
+        new google.maps.LatLng( swlat, swlng ),
+        new google.maps.LatLng( nelat, nelng )
+      ) );
+    }
   }
 
   componentDidUpdate( prevProps, prevState ) {
@@ -77,12 +86,14 @@ class App extends React.Component {
   setLayer( selectLayer ) {
     const { taxon } = this.props;
     if ( this.state.selectedLayerIndex ) {
-      this.map.overlayMapTypes.removeAt( this.state.selectedLayerIndex - 1 );
+      this.map.overlayMapTypes.setAt( this.state.selectedLayerIndex - 1, null );
     }
     const layerOptions = {
       taxon: {
         id: taxon.id
-      }
+      },
+      noOverlayControl: true,
+      layerID: 1
     };
     if ( selectLayer === "expectedNearbyLayer" ) {
       this.state.selectedLayerIndex = this.map.addTaxonGeomodelLayer( {
@@ -119,7 +130,9 @@ class App extends React.Component {
         { I18n.t( "views.geo_model.explain.unthresholded_map.unthresholded_map" ) }
       </button>
     ) );
-    if ( !_.isEmpty( TAXON_RANGE_DATA ) ) {
+    // if the taxon has a recall value, then it was assessed against a taxon range,
+    // and it will have a taxon range comparison layer to render
+    if ( GEO_MODEL_TAXON.recall ) {
       buttons.push( (
         <button
           className={`btn btn-default${this.state.layer === "expectedNearbyVsTaxonRangeLayer" ? " active" : ""}`}
@@ -331,9 +344,13 @@ class App extends React.Component {
             observationLayers: [{
               label: I18n.t( "verifiable_observations" ),
               verifiable: true,
-              disabled: true
+              disabled: true,
+              layerID: 101
             }],
-            ranges: "disabled"
+            ranges: {
+              disabled: true,
+              layerID: 100
+            }
           }]}
           gestureHandling="auto"
           mapType={google.maps.MapTypeId.TERRAIN}

@@ -1034,11 +1034,6 @@ google.maps.Map.prototype.addTaxonGeomodelLayer = function( options ) {
   return this.addPostgisLayerByEndpoint( "geomodel", options.taxon.id, options );
 };
 
-google.maps.Map.prototype.addTaxonGeomodelTaxonRangeLayer = function( options ) {
-  _.defaults( options, { validParams: [ "tile_size" ] });
-  return this.addPostgisLayerByEndpoint( "geomodel_taxon_range", options.taxon.id, options );
-};
-
 google.maps.Map.prototype.addTaxonGeomodelComparisonLayer = function( options ) {
   _.defaults( options, { validParams: [ "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "geomodel_comparison", options.taxon.id, options );
@@ -1090,7 +1085,13 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   tilejson.interactive = false;
   var layer = new wax.g.connector( tilejson );
   layer.title = options.title;
-  var layerID = this.overlayMapTypes.push( layer );
+  var layerID;
+  if ( options.layerID ) {
+    layerID = options.layerID;
+    this.overlayMapTypes.setAt( layerID - 1, layer );
+  } else {
+    layerID =  this.overlayMapTypes.push( layer );
+  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper
@@ -1098,7 +1099,7 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
     // above and immediately set to null here.
     this.overlayMapTypes.setAt( layerID - 1, emptyLayer );
   }
-  if( this._overlayControl ) {
+  if( this._overlayControl && !options.noOverlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
       [ { layer: layer, layerID: layerID } ], options );
   }
@@ -1200,7 +1201,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled,
     infoWindowCallback: options.infoWindowCallback,
-    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256,
+    layerID: options.layerID
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + pointTileSuffix;
@@ -1211,7 +1213,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled,
     infoWindowCallback: options.infoWindowCallback,
-    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256,
+    layerID: options.layerID + 1
   });
   gridLayer.layer.title = title;
   pointLayer.layer.title = title;
@@ -1256,7 +1259,13 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
     "template": "{{species_guess}}"
   }, options);
   var layer = new wax.g.connector( waxOptions );
-  var layerID =  this.overlayMapTypes.push( layer );
+  var layerID;
+  if ( options.layerID ) {
+    layerID = options.layerID;
+    this.overlayMapTypes.setAt( layerID - 1, layer );
+  } else {
+    layerID =  this.overlayMapTypes.push( layer );
+  }
   if( options.disabled ) {
     this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }

@@ -95,6 +95,15 @@ inatTaxonMap.setup = function ( elt, opts ) {
   options.gestureHandling = options.gestureHandling || $( elt ).data( "gesture-handling" );
   options.tilt = options.tilt || $( elt ).data( "tilt" ) || 0;
   options.currentUser = options.currentUser || $( elt ).data( "current-user" );
+  options.taxonGeomodelLayerLabel = options.taxonGeomodelLayerLabel
+    || $( elt ).data( "taxon-geomodel-layer-label" )
+    || I18n.t( "views.geo_model.explain.unthresholded_map.unthresholded_map" );
+  options.taxonGeomodelThresholdedLayerLabel = options.taxonGeomodelThresholdedLayerLabel
+    || $( elt ).data( "taxon-geomodel-thresholded-layer-label" )
+    || I18n.t( "views.geo_model.explain.nearby_map.expected_nearby_map" );
+  options.taxonGeomodelComparisonLayerLabel = options.taxonGeomodelComparisonLayerLabel
+    || $( elt ).data( "taxon-geomodel-comparison-layer-label" )
+    || I18n.t( "views.geo_model.explain.range_comparison.expected_nearby_vs_taxon_range" );
   if ( typeof ( CURRENT_USER ) === "object" ) {
     options.currentUser = options.currentUser || CURRENT_USER;
   }
@@ -297,25 +306,22 @@ inatTaxonMap.addTaxonLayer = function ( map, layer, options, taxonData ) {
   if ( layer.geomodel && layer.taxon ) {
     map.addTaxonGeomodelLayer( {
       taxon: layer.taxon,
+      title: options.taxonGeomodelLayerLabel,
       controlPosition: options.controlPosition
     } );
   }
   if ( layer.geomodel_thresholded && layer.taxon ) {
     map.addTaxonGeomodelLayer( {
       taxon: layer.taxon,
+      title: options.taxonGeomodelThresholdedLayerLabel,
       controlPosition: options.controlPosition,
       thresholded: true
-    } );
-  }
-  if ( layer.geomodel_taxon_range && layer.taxon ) {
-    map.addTaxonGeomodelTaxonRangeLayer( {
-      taxon: layer.taxon,
-      controlPosition: options.controlPosition
     } );
   }
   if ( layer.geomodel_comparison && layer.taxon ) {
     map.addTaxonGeomodelComparisonLayer( {
       taxon: layer.taxon,
+      title: options.taxonGeomodelComparisonLayerLabel,
       controlPosition: options.controlPosition
     } );
   }
@@ -340,7 +346,7 @@ inatTaxonMap.addTaxonLayer = function ( map, layer, options, taxonData ) {
       description: options.taxonRangeLayerDescription,
       hover: options.taxonRangeLayerHover,
       controlPosition: options.controlPosition,
-      disabled: layer.ranges === "disabled",
+      disabled: options.disabled === "disabled",
       link: "/taxa/" + layer.taxon.id + "/range.html"
     } ) );
   }
@@ -352,7 +358,8 @@ inatTaxonMap.addTaxonLayer = function ( map, layer, options, taxonData ) {
       description: options.taxonObservationsLayerDescription,
       hover: options.taxonObservationsLayerHover,
       controlPosition: options.controlPosition,
-      mapStyle: options.mapStyle
+      mapStyle: options.mapStyle,
+      layerID: options.layerID
     } ) );
   }
   if ( layer.observationLayers ) {
