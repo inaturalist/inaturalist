@@ -2927,7 +2927,7 @@ nl:
   ne_lat: NO Lat.
   ne_lon: NO Lon.
   near_threatened: Gevoelig
-  nearby_observations_: Waarnemingen dichtbij
+  nearby_observations_: Waarnemingen in de buurt
   needs_id: ID nodig
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
@@ -6134,6 +6134,9 @@ nl:
           precision_colon: |
             Nauwkeurigheid:
           precision_description: Het deel van de 'In de buurt verwacht'-kaart dat True Presences zijn
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Herroepen:
           recall_description: Het deel van de verspreiding van het taxon dat True Presences zijn
           #Equation showing how we calculate recall of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
