@@ -480,6 +480,7 @@ lb:
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
   bio: Bio
+  bioblitz: Bioblitz
   birds: Vigel
   birthday: Gebuertsdag
   black: schwaarz
@@ -598,9 +599,21 @@ lb:
   connect: Connectéieren
   connected_accounts_titlecase: Connectéiert Kontoen
   conservation_status: Erhalungszoustand
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content: Inhalt
   continue: Virufueren
   continue_to_site: Virun op %{site_name}
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Belibeg
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Belibeg
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Belibeg
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Belibeg
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Belibeg
     sex: Geschlecht
     male: Männlech
     female: Weiblech
@@ -619,6 +632,8 @@ lb:
     evidence_of_presence: Evidenz vum Virkommen
     #As in the feather on a bird
     feather: Fieder
+    #Abnormal growth
+    gall: Gal
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismus
@@ -781,6 +796,7 @@ lb:
   donate_to_inaturalist: En Don un iNaturalist maachen
   done: Fäerdeg
   download: Eroflueden
+  download_caps: EROFLUEDEN
   download_csv: CSV eroflueden
   download_csv_template: CSV-Schabloun eroflueden
   download_kml: KML eroflueden
@@ -880,6 +896,7 @@ lb:
   'false': 'Falsch'
   Family: Famill
   favorites: "Favoriten"
+  feedback: Feedback
   #Button to show fewer places
   fewer__context_places: Manner
   failed: Huet net funktionéiert
@@ -890,6 +907,7 @@ lb:
   fill_out_your_profile: completéiert Äre Profil
   #The name of a computer file
   filename: Fichiersnumm
+  filter: Filteren
   filter_by_curator_identification: Filtren no Kurator Bestëmmungen
   filter_by_place: No der Plaz filteren
   filtering: Filteren
@@ -951,8 +969,12 @@ lb:
   from_photos: Vu Fotoen
   from_soundcloud: Vun Soundcloud
   full_screen: Ganzen Ecran
+  fungi:
+    one: Pilz
+    other: Pilzen
   gbif: GBIF
   generate_your_stats: Generéiert Är Statistiken
+  Genus: Gattung
   get_started: Fir unzefänken
   getting_started_guide: Guide fir unzefänken
   global_names: Global Nimm
@@ -1045,6 +1067,7 @@ lb:
   inaturalist_places: "%{site_name} Plazen"
   info: Informatioun
   insects: Insekten
+  instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Zitat afügen
   interactions: Interaktiounen
@@ -1086,6 +1109,7 @@ lb:
   last_seen: Fir d'lescht gesinn
   last_year: Lescht Joer
   lat: Lat
+  layout: Layout
   leaderboard: Féierungstabel
   leaderboard_most:
     species_in_month_year: Déi meescht Aarten an %{month_year}
@@ -1146,10 +1170,12 @@ lb:
     korean: Koreanesch
     latvian: Lettesch
     lithuanian: Litauesch
+    lozi: Lozi
     luxembourgish: Lëtzebuergesch
     malay: Malayesch
     malayalam: Malayalam
     maltese: Maltesesch
+    maori: Maori
     marathi: Marathi
     maya: Maya
     mongolian: Mongolesch
@@ -1158,16 +1184,19 @@ lb:
     occitan: Okzitanesch
     ojibwe: Ojibwe
     palauan: Palauesch
+    persian: Persesch
     polish: Polnesch
     portuguese: Portugisesch
     romanian: Rumänesch
     russian: Russesch
     scientific_names: Wëssenschaftlech Nimm
+    serbian: Serbesch
     sinhala: Sinhala
     slovak: Slokwakesch
     slovenian: Slowenesch
     spanish: Spuenesch
     swedish: Schwedesch
+    tagalog: Tagalog
     tahitian: Tahitesch
     thai: Thailännesch
     turkish: Tierkesch
@@ -1180,6 +1209,7 @@ lb:
   less__context_text: Manner
   license: Lizenz
   life: Liewen
+  linear_scale_label: Linear
   link: Link
   link_your_google_account: Verbannt Äre Google Benotzerkont
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
@@ -1239,6 +1269,7 @@ lb:
     lb: Lëtzebuergesch
     lt: Litauesch
     lv: Lettesch
+    mi: Maori
     mk: Mazedonesch
     mr: Marathi
     nl: Hollännesch
@@ -1270,14 +1301,19 @@ lb:
     transparent_png: transparente PNG
     none: keen
   long: Lon
+  look_up_name: "Numm nosichen"
   lookup: Noschloen
   low: Niddreg
   lowest_rank: Ënneschte
   make_admin: Administrateur maachen
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: Haaptinhalt
   make_this_your_default_license: "Maacht heirauser Är Standard-%{type}-Lizenz"
   mammals: Mamendéieren
   manage_names: Nimm geréieren
   manage_your_projects: Geréiert Är Projeten
+  manager: Manager
+  managers: Manageren
   map: Kaart
   map_of_observations: Kaart vun den Observatiounen
   maps:
@@ -1296,6 +1332,7 @@ lb:
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: a(n)
   media_type: Medientyp
+  medium: mëttel
   meet: Treffen
   member_of_the_inaturalist_network_html: |
     Member vum <a href="%{url}">iNaturalist Reseau</a>
@@ -1320,6 +1357,9 @@ lb:
     Gitt keng perséinlech Informatioun iwwer Iech selwer weider u Leit deenen Dir net vertraut.
   misidentifications: Falschbestëmmungen
   mobile: Mobil
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Verstoppen
+  mollusks: Mollusken
   momentjs:
     shortRelativeTime:
       future: "an %s"
@@ -1559,6 +1599,7 @@ lb:
   observation_date: Datum
   observation_date?: Datum?
   observation_field_type_text: Text
+  observation_field_type_numeric: Numeresch
   observation_field_type_date: Datum
   observation_field_type_time: Zäit
   observation_field_type_dna: DNA
@@ -1589,7 +1630,11 @@ lb:
   observed_by: Observéiert vum
   observer: Observateur
   observers: Observateuren
+  observer_short: Observateur
   occurrence_status_levels:
+    common: heefeg
+    uncommon: seelen
+    irregular: onreegelméisseg
     doubtful: zweiwelhaft
     absent: net do
   of_places: Plazen
@@ -1628,6 +1673,7 @@ lb:
   #sign in with Apple OR Google
   or_all_caps: ODER
   order: Uerdnung
+  order_by: Sortéieren no
   organism_is_wild: Organismus ass wëll
   organisms: Organismen
   original: Original
@@ -1760,6 +1806,7 @@ lb:
     belgium: Belsch
     belize: Belize
     benin: Benin
+    bermuda: Bermuda
     bhutan: Bhutan
     bolivia: Bolivien
     bosnia_and_herzegovina: Bosnien-Herzegowina
@@ -1811,6 +1858,8 @@ lb:
     greece: Griicheland
     greenland: Grönland
     guam: Guam
+    guatemala: Guatemala
+    guinea_bissau: Guinea-Bissau
     guyana: Guyana
     haiti: Haiti
     honduras: Honduras
@@ -1822,9 +1871,11 @@ lb:
     iran: Iran
     iraq: Irak
     ireland: Irland
+    israel: Israel
     italy: Italien
     jamaica: Jamaika
     japan: Japan
+    jersey: Jersey
     jordan: Jordanien
     kazakhstan: Kasachstan
     kenya: Kenia
@@ -2002,6 +2053,7 @@ lb:
     x_phyla:
       one: Stamm
       other: Stämm
+    class: Klass
     x_classes:
       one: Klass
       other: Klassen
@@ -2234,6 +2286,7 @@ lb:
   sort: Zortéieren
   sort_by: Zortéieren no
   sounds:
+    add_media: Medien derbäisetzen
     add_sounds: Sound bäisetzen
     before_importing_sounds: virum Import vun Sounds
     import_sounds: Sounds importeiren
@@ -2286,6 +2339,8 @@ lb:
   synonyms: Synonymmen
   table: Tabell
   taxa: Taxa
+  taxa_info: Informatiounen iwwer Taxa
+  taxon: Taxon
   taxon_geoprivacy: Taxon Geoprivatsphäre
   taxonomy: Taxonomie
   taxon_id: Taxon ID
@@ -2341,6 +2396,8 @@ lb:
   threatened: Bedrot
   time_: Zäit
   time_ago: "viru(n) %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreiwung"
@@ -2953,6 +3010,9 @@ lb:
     pm: pm
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ukënnegung
       Atlas: Atlas
       Comment: Kommentar
       Identification: Bestëmmung
@@ -3012,6 +3072,7 @@ lb:
         wikipedia_summary: Wikipedia-Zesummefaassung
         wikipedia_title: Wikipedia-Titel
       taxon_name:
+        lexicon: Lexikon
         name: Numm
       taxon_link:
         url: URL
@@ -3054,6 +3115,10 @@ lb:
           attributes:
             user_id:
               must_be_a_curator: muss een Kurator sinn
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: muss ee Kurator sinn
         place:
           attributes:
             place_geometry:
