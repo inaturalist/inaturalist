@@ -4148,7 +4148,7 @@ de:
   relationships:
     match: Übereinstimmung
     one_to_one: Eins-zu-eins
-    alternate_position: Position ändern
+    alternate_position: Alternative Position
     many_to_many: Viele-zu-viele
     many_to_one: Viele-zu-einer
     one_to_many: eins-zu-viele
@@ -5847,12 +5847,55 @@ de:
           Bitte <code>Spam</code> und <code>Copyright-Verletzungen</code> nur dann auflösen, wenn der Inhalt kein Spam ist oder keine Verletzung des Urheberrechts vorliegt.
     geo_model:
       explain:
+        geomodel_predictions_of_taxon: |
+          Geomodell-Vorhersagen von %{taxon}
+        the_geo_model_makes_predictions: |
+          Das Geomodell macht Voraussagen, wo Arten vorkommen und wo sie abwesend sind.
+          Wir verwenden das Geomodell, um die "zu erwarten in der Umgebung"-Anzeige neben Vorschlägen zu generieren und um diese Vorschläge basierend auf dem Standort der Beobachtung zu gewichten.
+        the_geo_model_is_trained: |
+          Wie das Computer-Vision-Modell wird auch das Geomodell durch iNaturalist-Beobachtungen trainiert - für die gleichen Artengruppen mit etwa mehr als 100 Fotos. Das Geomodell kann keine
+          perfekte Vorhersagen erstellen. Mehr darüber, wie das Geomodell erstellt wird, ist <a href="%{url}">hier</a> nachzulesen.
         nearby_map:
           expected_nearby_map: Karte mit erwarteter Verbreitung
+          we_use_this_map: |
+            Wir verwenden diese Karte, um Bestimmungsvorschläge mit der 'in der Umgebung zu erwarten'-Einstufung zu generieren.
+          for_example: |
+            Zum Beispiel könnte die Beobachtung einer Eidechse in der Mitte der USA zwar für den Bestimmungsvorschlag <i>Sceloporus consobrinus</i> die Einstufung 'in der Umgebung zu erwarten' zeigen, aber nicht für <i>Sceloporus occidentalis</i> - basierend auf ihren jeweiligen Karten zur erwarteten Verbreitung.
+          you_can_think: |
+            Die Karte zur erwarteten Verbreitung kann als Einschätzung betrachtet werden, ob die Art
+            irgendwo innerhalb der Rasterzelle vorkommt oder komplett fehlt.
+          figure_alt_text: Das Geomodell verwendet die 'in der Umgebung zu erwarten'-Kennzeichnung
+        unthresholded_map:
+          figure_alt_text: Das Geomodell gewichtet die Ergebnisse der Computer-Vision
         range_comparison:
+          expected_nearby_vs_taxon_range: Erwartet in der Umgebung vs. Taxon-Verbreitung
+          this_map_shows: |
+            Diese Karte zeigt wie die Verbreitung eines Taxons überlappt mit der Karte
+            der zu erwartenden Verbreitung, welche wir zur Bewertung des Geomodells verwenden.
+          this_gridded_version: |
+            Diese gerasterte Version der Verbreitung eines Taxons ist ein Schnappschuss, der aufgenommen wurde, als das Modell trainiert wurde mit der gleichen Auflösung wie die Karte zur erwarteten Verbreitung. Wir verwenden nur solche Verbreitungsdaten, wo mindestens 90 % der Trainingsdaten für diese Art in das Verbreitungsgebiet des Taxons fallen, um auf Fehler in den Verbreitungsdaten zu kontrollieren.
+          by_combining: |
+            Durch die Kombination der Karte zur erwarteten Verbreitung mit den Verbreitungsdaten eines Taxons berechnen wir die Statistiken, um die Leistung des Geomodells einzuschätzen.
+          figure_alt_text: Die Karte zur erwarteten Verbreitung und die Verbreitungsdaten des Taxons werden miteinander verglichen
+          combining_these_maps_produces: |
+            Durch die Kombination dieser Karten werden 3 Arten von Rastern erzeugt:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Wahre Anwesenheiten:
+          true_presences_definition: Gebiete, in denen sowohl die Karte zum erwarteten Vorkommen als auch die Verbreitungsdaten vorhersagen, dass das Taxon dort vorkommt
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falsche Anwesenheiten:
+          false_presences_definition: Gebiete, in denen nur die Karte zur erwarteten Verbreitung ein Vorkommen vorhersagt
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falsche Abwesenheiten:
+          false_absences_definition: Gebiete, in denen nur Verbreitungsdaten des Taxons vorliegen
+          evaluation_statistics_for_taxon: Auswertungsstatistiken für %{taxon}
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Genauigkeit:
+          precision_description: Der Anteil der Karte mit erwarteter Verbreitung mit korrekten Anwesenheiten
           #Equation showing how we calculate precision of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
@@ -5861,6 +5904,7 @@ de:
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Trefferquote:
+          recall_description: Der Anteil der Karte zur Taxon-Verbreitung mit tatsächlichen Vorkommen
           #Equation showing how we calculate recall of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Absences: areas where only the Taxon Range is present
