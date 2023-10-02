@@ -5847,12 +5847,15 @@ tr:
           #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Tam Mevcudiyet:
+          true_presences_definition: Yakınlarda Beklenen Haritası ve Sınıf Yayılımının her ikisinin de sınıfın var olduğunu öngördüğü alanlardır
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Eksik Mevcudiyet:
+          false_presences_definition: Yalnız Yakınlarda Beklenen Haritası'nın sınıfın var olduğunu öngördüğü alanlar
           #Areas where only the Taxon Range is present
           false_absences_colon: |
             Eksik Yokluk:
+          false_absences_definition: Yalnız Sınıf Yayılımının mevcut olduğu alanlar
           evaluation_statistics_for_taxon: '%{taxon} için değerlendirme istatistikleri'
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
