@@ -82,7 +82,7 @@ zh-CN:
   x_sounds:
     other: "%{count} 条音频"
   x_taxa_curated_html:
-    other: "<span class='count'>%{count}</span>个分类单元已有馆长"
+    other: "<span class='count'>%{count}</span>个分类单元已管理"
   x_taxa_matching_current_filters:
     other: "%{count} 个分类群匹配当前的过滤器"
   x_taxon_changes_added_html:
@@ -187,6 +187,12 @@ zh-CN:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精度（米）'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 高于特定值的精确度
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 低于特定值的精确度
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: 低于特定值或无特定值的精确度
   account: 账户
   account_creation: 创建账户
   account_settings: 账户设置
@@ -362,6 +368,7 @@ zh-CN:
   agree_: 同意
   agree?: 是否同意？
   agree_with_current_taxon: 同意当前的分类单元
+  agree_with_observation_taxon: 同意观察分类单元
   agreeing: 正在同意……
   aka: 也就是
   #Noun, title of a popup alerting you to something
@@ -372,6 +379,7 @@ zh-CN:
   all_comments: 所有评论
   all_flags_must_be_resolved: 所有标记必须解决
   all_life: 一生
+  all_media_must_be_unhidden: 所有媒体必须取消隐藏
   all_names: 所有名字
   all_observations: 所有观察
   all_photos: 所有照片
@@ -550,6 +558,9 @@ zh-CN:
   are_you_really_sure_want_delete_this_user: 您真的，真的确定要删除这位用户及其所有内容么？
   are_you_sure?: 您确定么？
   are_you_sure_no_undo: 您确定么？这不能恢复。
+  are_you_sure_delete_conservation_status: |
+    您确定要删除此保护状态吗？这可能会改变
+    这个分类阶元和它里面的分类单元的观测结果的模糊性。
   are_you_sure_delete_post: 您确定要删除此帖子么？
   are_you_sure_delete_taxon_move_associates: "您确定您要删除%{taxonname}（%{taxonid}），并移除所有它的关联项吗？"
   are_you_sure_delete_this_place: 您确定要删除此地点么？
@@ -709,7 +720,7 @@ zh-CN:
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
   batch_operations: 批操作
-  be_the_first_to_fave_this_observation: 成为最先将此观察列为最爱的人！
+  be_the_first_to_fave_this_observation: 成为第一个收藏此观察的人！
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     由于我们估计这一更改会导致 10 个以上非预期的鉴定分歧，<strong> 我们建议您同时提交一个分类阶元变更涉及%{old_parent}，例如将 %{new_parent} 从 %{old_parent} 中拆分出来 </strong>。
@@ -852,6 +863,10 @@ zh-CN:
   check_lists_for: "用于%{place}的其他检查表"
   check_out_the_inat_store: 去iNaturalist商店看看
   check_out_what_the_observation: 检查您要鉴定的观察记录外形。
+  check_this_box_if_html: |
+    如果您想要为已上传的内容使用 <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>知识共享许可（署名-非商业性）</a>，请勾选此项。 这意味着只要保持诚信且不将作品用于商业用途，任何人都可以复制和重复使用您的照片和/或观察记录，而无需请求许可。 您可以稍后选择一个不同的许可证或删除许可证，但这是与研究人员分享的最佳许可证。
   checklist: 检查表
   choose_a_field: 选择字段
   choose_a_list_above: 在上方选择一个列表。
@@ -1609,6 +1624,7 @@ zh-CN:
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
   examples_of_ranking_organizations: 排名机构的例子
+  expected_nearby: 预料在附近
   explore: 探索
   export: 导出
   export_observations: 导出观察记录
@@ -1971,6 +1987,7 @@ zh-CN:
   include_places: 包含的地点
   include_projects: 包含的项目
   include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
+  include_suggestions_not_expected_nearby: 包括不在预料附近范围内的建议
   include_taxa: 包含分类
   include_users: 包含用户
   including: 包括
@@ -4907,6 +4924,8 @@ zh-CN:
   yesterday: 昨天
   yir_code_contributors_desc_html: |
     我们的 <a href="%{url}">软件</a> 几乎都是开源的，这意味着任何人都可以贡献自己的力量。以下是今年自愿提供代码的人员。谢谢你们，编码员们！
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist 需要您的支持
   yir_thank_your_for_being_generous2: |
     感谢您抽出宝贵的时间关注我们，也感谢您慷慨地分享专业知识与提供捐助！iNaturalist 是一个非营利的公益组织。这个项目依赖的是许多补助和捐助，包括来自社区极小一部分人的捐赠。我们非常感谢月捐人们，可持续的捐赠帮助我们规划 iNaturalist 的未来。
   you: 您
@@ -5049,6 +5068,10 @@ zh-CN:
       post_donate_social_media_text: 我支持iNaturalist，因为…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成为iNaturalist 的月捐支持者
+    geo_model:
+      explain:
+        nearby_map:
+          expected_nearby_map: 预料的附近地图
     guides:
       index:
         funding_html: |
@@ -6084,7 +6107,15 @@ zh-CN:
       7: 六
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%B%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%Y年%B%d日'
     month_names:
       - 
       - 一月
@@ -6172,6 +6203,10 @@ zh-CN:
         units:
           byte:
             other: 字节
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: '，和'
@@ -6180,6 +6215,14 @@ zh-CN:
   time:
     am: 上午
     formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%Y年%b%d日 %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%d%B日 %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%I:%M %p"
     pm: 下午
