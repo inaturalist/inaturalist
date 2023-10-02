@@ -265,7 +265,10 @@ class TaxonAutocomplete extends React.Component {
       appendTo: this.idElement( ).parent( ),
       minLength: 0,
       renderMenu: renderMenuWithCategories,
-      menuClass: "taxon-autocomplete"
+      menuClass: "taxon-autocomplete",
+      position: {
+        collision: "flipfit",
+      },
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
