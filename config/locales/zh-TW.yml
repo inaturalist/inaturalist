@@ -1933,6 +1933,8 @@ zh-TW:
   #Verb, usually a button to hide an interface element
   hide: 隱藏
   hide_content: 隱藏內容
+  hide_desc: |
+    隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隱藏「沒有註記」
@@ -5299,6 +5301,25 @@ zh-TW:
         flags_that_should_not_be_resolved_desc_html: |
           若內容不是垃圾訊息或侵犯版權，請分別解決 <code>spam</code> 與 <code>copyright
           infringement</code> 標記。
+    geo_model:
+      explain:
+        range_comparison:
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            有效證據 / (有效證據 + 無效證據) = %{precision}
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            有效證據 / (有效證據 + 無效缺失) = %{recall}
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × 有效證據 / (2 × 有效證據 + 無效證據 + 無效缺失) = %{f1}
     guides:
       index:
         deprecated_banner: |
@@ -6478,6 +6499,9 @@ zh-TW:
           </p>
         licensing_desc_html: |
           授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
+        monthly_supporter_desc_html: |
+          iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
+          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
         muting_desc_html: |
           <p>
           禁言某人會防止您接受到到對方的通知，包含評論您的觀察、
@@ -6684,9 +6708,17 @@ zh-TW:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%m月%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-m月%-d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b 月 %e 日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%Y年%-m月%-d日'
     month_names:
       - 
       - 1月
@@ -6803,9 +6835,17 @@ zh-TW:
     am: 上午
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%Y/%m/%d %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%m月%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%m月%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: 下午
