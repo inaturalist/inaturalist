@@ -1857,6 +1857,7 @@ ja:
     同定、データ品質評価、またはコンテンツ作成者との会話によって対処できる問題にはフラグを付けないでください。
   flagger: フラグ付けたユーザー：
   flags: フラグ
+  flags_with_count: フラグ (%{count})
   flags_explanation: "%{site_name} ユーザーはキュレーター管理者やスタッフに注意が必要であることをフラグを通して伝えることができます。"
   flags_for_x_html: '%{x} へのフラグ'
   flags_on_users_content: "%{user}さんのコンテンツに付けられたフラグ"
@@ -1912,6 +1913,9 @@ ja:
   generate_your_stats: 統計を生成
   generating_mobile_archive: "モバイルアーカイブを作成中"
   Genus: 属
+  geomodel_expected_nearby_label_is_derived: |
+    「Expected Nearby」ラベルはジオモデルに基づき生成されています。
+    <a href="%{url}">ジオモデルの詳細についてはこちらをご覧ください</a>。
   geoprivacy: 位置情報公開状況
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
   geoprivacy_is_obscured_desc: 投稿者は、座標を曖昧にすることを選択しました。
@@ -2119,6 +2123,7 @@ ja:
   include_places: 場所を含む
   include_projects: プロジェクトを含む
   include_suggestions_not_seen_nearby: 近隣で観察されていない候補を含める
+  include_suggestions_not_expected_nearby: 近隣で予想されない提案を含む
   include_taxa: 分類群を含む
   include_users: ユーザーを含む
   including: 次を含む：
@@ -2312,6 +2317,7 @@ ja:
     kannada: カンナダ語
     kazakh: カザフ語
     korean: 韓国語
+    kweyol: セントルシア・クレオール語
     latvian: ラトビア語
     lithuanian: リトアニア語
     lozi: ロズィ語
@@ -2327,6 +2333,7 @@ ja:
     mongolian: モンゴル語
     nahuatl: ナワトル語
     navajo: ナバホ語
+    ndebele: 北ンデベレ語
     norwegian: ノルウェー語
     occitan: オック語
     ojibwe: オジブウェー語
@@ -2628,6 +2635,8 @@ ja:
     これには、モデレーターの操作（コメントの非表示や非表示解除など）、メモ、このユーザーが作成した分類群以外のすべてのフラグが含まれます。この履歴は<strong>キュレーターにのみ表示</strong>され、<strong>キュレーターは自分の履歴を見ることができません</strong>。
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: 非表示
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: 凍結解除
   moderator_note_desc: |
     モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがソックパペット・アカウントの可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
   #Person who executed a moderator action or flagged something
@@ -2737,6 +2746,7 @@ ja:
   name_providers:
     col: Catalogue of Life
     ubio: uBio
+    nzor: ニュージーランド生物登録
   names: 名称
   names_for_taxon_html: "%{taxon}の名称一覧"
   native: 在来種
@@ -3375,6 +3385,10 @@ ja:
       subdivision: 下位区分
       Suburb: 郊外
       suburb: 郊外
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: 合計
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: 合計
       Supername: 集合名称
       supername: 集合名称
       Territory: 領地
@@ -3935,6 +3949,8 @@ ja:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: 品種
   ranges: 範囲
+  #Text to link to a taxon range as a KML file
+  range_file: 生息域ファイル
   ray_finned_fishes: 条鰭綱
   re_order_photos: "写真の並べ替え &raquo;"
   read_more: 続きを読む
@@ -4257,6 +4273,7 @@ ja:
     投稿者によって不明瞭または非公開にされた位置情報
   sites_network_agreements_html: |
     iNaturalistはiNaturalistプラットフォームの利用をサポートするため、それぞれの地域の組織と正式な契約を結んでいます。<strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join}で詳細をご確認いただけます。</strong>
+  sites_network_consists_of: "iNaturalistネットワークはいくつかの組織で構成されています:"
   some_agree: 一部が賛成
   some_observations_are_missing_media_or_identifications: |
     一部の観察記録にメディアや同定の欠落があります
@@ -4413,6 +4430,7 @@ ja:
   suggest_an_identification: 同定を提案
   suggest_or_require_that: ユーザーがプロジェクトに観察記録を追加する際に推奨／必須のフィールドを指定
   suggestions: 提案
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: ウィキペディアや他のウィキメディア財団のプロジェクトに適している
   summary: 概要
   supporting: サポート
   suspend_user: ユーザーの利用停止
@@ -5079,6 +5097,7 @@ ja:
   view_projects_from_place: "%{place}のプロジェクトを表示"
   view_sample: サンプルを見る
   view_stats: 統計データを表示
+  view_taxon_change: 分類群変更履歴を表示
   view_taxon_changes: 分類群変更履歴を表示
   view_taxon_page: 分類群ページを表示
   view_taxon_page_for_this_x: "この%{x}の分類群ページを表示"
@@ -5378,6 +5397,22 @@ ja:
             もしそうであれば、<a href="%{url}">ティーチャーズ・ガイド</a>を読んで、%{site_name}を使うヒントにしてください。
     donate:
       donate_short_desc: "ご寄付をお願いいたします"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>寄付金を<u>2倍</u>、<u>3倍</u>にすることができます！ゴードン＆ベティ・ムーア財団のご協力により、2023年12月31日まで、毎月、四半期ごと、毎年の定期的なご寄付は3倍、単発のご寄付は2倍になります。</strong>
+        </p>
+        <p class="lead">
+        iNaturalistは生物多様性に特化した世界最大級のコミュニティです。その一員でいてくださりありがとうございます！
+        </p>
+        <p class="lead">
+        自然を愛する人々が集うこの世界的なコミュニティが、知識を共有し、かけがえのない生物多様性データを生み出す力を信じてくださる方は、ぜひオンラインによる単発のご寄付や定期的なご寄付、または<a href="https://www.inaturalist.org/pages/giving">その他の寄付方法</a>をご検討ください。
+        </p>
+        <p class="lead">
+        種を正確に特定するための技術の向上や新機能の実装、サーバーやスタッフのサポートなど、iNaturalistのコミュニティが成長していく上で、皆様のご寄付は欠かせません。
+        </p>
+        <p class="text-muted">
+        iNaturalistはアメリカ合衆国に拠点を置く独立した501(c)(3)の非課税非営利団体です（Tax ID: 92-1296468）。
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalistは生物多様性の探求に特化した世界最大級のコミュニティです。その一員であることに感謝いたします！</strong>
@@ -5396,6 +5431,22 @@ ja:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalistのマンスリーサポーターになる
         become_a_monthly_supporter_of_inaturalist_caps: iNaturalistの月ごとの定期支援者になろう
+        desc_moore_html: |
+          <p class="lead">
+          <strong>寄付金が<u>3倍</u>になります！ゴードン＆ベティ・ムーア財団のご協力により、2023年12月31日まで、すべてのマンスリーサポーターのご寄付が3倍になります。</strong>
+          </p>
+          <p class="lead">
+          iNaturalistは生物多様性を探求する世界最大級のコミュニティです。その一員でいてくださりありがとうございます！
+          </p>
+          <p class="lead">
+          iNaturalistが気に入ったら、ぜひマンスリーサポーターになることをご検討ください。定期的なご寄付は、iNaturalistがインフラとスタッフの規模を拡大し続けられるよう、予測可能な収益を確実にサポートします。毎月のご寄付は3倍の効果があります！また、マンスリーサポーターのステータスをユーザープロフィールに表示することもできます。
+          </p>
+          <p class="lead">
+          皆様からのご寄付は、コンピュータ・ビジョンの進歩や新機能の実装、サーバーやスタッフのサポートなど、iNaturalistのコミュニティの成長に役立ちます。また、<a href="%{donate_url}">1回限りのご寄付</a>や、<a href="https://www.inaturalist.org/pages/giving">他の寄付の方法</a>もご検討いただけます。
+          </p>
+          <p class="text-muted">
+          iNaturalistはアメリカ合衆国に拠点を置く独立した501(c)(3)の非課税非営利団体です（Tax ID: 92-1296468）。
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalistは生物多様性の探求に特化した世界最大級のコミュニティです。その一員であることに感謝いたします！</strong>
@@ -5420,6 +5471,82 @@ ja:
         flags_that_should_not_be_resolved_desc_html: |
           <code>スパム</code> および <code>著作権侵害</code> フラグは、コンテンツがスパムでないか、
           著作権侵害ではない場合にのみフラグを解決してください。コンテンツがスパムか著作権侵害に該当する場合は、フラグをそのまま残してください。
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          %{taxon} のジオモデルによる予測
+        the_geo_model_makes_predictions: |
+          ジオモデルは種がどこに存在し、どこに存在しないかを予測します。私たちはジオモデルを使用して、提案とともに「Expected Nearby」ラベルを適用し、観察の場所に基づいてこれらの提案に重み付けをします。
+        the_geo_model_is_trained: |
+          コンピュータ・ビジョン・モデルのように、ジオモデルは同じ種のiNaturalistの観察からおよそ100枚以上の写真でトレーニングされます。ジオモデルは完璧な予測をするわけではありません。ジオモデルがどのように作られるかについては<a href="%{url}">こちら</a>をご覧ください。
+        nearby_map:
+          we_use_this_map: |
+            私たちはこのマップを使って、観察の場所に基づいた提案にExpected Nearbyラベルを適用します。
+          for_example: |
+            例えば、アメリカ合衆国の中央部でトカゲを観察した場合、それぞれの「Expected Nearby Maps」に基づいて、<i>Sceloporus consobrinus</i>の提案には「Expected Nearby」のラベルが適用されるが、<i>Sceloporus occidentalis</i>の提案には適用されないかもしれない。
+          you_can_think: |
+            Expected Nearby Mapは、その種がグリッドセル内のどこかに存在するか、まったく存在しないかの推定値と考えることができる。
+          figure_alt_text: ジオモデルはExpected Nearbyラベルを適用します
+        unthresholded_map:
+          unthresholded_map: 閾値なしマップ
+          we_use_the_unthresholded_map: |
+            コンピュータビジョンのスコアに場所による重み付けをするために、閾値なしのマップを使用しています。
+          for_example: |
+            例えば、アメリカの中央部でトカゲを観察した場合、視覚的に似ているにもかかわらず、閾値なしマップを比較すると、<i>Sceloporus consobrinus</i>の提案の方が<i>Sceloporus occidentalis</i>の提案よりも重みがあるかもしれない。
+          you_can_think: |
+            閾値なしマップは、ある種がグリッドセル内に存在する相対的な確率と考えることができます。
+          figure_alt_text: ジオモデルはコンピュータ・ビジョンの結果を重視します
+        range_comparison:
+          expected_nearby_vs_taxon_range: Expected NearbyとTaxon Range
+          this_map_shows: |
+            この地図はこの種のTaxon Rangeを示しており、ジオモデルの評価に使用するExpected Nearby Mapと重なっています。
+          this_gridded_version: |
+            このグリッド化されたTaxon Rangeは、モデルが学習されたときのスナップショットで、Expected Nearby Mapと同じ解像度でグリッド化されています。我々は、Taxon Rangesの誤差をコントロールするために、その種のトレーニングデータの少なくとも90％がTaxon Ranges内にある場合のみTaxon Rangesを使用します。
+          by_combining: |
+            Expected Nearby Map と Taxon Range を組み合わせることで、ジオモデルの性能を推定するための統計量を算出します。
+          figure_alt_text: Expected Nearby mapとTaxon Rangeを比較します
+          combining_these_maps_produces: |
+            これらのマップを組み合わせると、3種類のセルができます：
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            真の存在：
+          true_presences_definition: 予想される分布図と分類群の生息域の両方から、その分類群が存在すると予測されるエリア
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            偽の存在：
+          false_presences_definition: 予想される分布図でのみ、その分類群が存在すると予測される地域
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            偽の不在：
+          false_absences_definition: 分類群の範囲のみが存在するエリア
+          evaluation_statistics_for_taxon: '%{taxon}の評価統計'
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            精度：
+          precision_description: Expected Nearby Mapのうち、真の存在である割合
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            真の存在 / (真の存在 + 偽の存在) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            再現率：
+          recall_description: Taxon Rangeのうち、真の存在が占める割合
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            真の存在 / (真の存在 + 偽の不在) = %{recall}
+          f1_description: 精度と再現率の平均（調和平均）
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2×真の存在／（2×真の存在＋偽の存在＋偽の不在）＝ %{f1}
+          perfect_overlap: |
+            完全な重複は、精度、再現率、F1が1で評価されます。重複なしは、精度、再現率、F1が0で評価されます。
     guides:
       index:
         deprecated_banner: |
@@ -5628,6 +5755,56 @@ ja:
         data_quality_assessment_desc3_html: |
           品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
         identification_count_desc: '単一の分類群に対する同定の件数'
+        quality_assessment_help2_html: |
+          <p>
+          データ品質評価は、観察記録の正確さの要約である。すべての観察記録は<strong>「カジュアル」</strong>グレードとして開始され、以下の場合に<strong>「要同定」</strong>となります。
+          </p>
+
+          <ul>
+          <li>観察記録に <strong>日付がある</strong></li>
+          <li>観察記録が <strong>ジオリファレンスされている</strong>（つまり緯度経度座標を持っている）</li>
+          <li>観察記録に <strong>写真か音声がある</strong></li>
+          <li>観察記録が <strong>人間ではない</strong></li>
+          </ul>
+          <p>
+          観察記録が<strong>「研究用」</strong>になるのは以下の場合です
+          </p>
+          <ul>
+          <li>
+          %{site_name} の<strong>コミュニティが種レベルの同定またはそれ以下の同定に同意している場合</strong>、すなわち同定の2/3以上が分類群に同意している場合（コミュニティがコミュニティ分類群の改善が不可能であると投票した場合、これは亜科レベルの同定またはそれ以下の同定に戻ります）
+          </li>
+          </ul>
+          <p>
+          上記の条件が満たされない場合、またはコミュニティが同意しない場合、観察記録は<strong>「カジュアル」</strong>に戻ります
+          </p>
+          <ul>
+          <li>
+          <strong>場所が不正確</strong>（例：海の真ん中に猿、オフィスビルにカバなど）
+          </li>
+          <li>
+          <strong>生物が野生／帰化していない</strong>（例：人類または知的宇宙人によって捕獲または培養されたもの）
+          </li>
+          <li>
+          観察記録に<strong>生物の証拠がない</strong>。例えば、水辺、岩、風景などの画像に生物が含まれていない場合など。
+          </li>
+          <li>
+          観察記録が、<strong>その生物の最近（～100年）の証拠を示していない</strong>（例：化石、しかし足跡、糞、枯葉はOK）
+          </li>
+          <li>
+          観察記録が同定を必要としなくなり、<em>かつ</em>コミュニティIDが科以上である。
+          </li>
+          <li>
+          観察者がコミュニティIDから脱退しており、コミュニティIDの分類群が観察者の同定に関連する分類群の祖先でも子孫でもない場合
+          </li>
+          </ul>
+          <p>
+          また、これでもまだ複雑でないというなら、システムが投票を得る状況もあります：
+          </p>
+          <ul>
+          <li>
+          この観察記録を含む最小の郡、州、または国に相当する場所に、同じ属またはそれ以下の観察記録が少なくとも10個以上あり、それらの観察記録の80％以上が野生化／帰化していないとマークされている場合、システムはその観察記録を野生化／帰化していないと投票します。
+          </li>
+          </ul>
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
         observation_flagged_notice_html: |
           この観察記録はスパムとしてフラグが立てられ、公開されていません。あなたが見ることができるのは、あなたが作成したか、あなたがサイトのキュレーターだからです。これが間違いであると思われる場合は、<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。
@@ -6002,6 +6179,16 @@ ja:
         translators_title: 翻訳者
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          ほとんどの生き物には、話し言葉に「一般名」があります。一般名は通常、認識・発音しやすく、時間が経過してもあまり変化しません。一方、生物は同じ言語であっても、場所により複数の異なる名前をもつことがあります。そのため、生物について混乱することなくコミュニケーションをとることが困難になることがあります。科学者はこの問題に対処するために、<a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">二名法</a>のルールに準拠した、生物の分類群ごとに単一の「学名」を使用しています。しかし、学名は基本的に誰も話さない言語であるラテン語に基づいているため、ほとんどの人にとっては一般名に比べて記憶に残りません。また、学名は生物の分類学的な扱いが反映されるため、科学者が生物間の進化関係についてより正確な理解を得たときに変更されることもあり、学名を知っている人たちの間でも、コミュニケーションにおける有用性は低下します。
+          </p>
+          <p>
+          古い格言がそれを要約しています。"一般的な名前は場所によって変わり、科学的な名前は時と場合によって変わる。
+          </p>
+          <p>
+          我々はこのような欠点に対応するために、可能な限り一般名と学名の両方を表示し、見る人の言語や地理的な好みに基づいて一般名を選択するようにしています。
+          </p>
         about_establishment_desc: |
           「定着方法」とは、ある種がどのように現在の場所で棲息することになったかを示します。「外来種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固有種」とは、特定の場所にしか存在しないことを表します。
         charts_help_seasonality: |
@@ -6249,7 +6436,13 @@ ja:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y年%m月%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%B%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%Y年%B%d日'
     month_names:
       - 
       - 1月
@@ -6354,6 +6547,11 @@ ja:
       words_connector: '、'
   time:
     am: 午前
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%Y年%B%d日"
     pm: 午後
   activerecord:
     models:
@@ -6543,6 +6741,10 @@ ja:
               only_staff_can_unhide: サイトスタッフのみが非表示にされた内容を再度表示できます。
               staff_cannot_be_suspended: スタッフは利用停止できません
             user_id:
+              must_be_a_curator: キュレーターである必要があります
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: キュレーターである必要があります
         observation:
           attributes:
