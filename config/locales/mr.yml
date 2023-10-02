@@ -371,6 +371,8 @@ mr:
   #Noun, title of a popup alerting you to something
   alert: इशारा
   all: सर्व
+  #Title for a list of all 3rd party applications
+  all_applications: सर्व अर्ज
   all_comments: सर्व टिप्पण्या
   all_flags_must_be_resolved: सर्व ध्वजांचे निराकरण करणे आवश्यक आहे
   all_life: सर्व जीवन
@@ -394,8 +396,10 @@ mr:
     epifamily: डेटाबेसमध्ये सर्व कुळे जोडली गेली
     family: डेटाबेसमध्ये सर्व कुळे जोडली गेली
     subfamily: डेटाबेसमध्ये सर्व उपकुळे जोडली गेली
+    tribe: डेटाबेसमध्ये सर्व कुळे जोडली गेली
     species: डेटाबेसमध्ये सर्व जाती जोडल्या गेल्या
     subspecies: डेटाबेसमध्ये सर्व उपजाती जोडल्या गेल्या
+  all_rights_reserved: सर्व हक्क राखीव
   all_taxa:
     amphibians: उभयचर
     animals: प्राणी
@@ -433,6 +437,15 @@ mr:
   any_date: कोणतीही
   #Label for an option to show content with any establishment means
   any_establishment: कोणतीही
+  #Label for an option to show content with any license
+  any_license: कोणतेही
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: कोणतेही
+  #Label for an option to show content with any quality grade
+  any_quality_grade: कोणतेही
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: कोणतेही
   #Label for an option to show/include content by any user
   any_user: कोणतेही
   anyone: कोणीही
@@ -1062,6 +1075,33 @@ mr:
   your_recent_projects: माझे अलीकडील प्रकल्प
   views:
     donate:
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>तुम्ही तुमची भेट <u>दुप्पट</u> किंवा <u>तिप्पट</u> करू शकता! 
+        गॉर्डन आणि बेट्टी मूर फाउंडेशन सौजन्याने, सर्व मासिक, त्रैमासिक आणि
+        वार्षिक आवर्ती देणग्या तिप्पट आणि एकवेळ देणग्या दुप्पट आहेत
+        ३१ डिसेंबर २०२३ पर्यंत.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist हा जैवविविधतेला समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे. त्याचा भाग झाल्याबद्दल धन्यवाद!
+        </p>
+        <p class="lead">
+        iNaturalist या निसर्गप्रेमी जागतिक समुदायाच्या सामर्थ्यावर तुमचा विश्वास असेल तर
+        ज्ञान सामायिक करण्यासाठी आणि विश्वासार्ह डेटा जैवविविधता निर्माण करण्यासाठी
+        , कृपया एक-वेळ किंवा आवर्ती भेट ऑनलाइन विचारात घ्या, किंवा
+        <a href="https://www.inaturalist.org/pages/giving">देणगी देण्याचे इतर पर्याय पहा
+        </a>.
+        </p>
+        <p class="lead">
+        तुमची देणगी iNaturalist साठी अत्यावश्यक आहे कारण आमचा समुदाय वाढत आहे
+        प्रजाती अचूकपणे ओळखण्यासाठी आमचे तंत्रज्ञान सुधारणे आणि
+        आमच्या सर्व्हर आणि कर्मचार्‍यांना समर्थन देण्यासाठी नवीन वैशिष्ट्ये लागू करण्यासाठी.
+        </p>
+        <p class="text-muted">
+        iNaturalist एक स्वतंत्र 501(c)(3), कर-सवलत, नफ्यासाठी नाही
+        युनायटेड स्टेट्स ऑफ अमेरिका मध्ये स्थित संस्था (कर आयडी:
+        ९२-१२९६४६८).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
@@ -1086,6 +1126,30 @@ mr:
         </p>
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist_caps: iNaturalist चे मासिक सहाय्यक व्हा
+        desc_moore_html: |
+          <p class="lead">
+          <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
+          जैवविविधता शोधत आहे. त्याचा भाग झाल्याबद्दल धन्यवाद!</strong>
+          </p>
+          <p class="lead">
+          आम्हाला iNaturalist वापरण्यासाठी मुक्त ठेवायचे आहे, परंतु ते विनामूल्य नाही
+          ऑपरेट तुम्हाला iNaturalist आवडत असल्यास, कृपया मासिक बनण्याचा विचार करा
+          समर्थक आवर्ती भेटवस्तू iNaturalist सुरू ठेवू शकतात याची खात्री करण्यात मदत करतात
+          अंदाजे प्रदान करून त्याच्या पायाभूत सुविधा आणि कर्मचारी मोजण्यासाठी
+          महसूल तुम्ही तुमची मासिक समर्थक स्थिती दर्शविण्यासाठी देखील निवडू शकता
+          आपले वापरकर्ता प्रोफाइल.
+          </p>
+          <p class="lead">
+          तुमच्या धर्मादाय देणग्या iNaturalist ला समुदाय म्हणून मदत करण्यास मदत करतात
+          संगणकाची दृष्टी विकसित करून आणि नवीन वैशिष्ट्ये लागू करण्यापासून वाढते
+          आमच्या सर्व्हर आणि कर्मचार्‍यांना समर्थन देण्यासाठी. आपण देण्यास प्राधान्य दिल्यास ए
+          एक-वेळ देणगी, कृपया <a href="%{donate_url}">येथे क्लिक करा</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist एक स्वतंत्र 501(c)(3), कर-सवलत,
+          युनायटेड स्टेट्स मध्ये स्थित गैर-नफा संस्था
+          अमेरिका (कर आयडी: ९२-१२९६४६८).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
@@ -1366,6 +1430,10 @@ mr:
             flag:
               not_about_duplicate: |
                 निरीक्षणाच्या हुबेहूब प्रतिबद्दल असू शकत नाही; फक्त मूळ निरीक्षक दुसरी प्रत काढून टाकू शकतो, त्यामुळे कृपया टिप्पणी मार्फत हि समस्या त्यांच्यापर्यंत पोहोचावा
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: क्युरेटर असणे आवश्यक आहे
         place_geometry:
           attributes:
             geom:
