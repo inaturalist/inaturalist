@@ -389,6 +389,7 @@ ca:
   agree_: D'acord
   agree?: Hi estàs d'acord?
   agree_with_current_taxon: D'acord amb actual taxon
+  agree_with_observation_taxon: D'acord amb el tàxon d'observació
   agreeing: Acceptant...
   aka: alies
   #Noun, title of a popup alerting you to something
@@ -399,6 +400,7 @@ ca:
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
   all_life: Tota la vida
+  all_media_must_be_unhidden: Tots els mitjans s'han d'ocultar
   all_names: Tots els noms
   all_observations: Totes les observacions
   all_photos: Totes les fotos
@@ -1673,9 +1675,32 @@ ca:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Us hem enviat un correu de confirmació el %{date}. Si no l'heu rebut, aquí hi ha algunes coses que podrieu fer:
+  email_conf_required_after_grace_period: |
+    La confirmació del correu electrònic és necessària a partir de %{requirement_date} i no heu confirmat la vostra adreça electrònica abans de la data límit. Si us plau reinicieu la vostra contrasenya per accedir al vostre compte.
+  email_conf_faq_html: |
+    Si teniu preguntes, si us plau consulteu aquestes <a href="%{url}">Preguntes freqüents</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag} Confirmeu la vostra adreça electrònica%{link_end_tag}</strong>.
     Tots els usuaris han de confirmar la seva adreça electrònica abans de %{date}. Després d'aquesta data, qualsevol persona que no hagi confirmat la seva adreça electrònica no podrà iniciar la sessió a menys que restableixi la contrasenya. Per confirmar la vostra adreça de correu electrònic, aneu a %{link_start_tag}paràmetres del compte%{link_end_tag}.
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmeu la vostra adreça electrònica de %{site_name} abans de %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Si us plau, confirmeu la vostra adreça de correu electrònic avui per assegurar-vos que podeu continuar accedint al vostre compte. %{site_name} i a les aplicacions mòbils
+    iNaturalist i Seek d'iNaturalist connecten les persones amb la natura i entre elles compartint observacions de la biodiversitat. Gràcies per formar part de la comunitat iNaturalist!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    A partir de %{requirement_date} es requeriran adreces de correu electrònic verificades per a tots els comptes. Si us plau, dediqueu un moment per confirmar-la ara.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Si teniu cap pregunta, si us plau consulteu les <a href="%{faq_url}">Preguntes freqüents</a>. Gràcies per dedicar el vostre temps a connectar amb la natura i amb %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Detalls del compte
+  email_copyright2: "&copy; %{year} iNaturalist, tots els drets reservats"
   email_notifications: Notificacions per correu electrònic
   embed: 'Insereix:'
   embed_place_widget: Insereix un giny de lloc
@@ -1732,6 +1757,7 @@ ca:
   exit_full_screen: "Surt del mode de pantalla completa."
   examples_of_data_use_by_network_members: Exemples d'Ús de Dades per Membres de la Xarxa
   examples_of_ranking_organizations: Exemples de Classificació d'Organitzacions
+  expected_nearby: Esperat a prop
   explore: Exploreu-ne
   export: Exportar
   export_observations: Exporta observacions
@@ -1928,6 +1954,9 @@ ca:
   generate_your_stats: Genereu les vostres estadístiques
   generating_mobile_archive: "Generant arxiu mòbil"
   Genus: Gènere
+  geomodel_expected_nearby_label_is_derived: |
+    L'etiqueta "Esperat a prop" deriva del Geomodel.
+    <a href="%{url}">Obteniu més informació sobre el Geomodel aquí</a>.
   geoprivacy: Geoprivacitat
   geoprivacy_is_obscured: Geoprivacitat està oculta
   geoprivacy_is_obscured_desc: L'observador ha escollit enfosquir les coordenades.
@@ -2015,6 +2044,10 @@ ca:
   #Verb, usually a button to hide an interface element
   hide: Amaga
   hide_content: Amaga Contingut
+  hide_desc: |
+    Amagant el contingut eviteu que el públic ho vegi, però poden saber que s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden veure el contingut amagat. Normalment, això únicament afecta el contingut escrit, p.e. si amagueu el contingut d'una identificació, la identificació encara és visible però les marques de l'identificador s'amaguen. No podeu desfer això, únicament els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos, i useu-lo únicament per continguts molt objectivables.
+  hide_desc_staff_can_unhide: |
+    Només el personal del lloc pot mostrar el contingut un cop s'ha amagat, així que utilitzeu-ho únicament per a infraccions clares de les directrius de la comunitat.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Amaga "Sense anotacions"
@@ -2070,6 +2103,10 @@ ca:
   #Notification when an identification has been deleted
   identification_deleted: Identificació eliminada.
   identification_saved: "Identificació desada!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identificació oculta
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identificació no oculta
   #Notification when an identification has been updated
   identification_updated: Identificació actualitzada!
   identification_user_short: Ident. Usuari
@@ -2133,6 +2170,7 @@ ca:
   include_places: Incloure Llocs
   include_projects: Incloure Projectes
   include_suggestions_not_seen_nearby: Incloure suggeriments no vistos aprop
+  include_suggestions_not_expected_nearby: Incloure suggeriments no esperats a prop
   include_taxa: Incloure Tàxons
   include_users: Incloure Usuaris
   including: inclou
@@ -2850,6 +2888,8 @@ ca:
   next_tab: Propera pestanya
   next_taxon_short: Següent
   'no': 'No'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Encara no hi ha aplicacions
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració a aquest projecte.
   no_but_it_is_a_member_of_taxon: "No, però es un membre de %{taxon}"
   no_comments_yet: Encara no hi ha comentaris
@@ -3269,6 +3309,8 @@ ca:
   password: Contrasenya
   password_confirmation: 'Confirmeu la contrasenya'
   password_change_description: Canviar la vostra contrasenya, tancarà totes les sessions actives d'iNaturalist als vostres dispositius
+  password_change_logout_warning: Un cop canvieu la vostra contrasenya, es tancarà la sessió i haureu de tornar a iniciar-la amb la vostra nova contrasenya.
+  password_change_observations_warning: També es tancarà la sessió de les aplicacions mòbils d'iNaturalist i de qualsevol altra aplicació o lloc web que publiqui a iNaturalist en nom vostre, així que assegureu-vos d'haver pujat qualsevol observació pendent abans de fer-ho. Totes les observacions que no s'hagin pujat es perdran.
   paste: Enganxa
   paste_in_a_bunch_of_names: Enganxa un grup de noms, 1 per línia i feu clic a l’enllaç!
   people: Persones
@@ -3304,8 +3346,12 @@ ca:
   photo_credits: Crèdit de la foto
   photo_deleted: Foto esborrada
   photo_destroyed_because_it_was_deleted_from: "La foto s'ha eliminat perquè s’ha esborrat d'un web extern o perquè %{site_name} no té permís per mostrar-la."
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto oculta
   photo_licensing: Llicència de la foto
   photo_type: Tipus de foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto no oculta
   photo_urls_repaired: L’URL de la foto s'ha reparat.
   photos_chosen_for_this_taxon: Fotos escollides per a aquest tàxon
   photos_from: Fotos de
@@ -3772,6 +3818,8 @@ ca:
   places_merged_successfully: Els llocs s'han combinat satisfactòriament!
   places_warning_export_complex_boundary_html: |
     Si esteu intentant exportar observacions d'un territori amb una forma complexa, proveu <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">baixar-les des de GBIF</a> , des d'on podreu dibuixar límits arbitraris, o exportar-les des d'iNat utilitzant llocs existents o dibuixant una caixa i filtrant després les dades de nou una vegada les heu descarregat.
+  places_warning_look_for_existing2_html: |
+    Cerqueu a <a href="/search?source[]=places">llocs existents</a> per assegurar-vos que no esteu creant cap duplicat. Ja tenim llocs per a tots els continents i països, i per molts altres límits administratius.
   places_warning_please_keep_in_mind: |
     Tingueu en compte les següents restriccions:
   places_warning_projects_can_have_multiple_places: |
@@ -3807,6 +3855,8 @@ ca:
   post_from_your_journal_html: Publicació de <a href="%{url}">el vostre diari</a>
   post_published: Nota publicada!
   posted_by: Publicat per
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicat el %{date}
   posts: Publicacions
   potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
@@ -6873,6 +6923,9 @@ ca:
           <p> La <a href="%{url}" target="_blank"> xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment connectats a la comunitat global iNaturalist. Aquests llocs web compten amb el suport d’institucions locals que han signat un acord amb iNaturalist per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés a les coordenades reals dels seus països que queden automàticament ocultes al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d'usuari i contrasenya són els mateixo a tots els llocs que formen part de la xarxa iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions locals que operen en cada lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-vos les activitats del lloc) i accedir a les coordenades reals d'observacions tant siguin públiques o privades. </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de 1000 observacions. </p>
         licensing_desc_html: |
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
+        monthly_supporter_desc_html: |
+          Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i de la Xarxa d'iNaturalist.
+          <a href="%{url}"> Feu clic aquí per a convertir-vos en un Patrocinador Mensual</a>. Quan confirmem el vostre suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: Les adreces de correu electrònic a Donorbox i a iNaturalist hauran de ser exactament les mateixes perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual. Si són diferents, canviï una perquè sigui igual a l'altre.
         muting_desc_html: |
           <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
           <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
@@ -7076,9 +7129,15 @@ ca:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d de %B de %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d de %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d de %B de %Y'
     month_names:
       - 
       - gener
@@ -7211,9 +7270,15 @@ ca:
     am: del matí
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d %b %Y %H:%M:%S %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d/%m/%Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%d %b. %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%I:%M %p %Z"
     pm: de la tarda
