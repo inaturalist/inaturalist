@@ -2927,7 +2927,7 @@ nl:
   ne_lat: NO Lat.
   ne_lon: NO Lon.
   near_threatened: Gevoelig
-  nearby_observations_: Waarnemingen dichtbij
+  nearby_observations_: Waarnemingen in de buurt
   needs_id: ID nodig
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
@@ -6028,13 +6028,13 @@ nl:
           Gordon en Betty Moore Foundation worden alle maandelijks terugkerende donaties verdrievoudigd tot 31 december 2023.</strong>
           </p>
           <p class="lead">
-          iNaturalist is een van 's werelds grootste gemeenschappen voor het ontdekken van de biodiversiteit. Bedankt dat u er deel van uitmaakt!
+          iNaturalist is een van 's werelds grootste gemeenschappen voor het ontdekken van de biodiversiteit. Fijn dat je er deel van uit maakt!
           </p>
           <p class="lead">
-          Als je van iNaturalist houdt, overweeg dan om een maandelijkse
-          Supporter te worden. Terugkerende giften zorgen ervoor dat iNaturalist
+          Als je van iNaturalist houdt, word dan maandelijkse
+          Supporter. Terugkerende giften zorgen ervoor dat iNaturalist
           door kan gaan met het opschalen van de infrastructuur en personeel door de 
-          voorspelbare inkomsten. En je maandelijkse cadeau heeft drievoudig de impact!
+          voorspelbare inkomsten. En je maandelijkse gift heeft nu een drievoudige impact!
           Je kan ook kiezen om je maandelijkse supporter status op je gebruikersprofiel te tonen.
           </p>
           <p class="lead">
@@ -6134,6 +6134,9 @@ nl:
           precision_colon: |
             Nauwkeurigheid:
           precision_description: Het deel van de 'In de buurt verwacht'-kaart dat True Presences zijn
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Herroepen:
           recall_description: Het deel van de verspreiding van het taxon dat True Presences zijn
           #Equation showing how we calculate recall of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists

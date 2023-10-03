@@ -1,4 +1,7 @@
 es-AR:
+  x_comments:
+    one: '1 comentario'
+    other: '%{count} comentarios'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentario'
     other: '<span class="count">%{count}</span> comentarios'
@@ -2412,6 +2415,10 @@ es-AR:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Lineal
   link: Vínculo
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Enlace al código de autorización
   link_your_flickr_account: Vincula tu cuenta de Flickr
   link_your_google_account: Enlaza tu cuenta de Google
   linked_flickr: "Tu cuenta de %{site_name} está vinculada actualmente con tu cuenta de Flickr."
@@ -2588,6 +2595,7 @@ es-AR:
       every_publicly_visible_observation: Todas las observaciones públicamente visibles creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
+      gbif_network_description2: Registros de museos y otros proveedores distribuidos por el Global Biodiversity Information Facility
       observations: Observaciones
       place_boundary: Límite del lugar
       checklist_places: Lista de verificación de los lugares
@@ -2607,6 +2615,9 @@ es-AR:
   maximum_positional_accuracy_including_unknown: |
     Máxima precisión posicional, incluyendo observaciones sin precisión posicional
   media: Multimedia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: "y"
   media_type: Tipo de medios
   medium: medio
   meet: Conoce
@@ -2623,7 +2634,10 @@ es-AR:
   mentioned_you_in_an_x_on_noun_html: "%{user} te ha mencionado en un %{x} sobre %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} te ha mencionado en un %{x} en %{noun} sobre %{by}"
   mentioned_you_in_a_x_on_noun_by_user_html: "%{user} te ha mencionado en un/a %{x} en %{noun} por %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} te ha mencionado en un/a %{x} en %{noun} por ti"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} te ha mencionado en un %{x} en %{noun} sobre %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} te ha mencionado en un/a %{x} en %{noun} por %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} te mencionó en un/a %{x} en %{noun} tuyo"
   merge: Combinar
   merge_it_with_another_place: Combinar con otro lugar
   merge_two_places_together: Combinar dos lugares. Todas las especies en las listas de verificación se combinarán, así como los datos geográficos.
@@ -2641,6 +2655,11 @@ es-AR:
     Tené cuidado con las peticiones acerca de especímenes o datos ocultos. Tratá de verificar la identidad de la persona que hace la solicitud y si está pidiendo especímenes, pedile su permiso.
   messages_new_correspondent_personal: |
     No reveles tu información personal a personas en las que no confíes.
+  messages_new_correspondent_actions_html: |
+    Si sospechás que esta persona está violando nuestras <a href="%{tos_url}"
+    target="_blank">Condiciones de Uso</a> o no actúa de acuerdo con nuestras <a
+    href="%{guidelines_url}" target="_blank">directrices de la comunidad</a>, por favor
+    denunciá este mensaje.
   minimum_positional_accuracy: Precisión posicional mínima
   misidentifications: Identificaciones erróneas
   misleading_or_illegal_content_html: |
@@ -2651,6 +2670,16 @@ es-AR:
   missing_date: Falta la fecha
   mobile: Móvil
   moderation_history_for_user_html: Historial de moderación de %{user}
+  moderation_history_desc_html: |
+    Esto incluye las acciones de moderador (como ocultar u mostrar comentarios), notas,
+    y marcas en todo lo que este usuario ha creado diferente a los taxones. Esto es
+    <strong>sólo visible para los supervisores</strong> y <strong>los supervisores no pueden ver
+    su propio historial</strong>, así que las notas sobre una persona nunca deberían ser visibles
+    para esa persona.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Ocultar
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Dejar de suspender
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderador / Marcador
   mollusks: moluscos
@@ -2688,11 +2717,30 @@ es-AR:
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Mes
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Patrocinador mensual
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
   months: Meses
   more: Más
+  #Button to show more observations
+  more__context_observations_caps: MÁS
+  #Button to show more places
+  more__context_places: Más
+  #Button to show more text
+  more__context_text: Más
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MÁS
+  more_caps: MÁS
   more_about_sharing: Más sobre compartir
   more_fields: Más campos
   more_filters: Más filtros
@@ -2715,6 +2763,8 @@ es-AR:
   most_observed_introduced_species: Especies introducidas más observadas
   most_observed_threatened_species: Especies amenazadas más observadas
   move_input_children_to_output?: '¿Mueve a los descendientes a la salida?'
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Mover %{child} de %{old_parent} reduciría lo que se entiende por %{old_parent}. Hay %{id_count} Identificaciones de %{old_parent}.
   multiple: Múltiple
   multiple_select_option: '-- múltiples --'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
@@ -2729,9 +2779,12 @@ es-AR:
   must_be_observed_after: debe observarse después de %{operand}
   must_be_observed_before: debe observarse antes de %{operand}
   must_be_observed_by_user: debe ser observado por %{user}
+  must_be_observed_in_place: debe ser observado en %{place}
   must_be_less_than_x_MB: "Debe ser menor que %{x} MB"
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   must_have_photos: debe tener fotos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "debe tener el nivel de calidad: %{grades}"
   must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
   #Imperative verb, label for a button that lets you mute another user
@@ -2739,6 +2792,7 @@ es-AR:
   #Mute is a noun here
   mute_removed: Silenciamiento eliminado
   muted_users: Usuarios silenciados
+  muting_description: Silenciar a alguien evita que se te notifique sobre cualquiera de sus actividades, incluyendo menciones "@", mensajes, o comentarios e identificaciones en tus observaciones.
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan"
@@ -2769,6 +2823,7 @@ es-AR:
   needs_id: necesita identificador
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
+  needs_id_tooltip_html: 'Las observaciones "Necesita ID" tienen medios, ubicación y fecha, pero todavía requieren consenso de la comunidad sobre su identificación precisa. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las notas de calidad</a>'
   needs_to_be_identified: Necesita identificarse
   network_affiliation_prompt_from_other_site_html: |
     ¿Querés cambiar tu afiliación de <strong>%{other_site_name}</strong> a
@@ -2778,11 +2833,13 @@ es-AR:
   new: Nuevos
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
+  new_application: Nueva aplicación
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de verificación
   new_check_list_for: "Crear lista de verificación nueva para %{place} &raquo;"
   new_check_list_record: "Si deseas marcar esta lista como exhaustiva, créala, agrega los taxones y luego modifícala y aquí tendrás la opción de marcarla como exhaustiva."
   new_comment_on_a_parent_by_user_link: Nuevo comentario en @vow_or_con{voto:un|un} %{parent} de %{user_link}
+  new_conservation_status: Nuevo estado de conservación
   new_flag_for: Marca nueva para
   new_guide: Guía nueva
   new_journal_post: Nuevo artículo en el diario
@@ -2813,10 +2870,12 @@ es-AR:
   new_trip: Nuevo viaje
   new_updates_in_the_last_24_hours_from: "Nuevas actualizaciones en las últimas 24 horas de %{site_name}"
   new_users: Usuarios nuevos
+  new_users_in_year: "Nuevos usuarios en %{year}"
   new_users_w_7_obs: Usuarios nuevos w/ 7 Obs
   newly_added: Añadido Recientemente
   newly_added_species: Especie Añadida recientemente
   newly_observed_species: Especie Observada recientemente
+  newly_observed_species_in_year: "Nuevas especies añadidas en %{year}"
   next: Siguiente
   next_date_short: Siguiente
   next_observation: Siguiente observación
@@ -2953,6 +3012,10 @@ es-AR:
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Observación hecha por %{user}
   observation_brief_something_on_day: "Algo el %{day}"
+  observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
+  observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Algo de %{month} de %{year}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2960,7 +3023,11 @@ es-AR:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Algo de %{place} en %{month} de %{year}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} en %{month} de %{year} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2980,6 +3047,10 @@ es-AR:
   observation_curation: Curación de observación
   observation_date: Fecha
   observation_date?: '¿Fecha?'
+  #Basic observation export fields
+  observation_export_column_type_basic: Básico
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
   observation_field: Campo de observación
   observation_field_details: Detalles del campo de observación
   observation_field_type_text: Texto
@@ -3217,6 +3288,8 @@ es-AR:
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
   photo_destroyed_because_it_was_deleted_from: "La foto fue destruida porque fue borrada de un sitio externo o %{site_name} no tiene permisos para mostrarla."
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto oculta
   photo_licensing: Licencia de la foto
   photo_type: Tipo de foto
   photo_urls_repaired: Se repararon los URL de las fotos
@@ -3293,6 +3366,8 @@ es-AR:
       colloquial: coloquial
       Commune: Comuna
       commune: Comuna
+      Constituency: Circunscripción
+      constituency: circunscripción
       Continent: Continente
       continent: continente
       Country: País
@@ -3303,6 +3378,14 @@ es-AR:
       Delegation: Delegación
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegación
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Parte del Departamento
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: parte del departamento
       District: Distrito
       district: Distrito
       Division: División
@@ -3345,6 +3428,8 @@ es-AR:
       parish: Distrito
       #https://en.wikipedia.org/wiki/Poblacion
       Poblacion: Población
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: población
       prefecture: prefectura
       Prefecture_City: Ciudad prefectura
       prefecture_city: ciudad prefectura
@@ -3354,6 +3439,7 @@ es-AR:
       postal_code: código postal
       Province: Provincia
       province: Provincia
+      regency: regencia
       Region: Región
       region: Región
       Republic: República
@@ -3372,6 +3458,10 @@ es-AR:
       subdivision: Subdivisión
       Suburb: Suburbio
       suburb: suburbio
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Suma
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: suma
       Supername: Super Nombre
       supername: super nombre
       Territory: Territorio
@@ -3384,6 +3474,8 @@ es-AR:
       undefined: indefinido
       Unknown: Desconocido
       unknown: Desconocido
+      Village_block: Núcleo aislado
+      village_block: núcleo aislado
       Zone: Zona
       zone: zona
   place_guess: Estimación de lugar
@@ -3746,6 +3838,8 @@ es-AR:
     Los proyectos no permiten la agregación automática de observaciones, excepto que se hayan asociado a un territorio de dimensiones moderadas o que únicamente permitan observaciones de taxones específicos o de una lista
   project_assessments: Evaluación del proyecto
   project_assets: Activos del proyecto
+  project_coordinate_access_disabled_until_datetime: |
+    No podrás acceder a las coordenadas ocultas hasta el %{datetime}
   project_cover: Portada del proyecto
   project_created_on: creó este proyecto el %{date}
   project_curator_id: Identificación del curador del proyecto
@@ -3957,12 +4051,15 @@ es-AR:
   recently_finished: Terminado recientemente
   recently_observed: Observado recientemente
   recently_resolved: Resuelto recientemente
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Registro
   red: rojo
   redo_search_in_map: Rehacer búsqueda en mapa
   redo_search_in_map_area: Vuelve a realizar la búsqueda en el área del mapa
   refresh: Refrescar
   refreshing: refrescando
   regenerate_stats: Regenerar estadísticas
+  regional_names: Nombres regionales
   register_for_this_event_at_x_html: "Registro para este evento en %{x}"
   reject?: '¿Rechazar?'
   relative_observations: Observaciones relativas
@@ -3978,6 +4075,7 @@ es-AR:
     not_external: no externo
     not_internal: no interno
     error: error
+  relationships_user_settings: Relaciones
   relationship_html: "Relación: %{link}"
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: 'El tiempo de carga expiró.  Por favor trate de nuevo en un momento.'
@@ -4095,6 +4193,8 @@ es-AR:
   scale_colon: "Escala:"
   schemes: Esquemas
   schemes_including: Esquemas que incluyen a
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Nombre científico
   search: Buscar
   search_all_fields: buscar todos los campos
   search_by_name_or_email: Búsqueda por nombre o email
@@ -4174,6 +4274,8 @@ es-AR:
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_less: Muestra menos
   show_more: Muestra más
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostrar más opciones de acceso
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostrar "Sin anotaciones"
@@ -4267,6 +4369,8 @@ es-AR:
   sites_network_your_username: |
     Si elegís afiliarte a un sitio de red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse con vos sobre las actividades del sitio) y el acceso a las coordenadas reales de las observaciones que hayas seleccionado para ocultarla al público o hacerla privada.
   some_agree: Algunos la apoyan
+  some_observations_are_missing_media_or_identifications: |
+    Algunas observaciones carecen de fotografías o identificaciones
   some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse a los proyectos
   some_observations_failed_to_save: Algunas observaciones no se guardaron
   some_of_those_photos_couldnt_be_saved: "Algunas de las fotos no pudierón ser guardadas: %{error}"
@@ -5971,6 +6075,8 @@ es-AR:
         traditional_projects_cannot_be_copied: El proyecto tradicional no se puede copiar.
         umbrella_project_features: "Características de proyecto paraguas:"
         unique_url_for_outreach: URL único para promoción
+        use_this_for_a_time_limited_event: |
+          Usá esto para eventos de tiempo limitado, "bio-blitz", o proyectos estacionales. Seleccioná una única fecha, rango de fechas, o los meses del año durante los cuales deben hacerse las observaciones (sin importar el año). Si utilizás la sección Rango de Fechas, asegurate de tener seleccionadas las horas y zonas horarias correctas, o eliminá el texto de zona horaria/horaria para incluir observaciones hechas en cualquier momento de ese día. Podés dejar en blanco la fecha de inicio o la fecha de finalización si deseas limitar el proyecto a una sola fecha.
         users_can_follow_your_project: Los usuarios pueden seguir actualizaciones de tu  proyecto para actualizaciones vía el sitio del journal
         use_this_link_to_create_html: |
           Usa <a href="%{url}">este enlace</a> para crear un proyecto tradicional.
@@ -6134,6 +6240,9 @@ es-AR:
         complete_rank_desc_html: |
           Rango en el qué este taxón está completo, p. ej. si esta familia contiene
           todo sus géneros pero no todas sus especies, esto estaría indicado a "género." La respuesta por defecto es especie.
+        wikipedia_summary_desc_html: |
+          Breve resumen de este taxón basado en su página de <a target="_blank"
+          href="%{url}">Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
       show:
         about_conservation_status_desc: |
           El estado de conservación sintetiza el riesgo de extinción de un grupo de organismos.
@@ -6456,6 +6565,12 @@ es-AR:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d de %B de %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d de %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d.%b.%Y'
     month_names:
       - 
       - enero
@@ -6578,9 +6693,17 @@ es-AR:
     am: mañana
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d %b %Y %H:%M:%S %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d de %B de %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d/%m/%Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%d %b. %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
@@ -6805,6 +6928,7 @@ es-AR:
           attributes:
             base:
               must_have_reasonable_number_of_rows: Las exportaciones no pueden contener más de 200.000 observaciones
+              must_have_query: La consulta no puede quedar vacía
             user_id:
               already_has_an_export_in_progress: ya tiene una exportación en progreso
         place:
@@ -6813,6 +6937,13 @@ es-AR:
               is_too_large_to_edit: es demasiado grande para editarse
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para importar
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: no puede estar en blanco
+              invalid_point: tiene un punto no válido, por ejemplo, longitud mayor a 180 o latitud menor que -90
+              must_have_more_than_three_points: debe tener más de tres puntos
+              polygon_with_fewer_than_four_points: tiene un polígono con menos de 4 puntos
         post:
           attributes:
             parent:

@@ -415,6 +415,7 @@ tr:
   all_comments: Tüm yorumlar
   all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
   all_life: Tüm yaşam
+  all_media_must_be_unhidden: Tüm medya gizlenmemiş olmalıdır
   all_names: Tüm Adlar
   all_observations: Tüm gözlemler
   all_photos: Tüm fotoğraflar
@@ -1682,6 +1683,8 @@ tr:
     %{date} tarihinde sana bir doğrulama e-postası gönderdik. Almadıysan, yapabileceğin bazı şeyler:
   email_conf_required_after_grace_period: |
     E-posta doğrulaması %{requirement_date} itibariyle gereklidir ve e-postanı son tarihten önce doğrulamadın. Hesabınıa erişmek için lütfen şifreni sıfırla.
+  email_conf_faq_html: |
+    Bir sorun olur ise lütfen <a href="%{url}">SSS</a>'ye başvurun.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Lütfen e-posta adresini doğrula%{link_end_tag}</strong>. Tüm kullanıcılar e-posta adreslerini %{date} tarihine kadar onaylamalıdır. Bu tarihten sonra e-posta adresini teyit etmemiş olan herkes, şifrelerini sıfırlamadıkları sürece oturum açamayacaktır. E-posta adresini doğrulamak için %{link_start_tag}hesap ayarlarına%{link_end_tag} git.
   #Subject of an email prompting people to confirm their email address before
@@ -1758,6 +1761,7 @@ tr:
   exit_full_screen: "Tam Ekrandan Çık"
   examples_of_data_use_by_network_members: Üyeler Tarafından Verilerin Kullanımına İlişkin Örnekler
   examples_of_ranking_organizations: Öne Çıkan Kuruluşların Örnekleri
+  expected_nearby: Yakınlarda Beklenen
   explore: Keşfet
   export: Dışa aktar
   export_observations: Gözlemleri Dışa Aktar
@@ -1953,6 +1957,9 @@ tr:
   generate_your_stats: İstatistiklerini Oluştur
   generating_mobile_archive: "Mobil belgelik oluşturma"
   Genus: Cins
+  geomodel_expected_nearby_label_is_derived: |
+    Yakınlarda Beklenen etiketi Geomodel'den alınır.
+    <a href="%{url}">Geomodel hakkında daha çok bilgi için tıklayın</a>.
   geoprivacy: Coğrafi gizlilik
   geoprivacy_is_obscured: Coğrafi gizlilik gizlenmiş
   geoprivacy_is_obscured_desc: Gözlemci, koordinatları gizlemeyi seçti.
@@ -2040,6 +2047,8 @@ tr:
   #Verb, usually a button to hide an interface element
   hide: Gizle
   hide_content: İçeriği Gizle
+  hide_desc_staff_can_unhide: |
+    Yalnızca site personeli daha önce gizlenmiş içeriği tekrar ortaya çıkarabilir, dolayısı ile bunu yalnızca Topluluk İlkeleri'nin açık ihlâlinde kullanın.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Açıklama Notu Olmayan"ları Gizle'
@@ -2095,6 +2104,10 @@ tr:
   #Notification when an identification has been deleted
   identification_deleted: Tanımlama silindi.
   identification_saved: "Tanımlama kaydedildi!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Tanımlama gizlendi
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Tanımlama ortaya çıkarıldı
   #Notification when an identification has been updated
   identification_updated: Tanımlama güncellendi!
   identification_user_short: Kullanıcı kimliği
@@ -2158,6 +2171,7 @@ tr:
   include_places: Konumları Dahil Et
   include_projects: Projeleri Dahil Et
   include_suggestions_not_seen_nearby: Yakınlarda görünmeyen önerileri de içer
+  include_suggestions_not_expected_nearby: Yakınlarda beklenmeyen önerileri dahil et
   include_taxa: Sınıfları Dahil Et
   include_users: Kullanıcıları Dahil Et
   including: şunu içerir
@@ -2675,6 +2689,10 @@ tr:
   moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
   moderation_history_desc_html: |
     Bu, kullanıcının sınıflandırma oluşturmalarının yanı sıra moderasyon hareketlerini (örneğin yorumları gizleme veya görünür yapma), notlar ve işaretlemeleri de içerir. Bunu <strong>sadece küratörler görüntüleyebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu yüzden kişi hakkındaki notları kesinlikle kişinin kendisi görüntüleyememelidir.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Gizle
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Askıyı kaldır
   moderator_note_desc: |
     Moderatör notları; moderasyonun kullanıcı hakkındaki kanıtlara dayalı endişeleri veya verdikleri karşılıkların kayıtlarıdır. Örneğin kukla hesap. Lütfen kullanıcı hakkındaki kişisel fikirleri veya dedikoduları dahil etme.
   #Person who executed a moderator action or flagged something
@@ -3348,8 +3366,12 @@ tr:
   photo_credits: Fotoğraf Kaynakları
   photo_deleted: Fotoğraf silindi
   photo_destroyed_because_it_was_deleted_from: "Fotoğraf, harici siteden silindiği ya da %{site_name} artık görüntüleme iznine sahip olmadığı için yok edildi"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Fotoğraf gizlendi
   photo_licensing: Fotoğraf Lisansı
   photo_type: Fotoğraf türü
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Fotoğraf ortaya çıkarıldı
   photo_urls_repaired: Fotoğraf URL'leri düzeltildi
   photos_chosen_for_this_taxon: Bu sınıf için seçilen fotoğraflar
   photos_from: Şuradan fotoğraflar
@@ -5785,6 +5807,88 @@ tr:
           İşaretlenebilir içerik, işaretin oluşturulduğu sırada işaretlenen nesnenin birincil metin niteliğidir. Bunu yalnızca küratörler ve personel görebilir. Mesajlar için bunu yalnızca personel görebilir.
         flags_that_should_not_be_resolved_desc_html: |
           Lütfen <code>gereksiz konu</code> ve <code>telif hakkı ihlali</code> işaretlerini yalnızca içerik gereksiz değilse ya da bir telif hakkı ihlali değilse çözün.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          %{taxon} için Geomodel Tahminleri
+        the_geo_model_makes_predictions: |
+          Geomodel, türlerin nerede bulunduğu ve nerede bulunmadığı hakkında tahminlerde bulunur. Geomodel'i, önerilerin yanı sıra "Yakınlarda Beklenen" etiketini uygulamak ve bu önerileri gözlemin konumuna göre ağırlıklandırmak için kullanıyoruz.
+        the_geo_model_is_trained: |
+          Bilgisayar Görü Modeli gibi Geomodel de kabaca 100'den çok fotoğraf ile aynı tür kümesi için iNaturalist gözlemleri üzerinde eğitilmiştir. Geomodel mükemmel tahminler yapmaz. Geomodel'in nasıl oluşturulduğu hakkında daha çok bilgiyi <a href="%{url}">buradan</a> okuyabilirsin.
+        nearby_map:
+          expected_nearby_map: Yakınlarda Beklenen Haritası
+          we_use_this_map: |
+            Bu haritayı, gözlemin konumuna bağlı olarak önerilerde Yakınlarda Beklenen etiketini uygulamak için kullanırız.
+          for_example: |
+            Örneğin, Amerika Birleşik Devletleri'nin merkezinde bir kertenkele gözlemi, <i>Sceloporus consobrinus</i> önerisine Yakınlarda Beklenen etiketinin uygulanmasına neden olabilir ancak ilgili Yakınlarda Beklenen Haritalarına dayanarak <i>Sceloporus occidentalis</i>'e uygulanmayabilir.
+          you_can_think: |
+            Yakınlarda Beklenen Haritası'nı, ilgili türün ızgara hücresinin içinde bir yerde mevcut olup olmadığına ya da tamamen bulunmadığına dair bir tahmin olarak düşünebilirsin.
+          figure_alt_text: Geomodel, Yakınlarda Beklenen etiketini uygular
+        unthresholded_map:
+          unthresholded_map: Eşiksiz Harita
+          we_use_the_unthresholded_map: |
+            Öneriler sunarken bilgisayar görü puanlarını konuma göre ağırlıklandırmak için Eşiksiz Harita'yı kullanıyoruz.
+          for_example: |
+            Örneğin, Amerika Birleşik Devletleri'nin merkezinde bir kertenkele gözlemi, görsel olarak benzer olmalarına rağmen, Eşiksiz Haritaların karşılaştırılmasına dayalı olarak <i>Sceloporus consobrinus</i> önerilerinin <i>Sceloporus occidentalis</i> önerilerinden daha çok ağırlıklandırılmasına neden olabilir.
+          you_can_think: |
+            Eşiksiz Harita'yı bir türün bir ızgara hücresinde bulunma olasılığı olarak düşünebilirsiniz.
+          figure_alt_text: Geomodel, Bilgisayar Görü sonuçlarını ağırlıklandırır
+        range_comparison:
+          expected_nearby_vs_taxon_range: Yakınlarda Beklenen vs Sınıf Yayılımı
+          this_map_shows: |
+            Bu harita, Geomodel'i değerlendirmek için kullandığımız Yakınlarda Beklenen Haritası ile örtüşen bu tür için Sınıf Yayılımını göstermektedir.
+          this_gridded_version: |
+            Sınıf Yayılımının bu ızgaralı hali, model eğitildiğinde ve Yakınlarda Beklenen Haritası ile aynı çözünürlükte ızgaralandığında alınan bir anlık görüntüdür. Hataları kontrol etmek için yalnızca o türe ait eğitim verilerinin en az %90'ının Sınıf Yayılımı içinde kaldığı Yayılımları kullanırız.
+          by_combining: |
+            Yakınlarda Beklenen Haritası ile Sınıf Yayılımını birleştirerek, Geomodel'in ne kadar iyi performans gösterdiğini tahmin etmek için istatistikleri hesaplıyoruz.
+          figure_alt_text: Yakınlarda Beklenen haritası ve Sınıf Yayılımı karşılaştırılır
+          combining_these_maps_produces: |
+            Bu haritalar birleştirildiğinde 3 tip hücre ortaya çıkar:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Tam Mevcudiyet:
+          true_presences_definition: Yakınlarda Beklenen Haritası ve Sınıf Yayılımının her ikisinin de sınıfın var olduğunu öngördüğü alanlardır
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Eksik Mevcudiyet:
+          false_presences_definition: Yalnız Yakınlarda Beklenen Haritası'nın sınıfın var olduğunu öngördüğü alanlar
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Eksik Yokluk:
+          false_absences_definition: Yalnız Sınıf Yayılımının mevcut olduğu alanlar
+          evaluation_statistics_for_taxon: '%{taxon} için değerlendirme istatistikleri'
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Kesinlik:
+          precision_description: Yakınlarda Beklenen Haritası'nın Tam Mevcudiyet olan kısmı
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Tam Mevcudiyet / (Tam Mevcudiyet + Eksik Mevcudiyet) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            İsabet:
+          recall_description: Sınıf Yayılımının Tam Mevcudiyet olan kısmı
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Tam Mevcudiyet / (Tam Mevcudiyet + Eksik Mevcudiyet) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Kesinlik ve İsabet değerlerinin ortalaması (harmonik ortalama)
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 x Tam Mevcudiyet / (2 x Tam Mevcudiyet + Eksik Mevcudiyet + Eksik Yokluk) = %{f1}
+          perfect_overlap: |
+            Mükemmel örtüşme 1 Kesinlik, İsabet ve F1 ile değerlendirilecektir. Örtüşmeme ise 0 Kesinlik, İsabet ve F1 ile değerlendirilecektir.
     guides:
       index:
         deprecated_banner: |
@@ -7492,9 +7596,11 @@ tr:
       AssessmentSection: Değerlendirme Bölümü
       Atlas: Atlas
       BlockedUser: Engellenmiş Kullanıcı
+      Comment: Yorum
       CompleteSet: Eksiksiz Küme
       #Noun
       Flag: İşaret
+      Identification: Tanımlama
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7506,6 +7612,7 @@ tr:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Uygulama
+      Photo: Fotoğraf
       TaxonLink: Sınıf Bağlantısı
     attributes:
       announcement:
@@ -7787,6 +7894,10 @@ tr:
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: bir küratör olmalı
         observation:
           attributes:
             base:

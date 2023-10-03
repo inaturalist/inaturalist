@@ -1888,6 +1888,7 @@ ru:
   exit_full_screen: "Выйти из полноэкранного режима"
   examples_of_data_use_by_network_members: Примеры использования данных участниками сети
   examples_of_ranking_organizations: Примеры рейтинговых организаций
+  expected_nearby: Встречаются поблизости
   explore: Исследуйте
   export: Экспорт
   export_observations: Экспорт наблюдений
@@ -2306,6 +2307,7 @@ ru:
   include_places: Включить места
   include_projects: Включить проекты
   include_suggestions_not_seen_nearby: Включать предложения, не встречающиеся поблизости
+  include_suggestions_not_expected_nearby: Включать предложения, не встречающиеся поблизости
   include_taxa: Включить таксоны
   include_users: Включить пользователей
   including: включая
@@ -6089,23 +6091,88 @@ ru:
           infringement</code>, только если содержимое не является спамом или нарушением авторских прав, соответственно.
     geo_model:
       explain:
+        geomodel_predictions_of_taxon: |
+          Прогноз геомодели по %{taxon}
+        the_geo_model_makes_predictions: |
+          Геомодель даёт прогнозы, где виды встречаются, а где они отсутствуют.
+          Мы используем геомодель для получения метки «Встречаются поблизости» наряду с предложениями взвесить эти предложения в зависимости от места наблюдения.
+        the_geo_model_is_trained: |
+          Как и модель компьютерного зрения, геомодель обучается на основе наблюдений iNaturalis за одним и тем же набором видов с примерно более чем 100 фотографиями. Геомодель не дает идеальных прогнозов. Вы можете прочитать подробнее о том, как создана геомодель, <a href="%{url}">здесь</a>.
+        nearby_map:
+          expected_nearby_map: Карта "Встречаются поблизости"
+          we_use_this_map: |
+            Мы используем эту карту, чтобы применить метку «Встречаются поблизости» к предложениям, основанным на местонахождении наблюдения.
+          for_example: |
+            Например, к наблюдению ящерицы в центре Соединенных Штатов метка «Встречается поблизости» и может быть применена к предположению <i>Sceloporus onsobrinus</i>, но не к <i>Sceloporus occidentalis</i>, основываясь на соответствующих им картах «Встречается поблизости».
+          you_can_think: |
+            Вы можете рассматривать карту "Встречается поблизости" как оценку того, будут ли виды
+            присутствовать где-то внутри ячейки сетки или полностью отсутствовать.
+          figure_alt_text: Геомодель применяет метку «Встречается поблизости».
+        unthresholded_map:
+          unthresholded_map: Карта без границ
+          we_use_the_unthresholded_map: |
+            При составлении предложений мы используем карту без границ, чтобы взвешивать оценки компьютерного зрения по местоположению.
+          for_example: |
+            Например, для наблюдений ящериц в центре Соединенных Штатов предположения <i>Sceloporus consobrinus</i> могут иметь больший вес, чем предположения <i>Sceloporus occidentalis</i>, что основано на сравнении карт без границ, несмотря на то, что они визуально похожи.
+          you_can_think: |
+            Вы можете думать о карте без границ как об относительной вероятности того, что вид встречается в ячейке сетки.
+          figure_alt_text: Геомодель взвешивает результаты компьютерного зрения.
         range_comparison:
+          expected_nearby_vs_taxon_range: '"Встречается поблизости" по сравнению с ареалом таксона'
+          this_map_shows: |
+            На этой карте показан ареал таксонов этого вида, перекрывающий прогноз карты "Встречается поблизости", которую мы используем при оценке геомодели.
+          this_gridded_version: |
+            Эта версия диапазона таксонов с привязкой к сетке представляет собой снимок, сделанный при обучении модели и привязке к сетке с тем же разрешением, что и карта прогноза "Встречаются поблизости". Мы используем ареалы таксонов только в тех случаях, когда по крайней мере 90% обучающих данных для этого вида попадают в ареал таксона, чтобы исключить ошибки в ареалах таксонов.
+          by_combining: |
+            Объединяя карту "Встречается поблизости" с ареалом таксона, мы вычисляем статистику, чтобы оценить, насколько хорошо работает геомодель.
+          figure_alt_text: Карта "Встречается поблизости" и ареал таксона сравниваются
+          combining_these_maps_produces: |
+            Комбинируя эти карты, можно получить 3 типа ячеек:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Присутствие истинно:
+          true_presences_definition: Области, где имеется прогноз "Встречаются поблизости"и присутствует ареал таксона
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Присутствие ложно:
+          false_presences_definition: Области, где имеется только прогноз "Встречаются поблизости"
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Отсутствие ложно:
+          false_absences_definition: Области, где присутствует только ареал таксона
+          evaluation_statistics_for_taxon: Статистика оценки для %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Точность:
+          precision_description: Доля карты "Встречается поблизости", которая даёт Присутствие истинно
           #Equation showing how we calculate precision of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
           precision_equation: |
             Присутствие истинно / (Присутствие истинно + Присутствие ложно) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Полнота:
+          recall_description: Доля карты "Встречается поблизости", которая даёт Присутствие истинно
           #Equation showing how we calculate recall of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Absences: areas where only the Taxon Range is present
           recall_equation: |
             Присутствие истинно / (Присутствие истинно + Отсутствие ложно) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Среднее (гармоническое среднее) Точности и Полноты
           #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
           #False Absences: areas where only the Taxon Range is present
           f1_equation: |
             2 x Присутствие истинно / (2 x Присутствие истинно + Присутствие ложно + Отсутствие ложно) = %{f1}
+          perfect_overlap: |
+            Идеальное перекрытие будет оцениваться с точностью, полнотой и F1, равным 1. Никакое перекрытие не будет оцениваться с точностью, полнотой и F1 (гармоническим средним), равным 0.
     guides:
       index:
         deprecated_banner: |

@@ -5330,10 +5330,7 @@ fr:
     séparation, de fusion ou d'échange de taxons actifs.
   #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
-    Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une
-    façon particulière. Si le taxon n’est pas une espèce ou une sous-espèce, tout ce qui se trouve
-    entre [GENRE] et [ESPÈCE] sera remplacé par le nom du taxon. Utilisez-donc cette action
-    avec modération.
+    Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une façon particulière. Si le taxon n’est pas une espèce ou un taxon infraspécifique, tout ce qui se trouve entre [GENRE] et [ESPÈCE] sera remplacé par le nom du taxon. Utilisez-donc cette action avec modération.
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques pour les téléversements séparés
   use_well_formed_csv: |
     Utilisez un format CSV bien formé, ce qui signifie que le texte avec des virgules doit être inclus dans des guillemets anglais. La plupart des applications de tableur exportent le CSV dans ce format.

@@ -207,7 +207,7 @@ hu:
   #Status of a taxon that is available for use on iNat
   active_taxon_status: Aktív
   active_users: Aktív felhasználó
-  activity: Tevékenység
+  activity: Aktivitás
   adapted_by_name_from_a_work_by_original: "%{original} munkája alapján adaptálta %{name}"
   add: Hozzáadás
   add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
@@ -408,12 +408,45 @@ hu:
     ray_finned_fishes: Sugarasúszójú halak
     reptiles: Hüllők
     life: élőlény
+    x_plantae:
+      one: "%{count} növény"
+      other: "%{count} növény"
+    x_animalia:
+      one: "%{count} állat"
+      other: "%{count} állat"
     x_mollusca:
       one: "%{count} puhatestű"
       other: "%{count} puhatestű"
+    x_amphibia:
+      one: "%{count} kétéltű"
+      other: "%{count} kétéltű"
+    x_mammalia:
+      one: "%{count} emlős"
+      other: "%{count} emlős"
     x_actinopterygii:
       one: "%{count} sugarasúszójú hal"
       other: "%{count} sugarasúszójú hal"
+    x_reptilia:
+      one: "%{count} hüllő"
+      other: "%{count} hüllő"
+    x_aves:
+      one: "%{count} madár"
+      other: "%{count} madár"
+    x_insecta:
+      one: "%{count} rovar"
+      other: "%{count} rovar"
+    x_arachnida:
+      one: "%{count} pókféle"
+      other: "%{count} pókféle"
+    x_fungi:
+      one: "%{count} gomba"
+      other: "%{count} gomba"
+    x_chromista:
+      one: "%{count} színesmoszat"
+      other: "%{count} színesmoszat"
+    x_protozoa:
+      one: "%{count} protozoa"
+      other: "%{count} protozoa"
     x_other_animals:
       one: "%{count} egyéb állat"
       other: "%{count} egyéb állat"
@@ -1239,6 +1272,7 @@ hu:
     registrations:
       destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
+      signed_up_but_inactive: "Sikeresen feliratkoztál. De sajnos nem léphetsz még be, mivel a fiókod még nem volt aktiválva."
       signed_up_but_unconfirmed: "Egy megerősítő linket küldtünk a megadott e-mail címre. Kattints az emailben található linkre a fiók aktiválásához."
       updated: 'Fiókod sikeresen frissítve.'
       updated_but_not_signed_in: "A fiókodat sikeresen frissítettük, de mivel megváltozott a jelszavad újból be kell jelentkezned."
@@ -1486,6 +1520,8 @@ hu:
   #Title for a button or section describing the "featured" status of a project
   featuring: Kiemelt
   feedback: Visszajelzés
+  #Plural noun, as in Atom and RSS feeds
+  feeds: 'Hírfolyam'
   #Button to show fewer places
   fewer__context_places: Kevesebb
   failed: Sikertelen
@@ -1610,6 +1646,9 @@ hu:
   from_place: Helyről
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
+  fungi:
+    one: gomba
+    other: gombák
   gbif: GBIM
   generate_taxonomic_tags_for_flickr: Készíts rendszertani címkéket a Flickr fotóidból.
   generate_widget: Modul létrehozása
@@ -1788,6 +1827,7 @@ hu:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktív
+  inactive_taxon_concepts_are: Az inaktív taxonok olyan taxonok, melyek rendszertanilag elavultak vagy be vannak ütemezve egy taxoncserére. Az elavult taxonokat azért tartjuk meg, hogy megmaradjon előzetes történetük és biztosítsuk a kompatibilitást bizonyos partner honlapokkal.
   inappropriate_content: Kifogásolható tartalom?
   inat_believes_this_is_a_complete_listing: "%{site_name} szerint ezen a helyen ennek a taxonnak ez egy teljes listája."
   inat_user_profile: "%{site_name}: %{user} profilja"
@@ -2288,7 +2328,9 @@ hu:
   most_observed_species: Legtöbbet megfigyelt fajok
   most_observed_introduced_species: A leggyakrabban megfigyelt jövevény fajok
   most_observed_threatened_species: A leggyakrabban megfigyelt veszélyeztetett fajok
+  move_input_children_to_output?: Helyezzük át a gyerekeket a kimenőbe?
   multiple: többszörös
+  multiple_select_option: '-- több lehetőség --'
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: szerepelnie kell %{project} projektben
@@ -2447,36 +2489,50 @@ hu:
   no_relevant_annotations: Nincsenek kapcsolódó megjelölések
   no_reply_yet: Még nincs válasz
   no_results_found: Nincs találat
+  no_results_for: 'Nincs találat a következőre: '
   no_sections_available: Nincs bekezdés.
   no_sections_have_been_added_to_this_assessments_yet: Még nincs paragrafus hozzáadve ehhez az értékeléshez.
   no_species_have_been_listed: Nincsenek még fajok erről a helyről listákon!
   no_species_on_this_list: Még nics faj ezen a listán!
   no_subject_parens: "(Nincs tárgy)"
+  no_such_wiki_page: Nincs olyan oldal.
+  no_such_wiki_page_html: Nincs ilyen oldal. <a href="%{new_url}">Létre akarod hozni</a>?
+  no_suggestions_available: Nincs javaslat
+  no_summary_from_wikipedia: Nincs összefoglaló a Wikipédiából.
   no_taxa: Nincs taxon
+  no_taxa_selected: Nincs taxon kiválasztva!
   noble_curators: "%{site} tiszteletbeli kurátorai"
   none: Nincs
   none_found: Nincs találat
   normal: normál
   not_atlased: Nem térképezett
+  not_completed: Nincs teljesítve
   not_confident: Nincs kellő bizonyosságú javaslatunk.
   not_confident_top_suggestions: Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink
+  not_evaluated: nincs kiértékelve
+  not_findig_what_you_want: Nem találod amit keresel?
   not_finding_place_you_want?: Nem találod a keresett helyet?
   not_found: Nincs találat
   #Filter for observations not in a particular place
   not_in_place: Ezen kívül esik
+  not_on_this_list: Nincs ezen a listán.
   not_recorded: Nincs adat
   not_resolved: Nincs megoldva
+  not_seeing_what_looking_for: Nem látod azt amit keresel?
   note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
   notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
   notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
   number_of_observations: Megfigyelések száma
+  number_of_observers_value: "Megfigyelők száma: %{number}"
+  number_of_observers: "Megfigyelők száma"
   number_selected: "# kiválasztva"
   obs: Megfigyelés
   obs_cid_d: Közösség által azonosított megfigyelés
   obs_id_d: Azonosított megfigyelés
   obscured: Kitakart
+  obscured_or_private: Kitakart vagy privát
   obscured_description: |
     A nyílvános koordinátákat egy véletlenszerű pontként mutatjuk egy 0.2 fokos szél/hossz területen belül ami tartalmazza a valódi koordinátákat.
   observation: Megfigyelés
@@ -3779,6 +3835,7 @@ hu:
   start: Kezdete
   start_a_new_project: Új projekt indítása
   start_a_project: Projekt indítása
+  start_date_time: Kezdés dátuma és ideje
   start_typing_field_name: Gépeld be a mezőnevet...
   start_typing_place_name: Gépeld be a helynevet...
   start_typing_taxon_name: Gépeld be a taxonnevet...
@@ -3925,6 +3982,7 @@ hu:
   taxon_removed_from_list: Taxon eltávolítva a listáról.
   taxon_scheme: Taxonrendszer
   taxon_schemes: "Taxonrendszerek"
+  taxon_split: taxonfelosztás
   taxon_swap: taxoncsere
   taxon_name_was_deleted: A taxon neve törölve.
   taxon_name_was_successfully_updated: A taxonnév sikeresen frissítve.
@@ -3980,6 +4038,7 @@ hu:
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a rendszertant és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
+  this: ez
   this_bioblitz_beings_in: 'Bioblitz visszaszámlálás:'
   this_is_how_taxon_names_will_be_displayed: Azt mutatja, hogyan jelenjenek meg számodra a taxonmegnevezések %{site_name} minden oldalán
   this_is_your_observation: Ez a te megfigyelésed
@@ -3992,7 +4051,10 @@ hu:
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
   this_photo_is_already_associated: Ez a fotó már társítva van egyik megfigyeléseddel.
   this_place_has_no_check_list: "Ennek a helynek nincs listája."
+  this_taxon_concept_is_inactive: ez a taxon nem aktív
   this_taxon_has_no_default_photo: Ennek a taxonnak nincs alapértelmezett fotója!
+  this_taxon_is_inactive_this_means: |
+    Ez a taxon <strong>nem aktív</strong>. Ez azt jelenti, hogy %{site_name} kurátorai lecserélték egy rendszertanilag aktuálisabb taxonra.
   this_taxon_name_was_originally_imported: "Ez a taxonnév eredetileg egy külső névszolgáltatótól volt importálva:"
   this_taxon_was_originally_imported_from: "Ez a taxon eredetileg egy külső névszolgáltatótól volt importálva:"
   this_will_refresh_listed_taxa: Ez frissíteni fogja a taxonok listáját ezen a listán. Ez eltart egy darabig ezért kérünk csak ritkán használd és csak kis listákon.
@@ -4002,6 +4064,7 @@ hu:
   this_will_try_to_add_tags_to_your_flickr: Ez megpróbál címkéket adni Flickr fotóidhoz. Folytatod?
   this_year: Idén
   threatened: Veszélyeztetett
+  time_: idő
   time_ago: "%{time}"
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_algiers: Közép-európai idő
@@ -4123,10 +4186,12 @@ hu:
   time_zone_pacific_honolulu: Hawaii–Aleutiani idő
   #As in the title of a book or a blog post
   title: név
+  title_and_description: "Cím és leírás"
   to_configure_your_widget: a modulod konfigurálásához.
   to_recipient: címzett
   today: Ma
   tools: Eszközök
+  top_contributors: Fő közreműködők
   top_identifier_caps: Legtöbbször azonosította
   top_identifiers: Legtöbbször azonosította
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
@@ -4818,6 +4883,18 @@ hu:
         total_taxa: Összes taxon
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Függőleges
+        #Count of how many taxa are present in an observation search
+        x_total:
+          #Count of how many taxa are present in an observation search
+          one: "%{count} összesen"
+          #Count of how many taxa are present in an observation search
+          other: "%{count} összesen"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          one: "%{count} egyedi"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count} egyedi"
       export:
         choose_columns_desc: Válaszd ki azokat a kívánt oszlopokat
         create_a_query_desc_html: |
@@ -4881,6 +4958,8 @@ hu:
         observed_on: A megfigyelés normalizált dátuma
         time_observed_at: A megfigyelés normalizált dátuma és ideje
         time_zone: A megfigyelés időzónája
+        latitude: Nyilvánosan látható szélességi kör
+        longitude: Nyilvánosan látható hosszúsági kör
         geoprivacy: "Ha a megfigyelő úgy döntött kitakarja vagy elrejtse a koordinátákat"
         user_id: A megfigyelő egyedi azonosítója
         user_login: A megfigyelő felhasználói neve
@@ -5241,6 +5320,8 @@ hu:
           A szezonalitási diagramot a megjelölések bontásában is megjelenítjük. A megjelölések révén metaadatokat rendelhetsz a megfigyeléshez meghatározott attribútomokkal, pl. megjelölheted, hogy a megfigyelés tárgya milyen nemű vagy milyen fenológiai fázisban van (virágzó vagy termő).
         charts_help_relative_observations: |
           Egy taxon megfigyelési gyakoriságának megjelenítése az összes megfigyelés arányában segít a felhasználó szám növekedéséből adódó torzítás mérséklésében. Például ha a közösség és a megfigyelések száma évről évre növekszik, akkor egy bizonyos taxonra is több megfigyelés érkezik, ami azt is jelentheti, hogy az élőlény többször fordul elő, és azt is, hogy egyszerűen több felhasználó készít megfigyelést. Ha összesen 100 megfigyelés van, és abból 20 egy adott taxonban, akkor a relatív megfigyelésszám 20 / 100 = 0,2. Ha a következő évben 2000 megfigyelést töltenek fel, és abból 400 van ugyanebben a taxonban, akkor a relatív megfigyelésszám még mindig 0,2 (400/2000). Ez torzításokhoz vezet ha egy területen nagyon kevés megfigyelő tevékenykedik, vagy ha a taxont nagyon ritkán figyelik meg, de ez az abszolút megfigyelésszámokra is igaz.
+        complete_taxon_desc: |
+          Egy "teljes" taxonnak megvan minden leszármazottja, egy bizonyos ranghoz tartozó minden létező taxonja a honlap adatbázisában. Mikor egy taxon teljes például faji szinten, megmondhatjuk, hogy hány faját figyeltek meg és még hányat kéne megfigyelni. A faj szintjén "teljes" taxonok fajainak a száma nem tartalmaz "megszámlálhatatlan" fajokat, mint például kihalt vagy inaktív fajokat, és az csakis fajokat tartalmaz, nem pedig faj alatti szint taxonjait, mint például alfajt vagy változatot.
         frequency:
           research: Tudományos szintű
           verifiable: Hiteles
@@ -5378,6 +5459,12 @@ hu:
         observations_to_date:
           one: "Eddigi megfigyelések"
           other: "Eddigi megfigyelések"
+        species_observed:
+          one: "Megfigyelt faj"
+          other: "Megfigyelt fajok"
+        people_signed_up:
+          one: "Regisztrált személy"
+          other: "Regisztrált személyek"
         how_it_works: Hogyan működik?
         record_your_observations: Végezz megfigyeléseket
         share_with_fellow_naturalists: Oszd meg természettudósokkal
@@ -5452,6 +5539,8 @@ hu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b. %-d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%b %e"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%Y. %b. %-d.'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y %B'
@@ -5473,6 +5562,9 @@ hu:
       - December
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: kb. %{count} órája
+        other: kb. %{count} órája
       about_x_years:
         one: kb. %{count} éve
         other: kb. %{count} éve
@@ -5526,13 +5618,22 @@ hu:
       separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
         units:
           billion: milliárd
           million: millió
+          quadrillion: Billiárd
           thousand: ezer
+          trillion: Billió
       format:
         precision: 3
         significant: true
@@ -5657,6 +5758,7 @@ hu:
         position: Pozíció
       post:
         title: Név
+        body: Törzs
       project:
         title: Név
         project_icon: Projekt ikon
