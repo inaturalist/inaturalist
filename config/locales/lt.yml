@@ -1019,8 +1019,6 @@ lt:
     Dabartinis kompiuterinio matymo modelis žino apie šį taksoną, todėl jis gali būti įtrauktas į automatinius pasiūlymus su etikete „vizualiai panašus“.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Laukiama
-  computer_vision_model_pending_desc: |
-    Dabartinis kompiuterinio matymo modelis nežino apie šį taksoną, taigi, nors šis taksonas gali būti įtrauktas į automatinių pasiūlymų sąrašą su etikete „netoliese“, prie jo nebus etiketės „vizualiai panašus“. Kiekvienam modeliui galioja skirtingos įtrauktimo taisyklės, tačiau dažniausiai įtraukimas priklauso nuo stebėjimų skaičiaus, todėl, norint padidinti galimybę šiam taksonui būti įtrauktam kito modelio mokymo metu, įkelkite arba identifikuokite daugiau šio taksono stebėjimų.
   concept_status: Koncepcijos Būsena
   confidential: Konfidencialu
   configure: Konfigūruoti
