@@ -976,13 +976,8 @@ de:
     in automatisierten Vorschläge mit dem Label "sieht ähnlich aus" auftauchen.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Ausstehend
-  computer_vision_model_pending_desc: |
-    Das aktuelle Modell der Computererkennung erkennt dieses Taxon noch nicht. Während
-    es also möglicherweise in automatisierten Vorschläge mit dem Label "in der Nähe" enthalten ist, wird es nicht das Label "visuell ähnlich" erhalten. Während sich die Anforderungen für
-    einen Einschluss mit jedem Modell ändern, basiert die Einbeziehung in der Regel auf der 
-    Anzahl von Beobachtungen. Um also die Chance zu erhöhen, dass dieses Taxon
-    während der nächsten Modelltrainierung aufgenommen wird, sollten weitere Beobachtungen
-    dieses Taxons hinzugefügt oder bestimmt werden.
+  computer_vision_model_pending_desc2: |
+    Das aktuelle Computer-Vision-Modell kennt dieses Taxon nicht, so dass es zwar in den automatischen Vorschlägen mit dem Vermerk "In der Umgebung zu erwarten" enthalten sein könnte, aber nicht als "Sieht ähnlich aus" markiert wird. Die Anforderungen, um die automtische Erkennung aufgenommen zu werden, ändern sich zwar mit jedem Modell, aber im Allgemeinen basiert diese Entscheidung auf der Anzahl der Beobachtungen. Um also die Chance zu erhöhen, dass dieses Taxon beim nächsten Modelltraining aufgenommen wird, sollten mehr Beobachtungen dieses Taxons hinzugefügt oder identifiziert werden.
   concept_status: Konzeptzustand
   confidential: Vertraulich
   configure: Einrichten
@@ -1641,33 +1636,8 @@ de:
   email: E-Mail
   email_description: Deine E-Mail wird nicht mit anderen Benutzern von iNaturalist geteilt
   email_address_for_comments_and_other_feedback: E-Mail-Adresse für Kommentare oder Feedback
-  email_conf_banner_please_click: |
-    Bitte klicke auf den Link in deiner E-Mail, um deine E-Mail-Adresse zu verifizieren.
   email_conf_required_after_grace_period: |
     Ab dem %{requirement_date} ist eine E-Mail-Bestätigung erforderlich und du hast deine E-Mail-Adresse nicht vor Ablauf der Frist bestätigt. Bitte setze dein Passwort zurück, um wieder Zugriff auf dein Konto zu erhalten
-  email_conf_faq_html: |
-    Bei Fragen schau bitte in diesen <a href="%{url}">FAQs</a> nach.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bestätige deine E-Mail-Adresse für %{site_name} bevor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Bitte bestätige noch heute deine E-Mail-Adresse, um sicherzustellen, dass du
-    weiterhin auf dein Konto zugreifen kannst. %{site_name} und die mobilen Apps
-    iNaturalist und Seek von iNaturalist verbinden Menschen mit der Natur und untereinander, indem Beobachtungen zur biologischen Vielfalt geteilt werden. Vielen Dank, dass du ein Teil der iNaturalist-Community bist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Wir benötigen verifizierte E-Mail-Adressen für alle Konten, beginnend am
-    %{requirement_date}. Bitte nimm dir einen Moment Zeit, um sie jetzt zu bestätigen.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Sollten Fragen auftauchen, können die <a href="%{faq_url}">FAQs</a> vielleicht weiterhelfen. 
-    Vielen Dank, dass du %{site_name} verwendest.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Kontoinformationen
   email_copyright2: "&copy; %{year} iNaturalist, alle Rechte vorbehalten"
   email_notifications: E-Mail-Benachrichtigungen
   embed: 'Einbetten'
