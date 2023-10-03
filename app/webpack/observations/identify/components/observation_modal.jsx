@@ -22,7 +22,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ErrorBoundary from "../../../shared/components/error_boundary";
-import { formattedDateTimeInTimeZone } from "../../../shared/util";
+import { formattedDateTimeInTimeZone, translateWithConsistentCase } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
 import FavesContainer from "../containers/faves_container";
@@ -57,18 +57,15 @@ class ObservationModal extends React.Component {
     // was created while it wasn't visible
     const { tab, observation } = this.props;
     if ( tab === "info" && prevProps.tab !== "info" ) {
-      const that = this;
-      setTimeout( ( ) => {
-        const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
-        if ( typeof ( google ) === "undefined" ) { return; }
-        google.maps.event.trigger( map, "resize" );
-        if ( observation && observation.latitude ) {
-          map.setCenter( new google.maps.LatLng(
-            observation.latitude,
-            observation.longitude
-          ) );
-        }
-      }, 500 );
+      const map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+      if ( typeof ( google ) === "undefined" ) { return; }
+      google.maps.event.trigger( map, "resize" );
+      if ( observation && observation.latitude ) {
+        map.setCenter( new google.maps.LatLng(
+          observation.latitude,
+          observation.longitude
+        ) );
+      }
     }
     // This method fires *a lot* so we need to be very specific about when we
     // want to focus on the pane to support keyboard scrolling
@@ -387,10 +384,11 @@ class ObservationModal extends React.Component {
       { keys: ["x"], label: I18n.t( "organism_appears_captive_cultivated" ) },
       { keys: ["r"], label: I18n.t( "mark_as_reviewed" ) },
       { keys: ["c"], label: I18n.t( "comment_" ), skipBlind: true },
-      { keys: ["a"], label: I18n.t( "agree_" ), skipBlind: true },
+      { keys: ["a"], label: I18n.t( "agree_with_observation_taxon" ), skipBlind: true },
       { keys: ["i"], label: I18n.t( "add_id" ) },
       { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
+      { keys: ["SPACE"], label: I18n.t( "play_first_sound" ) },
       { keys: ["&larr;"], label: I18n.t( "previous_observation" ) },
       { keys: ["&rarr;"], label: I18n.t( "next_observation" ) },
       { keys: ["SHIFT", "&larr;"], label: I18n.t( "previous_tab" ) },
@@ -662,7 +660,10 @@ class ObservationModal extends React.Component {
                   >
                     {
                       tabTitles[tabName]
-                      || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } )
+                      || translateWithConsistentCase(
+                        _.snakeCase( tabName ),
+                        { case: "upper", defaultValue: tabName }
+                      )
                     }
                   </button>
                 </li>
@@ -742,21 +743,21 @@ class ObservationModal extends React.Component {
                             { observation.application && observation.application.name && (
                               <li>
                                 <a href={observation.application.url}>
-                                  { officialAppIds.includes( observation.application.id ) ? (
-                                    <img
-                                      className="app-thumbnail"
-                                      src={observation.application.icon}
-                                      alt={observation.application.name}
-                                    />
-                                  ) : <i className="fa fa-cloud-upload bullet-icon" />
-                                  }
+                                  { officialAppIds.includes( observation.application.id )
+                                    ? (
+                                      <img
+                                        className="app-thumbnail"
+                                        src={observation.application.icon}
+                                        alt={observation.application.name}
+                                      />
+                                    )
+                                    : <i className="fa fa-cloud-upload bullet-icon" /> }
                                   <span className="name">
                                     { observation.application.name }
                                   </span>
                                 </a>
                               </li>
-                            )
-                            }
+                            ) }
                             { blind ? null : (
                               <li className="view-follow">
                                 <a
@@ -768,12 +769,14 @@ class ObservationModal extends React.Component {
                                   <i className="icon-link-external bullet-icon" />
                                   { I18n.t( "view" ) }
                                 </a>
-                                { observation.user && observation.user.id === currentUser.id ? null : (
-                                  <div style={{ display: "inline-block" }}>
-                                    <span className="separator">&bull;</span>
-                                    <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
-                                  </div>
-                                ) }
+                                { observation.user && observation.user.id === currentUser.id
+                                  ? null
+                                  : (
+                                    <div style={{ display: "inline-block" }}>
+                                      <span className="separator">&bull;</span>
+                                      <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
+                                    </div>
+                                  ) }
                               </li>
                             ) }
                           </ul>
@@ -878,11 +881,16 @@ ObservationModal.propTypes = {
   increaseBrightness: PropTypes.func,
   keyboardShortcutsShown: PropTypes.bool,
   loadingDiscussionItem: PropTypes.bool,
+  mapZoomLevel: PropTypes.number,
+  mapZoomLevelLocked: PropTypes.bool,
   observation: PropTypes.object,
+  officialAppIds: PropTypes.array,
   onClose: PropTypes.func.isRequired,
+  onMapZoomChanged: PropTypes.func,
   resetBrightness: PropTypes.func,
   reviewedByCurrentUser: PropTypes.bool,
   setImagesCurrentIndex: PropTypes.func,
+  setMapZoomLevelLocked: PropTypes.func,
   showNextObservation: PropTypes.func,
   showPrevObservation: PropTypes.func,
   tab: PropTypes.string,
@@ -893,10 +901,6 @@ ObservationModal.propTypes = {
   toggleReviewed: PropTypes.func,
   updateCurrentUser: PropTypes.func,
   visible: PropTypes.bool,
-  mapZoomLevel: PropTypes.number,
-  onMapZoomChanged: PropTypes.func,
-  mapZoomLevelLocked: PropTypes.bool,
-  setMapZoomLevelLocked: PropTypes.func
 };
 
 ObservationModal.defaultProps = {

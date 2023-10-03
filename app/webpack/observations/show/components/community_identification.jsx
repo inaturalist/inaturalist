@@ -215,12 +215,16 @@ class CommunityIdentification extends React.Component {
 
   sortedIdents( ) {
     const { observation } = this.props;
-    const currentIdents = _.filter( observation.identifications,
-      i => ( i.current && i.taxon.is_active ) );
+    const currentIdents = _.filter(
+      observation.identifications,
+      i => ( i.current && i.taxon.is_active && !i.hidden )
+    );
     const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
     // Mavericks last, then sort by counts desc
-    return _.sortBy( currentIdents,
-      i => `${i.category === "maverick" ? 1 : 0}-${taxonCounts[i.taxon.id] * -1 + 1000}` );
+    return _.sortBy(
+      currentIdents,
+      i => `${i.category === "maverick" ? 1 : 0}-${taxonCounts[i.taxon.id] * -1 + 1000}`
+    );
   }
 
   dataForTaxon( taxon ) {

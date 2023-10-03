@@ -5,8 +5,8 @@
 -%>
 <%- if observations.size == 1 %>
   <% photo_count, sound_count, link_text =
-    observation.observation_photos_finished_processing.size,
-    observation.observation_sounds_count, [] %>
+    observation.publicly_viewable_observation_photos.size,
+    observation.publicly_viewable_observation_sounds.size, [] %>
   <div class="media <%= "for_idents" if for_idents %> <%= "has-photo" if photo_count > 0 %> <%= "has-sound" if sound_count > 0 %>">
     <div class="media-left"> 
       <% if photo_count == 0 && sound_count == 0 -%>
@@ -18,7 +18,7 @@
       <% else %>
         <% if photo_count > 0 %>
           <%- 
-            photos = observation.observation_photos_finished_processing.sort_by{|op|
+            photos = observation.publicly_viewable_observation_photos.sort_by{|op|
               op.position || photo_count + op.id.to_i
             }.map{|op| op.photo}.compact
             photo = photos.first
@@ -81,10 +81,10 @@
               <%=t :missing_date %>
             <% end -%>
           </span>
-          <% if observation.num_identifications_by_others > 0 -%>
+          <% if observation.current_identifications_count > 0 -%>
             <span class="ids_by_others">
               <i class="icon-identification"></i>
-              <%= observation.num_identifications_by_others %>
+              <%= observation.current_identifications_count %>
             </span>
           <% end -%>
           <%- if observation.research_grade? %>

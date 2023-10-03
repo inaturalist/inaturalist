@@ -1,5 +1,6 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -93,11 +94,13 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   } ) );
 }
 
+const urlParams = new URLSearchParams( window.location.search );
+
 /* global INITIAL_OBSERVATION_ID */
 let obsId = INITIAL_OBSERVATION_ID;
 if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
+  || urlParams.get( "test" ) === "apiv2"
 ) {
   const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
@@ -113,6 +116,13 @@ if (
       writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
     } );
   }
+}
+
+const testFeature = urlParams.get( "test_feature" );
+if ( testFeature ) {
+  store.dispatch( setConfig( {
+    testFeature: testFeature
+  } ) );
 }
 
 store.dispatch( fetchAnnotationsPanelPreferences( ) );

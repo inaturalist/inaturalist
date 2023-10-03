@@ -62,6 +62,8 @@ chdir APP_ROOT do
   system "bundle exec rails r tools/load_sources.rb", exception: true
   puts "\n== Load the basic iconic taxa to get the taxonomy started =="
   system "bundle exec rails r tools/load_iconic_taxa.rb", exception: true
+  puts "\n== Load controlled terms from the API =="
+  system "bundle exec rails r tools/load_production_controlled_terms.rb"
   puts "\n== Generate translation files =="
   system "bundle exec rake inaturalist:generate_translations_js", exception: true
 

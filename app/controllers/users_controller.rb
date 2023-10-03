@@ -303,7 +303,10 @@ class UsersController < ApplicationController
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
       @favorite_listed_taxa = @favorites_list.listed_taxa.
-        includes(taxon: [:photos, :taxon_names ]).
+        includes(taxon: [
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ]).
         paginate(page: 1, per_page: 15).order("listed_taxa.id desc")
     end
 
@@ -489,7 +492,13 @@ class UsersController < ApplicationController
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
-          forum_feedback_category = @discourse_data[:categories].values.detect{|c| c["name"] == "Forum Feedback"}
+          discourse_ignored_category_names = [
+            "Forum Feedback",
+            "Nature Talk"
+          ]
+          discourse_ignored_category_ids = @discourse_data[:categories].values.select do |c|
+            discourse_ignored_category_names.include?( c["name"] )
+          end.map{ |c| c["id"] }
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute(
               method: "get",
@@ -504,8 +513,7 @@ class UsersController < ApplicationController
             # Remove posts in the Forum Feedback category
             (
               !t["category_id"] ||
-              !forum_feedback_category ||
-              t["category_id"] != forum_feedback_category["id"]
+              !discourse_ignored_category_ids.include?( t["category_id"] )
             )
           }[0..5]
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
@@ -528,8 +536,11 @@ class UsersController < ApplicationController
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
             includes(:user, :resolver, :comments).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
-            includes(:taxon_names).limit(5).active
+
+          # overfetching and limiting in Ruby to avoid an inefficient
+          # query plan when sorting by ID descending in PostgreSQL
+          @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
+            sort{ |t| t.id }[0...5]
         end
         render layout: "bootstrap"
       end
@@ -577,12 +588,16 @@ class UsersController < ApplicationController
       format.json { render :json => @updates }
     end
   end
-  
+
   def edit
     respond_to do |format|
       format.html do
-        @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
-        render :edit2, layout: "bootstrap"
+        if params[:notifications]
+          redirect_to generic_edit_user_url( anchor: "notifications" )
+        else
+          @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+          render :edit2, layout: "bootstrap"
+        end
       end
       format.json do
         render :json => @user.to_json(
@@ -641,7 +656,6 @@ class UsersController < ApplicationController
          @display_user.previous_changes.empty?
         @display_user.update_columns(updated_at: Time.now)
       end
-      bypass_sign_in( @display_user )
       respond_to do |format|
         format.html do
           if locale_was != @display_user.locale
@@ -676,6 +690,9 @@ class UsersController < ApplicationController
         end
         format.json do
           User.refresh_es_index
+          if @display_user.encrypted_password_previously_changed?
+            flash[:success] = I18n.t( "devise.registrations.updated_but_not_signed_in" )
+          end
           render :json => @display_user.to_json(User.default_json_options)
         end
       end
@@ -997,7 +1014,7 @@ class UsersController < ApplicationController
       if @years.blank?
         ma_scope = ma_scope.limit( max )
       else
-        @years.each do |year|
+        @years.each do | year |
           ma_scope = ma_scope.where(
             "moderator_actions.created_at BETWEEN ? AND ?",
             "#{year}-01-01",
@@ -1016,11 +1033,35 @@ class UsersController < ApplicationController
       @records += ma_scope.
         where( resource_type: "User" ).
         where( "moderator_actions.resource_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "Photo" ).
+        joins( "JOIN photos ON photos.id = moderator_actions.resource_id" ).
+        where( "photos.user_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "Sound" ).
+        joins( "JOIN sounds ON sounds.id = moderator_actions.resource_id" ).
+        where( "sounds.user_id = ?", @user ).to_a
     end
-    @records = @records.flatten.sort_by {|r| r.created_at }
-    respond_to do |format|
+    @records = @records.flatten.sort_by {| r | r.created_at }
+    respond_to do | format |
       format.html do
         render layout: "bootstrap-container"
+      end
+    end
+  end
+
+  def resend_confirmation
+    current_user.send( :generate_confirmation_token! )
+    current_user.send_confirmation_instructions
+    current_user.wait_for_index_refresh = true
+    current_user.update( confirmation_sent_at: Time.now.utc )
+    respond_to do | format |
+      format.json do
+        if current_user.valid?
+          head :no_content
+        else
+          render json: { errors: current_user.errors }, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -1241,6 +1282,7 @@ protected
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
+      :prefers_gbif_layer_maps,
       :prefers_identification_email_notification,
       :prefers_identify_side_bar,
       :prefers_message_email_notification,

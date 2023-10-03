@@ -360,7 +360,6 @@ lv:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pievienot tagad
-  add_photos: Pievienot foto
   add_place: Pievienot vietu
   add_alive_or_dead_alive_annotation: 'Pievienot piezīmi "Dzīvs vai miris: dzīvs"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzīvs vai miris: nenoteicams"'
@@ -580,7 +579,6 @@ lv:
   analyze_clashes: Analizēt netīšu ID nesaderību
   analyze_ids: Analizēt ID
   ancestor_taxon: Priekšteču taksons
-  and: un
   and_other_taxa: "&amp; Citi taksoni"
   android: Android
   animals: Dzīvnieki
@@ -861,7 +859,6 @@ lv:
   browse_species_that_occur_near_this_observation: Apskatīt sugas, kas atrodamas šī novērojuma tuvumā.
   built_with_site_guides_html: "Radīts, izmantojot <a href='%{url}'>%{site_name} padomus</a>"
   bulk_import_of_filename_is_complete: "%{filename} lielapjoma importēšana ir pabeigta"
-  by: 'autors:'
   by_everyone: Visi
   by_user: "Autors: %{user}"
   by_you: tavi
@@ -922,13 +919,7 @@ lv:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: sadalīt un pievienot
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: apvienot ar
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: apvienots ar
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 'samainīja:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: samainīt ar
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: samainīts ar
     dropped: atmests
@@ -1084,13 +1075,10 @@ lv:
   #connecting to Flickr
   connect: Savienot
   connect_to_provider: "Savienoties ar %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Savienotie konti
   connected_accounts_description: Savienotie konti ir citu lietotņu un tīmekļa vietņu konti, kuriem esi devis iNaturalist piekļuvi, lai tavā vārdā pierakstītos, importētu fotogrāfijas u.t.m.l.
   connected_accounts_titlecase: Savienotie konti
   connecting_flickr: "Savienojas ar Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Pieslēdzies vēlreiz Flickr, lai autorizētu rakstīšanas atļaujas
-  connecting_to_facebook: "Savienojas ar Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Savienojot savu %{site_name} kontu ar citu tīmekļa vietņu kontiem, %{site_name} vietnei būs iespējams pieslēgties ar akreditācijas datiem no šīm pārējām vietnēm."
   cannot_be_changed_during_a_content_freeze: Izmaiņas nav iespējams veikt kamēr saturs ir bloķēts
   conservation_status: Aizsardzības statuss
@@ -1180,21 +1168,21 @@ lv:
     molt: Nomesta āda
   controlled_term_definitions:
     alive: Organisms ir dzīvs un nekas neliecina par pretējo
+    bone: |
+      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
+    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
     dead: Organisms ir miris vai novērojamas nenovēršamas nāves pazīmes
+    feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     flower_budding: Ziedpumpuri ir redzami, bet nav uzplaukuši
     flowering: Ziedi ir redzami, uzplaukuši un vēl aizvien klāt pie auga
     fruiting: Augļi ir redzami un vēl aizvien klāt pie auga
+    gall: Deformēta auga audu izaugums, ko izraisījis parazītisks organisms
+    molt: Nomesta āda vai ārskelets
     no_evidence_of_flowering: Pievienotajos failos nekas neliecina par reproduktīvajām struktūrām
-    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
-    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
-    feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     organism: Vesels organisms vai tā daļa
     scat: Izkārnijumi (neskaitot pūču atrijas vai citu atvemtu barību)
+    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
     track: Kāda organisma uz zemes atstāti nospiedumi
-    bone: |
-      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
-    molt: Nomesta āda vai ārskelets
-    gall: Deformēta auga audu izaugums, ko izraisījis parazītisks organisms
   controls: Vadīklas
   convert: Konvertēt
   coordinate_systems: Koordinātu sistēmas
@@ -1254,7 +1242,6 @@ lv:
   created_by: Izveidojis
   created_by_user_on_date: Izveidojis %{user} %{date}
   created_on: Izveidots
-  creating_your_account: "Izveido kontu..."
   creative_commons_flickr_tagged: Flickr fotogrāfijām ar Creative Commons licenci pievienots tags
   creative_commons_unless_otherwise_noted: "Tiek pielietota Creative Commons licence, ja vien nav norādīta cita."
   critically_endangered: Kritiski apdraudēts
@@ -1302,12 +1289,6 @@ lv:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Neizturas atbilstoši uzvedības normu nosacījumiem.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas tiek precizētas, tai skaitā paša lietotāja %{num_idents} pievienotās identifikācijas. Kad šie kritēriji ir izpildīti, šajā sadaļā iespējams pieteikties pārziņa statusam.
-  curator_application_inelligible_error: |
-    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas tiek precizētas, tai skaitā paša lietotāja pievienotās identifikācijas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Pieteikums pārziņa statusam iesniegts.
   #Header
@@ -1519,25 +1500,29 @@ lv:
       signed_in: 'Pierakstīšanās notika veiksmīgi.'
       signed_out: 'Izrakstīšanās notika veiksmīgi.'
     passwords:
-      send_instructions: 'Pēc dažām minūtēm saņemsi e-pasta ziņu ar norādījumiem paroles atjaunošanai.'
+      send_instructions: |
+        Pēc dažām minūtēm saņemsi e-pasta ziņu ar norādījumiem paroles atjaunošanai.
       updated: 'Parole ir veiksmīgi nomainīta. Tagad esi pierakstījies.'
       updated_not_active: 'Parole ir veiksmīgi nomainīta.'
-      send_paranoid_instructions: "Ja tava e-pasta adrese ir mūsu datubāzē, dažu minūšu laikā saņemsi e-pastu paroles atjaunošanai."
-      no_token: "Šai lapai var piekļūt tikai no paroles atjaunošanas e-pasta ziņas. Ja pašreiz veic tieši šo darbību, lūdzu, pārliecinies, vai URL ir pilnīgs."
+      send_paranoid_instructions: |
+        Ja tava e-pasta adrese ir mūsu datubāzē, dažu minūšu laikā saņemsi e-pastu paroles atjaunošanai.
+      no_token: |
+        Šai lapai var piekļūt tikai no paroles atjaunošanas e-pasta ziņas. Ja pašreiz veic tieši šo darbību, lūdzu, pārliecinies, vai URL ir pilnīgs.
     registrations:
+      destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
       signed_up: 'Laipni lūdzam! Esi veiksmīgi reģistrējies.'
       updated: 'Konts ir veiksmīgi atjaunots.'
-      destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
     mailer:
       confirmation_instructions:
-        subject: 'Apstiprināšanas norādījumi'
+        #Subject of an email sent to confirm your account
+        subject: Apstiprināšanas norādījumi
       reset_password_instructions:
         subject: 'Norādījumi paroles atjaunošanai'
   devise_reset_password_instructions_hello_email: Sveiki! %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Kāds mēģina iegūt saiti, lai nomainītu tavu paroli. To iespējams izdarīt, nospiežot un zemāk redzamās saites.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ja tas nebiji tu, lūdzu, neņem vērā šo e-pasta ziņu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kāds mēģina iegūt saiti, lai nomainītu tavu paroli. To iespējams izdarīt, nospiežot un zemāk redzamās saites.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tava parole netiks nomainīta kamēr nebūsi uzspiedis uz saites un izveidojis jaunu.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1596,9 +1581,13 @@ lv:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Pašreiz aktīvo taksonu pēcteči
+  #Noun, as in a journal post that has not been published
   draft: melnraksts
+  #Noun, as in a journal post that has not been published
   draft_: Melnraksts
+  #Noun, as in a journal post that has not been published
   draft_saved: Melnraksts saglabāts.
+  #Noun, as in journal posts that has not been published
   drafts: Melnraksts
   drag_and_drop_some_photos_or_sounds: Velc un nomet fotogrāfijas un audiofailus
   drawings: Zīmējumi
@@ -1674,7 +1663,6 @@ lv:
   email: E-pasts
   email_description: Tava e-pasta adrese nav pieejama citiem iNaturalist lietotājiem
   email_address_for_comments_and_other_feedback: Norādīt e-pasta adresi paziņojumiem par komentāriem u.c.
-  email_copyright: "Autortiesības &copy; %{x}, visas tiesības paturētas"
   email_notifications: Paziņojumi e-pastā
   embed: 'Iegult'
   embed_place_widget: Iegult atrašanās vietas logrīku
@@ -1707,8 +1695,6 @@ lv:
     native: Attīstījās šajā reģionā vai nonāca šeit dabiskā ceļā
     endemic: endēmisks un nav novērojams citviet
     introduced: nonāca reģionā cilvēku darbības rezultātā
-  estimate_which_input: |
-    Iecerētie ievades taksoni, kas tiks aizstāti ar izvades taksoniem. Kad taksonu sadalīšana būs pabeigta, jauni izveidotajiem taksoniem tiks pielīdzināts kopējs priekšteču taksons. Var paiet kāds brīdis līdz aprēķini būs pabeigti. Saites uz novērojumiem tiks saīsinātas uz 200 apakškopām.
   event_in_progress: Pasākums ir procesā
   event_stats: Informācija par pasākumu
   event_url: Pasākuma URL
@@ -1746,13 +1732,6 @@ lv:
   extra_properties: Papildu informācija
   evidence_of_organism: Ar organisma novērojumu pierādījumiem
   facebook: Facebook
-  facebook_account_information: Tava Facebook konta informācija
-  facebook_account_not_linked: "%{user} konts vairs nav savienots ar Facebook, tāpēc %{site_name} vietnei nav atļauta piekļuve šai fotogrāfijai."
-  facebook_access_token_expired: "Piekļuves pilnvaras laiks ir beidzies. %{user} no jauna jāsavieno savs konts ar Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook nepieciešams, lai fotogrāfijas īpašnieks no jauna apstiprinātu savienojumu ar %{site_name_short}.
-  facebook_options: Facebook iestatījumi
-  facebook_photo_import_disabled_notice: |
-    2020. gada novembrī Facebook mums pieprasīja pierādīt to, ka mums patiešām ir nepieciešama piekļuve pie fotogrāfijām. Mums neizdevās izpildīt viņu prasības Facebook verifikācijas sistēmas dēļ. Tādēļ mēs vairs neatbalstām fotogrāfiju importēšanu no Facebook.
   failed_to_find_your_location: Neizdevās sameklēt tavu atrašanās vietu.
   failed_to_repair_photo: "Neizdevās salabot fotogrāfiju: %{errors}"
   failed_to_save_record: "Neizdevās saglabāt ierakstu. Lūdzu, mēģini vēlreiz nedaudz vēlāk."
@@ -1913,7 +1892,6 @@ lv:
   frequency: Biežums
   from_a_place: no vietas
   from_eol_collection: No EOL kolekcijas
-  from_flickr_facebook_etc: No Flickr, Facebook u.t.t.
   from_list: No saraksta
   from_photos: No fotogrāfijām
   from_place: No vietas
@@ -2011,7 +1989,6 @@ lv:
   heads_up_you_have_multiple: "Uzmanību! Vairāki atšķirīgi taksonomiskie tagi pievienoti identiskām taksonu klasifikācijām. Tos var atšķirt pēc krāsas."
   help: Palīdzība
   help_confirm_observations!: Palīdzi apstiprināt novērojumus!
-  help_support_inaturalist: "Atbalsti iNaturalist"
   help_translate!: Palīdzi tulkot!
   here_are_3_examples: Trīs piemēri veiksmīgi izveidotiem datiem
   here_are_our_top_suggestions: 'Labākie minējumi:'
@@ -2021,8 +1998,6 @@ lv:
   #Verb, usually a button to hide an interface element
   hide: Slēpt
   hide_content: Slēpt saturu
-  hide_desc: |
-    Noslēpts saturs vairs nebūs publiski pieejams, bet lietotāji redzēs, ka kaut kas ir ticis noslēpts, toties šī satura autors un pārziņi šo saturu varēs apskatīt. Tas ir attiecināms tikai uz rakstveida saturu, piemēram, ja noslēpsi identifikācijas saturu, identifikācija būs pieejama, bet identificētāja piezīmes būs noslēptas. Tikai vietnes darbinieki var atsaukt šo darbību. Lietotājiem nav šādas iespējas, tāpēc esi uzmanīgs un lieto šo funkciju tikai tad, ja saturs ir patiešām nepieņemams.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Paslēpt "Bez piezīmēm"
@@ -2069,8 +2044,6 @@ lv:
   #Notification when an identification has been deleted
   identification_deleted: Identifikācija dzēsta
   identification_saved: "Identifikācija saglabāta"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identifikācijas teksts atjaunots
   #Notification when an identification has been updated
   identification_updated: Identifikācija izlabota
   identification_user_short: ID lietotājs
@@ -2154,7 +2127,6 @@ lv:
   inaturalist_activity_notifications: "%{site_name} aktivitātes paziņojumi"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist lietotnes"
-  inaturalist_is_a_joint_initiative: "%{site_name} ir California Academy of Sciences un National Geographic Society kopdarbs."
   inaturalist_places: "%{site_name} vietnes vietas"
   info: Info
   input_taxon: Sākotnējais taksons
@@ -2272,7 +2244,6 @@ lv:
   lexicon: Leksikons
   lexicon_cannot_contain_words: "nedrīkst saturēt šos vārdus: %{words}"
   lexicons:
-    scientific_names: Zinātniskie nosaukumi
     afrikaans: Afrikandu
     albanian: Albāņu
     arabic: Arābu
@@ -2334,7 +2305,7 @@ lv:
     romanian: Rumāņu
     russian: Krievu
     santali: Santali
-    setswana: Secvanu
+    scientific_names: Zinātniskie nosaukumi
     sinhala: Singāļu
     slovak: Slovāku
     slovenian: Slovēņu
@@ -2347,8 +2318,8 @@ lv:
     tokelauan: Tokelauiešu
     turkish: Turku
     ukrainian: Ukraiņu
-    waray_waray: Varajiešu
     visayan: Visajaniešu
+    waray_waray: Varajiešu
   less: Mazāk
   licensed_site_photos: "%{site_name} vietnes licencētas fotogrāfijas"
   license: Licence
@@ -2362,14 +2333,8 @@ lv:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Saite uz autorizācijas kodu
-  link_your_facebook_account: Pievieno savu Facebook kontu
   link_your_flickr_account: Pievieno savu Flickr kontu
   link_your_google_account: Pievieno savu Google kontu
-  linked_facebook: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Facebook kontu."
-  linked_facebook_automaticaly: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Facebook kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Facebook kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Facebook."
-  linked_facebook_description: "%{site_name} konta savienošana ar Facebook kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Facebook konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Facebook kontu, ko gribēsi savienot ar %{site_name} kontu."
-  linked_facebook_howto: "Lai savienotu Facebook ar %{site_name}, nospied uz saites pa labi un pieraksties savā Facebook kontā."
-  linked_facebook_password: "Mēs nekad nepieprasām tavu Facebook paroli, bet paši Facebook to mēdz palūgt, lai pārbaudītu, vai pogas URL patiešām ir no Facebook.com. Mēs arī neveicam izmaiņas tavos Facebook datos, ja vien tu pats to nelūdz."
   linked_flickr: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Flickr kontu."
   linked_flickr_automatically: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Flickr kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Flickr kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Flickr."
   linked_flickr_description: "%{site_name} konta savienošana ar Flickr kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Flickr konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Flickr kontu, ko gribēsi savienot ar %{site_name} kontu."
@@ -2483,7 +2448,6 @@ lv:
   log_scale_label: Žurnāls
   #Status message shown while logging in
   logging_in: Pieslēdzas...
-  login_slash_username: Lietotājvārds
   logo:
     logo: Logo
     white_bg_gif: GIF ar baltu fonu
@@ -2532,7 +2496,6 @@ lv:
       every_publicly_visible_observation: Visi publiski pieejamie novērojumi, kas izveidoti iNaturalist tīklā.
       featured_observations: Ieteiktie novērojumi
       gbif_network: GBIF tīkls
-      gbif_network_description: Muzeju un citu avotu arhīvi, kurus izplatījusi Globālās bioloģiskās daudzveidības informācijas sistēma (GBIF).
       observations: Novērojumi
       place_boundary: Vietas robeža
       checklist_places: Vietu kontrollapa
@@ -2556,8 +2519,6 @@ lv:
   meet: Iepazīt
   member_of_the_inaturalist_network_html: |
     Daļa no <a href="%{url}">iNaturalist Network</a> tīkla
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Daļa no%{partial_inat_network_tag_html}iNaturalist Network</a>, %{cas_tag_html} un %{nat_geo_tag_html} kopdarbs.
   #As in members of a project
   members: Dalībnieki
   membership_model: Dalībnieku modelis
@@ -2705,6 +2666,7 @@ lv:
   must_have_quality_grades: "Jābūt noteiktam līmenim: %{grades}"
   must_have_sounds: jābūt ar audiofailiem
   must_have_x: "jābūt ar %{x}"
+  #Mute is a noun here
   mute_removed: Vairs nav apklusināts
   muted_users: Apklusinātie lietotāji
   n_ago: "pirms %{n}"
@@ -2905,7 +2867,6 @@ lv:
   not_findig_what_you_want: Nevari atrast iecerēto?
   not_finding_place_you_want?: Nevari atrast vēlamo vietu?
   not_found: Nav atrasts
-  not_linked_facebook: "Tavs %{site_name} konts nav savienots ar tavu Facebook kontu."
   not_linked_flickr: "Tavs %{site_name} konts nav savienots ar tavu Flickr kontu."
   not_on_this_list: Nav šajā sarakstā.
   not_recorded: Nav saglabāts
@@ -3063,10 +3024,6 @@ lv:
   observed_on: Novērots
   observer: Novērotājs
   observers: Novērotāji
-  observer_prefers_no_project_addition: |
-    Novērotājs nav devis atļauju savam projektam pievienot citu lietotāju novērojumus.
-  observer_prefers_addition_to_projects_joined: |
-    Novērotājs atļauj citiem pievienot savus novērojumus tikai projektiem, kuriem viņi seko.
   observer_short: Novērotājs
   occurence_status_describes_how: 'Sastopamības statuss apraksta to, cik bieži sastopams ir taksons kādā konkrētā vietā. Skatīt DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">, lai iegūtu vairāk informācijas par terminoloģiju</a>.'
   occurrence_status: Sastopamības statuss
@@ -3153,7 +3110,7 @@ lv:
   optional: pēc izvēles
   or: vai
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: VAI
   or_choose_high_level_taxa: "... vai izvēlies no augsto pakāpju taksoniem"
   orange: oranžs
@@ -3687,8 +3644,6 @@ lv:
   places_merged_successfully: Vietu apvienošana izdevās veiksmīgi.
   places_warning_export_complex_boundary_html: |
     Ja mēģini eksportēt novērojumus no apgabala ar sarežģītām robežām, tā vietā apsver iespēju <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">lejupielādēt tos no GBIF</a>, kur robežas iespējams brīvi uzzīmēt. Vēl iespējams tās eksportēt no iNat, izmantojot jau pieejamās vietas vai rakstzīmju lauku, un tad filtrēt datus vēlreiz, kad tie būs lejupielādēti.
-  places_warning_look_for_existing_html: |
-    Pārbaudi <a href="/search?source[]=places">jau pievienotās vietas</a>, lai pārliecinātos, ka neveido dublikātu. Mūsu sistēmā jau ir vietas no visiem kontinentiem un valstīm, kā arī vietas, kas tiek klasificētas kā divus administratīvos līmeņus zemākas par valsti.
   places_warning_projects_can_have_multiple_places: |
     Ja vēlies izveidot vietu, lai norādītu projekta robežas, neaizmirsti, ka projektiem var pievienot vairākas vietas reizē. Piemēram, ja vēlies izveidot projektu Jaunzēlandē un Austrālijā, projekta prasībās vari pievienot abas valstis kopā, nevis veidot vēl vienu jaunu.
   places_warning_new_places_are_slow_html: |
@@ -3720,7 +3675,6 @@ lv:
   post_from_your_journal_html: Ieraksts no <a href="%{url}">tava žurnāla</a>
   post_published: Ieraksts publicēts.
   posted_by: 'Publicējis:'
-  posted_on: Publicēts
   posts: Ieraksti
   potential_disagreement: Potenciālas domstarpības
   powered_by: Darbināts ar
@@ -4194,11 +4148,12 @@ lv:
   select: Atlasīt
   select_all: Atlasīt visu
   select_at_least_one: Atlasīt vismaz vienu
-  select_one_or_more_photos: 'Atlasīt vienu vai vairākas fotogrāfijas'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nodzēst lauciņus
   select_observations_to_edit: Atlasīt rediģēšanai paredzētos novērojumus
   select_one_of_friends_albums: Atlasīt lietotāja %{friend} albumu
   select_one_of_your_albums: Atlasīt kādu no saviem albumiem
+  select_one_or_more_photos: 'Atlasīt vienu vai vairākas fotogrāfijas'
   select_options: Atlasīt
   select_photos_from_your_photo_stream: |
     Atlasi fotogrāfijas fotogrāfiju koplietošanas vietnēs, lai tās pārveidotu par %{site_name} vietnē reģistrētiem novērojumiem. Datums, laiks un atrašanās vieta tiks automātiski aizpildīta, izmantojot fotogrāfiju metadatus. Centīsimies atrast sugu, vadoties pēc pievienotajiem tagiem.
@@ -4306,10 +4261,6 @@ lv:
   sites_affiliation_overview_you_can_continue_html: |
     Vari turpināt pieslēgties gan ar iNaturalist.org, gan ar konkrētā iNaturalist tīkla partnera tīmekļa vietni. Visi tavi dati tiks glabāti vienā un tajā pašā vietā, kā arī varēsi sazināties ar visu starptautisko iNaturalist kopienu neatkarīgi no tā, ar kura partnera vietni tavs konts būs saistīts. Katrs iNaturalist konts var būt saistīts tikai ar vienu tīkla partnera tīmekļa vietni. To iespējams apskatīt un izmainīt pēc vajadzības %{start_tag_settings}konta iestatījumos%{end_tag_settings}.
   sites_affiliation_title: Vairāk informācijas par tīkla partnerorganizācijām
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} un
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} ir oficiāli vienojušies ar katru organizāciju konkrētajā reģionā, lai veicinātu iNaturalist platformas lietošanu. <strong> Ja tavai organizācijai ir interese pievienoties iNaturalist tīklam, vairāk informācijas pieejams
-    %{start_tag_join}šeit%{end_tag_join}.</strong>
   sites_network_consists_of: "iNaturalist tīkls sastāv no vairākām organizācijām:"
   sites_network_inaturalist_network_collection: |
     iNaturalist tīkls ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktā valstī un aizsargātu vietējo bioloģisko daudzveidību. Organizācijām ir pieeja pie viņu reģionā reģistrēto novērojumu faktiskajām koordinātām, kas veicina efektīvāku apdraudēto sugu aizsardzību.
@@ -4437,7 +4388,8 @@ lv:
   stop_trusting_this_person_with_your_private_coordinates: Atņemt lietotājam piekļuvi pie savām noslēptajām koordinātām
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: VEIKALS
+  store: Veikals
+  store_caps: VEIKALS
   studies_that_used_inaturalist_data_in_year: Pētījumi, kuros tika izmantoti iNaturalist dati %{year}. gadā
   stuff_just_added: "Tevis nesen pievienotais"
   subject_resolved_noun_html: "%{subject} atrisināja %{noun}"
@@ -4491,7 +4443,6 @@ lv:
   tagging: 'Pievieno tagus...'
   tags: Tagi
   tags_are_a_way: 'Tagi noder novērojumu organizēšanai. Piemēram, visiem novērojumiem plūdmaiņas baseinos var pievienot tagu "plūdmaiņas baseini", lai vēlāk tos būtu vieglāk atrast.'
-  take_me_facebook: Jā, iet uz Facebook.
   take_me_flickr!: Jā, iet uz Flickr.
   target_list_alert: Vai esi pārliecināts, ka mēģināji novērot visas sarakstā iekļautās sugas? Atceries, ka visi gadījumi, kad sarakstā iekļautās sugas neizdevās novērot, tiks uzskatīti par prombūtni, tāpēc ir ļoti svarīgi, lai tavs saraksts precīzi atspoguļotu tieši tās sugas, ko mēģināji atrast.
   target_list_warning: Atceries, ka visi gadījumi, kad sarakstā iekļautās sugas neizdevās novērot noteiktajā teritorijā un laikā, tiks uzskatīti par prombūtni. Ir ļoti svarīgi, lai tavs saraksts precīzi atspoguļotu tieši tās sugas, ko mēģināji atrast. Ja kādu no tavā sarakstā iekļautajām sugām vai sugu grupām nemaz nemēģināji atrast, lūdzu, izņem tās no saraksta.
@@ -5027,6 +4978,7 @@ lv:
   upload_new_photo: Augšuplādēt jaunu fotogrāfiju
   upload_photo: Augšuplādēt fotogrāfiju
   upload_range: Augšupielādēt izplatības apgabalu
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Augšupielādējis
   uploader:
     errors:
@@ -5056,6 +5008,7 @@ lv:
     Izmantot <span class='ac-placeholder'>"%{name}"</span> kā vietturi
   use_this_form_to_create_a_new: |
     Veidlapa paredzēta, lai izveidotu melnrakstu par taksonomiskajām izmaiņām, piemēram, par aktīvu taksonu sadalīšanu, apvienošanu vai samainīšanu.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Izmanto šo funkciju, ja URL vietrādim nepieciešams, lai ģints un sugas tiktu nodalītas. Ja taksons nav suga vai infrasuga, viss starp [GENUS] un [SPECIES] tiks aizstāts ar taksona nosaukumu, tāpēc izmanto šo funkciju ar mēru.
   use_unique_file_names_for_separate_uploads: Atsevišķām augšupielādēm izmanto atšķirīgus failu nosaukumus
@@ -5071,19 +5024,29 @@ lv:
   user_added_a_comment_html: "%{user} pievienoja komentāru"
   user_added_a_fave_html: "%{user} pievienoja to savai izlasei"
   user_added_a_flag_html: "%{user} pievienoja karodziņu"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} pievienoja %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
   user_added_an_identification_html: "%{user} ieteica ID"
   user_added_an_observation_field_html: '%{user} pievienoja vērtību "%{field_name}" laukā lietotāja %{owner} novērojumam'
   user_added_an_observation_field_value_html: "%{user} pievienoja novērojuma lauka vērtību"
   user_added_an_observation_html: "%{user} pievienoja novērojumu"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} pievienoja %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} pievienoja %{x} pie %{by} %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{by} %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
   user_added_x_observations_html: "%{user} pievienoja %{x} novērojumus"
   user_already_authenticated: Lietotājs jau ir autentificēts
@@ -5097,8 +5060,6 @@ lv:
   user_commented: "%{user} komentēja"
   user_disagrees_this_is_taxon: "%{user} nepiekrīt %{taxon} identifikācijai"
   user_disagrees_with_previous_finer_identifications: "%{user} nepiekrīt iepriekšējām identifikācijām, kas bija tuvāk konkrētai sugai"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} pievienoja izlasei %{noun}, ko radījis %{owner}"
   user_faved_this_observation: "%{user} pievienoja novērojumu izlasei"
   user_flagged_as_a_non_spammer_html: "%{user} atzīmēts kā mēstuļu neizplatītājs"
   user_flagged_as_a_spammer_html: "%{user} atzīmēts kā mēstuļu izplatītājs"
@@ -5139,7 +5100,6 @@ lv:
   users_lists: "Lietotāja %{user} saraksti"
   users_profile: "Lietotāja %{user} profils"
   users_projects: "Lietotāja %{user} projekti"
-  users_year_on_site: "Lietotāja %{user} pavadītais gads %{site} vietnē %{year}"
   valid_options_are: Derīgas opcijas ir
   value: Vērtība
   values: Vērtības
@@ -5208,12 +5168,10 @@ lv:
   view_taxononomy_details_for_taxon: "Skatīt %{taxon} taksonomijas datus"
   view_user_observations: "Skatīt lietotāja %{user} novērojumus"
   view_x: "Skatīt %{x}"
-  view_year_stats_for_site: "Skatīt %{site} vietnes statistiku %{year}. gadā"
   view_your_dashboard: Skatīt informācijas paneli
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Skatīt informācijas paneli</a>, lai uzzinātu vairāk jaunumus"
   view_your_inbox: Skatīt iesūtni
   view_your_observations: Skatīt savus novērojumus
-  view_your_year_stats: "Skatīt savu statistiku %{year}. gadā"
   view_yours: Skatīt savus
   view_all_of_your_observations_from_x: "Skatīt visus savus novērojumus no %{x}"
   video_tutorials: Video apmācības
@@ -5226,11 +5184,6 @@ lv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Nesameklētie
   was_it_captive_cultivated?: "Organisms bija nebrīvē vai kultivēts?"
-  we_also_support: |
-    Atbalstām arī <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> un
-    <a href="http://facebook.com">Facebook</a>
-    attēlu mitināšanai.
   we_can_only_understand_csv_in: Sistēma saprot CSV tikai šādā formātā
   we_couldnt_find_a_user: Neatradām lietotāju ar šo e-pasta adresi.
   we_couldnt_find_a_user_with_that_activation_code: "Neatradām lietotāju ar šo aktivizācijas kodu. Iespējams, ka jau aktivizēji savu kontu. Pamēģini pierakstīties."
@@ -5305,7 +5258,10 @@ lv:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Daļa no oriģināla satura var nebūt iekļauta, bet saturs nav ne izmainīts, ne pagarināts.
   with: ar
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Atsaukt
+  #Loading status while an identification is being withdrawn
   withdrawing: Atsauc...
   with_errors: Ar kļūdām
   worldwide: Visā pasaulē
@@ -5381,8 +5337,6 @@ lv:
     Dalīšanās ar tik nozīmīgiem bioloģiskās daudzveidības datiem un to iegūšana šādā vēl iepriekš nepieredzētā mērogā un ātrumā ar katru dienu izmaksā ar vien vairāk
   yir_millions_of_people_used_inaturalist: |
     Šogad miljoniem cilvēku izmantoja iNaturalist un iNaturalist Seek, lai pietuvotos dabai
-  yir_thank_your_for_being_generous: |
-    Paldies par veltīto laiku, uzmanību, zināšanām un ziedojumiem! iNaturalist ir California Academy of Sciences un National Geographic Society bezpeļņas kopdarbs. Gūstam atbalstu no dažādām subsīdijām un ziedojumiem, no kuriem liela daļa nāk arī no kopienas. It īpaši pateicamies ikmēneša atbalstītājiem, jo viņu dāvātais sniedz mums iespēju plānot uz priekšu.
   yir_your_gift_sustains: |
     Tevis dāvātais palīdz uzturēt mūsu programmu globālā mērogā un tas atstāj pozitīvu ietekmi uz ekoloģiju un lietotāju personīgo dzīvi
   you: tu
@@ -5540,38 +5494,9 @@ lv:
             Ja plāno darbu klasē, lūdzu, izlasi <a href="%{url}">padomus skolotājiem</a>, lai uzzinātu dažādus ieteikumus %{site_name} vietnes izmantošanai darbā ar studentiem un skolniekiem.
     donate:
       donate_short_desc: "Noziedo jau tagad, lai izrādītu savu atbalstu."
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
-        </p>
-        <p class="lead">
-        Mūsu globālajā dabas mīlētāju kopienā dalāmies ar zināšanām un ģenerējam datus par bioloģisko daudzveidību. Ja tevi uzrunā mūsu padarītais, lūdzu, apsver iespēju noziedot vienreiz vai atkārtoti. Vēl vari apskatīt<a
-        href="https://www.inaturalist.org/pages/giving">citus veidus, kā mums palīdzēt.</a>
-        </p>
-        <p class="lead">
-        iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu.
-        </p>
-        <p class="text-muted">
-        iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
-        California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs nodokļu maksātāja Nr. (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Kļūsti par ikmēneša iNaturalist atbalstītāju
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
-          </p>
-          <p class="lead">
-          Vēlamies, lai iNaturalist lietošana vienmēr būtu bez maksas. Diemžēl sistēmu uzturēšana gan nav bez maksas. Ja tev patīk iNaturalist, lūdzu, apsver iespēju kļūt par ikmēneša iNaturalist atbalstītāju. Regulāri ziedojumi nodrošina stabilus ienākumus, kas palīdz turpināt attīstīt iNaturalist infrastruktūru un atbalstīt mūsu darbiniekus. Piedāvājam iespēju savam profilam pievienot ikmēneša atbalstītāja piespraudīti.
-          </p>
-          <p class="lead">
-          iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu. Ja labāk vēlies noziedot vienreiz, lūdzu, <a href="%{donate_url}">nospied šeit</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
-          California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs.
-          </p>
     flags:
       show:
         flaggable_content_desc: |
@@ -5673,7 +5598,7 @@ lv:
       pdf_generation_notice: |
         Lūdzu, esi pacietīgs, jo lielu PDF failu izveidošana var aizņemt kādu brīdi.
       tags_help_html: |
-        Tagi funkcionē kā kategorijas, pēc kurām tiek sadalītas tavos padomos iekļautās sugas. Jāņem gan vērā, ka vairākām sugām var būt viens un tas pats tags. Ievadi tagus saraksta formā, kurā katrs tags atdalīts ar komatu, piemēram <code>mazs, pūkains</code>. Lai pievienotu kategorijas ar nosaukumiem, izmanto tādus tagus kā <code>category_name=category_value</code> 
+        Tagi funkcionē kā kategorijas, pēc kurām tiek sadalītas tavos padomos iekļautās sugas. Jāņem gan vērā, ka vairākām sugām var būt viens un tas pats tags. Ievadi tagus saraksta formā, kurā katrs tags atdalīts ar komatu, piemēram <code>mazs, pūkains</code>. Lai pievienotu kategorijas ar nosaukumiem, izmanto tādus tagus kā <code>category_name=category_value</code>
         un <code>krāsa=dzeltena</code>.
       sorts:
         default: Padomu secība
@@ -5983,7 +5908,6 @@ lv:
       show:
         allow_curator_coordinate_access_desc_html: |
           Sniegt projekta pārziņiem piekļuvi pie novērojuma noslēptajām koordinātām.
-        ancestor_disagreements_desc: "Starp taksona priekštečiem identificēto taksonu skaits, kas nesakrīt ar taksonu, piemēram, uzskatu, ka taksons ir noteiktā ģintī, bet nepiekrītu tam, ka tā ir noteikta suga."
         community_taxon_desc_html: |
           <p class="ui">
           Kopienas taksons jeb kopienas identifikācija attēlo to, kas pēc %{site_name} kopienas domām redzams novērojumā. Ja vēlies uzzināt vairāk par to, kā izvēlamies kopienas taksonu, apskati zemāk atrodamo algoritma aprakstu. <strong>Cenšamies izvēlēties taksonus, kam piekrīt vismaz 2/3 identificētāju.</strong> Reizēm tas var nozīmēt to, ka nākas izvēlēties augstākas pakāpes taksonu ar vairākiem pretrunīgiem taksoniem, piemēram, pēc tavām domām tā ir karaļčūska, bet pēc manām klaburčūska. Šādā gadījumā iNat norādītu apakškārtu Serpentes, kurā iekļautas visas čūskas. Algoritms dod priekšroku identifikācijām, kas nesakrīt ar pārējām, jo bieži vien pierādas, ka tās ir pareizas.
@@ -5995,8 +5919,6 @@ lv:
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
         curator_coordinate_access_disabled_desc_html: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
-        data_quality_assessment_desc_html: |
-          Datu kvalitātes novērtējumā izvērtē novērojuma precizitāti. Pētniecības līmeņa novērojumus izmanto zinātnieki. Nobalso šeit:
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
         identification_count_desc: 'Individuāla taksona identifikāciju skaits'
         flagged_photos_desc_html: |
@@ -6162,9 +6084,6 @@ lv:
         view_original_html: |
           Oriģinālu iespējams apskatīt šeit: <a href="%{url}">%{url}</a> Ja fotogrāfija nepārkāpj autortiesības, lūdzu, atstāj autortiesību pārkāpumu karodziņu ziņojumos norādītās problēmas neatrisinātas.
     places:
-      kml_field_desc: |
-        Vietas robežu KML. To iespējams izveidot, izmantojot Google Maps, Google
-        Earth un lielāko daļu citu GIS lietotņu. KML jāsatur vismaz viens poligons, kas nav lielāks par 1MB (5 MB pārziņiem) un tas nedrīkst pārsniegt, ASV štata, Teksasas izmēru.
       edit:
         complex_boundary_note_html: |
           Robežas ir pārāk sarežģītas rediģēšanai pārlūkā. Tā vietā iespējams <a href="%{url}">lejupielādēt KML</a> un rediģēt to kādā no tevis izvēlētām GIS lietotnēm, un tad to augšupielādēt.
@@ -6500,9 +6419,6 @@ lv:
           Kādi bija šī gada rezultāti salīdzinājuma ar citiem gadiem? Šis gads apzīmēts ar zaļo krāsu, pagājušais gads ar baltu un pelēkajā fonā redzami gadi ar zemāko un augstāko aktivitāti, un ar visu gadu vidējo rādītāju.
         compared_to_previous_years: Salīdzināt ar iepriekšējiem gadiem
         donate_title: "Liels paldies visiem mūsu atbalstītājiem!"
-        donate_desc_html: |
-          Paldies par veltīto laiku, uzmanību, zināšanām un ziedojumiem! iNaturalist ir California Academy of Sciences un National Geographic Society bezpeļņas kopdarbs.
-          iNaturalist atbalsta <a href="%{team_url}">neliela komanda</a>, kas atbild par iNaturalist tīmekļa vietnes, lietotņu un <a href="%{seek_url}">Seek by iNaturalist</a> dizainu un izstrādi. Neskaitot kopienas atbalsta sniegšanas pārvaldi, sadarbības un integrācijas projektus, kas palīdz turpināt un attīstīt iNaturalist darbību, mūs atbalsta arī subsīdijas un ziedojumi, no kuriem liela daļa nāk no brīvprātīgajiem atbalstītajiem. It īpaši pateicamies ikmēneša atbalstītājiem, jo viņu dāvātais sniedz mums iespēju plānot uz priekšu. Lai atbalstītu iNaturalist darbību, iespējams ziedot ar vairākām valūtām. Paldies visiem, kas palīdzēja padarīt %{year}. gadu par līdz šim veiksmīgāko iNaturalist vēsturē.
         donors: Ziedotāji
         donors_guide_label_our_goal_is_1000: Mūsu mērķis ir iegūt 1000 ziedotājus, kas atgrieztos katru mēnesi
         inaturalist_network: iNaturalist tīkls
@@ -6533,10 +6449,6 @@ lv:
         one_time: Vienreizējs
         percent_growth_in_year: "% pieaugums %{year}. gadā"
         percent_of_total_growth: "% no kopējā pieauguma"
-        publications_desc_html: |
-          Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
-          <br/>
-          <a href="%{url}">Skatīt visus %{numStudies} pētījumus</a>
         publications_desc_short_html: |
           Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
         observations_per_year: Novērojumi / gads
@@ -6586,16 +6498,6 @@ lv:
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
       show:
-        about_names_desc: |
-          <p>
-          Lielākajai daļai sugu dažādās valodās ir "tautā pieņemtie nosaukumi". Šie nosaukumi lielākoties ir atpazīstami, viegli izrunājami un nemainīgi, bet daudzām sugām atkarībā no reģiona pat vienā un tajā pašā valodā var būt dažādi nosaukumi. Tas var apgrūtināt diskusijas par sugām. Tādēļ zinātnieki izmanto vienotus zinātniskos nosaukumus katrai organismu kategorijai, kas atbilst <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">binārās nomenklatūras</a> noteikumiem. Šie nosaukumi ir latīņu valodā, kurā vairs neviens nerunā, tāpēc salīdzinājumā ar tautā pieņemtajiem nosaukumiem daudziem cilvēkiem tos ir grūtāk atcerēties. Zinātniskie nosaukumi mēdz ietvert organismu taksonomisko novietojumu, tāpēc tie var mainīties, kad zinātnieki nāk klajā ar precīzākām teorijām par organismu evolucionārajām attiecībām. Šis iemesls apgrūtina organismu apspriešanu pat cilvēkiem, kas pazīst zinātniskos nosaukumus.
-          </p>
-          <p>
-          Vecais labais teiciens labi paskaidro šo situāciju – "Tautā pieņemtie nosaukumi mainās atkarībā no vietas, bet zinātniskie laika gaitā."
-          </p>
-          <p>
-          Mēs risinām šo problēmu, iespēju robežās atainojot gan tautā pieņemtos, gan zinātniskos nosaukumus, kā arī izvēloties tautā pieņemtos nosaukumus atkarībā no lietotāja valodas un atrašanās vietas.
-          </p>
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
         about_establishment_desc: |
@@ -6622,7 +6524,6 @@ lv:
           "Plant Phenology=Flower Budding": Ziedpumpuri
           "Plant Phenology=Flowering": Zied
           "Plant Phenology=Fruiting": Ar augļiem
-          "Plant Phenology=No Evidence": Nav pierādījumu
           "Life Stage=Adult": Pieaudzis
           "Life Stage=Egg": Ola
           "Life Stage=Larva": Cirmenis
@@ -6652,10 +6553,6 @@ lv:
     taxon_changes:
       move_children_desc: |
         Ievades taksona apakšgrupas, kas ir ģints vai vispārējāka līmeņa, tiks pārvietotas uz izvades sadaļu. Sugas, apakšsugas, šķirnes u.c. tiks samainītas ar tās ekvivalentiem, pievienojot jaunās ģints vai sugas nosaukumu.
-      form:
-        move_children_desc_html: |
-          Atzīmē šo lodziņu, lai pārvietotu ievades taksona apakšgrupas uz izvades sadaļu, lai tur izmantotu samainīšanas un apvienošanas funkciju, kad izmaiņas būs apstiptinātas. Ja izmaiņas tiks veiktas ģints vai zemākā līmenī, tad tiks samainīti visi zemāku pakāpju taksonu nosaukumi. Piemēram, ja samainīsi Canidae dzimtu pret Dogidae dzimtu, tad <i>Canis</i> ģints virstaksons tiks nomainīts no Canidae uz Dogidae. Ja samainīsi <i>Canis</i> pret <i>Dogis</i> ģinti, taksons <i>Canis lupus</i> tiks samainīts pret <i>Dogis lupus</i> un <i>Canis lupus</i> ssp. <i>lupus</i> pret <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Šādi iespējams radīt visai lielu jucekli, tāpēc lieto šīs funkcijas atbildīgi.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6775,10 +6672,6 @@ lv:
           Licencē savu saturu, lai sniegtu lietotājiem tiesības to izmantot, nelūdzot tavu piekrišanu, bet ievērojot norādītos licences noteikumus. %{site_name} glabā tavu ar Creative Commons licencēto saturu partnerorganizācijām paredzētos arhīvos, kas tiek regulāri atjaunoti. Piemēram, ar No
           Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
           (CC BY-NC) licencētais saturs tiek glabāts arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska starpvaldību organizācija, kas apkopo un izplata bioloģiskās daudzveidības datus no visas pasaules.
-        monthly_supporter_desc_html: |
-          Lietotāji ar iNaturalist ikmēnēša atbalstītāja statusu katru mēnesi automātiski ziedo, lai atbalstītu California Academy of Sciences (United States IRS EIN 94-1156258) un iNaturalist un iNaturalist tīkla vietņu uzturēšanu, kas nenes peļņu.
-          <a href="%{url}">Lai kļūtu par ikmēneša atbalstītāju, nospied šeit</a>.
-          Kad būsim saņēmuši tavu ziedojumu, varēsi atzīmēt lodziņu, lai rādītu savā profilā ziedotāja statusu. Lai mēs varētu pārbaudīt to, ka esi kļuvis par ikmēneša atbalstītāju, tev jānorāda vienādu e-pasta adresi gan Donorbox, gan iNaturalist vietnē.
         muting_desc_html: |
           <p>
           Apklusinot kādu lietotāju, nesaņemsi paziņojumus par viņa darbībām, tai skaitā tavu novērojumu komentēšanu, sazināšanos ar tevi, tevis pieminēšanu utt. Apklusināšana sniedz iespēju kādu ignorēt, neierobežojot lietotāju veikt citas darbības.
@@ -6897,9 +6790,6 @@ lv:
       index:
         connect_with_nature: Pietuvojies dabai
         explore_and_share: Izzini un dalies ar novērojumiem no dabas.
-        observations_to_date: 'Novērojumi līdz šim brīdim'
-        species_observed: 'Novērotās sugas'
-        people_signed_up: 'Reģistrējušies jauni lietotāji'
         how_it_works: Kā tas strādā?
         record_your_observations: Pievieno novērojumus
         share_with_fellow_naturalists: Dalies ar citiem dabas draugiem
@@ -6970,19 +6860,19 @@ lv:
       6: Piek.
       7: Ses.
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -7068,50 +6958,6 @@ lv:
       month: Mēnesis
       second: Sekundes
       year: Gads
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: jābūt apstiprinātām
-      blank: nevar būt tukšs
-      confirmation: nesakrīt ar paroli
-      empty: nevar būt tukšs
-      equal_to: jābūt vienādam ar %{count}
-      even: jābūt vienādam
-      exclusion: ir rezervēts
-      greater_than: jābūt vairāk par %{count}
-      greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
-      inclusion: nav iekļauts sarakstā
-      invalid: ir nederīgs
-      less_than: jābūt mazāk par %{count}
-      less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
-      new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
-      not_a_number: nevar būt skaitlis
-      not_an_integer: jābūt veselam skaitlim
-      odd: jābūt nepāra
-      only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
-      record_invalid: 'Validācija neizdevās: %{errors}'
-      requires_privilege_speech: |
-        lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
-      requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
-      taken: jau ir aizņemts
-      too_long:
-        zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-        one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
-        other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-      too_short:
-        zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-        one: pārāk īss (ne mazāk par %{count} rakstzīmi)
-        other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-      wrong_length:
-        zero: nepareizs garums (jābūt %{count} rakstzīmēm)
-        one: nepareizs garums (jābūt %{count} rakstzīmei)
-        other: nepareizs garums (jābūt %{count} rakstzīmēm)
-    template:
-      body: 'Radās problēmas ar šiem laukiem:'
-      header:
-        zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-        one: "%{count} kļūdas dēļ šis %{model} netika saglabāts"
-        other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   helpers:
     defaults:
       title: "ŠIS IR VIRSRAKSTS"
@@ -7175,68 +7021,21 @@ lv:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: jābūt apstiprinātām
-        blank: nevar būt tukšs
-        confirmation: nesakrīt ar paroli
-        empty: nevar būt tukšs
-        equal_to: jābūt vienādam ar %{count}
-        even: jābūt vienādam
-        exclusion: ir rezervēts
-        greater_than: jābūt vairāk par %{count}
-        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
-        inclusion: nav iekļauts sarakstā
-        invalid: ir nederīgs
-        less_than: jābūt mazāk par %{count}
-        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
-        new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
-        not_a_number: nevar būt skaitlis
-        not_an_integer: jābūt veselam skaitlim
-        odd: jābūt nepāra
-        only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
-        record_invalid: 'Validācija neizdevās: %{errors}'
-        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
-        requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
-        taken: jau ir aizņemts
-        too_long:
-          zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-          one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
-          other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-        too_short:
-          zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-          one: pārāk īss (ne mazāk par %{count} rakstzīmi)
-          other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-        wrong_length:
-          zero: nepareizs garums (jābūt %{count} rakstzīmēm)
-          one: nepareizs garums (jābūt %{count} rakstzīmei)
-          other: nepareizs garums (jābūt %{count} rakstzīmēm)
-      template:
-        body: 'Radās problēmas ar šiem laukiem:'
-        header:
-          zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
-          other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   activerecord:
     models:
       AssessmentSection: Novērtējuma sadaļa
@@ -7275,7 +7074,9 @@ lv:
         geoprivacy: Ģeoprivātums
         iucn: Atbilstošs IUCN
       flag:
+        #The reason the item was flagged
         reason: Iemesls
+        #The kind of flag that was made
         flag: Karodziņš
       guide:
         source_url: Avota URL
@@ -7424,22 +7225,18 @@ lv:
         blank: nevar būt tukšs
         confirmation: nesakrīt ar paroli
         empty: nevar būt tukšs
-        equal_to: jābūt vienādam ar %{count}
         even: jābūt vienādam
         exclusion: ir rezervēts
-        greater_than: jābūt vairāk par %{count}
-        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
         inclusion: nav iekļauts sarakstā
         invalid: ir nederīgs
-        less_than: jābūt mazāk par %{count}
-        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
         new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
         not_a_number: nevar būt skaitlis
         not_an_integer: jābūt veselam skaitlim
         odd: jābūt nepāra
         only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
         record_invalid: 'Validācija neizdevās: %{errors}'
-        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
+        requires_privilege_speech: |
+          lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
         requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
         taken: jau ir aizņemts
         too_long:
@@ -7458,7 +7255,7 @@ lv:
         body: 'Radās problēmas ar šiem laukiem:'
         header:
           zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
+          one: "%{count} kļūdas dēļ šis %{model} netika saglabāts"
           other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
       models:
         application:
@@ -7492,11 +7289,6 @@ lv:
               staff_cannot_be_suspended: Vietnes darbinieki nevar tikt bloķēti
             user_id:
               must_be_a_curator: jābūt pārzinim
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Šī sēņu novērotāja importēšanas process notiek vai gaida rindā"
-              api_key_missing: "Nav sēņu novērotāja API atslēgas"
         observation:
           attributes:
             base:
@@ -7632,9 +7424,6 @@ lv:
           attributes:
             base:
               user_already_blocked: Tu jau esi nobloķējis šo lietotāju
-              user_cannot_be_staff: |
-                iNat darbiniekus nevar nobloķēt, jo viņiem jāspēj sazināties ar visiem iNat tīklā, piekļūt visiem datiem un izšķirt citu lietotāju strīdus. Ja tev ir radušās problēmas ar kādu no darbiniekiem, lūdzu, paziņo par to kādam no iNat līdzdirektoriem. Ja radušās problēmas ar kādu no līdzdirektoriem, sazinies ar Kalifornijas Zinātņu Akadēmijas Bioloģiskās daudzveidības un ilgtspējīguma institūta vadītāju (Institute for Biodiversity and Sustainability Science at the
-                California Academy of Sciences).
         user_parent:
           attributes:
             email:

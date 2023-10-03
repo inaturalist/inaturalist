@@ -1,17 +1,21 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe FlagsController do
-  let(:user) { User.make! }
-  let(:token) { double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make! }
+  let( :user ) { User.make! }
+  let( :token ) do
+    double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make!
+  end
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
+    allow( controller ).to receive( :doorkeeper_token ) { token }
   end
   before { ActionController::Base.allow_forgery_protection = true }
   after { ActionController::Base.allow_forgery_protection = false }
 
   describe "create" do
-    let(:comment) { Comment.make! }
+    let( :comment ) { Comment.make! }
     it "should add a flag" do
       expect( comment.flags.size ).to eq 0
       post :create, format: :json, params: {
@@ -47,7 +51,7 @@ describe FlagsController do
   end
 
   describe "update" do
-    let(:flag) { Flag.make!( user: user ) }
+    let( :flag ) { Flag.make!( user: user ) }
     it "should update a flag" do
       expect( flag ).not_to be_resolved
       put :update, format: :json, params: { id: flag.id, flag: { resolved: true } }
@@ -65,7 +69,7 @@ describe FlagsController do
   context "when current user is flagged" do
     describe "update" do
       context "on a non taxon flag" do
-        let(:flag) { Flag.make!( user: user, flaggable: Comment.make!(user: user) ) }
+        let( :flag ) { Flag.make!( user: user, flaggable: Comment.make!( user: user ) ) }
         it "should not result in an update" do
           expect( flag.flaggable_user.id ).to eq user.id
           expect( flag ).not_to be_resolved
@@ -76,7 +80,7 @@ describe FlagsController do
       end
 
       context "on a taxon flag" do
-        let(:flag) { Flag.make!( user: user, flaggable_user: user ) }
+        let( :flag ) { Flag.make!( user: user, flaggable_user: user ) }
         it "should result in an update" do
           expect( flag.flaggable_user.id ).to eq user.id
           expect( flag ).not_to be_resolved

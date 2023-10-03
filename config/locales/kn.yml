@@ -126,6 +126,7 @@ kn:
   _100_day_trends: 100 ದಿನದ ಜನಪ್ರಿಯತೆ
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಒಂದು ಸಮುದಾಯ
+  a_flag_for_x: "%{x} ಗಾಗಿ ಫ್ಲ್ಯಾಗ್"
   a_member_of_taxon_html: "%{taxon} ನ ಸದಸ್ಯ"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -268,13 +269,16 @@ kn:
   add_obs_from_a_link: "ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ : %{link}"
   add_obs_from_a_list: ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   add_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
+  add_observations_by_checking_off: ಪಟ್ಟಿಯಿಂದ ಜಾತಿಗಳನ್ನು ಬಿಟ್ಟುಬಿಡುವ ಮೂಲಕ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ.
   add_observations_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>ವೀಕ್ಷಣೆಗಳನ್ನು</span><span>ಸೇರಿಸಿ</span>"
   #Prompt to add a new journal post
   add_one: ಒಂದನ್ನು ಸೇರಿಸಿ!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: ಈಗ ಒಂದನ್ನು ಸೇರಿಸಿ
-  add_photos: ಚಿತ್ರಗಳನ್ನು ಸೇರಿಸಿ
   add_place: ಸ್ಥಳಗಳನ್ನು ಸೇರಿಸಿ
   add_alive_or_dead_alive_annotation: '"ಜೀವಂತ ಅಥವಾ ಮೃತ : ಜೀವಂತ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_alive_or_dead_cannot_be_determined_annotation: '"ಜೀವಂತ ಅಥವಾ ಮೃತ : ನಿರ್ಣಯಿಸಲಾಗಲಿಲ್ಲ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
@@ -353,6 +357,8 @@ kn:
   agree?: ಸಮ್ಮತಿಸಿ?
   agree_with_current_taxon: ಪ್ರಸ್ತುತ ಜೀವಿವರ್ಗವನ್ನು ಸಮ್ಮತಿಸಿ
   agreeing: ಒಪ್ಪಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ...
+  #Noun, title of a popup alerting you to something
+  alert: ಎಚ್ಚರಿಕೆ
   all: ಎಲ್ಲಾ
   all_comments: ಎಲ್ಲಾ ಅಭಿಪ್ರಾಯಗಳು
   all_life: ಎಲ್ಲಾ ಜೀವಜಾಲ
@@ -462,7 +468,6 @@ kn:
   amphibians: ಉಭಯಚರಿಗಳು
   analyze_ids: IDಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಿ
   ancestor_taxon: ಪೀಳಿಗೆ ಜೀವಿವರ್ಗ
-  and: ಹಾಗೂ
   and_other_taxa: "&amp; ಇತರೇ ಜೀವಿವರ್ಗಗಳು"
   android: ಆಂಡ್ರಾಯ್ಡ್
   animals: ಪ್ರಾಣಿಗಳು
@@ -659,6 +664,7 @@ kn:
   batch_edit_taxa_for_x_html: "%{x} ಗಾಗಿ ಜೀವಿವರ್ಗದ ಬ್ಯಾಚ್ ಸಂಪಾದನೆ"
   batch_operations: ಬ್ಯಾಚ್ ಕಾರ್ಯಾಚರಣೆಗಳು
   be_the_first_to_fave_this_observation: ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಹುವುದರಲ್ಲಿ ನೀವು ಮೊದಲಿಗರಾಗಿ!
+  become_a_donor_caps: ದಾನಿಯಾಗು
   before_importing_photos: ಚಿತ್ರಗಳನ್ನು ಆಮದುಮಾಡುವ ಮುನ್ನ
   bg_color: ಹಿನ್ನೆಲೆ ಬಣ್ಣ
   bio: ಕಿರು ಪರಿಚಯ
@@ -667,6 +673,7 @@ kn:
   birds: ಹಕ್ಕಿಗಳು
   birthday: ಜನ್ಮದಿನ
   black: ಕಪ್ಪು
+  block: ನಿರ್ಬಂಧಿಸಿ
   block_removed: ನಿರ್ಬಂಧ ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   blocked_users: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
   blog_widget: ಬ್ಲಾಗ್ ವಿಜೆಟ್
@@ -689,7 +696,6 @@ kn:
   browse_species_that_occur_near_this_observation: ಈ ವೀಕ್ಷಣೆಯ ಸಮೀಪದಲ್ಲಿ ಲಭ್ಯವಿರುವ ಪ್ರಭೇದಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ.
   built_with_site_guides_html: "<a href='%{url}'>%{site_name} ಕೈಪಿಡಿಗಳು</a> ಜೊತೆ ರಚಿತವಾಗಿದೆ"
   bulk_import_of_filename_is_complete: "%{filename} ನ ಸಗಟು ಆಮದು ಸಂಪೂರ್ಣವಾಗಿದೆ"
-  by: ಮೂಲಕ
   by_everyone: ಎಲ್ಲರಿಂದಲೂ
   by_user: "%{user} ರಿಂದ"
   by_you: ನಿಮ್ಮಿಂದ
@@ -734,13 +740,7 @@ kn:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ಇದರಂತೆ ವಿಭಜಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಿ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ಮೂಲಕ ಬದಲಿಸಲಾಗಿದೆ
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಲಾಗಿದೆ
     dropped: ಕೈಬಿಡಲಾಗಿದೆ
@@ -868,12 +868,9 @@ kn:
   #connecting to Flickr
   connect: ಸಂಪರ್ಕಿಸಿ
   connect_to_provider: "%{provider} ಗೆ ಸಂಪರ್ಕಿಸಿ"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connected_accounts_titlecase: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connecting_flickr: "Flickr ಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ... "
   connect_to_flickr_again_to_authorize_write_permissions: ಬರವಣಿಗೆ ಅನುಮತಿಗಳನ್ನು ಧೃಢೀಕರಿಸಲು ಫ್ಲಿಕರ್ ಗೆ ಮತ್ತೊಮ್ಮೆ ಸಂಪರ್ಕಿಸಿ
-  connecting_to_facebook: "ಫೇಸ್‍ಬುಕ್‍ಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ..."
   connecting_your_inat_account_to_accounts_other_sites: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ಇತರೆ ತಾಣಗಳ ಖಾತೆಗಳಿಗೆ ಜೋಡಿಸುವುದರಿಂದ, ನೀವು %{site_name} ಗೆ ಆ ತಾಣಗಳಿಂದ ನಿಮ್ಮ ಗುರುತನ್ನು ಬಳಸಿ ಲಾಗಿನ್ ಆಗಬಹುದು."
   cannot_be_changed_during_a_content_freeze: ವಸ್ತುವಿಷಯದ ಸ್ಥಿರೀಕರಣದ ಸಮಯದಲ್ಲಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ
   conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
@@ -957,18 +954,18 @@ kn:
     molt: ಪೊರೆ
   controlled_term_definitions:
     alive: ಜೀವಿಯು ಜೀವಂತವಾಗಿದೆ ಹಾಗೂ ಸಾವು ಸನ್ನಿಹಿತವಾಗಿರುವ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿಲ್ಲ
+    cannot_be_determined: ಒದಗಿರುವ ಕುರುಹುಗಳಿಂದ ನಿರ್ಣಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ
     dead: ಜೀವಿಯು ಮೃತವಾಗಿದೆ ಅಥವಾ ಸಾವು ಸನ್ನಿಹಿತವಾಗಿರುವ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿದೆ
+    feather: ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಗರಿಗಳು ಜೀವಿಗೆ ಅಂಟಿಕೊಂಡಿಲ್ಲ
     flower_budding: ಹೂವಿನ ಮೊಗ್ಗುಗಳು ಗೋಚರಿಸುತ್ತಿವೆ ಆದರೆ ಅರಳಿಲ್ಲ
     flowering: ಹೂವುಗಳು ಗೋಚರಿಸುತ್ತಿವೆ, ಅರಳಿವೆ ಹಾಗೂ ಸಸ್ಯಕ್ಕೆ ಇನ್ನೂ ಅಂಟಿಕೊಂಡಿವೆ
     fruiting: ಹಣ್ಣುಗಳು ಗೋಚರಿಸುತ್ತಿವೆ ಹಾಗೂ ಸಸ್ಯಕ್ಕೆ ಇನ್ನೂ ಅಂಟಿಕೊಂಡಿವೆ
+    molt: ತ್ಯಜಿಸಿದ ಚರ್ಮ ಅಥವಾ ಹೊರ ಎಲುಬುಹಂದರ
     no_evidence_of_flowering: ಸಂತಾನೋತ್ಪತ್ತಿಯ ರಚನೆಯ ಸಾಕ್ಷ್ಯಗಳನ್ನು ಮಾಧ್ಯಮವು ಒದಗಿಸುತ್ತಿಲ್ಲ
-    teneral: ಇತ್ತೀಚೆಗೆ ಹೊರಬಂದಿರುವ ವಯಸ್ಕ ಆದರೆ ಇನ್ನೂ ಪೂರ್ಣಪ್ರಮಾಣದ ವಯಸ್ಕ ಸ್ವರೂಪವನ್ನು ಪಡೆದಿಲ್ಲ
-    cannot_be_determined: ಒದಗಿರುವ ಕುರುಹುಗಳಿಂದ ನಿರ್ಣಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ
-    feather: ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಗರಿಗಳು ಜೀವಿಗೆ ಅಂಟಿಕೊಂಡಿಲ್ಲ
     organism: ಪೂರ್ಣ ಅಥವಾ ಅಪೂರ್ಣ ಜೀವಿ
     scat: ವಿಸರ್ಜಿತ ವಸ್ತು (ಗೂಬೆಯ ಉಗುಳು ಅಥವಾ ಇತರೆ ಉಗುಳಿದ ವಸ್ತುವಲ್ಲ)
+    teneral: ಇತ್ತೀಚೆಗೆ ಹೊರಬಂದಿರುವ ವಯಸ್ಕ ಆದರೆ ಇನ್ನೂ ಪೂರ್ಣಪ್ರಮಾಣದ ವಯಸ್ಕ ಸ್ವರೂಪವನ್ನು ಪಡೆದಿಲ್ಲ
     track: ಮಣ್ಣಿನ ಅಥವಾ ಮಂಜಿನ ಮೇಲೆ ಜೀವಿಯು ಮೂಡಿಸಿರುವ ಗುರುತು
-    molt: ತ್ಯಜಿಸಿದ ಚರ್ಮ ಅಥವಾ ಹೊರ ಎಲುಬುಹಂದರ
   controls: ನಿಯಂತ್ರಕಗಳು
   convert: ಪರಿವರ್ತಿಸಿ
   coordinate_systems: ನಿರ್ದೇಶಾಂಕ ವ್ಯವಸ್ಥೆಗಳು
@@ -1020,7 +1017,6 @@ kn:
   created_by: ರಚಿಸಿದವರು
   created_by_user_on_date: '%{date} ರಂದು %{user} ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ'
   created_on: ರಂದು ರಚಿಸಲಾಗಿದೆ
-  creating_your_account: "ಖಾತೆಯೊಂದನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ..."
   creative_commons_flickr_tagged: ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳು ಟ್ಯಾಗ್ ಆಗಿವೆ
   creative_commons_unless_otherwise_noted: "ಸೂಚಿಸಿರದೇ ಇದ್ದ ಪಕ್ಷದಲ್ಲಿ ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಆಗಿರುತ್ತದೆ."
   critically_endangered: ತೀರಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ
@@ -1051,8 +1047,6 @@ kn:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
     ಮೇಲ್ವಿಚಾರಕರ ಕೈಪಿಡಿಗಳ ನಿಯಮಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಲಾಗಿದೆ
-  curator_application_inelligible_error: |
-    ನೀವು ತಾಣದ ಮೇಲ್ವಿಚಾರಕರಾಗಿ ಅರ್ಜಿಸಲ್ಲಿಸಲು 60 ಅಥವಾ ಅದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ದಿನಗಳಿಂದ ಖಾತೆಯನ್ನು ಹೊಂದಿರಬೇಕು ಮತ್ತು ನಿಮ್ಮದನ್ನೂ ಒಳಗೊಂಡಂತೆ ಯಾರದಾದರೂ ವೀಕ್ಷಣೆಗಳಿಗೆ 100 ಸುಧಾರಿತ ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕು.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: ಮೇಲ್ವಿಚಾರಕರ ಅರ್ಜಿಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ
   #Header
@@ -1228,24 +1222,27 @@ kn:
       signed_in: 'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಇನ್ ಆಗಲಾಗಿದೆ.'
       signed_out: 'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಔಟ್ ಆಗಲಾಗಿದೆ.'
     passwords:
-      send_instructions: 'ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಹೇಗೆ ಬದಲಿಸಬಹುದೆಂಬ ಸೂಚನೆಗಳುಳ್ಳ ಒಂದು ಮಿಂಚೆಯನ್ನು ಪಡೆಯಲಿದ್ದೀರಿ.'
+      send_instructions: |
+        ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಹೇಗೆ ಬದಲಿಸಬಹುದೆಂಬ ಸೂಚನೆಗಳುಳ್ಳ ಒಂದು ಮಿಂಚೆಯನ್ನು ಪಡೆಯಲಿದ್ದೀರಿ.
       updated: 'ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಿಸಲಾಗಿದೆ. ಈಗ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೀರಿ.'
       updated_not_active: 'ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಿಸಲಾಗಿದೆ.'
-      send_paranoid_instructions: "ನಮ್ಮ ಡೇಟಾಬೇಸಿನಲ್ಲಿ ನಿಮ್ಮ್ ಮಿಂಚೆ ವಿಳಾಸ ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ನೀವು ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ಗುಪ್ತಪದ ಮರುಹೊಂದಿಕೆ ಲಿಂಕ್ ಅನ್ನು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸದಲ್ಲಿ ಪಡೆಯುವಿರಿ."
+      send_paranoid_instructions: |
+        ನಮ್ಮ ಡೇಟಾಬೇಸಿನಲ್ಲಿ ನಿಮ್ಮ್ ಮಿಂಚೆ ವಿಳಾಸ ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ನೀವು ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ಗುಪ್ತಪದ ಮರುಹೊಂದಿಕೆ ಲಿಂಕ್ ಅನ್ನು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸದಲ್ಲಿ ಪಡೆಯುವಿರಿ.
     registrations:
+      destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
       signed_up: 'ಸುಸ್ವಾಗತ! ನೀವು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಾವಣೆಯಾಗಿದ್ದೀರಿ.'
       updated: 'ನೀವು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಿದ್ದೀರಿ.'
-      destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
     mailer:
       confirmation_instructions:
-        subject: 'ಧೃಢೀಕರಣದ ಸೂಚನೆಗಳು'
+        #Subject of an email sent to confirm your account
+        subject: ಧೃಢೀಕರಣದ ಸೂಚನೆಗಳು
       reset_password_instructions:
         subject: 'ಗುಪ್ತಪದ ಮದುಹೊಂದಿಕೆ ಸೂಚನೆಗಳು'
   devise_reset_password_instructions_hello_email: ನಮಸ್ತೆ %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲು ಯಾರೋ ವಿನಂತಿಸಿದ್ದಾರೆ. ನೀವು ಅದನ್ನು ಈ ಕೆಳಗಿನ ಲಿಂಕ್ ಮೂಲಕ ಮಾಡಬಹುದು.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     ನೀವು ಇದನ್ನು ವಿನಂತಿಸಿರದಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಈ ಮಿಂಚೆಯನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲು ಯಾರೋ ವಿನಂತಿಸಿದ್ದಾರೆ. ನೀವು ಅದನ್ನು ಈ ಕೆಳಗಿನ ಲಿಂಕ್ ಮೂಲಕ ಮಾಡಬಹುದು.
   devise_reset_password_instructions_your_password_wont_change_until: |
     ನೀವು ಲಿಂಕ್ ಅನ್ನು ಪ್ರವೇಶಿಸಿ ಹೊಸದೊಂದನ್ನು ರಚಿಸುವವರೆಗೂ ನಿಮ್ಮ ಗುಪ್ತಪದ ಬದಲಾಗುವುದಿಲ್ಲ.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1281,6 +1278,8 @@ kn:
   #short as possible
   donate: ದೇಣಿಗೆ ನೀಡಿ
   donate_again_today_caps: ಇಂದು ಮತ್ತೊಮ್ಮೆ ದೇಣಿಗೆ ನೀಡಿ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: iNaturalist ಗೆ ದೇಣಿಗೆ ನೀಡಿ
   done: ಸಂಪನ್ನವಾಗಿದೆ
   dont_have_an_account_sign_up_html: ಖಾತೆ ಇಲ್ಲವೇ? <strong>ನೋಂದಾಯಿಸಿಕೊಳ್ಳಿ.</strong>
   dont_use_double_quotes: ಇಮ್ಮಡಿ ಉದ್ಧರಣ ಚಿನ್ಹೆಗಳನ್ನು ಇನ್ನೆಲ್ಲಿಯೂ ಬಳಸಬೇಡಿ
@@ -1288,14 +1287,19 @@ kn:
   #add the file as, for example, a new photo in the Uploader
   drop_it: ಇಲ್ಲಿ ಬಿಡಿ
   download: ಡೌನ್‌ಲೋಡ್
+  download_caps: ಡೌನ್ಲೋಡ್ ಮಾಡಿ
   download_bulk_import_template_html: |
     <a href="/observations/import?project_id=%{project_id}#csv_import">ಸಗಟು ಅಪ್ಲೋಡರ್</a> ನಲ್ಲಿ ಬಳಸಲು <a href="%{url}">ಮಾದರಿಯನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ</a>
   download_csv: CSV ಡೌನ್‍ಲೋಡ್
   download_csv_template: CSV ಮಾದರಿಯನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ
   download_kml: KML ಡೌನ್‍ಲೋಡ್
+  #Noun, as in a journal post that has not been published
   draft: ಕರಡುಪ್ರತಿ
+  #Noun, as in a journal post that has not been published
   draft_: ಕರಡುಪ್ರತಿ
+  #Noun, as in a journal post that has not been published
   draft_saved: ಕರಡುಪ್ರತಿ ಉಳಿಸಲಾಗಿದೆ!
+  #Noun, as in journal posts that has not been published
   drafts: ಕರಡುಪ್ರತಿಗಳು
   drag_and_drop_some_photos_or_sounds: ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅಥವಾ ಧ್ವನಿಗಳನ್ನು ಎಳೆಯಿರಿ & ಬಿಡಿ
   drawings: ರೇಖಾಚಿತ್ರಗಳು
@@ -1363,7 +1367,6 @@ kn:
   email: ಮಿಂಚೆ
   email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_address_for_comments_and_other_feedback: ಪ್ರತಿಕ್ರಿಯೆ ಮತ್ತು ಅಭಿಪ್ರಾಯಗಳಿಗಾಗಿ ಮಿಂಚೆ ವಿಳಾಸ
-  email_copyright: "ಹಕ್ಕುಸ್ವಾಮ್ಯ &copy; %{x}, ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ"
   email_notifications: ಮಿಂಚೆ ಅಧಿಸೂಚನೆಗಳು
   embed: 'ಅಡಕಗೊಳಿಸಿ'
   embed_place_widget: ಸ್ಥಳ ವಿಜೆಟ್ ಅನ್ನು ಅಡಕಗೊಳಿಸಿ
@@ -1427,10 +1430,6 @@ kn:
   extra_properties: ಹೆಚ್ಚುವರಿ ಗುಣವಿಶೇಷಗಳು
   evidence_of_organism: ಜೀವಿಯ ಕುರುಹು
   facebook: ಫೇಸ್‍‌ಬುಕ್
-  facebook_account_information: ನಿಮ್ಮ ಫೇಸ್‍‌ಬುಕ್ ಖಾತೆಯ ಮಾಹಿತಿ
-  facebook_account_not_linked: "%{user} ಫೇಸ್‍ಬುಕ್ ಗೆ ಜೋಡಣೆಯಾದ ಖಾತೆಯನ್ನು ಹೊಂದಿಲ್ಲ, ಹಾಗಾಗಿ %{site_name} ಗೆ ಈ ಚಿತ್ರವನ್ನು ಬಳಸಲು ಅನುಮತಿಯಿಲ್ಲ."
-  facebook_needs_the_owner_of_that_photo_to: ಫೇಸ್‍ಬುಕ್ ಗೆ ಆ ಚಿತ್ರದ ಮಾಲೀಕರಿಂದ %{site_name_short} ಗೆ ಸಂಪರ್ಕಿಸಲು ಅವರ ಮರು-ಧೃಢೀಕರಣದ ಅಗತ್ಯವಿದೆ.
-  facebook_options: ಫೇಸ್‍‌ಬುಕ್ ಆಯ್ಕೆಗಳು
   failed_to_find_your_location: ನಿಮ್ಮ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಲಾಗಲಿಲ್ಲ
   failed_to_repair_photo: "ಚಿತ್ರವನು ರಿಪೇರಿಮಾಡಲು ವಿಫಲವಾಗಿದೆ: %{errors}"
   failed_to_save_record: "ದಾಖಲೆಯನು ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ, ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
@@ -1447,6 +1446,8 @@ kn:
   feedback: ಫೇಸ್‍ಬುಕ್
   #Plural noun, as in Atom and RSS feeds
   feeds: 'ಫೀಡ್‍ಗಳು'
+  #Button to show fewer places
+  fewer__context_places: ಸೀಮಿತ
   failed: ವಿಫಲಗೊಂಡಿದೆ
   field_note: |
     <strong>ಸೂಚನೆ:</strong> ನೀವು ಆವರಣವೊಂದನ್ನು ರಚಿಸಲು ಬಯಸುತ್ತಿದ್ದರೆ, ನಕಲನ್ನು ತಡೆಯುವ ಸಲುವಾಗಿ ಇತರೆ ಯಾರಾದರೂ ಈಗಾಗಲೇ ಅದನ್ನು ರಚಿಸಿದ್ದಾರೆಯೆಂಬುದನ್ನು ಒಮ್ಮೆ ನೋಡಿ.
@@ -1521,7 +1522,6 @@ kn:
   frequency: ಆವರ್ತನ
   from_a_place: ಸ್ಠಳದಿಂದ
   from_eol_collection: EOL ಸಂಗ್ರಹಗಳಿಂದ
-  from_flickr_facebook_etc: ಫ್ಲಿಕರ್, ಫೇಸ್‍ಬುಕ್, ಇತ್ಯಾದಿಗಳಿಂದ
   from_list: ಪಟ್ಟಿಯಿಂದ
   from_photos: ಚಿತ್ರಗಳಿಂದ
   from_place: ಸ್ಠಳದಿಂದ
@@ -1594,7 +1594,6 @@ kn:
   heads_up_this_photo_is_already_associated_with: "ಮುನ್ಸೂಚನೆ: ಈ ಚಿತ್ರವು ಈಗಾಗಲೇ<a target='_blank' href='%{url}'>ಮತ್ತೊಂದು ವೀಕ್ಷಣೆ</a>ಯೊಂದಿಗೆ ಜೊತೆಯಾಗಿದೆ."
   help: ಸಹಾಯ
   help_confirm_observations!: ವೀಕ್ಷಣೆಗಳನ್ನು ಗುರುತಿಸಲು ಸಹಾಯಮಾಡಿ!
-  help_support_inaturalist: "iNaturalist ಬೆಂಬಲಿಸಲು ಸಹಾಯಮಾಡಿ"
   help_translate!: ಅನುವಾದಿಸಲು ಸಹಾಯ ಮಾಡಿ!
   here_are_3_examples: ವ್ಯವಸ್ಥಿತವಾಗಿಸಿರುವ ದತ್ತಾಂಶದ 3 ಉದಾಹರಣೆಗಳು ಇಲ್ಲಿವೆ
   here_are_our_top_suggestions: ನಮ್ಮ ಅಗ್ರ ಸಲಹೆಗಳು ಇಲ್ಲಿವೆ
@@ -1675,6 +1674,8 @@ kn:
   improving: ಸುಧಾರಿಸುತ್ತಿದೆ
   in_n: "%{n} ನಲ್ಲಿ"
   in_place_x: '%{place} ನಲ್ಲಿ'
+  #As in a reason to flag something
+  inappropriate: ಅನುಚಿತ
   inaturalist_network: iNaturalist ಜಾಲ
   inaturalist_network_affiliation: iNaturalist ಜಾಲದ ಸಹಭಾಗಿತ್ವ
   #Label for messages you've received
@@ -1704,7 +1705,6 @@ kn:
   inaturalist_activity_notifications: "%{site_name} ಚಟುವಟಿಕೆ ಅಧಿಸೂಚನೆಗಳು"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist ಅಪ್ಲಿಕೇಷನ್‍ಗಳು"
-  inaturalist_is_a_joint_initiative: "%{site_name} ಇದು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ"
   inaturalist_places: "%{site_name} ಸ್ಥಳಗಳು"
   info: ಮಾಹಿತಿ
   insects: ಕೀಟಗಳು
@@ -1813,7 +1813,6 @@ kn:
   lexicon: ಪದ ಭಂಡಾರ
   lexicon_cannot_contain_words: "ಈ ಕೆಳಗಿನ ಪದಗಳನ್ನು ಹೊಂದಿರಲು ಸಾಧ್ಯವಿಲ್ಲ: %{words}"
   lexicons:
-    scientific_names: ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳು
     afrikaans: ಆಫ್ರಿಕನ್
     albanian: ಅಲ್ಬೇನಿಯನ್
     arabic: ಅರೇಬಿಕ್
@@ -1833,14 +1832,17 @@ kn:
     davawenyo: ದಾವಾವೆನ್ಯೋ
     dutch: ಡಚ್
     english: ಇಂಗ್ಲಿಷ್
+    esperanto: ಎಸ್ಪೆರಾಂಟೋ
     estonian: ಎಸ್ಟೋನಿಯನ್
     faroese: ಫಾರೋಸೀ
     finnish: ಫಿನ್ನಿಷ್
     french: ಫ್ರೆಂಚ್
     galician: ಗ್ಯಾಲಿಶಿಯನ್
     gela: ಗೆಲಾ
+    georgian: ಜಾರ್ಜಿಯನ್
     german: ಜರ್ಮನ್
     greek: ಗ್ರೀಕ್
+    gujarati: ಗುಜರಾತಿ
     hawaiian: ಹವಾಯಿಯನ್
     hebrew: ಹೀಬ್ರೂ
     hiligaynon: ಹಿಲಿಗೇನಾನ್
@@ -1873,7 +1875,8 @@ kn:
     romanian: ರೋಮಾನಿಯನ್
     russian: ರಷ್ಯನ್
     santali: ಸಂತಾಲಿ
-    setswana: ಸೆಟ್‍ಸ್ವಾನಾ
+    scientific_names: ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳು
+    serbian: ಸೈಬೀರಿಯನ್
     sinhala: ಸಿಂಹಳ
     slovak: ಸ್ಲೋವಾಕ್
     slovenian: ಸ್ಲೋವೇನಿಯನ್
@@ -1886,9 +1889,11 @@ kn:
     tokelauan: ಟೊಕೆಲಾನ್
     turkish: ಟರ್ಕಿಷ್
     ukrainian: ಉಕ್ರೇನಿಯನ್
-    waray_waray: ವಾರೆ-ವಾರೆ
     visayan: ವಿಸಯಾನ್
+    waray_waray: ವಾರೆ-ವಾರೆ
   less: ಕಡಿಮೆ
+  #Button show less text
+  less__context_text: ಕಡಿಮೆ
   licensed_site_photos: "ಪರವಾನಿಗೆಯುಳ್ಳ %{site_name} ಚಿತ್ರಗಳು"
   license: ಪರವಾನಗಿ
   licensing: ಪರವಾನಿಗೆ
@@ -1896,14 +1901,8 @@ kn:
   life_list: "%{user} ರವರ ಜೀವಿ ಪಟ್ಟಿ"
   linear_scale_label: ರೇಖಾತ್ಮಕ
   link: ಕೊಂಡಿ
-  link_your_facebook_account: ನಿಮ್ಮ Facebook ಖಾತೆ ಜೋಡಿಸಿ
   link_your_flickr_account: ನಿಮ್ಮ Flickr ಖಾತೆ ಜೋಡಿಸಿ
   link_your_google_account: ನಿಮ್ಮ Google ಖಾತೆ ಜೋಡಿಸಿ
-  linked_facebook: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ಪ್ರಸ್ತುತ ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿದೆ."
-  linked_facebook_automaticaly: "ಹಾಗೆ, ನೀವು %{site_name} ಗೆ ಫೇಸ್‍ಬುಕ್ ಮೂಲಕ ಲಾಗಿನ್ ಆದರೆ, ನಾವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ %{site_name} ಮತ್ತು ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗಳನ್ನು ಲಿಂಕ್ ಮಾಡುತ್ತೇವೆಂಬುದನ್ನು ಗಮನಿಸಿ. ನೀವು ಫೇಸ್‍ಬುಕ್ ಬಳಸುವಾಗ ಫೇಸ್‍ಬುಕ್ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವುದು ಸರ್ವೇಸಾಮಾನ್ಯ ಅಲ್ಲವೇ?"
-  linked_facebook_description: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿಟ್ಟಿರುವುದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಲವು ಚಿತ್ರಗಳನ್ನು ಒಮ್ಮೆಲೆ ಸೇರಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತದೆ. ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ %{site_name} ಮತ್ತು ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗಳನ್ನು ಬೇರೆಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಖಂಡಿತಾ ನಾವು ನಿಮ್ಮ ತಡೆಯುವುದಿಲ್ಲ. ನೀವು ಹೊಸ ಫೇಸ್‍ಬುಕ್  ಖಾತೆ ರಚಿಸಿ ಅದನ್ನು %{site_name} ಲಿಂಕ್ ಮಾಡಬಯಸುವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಇದು ಕೆಲಸಮಯ ಒಳ್ಳೆಯ ಆಯ್ಕೆಯೇ ಆಗಿರುತ್ತದೆ."
-  linked_facebook_howto: "%{site_name} ನೊಂದಿಗೆ ಫೇಸ್‍ಬುಕ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಲು, ಬಲಭಾಗದಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಫೇಸ್‍ಬುಕ್.ಕಾಂ ಗೆ ಲಾಗಿನ್ ಆಗಿ."
-  linked_facebook_password: "ನಾವು ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಗುಪ್ತಪದವನ್ನು ಎಂದೆಂದಿಗೂ ಕೇಳುವುದಿಲ್ಲ ( ಆದರೆ ಫೇಸ್‍ಬುಕ್ ಕೇಳಬಹುದು, ಹಾಗಾಗಿ ನಿಮಗೆ ಒದಗಿಸಿರುವ ಗುಂಡಿಯ url ಅನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಅದು Facebook.com ಎಂದು ಖಾತ್ರಿಮಾಡಿಕೊಳ್ಳಿ). ಅದಲ್ಲದೇ \nನೀವು ಸೂಚಿಸದ ಹೊರತು ನಾವು ಫೇಸ್‍ಬುಕ್ ದತ್ತಾಂಶವನ್ನು ಬದಲಿಸುವುದಿಲ್ಲ ಸಹ."
   linked_flickr: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ಪ್ರಸ್ತುತ ನಿಮ್ಮ Flickr ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿದೆ."
   linked_flickr_automatically: "ಹಾಗೆ, ನೀವು %{site_name} ಗೆ ಫ್ಲಿಕರ್ ಮೂಲಕ ಲಾಗಿನ್ ಆದರೆ, ನಾವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ %{site_name} ಮತ್ತು ಫ್ಲಿಕರ್ ಖಾತೆಗಳನ್ನು ಮರು-ಲಿಂಕ್ ಮಾಡುತ್ತೇವೆಂಬುದನ್ನು ಗಮನಿಸಿ. ನೀವು ಫ್ಲಿಕರ್ ಬಳಸುವಾಗ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವುದು ಸರ್ವೇಸಾಮಾನ್ಯ ಅಲ್ಲವೇ?"
   linked_flickr_description: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ನಿಮ್ಮ ಫ್ಲಿಕರ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿಟ್ಟಿರುವುದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಲವು ಚಿತ್ರಗಳನ್ನು ಒಮ್ಮೆಲೆ ಸೇರಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತದೆ. ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ %{site_name} ಮತ್ತು ಫ್ಲಿಕರ್ ಖಾತೆಗಳನ್ನು ಬೇರೆಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಖಂಡಿತಾ ನಾವು ನಿಮ್ಮ ತಡೆಯುವುದಿಲ್ಲ. ನೀವು ಹೊಸ ಫ್ಲಿಕರ್ ಖಾತೆ ರಚಿಸಿ ಅದನ್ನು %{site_name} ಲಿಂಕ್ ಮಾಡಬಯಸುವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಇದು ಕೆಲಸಮಯ ಒಳ್ಳೆಯ ಆಯ್ಕೆಯೇ ಆಗಿರುತ್ತದೆ."
@@ -1954,6 +1953,7 @@ kn:
     de: ಜರ್ಮನ್
     el: ಗ್ರೀಕ್
     en: ಇಂಗ್ಲಿಷ್
+    en-GB: ಇಂಗ್ಲಿಷ್ (ಯುಕೆ)
     eo: ಎಸ್ಪೆರಾಂಟೋ
     es: ಸ್ಪಾನಿಶ್
     es-AR: ಸ್ಪಾನಿಶ್ (ಅರ್ಜೆಂಟಿನಾ)
@@ -1966,10 +1966,12 @@ kn:
     fr-CA: ಫ್ರೆಂಚ್ (ಕೆನಡಾ)
     gl: ಗ್ಯಾಲಿಶಿಯನ್
     he: ಹೀಬ್ರೂ
+    hr: ಕ್ರೊವೇಷಿಯನ್
     hu: ಹಂಗೇರಿಯನ್
     id: ಇಂಡೋನೀಷಿಯನ್
     it: ಇಟಾಲಿಯನ್
     ja: ಜಪಾನೀಸ್
+    ka: ಜಾರ್ಜಿಯನ್
     kn: ಕನ್ನಡ
     ko: ಕೊರಿಯನ್
     lb: ಲಕ್ಸಂಬರ್ಗಿಷ್
@@ -1988,6 +1990,7 @@ kn:
     sk: ಸ್ಲೋವಾಕ್
     sl: ಸ್ಲೋವೇನಿಯನ್
     sq: ಅಲ್ಬೇನಿಯನ್
+    sr: ಸೈಬೀರಿಯನ್
     sv: ಸ್ವೀಡಿಷ್
     th: ಥಾಯ್
     tr: ಟರ್ಕಿಷ್
@@ -2015,7 +2018,6 @@ kn:
   log_scale_label: ಲಾಗ್
   #Status message shown while logging in
   logging_in: ಲಾಗಿನ್ ಆಗುತ್ತಿದೆ...
-  login_slash_username: ಲಾಗಿನ್ / ಬಳಕೆದಾರರ ಹೆಸರು
   logo:
     logo: ಲಾಂಛನ
     white_bg_gif: ಬಿಳಿಬಣ್ಣದ ಹಿನ್ನೆಲೆ GIF
@@ -2064,7 +2066,6 @@ kn:
       every_publicly_visible_observation: iNaturalist ನ ಜಾಲದಲ್ಲಿ ರಚನೆಯಾಗಿರುವ ಸಾರ್ವಜನಿಕವಾಗಿ ಕಾಣಸಿಗುವ ಎಲ್ಲಾ ವೀಕ್ಷಣೆ
       featured_observations: ವಿಶೇಷವಾದ ವೀಕ್ಷಣೆಗಳು
       gbif_network: GBIF ಜಾಲ
-      gbif_network_description: ಸಂಗ್ರಹಾಲಯಗಳು ಮತ್ತು ಇತರೆ ಇರುವಿಕೆಯ ಪೂರೈಕೆದಾರರು ಒದಗಿಸುವ ದಾಖಲೆಗಳನ್ನು ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಇನ್ಫರ್ಮಾಟ್ಟಿಕ್ಸ್ ಫೆಸಿಲಿಟಿಯು ವಿತರಿಸುತ್ತದೆ.
       observations: ವೀಕ್ಷಣೆಗಳು
       place_boundary: ಸ್ಥಳದ ಗಡಿ
       checklist_places: ತಾಳೆಪಟ್ಟಿ ಸ್ಥಳಗಳು
@@ -2082,8 +2083,6 @@ kn:
   meet: ಭೇಟಿಯಾಗಿ
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist ಜಾಲ</a>ದ ಸದಸ್ಯ
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist ಜಾಲ</a> ದ ಸದಸ್ಯ, ಇದು %{cas_tag_html} ಮತ್ತು %{nat_geo_tag_html} ನ ಜಂಟಿ ಪ್ರಯತ್ನ.
   #As in members of a project
   members: ಸದಸ್ಯರು
   membership_model: ಸದಸ್ಯತ್ವದ ಮಾದರಿ
@@ -2122,6 +2121,8 @@ kn:
   missing_date: ಕಾಣೆಯಾದ ದಿನಾಂಕ
   mobile: ಮೊಬೈಲ್
   moderation_history_for_user_html: '%{user} ಅವರ ಸಂಭಾಳಕೆಯ ಇತಿಹಾಸ'
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: ಮರೆಮಾಡಿ
   mollusks: ಮೃದ್ವಂಗಿಗಳು
   momentjs:
     shortRelativeTime:
@@ -2168,10 +2169,21 @@ kn:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: ತಿಂಗಳು
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: ತಿಂಗಳ ಬೆಂಬಲಿಗರು
   monthly_supporter_since_date_html: |
     %{date} ರಿಂದ <a href="%{url}">ತಿಂಗಳ ಬೆಂಬಲಿಗರು</a>
   months: ತಿಂಗಳುಗಳು
   more: ಇನ್ನಷ್ಟು
+  #Button to show more observations
+  more__context_observations_caps: ಇನ್ನಷ್ಟು
+  #Button to show more places
+  more__context_places: ಇನ್ನಷ್ಟು
+  #Button to show more text
+  more__context_text: ಇನ್ನಷ್ಟು
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ಇನ್ನಷ್ಟು
+  more_caps: ಇನ್ನಷ್ಟು
   more_about_sharing: ಹಂಚಿಕೊಳ್ಳುವಿಕೆಯ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
   more_fields: ಇನ್ನಷ್ಟು ಆವರಣಗಳು
   more_filters: ಹೆಚ್ಚಿನ ಶೋಧಕಗಳು
@@ -2213,6 +2225,7 @@ kn:
   must_have_quality_grades: "ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳನ್ನು ಹೊಂದಿರಲೇಬೇಕು :%{grades}"
   must_have_sounds: ಧ್ವನಿಗಳನ್ನು ಹೊಂದಿರಲೇಬೇಕು
   must_have_x: "%{x} ಅನ್ನು ಹೊಂದಿರಲೇಬೇಕು"
+  #Mute is a noun here
   mute_removed: ಮೌನವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   muted_users: ಮೌನ ಬಳಕೆದಾರರು
   n_ago: "%{n} ಹಿಂದೆ"
@@ -2391,7 +2404,6 @@ kn:
   not_findig_what_you_want: ನೀವು ಬಯಸಿದ್ದು ಯಾವುದೂ ಕಂಡುಬಂದಿಲ್ಲವೇ?
   not_finding_place_you_want?: ನೀವು ಬಯಸಿದ ಸ್ಥಳ ಕಂಡುಬಂದಿಲ್ಲವೇ?
   not_found: ಕಂಡುಬಂದಿಲ್ಲ
-  not_linked_facebook: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿಲ್ಲ"
   not_linked_flickr: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ನಿಮ್ಮ Flickr ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿಲ್ಲ"
   not_on_this_list: ಈ ಪಟ್ಟಿಯ ಮೇಲಲ್ಲ.
   not_recorded: ದಾಖಲಿಸಿಲ್ಲ
@@ -2533,10 +2545,6 @@ kn:
   observed_on: ರಂದು ವೀಕ್ಷಿಸಲಾಗಿದೆ
   observer: ವೀಕ್ಷಕರು
   observers: ವೀಕ್ಷಕರುಗಳು
-  observer_prefers_no_project_addition: |
-    ವೀಕ್ಷಕರು ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಇತರೇ ವ್ಯಕ್ತಿಗಳು ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸುವುದಕ್ಕೆ ಅನುಮತಿಸುತ್ತಿಲ್ಲ.
-  observer_prefers_addition_to_projects_joined: |
-    ವೀಕ್ಷಕರು ಇತರೇ ವ್ಯಕ್ತಿಗಳು ಅವರು ಸೇರಿರುವ ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಮಾತ್ರ ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸುವುದಕ್ಕೆ ಅನುಮತಿಸಿದ್ದಾರೆ.
   observer_short: ವೀಕ್ಷಕರು
   occurence_status_describes_how: 'ಇರುವಿಕೆಯ ಸ್ಥಿತಿಯು ಒಂದು ಜೀವಿವರ್ಗ ಒಂದು ನಿರ್ದಿಷ್ಟ ಪ್ರದೇಶದಲ್ಲಿ ಎಷ್ಟರ ಮಟ್ಟಿಗೆ ಸಾಮಾನ್ಯ ಅಥವಾ ಅಪರೂಪ ಎಂಬುದನ್ನು ವಿವರಿಸುತ್ತದೆ. <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">ಪರಿಭಾಷೆಯ ಕುರಿತು ಹೆಚ್ಚಿನ ಮಾಹಿತಿ</a>ಗಾಗಿ ಡಾರ್ವಿನ್‍ಕೋರ್ ಅನ್ನು ವೀಕ್ಷಿಸಿ.'
   occurrence_status: ಇರುವಿಕೆಯ ಸ್ಥಿತಿ
@@ -2612,9 +2620,10 @@ kn:
   open_description: "ಜೀವಿವರ್ಗ ಅಪಾಯದಂಚಿನಲ್ಲಿ ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಎಲ್ಲರೂ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಬಹುದು."
   open_street_map: OpenStreetMap
   optional: ಐಚ್ಛಿಕ
+  options: ಆಯ್ಕೆಗಳು
   or: ಅಥವಾ
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ಅಥವಾ
   or_choose_high_level_taxa: "... ಅಥವಾ ಕೆಲವು ಉನ್ನತ-ಮಟ್ಟದ ಜೀವಿವರ್ಗಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ"
   orange: ಕಿತ್ತಳೆ
@@ -3134,8 +3143,8 @@ kn:
     zimbabwe: ಜಿಂಬಾಬ್ವೆ
   places_of_interest: ಆಸಕ್ತಿಕರ ಸ್ಥಳಗಳು
   places_merged_successfully: ಸ್ಥಳಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ!
-  places_warning_look_for_existing_html: |
-    ನೀವು ನಕಲು ಸ್ಥಳಗಳನ್ನು ರಚಿಸುತ್ತಿಲ್ಲವೆಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು <a href="/search?source[]=places">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಸ್ಥಳಗಳು</a> ಅನ್ನು ನೋಡಿ. ನಾವು ಈಗಾಗಲೇ ಎಲ್ಲಾ ಭೂಖಂಡಗಳ ಹಾಗೂ ರಾಷ್ಟ್ರಗಳಲ್ಲಿನ ಸ್ಥಳಗಳನ್ನಲ್ಲದೇ, ರಾಷ್ಟ್ರಕ್ಕಿಂತ ಎರಡು ಆಡಳಿತಾತ್ಮಕ ಹಂತದ ಕೆಳಗಿನ ಸ್ಥಳಗಳನ್ನೂ ಹೊಂದಿಸಿದ್ದೇವೆ.
+  places_warning_please_keep_in_mind: |
+    ಈ ಕೆಳಗಿನ ನಿರ್ಬಂಧಗಳನ್ನು ದಯವಿಟ್ಟು ಗಮನಿಸಿ
   places_warning_new_places_are_slow_html: |
     iNat ತಾಣದ ನಿಧಾನಗತಿಗೆ ಹೊಸ ಸ್ಥಳಗಳು ಹಿರಿದಾದ ಕೊಡುಗೆ ನೀಡುತ್ತವೆ, ಹಾಗಾಗಿ <strong>ಹೊಸ ಸ್ಥಳಗಳನ್ನು ರಚಿಸದಿರಲು ದಯವಿಟ್ಟು ಪರಿಗಣಿಸಿ</strong>. ಕೆಲವೇ ಸಾವಿರ ವೀಕ್ಷಣೆಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರುವ ಸಣ್ಣ ಸ್ಥಳಗಳು ಸಾಮಾನ್ಯವಾಗಿ ಓಕೆ, ನೀವು ಹಲವಾರು ಹೆಚ್ಚಿನ ವೀಕ್ಷಣೆಗಳನ್ನು ಒಳಗೊಂಡಿರುವ ಹೊಸ ಸ್ಥಳಗಳನ್ನು ರಚಿಸುತ್ತಿದ್ದಲ್ಲಿ ಅದು iNat ತಾಣವನ್ನು ಇತರರಿಗೆ ನಿಧಾನಗೊಳಿಸಬಹುದು. ಇದಕ್ಕಾಗಿ ಕೆಲವು ಪರ್ಯಾಯ ಮಾರ್ಗಗಳು ಇಲ್ಲಿವೆ :
   places_warning_editing_places_is_slow: |
@@ -3164,7 +3173,6 @@ kn:
   post_from_your_journal_html: <a href="%{url}">ನಿಮ್ಮ ನಿಯತಕಾಲಿಕೆ</a> ಯಿಂದ ಪೋಸ್ಟ್
   post_published: ಪೋಸ್ಟ್ ಪ್ರಕಟಣೆಗೊಂಡಿದೆ!
   posted_by: ಇವರಿಂದ ಪೋಸ್ಟ್ ಆಗಿದೆ
-  posted_on: ರಂದು ಪೋಸ್ಟ್ ಆಗಿದೆ
   posts: ಪೋಸ್ಟ್ ಗಳು
   potential_disagreement: ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ
   powered_by: ಇವರಿಂದ ನಡೆಸಲ್ಪಡುತ್ತಿದೆ
@@ -3430,6 +3438,7 @@ kn:
   refresh: ಹೊಸತಾಗಿಸಿ
   refreshing: ಹೊಸತಾಗಿಸುತ್ತಿದೆ
   regenerate_stats: ಅಂಕಿಅಂಶಗಳನ್ನು ಮರುರಚಿಸಿ
+  regional_names: ದೇಶೀಯ ಹೆಸರುಗಳು
   register_for_this_event_at_x_html: "ಈ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ %{x} ನಲ್ಲಿ ನೋಂದಣಿಯಾಗಿರಿ"
   reject?: ತಿರಸ್ಕರಿಸಬೇಕೆ?
   relative_observations: ಸಂಬಂಧಿತ ವೀಕ್ಷಣೆಗಳು
@@ -3499,6 +3508,8 @@ kn:
   research_grade_tooltip_html: '"ಸಂಶೋಧನಾ ದರ್ಜೆ" ವೀಕ್ಷಣೆಗಳು ಮಾಧ್ಯಮ, ಸ್ಥಳ, ದಿನಾಂಕ ಮತ್ತು ನಿಖರವಾದ ಗುರುತಿಸುವಿಕೆಗೆ (ಸಾಮಾನ್ಯವಾಗಿ ಪ್ರಭೇದದ ಹಂತದಲ್ಲಿ) ಸಮುದಾಯದ ಒಮ್ಮತವನ್ನು ಹೊಂದಿರುತ್ತವೆ. <a href="https://www.inaturalist.org/pages/help#quality">ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ</a>'
   research_grade_observations_have: '"ಸಂಶೋಧನಾ ದರ್ಜೆ" ವೀಕ್ಷಣೆಗಳು ದಿನಾಂಕ, ಚಿತ್ರ, ನಿರ್ದೇಶಾಂಕಗಳು ಮತ್ತು ಸಮುದಾಯ-ಬೆಂಬಲಿತ  IDಯನ್ನು ಹೊಂದಿರುತ್ತವೆ. ದತ್ತಾಂಶ ಗುಣಮಟ್ಟದ ಮೌಲ್ಯಮಾಪನವನ್ನು ನೋಡಲು ಕ್ಲಿಕ್ ತ್ರೂ ಮಾಡಿ.'
   research_grade_qualification: ಸಂಶೋಧನಾ ದರ್ಜೆಯ ಅರ್ಹತೆ
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: ಮರುಹೊಂದಿಸಿ
   reset_filters_short: ಮರುಹೊಂದಿಸಿ
   reset_brightness: ಪ್ರಖರತೆ ಮರುಹೊಂದಿಸಿ
   reset_search_filters: ಹುಡುಕಾಟದ ಶೋಧಕಗಳನ್ನು ಮರುಹೊಂದಿಸಿ
@@ -3605,11 +3616,12 @@ kn:
   select: ಆರಿಸಿ
   select_all: ಎಲ್ಲವನ್ನೂ ಆರಿಸಿ
   select_at_least_one: ಕನಿಷ್ಟ ಒಂದನ್ನಾದರೂ ಆಯ್ಕೆಮಾಡಿ
-  select_one_or_more_photos: 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: ಯಾವುದನ್ನೂ ಆರಿಸಬೇಡಿ
   select_observations_to_edit: ಸಂಪಾದಿಸಲು ವೀಕ್ಷಣೆಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ...
   select_one_of_friends_albums: ನನ್ನ ಒಬ್ಬ %{friend} ಅವರ ಚಿತ್ರಸಂಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ
   select_one_of_your_albums: ನನ್ನ ಒಂದು ಚಿತ್ರಸಂಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ
+  select_one_or_more_photos: 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ'
   select_options: ಆಯ್ಕೆಗಳನ್ನು ಆರಿಸಿ
   select_photos_from_your_photo_stream: |
     %{site_name} ವೀಕ್ಷಣೆಗಳನ್ನಾಗಿ ಪರಿವರ್ತಿಸಲು ಬಾಹ್ಯ ಚಿತ್ರ-ಹಂಚಿಕೆ ತಾಣಗಳಿಂದ ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ. ನಾವು ಚಿತ್ರಗಳ ಮೆಟಾಡೇಟಾದಿಂದ ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ಸ್ಥಳವನ್ನು ತುಂಬುತ್ತೇವೆ ಮತ್ತು ಟ್ಯಾಗ್ ಗಳಿಂದ ಪ್ರಭೇದದ ಹೆಸರುಗಳನ್ನು ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ.
@@ -3626,6 +3638,7 @@ kn:
   set_license: ಪರವಾನಿಗೆ ಹೊಂದಿಸಿ
   settings: ಸಂಯೋಜನೆಗಳು
   share: ಹಂಚಿಕೊಳ್ಳಿ
+  share_caps: ಹಂಚಿಕೊಳ್ಳಿ
   share_colon: "ಹಂಚಿಕೊಳ್ಳಿ:"
   short_code_for_this_place: ಈ ಸ್ಥಳಕ್ಕೆ ಚಿಕ್ಕ ಸಂಕೇತ, ಉದಾ. ಯುನೈಟೆಡ್ ಸ್ಟೇಟ್ಸ್ ಗೆ ಯುಎಸ್
   short_or_abbreviated_title_for_display: ಸೀಮಿತ ಜಾಗಗಳಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲು ಚಿಕ್ಕ ಅಥವಾ ಸಂಕ್ಷಿಪ್ತಗೊಳಿಸಲಾದ ಶೀರ್ಷಿಕೆಗಳು. ಗರಿಷ್ಟ 10 ಅಕ್ಷರಗಳು.
@@ -3638,6 +3651,8 @@ kn:
   show_keyboard_shortcuts: ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‍ಕಟ್‍ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_less: ಕಡಿಮೆ ತೋರಿಸಿ
   show_more: ಇನ್ನಷ್ಟು ತೋರಿಸಿ
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: ಹೆಚ್ಚಿನ ಲಾಗಿನ್ ಆಯ್ಕೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"ಕಿರು ಟಿಪ್ಪಣಿಗಳಿಲ್ಲ" ವನ್ನು ಪ್ರದರ್ಶಿಸಿ'
@@ -3695,8 +3710,6 @@ kn:
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}iNaturalist ಜಾಲ%{end_tag_network}ವು %{start_tag_global}ಜಾಗತಿಕ iNaturalist ಸಮುದಾಯ%{end_tag_global} ದಲ್ಲಿ ಪ್ರಾದೇಶೀಕರಣಗೊಂಡ ಜಾಲತಾಣಗಳ ಗುಂಪುಗಳಾಗಿದೆ.
   sites_affiliation_title: ಜಾಲದ ಸಹಭಾಗಿತ್ವದ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್%{end_tag_cas} ಮತ್ತು %{start_tag_nat_geo}ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿ%{end_tag_nat_geo} ಗಳು iNaturalist ವೇದಿಕೆಯ ಬಳಕೆಯನ್ನು ಬೆಂಬಲಿಸಲು ಈ ಪ್ರತಿಯೊಂದು ಭೌಗೋಳಿಕ ಪ್ರದೇಶದ ಸಂಸ್ಥೆಗಳೊಂದಿಗೆ ವಿಧ್ಯುಕ್ತವಾಗಿ ಒಪ್ಪಂದ ಮಾಡಿಕೊಂಡಿವೆ. <strong>ನಿಮ್ಮ ಸಂಸ್ಥೆಯು iNaturalist ಜಾಲಕ್ಕೆ ಸೇರಬಯಸಿದ್ದಲ್ಲಿ, ನೀವು ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು %{start_tag_join}ಇಲ್ಲಿ%{end_tag_join} ನೋಡಬಹುದು.</strong>
   sites_network_consists_of: "iNaturalist ಜಾಲವು ಹಲವಾರು ಸಂಘಸಂಸ್ಥೆಗಳನ್ನು ಒಳಗೊಂಡಿದೆ:"
   some_agree: ಕೆಲವರು ಸಮ್ಮತಿಸಿದ್ದಾರೆ
   some_observations_are_missing_media_or_identifications: |
@@ -3814,6 +3827,7 @@ kn:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: ಮಳಿಗೆ
+  store_caps: ಮಳಿಗೆ
   studies_that_used_inaturalist_data_in_year: '%{year} ವರ್ಷದಲ್ಲಿ iNaturalist ದತ್ತಾಂಶ ಬಳಸುತ್ತಿರುವ ಅಧ್ಯಯನಗಳು'
   stuff_just_added: "ನೀವು ಇದೀಗ ತಾನೇ ಸೇರಿಸಿದ ವಿಷಯ..."
   subject_resolved_noun_html: "%{noun} ಅವರು %{subject} ಅನ್ನು ಪರಿಹರಿಸಿದ್ದಾರೆ"
@@ -3860,7 +3874,6 @@ kn:
   tagging: 'ಟ್ಯಾಗ್‍ ಮಾಡಲಾಗುತ್ತಿದೆ...'
   tags: ಟ್ಯಾಗ್‍ಗಳು
   tags_are_a_way: 'ಟ್ಯಾಗ್‍ಗಳು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಕ್ರಮಬದ್ಧವಾಗಿ ಅಣಿಗೊಳಿಸಲು ಸಹಕರಿಸುತ್ತವೆ. ಉದಾಹರಣೆಗೆ ನಿಮ್ಮೆಲ್ಲಾ ಕಡಲತೀರದ ವೀಕ್ಷಣೆಗಳನ್ನು ನೀವು "ಕಡಲತೀರಗಳು" ಎಂದು ಟ್ಯಾಗ್ ಮಾಡಬಹುದು, ಇವನ್ನು ನಿಮಗೆ ನಂತರದಲ್ಲಿ ಸುಲಭವಾಗಿ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಸುತ್ತದೆ.'
-  take_me_facebook: ಹೌದು, ನನ್ನನ್ನು ಫೇಸ್‍ಬುಕ್ ಗೆ ಕರೆದೊಯ್ಯಿರಿ!
   take_me_flickr!: ಹೌದು, ನನ್ನನ್ನು ಫ್ಲಿಕರ್ ಗೆ ಕರೆದೊಯ್ಯಿರಿ!
   task_deleted: ಕೆಲಸವನ್ನು ಅಳಿಸಲಾಗಿದೆ.
   taxa: ಜೀವಿವರ್ಗಗಳು
@@ -4115,9 +4128,13 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: ಕೊಲಂಬಿಯಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: ಕೇಂದ್ರೀಯ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_chihuahua: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಮೆಕ್ಸಿಕೋ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: ಗ್ವಾಟೆಮಾಲ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: ಅಟ್ಲಾಂಟಿಕ್ ಸಮಯ (ಕೆನಡಾ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: ಬೊಲಿವಿಯಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4125,15 +4142,27 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_los_angeles: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: ಪೂರ್ವ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_phoenix: ಅರಿಜೋನಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_tijuana: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಮೆಕ್ಸಿಕೋ)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: ಅರೇಬಿಯಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_bangkok: ಇಂಡೋಚೈನಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_hong_kong: ಹಾಂಗ್ ಕಾಂಗ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: ಪಶ್ಚಿಮ ಇಂಡೋನೇಷಿಯಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: ಇಸ್ರೇಲ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: ಚೀನಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_taipei: ತೈವಾನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: ಅಡಿಲೇಡ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_brisbane: ಬ್ರಿಸ್ಬೇನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4145,15 +4174,39 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_berlin: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_copenhagen: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_istanbul: ಟರ್ಕಿ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: ಪಶ್ಚಿಮ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_moscow: ಮಾಸ್ಕೋ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: ನ್ಯೂಜಿಲೆಂಡ್ ಸಮಯ
   #As in the title of a book or a blog post
   title: ಶೀರ್ಷಿಕೆ
   title_and_description: "ಶೀರ್ಷಿಕೆ & ವಿವರಣೆ"
@@ -4254,6 +4307,7 @@ kn:
   upload_new_photo: ಹೊಸ ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ
   upload_photo: ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ
   upload_range: ವ್ಯಾಪ್ತಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗಿದೆ
   uploader:
     errors:
@@ -4278,6 +4332,7 @@ kn:
   usage_stats: ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳು
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> ಅನ್ನು ಸ್ಥಳಸೂಚಕವನ್ನಾಗಿ ಬಳಸಿ
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     ಕುಲ ಮತ್ತು ಪ್ರಭೇದಗಳು ಒಂದು ನಿರ್ದಿಷ್ಟ ಕ್ರಮದಲ್ಲಿ ಬೇರೆಯಾಗಿರುವುದು URLಗೆ ಅಗತ್ಯವಿದ್ದರೆ ಇದನ್ನು ಬಳಸಿ. ಜೀವಿವರ್ಗ ಪ್ರಭೇದ ಅಥವಾ ಕೆಳಪ್ರಭೇದವಾಗಿಲ್ಲದಿದ್ದರೆ, [GENUS] ಮತ್ತು [SPECIES] ನಡುವಿನ ಎಲ್ಲವೂ ಜೀವಿವರ್ಗದ ಹೆಸರಿನಿಂದ ಬದಲಿಸ್ಪಡುತ್ತದೆ, ಹಾಗಾಗಿ ಇದನ್ನು ಮಿತವಾಗಿ ಬಳಸಿ.
   use_unique_file_names_for_separate_uploads: ಅನನ್ಯ ಕಡತದ ಹೆಸರುಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾದ ಅಪ್ಲೋಡ್‍ಗಳಿಗೆ ಬಳಸಿ
@@ -4289,18 +4344,28 @@ kn:
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} ಮತ್ತು %{x_others} ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಚಿದ್ದಾರೆ"
   user_added_a_comment_html: "%{user} ಒಂದು ಅಭಿಪ್ರಾಯವನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_a_fave_html: "%{user} ಒಂದು ಮೆಚ್ಚುಗೆಯನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ಅವರು %{x} ಅನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_identification_html: "%{user} ಅವರು ಗುರುತಿಸುವಿಕೆಯೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_observation_field_value_html: "%{user} ಅವರು ವೀಕ್ಷಣೆ ಆವರಣವೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_observation_html: "%{user} ಅವರುವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ಅವರು %{x} ಅನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ %{by} ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ
@@ -4349,12 +4414,12 @@ kn:
   users_latest_observations_on_site: "%{site} ನಲ್ಲಿ %{user} ಅವರ ಇತ್ತೀಚಿನ ವೀಕ್ಷಣೆಗಳು"
   users_profile: "%{user} ರ ಪರಿಚಯ"
   users_projects: "%{user} ಅವರ ಪ್ರಾಯೋಜನೆಗಳು"
-  users_year_on_site: "%{site} %{year} ನಲ್ಲಿ %{user} ಅವರ ವರ್ಷ"
   valid_options_are: ಮಾನ್ಯವಾದ ಆಯ್ಕೆಗಳು
   verbing_x_of_y: "%{verb} %{y} ರಲ್ಲಿ %{x}..."
   verifiable_observations_by_observation_date: ವೀಕ್ಷಣೆಯ ದಿನಾಂಕದಂತೆ ಪರಿಶೀಲಿಸಬಲ್ಲ ವೀಕ್ಷಣೆಗಳು
   view: ವೀಕ್ಷಿಸಿ
   view_all: ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+  view_all_caps: ಎಲ್ಲವನ್ನೂ ನೋಡಿ
   view_all_members: ಎಲ್ಲ ಸದಸ್ಯರನ್ನೂ ವೀಕ್ಷಿಸಿ
   view_all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_photocount_photos: "ಎಲ್ಲಾ %{photo_count} ಚಿತ್ರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
@@ -4401,12 +4466,10 @@ kn:
   view_taxononomy_details_for_taxon: "%{taxon} ಗಾಗಿ ಜೀವಿವರ್ಗೀಕರಣದ ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_user_observations: "%{user} ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_x: "%{x} ವೀಕ್ಷಿಸಿ"
-  view_year_stats_for_site: "%{site} ಗಾಗಿ %{year} ರ ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_your_dashboard: ನಿಮ್ಮ ಡ್ಯಾಷ್‍ಬೋರ್ಡ್ ನೋಡಿರಿ
   view_your_dashboard_for_more_updates_html: "ಇನ್ನಷ್ಟು ವಿವರಗಳಿಗಾಗಿ <a href='%{url}'>ನಿಮ್ಮ ಡ್ಯಾಷ್‍ಬೋರ್ಡ್ ವೀಕ್ಷಿಸಿ</a>"
   view_your_inbox: ನಿಮ್ಮ ಇನ್ಬಾಕ್ಸ್ ಪರಿಶೀಲಿಸಿ
   view_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
-  view_your_year_stats: "ನಿಮ್ಮ %{year} ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_yours: ನಿಮ್ಮದನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_of_your_observations_from_x: "%{x} ರಿಂದ ನಿಮ್ಮ ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   video_tutorials: ವಿಡಿಯೋ ಬೋಧಕಗಳು
@@ -4418,8 +4481,6 @@ kn:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: ಬೇಕಾಗಿದೆ
   was_it_captive_cultivated?: "ಇದು ಸೆರೆಯ ಜೀವಿ / ಪಳಗಿಸಿದ ಜೀವಿಯಾಗಿತ್ತೇ?"
-  we_also_support: |
-    ಚಿತ್ರದ ಹೋಸ್ಟಿಂಗ್ ಗೆ ನಾವು <a href="http://flickr.com">ಫ್ಲಿಕರ್</a>, <a href="http://photos.google.com">ಗೂಗಲ್ ಫೋಟೋಸ್</a>, ಹಾಗೂ <a href="http://facebook.com">ಫೇಸ್ ಬುಕ್</a> ಅನ್ನು ಬೆಂಬಲಿಸುತ್ತೇವೆ.
   we_can_only_understand_csv_in: ನಾವು CSV ಅನ್ನು ಕೆಳಗಿನ ಮಾದರಿಯಲ್ಲಿ ಮಾತ್ರ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಲ್ಲೆವು
   we_couldnt_find_a_user: ನಮಗೆ ಆ ಮಿಂಚೆ ವಿಳಾಸವುಳ್ಳ ಬಳಕೆದಾರರನ್ನು ಪತ್ತೆಮಾಡಲಾಗಲಿಲ್ಲ.
   we_couldnt_find_a_user_with_that_activation_code: "ನಮಗೆ ಆ ಸಕ್ರಿಯ ಸಂಕೇತವುಳ್ಳ ಬಳಕೆದಾರರನ್ನು ಪತ್ತೆಮಾಡಲಾಗಲಿಲ್ಲ. ನೀವು ಈಗಾಗಲೇ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿರಬಹುದು, ದಯವಿಟ್ಟು ಮತ್ತೆ ಸೈನ್ ಇನ್ ಆಗಲು ಪ್ರಯತ್ನಿಸಿ."
@@ -4487,7 +4548,10 @@ kn:
   wikipedia_attribution_cc_by_sa_3_html: |
     ಈ ಲೇಖನವು ವಿಕಿಪೀಡಿಯಾದ <a href="https://creativecommons.org/licenses/by-sa/3.0/">ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ Attribution-Share-Alike ಪರವಾನಿಗೆ 3.0</a> ನ ಅಡಿಯಲ್ಲಿ ಬಿಡುಗಡೆಯಾಗಿರುವ <a href="%{url}">"%{title}"</a> ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಬಳಸಿಕೊಂಡಿದೆ. ಮೂಲ ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಕೈಬಿಡಲಾಗಿರಬಹುದು, ಆದರೆ ಯಾವುದೇ ವಿಷಯವನ್ನು ಬದಲಿಸಲಾಗಿಲ್ಲ ಅಥವಾ ವಿಸ್ತರಿಸಲಾಗಿಲ್ಲ.
   with: ಜೊತೆಗೆ
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: ಹಿಂಪಡೆಯಿರಿ
+  #Loading status while an identification is being withdrawn
   withdrawing: ಹಿಂಪಡೆಯಲಾಗುತ್ತಿದೆ...
   with_errors: ದೋಷಗಳೊಂದಿಗೆ
   worldwide: ಪ್ರಪಂಚದಾದ್ಯಂತ
@@ -4523,6 +4587,7 @@ kn:
   x_wrote_y_new_posts_html: "%{x} ಅವರು %{y} ಗೆ ಹೊಸ ಲೇಖನ ಬರೆದಿದ್ದಾರೆ"
   year: ವರ್ಷ
   year_in_review: "ಪರಿಶೀಲನೆಯಲ್ಲಿರುವ ವರ್ಷ %{year}"
+  year_in_review2: "ಪರಿಶೀಲನೆಯಲ್ಲಿರುವ ವರ್ಷ %{year}"
   year_month: ವರ್ಷ/ತಿಂಗಳು
   year_on_site: "%{site} %{year} ರಲ್ಲಿ ವರ್ಷ"
   yellow: ಹಳದಿ
@@ -4671,43 +4736,12 @@ kn:
             ಹಾಗಿದ್ದಲ್ಲಿ, ವಿದ್ಯಾರ್ಥಿಗಳ ಜೊತೆ %{site_name} ನ ಬಳಕೆಯ ಸಲಹೆಗಳಿಗಾಗಿ ದಯವಿಟ್ಟು ನಮ್ಮ <a href="%{url}">ಶಿಕ್ಷಕರ ಕೈಪಿಡಿ </a> ಯನ್ನು ಓದಿರಿ.
     donate:
       donate_short_desc: "ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ಪ್ರದರ್ಶಿಸಲು ಈಗಲೇ ದೇಣಿಗೆ ನೀಡಿ!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist ಜೀವಿವೈವಿಧ್ಯದ ಅನ್ವೇಷಣೆಗೆ ಮೀಸಲಾದ ಜಗತ್ತಿನ ಅತಿದೊಡ್ಡ ಸಮುದಾಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀವಿದರ ಭಾಗವಾಗಿರುವುದಕ್ಕೆ ನಿಮಗೆ ಧನ್ಯವಾದಗಳು!</strong>
-        </p>
-        <p class="lead">
-        ನಿಮಗೆ ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಈ ಸಮುದಾಯದ ಜ್ಞಾನ ಪ್ರಸರಣ ಕಾರ್ಯದ ಮತ್ತು ಎಣೆಯಿಲ್ಲದ ಜೀವಿವೈವಿಧ್ಯ ದತ್ತಾಂಶ ರಚನಾ ಶಕ್ತಿಯ ಮೇಲೆ ವಿಶ್ವಾಸವಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಒಂದುಬಾರಿಯ ಅಥವಾ ಆವರ್ತನಾ ಆನ್‍ಲೈನ್ ಕೊಡುಗೆ ನೀಡಲು ಪರಿಗಣಿಸಿ ಅಥವಾ <a href="https://www.inaturalist.org/pages/giving">ಕೊಡುಗೆಗಳಿಗೆ ಅನ್ಯಮಾರ್ಗಗಳು</a> ಅನ್ನು ವೀಕ್ಷಿಸಿ.
-        </p>
-        <p class="lead">
-        ನಿಮ್ಮ ಕೊಡುಗೆಗಳು ಸಮುದಾಯವು ಬೆಳದಂತೆ iNaturalist ಅನ್ನು, ಸುಧಾರಿತ computer vision ಹಾಗೂ ಹೊಸ ವಿಶೇಷತೆಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವಲ್ಲಿ ಮತ್ತು ನಮ್ಮ ಸರ್ವರ್ ಹಾಗು ಸಿಬ್ಬಂದಿಯನ್ನು ಪೋಷಿಸುವಲ್ಲಿ ಬೆಂಬಲಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತವೆ.
-        </p>
-        <p class="text-muted">
-        iNaturalist ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ.
-        ನಿಮ್ಮೆಲ್ಲಾ ದೇಣಿಗೆಗಳು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ನ , a 501(c)(3) tax-exempt not-for-profit
-        organization based in the United States of America (Tax ID: 94-1156258) ಅಡಿಯಲ್ಲಿ ಸ್ವಿಕರಿಸಲ್ಪಡುತ್ತವೆ.
-        </p>
       post_donate_social_media_text: ನಾನು iNaturalist ಬೆಂಬಲಿಸುತ್ತೇನೆ ಏಕೆಂದರೆ...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist ನ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist ಜೀವಿವೈವಿಧ್ಯದ ಅನ್ವೇಷಣೆಗೆ ಮೀಸಲಾದ ಜಗತ್ತಿನ ಅತಿದೊಡ್ಡ ಸಮುದಾಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀವಿದರ ಭಾಗವಾಗಿರುವುದಕ್ಕೆ ನಿಮಗೆ ಧನ್ಯವಾದಗಳು!</strong>
-          </p>
-          <p class="lead">
-          ನಾವು iNaturalist ಉಚಿತ ಬಳಕೆಗೆ ತೆರೆದಿಡಲು ಇಚ್ಛಿಸುತ್ತೇವೆ, ಆದರೆ ಇದು ಕಾರ್ಯನಿರ್ವಹಣೆಗೆ ಉಚಿತವಿಲ್ಲ. ನೀವು iNaturalist ಬಗ್ಗೆ ಆಸಕ್ತಿಯಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಲು ಪರಿಗಣಿಸಿ.
-          Recurring gifts help ensure that iNaturalist can continue
-          to scale its infrastructure and staff by providing predictable
-          revenue. You can also opt to show your monthly supporter status on
-          your user profile.
-          </p>
-          <p class="lead">
-          ನಿಮ್ಮ ದತ್ತಿ ಕೊಡುಗೆಗಳು ಸಮುದಾಯವು ಬೆಳದಂತೆ iNaturalist ಅನ್ನು, ಸುಧಾರಿತ computer vision ಹಾಗೂ ಹೊಸ ವಿಶೇಷತೆಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವುದರಿಂದ ಹಿಡಿದು ನಮ್ಮ ಸರ್ವರ್ ಹಾಗು ಸಿಬ್ಬಂದಿಯನ್ನು ಪೋಷಿಸುವವರೆಗೂ ಸಹಕಾರಿಯಾಗುತ್ತವೆ. ನೀವು ಒಂದು-ಬಾರಿ ದೇಣಿಗೆಯನ್ನು ನೀಡಲು ಇಚ್ಛಿಸಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು <a href="%{donate_url}">ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ.
-          ನಿಮ್ಮೆಲ್ಲಾ ದೇಣಿಗೆಗಳು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ನ , a 501(c)(3) tax-exempt not-for-profit
-          organization based in the United States of America (Tax ID: 94-1156258) ಅಡಿಯಲ್ಲಿ ಸ್ವಿಕರಿಸಲ್ಪಡುತ್ತವೆ.
-          </p>
+        become_a_monthly_supporter_of_inaturalist_caps: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಗೆ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
+        thank_you_for_being_a_monthly_supporter: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
+        thank_you_for_being_a_monthly_supporter_caps: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
     guides:
       index:
         deprecated_banner: |
@@ -4931,9 +4965,6 @@ kn:
       show:
         allow_curator_coordinate_access_desc_html: |
           ಈ ವೀಕ್ಷಣೆಗೆ ಮರೆಮಾಡಿದ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರು ನೋಡಲು ಅನುಮತಿಸಿ
-        data_quality_assessment_desc_html: |
-          ದತ್ತಾಂಶ ಗುಣಮಟ್ಟ ವಿಮರ್ಶೆಯು ವೀಕ್ಷಣೆಯ ನಿಖರತೆಯ ಮೌಲ್ಯಮಾಪನವಾಗಿದೆ. ಸಂಶೋಧನಾ ದರ್ಜೆಯ ವೀಕ್ಷಣೆಗಳನ್ನು
-          ವಿಜ್ಞಾನಿಗಳು ಸಂಶೋಧನೆಗಳಿಗಾಗಿ ಬಳಸಬಹುದಾಗಿದೆ. ನಿಮ್ಮ ಮತವನ್ನು ಇಲ್ಲಿ ನೀಡಿ:
         flagged_photos_desc_html: |
           ಇಲ್ಲಿನ ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅನುಚಿತ ವಿಷಯ ಅಥವಾ ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಉಲ್ಲಂಘನೆಯಂತೆ ಗುರುತಿಸಲಾಗಿದೆ. ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗೆ %{links} ನೋಡಿ
     emailer:
@@ -5210,10 +5241,6 @@ kn:
         one_time: ಒಮ್ಮೆ
         percent_growth_in_year: "%{year} ದಲ್ಲಿ % ಬೆಳವಣಿಗೆ"
         percent_of_total_growth: "ಒಟ್ಟು ಬೆಳವಣಿಗೆ %"
-        publications_desc_html: |
-          ಅಂಕಿಗಳು ಮತ್ತು ಬಣ್ಣಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಲು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಹೂ ಚಾರ್ಟ್‍ಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಪ್ರಭಾವಿ ದತ್ತಾಂಶ ಮತ್ತು ಚಾರ್ಟ್‍ಗಳ ಸೌಜನ್ಯ <a href="https://www.altmetric.com">ಆಲ್‍ಮೆಟ್ರಿಕ್</a>. ದತ್ತಾಂಶ ಬಳಕೆಯ ಬಗೆಗಿನ ಮಾಹಿತಿ <a href="https://www.gbif.org/">ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಮಾಹಿತಿ ಸೌಲಭ್ಯ</a> ದಲ್ಲಿನ ನಮ್ಮ ಗೆಳೆಯರ ಕೊಡುಗೆ.
-          <br/>
-          <a href="%{url}">ಎಲ್ಲಾ %{numStudies} ಅಧ್ಯಯನಗಳನ್ನು ನೋಡಿ</a>
         publications_desc_short_html: |
           ಅಂಕಿಗಳು ಮತ್ತು ಬಣ್ಣಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಲು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಹೂ ಚಾರ್ಟ್‍ಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಪ್ರಭಾವಿ ದತ್ತಾಂಶ ಮತ್ತು ಚಾರ್ಟ್‍ಗಳ ಸೌಜನ್ಯ <a href="https://www.altmetric.com">ಆಲ್‍ಮೆಟ್ರಿಕ್</a>. ದತ್ತಾಂಶ ಬಳಕೆಯ ಬಗೆಗಿನ ಮಾಹಿತಿ <a href="https://www.gbif.org/">ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಮಾಹಿತಿ ಸೌಲಭ್ಯ</a> ದಲ್ಲಿನ ನಮ್ಮ ಗೆಳೆಯರ ಕೊಡುಗೆ.
         observations_per_year: ವೀಕ್ಷಣೆಗಳು / ವರ್ಷ
@@ -5257,16 +5284,6 @@ kn:
         complete_rank_desc_html: |
           ಈ ಜೀವಿವರ್ಗ ಸಂಪೂರ್ಣವಾಗಲಿರುವ ಶ್ರೇಣಿ, ಉದಾ. ಈ ಕುಟುಂಬ ಅದರ ಎಲ್ಲಾ ಕುಲಗಳನ್ನು ಒಳಗೊಂಡಿದ್ದು ಆದರೆ ಅದರ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಒಳಗೊಳ್ಳದೇ ಇರದಿದ್ದಲ್ಲಿ, ಇದನ್ನು "ಕುಲ" ವೆಂದು ಪರಿಗಣಿಸಲಾಗುವುದು. ಪ್ರಭೇದವು ನಿಯೋಜಿತವಾಗಿರುತ್ತದೆ.
       show:
-        about_names_desc: |
-          <p>
-          ಜೀವಜಾಲದ ಹೆಚ್ಚಿನ ಎಲ್ಲಾ ಜೀವಿಗಳು ಆಡುಭಾಷೆಯಲ್ಲಿನ "ಸಾಮಾನ್ಯ ಹೆಸರು"ಗಳನ್ನು ಹೊಂದಿವೆ.ಇವು ಸಾಮಾನ್ಯವಾಗಿ ಗುರುತಿಸಬಲ್ಲ, ಸುಲಭವಾಗಿ ಉಚ್ಛರಿಸಬಲ್ಲ ಹಾಗೂ ವರ್ಷಾನುಗಟ್ಟಲೆಯಿಂದ ಸ್ಥಿರವಾಗಿರುವ ಹೆಸರುಗಳಾಗಿರುತ್ತವೆ, ಆದರೆ ಕೆಲವು ಜೀವಿಗಳು ಒಂದೇ ಭಾಷೆಯಲ್ಲಿಯೂ ಸಹ ಹಲವು ಪ್ರದೇಶಗಳಲ್ಲಿ ವಿವಿಧ ಹೆಸರುಗಳಿಂದ ಪರಿಚಿತವಾಗಿರುತ್ತವೆ, ಇದು ಕೆಲವೊಮ್ಮೆ ಈ ಜೀವಿಗಳ ಬಗ್ಗೆ ಚರ್ಚಿಸುವ ವೇಳೆ ಗೊಂದಲವನ್ನುಂಟುಮಾಡುವ ಸಾಧ್ಯತೆಗಳಿವೆ. ವಿಜ್ಞಾನಿಗಳು ಈ ತೊಂದರೆಯನ್ನು ಪ್ರತಿ ಜೀವಿಗುಂಪುಗಳಿಗೆ <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature"> ಜೀವಶಾಸ್ತ್ರೀಯ ನಾಮಕರಣ</a>ದ ನಿಯಮಾವಳಿಗಳಿಗೆ ಬದ್ಢವಾದ ಏಕರೂಪದ "ವೈಜ್ಞಾನಿಕ ಹೆಸರು"ಗಳನ್ನು ಬಳಸುವುದರ ಮೂಲಕ ನಿವಾರಿಸಿದ್ದಾರೆ, ಆದರೆ ಈ ಹೆಸರುಗಳು ಯಾರೂ ವ್ಯವಹರಿಸದ ಲ್ಯಾಟಿನ್ ಭಾಷೆಯ ಮೂಲದವಾಗಿವೆ, ಹಾಗಾಗಿ ಹೆಚ್ಚಿನ ಜನರಿಗೆ ಇದನ್ನು ನೆನಪಿನಟ್ಟುಕೊಳ್ಳುವುದು ಸಾಮಾನ್ಯ ಹೆಸರುಗಳಿಗಿಂತಲೂ ಕಠಿಣ. ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳು ಜೀವಿಗಳ ವರ್ಗಶ್ರೇಣಿಯನ್ನು ಸಹ ಪ್ರತಿನಿಧಿಸುತ್ತವೆ, ಹಾಗಾಗಿ ಸಂಶೋಧಕರು ವಿವಿಧ ಜೀವಿಗಳ ನಡುವಿನ ವಿಕಸನ ಸಂಬಂಧಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ನಿಖರವಾದ ಸಿದ್ಧಾಂತಗಳನ್ನು ಪ್ರತಿಪಾದಿಸಿದಾಗ ಅವು ಬದಲಾಗುವ ಸಾಧ್ಯತೆಗಳಿವೆ, ಇದು ಮತ್ತೊಮ್ಮೆ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳನ್ನು ಅರಿತ ಜನರ ಮಧ್ಯೆಯೂ ಸಹ ಸಂವಹನದಲ್ಲಿ ಇವುಗಳ ಉಪಯುಕ್ತತೆಯನ್ನು ಕ್ಷೀಣವಾಗಿಸುತ್ತದೆ.
-          </p>
-          <p>
-          ಹಳೆಯ ನಾಣ್ಣುಡಿಯೊಂದರಂತೆ ಇದರ ಸಾರಾಂಶ : "ಸಾಮಾನ್ಯ ಹೆಸರುಗಳು ಪ್ರದೇಶದಿಂದ ಪ್ರದೇಶಕ್ಕೆ ಬದಲಾಗುತ್ತವೆ, ಹಾಗೂ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳು ಸಮಯದಿಂದ ಸಮಯಕ್ಕೆ ಬದಲಾಗುತ್ತವೆ".
-          </p>
-          <p>
-          ನಾವು ಈ ನ್ಯೂನತೆಗಳನ್ನು ಸಾಮಾನ್ಯ ಹಾಗೂ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳೆರಡನ್ನೂ ಹಾಗೂ ವೀಕ್ಷಕರ ಭಾಷೆ ಮತ್ತು ಭೌಗೋಳಿಕ ಆದ್ಯತೆಗಳ ಆಯ್ಕೆಯಾಧಾರಿತ ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಪ್ರದರ್ಶಿಸುವ ಮೂಲಕ ಸಾಧ್ಯವಿದ್ದಲ್ಲೆಲ್ಲಾ ಸರಿಪಡಿಸಲು ಯತ್ನಿಸುತ್ತೇವೆ.
-          </p>
         about_conservation_status_desc: |
           ಸಂರಕ್ಷಣಾ ಸ್ಥಿತಿಯು ಜೀವಿಗಳ ಒಂದು ಗುಂಪಿನ ವಿನಾಶದ ಅಪಾಯವನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ವಿವರಿಸುತ್ತದೆ.
         about_establishment_desc: |
@@ -5281,7 +5298,6 @@ kn:
           "Plant Phenology=Flower Budding": ಹೂವು ಮೊಗ್ಗಾಗುತ್ತಿದೆ
           "Plant Phenology=Flowering": ಹೂವಾಗುತ್ತಿದೆ
           "Plant Phenology=Fruiting": ಹಣ್ಣಾಗುತ್ತಿದೆ
-          "Plant Phenology=No Evidence": ಕುರುಹುಗಳಿಲ್ಲ
           "Life Stage=Adult": ವಯಸ್ಕ
           "Life Stage=Egg": ಮೊಟ್ಟೆ
           "Life Stage=Larva": ಮರಿಹುಳು
@@ -5412,9 +5428,15 @@ kn:
       index:
         connect_with_nature: ನಿಸರ್ಗದೊಡನೆ ಒಡನಾಡಿ
         explore_and_share: ನಿಸರ್ಗದ ಪ್ರಪಂಚವನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.
-        observations_to_date: 'ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು'
-        species_observed: 'ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು'
-        people_signed_up: 'ನೋಂದಾಯಿತ ಸದಸ್ಯರು'
+        observations_to_date:
+          one: "ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು"
+          other: "ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು"
+        species_observed:
+          one: "ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು"
+          other: "ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು"
+        people_signed_up:
+          one: "ನೋಂದಾಯಿತ ಸದಸ್ಯರು"
+          other: "ನೋಂದಾಯಿತ ಸದಸ್ಯರು"
         how_it_works: ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ
         record_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ದಾಖಲಿಸಿ
         share_with_fellow_naturalists: ಸಹ ನಿಸರ್ಗಪ್ರೇಮಿಗಳೊಡನೆ ಹಂಚಿಕೊಳ್ಳಿ
@@ -5485,19 +5507,19 @@ kn:
       6: ಶುಕ್ರ
       7: ಶನಿ
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -5568,46 +5590,6 @@ kn:
       month: ತಿಂಗಳು
       second: ಸೆಕೆಂಡುಗಳು.
       year: ವರ್ಷ
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: ಒಪ್ಪಿಕೊಳ್ಳಲೇಬೇಕು
-      blank: ಖಾಲಿಯಿರಲಾಗದು
-      confirmation: ಗುಪ್ತಪದವನ್ನು ಹೋಲಲಿಲ್ಲ
-      empty: ಖಾಲಿಯಿರಲಾಗದು
-      equal_to: '%{count} ಗೆ ಸಮನಾಗಿರಬೇಕು'
-      even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-      exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
-      greater_than: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
-      greater_than_or_equal_to: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-      inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
-      invalid: ಅಸಿಂಧುವಾಗಿದೆ
-      less_than: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
-      less_than_or_equal_to: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-      new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
-      not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
-      not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು
-      odd: ಬೆಸಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-      only_project_owner_can_change_project_owner: ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಮಾತ್ರವೇ ಬದಲಿಸಬಹುದು
-      record_invalid: 'ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ: %{errors}'
-      requires_privilege_speech: |
-        ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
-      requires_privilege_organizer: ಅದನ್ನು ಮಾಡಲು 50 ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ
-      taken: ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ
-      too_long:
-        one: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರ)
-        other: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-      too_short:
-        one: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರ)
-        other: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-      wrong_length:
-        one: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರವಿರಬೇಕು )
-        other: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರಗಳಿರಬೇಕು )
-    template:
-      body: 'ಈ ಕೆಳಗಿನ ಆವರಣಗಳೊಂದಿಗೆ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ:'
-      header:
-        one: "ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ"
-        other: 'ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ'
   helpers:
     defaults:
       title: "ಇದು ಶೀರ್ಷಿಕೆ"
@@ -5670,69 +5652,31 @@ kn:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: ಒಪ್ಪಿಕೊಳ್ಳಲೇಬೇಕು
-        blank: ಖಾಲಿಯಿರಲಾಗದು
-        confirmation: ಗುಪ್ತಪದವನ್ನು ಹೋಲಲಿಲ್ಲ
-        empty: ಖಾಲಿಯಿರಲಾಗದು
-        equal_to: '%{count} ಗೆ ಸಮನಾಗಿರಬೇಕು'
-        even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-        exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
-        greater_than: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
-        greater_than_or_equal_to: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-        inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
-        invalid: ಅಸಿಂಧುವಾಗಿದೆ
-        less_than: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
-        less_than_or_equal_to: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-        new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
-        not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
-        not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು
-        odd: ಬೆಸಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-        only_project_owner_can_change_project_owner: ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಮಾತ್ರವೇ ಬದಲಿಸಬಹುದು
-        record_invalid: 'ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ: %{errors}'
-        requires_privilege_speech: ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
-        requires_privilege_organizer: ಅದನ್ನು ಮಾಡಲು 50 ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ
-        taken: ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ
-        too_long:
-          one: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರ)
-          other: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-        too_short:
-          one: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರ)
-          other: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-        wrong_length:
-          one: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರವಿರಬೇಕು )
-          other: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರಗಳಿರಬೇಕು )
-      template:
-        body: 'ಈ ಕೆಳಗಿನ ಆವರಣಗಳೊಂದಿಗೆ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ:'
-        header:
-          one: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ
-          other: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: ಪ್ರಕಟಣೆ
       AssessmentSection: ಮೌಲ್ಯಮಾಪನ ವಿಭಾಗ
       Atlas: ಭೂಪಟ
       BlockedUser: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
+      Comment: ಅಭಿಪ್ರಾಯ
+      Identification: ಗುರುತಿಸುವಿಕೆ
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -5741,8 +5685,12 @@ kn:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: ಮಾಡರೇಟರ್ ಟಿಪ್ಪಣಿ
+      Photo: ಚಿತ್ರ
       TaxonLink: ಜೀವಿವರ್ಗದ ಲಿಂಕ್
     attributes:
+      announcement:
+        created_at: ರಂದು ರಚಿಸಲಾಗಿದೆ
+        updated_at: ಪರಿಷ್ಕರಿಸಿದ ದಿನಾಂಕ
       assessment:
         description: ವಿವರಣೆ
       assessment_section:
@@ -5758,6 +5706,7 @@ kn:
         geoprivacy: ಭೂಗೌಪ್ಯತೆ
         iucn: IUCN ಸಮಾನ
       flag:
+        #The reason the item was flagged
         reason: ಕಾರಣ
       guide:
         source_url: ಮೂಲ URL
@@ -5857,6 +5806,7 @@ kn:
         name_provider: ನಾಮಾವಳಿ ಪೂರೈಕೆದಾರರು
         position: ಸ್ಥಾನ
         source_url: ಮೂಲ URL
+        audit_comment: ಟಿಪ್ಪಣಿ
       user:
         email: ಮಿಂಚೆ
         login: ಬಳಕೆದಾರರ ಹೆಸರು
@@ -5872,22 +5822,30 @@ kn:
         blank: ಖಾಲಿಯಿರಲಾಗದು
         confirmation: ಗುಪ್ತಪದವನ್ನು ಹೋಲಲಿಲ್ಲ
         empty: ಖಾಲಿಯಿರಲಾಗದು
-        equal_to: '%{count} ಗೆ ಸಮನಾಗಿರಬೇಕು'
         even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
         exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
-        greater_than: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
-        greater_than_or_equal_to: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
+        greater_than:
+          one: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
+        greater_than_or_equal_to:
+          one: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
         inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
         invalid: ಅಸಿಂಧುವಾಗಿದೆ
-        less_than: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
-        less_than_or_equal_to: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
+        less_than:
+          one: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
+        less_than_or_equal_to:
+          one: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
         new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
         not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
         not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು
         odd: ಬೆಸಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
         only_project_owner_can_change_project_owner: ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಮಾತ್ರವೇ ಬದಲಿಸಬಹುದು
         record_invalid: 'ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ: %{errors}'
-        requires_privilege_speech: ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
+        requires_privilege_speech: |
+          ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
         requires_privilege_organizer: ಅದನ್ನು ಮಾಡಲು 50 ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ
         taken: ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ
         too_long:
@@ -5902,14 +5860,21 @@ kn:
       template:
         body: 'ಈ ಕೆಳಗಿನ ಆವರಣಗಳೊಂದಿಗೆ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ:'
         header:
-          one: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ
-          other: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ
+          one: "ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ"
+          other: 'ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ'
       models:
         application:
           attributes:
             redirect_uri:
               invalid_uri: "ಮಾನ್ಯವಾದ URI ಆಗಿರಬೇಕು."
               relative_uri: "ಒಂದು ಪರಿಪೂರ್ಣ URI ಆಗಿರಬೇಕು."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: ಅಭಿಪ್ರಾಯಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದಾರೆ
         guide:
           attributes:
             published_at:
@@ -6010,6 +5975,8 @@ kn:
                 ಈ ಪದಕೋಶಕ್ಕೆ ಪ್ರಭೇದವೊಂದರ ವೈಜ್ಞಾನಿಕ ಹೆಸರನ್ನು ಹೋಲಿಕೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ
               must_match_the_taxon_if_valid: |
                 ಇದು ಸರಿಯಾದ ವೈಜ್ಞಾನಿಕ ಹೆಸರಾಗಿದ್ದಲ್ಲಿ ಜೀವಿವರ್ಗದ ಹೆಸರಿನೊಂದಿಗೆ ಹೋಲಿಕೆಯಾಗಲೇಬೇಕು
+            audit_comment:
+              needs_to_be_at_least_10_characters: ಕನಿಷ್ಟ 10 ಅಕ್ಷರಗಳಿರಬೇಕು
         taxon_photo:
           attributes:
             taxon:

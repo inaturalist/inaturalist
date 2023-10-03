@@ -258,7 +258,7 @@ class TaxonPageTabs extends React.Component {
             </LazyLoad>
             <LazyLoad
               debounce={false}
-              height={120}
+              minHeight={120}
               offset={100}
             >
               <RecentObservationsContainer />
@@ -298,6 +298,7 @@ class TaxonPageTabs extends React.Component {
             id="status-tab"
           >
             <StatusTab
+              taxon={taxon}
               statuses={taxon.conservationStatuses}
               listedTaxaCount={taxon.listed_taxa_count}
               listedTaxa={_.filter( taxon.listed_taxa, lt => lt.establishment_means )}

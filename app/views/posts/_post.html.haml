@@ -14,22 +14,14 @@
     - text = formatted_user_text(post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
     - if hard_truncate_length
       = truncate_with_more text, length: hard_truncate_length, ellipsize: true
+      %p
+        = link_to t(:view_post), post_url, class: "readmore"
     - elsif truncate_length
       = truncate_with_more text, length: truncate_length
     - else
       = text
   .meta
-    = t(:posted_on)
-    - if post.published_at
-      %span.date= l post.published_at, :format => :long
-    - else
-      %span= t(:draft)
-    = t(:by).downcase
-    - if post.user
-      = link_to user_image( post.user ), post.user
-      = link_to( post.user.login, observations_path( user_id: post.user.login ) )
-    - else
-      t(:deleted_user)
+    = render "posts/attribution", post: post
     - if post.observations.size > 0
       |
       =t :x_observations_html, count: post.observations.size

@@ -1,34 +1,57 @@
 fil:
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} pagbabago"
+    other: "%{count} (na) pagbabago"
+  x_comments:
+    one: '%{count} komento'
+    other: '%{count} (na) komento'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komento'
+    other: '<span class="count">%{count}</span> (na) komento'
+  x_faves:
+    one: '%{count} fave'
+    other: '%{count} (na) fave'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> naresolbang flag"
+    other: "<span class='count'>%{count}</span> (na) naresolbang flag"
+  x_identifications:
+    one: '%{count} pagtukoy'
+    other: '%{count} (na) pagtukoy'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> pagtukoy'
+    other: '<span class="count">%{count}</span> (na) pagtukoy'
+  x_identifications_:
+    one: '%{count} Pagtukoy'
+    other: '%{count} (na) Pagtukoy'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Palatandaan'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> (na) Palatandaan'
+  x_languages:
+    one: "%{count} wika"
+    other: "%{count} (na) wika"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} una sa listahan ng buhay"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} (na) una sa listahan ng buhay"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> journal post'
+    other: '<span class="count">%{count}</span> (na) journal post'
+  x_matching_taxa:
+    one: '%{count} tumugmang taxon'
+    other: '%{count} (na) tumugmang taxon'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> tumugmang taxon'
+    other: '<span class="count">%{count}</span> (na) tumugmang taxon'
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

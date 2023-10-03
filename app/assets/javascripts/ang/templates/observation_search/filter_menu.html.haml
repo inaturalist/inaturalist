@@ -74,13 +74,13 @@
                     class: "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}",
                     "uib-btn-checkbox" => true,
                     "uib-btn-checkbox-true" => t[0],
-                    "ng-model" => "params._iconic_taxa.#{t[0]}",
+                    "ng-model" => "params.iconic_taxa_hash.#{t[0]}",
                     title: "{{ shared.t( 'all_taxa.#{t[1]}', { defaultValue: '#{t[0]}' } ) }}",
-                    "ng-class" => "{ 'filter-changed': params._iconic_taxa.#{t[0]} }"
+                    "ng-class" => "{ 'filter-changed': params.iconic_taxa_hash.#{t[0]} }"
                   }
                 %button{ button_attrs }
                   %i{ :class => "icon-iconic-#{t[0].downcase}" }
-              %button{ type: "button", :class => "btn btn-default iconic-taxon last", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => "unknown", "ng-model" => "params._iconic_taxa.unknown", title: "{{ shared.t( 'unknown' ) }}", "ng-class" => "{ 'filter-changed': params._iconic_taxa.unknown }" }
+              %button{ type: "button", :class => "btn btn-default iconic-taxon last", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => "unknown", "ng-model" => "params.iconic_taxa_hash.unknown", title: "{{ shared.t( 'unknown' ) }}", "ng-class" => "{ 'filter-changed': params.iconic_taxa_hash.unknown }" }
                 %i{ :class => "icon-iconic-unknown" }
         .row
           .col-xs-12
@@ -112,11 +112,13 @@
                 - value = %w(created_at observations.id id).include?(f) ? 'id' : f
                 - default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
                 - key = default.parameterize.underscore
-                %option{ value: value }
-                  {{ shared.t( '#{ key }_', { defaultValue: shared.t( '#{ key }', { defaultValue: '#{default}' } ) } ) }}
+                %option{ value: value, data: { key: key } }
+                  {{ shared.t( '#{ key }_', { defaultValue: shared.t( '#{ key }' ) } ) }}
           .col-xs-6
             %select#params-order.form-control{ "ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}", "ng-class" => "{ 'filter-changed': ( params.order !== defaultParams.order ) }" }
-              = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
+              - %w[asc desc].map do |order|
+                %option{ value: order }
+                  {{ shared.t( "#{order}" ) }}
       #filters-right-col.col-xs-4
         %label.sectionlabel
           {{ shared.t( 'date_observed_' ) }}
@@ -139,7 +141,10 @@
             %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
             %span.date-type.date-type-month
               {{ shared.t('months') }}
-              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control input-sm", id: "filters-dates-month", multiple: "multiple", "ng-class" => "{ 'filter-changed': processedParams.month }"
+              %select#filters-dates-month.form-control.input-sm{name: "month", multiple: "multiple", "ng-model" => "params.month", "ng-class" => "{ 'filter-changed': processedParams.month }"}
+                - (1..12).to_a.map do |n|
+                  %option{ value: n }
+                    {{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}
         #filters-observation-fields{ "ng-show" => "canShowObservationFields( )" }
           %label.sectionlabel
             {{ shared.t( "observation_fields" ) }}
@@ -147,54 +152,6 @@
             {{ k }}={{ v }}
             %button{ "ng-click" => "removeObservationField( k )" }
               &times;
-          %input{ type: "hidden", name: "acc" }
-          %input{ type: "hidden", name: "acc_above" }
-          %input{ type: "hidden", name: "acc_below" }
-          %input{ type: "hidden", name: "acc_below_or_unknown" }
-          %input{ type: "hidden", name: "apply_project_rules_for" }
-          %input{ type: "hidden", name: "captive" }
-          %input{ type: "hidden", name: "day" }
-          %input{ type: "hidden", name: "geo" }
-          %input{ type: "hidden", name: "geoprivacy" }
-          %input{ type: "hidden", name: "has[]" }
-          %input{ type: "hidden", name: "id" }
-          %input{ type: "hidden", name: "ident_taxon_id" }
-          %input{ type: "hidden", name: "ident_taxon_id_exclusive" }
-          %input{ type: "hidden", name: "ident_user_id" }
-          %input{ type: "hidden", name: "identified" }
-          %input{ type: "hidden", name: "lat" }
-          %input{ type: "hidden", name: "license" }
-          %input{ type: "hidden", name: "list_id" }
-          %input{ type: "hidden", name: "lng" }
-          %input{ type: "hidden", name: "members_of_project" }
-          %input{ type: "hidden", name: "native" }
-          %input{ type: "hidden", name: "not_in_place" }
-          %input{ type: "hidden", name: "not_in_project" }
-          %input{ type: "hidden", name: "not_matching_project_rules_for" }
-          %input{ type: "hidden", name: "not_user_id" }
-          %input{ type: "hidden", name: "oauth_application_id" }
-          %input{ type: "hidden", name: "pcid" }
-          %input{ type: "hidden", name: "photo_license" }
-          %input{ type: "hidden", name: "photo_licensed" }
-          %input{ type: "hidden", name: "projects[]" }
-          %input{ type: "hidden", name: "radius" }
-          %input{ type: "hidden", name: "rank" }
-          %input{ type: "hidden", name: "search_on" }
-          %input{ type: "hidden", name: "site_id" }
-          %input{ type: "hidden", name: "sound_license" }
-          %input{ type: "hidden", name: "taxon_geoprivacy" }
-          %input{ type: "hidden", name: "taxon_ids" }
-          %input{ type: "hidden", name: "taxon_ids[]" }
-          %input{ type: "hidden", name: "term_id" }
-          %input{ type: "hidden", name: "term_value_id" }
-          %input{ type: "hidden", name: "unobserved_by_user_id" }
-          %input{ type: "hidden", name: "user_after" }
-          %input{ type: "hidden", name: "user_before" }
-          %input{ type: "hidden", name: "viewer_id" }
-          %input{ type: "hidden", name: "without_ident_user_id" }
-          %input{ type: "hidden", name: "without_taxon_id" }
-          %input{ type: "hidden", name: "without_term_id" }
-          %input{ type: "hidden", name: "year" }
     .row
       .col-xs-12
         %button#filters-more-btn.btn.btn-link{ type: 'button', "ng-class" => "{ 'collapsed': moreFiltersHidden }", "ng-click" => "toggleMoreFilters( )" }

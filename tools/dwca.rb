@@ -43,7 +43,7 @@ opts = Optimist.options do
   opt :core,
     "Core type. Options: occurrence, taxon",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User, VernacularNames (taxon core only)",
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ResourceRelationships, ProjectObservations, User, VernacularNames (taxon core only)",
     type: :strings, short: "-x"
   opt :metadata, "
     Path to metadata template. Default: {core}/dwc.eml.erb. \"skip\" will skip EML file generation.
@@ -68,6 +68,7 @@ opts = Optimist.options do
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :taxon_private_coordinates, "Include private coordinates if obscured by taxon geoprivacy but not user geoprivacy", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
+  opt :places_for_site, "Export observations associated with this site's place and export places (lower priority than place_id)", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
   opt :with_taxa, "Include a taxa.csv file if the core is observations", type: :boolean
@@ -87,6 +88,10 @@ opts = Optimist.options do
   opt :swlat, "Bounding box bottom latitude", type: :double
   opt :nelng, "Bounding box right longitude", type: :double
   opt :nelat, "Bounding box top latitude", type: :double
+  opt :include_uuid, "Add observation UUIDs as otherCatalogNumbers", type: :boolean, default: false
+  opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
+  opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
+  opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings
   opt :processes, "Number of processes to use with the parallel gem", type: :integer
 end
 

@@ -3,6 +3,8 @@ class Sound < ApplicationRecord
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
 
+  has_moderator_actions %w(hide unhide)
+
   serialize :native_response
 
   include Shared::LicenseModule
@@ -76,6 +78,10 @@ class Sound < ApplicationRecord
     user.id == user_id || observations.exists?(:user_id => user.id)
   end
 
+  def url
+    try( :file ).try( :url )
+  end
+
   def self.from_observation_params(params, fieldset_index, owner)
     sounds = []
     unless Rails.env.production?
@@ -137,7 +143,7 @@ class Sound < ApplicationRecord
       attribution: attribution,
       native_sound_id: native_sound_id,
       secret_token: try(:secret_token),
-      file_url: is_a?( LocalSound ) ? FakeView.uri_join( Site.default.url, file.url ) : nil,
+      file_url: is_a?( LocalSound ) ? UrlHelper.uri_join( Site.default.url, file.url ) : nil,
       file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
       play_local: is_a?( LocalSound ) && ( subtype.blank? || ( native_response && native_response["sharing"] == "private") ),
       subtype: subtype,
@@ -181,7 +187,7 @@ class Sound < ApplicationRecord
       #   styles = %w(original large medium small thumb square)
       #   updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
       #   updates += styles.map do |s|
-      #     FakeView.image_url("copyright-infringement-#{s}.png").to_s
+      #     ApplicationController.helpers.image_url("copyright-infringement-#{s}.png").to_s
       #   end
       #   Photo.where(id: id).update_all(updates)
       # elsif %w(resolved destroyed).include?(options[:action])
@@ -191,6 +197,17 @@ class Sound < ApplicationRecord
     end
     observations.each do |o|
       o.update_mappable
+      Observation.set_quality_grade( o.id )
+      o.elastic_index!
+    end
+  end
+
+  def moderated_with( moderator_action, options = { } )
+    set_acl if respond_to?( :set_acl )
+    observations.each( &:update_stats )
+    observations.each do |o|
+      o.update_mappable
+      Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
   end

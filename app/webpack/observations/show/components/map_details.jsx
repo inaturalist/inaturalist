@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-/* global iNatModels */
 
 class MapDetails extends React.Component {
   static placeList( places ) {
@@ -155,10 +154,11 @@ class MapDetails extends React.Component {
                   showAllPlaces ? (
                     <button className="btn btn-link btn-more" type="button" onClick={( ) => this.setState( { showAllPlaces: false } )}>
                       { I18n.t( "less" ) }
+                      { I18n.t( "fewer__context_places", { defaultValue: I18n.t( "more" ) } ) }
                     </button>
                   ) : (
                     <button className="btn btn-link btn-more" type="button" onClick={( ) => this.setState( { showAllPlaces: true } )}>
-                      { I18n.t( "more" ) }
+                      { I18n.t( "more__context_places", { defaultValue: I18n.t( "more" ) } ) }
                     </button>
                   )
                 ) }
@@ -292,15 +292,14 @@ class MapDetails extends React.Component {
                 { I18n.t( "open_street_map" ) }
               </a>
             </span>
-            {/*
-              Nice to have, but sort of useless unless macrostrat implements the
-              abililty to link to the infowindow and not just the coords
-              <span className="info">
-                <a className="value" href={ `https://macrostrat.org/map/#5/${observation.latitude}/${observation.longitude}` }>
-                  { I18n.t( "macrostrat" ) }
-                </a>
-              </span>
-            */}
+            <span className="info">
+              <a
+                className="value"
+                href={`https://macrostrat.org/map/loc/${observation.longitude}/${observation.latitude}/#z=${observation.map_scale || 8}`}
+              >
+                { I18n.t( "Macrostrat" ) }
+              </a>
+            </span>
           </span>
         </div>
       </div>
@@ -311,7 +310,7 @@ class MapDetails extends React.Component {
 MapDetails.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
-  config: PropTypes.object,
+  config: PropTypes.object
 };
 
 MapDetails.defaultProps = {

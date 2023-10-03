@@ -44,12 +44,16 @@ class Species extends Component {
             zoomToTaxon( s.taxon.id, { detailsView: "observations" } );
           }
         };
+        let taxonLink = `/observations?unobserved_by_user_id=${lifelist.user.login}&taxon_id=${s.taxon.id}&quality_grade=research`;
+        taxonLink += lifelist.speciesPlaceFilter
+          ? `&place_id=${lifelist.speciesPlaceFilter.id}`
+          : "&place_id=any";
         return (
-          <div className="result" key={`grid_taxon_${s.taxon.id}`}>
+          <div className="result d-flex" key={`grid_taxon_${s.taxon.id}`}>
             <TaxonThumbnail
+              className="flex-grow-1"
               taxon={s.taxon}
               config={config}
-              truncate={null}
               height={210}
               noInactive
               onClick={onClick}
@@ -57,7 +61,7 @@ class Species extends Component {
                 <div>
                   <a
                     onClick={onClick}
-                    href={`/observations?unobserved_by_user_id=${lifelist.user.login}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any`}
+                    href={taxonLink}
                   >
                     { I18n.t( "x_observations", { count: s.count } ) }
                   </a>
@@ -84,7 +88,7 @@ class Species extends Component {
         );
     }
     return (
-      <div className="flex-container">
+      <div className="Details">
         <div className="SpeciesGrid unobserved">
           { view }
           <div className="more">

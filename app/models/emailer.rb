@@ -141,15 +141,6 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def moimport_finished( mot, errors = {}, warnings = {} )
-    @user = mot.user
-    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
-    @errors = errors
-    @warnings = warnings
-    @exception = mot.exception
-    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
-  end
-
   def custom_email( user, subject, body )
     @user = user
     @subject = subject
@@ -230,6 +221,17 @@ class Emailer < ActionMailer::Base
     mail( opts )
   end
 
+  def welcome( user )
+    @user = user
+    @resource = @user
+    set_locale
+    mail( set_site_specific_opts.merge(
+      to: user.email,
+      subject: t( :welcome_to_inat, site_name: site_name )
+    ) )
+    reset_locale
+  end
+
   private
 
   def mail_with_defaults( defaults = {} )
@@ -240,24 +242,14 @@ class Emailer < ActionMailer::Base
     # You can specify the subject as an array so it can be translated in the
     # correct locale
     if opts[:subject].is_a?( Array )
-      opts[:subject].length == 1 ?
-        opts[:subject] = t( opts[:subject][0] ) :
-        opts[:subject] = t( opts[:subject][0], **opts[:subject][1] )
+      opts[:subject] = if opts[:subject].length == 1
+        t( opts[:subject][0] )
+      else
+        t( opts[:subject][0], **opts[:subject][1] )
+      end
     end
     mail( opts )
     reset_locale
-  end
-
-  def default_url_options
-    opts = ( Rails.application.config.action_mailer.default_url_options || {} ).dup
-    site = @user.try( :site ) || @site || Site.default
-    if ( site_uri = URI.parse( site.url ) )
-      opts[:host] = site_uri.host
-      if ( port = site_uri.port ) && ![80, 443].include?( port )
-        opts[:port] = port
-      end
-    end
-    opts
   end
 
   def subject_prefix
@@ -270,9 +262,14 @@ class Emailer < ActionMailer::Base
     @site.name
   end
 
-  def set_locale
+  def set_locale( options = {} )
+    # Don't bother if set_locale already ran
+    return if @locale_was
+
     @locale_was = I18n.locale
-    I18n.locale = if !@user&.locale&.blank?
+    I18n.locale = if options[:force]
+      options[:force]
+    elsif !@user&.locale&.blank?
       @user&.locale
     elsif @user&.site && !@user&.site&.preferred_locale&.blank?
       @user&.site&.preferred_locale
@@ -284,6 +281,7 @@ class Emailer < ActionMailer::Base
 
   def reset_locale
     I18n.locale = @locale_was || I18n.default_locale
+    @locale_was = nil
   end
 
   # rubocop:disable Naming/MemoizedInstanceVariableName
@@ -295,9 +293,8 @@ class Emailer < ActionMailer::Base
 
   def set_site_specific_opts
     @site_name = @site.name
-    # Can't have unicode chars in email headers
     {
-      from: "#{@site.name.mb_chars.unicode_normalize.gsub( /[^\x00-\x7F]/n, '' )} <#{@site.email_noreply}>",
+      from: "#{@site.name} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
   end
@@ -312,7 +309,11 @@ class Emailer < ActionMailer::Base
       # when you put tags like this in a template
       sub: {
         "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
-      }
+      },
+      # Sendgrid IP pools allow us to partition delivery between different IPs
+      # if we need to preserve the reputation of one while sending a lot or
+      # riskier emails from another
+      ip_pool: CONFIG&.sendgrid&.primary_ip_pool
     }
   end
 end

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -5,7 +6,6 @@ import {
   Row,
   Col
 } from "react-bootstrap";
-import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
 
@@ -22,10 +22,25 @@ const TaxonomyTab = ( {
   const viewerIsCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
   );
-  const sortedNames = _.sortBy( names, n => [
-    I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
-    n.name
+  const sortedNames = _.sortBy( names, [
+    n => I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
+    n => n.position
   ] );
+  const namesGroupedByPlace = { };
+  const places = { };
+  _.each( names, n => {
+    if ( n.lexicon === "Scientific Names" ) {
+      return;
+    }
+    _.each( n.place_taxon_names, ptn => {
+      if ( !ptn.place ) {
+        return;
+      }
+      places[ptn.place.id] = ptn.place;
+      namesGroupedByPlace[ptn.place_id] = namesGroupedByPlace[ptn.place_id] || [];
+      namesGroupedByPlace[ptn.place_id].push( { ...n, position: ptn.position } );
+    } );
+  } );
   return (
     <Grid className="TaxonomyTab">
       <Row className="tab-section">
@@ -116,6 +131,57 @@ const TaxonomyTab = ( {
                   ) ) }
                 </tbody>
               </table>
+              { _.isEmpty( namesGroupedByPlace ) ? null : (
+                <div>
+                  <h3>{ I18n.t( "regional_names" ) }</h3>
+                  <UserText
+                    text={I18n.t( "views.taxa.show.about_regional_names_desc" ).replace( /\n+/gm, " " )}
+                  />
+                  <table className="table table-striped regional-names">
+                    <thead>
+                      <tr>
+                        <th>{ I18n.t( "place" ) }</th>
+                        <th>{ I18n.t( "name" ) }</th>
+                        <th>{ I18n.t( "language_slash_type" ) }</th>
+                        { currentUser ? (
+                          <th>{ I18n.t( "action" ) }</th>
+                        ) : null }
+                      </tr>
+                    </thead>
+                    <tbody>
+                      { _.map( _.sortBy( _.keys( namesGroupedByPlace ), placeID => (
+                        I18n.t( `places_name.${_.snakeCase( places[placeID].name )}`, { defaultValue: places[placeID].name } )
+                      ) ), placeID => (
+                        _.sortBy( namesGroupedByPlace[placeID], "position" ).map( n => (
+                          <tr
+                            key={`taxon-names-${n.id}`}
+                            className={n.is_valid ? "" : "outdated"}
+                          >
+                            <td>
+                              <a href={`/places/${placeID}`}>
+                                { I18n.t( `places_name.${_.snakeCase( places[placeID].name )}`, { defaultValue: places[placeID].name } ) }
+                              </a>
+                            </td>
+                            <td className="comname">
+                              { n.name }
+                            </td>
+                            <td>
+                              { I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ) }
+                            </td>
+                            { currentUser ? (
+                              <td>
+                                { viewerIsCurator || n.creator_id === currentUser.id ? (
+                                  <a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a>
+                                ) : null }
+                              </td>
+                            ) : null }
+                          </tr>
+                        ) )
+                      ) ) }
+                    </tbody>
+                  </table>
+                </div>
+              )}
               <h3 className={`text-center ${names.length > 0 ? "hidden" : ""}`}>
                 <i className="fa fa-refresh fa-spin" />
               </h3>

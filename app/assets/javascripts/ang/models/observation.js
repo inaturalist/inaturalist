@@ -12,10 +12,15 @@ iNatModels.Observation = function( attrs ) {
       that[ attr ] = value
     };
   });
+  this.identifications_count = _.size(
+    _.filter( this.identifications, function( i ) {
+      return i.current && !i.hidden;
+    } )
+  );
 };
 
 iNatModels.Observation.prototype.photo = function( ) {
-  if( !_.isUndefined( this.cachedPhoto ) ) { return this.cachedPhoto; }
+  if( this.cachedPhoto !== undefined ) { return this.cachedPhoto; }
   if( this.photos && this.photos.length > 0 ) {
     var url = this.photos[0].url;
     if( !url ) { this.cachedPhoto = null; }

@@ -1,4 +1,8 @@
 fr-CA:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} changement"
+    other: "%{count} changements"
   x_comments:
     one: '%{count} commentaire'
     other: '%{count} commentaires'
@@ -47,6 +51,9 @@ fr-CA:
   x_misidentifications_of_this_species:
     one: "%{count} mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} mauvaise identification d'une espèce dans ce genre"
+    other: "%{count} mauvaises identifications d'espèces dans ce genre"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -104,8 +111,54 @@ fr-CA:
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> observation de qualité recherche"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au rang de l'espèce ou à un rang inférieur"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche identifiées au rang de l'espèce ou à un rang inférieur"
+  x_sounds:
+    one: "%{count} son"
+    other: "%{count} sons"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> taxon modifié"
+    other: "<span class='count'>%{count}</span> taxons modifiés"
+  x_taxa_matching_current_filters:
+    one: "%{count} taxon correspondant aux filtres choisis"
+    other: "%{count} taxons correspondant aux filtres choisis"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> modification de taxon ajoutée"
+    other: "<span class='count'>%{count}</span> modifications de taxon ajoutées"
   _100_day_trends: Tendances de 100 jours
+  _percent_ID_d: "% ayant reçu une identification"
   a_community_for_naturalist: Une communauté pour naturalistes
+  a_default_taxon_name_will_automatically_created: |
+    Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut « nom scientifique » de ce taxon. Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms vernaculaires, noms scientifiques obsolètes, etc.).
+  a_flag_for_x: "un signalement pour %{x}"
+  a_member_of_taxon_html: "un membre des %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "De A à Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|une} %{resource}"
   about: À propos
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
@@ -174,7 +227,6 @@ fr-CA:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: En ajouter une
-  add_photos: Ajouter des photos
   add_place: Ajouter un lieu
   add_alive_or_dead_alive_annotation: 'Ajouter l''annotation « Vivant ou Mort : Vivant »'
   add_alive_or_dead_cannot_be_determined_annotation: 'Ajouter l''annotation « Vivant ou Mort : Indéterminé »'
@@ -270,19 +322,23 @@ fr-CA:
     failure:
       invalid: 'Courriel ou mot de passe invalide.'
     passwords:
-      send_instructions: 'Vous recevrez un courriel contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
-      send_paranoid_instructions: "Si votre adresse courriel existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
-      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie."
+      send_instructions: |
+        Vous recevrez un courriel contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.
+      send_paranoid_instructions: |
+        Si votre adresse courriel existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes.
+      no_token: |
+        Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie.
     mailer:
       confirmation_instructions:
-        subject: 'Instructions de confirmation'
+        #Subject of an email sent to confirm your account
+        subject: Instructions de confirmation
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
   devise_reset_password_instructions_hello_email: Bonjour %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Quelqu'un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire à l’aide du lien ci-dessous.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Quelqu'un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire à l’aide du lien ci-dessous.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué sur le lien ci-dessus pour en créer un nouveau.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -298,7 +354,6 @@ fr-CA:
     <a href="/observations/import?project_id=%{project_id}#csv_import">téléverseur par lot</a>
   email: Courriel
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
-  email_copyright: "Copyright &copy; %{x}, tous droits réservés"
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
@@ -369,6 +424,7 @@ fr-CA:
     Téléverser les données d'observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c'est la meilleure méthode à adopter.
   upload_photo: Téléverser la photo
   upload_range: Téléverser l'aire de répartition
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Téléversé par
   uploader:
     errors:
@@ -828,17 +884,6 @@ fr-CA:
           <p>
            Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.
           </p>
-        monthly_supporter_desc_html: |
-          Les parrains réguliers d’iNaturalist font des contributions mensualisées
-          automatiques qui sont reçues par l’Académie des sciences de Californie
-          (Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les
-          opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
-          <a href="%{url}">Cliquez ici pour devenir un parrain mensualisé</a>.
-          Lorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette
-          boîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser
-          exactement la même adresse courriel sur Donorbox que celle que vous
-          utilisez sur iNaturalist pour nous permettre de confirmer que vous êtes
-          un parrain mensualisé.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Commentaires
         #Checkbox label for user preference about what to receive in the daily email update
@@ -888,36 +933,10 @@ fr-CA:
           comme « courriel du parent », nous activerons le compte de l’enfant et enverrons
           au parent un courriel avec les instructions de connexion. Ceci peut prendre 24
           heures.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

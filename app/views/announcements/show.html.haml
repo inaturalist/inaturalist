@@ -1,31 +1,33 @@
 - content_for(:title) do
-  = @announcement.id
+  =strip_tags t( :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id )
 .container
   .row
     .col-xs-12
-      %h2
-        Announcement
-        = @announcement.id
+      %span.breadcrumbs
+        = link_to t(:back), announcements_path, class: "back crumb"
+      %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
       %table.table.table-bordered
-        - %w(created_at updated_at placement start end site_ids locales).each do |a|
+        - %w(created_at updated_at placement start end site_ids locales prefers_target_staff prefers_target_unconfirmed_users).each do |a|
           %tr
-            %th=t "#{a}_", default: t( a )
+            %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
             %td= @announcement.send( a )
         %tr
           %th=t :body
           - width = @announcement.placement === "users/dashboard#sidebar" ? "360px" : "100%"
           %td
             %div{style: "width: #{width};"}= raw @announcement.body
-        - if @announcement.dismissible?
-          %tr
-            %th=t :dismissed_by
-            %td
-              = @announcement.dismiss_user_ids.size
-              users
-              - if @announcement.dismiss_user_ids.include?( current_user.id )
-                including you
-              = link_to_toggle_box "show user IDs" do
-                = @announcement.dismiss_user_ids
+        %tr
+          %th=t :dismissed_by
+          %td
+            - unless @announcement.dismissible?
+              .alert.alert-info
+                %p Announcement is not currently dismissible.
+            = @announcement.dismiss_user_ids.size
+            users
+            - if @announcement.dismiss_user_ids.include?( current_user.id )
+              including you
+            = link_to_toggle_box "show user IDs" do
+              = @announcement.dismiss_user_ids
       = link_to t(:edit), edit_announcement_path(@announcement)
       |
       = link_to t(:back), announcements_path

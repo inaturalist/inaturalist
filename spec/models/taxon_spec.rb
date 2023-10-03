@@ -377,6 +377,16 @@ describe Taxon, "updating" do
     expect( t.updater ).to be_blank
   end
 
+  it "should queue an update_stats_for_observations_of task even if one already exists" do
+    t = Taxon.make!( is_active: true )
+    t.update( is_active: false )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 1
+    t.update( is_active: true )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 2
+    t.update( is_active: false )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 3
+  end
+
   describe "reindexing identifications" do
     elastic_models( Identification )
     it "should happen when the rank_level changes" do
@@ -1169,6 +1179,22 @@ describe Taxon, "single_taxon_for_name" do
       TaxonName.make!( taxon: t, name: "Black Oystercatcher", lexicon: TaxonName::ENGLISH )
     end
     expect( Taxon.single_taxon_for_name( "Black Oystercatcher" ) ).to be_nil
+  end
+
+  it "should choose the most conservative synonym on a branch" do
+    genus = create( :taxon, :as_genus, name: "Foo" )
+    species_name = "Foo bar"
+    complex = create( :taxon, :as_complex, parent: genus, name: species_name )
+    create( :taxon, :as_species, parent: complex, name: species_name )
+    expect( Taxon.single_taxon_for_name( species_name ) ).to eq complex
+  end
+
+  it "should not choose the most conservative synonym on a branch if skip_conservative_branch_synonym" do
+    genus = create( :taxon, :as_genus, name: "Foo" )
+    species_name = "Foo bar"
+    complex = create( :taxon, :as_complex, parent: genus, name: species_name )
+    create( :taxon, :as_species, parent: complex, name: species_name )
+    expect( Taxon.single_taxon_for_name( species_name, skip_conservative_branch_synonym: true ) ).to be_blank
   end
 end
 

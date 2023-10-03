@@ -99,7 +99,6 @@ sk:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pridať teraz
-  add_photos: Vložiť fotky
   add_place: Pridať miesto
   add_plant_phenology_budding_annotation: 'Pridať anotáciu „Fenológia rastliny: pučenie“'
   add_plant_phenology_flowering_annotation: 'Pridať anotáciu „Fenológia rastliny: kvitnutie“'
@@ -226,7 +225,6 @@ sk:
   alphabetical_order: Abecedné poradie
   already_have_an_account_log_in_html: Už máte účet? <strong>Prihláste sa.</strong>
   amphibians: obojživelníci
-  and: a
   and_other_taxa: "&amp; Ďalšie taxóny"
   android: Android
   animals: Zvieratá
@@ -381,7 +379,6 @@ sk:
   browse_species_that_occur_near_this_observation: Prehliadať druhy, ktoré sa vyskytují v blízkosti tohto pozorovania.
   built_with_site_guides_html: "Vytvorené s <a href='%{url}'>%{site_name} sprievodcami</a>"
   bulk_import_of_filename_is_complete: "Hromadný import %{filename} bol dokončený"
-  by: od
   by_everyone: Všetkými
   by_user: "užívateľ %{user}"
   by_you: Vami
@@ -438,13 +435,7 @@ sk:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdeliť na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: nahradené
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: nahradiť s
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradiť s
     dropped: zahodené
@@ -547,10 +538,7 @@ sk:
   confirm_now: Potvrdiť teraz
   confirm_your_info: Potvrďte svoje info
   connect_to_provider: "Pripojiť sa k %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Pripojené účty
   connecting_flickr: "Pripájanie k Flickr..."
-  connecting_to_facebook: "Pripájanie k Facebooku..."
   conservation_status: Stav ochrany
   conservation_status_descriptions:
     description: Krátky opis dôvodov, prečo je toto na zozname.
@@ -632,7 +620,6 @@ sk:
   created_by: Vytvorené
   created_by_user_on_date: Vytvorené užívateľom %{user} dňa %{date}
   created_on: Vytvorená dňa
-  creating_your_account: "Vytváram váš účet..."
   creative_commons_flickr_tagged: Označené fotky Creative Commons na Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, ak nie je uvedené inak."
   critically_endangered: kriticky ohrozený
@@ -781,9 +768,13 @@ sk:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Označené taxóny
+  #Noun, as in a journal post that has not been published
   draft: koncept
+  #Noun, as in a journal post that has not been published
   draft_: Koncept
+  #Noun, as in a journal post that has not been published
   draft_saved: Komcept uložený!
+  #Noun, as in journal posts that has not been published
   drafts: Koncepty
   drag_and_drop_some_photos_or_sounds: Ťahaj a pusti nejaké fotky alebo zvuk
   drawings: Kresba
@@ -841,7 +832,6 @@ sk:
   eligible_for_research_grade: Vhodné pre výskumný stupeň
   email: Email
   email_address_for_comments_and_other_feedback: E-mailové adresy pre komentáre a inú spätnú väzbu.
-  email_copyright: "Autorské práva &copy; %{x}, všetky práva vyhradené"
   embed: 'Vložiť'
   embed_place_widget: Vložiť widget miesta
   embed_this_assessment: Vložiť toto hodnotenie
@@ -892,8 +882,6 @@ sk:
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
   evidence_of_organism: Dôkaz o organizme
-  facebook_account_information: Informácie z vášho facebookového účtu
-  facebook_options: Možnosti Facebooku
   failed_to_find_your_location: Vaša lokalita nebola nájdená.
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
   failed_to_save_record: "Nepodarilo sa uložiť záznam. Skúste to prosím znova."
@@ -1008,7 +996,6 @@ sk:
   frequency: Frekvencia
   from_a_place: z miesta
   from_eol_collection: Z kolekcie EOL
-  from_flickr_facebook_etc: Z Facebooku, Flickr atď.
   from_list: Zo zoznamu
   from_photos: Z fotiek
   from_place: Z miesta
@@ -1073,12 +1060,6 @@ sk:
   hex_color_eg: Farba hex, napr. 65644F
   hi_user: "Ahoj %{user}"
   hide_content: Skryť obsah
-  hide_desc: |
-    Skrytím obsahu ho odstránite z verejného zobrazenia, ale ľudia budú stále
-    vidieť, že niečo bolo skryté, a kurátori stránok a autor
-    obsahu bude naďalej môcť vidieť skrytý obsah. Všeobecne platí, že sa to
-    vzťahuje iba na písomný obsah, napr. ak skryjete obsah
-    identifikácie, identifikácia je stále viditeľná, ale poznámky identifikátora sú skryté. Nemôžete to vrátiť späť a iba pracovníci stránok môžu skryť obsah, keď bude skrytý, takže buďte opatrní a používajte ho iba pri obsahu, ktorý je nevhodný.
   hide_uncountable_species: Skryť nespočítateľné druhy
   high: Vysoká
   highest_rank: Najvyššie poradie
@@ -1151,7 +1132,6 @@ sk:
   inappropriate_content: Nevhodný obsah?
   inat_account_action: "%{site_name} &#58; Účet &#58; %{action_name}"
   inat_user_profile: "%{site_name}: Profil užívateľa %{user}"
-  inaturalist_is_a_joint_initiative: "%{site_name} je spoločná iniciatíva California Academy of Sciences a National Geographic Society."
   inaturalist_places: "%{site_name} Miesta"
   info: Informácie
   input_taxon: Vstupný taxón
@@ -1238,7 +1218,6 @@ sk:
   let_us_walk_you_through: Poďme si teraz prejsť hlavné funkcie tejto stránky.
   lexicon: Slovník
   lexicons:
-    scientific_names: Vedecké názvy
     afrikaans: Afrikánčina
     albanian: Albánčina
     bengali: Bengálčina
@@ -1272,6 +1251,7 @@ sk:
     portuguese: Portugalčina
     romanian: Rumunčina
     russian: Ruština
+    scientific_names: Vedecké názvy
     spanish: Španielčina
     swedish: Švédčina
     tahitian: Tahitčina
@@ -1285,14 +1265,8 @@ sk:
   life_list: "Zoznam života užívateľa %{user}"
   linear_scale_label: Lineárny
   link: Odkaz
-  link_your_facebook_account: Pripojiť váš účet na Facebooku
   link_your_flickr_account: Pripojiť účet Flickr
   link_your_google_account: Pripojiť účet Google
-  linked_facebook: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Facebooku."
-  linked_facebook_automaticaly: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Facebook, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Facebooku. Zdá sa rozumné, že ak používate Facebook, budete chcieť importovať fotky z Facebooku, že?"
-  linked_facebook_description: "Ak bude váš účet na %{site_name} prepojený s vašim účtom na Facebooku, budete môcť pridávať ku svojim pozorovaniam viac fotiek. Samozrejme, ak budete kedykoľvek chcieť %{site_name} a Facebook oddeliť, nebudeme vám v tom brániť, len nebudete môcť pridávať fotky. Niekedy to môže byť dobré, napríklad keď si vytvoríte nový účet na Facebooku, s ktorým chcete prepojiť %{site_name}."
-  linked_facebook_howto: "Pokiaľ chcete prepojiť Facebook a  %{site_name}, kliknite na odkaz vpravo a prihláste sa na Facebook.com."
-  linked_facebook_password: "Nikdy vás nebudeme žiadať o vaše heslo na Facebook (Facebook o neho však žiadať môže, skontrolujte url a overte si, že ide o Facebook.com). Tiež nebudeme meniť vaše údaje na Facebooku, ak nás o to nepožiadate."
   linked_flickr: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Flickr."
   linked_flickr_automatically: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Flickr, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Flickr. Zdá sa rozumné, že ak používate Flickr, budete chcieť importovať fotky z Flickr, že?"
   linked_flickr_description: "Ak bude váš účet na %{site_name} prepojený s vaším účtom na Flickr, budete môcť pridávať ku svojim pozorovaniam viac fotiek. Samozrejme, ak budete kedykoľvek chcieť %{site_name} a Flickr oddeliť, nebudeme vám v tom brániť, len nebudete môcť pridávať fotky. Niekedy to môže byť dobré, napríklad keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}."
@@ -1374,7 +1348,6 @@ sk:
   locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana catesbeiana</i> od externého poskytovateľa názvov, nový taxón bude vytvorený, ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Kurátor môže vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
-  login_slash_username: Prihlásenie / užívateľské meno
   logo:
     white_bg_gif: GIF s bielym pozadím
     transparent_png: transparentný PNG
@@ -1420,7 +1393,6 @@ sk:
       every_publicly_visible_observation: Každé verejne viditeľné pozorovanie vytvorené v sieti iNaturalist
       featured_observations: Odporúčané pozorovania
       gbif_network: GBIF sieť
-      gbif_network_description: Záznamy z múzeí a iných poskytovateľov výskytu, ktoré distribuuje Global Biodiversity Informatics Facility
       observations: Pozorovania
       place_boundary: Umiestniť hranicu
       checklist_places: Zoznam miest
@@ -1505,6 +1477,7 @@ sk:
   must_be_less_than_x_MB: "Musí byť menej ako %{x} MB"
   must_have_observation_field: "pole pozorovania '%{operand}' musí byť vyplnené"
   must_have_x: "musí mať %{x}"
+  #Mute is a noun here
   mute_removed: Stlmenie zrušené
   muted_users: Stlmení používatelia
   n_ago: "pred %{n}"
@@ -1657,7 +1630,6 @@ sk:
   not_findig_what_you_want: Nenašli ste, čo ste chceli?
   not_finding_place_you_want?: Nenašli ste miesto, ktoré ste hľadali?
   not_found: Nenájdené
-  not_linked_facebook: "Váš účet na %{site_name} nie je pripojený s vašim účtom na Facebooku."
   not_linked_flickr: "Váš účet na %{site_name} nie je prepojený s vašim účtom na Flickr"
   not_on_this_list: Nie je na tomto zozname.
   not_recorded: Nebol zaznamenaný
@@ -1794,7 +1766,7 @@ sk:
   optional: voliteľný
   or: alebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ALEBO
   orange: oranžový
   order: Zoradiť
@@ -2225,7 +2197,6 @@ sk:
   post_from_your_journal_html: Príspevok z <a href="%{url}">vášho denníka</a>
   post_published: Príspevok zverejnený!
   posted_by: Autor
-  posted_on: Pridané dňa
   posts: Príspevky
   potential_disagreement: Potenciálna nezhoda
   powered_by: Vytvorené pomocou
@@ -2517,11 +2488,12 @@ sk:
   select: Vybrať
   select_all: Vybrať všetko
   select_at_least_one: Vybrať aspoň jeden
-  select_one_or_more_photos: 'Vybrať jednu alebo viac fotiek'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nevybrať žiadny
   select_observations_to_edit: Vyberte pozorovanie na úpravu...
   select_one_of_friends_albums: Vyberte jeden z albumov užívateľa %{friend}
   select_one_of_your_albums: Vyberte jeden z vašich albumov
+  select_one_or_more_photos: 'Vybrať jednu alebo viac fotiek'
   select_options: Vybrať možnosti
   selected: vybrané
   selected_photos: Vybrané fotky
@@ -2706,7 +2678,6 @@ sk:
   tag: Tag
   tagging: 'Tagovanie...'
   tags: Tagy
-  take_me_facebook: Áno, chcem ísť na Facebook!
   take_me_flickr!: Áno, chcem ísť na Flickr!
   taxa: Taxóny
   taxa_with_unknown_relationships: Taxóny s neznámymi vzťahmi
@@ -2870,12 +2841,17 @@ sk:
   updated: Aktualizované
   updated_daily: Aktualizované denne
   updated_photo: Aktualizovaná fotka
+  #@gender operates on %{x}
   user_added_a_x: "%{user} pridal(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} pridal(a) %{x} k %{noun}"
   user_added_an_identification_html: "%{user} pridal identifikáciu"
   user_added_an_observation_html: "Používateľ %{user} pridal pozorovanie"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} pridal(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} vložil %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Používateľ %{user} pridal %{x} k %{noun}"
   user_added_x_observations_html: "Užívateľ %{user} pridal %{x} pozorovaní"
   user_commented: "%{user} komentoval"
@@ -2925,7 +2901,6 @@ sk:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobraziť vašu nástenku</a> a aktualizácie"
   view_your_inbox: Zobraziť vaše prijaté správy
   view_your_observations: Zobraziť vaše pozorovania.
-  view_your_year_stats: "Zobraziť vašu štatistiku za rok %{year}"
   view_yours: Zobraziť váš
   view_all_of_your_observations_from_x: "Zobraziť všetky vaše pozorovania z %{x}"
   we_had_a_problem_flagging_that_item: "Máme problém s označením tejto položky:%{flag_error}"
@@ -3019,8 +2994,6 @@ sk:
       index:
         connect_with_nature: Spojte sa s prírodou
         explore_and_share: Objavujte a zdieľajte svoje pozorovania zo sveta prírody.
-        observations_to_date: 'Pozorovaní k dnešnému dňu'
-        people_signed_up: 'Zaregistrovaných ľudí'
         how_it_works: Ako to funguje
         record_your_observations: Zaznamenejte svoje pozorovania
         share_with_fellow_naturalists: Zdieľajte s našimi prirodovedcami
@@ -3060,18 +3033,18 @@ sk:
       - Sob
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
+      - 
+      - 
+      - 
+      - 
       - Máj
       - Jún
       - Júl
-      - Aug
-      - Sep
+      - 
+      - 
       - Okt
-      - Nov
-      - Dec
+      - 
+      - 
     day_names:
       - Nedeľa
       - Pondelok
@@ -3089,16 +3062,8 @@ sk:
       6: Pia
       7: So
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%R-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%M %d, %R'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%m %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%M %d, %R'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%M %d, %R'
     month_names:
       - 
       - Január
@@ -3108,11 +3073,11 @@ sk:
       - Máj
       - Jún
       - Júl
-      - August
-      - September
+      - 
+      - 
       - Október
-      - November
-      - December
+      - 
+      - 
   datetime:
     prompts:
       day: Deň
@@ -3121,34 +3086,14 @@ sk:
       month: Mesiac
       second: Sekundy
       year: Rok
-  errors:
-    messages:
-      accepted: musí byť prijaté
-      blank: nesmie byť nevyplnené
-      confirmation: heslo nesedí
-      empty: nesmie byť prázdne
-      equal_to: musí sa rovnať %{count}
-      even: musí byť párne
-      exclusion: je vyhradené
-      greater_than: musí väčšie ako %{count}
-      greater_than_or_equal_to: musí byť vyšší alebo rovnaký ako %{count}
-      inclusion: nie je zahrnuté v zozname
-      invalid: je neplatné
-      less_than: musí byť menší ako %{count}
-      less_than_or_equal_to: musí byť nižší alebo rovnaký ako %{count}
-      not_a_number: nie je číslo
-      not_an_integer: musí byť celé číslo
-      odd: musí byť nepárne
-      record_invalid: 'Potvrdenie zlyhalo: %{errors}'
-      requires_privilege_speech: |
-        musíte mať tri overené pozorovania alebo tri identifikácie pre ostatných aby ste mohli
-      requires_privilege_organizer: musíte mať 50 overených pozorovaní aby ste mohli
-      taken: už bolo prijaté
   helpers:
     submit:
       create: Vytvoriť %{model}
       update: Aktualizovať %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

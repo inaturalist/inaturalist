@@ -1,9 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
+  include Users::CustomDeviseModule
+
   protect_from_forgery with: :exception, prepend: true
-
-  before_action :load_registration_form_data, only: [:new, :create]
-
-  layout "registrations"
 
   def create
     # attempt straight db auth first, then warden auth
@@ -31,6 +29,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
+
   def set_flash_message(key, kind, options = {})
     if @legacy_authentication_successful
       flash[:notice] = I18n.t(:legacy_authentication_notice_html, :url => generic_edit_user_url)

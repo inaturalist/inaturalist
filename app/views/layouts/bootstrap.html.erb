@@ -2,10 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="<%= I18n.locale %>"
       lang="<%= I18n.locale %>"
+      <% if @rtl %>
+        dir="rtl"
+      <% else %>
+        dir="ltr"
+      <% end %>
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %> </title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %></title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
@@ -16,8 +21,9 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
+    <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
     <%= csrf_meta_tag %>
-    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>">
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
@@ -26,12 +32,12 @@
     <% end -%>
     <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>
-    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
-    <% end %>
     <% if !@headless && @site && !@site.ios_app_id.blank? -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
+      <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
@@ -44,16 +50,15 @@
         <%= render :partial => 'shared/header' %>
       <% end -%>
 
-      <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
+      <% if flash[:success] && !@flash_js %>
         <div class="bootstrap">
           <div class="container upstacked">
-            <div class="alert alert-warning upstacked">
-              <%= (flash[:notice] || flash[:alert]).html_safe %>
+            <div class="alert alert-success upstacked">
+              <%= flash[:success].html_safe %>
             </div>
           </div>
         </div>
       <% end %>
-
       <% if flash[:error] && !@flash_js %>
         <div class="bootstrap">
           <div class="container upstacked">
@@ -65,15 +70,7 @@
       <% end %>
 
       <% if !@headless && flash.empty? %>
-        <% if current_user && session[:potential_place] %>
-          <div class="bootstrap">
-            <div id="full-width-notice" class="container-fluid bg-warning">
-              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
-              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
-              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
-            </div>
-          </div>
-        <% elsif current_user && session[:potential_site] %>
+        <% if current_user && session[:potential_site] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
@@ -110,6 +107,14 @@
                   <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                 </span>
               </div>
+            </div>
+          </div>
+        <% elsif current_user && session[:potential_place] %>
+          <div class="bootstrap">
+            <div id="full-width-notice" class="container-fluid bg-warning">
+              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
             </div>
           </div>
         <% end %>
@@ -171,13 +176,15 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_gbif_layer_maps: <%= current_user.prefers_gbif_layer_maps %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
           prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
           sites_admined: [<%= current_user.site_admins.pluck(:site_id).join( "," ) %>],
           testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
-          donor: <%= !!current_user.donorbox_donor_id %>
+          donor: <%= current_user.donor? %>,
+          monthlyDonor: <%= current_user.monthly_donor? %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
@@ -213,10 +220,16 @@
         $.fn.btn = btn;
       }
     </script>
-    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
+    <% unless @skip_external_connections || @asynchronous_google_maps_loading %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag "map_bundle" %>
+    <% end %>
+    <% if @asynchronous_google_maps_loading %>
+      <%= javascript_include_tag "map_bundle" %>
+      <%= google_maps_async_js %>
+    <% end %>
     <%= yield :extrajs %>
-    <% if logged_in? && !@minimal_header -%>
+    <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setMessagesCount(<%= session[:messages_count].to_i %>)

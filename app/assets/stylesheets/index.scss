@@ -1024,12 +1024,12 @@ ul.leafylist li li:first-child {
 .taxon.Chromista a,
 .taxon.Chromista .display_name        { color: #993300;  }
 
-.taxon.has-com-name .secondary-name { 
+.taxon.has-com-name .secondary-names,
+.taxon.has-com-name > .secondary-name {
   color: #aaa;
-  white-space: nowrap;
 }
-.taxon.has-com-name .secondary-name:before { content: '('; display: inline-block; }
-.taxon.has-com-name .secondary-name:after { content: ')'; display: inline-block; }
+.taxon.has-com-name .secondary-name:before { content: '('; display: contents; }
+.taxon.has-com-name .secondary-name:after { content: ')'; display: contents; }
 .taxon.has-com-name.no-parens .secondary-name:before { content: ''; display: inline-block; }
 .taxon.has-com-name.no-parens .secondary-name:after { content: ''; display: inline-block; }
 .taxon .altname { color: #aaa; }
@@ -1281,7 +1281,6 @@ button.button.providerlink {
 }
 ul a.providerlink, ul a.button.providerlink { width: 190px; }
 ul input.providerlink, ul input.button.providerlink { width: 230px; }
-.providerlink.facebook { background-image: image-url('external/facebook_favicon.png'); }
 .providerlink.twitter { background-image: image-url('external/twitter_favicon.png'); }
 .providerlink.google { background-image: image-url('external/google_favicon.png'); }
 .providerlink.yahoo { background-image: image-url('external/yahoo_favicon.png'); }
@@ -1639,7 +1638,15 @@ ul.plain {list-style:none;margin:0;padding:0}
 .leftmenu .count.right {
   margin: 5px 10px 0 0;
 }
-.topmenu {float: right; list-style: none; padding:0; margin:0;position: relative; z-index: 1;}
+.topmenu {
+  float: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+}
 .topmenu  li { display: inline-block;}
 .topmenu li a {display:inline-block; padding: 5px 10px; margin-left: 10px;}
 .topmenu li a.active {font-weight:bold; border-bottom: 2px solid #eee;}
@@ -1932,7 +1939,7 @@ user-icon .icon-person:before {
         background: #efefef;
       }
       > div {
-        line-height: 46px;
+        min-height: 46px;
       }
       .ac-thumb {
         padding-left: 10px;
@@ -1965,23 +1972,16 @@ user-icon .icon-person:before {
         .secondary-name {
           color: #aaa;
         }
-        .secondary-name:before { content: '('; display: inline-block; }
-        .secondary-name:after { content: ')'; display: inline-block; }
-        overflow: hidden;
-        white-space: nowrap;
+        .secondary-name:before { content: '('; display: contents; }
+        .secondary-name:after { content: ')'; display: contents; }
       }
       .ac-view {
-        padding: 0 10px;
-        background: none;
-        display: flex;
-
         &.view-observations {
-          padding-right: 0;
-          span {
-            border-right: 1px solid #ddd;
-            padding-right: 10px;
-          }
+          background: none;
         }
+      }
+      .view-all {
+        flex: 1;
       }
       &.ac-result-Taxon {
         .no-photo {
@@ -2038,6 +2038,9 @@ user-icon .icon-person:before {
     .ui-state-focus {
       .ac {
         background-color: #eee;
+        .ac-view.about {
+          background-color: #e0e0e0;
+        }
       }
     }
   }
@@ -2353,4 +2356,32 @@ $header-line-height: 34px;
     padding: 0;
     border: 0 transparent;
   }
+}
+
+.d-flex {
+  display: flex !important;
+  &.align-items-strech {
+    align-items: stretch;
+  }
+  &.align-items-center {
+    align-items: center;
+  }
+  &.flex-row {
+    flex-direction: row;
+  }
+  &.flex-column {
+    flex-direction: column;
+  }
+  &.flex-2 {
+    flex: 2;
+  }
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+  &.justify-content-between {
+    justify-content: space-between;
+  }
+}
+.flex-grow-1 {
+  flex-grow: 1 !important;
 }

@@ -2,6 +2,9 @@
 
 // Adapted from https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2
 
+/* global WORLD_ATLAS_50M_JSON_URL */
+/* global WORLD_ATLAS_50M_TSV_URL */
+
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
@@ -11,6 +14,12 @@ import * as topojson from "topojson-client";
 import { objectToComparable } from "../../../shared/util";
 
 class CountryGrowth extends React.Component {
+  static resetVisualization( ) {
+    // Rather silly way of triggering the d3 visualizations internal reset
+    // function
+    d3.select( ".CountryGrowth .map .chart rect" ).dispatch( "click" );
+  }
+
   constructor( props ) {
     super( props );
     this.state = {
@@ -26,8 +35,10 @@ class CountryGrowth extends React.Component {
 
   componentDidMount( ) {
     this.renderVisualization( );
-    d3.json( WORLD_ATLAS_50M_JSON_URL, world => this.setState( { world } ) );
-    d3.tsv( WORLD_ATLAS_50M_TSV_URL, worldData => this.setState( { worldData: _.keyBy( worldData, d => d.iso_n3 ) } ) );
+    d3.json( WORLD_ATLAS_50M_JSON_URL ).then( world => this.setState( { world } ) );
+    d3.tsv( WORLD_ATLAS_50M_TSV_URL ).then(
+      worldData => this.setState( { worldData: _.keyBy( worldData, d => d.iso_n3 ) } )
+    );
   }
 
   componentDidUpdate( prevProps, prevState ) {
@@ -52,6 +63,11 @@ class CountryGrowth extends React.Component {
       )
     ) {
       this.enterVisualization( );
+      // Try to reset on first load, but definitely don't reset if there's a
+      // selected feature
+      if ( data && !prevState.data && !currentFeatureID ) {
+        CountryGrowth.resetVisualization( );
+      }
     }
   }
 
@@ -79,7 +95,6 @@ class CountryGrowth extends React.Component {
       .scaleExtent( [0, maxScale] )
       .on( "zoom", zoomed );
     let active = d3.select( null );
-    svg.select( "rect" ).on( "click", reset );
     let worldFeatures = _.map( topojson.feature( world, world.objects.countries ).features, f => {
       let newProperties = {};
       if ( f.id === "-99" ) return f;
@@ -186,9 +201,44 @@ class CountryGrowth extends React.Component {
           .text( pathTitle );
     countryPaths.exit( ).remove( );
     const that = this;
-    function clicked( d ) {
+    function zoomToBounds( bounds ) {
       const svgWidth = $( "svg", domNode ).width( );
       const svgHeight = $( "svg", domNode ).height( );
+      const boundsWidth = bounds[1][0] - bounds[0][0];
+      const boundsHeight = bounds[1][1] - bounds[0][1];
+      const boundsCenterX = ( bounds[0][0] + bounds[1][0] ) / 2;
+      const boundsCenterY = ( bounds[0][1] + bounds[1][1] ) / 2;
+      const maxDimRatio = Math.max( boundsWidth / svgWidth, boundsHeight / svgHeight );
+      const maxCurrentScale = Math.min( maxScale, 0.5 / maxDimRatio );
+      const newScale = Math.max( 0.01, maxCurrentScale );
+      const translate = [
+        svgWidth / 2 - newScale * boundsCenterX,
+        svgHeight / 2 - newScale * boundsCenterY
+      ];
+      svg.transition( )
+        .duration( 1000 )
+        .call(
+          zoom.transform,
+          d3.zoomIdentity.translate( translate[0], translate[1] ).scale( newScale )
+        );
+    }
+    function reset() {
+      that.setState( { currentFeatureID: null } );
+      active.classed( "active", false );
+      active = d3.select( null );
+      const projection = path.projection( );
+      const ne = projection( [179, 89] );
+      const sw = projection( [-179, -89] );
+      const bounds = [sw, ne];
+      zoomToBounds( bounds );
+    }
+    svg.select( "rect" ).on( "click", reset );
+    function zoomed( zoomEvent ) {
+      g.selectAll( "path" ).style( "stroke-width", "0px" );
+      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / zoomEvent.transform.k}px` );
+      g.attr( "transform", zoomEvent.transform );
+    }
+    function clicked( _clickEvent, d ) {
       const current = svg.selectAll( `[id="${d.id}"]` );
       if ( that.state.currentFeatureID === d.id ) {
         return reset( );
@@ -219,33 +269,8 @@ class CountryGrowth extends React.Component {
         }
         bounds = [sw, ne];
       }
-      const boundsWidth = bounds[1][0] - bounds[0][0];
-      const boundsHeight = bounds[1][1] - bounds[0][1];
-      const boundsCenterX = ( bounds[0][0] + bounds[1][0] ) / 2;
-      const boundsCenterY = ( bounds[0][1] + bounds[1][1] ) / 2;
-      const maxDimRatio = Math.max( boundsWidth / svgWidth, boundsHeight / svgHeight );
-      const maxCurrentScale = Math.min( maxScale, 0.5 / maxDimRatio );
-      const newScale = Math.max( 1, maxCurrentScale );
-      const translate = [svgWidth / 2 - newScale * boundsCenterX, svgHeight / 2 - newScale * boundsCenterY];
-      svg.transition( )
-        .duration( 1000 )
-        .call( zoom.transform, d3.zoomIdentity.translate( translate[0], translate[1] ).scale( newScale ) );
+      zoomToBounds( bounds );
     }
-    function reset() {
-      that.setState( { currentFeatureID: null } );
-      active.classed( "active", false );
-      active = d3.select( null );
-      svg.transition( )
-        .duration( 750 )
-        .call( zoom.transform, d3.zoomIdentity );
-    }
-    function zoomed( ) {
-      g.selectAll( "path" ).style( "stroke-width", "0px" );
-      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / d3.event.transform.k}px` );
-      g.attr( "transform", d3.event.transform );
-    }
-    // Enable free pan and zoom
-    svg.call( zoom );
     const barsContainer = d3.select( $( ".bars .chart", domNode ).get( 0 ) );
     const barData = _.sortBy(
       _.uniqBy(
@@ -289,7 +314,7 @@ class CountryGrowth extends React.Component {
         .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
         .style( "color", d => d3.color( d3.interpolateViridis( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
         .style( "background-color", d => d3.interpolateViridis( dataScale( d.properties[metric] ) ) )
-        .on( "click", d => clicked( d ) );
+        .on( "click", ( clickEvent, d ) => clicked( clickEvent, d ) );
     enterBars
       .append( "span" )
         .attr( "class", "rank" )
@@ -308,25 +333,31 @@ class CountryGrowth extends React.Component {
   renderVisualization( ) {
     const mountNode = $( ".map .chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).append( "svg" );
+    const svgWidth = $( "svg", mountNode ).width( );
     const svgHeight = $( "svg", mountNode ).height( );
     svg
-      .attr( "width", 960 )
-      .attr( "height", 600 )
+      .attr( "width", svgWidth )
+      .attr( "height", svgHeight )
       .style( "width", "100%" )
       .style( "height", svgHeight )
-      .attr( "viewBox", `0 0 960 ${svgHeight}` )
+      .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
       .attr( "preserveAspectRatio", "xMidYMid meet" );
     svg.append( "rect" )
       .attr( "class", "background" )
-      .attr( "width", 960 )
-      .attr( "height", 600 )
+      .attr( "width", svgWidth )
+      .attr( "height", svgHeight )
       .attr( "fill", "transparent" );
     svg.append( "g" );
   }
 
   render( ) {
     const { id, className, year } = this.props;
-    const { dataScaleType, includeUS, metric } = this.state;
+    const {
+      currentFeatureID,
+      dataScaleType,
+      includeUS,
+      metric
+    } = this.state;
     window.d3 = d3;
     return (
       <div id={id} className={`CountryGrowth ${className}`}>
@@ -342,10 +373,20 @@ class CountryGrowth extends React.Component {
           }}
         />
         <div className="row">
-          <div className="map col-xs-9">
+          <div className="map col-md-9 col-sm-12 stacked">
             <div className="chart" />
+            { currentFeatureID && (
+              <button
+                type="button"
+                className="btn btn-default btn-bordered"
+                onClick={CountryGrowth.resetVisualization}
+              >
+                <i className="fa fa-search-minus" />
+                { I18n.t( "zoom_out" ) }
+              </button>
+            ) }
           </div>
-          <div className="bars col-xs-3">
+          <div className="bars col-md-3 col-sm-12">
             <div className="controls">
               <select
                 className="form-control stacked"

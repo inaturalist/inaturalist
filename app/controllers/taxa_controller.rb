@@ -221,6 +221,7 @@ class TaxaController < ApplicationController
         site_place = @site && @site.place
         user_place = current_user && current_user.place
         preferred_place = user_place || site_place
+        options[:authenticate] = current_user
         @node_taxon_json = INatAPIService.get_json(
           "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}",
           options
@@ -865,7 +866,7 @@ class TaxaController < ApplicationController
       format.html { render partial: "wikipedia_taxobox", object: @taxon }
     end
   end
-  
+
   def update_photos
     if @taxon.photos_locked? && !current_user.is_admin?
       respond_to do |format|
@@ -911,19 +912,6 @@ class TaxaController < ApplicationController
       format.json { render json: { error: t(:request_timed_out) }, status: :request_timeout }
       format.any do
         flash[:error] = t(:request_timed_out)
-        redirect_back_or_default( taxon_path( @taxon ) )
-      end
-    end
-  rescue Koala::Facebook::APIError => e
-    raise e unless e.message =~ /OAuthException/
-    msg = t(
-      :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: @site.site_name_short
-    )
-    respond_to do |format|
-      format.json { render json: { error: msg }, status: :unprocessable_entity }
-      format.any do
-        flash[:error] = msg 
         redirect_back_or_default( taxon_path( @taxon ) )
       end
     end
@@ -1019,21 +1007,8 @@ class TaxaController < ApplicationController
         redirect_back_or_default( taxon_path( @taxon ) )
       end
     end
-  rescue Koala::Facebook::APIError => e
-    raise e unless e.message =~ /OAuthException/
-    msg = t(
-      :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: @site.site_name_short
-    )
-    respond_to do |format|
-      format.json { render json: { error: msg }, status: :unprocessable_entity }
-      format.any do
-        flash[:error] = msg 
-        redirect_back_or_default( taxon_path( @taxon ) )
-      end
-    end
   end
-  
+
   def describe
     @describers = if @site.taxon_describers
       @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact

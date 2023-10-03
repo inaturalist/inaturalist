@@ -35,6 +35,15 @@ describe ProviderOauthController do
         expect( User.find_by_email( google_response[:email] ) ).not_to be_blank
       end
 
+      it "should not return a token for a new user" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, format: :json, params: assertion_params
+        expect( response ).not_to be_successful
+        expect( User.find_by_email( google_response[:email] ) ).not_to be_confirmed
+        expect( JSON.parse( response.body )["access_token"] ).to be_blank
+        expect( JSON.parse( response.body )["error"] ).not_to be_blank
+      end
+
       it "should return a token for a confirmed user" do
         u = create :user, email: google_response[:email], confirmed_at: Time.now
         expect( u ).to be_confirmed
@@ -43,15 +52,24 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-      it "should return a token for an unconfirmed user who never received a confirmation email" do
-        u = create :user, email: google_response[:email], confirmed_at: nil
-        User.where( id: u.id ).update_all( confirmation_sent_at: nil )
-        u.reload
-        expect( u ).not_to be_confirmed
-        expect( u.confirmation_sent_at ).to be_blank
-        post :assertion, format: :json, params: assertion_params
-        expect( response ).to be_successful
-        expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
+      it "should not return a token for an unconfirmed user who never received a confirmation " \
+        "email after the requirement date" do
+        if Date.today > User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
+          u = create :user,
+            email: google_response[:email],
+            confirmed_at: nil,
+            created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.week )
+          User.where( id: u.id ).update_all( confirmation_sent_at: nil )
+          u.reload
+          expect( u ).not_to be_confirmed
+          expect( u.confirmation_sent_at ).to be_blank
+          post :assertion, format: :json, params: assertion_params
+          expect( response ).not_to be_successful
+          response_json = JSON.parse( response.body )
+          expect( response_json["access_token"] ).to be_blank
+          expect( response_json["error"] ).to eq "invalid_grant"
+          expect( response_json["error_description"] ).not_to be_blank
+        end
       end
 
       it "should not return a token for a confirmed suspended user" do
@@ -137,6 +155,23 @@ describe ProviderOauthController do
           response_json = JSON.parse( response.body )
           expect( response_json["error"] ).to eq "unauthorized_client"
         end
+      end
+
+
+    end
+
+    describe "without an email address" do
+      let( :google_response ) { { id: Faker::Number.number.to_s } }
+      it "should not create an account" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, params: assertion_params
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+      end
+      it "should respond with an error" do
+        post :assertion, params: assertion_params
+        response_json = JSON.parse( response.body )
+        expect( response_json["error"] ).to eq "invalid_grant"
+        expect( response_json["error_description"] ).not_to be_blank
       end
     end
   end

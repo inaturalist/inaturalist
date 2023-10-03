@@ -10,7 +10,9 @@ class Photo < ApplicationRecord
   has_many :guide_photos, :dependent => :destroy, :inverse_of => :photo
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
-  
+
+  has_moderator_actions %w(hide unhide)
+
   attr_accessor :api_response, :orphan,
     :remote_original_url,
     :remote_large_url,
@@ -55,7 +57,7 @@ class Photo < ApplicationRecord
     original =  file.url( :original )
     return unless original
     if original !~ /http/
-      original = FakeView.uri_join( FakeView.root_url, original ).to_s
+      original = UrlHelper.uri_join( UrlHelper.root_url, original ).to_s
     end
     if matches = original.match( /^(.*)\/#{id}\/original/ )
       return matches[1]
@@ -93,13 +95,16 @@ class Photo < ApplicationRecord
 
   def sized_url( size = "original" )
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }
-      return FakeView.image_url( "copyright-infringement-#{size}.png" )
+      return ApplicationController.helpers.image_url( "copyright-infringement-#{size}.png" )
+    end
+    if hidden?
+      return ApplicationController.helpers.image_url( "media-hidden-#{size}.png" )
     end
     if self.instance_variable_get("@remote_#{size}_url")
       return self.instance_variable_get("@remote_#{size}_url")
     end
     if processing?
-      return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
+      return UrlHelper.uri_join( UrlHelper.root_url, LocalPhoto.new.file.url( size ) )
     end
     "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end
@@ -261,13 +266,13 @@ class Photo < ApplicationRecord
     nil
   end
 
-  def best_url(size = "medium")
+  def best_url( size = "medium" )
     size = size.to_s
-    sizes = %w(original large medium small thumb square)
-    size = "medium" unless sizes.include?(size)
-    size_index = sizes.index(size)
-    methods = sizes[size_index.to_i..-1].map{|s| "#{s}_url"} + ['original']
-    try_methods(*methods)
+    sizes = LocalPhoto::FILE_OPTIONS[:styles].keys.map( &:to_s )
+    size = "medium" unless sizes.include?( size )
+    size_index = sizes.index( size )
+    methods = sizes[size_index.to_i..-1].map {| s | "#{s}_url" } + ["original"]
+    try_methods( *methods )
   end
 
   def serializable_hash( opts = nil )
@@ -305,10 +310,25 @@ class Photo < ApplicationRecord
     if flag_is_copyright && !other_unresolved_copyright_flags_exist
       # For copyright flags reset the URLs if they still point to a copyright placeholder
       if %w(resolved destroyed).include?(options[:action]) && self["original_url"] =~ /copyright/
-        Photo.repair_single_photo(self)
+        Photo.repair_single_photo( self )
       end
-      observations.each(&:update_stats)
+      observations.each( &:update_stats )
     end
+    observations.each do |o|
+      o.update_mappable
+      Observation.set_quality_grade( o.id )
+      o.elastic_index!
+    end
+    taxa.each( &:elastic_index! )
+  end
+
+  def moderated_with( moderator_action, options = { } )
+    if self.is_a?( LocalPhoto )
+      change_photo_bucket_if_needed
+      reload
+      set_acl
+    end
+    observations.each( &:update_stats )
     observations.each do |o|
       o.update_mappable
       Observation.set_quality_grade( o.id )

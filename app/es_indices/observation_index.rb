@@ -14,7 +14,7 @@ class Observation < ApplicationRecord
     { annotations: :votes_for },
     { photos: :flags },
     { sounds: :user },
-    { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
+    { identifications: [ :stored_preferences, :taxon, :moderator_actions ] }, :project_observations,
     { taxon: [ :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags, :moderator_actions ] } ) }
@@ -334,7 +334,7 @@ class Observation < ApplicationRecord
         for_identification: options[:for_identification]) : nil
     }
 
-    current_ids = identifications.select(&:current?)
+    current_ids = identifications.select( &:current? ).reject( &:hidden? )
     if options[:no_details]
       json.merge!({
         user_id: user.id
@@ -943,7 +943,7 @@ class Observation < ApplicationRecord
         nested: {
           path: "annotations",
           query: { bool: { must: [
-            { term: { "annotations.controlled_attribute_id.keyword": p[:term_id] } },
+            { terms: { "annotations.controlled_attribute_id.keyword": p[:term_id].to_s.split( "," ) } },
             { range: { "annotations.vote_score": { gte: 0 } } }
           ] }
           }
@@ -951,7 +951,7 @@ class Observation < ApplicationRecord
       }
       if p[:term_value_id]
         nested_query[:nested][:query][:bool][:must] <<
-          { term: { "annotations.controlled_value_id.keyword": p[:term_value_id] } }
+          { terms: { "annotations.controlled_value_id.keyword": p[:term_value_id].to_s.split( "," ) } }
       end
       search_filters << nested_query
     end
@@ -1077,7 +1077,10 @@ class Observation < ApplicationRecord
       unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
         case p[geoprivacy_type]
         when Observation::OPEN
-          inverse_filters << { exists: { field: geoprivacy_type } }
+          search_filters << { bool: { should: [
+            { term: { geoprivacy_type => "open" } },
+            { bool: { must_not: { exists: { field: geoprivacy_type } } } }
+          ]}}
         when "obscured_private"
           search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
         else

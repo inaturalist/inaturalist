@@ -13,6 +13,27 @@ module MakeHelpers
     ) )
   end
 
+  def make_controlled_term_with_label( label, options = { } )
+    controlled_term = ControlledTerm.make!( {
+      active: true,
+      is_value: false
+    }.merge( options ) )
+    controlled_term.labels << ControlledTermLabel.make!(
+      label: label,
+      controlled_term: controlled_term
+    )
+    controlled_term
+  end
+
+  def make_controlled_value_with_label( label, controlled_attribute )
+    controlled_term = make_controlled_term_with_label( label, is_value: true )
+    ControlledTermValue.make!(
+      controlled_attribute: controlled_attribute,
+      controlled_value: controlled_term
+    )
+    controlled_term
+  end
+
   def make_annotation!( options = {} )
     make_annotation( options.merge( create: true ) )
   end

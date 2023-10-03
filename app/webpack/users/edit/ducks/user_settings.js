@@ -1,6 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { fetchRelationships, updateBlockedAndMutedUsers } from "./relationships";
+import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
 import { fetchNetworkSites } from "./network_sites";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
@@ -35,9 +36,19 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
       // this is kind of unnecessary, but removing these since they're read-only keys
       // and don't need to be included in UI or users.update
       const keysToIgnore = [
-        "spam", "suspended", "created_at", "login_autocomplete", "login_exact",
-        "name_autocomplete", "observations_count", "identifications_count", "journal_posts_count",
-        "activity_count", "species_count", "universal_search_rank", "prefers_automatic_taxon_changes"
+        "activity_count",
+        "created_at",
+        "identifications_count",
+        "journal_posts_count",
+        "login_autocomplete",
+        "login_exact",
+        "name_autocomplete",
+        "observations_count",
+        "prefers_automatic_taxon_changes",
+        "spam",
+        "species_count",
+        "suspended",
+        "universal_search_rank"
       ];
 
       const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
@@ -46,6 +57,13 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         }
         return object;
       }, {} );
+
+      // We may have pre-set confirmation_sent_at before actually requesting
+      // it, so we're keeping it there until we get a new value from the
+      // server
+      if ( profile.confirmation_sent_at && !userSettings.confirmation_sent_at ) {
+        userSettings.confirmation_sent_at = profile.confirmation_sent_at;
+      }
 
       dispatch( setUserData( userSettings, savedStatus ) );
 
@@ -70,11 +88,28 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
 }
 
 export async function handleSaveError( e ) {
-  if ( !e.response || e.response.status !== 422 ) {
-    return null;
+  // If there's no response, this wasn't an HTTP error response and we don't
+  // know what to show the user
+  if ( !e.response ) {
+    alert( I18n.t( "doh_something_went_wrong_error", { error: e.message } ) );
+    throw e;
+  }
+  // If the user is no longer authenticated, reload the window since they were
+  // probably signed out for some reason
+  if ( e.response.status === 401 ) {
+    window.location.reload( );
+    return {};
   }
   const body = await e.response.json( );
-  return body.error.original.errors;
+  if ( body && body.errors && Array.isArray( body.errors ) && _.isObject( body.errors[0] )
+    && body.errors[0].from === "externalAPI" && body.errors[0].message ) {
+    // apiv2 passes on errors from rails in an object, e.g.:
+    //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
+    return JSON.parse( body.errors[0].message ).errors;
+  }
+  if ( body && body.errors ) return body.errors;
+  if ( body && body.error && body.error.original ) return body.error.original.errors;
+  return null;
 }
 
 export function saveUserSettings( ) {
@@ -84,7 +119,7 @@ export function saveUserSettings( ) {
 
     const params = {
       id,
-      user: profile
+      user: { ...profile }
     };
 
     const topLevelAttributes = [
@@ -105,30 +140,32 @@ export function saveUserSettings( ) {
     }
 
     // could leave these, but they're unpermitted parameters
-    delete params.user.updated_at;
-    delete params.user.saved_status;
-    delete params.user.errors;
-    delete params.user.site;
-    delete params.user.id;
-    delete params.user.roles;
-    delete params.user.monthly_supporter;
     delete params.user.blocked_user_ids;
-    delete params.user.muted_user_ids;
-    delete params.user.privileges;
+    delete params.user.confirmation_sent_at;
+    delete params.user.confirmed_at;
+    delete params.user.errors;
     delete params.user.icon_url;
+    delete params.user.id;
+    delete params.user.monthly_supporter;
+    delete params.user.muted_user_ids;
     delete params.user.orcid;
+    delete params.user.taxon_name_priorities;
+    delete params.user.privileges;
+    delete params.user.roles;
+    delete params.user.saved_status;
+    delete params.user.site;
+    delete params.user.unconfirmed_email;
+    delete params.user.updated_at;
 
-    return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
-      // fetching user settings here to get the source of truth
-      // currently users.me returns different results than
-      // dispatching setUserData( results[0] ) from users.update response
-      dispatch( fetchUserSettings( "saved" ) );
-    } ).catch( e => {
-      handleSaveError( e ).then( errors => {
+    // fetching user settings here to get the source of truth
+    // currently users.me returns different results than
+    // dispatching setUserData( results[0] ) from users.update response
+    return inatjs.users.update( params, { useAuth: true } )
+      .then( ( ) => dispatch( fetchUserSettings( "saved" ) ) )
+      .catch( e => handleSaveError( e ).then( errors => {
         profile.errors = errors;
         dispatch( setUserData( profile, null ) );
-      } );
-    } );
+      } ) );
   };
 }
 
@@ -229,8 +266,72 @@ export function removePhoto( ) {
 export function changePassword( input ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile.password = input.new_password;
-    profile.password_confirmation = input.confirm_new_password;
-    dispatch( setUserData( profile ) );
+    const params = {
+      id: profile.id,
+      user: {
+        password: input.new_password,
+        password_confirmation: input.confirm_new_password
+      }
+    };
+    // send an update request immediately to change the password. Use
+    // same_origin: true to ensure rails will update the users' session
+    // with the password change flash message
+    return inatjs.users.update( params, { same_origin: true } )
+      .then( ( ) => {
+        // redirect to the login page on success
+        window.location = "/login";
+      } )
+      .catch( e => handleSaveError( e ).then( errors => {
+        // catch errors such as validation errors so they can be displayed
+        profile.errors = errors;
+        dispatch( setUserData( profile, null ) );
+      } ) );
+  };
+}
+
+export function resendConfirmation( ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
+      dispatch( fetchUserSettings( "saved" ) );
+      // If we go back to signing people out after sending the confirmation,
+      // we will need to reload the window
+      // window.location.reload( );
+    } ).catch( e => {
+      handleSaveError( e ).then( errors => {
+        profile.errors = errors;
+        dispatch( setUserData( profile, null ) );
+      } );
+    } );
+  };
+}
+
+export function confirmResendConfirmation( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace_html", {
+        email: state.profile.email || ""
+      } ),
+      confirmText: I18n.t( "send_confirmation_email" ),
+      // If we want to go back to signing people out, this is the text we should use
+      // confirmText: I18n.t( "send_and_sign_out", {
+      //   defaultValue: I18n.t( "resend_and_sign_out" )
+      // } ),
+      onConfirm: async ( ) => {
+        // Preemptively set confirmation_sent_at so the user sees a change
+        // immediately
+        await dispatch( setUserData( {
+          ...getState( ).profile,
+          confirmation_sent_at: ( new Date( ) ).toISOString( )
+        } ) );
+        await dispatch( saveUserSettings( ) );
+        const { profile } = getState( );
+        if ( !profile.errors || profile.errors.length <= 0 ) {
+          dispatch( resendConfirmation( ) );
+        }
+      }
+    } ) );
   };
 }

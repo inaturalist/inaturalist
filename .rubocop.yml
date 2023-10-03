@@ -46,6 +46,9 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: false
 
+Metrics/BlockNesting:
+  Enabled: false
+
 Metrics/ClassLength:
   Enabled: false
 
@@ -62,6 +65,9 @@ Metrics/PerceivedComplexity:
   Enabled: false
 
 Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/VariableNumber:
   Enabled: false
 
 Style/Documentation:

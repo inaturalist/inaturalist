@@ -3,7 +3,7 @@
 # require 'recaptcha'
 module ApplicationHelper
   include Ambidextrous
-  
+
   def num2letterID(num)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alphabet[num,1]
@@ -185,17 +185,20 @@ module ApplicationHelper
       options
   end
 
-  def link_to_toggle_box(txt, options = {}, &block)
-    options[:class] ||= ''
-    options[:class] += ' togglelink'
-    if open = options.delete(:open)
-      options[:class] += ' open'
+  def link_to_toggle_box( txt, options = {}, &block )
+    options[:class] ||= ""
+    options[:class] += " togglelink"
+    options[:role] = "button"
+    options["aria-role"] = "button"
+    container_options = options.delete( :container_options ) || {}
+    if ( is_open = options.delete( :open ) )
+      options[:class] += " open"
     end
-    link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
-    hidden = content_tag(:div, capture(&block), :style => open ? nil : "display:none", :class => "togglebox")
-    content_tag :div, link + hidden
+    link = link_to_function( txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options )
+    hidden = content_tag( :div, capture( &block ), style: is_open ? nil : "display:none", class: "togglebox" )
+    content_tag :div, link + hidden, container_options
   end
-  
+
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]
     menu_id ||= options[:id].parameterize if options[:id]
@@ -220,23 +223,6 @@ module ApplicationHelper
     dialog + link
   end
 
-  def link_to_tip(title, options = {}, &block)
-    id = title.gsub(/\W/, '').underscore
-    dialog = content_tag(:div, capture(&block), :class => "tip", :style => "display:none", :id => "#{id}_tip")
-    link_options = options.delete(:link) || {}
-    data = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
-    data['tip-options'] = {
-      content: {
-        text: "##{id}_tip"
-      },
-      show: {event: 'click'},
-      hide: {event: 'click unfocus'}
-    }.merge(options.delete(:tip_options) || {}).to_json
-    options = options.merge(data: data)
-    link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
-    dialog + link
-  end
-  
   # Generate a URL based on the current params hash, overriding existing values
   # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
@@ -307,10 +293,17 @@ module ApplicationHelper
   def formatted_user_text(text, options = {})
     return text if text.blank?
 
+    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
     text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
+
+    # remove escaped underscores from mentions where Redcarpet didn't process markdown
+    mentions_with_escaped_underscores_regex = /(<a [^>]+>@[^\s]*)\\_/
+    while text.match( mentions_with_escaped_underscores_regex )
+      text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
+    end
     
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
@@ -319,14 +312,18 @@ module ApplicationHelper
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
-    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
+    text = text.scrub
     unless options[:skip_simple_format]
       text = simple_format_with_structure( text, sanitize: false )
     end
     # Ensure all tags are closed
-    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    parsed_text = Nokogiri::HTML::DocumentFragment.parse( text )
+    # Ensure all links have nofollow
+    parsed_text.css( "a" ).each do | node |
+      node[:rel] = "#{node[:rel]} nofollow noopener".strip
+    end
+    text = parsed_text.to_s
     # Remove empty paragraphs
     text = text.gsub( "<p></p>", "" )
     text.html_safe
@@ -459,39 +456,7 @@ module ApplicationHelper
     end
     block_given? ? concat(content.html_safe) : content.html_safe
   end
-  
-  def one_line_observation(o, options = {})
-    skip = (options.delete(:skip) || []).map(&:to_sym)
-    txt = ""
-    txt += "#{o.user.login} observed " unless skip.include?(:user)
-    unless skip.include?(:taxon)
-      txt += if o.taxon
-        render(:partial => 'shared/taxon', :locals => {
-          :taxon => o.taxon,
-          :include_article => true
-        })
-      else
-        t(:something)
-      end
-      txt += " "
-    end
-    unless skip.include?(:observed_on)
-      txt += if o.observed_on.blank?
-        t(:in_the_past).downcase
-      else
-        "#{t(:on_day, :default => "on")} #{l o.observed_on, format: :long} "
-      end
-    end
-    unless skip.include?(:place_guess)
-      txt += if o.place_guess.blank?
-        t(:somewhere_on_earth).downcase
-      else
-        "#{t(:in, :default => "in")} #{o.place_guess}"
-      end
-    end
-    txt
-  end
-  
+
   def html_attributize(txt)
     return txt if txt.blank?
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
@@ -507,24 +472,17 @@ module ApplicationHelper
   end
 
   def image_url( source, options = {} )
-    # Here FakeView is necessary again for situations where this gets called
-    # outside of a context with the normal URL and asset helpers
-    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
-    unless abs_path =~ /\Ahttp/
-      the_root_url = begin
-        root_url
-      rescue StandardError => e
-        # If this method gets called outside of the context of a controller, url
-        # helpers like root_url may not be available, so we might need to fall
-        # back to FakeView. Note that rescuing ActionView::Template::Error
-        # doesn't seem to work here.
-        raise e unless e.message =~ /root_url/
+    abs_path = source =~ %r{^/} ? source : whitelisted_asset_path( source, options ).to_s
+    return abs_path if abs_path =~ /\Ahttp/
 
-        FakeView.root_url
-      end
-      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
-    end
-    abs_path
+    the_root_url = defined?( root_url ) ? root_url : UrlHelper.root_url
+    uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
+  end
+
+  def whitelisted_asset_path(source, options)
+    return "/assets/#{source}" if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
+
+    asset_path( source, options )
   end
 
   def truncate_with_more(text, options = {})
@@ -733,7 +691,7 @@ module ApplicationHelper
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
-      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description"),
+      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description2"),
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
@@ -1099,17 +1057,10 @@ module ApplicationHelper
       return s.html_safe
     end
 
-    if notifier.is_a?(ActsAsVotable::Vote)
-      noun = t( :activity_snipped_resource_with_indefinite_article,
-        resource: resource_link.html_safe,
-        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase,
-        gender: class_name_key
-      ).html_safe
-      s = t(:user_faved_a_noun_by_owner, 
-        user: notifier_user.login, 
-        noun: noun, 
-        owner: you_or_login(update.resource_owner, :capitalize_it => false))
-      return s.html_safe
+    if notifier.is_a?( ActsAsVotable::Vote )
+      # At present the only kind of vote notification is for faving an
+      # observation and the only person that gets notified is the observer
+      return t( :user_faved_an_observation_by_you, user: notifier_user.login ).html_safe
     end
 
     case update.resource_type
@@ -1277,13 +1228,18 @@ module ApplicationHelper
   def url_for_resource_with_host(resource)
     polymorphic_url(resource)
   end
-  
-  def commas_and(list, options = {})
+
+  def commas_and( list, options = {} )
     return list.first.to_s.html_safe if list.size == 1
-    return list.join(" #{t :and} ").html_safe if list.size == 2
-    options[:separator] ||= ","
-    options[:and] ||= t(:and)
-    "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
+
+    list_with_n_items = I18n.t( "list_with_n_items", one: "-ONE-", two: "-TWO-", three: "-THREE-" )
+    list_with_two_items = I18n.t( "list_with_two_items", one: "-ONE-", two: "-TWO-" )
+    options[:separator] ||= list_with_n_items[/-ONE-(.*)-TWO-/, 1]
+    options[:final_separator] ||= list_with_n_items[/-TWO-(.*)-THREE-/, 1]
+    options[:two_item_separator] ||= list_with_two_items[/-ONE-(.*)-TWO-/, 1]
+    return list.join( options[:final_separator] ).html_safe if list.size == 2
+
+    "#{list[0..-2].join( options[:separator] )}#{options[:final_separator]}#{list.last}".html_safe
   end
 
   def observation_field_value_for(ofv)
@@ -1375,12 +1331,70 @@ module ApplicationHelper
     args.join('/').gsub(/\/+/, '/')
   end
 
-  def google_maps_js(options = {})
-    libraries = options[:libraries] || []
-    version = Rails.env.development? ? "weekly" : "3.48"
-    params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
-    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
-    "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
+  def google_maps_js(libraries: [])
+    javascript_include_tag google_maps_loader_uri(libraries: libraries)
+  end
+
+  def google_maps_async_js
+    # javascript for setting up functions to load Google Maps libraries asynchronously.
+    # This does not load the libraries, and they must be loaded on demand with e.g.
+    #   google.maps.importLibrary( "maps" ).then( ... )
+    #
+    # Multiple libraries need to be loaded separately, e.g:
+    #   google.maps.importLibrary( "maps" ).then( function ( ) {
+    #     return google.maps.importLibrary( "drawing" );
+    #   } ).then( function ( ) {
+    #     return google.maps.importLibrary( "geometry" );
+    #   } ).then( function ( ) {
+    #    return google.maps.importLibrary( "places" );
+    #   } ).then( function ( ) {
+    #     loadMap3( );
+    #     *** the code that creates and uses maps ***
+    #   } )
+
+    raw <<-HTML
+      <script type="text/javascript">
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",
+          m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,
+          e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{
+            await (a=m.createElement("script"));e.set("libraries",[...r]+"");
+            for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);
+              e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;
+            d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));
+            a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));
+          d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)
+          &&u().then(()=>d[l](f,...n))})({
+          key: "#{CONFIG.google.browser_api_key}",
+          v: "weekly"
+        });
+      </script>
+    HTML
+  end
+
+  # https://developers.google.com/maps/documentation/javascript/url-params
+  # https://developers.google.com/maps/documentation/javascript/libraries
+  # https://developers.google.com/maps/documentation/javascript/versions
+  def google_maps_loader_uri( libraries: [] )
+    URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
+      key: CONFIG.google.browser_api_key,
+      libraries: libraries.join( "," ),
+      v: "3.51",
+      language: I18n.locale,
+      region: cctld_from_locale( I18n.locale )
+    }.to_query
+  end
+
+  # Mostly for Google API regions
+  def cctld_from_locale( locale )
+    # return "il" if locale.to_s == "he"
+    return if locale.to_s.split( "-" ).size < 2
+
+    region = locale.to_s.split( "-" ).last
+    case region
+    # There are a few exceptions to ISO 3166-1 / ccTLD mapping
+    when "gb" then "uk"
+    else region
+    end
   end
 
   def leaflet_js(options = {})
@@ -1441,7 +1455,7 @@ module ApplicationHelper
   end
 
   def post_parent_path( parent, options = {} )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_path( options.merge( project_id: parent_slug ) )
@@ -1453,7 +1467,7 @@ module ApplicationHelper
   end
 
   def post_archives_by_month_path( parent, year, month )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_archives_by_month_path( parent_slug, year, month )
@@ -1505,13 +1519,25 @@ module ApplicationHelper
     I18n.has_t?(*args)
   end
 
-  def hyperlink_mentions(text)
+  def hyperlink_mentions( text, for_markdown: false )
     linked_text = text.dup
+    before_mention_pattern = [
+      # Either it's at the start of the line, or...
+      "^|",
+      # It's not preceded by the end of a start tag (e.g. a link)
+      '(?<!">)',
+      # And it's not preceded by slash (e.g. a part of a URL)
+      "(?<!/)"
+    ].join
     # link the longer logins first, to prevent mistakes when
     # one username is a substring of another username
-    linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
+    linked_text.mentioned_users.sort_by {| u | u.login.length }.reverse.each do | u |
       # link `@login` when @ is preceded by a word break but isn't preceded by ">
-      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+      login_text = for_markdown ? u.login.gsub( "_", "\\_" ) : u.login
+      linked_text.gsub!(
+        /(#{before_mention_pattern})@#{u.login}/,
+        "\\1#{link_to( "@#{login_text}", person_by_login_url( u.login ) )}"
+      )
     end
     linked_text
   end
@@ -1524,15 +1550,6 @@ module ApplicationHelper
       ).strip, 
       length: 1000
     ).strip
-  end
-  
-  def branding_statement
-    I18n.t(
-      :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\">",
-      cas_tag_html: "<a href=\"https://calacademy.org\">California Academy of Sciences</a>",
-      nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
-    ).html_safe
   end
 
   def responsive?

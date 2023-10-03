@@ -6,7 +6,8 @@ import {
   muteUser,
   unblockUser,
   unmuteUser
-} from "../ducks/relationships";
+} from "../ducks/blocked_muted_users";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -30,7 +31,8 @@ function mapDispatchToProps( dispatch ) {
       } else {
         dispatch( unmuteUser( userId ) );
       }
-    }
+    },
+    showAlert: ( message, options ) => dispatch( showAlert( message, options ) )
   };
 }
 

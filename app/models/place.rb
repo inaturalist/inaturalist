@@ -31,6 +31,7 @@ class Place < ApplicationRecord
   # do not destroy observations_places. That will happen
   # in update_observations_places, from a callback in place_geometry
   has_many :observations_places
+  has_many :taxon_name_priorities, dependent: :nullify
   has_one :place_geometry, dependent: :destroy, inverse_of: :place
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
@@ -57,7 +58,7 @@ class Place < ApplicationRecord
   validate :validate_name_does_not_start_with_a_number
   validate :custom_errors
   validates :place_geometry, presence: true, on: :create
-  
+
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
   }
@@ -89,7 +90,6 @@ class Place < ApplicationRecord
   end
 
   attr_accessor :html
-
   attr_accessor :updating_bbox
 
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
@@ -196,14 +196,6 @@ class Place < ApplicationRecord
   TOWN_LEVEL = 30
   PARK_LEVEL = 100
   ADMIN_LEVELS = [CONTINENT_LEVEL, REGION_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
-
-  # 66 is roughly the size of Texas
-  MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
-  # 6 is roughly the size of West Virginia
-  MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
-
-  MAX_PLACE_OBSERVATION_COUNT = 200000
-  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 10000
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -435,7 +427,7 @@ class Place < ApplicationRecord
     check_list.destroy
   end
 
-  def validate_with_geom( geom, other_attrs = {} )
+  def validate_with_geom( geom, max_area_km2: nil, max_observation_count: nil )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
@@ -447,39 +439,40 @@ class Place < ApplicationRecord
       add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
       return false
     end
-    observation_count = Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count
-    if other_attrs[:user] && !other_attrs[:user].is_admin?
-      if geom.respond_to?(:area) && (
-         ( CONFIG.content_freeze_enabled && geom.area > MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE ) ||
-         geom.area > MAX_PLACE_AREA_FOR_NON_STAFF )
-        add_custom_error( :place_geometry, :is_too_large_to_import )
-        return false
-      elsif ( ( CONFIG.content_freeze_enabled && observation_count >= MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE ) ||
-        observation_count >= MAX_PLACE_OBSERVATION_COUNT )
+
+    if max_observation_count
+      observation_count = Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count
+      if observation_count > max_observation_count
         add_custom_error(:place_geometry, :contains_too_many_observations)
         return false
       end
     end
+
+    if max_area_km2
+      area_km2 = PlaceGeometry.area_km2( geom )
+      if area_km2 > max_area_km2
+        add_custom_error( :place_geometry, :is_too_large_to_import )
+        return false
+      end
+    end
+
     true
   end
   
   # Update the associated place_geometry or create a new one
-  def save_geom( geom, other_attrs = {} )
+  def save_geom( geom, max_area_km2: nil, max_observation_count: nil, **other_attrs )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
-    return unless validate_with_geom( geom, other_attrs )
-    other_attrs.delete(:user)
-    other_attrs.merge!(:geom => geom, :place => self)
+
+    return unless validate_with_geom( geom, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
+
+    build_place_geometry unless place_geometry
     begin
-      if place_geometry
-        self.place_geometry.update(other_attrs)
-      else
-        pg = PlaceGeometry.create!(other_attrs)
-        self.place_geometry = pg
+      if place_geometry.update( other_attrs.merge( geom: geom ) )
+        update( points_from_geom( geom ).merge( updating_bbox: true ) )
       end
-      update(points_from_geom(geom).merge(updating_bbox: true)) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
       if e.message =~ /TopologyException/
@@ -491,7 +484,7 @@ class Place < ApplicationRecord
   end
   
   # Appends a geom instead of replacing it
-  def append_geom(geom, other_attrs = {})
+  def append_geom( geom, **other_attrs )
     if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
       geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) rescue nil
     end
@@ -506,7 +499,7 @@ class Place < ApplicationRecord
         f.multi_polygon([union])
       end
     end
-    self.save_geom(new_geom, other_attrs)
+    self.save_geom( new_geom, **other_attrs )
   end
 
   def points_from_geom(geom)
@@ -871,9 +864,16 @@ class Place < ApplicationRecord
   end
 
   def kml_url
-    FakeView.place_geometry_kml_url(:place => self)
+    geometry ||= place_geometry_without_geom if association( :place_geometry_without_geom ).loaded?
+    geometry ||= place_geometry if association( :place_geometry ).loaded?
+    geometry ||= PlaceGeometry.without_geom.where( place_id: id ).first
+    if geometry.blank?
+      "".html_safe
+    else
+      "#{UrlHelper.place_geometry_url( self, format: 'kml' )}?#{geometry.updated_at.to_i}".html_safe
+    end
   end
-  
+
   def self.guide_cache_key(id)
     "place_guide_#{id}"
   end
@@ -944,6 +944,10 @@ class Place < ApplicationRecord
     else
       display_name
     end
+  end
+
+  def area_km2
+    place_geometry&.area_km2
   end
 
   def self.param_to_array(places)

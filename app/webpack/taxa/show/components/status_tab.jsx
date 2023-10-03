@@ -10,8 +10,15 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../shared/util";
 
-const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
+const StatusTab = ( {
+  listedTaxa,
+  listedTaxaCount,
+  statuses,
+  taxon
+} ) => {
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -98,6 +105,10 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             } else if ( status.user ) {
               source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
             }
+            const statusTaxon = _.find(
+              taxon.ancestors,
+              ancestor => ancestor.id === status.taxon_id
+            );
             return (
               <tr
                 key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
@@ -114,19 +125,19 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                             <i className="fa fa-invert fa-map-marker" />
                           </a>
                         )
-                        : <i className="fa fa-invert fa-globe" />
-                      }
+                        : <i className="fa fa-invert fa-globe" />}
                     </div>
                     <div className="media-body">
                       { status.place
                         ? (
                           <a href={`/places/${status.place.id}`} className="place-link">
-                            { I18n.t( `places_name.${_.snakeCase( status.place.display_name )}`,
-                              { defaultValue: status.place.display_name } ) }
+                            { I18n.t(
+                              `places_name.${_.snakeCase( status.place.display_name )}`,
+                              { defaultValue: status.place.display_name }
+                            ) }
                           </a>
                         )
-                        : I18n.t( "globally" )
-                      }
+                        : I18n.t( "globally" )}
                     </div>
                   </div>
                 </td>
@@ -139,6 +150,18 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                       truncate={550}
                       className="text-muted"
                       text={status.description}
+                    />
+                  ) }
+                  { status.taxon_id && status.taxon_name && status.taxon_id !== taxon.id && (
+                    <div
+                      className="text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "status_applied_from_higher_level_taxon_html", {
+                          taxon: ReactDOMServer.renderToString(
+                            <SplitTaxon taxon={statusTaxon} url={urlForTaxon( statusTaxon )} />
+                          )
+                        } )
+                      }}
                     />
                   ) }
                   { status.user && status.created_at && (
@@ -218,19 +241,19 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                             <i className="fa fa-invert fa-map-marker" />
                           </a>
                         )
-                        : <i className="fa fa-invert fa-globe" />
-                      }
+                        : <i className="fa fa-invert fa-globe" />}
                     </div>
                     <div className="media-body">
                       { lt.place
                         ? (
                           <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                            { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                              { defaultValue: lt.place.display_name } ) }
+                            { I18n.t(
+                              `places_name.${_.snakeCase( lt.place.name )}`,
+                              { defaultValue: lt.place.display_name }
+                            ) }
                           </a>
                         )
-                        : I18n.t( "globally" )
-                      }
+                        : I18n.t( "globally" )}
                     </div>
                   </div>
                 </td>
@@ -265,7 +288,9 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 { I18n.t( "views.taxa.show.about_conservation_status_desc" ) }
                 { " " }
                 <a href="https://en.wikipedia.org/wiki/Conservation_status">
-                  { I18n.t( "more" ) }
+                  { I18n.t( "more__context_conservation_statuses", {
+                    defaultValue: I18n.t( "more" )
+                  } ) }
                   { " " }
                   <i className="icon-link-external" />
                 </a>
@@ -316,8 +341,10 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
               <h4>{ I18n.t( "about_establishment_means" ) }</h4>
               <p>
                 { I18n.t( "views.taxa.show.about_establishment_desc" ) }
-                <a href="https://en.wikipedia.org/wiki/Conservation_status">
-                  { I18n.t( "more" ) }
+                <a href="https://dwc.tdwg.org/list/#dwc_establishmentMeans">
+                  { I18n.t( "more__context_establishment_means", {
+                    defaultValue: I18n.t( "more" )
+                  } ) }
                   { " " }
                   <i className="icon-link-external" />
                 </a>
@@ -333,7 +360,8 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
 StatusTab.propTypes = {
   statuses: PropTypes.array,
   listedTaxa: PropTypes.array,
-  listedTaxaCount: PropTypes.number
+  listedTaxaCount: PropTypes.number,
+  taxon: PropTypes.object
 };
 
 StatusTab.defaultProps = {

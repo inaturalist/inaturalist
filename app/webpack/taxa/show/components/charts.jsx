@@ -2,53 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
-import c3 from "c3";
+import bb, { areaSpline, spline } from "billboard.js";
 import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
-import "@formatjs/intl-locale/polyfill";
-import "@formatjs/intl-numberformat/polyfill";
-import "@formatjs/intl-numberformat/locale-data/en";
-import "@formatjs/intl-numberformat/locale-data/ar";
-import "@formatjs/intl-numberformat/locale-data/bg";
-import "@formatjs/intl-numberformat/locale-data/br";
-import "@formatjs/intl-numberformat/locale-data/ca";
-import "@formatjs/intl-numberformat/locale-data/cs";
-import "@formatjs/intl-numberformat/locale-data/da";
-import "@formatjs/intl-numberformat/locale-data/de";
-import "@formatjs/intl-numberformat/locale-data/el";
-import "@formatjs/intl-numberformat/locale-data/eo";
-import "@formatjs/intl-numberformat/locale-data/es";
-import "@formatjs/intl-numberformat/locale-data/es-AR";
-import "@formatjs/intl-numberformat/locale-data/es-MX";
-import "@formatjs/intl-numberformat/locale-data/et";
-import "@formatjs/intl-numberformat/locale-data/eu";
-import "@formatjs/intl-numberformat/locale-data/fi";
-import "@formatjs/intl-numberformat/locale-data/fr";
-import "@formatjs/intl-numberformat/locale-data/fr-CA";
-import "@formatjs/intl-numberformat/locale-data/gl";
-import "@formatjs/intl-numberformat/locale-data/he";
-import "@formatjs/intl-numberformat/locale-data/id";
-import "@formatjs/intl-numberformat/locale-data/it";
-import "@formatjs/intl-numberformat/locale-data/ja";
-import "@formatjs/intl-numberformat/locale-data/ko";
-import "@formatjs/intl-numberformat/locale-data/lb";
-import "@formatjs/intl-numberformat/locale-data/lt";
-import "@formatjs/intl-numberformat/locale-data/lv";
-import "@formatjs/intl-numberformat/locale-data/mk";
-import "@formatjs/intl-numberformat/locale-data/nb";
-import "@formatjs/intl-numberformat/locale-data/nl";
-import "@formatjs/intl-numberformat/locale-data/pl";
-import "@formatjs/intl-numberformat/locale-data/pt";
-import "@formatjs/intl-numberformat/locale-data/ru";
-import "@formatjs/intl-numberformat/locale-data/sk";
-import "@formatjs/intl-numberformat/locale-data/sq";
-import "@formatjs/intl-numberformat/locale-data/sv";
-import "@formatjs/intl-numberformat/locale-data/tr";
-import "@formatjs/intl-numberformat/locale-data/uk";
-import "@formatjs/intl-numberformat/locale-data/zh";
-import "@formatjs/intl-numberformat/locale-data/zh-Hant";
 
 class Charts extends React.Component {
   constructor( ) {
@@ -156,7 +114,7 @@ class Charts extends React.Component {
     } );
   }
 
-  defaultC3Config( ) {
+  defaultBBConfig( ) {
     const { colors, chartedFieldValues } = this.props;
     _.each( chartedFieldValues, values => {
       _.each( values, value => {
@@ -169,8 +127,8 @@ class Charts extends React.Component {
       data: {
         colors,
         types: {
-          verifiable: "spline",
-          research: "area-spline"
+          verifiable: spline( ),
+          research: areaSpline( )
         },
         // For some reason this is necessary to enable the cursor style on the points
         selection: {
@@ -255,7 +213,7 @@ class Charts extends React.Component {
       tipTitle = I18n.t( "relative_observations" );
     }
     const { seasonalityKeys } = this.props;
-    return _.defaultsDeep( { }, this.defaultC3Config( ), {
+    return _.defaultsDeep( { }, this.defaultBBConfig( ), {
       data: {
         columns,
         onclick: d => {
@@ -291,7 +249,7 @@ class Charts extends React.Component {
       _.filter( seasonalityColumns, column => column[0] === "verifiable" || column[0] === "research" )
     );
     const mountNode = $( "#SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
-    this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
+    this.seasonalityChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
   }
 
   renderFieldValueCharts( ) {
@@ -326,7 +284,7 @@ class Charts extends React.Component {
       }
       config.data.order = null;
       const mountNode = $( `#FieldValueChart${attributeId}`, ReactDOM.findDOMNode( this ) ).get( 0 );
-      this.fieldValueCharts[attributeId] = c3.generate(
+      this.fieldValueCharts[attributeId] = bb.generate(
         Object.assign( { bindto: mountNode }, config )
       );
     } );
@@ -352,7 +310,7 @@ class Charts extends React.Component {
     if ( that.props.scaled ) {
       tipTitle = I18n.t( "relative_observations" );
     }
-    const config = _.defaultsDeep( { }, this.defaultC3Config( ), {
+    const config = _.defaultsDeep( { }, this.defaultBBConfig( ), {
       data: {
         x: "x",
         columns,
@@ -390,7 +348,7 @@ class Charts extends React.Component {
       regions
     } );
     const mountNode = $( ".HistoryChart", ReactDOM.findDOMNode( this ) ).get( 0 );
-    this.historyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
+    this.historyChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
   }
 
   render( ) {
@@ -654,7 +612,7 @@ Charts.defaultProps = {
     verifiable: "#dddddd",
     unannotated: "#dddddd",
 
-    // d3 schemeCategory10 colors are what c3 will use by default. Here's we're
+    // d3 schemeCategory10 colors are what billboard will use by default. Here's we're
     // just ensuring consistent color for each of these series
     "Plant Phenology=Flower Budding": schemeCategory10[1],
     "Plant Phenology=Flowering": schemeCategory10[3],
@@ -662,6 +620,5 @@ Charts.defaultProps = {
     "Plant Phenology=No Evidence of Flowering": schemeCategory10[2]
   }
 };
-
 
 export default Charts;

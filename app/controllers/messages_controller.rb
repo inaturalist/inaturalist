@@ -127,10 +127,10 @@ class MessagesController < ApplicationController
   end
 
   def new
-    # unless current_user.privileged_with?( UserPrivilege::SPEECH )
-    #   flash[:notice] = t( "errors.messages.requires_privilege_speech" )
-    #   redirect_back_or_default( messages_path )
-    # end
+    unless current_user.privileged_with?( UserPrivilege::SPEECH )
+      flash[:notice] = t( "activerecord.errors.messages.requires_privilege_speech" )
+      redirect_back_or_default( messages_path )
+    end
     @message = current_user.messages.build
     @contacts = User.
       select("DISTINCT ON (users.id) users.*").

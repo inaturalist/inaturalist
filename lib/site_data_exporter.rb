@@ -109,6 +109,26 @@ class SiteDataExporter
       user_id
       updater_id
       uuid
+    ),
+    observation_photos: %w(
+      observation_id
+      photo_id
+      photo.uuid
+      photo.user_id
+      photo.medium_url
+      photo.license_url
+      photo.attribution_name
+      photo.created_at
+    ),
+    observation_sounds: %w(
+      observation_id
+      sound_id
+      sound.uuid
+      sound.user_id
+      sound.url
+      sound.license_url
+      sound.attribution_name
+      sound.created_at
     )
   }.freeze
 
@@ -123,7 +143,9 @@ class SiteDataExporter
     if dbconfig[:username]
       @psql_cmd += " -U #{dbconfig[:username]}"
     end
-    if dbconfig[:password]
+    # If this is a development env, really make sure the password gets passed
+    # in. In production this should work without a password
+    if dbconfig[:password] && !Rails.env.production?
       @psql_cmd = "PGPASSWORD=#{dbconfig[:password]} #{@psql_cmd}"
     end
     @max_obs_id = options[:max_obs_id] || Observation.calculate( :maximum, :id ) || 0
@@ -388,12 +410,6 @@ class SiteDataExporter
     end
 
     Parallel.each_with_index( partitions, in_processes: partitions.size ) do | partition, parition_i |
-      ActiveRecord::Base.connection.enable_replica
-      # Make sure Makara releases context and performs subsequent queries
-      # against the replica. It may be stuck on the primary due to previews
-      # requests to the primary. Not entirely sure if the context gets
-      # preserved when Parallel forks a subprocess
-      Makara::Context.release_all
       partition_filters = filters.dup
       partition_filters << {
         range: { id: { gte: partition.min, lte: partition.max } }
@@ -416,7 +432,13 @@ class SiteDataExporter
           msg += " batch_filters: #{batch_filters}"
           puts msg
         end
-        observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
+        observations = try_and_try_again(
+          [
+            Patron::TimeoutError,
+            Faraday::TimeoutError,
+            Elasticsearch::Transport::Transport::Errors::TooManyRequests
+          ]
+        ) do
           Observation.elastic_paginate( base_es_params.merge( filters: batch_filters ) )
         end
         if observations.size.zero?
@@ -436,10 +458,14 @@ class SiteDataExporter
           observations,
           [
             :user,
-            { taxon: :taxon_names },
+            { taxon: { taxon_names: :place_taxon_names } },
             { identifications: [:stored_preferences] },
-            { photos: [:flags, :file_prefix, :file_extension, :user] },
-            :sounds,
+            { photos: [
+              :flags, :file_prefix, :file_extension, :user, :moderator_actions
+            ] },
+            { sounds: [
+              :flags, :moderator_actions, :user
+            ] },
             :quality_metrics,
             { observations_places: :place },
             {
@@ -482,13 +508,15 @@ class SiteDataExporter
           CSV.open( assoc_csv_paths[association], "a" ) do | csv |
             observations.each do | o |
               o.send( association ).each do | associate |
-                csv << cols.map {| col | associate.send( col ) }
+                csv << cols.map do | col |
+                  # allow dot-notation in column names, while still using the safer `send` method
+                  col.split( "." ).inject( associate, :send )
+                end
               end
             end
           end
         end
       end
-      ActiveRecord::Base.connection.disable_replica
     end
     csv_path
   end

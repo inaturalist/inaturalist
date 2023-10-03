@@ -1,4 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 def register_user_with_params( params = {} )
   u = User.make
@@ -8,14 +10,14 @@ def register_user_with_params( params = {} )
     password_confirmation: "zomgbar",
     email: u.email
   }.merge( params ) }
-  User.find_by_login(u.login)
+  User.find_by_login( u.login )
 end
 
 describe Users::RegistrationsController, "create" do
   elastic_models( Observation )
   # This is mildly insane, but here we're turning on forgery protection to test
   # that we're successfully turning it off in this controller. Theoretically
-  # someone who is not signed in doesn't have an active session that coulbe be
+  # someone who is not signed in doesn't have an active session that could be
   # exploited by CSRF, and someone who is signed in should be protected by our
   # own code that will cause registration to fail when you try to create
   # another account
@@ -24,22 +26,22 @@ describe Users::RegistrationsController, "create" do
 
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    stub_request(:get, /#{INatAPIService::ENDPOINT}/).
-      to_return(status: 200, body: "{ }",
-        headers: { "Content-Type" => "application/json" })
+    stub_request( :get, /#{INatAPIService::ENDPOINT}/ ).
+      to_return( status: 200, body: "{ }",
+        headers: { "Content-Type" => "application/json" } )
   end
 
   it "should create a user" do
-    expect {
+    expect do
       register_user_with_params
-    }.to change(User, :count).by(1)
+    end.to change( User, :count ).by( 1 )
   end
 
   it "should return json about the user" do
     register_user_with_params
-    expect {
-      json = JSON.parse(response.body)
-    }.not_to raise_error
+    expect do
+      JSON.parse( response.body )
+    end.not_to raise_error
   end
 
   it "should not return the password" do
@@ -79,13 +81,13 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should assign a user to a site" do
-    @site = Site.make!( url: "test.host" ) # hoping the test host is the same across platforms...
+    @site = Site.make!( url: "http://test.host" ) # hoping the test host is the same across platforms...
     u = register_user_with_params
     expect( u.site ).to eq @site
   end
 
   it "should assign a user to a site using inat_site_id param" do
-    site1 = Site.make!( url: "test.host" )
+    site1 = Site.make!( url: "http://test.host" )
     site2 = Site.make!
     u = User.make
     post :create, params: { inat_site_id: site2.id, user: {
@@ -98,16 +100,14 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should give the user the locale of the requested site" do
-    locale = "es-MX"
-    site = Site.make!( url: "test.host", preferred_locale: locale )
+    site = Site.make!( url: "http://test.host", preferred_locale: "es-MX" )
     u = register_user_with_params
     expect( u.locale ).to eq site.preferred_locale
   end
 
   it "should give the user the locale of the site specified by inat_site_id" do
-    locale = "es-MX"
-    site1 = Site.make!( url: "test.host" )
-    site2 = Site.make!( preferred_locale: locale )
+    site1 = Site.make!( url: "http://test.host" )
+    site2 = Site.make!( preferred_locale: "es-MX" )
     u = User.make
     post :create, params: { inat_site_id: site2.id, user: {
       login: u.login,
@@ -115,7 +115,7 @@ describe Users::RegistrationsController, "create" do
       password_confirmation: "zomgbar",
       email: u.email
     } }
-    expect( User.find_by_login( u.login ).locale ).to eq locale
+    expect( User.find_by_login( u.login ).locale ).to eq site2.preferred_locale
   end
 
   it "should accept time_zone" do
@@ -141,9 +141,9 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should create a user with a blank time_zone" do
-    expect {
+    expect do
       register_user_with_params( time_zone: "" )
-    }.to change( User, :count ).by( 1 )
+    end.to change( User, :count ).by( 1 )
   end
 
   it "should default to an oauth_application_id of zero" do
@@ -167,7 +167,8 @@ describe Users::RegistrationsController, "create" do
 
   it "should set the oauth_application_id based on the Seek User-Agent" do
     a = OauthApplication.make!( name: "iNaturalist Android App" )
-    request.env["HTTP_USER_AGENT"] = "iNaturalist/1.23.4 (Build 493; Android 4.14.190-20973144-abA715WVLU2CUB5 A715WVLU2CUB5; SDK 30; a71 SM-A715W a71cs; OS Version 11)"
+    request.env["HTTP_USER_AGENT"] =
+      "iNaturalist/1.23.4 (Build 493; Android 4.14.190-20973144-abA715WVLU2CUB5 A715WVLU2CUB5; SDK 30; a71 SM-A715W a71cs; OS Version 11)"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
   end

@@ -1,5 +1,7 @@
 - content_for(:title) do
   =t :editing_taxon_name_for_taxon_html, name: @taxon_name.name, taxon: default_taxon_name( @taxon )
+= content_for :extrajs do
+  = javascript_include_tag "taxon_names/edit"
 .container
   .row
     #pageheader.col-md-12
@@ -13,39 +15,35 @@
       .col-md-12
         - if @taxon_name.creator
           %div
-            = t(:created_by, gender: 'taxon')
-            = link_to @taxon_name.creator.login, @taxon_name.creator
-            = t :on_day
-            = l(@taxon_name.created_at.to_date, :format => :long)
+            =raw t( :created_by_user_on_date, user: link_to( @taxon_name.creator.login, @taxon_name.creator ), date: l( @taxon_name.created_at.to_date, format: :long ) )
         - if @taxon_name.updater
           %div
-            = t(:updated_by)
-            = link_to @taxon_name.updater.login, @taxon_name.updater
-            = t :on_day
-            = l(@taxon_name.updated_at.to_date, :format => :long)
+            =t( :updated_by_user_on_date_html, user: link_to( @taxon_name.updater.login, @taxon_name.updater ), date: l( @taxon_name.updated_at.to_date, format: :long ) )
   - unless @synonyms.blank?
-    .row.small.upstacked.meta
+    .row.upstacked.meta
       .col-md-12
         %h3= t :synonyms
         %p.ui
-          = t :there_are_x_synonyms_html, :count => @synonyms.total_entries
+          = t :there_are_x_synonyms_html, count: @synonyms.total_entries
           (#{t :showing_first_x, x: @synonyms.size}).
-          %span.button= link_to t(:delete_all), delete_synonyms_of_taxon_name_path(@taxon_name), :method => :delete, :confirm => t(:are_you_sure?)
-        %table.nobr
-          %tr
-            %th Name
-            %th Lexicon
-            %th Taxon
-            %th Added by
-            %th Added on
-            %th
-          - for tn in @synonyms
+          = link_to t(:delete_all), delete_synonyms_of_taxon_name_path(@taxon_name), method: :delete, confirm: t(:are_you_sure?), class: "btn btn-default btn-xs btn-danger"
+        %table.table.nobr
+          %thead
             %tr
-              %td= tn.name
-              %td= t(tn.lexicon, :default => tn.lexicon) unless tn.lexicon.blank?
-              %td= link_to_taxon tn.taxon, :sciname => true
-              %td= link_to_user(tn.creator) if tn.creator
-              %td= l tn.created_at, :format => :default
-              %td
-                = link_to t(:edit), tn
-                = link_to t(:delete), tn, :method => :delete, :data => {:confirm => t(:are_you_sure?)}
+              %th=t "activerecord.attributes.taxon_name.name"
+              %th=t "activerecord.attributes.taxon_name.lexicon"
+              %th=t :taxon
+              %th=t :added_by
+              %th=t :added_on
+              %th
+          %tbody
+            - for tn in @synonyms
+              %tr
+                %td= tn.name
+                %td= t( tn.lexicon, default: tn.lexicon ) unless tn.lexicon.blank?
+                %td= link_to_taxon tn.taxon, sciname: true
+                %td= link_to_user( tn.creator ) if tn.creator
+                %td=l tn.created_at, format: :default
+                %td
+                  = link_to t(:edit), tn, class: "btn btn-default btn-xs"
+                  = link_to t(:delete), tn, method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-default btn-xs btn-danger"

@@ -10,7 +10,7 @@ class RelationshipsController < FriendshipsController
         if @relationship.save
           render json: { relationship: @relationship }
         else
-          render status: :unprocessable_entity, json: @friendship.errors.full_messages.to_sentence
+          render status: :unprocessable_entity, json: @relationship.errors.full_messages.to_sentence
         end
       end
     end

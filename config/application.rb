@@ -77,6 +77,13 @@ module Inaturalist
 
     config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
 
+    config.action_controller.asset_host = proc do |path, request|
+      if Rails.env.production? && request && request.controller_instance
+        site = request.controller_instance.instance_variable_get( "@site" )
+        site && site.url
+      end
+    end
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
       # Rails 5 is more strict about what classes are allowed to be
@@ -93,7 +100,6 @@ module Inaturalist
         require_dependency "check_list"
         require_dependency "denormalizer"
         require_dependency "eol_photo"
-        require_dependency "facebook_photo"
         require_dependency "flickr_photo"
         require_dependency "google_street_view_photo"
         require_dependency "list"
@@ -142,6 +148,8 @@ module Inaturalist
 end
 
 ActiveRecord::Base.include_root_in_json = false
+
+ActiveRecord::SessionStore::Session.primary_key = "session_id"
 
 Rack::Utils.multipart_part_limit = 2048
 

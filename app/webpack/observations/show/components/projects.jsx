@@ -96,11 +96,11 @@ class Projects extends React.Component {
       if ( config.currentUser.id !== observation.user.id && observation.user.preferences ) {
         if ( observation.user.preferences.prefers_project_addition_by === "none" ) {
           addProjectInput = (
-            <p className="text-muted">{ I18n.t( "observer_prefers_no_project_addition" ) }</p>
+            <p className="text-muted">{ I18n.t( "observer_prefers_no_traditional_project_addition" ) }</p>
           );
         } else if ( observation.user.preferences.prefers_project_addition_by === "joined" ) {
           projectAdditionNotice = (
-            <p className="text-muted">{ I18n.t( "observer_prefers_addition_to_projects_joined" ) }</p>
+            <p className="text-muted">{ I18n.t( "observer_prefers_addition_to_traditional_projects_joined" ) }</p>
           );
         }
       }

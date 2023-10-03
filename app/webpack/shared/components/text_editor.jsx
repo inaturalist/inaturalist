@@ -13,7 +13,6 @@ class TextEditor extends React.Component {
     this.italicButton = React.createRef();
     this.linkButton = React.createRef();
     this.state = {
-      textareaChars: 0,
       preview: false,
       content: props.content
     };
@@ -38,6 +37,11 @@ class TextEditor extends React.Component {
     if ( mentions ) {
       const domNode = ReactDOM.findDOMNode( this );
       $( this.textarea.current, domNode ).textcompleteUsers( );
+      // onChange does not fire properly when using the enter key to make a selection.
+      // Tie into this event to avoid missing changes.
+      $( this.textarea.current, domNode ).on( "textComplete:select", e => {
+        this.setState( { content: e.target.value } );
+      } );
     }
   }
 
@@ -48,7 +52,14 @@ class TextEditor extends React.Component {
   componentDidUpdate( prevProps, prevState ) {
     const { changeHandler } = this.props;
     const { content } = this.state;
-    if ( changeHandler && prevState.content !== content ) { changeHandler( content ); }
+    if ( prevState.content !== content ) {
+      if ( changeHandler ) {
+        changeHandler( content );
+      }
+      window.onbeforeunload = function ( ) {
+        return content.length > 0 ? true : null;
+      };
+    }
   }
 
   render( ) {
@@ -66,7 +77,7 @@ class TextEditor extends React.Component {
       this.setState( { content: e.target.value } );
     };
     return (
-      <div className={`TextEditor ${className} ${preview && "with-preview"}`}>
+      <div className={`TextEditor ${className || ""} ${preview ? "with-preview" : ""}`}>
         { this.textarea && (
           <div className="btn-toolbar" role="toolbar" aria-label={I18n.t( "text_editing_controls" )}>
             <div className="btn-group format-controls" role="group" aria-label={I18n.t( "text_formatting_controls" )}>

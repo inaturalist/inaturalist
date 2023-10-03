@@ -1,0 +1,16 @@
+- action = item.moderator_actions.last
+.moderator-action-popover
+  %p
+    = t( "content_hidden_by_user_on_date_because_reason_html", {            |
+      user: link_to( "@#{h action.user.login}", user_path( action.user),    |
+        target: "_blank", rel: "noopener noreferrer" ),                     |
+      date: l( action.created_at.to_date, format: :month_day_year ),        |
+      reason: action.reason } )                                             |
+  - if logged_in?
+    %div
+      %a{ href: "/#{item.model_name.route_key}/#{item.id}/flags", target: "_blank", rel: "noopener noreferrer" }
+        = t( "view_flags" )
+  - if item.respond_to?( :user ) && current_user === item.user
+    %div
+      %a{ href: help_path, target: "_blank", rel: "noopener noreferrer" }
+        = t( "contact_support" )

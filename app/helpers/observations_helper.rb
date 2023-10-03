@@ -2,10 +2,13 @@ module ObservationsHelper
   def observation_image_url(observation, params = {})
     return nil if observation.observation_photos.blank?
     size = params[:size].blank? ? "square" : params[:size]
-    photo = observation.observation_photos.sort_by do |op|
+    first_observation_photo = observation.observation_photos.
+     select{ |op| op.photo && !op.photo.hidden? && !op.photo.flagged? }.
+     sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i
-    end.first.photo
-    url = photo.best_url( size )
+    end.first
+    return nil if !first_observation_photo
+    url = first_observation_photo.photo.best_url( size )
     return nil if !url
     # this assumes you're not using SSL *and* locally hosted attachments for observations
     if params[:ssl] || ( defined?( request ) && request && request.protocol =~ /https/ )
@@ -98,29 +101,6 @@ module ObservationsHelper
     end
   end
 
-  def title_for_observation_params(options = {})
-    s = options[:lead] || t(:observation_stats, :default => "Observation stats")
-    s += " #{t :of} #{link_to_taxon @observations_taxon}" if @observations_taxon
-    if @rank
-      s += " #{t :of} #{t "ranks.#{@rank}"}"
-    elsif @hrank
-      s += " #{t :of} #{t "ranks.#{@hrank}"} #{t :or_lower, :default => "or lower"}"
-    elsif @lrank
-      s += " #{t :of} #{t "ranks.#{@lrank}"} #{t :or_higher, :default => "or higher"}"
-    end
-    s += " #{t(:from).downcase} #{link_to @place.display_name, @place}" if @place
-    s += " #{t :by} #{link_to @user.login, @user}" if @user
-    if @observed_on
-      s += " #{@observed_on_day ? t(:on).downcase : t(:in).downcase} #{@observed_on}"
-    elsif @d1 && @d2
-      s += " #{t(:between).downcase} #{@d1} #{t :and} #{@d2}"
-    end
-    if @projects
-      s += " #{ t(:in, default: "in").downcase} #{commas_and(@projects.map{|p| link_to(p.title, p)})}"
-    end
-    s.html_safe
-  end
-  
   def coordinate_system_select_options(options = {})
     return {} unless @site.coordinate_systems
     systems = if options[:skip_lat_lon]

@@ -4,7 +4,6 @@
   display: flex;
   flex-wrap: wrap;
   .ObservationsGridCell {
-    flex-grow: 1;
     padding: 2px;
     min-width: 260px;
     margin: 0px auto;
@@ -34,7 +33,11 @@
       background-color: rgba(0, 0, 0, 0.7);
       color: white;
     }
+    .CoverImage {
+      height: 255px;
+    }
     .photo {
+      height: 255px;
       background: #ccc;
       text-align: center;
       display: flex;
@@ -48,28 +51,22 @@
     .caption {
       background: #464646;
       color: white;
-      height: 60px;
       padding: 10px;
       position: relative;
       padding-right: 86px;
-      white-space: nowrap;
-      .display-name {
+      .display-names, .display-name {
         font-size: 17px;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
       }
-      .secondary-name {
+      .display-names, .SplitTaxon > .display-name, .secondary-names {
         display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      }
+      .sciname, .display-name, .secondary-name {
         color: inherit;
       }
       .UserImage {
         position: absolute;
         right: 10px;
-        bottom: 40px;
+        top: -35px;
         border: 2px solid white;
         height: 45px;
         width: 45px;
@@ -91,6 +88,17 @@
           }
           margin-right: 5px;
         }
+      }
+    }
+  }
+}
+
+.OverviewTab .ObservationsGrid {
+  .ObservationsGridCell {
+    min-width: 25%;
+    .Observation {
+      .photo {
+        height: 170px;
       }
     }
   }

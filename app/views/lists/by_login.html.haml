@@ -13,7 +13,7 @@
   .row.header
     - tools = capture do
       - if logged_in? && current_user == @selected_user
-        = link_to t( :new_list ), new_list_path( @parent_slug ), id: "newlistbutton", class: "btn btn-primary"
+        = link_to t( :new_list ), new_list_path, id: "newlistbutton", class: "btn btn-primary"
     = render partial: "shared/by_login_header_bootstrap", locals: { after: tools, model_name: "Lists" }
   
   .row

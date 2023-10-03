@@ -2,7 +2,7 @@
 class PhotosController < ApplicationController
   before_action :doorkeeper_authorize!, only: [:update],
     if: lambda { authenticate_with_oauth? }
-  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate, :hide]
   before_action :require_owner, :only => [:update, :destroy, :rotate]
   before_action :authenticate_user!, except: [:show],
     unless: lambda { authenticated_with_oauth? }
@@ -80,9 +80,9 @@ class PhotosController < ApplicationController
   end
 
   def fix
-    types = %w(FacebookPhoto FlickrPhoto PicasaPhoto)
+    types = %w(FlickrPhoto PicasaPhoto)
     @type = params[:type]
-    @type = 'FacebookPhoto' unless types.include?(@type)
+    @type = "FlickrPhoto" unless types.include?( @type )
     @provider_name = @type.underscore.gsub(/_photo/, '')
     @provider_identity = if @provider_name == 'flickr'
       current_user.has_provider_auth('flickr')
@@ -97,7 +97,7 @@ class PhotosController < ApplicationController
   end
 
   def repair_all
-    @type = params[:type] if %w(FlickrPhoto FacebookPhoto PicasaPhoto).include?(params[:type])
+    @type = params[:type] if %w(FlickrPhoto PicasaPhoto).include?(params[:type])
     if @type.blank?
       respond_to do |format|
         format.json do
@@ -185,6 +185,11 @@ class PhotosController < ApplicationController
         end
       end
     end
+  end
+
+  def hide
+    @item = @photo
+    render "moderator_actions/hide_content"
   end
 
   private

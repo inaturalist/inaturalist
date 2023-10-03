@@ -244,12 +244,13 @@ class Identification < ApplicationRecord
       attrs = {}
       if user_id == observation.user_id
         species_guess = observation.species_guess
-        unless taxon.taxon_names.exists?(name: species_guess)
-          species_guess = taxon.common_name.try(:name) || taxon.name
+        unless taxon.taxon_names.exists?( name: species_guess )
+          species_guess = taxon.common_name( user: observation.user ).try( :name ) || taxon.name
         end
         attrs[:species_guess] = species_guess
       end
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+        run_at: 1.minute.from_now,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
           observation.id, observation.user_id ] }
       ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
@@ -283,6 +284,7 @@ class Identification < ApplicationRecord
       end
       attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+        run_at: 1.minute.from_now,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
           observation.id, self.user_id ] }
       ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
@@ -380,12 +382,13 @@ class Identification < ApplicationRecord
     true
   end
 
-  def flagged_with(flag, options)
-    evaluate_new_flag_for_spam(flag)
+  def flagged_with( flag, _options )
+    evaluate_new_flag_for_spam( flag )
     elastic_index!
-    if observation
-      observation.elastic_index!
-    end
+    return unless observation
+
+    observation.touch
+    observation.elastic_index!
   end
 
   # /Callbacks ##############################################################
@@ -648,6 +651,7 @@ class Identification < ApplicationRecord
       batch.each do |obs|
         ProjectUser.delay(
           priority: INTEGRITY_PRIORITY,
+          run_at: 1.minute.from_now,
           unique_hash: {
             "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [ obs.id, obs.user_id ]
           }

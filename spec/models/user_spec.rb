@@ -110,21 +110,14 @@ describe User do
     end
 
     it "should require email under normal circumstances" do
-      u = User.make
+      u = build :user
       u.email = nil
-      expect(u).not_to be_valid
-    end
-    
-    it "should allow skipping email validation" do
-      u = User.make
-      u.email = nil
-      u.skip_email_validation = true
-      expect(u).to be_valid
+      expect( u ).not_to be_valid
     end
 
     it "should set the URI" do
       u = User.make!
-      expect(u.uri).to eq(FakeView.user_url(u))
+      expect(u.uri).to eq(UrlHelper.user_url(u))
     end
 
     it "should set a default locale" do
@@ -177,8 +170,8 @@ describe User do
     end
 
     describe "email domain exists validation" do
-      before(:all) { enable_user_email_domain_exists_validation }
-      after(:all) { disable_user_email_domain_exists_validation }
+      before( :all ) { enable_user_email_domain_exists_validation }
+      after( :all ) { disable_user_email_domain_exists_validation }
 
       it "should allow email domains that exist" do
         [
@@ -199,9 +192,9 @@ describe User do
           "att.net",
           "cvcaroyals.org",
           "ymail.com"
-        ].each do |domain|
+        ].each do | domain |
           u = User.make!( email: "someone@#{domain}" )
-          expect( u ).to be_valid
+          expect( u ).to be_valid, "should allow email domain: #{domain}"
         end
       end
 
@@ -815,21 +808,33 @@ describe User do
 
     it "should update existing observations if requested" do
       u = User.make!
-      o = Observation.make!(:user => u)
+      o = Observation.make!( user: u )
       u.preferred_observation_license = Observation::CC_BY
-      u.update(:make_observation_licenses_same => true)
+      u.update( make_observation_licenses_same: true )
       o.reload
-      expect(o.license).to eq Observation::CC_BY
+      expect( o.license ).to eq Observation::CC_BY
     end
-    
+
     it "should update existing photo if requested" do
       u = User.make!
-      p = LocalPhoto.make!(:user => u)
+      p = LocalPhoto.make!( user: u )
       u.preferred_photo_license = Observation::CC_BY
-      u.update(:make_photo_licenses_same => true)
+      u.update( make_photo_licenses_same: true )
       p.reload
-      expect(p.license).to eq Photo.license_number_for_code(Observation::CC_BY)
+      expect( p.license ).to eq Photo.license_number_for_code( Observation::CC_BY )
     end
+
+    it "should queue moving photos if needed" do
+      u = User.make!
+      p = LocalPhoto.make!( user: u )
+      u.update( make_photo_licenses_same: true )
+      p.reload
+      expect( Delayed::Job.where(
+        queue: "photos",
+        unique_hash: "{:\"User::enqueue_photo_bucket_moving_jobs\"=>#{u.id}}"
+      ).any? ).to be true
+    end
+
 
     it "should not update GoogleStreetViewPhotos" do
       u = User.make!
@@ -983,10 +988,17 @@ describe User do
       f.reload
       expect( f.flaggable_user_id ).to eq keeper.id
     end
+
+    it "should merge favorited observations" do
+      o = Observation.make!
+      o.vote_by voter: keeper, vote: true
+      o.vote_by voter: reject, vote: true
+      expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
+    end
   end
 
   describe "suggest_login" do
-    it "should suggest logins that are too short" do
+    it "should not suggest logins that are too short" do
       suggestion = User.suggest_login("AJ")
       expect(suggestion).not_to be_blank
       expect(suggestion.size).to be >= User::MIN_LOGIN_SIZE
@@ -1020,10 +1032,13 @@ describe User do
       expect(suggestion).not_to be_blank
       expect(suggestion).to eq "naturalist1"
 
-      User.make!(login: "naturalist1")
+      # 9 is forbidden
+      (1..8).each do |i|
+        User.make!(login: "naturalist#{i}")
+      end
+      allow(User).to receive(:rand).and_return(12345)
       suggestion = User.suggest_login("")
-      expect(suggestion).not_to be_blank
-      expect(suggestion).to eq "naturalist2"
+      expect(suggestion).to eq "naturalist12345"
     end
 
   end
@@ -1409,7 +1424,7 @@ describe User do
     let(:auth_info) { {
       "info" => {
         "email" => email,
-        "name" => email
+        "name" => Faker::Name.name
       },
       "extra" => {
         "user_hash" => {
@@ -1417,19 +1432,63 @@ describe User do
         }
       }
     } }
-    it "should not allow an email in the name field" do
+    it "should set the confirmation_token" do
       u = User.create_from_omniauth( auth_info )
-      expect( u.email ).to eq email
-      expect( u.name ).not_to include email
+      expect( u ).not_to be_confirmed
+      expect( u.confirmation_token ).not_to be_blank
     end
-    it "should not automatically suggest something like the email in the name field" do
-      u = User.create_from_omniauth( auth_info )
-      expect( u.name ).to be_blank
+    it "should send the confirmation email" do
+      User.create_from_omniauth( auth_info )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
     end
-    it "should not automatically suggest something like the email in the login field" do
-      email_login_suggestion = User.suggest_login( email )
-      u = User.create_from_omniauth( auth_info )
-      expect( u.login ).not_to include email_login_suggestion
+    describe "with an email in the name field" do
+      let(:auth_info) { {
+        "info" => {
+          "email" => email,
+          "name" => email
+        },
+        "extra" => {
+          "user_hash" => {
+            "email" => email
+          }
+        }
+      } }
+      it "should not allow an email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.email ).to eq email
+        expect( u.name ).not_to include email
+      end
+      it "should not automatically suggest something like the email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.name ).to be_blank
+      end
+      it "should not automatically suggest something like the email in the login field" do
+        email_login_suggestion = User.suggest_login( email )
+        u = User.create_from_omniauth( auth_info )
+        expect( u.login ).not_to include email_login_suggestion
+      end
+    end
+  end
+
+  describe "confirmation" do
+    it "should deliver the welcome email when a new user is confirmed" do
+      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE + 1.day )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
+      expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
+    end
+    it "should not deliver the welcome email when confirmation_sent_at is nil" do
+      user = create :user
+      user.update( confirmed_at: nil, confirmation_sent_at: nil )
+      expect( user ).not_to be_confirmed
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
+    end
+    it "should not deliver the welcome email when user created before release date" do
+      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.day )
+      create :user_privilege, user: user
+      expect( user ).not_to be_confirmed
+      expect( user.created_at ).to be < User::EMAIL_CONFIRMATION_RELEASE_DATE
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end
 

@@ -1,10 +1,12 @@
+import _ from "lodash";
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import Dropzone from "react-dropzone";
+import moment from "moment";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
-import ChangePassword from "./change_password";
+import ChangePasswordContainer from "../containers/change_password_container";
 import UserImage from "../../../shared/components/user_image";
 
 const Profile = ( {
@@ -13,7 +15,8 @@ const Profile = ( {
   handlePhotoUpload,
   onFileDrop,
   removePhoto,
-  changePassword
+  confirmResendConfirmation,
+  resendConfirmation
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
@@ -47,6 +50,66 @@ const Profile = ( {
     );
   };
 
+  const unconfirmedEmailAlert = (
+    <div className="alert alert-warning">
+      <span
+        dangerouslySetInnerHTML={{
+          __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
+        }}
+      />
+      { " " }
+      <button
+        type="button"
+        className="btn btn-nostyle alert-link"
+        onClick={( ) => resendConfirmation( )}
+      >
+        { I18n.t( "resend_confirmation_email" ) }
+      </button>
+    </div>
+  );
+
+  let emailConfirmation = (
+    <div>
+      <p className="text-success">
+        { I18n.t( "confirmed_on_date", {
+          date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )
+        } )}
+      </p>
+      { profile.unconfirmed_email && unconfirmedEmailAlert }
+    </div>
+  );
+  if ( !profile.confirmed_at && profile.unconfirmed_email ) {
+    emailConfirmation = unconfirmedEmailAlert;
+  } else if ( !profile.confirmed_at ) {
+    emailConfirmation = (
+      <div
+        className={`alert alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
+      >
+        {
+          profile.confirmation_sent_at
+            ? I18n.t( "confirmation_email_sent_at_datetime", {
+              datetime: moment( profile.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )
+            } )
+            : I18n.t( "you_have_not_confirmed_your_email_address" )
+        }
+        { " " }
+        <button
+          type="button"
+          className="btn btn-nostyle alert-link"
+          onClick={( ) => confirmResendConfirmation( )}
+        >
+          {
+            profile.confirmation_sent_at
+              ? I18n.t( "resend_confirmation_email" )
+              : I18n.t( "send_confirmation_email", {
+                defaultValue: I18n.t( "resend_confirmation_email" )
+              } )
+          }
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="row">
       <div className="col-md-5 col-sm-10">
@@ -55,9 +118,30 @@ const Profile = ( {
           <Dropzone
             ref={iconDropzone}
             className="dropzone"
-            onDrop={droppedFiles => onFileDrop( droppedFiles )}
+            onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+              // trying to protect against treating images dragged from the
+              // same page from being treated as new files. Images dragged from
+              // the same page will appear as multiple dataTransferItems, the
+              // first being a "string" kind and not a "file" kind
+              if ( dropEvent.nativeEvent.dataTransfer
+                && dropEvent.nativeEvent.dataTransfer.items
+                && dropEvent.nativeEvent.dataTransfer.items.length > 0
+                && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+                return;
+              }
+              _.each( acceptedFiles, file => {
+                try {
+                  file.preview = file.preview || window.URL.createObjectURL( file );
+                } catch ( err ) {
+                  // eslint-disable-next-line no-console
+                  console.error( "Failed to generate preview for file", file, err );
+                }
+              } );
+              onFileDrop( acceptedFiles );
+            }}
             activeClassName="hover"
             disableClick
+            disablePreview
             accept="image/png,image/jpeg,image/gif"
             multiple={false}
           >
@@ -73,7 +157,15 @@ const Profile = ( {
                 >
                   {I18n.t( "upload_new_photo" )}
                 </button>
-                <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handlePhotoUpload} accept="image/*" />
+                <input
+                  id="user_icon"
+                  className="hide"
+                  value=""
+                  type="file"
+                  ref={hiddenFileInput}
+                  onChange={handlePhotoUpload}
+                  accept="image/*"
+                />
                 <button className="btn btn-default remove-photo-margin" type="button" onClick={removePhoto}>
                   {I18n.t( "remove_photo" )}
                 </button>
@@ -84,19 +176,41 @@ const Profile = ( {
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
           {showError( "login", "username" )}
-          <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
+          <input
+            id="user_login"
+            type="text"
+            className="form-control"
+            value={profile.login}
+            name="login"
+            onChange={handleInputChange}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
           {showError( "email" )}
-          <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
+          <input
+            id="user_email"
+            type="text"
+            className="form-control"
+            value={profile.email || ""}
+            name="email"
+            onChange={handleInputChange}
+          />
+          { emailConfirmation }
         </SettingsItem>
-        <ChangePassword changePassword={changePassword} showError={showError} />
+        <ChangePasswordContainer showError={showError} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
-          <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
+          <input
+            id="user_name"
+            type="text"
+            className="form-control"
+            value={profile.name || ""}
+            name="name"
+            onChange={handleInputChange}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
@@ -125,7 +239,8 @@ Profile.propTypes = {
   handlePhotoUpload: PropTypes.func,
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
-  changePassword: PropTypes.func
+  resendConfirmation: PropTypes.func,
+  confirmResendConfirmation: PropTypes.func
 };
 
 export default Profile;

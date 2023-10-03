@@ -133,6 +133,26 @@ pt:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A – Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:um|f:uma|n:um} %{resource}"
   about: Acerca de
   about_charts: Acerca dos gráficos
   about_community_taxa: Sobre os táxons da comunidade
@@ -151,6 +171,10 @@ pt:
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
+  about_taxon_ranges: Sobre a Distribuição do Táxon
+  about_taxon_ranges_desc: |
+    A Distribuição do Táxon indica a distribuição global de um táxon. Normalmente, a fonte da distribuição do táxon é a Lista Vermelha da IUCN.
+  about_the_network: Sobre a Rede
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre Este Mapa
   about_this_project: Sobre este Projeto
@@ -277,7 +301,6 @@ pt:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Adicionar Um(a) Agora
-  add_photos: Adicionar fotografias
   add_place: Adicionar lugar
   add_alive_or_dead_alive_annotation: 'Adicionar anotação "Vivo ou Morto: Vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Adicionar anotação "Vivo ou Morto: Não Pode ser Determinado"'
@@ -469,7 +492,6 @@ pt:
   already_have_an_account_log_in_html: Já tem conta? <strong>Entrar.</strong>
   amphibians: anfíbios
   ancestor_taxon: Táxon Ancestral
-  and: e
   and_other_taxa: "&amp; Outros Táxons"
   android: Android
   animals: Animais
@@ -699,7 +721,6 @@ pt:
   browse_species_that_occur_near_this_observation: Procurar espécies que ocorrem perto desta observação.
   built_with_site_guides_html: "Construído com <a href='%{url}'>%{site_name} Guias</a>"
   bulk_import_of_filename_is_complete: "Importação em massa de %{filename} está completa"
-  by: por
   by_everyone: Por todos
   by_user: "por %{user}"
   by_you: Por si
@@ -756,13 +777,7 @@ pt:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fundir com
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fundido com
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituído por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituir com
     dropped: descartado
     staged: etapa concluída
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} dividiu-se em %{output_taxa}"
@@ -876,12 +891,9 @@ pt:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Ligar a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Contas vinculadas
   connected_accounts_description: Contas conectadas são as suas contas de outras aplicações ou sites aos quais você permitiu o acesso iNaturalist em seu nome para suportar fazer login, importar fotos ou outras funcionalidades.
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Ligando ao Flickr..."
-  connecting_to_facebook: "Ligando ao Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Ligar a sua conta do %{site_name} a contas em outros sites permite-lhe fazer login em %{site_name} usando as credenciais desses sites."
   conservation_status: Estatuto de conservação
   conservation_status_descriptions:
@@ -935,13 +947,13 @@ pt:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
   controlled_term_definitions:
+    bone: |
+      Restos endo-esqueléticos predominantes; exposição parcial de ossos num organismo intacto deve ser rotulado de "organismo"
     feather: Uma ou mais penas não ligadas a um organismo
+    molt: Pele ou exoesqueleto descartados
     organism: Organismo inteiro ou parcial
     scat: Matéria fecal (não pelotas de coruja ou outra regurgitação)
     track: Impressão no solo ou neve feita pelo organismo
-    bone: |
-      Restos endo-esqueléticos predominantes; exposição parcial de ossos num organismo intacto deve ser rotulado de "organismo"
-    molt: Pele ou exoesqueleto descartados
   controls: Controlos
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
@@ -999,7 +1011,6 @@ pt:
   created_by: Criado por
   created_by_user_on_date: Adicionado por %{user} em %{date}
   created_on: 'Criado em:'
-  creating_your_account: "A criar a sua conta..."
   creative_commons_flickr_tagged: Fotos Creative Commons do Flickr marcadas
   creative_commons_unless_otherwise_noted: "Creative Commons salvo indicação em contrário."
   critically_endangered: criticamente em perigo de extinção
@@ -1052,18 +1063,6 @@ pt:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Não demonstrar o comportamento apropriado por si só.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para se candidatar a ser curador do site, deve ter uma conta há 60
-    dias ou mais e ter adicionado 100 identificações "a melhorar" a
-    observações de qualquer um, incluindo as suas próprias (você adicionou %{num_idents}). Quando
-    cumprir os dois requisitos, volte aqui e poderá enviar a candidatura.
-    .
-  curator_application_inelligible_error: |
-    Para se candidatar a ser curador do site, deve ter uma conta há 60
-    dias ou mais e ter adicionado 100 identificações "a melhorar" a
-    observações de qualquer um, incluindo as suas próprias.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Inscrição de curador enviada
   #Header
@@ -1284,9 +1283,13 @@ pt:
   download_csv: Descarregar CSV
   download_csv_template: Transferir modelo CSV
   download_kml: Descarregar KML
+  #Noun, as in a journal post that has not been published
   draft: rascunho
+  #Noun, as in a journal post that has not been published
   draft_: Rascunho
+  #Noun, as in a journal post that has not been published
   draft_saved: Rascunho gravado!
+  #Noun, as in journal posts that has not been published
   drafts: Rascunhos
   drag_and_drop_some_photos_or_sounds: Arrastar e largar algumas fotografias ou sons
   drawings: Desenhos
@@ -1347,7 +1350,10 @@ pt:
   email: Email
   email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
-  email_copyright: "Direitos de autor &copy; %{x}, todos os direitos reservados"
+  email_conf_required_after_grace_period: |
+    Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
+    confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
+    para acessar sua conta.
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
   embed_place_widget: Incorporar um componente de localização
@@ -1403,11 +1409,6 @@ pt:
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
   evidence_of_organism: Evidência de organismo
-  facebook_account_information: Informação da sua conta do Facebook
-  facebook_account_not_linked: "%{user} já não tem uma ligação para conta de facebook, por isso %{site_name} não tem permissão para aceder a esta foto."
-  facebook_access_token_expired: "A chave electrônica de acesso expirou. %{user} precisa de fazer nova ligação à sua conta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: O Facebook necessita que o dono dessa fotografia faça nova confirmação da sua ligação a %{site_name_short}.
-  facebook_options: Opções do Facebook
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
   failed_to_save_record: "Não foi possível gravar o registo. Por favor, tente novamente mais tarde."
@@ -1507,7 +1508,6 @@ pt:
   frequency: Frequência
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
-  from_flickr_facebook_etc: Do Flickr, Facebook, etc.
   from_list: Da lista
   from_photos: Das fotografias
   from_place: De um local
@@ -1570,7 +1570,6 @@ pt:
   heads_up_you_have_multiple: "Aviso: Você tem múltiplas etiquetas de máquina para ordens idênticas. Elas são apresentadas por ordem com uma cor, em baixo."
   help: Ajuda
   help_confirm_observations!: Ajude a confirmar observações!
-  help_support_inaturalist: "Apoie o iNaturalist"
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_suggestions: Aqui estão nossas principais sugestões
   here_are_our_top_species_suggestions: Aqui pode ver a nossa selecção de espécies
@@ -1756,7 +1755,6 @@ pt:
   let_us_walk_you_through: Deixe-nos apresentar as principais características deste sítio
   lexicon: Léxico
   lexicons:
-    scientific_names: Nomes científicos
     afrikaans: Africanês
     albanian: Albanês
     bengali: Bengalês
@@ -1791,6 +1789,7 @@ pt:
     portuguese: Português
     romanian: Romano
     russian: Russo
+    scientific_names: Nomes científicos
     spanish: Espanhol
     swedish: Sueco
     tagalog: Tagalo
@@ -1806,14 +1805,8 @@ pt:
   life: Vida
   life_list: "Lista de vida de %{user}"
   link: Ligação
-  link_your_facebook_account: Conecte a sua conta do Facebook
   link_your_flickr_account: Conecte a sua conta do Flickr
   link_your_google_account: Conecte a sua conta do Google
-  linked_facebook: "A sua conta do %{site_name} está atualmente ligada à sua conta do Facebook."
-  linked_facebook_automaticaly: "Lembre-se também que se entrar no %{site_name} através do Facebook, nós iremos ligar novamente as suas contas do %{site_name} e do Facebook. É provável que se usa o Facebook também queira ter a possibilidade de importar as fotografias do Facebook, certo?"
-  linked_facebook_description: "Manter a sua conta %{site_name} ligada à conta do Facebook permite-lhe adicionar várias fotografias às suas observações. Claro que se quiser que o %{site_name} e o Facebook percam a ligação, não o impediremos, apenas não poderá adicionar fotografias. Por vezes esta é a melhor opção, como quando cria uma nova conta Facebook e a quer ligar ao %{site_name}."
-  linked_facebook_howto: "Para ligar o Facebook com o %{site_name}, clique na ligação à direita e entre no Facebook.com."
-  linked_facebook_password: "Nunca iremos pedir a sua palavra-passe do Facebook (mas o Facebook pode verificar o url que o botão lhe envia para ter a certeza que é Facebook.com). Também não faremos alterações nos seus dados do Facebook a não ser que queira que as façamos."
   linked_flickr: "A sua conta do %{site_name} está actualmente ligada à sua conta do Flickr."
   linked_flickr_automatically: "Lembre-se também que se entrar no %{site_name} através do Flickr faremos nova ligação automaticamente as contas %{site_name} e Flickr. É provável que se usa o Flickr também queira ter a possibilidade de importar as fotografias do Flickr, certo?"
   linked_flickr_description: "Manter a sua conta %{site_name} ligada à conta do Flickr permite-lhe adicionar várias fotografias às suas observações. Claro que se quiser que o %{site_name} e o Flickr percam a ligação, não o impediremos, apenas não poderá adicionar fotografias. Por vezes esta é a melhor opção, como quando cria uma nova conta Flickr e a quer ligar ao %{site_name}."
@@ -1898,7 +1891,6 @@ pt:
   log_scale_label: Logarítmica
   #Status message shown while logging in
   logging_in: A iniciar sessão...
-  login_slash_username: Iniciar sessão / nome de utilizador
   logo:
     logo: Logótipo
     white_bg_gif: imagem GIF com fundo branco
@@ -1941,7 +1933,6 @@ pt:
       every_publicly_visible_observation: Todas as observações visíveis para o público criadas na rede do iNaturalist
       featured_observations: Observações em destaque
       gbif_network: Rede do GBIF
-      gbif_network_description: Registos de museus e de outros provedores de registos de ocorrência distribuídos pela Global Biodiversity Informatics Facility
       observations: Observações
       place_boundary: Definir o limite da área
       checklist_places: Lista de verificação de lugares
@@ -2052,6 +2043,7 @@ pt:
   must_have_quality_grades: "deve ter níveis de qualidade: %{grades}"
   must_have_sounds: deve ter sons
   must_have_x: "deve ter %{x}"
+  #Mute is a noun here
   mute_removed: Silenciador removido
   muted_users: Utilizadores Silenciados
   n_ago: "%{n} antes"
@@ -2208,7 +2200,6 @@ pt:
   not_findig_what_you_want: Não encontra o que deseja?
   not_finding_place_you_want?: Não encontra o lugar que deseja?
   not_found: Não encontrado
-  not_linked_facebook: "A sua conta em %{site_name} não está atualmente ligada à sua conta do Facebook."
   not_linked_flickr: "A sua conta em %{site_name} não está atualmente ligada à sua conta no Flickr."
   not_on_this_list: Não está nesta lista.
   not_recorded: Não registado
@@ -2312,10 +2303,6 @@ pt:
   observed_on: Observado em
   observer: Observador
   observers: Observadores
-  observer_prefers_no_project_addition: |
-    Observador não permite que outras pessoas adicionem as suas observações a projetos.
-  observer_prefers_addition_to_projects_joined: |
-    Observador só permite que outras pessoas adicionem as suas observações aos projetos a que aderiu.
   observer_short: Observador
   occurence_status_describes_how: 'O estado de ocorrência descreve o quão comum ou raro é um taxón numa determinada área. Ver DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mais informação sobre terminologia</a>.'
   occurrence_status: Estado da ocorrência
@@ -2685,7 +2672,6 @@ pt:
   post_from_your_journal_html: Publicação de <a href="%{url}">seu jornal</a>
   post_published: Artigo publicado!
   posted_by: Publicado por
-  posted_on: Publicado em
   posts: Publicações
   potential_disagreement: Desacordo Potencial
   powered_by: Desenvolvido por
@@ -2971,11 +2957,12 @@ pt:
   select: Selecionar
   select_all: Selecionar tudo
   select_at_least_one: Selecionar pelo menos um
-  select_one_or_more_photos: 'Selecione uma ou mais fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Não selecionar nenhuma
   select_observations_to_edit: Selecionar as observações para editar...
   select_one_of_friends_albums: Selecionar um dos álbuns de %{friend}
   select_one_of_your_albums: Selecionar um dos seus álbuns
+  select_one_or_more_photos: 'Selecione uma ou mais fotos'
   select_options: Selecionar opções
   select_photos_from_your_photo_stream: |
     Selecione fotos a partir de um site externo de partilha de fotos para converter em observações do %{site_name}. Nós preenchemos a data, a hora e a localização a partir dos metadados da foto, e tentamos procurar os nomes das espécies a partir das etiquetas.
@@ -3274,6 +3261,7 @@ pt:
   upload: Carregar
   upload_a_csv_file_with_observation: |
     Carregar um ficheiro CSV com dados observados. Se tem os seus dados numa folha de cálculo ou numa base de dados, provavelmente é a sua melhor opção.
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Carregado por
   uploader:
     tooltips:
@@ -3283,21 +3271,25 @@ pt:
       remove_photo: Remover a foto
   usage_stats: Estatísticas de utilização
   user: Utilizador
+  #@gender operates on %{x}
   user_added_a_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} adicionou um(a) %{x} ao %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
   user_added_an_observation_field_html: '%{user} adicionou um valor ao campo "%{field_name}" da observação de %{owner}'
   user_added_an_observation_html: "%{user} adicionou uma observação"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} adicionou um(a) %{x} a(o) %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
   user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O utilizador já está autenticado
   user_blocked: Utilizador bloqueado
   user_commented: "%{user} comentou"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} adicionou %{noun} por %{owner} como favorito"
   user_is_a_naturalist: "%{user} é um naturalista!"
   user_muted: Utilizador silenciado
   user_suggested_an_id: "%{user} sugeriu uma identificação"
@@ -3326,11 +3318,6 @@ pt:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ver o seu painel de controlo</a> para mais atualizações"
   view_your_observations: Ver as suas observações
   view_all_of_your_observations_from_x: "Ver todas as suas observações de %{x}"
-  we_also_support: |
-    Também apoiamos e interligamos com <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para o alojamento das suas imagens.
   we_had_a_problem_flagging_that_item: "Ocorreu um erro ao sinalizar esse item: %{flag_error}"
   welcome_back!: Bem-vindo de volta!
   welcome_to_inat: "Bem-vindo ao %{site_name}!"
@@ -3375,6 +3362,9 @@ pt:
             <a href="%{url}">Verificar as Directrizes de Comunidade</a> para as dicas sobre como manter o iNaturalist um lugar amigável e acolhedor.
           please_read_the_teachers_guide_html: |
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
+    donate:
+      temporarily_unavailable: |
+        Obrigado pelo seu interesse em apoiar ao iNaturalist! A doação ao iNaturalist está temporariamente indisponível enquanto actualizamos os nossos sistemas de doação. Por favor, volte brevemente.
     lifelists:
       list_view: Ver em lista
       observed_rank: Observado %{rank}
@@ -3511,7 +3501,6 @@ pt:
           seja atualizado manualmente. Atualizando este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
         frequency:
-          "Plant Phenology=No Evidence": Sem Evidências
           "Life Stage=Adult": Adulto
           "Life Stage=Egg": Ovo
           "Life Stage=Larva": Larva
@@ -3554,8 +3543,6 @@ pt:
     welcome:
       index:
         connect_with_nature: Ligue-se à Natureza
-        species_observed: 'Espécies observadas'
-        people_signed_up: 'Pessoas Registadas'
         how_it_works: Como funciona
         record_your_observations: Registre suas observações
         crowdsource_identifications: Identificações pela comunidade
@@ -3592,15 +3579,15 @@ pt:
       - sexta-feira
       - sábado
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%d de %b de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -3659,8 +3646,8 @@ pt:
       one: hora
       other: horas
     countdown_x_seconds:
-      one: s
-      other: s
+      one: SEG
+      other: SEGS
     prompts:
       day: Dia
       hour: Hora
@@ -3668,24 +3655,6 @@ pt:
       month: Mês
       second: Segundos
       year: Ano
-  errors:
-    messages:
-      accepted: deve ser aceito
-      blank: não pode ficar em branco
-      confirmation: não corresponde com a confirmação
-      empty: não pode ficar vazio
-      equal_to: deve ser igual a %{count}
-      even: deve ser par
-      exclusion: está reservado
-      greater_than: deve ser maior que %{count}
-      greater_than_or_equal_to: deve ser maior ou igual a %{count}
-      inclusion: não está incluído na lista
-      invalid: não é válido
-      less_than: deve ser menor que %{count}
-      less_than_or_equal_to: deve ser menor ou igual a %{count}
-      not_a_number: não é um número
-      not_an_integer: deve ser um número inteiro
-      odd: deve ser ímpar
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -3718,34 +3687,12 @@ pt:
       words_connector: ','
   time:
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %b. %Y, %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y, %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d %b, %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d de %B de %Y"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: não corresponde com a confirmação
-        equal_to: deve ser igual a %{count}
-        even: deve ser par
-        exclusion: está reservado
-        greater_than: deve ser maior que %{count}
-        greater_than_or_equal_to: deve ser maior ou igual a %{count}
-        inclusion: não está incluído na lista
-        invalid: não é válido
-        less_than: deve ser menor que %{count}
-        less_than_or_equal_to: deve ser menor ou igual a %{count}
-        not_a_number: não é um número
-        not_an_integer: deve ser um número inteiro
-        odd: deve ser ímpar
-        record_invalid: 'Falha na validação: %{errors}'
-      template:
-        body: 'Ocorreram problemas com os seguintes campos:'
   activerecord:
     attributes:
       assessment_section:
@@ -3758,7 +3705,9 @@ pt:
         geoprivacy: Geoprivacidade
         iucn: Equivalente UICN
       flag:
+        #The reason the item was flagged
         reason: Motivo
+        #The kind of flag that was made
         flag: Sinalizar
       guide:
         source_url: Fonte URL

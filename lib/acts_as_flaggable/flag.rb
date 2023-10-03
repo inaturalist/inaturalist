@@ -1,4 +1,6 @@
-class Flag < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Flag < ApplicationRecord
   # include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
@@ -13,45 +15,47 @@ class Flag < ActiveRecord::Base
     SPAM,
     INAPPROPRIATE,
     COPYRIGHT_INFRINGEMENT
-  ]
-  TYPES = %w[CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
-             Taxon User]
+  ].freeze
+  TYPES = %w(CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
+             Taxon User).freeze
   belongs_to :flaggable, polymorphic: true
+  belongs_to :flaggable_parent, polymorphic: true
   belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id", inverse_of: :flags_as_flaggable_user
 
-  has_subscribers :to => {
-    :comments => {:notification => "activity", :include_owner => true},
+  has_subscribers to: {
+    comments: { notification: "activity", include_owner: true }
   }
-  notifies_subscribers_of :self, :notification => "activity", :include_owner => true,
-    :on => :update,
-    :queue_if => Proc.new {|flag|
+  notifies_subscribers_of :self, notification: "activity", include_owner: true,
+    on: :update,
+    queue_if: proc {| flag |
       # existing flag whose comment has been changed
       !flag.saved_change_to_id && flag.saved_change_to_comment
     }
-  auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
+  auto_subscribes :resolver, on: :update, if: proc {| record, _resource |
     record.saved_change_to_resolved? && !record.resolver.blank? &&
-      !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
+      !record.resolver.subscriptions.where( resource_type: "Flag", resource_id: record.id ).exists?
   }
 
-  blockable_by lambda {|flag| flag.flaggable.try(:user_id) }, on: :create
+  blockable_by ->( flag ) { flag.flaggable.try( :user_id ) }, on: :create
 
   # NOTE: Flags belong to a user
   belongs_to :user, inverse_of: :flags
-  belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
-  has_many :comments, :as => :parent, :dependent => :destroy, :validate => false
+  belongs_to :resolver, class_name: "User", foreign_key: "resolver_id"
+  has_many :comments, as: :parent, dependent: :destroy, validate: false
   attr_accessor :initial_comment_body
 
   before_save :check_resolved
   before_create :set_flaggable_user_id
   before_create :set_flaggable_content
+  before_create :set_flaggable_parent
 
   after_create :notify_flaggable_on_create
   after_update :notify_flaggable_on_update
   after_destroy :notify_flaggable_on_destroy
 
   # A user can flag a specific flaggable with a specific flag once
-  validates_length_of :flag, :in => 3..256, :allow_blank => false
-  validates_length_of :comment, :maximum => 256, :allow_blank => true
+  validates_length_of :flag, in: 3..256, allow_blank: false
+  validates_length_of :comment, maximum: 256, allow_blank: true
   validates_uniqueness_of :user_id, scope: [
     :flaggable_id,
     :flaggable_type,
@@ -68,48 +72,48 @@ class Flag < ActiveRecord::Base
   end
 
   def flaggable_type_valid
-    if Flag::TYPES.include?(flaggable_type)
+    if Flag::TYPES.include?( flaggable_type )
       true
     else
-      errors.add(:flaggable_type, "can't be flagged")
+      errors.add( :flaggable_type, "can't be flagged" )
     end
   end
 
   def flag_not_about_duplicate
     return true unless %w(Observation Photo).include?( flaggable_type )
 
-    return true unless flag.to_s.downcase.include? ( "duplicate" )
+    return true unless flag.to_s.downcase.include?( "duplicate" )
 
     errors.add( :flag, :not_about_duplicate )
   end
 
   def notify_flaggable_on_create
-    if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, action: "created")
+    if flaggable.respond_to?( :flagged_with )
+      flaggable.flagged_with( self, action: "created" )
     end
     true
   end
 
   def notify_flaggable_on_update
-    if flaggable && flaggable.respond_to?(:flagged_with) && saved_change_to_resolved?
+    if flaggable.respond_to?( :flagged_with ) && saved_change_to_resolved?
       if resolved?
-        flaggable.flagged_with(self, action: "resolved")
+        flaggable.flagged_with( self, action: "resolved" )
       else
-        flaggable.flagged_with(self, action: "unresolved")
+        flaggable.flagged_with( self, action: "unresolved" )
       end
     end
     true
   end
 
   def notify_flaggable_on_destroy
-    if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, action: "destroyed")
+    if flaggable.respond_to?( :flagged_with )
+      flaggable.flagged_with( self, action: "destroyed" )
     end
     true
   end
 
-  def is_akismet_spam_flag?
-    user_id == 0 && flag == Flag::SPAM
+  def akismet_spam_flag?
+    user_id.zero? && flag == Flag::SPAM
   end
 
   def as_indexed_json
@@ -127,32 +131,30 @@ class Flag < ActiveRecord::Base
 
   # Helper class method to lookup all flags assigned
   # to all flaggable types for a given user.
-  def self.find_flags_by_user(user)
-    find(:all,
-      :conditions => ["user_id = ?", user.id],
-      :order => "created_at DESC"
-    )
+  def self.find_flags_by_user( user )
+    find( :all,
+      conditions: ["user_id = ?", user.id],
+      order: "created_at DESC" )
   end
 
   # Helper class method to look up all flags for
   # flaggable class name and flaggable id.
-  def self.find_flags_for_flaggable(flaggable_str, flaggable_id)
-    find(:all,
-      :conditions => ["flaggable_type = ? and flaggable_id = ?", flaggable_str, flaggable_id],
-      :order => "created_at DESC"
-    )
+  def self.find_flags_for_flaggable( flaggable_str, flaggable_id )
+    find( :all,
+      conditions: ["flaggable_type = ? and flaggable_id = ?", flaggable_str, flaggable_id],
+      order: "created_at DESC" )
   end
 
   # Helper class method to look up a flaggable object
   # given the flaggable class name and id
-  def self.find_flaggable(flaggable_str, flaggable_id)
-    flaggable_str.constantize.find(flaggable_id)
+  def self.find_flaggable( flaggable_str, flaggable_id )
+    flaggable_str.constantize.find( flaggable_id )
   end
 
   def flagged_object
-    if klass = Object.const_get( flaggable_type )
-      klass.find_by_id( flaggable_id )
-    end
+    return unless ( klass = Object.const_get( flaggable_type ) )
+
+    klass.find_by_id( flaggable_id )
   end
 
   def check_resolved
@@ -171,18 +173,19 @@ class Flag < ActiveRecord::Base
     when "User" then flaggable
     when "Message" then flaggable.from_user
     else
-      k, reflection = flaggable.class.reflections.detect{|r| r[1].class_name == "User" && r[1].macro == :belongs_to }
+      k, reflection = flaggable.class.reflections.detect do | r |
+        r[1].class_name == "User" && r[1].macro == :belongs_to
+      end
       if reflection
         flaggable.send( k )
-      else
-        nil
       end
     end
   end
 
   def set_flaggable_user_id
     return true unless flaggable
-    if u = get_flaggable_user
+
+    if ( u = get_flaggable_user )
       self.flaggable_user_id = u.id
     end
     true
@@ -190,21 +193,41 @@ class Flag < ActiveRecord::Base
 
   def set_flaggable_content
     return true unless flaggable
-    self.flaggable_content = flaggable.try_methods(:body, :description)
+
+    self.flaggable_content = flaggable.try_methods( :body, :description )
     true
   end
 
-  def flaggable_content_viewable_by?( user )
-    if flaggable_type == "Message"
-      return false unless user && user.is_admin?
+  def set_flaggable_parent
+    return true unless flaggable
+
+    self.flaggable_parent = case flaggable_type
+    when "Comment", "Post" then flaggable.parent
+    when "Identification" then flaggable.observation
+    when "Photo"
+      if flaggable.observations.exists?
+        flaggable.observations.first
+      elsif flaggable.taxa.exists?
+        flaggable.taxa.first
+      elsif flaggable.guide_photos.exists?
+        flaggable.guide_photos.first.guide_taxon
+      end
     end
+  end
+
+  def flaggable_content_viewable_by?( user )
+    if flaggable_type == "Message" && !( user && user.is_admin? )
+      return false
+    end
+
     !flaggable_content.blank? && user && user.is_curator?
   end
 
   def deletable_by?( user )
     return false if new_record? || user.blank?
     return true if user.is_admin?
-    return true if user.id === self.user_id && !resolved? && !comments.any?
+    return true if user.id == user_id && !resolved? && comments.none?
+
     false
   end
 

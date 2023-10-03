@@ -22,7 +22,7 @@
             %i{ :class => "sound-icon fa fa-volume-up" }
             %span.photo-count.ng-cloak{ "ng-show" => "o.photos.length > 1", title: "{{ shared.t( 'x_photos', { count: o.photos.length } )}}" }
               {{ o.photos.length }}
-        %td
+        %td.taxon
           %inat-taxon.split-taxon{ taxon: "o.taxon", url: "/observations/{{ o.id }}" }
           .meta
             %span{:class => "quality_grade {{ o.quality_grade }}"}

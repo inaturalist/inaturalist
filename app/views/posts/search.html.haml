@@ -1,0 +1,21 @@
+- content_for :title do
+  = @title = t( :find_posts_for, vow_or_con: @parent.journal_display_name[0].downcase, journal_name: @parent.journal_display_name )
+- content_for(:extracss) do
+  = stylesheet_link_tag "posts"
+  :css
+    .post {margin-bottom: 1em;}
+    .media-object {width: 48px;}
+.container
+  %ul.breadcrumb
+    %li
+      = link_to t(:journal_posts), @parent.journal_path
+      %li.active=t :search
+  .row
+    .col-xs-12
+      #post_header
+        %h1= @title
+        = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
+  .row
+    .col-md-12
+      = render "posts/posts", posts: @posts, hard_truncate_length: 500
+      = will_paginate @posts

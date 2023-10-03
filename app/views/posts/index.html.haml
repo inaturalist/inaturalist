@@ -1,5 +1,5 @@
 - content_for(:title) do
-  =raw t(:x_journal, user: @parent_display_name)
+  =raw t(:x_journal, user: @parent.journal_display_name)
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   %style{:media => "screen", :type => "text/css"}
@@ -7,22 +7,7 @@
     #footercol .feeds {text-align: right;}
 
 .container
-  - if @parent.is_a?(Project) && @parent.is_new_project?
-    .row.project-back
-      .col-md-12
-        %a{ href: project_path( @parent ) }
-          %i.fa.fa-angle-left
-          = t( :back_to_x, noun: @parent.title )
-    .row
-      .col-md-12
-        - title = t( :x_project_journal, project: strip_tags( @parent.title ), name: t( :journal ) )
-        %h1= title
-        - if @display_project.curated_by?(current_user)
-          = link_to t(:new_post), new_project_journal_post_path(@parent_slug), |
-            :id => "newpostbutton", :class => "default button"                 |
-  - else
-    .row
-      = render :partial => "posts/header"
+  = render :partial => "posts/header"
   .row
     .col-md-8
       #postdates.posts_by_date
@@ -37,25 +22,30 @@
               = t(:no_post_yet)
               %br
               - if (@parent.is_a?(Project) && @display_project.editable_by?(current_user))
-                = link_to t(:add_one), new_project_journal_post_path(@parent_slug), |
-                  :id => "newpostbutton", :class => "default button"                |
-              - elsif logged_in? && current_user.login == @parent_display_name
-                = link_to t(:add_one), new_journal_post_path(@parent_slug), |
-                  :class => "default button"                                |
+                = link_to t(:add_one), new_project_journal_post_path(@parent.journal_slug), |
+                  id: "newpostbutton", class: "default button"                |
+              - elsif logged_in? && current_user.login == @parent.journal_display_name
+                = link_to t(:add_one), new_journal_post_path(@parent.journal_slug), |
+                  class: "default button"                                |
       = will_paginate @posts
     .col-md-4
-      - unless @drafts.blank?
-        .box
-          %h3= t(:drafts)
-          %ul
-            - for post in @drafts
-              %li
-                = link_to post.title, edit_post_path(post)
-                %div
-                  %span.text-muted= t(:created_on, gender: 'post')
-                  %span.date= l post.created_at, format: :long
-      - unless @archives.blank?
-        = render :partial => 'archives'
+      - unless @posts.empty?
+        .row
+          %h2.right
+            = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
+      .row
+        - unless @drafts.blank?
+          .box
+            %h3= t(:drafts)
+            %ul
+              - for post in @drafts
+                %li
+                  = link_to post.title, edit_post_path(post)
+                  %div
+                    %span.text-muted= t(:created_on, gender: 'post')
+                    %span.date= l post.created_at, format: :long
+        - unless @archives.blank?
+          = render :partial => 'archives'
   - unless @posts.empty? && @parent.is_a?(Project) && @parent.is_new_project?
     #footercol.row
       .feeds

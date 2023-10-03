@@ -90,6 +90,7 @@ describe ApplicationController do
       end
 
       it "redirects logged-out users to log in" do
+        controller.request.host = URI.parse( site.url ).host
         get :index, params: { inat_site_id: site.id }
         expect( response.response_code ).to eq 302
         expect( response ).to be_redirect
@@ -97,6 +98,7 @@ describe ApplicationController do
       end
 
       it "redirects basic users to log in" do
+        controller.request.host = URI.parse( site.url ).host
         sign_in( basic_user )
         get :index, params: { inat_site_id: site.id }
         expect( response.response_code ).to eq 302
@@ -118,9 +120,33 @@ describe ApplicationController do
         expect( response ).to_not be_redirect
       end
     end
+
+    describe "setting locale" do
+      it "should map zh-Hans to zh-CN" do
+        get :index, params: { locale: "zh-Hans" }
+        expect( I18n.locale.to_s ).to eq "zh-CN"
+      end
+      it "should map zh-Hant to zh-TW" do
+        get :index, params: { locale: "zh-Hant" }
+        expect( I18n.locale.to_s ).to eq "zh-TW"
+      end
+      it "should map zh-Hans-TW to zh-CN" do
+        get :index, params: { locale: "zh-Hans-TW" }
+        expect( I18n.locale.to_s ).to eq "zh-CN"
+      end
+      it "should map fr-fr to fr" do
+        get :index, params: { locale: "fr-fr" }
+        expect( I18n.locale.to_s ).to eq "fr"
+      end
+      it "should set locale from Accept-Language header" do
+        request.headers["Accept-Language"] = "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+        get :index
+        expect( I18n.locale.to_s ).to eq "pt-BR"
+      end
+    end
   end
 
-  describe GuidesController do
+  describe WelcomeController do
     describe "network affiliation prompt" do
       describe "for user in partner site place" do
         let( :place ) { make_place_with_geom }

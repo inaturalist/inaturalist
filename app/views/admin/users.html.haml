@@ -22,11 +22,41 @@
 .container
   .row
     .col-xs-12
-      %form.form-inline{ method: "get" }
-        %input.form-control#id{ name: "q", type: "search", value: @q, placeholder: "Login, name, email, or IP" }
-        %input.btn.btn-default{ type: "submit", value: "Search" }
+      #controls.well
+        =form_tag( { controller: :admin, action: :users }, method: :get ) do
+          .row
+            .col-xs-2
+              .text-right
+                =label_tag :q_login, "login"
+            .col-xs-10
+              =text_field_tag :q_login, @q_login, class: 'form-control'
+          .row
+            .col-xs-2
+              .text-right
+                =label_tag :q_name, "name"
+            .col-xs-10
+              =text_field_tag :q_name, @q_name, class: 'form-control'
+          .row
+            .col-xs-2
+              .text-right
+                =label_tag :q_email, "email"
+            .col-xs-10
+              =text_field_tag :q_email, @q_email, class: 'form-control'
+          .row
+            .col-xs-2
+              .text-right
+                =label_tag :q_ip, "IP"  
+            .col-xs-10
+              =text_field_tag :q_ip, @q_ip, class: 'form-control'
+          .row
+            .col-xs-2
+            .col-xs-10
+              .title-controls
+                =button_tag 'Search', class: 'btn btn-default', type: :submit
+                =link_to 'Reset', url_for, class: "btn btn-link"
+
   - if @users.blank?
-    .nocontent=t :no_results
+    .nocontent=t :no_results_found
   - else
     .row
       .col-xs-12

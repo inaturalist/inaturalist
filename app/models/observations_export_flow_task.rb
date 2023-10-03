@@ -12,7 +12,7 @@ class ObservationsExportFlowTask < FlowTask
   class ObservationsExportDeleted < ObservationsExportError; end
 
   before_save do |record|
-    record.redirect_url = FakeView.export_observations_path
+    record.redirect_url = UrlHelper.export_observations_path
   end
 
   def must_have_query
@@ -91,16 +91,27 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def preloads
-    includes = [ :user, { identifications: [:stored_preferences] } ]
+    includes = [
+      { user: :friendships },
+      { identifications: [:stored_preferences] },
+      :project_observations
+    ]
     if export_columns.detect{|c| c == "common_name"}
       includes << { taxon: { taxon_names: :place_taxon_names } }
     end
     if export_columns.detect{|c| c =~ /^ident_by_/}
       includes[1][:identifications] = [:stored_preferences, :user]
     end
+    if export_columns.detect{|c| c =~ /^place.*_name/}
+      includes << { observations_places: :place }
+    end
     includes << { observation_field_values: :observation_field }
-    includes << { photos: [:user, :flags, :file_prefix, :file_extension] } if export_columns.detect{ |c| c == "image_url" }
-    includes << :sounds if export_columns.detect{ |c| c == "sound_url" }
+    if export_columns.detect{ |c| c == "image_url" }
+      includes << { photos: [:user, :flags, :file_prefix, :file_extension, :moderator_actions] }
+    end
+    if export_columns.detect{ |c| c == "sound_url" }
+      includes << { sounds: [:user, :flags, :moderator_actions] }
+    end
     includes << :quality_metrics if export_columns.detect{ |c| c == "captive_cultivated" }
     includes
   end

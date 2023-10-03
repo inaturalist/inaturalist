@@ -11,6 +11,8 @@
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
     = render "shared/i18n"
     = javascript_include_tag "i18n_bundle"
+    - if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? )
+      %script{ src: "https://cdn.usefathom.com/script.js", "data-site": @site.preferred_fathom_analytics_tracker_id, "data-canonical": "false", defer: true }
     = yield :extrahead
   %body
     = content_for?(:content) ? yield(:content) : yield

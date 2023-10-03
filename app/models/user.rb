@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
+  include HasJournal
+
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -20,11 +22,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  handle_asynchronously :send_devise_notification
-  
-  # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
-  attr_accessor :skip_email_validation
-  attr_accessor :skip_registration_email
+  # handle_asynchronously :send_devise_notification
   
   # licensing extras
   attr_accessor   :make_observation_licenses_same
@@ -94,6 +92,7 @@ class User < ApplicationRecord
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
   preference :captive_obs_maps, :boolean, default: false
+  preference :gbif_layer_maps, :boolean, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
   preference :monthly_supporter_badge, :boolean, default: false
   preference :map_tile_test, :boolean, default: false
@@ -159,7 +158,6 @@ class User < ApplicationRecord
   has_many :photos, :dependent => :destroy
   has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
@@ -201,7 +199,8 @@ class User < ApplicationRecord
   has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
     foreign_key: "subject_user_id", inverse_of: :subject_user,
     dependent: :destroy
-  
+  has_many :taxon_name_priorities, dependent: :destroy
+
   file_options = {
     processors: [:deanimator],
     styles: {
@@ -251,6 +250,7 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
@@ -266,6 +266,7 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
+  after_update :send_welcome_email
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -280,7 +281,14 @@ class User < ApplicationRecord
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
-  DEFAULT_LOGIN = "naturalist"
+  DEFAULT_LOGIN = "naturalist".freeze
+
+  # Do not append these numbers to usernames when generating an unused username for a new user.
+  # Source: https://www.adl.org/resources/hate-symbols/search?f%5B0%5D=topic%3A1709
+  LOGIN_SUFFIX_EXCLUSIONS = [
+    100, 109, 110, 111, 12, 13, 1352, 1390, 52, 90, 14, 1410, 1423, 1488, 18, 21_212, 2316, 28, 23, 16, 311,
+    318, 336, 38, 43, 511, 737, 83, 88, 9, 10
+  ].freeze
 
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
@@ -299,9 +307,9 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern, on: :create
-  validate :validate_email_domain_exists, on: :create
-  
+  validate :validate_email_pattern
+  validate :validate_email_domain_exists
+
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
@@ -311,6 +319,7 @@ class User < ApplicationRecord
   scope :active, -> { where("suspended_at IS NULL") }
 
   def validate_email_pattern
+    return unless new_record? || email_changed?
     return if CONFIG.banned_emails.blank?
     return if self.email.blank?
     failed = false
@@ -328,8 +337,11 @@ class User < ApplicationRecord
   # this approach is probably going to have some false positives... but probably
   # not many
   def validate_email_domain_exists
+    return unless new_record? || email_changed?
     return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
-    return true if self.email.blank?
+    return true if email.blank?
+    return true unless email.include?( "@" )
+
     domain = email.split( "@" )[1].strip
     dns_response = begin
       r = nil
@@ -357,14 +369,6 @@ class User < ApplicationRecord
     end
     true
   end
-
-  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
-  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
-  # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  # This is not a normal validation b/c email validation happens in Devise, which looks for this method
-  def email_required?
-    !(skip_email_validation || provider_authorizations.count > 0)
-  end
   
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
@@ -372,39 +376,77 @@ class User < ApplicationRecord
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
     !suspended?
   end
 
-  def child_without_permission?
-    !birthday.blank? &&
-      birthday > 13.years.ago &&
-      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  def child?
+    !birthday.blank? && birthday > 13.years.ago
   end
 
-  # This is a dangerous override in that it doesn't call super, thereby
-  # ignoring the results of all the devise modules like confirmable. We do
-  # this b/c we want all users to be able to sign in, even if unconfirmed, but
-  # not if suspended.
+  def child_without_permission?
+    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2023-09-06 12:00" )
+
+  # Override of method from devise to implement some custom restrictions like
+  # parent/child permission and gradual confirmation requirement rollout
   def active_for_authentication?
     return false if suspended?
 
     return false if child_without_permission?
 
-    true
+    return true if anonymous?
+
+    # Temporary state to allow existing users to sign in. Probably redundant
+    # with the next grandparent exception
+    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
+
+    # Temporary state to allow existing users to sign in
+    return true if allowed_unconfirmed_grace_period?
+
+    super
+  end
+
+  def allowed_unconfirmed_grace_period?
+    Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+  end
+
+  def unconfirmed_grace_period_expired?
+    Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      !confirmed? &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+  end
+
+  # Devise override for message to show the user when they can't log in b/c
+  # their account is not active
+  def inactive_message
+    if unconfirmed_grace_period_expired?
+      return I18n.t(
+        :email_conf_required_after_grace_period,
+        requirement_date: I18n.l( EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
+      )
+    end
+
+    super
   end
 
   def download_remote_icon
@@ -419,7 +461,7 @@ class User < ApplicationRecord
 
   def strip_name
     return true if name.blank?
-    self.name = FakeView.strip_tags( name ).to_s
+    self.name = ApplicationController.helpers.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end
@@ -428,6 +470,11 @@ class User < ApplicationRecord
     return true if login.blank?
     self.login = login.strip
     true
+  end
+
+  # Confirmation should be sent to the child *after* the parent has been verified
+  def skip_confirmation_if_child
+    skip_confirmation! if child?
   end
   
   def allow_some_licenses
@@ -461,12 +508,12 @@ class User < ApplicationRecord
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: 'facebook', 'twitter', 'google', 'yahoo'
+  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
-  def has_provider_auth(provider)
+  def has_provider_auth( provider )
     provider = provider.downcase
-    provider_authorizations.detect do |p| 
-      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    provider_authorizations.detect do | p |
+      p.provider_name.match( provider ) || p.provider_uid&.match( provider )
     end
   end
 
@@ -537,6 +584,9 @@ class User < ApplicationRecord
     return false unless user.id
     return true if user.id == id
 
+    if friendships.loaded?
+      return friendships.any?{ |f| f.friend_id == user.id && f.trust == true }
+    end
     friendships.where( friend_id: user, trust: true ).exists?
   end
   
@@ -545,14 +595,11 @@ class User < ApplicationRecord
     @picasa_client ||= Picasa.new(pa.token)
   end
 
-  # returns a koala object to make (authenticated) facebook api calls
-  # e.g. @facebook_api.get_object('me')
-  # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
-    return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
+    # As of Spring 2023 we can no longer access the Facebook API on behalf of users
+    nil
   end
-  
+
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
     @facebook_identity ||= has_provider_auth('facebook')
@@ -589,12 +636,16 @@ class User < ApplicationRecord
   end
   
   def update_photo_licenses
-    return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
-    number = Photo.license_number_for_code(preferred_photo_license)
+    return true unless [true, "1", "true"].include?( @make_photo_licenses_same )
+    number = Photo.license_number_for_code( preferred_photo_license )
     return true unless number
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
       update_all( license: number, updated_at: Time.now )
     index_observations_later
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": id }
+    ).enqueue_photo_bucket_moving_jobs( id )
     true
   end
 
@@ -658,6 +709,20 @@ class User < ApplicationRecord
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    # Conditions should match index_votes_on_unique_obs_fave
+    reject.votes
+          .joins( "JOIN votes AS keeper_votes USING (votable_type, votable_id)" )
+          .where(
+            keeper_votes: {
+              voter_type: self.class.polymorphic_name,
+              voter_id: id,
+              vote_scope: nil
+            },
+            votable_type: Observation.polymorphic_name,
+            vote_scope: nil
+          )
+          .destroy_all
     merge_has_many_associations(reject)
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
@@ -703,7 +768,7 @@ class User < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      User.where(id: id).update_all(uri: FakeView.user_url(id))
+      User.where( id: id ).update_all( uri: UrlHelper.user_url( id ) )
     end
     true
   end
@@ -821,8 +886,6 @@ class User < ApplicationRecord
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
-    u.skip_email_validation = true
-    u.skip_confirmation!
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
@@ -834,44 +897,47 @@ class User < ApplicationRecord
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update(:login => suggestion)
     end
-    u.add_provider_auth(auth_info)
+    u.add_provider_auth(auth_info) if u.valid? && u.persisted?
     u
   end
 
-  # given a requested login, will try to find existing users with that login
-  # and suggest handle2, handle3, handle4, etc if the login's taken
-  # to prevent namespace clashes (e.g. i register with twitter @joe but 
-  # there's already an inat user where login=joe, so it suggest joe2)
+  # Sanitize the requested login.
+  # If the sanitized login is available, return it.
+  # If not, add numbers to the end until we find an available login. Particularly long requested logins may have
+  # characters removed from the end.
+  # If we somehow couldn't find a reasonable login, return nil.
   def self.suggest_login(requested_login)
-    requested_login = requested_login.to_s
-    requested_login = DEFAULT_LOGIN if requested_login.blank?
-    requested_login = I18n.transliterate( requested_login ).sub( /^\d*/, "" ).gsub( /\?+/, "" )
-    requested_login = if requested_login.blank?
-      DEFAULT_LOGIN
-    else
-      requested_login.gsub( /\W/, "_" ).downcase
-    end
-    suggested_login = requested_login
+    base_login = sanitize_login( requested_login.to_s ).presence || DEFAULT_LOGIN
 
-    if suggested_login.size > MAX_LOGIN_SIZE
-      suggested_login = suggested_login[0..MAX_LOGIN_SIZE/2]
-    end
+    # Biggest random number to append to the login to make it unique
+    max_random_suffix = 100_000
+    random_suffixes = Enumerator.produce { rand( max_random_suffix ) }
+    numeric_suffixes =  ( 1..9 ).
+      chain( random_suffixes.take( 20 ) ).
+      reject { |number| LOGIN_SUFFIX_EXCLUSIONS.include? number }
+    suffixes = [""].chain( numeric_suffixes.map( &:to_s ) )
 
-    if suggested_login =~ /^#{DEFAULT_LOGIN}\d+?/
-      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login( suggested_login )
-        suggested_login = "#{requested_login}#{rand( User.maximum(:id) * 2 )}"
-      end
-    else
-      # if the name is semi-unique, try to append integers, so kueda would get
-      # kueda2 and not kueda34097348976 off the bat
-      appendix = 1
-      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
-        suggested_login = "#{requested_login}#{appendix}"
-        appendix += 1
-      end
-    end
+    # Delete some characters off the end of the end if necessary to fit the suffix while staying under
+    # MAX_LOGIN_SIZE.
+    suggested_logins = suffixes.
+      map { |suffix| base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
+      reject { |login| login.size < MIN_LOGIN_SIZE }
 
-    (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
+    # Find an available login.
+    suggested_logins.find { |login| where( login: login ).none? }
+  end
+
+  # A sanitized login:
+  # - contains only the characters a-z, 0-9, and _
+  # - does not begin with a number
+  # - may or may not be taken
+  # - may or may not fit the size requirements for a login
+  def self.sanitize_login( login )
+    I18n.transliterate( login ).
+      sub( /^\d*/, "" ).
+      gsub( "?", "" ).
+      gsub( /\W/, "_" ).
+      downcase
   end
 
   # Destroying a user triggers a giant, slow, costly cascade of deletions that
@@ -1238,6 +1304,30 @@ class User < ApplicationRecord
     true
   end
 
+  def send_welcome_email
+    if (
+      saved_change_to_confirmed_at? &&
+      confirmed? &&
+      # This might happen if an existing user successfully resets their
+      # password, i.e. they don't send themselves a confirmation email b/c
+      # they can't sign in, but they can request the reset password email,
+      # and successfully clicking that link also confirms the email address
+      !confirmation_sent_at.blank? &&
+      # This is for existing users who explicitly request a confirmation
+      # email, which sets confirmation_sent_at. This is imperfect, but it
+      # should prevent most actual users from receiving the welcome email
+      # again.
+      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
+    )
+      Emailer.welcome( self ).deliver_now
+    end
+  end
+
+  def revoke_authorizations_after_password_change
+    return unless encrypted_password_previously_changed?
+    Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
+  end
+
   def recent_notifications(options={})
     return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
@@ -1258,6 +1348,10 @@ class User < ApplicationRecord
 
   def blocked_by?( user )
     user_blocks_as_blocked_user.where( user_id: user ).exists?
+  end
+
+  def muted_by?( user )
+    user_mutes_as_muted_user.where( user_id: user ).exists?
   end
 
   def self.default_json_options
@@ -1422,7 +1516,11 @@ class User < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
+  end
+
+  def monthly_donor?
+    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
   end
 
   def display_donor_since
@@ -1464,6 +1562,10 @@ class User < ApplicationRecord
     project_users.joins(:project).includes(:project).limit(7).
       order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
       map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+  end
+
+  def anonymous?
+    id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
   end
 
   # this method will look at all this users photos and create separate delayed jobs

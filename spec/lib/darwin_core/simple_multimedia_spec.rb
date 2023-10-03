@@ -38,7 +38,6 @@ describe DarwinCore::SimpleMultimedia do
 
   # getting these to work would require more stubbing than I'm up for right now
   it "should return Flickr for publisher of FlickrPhoto"
-  it "should return Facebook for publisher of FacebookPhoto"
   it "should return Picasa for publisher of PicasaPhoto"
 
   it "should return CC license URI for dwc_license" do

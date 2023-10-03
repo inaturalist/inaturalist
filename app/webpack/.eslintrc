@@ -46,15 +46,25 @@
     "quotes": [2, "double"],
     "space-in-parens": [2, "always"],
     "no-restricted-globals": 0,
+    "no-restricted-syntax": [
+      "error",
+      // This disallows things like `photo.constructor.name === "Photo"`
+      // because webpack's minifier will abbreviate `constructor.name` to
+      // something like `p` so we can't rely on that value. Instead do
+      // something like `photo.constuctor === Photo`.
+      // https://stackoverflow.com/a/49610802
+      "MemberExpression[object.property.name='constructor'][property.name='name']"
+    ],
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
     "react/forbid-prop-types": 0,
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/require-default-props": 0,
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/media-has-caption": "off",
     "react/no-find-dom-node": 0,
     "react/destructuring-assignment": 0,
-    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
+    "default-param-last": 0
   }
 }

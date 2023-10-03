@@ -313,7 +313,6 @@ es-CO:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Agregar una ahora
-  add_photos: Agregar fotos
   add_place: Agregar lugar
   add_alive_or_dead_alive_annotation: 'Agregar anotación "Vivo o Muerto: Vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Agregar anotación "Vivo o Muerto: No se puede determinar"'
@@ -507,7 +506,6 @@ es-CO:
   amphibians: anfibios
   analyze_ids: Analizar Identificaciones
   ancestor_taxon: Taxón Antepasado
-  and: "y"
   and_other_taxa: "&amp; Otros taxones"
   android: Android
   animals: Animales
@@ -744,7 +742,6 @@ es-CO:
   browse_species_that_occur_near_this_observation: Explorar las especies que ocurren cerca de esta observación
   built_with_site_guides_html: "Construido con las <a href='%{url}'>%{site_name} Guías</a>"
   bulk_import_of_filename_is_complete: "La importación masiva de %{filename} está completa"
-  by: por
   by_everyone: Por todos
   by_user: "Por %{user}"
   by_you: Tuyas
@@ -804,13 +801,7 @@ es-CO:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusionado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: combinado en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplazado por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplazar con
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplazado con
     dropped: abandonado
@@ -947,13 +938,10 @@ es-CO:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Conectar a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Cuentas vinculadas
   connected_accounts_description: Las cuentas vinculadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para permitir iniciar sesión, importar fotos u otras funciones.
   connected_accounts_titlecase: Cuentas Vinculadas
   connecting_flickr: "Conectándose a Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Conéctate de nuevo a Flickr para autorizar permisos de escritura
-  connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar su cuenta de %{site_name} con cuentas en otros sitios le permitirá ingresar a %{site_name} usando sus credenciales de esos sitios."
   conservation_status: Estado de Conservación
   conservation_status_descriptions:
@@ -1040,20 +1028,20 @@ es-CO:
     molt: Muda
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
+    bone: |
+      Predominantemente restos de endoesqueletos; exposición parcial de huesos de un organismo intacto debe etiquetarse como "organismo"
+    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
     dead: El organismo está muerto o muestra signos de muerte inminente
+    feather: Una o más plumas no unidas a un organismo
     flower_budding: Las yemas florales son visibles pero no están abiertas
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
+    molt: Restos de piel o exoesqueleto
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
-    teneral: Adulto que ha emergido recientemente pero no ha alcanzado su forma adulta final
-    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
-    feather: Una o más plumas no unidas a un organismo
     organism: Todo o parte de un Organismo
     scat: Materia fecal (no egagrópilas de rapaces u otros materiales regurgitados)
+    teneral: Adulto que ha emergido recientemente pero no ha alcanzado su forma adulta final
     track: Impresión en suelo o nieve hecha por un organismo
-    bone: |
-      Predominantemente restos de endoesqueletos; exposición parcial de huesos de un organismo intacto debe etiquetarse como "organismo"
-    molt: Restos de piel o exoesqueleto
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1113,7 +1101,6 @@ es-CO:
   created_by: Creado por
   created_by_user_on_date: Creado por %{user} el %{date}
   created_on: Creado el
-  creating_your_account: "Creando su cuenta..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
@@ -1165,12 +1152,6 @@ es-CO:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     No demuestra un comportamiento correcto.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para solicitar ser curador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a las observaciones de cualquier persona, incluyendo las tuyas (has añadido %{num_idents}). Cuando cumplas con estos requisitos, regresa aquí y podrás enviar tu solicitud.
-  curator_application_inelligible_error: |
-    Para solicitar ser curador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a las observaciones de cualquier persona, incluyendo las tuyas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitud para ser curador enviada
   #Header
@@ -1380,25 +1361,29 @@ es-CO:
       signed_in: 'Sesión iniciada correctamente.'
       signed_out: 'Has cerrado sesión correctamente.'
     passwords:
-      send_instructions: 'Recibirás un correo electrónico con instrucciones sobre cómo restablecer tu contraseña en unos minutos.'
+      send_instructions: |
+        Recibirás un correo electrónico con instrucciones sobre cómo restablecer tu contraseña en unos minutos.
       updated: 'Tu contraseña ha sido cambiada con éxito. Ahora estás conectado.'
       updated_not_active: 'Tu contraseña se ha cambiado correctamente.'
-      send_paranoid_instructions: "Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos."
-      no_token: "No puedes acceder a esta página si no es a través de un enlace para restablecer tu contraseña. Si has llegado hasta aquí desde el email, por favor asegúrate de que la URL introducida esté completa."
+      send_paranoid_instructions: |
+        Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos.
+      no_token: |
+        No puedes acceder a esta página si no es a través de un enlace para restablecer tu contraseña. Si has llegado hasta aquí desde el email, por favor asegúrate de que la URL introducida esté completa.
     registrations:
+      destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto.'
       signed_up: '¡Bienvenido! Te has registrado correctamente.'
       updated: 'Has actualizado tu cuenta con éxito.'
-      destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto.'
     mailer:
       confirmation_instructions:
-        subject: 'Instrucciones de confirmación'
+        #Subject of an email sent to confirm your account
+        subject: Instrucciones de confirmación
       reset_password_instructions:
         subject: 'Instrucciones para restablecer la contraseña'
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del siguiente enlace.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no has solicitado esto, por favor ignora este correo electrónico.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del siguiente enlace.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tu contraseña no cambiará hasta que accedas al enlace de arriba y crees una nueva.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1455,9 +1440,13 @@ es-CO:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxones descendentes marcados
+  #Noun, as in a journal post that has not been published
   draft: borrador
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Guardado como borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   drawings: Dibujos
@@ -1526,7 +1515,6 @@ es-CO:
   eligible_for_research_grade: Elegible para el grado de investigación
   email: Correo electrónico
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
-  email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar'
   embed_this_assessment: Insertar esta evaluación
@@ -1552,8 +1540,6 @@ es-CO:
   establishment_means: Medio de establecimiento
   establishment_means_describes_how: |
     El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información sobre terminología</a>.
-  estimate_which_input: |
-    Estima qué identificaciones del taxón de entrada serán reemplazados con qué taxones de salida y cuales serán añadidas a un antepasado común cuando la división se haya efectuado. Esto puede requerir un tiempo para calcularlo. Los enlaces a las observaciones se truncan en subconjuntos de 200.
   event_in_progress: Evento en curso
   event_stats: Estadísticas del evento
   event_url: URL del evento
@@ -1591,13 +1577,6 @@ es-CO:
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia del organismo
   facebook: Facebook
-  facebook_account_information: Información de tu cuenta de Facebook
-  facebook_account_not_linked: "El %{user} ya no tiene vinculada una cuenta de facebook, por lo que %{site_name} no tiene permiso para acceder a esta foto."
-  facebook_access_token_expired: "El token de acceso ha caducado. %{user} necesita volver a vincular su cuenta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necesita que el dueño de la foto reconfirme su conexión con %{site_name_short}.
-  facebook_options: Opciones de Facebook
-  facebook_photo_import_disabled_notice: |
-    En noviembre de 2020 Facebook nos pidió verificar sí realmente necesitábamos acceder a las fotos, y no pudimos completar el proceso a causa de problemas con el sistema de verificación de Facebook. Por lo tanto, ya no soportamos la importación de fotos desde Facebook
   failed_to_find_your_location: No se pudo encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -1754,7 +1733,6 @@ es-CO:
   frequency: Frecuencia
   from_a_place: de un lugar
   from_eol_collection: De la colección de EOL
-  from_flickr_facebook_etc: De Flickr, Facebook, etc.
   from_list: De la lista
   from_photos: De fotos
   from_place: De lugar
@@ -1858,7 +1836,6 @@ es-CO:
   heads_up_this_photo_is_already_associated_with: "Atención: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   help: Ayuda
   help_confirm_observations!: '¡Ayúdanos a confirmar observaciones!'
-  help_support_inaturalist: "Apoya a iNaturalist"
   help_translate!: '¡Ayúdanos a traducir!'
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_our_top_suggestions: Estas son nuestras sugerencias principales
@@ -1868,9 +1845,6 @@ es-CO:
   #Verb, usually a button to hide an interface element
   hide: Ocultar
   hide_content: Ocultar contenido
-  hide_desc: |
-    Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los curadores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede desocultar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para
-    contenido indeseado.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
@@ -2054,7 +2028,6 @@ es-CO:
   lexicon: Léxico
   lexicon_cannot_contain_words: "no puede contener las siguientes palabras: %{words}"
   lexicons:
-    scientific_names: Nombres científicos
     afrikaans: Afrikaans
     albanian: Albanés
     arabic: Árabe
@@ -2114,7 +2087,7 @@ es-CO:
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
-    setswana: Setswana
+    scientific_names: Nombres científicos
     sinhala: Sinhala
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2126,8 +2099,8 @@ es-CO:
     tokelauan: Tokelauano
     turkish: Turco
     ukrainian: Ucraniano
-    waray_waray: Samareño
     visayan: Bisayo
+    waray_waray: Samareño
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -2137,14 +2110,8 @@ es-CO:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Lineal
   link: Vínculo
-  link_your_facebook_account: Vincula tu cuenta de Facebook
   link_your_flickr_account: Vincula tu cuenta de Flickr
   link_your_google_account: Vincula tu cuenta de Google
-  linked_facebook: "Tu cuenta de %{site_name} está vinculada actualmente con tu cuenta de Facebook."
-  linked_facebook_automaticaly: "Además, ten en cuenta que si inicias sesión en %{site_name} a través de Facebook, re-vincularemos automáticamente tus cuentas de %{site_name} y Facebook. Parece razonable que si usas Facebook querrás poder importar fotos de Facebook, ¿verdad?"
-  linked_facebook_description: "Mantener tu cuenta de %{site_name} vinculada a tu cuenta de Facebook te permite añadir varias fotos a tus observaciones. Por supuesto, si alguna vez quieres que se separen %{site_name} y Facebook, no te detendremos, simplemente no podrás añadir fotos. A veces esto puede ser lo mejor, como si creas una nueva cuenta de Facebook a la que quieres vincular %{site_name}."
-  linked_facebook_howto: "Para conectar Facebook con %{site_name}, haz clic en el enlace de la derecha e inicia sesión en Facebook.com."
-  linked_facebook_password: "Nunca te pediremos tu contraseña de Facebook (pero Facebook podría hacerlo, comprueba la url a la que el botón te envía y asegúrese de que es Facebook.com). Tampoco cambiaremos tus datos de Facebook a menos que quieras."
   linked_flickr: "Tu cuenta de %{site_name} está actualmente vinculada a tu cuenta de Flickr."
   linked_flickr_automatically: "Además, ten en cuenta que si inicias sesión en %{site_name} a través de Flickr, re-vincularemos automáticamente tus cuentas de %{site_name} y Flickr. Parece razonable que si usas Flickr querrás poder importar fotos de Flickr, ¿verdad?"
   linked_flickr_description: "Mantener tu cuenta de %{site_name} vinculada a tu cuenta de Flickr te permite añadir varias fotos a tus observaciones. Por supuesto, si alguna vez quieres que %{site_name} y Flickr se separen, no te detendremos, simplemente no podrás añadir fotos. A veces esto puede ser lo mejor, como cuando creas una nueva cuenta de Flickr a la que quieres vincular %{site_name}."
@@ -2241,7 +2208,6 @@ es-CO:
   log_scale_label: Registro
   #Status message shown while logging in
   logging_in: Iniciando sesión...
-  login_slash_username: Iniciar sesión / nombre de usuario
   logo:
     logo: Logo
     white_bg_gif: Fondo blanco con imagen GIF
@@ -2287,7 +2253,6 @@ es-CO:
       every_publicly_visible_observation: Cada observación públicamente visible creada en la red de iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
-      gbif_network_description: Registros de museos y otros proveedores de registros distribuidos por la Infraestructura Mundial de información en Biodiversidad (GBIF, por sus siglas en inglés)
       observations: Observaciones
       place_boundary: Colocar límite
       checklist_places: Lugares en las listas de chequeo
@@ -2309,9 +2274,6 @@ es-CO:
   meet: Conoce
   member_of_the_inaturalist_network_html: |
     Miembro de la <a href="%{url}">Red iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Miembro de la red %{partial_inat_network_tag_html} iNaturalist</a>, una
-    iniciativa conjunta de %{cas_tag_html} y %{nat_geo_tag_html}.
   #As in members of a project
   members: Miembros
   membership_model: Modelo de membresía
@@ -2555,7 +2517,6 @@ es-CO:
   not_findig_what_you_want: '¿No encuentras lo que quieres?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
   not_found: No encontrado
-  not_linked_facebook: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Facebook"
   not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr"
   not_on_this_list: No está en esta lista.
   not_recorded: Sin grabar
@@ -2671,10 +2632,6 @@ es-CO:
   observed_on: Observado el
   observer: Observador
   observers: Observadores
-  observer_prefers_no_project_addition: |
-    El observador no permite que otras personas añadan sus observaciones a los proyectos.
-  observer_prefers_addition_to_projects_joined: |
-    El observador sólo permite a otras personas añadir sus observaciones a proyectos a los que se han unido.
   observer_short: Observador
   occurence_status_describes_how: 'El estado de ocurrencia describe que tan común o raro es un taxón en un área determinada. Ver DarwinCore para <a href="http: //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">más información sobre terminología </a>.'
   occurrence_status: Estado de ocurrencia
@@ -2990,36 +2947,10 @@ es-CO:
     slovakia: Eslovaquia
     slovenia: Eslovenia
     solomon_islands: Islas Salomón
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

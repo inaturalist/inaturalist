@@ -1,5 +1,5 @@
 - content_for :title do
-  =t :help_support_inaturalist
+  =t :donate_to_inaturalist
 - content_for :extrajs do
   = javascript_include_tag "https://donorbox.org/widget.js", paypalExpress: false
   :javascript
@@ -8,8 +8,15 @@
     } );
 - content_for :extracss do
   = stylesheet_link_tag :donate, media: "all", cache: true
+  :css
+    .daf-button-link {
+      display: block !important;
+      width: 100% !important;
+      min-width: 320px !important;
+      margin-bottom: 20px !important;
+    }
 - content_for :extrahead do
-  %meta{ property: "og:title", content: t( :help_support_inaturalist ) }
+  %meta{ property: "og:title", content: t( :donate_to_inaturalist ) }
   %meta{ property: "og:description", content: t( "views.donate.donate_short_desc" ) }
   %meta{ property: "og:image", content: @shareable_image_url }
   %meta{ property: "twitter:image", content: @shareable_image_url }
@@ -17,21 +24,29 @@
 .container
   .row
     .col-md-10.col-md-offset-1.col-xs-12
-      %h1=t :help_support_inaturalist
+      %h1=t :donate_to_inaturalist
   .row
     .col-md-5.col-md-offset-1.col-xs-12
       - # Note: the donorbox iframe does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
-      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?amount=100", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      - if I18n.locale.to_s =~ /^en/
+        %script{ type: "text/javascript" }
+          var _msdaf_id = "d54712882b88c";
+        %script{ type: "text/javascript", src: "https://app.dafwidget.com/api/js/source.js" }
+
     .col-md-5.col-xs-12
-      =t "views.donate.donate_desc_html"
+      - if params[:test] == "moore" || DateTime.now > @moore_start_date && DateTime.now < @moore_end_date
+        =t "views.donate.donate_desc_moore_html"
+      - else
+        =t "views.donate.donate_desc3_html"
       .sharing
         %p.lead.text-center=t :share_colon, default: t(:share)
-        = link_to "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape( donate_url( utm_source: "facebook", utm_campaign: "2018-launch", utm_medium: "social" ) )}", class: "btn btn-inat btn-sm btn-facebook", target: "_blank" do
+        = link_to "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape( donate_url( utm_source: "facebook", utm_campaign: "share", utm_medium: "social" ) )}", class: "btn btn-inat btn-sm btn-facebook", target: "_blank" do
           %i.fa.fa-facebook
           = t(:facebook)
-        = link_to "https://twitter.com/intent/tweet/?url=#{CGI.escape( donate_url( utm_source: "twitter", utm_campaign: "2018-launch", utm_medium: "social" ) )}&text=#{t( "views.donate.post_donate_social_media_text" )}", class: "btn btn-inat btn-sm btn-twitter", target: "_blank" do
+        = link_to "https://twitter.com/intent/tweet/?url=#{CGI.escape( donate_url( utm_source: "twitter", utm_campaign: "share", utm_medium: "social" ) )}&text=#{t( "views.donate.post_donate_social_media_text" )}", class: "btn btn-inat btn-sm btn-twitter", target: "_blank" do
           %i.fa.fa-twitter
           = t(:twitter)
-        = link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{CGI.escape( donate_url( utm_source: "linkedin", utm_campaign: "2018-launch", utm_medium: "social" ) )}", class: "btn btn-inat btn-sm btn-linkedin", target: "_blank" do
+        = link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{CGI.escape( donate_url( utm_source: "linkedin", utm_campaign: "share", utm_medium: "social" ) )}", class: "btn btn-inat btn-sm btn-linkedin", target: "_blank" do
           %i.fa.fa-linkedin
           = t(:linkedin)

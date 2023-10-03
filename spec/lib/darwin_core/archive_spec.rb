@@ -47,6 +47,32 @@ describe DarwinCore::Archive, "make_descriptor" do
     expect( row_types ).to include 'http://www.inaturalist.org/observation_fields'
     expect( row_types ).to include 'http://rs.gbif.org/terms/1.0/Multimedia'
   end
+  it "should include additional fields for ALA if requested" do
+    archive = DarwinCore::Archive.new
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map{ |f| f["term"] }
+    DarwinCore::Occurrence::ALA_EXTRA_TERMS.each do |ala_extra_term|
+      expect( core_field_terms ).to_not include ala_extra_term[1]
+    end
+
+    archive = DarwinCore::Archive.new( ala: true )
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map{ |f| f["term"] }
+    DarwinCore::Occurrence::ALA_EXTRA_TERMS.each do |ala_extra_term|
+      expect( core_field_terms ).to include ala_extra_term[1]
+    end
+  end
+  it "should include additional field for otherCatalogueNumbers if requested" do
+    archive = DarwinCore::Archive.new
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map{ |f| f["term"] }
+    expect( core_field_terms ).to_not include "http://rs.tdwg.org/dwc/terms/otherCatalogNumbers"
+
+    archive = DarwinCore::Archive.new( include_uuid: true )
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map{ |f| f["term"] }
+    expect( core_field_terms ).to include "http://rs.tdwg.org/dwc/terms/otherCatalogNumbers"
+  end
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
@@ -124,6 +150,42 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
+  it "should not include hidden photos" do
+    ModeratorAction.make!( resource: p, action: "hide" )
+    expect( p.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    csv = CSV.read( path )
+    expect( csv.size ).to eq 1 # just the header
+  end
+
+  it "should include sounds" do
+    p.destroy!
+    sound = Sound.make!( user: o.user )
+    ObservationSound.make!( sound: sound, observation: o )
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    CSV.foreach( path, headers: true) do |row|
+      expect( row["type"] ).to eq "Sound"
+    end
+  end
+
+  it "should not include hidden sounds" do
+    p.destroy!
+    sound = Sound.make!( user: o.user )
+    ObservationSound.make!( sound: sound, observation: o )
+    ModeratorAction.make!( resource: sound, action: "hide" )
+    expect( sound.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    CSV.foreach( path, headers: true) do |row|
+      expect( row["type"] ).to eq "Sound"
+    end
+  end
+
   describe "with photo_license is ignore" do
     it "should include CC_BY images" do
       expect( p.license ).to eq Photo::CC_BY
@@ -187,6 +249,60 @@ describe DarwinCore::Archive, "make_observation_fields_data" do
   end
 end
 
+describe DarwinCore::Archive, "make_resource_relationships_data" do
+  elastic_models( Observation )
+
+  let( :o ) { make_research_grade_observation }
+  let( :of_taxon ) { ObservationField.make!( datatype: "taxon" ) }
+  let( :of_taxon_non_numeric ) { ObservationField.make!( datatype: "taxon" ) }
+  let( :of_numeric ) { ObservationField.make!( datatype: "numeric" ) }
+  let!( :ofv_taxon ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_taxon, value: Taxon.make!.id )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+  let!( :ofv_taxon_non_numeric_value ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_taxon_non_numeric, value: "not_a_number" )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+  let!( :ofv_numeric ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_numeric )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+
+  before do
+    expect( ofv_taxon.observation ).to eq o
+  end
+
+  it "should add rows to the file" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    expect( CSV.read( path ).size ).to be > 1
+    CSV.foreach( path, headers: true ) do |row|
+      expect( row["identifier"] ).to eq ofv_taxon.id.to_s
+      expect( row["relationshipOfResource"] ).to eq ofv_taxon.observation_field.name
+      expect( row["relationshipEstablishedDate"] ).to eq ofv_taxon.created_at.iso8601
+    end
+  end
+
+  it "should set the first column to the observation_id" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    csv = CSV.read( path, headers: true )
+    row = csv.first
+    expect( row[0] ).to eq o.id.to_s
+  end
+
+  it "should only export observation field values for fields of datatype taxon with numeric values" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    expect( CSV.read( path ).select{ |r| r[0] != "id" }.size ).to eq 1
+    expect( ObservationFieldValue.count ).to be >= 3
+  end
+end
+
 describe DarwinCore::Archive, "make_project_observations_data" do
   elastic_models( Observation )
 
@@ -228,6 +344,30 @@ describe DarwinCore::Archive, "make_project_observations_data" do
     path = archive.extension_paths[:project_observations]
     csv = CSV.read( path, headers: true )
     expect( csv.size ).to eq 1
+  end
+end
+
+describe DarwinCore::Archive, "observations_params" do
+  it "should include parameters for place" do
+    p = make_place_with_geom
+    archive = DarwinCore::Archive.new( place: p.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
+  end
+
+  it "should include parameters for all site places" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id, site_place.place_id )
+  end
+
+  it "should prioritize place over places_for_site" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( place: p.id, places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
   end
 end
 
@@ -444,6 +584,22 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs['decimalLongitude'] ).not_to eq o.private_longitude.to_s
   end
 
+  it "should include uuids if requested" do
+    o = make_research_grade_observation
+    archive = DarwinCore::Archive.new
+    archive.make_data
+    path = archive.extension_paths[:occurrence]
+    obs = CSV.read( path, headers: true ).first
+    expect( obs.key?("otherCatalogueNumbers") ).to be false
+
+    archive = DarwinCore::Archive.new( include_uuid: true )
+    archive.make_data
+    path = archive.extension_paths[:occurrence]
+    obs = CSV.read( path, headers: true ).first
+    expect( obs.key?("otherCatalogueNumbers") ).to be true
+    expect( obs["otherCatalogueNumbers"] ).to eq o.uuid
+  end
+
   it "should report coordinateUncertaintyInMeters as the longest diagonal across the uncertainty cell" do
     o = make_research_grade_observation(geoprivacy: Observation::OBSCURED)
     archive = DarwinCore::Archive.new
@@ -451,6 +607,112 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     path = archive.extension_paths[:occurrence]
     obs = CSV.read( path, headers: true ).first
     expect( obs['coordinateUncertaintyInMeters'] ).to eq o.uncertainty_cell_diagonal_meters.to_s
+  end
+
+  describe "annotation filters" do
+    before( :all ) do
+      @sex_attribute = make_controlled_term_with_label( "Sex" )
+      @life_stage_attribute = make_controlled_term_with_label( "Life Stage" )
+      @unrecognized_attribute = make_controlled_term_with_label( "Unrecognized" )
+      @sex_value = make_controlled_value_with_label( "Sex value", @sex_attribute )
+      @larva = make_controlled_value_with_label( "Larva", @life_stage_attribute )
+      @teneral = make_controlled_value_with_label( "Teneral", @life_stage_attribute )
+      @unrecognized_attribute_value = make_controlled_value_with_label(
+        "Unrecognized value", @unrecognized_attribute
+      )
+      @unannotated_o = make_research_grade_observation
+      @sex_annotated_o = make_research_grade_observation
+      Annotation.make!(
+        resource: @sex_annotated_o,
+        controlled_attribute: @sex_attribute,
+        controlled_value: @sex_value
+      )
+      @larva_annotated_o = make_research_grade_observation
+      Annotation.make!(
+        resource: @larva_annotated_o,
+        controlled_attribute: @life_stage_attribute,
+        controlled_value: @larva
+      )
+      @teneral_annotated_o = make_research_grade_observation
+      Annotation.make!(
+        resource: @teneral_annotated_o,
+        controlled_attribute: @life_stage_attribute,
+        controlled_value: @teneral
+      )
+      @unrecognized_annotated_o = make_research_grade_observation
+      Annotation.make!(
+        resource: @unrecognized_annotated_o,
+        controlled_attribute: @unrecognized_attribute,
+        controlled_value: @unrecognized_attribute_value
+      )
+    end
+    before( :each ) { Observation.elastic_index! }
+
+    it "should filter by annotation presence" do
+      archive = DarwinCore::Archive.new( with_annotations: true )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+      expect( ids ).to include @sex_annotated_o.id
+      expect( ids ).to include @larva_annotated_o.id
+      expect( ids ).to include @teneral_annotated_o.id
+      expect( ids ).not_to include @unannotated_o.id
+      expect( ids ).not_to include @unrecognized_annotated_o.id
+    end
+
+    it "should filter by annotations of a particular term" do
+      archive = DarwinCore::Archive.new( with_controlled_terms: ["Sex"] )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+      expect( ids ).to include @sex_annotated_o.id
+      expect( ids ).to_not include @larva_annotated_o.id
+      expect( ids ).to_not include @teneral_annotated_o.id
+      expect( ids ).not_to include @unannotated_o.id
+      expect( ids ).not_to include @unrecognized_annotated_o.id
+    end
+
+    it "should filter by annotations of mulitple terms" do
+      archive = DarwinCore::Archive.new( with_controlled_terms: ["Sex", "Life Stage"] )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+      expect( ids ).to include @sex_annotated_o.id
+      expect( ids ).to include @larva_annotated_o.id
+      expect( ids ).to include @teneral_annotated_o.id
+      expect( ids ).not_to include @unannotated_o.id
+      expect( ids ).not_to include @unrecognized_annotated_o.id
+    end
+
+    it "should filter by annotations of a term and value" do
+      archive = DarwinCore::Archive.new(
+        with_controlled_terms: ["Life Stage"],
+        with_controlled_values: ["Larva"]
+      )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+      expect( ids ).to_not include @sex_annotated_o.id
+      expect( ids ).to include @larva_annotated_o.id
+      expect( ids ).to_not include @teneral_annotated_o.id
+      expect( ids ).not_to include @unannotated_o.id
+      expect( ids ).not_to include @unrecognized_annotated_o.id
+    end
+
+    it "should filter by annotations of a term and multiple values" do
+      archive = DarwinCore::Archive.new(
+        with_controlled_terms: ["Life Stage"],
+        with_controlled_values: ["Larva", "Teneral"]
+      )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+      expect( ids ).to_not include @sex_annotated_o.id
+      expect( ids ).to include @larva_annotated_o.id
+      expect( ids ).to include @teneral_annotated_o.id
+      expect( ids ).not_to include @unannotated_o.id
+      expect( ids ).not_to include @unrecognized_annotated_o.id
+    end
   end
 
   describe "private_coordinates" do

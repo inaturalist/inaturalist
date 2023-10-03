@@ -105,7 +105,6 @@ ar:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: إضافة واحد الآن
-  add_photos: أضف صورًا
   add_place: أضف مكانا
   add_plant_phenology_budding_annotation: 'إضافة شرح "الفينولوجيا النباتي: التبرعم"'
   add_plant_phenology_flowering_annotation: 'إضافة شرح "الفينولوجيا النباتي: الإزهار"'
@@ -233,7 +232,6 @@ ar:
   already_have_an_account_log_in_html: لديك حساب بالفعل؟ <strong>قم بتسجيل الدخول.</strong>
   amphibians: برمائيات
   ancestor_taxon: سلف الأصنوفة
-  and: و
   and_other_taxa: "&amp; أصناف أخرى"
   android: أندرويد
   animals: حيوانات
@@ -393,7 +391,6 @@ ar:
   browse_species_that_occur_near_this_observation: تصفح الأنواع التي تحدث بالقرب من هذه الملاحظة.
   built_with_site_guides_html: "تم إنشاؤها باستخدام أدلة <a href='%{url}'>%{site_name}</a>"
   bulk_import_of_filename_is_complete: "اكتمل الاستيراد المجمع لـ%{filename}"
-  by: بواسطة
   by_everyone: بواسطة الجميع
   by_user: "حسب %{user}"
   by_you: بواسطتك
@@ -450,13 +447,7 @@ ar:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: انقسام إلى
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: يندمج مع
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: معلومات الاندماج
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: حل محله
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: استبدال ب
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: اُستبدِل ب
     dropped: تم الإسقاط
@@ -574,10 +565,7 @@ ar:
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
   connect_to_provider: "الاتصال بـ%{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
-  connecting_to_facebook: "جارٍ الاتصال بفيسبوك..."
   connecting_your_inat_account_to_accounts_other_sites: "سيتيح لك ربط حسابك %{site_name} بالحسابات على مواقع أخرى تسجيل الدخول إلى %{site_name} باستخدام بيانات الاعتماد من تلك المواقع."
   conservation_status: حالة الحفظ
   conservation_status_descriptions:
@@ -668,7 +656,6 @@ ar:
   created_by: أنشأه
   created_by_user_on_date: تم الإنشاء بواسطة %{user} في %{date}
   created_on: تم الإنشاء في
-  creating_your_account: "جارٍ إنشاء حسابك..."
   creative_commons_flickr_tagged: صور فليكر الموسومة بالمشاع الإبداعي
   creative_commons_unless_otherwise_noted: "المشاع الإبداعي ما لم يُذكَر خلاف ذلك."
   critically_endangered: مهدد بخطر انقراض أقصى
@@ -830,9 +817,13 @@ ar:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: الأصناف المتدفقة المعلمة المغطاه
+  #Noun, as in a journal post that has not been published
   draft: مسودة
+  #Noun, as in a journal post that has not been published
   draft_: مسودة
+  #Noun, as in a journal post that has not been published
   draft_saved: تم حفظ المسودة!
+  #Noun, as in journal posts that has not been published
   drafts: مسودات
   drag_and_drop_some_photos_or_sounds: سحب وإسقاط بعض الصور أو الأصوات
   drawings: رسومات
@@ -891,7 +882,6 @@ ar:
   eligible_for_research_grade: مؤهل للحصول على درجة البحث
   email: البريد الإلكتروني
   email_address_for_comments_and_other_feedback: عنوان البريد الإلكتروني للتعليقات وردود الفعل الأخرى
-  email_copyright: "حقوق النشر &copy; %{x}، جميع الحقوق محفوظة"
   embed: 'تضمين'
   embed_place_widget: تضمين مكان الأداة
   embed_this_assessment: تضمين هذا التقييم
@@ -947,11 +937,6 @@ ar:
   extra_properties: خصائص إضافية
   evidence_of_organism: دليل على الكائن الحي
   facebook: فيسبوك
-  facebook_account_information: معلومات حساب فيسبوك الخاص بك
-  facebook_account_not_linked: "لم يعد لدى %{user} حساب فيسبوك مرتبط بعد الآن; لذلك ليس لدى %{site_name} إذن بالدخول إلى هذه الصورة."
-  facebook_access_token_expired: "انتهت صلاحية الرمز المميز للدخول; يحتاج %{user} إلى إعادة ربط حساب فيسبوك."
-  facebook_needs_the_owner_of_that_photo_to: يحتاج فيسبوك إلى مالك هذه الصورة لإعادة تأكيد اتصاله بـ%{site_name_short}.
-  facebook_options: خيارات فيسبوك
   failed_to_find_your_location: أخفق البحث عن موقعك.
   failed_to_repair_photo: "فشل إصلاح الصورة: %{errors}"
   failed_to_save_record: "أخفق حفظ السجل؛ الرجاء معاودة المحاولة في وقت لاحق."
@@ -1071,7 +1056,6 @@ ar:
   frequency: تردد
   from_a_place: من مكان
   from_eol_collection: من مجموعة موسوعة الحياة
-  from_flickr_facebook_etc: من فليكر، فيسبوك، إلخ.
   from_list: من قائمة
   from_photos: من الصور
   from_place: من مكان
@@ -1133,21 +1117,11 @@ ar:
   heads_up_you_have_multiple: "تنبيه: لديك عدة علامات تصنيفية للتصنيفات المميزة، إنها مرمزة بالألوان أدناه حسب الرتبة."
   help: مساعدة
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
-  help_support_inaturalist: "مساعدة دعم إيناتوراليست"
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
   hex_color_eg: لون Hex، على سبيل المثال 65644F
   hi_user: "مرحبا %{user}"
   hide_content: إخفاء المحتوى
-  hide_desc: |
-    سيؤدي إخفاء المحتوى إلى إزالته من العرض العام، ولكن سيظل الأشخاص 
-    قادرين على رؤية إخفاء شيء ما، وسيظل بإمكان منسقي المواقع ومؤلف
-    المحتوى رؤية المحتوى المخفي، بشكل عام، لا
-    ينطبق هذا إلا على المحتوى المكتوب، على سبيل المثال إذا قمت بإخفاء محتوى التعريف،
-    فسيظل التعريف مرئيا ولكن ملاحظات
-    المعرف تكون مخفية، لا يمكنك التراجع عن ذلك، ولا يمكن إلا لموظفي الموقع إظهار
-    المحتوى بمجرد إخفائه؛ لذا كن حذرا واستخدم هذا فقط 
-    للمحتوى غير المرغوب فيه للغاية.
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
@@ -1246,7 +1220,6 @@ ar:
   inat_account_action: "%{site_name} &#58; الحساب &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "يعتقد %{site_name} أن هذه قائمة كاملة بأصناف هذا المكان."
   inat_user_profile: "%{site_name}: الملف الشخصي لـ%{user}"
-  inaturalist_is_a_joint_initiative: "%{site_name} هي مبادرة مشتركة بين أكاديمية كاليفورنيا للعلوم والجمعية الجغرافية الوطنية."
   inaturalist_places: "أماكن %{site_name}"
   info: معلومات
   input_taxon: إدخال الأصنوفة
@@ -1336,7 +1309,6 @@ ar:
   let_us_walk_you_through: دعونا نمشي معك خلال الملامح الرئيسية لهذا الموقع.
   lexicon: معجم
   lexicons:
-    scientific_names: الأسماء العلمية
     afrikaans: الأفريكانية
     albanian: الألبانية
     bengali: البنغالية
@@ -1376,6 +1348,7 @@ ar:
     portuguese: البرتغالية
     romanian: الرومانية
     russian: الروسية
+    scientific_names: الأسماء العلمية
     spanish: الإسبانية
     swedish: السويدية
     tagalog: التاغالوغية
@@ -1392,14 +1365,8 @@ ar:
   life_list: "قائمة حياة %{user}"
   linear_scale_label: خطي
   link: وصلة
-  link_your_facebook_account: ربط حساب فيسبوك الخاص بك
   link_your_flickr_account: ربط أو إلغاء ربط حساب فليكر الخاص بك
   link_your_google_account: ربط حسابك في جوجل
-  linked_facebook: "تم ربط حساب %{site_name} حاليا بحسابك على فيسبوك."
-  linked_facebook_automaticaly: "ضع في اعتبارك أيضا أنه إذا سجلت الدخول إلى %{site_name} عبر فيسبوك، فسنعيد تلقائيا ربط حسابك في %{site_name} وفيسبوك، يبدو معقولا أنه إذا كنت تستخدم فيسبوك ستحتاج إلى أن تكون قادرا على استيراد صور فيسبوك، أليس كذلك؟"
-  linked_facebook_description: "يتيح لك الاحتفاظ بحساب %{site_name} المرتبط بحسابك في فيسبوك إضافة صور متعددة لملاحظاتك، بطبيعة الحال، إذا كنت تريد تفريق %{site_name} وفيسبوك، لن نمنعك، فلن تتمكن فقط من إضافة الصور، قد يكون هذا في بعض الأحيان للأفضل، كما لو قمت بإنشاء حساب فيسبوك جديد تريد ربط %{site_name} به."
-  linked_facebook_howto: "لربط فيسبوك ب%{site_name}; انقر على الرابط على اليمين وسجل الدخول إلى Facebook.com."
-  linked_facebook_password: "لن نطلب منك أبدا كلمة السر الخاصة بك في فيسبوك (لكن فيسبوك قد يفعل، تحقق من المسار الذي يرسله الزر لك وتأكد من أنه Facebook.com)، وأيضا لن تغير بيانات فيسبوك الخاصة بك إلا إذا كنت تريد منا أن نفعل ذلك."
   linked_flickr: "حسابك في %{site_name} مرتبط حاليا بحسابك في فليكر"
   linked_flickr_automatically: "ضع في اعتبارك أنه إذا سجلت الدخول إلى %{site_name} عبر فليكر، فسنعيد تلقائيا ربط حسابك في %{site_name} وفي فليكر. يبدو معقولا أنه إذا كنت تستخدم فليكر عليك أن تكون قادرا على استيراد صور فليكر، أليس كذلك؟"
   linked_flickr_description: "يتيح لك الاحتفاظ بحساب %{site_name} المرتبط بحسابك في فليكر إضافة صور متعددة إلى ملاحظاتك، بطبيعة الحال، إذا كنت تريد حتى تفريق %{site_name} وفليكر، ونحن لن نمنعك، فلن تتمكن فقط من إضافة الصور، قد يكون هذا في بعض الأحيان للأفضل، كما لو قمت بإنشاء حساب فليكر جديد تريد ربط %{site_name} به."
@@ -1484,7 +1451,6 @@ ar:
   locked_taxa_will_not_allow_new: الأصناف المغلقة لن تسمح لأصناف نسل جديدة بأن تُضَاف إليها; لذلك إذا أقفلت البرمائيات وحاول شخص استيراد <i>ضفدع الثور</i> من موفر اسم خارجي، سيتم إنشاء أصنوفة جديدة ولكن لا يمكن تصنيفه على أنه برمائي، عندما يحدث هذا، يجب أن يتم وضع علامة على الأصناف المضافة حديثا لاهتمام الأمناء، وهذا ينبغي حقا أن يُستخدَم فقط للأصنوفة التي نعتقد أن لدينا بالفعل جميع المنحدرين منها، يمكن للأمين تجاوز هذا الأمر عن طريق تعديل الأصناف وإدخال معرفات الوالدين مباشرة، ولكن الرجاء مراعاة دمج الأصناف الجديدة في أصناف موجودة بدلا من ذلك.
   log_in: تسجيل الدخول
   log_scale_label: سجل
-  login_slash_username: تسجيل الدخول / اسم المستخدم
   logo:
     logo: شعار
     white_bg_gif: خلفية GIF بيضاء
@@ -1531,7 +1497,6 @@ ar:
       every_publicly_visible_observation: كل ملاحظة مرئية بشكل عام تم إنشاؤها في شبكة إيناتوراليست
       featured_observations: ملاحظات مميزة
       gbif_network: شبكة المرفق العالمي لمعلومات التنوع البيولوجي GBIF
-      gbif_network_description: سجلات من المتاحف وموفري الحوادث الآخرين موزعة من قبل المرفق العالمي لمعلومات التنوع البيولوجي
       observations: الملاحظات
       place_boundary: ضع حدودا
       checklist_places: قائمة تحقق الأماكن
@@ -1624,6 +1589,7 @@ ar:
   must_be_less_than_x_MB: "يجب أن يكون أقل من %{x} ميغابايت"
   must_have_observation_field: "يجب أن يكون حقل الملاحظة '%{operand}' ممتلئا"
   must_have_x: "يجب أن يحتوي على %{x}"
+  #Mute is a noun here
   mute_removed: تمت إزالة كتم الصوت
   muted_users: المستخدمون الذين تم تجاهلهم
   n_ago: "قبل %{n}"
@@ -1784,7 +1750,6 @@ ar:
   not_findig_what_you_want: لم تجد ما تريد؟
   not_finding_place_you_want?: لا تجد المكان الذي تريده؟
   not_found: لم يتم العثور عليه
-  not_linked_facebook: "حسابك في %{site_name} غير مرتبط بحسابك في فيسبوك"
   not_linked_flickr: "حسابك في %{site_name} غير مرتبط بحسابك في فليكر"
   not_on_this_list: ليس في هذه القائمة.
   not_recorded: غير مسجل
@@ -1972,7 +1937,7 @@ ar:
   optional: اختياري
   or: أو
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
   orange: برتقالي
@@ -2469,7 +2434,6 @@ ar:
   post_from_your_journal_html: النشر من Post from <a href="%{url}">مجلتك</a>
   post_published: تم نشر المشاركة!
   posted_by: نشرها
-  posted_on: نُشِر على
   posts: المشاركات
   potential_disagreement: احتمال الاختلاف
   powered_by: يشغله
@@ -2781,11 +2745,12 @@ ar:
   select: اختر
   select_all: تحديد الكل
   select_at_least_one: حدد واحدا على الأقل
-  select_one_or_more_photos: 'حدد صورة أو أكثر'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: لا تختر شيئا
   select_observations_to_edit: تحديد ملاحظات للتعديل...
   select_one_of_friends_albums: اختر أحد ألبومات %{friend}
   select_one_of_your_albums: اختر أحد ألبوماتك
+  select_one_or_more_photos: 'حدد صورة أو أكثر'
   select_options: تحديد الخيارات
   select_photos_from_your_photo_stream: |
     حدد الصور من مواقع مشاركة الصور الخارجية للتحويل إلى ملاحظات %{site_name}،
@@ -2997,7 +2962,6 @@ ar:
   tagging: 'جارٍ وضع علامات...'
   tags: وسوم
   tags_are_a_way: 'العلامات وسيلة لتنظيم ملاحظاتك، على سبيل المثال، قد تعلم كل ما ملاحظاتك عن "tidepool" لجعل لعثور عليها لاحقا أسهل.'
-  take_me_facebook: نعم، خذني إلى فيسبوك!
   take_me_flickr!: نعم، خذني إلى فليكر!
   target_list_alert: هل أنت متأكد من أنك حاولت مراقبة جميع الأنواع التي تغطيها القائمة المستهدفة؟ تذكر أن أي شيء تمت تغطيته في القائمة المستهدفة ولم تلاحظه سيتم تفسيره على أنه غياب؛ لذا من المهم جدا أن تعكس القائمة المستهدفة بدقة مجموعة الأنواع التي حاولت اكتشافها
   target_list_warning: تذكر أن أي شيء تمت تغطيته في القائمة المستهدفة ولم تلاحظه داخل نصف قطر ومدة هذه الرحلة سيتم تفسيره على أنه غياب، من المهم جدا أن تعكس القائمة المستهدفة بدقة مجموعة الأنواع التي حاولت اكتشافها، إذا لم تحاول اكتشاف نوع في القائمة المستهدفة أو كل الأنواع التي تغطيها مجموعة في القائمة المستهدفة، فتُرجَى إزالته.
@@ -3296,6 +3260,7 @@ ar:
     جدول بيانات أو قاعدة بيانات، فربما يكون هذا هو الطريق المناسب.
   upload_photo: رفع صورة
   upload_range: رفع نطاق
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: تم الرفع بواسطة
   uploader:
     errors:
@@ -3322,6 +3287,7 @@ ar:
   use_this_form_to_create_a_new: |
     استخدم هذا النموذج لإنشاء مسودة تغيير تصنيف جديد تصف 
     تقسيم مقترح أو دمج أو مقايضة على أصناف نشطة ليتم الالتزام بها لاحقا.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     استخدم هذا إذا كان المسار يحتاج إلى فصل الأنواع
     بطريقة معينة، إذا كانت الأصنوفة ليست نوعا أو فصيلة، فإن كل شيء 
@@ -3333,13 +3299,19 @@ ar:
     بعلامات اقتباس مزدوجة، يجب أن تقوم معظم تطبيقات جدول البيانات بتصدير ملف CSV بهذه 
     الصيغة.
   user: مستخدم
+  #@gender operates on %{x}
   user_added_a_x: "أضاف %{user} %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
   user_added_an_observation_field_html: 'أضاف %{user} قيمة ل"%{field_name}"إلى ملاحظة بواسطة %{owner}'
   user_added_an_observation_html: "أضاف %{user} ملاحظة"
+  #@gender operates on %{x}
   user_added_an_x: "أضاف %{user} %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
   user_added_x_observations_html: "أضاف %{user} %{x} ملاحظة"
   user_already_authenticated: المستخدم موثق بالفعل
@@ -3348,8 +3320,6 @@ ar:
   user_commented: "علق %{user}"
   user_disagrees_this_is_taxon: "%{user}غير موافق على هذا %{taxon}"
   user_disagrees_with_previous_finer_identifications: "لا يوافق %{user} على التعريفات الدقيقة السابقة"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} فضل %{noun} بواسطة %{owner}"
   user_flagged_as_a_non_spammer_html: "تم تعليم %{user} كغير مرسل لرسائل غير مرغوب فيها"
   user_flagged_as_a_spammer_html: "تم تعليم %{user} كمرسل رسائل غير مرغوب فيها"
   user_has_opted_out_of_community_id: لقد اختار المستخدم تعطيل أصنوفة المجتمع
@@ -3378,7 +3348,6 @@ ar:
   users_latest_observations_on_site: "ملاحظات %{user} الأخيرة على %{site}"
   users_profile: "الملف الشخصي ل%{user}"
   users_projects: "مشاريع %{user}"
-  users_year_on_site: "سنة %{user} في %{site} %{year}"
   valid_options_are: الخيارات الصالحة هي
   value: قيمة
   values: القيم
@@ -3439,12 +3408,10 @@ ar:
   view_taxononomy_details_for_taxon: "عرض تفاصيل تصنيف %{taxon}"
   view_user_observations: "عرض ملاحظات %{user}"
   view_x: "عرض %{x}"
-  view_year_stats_for_site: "عرض إحصاءات %{year} ل%{site}"
   view_your_dashboard: عرض لوحة التحكم الخاصة بك
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Vعرض لوحة التحكم الخاصة بك</a> لمزيد من التحديثات"
   view_your_inbox: عرض البريد الوارد
   view_your_observations: عرض ملاحظاتك
-  view_your_year_stats: "عرض إحصائياتك لسنة %{year}"
   view_yours: عرض لك
   view_all_of_your_observations_from_x: "عرض كل ملاحظاتك من %{x}"
   video_tutorials: دروس الفيديو
@@ -3457,10 +3424,6 @@ ar:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: مطلوب
   was_it_captive_cultivated?: "هل كان أسير / مزروع؟"
-  we_also_support: |
-    نحن ندعم أيضا <a href="http://flickr.com">فليكر</a>
-    و<a href="http://photos.google.com">جوجل صور</a> و<a href="http://facebook.com">فيسبوك</a>
-    لمشاركة الصور
   we_can_only_understand_csv_in: لا يمكننا فهم CSV إلا بالصيغة التالية
   we_couldnt_find_a_user: تعذر العثور على مستخدم لديه عنوان البريد الإلكتروني هذا.
   we_couldnt_find_a_user_with_that_activation_code: "تعذر العثور على مستخدم له رمز التفعيل هذا، ربما كنت قد نشطت حسابك بالفعل، الرجاء محاولة تسجيل الدخول."
@@ -3523,7 +3486,10 @@ ar:
     المشاع الإبداعي: النسبة-الترخيص بالمثل 3.0</a>، ربما تم 
     حذف المحتوى من الأصل، ولكن لم يتم تغيير أي محتوى أو تمديده.
   with: مع
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: سحب
+  #Loading status while an identification is being withdrawn
   withdrawing: جارٍ السحب...
   with_errors: بأخطاء
   worldwide: في جميع أنحاء العالم
@@ -3708,30 +3674,6 @@ ar:
       post_donate_social_media_text: أنا أدعم إيناتوراليست لأن.
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: كن داعما شهريا لإيناتوراليست
-        desc_html: |
-          <p class="lead">
-            <strong>إيناتوراليست هو أحد من أكبر المجتمعات في العالم المخصصة
-            لاستكشاف التنوع الحيوي، شكرا لك على مشاركتك فيه!</strong>
-          </p>
-          <p class="lead">
-            نريد أن نحافظ على استخدام إيناتوراليست مجانًا، لكنه ليس عملا 
-            مجانيا، إذا كنت تحب إيناتوراليست، يُرجَى التفكير في أن تصبح داعما 
-            شهريا، تساعد الهدايا المتكررة في ضمان استمرار إيناتوراليست
-            لتوسيع البنية التحتية والموظفين من خلال توفير إيرادات
-            يمكن التنبؤ بها، يمكنك أيضا اختيار إظهار حالة المؤيد الشهري على
-            ملف تعريف المستخدم الخاص بك.</p>
-          <p class="lead">
-            تبرعاتك الخيرية تساعد في دعم إيناتوراليست كمجتمع
-            ينمو، من تقدم رؤية الحاسوب وتنفيذ ميزات جديدة
-            لدعم خوادمنا وموظفينا، إذا كنت تفضل إعطاء
-            تبرع لمرة واحدة، يُرجَى <a href="%{donate_url}">النقر هنا</a>.
-          </p>
-          <p class="text-muted">
-            إيناتوراليست هي مبادرة مشتركة من أكاديمية كاليفورنيا للعلوم
-            والجمعية الجغرافية الوطنية، سيتم استلام جميع التبرعات بواسطة
-            أكاديمية كاليفورنيا للعلوم، 501(c)(3): منظمة معفاة من الضرائب غير هادفة للربح
-            مقرها في الولايات المتحدة الأمريكية.
-          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -3869,10 +3811,10 @@ ar:
       pdf_generation_notice: |
         يُرجَى التحلي بالصبر; وتوليد ملفات PDF كبيرة يمكن أن يستغرق دقيقة أو اثنتين.
       tags_help_html: |
-        الوسوم مثل التصنيفات للأنواع في دليلك، باستثناء 
-        الأنواع المتعددة يمكن أن يكون لها نفس الوسم، أدخل العلامات 
-        كقائمة مفصولة بفواصل هنا، على سبيل المثال <code>صغير، furry</code>، لإضافة 
-        تصنيفات معينة; استخدم علامات مثل <<code>category_name=category_value</code>، على 
+        الوسوم مثل التصنيفات للأنواع في دليلك، باستثناء
+        الأنواع المتعددة يمكن أن يكون لها نفس الوسم، أدخل العلامات
+        كقائمة مفصولة بفواصل هنا، على سبيل المثال <code>صغير، furry</code>، لإضافة
+        تصنيفات معينة; استخدم علامات مثل <<code>category_name=category_value</code>، على
         سبيل المثال <code>color=yellow</code>.
       sorts:
         default: ترتيب الدليل
@@ -4078,7 +4020,6 @@ ar:
       show:
         allow_curator_coordinate_access_desc_html: |
           السماح لأمناء المشروع بعرض الإحداثيات المخفية لهذه الملاحظة.
-        ancestor_disagreements_desc: "# الأصناف المحددة التي هي من بين أسلاف الأصناف، لكن لا أوافق على الأصناف (أي \"أعتقد أنها في الجنس ولكني أعارض تلك الأنواع\")"
         community_taxon_desc_html: |
           <p class="ui">
             تمثل أصنوفة المجتمع (أو تعريف المجتمع)
@@ -4364,11 +4305,6 @@ ar:
           ترك علامات انتهاك حقوق الطبع والنشر كلم يتم حلها إذا كانت هذه الصورة 
           تنتهك حقوق الطبع والنشر
     places:
-      kml_field_desc: |
-        KML حدود المكان، يمكنك إنشاء حساب باستخدام خرائط جوجل أو جوجل
-        إيرث أو معظم تطبيقات نظم المعلومات الجغرافية، يجب أن يحتوي على مضلع واحد على الأقل ويكون
-        أقل من 1 ميغابايت (5 ميغابايت لأمناء الموقع)، ولديه منطقة أصغر من
-        ولاية تكساس الأمريكية.
       edit:
         complex_boundary_note_html: |
           هذه الحدود معقدة بعض الشيء لتعديلها على الويب، ومع ذلك، يمكنك <a href="%{url}"> تنزيل ملف KML</a> وتعديله في تطبيق GIS الذي تختاره و
@@ -4828,32 +4764,32 @@ ar:
           الافتراضي هو النوع.
       show:
         about_names_desc: |
-          <p> 
-            معظم فئات الكائنات الحية لها "أسماء مشتركة" 
-           \ باللغات المنطوقة، وعادة ما تكون هذه الأسماء يمكن التعرف عليها، وسهلة التنطق، 
-            ومستقرة مع مرور الوقت، ولكن العديد من الكائنات الحية لديها عدة 
-            أسماء مختلفة في أماكن مختلفة، حتى في نفس اللغة، والتي يمكن أن تجعل 
-            من الصعب التواصل عن هذه الكائنات دون ارتباك، 
-            ويعالج العلماء هذه المشكلة باستخدام "اسم علمي" واحد 
-            لكل فئة من الكائنات الحية التي تتوافق مع قواعد 
-           \ <a href="https://ar.wikipedia.org/wiki/تسمية_ثنائية">التسميات البيولوجية</a>، 
-            ولكن هذه الأسماء تميل إلى أن تكون على أساس اللاتينية، لغة لا أحد 
-           \ يتحدث بها; لذلك فهي ليست بارزة كأسماء شائعة للكثير منن
-            الاشخاص، ويمكن للأسماء العلمية أن تعكس أيضا وضع تصنيف الكائن الحي; 
-            حتى يمكن أن تتغير عندما يطور العلماء 
-            نظريات أكثر دقة حول العلاقات التطورية بين 
-            الكائنات الحية المختلفة، مما يقلل من جدواها في 
-            التواصل، حتى بين الأشخاص الذين يعرفون الأسماء العلمية. 
-          </p> 
-          <p> 
-            يقول القول المأثور القديم: "تتغير الأسماء الشائعة من مكان 
-            لآخر، وتتغير الأسماء العلمية من وقت لآخر". 
-          </p> 
-          <p> 
-            نحاول معالجة أوجه القصور هذه من خلال عرض كل من 
-            الأسماء الشائعة والعلمية حيثما أمكن، واختيار الأسماء الشائعة 
-            استنادا إلى اللغة والتفضيلات الجغرافية للمشاهد. 
-          </P>
+          <p>
+          معظم فئات الكائنات الحية لها "أسماء مشتركة"
+          \ باللغات المنطوقة، وعادة ما تكون هذه الأسماء يمكن التعرف عليها، وسهلة التنطق،
+          ومستقرة مع مرور الوقت، ولكن العديد من الكائنات الحية لديها عدة
+          أسماء مختلفة في أماكن مختلفة، حتى في نفس اللغة، والتي يمكن أن تجعل
+          من الصعب التواصل عن هذه الكائنات دون ارتباك،
+          ويعالج العلماء هذه المشكلة باستخدام "اسم علمي" واحد
+          لكل فئة من الكائنات الحية التي تتوافق مع قواعد
+          \ <a href="https://ar.wikipedia.org/wiki/تسمية_ثنائية">التسميات البيولوجية</a>،
+          ولكن هذه الأسماء تميل إلى أن تكون على أساس اللاتينية، لغة لا أحد
+          \ يتحدث بها; لذلك فهي ليست بارزة كأسماء شائعة للكثير منن
+          الاشخاص، ويمكن للأسماء العلمية أن تعكس أيضا وضع تصنيف الكائن الحي;
+          حتى يمكن أن تتغير عندما يطور العلماء
+          نظريات أكثر دقة حول العلاقات التطورية بين
+          الكائنات الحية المختلفة، مما يقلل من جدواها في
+          التواصل، حتى بين الأشخاص الذين يعرفون الأسماء العلمية.
+          </p>
+          <p>
+          يقول القول المأثور القديم: "تتغير الأسماء الشائعة من مكان
+          لآخر، وتتغير الأسماء العلمية من وقت لآخر".
+          </p>
+          <p>
+          نحاول معالجة أوجه القصور هذه من خلال عرض كل من
+          الأسماء الشائعة والعلمية حيثما أمكن، واختيار الأسماء الشائعة
+          استنادا إلى اللغة والتفضيلات الجغرافية للمشاهد.
+          </p>
         about_conservation_status_desc: |
           يلخص وضع الحفظ خطر الانقراض بالنسبة لمجموعة من الكائنات الحية.
         about_establishment_desc: |
@@ -4939,18 +4875,6 @@ ar:
         سيتم نقل الأطفال من المدخلات المدخلة التي هي أجناس أو خشن إلى
         الإخراج والأنواع والأنواع الفرعية والأصناف وما إلى ذلك سيتم تبديلها إلى
         مكافئات مع اسم جنس أو نوع جديد.
-      form:
-        move_children_desc_html: |
-          سيؤدي تحديد هذا المربع إلى نقل أطفال الأصنوفة المدخلة إلى 
-          أصنوفة الإخراج المقايضات و تدمج عند تنفيذ هذا التغيير، إذا كان 
-          هذا التغيير لجنس أو أقل، فسيؤدي ذلك إلى إنشاء مقايضات أصناف لجميع 
-          الأحفاد الذين تغير اسمهم الضمني، على سبيل المثال ، إذا قمت بتبديل 
-          عائلة الكلبيات إلى Dogidae، فهذا يغير أصل الجنس
-          <i>Canis</i> من كلبيات إلى Dogidae، إذا قمت بتبديل جنس
-          <i>Canis</i> إلى الجنس <i>Dogis</i>، فسوف ينشئ ويلتزم
-          يمقايضات أصناف لتغيير <i>Canis lupus</i> إلى <i>Dogis lupus</i> و
-          <i>Canis lupus</i> ssp، <i>lupus</i> إلى <i>Dogis lupus</i> ssp.
-          <i>lupus</i> هذا يمكن أن يسبب فوضى; لذلك استخدم بعناية.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -5075,17 +4999,6 @@ ar:
           الحيوي</a> (GBIF)، وهي منظمة دولية حكومية دولية
           تقوم بجمع وتوزيع معلومات التنوع الحيوي من جميع أنحاء 
           العالم.
-        monthly_supporter_desc_html: |
-          يقدم داعمو إيناتوراليست شهريا مساهمات شهرية تلقائية
-          التي تستقبلها أكاديمية كاليفورنيا للعلوم (الولايات
-          المتحدة IRS EIN 94-1156258)
-          لدعم العملية غير الهادفة للربح إيناتوراليست
-          ومواقع شبكة إيناتوراليست،
-          <a href="%{url}">انقر هنا لتصبح داعما شهريا</a>.
-          عندما نؤكد دعمك، ستتمكن من التحقق من هذا
-          الصندوق لعرض هذه الحالة في ملفك الشخصي، ملاحظة: سوف تحتاج إلى استخدام
-          نفس عنوان البريد الإلكتروني بالضبط على صندوق المانحين كما تفعل في إيناتوراليست
-          لكي نؤكد أنك أصبحت داعمًا شهريا.
         muting_desc_html: |
           <p> 
             كتم شخص ما يمنعك من تلقي إشعارات حول الأشياء 
@@ -5202,9 +5115,6 @@ ar:
       index:
         connect_with_nature: تواصل مع الطبيعة
         explore_and_share: استكشف وتبادل ملاحظاتك من العالم الطبيعي.
-        observations_to_date: 'ملاحظات للتاريخ'
-        species_observed: 'الأنواع الملاحظة'
-        people_signed_up: 'الناس المسجلون'
         how_it_works: كيف تعمل
         record_your_observations: تسجيل ملاحظاتك
         share_with_fellow_naturalists: مشاركتها مع زملائك الطبيعيين
@@ -5282,14 +5192,8 @@ ar:
       6: جم
       7: سب
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%س-%ش-%ي'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%ش %ي، %س'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%ش %ي'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%ش %ي، %س'
     month_names:
       - 
       - يناير
@@ -5314,32 +5218,6 @@ ar:
       month: شهر
       second: ثوانٍ
       year: سنة
-  errors:
-    messages:
-      accepted: يجب أن تكون مقبولة
-      blank: لا يمكن تركها فارغة
-      confirmation: كلمة السر غير مطابقة
-      empty: لا يمكن تركها فارغة
-      equal_to: يجب أن تساوي %{count}
-      even: يجب أن يكون عددا زوجيا
-      exclusion: محجوز
-      greater_than: يجب أن يكون أكبر من %{count}
-      greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
-      inclusion: غير مدرج في القائمة
-      invalid: غير صالح
-      less_than: يجب أن يكون أقل من %{count}
-      less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
-      not_a_number: ليس رقما
-      not_an_integer: يجب أن يكون عددا صحيحا
-      odd: يجب أن يكون فرديا
-      record_invalid: 'أخفق التحقق: %{errors}'
-      requires_privilege_speech: |
-        يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات
-        للآخرين للقيام بذلك
-      requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
-      taken: لقد اُتخِذت بالفعل
-    template:
-      body: 'كانت هناك مشاكل في الحقول التالية:'
   helpers:
     defaults:
       title: "هذا هو العنوان"
@@ -5383,32 +5261,6 @@ ar:
   time:
     am: صباحا
     pm: مساء
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: يجب أن تكون مقبولة
-        blank: لا يمكن تركها فارغة
-        confirmation: كلمة السر غير مطابقة
-        empty: لا يمكن تركها فارغة
-        equal_to: يجب أن تساوي %{count}
-        even: يجب أن يكون عددا زوجيا
-        exclusion: محجوز
-        greater_than: يجب أن يكون أكبر من %{count}
-        greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
-        inclusion: غير مدرجة في القائمة
-        invalid: غير صالح
-        less_than: يجب أن يكون أقل من %{count}
-        less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
-        not_a_number: ليس رقما
-        not_an_integer: يجب أن يكون عددا صحيحا
-        odd: يجب أن يكون فرديا
-        record_invalid: 'أخفق التحقق: %{errors}'
-        requires_privilege_speech: "يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات\nللآخرين للقيام بذلك"
-        requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
-        taken: لقد اُتخِذت بالفعل
-      template:
-        body: 'كانت هناك مشاكل في الحقول التالية:'
   activerecord:
     models:
       AssessmentSection: قسم التقييم
@@ -5430,7 +5282,9 @@ ar:
         geoprivacy: خصوصية جغرافية
         iucn: نظير الاتحاد الدولي لحفظ الطبيعة
       flag:
+        #The reason the item was flagged
         reason: السبب
+        #The kind of flag that was made
         flag: علم
       guide:
         source_url: مسار المصدر
@@ -5513,20 +5367,17 @@ ar:
         blank: لا يمكن أن تكون فارغة
         confirmation: كلمة السر غير مطابقة
         empty: لا يمكن أن تكون فارغة
-        equal_to: يجب أن تساوي %{count}
         even: يجب أن يكون حتى
         exclusion: محجوز
-        greater_than: يجب أن يكون أكبر من %{count}
-        greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
         inclusion: غير مدرج في القائمة
         invalid: غير صالح
-        less_than: يجب أن يكون أقل من %{count}
-        less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
         not_a_number: ليس رقما
         not_an_integer: يجب أن يكون عددا صحيحا
         odd: يجب أن يكون عددا فرديا
         record_invalid: 'أخفق التحقق: %{errors}'
-        requires_privilege_speech: "يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات\nللآخرين للقيام بذلك"
+        requires_privilege_speech: |
+          يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات
+          للآخرين للقيام بذلك
         requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
         taken: قد تم أخذه بالفعل
       template:

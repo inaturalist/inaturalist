@@ -1,69 +1,8 @@
 class ObservationFieldValuesController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
   before_action :load_observation_field_value, :only => [:update, :destroy]
 
-  def index
-    per_page = params[:per_page].to_i
-    per_page = 30 if (per_page <= 0 || per_page > 200)
-    @ofvs = ObservationFieldValue.page(params[:page]).per_page(per_page)
-    @ofvs = @ofvs.datatype(params[:type]) unless params[:type].blank?
-    @ofvs = @ofvs.field(params[:field]) unless params[:field].blank?
-    @ofvs = @ofvs.license(params[:license]) unless params[:license].blank?
-    @ofvs = @ofvs.quality_grade(params[:quality_grade]) unless params[:quality_grade].blank?
-    ObservationFieldValue.preload_associations( @ofvs, {
-      observation_field: {},
-      observation: [ { taxon: [:source] }, :user ]
-    } )
-    pagination_headers_for(@ofvs)
-    respond_to do |format|
-      format.json do
-        taxon_json_opts = {
-          :only => [:id, :name, :rank, :source_identifier], 
-          :include => [
-            {
-              :source => {
-                :only => [:id, :title, :in_text, :url]
-              } 
-            },
-            {
-              :taxon_scheme_taxa => {
-                :only => [:id, :taxon_scheme_id, :source_identifier],
-                :include => {
-                  :taxon_scheme => {
-                    :only => [:id, :title]
-                  }
-                }
-              }
-            }
-          ]
-        }
-        if params[:type] == ObservationField::TAXON
-          taxa = Taxon.includes(:source, :taxon_scheme_taxa).where("id IN (?)", @ofvs.map{|ofv| ofv.value.to_i}.compact.uniq).index_by(&:id)
-          @ofvs.each_with_index do |ofv,i| 
-            @ofvs[i].taxon = taxa[@ofvs[i].value.to_i].as_json(taxon_json_opts)
-          end
-        end
-        render :json => @ofvs.to_json(
-          :methods => [:taxon],
-          :include => {
-            :observation_field => {
-              :only => [:id, :datatype, :name]
-            }, 
-            :observation => {
-              :only => [:id, :license, :latitude, :longitude, :positional_accuracy, :observed_on],
-              :methods => [:time_observed_at_utc, :coordinates_obscured],
-              :include => {
-                :taxon => taxon_json_opts, 
-                :user => {:only => [:id, :name, :login]}
-              }
-            }
-          }
-        )
-      end
-    end
-  end
-  
   def create
     ofv_params = observation_field_value_params
     ofv_params.delete(:id) # why does rails even allow this...

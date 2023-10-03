@@ -56,12 +56,14 @@ class ResearchGradeProgress extends React.Component {
         remainingCriteria.rank_or_needs_id = true;
       }
     }
+    remainingCriteria["hidden-media"] = _.some( _.flatten( [observation.photos, observation.sounds] ), "hidden" );
     remainingCriteria = _.pickBy( remainingCriteria, bool => ( bool === true ) );
-    const sortedCriteria = _.sortBy(
-      _.map( remainingCriteria, ( bool, type ) => ( { type, bool } ) ), c => (
-        this.criteriaOrder[c.type]
-      )
-    );
+    const sortedCriteria = _.sortBy( _.map(
+      remainingCriteria,
+      ( bool, type ) => ( { type, bool } )
+    ), c => (
+      this.criteriaOrder[c.type]
+    ) );
     return (
       <ul className="remaining">
         { _.map( sortedCriteria, c => {
@@ -145,6 +147,10 @@ class ResearchGradeProgress extends React.Component {
               icon = "fa-flag danger";
               label = I18n.t( "all_flags_must_be_resolved" );
               break;
+            case "hidden-media":
+              icon = "fa-eye-slash danger";
+              label = I18n.t( "all_media_must_be_unhidden" );
+              break;
             default:
               return null;
           }
@@ -162,13 +168,14 @@ class ResearchGradeProgress extends React.Component {
   }
 
   render( ) {
-    const { observation } = this.props;
+    const { config, observation } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const grade = observation.quality_grade;
     const needsIDActive = ( grade === "needs_id" || grade === "research" );
     let description;
     let criteria;
     let outlinks;
+    const viewerIsObserver = config.currentUser && config.currentUser.id === observation.user.id;
     if ( grade === "research" ) {
       description = (
         <span>
@@ -176,7 +183,18 @@ class ResearchGradeProgress extends React.Component {
             { I18n.t( "this_observation_is_research_grade" ) }
           </span>
           { " " }
-          { I18n.t( "it_can_now_be_used_for_research" ) }
+          {
+            observation.license_code
+              ? I18n.t( "it_can_now_be_used_for_research" )
+              : I18n.t( "however_not_licensed" )
+          }
+          { !observation.license_code && viewerIsObserver && (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "however_not_licensed_action_html" )
+              }}
+            />
+          ) }
         </span>
       );
     } else {
@@ -225,7 +243,7 @@ class ResearchGradeProgress extends React.Component {
               <div className={`separator ${grade === "research" ? "active" : "incomplete"}`} />
             </Col>
           </div>
-          <div className="checks">
+          <div className="checks clearfix">
             <Col xs={4}>
               <div className="check casual active">
                 <i className="fa fa-check" />
@@ -265,6 +283,7 @@ class ResearchGradeProgress extends React.Component {
 }
 
 ResearchGradeProgress.propTypes = {
+  config: PropTypes.object,
   observation: PropTypes.object,
   qualityMetrics: PropTypes.object
 };

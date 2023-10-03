@@ -2,6 +2,7 @@ import inatjs from "inaturalistjs";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
+import utf8 from "utf8";
 import { fetch } from "../../../shared/util";
 import { defaultObservationParams } from "../util";
 
@@ -259,16 +260,21 @@ export function fetchTerms( options = { histograms: false } ) {
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
-      if ( options.histograms ) {
-        _.each( r.unannotated, ( data, controlledAttributeId ) => {
-          fieldValues[Number( controlledAttributeId )].push( {
-            count: data.count,
-            month_of_year: data.month_of_year,
-            controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
-            controlled_value: {
-              label: "No Annotation"
-            }
-          } );
+      // If there's data about how many observations do *not* have annotations
+      // of these relevant attributes, add "No Annotation" data
+      if ( options.histograms && r.unannotated ) {
+        const usedAttributeIds = _.keys( fieldValues ).map( Number );
+        _.each( r.unannotated, ( data, unannotatedAttributeId ) => {
+          if ( usedAttributeIds.indexOf( Number( unannotatedAttributeId ) ) >= 0 ) {
+            fieldValues[Number( unannotatedAttributeId )].push( {
+              count: data.count,
+              month_of_year: data.month_of_year,
+              controlled_attribute: controlledAttributes[Number( unannotatedAttributeId )],
+              controlled_value: {
+                label: "No Annotation"
+              }
+            } );
+          }
         } );
       }
       dispatch( {
@@ -372,7 +378,8 @@ export function fetchDescription( ) {
     fetch( url ).then(
       response => {
         const source = response.headers.get( "X-Describer-Name" );
-        const describerUrl = response.headers.get( "X-Describer-URL" );
+        // the URL is being sent in an HTTP header, which does not support UTF-8, so force encoding
+        const describerUrl = utf8.decode( response.headers.get( "X-Describer-URL" ) );
         response.text( ).then( body => {
           if ( body && body.length > 0 ) {
             dispatch( setDescription( source, describerUrl, body ) );
@@ -408,7 +415,7 @@ export function fetchLinks( ) {
 export function fetchNames( taxon ) {
   return ( dispatch, getState ) => {
     const t = taxon || getState( ).taxon.taxon;
-    fetch( `/taxon_names.json?per_page=200&taxon_id=${t.id}` ).then(
+    fetch( `/taxon_names.json?per_page=400&taxon_id=${t.id}` ).then(
       response => {
         response.json( ).then( json => dispatch( setNames( json ) ) );
       },

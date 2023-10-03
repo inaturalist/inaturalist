@@ -327,6 +327,7 @@ a.UserImage,
           &.center {
             display: table-cell;
           }
+          cursor: auto;
         }
         .image-gallery-slides img {
           max-height: 420px;
@@ -344,7 +345,10 @@ a.UserImage,
           .sound-container {
             position: absolute;
             width: 100%;
-            top: 50%; 
+            top: 50%;
+            .captions {
+              margin-top: 10px;
+            }
           }
           .sound-container.sound-container-soundcloud {
             margin-top: -81px;
@@ -366,6 +370,13 @@ a.UserImage,
             bottom: 0;
             pointer-events: none;
             padding: 6px;
+            & > .hidden-media {
+              position: absolute;
+              width: 100%;
+              .captions {
+                margin-top: 10px;
+              }
+            }
           }
           .image-gallery-image {
             position: relative;
@@ -383,6 +394,11 @@ a.UserImage,
               display: inline-block;
               padding: 5px 9px;
               pointer-events: auto;
+              .btn:hover, .fa:hover {
+                text-decoration: none;
+                opacity: 0.8;
+                color: inherit;
+              }
             }
             .fa.license {
               vertical-align: middle;
@@ -596,28 +612,27 @@ a.UserImage,
     display: inline-block;
     width: 100%;
     margin-bottom: 15px;
-    white-space: nowrap;
     & > div {
       display: inline-block;
     }
     .SplitTaxon {
       white-space: normal;
-      a.secondary-name {
+      a.secondary-name, .secondary-names {
         font-size: 20px;
         line-height: 24px;
         color: #747474;
         white-space: normal;
       }
-      a.display-name, .noname {
+      .display-names, a.display-name, .noname {
         font-size: 32px;
-        line-height: 36px;
+        line-height: 40px;
         color: #000;
         white-space: normal;
       }
-      &.genus .comname.secondary-name,
-      &.species .comname.secondary-name,
-      &.subspecies .comname.secondary-name,
-      &.variety .comname.secondary-name {
+      &.genus .comname.secondary-names,
+      &.species .comname.secondary-names,
+      &.subspecies .comname.secondary-names,
+      &.variety .comname.secondary-names {
         margin-left: 0.25em;
       }
     }
@@ -667,6 +682,23 @@ a.UserImage,
 
 .other_observations > .container > .row > .col-xs-6 {
   padding: 0;
+}
+
+.hidden-media {
+  text-align: center;
+  .hidden-status {
+    color: #333;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .reveal-hidden {
+    display: block;
+    color: #333;
+    pointer-events: auto;
+    display: block;
+    margin: 0px auto;
+    margin-top: 9px;
+  }
 }
 
 h3, h4 {
@@ -1145,28 +1177,29 @@ time {
       }
     }
     .labels {
-      & > div {
-        display: inline-block;
-        width: 115px;
-        margin-top: 5px;
-      }
+      position: relative;
+      display: block;
+      margin-top: 5px;
+      text-align: center;
       .active {
         font-weight: 600;
       }
       .casual {
-        float: left;
-        text-align: left;
+        top: 0;
+        position: absolute;
+        inset-inline-start: 0;
       }
       .research {
-        float: right;
-        text-align: right;
+        top: 0;
+        position: absolute;
+        inset-inline-end: 0;
       }
     }
   }
   .info {
     margin-top: 35px;
     font-size: 18px;
-    line-height: 23px;
+    line-height: 24px;
   }
   ul.remaining {
     margin-top: 30px;
@@ -1241,7 +1274,6 @@ time {
     }
   }
   .list {
-    display: inline-block;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -1253,10 +1285,10 @@ time {
   }
   .obs {
     width: 100%;
-    display: inline-block;
     vertical-align: top;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
+    background: #fff;
   }
   .photo {
     width: 100%;
@@ -1287,16 +1319,15 @@ time {
 
   }
   .caption {
-    background: #fff;
     padding: 8px;
     min-height: 56px;
     text-align: left;
-    a {
-      display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
+    .SplitTaxon .display-name {
       color: #000;
+    }
+    .SplitTaxon > .display-name, .display-names,
+    .SplitTaxon > .secondary-name, .secondary-names {
+      display: block;
     }
   }
   .view {
@@ -1352,10 +1383,18 @@ time {
 }
 .obs-highlight-link {
   .SplitTaxon {
-    a.display-name,
-    .noname {
+    & > .display-name, .display-names,
+    & > .secondary-name, .secondary-names {
       display: block;
+      white-space: inherit;
+    }
+    .display-name, .secondary-name {
+      white-space: inherit;
+    }
+    .display-name,
+    .noname {
       color: white;
+      font-weight: 700;
     }
   }
 }
@@ -1455,9 +1494,6 @@ time {
     .taxon {
       font-size: 16px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
       margin-bottom: 5px;
@@ -1981,12 +2017,11 @@ time {
       }
       td {
         padding: 2px 8px;
-        .secondary-name {
+        .secondary-names {
           font-size: 12px;
         }
         .display-name {
           font-size: 13px;
-          white-space: nowrap;
         }
         &.score {
           white-space: nowrap;
@@ -2380,7 +2415,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.research:after {
   border-color: $inat-green;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 
 .PopoverWithHeader {
@@ -2427,10 +2462,33 @@ body > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.image-gallery-image .loading_spinner {
+  width: 80px;
+  height: 80px;
+  border-width: 15px;
+}
+
 .observations.infowindow .observation {
   width: 245px;
 }
 
+.obs .caption, .obs-highlight-link, .obs-modal-header {
+  .SplitTaxon.taxon {
+    .display-names .display-name + .display-name,
+    .secondary-names .secondary-name + .secondary-name {
+      &:before {
+        content: "";
+        display: inline;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery-slide .image-gallery-description {
+    font-size: 1em;
+  }
+}
 
 @media (max-width: 1000px) {
   .bootstrap .container {

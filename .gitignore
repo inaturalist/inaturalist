@@ -3,6 +3,11 @@
 *.rails2
 *.swo
 *.swp
+*.dbf
+*.prj
+*.shp
+*.shx
+*.zip
 *~
 *~
 .bundle
@@ -12,7 +17,9 @@
 .ruby-gemset
 .rvmrc
 .vagrant
+.vscode
 app/assets/javascripts/*-webpack.js
+app/assets/javascripts/*-webpack.js.LICENSE.txt
 backup/
 cache/
 config/*.mapnik.xml

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class Site < ApplicationRecord
+  include HasJournal
+
   has_many :observations, inverse_of: :site
   has_many :users, inverse_of: :site
   has_many :site_admins, inverse_of: :site
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_and_belongs_to_many :announcements
 
@@ -320,6 +321,9 @@ class Site < ApplicationRecord
   # We have a limited number of callback URLs we're allowed on twitter, and
   # we've used them all
   preference :twitter_sign_in, :boolean, default: false
+
+  # fathom analytics, https://usefathom.com/
+  preference :fathom_analytics_tracker_id, :string
 
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next

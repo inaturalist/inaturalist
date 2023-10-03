@@ -25,12 +25,15 @@ class Translators extends React.Component {
       sortBy
     } = this.state;
     let numToShow = initialNumToShow;
-    const dataWithTotals = _.map( data.users, ( d, username ) => Object.assign( {}, d, {
+    const dataWithTotals = _.map( data.users, ( userData, username ) => ( {
+      ...userData,
       username,
-      web: d.words_web || 0,
-      mobile: d.words_mobile || 0,
-      seek: d.words_seek || 0,
-      total: ( d.words_web || 0 ) + ( d.words_mobile || 0 ) + ( d.words_seek || 0 )
+      web: userData.words_web || 0,
+      mobile: userData.words_mobile || 0,
+      seek: userData.words_seek || 0,
+      total: ( userData.words_web || 0 )
+        + ( userData.words_mobile || 0 )
+        + ( userData.words_seek || 0 )
     } ) );
     if ( !perPage && initialNumToShow < dataWithTotals.length ) {
       numToShow = dataWithTotals.length;
@@ -165,14 +168,15 @@ class Translators extends React.Component {
                   </div>
                 </td>
                 <td className="badges">
-                  { d.languages.map( lang => data.languages[lang] ).map( l => (
+                  { _.compact( d.languages.map( lang => data.languages[lang] ) ).map( lang => (
                     <span
                       className="badge"
-                      key={`langauge-${l.code}`}
+                      key={`langauge-${lang.code}`}
                     >
-                      { l.locale
-                        ? I18n.t( `locales.${l.locale}`, { defaultValue: l.name } )
-                        : l.name
+                      {
+                        lang.locale
+                          ? I18n.t( `locales.${lang.locale}`, { defaultValue: lang.name } )
+                          : lang.name
                       }
                     </span>
                   ) ) }
@@ -191,7 +195,9 @@ class Translators extends React.Component {
               } );
             }}
           >
-            { I18n.t( "more" ) }
+            { I18n.t( "more__context_translators_caps", {
+              defaultValue: I18n.t( "more_caps", { defaultValue: I18n.t( "more" ) } )
+            } ) }
           </button>
         ) }
       </div>

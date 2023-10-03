@@ -116,10 +116,6 @@ export function fetchMonthFrequencyResearchGrade( ) {
 
 export function fetchMonthFrequency( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    if ( !_.isEmpty( state.observations.monthFrequency ) ) {
-      return;
-    }
     const promises = [
       dispatch( fetchMonthFrequencyVerifiable( ) ),
       dispatch( fetchMonthFrequencyResearchGrade( ) )
@@ -258,7 +254,7 @@ export function fetchLastObservation( ) {
       order_by: "observed_on",
       order: "desc",
       per_page: 1,
-      skip_total_hits: true
+      no_total_hits: true
     };
     if ( testingApiV2 ) {
       params.fields = {

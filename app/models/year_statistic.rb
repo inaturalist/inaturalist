@@ -55,8 +55,11 @@ class YearStatistic < ApplicationRecord
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
         accumulation: observed_species_accumulation(
-          site: options[:site],
-          verifiable: true
+          {
+            site: options[:site],
+            verifiable: true
+          },
+          options
         )
       },
       growth: {
@@ -73,9 +76,14 @@ class YearStatistic < ApplicationRecord
           donors: donors( year, options )
         }
       end
+      json[:pull_requests] = github_pull_requests( year, options )
+      if year >= 2022
+        json[:budget] ||= {}
+        json[:budget][:monthly_supporters] = monthly_supporters( year, options )
+      end
     end
     year_statistic.update( data: json )
-    year_statistic.generate_shareable_image
+    year_statistic.generate_shareable_image( options )
 
     # Streaks are the longest-running and most memory intensive piece to
     # calculate, and are probably not sustainable for the whole site in the
@@ -85,7 +93,11 @@ class YearStatistic < ApplicationRecord
     # fail, they don't take down everything else. They're also pretty boring
     # as of 2021 since it's basically just a lot of people on year+ long
     # streaks. Yet another thing I never should have built...
-    if year <= 2021 || !options[:site].blank?
+
+    # 2022 update: we decided to just not do streaks on global or site YIR
+    # anymore b/c it's too much of a support headache and encourages
+    # competetive behavior
+    if year <= 2021
       json[:observations][:streaks] = streaks( year, options )
       year_statistic.update( data: json )
     end
@@ -98,7 +110,7 @@ class YearStatistic < ApplicationRecord
   end
 
   # Generates stats for a specific user for a single year
-  def self.generate_for_user_year( user, year )
+  def self.generate_for_user_year( user, year, options = {} )
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
 
@@ -126,7 +138,7 @@ class YearStatistic < ApplicationRecord
         users_who_helped: users_who_helped_arr,
         total_users_who_helped: total_users_who_helped,
         total_ids_received: total_ids_received,
-        iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user )
+        iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user, options )
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
@@ -179,6 +191,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.tree_taxa( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] tree_taxa, year: #{year}, options: #{options}"
+    end
     params = { year: year }
     if ( user = options[:user] )
       params[:user_id] = user.id
@@ -213,6 +228,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observations_histogram( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observations_histogram, year: #{year}, options: #{options}"
+    end
     params = {
       d1: "#{year}-01-01",
       d2: "#{year}-12-31",
@@ -234,13 +252,16 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.identifications_histogram( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] identifications_histogram, year: #{year}, options: #{options}"
+    end
     interval = options[:interval] || "day"
     es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         histogram: {
           date_histogram: {
             field: "created_at",
-            interval: interval,
+            calendar_interval: interval,
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( options )
           }
@@ -265,6 +286,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.identification_counts_by_category( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] identification_counts_by_category, year: #{year}, options: #{options}"
+    end
     es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         categories: { terms: { field: "category" } }
@@ -286,7 +310,10 @@ class YearStatistic < ApplicationRecord
     end
   end
 
-  def self.identification_counts_by_iconic_taxon( year, user )
+  def self.identification_counts_by_iconic_taxon( year, user, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] identification_counts_by_iconic_taxon, year: #{year}, user: #{user}, options: #{options}"
+    end
     return unless user
 
     es_params = identifications_es_base_params( year )
@@ -304,6 +331,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.obervation_counts_by_quality_grade( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] obervation_counts_by_quality_grade, year: #{year}, options: #{options}"
+    end
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
     if ( site = options[:site] )
@@ -325,6 +355,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.leaf_taxa_count( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] leaf_taxa_count, year: #{year}, options: #{options}"
+    end
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if ( site = options[:site] )
@@ -340,6 +373,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.iconic_taxa_counts( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] iconic_taxa_counts, year: #{year}, options: #{options}"
+    end
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if ( site = options[:site] )
@@ -362,6 +398,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.popular_observations( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] popular_observations, year: #{year}, options: #{options}"
+    end
     params = options.merge( year: year, has_photos: true, verifiable: true )
     if ( user = params.delete( :user ) )
       params[:user_id] = user.id
@@ -488,19 +527,26 @@ class YearStatistic < ApplicationRecord
     [users, buckets.size, buckets.map( &:doc_count ).sum]
   end
 
-  def generate_shareable_image
-    # Disabling shareable image generation until we fix imagemagick issue:
-    # https://github.com/inaturalist/chef-repo-azure/issues/31
-    return
-
-    if year >= 2020
-      generate_shareable_image_no_obs
-    else
-      generate_shareable_image_obs_grid
+  def generate_shareable_image( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] generate_shareable_image, options: #{options}"
     end
+    timeout = 10.seconds
+    Timeout.timeout timeout do
+      if year >= 2020
+        generate_shareable_image_no_obs( options )
+      else
+        generate_shareable_image_obs_grid( options )
+      end
+    end
+  rescue Timeout::Error
+    Rails.logger.error "Failed to generate shareable image for YearStatistic #{id} in #{timeout}s"
   end
 
-  def generate_shareable_image_obs_grid
+  def generate_shareable_image_obs_grid( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] generate_shareable_image_obs_grid, options: #{options}"
+    end
     return unless ( popular_obs = data&.dig( :observations, :popular ) )
     return if popular_obs.blank?
 
@@ -525,13 +571,13 @@ class YearStatistic < ApplicationRecord
 
     # Get the icon
     icon_url = if user
-      FakeView.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif site
-      FakeView.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif Site.default
-      FakeView.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     else
-      FakeView.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
     end
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
@@ -614,7 +660,7 @@ class YearStatistic < ApplicationRecord
       locale ||= I18n.locale
       obs_text = I18n.t(
         "x_observations",
-        count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+        count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
         locale: locale
       ).mb_chars.upcase
       medium_font_path = "Lato-Regular" if obs_text.non_latin_chars?
@@ -638,24 +684,37 @@ class YearStatistic < ApplicationRecord
     save!
   end
 
+  # ImageMagick's SVG parser is... sensitive, so this filters out things it doesn't like
+  def clean_svg_for_imagemagick( svg_path )
+    tmp_path = "#{svg_path}.tmp"
+    run_cmd <<~BASH
+      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
+    BASH
+    run_cmd "mv #{tmp_path} #{svg_path}"
+  end
+
   def generate_shareable_image_no_obs( options = {} )
     debug = options.delete( :debug )
+    if debug
+      puts "[#{Time.now}] generate_shareable_image_no_obs, options: #{options}"
+    end
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
     FileUtils.mkdir_p work_path, mode: 0o755
     # Get the icon
     icon_url = if user
-      FakeView.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif site
-      FakeView.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif Site.default
-      FakeView.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     else
-      FakeView.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
     end
     icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
     run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
+    clean_svg_for_imagemagick( icon_path ) if icon_ext.downcase == "svg"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.png" )
@@ -698,7 +757,7 @@ class YearStatistic < ApplicationRecord
       run_cmd "convert #{square_icon_path} -resize 212x212 #{final_logo_path}"
     end
 
-    background_url = FakeView.image_url( "yir-background.png" ).to_s.
+    background_url = ApplicationController.helpers.image_url( "yir-background.png" ).to_s.
       gsub( %r{([^:])//}, "\\1/" ).
       gsub( "staging.inaturalist", "www.inaturalist" )
     background_path = File.join( work_path, "background.png" )
@@ -718,18 +777,19 @@ class YearStatistic < ApplicationRecord
         #{final_logo_path} #{background_path} #{background_with_icon_path}
     BASH
     wordmark_site = user&.site || site || Site.default
-    wordmark_url = FakeView.image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+    wordmark_url = ApplicationController.helpers.image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     wordmark_url = wordmark_url.sub( "staticdev", "static" )
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
     run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
+    clean_svg_for_imagemagick( wordmark_path ) if wordmark_ext.downcase == "svg"
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
     run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
     density = 1024
     begin
       run_cmd <<~BASH
-        convert -resize x65 -background none +antialias -density #{density} \
+        convert -resize 384x65 -background none +antialias -density #{density} \
           #{wordmark_path} #{wordmark_resized_path}
       BASH
     rescue RuntimeError => e
@@ -764,21 +824,16 @@ class YearStatistic < ApplicationRecord
     else
       ""
     end
-    title = if user
+    locale = if user
       user_site = user.site || Site.default
-      locale = user.locale.presence || user_site.locale.presence || I18n.locale
-      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
-      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
+      user.locale.presence || user_site.locale.presence || I18n.locale
     elsif site
-      locale = site.locale.presence || I18n.locale
-      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      site.locale.presence || I18n.locale
     else
       default_site = Site.default
-      locale = default_site.locale.presence || I18n.locale
-      site_name = default_site.site_name_short.presence || default_site.name
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      default_site.locale.presence || I18n.locale
     end
+    title = I18n.t( :year_in_review, year: year, locale: locale )
     title = title.mb_chars.upcase
     obs_count = if ( qg_counts = data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i
@@ -802,17 +857,17 @@ class YearStatistic < ApplicationRecord
       "label"
     end
     obs_translation = I18n.t( "x_observations_html",
-      count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+      count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
       locale: locale )
     obs_count_txt = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
     obs_label_txt = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
     species_translation = I18n.t( "x_species_html",
-      count: FakeView.number_with_delimiter( species_count, locale: locale ),
+      count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
       locale: locale )
     species_count_txt = species_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
     species_label_txt = species_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
     identifications_translation = I18n.t( "x_identifications_html",
-      count: FakeView.number_with_delimiter( identifications_count, locale: locale ),
+      count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
       locale: locale )
     identifications_count_txt = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
     identifications_label_txt = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
@@ -932,8 +987,11 @@ class YearStatistic < ApplicationRecord
     Date.parse( "#{n.year}-#{n.month}-01" ) - 1.day
   end
 
-  def self.observed_species_accumulation( params = {} )
-    debug = params.delete( :debug )
+  def self.observed_species_accumulation( params = {}, options = {} )
+    debug = params.delete( :debug ) || options[:debug]
+    if debug
+      puts "[#{Time.now}] observed_species_accumulation, params: #{params}, options: #{options}"
+    end
     interval = params.delete( :interval ) || "month"
     date_field = params.delete( :date_field ) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
@@ -954,9 +1012,9 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: date_field,
-            interval: interval,
+            calendar_interval: interval,
             format: "yyyy-MM-dd",
-            time_zone: time_zone_for_options( params )
+            time_zone: YearStatistic.time_zone_for_options( params )
           },
           aggs: {
             taxon_ids: {
@@ -991,7 +1049,7 @@ class YearStatistic < ApplicationRecord
         Rails.logger.info <<~MSG
           observed_species_accumulation results for #{d1} - #{d2}:
           #{buckets.size} buckets, #{bucket_dates.first} - #{bucket_dates.last},
-          #{species_ids.size} species"
+          #{species_ids.size} species
         MSG
       end
       buckets
@@ -1001,11 +1059,14 @@ class YearStatistic < ApplicationRecord
       bucketer,
       [histogram_params],
       [
+        Elasticsearch::Transport::Transport::Errors::BadRequest,
         Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Elasticsearch::Transport::Transport::Errors::TooManyRequests,
         Faraday::TimeoutError
       ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
-      parallel: NUM_ES_WORKERS
+      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
+      parallel: YearStatistic::NUM_ES_WORKERS,
+      debug: debug
     ) do | args |
       es_params = args[0].dup
       d1_filter = es_params[:filters].detect {| f | f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
@@ -1035,7 +1096,9 @@ class YearStatistic < ApplicationRecord
       ]
       new_params = [es_params1, es_params2]
       if debug
+        puts
         puts "observed_species_accumulation partitions: #{d1_p1} - #{d2_p1}, #{d1_p2} - #{d2_p2}"
+        puts
       end
       new_params
     end
@@ -1067,7 +1130,11 @@ class YearStatistic < ApplicationRecord
     end
   end
 
-  def self.publications( year, _options )
+  def self.publications( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
+    end
+    # TODO: replace this with https://www.gbif.org/developer/literature
     gbif_endpont = "https://www.gbif.org/api/resource/search"
     gbif_params = {
       contentType: "literature",
@@ -1078,9 +1145,9 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    data = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
     new_results = []
-    data["results"].each do | result |
+    response["results"].each do | result |
       if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
         url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
@@ -1092,7 +1159,7 @@ class YearStatistic < ApplicationRecord
         sleep( 1 )
       end
       result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
-      new_results << result.slice(
+      new_result = result.slice(
         "title",
         "authors",
         "year",
@@ -1104,13 +1171,22 @@ class YearStatistic < ApplicationRecord
         "_gbifDOIs",
         "altmetric_score"
       )
+      if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
+        new_result["authors"] = []
+      end
+      new_results << new_result
     end
-    data["results"] = new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5]
-    data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
-    data
+    {
+      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
+      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
+      count: response["count"]
+    }
   end
 
   def self.observations_histogram_by_created_month( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observations_histogram_by_created_month, options: #{options}"
+    end
     filters = [
       { terms: { quality_grade: ["research", "needs_id"] } }
     ]
@@ -1131,7 +1207,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: "created_at_details.date",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( options )
           }
@@ -1146,6 +1222,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.users_histogram_by_created_month( options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] users_histogram_by_created_month, options: #{options}"
+    end
     scope = User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
       where( "suspended_at IS NULL AND created_at > '2008-03-01' AND observations_count > 0" )
     if ( site = options[:site] )
@@ -1156,20 +1235,23 @@ class YearStatistic < ApplicationRecord
     end.sort.to_h
   end
 
-  def self.observation_counts_by_country( year, _params = {} )
+  def self.observation_counts_by_country( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observation_counts_by_country, year: #{year}, options: #{options}"
+    end
     Place.where( admin_level: 0 ).all.each_with_object( [] ) do | p, memo |
       r = INatAPIService.observations( per_page: 0, verifiable: true,
         created_d1: "#{year}-01-01",
         created_d2: "#{year}-12-31",
         place_id: p.id )
       year_count = r ? r.total_results : 0
+      next if year_count.to_i <= 0
+
       r = INatAPIService.observations( per_page: 0, verifiable: true,
         created_d1: "#{year - 1}-01-01",
         created_d2: "#{year - 1}-12-31",
         place_id: p.id )
       last_year_count = r ? r.total_results : 0
-      next if year_count.to_i <= 0
-
       memo << {
         place_id: p.id,
         place_code: p.code,
@@ -1182,6 +1264,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.streaks( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] streaks, year: #{year}, options: #{options}"
+    end
     options = options.clone
     debug = options[:debug]
     streak_length = 5
@@ -1375,13 +1460,16 @@ class YearStatistic < ApplicationRecord
       else
         s.merge(
           login: u.login,
-          icon_url: FakeView.image_url( u.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+          icon_url: ApplicationController.helpers.image_url( u.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
         )
       end
     end.compact
   end
 
   def self.translators( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] translators, year: #{year}, options: #{options}"
+    end
     return unless CONFIG.crowdin&.projects
 
     locale_to_ci_code = {
@@ -1389,7 +1477,7 @@ class YearStatistic < ApplicationRecord
       "pt" => "pt-PT"
     }
     data = { languages: {}, users: {} }
-    staff_usernames = User.admins.pluck( :login ) + %w(alexinat)
+    staff_usernames = User.admins.pluck( :login ) + %w(alexinat inaturalist)
     CONFIG.crowdin.projects.to_h.each_key do | project_name |
       project = CONFIG.crowdin.projects.send( project_name )
       info_r = RestClient.get(
@@ -1453,6 +1541,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observed_taxa_counts( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observed_taxa_counts, year: #{year}, options: #{options}"
+    end
     params = options.merge( year: year, verifiable: true, page: 1 )
     params[:user_id] = options[:user].id if options[:user]
     data = {}
@@ -1478,6 +1569,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.observed_taxa_changes( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observed_taxa_changes, year: #{year}, options: #{options}"
+    end
     # final number of top gains and losses to return
     final_cutoff = 30
     this_years_taxa = observed_taxa_counts( year, options )
@@ -1519,6 +1613,9 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.donors( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] donors, year: #{year}, options: #{options}"
+    end
     options = options.clone
     debug = options.delete( :debug )
     limit = options.delete( :limit )
@@ -1601,109 +1698,24 @@ class YearStatistic < ApplicationRecord
     end
   end
 
-  # Maximum distance in meters between obs created by a single user for each
-  # month of the year. Calculates pairwise comparisons between all obs made by
-  # the user in that month so it's pretty slow.
-  def max_obs_distances_for_user( year, user )
-    data = []
-    ( 1..12 ).each do | month |
-      d1 = Date.new( year, month )
-      d2 = d1.end_of_month
-      sql = <<-SQL
-        SELECT
-          o1.id,
-          o2.id,
-          ST_DistanceSphere(o1.private_geom, o2.private_geom) AS distance
-        FROM
-          observations o1,
-          observations o2
-        WHERE
-          o1.user_id = #{user.id}
-          AND o2.user_id = #{user.id}
-          AND o1.id != o2.id
-          AND o1.geom IS NOT NULL
-          AND o2.geom IS NOT NULL
-          AND o1.observed_on BETWEEN '#{d1}' AND '#{d2}'
-          AND o2.observed_on BETWEEN '#{d1}' AND '#{d2}'
-        ORDER BY distance DESC
-        LIMIT 1
-      SQL
-      r = ActiveRecord::Base.connection.execute( sql )
-      data << [d1.to_s, ( r&.count&.positive? ? r[0]["distance"] : 0 ).to_f]
+  def self.monthly_supporters( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] monthly_supporters, year: #{year}, options: #{options}"
     end
-    # CSV(STDOUT) do |csv|
-    #   csv << %w(date distance)
-    #   data.each do |row|
-    #     csv << row
-    #   end
-    # end
-    data
-  end
-
-  # Stats on maximum distance in meters between obs created by all users for
-  # each month of the year. Instead of pairwise comparisons, this just
-  # calculates the bounding box for each user's observations within a month and
-  # uses the box's diagonal as the "distance," so it's just an approximation.
-  def est_max_obs_distances( year, options = {} )
-    debug = options.clone.delete( :debug )
-    data = []
-    ( 1..12 ).each do | month |
-      d1 = Date.new( year, month )
-      d2 = d1.end_of_month
-      params = { geo: true, d1: d1.to_s, d2: d2.to_s }
-      elastic_params = Observation.params_to_elastic_query( params )
-      geo_bounds_params = elastic_params.merge(
-        size: 0,
-        track_total_hits: true,
-        aggs: {
-          user_ids: {
-            terms: {
-              field: "user.id",
-              size: 300_000
-            },
-            aggs: {
-              bounding_box: {
-                geo_bounds: {
-                  field: "private_location"
-                }
-              }
-            }
-          }
-        }
-      )
-      distances = []
-      buckets = Observation.elastic_search( geo_bounds_params ).response.aggregations.user_ids.buckets
-      puts "#{d1}, calculating distances for #{buckets.size} users..." if debug
-      buckets.each do | bucket |
-        next unless bucket.bounding_box&.bounds
-        next if bucket.doc_count <= 1
-
-        d = lat_lon_distance_in_meters(
-          bucket.bounding_box.bounds.bottom_right.lat,
-          bucket.bounding_box.bounds.bottom_right.lon,
-          bucket.bounding_box.bounds.top_left.lat,
-          bucket.bounding_box.bounds.top_left.lon
-        )
-        next if d.zero?
-
-        distances << d
-      end
-      data << {
-        date: d1.to_s,
-        avg: distances.sum / distances.size.to_f,
-        med: distances.median
-        # min: distances.min,
-        # max: distances.max
+    users = User.limit( 30 ).
+      where( "donorbox_plan_type = 'monthly'" ).
+      where( "donorbox_plan_status = 'active'" ).
+      where( "donorbox_plan_started_at IS NOT NULL" ).
+      joins( :stored_preferences ).
+      where( "preferences.name = 'monthly_supporter_badge' AND preferences.value = 't'" ).
+      order( Arel.sql( "RANDOM()" ) )
+    users.reject( &:suspended? ).map do | user |
+      {
+        login: user.login,
+        name: user.name,
+        icon_url: FakeView.image_url( user.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
       }
     end
-    headers = data[0].keys
-    CSV( $stdout ) do | csv |
-      csv << headers
-      data.each do | row |
-        csv << headers.map {| h | row[h] }
-      end
-    end
-    data
   end
 
   def self.identifications_es_base_params( year )
@@ -1728,6 +1740,58 @@ class YearStatistic < ApplicationRecord
     return "UTC" unless ( tz = ActiveSupport::TimeZone[options[:user].time_zone] )
 
     tz.tzinfo.name
+  end
+
+  def self.github_pull_requests( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] github_pull_requests, year: #{year}, options: #{options}"
+    end
+    year_pulls = []
+    repos = %w(
+      inaturalist
+      iNaturalistAndroid
+      iNaturalistAPI
+      INaturalistIOS
+      inaturalistjs
+      iNaturalistReactNative
+      SeekReactNative
+    )
+    repos.each do | repo |
+      page = 1
+      loop do
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100&direction=desc"
+        puts "Getting #{url}" if options[:debug]
+        pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
+          JSON.parse( RestClient.get( url ) )
+        end
+        relevant_pulls = ( pulls || [] ).select do | pull |
+          pull["merged_at"] &&
+            !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
+            # For some reason the MEMBER and COLLABOTOR filters don't always
+            # filter out everyone on staff...
+            !%w(
+              albullington
+              budowski
+              carrieseltzer
+              dependabot[bot]
+              jtklein
+              meru20
+              sylvain-morin
+            ).include?( pull["user"]["login"] ) &&
+            ( merge_date = Date.parse( pull["merged_at"] ) ) &&
+            merge_date.year == year
+        end
+        break if relevant_pulls.blank? && !year_pulls.blank?
+
+        year_pulls += relevant_pulls
+        page += 1
+      end
+    end
+    year_pulls.map do | pull |
+      new_pull = pull.slice( "title", "merged_at", "html_url" )
+      new_pull["user"] = pull["user"].slice( "login", "avatar_url", "html_url" )
+      new_pull
+    end
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

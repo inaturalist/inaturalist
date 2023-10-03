@@ -17,7 +17,12 @@ const PhotoChooserPhoto = ( { removePhoto, infoURL, src, chooserID } ) => (
       </a>
     ) }
     { !infoURL ? null : (
-      <a href={infoURL} target="_blank" className="control-link info-link">
+      <a
+        href={infoURL}
+        target="_blank"
+        rel="nofollow noopener"
+        className="control-link info-link"
+      >
         <i className="icon-link"></i>
       </a>
     ) }

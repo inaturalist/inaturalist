@@ -34,37 +34,56 @@ fa:
   about_complete_taxa: درباره رده‌بندی کامل
   about_conservation_status: درباره وضعیت پایندگی
   about_editing_observation_fields: درباره ویرایش فیلدهای مشاهده
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: درباره معانی تاسیس
+  about_license_options: درباره گزینه های مجوز
+  about_licenses: درباره مجوزها
+  #Header for a section describing taxon names
+  about_names: درباره نام ها
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "درباره %{place}"
+  about_places: درباره مکان‌ها
+  about_taxon_ranges: درباره محدوده های تاکسون
+  about_the_network: درباره شبکه
+  about_this_bioblitz: درباره این بیو بلیتز
+  about_this_map: درباره این نقشه
+  about_this_project: درباره این پروژه
+  about_trusting_projects: درباره اعتماد به پروژه ها
+  about_trusting_projects_options_any: تمام مشاهدات شما در این پروژه
+  about_trusting_projects_options_taxon_desc: |-
+    بسیاری از پروژه ها فقط نیاز به دسترسی به مختصاتی دارند که مبهم هستند زیرا مشاهده یک گونه در معرض تهدید را به تصویر می کشد.
+  account: حساب
+  account_settings: تنظیمات حساب
+  accuracy: دقت
+  accuracy_meters: دقت (متر)
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: اقدام
+  actions: اقدامات
+  active: فعال
+  #Status of a complete set that is available for use
+  active_complete_set_status: فعال
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: فعال
+  active_users: کاربران فعال
+  activity: فعالیت
   add: افزودن
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+  add_a_batch_of_observations: دسته‌ای از مشاهدات را اضافه کنید
+  add_a_comment: افزودن نظر
+  add_a_field: افزودن فیلد
+  add_a_flag: افزودن پرچم
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: افزودن لینک
+  add_a_name: افزودن نام
+  add_a_note: افزودن يادداشت
+  app_owner_application_explanation_required: |
+    شما باید توضیح دقیق تری از آنچه می خواهید بسازید ارائه دهید.
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

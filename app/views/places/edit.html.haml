@@ -57,7 +57,7 @@
     = link_to_toggle_box t(:replace_boundary_with_kml) do
       .notice=t :places_warning_editing_places_is_slow
       = file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml"
-      .meta= t('views.places.kml_field_desc')
+      .meta= t('views.places.kml_field_desc3')
     %input{:type => "hidden", :name => "geojson"}
     .clear.buttonrow.upstacked
       = f.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)

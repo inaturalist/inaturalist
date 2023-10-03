@@ -52,11 +52,6 @@ class ComputerVisionDemoApp extends Component {
             </a>
           </div>
           <div className="logo">
-            <a href="https://www.calacademy.org/">
-              <img src={ SITE_ICONS.cas } />
-            </a>
-          </div>
-          <div className="logo">
             <a href="http://www.nvidia.com/object/machine-learning.html">
               <img src={ SITE_ICONS.nvidia } />
             </a>
@@ -125,9 +120,9 @@ class ComputerVisionDemoApp extends Component {
               <Row className="title">
                 <SplitTaxon taxon={ result.taxon } url={ `/taxa/${result.taxon.id}` } />
                 <div className="summary">
-                  { result.vision_score ? "Visually Similar" : "" }
+                  { result.vision_score ? I18n.t( "visually_similar" ) : "" }
                   { result.vision_score && result.frequency_score ? " / " : "" }
-                  { result.frequency_score ? "Seen Nearby" : "" }
+                  { result.frequency_score ? I18n.t( "expected_nearby" ) : "" }
                 </div>
               </Row>
               <Row>
@@ -280,10 +275,31 @@ class ComputerVisionDemoApp extends Component {
       <div>
         <Dropzone
           ref="dropzone"
-          onDrop={ onFileDrop }
+          onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+            // trying to protect against treating images dragged from the
+            // same page from being treated as new files. Images dragged from
+            // the same page will appear as multiple dataTransferItems, the
+            // first being a "string" kind and not a "file" kind
+            if ( dropEvent.nativeEvent.dataTransfer
+              && dropEvent.nativeEvent.dataTransfer.items
+              && dropEvent.nativeEvent.dataTransfer.items.length > 0
+              && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+              return;
+            }
+            _.each( acceptedFiles, file => {
+              try {
+                file.preview = file.preview || window.URL.createObjectURL( file );
+              } catch ( err ) {
+                // eslint-disable-next-line no-console
+                console.error( "Failed to generate preview for file", file, err );
+              }
+            } );
+            onFileDrop( acceptedFiles );
+          }}
           className="uploader"
           activeClassName="hover"
           disableClick
+          disablePreview
           accept="image/*"
           multiple={ false }
         >
