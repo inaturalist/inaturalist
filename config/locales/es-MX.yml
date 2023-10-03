@@ -1032,14 +1032,6 @@ es-MX:
     incluirse en sugerencias automatizadas con la etiqueta "Visualmente Similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendiente
-  computer_vision_model_pending_desc: |
-    El Modelo de "Visión por Computador" actual no reconoce este taxón, así que aunque 
-    pueda ser incluido en sugerencias automatizadas con la etiqueta "Cercano",
-    no tendrá la etiqueta "Visualmente Similar". Mientras que los requisitos para
-    inclusión del modelo cambian con cada versión, generalmente esto se basa en el
-    número de observaciones, así para aumentar la probabilidad de que este taxón sea
-    incluido durante el siguiente entrenamiento del modelo, agrega o identifica más observaciones
-    de este taxón.
   concept_status: Estado del concepto
   confidential: Confidencial
   configure: Configurar
@@ -1705,45 +1697,9 @@ es-MX:
   email: Correo
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo para comentarios y feedback
-  email_conf_banner_email_delivered_click_link: |
-    Correo de confirmación entregado. Por favor, haga clic en el enlace del correo electrónico.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Añade <code>%{email}</code> a tu lista de contactos y
-    <a href="%{url}">solicita otro correo electrónico de confirmación</a>.</strong> Si tu proveedor de correo electrónico bloqueó el correo electrónico de confirmación, esto podría convencerles de que realmente quieres que te enviemos un correo electrónico.
-  email_conf_banner_check_your_spam_folder_html: <strong>Revisa tu carpeta de spam</strong>
-  email_conf_banner_contact_us_html: '¿Aún no funciona? Escríbanos a %{email} para que podamos ayudarte.'
-  email_conf_banner_please_click: |
-    Por favor, haga click en el enlace de su correo electrónico para confirmar su dirección de correo electrónico.
-  email_conf_banner_search_for_emails_html: <strong>Busca correos electrónicos de <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Te hemos enviado un correo electrónico de confirmación el %{date}. Si no lo has
-    recibido, aquí hay algunas cosas que puedes hacer:
   email_conf_required_after_grace_period: |
     La confirmación del correo electrónico es necesaria a partir de %{requirement_date} y no
     confirmó su dirección de correo electrónico antes del corte. Por favor, restablezca su contraseña para acceder a su cuenta.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Por favor confirma su dirección de correo electrónico%{link_end_tag}</strong>.
-    Todos los usuarios deben confirmar su dirección de correo electrónico para el %{date}. Después de esa fecha, cualquiera que no haya confirmado su dirección de correo electrónico no podrá iniciar sesión a menos que restablezca su contraseña. Para confirmar tu dirección de correo electrónico, ve a la %{link_start_tag}configuración de tu cuenta%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirma tu dirección de correo electrónico de %{site_name} antes de %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Por favor, confirma tu dirección de correo electrónico hoy para asegurarte de que puedes seguir accediendo a tu cuenta. %{site_name} y las aplicaciones móviles iNaturalist y Seek de iNaturalist conectan a las personas con la naturaleza compartiendo observaciones de biodiversidad. ¡Gracias por ser parte de la comunidad de iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Necesitaremos direcciones de correo electrónico verificadas para todas las cuentas que comienzan el %{requirement_date}. Por favor, tómese un momento para confirmarlo ahora.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Si tiene alguna pregunta, consulte las
-    <a href="%{faq_url}">Preguntas frecuentes</a>. Gracias por tomarse el tiempo para conectar
-    con la naturaleza y con %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detalles de la cuenta
   email_copyright2: "&copy; %{year} iNaturalista, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar:'
