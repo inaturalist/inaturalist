@@ -1019,8 +1019,6 @@ tr:
     Mevcut Bilgisayar Görü Modeli bu sınıfı tanımaktadr, bu nedenle "Görsel Olarak Benzer" etiketiyle otomatik önerilere dahil edilebilir.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Yükleniyor
-  computer_vision_model_pending_desc: |
-    Mevcut Bilgisayar Görü Modeli bu sınıf hakkında bilgi sahibi değildir, bu nedenle otomatik önerilere "Yakın" etiketiyle dahil edilebilirken, "Görsel Olarak Benzer" etiketine sahip olmayacaktır. Model dahil etme gereklilikleri her modele göre değişmekle birlikte, genellikle gözlem sayısına dayanır, bu nedenle bir sonraki model eğitimi sırasında bu sınıfın dahil edilme şansını artırmak için bu sınıfa ait daha çok gözlem ekleyin ya da tanımlayın.
   concept_status: Konsept Durumu
   confidential: Gizli
   configure: Yapılandır
@@ -1669,41 +1667,8 @@ tr:
   email: E-posta
   email_description: E-posta adresin iNaturalist kullanıcılarıyla paylaşılmamaktadır
   email_address_for_comments_and_other_feedback: Yorumlar ve diğer geri bildirimler için e-posta adresi
-  email_conf_banner_email_delivered_click_link: |
-    Doğrulama e-postası gönderildi. Lütfen e-postadaki bağlantıya tıklayın.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Kişi listene <code>%{email}</code> adresini ekle ve <a href="%{url}">başka bir doğrulama e-postası talep et</a>.</strong> E-posta sağlayıcın doğrulama e-postasını engellediyse, bu, onları gerçekten bizden e-posta istediğine ikna edebilir.
-  email_conf_banner_check_your_spam_folder_html: <strong>Gereksiz kutunu kontrol et</strong>
-  email_conf_banner_contact_us_html: Hâlâ çalışmıyor mu? Size yardımcı olabilmemiz için %{email} adresinde e-posta gönderin.
-  email_conf_banner_please_click: |
-    Lütfen e-posta adresini doğrulamak için e-postandaki bağlantıya tıkla.
-  email_conf_banner_search_for_emails_html: <strong><code>%{email}</code> tarafından gönderilen e-postaları ara</strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    %{date} tarihinde sana bir doğrulama e-postası gönderdik. Almadıysan, yapabileceğin bazı şeyler:
   email_conf_required_after_grace_period: |
     E-posta doğrulaması %{requirement_date} itibariyle gereklidir ve e-postanı son tarihten önce doğrulamadın. Hesabınıa erişmek için lütfen şifreni sıfırla.
-  email_conf_faq_html: |
-    Bir sorun olur ise lütfen <a href="%{url}">SSS</a>'ye başvurun.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Lütfen e-posta adresini doğrula%{link_end_tag}</strong>. Tüm kullanıcılar e-posta adreslerini %{date} tarihine kadar onaylamalıdır. Bu tarihten sonra e-posta adresini teyit etmemiş olan herkes, şifrelerini sıfırlamadıkları sürece oturum açamayacaktır. E-posta adresini doğrulamak için %{link_start_tag}hesap ayarlarına%{link_end_tag} git.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: '%{date} tarihinden önce %{site_name} e-posta adresini doğrula' #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Hesabını erişmeye devam edebilmen için lütfen e-posta adresinizi bugün onayla. %{site_name}, iNaturalist ve Seek by iNaturalist mobil uygulamaları, biyolojik çeşitlilik gözlemlerini paylaşarak insanları doğaya ve birbirlerine bağlar. iNaturalist topluluğunun bir parçası olduğun için teşekkür ederiz!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Tüm hesaplar için %{requirement_date} tarihinden itibaren doğrulanmış e-posta adresleri talep edeceğiz. Lütfen şimdi onaylamak için bir dakikanı ayır.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Herhangi bir sorun var ise lütfen <a href="%{faq_url}">SSS</a> bölümüne bak. Doğa ve %{site_name} ile bağlantı kurmak için zaman ayırdığın için teşekkür ederiz.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Hesap Ayrıntıları
   email_copyright2: "&copy; %{year} iNaturalist, tüm hakları saklıdır"
   email_notifications: E-posta Bildirimleri
   embed: 'Yerleştir'
