@@ -968,8 +968,6 @@ fi:
     Nykyinen tietokonenäkömalli tuntee tämän taksonin, joten se saattaa olla mukana automaattisissa ehdotuksissa "Samannäköinen" -tarralla.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Odottaa
-  computer_vision_model_pending_desc: |
-    Nykyinen tietokonenäkömalli ei tunne tätä taksonia, joten vaikka se voi olla mukana automaattisissa ehdotuksissa "Lähistöllä"-tarralla, se ei saa "Samannäköinen"-tarraa. Tietokonenäkömalliin mukaanottamista koskevat vaatimukset vaihtelevat kullakin mallilla, mutta yleisesti mukaanottaminen perustuu havaintojen lukumäärään, joten parantaaksesi tämän taksonin mukaanpääsyä seuraavaan mallin koulutukseen, lisää havaintoja tästä taksonista tai tee lisää tunnistuksia.
   concept_status: Konseptin tila
   confidential: Luottamuksellinen
   configure: Määritä
@@ -1612,53 +1610,10 @@ fi:
   email: Sähköposti
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
-  email_conf_banner_email_delivered_click_link: |
-    Vahvistussähköposti toimitettu. Ole hyvä ja klikkaa sähköpostin linkkiä.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Lisää osoite <code>%{email}</code> yhteystietoluetteloosi ja
-    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostipalvelusi
-    tarjoaja on estänyt vahvistusviestin saapumisen, tämä voi saada sen saapumaan perille.
-  email_conf_banner_check_your_spam_folder_html: <strong>Tarkista roskapostikansio</strong>
-  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email}.
-  email_conf_banner_please_click: |
-    Ole hyvä ja klikkaa vahvistusviestissä olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
-  email_conf_banner_search_for_emails_html: <strong>Etsi viestiä, joka on saapunut osoitteesta <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Toimitimme sinulle vahvistusviestin. Viestissä on päivämääränä %{date}. Jos et
-    saanut viestiä, toimi näin:
   email_conf_required_after_grace_period: |
     Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
     vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja vaihda salasanasi
     voidaksesi käyttää tiliäsi.
-  email_conf_faq_html: |
-    Jos sinulla on kysyttävää, katso nämä <a href="%{url}">usein kysytyt kysymykset</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
-    Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Vahvista %{site_name} sähköpostiosoitteesi ennen %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Ole hyvä ja vahvista sähköpostiosoitteesi tänään varmistaaksesi, että voit edelleen
-    käyttää tiliäsi. %{site_name} ja mobiilisovellukset
-    iNaturalist ja Seek yhdistävät ihmiset luontoon ja
-    toisiinsa jakamalla luontohavaintoja. Kiitos, että olet osa
-    iNaturalist-yhteisöä!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Vaadimme vahvistettuja sähköpostiosoitteita kaikille tileille alkaen
-    %{requirement_date}. Ole hyvä ja vahvista se nyt.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset <a href="%{faq_url}">FAQs</a>. Kiitos, että olet ottanut
-    aikaa yhteyden luontiin luonnon ja %{site_name} kanssa.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Tilin tiedot
   email_copyright2: "&copy; %{year} iNaturalist, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
