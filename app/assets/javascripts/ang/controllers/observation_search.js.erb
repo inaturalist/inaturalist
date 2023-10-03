@@ -56,6 +56,7 @@ $( function ( ) {
       initializeMapController( );
     } )
     .catch( function ( e ) {
+      // eslint-disable-next-line no-console
       console.log( e );
     } );
 } );
@@ -128,6 +129,7 @@ application.controller( "SearchController", ["ObservationsFactory", "PlacesFacto
     $location,
     $anchorScroll
   ) {
+    // eslint-disable-next-line no-use-before-define
     SearchController(
       ObservationsFactory,
       PlacesFactory,
@@ -183,7 +185,7 @@ var SearchController = function (
   $scope.possibleSubviews = { observations: ["map", "grid", "table"] };
   $scope.possibleFields = ["iconic_taxa", "month", "swlat", "swlng",
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
-    "locale", "preferred_place_id", "ident_user_id", "spam"];
+    "locale", "preferred_place_id", "ident_user_id", "spam", "test"];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "grid";
   $rootScope.mapType = "map";
@@ -1664,8 +1666,9 @@ var SearchController = function (
   $scope.preInitialize( );
 };
 
-application.controller( "MapController", ["ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope",
+application.controller( "MapController", ["ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope", "testingApiV2",
   function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 ) {
+    // eslint-disable-next-line no-use-before-define
     MapController( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 );
     initializeMapController = function ( ) {
       $scope.dragIconMarker = new google.maps.Marker( {
@@ -1683,7 +1686,14 @@ application.controller( "MapController", ["ObservationsFactory", "PlacesFactory"
   }
 ] );
 
-var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 ) {
+var MapController = function (
+  ObservationsFactory,
+  PlacesFactory,
+  shared,
+  $scope,
+  $rootScope,
+  testingApiV2
+) {
   $rootScope.$on( "updateParamsForCurrentRect", function ( ) {
     $scope.updateParamsForCurrentRect( );
   } );
@@ -2224,6 +2234,7 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
         $scope.map.fitBounds( circle.getBounds( ) );
       };
       var getCurrentPositionFailure = function ( ) {
+        // eslint-disable-next-line no-alert
         alert( I18n.t( "failed_to_find_your_location" ) );
         $scope.findingUserLocation = false;
       };

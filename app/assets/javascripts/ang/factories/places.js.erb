@@ -1,4 +1,6 @@
-/* eslint-disable */
+/* global _ */
+/* global iNatAPI */
+/* global iNatModels */
 
 iNatAPI.constant( "V2_PLACE_FIELDS", {
   id: true,
@@ -8,32 +10,33 @@ iNatAPI.constant( "V2_PLACE_FIELDS", {
   geometry_geojson: true
 } );
 
-iNatAPI.factory(  "PlacesFactory", [
+iNatAPI.factory( "PlacesFactory", [
   "shared",
   "V2_PLACE_FIELDS",
-  function(
+  function (
     shared,
     V2_PLACE_FIELDS
   ) {
-  var show = function( id ) {
-    var url = "/places/" + id;
-    return shared.basicGet( url, { fields: V2_PLACE_FIELDS } );
-  };
-  var nearby = function( params ) {
-    var url = "/places/nearby";
-    return shared.basicGet( url, _.extend( { }, params ) );
-  };
-  var responseToInstances = function( response ) {
-    if( !( response && response.data && response.data.results ) ) {
-      return { };
-    }
-    return _.map( response.data.results, function( r ) {
-      return new iNatModels.Place( r );
-    });
-  };
-  return {
-    show: show,
-    nearby: nearby,
-    responseToInstances: responseToInstances
-  };
-}]);
+    var show = function ( id ) {
+      var url = "/places/" + id;
+      return shared.basicGet( url, { fields: V2_PLACE_FIELDS } );
+    };
+    var nearby = function ( params ) {
+      var url = "/places/nearby";
+      return shared.basicGet( url, _.extend( { }, params ) );
+    };
+    var responseToInstances = function ( response ) {
+      if ( !( response && response.data && response.data.results ) ) {
+        return { };
+      }
+      return _.map( response.data.results, function ( r ) {
+        return new iNatModels.Place( r );
+      } );
+    };
+    return {
+      show: show,
+      nearby: nearby,
+      responseToInstances: responseToInstances
+    };
+  }
+] );

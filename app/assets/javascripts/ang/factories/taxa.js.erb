@@ -1,4 +1,6 @@
-/* eslint-disable */
+/* global _ */
+/* global iNatAPI */
+/* global iNatModels */
 
 iNatAPI.constant( "V2_TAXON_AUTOCOMPLETE_FIELDS", {
   ancestor_ids: true,
@@ -15,28 +17,28 @@ iNatAPI.constant( "V2_TAXON_AUTOCOMPLETE_FIELDS", {
   rank_level: true
 } );
 
-
-iNatAPI.factory(  "TaxaFactory", [
+iNatAPI.factory( "TaxaFactory", [
   "shared",
   "V2_TAXON_AUTOCOMPLETE_FIELDS",
-  function(
+  function (
     shared,
     V2_TAXON_AUTOCOMPLETE_FIELDS
   ) {
-  var show = function( id, params ) {
-    var url = "/taxa/" + id;
-    return shared.basicGet( url, { fields: V2_TAXON_AUTOCOMPLETE_FIELDS } );
-  };
-  var responseToInstances = function( response ) {
-    if( !( response && response.data && response.data.results ) ) {
-      return { };
-    }
-    return _.map( response.data.results, function( r ) {
-      return new iNatModels.Taxon( r );
-    });
-  };
-  return {
-    show: show,
-    responseToInstances: responseToInstances
-  };
-}]);
+    var show = function ( id ) {
+      var url = "/taxa/" + id;
+      return shared.basicGet( url, { fields: V2_TAXON_AUTOCOMPLETE_FIELDS } );
+    };
+    var responseToInstances = function ( response ) {
+      if ( !( response && response.data && response.data.results ) ) {
+        return { };
+      }
+      return _.map( response.data.results, function ( r ) {
+        return new iNatModels.Taxon( r );
+      } );
+    };
+    return {
+      show: show,
+      responseToInstances: responseToInstances
+    };
+  }
+] );

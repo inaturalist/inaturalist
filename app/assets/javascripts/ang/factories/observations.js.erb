@@ -37,7 +37,14 @@ iNatAPI.constant( "V2_OBSERVATION_FIELDS", {
   taxon: {
     name: true,
     preferred_common_name: true,
-    iconic_taxon_id: true
+    preferred_common_names: {
+      name: true
+    },
+    iconic_taxon_id: true,
+    rank: true
+  },
+  identifications: {
+    current: true
   }
 } );
 
@@ -71,6 +78,9 @@ iNatAPI.constant( "V2_TAXON_FIELDS", {
   is_active: true,
   name: true,
   preferred_common_name: true,
+  preferred_common_names: {
+    name: true
+  },
   rank: true,
   rank_level: true
 } );
