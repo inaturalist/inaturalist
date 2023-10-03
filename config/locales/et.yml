@@ -1007,8 +1007,6 @@ et:
     Praegu aktiivne masin-nägemismudel oskab seda taksonit tuvastada, mistõttu võib see takson ilmuda automaatsete pakkumiste all kategoorias "Visuaalselt sarnane".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Ootel
-  computer_vision_model_pending_desc: |
-    Praegu aktiivne masin-nägemismudel ei oska seda taksonit tuvastada, mistõttu võib see takson küll ilmuda automaatsete pakkumiste all kategoorias "Lähedal", kuid selle juures pole märkust "Visuaalselt sarnane". Kuigi nõuded mudelisse kaasamiseks muutuvad iga versiooniga, sõltub see peamiselt vaatluste arvust, mistõttu tuleks selle taksoni kaasamiseks järgmise mudelite treenimisse lisada või määrata rohkem selle taksoni vaatluseid.
   concept_status: Mõiste staatus
   confidential: Konfidentsiaalne
   configure: Uuenda
@@ -1648,42 +1646,8 @@ et:
   email: E-post
   email_description: Sinu e-posti aadressit ei jagata teiste iNaturalisti kasutajatega
   email_address_for_comments_and_other_feedback: E-posti aadress kommentaaride ja muu tagasiside saamiseks
-  email_conf_banner_email_delivered_click_link: |
-    Kinnituskiri kohalesaadetud. Palun vaja kirjas olevale lingile.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Lisa aadress <code>%{email}</code> oma kontaktide nimekirja ja <a href="%{url}">palu uue kinnituskirja saatmist</a>.</strong> Kui su e-posti haldaja kinnituskirja blokeeris, võib see samm neile näidata, et tõesti soovid meilt kirja saada.
-  email_conf_banner_check_your_spam_folder_html: <strong>Kontrolli oma rämpsposti kausta</strong>
-  email_conf_banner_contact_us_html: Ikka veel ei toimi? Saada meile kiri aadressile %{email} ja saame sind sedasi aidata.
-  email_conf_banner_please_click: |
-    Palun vajuta e-postiga saadetud lingile, et oma aadress kinnitada.
-  email_conf_banner_search_for_emails_html: <strong>Otsi aadresstil <code>%{email}</code> saabunud kirju</strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Saatsime kuupäeval %{date} sulle kinnituskirja. Kui sa seda kätte ei saanud, siis siin on sulle mõned soovitused:
   email_conf_required_after_grace_period: |
     E-posti aadressi kinnitamine on alates kuupäevast %{requirement_date} kohustuslik ning sa ei kinnitanud enne tähtaja saabumist oma aadressit. Kontole sisenemiseks palun lähtesta oma salasõna.
-  email_conf_faq_html: |
-    Kui sul on küsimusi, siis külastan palun <a href="%{url}">KKK-d</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Palun kinnita oma e-posti aadress%{link_end_tag}</strong>.
-    Kõik kasutajad peavad oma e-posti aadressi kinnitama kuupäevaks %{date}. Peale seda kuupäeva ei saa aadressi mitte kinnitanud kasutajad enne sisse logida, kui uuendavad oma salasõna. E-posti aadressi kinnitamiseks külasta oma %{link_start_tag}konto sätteid%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Kinnita oma lehe %{site_name} e-posti aadress enne kuupäeva %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Palun kinnita oma e-posti aadress juba täna kindlustamaks, et saad ka edaspidi oma kontole sisse. %{site_name} ning mobiilirakendused iNaturalist ja Seek by iNaturalist ühendavad elurikkuse vaatluste jagamise kaudu inimesed looduse ja üksteisega. Aitäh, et oled osa iNaturalisti kogukonnast!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Alates kuupäevast %{requirement_date} nõuame, et kõik kontod oleks oma e-posti aadressid kinnitanud. Võta palun hetk ja kinnita enda oma kohe:
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Kui sul on küsimusi, siis vaata palun <a href="%{faq_url}">korduma kippuvaid küsimusi</a>. Aitäh, et leiad aega loodusega suhestumiseks ja lehe %{site_name} külastamiseks.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Konto üksikasjad
   email_notifications: E-posti teavitused
   embed: 'Manusta'
   embed_place_widget: Manusta koha koodijupp
