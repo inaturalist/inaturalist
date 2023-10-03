@@ -1013,8 +1013,6 @@ ca:
     L’actual Model de Visió per Ordinador reconeix aquest tàxon, per tant, podria ser inclòs en suggeriments automatitzats amb l'etiqueta "Visualment similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendent
-  computer_vision_model_pending_desc: |
-    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper" no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien amb cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon obtingui la inclusió durant el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
   confidential: Confidencial
   configure: Configura
@@ -1663,43 +1661,8 @@ ca:
   email: Correu
   email_description: El vostre correu-e no es compartirà amb altres usuaris d'iNaturalist
   email_address_for_comments_and_other_feedback: Adreça de correu electrònic per a comentaris i altres comentaris
-  email_conf_banner_email_delivered_click_link: |
-    Correu electrònic de confirmació lliurat. Feu clic a l'enllaç del correu electrònic.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Afegiu <code>%{email}</code> a la vostra llista de contactes i <a href="%{url}">sol·licita un altre correu de confirmació</a>.</strong> Si el proveïdor del vostre correu electrònic ha blocat el correu de confirmació, això podria convèncer-los que, de fet, vols rebre un correu electrònic nostre.
-  email_conf_banner_check_your_spam_folder_html: <strong>Comprova la carpeta de correu brossa</strong>
-  email_conf_banner_contact_us_html: Encara no funciona? Envia'ns un correu electrònic a %{email} perquè us puguem ajudar.
-  email_conf_banner_please_click: |
-    Feu clic a l'enllaç del vostre correu electrònic per confirmar la vostra adreça electrònica.
-  email_conf_banner_search_for_emails_html: <strong>Cerca correus electrònics procedents de <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Us hem enviat un correu de confirmació el %{date}. Si no l'heu rebut, aquí hi ha algunes coses que podrieu fer:
   email_conf_required_after_grace_period: |
     La confirmació del correu electrònic és necessària a partir de %{requirement_date} i no heu confirmat la vostra adreça electrònica abans de la data límit. Si us plau reinicieu la vostra contrasenya per accedir al vostre compte.
-  email_conf_faq_html: |
-    Si teniu preguntes, si us plau consulteu aquestes <a href="%{url}">Preguntes freqüents</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag} Confirmeu la vostra adreça electrònica%{link_end_tag}</strong>.
-    Tots els usuaris han de confirmar la seva adreça electrònica abans de %{date}. Després d'aquesta data, qualsevol persona que no hagi confirmat la seva adreça electrònica no podrà iniciar la sessió a menys que restableixi la contrasenya. Per confirmar la vostra adreça de correu electrònic, aneu a %{link_start_tag}paràmetres del compte%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmeu la vostra adreça electrònica de %{site_name} abans de %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Si us plau, confirmeu la vostra adreça de correu electrònic avui per assegurar-vos que podeu continuar accedint al vostre compte. %{site_name} i a les aplicacions mòbils
-    iNaturalist i Seek d'iNaturalist connecten les persones amb la natura i entre elles compartint observacions de la biodiversitat. Gràcies per formar part de la comunitat iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    A partir de %{requirement_date} es requeriran adreces de correu electrònic verificades per a tots els comptes. Si us plau, dediqueu un moment per confirmar-la ara.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Si teniu cap pregunta, si us plau consulteu les <a href="%{faq_url}">Preguntes freqüents</a>. Gràcies per dedicar el vostre temps a connectar amb la natura i amb %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detalls del compte
   email_copyright2: "&copy; %{year} iNaturalist, tots els drets reservats"
   email_notifications: Notificacions per correu electrònic
   embed: 'Insereix:'
