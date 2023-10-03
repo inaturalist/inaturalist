@@ -840,27 +840,6 @@ lb:
   email: E-Mail
   email_description: Är E-Mail-Adress gëtt net mat anere Benotzer op iNaturalist gedeelt
   email_address_for_comments_and_other_feedback: E-Mail-Adress fir Kommentarer oder anere Feedback
-  email_conf_banner_check_your_spam_folder_html: <strong>Kuckt an Ärem Spam-Ordner no</strong>
-  email_conf_banner_contact_us_html: Et funktionéiert nach ëmmer net? Schéckt eis eng E-Mail op %{email}, fir datt mir Iech weiderhëllefe kënnen.
-  email_conf_banner_please_click: |
-    Klickt wgl. op de Link an Ärer E-Mail fir Är E-Mail-Adress ze bestätegen.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirméiert Är E-Mail-Adress %{site_name} virum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Wgl. confirméiert haut Är E-Mail-Adress, fir datt Dir nach weider op Äre Benotzerkont zougräife kënnt. %{site_name} an d'Appen iNaturalist a Seek vun iNaturalist verbannen d'Leit mat der Natur an ënnerteneen, andeems Observatioune vun der Biodiversitéit gedeelt ginn. Merci, datt Dir Deel vun der iNaturalist-Communautéit sidd!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Mir verlaangen ab dem %{requirement_date} fir all Benotzerkonte verifizéiert E-Mail-Adressen. Wgl. huelt Iech ee Moment Zäit fir se elo ze bestätegen.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Falls Dir iergendwellech Froen hutt, kuckt wgl. d'<a href="%{faq_url}">FAQen</a>. Merci, datt Dir Iech d'Zäit huelt Iech mat der Natur a mat %{site_name} ze connectéieren.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detailer vum Benotzerkont
   embed: 'Abannen'
   end: Schluss
   endangered: Bedréit
