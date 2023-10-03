@@ -1171,14 +1171,6 @@ cs:
     zahrnut do automatizovaných návrhů se štítkem "Vizuálně podobný".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Čekající
-  computer_vision_model_pending_desc: |
-    Aktuální model počítačového vidění tento taxon nepoznává, takže zatímco
-    může být zahrnut do automatických návrhů se štítkem "Poblíž",
-    nebude mít štítek "Vizuálně podobný". Přestože požadavky na zahrnutí do modelu
-    se mění s každou změnou modelu, obecně je zahrnutí založeno na
-    počtu pozorování, čili aby se zvýšila šance, že se tento taxon dostane
-    do trénování příštího modelu, přidejte nebo identifikuje více pozorování
-    tohoto taxonu.
   concept_status: Status konceptu
   confidential: Důvěrné
   configure: Konfigurovat
@@ -1856,47 +1848,8 @@ cs:
   email: E-mail
   email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_address_for_comments_and_other_feedback: E-mailové adresy pro komentáře a jinou zpětnou vazbu.
-  email_conf_banner_email_delivered_click_link: |
-    Potvrzovací e-mail byl doručen. Klikněte prosím na odkaz v e-mailu.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Přidejte <code>%{email}</code> do seznamu kontaktů a
-    <a href="%{url}">požádejte o další potvrzovací e-mail</a>.</strong> Pokud váš poskytovatel
-    e-mailu zablokoval potvrzovací e-mail, mohlo by jej to přesvědčit o tom, že
-    od nás e-mail skutečně chcete.
-  email_conf_banner_check_your_spam_folder_html: <strong>Zkontrolujte složku se spamem</strong>
-  email_conf_banner_contact_us_html: Stále nefunguje? Napište nám e-mail na %{email} , abychom Vám mohli pomoci.
-  email_conf_banner_please_click: |
-    Kliknutím na odkaz v e-mailu potvrďte svou e-mailovou adresu.
-  email_conf_banner_search_for_emails_html: <strong>Hledat e-maily od <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Dne %{date} jsme Vám zaslali potvrzovací e-mail. Pokud jste ho neobdrželi, zde je několik věcí, které můžete udělat:
   email_conf_required_after_grace_period: |
     Od %{requirement_date} je vyžadováno potvrzení e-mailu a před koncem období jste nepotvrdili svou e-mailovou adresu. Pro přístup ke svému účtu si prosím obnovte heslo.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Prosím, potvrďte svou e-mailovou adresu%{link_end_tag}</strong>.
-    Všichni uživatelé musí potvrdit svou e-mailovou adresu do %{date}. Po tomto datu se každý, kdo nepotvrdí svou e-mailovou adresu, nebude moci přihlásit, pokud si neobnoví heslo. Chcete-li potvrdit svou e-mailovou adresu, přejděte do %{link_start_tag}nastavení účtu%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Potvrďte svou e-mailovou adresu %{site_name} před %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Potvrďte prosím dnes svou e-mailovou adresu, abyste zajistili, že budete mít i nadále přístup k vašemu účtu. %{site_name} a mobilní aplikace iNaturalist a Seek od iNaturalist spojují lidi s přírodou a navzájem
-    tím, že sdílejí pozorování biologické rozmanitosti. Děkujeme, že jste součástí komunity iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Budeme potřebovat ověřené e-mailové adresy pro všechny účty počínaje dnem
-    %{requirement_date}. Prosím, najděte si chvilku a potvrďte Vaši adresu.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Pokud máte jakékoliv dotazy, podívejte se prosím na
-    <a href="%{faq_url}">FAQ</a>. Děkujeme, že jste si udělali čas na spojení
-    s přírodou a s %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Podrobnosti účtu
   email_copyright2: "&copy; %{year} iNaturalist, všechna práva vyhrazena"
   email_notifications: E-mailová upozornění
   embed: 'Vložit'
