@@ -1040,9 +1040,12 @@ da:
     Den nuværende Computer Vision Model kender til denne takson, så den inkluderes muligvis i automatiserede forslag med "Visuelt lignende"-etiketten.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Afventende
-  computer_vision_model_pending_desc: |
-    Den nuværende Computer Vision Model kender ikke til denne takson, så mens den måske inkluderes i automatiserede forslag med etiketten "Nærliggende", vil den ikke have etiketten "Visuelt lignende". Selvom kravene til modelinkludering ændrer sig for hver model, er inkludering generelt baseret på
-    antal observationer, så for at forøge denne taksons chance for inkludering under den næste modeloptræning, så tilføj eller identificér flere observationer
+  computer_vision_model_pending_desc2: |
+    Den nuværende Computer Vision Model kender ikke til denne takson, så selvom
+    den kan være inkluderet i automatiserede forslag med etiketten "Forventet i nærheden", vil
+    den ikke have etiketten "Visuelt Lignende". Mens kravene til
+    modelinklusion ændres med hver model, er inklusion generelt baseret på
+    observationsantal, så for at øge inklusionschancen for denne takson under næste modeltræning, tilføj eller identificér da flere observationer
     af denne takson.
   concept_status: Koncept status
   confidential: Fortrolig
@@ -1723,49 +1726,9 @@ da:
   email: E-mail
   email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
-  email_conf_banner_email_delivered_click_link: |
-    Bekræftelsesmail leveret. Klik på linket i e-mailen.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Føj <code>%{email}</code> til din kontaktliste og
-    <a href="%{url}">anmod om en ny bekræftelsesmail</a>.</strong> Blokerer e-mailudbyderen bekræftelsesmailen, kan dette muligvis overbevise dem om, at
-    du rent faktisk ønsker e-mails fra os.
-  email_conf_banner_check_your_spam_folder_html: <strong>Tjek spammappen</strong>
-  email_conf_banner_contact_us_html: Fungerer stadig ikke? E-mail os via %{email} så vi kan hjælpe dig.
-  email_conf_banner_please_click: |
-    Klik på linket i e-mailen for at bekræfte din e-mailadresse.
-  email_conf_banner_search_for_emails_html: <strong>Søg efter e-mails fra <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Vi sendte dig en bekræftelsesmail d. %{date}. Er den ikke
-    modtaget, så er her nogle ting, du kan gøre:
   email_conf_required_after_grace_period: |
     Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
     for at tilgå kontoen.
-  email_conf_faq_html: |
-    Har du spørgsmål, tjek venligst disse <a href="%{url}">FAQs</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
-    Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
-    dato vil brugere med ubekræftede e-mailadresser være ude af stand til at
-    logge ind, medmindre de nulstiller deres adgangskode. Gå til %{link_start_tag}kontoindstillingerne%{link_end_tag} for at bekræfte din e-mailadresse.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekræft din %{site_name} e-mailadresse før %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Bekræft din e-mailadresse i dag for at sikre fortsat adgang til din konto. %{site_name} og mobil-appsne
-    iNaturalist og Seek by iNaturalist forbinder folk med naturen og hinanden ved at dele biodiversitetsobservationer. Tak for din deltagelse i iNaturalist-fællesskabet!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Fra og med %{requirement_date} kræver vi bekræftede e-mailadresser for alle konti. Brug et øjeblik på at bekræfte den nu.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Ved evt. spørgsmål henvises til vores <a href="%{faq_url}">FAQ</a>. Tak fordi du tager dig tiden til at connecte med naturen og med %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Kontooplysninger
   email_copyright2: "&copy; %{year} iNaturalist, alle rettigheder forbeholdes"
   email_notifications: E-mailnotifikationer
   embed: 'Integrér'
