@@ -141,15 +141,6 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def moimport_finished( mot, errors = {}, warnings = {} )
-    @user = mot.user
-    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
-    @errors = errors
-    @warnings = warnings
-    @exception = mot.exception
-    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
-  end
-
   def custom_email( user, subject, body )
     @user = user
     @subject = subject
@@ -271,9 +262,14 @@ class Emailer < ActionMailer::Base
     @site.name
   end
 
-  def set_locale
+  def set_locale( options = {} )
+    # Don't bother if set_locale already ran
+    return if @locale_was
+
     @locale_was = I18n.locale
-    I18n.locale = if !@user&.locale&.blank?
+    I18n.locale = if options[:force]
+      options[:force]
+    elsif !@user&.locale&.blank?
       @user&.locale
     elsif @user&.site && !@user&.site&.preferred_locale&.blank?
       @user&.site&.preferred_locale
@@ -285,6 +281,7 @@ class Emailer < ActionMailer::Base
 
   def reset_locale
     I18n.locale = @locale_was || I18n.default_locale
+    @locale_was = nil
   end
 
   # rubocop:disable Naming/MemoizedInstanceVariableName
@@ -312,7 +309,11 @@ class Emailer < ActionMailer::Base
       # when you put tags like this in a template
       sub: {
         "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
-      }
+      },
+      # Sendgrid IP pools allow us to partition delivery between different IPs
+      # if we need to preserve the reputation of one while sending a lot or
+      # riskier emails from another
+      ip_pool: CONFIG&.sendgrid&.primary_ip_pool
     }
   end
 end

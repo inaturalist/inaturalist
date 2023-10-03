@@ -258,7 +258,7 @@ class TaxonPageTabs extends React.Component {
             </LazyLoad>
             <LazyLoad
               debounce={false}
-              height={120}
+              minHeight={120}
               offset={100}
             >
               <RecentObservationsContainer />

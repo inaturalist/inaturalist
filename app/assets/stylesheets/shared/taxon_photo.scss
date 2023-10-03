@@ -47,10 +47,13 @@
     font-size: 90%;
     line-height: 20px;
     text-align: left;
+    pointer-events: none;
 
+    .SplitTaxon > .display-name, .display-names {
+      display: block;
+    }
     .display-name {
       font-size: 120%;
-      display: block;
     }
     i {
       font-size: 150%;

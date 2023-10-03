@@ -638,7 +638,6 @@ hr:
   editing_announcement: Uređivanje obavijesti
   eligible_for_research_grade: Kvalificirano za istraživačku ocjenu
   email: E-pošta
-  email_copyright: "Autorska prava &copy; %{x}, sva prava pridržana."
   establishment:
     endemic: Endemičan
     establishment: Dolazak
@@ -735,7 +734,6 @@ hr:
   inappropriate_content: Neprikladan sadržaj?
   inat_user_profile: "%{site_name}: profil korisnika %{user}"
   inaturalist_activity_notifications: "%{site_name} obavijesti o aktivnostima"
-  inaturalist_is_a_joint_initiative: "%{site_name} je zajednička inicijativa Kalifornijske akademije znanosti i Društva National Geographic."
   insect_life_stage: Životno razdoblje kukca
   interactions: Interakcije
   introduced: Uvedeno
@@ -868,9 +866,6 @@ hr:
   meet: Upoznaj
   member_of_the_inaturalist_network_html: |
     Član/ica <a href="%{url}">iNaturalist mreže</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Član/ica %{partial_inat_network_tag_html}iNaturalist mreže</a>, 
-    zajedničke inicijative %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Članovi
   message_from_user_at_time: Od %{user} u %{time}
@@ -1007,7 +1002,7 @@ hr:
   only_showing_taxa_from: prikazana je samo taksa s ovog popisa
   or: ili
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ILI
   organism_is_wild: Organizam je divlji
   organisms: Organizmi
@@ -1033,6 +1028,15 @@ hr:
     #kueda
     #added an observation
     observation: dodaje <a href="%{observation_url}">opažanje</a>
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: dodaje <strong>ID</strong> na %{observation_link} od %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: dodaje <strong>ID</strong>
   photo_credits: Zasluge za fotografiju
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Slike su zaključane
@@ -1622,7 +1626,6 @@ hr:
   subscriptions: Pretplate
   suggest_an_identification: Predloži identifikaciju
   summary: Sažetak
-  take_me_facebook: Da, povedi me na Facebook!
   taxa: Taksa
   taxa_info: Informacije o taksama
   taxa_needing_curation: Taksa koja treba kuraciju
@@ -1741,12 +1744,22 @@ hr:
       select_all: Odaberi sva opažanja
   user: Korisnik
   user_added_a_comment_html: "%{user} dodaje komentar"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
   user_added_an_identification_html: "%{user} dodaje identifikaciju"
   user_added_an_observation_field_html: '%{user} dodaje vrijednost za "%{field_name}" na opažanje od %{owner}'
   user_added_an_observation_field_value_html: "%{user} dodaje vrijednost u dodatno polje opažanja"
   user_added_an_observation_html: "%{user} dodaje opažanje"
+  #@gender operates on %{x}
+  user_added_an_x: "%{user} dodaje %{x}"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_html: "%{user} dodaje %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_user_html: "%{user} dodaje %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_html: "%{user} dodaje %{x} na %{noun}"
   user_added_x_observations_html: "%{user} dodaje %{x} opažanja"
   user_autocomplete_placeholder: marinolinic, sebcato, itd.
   user_commented: "%{user} komentira"
@@ -1970,24 +1983,24 @@ hr:
       show:
         about_names_desc: |
           <p>
-          Većina kategorija organizama ima "zajedničke nazive" odnosno "uobičajena imena" u govornom jeziku. 
+          Većina kategorija organizama ima "zajedničke nazive" odnosno "uobičajena imena" u govornom jeziku.
           Ova imena su obično prepoznatljiva, laka za izgovor,
           i ne mijenjaju se prečesto, ali mnogi organizmi imaju nekoliko različitih
-          imena na različitim mjestima, čak i na istom jeziku, što može učiniti 
+          imena na različitim mjestima, čak i na istom jeziku, što može učiniti
           komunikaciju o tim organizmima zbunjujućom.
           Znanstvenici rješavaju ovaj problem koristeći jedan "znanstveni naziv"
           za svaku kategoriju organizma koja je u skladu s pravilima
           <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biološke nomenklature</a>,
           ali ti nazivi se obično temelje na latinskom, ničijem jeziku
-          govora, pa za mnoge nisu tako pamtljiva kao uobičajena, "narodna" imena. 
-          Znanstvena imena također mogu odražavati položaj organizma u taksonomiji, 
+          govora, pa za mnoge nisu tako pamtljiva kao uobičajena, "narodna" imena.
+          Znanstvena imena također mogu odražavati položaj organizma u taksonomiji,
           tako da se mogu mijenjati kada znanstvenici više razviju
           točne teorije o evolucijskim odnosima između
           različitih organizama, opet smanjujući njihovu korisnost u
           komunikaciji, čak i među ljudima koji znaju znanstvena imena.
           </p>
           <p>
-          Stara poslovica to sažima: "Uobičajena imena mijenjaju se od mjesta do mjesta, 
+          Stara poslovica to sažima: "Uobičajena imena mijenjaju se od mjesta do mjesta,
           a znanstvena imena mijenjaju se s vremena na vrijeme."
           </p>
           <p>
@@ -2124,7 +2137,7 @@ hr:
       - Veljača
       - Ožujak
       - Travanj
-      - May
+      - 
       - Lipanj
       - Srpanj
       - Kolovoz

@@ -43,11 +43,15 @@ ko:
     other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
+  x_people:
+    other: "%{count}명"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
   x_photos:
     other: "사진 %{count} 개"
   x_new_species:
     other: "새로운 종 %{count} 종"
+  x_new_users:
+    other: '%{count} 새로운 사용자'
   x_species:
     other: '%{count} 종'
   x_species_html:
@@ -56,6 +60,8 @@ ko:
     other: "<a href='%{url}'>%{count} 종</a>"
   x_suggestions_filtered_by_colon:
     other: "다음 필터에 의해서 %{count} 개가 제안됨:"
+  x_taxa:
+    other: "%{count} 분류군"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> 개의 분류군이 관찰됨"
   x_research_grade_observations_html:
@@ -74,6 +80,9 @@ ko:
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   a_flag_for_x: "%{x}을 위한 플래그"
   a_member_of_taxon_html: "%{taxon}에 속함"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "오름차순"
   about: 소개
   about_charts: 차트에 대하여
   about_community_taxa: 공동체 분류군에 대하여
@@ -87,10 +96,18 @@ ko:
   about_licenses: 라이선스 정보
   #Header for a section describing taxon names
   about_names: 이름에 대하여
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} 소개"
   about_places: 장소에 대하여
+  about_taxon_ranges: 분류군 범위에 대해
+  about_taxon_ranges_desc: |
+    분류군 범위는 해당 분류군의 전체적인 서식 분포를 보여줍니다. 분류 범위는 왼쪽 표와 같습니다.
+    일반적으로 IUCN 적색 목록을 출처로 하고 있습니다.
   about_this_bioblitz: 이 바이오블리츠에 대하여
   about_this_map: 이 지도에 대하여
   about_this_project: 이 프로젝트에 대하여
+  about_trusting_projects_options_any: 당신이 이 프로젝트에서 관찰한 모든 것들
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -117,6 +134,7 @@ ko:
   #Tool tip for a button that adds a link to a text area
   add_a_link: 링크 추가
   add_a_name: 이름 추가하기
+  add_a_note: 설명 추가
   add_a_new_change_group: 새로운 변화 그룹 추가하기
   add_a_single_observation: 관찰 하나를 추가합니다.
   add_a_taxon: 분류군 추가하기
@@ -217,8 +235,11 @@ ko:
   agree_: 동의
   agree?: 동의하십니까?
   agree_with_current_taxon: 현재 분류군에 동의
+  agree_with_observation_taxon: 관찰 및 동정에 동의하기
   agreeing: 동의 중...
   aka: 다른 말로
+  #Noun, title of a popup alerting you to something
+  alert: 알림
   all: 모두
   all_comments: 모든 댓글
   all_flags_must_be_resolved: 모든 플래그는 해결되어야 합니다
@@ -483,13 +504,7 @@ ko:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: '다음으로 분할:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: '다음으로 병합하기:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: '다음으로 병합됨:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: '다음으로 교체:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: '바꾸기:'
     dropped: 포기함
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}은(는) %{output_taxon}으(로) 병합되었습니다"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} 는 %{output_taxon}과 병합될 것입니다."
@@ -542,10 +557,19 @@ ko:
   comments: 댓글
   comments_by_me: 내가 작성한 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
+  #Second person verb to commit a taxon change, i.e. the change has been executed
+  commit: 등록
+  #Adjective describing a taxon change that has been committed
+  committed: 등록됨
+  #Status message while a taxon change is being committed
+  committing: 등록중...
+  common_name: 일반명
   community: 공동체
   community_curated: 공동으로 큐레이션됨
   community_guidelines: 공동체 지침
   community_id_heading: 공동체 ID
+  community_id_at_species_or_lower?: 종 단위 이하의 커뮤니티 동정
+  community_id_at_species_level_or_lower: 종 단위 이하의 커뮤니티 동정
   compare: 비교하기
   compare_with: '다음과 비교:'
   comparing: 비교 중
@@ -568,7 +592,6 @@ ko:
   confirm_your_info: 정보 확인
   connect_to_provider: "%{provider}에 연결"
   connecting_flickr: "플리커에 연결 중..."
-  connecting_to_facebook: "페이스북에 연결 중..."
   connecting_your_inat_account_to_accounts_other_sites: " %{site_name} 계정을 다른 계정에 연결하면 %{site_name}에 다른 계정의 정보로 로그인할 수 있습니다."
   conservation_status: 보존 상태
   conservation_status_descriptions:
@@ -585,6 +608,9 @@ ko:
     sex: 성별
     male: 수컷
     female: 암컷
+    flower_budding: 꽃봉오리
+    flowering: 개화
+    fruiting: 결실
     life_stage: 성장 단계
     adult: 성체
     teneral: 우화 직후
@@ -598,6 +624,22 @@ ko:
     alive: 살아있음
     dead: 죽음
     cannot_be_determined: 확인할 수 없음
+    #As in the feather on a bird
+    feather: 깃털
+    #Abnormal growth
+    gall: 충영
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: 개체
+    #Fecal matter, not regurgitated matter
+    scat: 배설물
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: 발자국
+    #Endoskeletal remains, like a deer bone
+    bone: 뼈
+  controlled_term_definitions:
+    organism: 개체의 전체 혹은 일부
+    scat: 배설물(펠릿 등 토사물 미포함)
   controls: 제어
   convert: 변환
   coordinate_systems: 좌표계
@@ -656,6 +698,17 @@ ko:
   curating: 큐레이팅
   curation: 큐레이션
   curator: 큐레이터
+  #Header
+  curator_application_what_curators_can_do: 큐레이터가 할 수 있는 작업
+  #Header
+  curator_application_what_curators_cannot_do: 큐레이터가 할 수 없는 작업
+  #Title of a page where people apply to become a curator
+  curator_application_title: 큐레이터 신청
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    다음을 만족하는 경우에만 큐레이터를 신청하시기 바랍니다:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    지난 몇 개월간 관찰 기록 및 동정을 등록하였으며 앞으로도 계속 활동하고자 함
   curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
   curators: 큐레이터
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
@@ -844,7 +897,6 @@ ko:
   eligible_for_research_grade: 연구 자료 등급을 받을 자격이 있다.
   email: 이메일
   email_address_for_comments_and_other_feedback: 댓글과 다른 피드백을 위한 이메일 주소
-  email_copyright: "저작권 &copy; %{x}, 모든 권리 보유"
   embed: '내장'
   embed_place_widget: 장소 위젯 내장
   embed_this_assessment: 이 평가 내장
@@ -866,8 +918,13 @@ ko:
     managed: 관리됨
     native: 토착종
     naturalised: 토착화됨
+  establishment_means: 상태
   establishment_means_describes_how: |
     확립은 이 분류군이 어떻게 이 지역에 서식하게 되었는지를 뜻한다. Darwincore를 통해<ahref="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a> 확인할 수 있다.
+  establishment_means_descriptions:
+    native: 이 지역에서 진화한 종이거나 인간의 활동으로 유입되지 않은 종입니다
+    endemic: 이 지역의 토착종이고 지역 외 다른 곳에서는 발견되지 않습니다
+    introduced: 인간의 활동 혹은 인위적인 수단을 통해 이 지역에 유입되었습니다
   event_in_progress: 진행 중인 이벤트
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
@@ -891,11 +948,6 @@ ko:
   extinct_in_the_wild: 야생절멸(EW)
   extra_properties: 추가 특징들
   facebook: 페이스북
-  facebook_account_information: 페이스북 계정 정보
-  facebook_account_not_linked: "%{user}님이 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이(가) 이 사진을 접근할 권한이 없습니다."
-  facebook_access_token_expired: "접근 기간이 만료되었습니다. %{user}는 다시 본인의 페이스북 계정을 연결해야 합니다."
-  facebook_needs_the_owner_of_that_photo_to: 페이스북이 사진의 저작권 소유자가 %{site_name_short}과의 관계를 재확인하는 것을 필요합니다.
-  facebook_options: 페이스북 옵션
   failed_to_find_your_location: 당신의 위치를 찾는데 실패하였습니다.
   failed_to_repair_photo: "사진을 수리하는데 실패했습니다. %{errors}"
   failed_to_save_record: "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오."
@@ -993,7 +1045,6 @@ ko:
   frequency: 주기
   from_a_place: 어떤 장소로부터
   from_eol_collection: EOL 모음집으로부터
-  from_flickr_facebook_etc: Flickr, Facebook 등으로부터
   from_list: 목록으로부터
   from_photos: 사진들로부터
   from_place: 장소로부터
@@ -1050,7 +1101,6 @@ ko:
   heads_up_you_have_multiple: "주의: 당신은 동일한 랭크들에 대해 다수의 분류학상의 기작 태그가 달려 있습니다. 랭크에 따라 아래에 색으로 구분되어있습니다."
   help: 도움말
   help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
-  help_support_inaturalist: "iNaturalist 후원하기"
   here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
   hi_user: "%{user}님, 안녕하세요."
   hide_content: 내용 숨기기
@@ -1095,6 +1145,7 @@ ko:
   improving: 개선 중
   #Label for messages you've received
   inbox: 받은 쪽지함
+  increase_brightness: 밝기 늘리기
   in_progress: 진행 중
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
@@ -1152,6 +1203,7 @@ ko:
   last_active_with_date: "마지막 활동일: %{date}"
   last_confirmed_observation: 마지막으로 확인된 관찰
   last_observation: 마지막 관찰
+  last_observation_caps: 마지막 관찰
   last_year: 지난 해
   lat: 위도
   latitude: 위도
@@ -1204,14 +1256,8 @@ ko:
   life: 생명
   life_list: "%{user}의 생물 목록"
   link: 링크
-  link_your_facebook_account: 페이스북 계정 연결하기
   link_your_flickr_account: Flickr 계정과 링크하기
   link_your_google_account: 구글 계정과 링크하기
-  linked_facebook: "당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있습니다."
-  linked_facebook_automaticaly: "그리고, %{site_name}에 페이스북 계정으로 로그인하면, 자동적으로 페이스북과 %{site_name} 계정이 연동된다는 것을 유의해주십시오. 페이스북을 사용한다면 페이스북 사진을 들여오기 더 용이하게 하기 위함입니다."
-  linked_facebook_description: "%{site_name} 계정을 페이스북 계정과 연동시키면 당신의 관찰에 대한 여러 사진들을 업로드할 수 있습니다. 물론 언제든지 %{site_name} 계정과 페이스북 계정의 연동을 끊을 수 있지만, 사진을 추가하지는 못하게 됩니다. 새로운 페이스북 계정을 만들어서 %{site_name}과 연동할 수도 있습니다."
-  linked_facebook_howto: "페이스북과 %{site_name}을 연동하고 싶으면 오른쪽의 링크를 클릭하여 Facebook.com에 로그인하십시오."
-  linked_facebook_password: "우리는 당신의 페이스북 비밀번호를 절대 물어보지 않을 것입니다(하지만 페이스북은 물어볼 수 있기에 URL이 페이스북으로 가는지 주소를 꼭 확인해 주십시오). 또한, 당신의 페이스북 정보를 당신이 원하지 않는 한은 바꾸지 않을 것입니다."
   linked_flickr: "당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있습니다."
   linked_flickr_automatically: "그리고, %{site_name}에 Flickr 계정으로 로그인하면, 자동적으로 Flickr와 %{site_name} 계정이 연동된다는 것을 유의해주십시오. Flickr를 사용한다면 사진을 들여오기 더 용이하게 하기 위함입니다."
   linked_flickr_description: "%{site_name} 계정을 Flickr 계정과 연동시키면 당신의 관찰에 대한 여러 사진들을 업로드할 수 있습니다. 물론 언제든지 %{site_name} 계정과 Flickr 계정의 연동을 끊을 수 있지만, 사진을 추가하지는 못하게 됩니다. 새로운 Flickr 계정을 만들어서 %{site_name}과 연동할 수도 있습니다."
@@ -1285,6 +1331,7 @@ ko:
   lookup: 검색
   low: 낮음
   make_admin: 관리자 만들기
+  mammals: 포유류
   manage_all_your_subscriptions: 알림 관리
   manage_names: 이름 관리
   manage_your_projects: 내 프로젝트 관리
@@ -1500,7 +1547,6 @@ ko:
   not_findig_what_you_want: 찾으려는 것이 아닙니까?
   not_finding_place_you_want?: 원하는 장소가 아닙니까?
   not_found: 찾을 수 없음
-  not_linked_facebook: "당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있지 않습니다"
   not_linked_flickr: "당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있지 않습니다"
   not_on_this_list: 이 목록에 없음
   not_recorded: 기록되지 않음
@@ -1544,11 +1590,28 @@ ko:
   observations_of_taxon: "%{taxon_name} 관찰"
   observations_per_month: 관찰/월
   observations_specifying_this_field: 이 필드의 관찰
+  observations_total: 기록된 관찰
   observations_w_field: 필드가 있는 관찰
   observed: 관찰됨
   observer: 관찰자
   observers: 관찰자
   observer_short: 관찰자
+  occurence_status_describes_how: '서식 현황은 특정 지역에서 이 분류군이 얼마나 흔한지 또는 희귀한지를 설명합니다. 용어에 대한 자세한 내용은 <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">DarwinCore를 참조하세요.</a>.'
+  occurrence_status: 지역 서식 현황
+  occurrence_status_descriptions:
+    absent: 해당 지역에서 서식하지 않습니다
+    common: 이 지역에서 흔히 발견됩니다
+    doubtful: 해당 지역에서의 발견 및 서식이 추정되지만 증거가 불확실합니다
+    irregular: 어떤 해에는 흔하고 어떤 해에는 없을수도 있는 등 예측이 불가능하게 발견되며, 지역에 우연찮게 들어온 길 잃은 떠돌이 개체 발견 등을 포함합니다
+    present: 이 지역에서 확실하게 서식이 확인됩니다
+    uncommon: 주기적으로 발견되지만, 적거나 한정된 지역에서 발견되며 해당 지역에 이 생물의 적절한 서식지가 존재하는지 주의깊게 살펴봐야 합니다
+  occurrence_status_levels:
+    present: 서식 및 번식함
+    common: 자주 발견됨
+    uncommon: 제한적으로 서식
+    irregular: 불규칙하게 확인됨
+    doubtful: 서식이 불확실함
+    absent: 서식하지 않음
   of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
   official_blog: 공식 블로그
@@ -1680,9 +1743,11 @@ ko:
     angola: 앙골라
     anguilla: 앙귈라
     antarctica: 남극
+    antigua_and_barbuda: 앤티가바부다
     argentina: 아르헨티나
     armenia: 아르메니아
     aruba: 아루바
+    asia: 아시아
     australia: 오스트레일리아
     austria: 오스트리아
     azerbaijan: 아제르바이잔
@@ -1698,6 +1763,7 @@ ko:
     bhutan: 부탄
     bolivia: 볼리비아
     bonaire_saint_eustatius_and_saba: 보네르섬, 세인트 유스타티우스, 사바섬
+    bosnia_and_herzegovina: 보스니아헤르체고비나
     botswana: 보츠와나
     bouvet_island: 부베섬
     brazil: 브라질
@@ -1812,6 +1878,7 @@ ko:
     mali: 말리
     malta: 몰타
     marshall_islands: 마셜 제도
+    martinique: 마르티니크
     mauritania: 모리타니아
     mauritius: 모리셔스
     mayotte: 마요트
@@ -1845,6 +1912,7 @@ ko:
     oman: 오만
     pakistan: 파키스탄
     palau: 팔라우
+    palestine: 팔레스타인
     panama: 파나마
     papua_new_guinea: 파푸아뉴기니
     paraguay: 파라과이
@@ -1869,6 +1937,7 @@ ko:
     saint_vincent_and_the_grenadines: 세인트빈센트 그레나딘
     samoa: 사모아
     san_marino: 산마리노
+    sao_tome_and_principe: 상투메프린시페
     saudi_arabia: 사우디아라비아
     senegal: 세네갈
     serbia: 세르비아
@@ -1901,6 +1970,7 @@ ko:
     togo: 토고
     tokelau: 토켈라우
     tonga: 통가
+    trinidad_and_tobago: 트리니다드 토바고
     tunisia: 튀니지
     turkey: 터키
     turkmenistan: 투르크메니스탄
@@ -1919,6 +1989,7 @@ ko:
     vatican_city: 바티칸시티
     venezuela: 베네수엘라
     vietnam: 베트남
+    virgin_islands: 버진 제도
     wallis_and_futuna: 월리스푸투나
     west_africa: 서아프리카
     western_sahara: 서사하라
@@ -2043,6 +2114,7 @@ ko:
   repair_doesnt_work_for_that_kind_of_photo: 이와 같은 사진 종류는 수정할 수 없습니다
   repair_external_photos: 외부 사진 수정하기
   reply: 답변
+  reptiles: 파충류
   request_failed: "요청이 실패했습니다"
   required: 필수
   required_: 필수
@@ -2117,6 +2189,7 @@ ko:
   sign_out: 로그아웃
   sign_up: 가입하기
   similar_species: 비슷한 종
+  similar_taxa: 비슷한 분류군
   sizes: 크기
   small: 작게
   site_admin_tools: 사이트 관리자 도구
@@ -2148,6 +2221,7 @@ ko:
   species_name_cap: 종명
   species_names: 종명
   species_taxon_name: 종명/분류군 이름
+  species_unknown: 알 수 없는 종
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
   start: 시작일
   start_a_new_project: 새 프로젝트 시작하기
@@ -2175,7 +2249,6 @@ ko:
   #Noun, as in "add a tag to this observation"
   tag: 태그
   tags: 태그
-  take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_info: 생물 분류 정보
   taxon: 분류군
@@ -2211,9 +2284,11 @@ ko:
   too_many_results: 결과가 너무 많음
   total: 합계
   total_observations: 총 관찰
+  total_observations_caps: 전체 관찰 수
   translated_languages: 번역된 언어
   twitter: 트위터
   unblock: 차단 해제
+  unknown: 알 수 없음
   unknown_error: 알 수 없는 오류
   unfollow: 팔로우 해제
   unlink_your_google_account: 구글 계정의 연결을 끊습니다
@@ -2241,17 +2316,27 @@ ko:
   uploading_num_of_count_photos:
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
+  #@gender operates on %{x}
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}님이 %{by}님의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_identification_html: "%{user} 님이 동정을 추가했습니다."
   user_added_an_observation_html: "%{user} 님이 관찰을 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user}님이 %{by}님의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_x_observations_html: "%{user} 님이 %{x}개의 관찰을 추가했습니다."
   user_already_authenticated: 사용자는 이미 인증되었습니다
@@ -2292,11 +2377,6 @@ ko:
   video_tutorials: 동영상 튜토리얼
   vulnerable: 취약(VU)
   was_it_captive_cultivated?: "포획되거나 사육되었습니까?"
-  we_also_support: |
-    <a href="http://flickr.com">플리커</a>, 
-    <a href="http://photos.google.com">구글 포토</a>, 
-    <a href="http://facebook.com">페이스북</a>
-    의 영상 호스팅도 지원합니다.
   we_couldnt_find_a_user: 해당하는 이메일 주소의 사용자를 찾지 못했습니다.
   we_couldnt_find_a_user_with_that_activation_code: "해당 활성 코드와 맞는 사용자를 찾지 못했습니다. 이미 당신의 계정을 활성화했을 수 있습니다. 로그인을 시도해 보세요."
   we_had_trouble_saving_comment: "해당 댓글을 저장하는데 문제가 발생했습니다."
@@ -2390,6 +2470,8 @@ ko:
         grid: 격자
         book: 책
         journal: 일지
+    lifelists:
+      total_observations: 총 관찰
     messages:
       from: '게시한 사용자:'
       to: 받는이
@@ -2484,16 +2566,6 @@ ko:
         include_usa: 미국 포함
     taxa:
       show:
-        about_names_desc: |
-          <p>
-          대부분의 생물들은 각 언어에 맞게 불리는 '일반명'이 있습니다. 이런 이름들은 일반적으로 변하지 않지만, 많은 생물들의 경우 지역에 따라 많은 방언들을 가지고 있어 혼동될 가능성이 높습니다. 과학자들은 이러한 혼동을 방지하기 위하여 분류 체계(<a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>)에 따라서 한 생물마다 특정한 '학명'을 부여합니다. 이러한 학명들은 일반적으로 라틴어로 되어 있기 때문에, 일반인들이 사용하고,기억하기가 쉽지 않습니다. 또한, 학명은 분류학이 발전해 나가면서 지속적으로 변화하기 때문에, 학명을 알고 있는 사람들끼리 소통하는 데도 지장이 있는 경우도 있습니다. 
-          </p>
-          <p>
-          "일반명은 장소에 따라 변하고, 학명은 시간에 따라 변한다"
-          </p>
-          <p>
-          iNaturalist는 이러한 문제들을 해결하기 위해 일반명과 학명을 모두 사용하고 있습니다. 각 사용자가 사용하고 있는 언어나 지역에 따라 알맞은 이름을 제공해 주려고 합니다. 각 사용자들은 모두 '이름 추가하기' 버튼을 이용하여서 자신의 언어권 또는 지역에서 사용하는 일반명을 추가할 수 있습니다. 한국 사용자들의 경우, 국립생물자원관 및 환경부가 사용하고 있는 공인된 일반명을 사용해 주시기 바라며, 필요에 따라서 방언을 추가하는 것도 가능합니다. 
-          </p>
         frequency:
           research: 연구 자료 등급
           "Alive or Dead=Alive": 살아있음
@@ -2589,9 +2661,9 @@ ko:
       6: 금
       7: 토
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%Y %b %d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y년 %B'
     month_names:
       - 
@@ -2613,6 +2685,14 @@ ko:
         other: 약 %{count}분
       less_than_x_seconds:
         other: 약 %{count}초
+    countdown_x_days:
+      other: 일
+    countdown_x_hours:
+      other: 시간
+    countdown_x_minutes:
+      other: 분
+    countdown_x_seconds:
+      other: 초
     prompts:
       day: 일
       hour: 시간
@@ -2626,13 +2706,16 @@ ko:
     submit:
       create: '%{model} 만들기'
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y년 %B %d일"
   activerecord:
     models:
@@ -2645,6 +2728,9 @@ ko:
       conservation_status:
         status: 상태
         description: 설명
+      listed_taxon:
+        occurrence_status_level: 이 지역에서
+        establishment_means: 서식 상태
       observation:
         observed_on: 관찰된 날짜
       post:

@@ -6,10 +6,9 @@
   = stylesheet_link_tag "observations/uploader"
   = stylesheet_link_tag "computer_vision/index"
   %meta{ name: "viewport", content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" }
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
   :javascript
     var SITE_ICONS = {
-      cas: "#{ asset_url( "sites/logo-cas.svg" ) }",
       nvidia: "#{ asset_url( "sites/logo-nvdia-horiz.svg" ) }",
       visipedia: "#{ asset_url( "sites/logo-visipedia.svg" ) }"
     }

@@ -68,6 +68,15 @@ class ProviderOauthController < ApplicationController
         error_description: t( "devise.failure.unconfirmed" )
       }
       return
+    rescue INat::Auth::UnconfirmedAfterGracePeriodError
+      render status: :bad_request, json: {
+        error: "invalid_grant",
+        error_description: I18n.t(
+          :email_conf_required_after_grace_period,
+          requirement_date: I18n.l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
+        )
+      }
+      return
     end
 
     if access_token
@@ -273,7 +282,8 @@ class ProviderOauthController < ApplicationController
     unless user.active_for_authentication?
       raise INat::Auth::SuspendedError if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
-      raise INat::Auth::UnconfirmedError if !user.confirmed? || confirmation_sent_at.blank?
+      raise INat::Auth::UnconfirmedAfterGracePeriodError if user.unconfirmed_grace_period_expired?
+      raise INat::Auth::UnconfirmedError unless user.confirmed?
     end
     access_token = Doorkeeper::AccessToken.
       where( application_id: client.id, resource_owner_id: user.id, revoked_at: nil ).

@@ -254,8 +254,8 @@ class Identification < ApplicationRecord
       attrs = {}
       if user_id == observation.user_id
         species_guess = observation.species_guess
-        unless taxon.taxon_names.exists?(name: species_guess)
-          species_guess = taxon.common_name.try(:name) || taxon.name
+        unless taxon.taxon_names.exists?( name: species_guess )
+          species_guess = taxon.common_name( user: observation.user ).try( :name ) || taxon.name
         end
         attrs[:species_guess] = species_guess
       end

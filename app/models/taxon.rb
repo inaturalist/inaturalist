@@ -104,6 +104,7 @@ class Taxon < ApplicationRecord
   # deprecated, remove when we're sure transition to taxon frameworks is complete
   has_many :taxon_curators, inverse_of: :taxon
   has_one :simplified_tree_milestone_taxon, dependent: :destroy
+  has_one :geo_model_taxon
 
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_photos, allow_destroy: true
@@ -614,8 +615,7 @@ class Taxon < ApplicationRecord
   def handle_after_activate
     return true unless saved_change_to_is_active?
 
-    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "Observation::update_stats_for_observations_of": id } ).
+    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow" ).
       update_stats_for_observations_of( id )
     true
   end

@@ -37,7 +37,6 @@ const ObservationsFlexGridView = ( {
                       key={`obs-${o.id}`}
                       observation={o}
                       width={width}
-                      height={itemDim}
                       config={config}
                     />
                   );

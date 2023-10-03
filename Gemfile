@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "~> 3.0.4"
 
-gem "rails", "6.1.7.3"
+gem "rails", "6.1.7.4"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
@@ -28,7 +28,7 @@ gem "chroma"
 # DST crossover fixes: https://github.com/mojombo/chronic/pull/396
 gem "chronic", git: "https://github.com/stanhu/chronic.git", ref: "7ea371f"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
-gem "coffee-rails"
+# gem "coffee-rails"
 gem "daemons"
 gem "dalli"
 gem "dbf" # Needed for georuby shapefile support

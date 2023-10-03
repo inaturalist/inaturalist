@@ -17,6 +17,7 @@ const TAXON_FIELDS = {
   rank_level: true,
   iconic_taxon_name: true,
   preferred_common_name: true,
+  preferred_common_names: true,
   is_active: true,
   extinct: true,
   ancestor_ids: true,
@@ -45,12 +46,16 @@ const OBSERVATION_FIELDS = {
   place_guess: true,
   latitude: true,
   longitude: true,
+  identifications: {
+    current: true
+  },
   quality_grade: true,
   photos: {
     id: true,
     uuid: true,
     url: true,
-    license_code: true
+    license_code: true,
+    original_dimensions: "all"
   },
   taxon: {
     id: true,
@@ -59,6 +64,7 @@ const OBSERVATION_FIELDS = {
     iconic_taxon_name: true,
     is_active: true,
     preferred_common_name: true,
+    preferred_common_names: true,
     rank: true,
     rank_level: true
   },

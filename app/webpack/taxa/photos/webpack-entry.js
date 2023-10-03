@@ -16,7 +16,7 @@ import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photo
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTerms } from "../shared/ducks/taxon";
 import photoModalReducer from "../shared/ducks/photo_modal";
-import App from "./components/app";
+import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
   photos: photosReducer,
@@ -90,7 +90,7 @@ store.dispatch( fetchTerms( ) ).then( ( ) => {
 
   render(
     <Provider store={store}>
-      <App taxon={taxon} />
+      <AppContainer />
     </Provider>,
     document.getElementById( "app" )
   );

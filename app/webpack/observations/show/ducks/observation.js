@@ -1,6 +1,9 @@
 import _ from "lodash";
 import React from "react";
-import inatjs from "inaturalistjs";
+import inatjs, {
+  Photo,
+  Sound
+} from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
 import { resetControlledTerms } from "./controlled_terms";
@@ -796,7 +799,8 @@ export function addID( taxon, options = { } ) {
     let observationTaxon = o.taxon;
     if (
       o.preferences.prefers_community_taxon === false
-      || o.user.preferences.prefers_community_taxa === false
+      || (o.user.preferences.prefers_community_taxa === false 
+      && o.preferences.prefers_community_taxon === null)
     ) {
       observationTaxon = o.community_taxon || o.taxon;
     }
@@ -1363,6 +1367,27 @@ export function removeObservationFieldValue( id ) {
       ofv.uuid === id ? { ...ofv, api_status: "deleting" } : ofv ) );
     dispatch( setAttributes( { ofvs: newOfvs } ) );
     dispatch( callAPI( inatjs.observation_field_values.delete, { id } ) );
+  };
+}
+
+export function setItemAPIStatus( item, apiStatus ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    let itemObservationAttribute;
+    if ( item instanceof Photo ) {
+      itemObservationAttribute = "photos";
+    } else if ( item instanceof Sound ) {
+      itemObservationAttribute = "sounds";
+    }
+    if ( itemObservationAttribute ) {
+      const newItems = _.map( observation[itemObservationAttribute], i => (
+        i.id === item.id ? new i.constructor( {
+          ...i,
+          api_status: apiStatus
+        } ) : i
+      ) );
+      dispatch( setAttributes( { [itemObservationAttribute]: newItems } ) );
+    }
   };
 }
 

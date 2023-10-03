@@ -1014,7 +1014,7 @@ class UsersController < ApplicationController
       if @years.blank?
         ma_scope = ma_scope.limit( max )
       else
-        @years.each do |year|
+        @years.each do | year |
           ma_scope = ma_scope.where(
             "moderator_actions.created_at BETWEEN ? AND ?",
             "#{year}-01-01",
@@ -1033,9 +1033,17 @@ class UsersController < ApplicationController
       @records += ma_scope.
         where( resource_type: "User" ).
         where( "moderator_actions.resource_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "Photo" ).
+        joins( "JOIN photos ON photos.id = moderator_actions.resource_id" ).
+        where( "photos.user_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "Sound" ).
+        joins( "JOIN sounds ON sounds.id = moderator_actions.resource_id" ).
+        where( "sounds.user_id = ?", @user ).to_a
     end
-    @records = @records.flatten.sort_by {|r| r.created_at }
-    respond_to do |format|
+    @records = @records.flatten.sort_by {| r | r.created_at }
+    respond_to do | format |
       format.html do
         render layout: "bootstrap-container"
       end
@@ -1043,7 +1051,10 @@ class UsersController < ApplicationController
   end
 
   def resend_confirmation
+    current_user.send( :generate_confirmation_token! )
     current_user.send_confirmation_instructions
+    current_user.wait_for_index_refresh = true
+    current_user.update( confirmation_sent_at: Time.now.utc )
     respond_to do | format |
       format.json do
         if current_user.valid?
@@ -1271,6 +1282,7 @@ protected
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
+      :prefers_gbif_layer_maps,
       :prefers_identification_email_notification,
       :prefers_identify_side_bar,
       :prefers_message_email_notification,

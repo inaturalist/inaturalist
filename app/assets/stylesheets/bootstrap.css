@@ -3935,7 +3935,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-bottom-right-radius: 0;
 }
 .input-group-addon:first-child {
-  border-right: 0;
+  border-inline-end: 0;
 }
 .input-group .form-control:last-child,
 .input-group-addon:last-child,

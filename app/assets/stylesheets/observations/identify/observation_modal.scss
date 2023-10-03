@@ -14,9 +14,13 @@ body > [role="dialog"] .ObservationModal {
     display: inline-block;
     font-size: 90%;
   }
-  .SplitTaxon.taxon .display-name {
-    color: black;
+  .SplitTaxon.taxon > .display-name,
+  .SplitTaxon.taxon .display-names {
     font-size: 110%;
+  }
+  .SplitTaxon.taxon > .display-name,
+  .SplitTaxon.taxon .display-names .display-name {
+    color: black;
   }
   .modal-dialog {
     .modal-content {
@@ -51,21 +55,30 @@ body > [role="dialog"] .ObservationModal {
   
   
   .obs-modal-header {
+    position: relative;
     .SplitTaxon.taxon,
     .quality_grade {
       font-weight: bold;
     }
+    .SplitTaxon {
+      margin-right: 80px;
+    }
+    .quality_grade {
+      position: absolute;
+      right: 0;
+    }
     .SplitTaxon.taxon {
-      .display-name {
+      & > .display-name, .display-names {
         font-size: 180%;
+        line-height: 26px;
         display: inline-block;
-        maring-bottom: 2px;
+        margin-bottom: 2px;
         color: black;
       }
-      &.has-com-name {
-        .display-name {
-          display: block;
-        }
+      &.has-com-name > .display-name,
+      &.has-com-name > .secondary-name,
+      &.has-com-name .secondary-names {
+        display: block;
       }
     }
   }

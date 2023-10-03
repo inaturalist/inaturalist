@@ -133,6 +133,26 @@ pt:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A – Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:um|f:uma|n:um} %{resource}"
   about: Acerca de
   about_charts: Acerca dos gráficos
   about_community_taxa: Sobre os táxons da comunidade
@@ -151,6 +171,10 @@ pt:
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
+  about_taxon_ranges: Sobre a Distribuição do Táxon
+  about_taxon_ranges_desc: |
+    A Distribuição do Táxon indica a distribuição global de um táxon. Normalmente, a fonte da distribuição do táxon é a Lista Vermelha da IUCN.
+  about_the_network: Sobre a Rede
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre Este Mapa
   about_this_project: Sobre este Projeto
@@ -753,13 +777,7 @@ pt:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fundir com
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fundido com
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: substituído por
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: substituir com
     dropped: descartado
     staged: etapa concluída
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} dividiu-se em %{output_taxa}"
@@ -876,7 +894,6 @@ pt:
   connected_accounts_description: Contas conectadas são as suas contas de outras aplicações ou sites aos quais você permitiu o acesso iNaturalist em seu nome para suportar fazer login, importar fotos ou outras funcionalidades.
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Ligando ao Flickr..."
-  connecting_to_facebook: "Ligando ao Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Ligar a sua conta do %{site_name} a contas em outros sites permite-lhe fazer login em %{site_name} usando as credenciais desses sites."
   conservation_status: Estatuto de conservação
   conservation_status_descriptions:
@@ -1046,18 +1063,6 @@ pt:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Não demonstrar o comportamento apropriado por si só.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Para se candidatar a ser curador do site, deve ter uma conta há 60
-    dias ou mais e ter adicionado 100 identificações "a melhorar" a
-    observações de qualquer um, incluindo as suas próprias (você adicionou %{num_idents}). Quando
-    cumprir os dois requisitos, volte aqui e poderá enviar a candidatura.
-    .
-  curator_application_inelligible_error: |
-    Para se candidatar a ser curador do site, deve ter uma conta há 60
-    dias ou mais e ter adicionado 100 identificações "a melhorar" a
-    observações de qualquer um, incluindo as suas próprias.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Inscrição de curador enviada
   #Header
@@ -1345,7 +1350,10 @@ pt:
   email: Email
   email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
-  email_copyright: "Direitos de autor &copy; %{x}, todos os direitos reservados"
+  email_conf_required_after_grace_period: |
+    Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
+    confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
+    para acessar sua conta.
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
   embed_place_widget: Incorporar um componente de localização
@@ -1401,11 +1409,6 @@ pt:
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
   evidence_of_organism: Evidência de organismo
-  facebook_account_information: Informação da sua conta do Facebook
-  facebook_account_not_linked: "%{user} já não tem uma ligação para conta de facebook, por isso %{site_name} não tem permissão para aceder a esta foto."
-  facebook_access_token_expired: "A chave electrônica de acesso expirou. %{user} precisa de fazer nova ligação à sua conta de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: O Facebook necessita que o dono dessa fotografia faça nova confirmação da sua ligação a %{site_name_short}.
-  facebook_options: Opções do Facebook
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
   failed_to_save_record: "Não foi possível gravar o registo. Por favor, tente novamente mais tarde."
@@ -1505,7 +1508,6 @@ pt:
   frequency: Frequência
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
-  from_flickr_facebook_etc: Do Flickr, Facebook, etc.
   from_list: Da lista
   from_photos: Das fotografias
   from_place: De um local
@@ -1568,7 +1570,6 @@ pt:
   heads_up_you_have_multiple: "Aviso: Você tem múltiplas etiquetas de máquina para ordens idênticas. Elas são apresentadas por ordem com uma cor, em baixo."
   help: Ajuda
   help_confirm_observations!: Ajude a confirmar observações!
-  help_support_inaturalist: "Apoie o iNaturalist"
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_suggestions: Aqui estão nossas principais sugestões
   here_are_our_top_species_suggestions: Aqui pode ver a nossa selecção de espécies
@@ -1804,14 +1805,8 @@ pt:
   life: Vida
   life_list: "Lista de vida de %{user}"
   link: Ligação
-  link_your_facebook_account: Conecte a sua conta do Facebook
   link_your_flickr_account: Conecte a sua conta do Flickr
   link_your_google_account: Conecte a sua conta do Google
-  linked_facebook: "A sua conta do %{site_name} está atualmente ligada à sua conta do Facebook."
-  linked_facebook_automaticaly: "Lembre-se também que se entrar no %{site_name} através do Facebook, nós iremos ligar novamente as suas contas do %{site_name} e do Facebook. É provável que se usa o Facebook também queira ter a possibilidade de importar as fotografias do Facebook, certo?"
-  linked_facebook_description: "Manter a sua conta %{site_name} ligada à conta do Facebook permite-lhe adicionar várias fotografias às suas observações. Claro que se quiser que o %{site_name} e o Facebook percam a ligação, não o impediremos, apenas não poderá adicionar fotografias. Por vezes esta é a melhor opção, como quando cria uma nova conta Facebook e a quer ligar ao %{site_name}."
-  linked_facebook_howto: "Para ligar o Facebook com o %{site_name}, clique na ligação à direita e entre no Facebook.com."
-  linked_facebook_password: "Nunca iremos pedir a sua palavra-passe do Facebook (mas o Facebook pode verificar o url que o botão lhe envia para ter a certeza que é Facebook.com). Também não faremos alterações nos seus dados do Facebook a não ser que queira que as façamos."
   linked_flickr: "A sua conta do %{site_name} está actualmente ligada à sua conta do Flickr."
   linked_flickr_automatically: "Lembre-se também que se entrar no %{site_name} através do Flickr faremos nova ligação automaticamente as contas %{site_name} e Flickr. É provável que se usa o Flickr também queira ter a possibilidade de importar as fotografias do Flickr, certo?"
   linked_flickr_description: "Manter a sua conta %{site_name} ligada à conta do Flickr permite-lhe adicionar várias fotografias às suas observações. Claro que se quiser que o %{site_name} e o Flickr percam a ligação, não o impediremos, apenas não poderá adicionar fotografias. Por vezes esta é a melhor opção, como quando cria uma nova conta Flickr e a quer ligar ao %{site_name}."
@@ -2205,7 +2200,6 @@ pt:
   not_findig_what_you_want: Não encontra o que deseja?
   not_finding_place_you_want?: Não encontra o lugar que deseja?
   not_found: Não encontrado
-  not_linked_facebook: "A sua conta em %{site_name} não está atualmente ligada à sua conta do Facebook."
   not_linked_flickr: "A sua conta em %{site_name} não está atualmente ligada à sua conta no Flickr."
   not_on_this_list: Não está nesta lista.
   not_recorded: Não registado
@@ -3277,13 +3271,19 @@ pt:
       remove_photo: Remover a foto
   usage_stats: Estatísticas de utilização
   user: Utilizador
+  #@gender operates on %{x}
   user_added_a_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} adicionou um(a) %{x} ao %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
   user_added_an_observation_field_html: '%{user} adicionou um valor ao campo "%{field_name}" da observação de %{owner}'
   user_added_an_observation_html: "%{user} adicionou uma observação"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} adicionou um(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} adicionou um(a) %{x} a(o) %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
   user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O utilizador já está autenticado
@@ -3318,11 +3318,6 @@ pt:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ver o seu painel de controlo</a> para mais atualizações"
   view_your_observations: Ver as suas observações
   view_all_of_your_observations_from_x: "Ver todas as suas observações de %{x}"
-  we_also_support: |
-    Também apoiamos e interligamos com <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para o alojamento das suas imagens.
   we_had_a_problem_flagging_that_item: "Ocorreu um erro ao sinalizar esse item: %{flag_error}"
   welcome_back!: Bem-vindo de volta!
   welcome_to_inat: "Bem-vindo ao %{site_name}!"
@@ -3367,6 +3362,9 @@ pt:
             <a href="%{url}">Verificar as Directrizes de Comunidade</a> para as dicas sobre como manter o iNaturalist um lugar amigável e acolhedor.
           please_read_the_teachers_guide_html: |
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
+    donate:
+      temporarily_unavailable: |
+        Obrigado pelo seu interesse em apoiar ao iNaturalist! A doação ao iNaturalist está temporariamente indisponível enquanto actualizamos os nossos sistemas de doação. Por favor, volte brevemente.
     lifelists:
       list_view: Ver em lista
       observed_rank: Observado %{rank}
@@ -3581,15 +3579,15 @@ pt:
       - sexta-feira
       - sábado
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d de %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%d de %b de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -3641,6 +3639,15 @@ pt:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: dia
+      other: dias
+    countdown_x_hours:
+      one: hora
+      other: horas
+    countdown_x_seconds:
+      one: SEG
+      other: SEGS
     prompts:
       day: Dia
       hour: Hora
@@ -3680,11 +3687,11 @@ pt:
       words_connector: ','
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %b. %Y, %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y, %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d %b, %H:%M'
   activerecord:
     attributes:

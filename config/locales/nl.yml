@@ -177,9 +177,9 @@ nl:
   #should work here
   about_place: "Over %{place}"
   about_places: Over plaatsen
-  about_taxon_ranges: Over taxonverspreidingen
+  about_taxon_ranges: Over de verspreidingen van het taxon
   about_taxon_ranges_desc: |
-    Taxonverspreiding geeft de globale verdeling van een taxon weer. Taxonverspreiding zijn
+    Taxonverspreidingsgebieden geven de globale verdeling van een taxon weer. Taxon verspreidingsgebieden zijn
     meestal afkomstig uit de IUCN Rode Lijst.
   about_the_network: Over het netwerk
   about_this_bioblitz: Over deze bioblitz
@@ -369,7 +369,7 @@ nl:
   add_tags_to_selected_taxa: Labels aan geselecteerde taxa toevoegen
   add_taxa: Taxa toevoegen
   add_taxon_batch_to: "Taxonbatch toevoegen aan %{list}"
-  add_taxon_range: Taxonreeks toevoegen
+  add_taxon_range: De verspreiding van een taxon toevoegen
   add_taxonomic_tags_to: "Voeg taxonomische tags toe aan de geselecteerde Flickr fotos &raquo;"
   add_to_a_scheme: Toevoegen aan een schema
   add_to_a_project: Aan een project toevoegen
@@ -412,14 +412,18 @@ nl:
   agree_: Akkoord
   agree?: Akkoord?
   agree_with_current_taxon: Akkoord gaan met huidige taxon
+  agree_with_observation_taxon: Akkoord gaan met het taxon van de waarneming
   agreeing: Bevestig...
   aka: ook bekend als
   #Noun, title of a popup alerting you to something
   alert: Opgelet
   all: Alle
+  #Title for a list of all 3rd party applications
+  all_applications: Alle toepassingen
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
   all_life: Alle leven
+  all_media_must_be_unhidden: Alle media moeten zichtbaar gemaakt worden
   all_names: Alle namen
   all_observations: Alle waarnemingen
   all_photos: Alle foto's
@@ -895,13 +899,7 @@ nl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: opgesplitst in
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: Samenvoegen met
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: samengevoegd met
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: vervangen door
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: vervang door
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: vervang door
     dropped: verwijderd
@@ -1081,7 +1079,6 @@ nl:
   connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
-  connecting_to_facebook: "Verbinden met Facebook ..."
   connecting_your_inat_account_to_accounts_other_sites: "Door je %{site_name}-account aan te sluiten op accounts op andere sites, kunt je je aanmelden bij %{site_name} met je inloggegevens van die sites."
   cannot_be_changed_during_a_content_freeze: Kan niet worden gewijzigd tijdens een content freeze
   conservation_status: Natuurbeschermingstatus
@@ -1305,10 +1302,10 @@ nl:
     Zelf niet het juiste gedrag vertoont.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen (je hebt %{num_idents}toegevoegd). Als jij aan beide eisen voldoet kun je een aanvraag indienen.
-  curator_application_inelligible_error: |
-    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
+  curator_application_inelligible2: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd inclusief je eigen (je hebt %{num_idents} toegevoegd). Als jij aan deze eisen voldoet kun je hier terugkomen en ben je in staat een aanvraag in te dienen.
+  curator_application_inelligible_error2: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben, tenminste 5 vlaggen toegevoegd hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Aanvraag voor curator ingediend
   #Header
@@ -1369,6 +1366,9 @@ nl:
     Je moet je alleen aanmelden om curator te worden als:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Jij hebt al determinaties en/of waarnemingen toegevoegd de afgelopen paar maanden en bent van plan om daar mee door te gaan.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Je hebt aangetoond dat je het curatieproces begrijpt door een
+    aantal vlaggen toe te voegen.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1619,6 +1619,8 @@ nl:
   donate: DONEREN
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Doneer aan iNaturalist
   done: Klaar
   dont_have_an_account_sign_up_html: Heb je nog geen account?<strong>Meld je aan.</strong>
   dont_use_double_quotes: Gebruik geen dubbele aanhalingstekens op andere plaatsen
@@ -1629,7 +1631,7 @@ nl:
   download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Sjabloon downloaden</a> om in de 
-    <a href="/observations/import#csv_import">bulk-uploader</a> te gebruiken
+    <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
   download_kml: KML downloaden
@@ -1692,7 +1694,7 @@ nl:
   edit_taxon: Taxon bewerken
   edit_taxon_framework: Taxonkader bewerken
   edit_taxon_link: Taxon koppeling bewerken
-  edit_taxon_range: Taxonreeks bewerken
+  edit_taxon_range: Bewerk de verspreiding van een taxon
   edit_the_observation: Waarneming bewerken
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     Bewerk dit taxon nadat je het hebt aangemaakt om de natuurbeschermingsstatus toe te voegen
@@ -1718,7 +1720,7 @@ nl:
   editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
-  editing_taxon_range_for_taxon_html: Taxonverspreiding voor %{taxon} bewerken
+  editing_taxon_range_for_taxon_html: Bewerk de verspreiding van %{taxon}
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
@@ -1742,13 +1744,41 @@ nl:
   email_conf_banner_we_delivered_todos: |
     We hebben je een bevestigingsmail gestuurd op %{date}. Als je deze niet
     hebt ontvangen dan zijn er enkele dingen die je kunt doen:
+  email_conf_required_after_grace_period: |
+    E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
+    je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
+    om toegang te behouden tot je account.
+  email_conf_faq_html: |
+    Als u vragen heeft, raadpleeg dan deze <a href="%{url}">FAQs</a>.
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
     Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
     datum kan iedereen die zijn e-mailadres niet heeft bevestigd niet
     inloggen tenzij hij zijn wachtwoord opnieuw instelt. Ga om je e-mailadres te bevestigen
     naar je %{link_start_tag}account instellingen%{link_end_tag}.
-  email_copyright: "Copyright &copy; %{x}, alle rechten voorbehouden"
+  #Subject of an email prompting people to confirm their email address before
+  #we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bevestig jouw %{site_name} e-mailadres voor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
+  email_confirmation_reminder_please_confirm: |
+    Bevestig vandaag je e-mailadres om ervoor te zorgen dat jij jouw toegang tot je account behoudt.
+     %{site_name} en de mobiele apps iNaturalist en Seek door iNaturalist verbinden mensen met de natuur en elkaar
+    door waarnemingen van biodiversiteit te delen. Bedankt voor je deelname aan de iNaturalist community!
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_we_will_require: |
+    We hebben geverifieerde e-mailadressen nodig voor alle accounts vanaf
+    %{requirement_date}. Neem even de tijd om dit te bevestigen.
+  #Paragraph in an email prompting people to confirm their email address before
+  #we start requiring confirmation.
+  email_confirmation_reminder_any_questions_html: |
+    Als je vragen hebt raadpleeg dan de
+    <a href="%{faq_url}">FAQs</a>. Bedankt dat je de tijd hebt genomen om
+    verbinding te maken met de natuur en met %{site_name}.
+  #Header in email prompting people to confirm their email address before we
+  #start requiring confirmation. This preceeds some details about the
+  #recipient's account.
+  email_confirmation_reminder_account_details: Accountgegevens
+  email_copyright2: "&copy; %{year} iNaturalist, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
   embed_place_widget: Plaatswidget invoegen
@@ -1805,6 +1835,7 @@ nl:
   exit_full_screen: "Volledig Schermmodus Verlaten"
   examples_of_data_use_by_network_members: Voorbeelden van gebruik van gegevens door leden van het netwerk
   examples_of_ranking_organizations: Voorbeelden van organisaties die statussen vaststellen
+  expected_nearby: In de buurt verwacht
   explore: Verkennen
   export: Exporteren
   export_observations: Waarnemingen exporteren
@@ -1821,13 +1852,6 @@ nl:
   extra_properties: Extra eigenschappen
   evidence_of_organism: Bewijs van organisme
   facebook: Facebook
-  facebook_account_information: Je Facebook-accountgegevens
-  facebook_account_not_linked: "%{user} heeft geen gekoppeld Facebook-account meer, waardoor %{site_name} geen toegang meer heeft tot deze foto."
-  facebook_access_token_expired: "Access token is verlopen. %{user} moet zijn of haar Facebook account opnieuw linken."
-  facebook_needs_the_owner_of_that_photo_to: Facebook vereist dat de eigenaar van die foto hun verbinding met %{site_name_short} opnieuw bevestigt.
-  facebook_options: Facebookopties
-  facebook_photo_import_disabled_notice: |
-    In november 2020 vroeg Facebook ons te verifiëren of we echt toegang tot foto's nodig hadden en we konden het proces niet voltooien vanwege problemen met Facebook's verificatiesysteem. Als gevolg daarvan kunnen we niet langer het importeren van foto's vanuit Facebook ondersteunen.
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
@@ -1992,7 +2016,7 @@ nl:
   frequency: Frequentie
   from_a_place: van een plaats
   from_eol_collection: Van EOL collectie
-  from_flickr_facebook_etc: Van Flickr, Facebook, etc.
+  from_flickr_etc: Van Flickr, etc.
   from_list: Van lijst
   from_photos: Van fotos
   from_place: van plaats
@@ -2008,6 +2032,9 @@ nl:
   generate_your_stats: Genereer je statistieken
   generating_mobile_archive: "Genereren van het mobiele archief"
   Genus: Geslacht
+  geomodel_expected_nearby_label_is_derived: |
+    Het "In de buurt verwacht" label is afgeleid van het Geomodel.
+    <a href="%{url}">Meer informatie over het Geomodel</a>.
   geoprivacy: Geoprivacy
   geoprivacy_is_obscured: Geoprivacy is vervaagd
   geoprivacy_is_obscured_desc: Waarnemer heeft ervoor gekozen de coördinaten te vervagen.
@@ -2094,7 +2121,6 @@ nl:
   heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
   help_confirm_observations!: Help waarnemingen bevestigen!
-  help_support_inaturalist: "Help en ondersteun iNaturalist!"
   help_translate!: Help met vertalen!
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
   here_are_our_top_suggestions: Dit zijn onze topvoorstellen
@@ -2105,9 +2131,13 @@ nl:
   hide: Verbergen
   hide_content: Inhoud verbergen
   hide_desc: |
-    Als je inhoud verbergt wordt deze niet meer openbaar weergegeven, maar mensen kunnen wel zien dat er iets verborgen  is. Site-curatoren en de auteur van de inhoud kunnen de verborgen inhoud nog steeds zien. Over het algemeen is dit
-    alleen van toepassing op geschreven inhoud, bijv. als je de een determinatie verbergt. De determinatie is nog steeds zichtbaar, maar de opmerkingen zijn verborgen. Je kunt dit niet ongedaan maken en alleen het personeel van de site kan de inhoud weer zichtbaar maken nadat deze is verborgen. Wees dus voorzichtig en gebruik dit alleen voor zeer
-    aanstootgevende inhoud.
+    Het verbergen van inhoud zal deze uit de publieke weergave verwijderen, maar mensen zullen nog steeds
+    kunnen zien dat iets verborgen was, en de site curatoren en de auteur van
+    zal de inhoud nog steeds de verborgen inhoud kunnen zien. Verborgen
+    determinaties zullen niet bijdragen aan het gemeenschapstaxon van een waarneming.
+  hide_desc_staff_can_unhide: |
+    Alleen site-medewerkers kunnen inhoud zichtbaar maken zodra deze verborgen is, dus gebruik deze
+    alleen voor duidelijke schendingen van de Gemeenschapsrichtlijnen.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Verberg "Geen aantekening"
@@ -2166,8 +2196,10 @@ nl:
   #Notification when an identification has been deleted
   identification_deleted: Determinatie verwijderd.
   identification_saved: "Determinatie opgeslagen!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Determinatietekst weer tonen
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Determinatie verborgen
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Determinatietekst weer tonen
   #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
   identification_user_short: Det. gebr.
@@ -2235,6 +2267,7 @@ nl:
   include_places: Inclusief de plaatsen
   include_projects: Inclusief de projecten
   include_suggestions_not_seen_nearby: Alle soorten
+  include_suggestions_not_expected_nearby: Voeg suggesties toe die niet in de buurt worden verwacht
   include_taxa: Inclusief de taxa
   include_users: Inclusief de gebruikers
   including: inclusief
@@ -2258,7 +2291,6 @@ nl:
   inaturalist_activity_notifications: "%{site_name} activiteitsnotificaties"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Toepassingen"
-  inaturalist_is_a_joint_initiative: "%{site_name} is een gezamelijk initiatief van de 'California Academy of Sciences' en 'National Geographic Society'."
   inaturalist_places: "%{site_name} Plaatsen"
   info: Informatie
   input_taxon: Invoer taxon
@@ -2362,8 +2394,8 @@ nl:
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
-  learn_more: Lees meer
-  learn_more_raquo: "Leer meer &raquo;"
+  learn_more: Meer informatie
+  learn_more_raquo: "Meer informatie &raquo;"
   learn_what_these_licenses_mean: Leer meer over de betekenis van deze licenties
   least_concern: Niet bedreigd (veilig)
   leave: Verlaat
@@ -2401,6 +2433,7 @@ nl:
     davawenyo: Davaoeño
     dutch: Nederlands
     english: Engels
+    esperanto: Esperanto
     estonian: Estlands
     faroese: Faeröers
     finnish: Fins
@@ -2490,14 +2523,8 @@ nl:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Link naar autorisatiecode
-  link_your_facebook_account: Verbind je Facebook-account
   link_your_flickr_account: Verbind je Flickr-account
   link_your_google_account: Verbind je Google-account
-  linked_facebook: "Je %{site_name}-account is momenteeel gekoppeld aan je Facebook-account."
-  linked_facebook_automaticaly: "Bedenk ook dat wanneer je op %{site_name} inlogt via Facebook, we je %{site_name}- en Facebookaccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Facebook gebruikt, je Facebookfoto's wilt kunnen importeren, toch?"
-  linked_facebook_description: "Door je account op %{site_name} aan je Facebook-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Facebook wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Facebook-account aanmaakt om aan %{site_name} te koppelen."
-  linked_facebook_howto: "Om Facebook te verbinden met %{site_name}, klik je op de link aan de rechterkant en log je in op Facebook.com."
-  linked_facebook_password: "We zullen je nooit om je Facebook-wachtwoord vragen (maar Facebook zou dat wel kunnen doen, controleer dat de URL die de knop je stuurt facebook.com is). We zullen ook je Facebook-gegevens niet wijzigen tenzij je dat wilt."
   linked_flickr: "Je account op %{site_name} is nu gekoppeld aan je Flickr-account."
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
@@ -2557,6 +2584,7 @@ nl:
     es: Spaans
     es-AR: Spaans (Argentinië)
     es-CO: Spaans (Colombia)
+    es-CR: Spaans (Costa Rica)
     es-MX: Spaans (Mexico)
     et: Estlands
     eu: Baskisch
@@ -2698,8 +2726,6 @@ nl:
   meet: Ontmoeten
   member_of_the_inaturalist_network_html: |
     Lid van het <a href="%{url}">iNaturalist-netwerk</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Lid van het %{partial_inat_network_tag_html}iNaturalist netwerk</a>, een gezamenlijk initiatief van %{cas_tag_html} en %{nat_geo_tag_html}.
   #As in members of a project
   members: Leden
   membership_model: Lidmaatschapsmodel
@@ -2751,6 +2777,10 @@ nl:
     en markeringen van alles wat deze gebruiker heeft gemaakt behalve taxa. Dit is
     <strong>alleen zichtbaar voor curatoren</strong> en <strong>curatoren kunnen
     hun eigen geschiedenis niet inzien</strong>, notities over een persoon mogen dus nooit zichtbaar zijn voor die persoon.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Verbergen
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Haal schorsing weg
   moderator_note_desc: |
     Moderatornotities zijn records van moderatie antwoorden of op bewijs gebaseerde
     zorgen over een gebruiker, zoals of het een mogelijk sockpuppet
@@ -2897,7 +2927,7 @@ nl:
   ne_lat: NO Lat.
   ne_lon: NO Lon.
   near_threatened: Gevoelig
-  nearby_observations_: Waarnemingen dichtbij
+  nearby_observations_: Waarnemingen in de buurt
   needs_id: ID nodig
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
@@ -2953,7 +2983,7 @@ nl:
   new_taxon_change: Nieuwe Taxonwijziging
   new_taxon_link: Nieuwe taxon koppeling
   new_taxon_name_for: Nieuwe Taxon Naam voor
-  new_taxon_range: Nieuwe Taxonreeks
+  new_taxon_range: Nieuw verspreiding van een taxon
   new_taxonomic_change: Nieuwe Taxon Wijzinging (Concept)
   new_trip: Nieuwe route
   new_updates_in_the_last_24_hours_from: "Nieuwe updates op %{site_name} in de afgelopen 24 uur"
@@ -2974,6 +3004,8 @@ nl:
   next_tab: Volgende tabblad
   next_taxon_short: Volgende
   'no': 'Nee'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Nog geen toepassingen
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_comments_yet: Nog geen reacties.
@@ -3073,7 +3105,6 @@ nl:
   not_found: Niet gevonden
   #Filter for observations not in a particular place
   not_in_place: Niet op deze plek
-  not_linked_facebook: "Uw %{site_name}-account is niet aan uw Facebookaccount gekoppeld"
   not_linked_flickr: "Uw %{site_name}-account is niet aan uw Flickr-account gekoppeld"
   not_on_this_list: Niet op deze lijst
   not_recorded: Niet opgenomen
@@ -3355,7 +3386,7 @@ nl:
   options: Opties
   or: of
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: OF
   or_choose_high_level_taxa: "... of kies wat taxa van een hoger niveau"
   orange: oranje
@@ -3449,8 +3480,12 @@ nl:
   photo_credits: Foto credits
   photo_deleted: Foto verwijderd
   photo_destroyed_because_it_was_deleted_from: "Foto vernietigd omdat het is verwijderd van de externe site of omdat\n%{site_name} geen toestemming meer heeft om het te bekijken"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto verborgen
   photo_licensing: Fotolicentie
   photo_type: Foto type
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto zichtbaar gemaakt
   photo_urls_repaired: Foto URL's hersteld
   photos_chosen_for_this_taxon: Foto's gekozen voor dit taxon
   photos_from: Foto's van
@@ -4275,6 +4310,7 @@ nl:
   refresh: Vernieuwen
   refreshing: Aan het vernieuwen ...
   regenerate_stats: Regenereer statistieken
+  regional_names: Regionale namen
   register_for_this_event_at_x_html: "Registreer voor dit evenement op %{x}"
   reject?: Verwerpen?
   relative_observations: Verwante waarnemingen
@@ -4505,6 +4541,8 @@ nl:
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
   show_more: Meer weergeven
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Toon meer aanmeldingsopties
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Toon "Geen aantekening"
@@ -4568,6 +4606,11 @@ nl:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatisch verborgen coördinaten (verborgen of privé als gevolg van "taxon
     geoprivacy")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist verbergt automatisch de coördinaten voor sommige soorten om
+    ze te beschermen tegen storingen, verzamelen of stroperij. Als de coördinaten van een waarneming alleen automatisch zijn verborgen om soorten te beschermen,
+    dan deelt iNaturalist de werkelijke coördinaten van alle waarnemingen van hun
+    respectievelijke leden met Netwerkleden.
   sites_affiliation_more_email_addresses: |
     E-mailadressen worden gedeeld met leden van het netwerk uitsluitend voor communicatie met betrekking tot de site.
   sites_affiliation_more_twice_per_year: |
@@ -4598,13 +4641,11 @@ nl:
     Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
     wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
   sites_affiliation_title: Meer informatie over netwerklidmaatschap
-  sites_network_cas_and_nat_geo_html: |
-    De %{start_tag_cas}California Academy of Sciences%{end_tag_cas} en de
-    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hebben
-    formele overeenkomsten met organisaties in elk van deze geografische gebieden om
-    het gebruik van het iNaturalist platform te ondersteunen. <strong>Als jouw organisatie
-    geïnteresseerd is in het toetreden tot het iNaturalist Network, dan kun je 
-    %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
+  sites_network_agreements_html: |
+    iNaturalist heeft formele overeenkomsten met organisaties in elk van deze
+    geografische gebieden om het gebruik van het iNaturalist platform te ondersteunen.
+    <strong>Als jouw organisatie geïnteresseerd is in het toetreden tot het iNaturalist
+    Netwerk, dan kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
   sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
   sites_network_inaturalist_network_collection: |
     Het iNaturalist netwerk is een verzameling van gelokaliseerde websites die volledig
@@ -4805,7 +4846,6 @@ nl:
   tagging: 'Tagging ...'
   tags: Labels
   tags_are_a_way: 'Labels zijn een manier om je waarnemingen te organiseren. Je kunt bijvoorbeeld al je waarnemingen bij een getijdepoel labelen met "getijdepoel" om ze later makkelijker terug te vinden.'
-  take_me_facebook: Ja, breng me naar Facebook!
   take_me_flickr!: Ja, breng me naar Flickr!
   target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die je gezocht hebt.
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
@@ -4888,7 +4928,7 @@ nl:
   taxon_change_title_taxon_stage: Taxonomische fase %{id}
   taxon_change_title_taxon_swap: Taxonomisch omwisselen %{id}
   taxon_deleted: Taxon verwijderd.
-  taxon_doesnt_have_a_range: Taxon heeft geen reeks
+  taxon_doesnt_have_a_range: Taxon heeft geen verspreidingsgebied
   taxon_drop: taxonverwijdering
   taxon_id: Taxon-ID
   taxon_ids: Taxon ID's
@@ -4919,9 +4959,9 @@ nl:
     <a href="%{url}">%{taxon}</a> waargenomen door
   taxon_observed_by_user: "%{taxon} waargenomen door %{user}"
   taxon_photos_updated: Taxon foto's bijgewerkt!
-  taxon_range: Taxon reeks
-  taxon_range_created_notice: Het taxon-bereik is succesvol gemaakt. Wacht een paar minuten voordat dit op de kaarten verschijnt.
-  taxon_range_for_taxon_html: Taxonverspreiding voor %{taxon}
+  taxon_range: Taxonverspreidingsgebied
+  taxon_range_created_notice: De de verspreiding van het taxon is succesvol gemaakt. Wacht een paar minuten voordat dit op de kaarten verschijnt.
+  taxon_range_for_taxon_html: Taxonverspreidingsgebied voor %{taxon}
   taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Is dit een verspreidingskaart van de IUCN Rode Lijst en zo niet waarom niet?
   taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Dit is een verspreidingskaart van de IUCN Rode Lijst
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Dit is geen verspreidingskaart van de IUCN Rode Lijst omdat die kaart niet geschikt is
@@ -4940,7 +4980,7 @@ nl:
   taxon_range_guidelines_please_provide_details: |
     Gebruik de beschrijving om uit te leggen hoe de kaart is afgeleid en link naar alle relevante vlaggen, taxonomische splitsingen of andere discussies of waarom de gepubliceerde IUCN Rode Lijst verspreiding moet worden gewijzigd.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Meer informatie over de verspreiding van het taxon
-  taxon_range_updated_notice: Het taxon-bereik is succesvol bijgewerkt. Wacht een paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
+  taxon_range_updated_notice: De verspreiding van het taxon is succesvol bijgewerkt. Wacht een paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
   taxon_ranks: Taxon Rangen
   taxon_removed_from_list: Taxon uit lijst verwijderd.
   taxon_scheme: Taxonschema
@@ -5397,19 +5437,29 @@ nl:
   user_added_a_comment_html: "%{user} heeft een reactie toegevoegd"
   user_added_a_fave_html: "%{user} heeft dit als favoriet opgeslagen"
   user_added_a_flag_html: "%{user} heeft dit gemarkeerd"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} heeft een %{x} toegevoegd"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_an_identification_html: "%{user} heeft een determinatie toegevoegd"
   user_added_an_observation_field_html: '%{user} heeft een waarde toegevoegd voor "%{field_name}" aan een waarneming van %{owner}'
   user_added_an_observation_field_value_html: "%{user} heeft een waarnemingsveld toegevoegd"
   user_added_an_observation_html: "%{user} heeft een waarneming toegevoegd"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} heeft een %{x} toegevoegd"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} heeft %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
@@ -5602,10 +5652,9 @@ nl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
-  we_also_support: |
-    We ondersteunen ook <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> en
-    <a href="http://facebook.com">Facebook</a> voor het hosten van afbeeldingen.
+  we_also_support2: |
+    We ondersteunen ook het importeren van foto's van <a href="http://flickr.com">Flickr</a>
+    en <a href="http://photos.google.com">Google Foto's</a>.
   we_can_only_understand_csv_in: We kunnen CSV alleen in het volgende formaat begrijpen
   we_couldnt_find_a_user: We vonden geen gebruiker met dat e-mailadres.
   we_couldnt_find_a_user_with_that_activation_code: "We konden geen gebruiker met die activeringscode vinden. Je hebt je account misschien al geactiveerd, probeer je aan te melden."
@@ -5624,13 +5673,13 @@ nl:
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
-  were_pretty_sure_this_is_in_the_genus: We zijn er vrij zeker van dat dit in dit genus zit
+  were_pretty_sure_this_is_in_the_genus: We zijn er bijna zeker van dat dit in dit genus zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
-  were_pretty_sure_this_is_in_the_family: We zijn er vrij zeker van dat dit in deze familie zit
+  were_pretty_sure_this_is_in_the_family: We zijn er bijna zeker van dat dit in deze familie zit
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: We zijn er vrij zeker van dat dit in deze orde zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
-  were_pretty_sure_this_is_in_the_subfamily: We zijn er vrij zeker van dat dit in deze subfamilie zit
+  were_pretty_sure_this_is_in_the_subfamily: We zijn er bijna zeker van dat dit in deze subfamilie zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
   were_pretty_sure_this_is_in_the_superfamily: We zijn er vrij zeker van dat dit in deze superfamilie zit
   #Falback label for the most probable taxon in the automated suggestions.
@@ -5657,6 +5706,7 @@ nl:
   white: wit
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Waarom maak je deze wijziging? (optioneel)
+  why_are_you_making_this_change_cite_source_required: Waarom maakt u deze wijziging? Gelieve uit te leggen, en indien mogelijk een bron te citeren. (verplicht)
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
   who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
@@ -5766,9 +5816,8 @@ nl:
     de natuur te beleven
   yir_monthly_supporters_random_selection: |
     Hieronder is een willekeurige selectie van iNaturalist's heroïsche communityleden die elke maand doneren.
-  yir_thank_your_for_being_generous: |
-    Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder 
-    de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.
+  yir_thank_your_for_being_generous2: |
+    Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit openbare organisatie. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.
   yir_your_gift_sustains: |
     Je gift ondersteunt deze website met een wereldwijd bereik en diepgaande persoonlijke en
     ecologische effecten
@@ -5865,6 +5914,8 @@ nl:
   your_account_has_been_activated: Je account is geactiveerd!
   your_account_has_been_verified: "Je %{site_name}-account is bevestigd! Log in om verder te gaan."
   your_activation_code_was_missing: "Je activatiecode ontbrak. Gebruik de URL in je e-mail."
+  #Title for a list of 3rd party applications you control
+  your_applications: Jouw toepassingen
   your_browser_does_not_support_the_audio_element: Je browser ondersteunt het audio-element niet.
   your_comment_was_saved: Je inhoud is opgeslagen
   your_content: Jouw inhoud
@@ -5936,24 +5987,70 @@ nl:
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
-      donate_desc_html: |
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Je kunt je gift nu <u>verdubbelen</u> of <u>verdriedubbelen</u>! Dankzij de
+        Gordon en Betty Moore Foundation worden alle maandelijkse, driemaandelijkse en
+        jaarlijkse terugkerende donaties verdrievoudigd en eenmalige donaties verdubbeld tot 31 december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist is een van 's werelds grootste gemeenschappen voor het ontdekken van de biodiversiteit. Bedankt dat u er deel van uitmaakt!
+        </p>
+        <p class="lead">
+        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of kijk op <a
+        href="https://www.inaturalist.org/pages/giving"> voor andere manieren om te geven</a>.
+        </p>
+        <p class="lead">
+        Met jouw donatie steun je iNaturalist en help je de gemeenschap te groeien, het verder ontwikkelen van geavanceerde technologie zoals het bevorderen van Computer Vision en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
+        </p>
+        <p class="text-muted">
+        iNaturalist is een onafhankelijke, 501(c)(3) tax-exempt not-for-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
+      donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
         </p>
         <p class="lead">
-        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of zie <a
+        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of kijk op <a
         href="https://www.inaturalist.org/pages/giving">andere manieren om te geven</a>.
         </p>
         <p class="lead">
         Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
         </p>
         <p class="text-muted">
-        iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V.S. (Tax ID: 94-1156258).</p>
+        iNaturalist is een onafhankelijke, 501(c)(3) tax-exempt not-for-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WORD EEN MAANDELIJKSE SUPPORTER VAN INATURALIST
-        desc_html: |
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Je kunt je gift nu <u>verdriedubbelen</u>! Dankzij de
+          Gordon en Betty Moore Foundation worden alle maandelijks terugkerende donaties verdrievoudigd tot 31 december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist is een van 's werelds grootste gemeenschappen voor het ontdekken van de biodiversiteit. Fijn dat je er deel van uit maakt!
+          </p>
+          <p class="lead">
+          Als je van iNaturalist houdt, word dan maandelijkse
+          Supporter. Terugkerende giften zorgen ervoor dat iNaturalist
+          door kan gaan met het opschalen van de infrastructuur en personeel door de 
+          voorspelbare inkomsten. En je maandelijkse gift heeft nu een drievoudige impact!
+          Je kan ook kiezen om je maandelijkse supporter status op je gebruikersprofiel te tonen.
+          </p>
+          <p class="lead">
+          Jouw charitatieve donaties helpen iNaturalist en de
+          groeiende gemeenschap, bijvoorbeeld door het verbeteren van computervisie of het implementeren van
+          nieuwe functies om onze servers en medewerkers te ondersteunen. U kunt ook
+          een <a href="%{donate_url}">eenmalige donatie doen</a> of
+          <a href="https://www.inaturalist.org/pages/giving">andere manieren verkennen om
+          </a>te geven.
+          </p>
+          <p class="text-muted">
+          iNaturalist is een onafhankelijke 501(c)(3), belastingvrijstelling,
+          non-profit organisatie gevestigd in de Verenigde Staten van
+          Amerika (Belasting-ID: 92-1296468).
+          </p>
+        desc3_html: |
           <p class="lead">
           <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
           </p>
@@ -5962,15 +6059,105 @@ nl:
           <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
           </p>
           <p class="text-muted">
-          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
+          iNaturalist is een onafhankelijke 501(c)(3) tax-exempt not-for-profit organisatie gevestigd in de Verenigde Staten van Amerika (Ruling: 92-1296468).</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
+      temporarily_unavailable: |
+        Bedankt voor het ondersteunen van iNaturalist! Doneren aan
+        iNaturalist is tijdelijk niet mogelijk omdat we onze donatie
+        systemen bijwerken. Kom alsjeblieft snel terug.
     flags:
       show:
         flaggable_content_desc: |
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
         flags_that_should_not_be_resolved_desc_html: |
           Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodel voorspellingen voor %{taxon}
+        the_geo_model_makes_predictions: |
+          Het Geomodel maakt voorspellingen over waar soorten voorkomen en waar ze ontbreken.
+          Het Geomodel wordt gebruikt om de suggesties van Computer Vision te voorzien van het "In de buurt verwacht"-label en om deze suggesties te wegen op basis van de locatie van de waarneming.
+        the_geo_model_is_trained: |
+          Net zoals het Computer Vision Model is het Geomodel getraind op iNaturalist waarnemingen
+          voor dezelfde set soorten met grofweg meer dan 100 foto's. Het Geomodel maakt geen 
+          perfecte voorspellingen. Je kunt <a href="%{url}">hier</a> meer lezen over hoe de Geomodel is gemaakt.
+        nearby_map:
+          expected_nearby_map: '''In de buurt verwacht''-kaart'
+          we_use_this_map: |
+            We gebruiken deze kaart om het 'In de buurt verwacht'-label toe te passen op suggesties op basis van de
+            locatie van de waarneming.
+          for_example: |
+            Bijvoorbeeld een waarneming van een hagedis in het centrum van de Verenigde Staten van Amerika kan
+            het 'In de buurt verwacht'-label laten toepassen op een suggestie van <i>Sceloporus consobrinus</i>
+            maar niet <i>Sceloporus occidentalis</i> op basis van hun respectieve 'In de buurt verwacht'-lkaarten.
+          you_can_think: |
+            Je kunt de "In de buurt verwacht"-kaart zien als een schatting van of de soort
+            ergens in de rastercel aanwezig is of helemaal niet.
+          figure_alt_text: Het Geomodel past het 'In de buurt verwacht'-label toe
+        unthresholded_map:
+          unthresholded_map: Drempelloze kaart
+          we_use_the_unthresholded_map: |
+            We gebruiken de Drempelloze kaart om de computer visioning scores per locatie te wegen wanneer
+            suggesties worden aangeboden.
+          for_example: |
+            Bijvoorbeeld een waarneming van een hagedis in het centrum van de Verenigde Staten zou
+            de suggesties van <i>Sceloporus consobrinus</i> zwaarder hebben gewogen dan suggesties
+            van <i>Sceloporus occidentalis</i> op basis van het vergelijken met de Drempelloze Kaarten, ondanks het feit dat ze
+            visueel vergelijkbaar is.
+          you_can_think: |
+            Je kunt de Drempelloze Kaarten zien als de relatieve waarschijnlijkheid dat een soort
+            binnen een rastercel voorkomt.
+          figure_alt_text: Het Geomodel weegt de Computer Vision resultaten
+        range_comparison:
+          expected_nearby_vs_taxon_range: In de buurt verwacht versus de verspreiding van het taxon
+          this_map_shows: |
+            Deze kaart toont de verspreiding van het taxon voor deze soort samen met de overlap van de 'In de buurt verwacht'-kaart
+            die we gebruiken om het Geomodel te evalueren.
+          this_gridded_version: |
+            Deze gridkaart versie van de verspreiding van het taxon is een momentopname die genomen werd toen het model
+            getraind en gegrid werd op dezelfde resolutie als de "In de buurt verwacht"-kaart. We gebruiken alleen
+            de verspreiding van het taxon als ten minste 90% van de trainingsgegevens voor die soort
+            binnen de verspreiding van het taxon valt zodat we de fouten in de verspreiding van het taxon kunnen beheersen.
+          by_combining: |
+            Door het combineren van de "In de buurt verwacht"-kaart met het verspreiding van het taxon berekenen we statistieken
+            om te schatten hoe goed de prestaties van het Geomodel zijn.
+          figure_alt_text: De 'In de buurt verwacht'-kaart en het verspreiding van het taxon worden vergeleken
+          combining_these_maps_produces: |
+            Het combineren van deze kaarten levert 3 soorten cellen:
+          true_presences_definition: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het verspreiding van het taxon voorspelt dat het taxon voorkomt
+          false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
+          false_absences_definition: Gebieden waar alleen de verspreiding van het taxon aanwezig is
+          evaluation_statistics_for_taxon: Evaluatie statistieken van %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Nauwkeurigheid:
+          precision_description: Het deel van de 'In de buurt verwacht'-kaart dat True Presences zijn
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Herroepen:
+          recall_description: Het deel van de verspreiding van het taxon dat True Presences zijn
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Echt Aanwezig / (Echt Aanwezig+ Fout Afwezig) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Het gemiddelde (harmonische betekenis) van Precision en Recall.
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Echt Aanwezig / (2 × Echt Aanwezigen + Fout Aanwezigen + Fout Afwezigen) = %{f1}
+          perfect_overlap: |
+            Perfecte overlap zou een Precision, Recall en F1 van 1 opleveren. Geen overlap
+            levert een Precision , Recall en F1 van 0 op.
     guides:
       index:
         deprecated_banner: |
@@ -6422,6 +6609,13 @@ nl:
         cumulative_count_desc: '# determinaties voor een individueel taxon en al zijn afstammelingen'
         curator_coordinate_access_disabled_desc_html: |
           Dit project staat geen waarnemingen toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Als je de coördinaten van deze waarneming niet wilt delen met de curatoren van dit project, moet je de waarneming uit het project verwijderen.
+        data_quality_assessment_desc3_html: |
+          Het kwaliteitsniveau vat de juistheid, nauwkeurigheid, volledigheid,
+          relevantie en de geschiktheid van een iNaturalist waarneming als
+          biodiversiteitsgegevens samen. Sommige attributen worden automatisch bepaald,
+          terwijl andere het resultaat zijn van aan een stemming door iNat-gebruikers. iNaturalist
+          deelt gelicenseerde "Onderzoekskwaliteit" waarnemingen met een aantal gegevenspartners
+          voor gebruik in de wetenschap en natuurbehoud.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
@@ -6431,69 +6625,55 @@ nl:
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
         quality_assessment_help2_html: |
           <p>
-          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
-          <strong>"ID nodig"</strong> als
+          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle
+          waarnemingen beginnen als <strong>"onvolledig"</strong> en kunnen
+          <strong>"ID nodig"</strong> worden als 
           </p>
 
           <ul>
-          <li>de waarneming <strong>heeft een datum</strong></li>
-          <li>de waarneming <strong>heeft een geolocatie</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-          <li>de waarneming <strong>heeft foto's of geluiden</strong></li>
-          <li>de waarneming <strong>is geen mens</strong></li>
+          <li>de waarneming <strong>een datum heeft</strong></li>
+          <li>de waarneming <strong>een locatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+          <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+          <li>de waarneming <strong>geen mens is</strong></li>
           </ul>
           <p>
           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
           </p>
           <ul>
           <li>
-          the %{site_name} <strong>community agrees on species-level ID or
-          lower</strong>, i.e. when more than 2/3 of identifiers agree on a
-          taxon (if the community has voted that the Community Taxon can no
-          longer be improved, this reverts to subfamily-level ID or lower)
+          de %{site_name} <strong>de gebruikers van iNaturalist een determinatie overeenkomen op soortsniveau of lager</strong>, dwz dat meer dan 2/3 van de determinaties hetzelfde taxon betreft (als de gemeenschap heeft gestemd dat het gemeenschapstaxon niet verder verbeterd kan worden gaat het terug op onderfamilie niveau of hoger)
           </li>
           </ul>
           <p>
-          Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
+          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap ermee instemt.
           </p>
           <ul>
           <li>
-          the <strong>location doesn't look
-          accurate</strong> (e.g. monkeys in the middle of the ocean,
-          hippos in office buildings, etc.)
+          de <strong>lokatie niet nauwkeurig lijkt</strong> (bijv. apen in het midden van de oceaan, nijlpaarden in een kantoor, etc.)
           </li>
           <li>
-          the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
-          or intelligent space aliens)
+          het <strong>organisme is niet wild/verwilderd</strong> (dwz gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
           </li>
           <li>
-          the observation <strong>doesn't present evidence of an
-          organism</strong>, e.g. images of water features,
-          rocks, landscapes that don't include the organism, etc.
+          de waarneming <strong>geen bewijs van het organisme toont</strong>, bijv. plaatjes van waterkenmerken, rotsen, landschappen dat geen organisme bevat, etc.
           </li>
           <li>
-          the observation <strong>doesn't present recent (~100 years) evidence of
-          the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
-          are ok)
+          de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme toont</strong> (zoals bijvoorbeeld fossielen, maar sporen, poep en dood blad zijn wel goed)
           </li>
           <li>
-          the observation no longer needs an ID <em>and</em> the community ID is above family
+          de waarneming niet langer een ID nodig heeft <em>en</em> het gemeenschapsID is op familie niveau of hoger
           </li>
           <li>
-          the observer has opted out of the community ID and the community
-          ID taxon is not an ancestor or descendant of the taxon associated
-          with the observer's ID
+          de waarnemer heeft het gemeenschapsID uitgezet en het gemeenschapsID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemersID
           </li>
           </ul>
           <p>
-          And if that wasn't complicated enough, there are also situations where the system gets a vote:
+          En alsof dat niet moeilijk genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
           </p>
           <ul>
           <li>
-          The system will vote that the observation is not wild/naturalized
-          if there are at least 10 other observations of a genus or lower in
-          the smallest county-, state-, or country-equivalent place that
-          contains this observation and 80% or more of those observations
-          have been marked as not wild/naturalized.
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er tenminste 10
+          andere waarnemingen zijn van een genus of lager in de kleinste gemeente, provincie- of land-equivalente plaats dat deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/verwilderd.
           </li>
           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
@@ -6557,7 +6737,7 @@ nl:
         subject: Vereisten voor projectwaarnemingen gewijzigd voor %{project}
         wondering_what_this_means_html: |
           Vraag je je af wat "geoprivacy" is?
-          <a href="%{url}">Lees meer in onze documentatie</a>.
+          <a href="%{url}">Meer informatie in onze documentatie</a>.
         you_can_change_html: |-
           Je kan jouw voorkeuren wijzigen of het project verlaten op de 
           <a href="%{url}">pagina van het project</a>.
@@ -6638,10 +6818,10 @@ nl:
           Je kunt het origineel bekijken op <a href="%{url}">%{url}</a>. 
           Laat meldingen over schending van auteursrechten alsjeblieft als onopgelost staan als deze foto auteursrechten schendt.
     places:
-      kml_field_desc2: |
+      kml_field_desc3: |
         KML van de gebiedsgrens. Je kunt er één maken met behulp van Google Maps, Google
         Earth of met de meeste GIS-applicaties. Moet ten minste één polygoon hebben, 
-        minder dan 1 MB (5 MB voor website-curatoren) zijn en het gebied moet een oppervlakte kleiner dan de Amerikaanse staat Texas, dat is ongeveer twee keer Duitsland, hebben.
+        minder dan 1 MB (5 MB voor website-curatoren) zijn en het gebied moet een oppervlakte kleiner dan ~700,000 vierkante kilometers ( ongeveer de Amerikaanse staat Texas, dat is ongeveer twee keer Duitsland) hebben.
       edit:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
@@ -7021,9 +7201,9 @@ nl:
           alle jaren.
         compared_to_previous_years: Vergelijk met voorgaande jaren
         donate_title: "Speciale dank aan al onze supporters"
-        donate_desc_html: |
-          Bedankt dat je vrijgevig bent met je tijd, aandacht, expertise en donaties! iNaturalist is een gezamenlijk initiatief zonder winstoogmerk van de California Academy of Sciences en de National Geographic Society. Het wordt ondersteund door een <a href="%{team_url}">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel en
-          <a href="%{seek_url}">Seek van iNaturalist</a> plus het beheren van ondersteuning aan de gemeenschap, samenwerkingen en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van heel veel beurzen en donaties waaronder vrijwillige bijdragen van heel klein deel van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen met onze plannen voor de toekomst. Je kunt in heel veel valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in %{year} het grootste jaar voor iNaturalist tot nu toe maken!
+        donate_desc2_html: |
+          Bedankt dat je vrijgevig bent met je tijd, aandacht, kennis en donaties! iNaturalist is een 501(c)3 nonprofit organisatie uit de Verenigde Staten. Het wordt ondersteund door een <a href="%{team_url}">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel en
+          <a href="%{seek_url}">Seek van iNaturalist</a> plus het beheren van ondersteuning aan de gemeenschap, samenwerkingsverbanden en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van heel veel beurzen en donaties waaronder vrijwillige bijdragen van heel klein deel van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen met onze plannen voor de toekomst. Je kunt in heel veel valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in %{year} het grootste jaar voor iNaturalist tot nu toe maken!
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Ons doel is 1000 vaste donateurs per maand
         inaturalist_network: iNaturalist netwerk
@@ -7132,7 +7312,20 @@ nl:
             Het oude gezegde vat het samen: "lokale namen veranderen van plaats naar plaats en wetenschappelijke namen veranderen van tijd tot tijd."
           </p>
           <p>
-            We proberen deze tekortkomingen aan te pakken door ze beide te laten zien waar mogelijk. Lokale namen worden gekozen op basis van de taal en geografische voorkeuren van de gebruiker.
+            We proberen deze tekortkomingen aan te pakken door ze beide te laten zien waar mogelijk. Lokale namen worden gekozen op basis van de taal en geografische voorkeuren van de gebruiker. Namen worden vermeld op basis van hun wereldwijde prioriteit binnen elke taal / type.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Namen kunnen worden toegevoegd aan plaatsen (meestal landen) in gevallen waar
+          verschillende landen of regio's verschillende lokale namen gebruiken in de
+          dezelfde taal. Zo hebben Mexico en Costa Rica bijvoorbeeld verschillende
+          Spaanse namen voor dezelfde soort.
+          </p>
+          <p>
+          Deze tabel laat zien welke namen zijn toegevoegd aan welke plaatsen en
+          staan gesorteerd in volgorde van prioriteit voor elke plaats. Als er twee Spaanse namen
+          aan Mexico worden toegevoegd zal de naam die als eerste opgesomd wordt verschijnen als je instelling is dat je
+          Spaanse namen wilt die zijn toegevoegd aan Mexico.
           </p>
         about_conservation_status_desc: |
           De natuurbeschermingstatus vat het risico van uitsterven samen voor een groep organismen.
@@ -7219,8 +7412,8 @@ nl:
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
         equivalenten met de nieuwe genus- of soortnaam.
       form:
-        move_children_desc_html: |
-          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor wissels en fusies wanneer deze wijziging is bevestigd. Als deze verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met een impliciete naamswijziging. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er 
+        move_children_desc2_html: |
+          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
           taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
     taxon_links:
       form:
@@ -7340,7 +7533,7 @@ nl:
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
         monthly_supporter_desc_html: |
-          Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS EIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.
+          Maandelijkse supporters van iNaturalist doneren maandelijks automatisch aan iNaturalist (United States IRS EIN 92-1296468) ter ondersteuning van het not-for-profit-beheer van iNaturalist en de iNaturalist-netwerksites.
           <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
           Als je steun door ons is bevestigd kun je deze checkbox aanvinken
           zodat deze status in je profiel wordt weergegeven. Let op: het e-mailadres op Donorbox moet exact gelijk zijn aan die op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent. Als ze verschillend zijn, verander er dan één zodat ze gelijk zijn.
@@ -7568,20 +7761,20 @@ nl:
       6: vr
       7: za
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d-%m-%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d. %=B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d. %=B'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%d %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d. %=B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d. %=B %Y'
     month_names:
       - 
       - januari
@@ -7638,6 +7831,9 @@ nl:
     countdown_x_hours:
       one: UUR
       other: UREN
+    countdown_x_minutes:
+      one: min
+      other: min
     countdown_x_seconds:
       one: SEC
       other: SECS
@@ -7710,19 +7906,19 @@ nl:
   time:
     am: am
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b. %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%d %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d. %=B %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d. %=B %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d. %=B %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      day_month_year: "%d %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d. %=B %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: pm
   activerecord:
@@ -7733,9 +7929,11 @@ nl:
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
       BlockedUser: Geblokkeerde gebruiker
+      Comment: Reactie
       CompleteSet: Volledige set
       #Noun
       Flag: Melding
+      Identification: Determinatie
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7747,6 +7945,7 @@ nl:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Toepassing
+      Photo: Foto
       TaxonLink: Taxonlink
     attributes:
       announcement:
@@ -7755,6 +7954,11 @@ nl:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Site ID's
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Doelpersoneel (voor test)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
       assessment:
         description: Beschrijving
       assessment_section:
@@ -7909,6 +8113,7 @@ nl:
         position: Positie
         source_url: Bron-URL
         source_identifier: Bron-id
+        audit_comment: Notitie
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8022,11 +8227,10 @@ nl:
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import voor deze \"Mushroom Observer\"-gebruiker is in onderhanden of staat in de wachtrij voor import"
-              api_key_missing: "\"Mushroom Observer\" API-sleutel ontbreekt"
+            user:
+              must_be_a_curator: moet een curator zijn
         observation:
           attributes:
             base:
@@ -8143,6 +8347,8 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+            audit_comment:
+              needs_to_be_at_least_10_characters: moet ten minste 10 tekens bevatten
         taxon_photo:
           attributes:
             taxon:
@@ -8166,9 +8372,11 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
-              user_cannot_be_staff: |
-                De staf kan niet worden geblokkeerd. iNat personeel moet kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op iNat en zijn de uiteindelijke bemiddelaars van geschillen dus het blokkeren van hen zal hen niet verhinderen om met jou te communiceren. Als je een probleem hebt met een staflid rapporteer dat dan aan één van de
-                iNat co-directeuren of als je een probleem hebt met één van de co-directeuren kun je contact opnemen met de Chief of Science op het Institute for Biodiversity and Sustainability Science van de California Academy of Science.
+              user_cannot_be_staff2: |
+                Medewerkers kunnen niet worden geblokkeerd. iNat personeel moet in staat zijn om
+                te kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op
+                iNat en zijn de ultieme bemiddelaars van geschillen, dus het blokkeren van
+                zal hen niet verhinderen om met jou te communiceren.
         user_parent:
           attributes:
             email:

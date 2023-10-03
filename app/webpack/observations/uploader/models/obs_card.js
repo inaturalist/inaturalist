@@ -44,8 +44,10 @@ const ObsCard = class ObsCard {
   }
 
   nonUploadedFiles( ) {
-    return _.filter( this.files,
-      f => f.uploadState === "uploading" || f.uploadState === "pending" );
+    return _.filter(
+      this.files,
+      f => f.uploadState === "uploading" || f.uploadState === "pending"
+    );
   }
 
   uploadedFiles( ) {
@@ -53,7 +55,7 @@ const ObsCard = class ObsCard {
   }
 
   uploadedFileIDs( ) {
-    return _.map( this.uploadedFiles( ), f => f.id );
+    return _.map( _.sortBy( this.uploadedFiles( ), "sort" ), f => f.id );
   }
 
   momentDate( ) {
@@ -74,9 +76,7 @@ const ObsCard = class ObsCard {
   visionParams( ) {
     const firstThumbnail = _.first(
       _.compact(
-        _.map(
-          _.sortBy( this.files, "sort" ), f => f.visionThumbnail
-        )
+        _.map( _.sortBy( this.files, "sort" ), f => f.visionThumbnail )
       )
     );
     if ( !firstThumbnail ) { return null; }
@@ -92,7 +92,7 @@ const ObsCard = class ObsCard {
   // field on the card is currently blank
   newMetadataFromFile( file ) {
     const newMetadata = { };
-    const fileMetadata = Object.assign( { }, file.metadata, file.serverMetadata );
+    const fileMetadata = { ...file.metadata, ...file.serverMetadata };
     _.each( fileMetadata, ( v, k ) => {
       if (
         _.isEmpty( this[k] )
@@ -106,103 +106,87 @@ const ObsCard = class ObsCard {
     return newMetadata;
   }
 
-  save( dispatch, options = { } ) {
-    if ( this.blank( ) ) {
-      dispatch( actions.updateObsCard( this, { saveState: "saved" } ) );
-      return;
-    }
-    if ( this.saveState !== "pending" ) { return; }
-    dispatch( actions.updateObsCard( this, { saveState: "saving" } ) );
-    const params = {
-      observation: {
-        description: this.description,
-        latitude: this.latitude,
-        longitude: this.longitude,
-        positional_accuracy: this.accuracy,
-        geoprivacy: this.geoprivacy,
-        place_guess: this.locality_notes,
-        observation_field_values_attributes: ( this.observation_field_values || [] ).map(
-          ofv => _.pick(
-            ofv, ["value", "observation_field_id"]
-          )
-        ),
-        tag_list: this.tags.join( "," ),
-        captive_flag: this.captive,
-        uuid: this.uuid
-      },
-      project_id: _.map( this.projects, "id" ),
-      uploader: true
-    };
-    if ( options.refresh ) {
-      params.force_refresh = true;
-    } else {
-      params.skip_refresh = true;
-    }
-    if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
-    if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
-    if ( this.date && !util.dateInvalid( this.date ) ) {
-      params.observation.observed_on_string = this.date;
-    }
-    if ( this.selected_taxon && this.selected_taxon.isVisionResult ) {
-      params.observation.owners_identification_from_vision_requested = true;
-    }
-    const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
-      f => ( f.photo ? f.photo.id : null ) ) );
-    if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
-    const soundIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
-      f => ( f.sound ? f.sound.id : null ) ) );
-    if ( soundIDs.length > 0 ) { params.local_sounds = { 0: soundIDs }; }
-    inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
-      dispatch( actions.updateObsCard( this, {
-        saveState: "saved",
-        serverResponse: r && r[0]
-      } ) );
-    } ).catch( e => {
-      this.saveTries = ( parseInt( this.saveTries, 0 ) || 0 ) + 1;
-      if (
-        e.response
-        && e.response.status === 503
-        && [
-          // Request Timeout: we probably never respond with this, but just in case
-          408,
-          // Too Many Requests: theoretically normal users might hit our rate
-          // limits, but unlikely
-          429,
-          // Service Unavailable: this might happen during downtime, but is
-          // intended to handle intermittent cases where Varnish doesn't seem to
-          // find a working app server
-          503
-        ].indexOf( e.response.status ) >= 0
-        && this.saveTries <= 4
-      ) {
-        const waitFor = this.saveTries * 3000;
-        setTimeout( ( ) => {
-          this.save( dispatch );
-        }, waitFor );
+  save( options = { } ) {
+    return dispatch => {
+      if ( this.blank( ) ) {
+        dispatch( actions.updateObsCard( this, { saveState: "saved" } ) );
         return;
       }
-      this.saveTries = 0;
-      let errors = [I18n.t( "unknown_error" )];
-      if ( !e.response ) {
-        dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
-        return;
+      if ( this.saveState !== "pending" ) { return; }
+      dispatch( actions.updateObsCard( this, { saveState: "saving" } ) );
+      const params = {
+        observation: {
+          description: this.description,
+          latitude: this.latitude,
+          longitude: this.longitude,
+          positional_accuracy: this.accuracy,
+          geoprivacy: this.geoprivacy,
+          place_guess: this.locality_notes,
+          observation_field_values_attributes: ( this.observation_field_values || [] ).map(
+            ofv => _.pick( ofv, ["value", "observation_field_id"] )
+          ),
+          tag_list: this.tags.join( "," ),
+          captive_flag: this.captive,
+          uuid: this.uuid
+        },
+        project_id: _.map( this.projects, "id" ),
+        uploader: true
+      };
+      if ( options.refresh ) {
+        params.force_refresh = true;
+      } else {
+        params.skip_refresh = true;
       }
-      e.response.json( )
-        .then( errorJSON => {
-          if ( errorJSON && errorJSON.errors && errorJSON.errors[0] ) {
-            errors = errorJSON.errors[0];
+      if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
+      if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
+      if ( this.date && !util.dateInvalid( this.date ) ) {
+        params.observation.observed_on_string = this.date;
+      }
+      if ( this.selected_taxon && this.selected_taxon.isVisionResult ) {
+        params.observation.owners_identification_from_vision_requested = true;
+      }
+      const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ), f => (
+        f.photo ? f.photo.id : null ) ) );
+      if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
+      const soundIDs = _.compact( _.map( _.sortBy( this.files, "sort" ), f => (
+        f.sound ? f.sound.id : null ) ) );
+      if ( soundIDs.length > 0 ) { params.local_sounds = { 0: soundIDs }; }
+
+      inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
+        dispatch( actions.updateObsCard( this, {
+          saveState: "saved",
+          serverResponse: r && r[0]
+        } ) );
+      } ).catch( e => {
+        dispatch( actions.handleUploadFailure(
+          e,
+          this,
+          ( ) => this.save( dispatch ),
+          ( ) => {
+            let errors = [I18n.t( "unknown_error" )];
+            if ( !e.response ) {
+              dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+              return;
+            }
+            e.response.json( )
+              .then( errorJSON => {
+                if ( errorJSON && errorJSON.errors && errorJSON.errors[0] ) {
+                  errors = errorJSON.errors[0];
+                }
+              } )
+              .catch( ( ) => {
+                // This will happen if for some reason we get an error that doesn't
+                // have a parsable JSON response body, e.g. something unexpected above
+                // the application, e.g. in Varnish
+                errors = [I18n.t( "unknown_error" )];
+              } )
+              .finally( ( ) => {
+                dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+              } );
           }
-        } )
-        .catch( ( ) => {
-          // This will happen if for some reason we get an error that doesn't
-          // have a parsable JSON response body, e.g. something unexpected above
-          // the application, e.g. in Varnish
-          errors = [I18n.t( "unknown_error" )];
-        } )
-        .finally( ( ) => {
-          dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
-        } );
-    } );
+        ) );
+      } );
+    };
   }
 };
 

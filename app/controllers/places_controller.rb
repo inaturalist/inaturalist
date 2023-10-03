@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
   ]
   before_action :limit_page_param_for_search, only: [:search]
   before_action :editor_required, only: [:edit, :update, :destroy]
-  before_action :curator_required, only: [:planner]
+  before_action :curator_required, only: [:planner, :merge]
   before_action :check_quota, only: [:create]
 
   QUOTA = 3
@@ -221,11 +221,11 @@ class PlacesController < ApplicationController
       assign_geometry_from_file
     elsif !params[:geojson].blank?
       @geometry = geometry_from_geojson( params[:geojson] )
-      @place.validate_with_geom( @geometry, user: current_user )
+      @place.validate_with_geom( @geometry, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
     end
 
     if @geometry # && @place.valid?
-      @place.save_geom( @geometry, user: current_user )
+      @place.save_geom( @geometry, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
       @place.save
       if @place.too_big_for_check_list?
         notice = t( :place_too_big_for_check_list )
@@ -257,9 +257,7 @@ class PlacesController < ApplicationController
       return
     end
 
-    if !current_user.is_admin? &&
-        ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
-        place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF
+    if max_area_km2 && @place.area_km2 > max_area_km2
       flash[:error] = t( :only_staff_can_edit_large_places )
       redirect_to place_path( @place )
       nil
@@ -268,9 +266,7 @@ class PlacesController < ApplicationController
 
   def update
     if @place.update( params[:place] )
-      if !current_user.is_admin? &&
-          ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
-          place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF
+      if max_area_km2 && @place.area_km2 > max_area_km2
         @place.add_custom_error( :place_geometry, :is_too_large_to_edit )
       elsif params[:file]
         assign_geometry_from_file
@@ -325,7 +321,7 @@ class PlacesController < ApplicationController
     params[:per_page] ||= 30
     if @q.blank?
       scope = if site_place
-        Place.where( site_place.child_conditions )
+        Place.children_of( site_place )
       else
         Place.where( "place_type = ?", Place::CONTINENT ).order( "updated_at desc" )
       end
@@ -653,17 +649,16 @@ class PlacesController < ApplicationController
   end
 
   def assign_geometry_from_file
-    limit = current_user&.is_curator? ? 5.megabytes : 1.megabyte
-    if params[:file].size > limit
+    if params[:file].size > file_size_limit
       # can't really add errors to model from here, unfortunately
-      @place.add_custom_error( :base, "File was too big, must be less than #{limit / 1024 / 1024} MB" )
+      @place.add_custom_error( :base, "File was too big, must be less than #{file_size_limit / 1.megabyte} MB" )
     else
       @geometry = geometry_from_file( params[:file] )
       if @geometry
         @place.latitude = @geometry.envelope.center.y
         @place.longitude = @geometry.envelope.center.x
-        if @place.validate_with_geom( @geometry, user: current_user )
-          @place.save_geom( @geometry, user: current_user )
+        if @place.validate_with_geom( @geometry, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
+          @place.save_geom( @geometry, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
         end
       else
         @place.add_custom_error( :base, "File was invalid or did not contain any polygons" )
@@ -682,5 +677,31 @@ class PlacesController < ApplicationController
 
   def quota_reached?
     @quota_reached ||= Place.where( user: current_user ).where( "created_at > ?", 1.day.ago ).count >= QUOTA
+  end
+
+  def file_size_limit
+    current_user&.is_curator? ? 5.megabytes : 1.megabyte
+  end
+
+  def max_area_km2
+    return nil if current_user.is_admin?
+
+    if CONFIG.content_freeze_enabled
+      # 70,000 km2 is roughly the size of West Virginia or Croatia
+      70_000.0
+    else
+      # 700,000 km2 is roughly the size of Texas or Somalia
+      700_000.0
+    end
+  end
+
+  def max_observation_count
+    return nil if current_user.is_admin?
+
+    if CONFIG.content_freeze_enabled
+      10_000
+    else
+      200_000
+    end
   end
 end

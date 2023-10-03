@@ -107,20 +107,16 @@ module TaxonDescribers
     def wikidata_wikipedia_url_for_taxon( taxon )
       lang = @locale.to_s.split( "-" ).first
       Rails.cache.fetch( "wikidata_wikipedia_url_for_taxon-#{taxon.id}-#{lang}", expires_in: 1.day ) do
-        Timeout::timeout( 5 ) do
-          if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
+        Timeout.timeout( 5 ) do
+          if ( r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}", follow_redirects: false ) )
             if r.header[:location].blank?
               nil
             else
               uri = URI.parse( r.header[:location].to_s ) rescue nil
               if uri && uri.host.split( "." )[0] == lang
                 r.header[:location]
-              else
-                nil
               end
             end
-          else
-            nil
           end
         rescue Timeout::Error
           nil
@@ -128,5 +124,4 @@ module TaxonDescribers
       end
     end
   end
-
 end

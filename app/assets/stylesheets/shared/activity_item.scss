@@ -41,11 +41,12 @@ body > [role="dialog"] .ActivityItem {
   }
   span.taxon {
     & > a.display-name,
-    & > .display-name {
+    & > .display-name, & > .display-names .display-name {
       color: #000;
     }
     a.secondary-name,
-    .secondary-name {
+    .secondary-name,
+    .secondary-names {
       color: #000;
     }
     &.has-com-name .member-group:before {
@@ -151,6 +152,9 @@ body > [role="dialog"] .ActivityItem {
       }
     }
   }
+  .panel.moderator-hidden {
+    border-bottom: 0px;
+  }
   .panel-body {
     padding: 0px;
     line-height: 1;
@@ -194,9 +198,10 @@ body > [role="dialog"] .ActivityItem {
     }
     span.taxon {
       display: inline-block;
-      a.secondary-name {
+      .secondary-names, & > .secondary-name {
         font-size: 14px;
         line-height: 16px;
+        margin-top: 2px;
         // This is weird but it allows the secondary-name to be on a new line
         // without like it would if it was a block, but without filling the
         // width of the available space like it would with a span or inline-
@@ -204,7 +209,7 @@ body > [role="dialog"] .ActivityItem {
         display: table;
       }
       & > a.display-name,
-      & > .display-name {
+      & > .display-name, & > .display-names .display-name {
         font-size: 20px;
         line-height: 25px;
       }
@@ -259,6 +264,9 @@ body > [role="dialog"] .ActivityItem {
     margin-left: 60px;
     box-shadow: none;
     -webkit-box-shadow: none;
+    &.no-user-icon {
+      margin-left: 0px;
+    }
   }
   .id_body {
     margin-top: 15px;

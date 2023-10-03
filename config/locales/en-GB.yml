@@ -12,12 +12,20 @@ en-GB:
   add_to_favorites: Add to Favourites
   added_to_favorites_html: |
     Added to <a href="%{url}">favourites</a>
+  all_taxa:
+    fungi: Fungi
+    fungi_including_lichens: Fungi Including Lichens
   authorize: Authorise
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Authorise with PKCE
   bg_color: BG Colour
   colors: Colours
+  devise:
+    confirmations:
+      confirmed: |
+        Your email address has been successfully confirmed. You can now log
+        in here on the website or in the iNaturalist or Seek mobile apps.
   distance_traveled_value: "Distance travelled: %{distance}m"
   distance_traveled: "Distance travelled (m)"
   favorite_taxa: Favourite Taxa
@@ -54,36 +62,10 @@ en-GB:
           Want to show off some of your favourite taxa? %{link_start_tag}Create a
           list%{link_end_tag} titled "Favourites" and the most recent additions
           will appear in this space.
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

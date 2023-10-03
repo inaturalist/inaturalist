@@ -973,13 +973,7 @@ be:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: аддзяліць да
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: аб'яўднаць у
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: аб'яднана ў
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: заменена
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: заменена на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заменена на
     dropped: адкінута
@@ -1137,7 +1131,6 @@ be:
   connected_accounts_titlecase: Падлучаныя Ўліковы запісы
   connecting_flickr: "Далучэнне да Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Далучыцца да Flickr яшчэ раз, каб аўтарызаваць дазвол на запіс
-  connecting_to_facebook: "Далучэнне да Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Падлучэнне вашага ўліковага запісу %{site_name} да ўліковых запісаў на іншых сайтах дазволіць вам уваходзіць на %{site_name} выкарыстоўваючы ўліковыя дадзеныя з гэтых сайтаў."
   cannot_be_changed_during_a_content_freeze: Не можа быць зменена падчас замарожвання зместу
   conservation_status: Прыродаахоўны статус
@@ -1352,17 +1345,6 @@ be:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Сам не дэманструе адпаведных паводзінаў.
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-    Каб падаць заяўку на пасаду куратара сайту, вы павінны маць рахунак на працягу не менш як 60
-    дзён і дадаць не менш як 100 паляпшаючых вызначэнняў да чыіх-небудзь
-    назіранняў, у тым ліку вашых (вы дадалі %{num_idents}). Калі вы
-    выканаеце абодва гэтыя патрабаванні, вярніцеся сюды, і вы зможаце падаць заяўку.
-  curator_application_inelligible_error: |
-    Каб падаць заяўку на пасаду куратара сайту, вы павінны маць рахунак на працягу не менш як 60
-    дзён і дадаць не менш як 100 паляпшаючых вызначэнняў да чыіх-небудзь
-    назіранняў, у тым ліку вашых.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заяўка на пасаду куратара пададзена
   #Header
@@ -1749,7 +1731,6 @@ be:
   email: Эл. пошта
   email_description: Вашая э-пошта не бачная іншым карыстальнікам iNaturalist
   email_address_for_comments_and_other_feedback: Адрас электроннай пошты для каментараў і іншых водгукаў
-  email_copyright: "Аўтраскія правы &copy; %{x}, усе правы абаронены"
   email_notifications: Апавяшчэнні па электроннай пошце
   embed: 'Убудаваць'
   embed_place_widget: Убудаваць віджэт месца
@@ -1820,13 +1801,6 @@ be:
   extra_properties: Дадатковыя ўласцівасці
   evidence_of_organism: Сведчанне існавання арганізму
   facebook: Facebook
-  facebook_account_information: Інфармацыя пра ваш уліковы запіс Facebook
-  facebook_account_not_linked: "%{user} больш не мае далучанага ўліковага запісу facebook, таму %{site_name} не мае дазволу на доступ да гэтага фота."
-  facebook_access_token_expired: "Тэрмін дзеяння токену доступу скончыўся. %{user} павінен перападлучыць свой уліковы запіс Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook патрабуе, каб уласнік гэтага фота зноў пацеврдзіў сваеre падлучэння да %{site_name_short}.
-  facebook_options: Наладжванні Facebook
-  facebook_photo_import_disabled_notice: |
-    У лістападзе 2020 года Facebook запатрабаваў ад нас пацверджваць, што нам сапараўдны патрэбны доступ да фатаграфій, і мы не змаглі скончыць працэс з-за праблем з сістэмай верыфікацыі Facebook. У выніку мы не можам надалей падтрымліваць імпарт фатаграфій з Facebook.
   failed_to_find_your_location: Не атрымалася знайсці ваш уліковы запіс
   failed_to_repair_photo: "Не атрымалася аднавіць фота: %{errors}"
   failed_to_save_record: "Не атрымалася захаваць запіс. Калі ласка, паспрабуйце зноў пазней."
@@ -1990,7 +1964,6 @@ be:
   frequency: Частата
   from_a_place: з месца
   from_eol_collection: З калекцыі EOL
-  from_flickr_facebook_etc: З Flickr, Facebook і г.д.
   from_list: З спісу
   from_photos: З фота
   from_place: З месца
@@ -2089,7 +2062,6 @@ be:
   heads_up_you_have_multiple: "Увага: у вас ёсць некалькі таксанамічных машынных тэгаў для аднолькавых рангаў. Яны пазначаны колерам ніжэй па рангу."
   help: Дапамога
   help_confirm_observations!: Дапамажыце пацвердзіць назіранні!
-  help_support_inaturalist: "Дапамажыце падтрымаць iNaturalist"
   help_translate!: Дапамагчы з перакладам!
   here_are_3_examples: Вось 3 прыклады добра сфармаваных дадзеных
   here_are_our_top_suggestions: Вось нашыя лепшыя прапановы
@@ -2099,8 +2071,6 @@ be:
   #Verb, usually a button to hide an interface element
   hide: Не паказваць
   hide_content: Не паказваць кантэнт
-  hide_desc: |
-    Схаванне кантэнту выдаліць яго з агульнага прагляду, але карыстальнікі па-ранейшаму змогуць бачыць, што нешта было схавана, а куратары сайта і аўтар кантэнту па-ранейшаму змогуць бачыць схаваны кантэнт. Як правіла, гэта датычыцца толькі пісьмовага зместу, напрыклад, калі схаваць змест вызначальніка, вызначэнне па-ранейшаму будзе бачная, але заўвагі вызначальніка будуць схаваныя. Вы не зможаце гэта адмяніць, і толькі супрацоўнікі сайта могуць паказваць кантэнт, калі ён быў схаваны, таму будзьце асцярожныя і выкарыстоўвайце гэта толькі для вельмі непрыемнага кантэнту.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не паказваць "Без анатацый"
@@ -2139,8 +2109,6 @@ be:
   #Notification when an identification has been deleted
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Тэкст вызначэння паказаны
   #Notification when an identification has been updated
   identification_updated: Вызначэнне абноўлена!
   identification_user_short: Вызн. карыстальнік
@@ -2216,7 +2184,6 @@ be:
   inaturalist_activity_notifications: "%{site_name} Апавяшчэнні аб дзейнасці"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Прыкладанні iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} - гэта сумесная ініцыятыва Каліфарнійскай акадэміі навук і Нацыянальнага Геаграфічнага Таварыства."
   inaturalist_places: "%{site_name} Месцы"
   info: Інфармацыя
   input_taxon: Уваходны таксон
@@ -2421,14 +2388,8 @@ be:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Спасылка на код аўтарызацыі
-  link_your_facebook_account: Звязаць свой уліковы запіс Facebook
   link_your_flickr_account: Звязаць свой уліковы запіс Flickr
   link_your_google_account: Звязаць свой уліковы запіс Google
-  linked_facebook: "Ваш уліковы запіс %{site_name} зараз звязаны з вашым уліковым запісам Facebook."
-  linked_facebook_automaticaly: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце ў %{site_name} праз Facebook, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Facebook. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Facebook, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
-  linked_facebook_description: "Звязванне вашага ўліковага запісу %{site_name} з уліковым запісам Facebook дазваляе вам дадаваць некалькі фатаграфій да сваіх назіранняў. Вядома, калі вы захочаце, каб сайт %{site_name} і Facebook не былі звязаны, мы не спынім вас, вы проста не зможаце дадаваць фатаграфіі. Часам гэта можа быць зручна, напрыклад, калі вы створыце новы ўліковы запіс Facebook, з якім захочаце звязаць %{site_name}."
-  linked_facebook_howto: "Каб звязаць Facebook з %{site_name}, націсніце на спасылку справа і ўвайдзіце ў Facebook.com."
-  linked_facebook_password: "Мы ніколі не будзем запытваць у вас пароль Facebook (але Facebook можа, праверце URL, на які вас перанакіроўвае кнопка, і пераканайцеся, што гэта Facebook.com). Мы таксама не будзем змяняць вашыя даныя ў Facebook, калі вы гэтага не захочаце."
   linked_flickr: "Ваш уліковы запіс на сайце %{site_name} зараз звязаны з вашым уліковым запісам Flickr."
   linked_flickr_automatically: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце на сайт %{site_name} праз Flickr, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Flickr. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Flickr, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
   linked_flickr_description: "Звязванне вашага ўліковага запісу %{site_name} з уліковым запісам Flickr дазваляе вам дадаваць некалькі фатаграфій да сваіх назіранняў. Вядома, калі вы захочаце, каб сайт %{site_name} і Flickr не былі звязаны, то мы не спынім вас, вы проста не зможаце дадаваць фатаграфіі. Часам гэта можа быць зручней, напрыклад, калі вы створыце новы ўліковы запіс Flickr, з якім захочаце звязаць %{site_name}."
@@ -2615,8 +2576,6 @@ be:
   meet: Пазнаёміцца
   member_of_the_inaturalist_network_html: |
     Удзельнік <a href="%{url}">сеткі iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Удзельнік %{partial_inat_network_tag_html}сеткі iNaturalist</a> - сумеснай ініцыятывы %{cas_tag_html} і %{nat_geo_tag_html}.
   #As in members of a project
   members: Удзельнікі
   membership_model: Мадэль удзелу
@@ -2959,7 +2918,6 @@ be:
   not_findig_what_you_want: Не знайшлі тое, што шукалі?
   not_finding_place_you_want?: Не знайшлі месца, што шукалі?
   not_found: Не знойдзена
-  not_linked_facebook: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Facebook."
   not_linked_flickr: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Flickr."
   not_on_this_list: Няма ў гэтым спісе.
   not_recorded: Не запісана
@@ -3203,9 +3161,10 @@ be:
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap
   optional: дадатковы
+  options: Опцыі
   or: або
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або выбраць з некаторых таксонаў вышэйшага рангу"
   orange: аранжавы
@@ -3968,6 +3927,7 @@ be:
   relationships:
     error: памылка
   reload_from_observations: Перазагрузіце з назіранняў
+  remember_me: Запомніць мяне
   remove: Выдаліць
   remove_all_tags: Выдаліць усе пазнакі
   remove_conservation_status: выдаліць прыродаахоўны статус
@@ -4059,6 +4019,8 @@ be:
   sites_affiliation_examples_portugal_atlas_html: |
     Чалец сеткі iNaturalist Партугаліі
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} падзяліўся запісамі з партугальскага атласу мігруючых птушак, атласу млекакормячых, а таксама дадзенымі некаторых іншых навуковых прац з Партугаліі.
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist аўтаматычна хавае каардынаты для некаторых відаў каб захаваць іх ад турбавання, збору або браканьерства. Калі каардынаты назірання былі схаваны аўтаматычна толькі для аховы відаў, iNaturalist абагульняе сапраўдныя каардынаты для ўсіх назіранняў з іх адпаведных краінаў з усімі Ўдзельнікамі Сеткі.
   sites_affiliation_more_email_addresses: |
     Адрасы электроннай пошты абагульняюцца з Удзельнікамі Сеткі выключна для камунікацыйных мэтаў, звязаных з сайтам.
   sites_affiliation_more_twice_per_year: |
@@ -4173,19 +4135,29 @@ be:
   user_added_a_comment_html: "%{user} дадаў каментар"
   user_added_a_fave_html: "%{user} дадаў упадабанне"
   user_added_a_flag_html: "%{user} дадаў пазнаку"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} дадаў %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_an_identification_html: "%{user} дадаў вызначэнне"
   user_added_an_observation_field_html: '%{user} дадаў значэнне "%{field_name}" да назірання %{owner}'
   user_added_an_observation_field_value_html: "%{user} дадаў значэнне поля назірання"
   user_added_an_observation_html: "%{user} дадаў назіранне"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} дадаў %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_x_observations_html: "%{user} дадаў %{x} назіранняў"
   user_suggested_an_id: "%{user} прапанаваў вызначэнне"
@@ -4369,15 +4341,15 @@ be:
       - Жні
       - Вер
       - Кас
-      - Nov
-      - Dec
+      - 
+      - 
     day_names:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
       - Субота
     day_names_min:
       1: Нд
@@ -4402,6 +4374,26 @@ be:
       - Лістапад
       - Снежань
   datetime:
+    countdown_x_days:
+      one: дзень
+      few: дні
+      many: дзён
+      other: дня
+    countdown_x_hours:
+      one: гадзіна
+      few: гадзіны
+      many: гадзін
+      other: гадзіны
+    countdown_x_minutes:
+      one: хв
+      few: хв
+      many: хв
+      other: хв
+    countdown_x_seconds:
+      one: сек
+      few: сек
+      many: сек
+      other: сек
     prompts:
       day: Дзень
       hour: Гадзіна

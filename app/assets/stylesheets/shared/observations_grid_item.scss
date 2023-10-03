@@ -146,7 +146,8 @@ $flowedDim: 150px;
 .ObservationsGridItem .favorites { margin-left: 5px;}
 .ObservationsGridItem .comments {margin-left: 5px;}
 
-.ObservationsGridItem .display-name,
+.ObservationsGridItem .display-names,
+.ObservationsGridItem .SplitTaxon > .display-name,
 .ObservationsGridItem .sciname {
   display: block;
 }
@@ -165,9 +166,6 @@ $flowedDim: 150px;
 .ObservationsGridItem .SplitTaxon {
   overflow: hidden;
   width: 100%;
-}
-.ObservationsGridItem .taxon.has-com-name .display-name {
-  white-space: nowrap;
 }
 
 .ObservationsGridItem .reviewed-notice {
@@ -211,7 +209,6 @@ $flowedDim: 150px;
 .ObservationsGridItem {
   .taxon .display-name {
     color: black;
-    display: block;
     font-size: 120%;
     font-weight: bold;
   }

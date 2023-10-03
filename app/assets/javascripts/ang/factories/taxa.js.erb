@@ -1,6 +1,6 @@
 iNatAPI.factory(  "TaxaFactory", [ "shared", function( shared ) {
   var show = function( id, params ) {
-    var url = "<%= CONFIG.node_api_url %>/taxa/" + id;
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/taxa/" + id;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };

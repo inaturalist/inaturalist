@@ -10,7 +10,7 @@
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %> </title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %></title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
@@ -23,7 +23,7 @@
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
     <%= csrf_meta_tag %>
-    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>">
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
@@ -35,6 +35,9 @@
     <% if !@headless && @site && !@site.ios_app_id.blank? -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
+      <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
@@ -47,15 +50,6 @@
         <%= render :partial => 'shared/header' %>
       <% end -%>
 
-      <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
-        <div class="bootstrap">
-          <div class="container upstacked">
-            <div class="alert alert-warning upstacked">
-              <%= (flash[:notice] || flash[:alert]).html_safe %>
-            </div>
-          </div>
-        </div>
-      <% end %>
       <% if flash[:success] && !@flash_js %>
         <div class="bootstrap">
           <div class="container upstacked">
@@ -76,49 +70,7 @@
       <% end %>
 
       <% if !@headless && flash.empty? %>
-        <% if current_user && !current_user.confirmed? && !( controller.controller_name == "users" && controller.action_name == "edit" ) %>
-          <% if current_user.confirmation_sent_at %>
-            <div class="bootstrap">
-              <div id="full-width-notice" class="bg-warning">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-8 col-xs-offset-2 text-left">
-                      <h3><%=t :email_conf_banner_please_click, default: t( :email_conf_banner_email_delivered_click_link ) %></h3>
-                      <p>
-                        <%=t :email_conf_banner_we_delivered_todos, date: l( current_user.confirmation_sent_at.in_time_zone( Time.zone ), format: :long ) %>
-                      </p>
-                      <ul>
-                        <li>
-                          <p>
-                            <%=t :email_conf_banner_search_for_emails_html, email: ( current_user&.site || @site ).email_noreply %>
-                          </p>
-                        </li>
-                        <li><p><%=t :email_conf_banner_check_your_spam_folder_html %></p></li>
-                        <li>
-                          <p>
-                            <%=t :email_conf_banner_add_to_contacts_html, email: ( current_user&.site || @site ).email_noreply, url: generic_edit_user_path( anchor: "profile" ) %>
-                          </p>
-                        </li>
-                      </ul>
-                      <p>
-                        <%=t :email_conf_banner_contact_us_html, email: "<a href='mailto:help+confirmation@inaturalist.org'>help@inaturalist.org</a>".html_safe %>
-                      </p>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% else %>
-            <div class="bootstrap">
-              <div id="full-width-notice" class="bg-warning">
-                <div class="container">
-                  <p><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% elsif current_user && session[:potential_site] %>
+        <% if current_user && session[:potential_site] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
@@ -224,6 +176,7 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_gbif_layer_maps: <%= current_user.prefers_gbif_layer_maps %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
@@ -267,12 +220,16 @@
         $.fn.btn = btn;
       }
     </script>
-    <% unless @skip_external_connections %>
+    <% unless @skip_external_connections || @asynchronous_google_maps_loading %>
       <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
-      <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+      <%= javascript_include_tag "map_bundle" %>
+    <% end %>
+    <% if @asynchronous_google_maps_loading %>
+      <%= javascript_include_tag "map_bundle" %>
+      <%= google_maps_async_js %>
     <% end %>
     <%= yield :extrajs %>
-    <% if logged_in? && !@minimal_header -%>
+    <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setMessagesCount(<%= session[:messages_count].to_i %>)
