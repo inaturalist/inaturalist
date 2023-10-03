@@ -255,7 +255,8 @@ class TaxonAutocomplete extends React.Component {
         );
       }
     };
-    const opts = Object.assign( { }, this.props, {
+    const opts = {
+      ...this.props,
       extraClass: "taxon",
       idEl: this.idElement( ),
       source: this.source,
@@ -267,9 +268,9 @@ class TaxonAutocomplete extends React.Component {
       renderMenu: renderMenuWithCategories,
       menuClass: "taxon-autocomplete",
       position: {
-        collision: "flipfit",
-      },
-    } );
+        collision: "flip none"
+      }
+    };
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
     this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
