@@ -1416,28 +1416,6 @@ nb:
   email: E-post
   email_description: E-posten din er ikke delt med andre brukere på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadresse for kommentarer og andre tilbakemeldinger
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekreft din %{site_name} e-postadresse før %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Vennligst bekreft din e-postadresse i dag for å sikre at du fortsatt har
-    tilgang til din konto. %{site_name} og de mobile appene
-    iNaturalist og Seek kobler mennesker til naturen og hverandre ved å dele observasjoner av biologisk mangfold. Takk for at du er en del av iNaturalist-felleskapet!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Vi krever verifiserte e-postadresser for alle kontoer fra
-    %{requirement_date}. Ta et øyeblikk til å bekrefte nå.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Hvis du har noen spørsmål, se
-    <a href="%{faq_url}">ofte stilte spørsmål</a>. Takk for at du tar deg tid til å koble til
-    naturen og til %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Kontodetaljer
   email_notifications: E-postvarslinger
   embed: 'Integrer'
   embed_place_widget: Integrer stedswidget
