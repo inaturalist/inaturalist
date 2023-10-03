@@ -1051,10 +1051,10 @@ nl:
     voorkomen in geautomatiseerde suggesties met het "Visueel vergelijkbaar" label.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: In behandeling
-  computer_vision_model_pending_desc: |
-    Het huidige Computer Vision Model kent dit taxon niet, het kan dus voorkomen in geautomatiseerde suggesties met het label "In de omgeving" maar het zal dan niet het label "Visueel vergelijkbaar" hebben. Hoewel de vereisten voor opname in het model met elk model wijzigen, is opname in het algemeen gebaseerd op
-    aantal waarnemingen, om de kans te vergroten dat dit taxon tijdens de volgende modeltraining
-    wordt opgenomen. Voeg meer waarnemingen toe van dit taxon of determineer ze.
+  computer_vision_model_pending_desc2: |
+    Het huidige Computer Vision Model kent dit taxon niet, het kan dus voorkomen in geautomatiseerde suggesties met het label "In de buurt verwacht" maar het zal dan niet het label "Visueel vergelijkbaar" hebben. Hoewel de vereisten voor opname in het model met elk model wijzigen, is opname in het algemeen gebaseerd op het 
+    aantal waarnemingen. Om de kans te vergroten dat dit taxon tijdens de volgende modeltraining
+    wordt opgenomen moet je meer waarnemingen toevoegen van dit taxon of ze determineren.
     .
   concept_status: Conceptstatus
   confidential: Vertrouwelijk
@@ -1729,55 +1729,10 @@ nl:
   email: E-mail
   email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
-  email_conf_banner_email_delivered_click_link: |
-    Bevestigingse-mail verzonden. Klik op de link in de e-mail.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Voeg <code>%{email}</code> toe aan je lijst van contacten en
-    <a href="%{url}">vraag om een andere bevestigingse-mail</a>.</strong> Als je e-mail provider 
-    de bevestigingse-mail heeft geblokkeerd zou dit hen kunnen overtuigen dat je daadwerkelijk e-mail van ons wil ontvangen.
-  email_conf_banner_check_your_spam_folder_html: <strong>Controleer je spamfolder</strong>
-  email_conf_banner_contact_us_html: Werkt het nog steeds niet? E-mail ons op %{email} zodat we je kunnen helpen.
-  email_conf_banner_please_click: |
-    Klik op de link in je e-mail om jouw e-mailadres te bevestigen.
-  email_conf_banner_search_for_emails_html: <strong>Zoeken naar e-mails van <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    We hebben je een bevestigingsmail gestuurd op %{date}. Als je deze niet
-    hebt ontvangen dan zijn er enkele dingen die je kunt doen:
   email_conf_required_after_grace_period: |
     E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
     je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
     om toegang te behouden tot je account.
-  email_conf_faq_html: |
-    Als u vragen heeft, raadpleeg dan deze <a href="%{url}">FAQs</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
-    Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
-    datum kan iedereen die zijn e-mailadres niet heeft bevestigd niet
-    inloggen tenzij hij zijn wachtwoord opnieuw instelt. Ga om je e-mailadres te bevestigen
-    naar je %{link_start_tag}account instellingen%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bevestig jouw %{site_name} e-mailadres voor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Bevestig vandaag je e-mailadres om ervoor te zorgen dat jij jouw toegang tot je account behoudt.
-     %{site_name} en de mobiele apps iNaturalist en Seek door iNaturalist verbinden mensen met de natuur en elkaar
-    door waarnemingen van biodiversiteit te delen. Bedankt voor je deelname aan de iNaturalist community!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    We hebben geverifieerde e-mailadressen nodig voor alle accounts vanaf
-    %{requirement_date}. Neem even de tijd om dit te bevestigen.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Als je vragen hebt raadpleeg dan de
-    <a href="%{faq_url}">FAQs</a>. Bedankt dat je de tijd hebt genomen om
-    verbinding te maken met de natuur en met %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Accountgegevens
   email_copyright2: "&copy; %{year} iNaturalist, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
