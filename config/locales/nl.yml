@@ -179,7 +179,7 @@ nl:
   about_places: Over plaatsen
   about_taxon_ranges: Over de verspreidingen van het taxon
   about_taxon_ranges_desc: |
-    Taxonverspreidingsgebieden geven de globale verdeling van een taxon weer. Taxon verspreidingsgebieden zijn
+    De verspreiding van een taxon geeft de wereldwijde verspreiding van een taxon weer. Taxon verspreidingsgebieden zijn
     meestal afkomstig uit de IUCN Rode Lijst.
   about_the_network: Over het netwerk
   about_this_bioblitz: Over deze bioblitz
@@ -669,7 +669,7 @@ nl:
     Weet je zeker dat je dit taxon wilt verwijderen? Het heeft waarnemingen.
   are_you_sure_want_delete_taxon_link: Weet je zeker dat je deze taxonlink wilt verwijderen?
   are_you_sure_want_delete_this_name: Weet je zeker dat je deze naam wilt verwijderen?
-  are_you_sure_want_delete_this_range: Weet je zeker dat je deze reeks wilt verwijderen?
+  are_you_sure_want_delete_this_range: Weet je zeker dat je deze verspreidingsgegevens wilt verwijderen?
   are_you_sure_you_want_to_commit_this_change: Weet je zeker dat je deze wijziging wilt vastleggen? Dit kan niet ongedaan worden gemaakt.
   are_you_sure_you_want_to_delete_this: Weet je zeker dat je dit wilt verwijderen?
   are_you_sure_you_want_to_delete_this_assessment?: Weet je zeker dat je deze beoordeling wilt verwijderen?
@@ -2659,7 +2659,7 @@ nl:
       place_boundary: Plaats grens
       checklist_places: Checklist plaatsen
       checklist_places_description: Plaatsen waar dit taxon in de lijst is opgenomen
-      range: Bereik
+      range: Verspreiding
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
@@ -2938,7 +2938,6 @@ nl:
   new_taxon_change: Nieuwe Taxonwijziging
   new_taxon_link: Nieuwe taxon koppeling
   new_taxon_name_for: Nieuwe Taxon Naam voor
-  new_taxon_range: Nieuw verspreiding van een taxon
   new_taxonomic_change: Nieuwe Taxon Wijzinging (Concept)
   new_trip: Nieuwe route
   new_updates_in_the_last_24_hours_from: "Nieuwe updates op %{site_name} in de afgelopen 24 uur"
@@ -3017,7 +3016,7 @@ nl:
   no_project_to_admin_login: "%{login} administreert geen enkel project"
   no_projects_yet: Nog geen projecten
   no_attached_range: Geen bijgevoegde verspreiding
-  no_range_data_available: Geen datareeks beschikbaar.
+  no_range_data_available: Geen verspreidingsgegevens beschikbaar.
   no_recent_activity: Geen recente activiteit
   no_relevant_annotations: Geen relevante aantekeningen
   no_reply_yet: Nog geen antwoord
@@ -4086,7 +4085,7 @@ nl:
   radius_km: Straal (km)
   radius_value: "Straal (m): %{radius}"
   random: Willekeurig
-  range: Bereik
+  range: Periode
   rank: Rang
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
@@ -4225,7 +4224,7 @@ nl:
   ranks_lowercase_form: vorm
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybride
-  ranges: Bereik
+  ranges: Verspreiding
   #Text to link to a taxon range as a KML file
   range_file: Verspreidingsbestand
   ray_finned_fishes: Straalvinnigen
@@ -4305,7 +4304,7 @@ nl:
     other: '%{count} waarnemingen verwijderen?'
   remove_photo: Foto verwijderen
   remove_place: Verwijder Plaats
-  remove_range: Reeks verwijderen
+  remove_range: Verspreiding verwijderen
   remove_relationship: Relatie verwijderen
   remove_relationship_caps: VERWIJDER RELATIE
   remove_relationship_question: Relatie verwijderen?
@@ -6066,7 +6065,7 @@ nl:
             binnen een rastercel voorkomt.
           figure_alt_text: Het Geomodel weegt de Computer Vision resultaten
         range_comparison:
-          expected_nearby_vs_taxon_range: In de buurt verwacht versus de verspreiding van het taxon
+          expected_nearby_vs_taxon_range: '''In de buurt verwacht'' versus ''de verspreiding van het taxon'''
           this_map_shows: |
             Deze kaart toont de verspreiding van het taxon voor deze soort samen met de overlap van de 'In de buurt verwacht'-kaart
             die we gebruiken om het Geomodel te evalueren.
