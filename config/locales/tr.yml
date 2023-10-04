@@ -1019,6 +1019,8 @@ tr:
     Mevcut Bilgisayar Görü Modeli bu sınıfı tanımaktadr, bu nedenle "Görsel Olarak Benzer" etiketiyle otomatik önerilere dahil edilebilir.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Yükleniyor
+  computer_vision_model_pending_desc2: |
+    Mevcut Bilgisayar Görü Modeli bu sınıf hakkında bilgi sahibi değildir, bu nedenle otomatik önerilere "Yakınlarda Beklenen" etiketiyle dahil edilebilirken, "Görsel Olarak Benzer" etiketine sahip olmayacaktır. Model dahil etme gereklilikleri değişmekle birlikte genellikle gözlem sayısına dayanır, bu nedenle bir sonraki model eğitimi sırasında bu sınıfın dahil edilme şansını artırmak için bu sınıfa ait daha çok gözlem ekleyin ya da tanımlayın.
   concept_status: Konsept Durumu
   confidential: Gizli
   configure: Yapılandır
@@ -2012,6 +2014,8 @@ tr:
   #Verb, usually a button to hide an interface element
   hide: Gizle
   hide_content: İçeriği Gizle
+  hide_desc: |
+    İçeriğin gizlenmesi, içeriği genel görünümden kaldıracaktır ancak insanlar bir şeyin gizlendiğini görmeye devam edebilecek ve site küratörleri ve içeriğin yazarı bu içeriği görmeye devam edebilecektir. Gizli tanımlamalar bir gözlemin Topluluk Sınıfı'na katkıda bulunmayacaktır.
   hide_desc_staff_can_unhide: |
     Yalnızca site personeli daha önce gizlenmiş içeriği tekrar ortaya çıkarabilir, dolayısı ile bunu yalnızca Topluluk İlkeleri'nin açık ihlâlinde kullanın.
   #Option to hide data series that show "No Annotation" data, i.e. records that
@@ -7039,6 +7043,9 @@ tr:
     taxon_changes:
       move_children_desc: |
         Girdi sınıfının cins veya daha büyük olan çocukları çıktıya taşınacaktır; türler, alttürler, varyeteler vb. yeni cins veya tür adıyla eşdeğerleriyle değiştirilecektir.
+      form:
+        move_children_desc2_html: |
+          Bu kutunun işaretlenmesi, bu değişiklik gerçekleştiğinde Sınıf Yer Değişimi ve Sınıf Birleştirmeleri için girdi sınıfının alt soyunu çıktı sınıfına taşıyacaktır. Eğer bu bir cins veya daha altı için bir değişiklik ise değişmesi gereken isimlere sahip tüm alt soy için Sınıf Yer Değişimi yaratacaktır. Örneğin, Canidae familyasını Dogidae ile değiştirirsen, bu <i>Canis</i> cinsinin üst soyunu Canidae'den Dogidae'ye geçirecektir. <i>Canis</i> cinsini <i>Dogis</i> cinsi ile değiştirirsen, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>Canis lupus</i> ssp. <i>lupus</i>'u <i>Dogis lupus</i> ssp. <i>lupus</i> olarak değiştirmek için Sınıf Yer Değişimi oluşturacak ve gerçekleştirecektir. Bu ise karışıklığa neden olabilir, dolayısıyla dikkatli kullanın.
     taxon_links:
       form:
         name_with_rank_desc: |
