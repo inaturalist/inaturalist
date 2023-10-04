@@ -53,7 +53,7 @@
       color: white;
       padding: 10px;
       position: relative;
-      padding-right: 86px;
+      padding-right: 80px;
       .display-names, .display-name {
         font-size: 17px;
       }
@@ -96,7 +96,9 @@
 .OverviewTab .ObservationsGrid {
   .ObservationsGridCell {
     min-width: 25%;
+    width: 25%;
     .Observation {
+      max-width: 100%;
       .photo {
         height: 170px;
       }
