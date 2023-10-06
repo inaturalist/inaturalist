@@ -1,5 +1,6 @@
 import _ from "lodash";
 import "core-js/stable";
+import moment from "moment";
 import "regenerator-runtime/runtime";
 import React from "react";
 import { render } from "react-dom";
@@ -21,11 +22,13 @@ import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from "./ducks/authorized_applications";
-import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
+import relationshipsReducer from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 import AppContainer from "./containers/app_container";
+
+moment.locale( I18n.locale );
 
 const rootReducer = combineReducers( {
   config: configReducer,
