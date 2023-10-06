@@ -88,7 +88,12 @@
       "GloBI": "#{ asset_url( "sites/globi.png" ) }",
       "EDDMapS": "#{ asset_url( "sites/eddmaps.png" ) }",
     }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = dp.logo&.url; memo}.to_json.html_safe} );
-  = javascript_include_tag "observations-show-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-dropzone-webpack"
+  = javascript_include_tag "webpack/react-image-gallery-webpack"
+  = javascript_include_tag "webpack/user-text-webpack"
+  = javascript_include_tag "webpack/observations-show-webpack"
 
 #app
   #initial-loading.text-center

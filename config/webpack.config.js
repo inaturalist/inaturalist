@@ -8,30 +8,120 @@ const config = {
   target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
-    // list out the various bundles we need to make for different apps
-    "observations-identify": "./observations/identify/webpack-entry",
-    "observations-uploader": "./observations/uploader/webpack-entry",
-    "lifelists-show": "./lifelists/show/webpack-entry",
-    "project-slideshow": "./project_slideshow/webpack-entry",
-    "taxa-show": "./taxa/show/webpack-entry",
-    "taxa-photos": "./taxa/photos/webpack-entry",
-    "observations-show": "./observations/show/webpack-entry",
-    "observations-torque": "./observations/torque/webpack-entry",
-    "computer-vision": "./computer_vision/webpack-entry",
-    "search-slideshow": "./search_slideshow/webpack-entry",
-    "stats-year": "./stats/year/webpack-entry",
-    "projects-form": "./projects/form/webpack-entry",
-    "projects-show": "./projects/show/webpack-entry",
-    "observations-compare": "./observations/compare/webpack-entry",
-    "users-edit": "./users/edit/webpack-entry",
-    "geo-model-explain": "./geo_model/explain/webpack-entry",
-    "geo-model-index": "./geo_model/index/webpack-entry"
+    "computer-vision": {
+      import: "./computer_vision/webpack-entry",
+      dependOn: ["react-main", "react-dropzone"]
+    },
+    "geo-model-explain": {
+      import: "./geo_model/explain/webpack-entry",
+      dependOn: ["react-main"]
+    },
+    "geo-model-index": {
+      import: "./geo_model/index/webpack-entry",
+      dependOn: ["react-main"]
+    },
+    "lifelists-show": {
+      import: "./lifelists/show/webpack-entry",
+      dependOn: ["react-main", "user-text"]
+    },
+    "observations-compare": {
+      import: "./observations/compare/webpack-entry",
+      dependOn: ["react-main", "d3"]
+    },
+    "observations-identify": {
+      import: "./observations/identify/webpack-entry",
+      dependOn: ["react-main", "react-image-gallery", "user-text"]
+    },
+    "observations-show": {
+      import: "./observations/show/webpack-entry",
+      dependOn: ["react-main", "react-dropzone", "react-image-gallery", "user-text"]
+    },
+    "observations-torque": {
+      import: "./observations/torque/webpack-entry",
+      dependOn: ["react-main"]
+    },
+    "observations-uploader": {
+      import: "./observations/uploader/webpack-entry",
+      dependOn: ["react-main", "react-dnd", "react-dropzone"]
+    },
+    "projects-form": {
+      import: "./projects/form/webpack-entry",
+      dependOn: ["react-main", "react-dropzone"]
+    },
+    "project-slideshow": {
+      import: "./project_slideshow/webpack-entry",
+      dependOn: ["react-main"]
+    },
+    "projects-show": {
+      import: "./projects/show/webpack-entry",
+      dependOn: ["react-main", "d3", "user-text"]
+    },
+    "search-slideshow": {
+      import: "./search_slideshow/webpack-entry",
+      dependOn: ["react-main"]
+    },
+    "stats-year": {
+      import: "./stats/year/webpack-entry",
+      dependOn: ["react-main", "d3"]
+    },
+    "taxa-photos": {
+      import: "./taxa/photos/webpack-entry",
+      dependOn: ["react-main", "react-dnd"]
+    },
+    "taxa-show": {
+      import: "./taxa/show/webpack-entry",
+      dependOn: ["react-main", "d3", "user-text"]
+    },
+    "users-edit": {
+      import: "./users/edit/webpack-entry",
+      dependOn: ["react-main", "react-dnd", "react-dropzone"]
+    },
+    "react-main": {
+      import: [
+        "core-js/stable",
+        "regenerator-runtime",
+        "lodash",
+        "inaturalistjs",
+        "moment-timezone",
+        "prop-types",
+        "react",
+        "react-dom",
+        "react-dom/server",
+        "react-redux",
+        "redux"
+      ],
+      runtime: "runtime"
+    },
+    "d3": {
+      import: ["d3"],
+      runtime: "runtime"
+    },
+    "react-dnd": {
+      import: ["react-dnd"],
+      runtime: "runtime"
+    },
+    "react-dropzone": {
+      import: ["react-dropzone"],
+      runtime: "runtime"
+    },
+    "react-image-gallery": {
+      import: ["react-image-gallery"],
+      runtime: "runtime"
+    },
+    "user-text": {
+      import: [
+        "html-truncate",
+        "linkifyjs/html",
+        "sanitize-html",
+        "markdown-it"
+      ],
+      runtime: "runtime"
+    }
   },
   output: {
-    // each bundle will be stored in app/assets/javascripts/[name].output.js
-    // for inclusion in the asset pipeline, make app/assets/javascripts/[name]-bundle.js
+    // each bundle will be stored in app/assets/javascripts/webpack/[name]-webpack.js
     filename: "[name]-webpack.js",
-    path: path.resolve( __dirname, "../app/assets/javascripts" )
+    path: path.resolve( __dirname, "../app/assets/javascripts/webpack" )
   },
   resolve: {
     extensions: [".js", ".jsx"],

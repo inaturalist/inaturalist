@@ -4,7 +4,7 @@
   "description": "iNaturalist npm package for managing node dependencies.",
   "scripts": {
     "webpack": "webpack --config config/webpack.config.js",
-    "webpack-watch": "webpack watch --config config/webpack.config.js"
+    "webpack-watch": "NODE_ENV=development webpack watch --config config/webpack.config.js --mode=development"
   },
   "dependencies": {
     "@formatjs/intl-locale": "^2.4.19",

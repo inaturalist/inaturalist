@@ -11,7 +11,11 @@
       CURRENT_USER.preferred_identify_image_size = #{logged_in? && current_user.preferred_identify_image_size ? current_user.preferred_identify_image_size.inspect.html_safe : "null"};
       CURRENT_USER.curator_projects = #{current_user.project_users.curator_privilege.includes(:project).map{|pu| { id: pu.project_id, slug: pu.project.slug } }.to_json.html_safe};
     }
-  = javascript_include_tag "observations-identify-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-image-gallery-webpack"
+  = javascript_include_tag "webpack/user-text-webpack"
+  = javascript_include_tag "webpack/observations-identify-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "observations/identify"
   :css
