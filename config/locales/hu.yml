@@ -2767,7 +2767,7 @@ hu:
   password: Jelszó
   password_confirmation: 'Jelszó megerősítése'
   password_change_description: A jelszó megváltoztatásával kiléptetünk mindeni aktív iNaturalist munkamenetedből minden eszközödről.
-  password_change_logout_warning: Miután lecseréled a jelszavad ki fogunk léptetni a fiókodból, azután pedig be kell jelentkezned újból az új jelszavaddal.
+  password_change_logout_warning: Miután lecseréled a jelszavad, ki fogunk léptetni a fiókodból, majd pedig be kell jelentkezned újból az új jelszavaddal.
   password_change_observations_warning: Ki fogunk léptetni az iNaturalist mobil alkalmazásaiból is és minden más alkalmazásból és honlapról ami a nevedben tölt fel az iNaturalistra, ezért kérünk győződj meg arról, hogy minden függő megfigyelést feltöltöttél mielőtt ezt megtennéd. Minden megfigyelés ami nem kerül feltöltésre megsemmisül.
   paste: Beilleszt
   people: Emberek
@@ -5372,16 +5372,16 @@ hu:
           <a href='/users/edit'>módosíthatod beállításaidat</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
-          Az <a href="%{url}" target="_blank">iNaturalist Hálózat</a> olyan helyi honlapok gyűjteménye 
-          amelyek teljesen hozzá vannak kapcsolódva az iNaturalist közösséghez. A Hálózat honlapjait olyan 
-          helyi szervezetek támogatják amelyek egy egyezményt írtak alá az iNaturalisttal, a helyi használat érdekében és a helyi biodiverzitás javára. Ezeknek engedélyük van a valós koordináták eléréséhez a saját 
-          országukban ahol ezek automatikusan kitakarva jelennek meg a nyilvánosság számára a veszélyeztetett fajok védelméért.
+          Az <a href="%{url}" target="_blank">iNaturalist Hálózat</a> olyan lokalizált honlapok gyűjteménye, 
+          amelyek teljesen össze vannak kapcsolva az iNaturalist közösségével. A Hálózat honlapjait olyan 
+          helyi szervezetek támogatják, amelyek egy egyezményt írtak alá az iNaturalisttal a helyi használat népszerűsítésére, és a helyi biodiverzitás megőrzése érdekében. Ezeknek a szervezeteknek engedélyük van a valós koordináták eléréséhez a saját 
+          országukon belül, amely koordináták egyébként automatikusan kitakarva jelennek meg a nyilvánosság számára a veszélyeztetett fajok védelme érdekében.
           </p>
           <p>
-          A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot működtetik elérhetik az email címedet is (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordináták kitakartak vagy privátak.
+          A felhasználóneved és a jelszavad minden honlapon működik, ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi honlapot üzemeltető intézmények elérhetik az email címedet is (csakis a honlap tevékenységeiről való értesítésekhez) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordináták kitakartak vagy privátak.
           </p>
           <p>
-          Megjegyzés: Kérünk ne kísérletezz a csatlakozásod megváltoztatásával ha több mint 1000 megfigyelésed van.
+          Megjegyzés: Kérünk ne kísérletezz a csatlakozásod megváltoztatásával, ha több mint 1000 megfigyelésed van.
           </p>
         name_place_help_html: |
           Elsőbbségben részesülnek az ezen a helyen használt közynelvi nevek.
