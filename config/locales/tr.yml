@@ -5735,6 +5735,22 @@ tr:
             Eğer öyleyse, öğrencilerle %{site_name} kullanımına ilişkin ipuçları için lütfen <a href="%{url}">Öğretmen Rehberimizi</a> okuyun.
     donate:
       donate_short_desc: "Desteğini göstermek için şimdi bağış yap!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Bağışını <u>ikiye</u> ya da <u>üçe</u> katlayabilirsin! Gordon ve Betty Moore Vakfı sayesinde, 31 Aralık 2023 tarihine kadar tüm aylık, üç aylık ve yıllık yinelenen bağışlar üç katına, tek seferlik bağışlar ise iki katına çıkarılmaktadır.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist, biyoçeşitliliğe adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!
+        </p>
+        <p class="lead">
+        Doğaseverlerden oluşan bu küresel topluluğun bilgi paylaşma ve yeri doldurulamaz biyoçeşitlilik verileri üretme gücüne inanıyorsan, lütfen çevrimiçi olarak tek seferlik ya da yinelenen bir bağış yapmayı düşün veya <a href="https://www.inaturalist.org/pages/giving">bağış yapmanın diğer yollarını</a> keşfet.
+        </p>
+        <p class="lead">
+        Bağışın, topluluğumuz büyüdükçe, türleri doğru bir şekilde tanımlamak için teknolojimizi geliştirmekten ve yeni özellikleri uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist için hayati önem taşımaktadır.
+        </p>
+        <p class="text-muted">
+        iNaturalist, Amerika Birleşik Devletleri merkezli, vergiden muaf, kâr amacı gütmeyen bağımsız bir 501(c)(3) kuruluşudur (Vergi Kimliği: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bunun bir parçası olduğun için teşekkür ederiz!</strong>
@@ -5753,6 +5769,22 @@ tr:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist'in Aylık Destekçisi Ol
         become_a_monthly_supporter_of_inaturalist_caps: INATURALIST'İN AYLIK DESTEKÇİSİ OL
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Bağışını <u>üç</u> katına çıkarabilirsin! Gordon ve Betty Moore Vakfı sayesinde, tüm Aylık Destekçi bağışları 31 Aralık 2023 tarihine kadar üçe katlanmaktadır.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!
+          </p>
+          <p class="lead">
+          iNaturalist'i seviyorsan, lütfen Aylık Destekçi olmayı düşün. Yinelenen bağışlar, öngörülebilir gelir sağlayarak iNaturalist'in altyapımızı ve personelimizi büyütmeye yardımcı olur. Ayrıca, aylık bağışının etkisi üç katına çıkar! Aylık Destekçi statünü kullanıcı profilinde göstermeyi de tercih edebilirsin.
+          </p>
+          <p class="lead">
+          Hayırsever bağışların, topluluk büyüdükçe bilgisayarlı görü modelini geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur. Ayrıca <a href="%{donate_url}">tek seferlik bağışta</a> bulunabilir ve <a href="https://www.inaturalist.org/pages/giving">bağış yapmanın diğer yollarını</a> keşfedebilirsin.
+          </p>
+          <p class="text-muted">
+          iNaturalist, Amerika Birleşik Devletleri merkezli, vergiden muaf, kâr amacı gütmeyen bağımsız bir 501(c)(3) kuruluşudur (Vergi Kimliği: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
