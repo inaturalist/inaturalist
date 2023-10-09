@@ -634,7 +634,7 @@ hu:
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, feltöltötte: %{user}"
   authority_list:
-    iucn_red_list: IUCN vörös lista
+    iucn_red_list: IUCN Vörös lista
     natureserve: NatureServe
   authorize: Engedélyezés
   #Second-person verb to authorize an application to access an iNat account
@@ -1905,6 +1905,7 @@ hu:
   learn_about_the_species_live_in: 'Az itt élő fajok megismerése:'
   learn_more: További információ
   learn_more_raquo: "Bővebben"
+  learn_what_these_licenses_mean: További információ ezekről a licencekről
   least_concern: Nem fenyegetett
   leave: Kilépés
   leave_a_comment: Megjegyzés hozzáadása
@@ -2005,7 +2006,7 @@ hu:
   less__context_text: Kevesebb
   licensed_site_photos: "Licenccel rendelkező %{site_name} fotók"
   license: Licenc
-  licensing: Engedélyezés
+  licensing: Licencelés
   life: Élet
   life_list: "%{user} életműve"
   linear_scale_label: Lineáris
@@ -2565,7 +2566,7 @@ hu:
   observation_brief_taxon_from_place_in_month_year: "%{taxon} %{place} helyről, %{year} %{month}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
-  observations_by_app: Megfigyelések applikáció szerint
+  observations_by_app: Megfigyelések mobilalkalmazás szerint
   observations_by_rank: Megfigyelések besorolás szerint
   observations_by_user_on_date: "%{user} megfigyelései %{date} napon"
   observations_by_you: "Megfigyeléseid"
@@ -5191,7 +5192,7 @@ hu:
         obs_id_d_desc: Előző 7 nap hozták létre és van hozzá azonosítás (a megfigyelőjé is lehet)
         observations_1_week_moving_window: Megfigyelések (egyhetes mozgóátlag)
         observers_desc: Megfigyelést adott hozzá ezen a napon
-        other_desc_html: Más alkalmazásokkal létrehozva <a href="%{url}">melyeket a fejlesztők írtak</a>
+        other_desc_html: Más alkalmazásokkal létrehozva, <a href="%{url}">melyeket a fejlesztők írtak</a>
         recent_desc: Az utóbbi hét nap alatt regisztrált
         recent_w_0_obs: Legújabb 0 megfigyeléssel
         recent_w_0_obs_desc: Az utóbbi hét nap alatt regisztrált és 0 megfigyelése van
@@ -5199,11 +5200,11 @@ hu:
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
         time_to_id_desc: Azonosításhoz szükséges idő (órában, 1 hetes mozgó ablak)
         TTCID: Közösségi azonosítási idő
-        TTCID_desc: Azonosításhoz szükséges idő valaki mástól ami egyezik a közösségi taxonnal.
+        TTCID_desc: Azonosításhoz szükséges idő valaki mástól, ami egyezik a közösségi taxonnal.
         TTID: Azonosítási idő
         TTID_desc: Azonosításhoz szükséges idő valaki mástól
         TTID_note: |
-          Ezek a statisztikák az egy héttel ezelőtti megfigyelésekből készültek, ami azt jelenti, hogy ezekből kimaradtak az ez utáni azonosítások ezért a statisztikák kisebbek mintha újra le lennének gyártva a jelenben, de azért eléggé jól szemléltetik, hogy milyen gyors a közösség az azonosításban az egy hetes intervallumot tekintve. Megjegyzendő, hogy ezek az adatok csak képekkel rendelkező megfigyelésekre érvényesek.
+          Ezek a statisztikák az egy héttel ezelőtti megfigyelésekből készültek. Ez azt jelenti, hogy ezekből kimaradtak az ezutáni azonosítások, ezért a számok kisebbek, mintha újra le lennének számolva a jelenben. Ugyanakkor elég jól szemléltetik, hogy milyen gyors a közösség az azonosításban az egyhetes intervallumot tekintve. Megjegyzendő, hogy ezek az adatok csak képekkel rendelkező megfigyelésekre érvényesek.
         website_desc_html: |
           Létrehozva az <a href="https://www.inaturalist.org">iNaturalist</a>
           vagy az <a href="%{url}">iNaturalist Hálózat</a> honlapokkal
@@ -5383,6 +5384,8 @@ hu:
           <p>
           Megjegyzés: Kérünk ne kísérletezz a csatlakozásod megváltoztatásával, ha több mint 1000 megfigyelésed van.
           </p>
+        licensing_desc_html: |
+          A tartalmad licencelésével bárkinek megadod a törvényi jogot, hogy az engedélyed külön kikérése nélkül használhassa azt, amennyiben betartja a licenc feltételeit. Ezenkívül a %{site_name} a Creative Commons licenccel rendelkező tartalmadat is belefoglalja a rendszeresen frissített archívumokba, amelyeket olyan partnereink számára készítünk, akik érdeklődnek a biodiverzitási adataink iránt. Például a Nincs Szerzői Jog (CC0), a Név Megjelölése (CC BY) és a Név Megjelölése - Nem Kereskedelmi (CC BY-NC) rekordokat is belefoglaljuk a <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) számára generált archívumba, amely egy nemzetközi, kormányközi szervezet, amely összegyűjti és terjeszti a biodiverzitásról szóló információkat a világ minden tájáról.
         name_place_help_html: |
           Elsőbbségben részesülnek az ezen a helyen használt közynelvi nevek.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5404,7 +5407,7 @@ hu:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Rendszertani változások
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_user_observations: Megfigyelések a követett emberektől
+        notification_preferences_user_observations: Megfigyelések a követett felhasználóktól
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Megfigyelések olyan taxonokról és helyekről, amelyekre feliratkoztam
         place_preference_changed_notice_html: |
@@ -5419,6 +5422,8 @@ hu:
         project_settings_desc: |
           Ez a beállítás nem ad hozzáférész a projekteknek a rejtett koordinátákhoz, és nem engedélyezi az értesítések küldését. Ezek engedélyezéséhez csatlakoznod kell a projekthez, vagy egyesével engedélyezned kell ezeket.
         same_day_geoprivacy_protection: Azonos napi helymegjelenítés védettsége
+        taxon_change_desc: |
+          Amikor a taxonokat egyesítik vagy átnevezik a %{site_name}-on, a megfigyeléseid, meghatározott taxonjaid, azonosításaid stb. automatikusan frissülnek az új taxonokra, amennyiben a változás egyértelmű. Ha leiratkozol, vagy a változás nem egyértelmű (pl. egy szétválasztás), akkor változásról küldött értesítésben, találsz majd egy linket a tartalmad manuális szerkesztéséhez.
         this_only_applies_to_traditional_projects: |
           Ez csak hagyományos projektekre vonatkozik. Megfigyeléseket nem tudsz kivenni az ernyőprojektekből, amelyek lényegében mentett keresések. Bővebben <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">itt</a>.
       recent:
