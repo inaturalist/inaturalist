@@ -88,7 +88,11 @@ const config = {
         "react-dom",
         "react-dom/server",
         "react-redux",
-        "redux"
+        "redux-thunk",
+        "redux",
+        "react-bootstrap",
+        "./shared/util",
+        "./shared/ducks/config"
       ],
       runtime: "runtime"
     },
