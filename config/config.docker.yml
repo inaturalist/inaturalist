@@ -114,12 +114,12 @@ base: &base
     # the API port. See 
     # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
     # for more details
-    elasticsearch_host: http://es:9200
+    elasticsearch_host: http://<%= ENV.fetch("INAT_ES_HOST") { "es" } %>:9200
 
     # An instance of https://github.com/inaturalist/iNaturalistAPI, the
     # same code running at CONFIG.tile_servers.elasticsearch
-    node_api_url: http://api:4000/v1
-    public_node_api_url: http://localhost:4000/v1
+    node_api_url: http://<%= ENV.fetch("INAT_API_HOST") { "api" } %>:4000/v1
+    public_node_api_url: http://<%= ENV.fetch("INAT_API_PUBLIC_HOST") { "localhost" } %>:4000/v1
 
     # The secrets used to sign the JWT for authenticated requests to the
     # iNaturalistAPI. These need to be same as in the API's config.js.
@@ -173,8 +173,8 @@ test:
     # test environment, so use different defaults to ensure we don't get fooled
     # when a test passes in a development environment where the node API *is*
     # running
-    node_api_host: "api:5000/v1"
-    node_api_url: http://api:5000/v1
+    node_api_host: "<%= ENV.fetch("INAT_API_HOST") { "api" } %>:5000/v1"
+    node_api_url: http://<%= ENV.fetch("INAT_API_HOST") { "api" } %>:5000/v1
 
 production:
     <<: *base
