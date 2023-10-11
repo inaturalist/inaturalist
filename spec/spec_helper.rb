@@ -223,6 +223,12 @@ LocalPhoto.attachment_definitions[:file].tap do | d |
   end
 end
 
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into(:webmock)
+  config.ignore_localhost = true
+end
+
 # Turn on elastic indexing for certain models. We do this selectively b/c
 # updating ES slows down the specs.
 def enable_elastic_indexing( *args )
