@@ -40,7 +40,10 @@
   / required for Altmetric badges
   = javascript_include_tag "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"
   = javascript_include_tag "torque.full.uncompressed"
-  = javascript_include_tag "stats-year-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/d3-webpack"
+  = javascript_include_tag "webpack/stats-year-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "stats/year"
   = stylesheet_link_tag "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"

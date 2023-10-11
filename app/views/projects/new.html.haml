@@ -20,7 +20,10 @@
     var COPY_PROJECT = #{ @copy_project_json ? @copy_project_json.to_json.html_safe : "null" };
     var HERO_IMAGE_PATH = "#{ image_path( "projects/hero.png" ) }";
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
-  = javascript_include_tag "projects-form-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-dropzone-webpack"
+  = javascript_include_tag "webpack/projects-form-webpack"
 
 #app
   #initial-loading.text-center

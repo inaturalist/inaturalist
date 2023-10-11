@@ -9,6 +9,10 @@
     "jquery": true,
     "es6": false
   },
+  "ignorePatterns": [
+    "*-webpack.js",
+    "*-webpack-*.js"
+  ],
   "rules": {
     "arrow-parens": [2, "as-needed"],
     "comma-dangle": [2, "never"],
