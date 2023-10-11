@@ -45,7 +45,7 @@ class CodeContributor extends React.Component {
           <ul>
             { pullRequestsToDisplay.map( pr => (
               <li key={pr.html_url}>
-                <a href={pr.html_url}>{ pr.title }</a>
+                <a href={pr.html_url}>{ pr.title.replace( /^[^A-z]+/, "" ) }</a>
               </li>
             ) ) }
           </ul>
