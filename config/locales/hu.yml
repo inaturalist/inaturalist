@@ -453,7 +453,7 @@ hu:
   all_taxa_: Minden taxon
   all_taxa_in_this_guide: Minden taxon ebből az útmutatóból
   all_taxonomic_groups: "&laquo; Minden rendszertani csoport"
-  all_updates: Minden frissítés
+  all_updates: Minden aktivitás
   allow_curator_access: Kurátori hozzáférés engedélyezése
   allow_project_curators_to_view_your_private_coordinates: Engedélyezed a projekt kurátorainak, hogy láthassák rejtett koordinátáidat
   allowed_html: Engedélyezett HTML
@@ -2683,17 +2683,17 @@ hu:
     following_panel_body: |
       %{site_name}-on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
     comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak %{site_name}-on?
-    comments_panel_body: "<p>Az %{site_name} abból áll, hogy megoszd és megbeszéld élőlények megfigyeléseit. Alább találod a most lefolyó beszélgetéseket. (Megjegyzés: Automatikusan fel vagy iratkozva minden beszélgetésre amelyhez hozzászólsz vagy amelyekhez azonosításokat adsz. Ezeket a frissítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
+    comments_panel_body: "<p>Az %{site_name} abból áll, hogy megoszd és megbeszéld élőlények megfigyeléseit. Alább találod a most lefolyó beszélgetéseket. (Megjegyzés: Automatikusan fel vagy iratkozva minden beszélgetésre, amelyhez hozzászólsz vagy amelyekhez azonosításokat adsz. Ezeket az értesítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
     updates_by_you_panel_title: Ez a fül egy gyors szűrő a tartalmaid újdonságaihoz
-    updates_by_you_panel_body: 'Emlékeztető: a "Minden frissítés" fülön nemcsak a saját tartalmaidről kapsz frissítéseket, hanem a követett felhasználók tartalmairól is, valamint azokról a taxonokról, amelyekre feliratkoztál a jobbra található Feliratkozás opcióval.'
+    updates_by_you_panel_body: 'Emlékeztető: a "Minden aktivitás" fülön nemcsak a saját tartalmaidről kapsz értesítéseket, hanem a követett felhasználók tartalmairól is, valamint azokról a taxonokról, amelyekre feliratkoztál a jobbra található Feliratkozás opcióval.'
     youve_got_updates_panel_title: Új híreid vannak!
     youve_got_updates_panel_body_p1: Légy naprakész az alábbiakkal...
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Tartalmaid:</strong> Aktivitás a megfigyeléseidről, mint például megjegyzések, meghatározások vagy kedvencek az %{site_name} közösségtől. Akkor is kapsz frissítést, amikor valaki hozzáadja megfigyelésedet egy projekthez vagy más adatmezőkkel kiegészíti azt. </li>
-      <li><strong>Emberek:</strong> Új megfigyelések vagy naplóbejegyzések a követett felhasználóktól.</li>
-      <li><strong>Élőlények, projektek és helyek:</strong> Új megfigyelések élőlényekről és helyekről amikre feliratkoztál. Projektekben is részt vehetsz, így értesítéseket kaphatsz ezek naplóbejegyzéseiből.</li>
-      <li><strong>Beszélgetések, melyekben részt vettél:</strong> Amikor megjegyzést fűzől mások megfigyeléseihez vagy ezeket azonosítod, automatikusan feliratkozol, így értesítéseket kapsz minden ezekkel kapcsolatos aktivitásról. Használd a 'Feliratkozások kezelése' eszközt, ha nem akarsz a fejleményekről értesülni.</li>
+      <li><strong>Tartalmaid:</strong> Aktivitás a megfigyeléseidről, mint például megjegyzések, meghatározások vagy kedvencek az %{site_name} közösségtől. Akkor is kapsz értesítést, amikor valaki hozzáadja megfigyelésedet egy projekthez, vagy adatmezőkkel egészíti azt ki. </li>
+      <li><strong>Emberek:</strong> Új megfigyelések vagy bejegyzések a követett felhasználóktól.</li>
+      <li><strong>Élőlények, projektek és helyek:</strong> Új megfigyelések élőlényekről és helyekről, amikre feliratkoztál. Projektekben is részt vehetsz, így értesítéseket kaphatsz ezek bejegyzéseiből.</li>
+      <li><strong>Beszélgetések, melyekben részt vettél:</strong> Amikor megjegyzést fűzől mások megfigyeléseihez vagy ezeket azonosítod, automatikusan feliratkozol, így értesítéseket kapsz minden ezekkel kapcsolatos aktivitásról. Használd a 'Feliratkozások kezelése' opciót, ha nem akarsz a fejleményekről értesülni.</li>
       </ul>
   one_by_one: "Egyenként"
   #Header for a list of project observation requirements
