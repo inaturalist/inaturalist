@@ -7526,6 +7526,9 @@ da:
           %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
         translators_prompt: |
           Vil du hjælpe med at oversætte, %{link_tag}så tjek info hér%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VIS %{count} PUBLIKATION"
+          other: "VIS ALLE %{count} PUBLIKATIONER"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
