@@ -160,9 +160,11 @@ class SplitTaxon extends React.Component {
     }
     if ( !_.isEmpty( taxon.preferred_common_names ) ) {
       const comNamesClass = this.showScinameFirst( ) ? "secondary-names" : "display-names";
-      let comNames = _.map( taxon.preferred_common_names, ( preferredCommonName, index ) => (
-        this.comName( preferredCommonName.name, index, { nolink: true } )
-      ) );
+      let comNames = _.uniq(
+        _.map( taxon.preferred_common_names, ( preferredCommonName, index ) => (
+          this.comName( preferredCommonName.name, index, { nolink: true } )
+        ) )
+      );
       comNames = comNames.reduce( ( prev, curr ) => [prev, " · ", curr] );
       let comNameClass = displayClassName || "";
       const LinkElement = this.LinkElement( );

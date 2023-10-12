@@ -202,7 +202,9 @@ const Content = ( {
         <SettingsItem>
           <h4>{I18n.t( "names" )}</h4>
           <div className="stacked">
-            <label htmlFor="user_prefers_common_names">{I18n.t( "display" )}</label>
+            <label htmlFor="user_prefers_common_names">
+              { I18n.t( "views.users.edit.common_scientific_name_display_order" ) }
+            </label>
           </div>
           <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
           <select

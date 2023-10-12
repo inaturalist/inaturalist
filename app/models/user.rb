@@ -265,6 +265,7 @@ class User < ApplicationRecord
   after_save :destroy_messages_by_suspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
+  after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
   after_create :set_uri
@@ -1566,6 +1567,19 @@ class User < ApplicationRecord
 
   def anonymous?
     id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
+  end
+
+  # TODO: remove the is_admin? requirement once multiple common names is available for all users
+  def update_taxon_name_priorities
+    return unless saved_change_to_place_id?
+    return unless is_admin?
+    return unless taxon_name_priorities.length == 0 ||
+      ( taxon_name_priorities.length == 1 && taxon_name_priorities[0].lexicon.nil? )
+    taxon_name_priorities.delete_all
+    if place_id && place_id != 0
+      taxon_name_priorities.create( lexicon: nil, place_id: place_id )
+    end
+    save
   end
 
   # this method will look at all this users photos and create separate delayed jobs
