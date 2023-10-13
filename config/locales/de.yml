@@ -938,7 +938,7 @@ de:
   committed_taxon_changes_cannot_be_deleted: Veröffentlichte Taxon-Änderungen können nicht gelöscht werden
   #Status message while a taxon change is being committed
   committing: Übertragung …
-  common_name: Allgemeingebräuchlicher Name
+  common_name: Trivialname
   community: Community
   community_curated: Von Benutzern erstellt
   community_guidelines: Community-Richtlinien
@@ -5495,7 +5495,7 @@ de:
   worldwide: Weltweit
   wondering_what_to_do_next: Hier ein paar nächste Schritte, um dich auf den Weg zur Beobachtung und Identifizierung der Natur zu bringen
   would_you_like_to: Möchtest du
-  would_you_prefer_to_view_common_names_used_in_place_html: Würdest du es vorziehen, die allgemeingebräuchlichen Namen in <strong>%{place}</strong> zu sehen?
+  would_you_prefer_to_view_common_names_used_in_place_html: Würdest du es vorziehen, die Trivialnamen in <strong>%{place}</strong> zu sehen?
   x_blog: "%{x}'s Blog"
   x_deleted: "%{x} gelöscht"
   x_does_not_exist: "\"%{x}\" existiert nicht"
@@ -6222,7 +6222,7 @@ de:
         id: "Eindeutige Kennung für diese Beobachtung"
         species_guess: "Name, den der Melder für das beobachtete Taxon eingegeben hat"
         scientific_name: "Wissenschaftlicher Name des beobachteten Taxons entsprechend dieser Seite"
-        common_name: "Allgemeingebräuchlicher oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
+        common_name: "Trivial- oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
         iconic_taxon_name: Höheres taxonomisches Level für das beobachtete Taxon
         taxon_id: Eindeutige Kennung für das beobachtete Taxon
         id_please: Ob der Beobachter die ID-Hilfe angefordert hat oder nicht
@@ -6984,6 +6984,9 @@ de:
           %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end}- und %{android_link_tag}Android%{link_tag_end}-Apps, sowie %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in den jeweiligen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories für %{view_all_web_link_tag}Web%{link_tag_end} und %{view_all_mobile_link_tag}Smartphone%{link_tag_end} ansehen.
         translators_prompt: |
           Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier%{link_tag_end} wie es geht.
+        view_all_publications_count_caps2:
+          one: "%{count} PUBLIKATION ANSEHEN"
+          other: "ALLE %{count} PUBLIKATIONEN ANSEHEN"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7005,14 +7008,14 @@ de:
       show:
         about_names_desc: |
           <p>
-          Viele Lebensformen besitzen "umgangssprachliche oder allgemeingebräuchliche Namen". Diese Namen besitzen im Allgemeinen einen hohen Wiedererkennungswert, sind leicht auszusprechen und haben sich im Laufe der Zeit fest etabliert, aber viele Organismen haben - auch in der gleichen Sprache - mehrere verschiedene Namen in unterschiedlichen Regionen. Dadurch kann es schwierig sein, ohne Missverständnisse über diese Organismen zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
+          Viele Lebensformen besitzen "umgangssprachliche oder Trivialnamen". Diese Namen besitzen im Allgemeinen einen hohen Wiedererkennungswert, sind leicht auszusprechen und haben sich im Laufe der Zeit fest etabliert, aber viele Organismen haben - auch in der gleichen Sprache - mehrere verschiedene Namen in unterschiedlichen Regionen. Dadurch kann es schwierig sein, ohne Missverständnisse über diese Organismen zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
           <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein und Altgriechisch - Sprachen, die niemand spricht - sodass die Bezeichnungen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Position eines Organismus widerspiegeln, so dass sie sich ändern können, falls Wissenschaftler neue Erkenntnisse über die verwandschaftlichen Beziehungen zwischen verschiedenen Organismen entwickeln. Das wiederum kann ihren Nutzen für die Kommunikation verringern, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
           </p>
           <p>
           Das alte Sprichwort fasst es zusammen: "Umgangssprachliche Namen ändern sich von Ort zu Ort, und wissenschaftliche Namen ändern sich von Zeit zu Zeit."
           </p>
           <p>
-          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl allgemeingebräuchliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen. Die Namen sind dabei nach ihrer lokalen Priorität gelistet.
+          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl allgemeingebräuchliche als auch wissenschaftliche Namen zeigen und Trivialnamen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen. Die Namen sind dabei nach ihrer lokalen Priorität gelistet.
           </p>
         about_conservation_status_desc: |
           Der Gefährdungsstatus beschreibt das Aussterberisiko einer Gruppe von Organismen.
@@ -7192,6 +7195,7 @@ de:
           <p>
           Wenn dich jemand auf %{site_name} belästigt oder verfolgt, <a href="mailto:%{help_email}">bitte lass es uns wissen</a>. Wenn dies einen Verstoß gegen unsere Nutzungsbedingungen darstellt oder die andere Verhaltensweisen, die wir für unangemessen halten, werden wir dem nachgehen.
           </p>
+        common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit
           <a href='/users/edit'>die Einstellungen ändern</a>.
@@ -7228,7 +7232,7 @@ de:
           Identifikationen, die die Community-ID deiner Beobachtungen verändern, verpassen könntest
           </p>
         name_place_help_html: |
-          Allgemeingebräuchliche Namen dieses Gebiets verwenden:
+          Trivialnamen dieses Gebiets verwenden:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Kommentare
         #Checkbox label for user preference about what to receive in the daily email update
