@@ -5527,7 +5527,7 @@ nl:
   view_all_members: Alle leden weergeven
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
-    one: "Toon alle %{count}"
+    one: "Toon %{count}"
     other: "Toon alle %{count}"
   view_all_observations: Alle waarnemingen weergeven
   view_all_photocount_photos: "Alle %{photo_count} foto's weergeven"
@@ -6047,7 +6047,7 @@ nl:
             het 'In de buurt verwacht'-label laten toepassen op een suggestie van <i>Sceloporus consobrinus</i>
             maar niet <i>Sceloporus occidentalis</i> op basis van hun respectieve 'In de buurt verwacht'-lkaarten.
           you_can_think: |
-            Je kunt de "In de buurt verwacht"-kaart zien als een schatting van of de soort
+            Je kunt de "In de buurt verwacht"-kaart zien als een verwachting of de soort
             ergens in de rastercel aanwezig is of helemaal niet.
           figure_alt_text: Het Geomodel past het 'In de buurt verwacht'-label toe
         unthresholded_map:
@@ -7470,6 +7470,7 @@ nl:
             Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
             het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
           </p>
+        common_scientific_name_display_order: Weergavevolgorde van lokale/wetenschappelijke namen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Als je van gedachten verandert, kun je dat altijd via 
           <a href='/users/edit'>je instellingen wijzigen</a>.
