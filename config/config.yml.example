@@ -169,7 +169,6 @@ test:
     # test environment, so use different defaults to ensure we don't get fooled
     # when a test passes in a development environment where the node API *is*
     # running
-    node_api_host: "localhost:5000/v1"
     node_api_url: http://localhost:5000/v1
 
 production:

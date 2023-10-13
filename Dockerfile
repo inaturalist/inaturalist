@@ -35,6 +35,9 @@ COPY --chown=inaturalist:inaturalist config/database.docker.yml /code/config/dat
 
 RUN npm run webpack
 
+RUN mkdir /code/public/attachments
+RUN chown inaturalist:inaturalist /code/public/attachments
+
 EXPOSE 3000
 
 CMD "./docker/init_docker_rails_app.sh"

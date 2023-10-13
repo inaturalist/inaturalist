@@ -4,6 +4,7 @@ login: &login
   encoding: utf8
   adapter: postgis
   template: template_postgis
+  sslmode: <%= ENV.fetch("INAT_DB_SSL_MODE") { "disable" } %>
   username: <%= ENV.fetch("INAT_DB_USER") { "inaturalist" } %>
   password: <%= ENV.fetch("INAT_DB_PASS") { "inaturalist" } %>
 
