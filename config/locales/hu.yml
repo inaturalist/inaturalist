@@ -2436,7 +2436,7 @@ hu:
     user: "%{user} még nem adott hozzá kedvenceket."
   no_journal_posts_yet: Még nincs hírmondó-bejegyzés
   no_license_all_rights_reserved: Nincs licenc (minden jog fenntartva)
-  no_matching_article_from_x: "Nincs egyező cikk %{x}-től"
+  no_matching_article_from_x: "Nincs egyező %{x}-cikk"
   no_matching_observations: Nincs egyező megfigyelés
   no_matching_places: Nincs egyező hely
   no_matching_projects: Nincs egyező projekt
@@ -5368,6 +5368,7 @@ hu:
           Ha kitörlöd fiókod, eltávolítod
         type_confirmation_code: Írd be a %{confirmation_code}t
       edit:
+        common_scientific_name_display_order: Köznyelvi / tudományos nevek megjelenítési sorrendje
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ha meggondolod magad, bármikor
           <a href='/users/edit'>módosíthatod beállításaidat</a>.
