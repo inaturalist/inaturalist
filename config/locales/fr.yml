@@ -7335,6 +7335,9 @@ fr:
           %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
         translators_prompt: |
           Si vous voulez aider à traduire, %{link_tag}apprenez comment%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VOIR LA PUBLICATION"
+          other: "VOIR L'ENSEMBLE DES %{count} PUBLICATIONS"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7618,6 +7621,7 @@ fr:
           autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
+        common_scientific_name_display_order: Ordre d'affichage du nom commun et du nom scientifique
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
