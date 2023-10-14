@@ -6988,6 +6988,9 @@ tr:
           üzere tüm dillerde çevirilere katkıda bulunan tüm kişileri görüntüleyebilirsiniz.
         translators_prompt: |
           Çeviriye yardım etmek istiyorsanız, %{link_tag}nasıl yapıldığını öğrenin%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "%{count} YAYINI GÖRÜNTÜLE"
+          other: "%{count} YAYINI GÖRÜNTÜLE"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7187,6 +7190,7 @@ tr:
           <p>
           Birisi sizi %{site_name}'te taciz ediyorsa, <a href="mailto:%{help_email}">lütfen bize bildirin</a>. Bu, Kullanım Koşullarımızın ihlali anlamına geliyor ise ya da sitemiz için uygunsuz olduğunu düşündüğümüz başka bir davranışı temsil ediyor ise, araştıracağız.
           </p>
+        common_scientific_name_display_order: Yaygın / Bilimsel Ad Görüntüleme Sırası
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Fikrinizi değiştirirsen, her zaman <a href='/users/edit'>ayarlarını düzenleyebilirsin</a>.
         inaturalist_network_affiliation_desc_html: |
