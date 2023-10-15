@@ -7067,6 +7067,9 @@ it:
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VISUALIZZA %{count} PUBBLICAZIONE"
+          other: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7246,6 +7249,7 @@ it:
           </p>
           <p>Se qualcuno ti sta molestando o stalkerando su %{site_name}, <a href="mailto:%{help_email}">sei pregato di farcelo sapere</a>. Se questo rappresenta una violazione dei nostri Termini d'Uso o rappresenta altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
           </p>
+        common_scientific_name_display_order: Ordine di Visualizzazione del Nome Comune / Scientifico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |
