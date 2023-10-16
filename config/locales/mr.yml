@@ -570,37 +570,6 @@ mr:
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
   email: ई-मेल
-  email_conf_banner_email_delivered_click_link: |
-    पुष्टीकरण ईमेल पाठवली आहे. कृपया ईमेलमधील लिंकवर क्लिक करा.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>तुमच्या संपर्कांच्या सूचीमध्ये <code>%{email}</code> जोडा आणि
-    <a href="%{url}">दुसऱ्या पुष्टीकरण ईमेलची विनंती करा</a>.</strong> जर तुमच्या ईमेल
-    प्रदात्याने पुष्टीकरण ईमेल अवरोधित केले असेल, तर कदाचित हे त्यांना पटवून देईल की तुम्हाला खरोखरच आमच्याकडून ईमेल हवा आहे.
-  email_conf_banner_check_your_spam_folder_html: <strong>तुमचे स्पॅम फोल्डर तपासा</strong>
-  email_conf_banner_contact_us_html: अद्याप काम करत नाही? आम्हाला %{email} वर ईमेल करा जेणेकरून आम्ही तुम्हाला मदत करू शकू.
-  email_conf_banner_please_click: |
-    तुमच्या ईमेल पत्त्याची पुष्टी करण्यासाठी कृपया तुमच्या ईमेलवर प्राप्त झालेल्या लिंकवर क्लिक करा.
-  email_conf_banner_search_for_emails_html: <strong>कडून आलेले ईमेल शोधा<code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    आम्ही आपल्याला %{date} रोजी पुष्टीकरण ईमेल पाठवले. आपल्याला जर ते मिळाले नसेल, तर आपण पुढील गोष्टी करू शकता:
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: तुमच्या %{site_name} ईमेल पत्त्याची %{date} पूर्वी खात्री करा #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    आपले खाते नियमित चालू ठेवण्यासाठी कृपया आजच आपल्या ईमेल पत्त्याची पुष्टी करा. %{site_name} आणि मोबाइल अॅप्स iNaturalist आणि Seek द्वारा iNaturalist च्यायोगे आपापसांत जैवविविधतेची निरीक्षणे शेअर करून लोकांना निसर्गाशी आणि परस्परांशी जोडतात. iNaturalist समुदायात सहभागी असल्याबद्दल धन्यवाद!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    आम्हाला सर्व खात्यांसाठी सत्यापित ईमेल पत्ते आवश्यक असतील सदर तारखेपासून %{requirement_date}. कृपया आपल्या खात्याची पुष्टी करण्यासाठी थोडासा वेळ काढा.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    आपल्याला काही प्रश्न असल्यास, कृपया पहा <a href="%{faq_url}">FAQ</a>. निसर्गासह आणि %{site_name} सह संपर्कात राहण्यासाठी वेळ दिल्याबद्दल धन्यवाद.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: अकाउंटची माहिती
   email_copyright2: "&copy; %{year} iNaturalist, सर्व हक्क राखीव"
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
@@ -1275,6 +1244,9 @@ mr:
         observation_streaks_desc2: |
           एखादी निरीक्षणाची मालिका म्हणजे कमीतकमी पाच दिवसांचा कालावधी जेव्हा एखादा निरीक्षक बाहेर पडला आणि त्याने दररोज नवीन, सत्यापित निरीक्षणे केली. आम्ही इथे या वर्षात सुरू झालेल्या किंवा जेव्हा ही आकडेवारी तयार केली गेली तेव्हा प्रगतीपथावर होत्या अशा प्रदीर्घ मालिका दर्शवित आहोत (वैयक्तिक वापरकर्त्यांसाठी, आम्ही या वर्षाअखेरीस समाप्त झालेल्या मालिकांचा देखील समावेश करीत आहोत).
         stats_generation_schedule: डिसेंबरमध्ये दर रविवारी आणि १ जानेवारीला आकडेवारी तयार केली जाईल.
+        view_all_publications_count_caps2:
+          one: "%{count} प्रकाशन पहा"
+          other: "सर्व %{count} प्रकाशने पहा"
     taxa:
       show:
         frequency:
@@ -1284,6 +1256,7 @@ mr:
           "Life Stage=Pupa": कोष
     users:
       edit:
+        common_scientific_name_display_order: सामान्य / वैज्ञानिक नाव दर्शनीय क्रम
         monthly_supporter_desc_html: |
           iNaturalist मासिक समर्थक स्वयंचलित मासिक योगदान देतात
           समर्थन करण्यासाठी iNaturalist ला (युनायटेड स्टेट्स IRS EIN 92-1296468)

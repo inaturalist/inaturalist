@@ -967,8 +967,8 @@ id:
     Model Penglihatan Komputer yang sekarang dapat mengenali takson ini, jadi takson ini mungkin sudah dimasukkan ke dalam rekomendasi otomatis dengan label "Serupa Secara Visual"
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Belum bisa
-  computer_vision_model_pending_desc: |
-    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Sekitaran", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
+  computer_vision_model_pending_desc2: |
+    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Terlihat di Sekitar", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
   concept_status: Status Konsep
   confidential: Rahasia
   configure: Pengaturan
@@ -1639,46 +1639,8 @@ id:
   email: Email
   email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_address_for_comments_and_other_feedback: Alamat email untuk komentar dan umpan balik lainnya
-  email_conf_banner_email_delivered_click_link: |
-    Email konfirmasi sudah dikirim. Klik tautan pada email-nya.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Tambahkan <code>%{email}</code> ke daftar kontak Anda dan
-    <a href="%{url}">minta email konfirmasi lagi</a>.</strong> Jika penyedia email 
-    Anda memblokir email konfirmasi, hal ini mungkin akan meyakinkan mereka 
-    bahwa Anda ingin sebuah email dari kami.
-  email_conf_banner_check_your_spam_folder_html: <strong>Cek folder spam Anda</strong>
-  email_conf_banner_contact_us_html: Masih belum berhasil? Kirim email ke kami di %{email} supaya kami bisa menolong Anda.
-  email_conf_banner_please_click: |
-    Silakan klik tautan di email Anda untuk mengkonfirmasi alamat email Anda.
-  email_conf_banner_search_for_emails_html: <strong>Cari email dari <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Kami sudah mengirimkan email konfirmasi pada tanggal %{date}. Jika Anda belum menerimanya, di sini ada beberapa hal yang bisa Anda lakukan:
   email_conf_required_after_grace_period: |
     Konfiirmasi email diwajibkan sejak %{requirement_date} dan Anda belum mengonfirmasi alamat email Anda sebelum tanggal pemberlakuan aturan ini. Harap mengatur ulang kata sandi Anda sebelum mengakses akun Anda.
-  email_conf_faq_html: |
-    Jika Anda memiliki pertanyaan, silakan membaca <a href="%{url}">FAQ</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Hatap mengonfirmasi alamat email Anda%{link_end_tag}</strong>.
-    Semua pengguna harus mengonfirmasi email mereka sebelum %{date}. Setelah tanggal tersebut, semua orang yang belum mengonfirmasi alamat email mereka tidak akan bisa masuk kecuali mereka mengatur ulang kata sandi mereka. Untuk mengonfirmasi alamat email Anda,
-    pergi ke %{link_start_tag}pengaturan akun%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Konfirmasi alamat email %{site_name} Anda sebelum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Mohon konfirmasi alamat surel Anda hari ini supaya Anda dapat tetap mengakses akun Anda. %{site_name}, aplikasi mobile iNaturalist, dan Seek by iNaturalist menghubungkan orang dengan alam dan satu sama lain dengan membagikan pengamatan-pengamatan keanekaragaman hayati. Terima kasih telah menjadi bagian dari komunitas iNaturalist.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Kami mewajibkan verifikasi alamat email mulai dari %{requirement_date}. Mohon luangkan waktu Anda untuk mengonfirmasinya sekarang.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Jika Anda mempunyai pertanyaan, silakan membaca <a href="%{faq_url}">FAQ</a>. Terima kasih telah meluangkan waktu untuk terhubung dengan alam dan juga %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detail akun
   email_copyright2: "&copy; %{year} iNaturalist, hak cipta dilindungi undang-undang"
   email_notifications: Notifikasi Email
   embed: 'Tanamkan'
@@ -6880,6 +6842,8 @@ id:
           Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
+        view_all_publications_count_caps2:
+          other: "LIHAT %{count} PUBLIKASI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7066,6 +7030,7 @@ id:
           <p>
           Jika seseorang mengganggu atau melakukan stalking kepada Anda di %{site_name}, <a href="mailto:%{help_email}">beritahu kami</a>. Jika hal itu merupakan pelanggaran Syarat dan Ketentuan Penggunaan kami atau merupakan perilaku yang kami anggap tidak pantas untuk situs kami, kami akan menyelidikinya.
           </p>
+        common_scientific_name_display_order: Urutan Penampilan Nama Umum / Ilmiah
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
         inaturalist_network_affiliation_desc_html: |

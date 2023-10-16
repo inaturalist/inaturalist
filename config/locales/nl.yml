@@ -179,7 +179,7 @@ nl:
   about_places: Over plaatsen
   about_taxon_ranges: Over de verspreidingen van het taxon
   about_taxon_ranges_desc: |
-    Taxonverspreidingsgebieden geven de globale verdeling van een taxon weer. Taxon verspreidingsgebieden zijn
+    De verspreiding van een taxon geeft de wereldwijde verspreiding van een taxon weer. Taxon verspreidingsgebieden zijn
     meestal afkomstig uit de IUCN Rode Lijst.
   about_the_network: Over het netwerk
   about_this_bioblitz: Over deze bioblitz
@@ -669,7 +669,7 @@ nl:
     Weet je zeker dat je dit taxon wilt verwijderen? Het heeft waarnemingen.
   are_you_sure_want_delete_taxon_link: Weet je zeker dat je deze taxonlink wilt verwijderen?
   are_you_sure_want_delete_this_name: Weet je zeker dat je deze naam wilt verwijderen?
-  are_you_sure_want_delete_this_range: Weet je zeker dat je deze reeks wilt verwijderen?
+  are_you_sure_want_delete_this_range: Weet je zeker dat je deze verspreidingsgegevens wilt verwijderen?
   are_you_sure_you_want_to_commit_this_change: Weet je zeker dat je deze wijziging wilt vastleggen? Dit kan niet ongedaan worden gemaakt.
   are_you_sure_you_want_to_delete_this: Weet je zeker dat je dit wilt verwijderen?
   are_you_sure_you_want_to_delete_this_assessment?: Weet je zeker dat je deze beoordeling wilt verwijderen?
@@ -1051,10 +1051,10 @@ nl:
     voorkomen in geautomatiseerde suggesties met het "Visueel vergelijkbaar" label.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: In behandeling
-  computer_vision_model_pending_desc: |
-    Het huidige Computer Vision Model kent dit taxon niet, het kan dus voorkomen in geautomatiseerde suggesties met het label "In de omgeving" maar het zal dan niet het label "Visueel vergelijkbaar" hebben. Hoewel de vereisten voor opname in het model met elk model wijzigen, is opname in het algemeen gebaseerd op
-    aantal waarnemingen, om de kans te vergroten dat dit taxon tijdens de volgende modeltraining
-    wordt opgenomen. Voeg meer waarnemingen toe van dit taxon of determineer ze.
+  computer_vision_model_pending_desc2: |
+    Het huidige Computer Vision Model kent dit taxon niet, het kan dus voorkomen in geautomatiseerde suggesties met het label "In de buurt verwacht" maar het zal dan niet het label "Visueel vergelijkbaar" hebben. Hoewel de vereisten voor opname in het model met elk model wijzigen, is opname in het algemeen gebaseerd op het 
+    aantal waarnemingen. Om de kans te vergroten dat dit taxon tijdens de volgende modeltraining
+    wordt opgenomen moet je meer waarnemingen toevoegen van dit taxon of ze determineren.
     .
   concept_status: Conceptstatus
   confidential: Vertrouwelijk
@@ -1729,55 +1729,10 @@ nl:
   email: E-mail
   email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
-  email_conf_banner_email_delivered_click_link: |
-    Bevestigingse-mail verzonden. Klik op de link in de e-mail.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Voeg <code>%{email}</code> toe aan je lijst van contacten en
-    <a href="%{url}">vraag om een andere bevestigingse-mail</a>.</strong> Als je e-mail provider 
-    de bevestigingse-mail heeft geblokkeerd zou dit hen kunnen overtuigen dat je daadwerkelijk e-mail van ons wil ontvangen.
-  email_conf_banner_check_your_spam_folder_html: <strong>Controleer je spamfolder</strong>
-  email_conf_banner_contact_us_html: Werkt het nog steeds niet? E-mail ons op %{email} zodat we je kunnen helpen.
-  email_conf_banner_please_click: |
-    Klik op de link in je e-mail om jouw e-mailadres te bevestigen.
-  email_conf_banner_search_for_emails_html: <strong>Zoeken naar e-mails van <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    We hebben je een bevestigingsmail gestuurd op %{date}. Als je deze niet
-    hebt ontvangen dan zijn er enkele dingen die je kunt doen:
   email_conf_required_after_grace_period: |
     E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
     je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
     om toegang te behouden tot je account.
-  email_conf_faq_html: |
-    Als u vragen heeft, raadpleeg dan deze <a href="%{url}">FAQs</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
-    Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
-    datum kan iedereen die zijn e-mailadres niet heeft bevestigd niet
-    inloggen tenzij hij zijn wachtwoord opnieuw instelt. Ga om je e-mailadres te bevestigen
-    naar je %{link_start_tag}account instellingen%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bevestig jouw %{site_name} e-mailadres voor %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Bevestig vandaag je e-mailadres om ervoor te zorgen dat jij jouw toegang tot je account behoudt.
-     %{site_name} en de mobiele apps iNaturalist en Seek door iNaturalist verbinden mensen met de natuur en elkaar
-    door waarnemingen van biodiversiteit te delen. Bedankt voor je deelname aan de iNaturalist community!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    We hebben geverifieerde e-mailadressen nodig voor alle accounts vanaf
-    %{requirement_date}. Neem even de tijd om dit te bevestigen.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Als je vragen hebt raadpleeg dan de
-    <a href="%{faq_url}">FAQs</a>. Bedankt dat je de tijd hebt genomen om
-    verbinding te maken met de natuur en met %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Accountgegevens
   email_copyright2: "&copy; %{year} iNaturalist, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
@@ -2704,7 +2659,7 @@ nl:
       place_boundary: Plaats grens
       checklist_places: Checklist plaatsen
       checklist_places_description: Plaatsen waar dit taxon in de lijst is opgenomen
-      range: Bereik
+      range: Verspreiding
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
@@ -2983,7 +2938,6 @@ nl:
   new_taxon_change: Nieuwe Taxonwijziging
   new_taxon_link: Nieuwe taxon koppeling
   new_taxon_name_for: Nieuwe Taxon Naam voor
-  new_taxon_range: Nieuw verspreiding van een taxon
   new_taxonomic_change: Nieuwe Taxon Wijzinging (Concept)
   new_trip: Nieuwe route
   new_updates_in_the_last_24_hours_from: "Nieuwe updates op %{site_name} in de afgelopen 24 uur"
@@ -3062,7 +3016,7 @@ nl:
   no_project_to_admin_login: "%{login} administreert geen enkel project"
   no_projects_yet: Nog geen projecten
   no_attached_range: Geen bijgevoegde verspreiding
-  no_range_data_available: Geen datareeks beschikbaar.
+  no_range_data_available: Geen verspreidingsgegevens beschikbaar.
   no_recent_activity: Geen recente activiteit
   no_relevant_annotations: Geen relevante aantekeningen
   no_reply_yet: Nog geen antwoord
@@ -4131,7 +4085,7 @@ nl:
   radius_km: Straal (km)
   radius_value: "Straal (m): %{radius}"
   random: Willekeurig
-  range: Bereik
+  range: Periode
   rank: Rang
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
@@ -4270,7 +4224,7 @@ nl:
   ranks_lowercase_form: vorm
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybride
-  ranges: Bereik
+  ranges: Verspreiding
   #Text to link to a taxon range as a KML file
   range_file: Verspreidingsbestand
   ray_finned_fishes: Straalvinnigen
@@ -4350,7 +4304,7 @@ nl:
     other: '%{count} waarnemingen verwijderen?'
   remove_photo: Foto verwijderen
   remove_place: Verwijder Plaats
-  remove_range: Reeks verwijderen
+  remove_range: Verspreiding verwijderen
   remove_relationship: Relatie verwijderen
   remove_relationship_caps: VERWIJDER RELATIE
   remove_relationship_question: Relatie verwijderen?
@@ -6082,7 +6036,7 @@ nl:
         the_geo_model_is_trained: |
           Net zoals het Computer Vision Model is het Geomodel getraind op iNaturalist waarnemingen
           voor dezelfde set soorten met grofweg meer dan 100 foto's. Het Geomodel maakt geen 
-          perfecte voorspellingen. Je kunt <a href="%{url}">hier</a> meer lezen over hoe de Geomodel is gemaakt.
+          perfecte voorspellingen. Hier is <a href="%{url}">meer informatie over hoe het Geomodel is gemaakt</a>.
         nearby_map:
           expected_nearby_map: '''In de buurt verwacht''-kaart'
           we_use_this_map: |
@@ -6093,7 +6047,7 @@ nl:
             het 'In de buurt verwacht'-label laten toepassen op een suggestie van <i>Sceloporus consobrinus</i>
             maar niet <i>Sceloporus occidentalis</i> op basis van hun respectieve 'In de buurt verwacht'-lkaarten.
           you_can_think: |
-            Je kunt de "In de buurt verwacht"-kaart zien als een schatting van of de soort
+            Je kunt de "In de buurt verwacht"-kaart zien als een verwachting of de soort
             ergens in de rastercel aanwezig is of helemaal niet.
           figure_alt_text: Het Geomodel past het 'In de buurt verwacht'-label toe
         unthresholded_map:
@@ -6111,7 +6065,7 @@ nl:
             binnen een rastercel voorkomt.
           figure_alt_text: Het Geomodel weegt de Computer Vision resultaten
         range_comparison:
-          expected_nearby_vs_taxon_range: In de buurt verwacht versus de verspreiding van het taxon
+          expected_nearby_vs_taxon_range: '''In de buurt verwacht'' versus ''de verspreiding van het taxon'''
           this_map_shows: |
             Deze kaart toont de verspreiding van het taxon voor deze soort samen met de overlap van de 'In de buurt verwacht'-kaart
             die we gebruiken om het Geomodel te evalueren.
@@ -7516,6 +7470,7 @@ nl:
             Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
             het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
           </p>
+        common_scientific_name_display_order: Weergavevolgorde van lokale/wetenschappelijke namen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Als je van gedachten verandert, kun je dat altijd via 
           <a href='/users/edit'>je instellingen wijzigen</a>.

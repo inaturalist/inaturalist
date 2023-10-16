@@ -1020,8 +1020,8 @@ it:
     Il Modello di Visione Computerizzata corrente conosce questo taxon, quindi potrebbe esser incluso nei suggerimenti automatizzati con l'etichetta "Visivamente Simile".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: In sospeso
-  computer_vision_model_pending_desc: |
-    Il Modello di Visione Computerizzata corrente non conosce questotaxon, quindi mentre potrebbe esser incluso nei suggerimenti automatici con l'etichetta "Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Mentre i requisiti per l'inclusione del modello cambiano ad ogni modello, generalmente l'inclusione si basa sul numero di osservazioni, così per aumentare le possibilità che questo taxon sia incluso durante l'addestramento del modello successivo, aggiungi o identifica più osservazioni di questo taxon.
+  computer_vision_model_pending_desc2: |
+    Il Modello di Visione Informatica attuale non conosce questo taxon, quindi, sebbene potrebbe essere incluso nei suggerimenti automatizzti con l'etichetta "Previsto Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Sebbene i requisiti per l'inclusione del modello cambiano con ogni modello, generalmente, l'inclusione, si basa sul numero di osservazioni, così da incrementare le possibilità che questo taxon sia incluso durante il prossimo addestramento del modello, e da aggiungere o identificare ulteriori osservazioni di tale taxon.
   concept_status: Stato del concetto
   confidential: Confidenziale
   configure: Configura
@@ -1675,48 +1675,8 @@ it:
   email: Email
   email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
-  email_conf_banner_email_delivered_click_link: |
-    Email di conferma consegnata. Clicca sul link nell'email.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Aggiungi <code>%{email}</code> alla tua lista di contatti e <a href="%{url}">richiedi un'altra email di conferma</a>.</strong> Se il tuo provider di posta elettronica ha bloccato l'email di conferma, questo potrebbe convincerli che vuoi realmente ricevere e-mail da noi.
-  email_conf_banner_check_your_spam_folder_html: <strong>Controlla la tua cartella spam</strong>
-  email_conf_banner_contact_us_html: Ancora non funziona? Mandaci un'email a %{email} così possiamo aiutarti.
-  email_conf_banner_please_click: |
-    Sei pregato di cliccare il link nella tua email per confermare il tuo indirizzo email.
-  email_conf_banner_search_for_emails_html: <strong>Cerca email da <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Ti abbiamo inviato un'email di conferma il %{date}. Se non l'hai ricevuto, ecco alcune cose che puoi fare:
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
-  email_conf_faq_html: |
-    Se hai domande, ti preghiamo di fare riferimento a queste <a href="%{url}">Domande Frequenti</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Per favore conferma il tuo indirizzo email%{link_end_tag}</strong>. Tutti gli utenti devono confermare il loro indirizzo email entro il %{date}. Dopo tale data chiunque non abbia confermato il proprio indirizzo email non potrà accedere a meno che non abbia reimpostato la propria password. Per confermare il tuo indirizzo email, vai alle impostazioni del tuo account %{link_start_tag}%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Conferma il tuo indirizzo email di %{site_name}, entro il %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Sei pregato di confermare il tuo indirizzo email oggi, per assicurarti di poter continuare ad
-    accedere al tuo profilo. %{site_name} e le app mobili
-    di iNaturalist e Seek by iNaturalist, connettono le persone alla natura e tra
-    loro, condividendo osservazioni sulla biodiversità. Grazie per aver preso parte
-    alla community di iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Richiederemo degli indirizzi email verificati a tutti i profili a partire dal
-    %{requirement_date}. Sei pregato di prenderti un momento per confermarlo adesso.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Se hai domande, sei pregato di fare riferimento alle
-    <a href="%{faq_url}">FAQ</a>. Grazie per aver dedicato del tempo a connetterti
-    con la natura e con %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Dettagli del Profilo
   email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
   email_notifications: Notifiche Email
   embed: 'Incorpora'
@@ -7107,6 +7067,9 @@ it:
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VISUALIZZA %{count} PUBBLICAZIONE"
+          other: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7286,6 +7249,7 @@ it:
           </p>
           <p>Se qualcuno ti sta molestando o stalkerando su %{site_name}, <a href="mailto:%{help_email}">sei pregato di farcelo sapere</a>. Se questo rappresenta una violazione dei nostri Termini d'Uso o rappresenta altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
           </p>
+        common_scientific_name_display_order: Ordine di Visualizzazione del Nome Comune / Scientifico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |

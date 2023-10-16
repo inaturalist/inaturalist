@@ -1030,8 +1030,6 @@ fr:
     Le modèle actuel de vision par ordinateur connaît ce taxon. Celui-ci pourrait donc être inclus dans les suggestions automatiques avec l'étiquette « Visuellement semblable ».
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: En attente
-  computer_vision_model_pending_desc: |
-    Le modèle actuel de vision par ordinateur ne connaît pas ce taxon. Par conséquent, bien que celui-ci puisse être inclus dans les suggestions automatiques avec l'étiquette « Vu à proximité », il n'aura pas l'étiquette « Visuellement semblable ». Bien que les conditions d'inclusion soient différentes pour chaque modèle, l'inclusion repose en général sur le nombre d'observations. Pour augmenter la probabilité que ce taxon soit inclus lors du prochain entraînement du modèle, ajoutez ou identifiez plus d'observations de ce taxon.
   concept_status: État du concept
   confidential: Confidentiel
   configure: Configurer
@@ -1700,46 +1698,8 @@ fr:
   email: Courriel
   email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
-  email_conf_banner_email_delivered_click_link: |
-    E-mail de confirmation envoyé. Veuillez cliquer sur le lien dans l'e-mail.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Ajoutez <code>%{email}</code> à votre liste de contacts et <a href="%{url}">demandez un autre e-mail de confirmation</a>.</strong> Si votre fournisseur de messagerie a bloqué l'e-mail de confirmation, cela pourrait le convaincre que vous voulez vraiment recevoir un e-mail de notre part.
-  email_conf_banner_check_your_spam_folder_html: <strong>Vérifiez votre dossier de courrier indésirable</strong>
-  email_conf_banner_contact_us_html: Cela ne fonctionne toujours pas ? Envoyez-nous un e-mail à %{email} pour que nous puissions vous aider.
-  email_conf_banner_please_click: |
-    Veuillez cliquer sur le lien dans l'e-mail pour confirmer votre adresse e-mail.
-  email_conf_banner_search_for_emails_html: '<strong>Recherchez les e-mails envoyés à partir de l''adresse suivante : <code>%{email}</code></strong>'
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Nous vous avons envoyé un e-mail de confirmation le %{date}. Si vous ne l'avez pas reçu, voici ce que vous pouvez faire :
   email_conf_required_after_grace_period: |
     La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
-  email_conf_faq_html: |
-    Si vous avez des questions, merci de vous référer à ces <a href="%{url}">FAQs</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Veuillez confirmer votre adresse e-mail%{link_end_tag}</strong>.
-    Tous les utilisateurs doivent confirmer leur adresse e-mail d'ici le %{date}. Après cette date,
-    toute personne qui n'a pas confirmé son adresse e-mail ne pourra plus se connecter
-    à moins de réinitialiser son mot de passe. Pour confirmer votre adresse e-mail,
-    allez dans les %{link_start_tag}paramètres de votre compte%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmez votre adresse e-mail %{site_name} avant le %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Veuillez confirmer votre adresse e-mail aujourd'hui pour conserver l'accès à votre compte. %{site_name} et les applications mobiles iNaturalist et Seek by iNaturalist permettent d'entre en contact avec la nature et avec d'autres personnes par l'intermédiaire d'observations de la biodiversité. Merci de faire partie de la communauté iNaturalist !
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    À partir du %{requirement_date}, tous les comptes devront avoir une adresse e-mail vérifiée. Veuillez prendre un moment pour confirmer votre adresse maintenant.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Si vous avez des questions, veuillez vous référer à la
-    <a href="%{faq_url}">FAQ</a>. Merci d'avoir pris le temps de vous connecter à la nature et à %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Détails du compte
   email_copyright2: "&copy; %{year} iNaturalist, tous droits réservés"
   email_notifications: Notifications par mail
   embed: 'Intégrer'
@@ -1990,7 +1950,7 @@ fr:
     one: champignon
     other: champignons
   gbif: GBIF
-  gbif_occurrences: Présences selon le SMIB
+  gbif_occurrences: Présences selon le GBIF
   generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos photos ''Flickr''.
   generate_widget: Générer le widget
   generate_your_stats: Générer vos statistiques
@@ -4839,8 +4799,8 @@ fr:
   taxon_id: Identifiant de taxon
   taxon_ids: IDs de taxon
   taxon_map:
-    gbif_occurrences: Présences selon  le SMIB
-    it_may_take_google_a_while_to: Google peut prendre un certain temps pour charger ces données, en supposant que le SMIB en contient.
+    gbif_occurrences: Présences selon le GBIF
+    it_may_take_google_a_while_to: Google peut prendre un certain temps pour charger ces données, en supposant que le GBIF en contient.
     data_url: URL des données
     overlays: Superpositions
   taxon_changes: Modifications de taxon
@@ -7375,6 +7335,9 @@ fr:
           %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
         translators_prompt: |
           Si vous voulez aider à traduire, %{link_tag}apprenez comment%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VOIR LA PUBLICATION"
+          other: "VOIR L'ENSEMBLE DES %{count} PUBLICATIONS"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7658,6 +7621,7 @@ fr:
           autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
+        common_scientific_name_display_order: Ordre d'affichage du nom commun et du nom scientifique
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
@@ -7676,7 +7640,7 @@ fr:
           Droit d’auteur (CC0), Attribution (CC BY), et Attribution non commerciale le
           (CC BY-NC) dans l’archive que nous générons pour le 
           <a href="http://www.gbif.org/">Système mondial d’information sur la
-          biodiversité</a> (SMIB), une organisation internationale
+          biodiversité</a> (GBIF), une organisation internationale
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
         monthly_supporter_desc_html: |

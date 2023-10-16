@@ -1058,8 +1058,6 @@ lv:
     Pašreizējam datorredzes sistēmas modelim ir pieejama taksona informācija un tas var tikt pievienots pie automātiskajiem ieteikumiem ar piezīmi "Vizuāli līdzīgs".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Vēl neiekļauts
-  computer_vision_model_pending_desc: |
-    Pašreizējam datorredzes sistēmas modelim nav šī taksona informācijas, tāpēc tas var tikt pievienots pie automātiskajiem ieteikumiem ar piezīmi "Redzēts tuvumā", bet bez piezīmes "Vizuāli līdzīgs". Prasības taksonu iekļaušanai sistēmā mainās atkarībā no katra modeļa. Pārsvarā tas ir atkarīgs no novērojumu skaita. Lai palielinātu taksona iekļaušanas iespēju nākamajā modeļa trenēšanā, pievieno vai identificē pēc iespējas vairāk šī taksona novērojumus.
   concept_status: Jēdziena statuss
   confidential: Konfidenciāls
   configure: Apstiprināt

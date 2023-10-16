@@ -923,8 +923,6 @@ es-CO:
     El Modelo de visión artificial actual conoce acerca de este taxón, por lo que podría ser incluido en las sugerencias automáticas con la etiqueta "Visualmente Similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendiente
-  computer_vision_model_pending_desc: |
-    El Modelo de visión artificial actual no conoce acerca de este taxón, por lo que aunque pueda ser incluido en las sugerencias automáticas con la etiqueta "Cerca", no va a tener la etiqueta "Visualmente Similar". Aunque los requisitos para la inclusión en el modelo cambian con cada modelo, generalmente la inclusión esta basada en el número de observaciones, así que para aumentar la probabilidad de que este taxón sea incluido durante el siguiente entrenamiento del modelo, agrega o identifica más observaciones de este taxón.
   configure: Configurar
   configure_a_widget_to_show: Configura un widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. Puede que tengas que incluir el CSS insertado en el <code>&lt;head&gt;</code>; de tu HTML. Siéntete libre de reescribir el CSS.
   confirm: Confirmar

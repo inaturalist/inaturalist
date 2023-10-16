@@ -974,8 +974,6 @@ ja:
     現在のコンピュータビジョンはこの分類群を認識しているため、「視覚的に類似」ラベルのID自動提案に表示されます。
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 保留
-  computer_vision_model_pending_desc: |
-    現在のコンピュータビジョンはこの分類群を認識していないため、「近隣で観察記録あり」ラベルのID自動提案には表示されますが、「視覚的に類似」ラベルのID自動提案には表示されません。次回のコンピュータービジョンのアップデートでこの種が認識されるようにするには、投稿または同定によってこの分類群の観察記録/画像の数を増やしてください。
   concept_status: コンセプトステータス
   confidential: 機密
   configure: 設定する
@@ -1627,43 +1625,8 @@ ja:
   email: 電子メール
   email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
-  email_conf_banner_email_delivered_click_link: |
-    確認メールが配信されました。メールに記載されているリンクをクリックしてください。
-  email_conf_banner_add_to_contacts_html: |
-    <strong>連絡先リストに<code>%{email}</code>を追加し、<a href="%{url}">確認メールを要求してください</a>。</strong> メールプロバイダーが確認メールをブロックした場合、あなたが実際に私たちからのメールを望んでいることを納得させられるかもしれません。
-  email_conf_banner_check_your_spam_folder_html: <strong>迷惑メールフォルダを確認してください</strong>
-  email_conf_banner_contact_us_html: まだうまくいきませんか？ %{email} までお問い合わせください。
-  email_conf_banner_please_click: |
-    メールアドレスを確認するには、メール内のリンクをクリックしてください。
-  email_conf_banner_search_for_emails_html: <strong><code>%{email}</code>からのメールを検索</strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    %{date}に確認メールを送信しました。
-    受信していない場合は、以下の手順で確認できます。
   email_conf_required_after_grace_period: |
     %{requirement_date} の期限までにメールアドレスの確認が行われませんでした。アカウントにアクセスするには、パスワードをリセットしてください。
-  email_conf_faq_html: |
-    ご不明な点がございましたら、<a href="%{url}">よくある質問</a>をご参照ください。
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}メールアドレスの確認をお願いします。%{link_end_tag}</strong>
-    すべてのユーザーは、%{date}までにメールアドレスを確認する必要があります。それまでにメールアドレスを確認しなかった場合、パスワードをリセットしない限りサインインできなくなります。メールアドレスを確認するには、%{link_start_tag}アカウント設定%{link_end_tag}にアクセスしてください。
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: '%{date} までに%{site_name}のメールアドレスを確認してください' #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    アカウントに引き続きアクセスできるようにするため、本日中にメールアドレスをご確認ください。%{site_name}とモバイルアプリのiNaturalistとSeek by iNaturalistは、生物多様性の観察を共有することで人々と自然、そして互いを繋いでいます。iNaturalistのコミュニティの一員であることに感謝します！
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    %{requirement_date} より、すべてのアカウントに認証済みメールアドレスの入力が必要となります。今すぐご確認ください。
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    ご不明な点がございましたら、<a href="%{faq_url}">よくある質問</a>をご覧ください。自然とのつながり、そして%{site_name}とのつながりに時間を割いていただき、ありがとうございます。
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: アカウント詳細
   email_copyright2: "&copy; %{year} iNaturalist, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'

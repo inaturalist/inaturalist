@@ -1119,8 +1119,6 @@ he:
     מודל עיבוד התמונה הנוכחי מכיר טקסון זה, כך שייתכן כי הוא יכלל בתוצאות המוצעות עם התגית "דומה ויזואלית".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: ממתין
-  computer_vision_model_pending_desc: |
-    מודל הראייה הממוחשבת הנוכחי לא יודע על הטקסון הזה. לכן, אמנם יתכן שהוא נכלל בהצעות אוטומטיות עם תווית "בקרבת מקום", לא תהיה לו תווית "דומה חזותית". אמנם הדרישות להכללת מודלים משתנות בין מודלים, ההכללה לרוב מבוססת על מספר תצפיות, לכן כדי להגדיל את הסיכוי שהטקסון ייכלל באימון המודל הבא, יש להוסיף או לזהות תצפיות נוספות של טקסון זה.
   concept_status: מצב הקונספט
   confidential: חסוי
   configure: הגדרה
@@ -1771,40 +1769,8 @@ he:
   email: דוא״ל
   email_description: כתובת הדוא"ל שלך לא משותפת עם משתמשות ומשתמשים אחרים ב-iNaturalist
   email_address_for_comments_and_other_feedback: כתובת דוא"ל להערות ומשובים אחרים
-  email_conf_banner_email_delivered_click_link: |
-    נשלח דוא"ל לאישור. נא ללחוץ על הקישור שבמייל.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>להוסיף את <code>%{email}</code> לרשימת אנשי הקשר שלך <a href="%{url}">ולבקש עוד מייל אישור</a>.</strong> במידה וספק הדוא"ל שלך חסם את דוא"ל האישור, זה עשוי לשכנע אותו שאת.ה בעצם רוצה לקבל דוא"ל מעמנו.
-  email_conf_banner_check_your_spam_folder_html: <strong>יש לבדוק בתיקיית הספאם שלך</strong>
-  email_conf_banner_contact_us_html: עדיין לא עובד? יש ליצור עמנו קשר בכתובת %{email} בשביל שנוכל לעזור לך.
-  email_conf_banner_please_click: |
-    נא ללחוץ על הקישור בדוא"ל שלך לאישור כתובת הדוא"ל שלך.
-  email_conf_banner_search_for_emails_html: <strong>חיפוש אימיילים מ-<code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    שלחנו לך מייל לאישור בתאריך %{date}. במידה ולא קיבלת אותו, הנה כמה דברים שאפשר לעשות:
   email_conf_required_after_grace_period: |
     נדרש אישור דוא"ל נכון ל-%{requirement_date} ולא אישרת את כתובת הדוא"ל שלך לפני המועד האחרון. נא לאפס את הסיסמה שלך כדי לגשת לחשבונך.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}נא לאשר את כתובת הדוא"ל שלך%{link_end_tag}</strong>.
-    כל היוזרים חייבים לאשר את כתובת הדוא"ל שלהם עד %{date}. לאחר תאריך זה כל מי שטרם אישרו כתובות הדוא"ל לא יוכלו להתחבר עד שיאפסו סיסמה. לאישור כתובת הדוא"ל שלך, יש לגשת %{link_start_tag}להגדרות החשבון%{link_end_tag} שלך.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: יש לאשר את כתובת הדוא"ל שלך ב-%{site_name} לפני התאריך %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    נא לאשר את כתובת הדוא"ל שלך היום על מנת להבטיח שתוכל.י להמשיך לגשת לחשבונך. %{site_name} והאפליקציות iNaturalist ו-Seek של iNaturalist מחברות א.נשים לטבע וזה ולזה באמצעות שיתוף תצפיות של המגוון הביולוגי. תודה על השתתפותך בקהילת iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    נצטרך כתובות דוא"ל מאומתות עבור כל החשבונות החל מהתאריך %{requirement_date}. נא לקחת רגע לאשר אותה עכשיו.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    לכל שאלה, נא לפנות ל<a href="%{faq_url}">שאלות נפוצות</a>. תודה שלקחת את הזמן להתחבר לטבע ול-%{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: פרטי החשבון
   email_copyright2: "&copy; iNaturalist %{year}, כל הזכויות שמורות"
   email_notifications: התראות דוא"ל
   embed: 'הטמע'
