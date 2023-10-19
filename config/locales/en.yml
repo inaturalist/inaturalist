@@ -6347,6 +6347,9 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
+      platforms_desc: |
+        CMD- or SHIFT-click to select multiple. Not selecting any will show the
+        announcement to all users regardless of platform.
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |
@@ -9108,6 +9111,7 @@ en:
         # Preference for an announcement that is only shown to users who have
         # not confirmed their email address
         prefers_target_unconfirmed_users: Target unconfirmed users
+        platforms: Platforms
       assessment:
         description: Description
       assessment_section:
@@ -9342,6 +9346,14 @@ en:
           one: "%{count} error prohibited this %{model} from being saved"
           other: '%{count} errors prohibited this %{model} from being saved'
       models:
+        announcement:
+          attributes:
+            platforms:
+              must_be_valid_for_specified_placement:
+                # Error message shown when an Announcement has a value in the
+                # platforms attribute that is not a valid platform for the
+                # annoumcement's placement attribute
+                must be valid for specified placement
         application:
           attributes:
             redirect_uri:

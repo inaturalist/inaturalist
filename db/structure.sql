@@ -322,7 +322,8 @@ CREATE TABLE public.announcements (
     updated_at timestamp without time zone,
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
-    dismissible boolean DEFAULT false
+    dismissible boolean DEFAULT false,
+    platforms text[] DEFAULT '{}'::text[]
 );
 
 
@@ -10385,6 +10386,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230504154236'),
 ('20230504154248'),
 ('20230504154302'),
-('20230907210748');
+('20230907210748'),
+('20231017190352');
 
 

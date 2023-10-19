@@ -39,7 +39,11 @@
           - @announcements.each do |announcement|
             %tr
               %td= link_to announcement.id, announcement
-              %td= h announcement.placement
+              %td
+                = h announcement.placement
+                - if announcement.platforms.any?
+                  .platforms
+                    = announcement.platforms.join( ", " )
               %td= announcement.site_ids.empty? ? t(:all)  : announcement.sites.map(&:name).join(", ")
               %td=l announcement.start
               %td

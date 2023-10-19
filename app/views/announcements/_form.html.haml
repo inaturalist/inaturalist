@@ -5,9 +5,18 @@
       width: 100%;
       min-height: 300px;
     }
+- content_for :extrajs do
+  :javascript
+    var PLACEMENT_PLATFORMS = #{ Announcement::PLATFORMS.to_json.html_safe }
+  = javascript_include_tag "announcements/form"
 = form_for @announcement, :builder => DefaultFormBuilder do |f|
   = f.error_messages
   = f.select :placement, Announcement::PLACEMENTS
+  - platforms = Announcement::PLATFORMS[@announcement.placement] || []
+  = f.select :platforms, platforms, { include_blank: t( :all ) }, {  |
+    multiple: true,                                                  |
+    description: t( "views.announcements.platforms_desc" ),          |
+    size: [platforms.length + 1, 5].min }                            |
   :ruby
     month_names = I18n.t( "date.month_names" )
     if month_names.is_a?( Hash )
