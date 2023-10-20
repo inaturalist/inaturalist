@@ -41,9 +41,9 @@
               %td= link_to announcement.id, announcement
               %td
                 = h announcement.placement
-                - if announcement.platforms.any?
-                  .platforms
-                    = announcement.platforms.join( ", " )
+                - if announcement.clients.any?
+                  .clients
+                    = announcement.clients.join( ", " )
               %td= announcement.site_ids.empty? ? t(:all)  : announcement.sites.map(&:name).join(", ")
               %td=l announcement.start
               %td

@@ -7,7 +7,7 @@ class Announcement < ApplicationRecord
     welcome/index
     mobile/home
   ).freeze
-  PLATFORMS = {
+  CLIENTS = {
     "mobile/home" => %w(
       inat-ios
       inat-android
@@ -17,7 +17,7 @@ class Announcement < ApplicationRecord
   }.freeze
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
-  validate :valid_placement_platforms
+  validate :valid_placement_clients
 
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
@@ -31,13 +31,13 @@ class Announcement < ApplicationRecord
   }
 
   before_save :compact_locales
-  before_validation :compact_platforms
+  before_validation :compact_clients
 
-  def valid_placement_platforms
-    if platforms.any? do |platform|
-      !Announcement::PLATFORMS[placement] || !Announcement::PLATFORMS[placement].include?( platform )
+  def valid_placement_clients
+    if clients.any? do |client|
+      !Announcement::CLIENTS[placement] || !Announcement::CLIENTS[placement].include?( client )
     end
-      errors.add( :platforms, :must_be_valid_for_specified_placement )
+      errors.add( :clients, :must_be_valid_for_specified_placement )
     end
   end
 
@@ -49,8 +49,8 @@ class Announcement < ApplicationRecord
     self.locales = ( locales || [] ).reject( &:blank? ).compact
   end
 
-  def compact_platforms
-    self.platforms = ( platforms || [] ).reject( &:blank? ).compact
+  def compact_clients
+    self.clients = ( clients || [] ).reject( &:blank? ).compact
   end
 
   def dismissed_by?( user )

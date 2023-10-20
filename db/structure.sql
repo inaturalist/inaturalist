@@ -323,7 +323,7 @@ CREATE TABLE public.announcements (
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
     dismissible boolean DEFAULT false,
-    platforms text[] DEFAULT '{}'::text[]
+    clients text[] DEFAULT '{}'::text[]
 );
 
 

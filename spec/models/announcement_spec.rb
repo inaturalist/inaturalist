@@ -8,21 +8,21 @@ describe Announcement do
   it { is_expected.to validate_presence_of :end }
   it { is_expected.to validate_presence_of :body }
 
-  it "validates placement platforms" do
+  it "validates placement clients" do
     expect{
-      Announcement.make!( placement: "users/dashboard#sidebar", platforms: ["inat-ios"] )
-    }.to raise_error(ActiveRecord::RecordInvalid, /Platforms must be valid for specified placement/)
+      Announcement.make!( placement: "users/dashboard#sidebar", clients: ["inat-ios"] )
+    }.to raise_error(ActiveRecord::RecordInvalid, /Clients must be valid for specified placement/)
     expect{
-      Announcement.make!( placement: "users/dashboard#sidebar", platforms: [] )
+      Announcement.make!( placement: "users/dashboard#sidebar", clients: [] )
     }.not_to raise_error
     expect{
-      Announcement.make!( placement: "mobile/home", platforms: ["inat-ios"] )
+      Announcement.make!( placement: "mobile/home", clients: ["inat-ios"] )
     }.not_to raise_error
     expect{
-      Announcement.make!( placement: "mobile/home", platforms: ["nonsense"] )
-    }.to raise_error(ActiveRecord::RecordInvalid, /Platforms must be valid for specified placement/)
+      Announcement.make!( placement: "mobile/home", clients: ["nonsense"] )
+    }.to raise_error(ActiveRecord::RecordInvalid, /Clients must be valid for specified placement/)
     expect{
-      Announcement.make!( placement: "mobile/home", platforms: [] )
+      Announcement.make!( placement: "mobile/home", clients: [] )
     }.not_to raise_error
   end
 

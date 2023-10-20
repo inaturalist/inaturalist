@@ -1,20 +1,20 @@
 /* global _ */
 /* global I18n */
-/* global PLACEMENT_PLATFORMS */
+/* global PLACEMENT_CLIENTS */
 
 $( function ( ) {
   $( "#announcement_placement" ).change( function ( ) {
     var placement = $( "#announcement_placement" ).val( );
-    var platformsSelect = $( "#announcement_platforms" );
-    platformsSelect.empty( );
-    platformsSelect.append( $( "<option value>" + I18n.t( "all" ) + "</option>" ) );
-    if ( PLACEMENT_PLATFORMS[placement] ) {
-      _.each( PLACEMENT_PLATFORMS[placement], function ( placementPlatform ) {
-        platformsSelect.append( $( "<option value='" + placementPlatform + "'>" + placementPlatform + "</option>" ) );
+    var clientsSelect = $( "#announcement_clients" );
+    clientsSelect.empty( );
+    clientsSelect.append( $( "<option value>" + I18n.t( "all" ) + "</option>" ) );
+    if ( PLACEMENT_CLIENTS[placement] ) {
+      _.each( PLACEMENT_CLIENTS[placement], function ( placementClient ) {
+        clientsSelect.append( $( "<option value='" + placementClient + "'>" + placementClient + "</option>" ) );
       } );
-      platformsSelect.attr( "size", _.min( [_.size( PLACEMENT_PLATFORMS[placement] ) + 1, 5] ) );
+      clientsSelect.attr( "size", _.min( [_.size( PLACEMENT_CLIENTS[placement] ) + 1, 5] ) );
     } else {
-      platformsSelect.attr( "size", 1 );
+      clientsSelect.attr( "size", 1 );
     }
   } );
 } );

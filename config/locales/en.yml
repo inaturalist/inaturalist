@@ -6347,9 +6347,9 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
-      platforms_desc: |
+      clients_desc: |
         CMD- or SHIFT-click to select multiple. Not selecting any will show the
-        announcement to all users regardless of platform.
+        announcement to all users regardless of client.
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |
@@ -9111,7 +9111,7 @@ en:
         # Preference for an announcement that is only shown to users who have
         # not confirmed their email address
         prefers_target_unconfirmed_users: Target unconfirmed users
-        platforms: Platforms
+        clients: Clients
       assessment:
         description: Description
       assessment_section:
@@ -9348,10 +9348,10 @@ en:
       models:
         announcement:
           attributes:
-            platforms:
+            clients:
               must_be_valid_for_specified_placement:
                 # Error message shown when an Announcement has a value in the
-                # platforms attribute that is not a valid platform for the
+                # clients attribute that is not a valid client for the
                 # annoumcement's placement attribute
                 must be valid for specified placement
         application:
