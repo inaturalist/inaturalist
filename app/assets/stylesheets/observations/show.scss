@@ -840,7 +840,8 @@ time {
     }
     .details_menu {
       .dropdown-toggle {
-        margin: 0px 0px 2px 12px;
+        margin-inline: 12px 0px;
+        margin-block: 0px 2px;
         padding: 0;
         border: none;
         background: inherit;
@@ -2226,11 +2227,11 @@ time {
   margin-top: 23px;
   .previous {
     float: left;
-    padding-inline-end: 3px;
+    padding-right: 3px;
   }
   .next {
     float: left;
-    padding-inline-start: 2px;
+    padding-left: 2px;
   }
   .previous, .next {
     display: inline-block;
@@ -2246,7 +2247,7 @@ time {
       cursor: not-allowed;
     }
     &:not(:first-child) {
-      margin-inline-start: 8px;
+      margin-left: 8px;
     }
     .fa {
       font-size: 14px;
@@ -2258,7 +2259,7 @@ time {
 [dir="rtl"] .PreviousNextButtons {
   float: left;
   .previous {
-    float: right;
+    float: left;
   }
   .next {
     float: right;

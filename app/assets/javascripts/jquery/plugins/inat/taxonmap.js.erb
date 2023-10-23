@@ -181,13 +181,22 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     // passing in this DIV.
     var legendControlDiv = document.createElement('div');
     var legendControl = new iNaturalist.LegendControl(legendControlDiv, map);
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControlDiv);
+    if ( $('html[dir="rtl"]').length > 0 ){
+    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legendControlDiv);
+    } else {
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControlDiv);
+    }
 
     // Create the DIV to hold the control and call the CenterControl() constructor
     // passing in this DIV.
     var legendDiv = document.createElement('div');
     map._legend = new iNaturalist.Legend(legendDiv, map);
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+    if ( $('html[dir="rtl"]').length > 0 ){
+      map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legendDiv);
+    } else {
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+    }
+    
   }
 
   // Clear out all existing overlays so we can add new ones

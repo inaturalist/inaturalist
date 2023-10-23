@@ -57,7 +57,7 @@
         font-weight: bold;
       }
       .next {
-        margin-left: 10px;
+        margin-inline-start: 10px;
       }
     }
     .TaxonMap {
@@ -208,7 +208,7 @@
       cursor: pointer;
     }
     .license {
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
   .multiple-photos .photo-meta {
@@ -235,6 +235,13 @@
         display: block;
       }
     }
+  }
+}
+
+[dir="rtl"] .Suggestions{
+  .suggestions-wrapper.with-detail {
+    transition: 0.5s;
+    transform: translateX( 50% );
   }
 }
 
