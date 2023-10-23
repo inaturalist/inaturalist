@@ -1011,7 +1011,7 @@ function getMessagesCount() {
 function getHeaderCounts() {
   var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
   $.ajax({
-    url: "<%= CONFIG.node_api_url %>/users/notification_counts",
+    url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/notification_counts",
     headers: {
       Authorization: apiToken
     },
@@ -1462,7 +1462,7 @@ $.fn.textcompleteUsers = function( ) {
     index: 1,
     match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
-      $.getJSON( "<%= CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
+      $.getJSON( "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
           callback( $.map( data.results, function( user ) {
             var icon = user.icon || "/attachment_defaults/users/icons/defaults/mini.png";
@@ -1732,6 +1732,27 @@ $(document).ready(function() {
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default');
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
   $('.bootstrap .button').addClass('btn btn-default').removeClass('button');
+
+  // enable popover toggle behavior everywhere
+  $( '[data-toggle="popover"]' ).popover( { html: true } );
+
+  // close bootstrap popovers when clicking outside them and not on the opening toggle
+  $( "html" ).on( "mouseup", function( e ) {
+    if ( !$( e.target ).closest( "[data-toggle]" ).length
+      && !$( e.target ).closest( ".popover" ).length
+    ) {
+      $( ".popover" ).each( function( ) {
+        // hide the popover
+        $( this.previousSibling ).popover( "hide" );
+        // reset the element state so it doesn't take two clicks to reopen
+        if ( $( this.previousSibling ).data( "bs.popover" )
+          && $( this.previousSibling ).data( "bs.popover" ).inState
+          && $( this.previousSibling ).data( "bs.popover" ).inState.click ) {
+          $( this.previousSibling ).data( "bs.popover" ).inState.click = false;
+        }
+      });
+    }
+  });
 })
 if ($ && $.fn && typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') {
   var bootstrapButton = $.fn.button.noConflict();

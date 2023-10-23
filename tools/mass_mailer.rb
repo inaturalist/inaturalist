@@ -163,13 +163,13 @@ elsif @opts.locales
 end
 
 if @opts.exclude_locales
-  puts "@opts.exclude_locales: #{@opts.exclude_locales.inspect}"
+  puts "@opts.exclude_locales: #{@opts.exclude_locales.inspect}" if @opts.debug
   @opts.exclude_locales.each do | excluded_locale |
     scope = scope.where( "locale NOT LIKE ?", "#{excluded_locale}%" )
   end
 end
 
-puts "scope: scope.to_sql"
+puts "scope: #{scope.to_sql}" if @opts.debug
 
 @start = Time.now
 @emailed = 0

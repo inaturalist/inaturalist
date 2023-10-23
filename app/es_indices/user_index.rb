@@ -3,7 +3,6 @@ class User < ApplicationRecord
 
   scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }
 
-
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :activity_count, type: "integer"
@@ -32,6 +31,8 @@ class User < ApplicationRecord
       indexes :suspended, type: "boolean"
       indexes :universal_search_rank, type: "integer"
       indexes :uuid, type: "keyword"
+      indexes :email, type: "keyword"
+      indexes :last_ip, type: "keyword"
     end
   end
 
@@ -61,7 +62,9 @@ class User < ApplicationRecord
         species_count: species_count,
         universal_search_rank: obs_count,
         roles: roles.map(&:name).uniq,
-        site_id: site_id
+        site_id: site_id,
+        email: email,
+        last_ip: last_ip
       })
     end
     json

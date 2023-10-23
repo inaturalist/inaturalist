@@ -400,6 +400,7 @@ fi:
   agree_: Samaa mieltä
   agree?: Samaa mieltä?
   agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
+  agree_with_observation_taxon: Hyväksy havaintotaksoni
   agreeing: Samaa mieltä...
   aka: tunnetaan myös nimellä
   #Noun, title of a popup alerting you to something
@@ -410,6 +411,7 @@ fi:
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
+  all_media_must_be_unhidden: Kaikki mediat täytyy näyttää
   all_names: Kaikki Nimet
   all_observations: Kaikki havainnot
   all_photos: Kaikki kuvat
@@ -966,8 +968,6 @@ fi:
     Nykyinen tietokonenäkömalli tuntee tämän taksonin, joten se saattaa olla mukana automaattisissa ehdotuksissa "Samannäköinen" -tarralla.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Odottaa
-  computer_vision_model_pending_desc: |
-    Nykyinen tietokonenäkömalli ei tunne tätä taksonia, joten vaikka se voi olla mukana automaattisissa ehdotuksissa "Lähistöllä"-tarralla, se ei saa "Samannäköinen"-tarraa. Tietokonenäkömalliin mukaanottamista koskevat vaatimukset vaihtelevat kullakin mallilla, mutta yleisesti mukaanottaminen perustuu havaintojen lukumäärään, joten parantaaksesi tämän taksonin mukaanpääsyä seuraavaan mallin koulutukseen, lisää havaintoja tästä taksonista tai tee lisää tunnistuksia.
   concept_status: Konseptin tila
   confidential: Luottamuksellinen
   configure: Määritä
@@ -1403,7 +1403,7 @@ fi:
     confirmations:
       confirmed: |
         Sähköpostiosoitteesi on vahvistettu onnistuneesti. Voit nyt kirjautua
-        tänne sivustolle tai iNaturalist- tai Seek-mobiilisovelluksiin.
+        tälle sivustolle sekä iNaturalist- ja Seek-mobiilisovelluksiin.
       send_instructions: "Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1610,52 +1610,10 @@ fi:
   email: Sähköposti
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
-  email_conf_banner_email_delivered_click_link: |
-    Vahvistussähköposti toimitettu. Ole hyvä ja klikkaa sähköpostin linkkiä.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Lisää <code>%{email}</code> yhteystietoluetteloosi ja
-    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostiosoitteesi
-    tarjoaja on estänyt vahvistusviestin, tämä saattaa vakuuttaa heidät, että
-    haluat meiltä sähköpostia.
-  email_conf_banner_check_your_spam_folder_html: <strong>Tarkista roskapostikansio</strong>
-  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email} , jotta voimme auttaa sinua.
-  email_conf_banner_please_click: |
-    Ole hyvä ja klikkaa vahvistusviestissä olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
-  email_conf_banner_search_for_emails_html: <strong>Etsi sähköposteja osoitteesta <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Toimitimme sinulle vahvistusviestin %{date}. Jos et
-    saanut sitä, tässä on joitain asioita, joita voit tehdä:
   email_conf_required_after_grace_period: |
     Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
-    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja nollaa salasanasi
-    päästäksesi tiliisi.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
-    Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Vahvista %{site_name} sähköpostiosoitteesi ennen %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Ole hyvä ja vahvista sähköpostiosoitteesi tänään varmistaaksesi, että voit edelleen
-    käyttää tiliäsi. %{site_name} ja mobiilisovellukset
-    iNaturalist ja Seek yhdistävät ihmiset luontoon ja
-    toisiinsa jakamalla luontohavaintoja. Kiitos, että olet osa
-    iNaturalist-yhteisöä!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Vaadimme vahvistettuja sähköpostiosoitteita kaikille tileille alkaen
-    %{requirement_date}. Ole hyvä ja vahvista se nyt.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Jos sinulla on kysyttävää, ole hyvä ja katso usein kysytyt kysymykset <a href="%{faq_url}">FAQs</a>. Kiitos, että olet ottanut
-    aikaa yhteyden luontiin luonnon ja %{site_name} kanssa.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Tilin tiedot
+    vahvistanut sähköpostiosoitettasi ennen tätä. Ole hyvä ja vaihda salasanasi
+    voidaksesi käyttää tiliäsi.
   email_copyright2: "&copy; %{year} iNaturalist, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
@@ -1708,6 +1666,7 @@ fi:
   exclusion_filters: Poissulkevat suotimet
   existing_flags: Nykyiset liput
   exit_full_screen: "Poistu kokoruututilasta"
+  expected_nearby: Odotettavissa lähistöllä
   explore: Tutki
   export: Lataa
   export_observations: Lataa havaintotiedosto
@@ -1973,6 +1932,9 @@ fi:
   hide_content: Piilota sisältö
   hide_desc: |
     Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
+  hide_desc_staff_can_unhide: |
+    Vain sivuston henkilökunta voi poistaa piilotuksen, joten käytä tätä vain
+    yhteisön ohjeiden selviin rikkomuksiin.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Piilota "Ei merkintöjä"
@@ -2005,8 +1967,10 @@ fi:
   #Notification when an identification has been deleted
   identification_deleted: Tunnistus poistettu.
   identification_saved: "Tunnistus tallennettu!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Määritysteksti piilotettu
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Tunnistus piilotettu
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Tunnistus näytetään
   #Notification when an identification has been updated
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
@@ -2014,13 +1978,6 @@ fi:
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
   inaturalist_global_year_in_review: "iNaturalistin %{year} vuosikatsaus"
-  independence_email_subject: "iNaturalist on nyt itsenäinen epäkaupallinen organisaatio"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Hyvä %{name},
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Lahjoita nyt
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -2065,6 +2022,7 @@ fi:
   include_places: Sisällytä paikat
   include_projects: Sisällytä projektit
   include_suggestions_not_seen_nearby: Sisällytä ehdotukset, joita ei ole nähty lähistöllä
+  include_suggestions_not_expected_nearby: Anna ehdotuksia myös lajeista, joita ei ole odotettavissa lähistöllä
   include_taxa: Sisällytä taksonit
   include_users: Sisällytä käyttäjät
   including: mukaan lukien
@@ -2545,6 +2503,10 @@ fi:
     <strong>näkyy vain kuraattoreille</strong> ja <strong>kuraattorit eivät voi katsella
     omaa historiaansa</strong>, joten henkilöä koskevien muistiinpanojen ei pitäisi koskaan näkyä
     kyseiselle henkilölle.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Piilota
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Poista jäädytys
   moderator_note_desc: |
     Valvojan muistiinpanot ovat tietoja moderaatiotoimista tai näyttöön perustuvia huolia käyttäjästä, kuten siitä, onko kyseessä mahdollisesti valehenkilötili. Älä sisällytä käyttäjää koskevia henkilökohtaisia mielipiteitä tai mielipiteitä.
   #Person who executed a moderator action or flagged something
@@ -3147,8 +3109,12 @@ fi:
   photo_credits: Kuvan tekijätiedot
   photo_deleted: Kuva poistettu
   photo_destroyed_because_it_was_deleted_from: "Kuva tuhottu b/c se poistettiin ulkoisesta sivustosta tai %{site_name}illa ei ole enää lupaa näyttää sitä."
+  #Message displayed after a photo has been hidden
+  photo_hidden: Kuva piilotettu
   photo_licensing: Kuvien lisensointi
   photo_type: Kuvan tyyppi
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Kuva näytetään
   photo_urls_repaired: Valokuvien URLit korjattu
   photos_chosen_for_this_taxon: Tälle taksonille valitut kuvat
   photos_from: Kuvat sivustolta
@@ -5231,6 +5197,28 @@ fi:
           Huomautus (liputus) voi liittyä vain liputetun kohteen luontiaikaiseen alkuperäiseen sisältöön. Vain kuraattorit ja ylläpitäjät voivat nähdä näitä tietoja. Vain ylläpitäjät näkevät viestejä koskevat huomautukset.
         flags_that_should_not_be_resolved_desc_html: |
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomallin ennuste taksonista %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomalli ennustaa, missä lajit esiintyvät ja missä niitä ei havaita.
+          Hyödynnämme geomallia tarjotessamme "Odotettavissa lähistöllä" -merkkiä ehdotusten rinnalla ja
+          painottamaan näitä ehdotuksia havainnon sijainnin perusteella.
+        the_geo_model_is_trained: |
+          Kuten konenäkömalli, myös geomalli on koulutettu iNaturalistin havainnoilla. Geomalli ei tee täydellisiä ennusteita. Voit lukea lisää geomallista <a href="%{url}">täältä</a>.
+        nearby_map:
+          expected_nearby_map: Odotettavissa lähistöllä -kartta
+          we_use_this_map: |
+            Käytämme tätä karttaa lisätessämme Odotettavissa lähistöllä -merkin ehdotuksiin, jotka perustuvat havainnon sijaintiin.
+          for_example: |
+            Esimerkiksi Yhdysvaltojen keskiosissa tehdyn liskohavainnon kohdalla saattaa olla "Odotettavissa lähistöllä" -merkki ehdotuksen <i>Sceloporus consobrinus</i> osalta, mutta ei <i>Sceloporus occidentalis</i> osalta perustuen lajien "Odotettavissa lähistöllä"-karttoihin.
+          you_can_think: |
+            Voit ajatella "Odotettavissa lähistöllä" -kartan arvioksi siitä, esiintyykö laji jossakin ruudukon solussa vai ei.
+        range_comparison:
+          true_presences_definition: Alueet, joilla sekä "Odotettavissa lähistöllä" -kartta että levinneisyysalue ennustavat taksonin esiintyvän
+          false_presences_definition: Alueet, joilla vain "Odotettavissa lähistöllä" -kartta ennustaa taksonin esiintyvän
+          false_absences_definition: Alueet, joilla vain levinneisyysalue ennustaa taksonin esiintyvän
     guides:
       index:
         deprecated_banner: |
@@ -6490,9 +6478,11 @@ fi:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       BlockedUser: Estetty Käyttäjä
+      Comment: Kommentti
       CompleteSet: Täydellinen sarja
       #Noun
       Flag: Lippu
+      Identification: Tunnistus
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -6501,6 +6491,7 @@ fi:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Valvojien muistiinpanot
+      Photo: Valokuva
       TaxonLink: Taksonilinkki
     attributes:
       announcement:
@@ -6715,10 +6706,10 @@ fi:
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_missing: "Mushroom Observer API-key puuttuu."
+            user:
+              must_be_a_curator: on oltava kuraattori
         observation:
           attributes:
             base:

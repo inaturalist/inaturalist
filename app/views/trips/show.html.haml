@@ -6,9 +6,6 @@
   :javascript
     $('.observationcontrols').observationControls()
     $("#comment_body").textcompleteUsers( );
-    $( document ).ready( function() {
-      $( '[data-toggle="popover"]' ).popover({html:true});
-    } );
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
   %meta{:property => "twitter:image", :content => html_attributize(@shareable_image_url)}

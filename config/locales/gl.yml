@@ -956,8 +956,6 @@ gl:
     O Modelo de Visión Computerizada actual recoñece este taxon, así que poderá ser incluído en suxestións automatizadas cá etiqueta "Visualmente Semellante".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendente
-  computer_vision_model_pending_desc: |
-    O Modelo de Visión Computerizada actual non recoñece este taxon, así que mesmo que poida ser incluído en suxestións automáticas cá etiqueta "Á Volta", pode que non teña a etiqueta "Visualmente Semellante". Aínda que os requisitos para a inclusión no modelo cambian con cada actualización do modelo, xeralmente a inserción está baseada no número de observacións. Para que este taxon sexa incluído durante o adestramento do seguinte modelo, engade ou identifica máis observacións deste taxon.
   concept_status: Concepto da situación
   configure: Configurar
   configure_a_widget_to_show: Configura o widget para mostrar as observacións de %{site_name} no teu sitio web ou blog. Tamén podes incluír o estilo CSS na <code><head></code> do teu código HTML. Podes modificar o CSS libremente.
@@ -1844,8 +1842,6 @@ gl:
   #Verb, usually a button to hide an interface element
   hide: Ocultar
   hide_content: Ocultar Contido
-  hide_desc: |
-    Ocultar contido vai sacalo da vista pública, pero a xente aínda vai poder ver que algo foi agochado, e os conservadores do sitio e o autor do contido aínda poderán ver o contido oculto. Xeralmente, isto só se aplica ó contido escrito, p.e. se ocultares o contido dunha identificación, a identificación aínda será visible pero as anotacións do identificador estarán agochadas. Non podes desfacer isto, e só os traballadores do sitio poden desvelar o contido unha vez foi oculto, asi que ten tino e usa isto só para contidos moi ofensivos.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Agochar "Sen Anotacións"
@@ -6005,9 +6001,6 @@ gl:
     taxon_changes:
       move_children_desc: |
         Os descendentes do taxon de entrada que sexan xénero ou superior serán movidos ós resultados; especies, subespecies, variedades, etc. cambiaranse por equivalentes có novo nome xenérico ou específico.
-      form:
-        move_children_desc_html: |
-          Marcando esta caixa moveranse os descendentes do taxon de entrada ó taxon do resultado para Intercambios e Fusións cando esta mudanza sexa feita. Se isto muda a un xénero ou nivel inferior, creará Intercambios de Taxon para tódolos descendentes que teñen un cambio de nome implicado. Por exemplo, se intercambias a familia Canidae pola Perridae, isto muda o parente do xénero <i>Canis</i> de Canidae a Perridae, Se intercambias o xénero <i>Canis</i> polo xénero <i>Perris</i>, creará e producirá un cambio de Intercambio de Taxon de <i>Canis lupus</i> a <i>Perris lupus</i> e <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Perris lupus</i> ssp. <i>lupus</i>. Isto pode causar unha embrolla, así que emprégao con tino.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6295,9 +6288,17 @@ gl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d de %B de %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d de %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d %b,%Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d de %B, %Y'
     month_names:
       - 
       - xaneiro
@@ -6430,9 +6431,13 @@ gl:
     am: Mañá
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d %b %Y %H:%M:%S %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'ás %I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%d %b. %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: Tarde
@@ -6625,11 +6630,6 @@ gl:
           attributes:
             user_id:
               must_be_a_curator: debe ser un conservador
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "A importación para ese usuario Observador de Cogomelos está en curso ou en fila para ser importado."
-              api_key_missing: "Falta a chave API do Observador de Cogomelos"
         observation:
           attributes:
             base:

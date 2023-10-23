@@ -235,6 +235,7 @@ ko:
   agree_: 동의
   agree?: 동의하십니까?
   agree_with_current_taxon: 현재 분류군에 동의
+  agree_with_observation_taxon: 관찰 및 동정에 동의하기
   agreeing: 동의 중...
   aka: 다른 말로
   #Noun, title of a popup alerting you to something
@@ -917,8 +918,13 @@ ko:
     managed: 관리됨
     native: 토착종
     naturalised: 토착화됨
+  establishment_means: 상태
   establishment_means_describes_how: |
     확립은 이 분류군이 어떻게 이 지역에 서식하게 되었는지를 뜻한다. Darwincore를 통해<ahref="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a> 확인할 수 있다.
+  establishment_means_descriptions:
+    native: 이 지역에서 진화한 종이거나 인간의 활동으로 유입되지 않은 종입니다
+    endemic: 이 지역의 토착종이고 지역 외 다른 곳에서는 발견되지 않습니다
+    introduced: 인간의 활동 혹은 인위적인 수단을 통해 이 지역에 유입되었습니다
   event_in_progress: 진행 중인 이벤트
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
@@ -1139,6 +1145,7 @@ ko:
   improving: 개선 중
   #Label for messages you've received
   inbox: 받은 쪽지함
+  increase_brightness: 밝기 늘리기
   in_progress: 진행 중
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
@@ -1589,6 +1596,22 @@ ko:
   observer: 관찰자
   observers: 관찰자
   observer_short: 관찰자
+  occurence_status_describes_how: '서식 현황은 특정 지역에서 이 분류군이 얼마나 흔한지 또는 희귀한지를 설명합니다. 용어에 대한 자세한 내용은 <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">DarwinCore를 참조하세요.</a>.'
+  occurrence_status: 지역 서식 현황
+  occurrence_status_descriptions:
+    absent: 해당 지역에서 서식하지 않습니다
+    common: 이 지역에서 흔히 발견됩니다
+    doubtful: 해당 지역에서의 발견 및 서식이 추정되지만 증거가 불확실합니다
+    irregular: 어떤 해에는 흔하고 어떤 해에는 없을수도 있는 등 예측이 불가능하게 발견되며, 지역에 우연찮게 들어온 길 잃은 떠돌이 개체 발견 등을 포함합니다
+    present: 이 지역에서 확실하게 서식이 확인됩니다
+    uncommon: 주기적으로 발견되지만, 적거나 한정된 지역에서 발견되며 해당 지역에 이 생물의 적절한 서식지가 존재하는지 주의깊게 살펴봐야 합니다
+  occurrence_status_levels:
+    present: 서식 및 번식함
+    common: 자주 발견됨
+    uncommon: 제한적으로 서식
+    irregular: 불규칙하게 확인됨
+    doubtful: 서식이 불확실함
+    absent: 서식하지 않음
   of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
   official_blog: 공식 블로그
@@ -2166,6 +2189,7 @@ ko:
   sign_out: 로그아웃
   sign_up: 가입하기
   similar_species: 비슷한 종
+  similar_taxa: 비슷한 분류군
   sizes: 크기
   small: 작게
   site_admin_tools: 사이트 관리자 도구
@@ -2638,6 +2662,8 @@ ko:
       7: 토
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y년 %B'
     month_names:
       - 
@@ -2687,6 +2713,10 @@ ko:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%Y년 %B %d일"
   activerecord:
     models:
       TaxonLink: 분류 링크
@@ -2698,6 +2728,9 @@ ko:
       conservation_status:
         status: 상태
         description: 설명
+      listed_taxon:
+        occurrence_status_level: 이 지역에서
+        establishment_means: 서식 상태
       observation:
         observed_on: 관찰된 날짜
       post:

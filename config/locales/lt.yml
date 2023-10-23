@@ -1019,8 +1019,6 @@ lt:
     Dabartinis kompiuterinio matymo modelis žino apie šį taksoną, todėl jis gali būti įtrauktas į automatinius pasiūlymus su etikete „vizualiai panašus“.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Laukiama
-  computer_vision_model_pending_desc: |
-    Dabartinis kompiuterinio matymo modelis nežino apie šį taksoną, taigi, nors šis taksonas gali būti įtrauktas į automatinių pasiūlymų sąrašą su etikete „netoliese“, prie jo nebus etiketės „vizualiai panašus“. Kiekvienam modeliui galioja skirtingos įtrauktimo taisyklės, tačiau dažniausiai įtraukimas priklauso nuo stebėjimų skaičiaus, todėl, norint padidinti galimybę šiam taksonui būti įtrauktam kito modelio mokymo metu, įkelkite arba identifikuokite daugiau šio taksono stebėjimų.
   concept_status: Koncepcijos Būsena
   confidential: Konfidencialu
   configure: Konfigūruoti
@@ -1798,8 +1796,6 @@ lt:
   #Verb, usually a button to hide an interface element
   hide: Paslėpti
   hide_content: Paslėpti turinį
-  hide_desc: |
-    Paslėptas turinys bus nematomas viešai, tačiau žmonės vis tiek matys, kad kažkas buvo paslėpta, o tinklalapio kuratoriai ir turinio autoriai ir toliau galės matyti tai, kas paslėpta. Dažniausiai tai galioja tik rašytiniam turiniui, pvz.: jeigu paslėpiate identifikacijos turinį, pati identifikacija ir toliau matoma, tačiau identifikuotojo pastabos būna paslėptos. Paslėptą turini vėl matomu gali padaryti tik tinklalapio personalas, jūs to padaryti negalite, todėl būkite atsargūs ir slėpkite tik tikrai nepageidautiną turinį.
   hide_uncountable_species: Paslėpti nepriskaičiuojamas rūšis
   high: Aukštas
   highest_rank: Aukščiausias rangas
@@ -1828,8 +1824,6 @@ lt:
   #Notification when an identification has been deleted
   identification_deleted: Identifikacija ištrinta.
   identification_saved: "Identifikacija išsaugota!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identifikacijos tekstas nebepaslėptas
   #Notification when an identification has been updated
   identification_updated: Identifikacija atnaujinta!
   identification_user_short: Ident. vartotojas

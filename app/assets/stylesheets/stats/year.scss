@@ -112,6 +112,15 @@ $tip-opacity: 1;
     }
   }
 
+  .btn-dark {
+    border-color: $dark-gray;
+    background-color: $dark-gray;
+    color: #eee;
+    &:hover, &:focus {
+      color: inherit;
+    }
+  }
+
   #logo {
     text-align: center;
     padding: 50px;
@@ -189,9 +198,9 @@ $tip-opacity: 1;
       text-align: center;
     }
     .text-muted {
+      color: #ddd;
       strong {
-        color: #eee;
-        font-weight: normal;
+        color: white;
       }
     }
 
@@ -787,11 +796,6 @@ $tip-opacity: 1;
 
     > .controls {
       margin: 20px 0;
-      .btn-default {
-        border-color: $dark-gray;
-        background-color: $dark-gray;
-        color: #eee;
-      }
       .btn-primary {
         background-color: $inat-green;
         border-color: $inat-green;

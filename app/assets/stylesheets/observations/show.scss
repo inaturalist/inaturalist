@@ -327,6 +327,7 @@ a.UserImage,
           &.center {
             display: table-cell;
           }
+          cursor: auto;
         }
         .image-gallery-slides img {
           max-height: 420px;
@@ -344,7 +345,10 @@ a.UserImage,
           .sound-container {
             position: absolute;
             width: 100%;
-            top: 50%; 
+            top: 50%;
+            .captions {
+              margin-top: 10px;
+            }
           }
           .sound-container.sound-container-soundcloud {
             margin-top: -81px;
@@ -366,6 +370,13 @@ a.UserImage,
             bottom: 0;
             pointer-events: none;
             padding: 6px;
+            & > .hidden-media {
+              position: absolute;
+              width: 100%;
+              .captions {
+                margin-top: 10px;
+              }
+            }
           }
           .image-gallery-image {
             position: relative;
@@ -383,6 +394,11 @@ a.UserImage,
               display: inline-block;
               padding: 5px 9px;
               pointer-events: auto;
+              .btn:hover, .fa:hover {
+                text-decoration: none;
+                opacity: 0.8;
+                color: inherit;
+              }
             }
             .fa.license {
               vertical-align: middle;
@@ -596,7 +612,6 @@ a.UserImage,
     display: inline-block;
     width: 100%;
     margin-bottom: 15px;
-    white-space: nowrap;
     & > div {
       display: inline-block;
     }
@@ -610,7 +625,7 @@ a.UserImage,
       }
       .display-names, a.display-name, .noname {
         font-size: 32px;
-        line-height: 36px;
+        line-height: 40px;
         color: #000;
         white-space: normal;
       }
@@ -673,6 +688,23 @@ a.UserImage,
 
 .other_observations > .container > .row > .col-xs-6 {
   padding: 0;
+}
+
+.hidden-media {
+  text-align: center;
+  .hidden-status {
+    color: #333;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .reveal-hidden {
+    display: block;
+    color: #333;
+    pointer-events: auto;
+    display: block;
+    margin: 0px auto;
+    margin-top: 9px;
+  }
 }
 
 h3, h4 {
@@ -1296,7 +1328,6 @@ time {
     }
   }
   .list {
-    display: inline-block;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -1308,10 +1339,10 @@ time {
   }
   .obs {
     width: 100%;
-    display: inline-block;
     vertical-align: top;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
+    background: #fff;
   }
   .photo {
     width: 100%;
@@ -1342,7 +1373,6 @@ time {
 
   }
   .caption {
-    background: #fff;
     padding: 8px;
     min-height: 56px;
     text-align: start;
@@ -1352,9 +1382,6 @@ time {
     .SplitTaxon > .display-name, .display-names,
     .SplitTaxon > .secondary-name, .secondary-names {
       display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
   }
   .view {
@@ -1538,9 +1565,6 @@ time {
     .taxon {
       font-size: 16px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
       margin-bottom: 5px;
@@ -2077,7 +2101,6 @@ time {
         }
         .display-name {
           font-size: 13px;
-          white-space: nowrap;
         }
         &.score {
           white-space: nowrap;
@@ -2529,6 +2552,12 @@ body > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.image-gallery-image .loading_spinner {
+  width: 80px;
+  height: 80px;
+  border-width: 15px;
+}
+
 .observations.infowindow .observation {
   width: 245px;
 }
@@ -2542,6 +2571,12 @@ body > [role="dialog"] .easyzoom > a > img {
         display: inline;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery-slide .image-gallery-description {
+    font-size: 1em;
   }
 }
 

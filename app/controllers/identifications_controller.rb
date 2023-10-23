@@ -76,6 +76,9 @@ class IdentificationsController < ApplicationController
     params[:page] = 1 unless params[:page] > 0
     user_filter = { term: { "user.id": @selected_user.id } }
     ownership_filter = { term: { "own_observation": false } }
+    unless logged_in? && current_user == @selected_user
+      hidden_filter = { term: { hidden: false } }
+    end
     date_parts = Identification.conditions_for_date("col", params[:on])
     # only if conditions_for_date determines a valid range will it return
     # an array of [ condition_to_interpolate, min_date, max_date ]
@@ -86,7 +89,7 @@ class IdentificationsController < ApplicationController
       ]
     end
     result = Identification.elastic_search(
-      filters: [ user_filter, date_filters, ownership_filter ].flatten.compact,
+      filters: [ user_filter, date_filters, ownership_filter, hidden_filter ].flatten.compact,
       size: limited_per_page,
       from: (params[:page] - 1) * limited_per_page,
       sort: {

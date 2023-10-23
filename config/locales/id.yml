@@ -378,6 +378,7 @@ id:
   all_comments: Semua komentar
   all_flags_must_be_resolved: Seluruh tanda harus diselesaikan
   all_life: Semua kehidupan
+  all_media_must_be_unhidden: Semua media harus ditampilkan
   all_names: Semua Nama
   all_observations: Semua pengamatan
   all_photos: Semua foto
@@ -966,8 +967,8 @@ id:
     Model Penglihatan Komputer yang sekarang dapat mengenali takson ini, jadi takson ini mungkin sudah dimasukkan ke dalam rekomendasi otomatis dengan label "Serupa Secara Visual"
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Belum bisa
-  computer_vision_model_pending_desc: |
-    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Sekitaran", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
+  computer_vision_model_pending_desc2: |
+    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Terlihat di Sekitar", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
   concept_status: Status Konsep
   confidential: Rahasia
   configure: Pengaturan
@@ -1638,44 +1639,8 @@ id:
   email: Email
   email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_address_for_comments_and_other_feedback: Alamat email untuk komentar dan umpan balik lainnya
-  email_conf_banner_email_delivered_click_link: |
-    Email konfirmasi sudah dikirim. Klik tautan pada email-nya.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Tambahkan <code>%{email}</code> ke daftar kontak Anda dan
-    <a href="%{url}">minta email konfirmasi lagi</a>.</strong> Jika penyedia email 
-    Anda memblokir email konfirmasi, hal ini mungkin akan meyakinkan mereka 
-    bahwa Anda ingin sebuah email dari kami.
-  email_conf_banner_check_your_spam_folder_html: <strong>Cek folder spam Anda</strong>
-  email_conf_banner_contact_us_html: Masih belum berhasil? Kirim email ke kami di %{email} supaya kami bisa menolong Anda.
-  email_conf_banner_please_click: |
-    Silakan klik tautan di email Anda untuk mengkonfirmasi alamat email Anda.
-  email_conf_banner_search_for_emails_html: <strong>Cari email dari <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Kami sudah mengirimkan email konfirmasi pada tanggal %{date}. Jika Anda belum menerimanya, di sini ada beberapa hal yang bisa Anda lakukan:
   email_conf_required_after_grace_period: |
     Konfiirmasi email diwajibkan sejak %{requirement_date} dan Anda belum mengonfirmasi alamat email Anda sebelum tanggal pemberlakuan aturan ini. Harap mengatur ulang kata sandi Anda sebelum mengakses akun Anda.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Hatap mengonfirmasi alamat email Anda%{link_end_tag}</strong>.
-    Semua pengguna harus mengonfirmasi email mereka sebelum %{date}. Setelah tanggal tersebut, semua orang yang belum mengonfirmasi alamat email mereka tidak akan bisa masuk kecuali mereka mengatur ulang kata sandi mereka. Untuk mengonfirmasi alamat email Anda,
-    pergi ke %{link_start_tag}pengaturan akun%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Konfirmasi alamat email %{site_name} Anda sebelum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Mohon konfirmasi alamat surel Anda hari ini supaya Anda dapat tetap mengakses akun Anda. %{site_name}, aplikasi mobile iNaturalist, dan Seek by iNaturalist menghubungkan orang dengan alam dan satu sama lain dengan membagikan pengamatan-pengamatan keanekaragaman hayati. Terima kasih telah menjadi bagian dari komunitas iNaturalist.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Kami mewajibkan verifikasi alamat email mulai dari %{requirement_date}. Mohon luangkan waktu Anda untuk mengonfirmasinya sekarang.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Jika Anda mempunyai pertanyaan, silakan membaca <a href="%{faq_url}">FAQ</a>. Terima kasih telah meluangkan waktu untuk terhubung dengan alam dan juga %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detail akun
   email_copyright2: "&copy; %{year} iNaturalist, hak cipta dilindungi undang-undang"
   email_notifications: Notifikasi Email
   embed: 'Tanamkan'
@@ -1734,6 +1699,7 @@ id:
   exit_full_screen: "Keluar Dari Layar Penuh"
   examples_of_data_use_by_network_members: Contoh Penggunaan Data Oleh Anggota Jaringan
   examples_of_ranking_organizations: Contoh Organisasi Penggolongan
+  expected_nearby: Terlihat Di Sekitar
   explore: Jelajah
   export: Ekspor
   export_observations: Ekspor Pengamatan
@@ -2017,7 +1983,9 @@ id:
   hide: Sembunyi
   hide_content: Sembunyikan konten
   hide_desc: |
-    Menyembunyikan konten akan menghapusnya dari tampilan publik, tetapi orang-orang tetap bisa melihat bahwa ada sesuatu yang disembunyikan, sedangkan kurator situs serta penulis konten masih bisa melihat konten yang disembunyikan. Secara umum, ini hanya diterapkan untuk konten tertulis, contohnya jika kamu menyembunyikan identifikasi, identifikasinya akan tetap terlihat, namun kata-kata pengidentifikasi akan disembunyikan. Kamu tidak bisa membalikkan keadaan ini, dan hanya staf situs yang bisa menampilkan kembali jika konten sudah telanjur disembunyikan, jadi berhati-hatilah dan gunakan fitur ini hanya untuk konten yang kurang baik untuk dilihat.
+    Menyembunyikan konten akan menghapusnya dari tampilan publik, tetapi orang-orang masih bisa melihat bahwa ada konten yang disembunyikan. Kurator situs serta penulis kontennya masih bisa melihat konten yang disembunyikan. Identifikasi yang disembunyikan tidak akan berkontribusi kepada pengamatan Takson Komunitas.
+  hide_desc_staff_can_unhide: |
+    Hanya staf situs yang bisa menampilkan kontennya kembali setelah disembunyikan, jadi harap gunakan fitur ini untuk pelanggaran Pedoman Komunitas yang jelas.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Sembunyikan "Tanpa Catatan"
@@ -2074,8 +2042,10 @@ id:
   #Notification when an identification has been deleted
   identification_deleted: Identifikasi telah dihapus.
   identification_saved: "Identifikasi telah disimpan!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Teks identifikasi ditampilkan kembali
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikasi disembunyikan
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Teks identifikasi ditampilkan kembali
   #Notification when an identification has been updated
   identification_updated: Identifikasi telah diperbarui!
   identification_user_short: Pengguna identifikasi
@@ -2083,55 +2053,6 @@ id:
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
-  independence_email_subject: "Mengepakkan Sayap Kami: iNaturalist Sekarang Menjadi Perusahaan Nirlaba Independen"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Halo %{name},
-  independence_email_body_exciting_news: |
-    Tim iNaturalist memiliki kabar baik! Kami dengan senang hati ingin membagikan bahwa karena dukungan dari komunitas yang hebat ini, iNaturalist sekarang beroperasi sebagai organisasi nirlaba 501(c)(3) independen yang berbasis di Amerika Serikat.
-  independence_email_body_since_launching: |
-    Sejak peluncuran pada 2008, tim dan organisasi iNaturalist terus berkembang, dan kami sangat senang dengan pencapaian ini. iNaturalist dimulai sebagai sebuah proyek S2 di Universitas Kalifornia, Berkeley, kemudian menjadi PT, sebelum bergabung dengan Akademi Sains Kalifornia pada 2014. Pada 2017, iNaturalist menjadi inisiatif bersama dengan Akademi Sains Kalifornia dan Perkumpulan National Geographic. Sekarang, iNaturalist telah menjadi organisasi independen.
-  independence_email_body_over_the_past: |
-    Selama 15 tahun terakhir, kontribusi yang luar biasa dari komunitas ini telah membuat iNaturalist menjadi salah satu platform alam paling berpengaruh di dunia.
-  independence_email_body_so_far: "Sejauh ini, komunitas iNaturalist telah:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Menghasilkan lebih dari 146.000.000 pengamatan yang terverifikasi (bertambah sekitar 1 juta setiap minggunya!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Bertumbuh menjadi 2,7 juta kontributor
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Mengamati lebih dari 430.000 spesies
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Dikutip lebih dari 3.500 kali <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">melalui Fasilitas Informasi Keanekaragaman Hayati Global</a>
-  independence_email_body_we_thank: |
-    Kami berterima kasih kepada California Academy of Sciences and the National Geographic
-    Society karena telah memelihara iNaturalist selama ia bertumbuh secara drastis dalam 9 tahun ke belakang. Kami berutang banyak kepada mitra-mitra ini untuk investasi, dukungan, dan pelayanan mereka. Kami berharap untuk bisa berkolaborasi dengan kedua organisasi ini di masa yang akan datang.
-  independence_email_body_the_way_html: |
-    <strong>Cara Anda menggunakan iNaturalist tidak akan berubah.</strong> iNaturalist dan Seek akan terus membantu Anda secara cuma-cuma untuk mengidentifikasi keanekaragaman hayati dan membangun hubungan Anda dengan dunia alam. Struktur organisasi yang baru ini akan mengizinkan kami untuk mendukung iNaturalist di tahun-tahun yang akan datang supaya komunitasnya bisa memperluas pengetahuan kolektif kita tentang keanekaragaman hayati ke depannya. Kami akan terus bermitra dengan organisasi-organisasi di seluruh dunia untuk mendukung Jaringan iNaturalist.
-  independence_email_body_questions_html: |
-    Anda bisa <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">membaca lebih lanjut di blog</a> dan mengecek <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Pertanyaan Yang Sering Ditanyakan</a> (dalam bahasa Inggris). <a
-    href="https://www.inaturalist.org/pages/terms">Syarat dan Ketentuan Penggunaan</a> dan <a
-    href="https://www.inaturalist.org/pages/privacy">Kebijakan Privasi</a> telah diperbarui supaya mencerminkan organisasi yang baru.
-  independence_email_body_thank_you: Terima kasih sudah menjadi bagian dari komunitas ini.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Terus maju,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Tim Pengurus iNaturalist</strong>
-  independence_email_body_ps: |
-    Catatan - Kami akan segera mengumumkan sumbangan yang sangat dermawan yang memberikan iNaturalist independen batu loncatan. Dukungan finansial dari komunitas iNaturalist telah membuat perkembangan ini menjadi mungkin dan akan menjadi vital untuk ketahanan kami untuk jangka panjang. Sumbangan Anda akan ikut meramaikan pencapaian yang membanggakan ini dan mengamankan masa depan iNaturalist. Terima kasih!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Sumbang sekarang
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2191,6 +2112,7 @@ id:
   include_places: Sertakan Tempat
   include_projects: Sertakan Proyek
   include_suggestions_not_seen_nearby: Sertakan rekomendasi spesies yang tidak ditemukan di daerah sekitar
+  include_suggestions_not_expected_nearby: Sertakan usulan yang tidak ditemukan di sekitar
   include_taxa: Sertakan Taksa
   include_users: Sertakan Pengguna
   including: termasuk
@@ -2709,6 +2631,10 @@ id:
   moderation_history_for_user_html: Riwayat moderasi untuk %{user}
   moderation_history_desc_html: |
     Ini termasuk tindakan moderator (seperti menyembunyikan atau menampilkan komentar), catatan, dan semua tanda yang diberikan pengguna ini kepada apapun kecuali taksa. Ini <strong>hanya dapat dilihat oleh kurator</strong> dan <strong>kurator tidak dapat melihat riwayatnya sendiri</strong>, jadi catatan tentang seseorang seharusnya tidak dapat dilihat oleh orang itu sendiri.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Sembunyikan
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Batalkan penangguhan
   moderator_note_desc: |
     Catatan moderator adalah catatan yang mengandung respons moderasi atau perhatian yang berbasis fakta tentang seorang pengguna, seperti ketika mereka mungkin adalah akun buzzer. Jangan memasukkan pendapat pribadi atau gosip tentang pengguna tersebut.
   #Person who executed a moderator action or flagged something
@@ -3388,8 +3314,12 @@ id:
   photo_credits: Kredit Foto
   photo_deleted: Foto dihapus
   photo_destroyed_because_it_was_deleted_from: "Foto dihancurkan dikarenakan foto tersebut dihapus dari situs eksternal atau %{site_name} tidak lagi memiliki izin untuk melihatnya"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Gambar disembunyikan
   photo_licensing: Lisensi Foto
   photo_type: Jenis foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Gambar ditampilkan kembali
   photo_urls_repaired: URL foto diperbaiki
   photos_chosen_for_this_taxon: Foto yang dipilih untuk takson ini
   photos_from: Foto dari
@@ -5831,6 +5761,38 @@ id:
           Konten yang ditandai adalah atribut teks utama dari obyek yang ditandai pada saat tanda dibuat. Hanya kurator dan staf yang dapat melihat ini. Hanya staf yang dapat melihat pesan-pesan yang ditandai.
         flags_that_should_not_be_resolved_desc_html: |
           Harap mencabut tanda <code>spam</code> dan <code>pelanggaran hak cipta</code> hanya jika kontennya bukan merupakan spam atau bukan merupakan pelanggaran hak cipta.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Prediksi Geomodel %{taxon}
+        nearby_map:
+          expected_nearby_map: Peta Terlihat Di Sekitar
+        unthresholded_map:
+          unthresholded_map: Peta Tanpa Ambang
+        range_comparison:
+          expected_nearby_vs_taxon_range: Terlihat Di Sekitar vs Jangkauan Takson
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Keberadaan Benar:
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Keberadaan Salah:
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Ketidakberadaan Salah:
+          evaluation_statistics_for_taxon: Statistik evaluasi untuk %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precision:
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Recall:
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Rata-rata (harmonik) Precision dan Recall
     guides:
       index:
         deprecated_banner: |
@@ -6880,6 +6842,8 @@ id:
           Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
+        view_all_publications_count_caps2:
+          other: "LIHAT %{count} PUBLIKASI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -6975,8 +6939,8 @@ id:
       move_children_desc: |
         Anak-anak takson input yang berupa genus atau lebih kasar lagi akan dipindahkan ke output; spesies, subspesies, varietas, dll. akan diganti dengan sejenisnya dengan nama genus atau spesies baru.
       form:
-        move_children_desc_html: |
-          Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan ketika perubahan diterapkan. Jika ini berubah menjadi genus atau lebih bawah, ini akan membuat Penggantian Takson untuk semua turunan yang memiliki perubahan nama yang tersirat. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat sedikit kekacauan, jadi gunakanlah dengan bijak.
+        move_children_desc2_html: |
+          Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan Takson ketika perubahannya diterapkan. Jika ini perubahan genus atau tingkat yang lebih rendah, ini akan membuat Penggantian Takson untuk semua turunan dengan nama yang harus diubah juga. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat kekacauan, jadi gunakanlah dengan bijak.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7066,6 +7030,7 @@ id:
           <p>
           Jika seseorang mengganggu atau melakukan stalking kepada Anda di %{site_name}, <a href="mailto:%{help_email}">beritahu kami</a>. Jika hal itu merupakan pelanggaran Syarat dan Ketentuan Penggunaan kami atau merupakan perilaku yang kami anggap tidak pantas untuk situs kami, kami akan menyelidikinya.
           </p>
+        common_scientific_name_display_order: Urutan Penampilan Nama Umum / Ilmiah
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7438,9 +7403,11 @@ id:
       AssessmentSection: Bagian Penilaian
       Atlas: Atlas
       BlockedUser: Pengguna Diblokir
+      Comment: Komentar
       CompleteSet: Set Komplet
       #Noun
       Flag: Tanda
+      Identification: Identifikasi
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7452,6 +7419,7 @@ id:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikasi
+      Photo: Foto
       TaxonLink: Tautan Takson
     attributes:
       announcement:
@@ -7724,11 +7692,10 @@ id:
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
               must_be_a_curator: harus merupakan kurator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Impor untuk pengguna Mushroom Observer itu sedang berjalan atau diantrekan untuk impor"
-              api_key_missing: "Kunci API Mushroom Observer tidak ditemukan"
+            user:
+              must_be_a_curator: harus merupakan kurator
         observation:
           attributes:
             base:

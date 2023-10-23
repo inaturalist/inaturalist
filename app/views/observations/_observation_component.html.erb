@@ -68,8 +68,8 @@ Some notes:
     <h4 class="label"><%= t :'sounds.photos_sounds' %></h4>
     <div class="photolist">
       <% photo_count, sound_count, link_text =
-        observation.observation_photos_finished_processing.size,
-        observation.observation_sounds_count, [] %>
+        observation.publicly_viewable_observation_photos.size,
+        observation.publicly_viewable_observation_sounds.size, [] %>
       <% if photo_count == 0 && sound_count == 0 -%>
         <div class="photo nophoto description">
           <%=t :'sounds.no_photos_sounds' %>
@@ -77,7 +77,7 @@ Some notes:
       <% else %>
         <% if photo_count > 0 %>
           <%- 
-            photos = observation.observation_photos_finished_processing.sort_by{|op|
+            photos = observation.publicly_viewable_observation_photos.sort_by{|op|
               op.position || photo_count + op.id.to_i
             }.map{|op| op.photo}.compact
             photo = photos.first

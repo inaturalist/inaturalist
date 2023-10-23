@@ -688,6 +688,9 @@ zh-TW:
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     因為我們估計這個變動會導致超過10個以上的意外分歧，<strong>我們建議您也提交一個包含 %{old_parent}的分類群更改，如從 %{old_parent}拆分出 %{new_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    因為我們估計這個改變會導致10個或更少的意外分歧，<strong>可能沒有必要提交涉及%{old_parent}的分類單元更改</strong>。
   become_a_donor_caps: 成為捐款者
   become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
@@ -916,9 +919,6 @@ zh-TW:
     目前的電腦視覺模型認得此分類群，所以它可能會列在「視覺上相似」的自動建議中。
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 待確認中
-  computer_vision_model_pending_desc: |
-    目前的電腦視覺模型不認得此分類群，所以它會列在「附近可見」的自動建議中，
-    而不會顯示「視覺上相似」的標籤。當納入每個模型的需求改變時，一般來說納入的依據是觀察紀錄的數量，所以若要增加此分類群包含在下次模型訓練時的機會，請針對此分類群多多新增或鑑定觀察紀錄。
   concept_status: 概念狀態
   confidential: 保密的
   configure: 設置
@@ -1039,6 +1039,7 @@ zh-TW:
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    gall: 由寄生生物引發的植物組織變形生長
     molt: 蛻下的表皮或外骨骼
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
     organism: 整個或部分生物體
@@ -1151,6 +1152,12 @@ zh-TW:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     他們本身做了不良的示範。
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    若要申請成為網站的策展人，您必須持有帳號60天以上，且必須添加最少5個標記，還有，您必須為任意使用者「需要鑑定」的觀察記錄新增100筆以上的鑑定，包含您自己（您已經新增 %{num_idents} 筆鑑定）。當您已符合這些條件，回到此頁後您將能提交策展人申請。
+  curator_application_inelligible_error2: |
+    若要申請成為網站的策展人，您必須持有帳號60天以上，添加至少5個標記，以及必須為任意使用者「需要鑑定」的觀察記錄新增100筆以上的鑑定，包含您自己的觀察記錄。
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: 策展人申請已提交
   #Header
@@ -1209,6 +1216,8 @@ zh-TW:
     若符合以下條件，您能申請成為策展人：
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     您在過去幾個月間持續新增鑑定和(或)上傳觀察紀錄，接下來也願意持續這麼做。
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    您必須藉由新增一些旗號標記，來展示您了解策展的流程。
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1350,6 +1359,7 @@ zh-TW:
     confirmations:
       confirmed: |
         已成功確認電子郵件地址。您現在可以登入此網站或行動端的 iNaturalist 及 Seek 應用程式。
+      send_instructions: "您將在幾分鐘後收到一封電子郵件，內有驗證帳號的步驟說明。"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1359,6 +1369,8 @@ zh-TW:
       unauthenticated: '您必須登入或是註冊才能繼續使用。'
       invalid: '無效的電子郵件或密碼。'
       invalid_token: '無效的認證安全碼。'
+      unconfirmed: |
+        請確認您的電子郵件，並點選郵件內附帶的連結，以驗證您的帳號。
       user:
         suspended: 您的帳號已被停用
     sessions:
@@ -1376,7 +1388,11 @@ zh-TW:
     registrations:
       destroyed: '再會！您的帳號已成功取消。我們希望很快能再與您相會。'
       signed_up: '歡迎！您已成功註冊。'
+      signed_up_but_inactive: "您已註冊成功，但由於您的帳號尚未啟用，我們暫時無法讓您登入。"
+      signed_up_but_locked: "您已註冊成功，但由於您的帳戶已被鎖定，我們無法讓您登入。"
+      signed_up_but_unconfirmed: "確認信件已送至您的電子郵件信箱，請點擊信件內連結以啟用您的帳號。"
       updated: '您已成功更新您的帳戶。'
+      updated_but_not_signed_in: "您已成功更新帳號資訊，但因為密碼變更，您需要重新登入。"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1392,6 +1408,9 @@ zh-TW:
   devise_confirmation_instructions_please_click: |
     請按此鏈結確認您的電子郵件地址：
   devise_confirmation_instructions_send_confirmation_email: 傳送確認電子郵件
+  devise_email_changed_you_requested: 您提交將 %{old_email} 改為 %{new_email} 。
+  devise_email_changed_you_will_receive: |
+    您將在新的信箱收到一封電子郵件來確認變更，但我們想從您的舊信箱通知您，以避免其他人在您不知情的情況下，透過您的帳號來嘗試更改您的帳號資訊。如果您沒有嘗試變更您的信箱位置，請將此信件立即轉寄到 help@inaturalist.org，以便我們進行調查。
   devise_reset_password_instructions_hello_email: 您好 %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您沒有要求重設密碼，請忽略這封 email。
@@ -1546,25 +1565,6 @@ zh-TW:
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
   email_conf_required_after_grace_period: |
     從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}請確認您的電子郵件地址%{link_end_tag}</strong>。所有使用者必須在 %{date} 之前確認自己的電子郵件地址。在那之後，除非重設密碼，否則任何未確認自己電子郵件地址的人將無法登入。請到%{link_start_tag}帳號設定%{link_end_tag}確認電子郵件地址。
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: 請在 %{date} 之前確認您 %{site_name} 上的電子郵件地址 #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    請立即確認您的電子郵件地址，以確保您可以繼續存取您的帳號。%{site_name} 和行動版 iNaturalist 以及 Seek 藉由分享生物多樣性的觀察記錄，將人們與自然環境彼此聯繫起來。感謝您成為 iNaturalist 社群的成員！
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    從 %{requirement_date} 開始，我們將要求所有帳號使用驗證過的電子郵件地址。現在請花點時間確認一下。
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    如有疑問，請參閱<a href="%{faq_url}">常見問題</a>。感謝您花時間與大自然和 %{site_name} 結緣。
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: 帳號詳情
   email_notifications: 電子郵件通知
   embed: '內嵌'
   embed_place_widget: 內嵌地點小工具
@@ -2151,6 +2151,7 @@ zh-TW:
     davawenyo: Davawenyo 語
     dutch: 荷蘭語
     english: 英語
+    esperanto: 世界語
     estonian: 愛沙尼亞語
     faroese: 法羅文
     finnish: 芬蘭語
@@ -2270,6 +2271,7 @@ zh-TW:
     es: 西班牙語
     es-AR: 西班牙文 (阿根廷)
     es-CO: 西班牙文 (哥倫比亞)
+    es-CR: 西班牙文（哥斯大黎加）
     es-MX: 西班牙語 (墨西哥)
     et: 愛沙尼亞語
     eu: 巴斯克語
@@ -4038,6 +4040,7 @@ zh-TW:
   set_license: 設定許可協議
   settings: 設定
   share: 分享
+  share_caps: 分享
   share_colon: "分享："
   short_code_for_this_place: 此地點的簡短代碼，例如 US 用於代表美國
   short_or_abbreviated_title_for_display: 用於顯示在內容有限區域裡的簡短或縮寫標題。最多 10 個字元。
@@ -4047,6 +4050,8 @@ zh-TW:
   show_keyboard_shortcuts: 顯示鍵盤快捷鍵
   show_less: 顯示較少
   show_more: 顯示更多
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: 顯示更多登入選項
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: 顯示「沒有註記」
@@ -4322,6 +4327,8 @@ zh-TW:
   target_list_warning: "請記住，在你的行程期間和半徑範圍裡未觀察到在你的目標名錄中所涵蓋的任何物種，\n會被視為不出現紀錄。因此，讓你的目標名錄能精準反映出是您所嘗試發覺的物種集合，是非常重要的。如果你不打算發掘在你的目標名錄上、或在其中分類群內所涵蓋的物種，請將它移除。"
   task_deleted: 任務已刪除
   taxa: 物種分類
+  taxa_show_obs_photo_search_tip: |
+    小秘訣：如果您想從一個特定的觀察記錄選擇照片，在搜尋欄位輸入觀察記錄的ID
   taxa_with_unknown_relationships: 帶有未知關聯的分類
   taxa_info: 物種分類群訊息
   taxa_needing_curation: 物種分類群需要策展
@@ -4632,6 +4639,8 @@ zh-TW:
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer_caps: 最高紀錄之觀察者
   top_observers: 熱門觀察者
+  tos_privacy_guidelines_label: |
+    我同意<a href="/terms" target="_blank">使用條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
   total: 總計
   totals: 總計
   total_ids_on_input_taxon: "輸入分類群的所有 ID："
@@ -5261,6 +5270,25 @@ zh-TW:
         flags_that_should_not_be_resolved_desc_html: |
           若內容不是垃圾訊息或侵犯版權，請分別解決 <code>spam</code> 與 <code>copyright
           infringement</code> 標記。
+    geo_model:
+      explain:
+        range_comparison:
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            有效證據 / (有效證據 + 無效證據) = %{precision}
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            有效證據 / (有效證據 + 無效缺失) = %{recall}
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × 有效證據 / (2 × 有效證據 + 無效證據 + 無效缺失) = %{f1}
     guides:
       index:
         deprecated_banner: |
@@ -6032,6 +6060,7 @@ zh-TW:
           請指定添加至此專案的觀察之需求。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
+        project_banner: 專案的橫幅（PNG或JPG格式）
         project_banner_help: 選用的橫幅圖片。理想尺寸是 760 x 320 像素。
         project_details: 專案細節
         project_icon: 專案圖標（PNG、JPG、或 GIF 檔案）
@@ -6354,11 +6383,6 @@ zh-TW:
     taxon_changes:
       move_children_desc: |
         子項若為屬或較粗略內容，因而移動到種、亞種、變種、等其它輸出的所輸入物種分類，將會對換至同等之新的屬、或種名稱。
-      form:
-        move_children_desc_html: |
-          當更改提交時，勾選此方框將會移動所輸入物種分類的子項至輸出物種分類來對換與合併。若此更改內容為屬或較低階級別，會給所有具有隱含名稱變更的派生建立物種分類對換。例如，如果您將 Canidae 科對換至 Dogidae 科，這會更改 <i>Canis</i> 屬從 Canidae 至 Dogidae 的父級項目。如果您對換
-          <i>Canis</i> 屬至 <i>Dogis</i> 屬，這將會建立並提交物種分類對換來把 <i>Canis lupus</i> 更改成 <i>Dogis lupus</i> ，以及 <i>Canis lupus</i> ssp. <i>lupus</i> 會更改成 <i>Dogis lupus</i> ssp.
-          <i>lupus</i>。這會有造成混亂情況的可能，因此請小心使用。
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6444,6 +6468,9 @@ zh-TW:
           </p>
         licensing_desc_html: |
           授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
+        monthly_supporter_desc_html: |
+          iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
+          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
         muting_desc_html: |
           <p>
           禁言某人會防止您接受到到對方的通知，包含評論您的觀察、
@@ -6650,9 +6677,17 @@ zh-TW:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%m月%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-m月%-d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b 月 %e 日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%Y年%-m月%-d日'
     month_names:
       - 
       - 1月
@@ -6769,9 +6804,17 @@ zh-TW:
     am: 上午
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%Y/%m/%d %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%Y年%m月%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%m月%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: 下午
@@ -6967,11 +7010,6 @@ zh-TW:
           attributes:
             user_id:
               must_be_a_curator: 必須是策展人
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Mushroom Observer 使用者匯入正在執行中或是等候匯入中"
-              api_key_missing: "缺少 Mushroom Observer 的 API 金鑰"
         observation:
           attributes:
             base:

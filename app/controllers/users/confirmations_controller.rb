@@ -27,5 +27,13 @@ module Users
         redirect_to dashboard_path
       end
     end
+
+    def after_confirmation_path_for( resource_name, _resource )
+      if signed_in?( resource_name )
+        home_path( confirmed: true )
+      else
+        new_session_path( resource_name, confirmed: true )
+      end
+    end
   end
 end

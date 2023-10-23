@@ -1171,14 +1171,6 @@ cs:
     zahrnut do automatizovaných návrhů se štítkem "Vizuálně podobný".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Čekající
-  computer_vision_model_pending_desc: |
-    Aktuální model počítačového vidění tento taxon nepoznává, takže zatímco
-    může být zahrnut do automatických návrhů se štítkem "Poblíž",
-    nebude mít štítek "Vizuálně podobný". Přestože požadavky na zahrnutí do modelu
-    se mění s každou změnou modelu, obecně je zahrnutí založeno na
-    počtu pozorování, čili aby se zvýšila šance, že se tento taxon dostane
-    do trénování příštího modelu, přidejte nebo identifikuje více pozorování
-    tohoto taxonu.
   concept_status: Status konceptu
   confidential: Důvěrné
   configure: Konfigurovat
@@ -1856,47 +1848,8 @@ cs:
   email: E-mail
   email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_address_for_comments_and_other_feedback: E-mailové adresy pro komentáře a jinou zpětnou vazbu.
-  email_conf_banner_email_delivered_click_link: |
-    Potvrzovací e-mail byl doručen. Klikněte prosím na odkaz v e-mailu.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Přidejte <code>%{email}</code> do seznamu kontaktů a
-    <a href="%{url}">požádejte o další potvrzovací e-mail</a>.</strong> Pokud váš poskytovatel
-    e-mailu zablokoval potvrzovací e-mail, mohlo by jej to přesvědčit o tom, že
-    od nás e-mail skutečně chcete.
-  email_conf_banner_check_your_spam_folder_html: <strong>Zkontrolujte složku se spamem</strong>
-  email_conf_banner_contact_us_html: Stále nefunguje? Napište nám e-mail na %{email} , abychom Vám mohli pomoci.
-  email_conf_banner_please_click: |
-    Kliknutím na odkaz v e-mailu potvrďte svou e-mailovou adresu.
-  email_conf_banner_search_for_emails_html: <strong>Hledat e-maily od <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Dne %{date} jsme Vám zaslali potvrzovací e-mail. Pokud jste ho neobdrželi, zde je několik věcí, které můžete udělat:
   email_conf_required_after_grace_period: |
     Od %{requirement_date} je vyžadováno potvrzení e-mailu a před koncem období jste nepotvrdili svou e-mailovou adresu. Pro přístup ke svému účtu si prosím obnovte heslo.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Prosím, potvrďte svou e-mailovou adresu%{link_end_tag}</strong>.
-    Všichni uživatelé musí potvrdit svou e-mailovou adresu do %{date}. Po tomto datu se každý, kdo nepotvrdí svou e-mailovou adresu, nebude moci přihlásit, pokud si neobnoví heslo. Chcete-li potvrdit svou e-mailovou adresu, přejděte do %{link_start_tag}nastavení účtu%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Potvrďte svou e-mailovou adresu %{site_name} před %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Potvrďte prosím dnes svou e-mailovou adresu, abyste zajistili, že budete mít i nadále přístup k vašemu účtu. %{site_name} a mobilní aplikace iNaturalist a Seek od iNaturalist spojují lidi s přírodou a navzájem
-    tím, že sdílejí pozorování biologické rozmanitosti. Děkujeme, že jste součástí komunity iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Budeme potřebovat ověřené e-mailové adresy pro všechny účty počínaje dnem
-    %{requirement_date}. Prosím, najděte si chvilku a potvrďte Vaši adresu.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Pokud máte jakékoliv dotazy, podívejte se prosím na
-    <a href="%{faq_url}">FAQ</a>. Děkujeme, že jste si udělali čas na spojení
-    s přírodou a s %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Podrobnosti účtu
   email_copyright2: "&copy; %{year} iNaturalist, všechna práva vyhrazena"
   email_notifications: E-mailová upozornění
   embed: 'Vložit'
@@ -2245,14 +2198,6 @@ cs:
   #Verb, usually a button to hide an interface element
   hide: Skrýt
   hide_content: Skrýt obsah
-  hide_desc: |
-    Skrytí obsahu ho odstraní z veřejného náhledu, ale lidé budou i nadále
-    vidět, že něco bylo skryto, a kurátoři stránek a autor
-    bude stále moci vidět skrytý obsah. Obecně to
-    platí pouze pro psaný obsah, např. pokud skryjete obsah
-    identifikace, identifikace je stále viditelná, ale 
-    poznámky identifikátora jsou skryté. Tuto akci nelze vrátit zpět a pouze pracovníci webu mohou obsah odkrýt, jakmile je skrytý, proto buďte opatrní a používejte jej jen pro velmi
-    nevhodný obsah.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
@@ -2312,8 +2257,6 @@ cs:
   #Notification when an identification has been deleted
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text identifikace odkryt
   #Notification when an identification has been updated
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
@@ -2321,79 +2264,6 @@ cs:
   identification_withdrawn: Identifikace odstraněna.
   identifications: Identifikace
   inaturalist_global_year_in_review: "Globální přehled roku %{year} na iNaturalist"
-  independence_email_subject: "Rozšiřte mezi známými: iNaturalist je nyní nezávislá neziskovka"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Vážený %{name},
-  independence_email_body_exciting_news: |
-    Tým iNaturalist má vzrušující novinky! Jsme rádi, že se s vámi můžeme podělit o to, 
-    že díky podpoře této skvělé komunity nyní iNaturalist funguje jako 501(c)(3) 
-    nezávislá nezisková organizace se sídlem ve Spojených státech amerických.
-  independence_email_body_since_launching: |
-    Od svého založení v roce 2008 se tým a organizace iNaturalist rozrostla, 
-    proto jsme nadšeni z dalšího milníku. iNaturalist začal
-    jako magisterský projekt na Kalifornské univerzitě v Berkeley, stala se z něj
-    společnost s ručením omezeným, v roce 2014 se připojil ke Kalifornské akademii věd. 
-    V roce 2017 se iNaturalist stal společnou iniciativou Kalifornské akademie věd 
-    a National Geographic Society. Nyní je iNaturalist nezávislou organizací.
-  independence_email_body_over_the_past: |
-    V uplynulých 15 letech se díky neuvěřitelným příspěvkům komunity stal 
-    iNaturalist jednou z nejvlivnějších platforem pro výzkum přírody na světě.
-  independence_email_body_so_far: "Komunita iNaturalist dosud:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Vytvořila více než 146 000 000 ověřitelných pozorování (týdně jich přibývá přibližně 1 milion!).
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: se rozrostla na 2,7 milionu přispěvatelů
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Pozorovala více než 430 000 druhů
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Byla citována více než 3 500krát
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">prostřednictvím Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Děkujeme Kalifornské akademii věd a National Geographic Society 
-    za rozvoj iNaturalist, který se v posledních devíti letech dramaticky zrychlil.
-    Těmto partnerům jsme nesmírně vděční za jejich investice, podporu a péči.
-    Těšíme se na spolupráci s oběma v budoucnu.
-  independence_email_body_the_way_html: |
-    <strong>Způsob, jakým iNaturalist používáte, se nezmění.</strong>
-    iNaturalist a Seek vám budou i nadále volně pomáhat identifikovat
-    biodiverzitu a budovat si vlastní vztah ke světu přírody. Tato nová
-    organizační struktura nám umožní podporovat iNaturalist po mnoho let,
-    protože komunita iNaturalist rozšiřuje naše kolektivní znalosti o přírodě.
-    biodiverzity dlouho do budoucna. Budeme i nadále spolupracovat s
-    organizacemi po celém světě na podporu sítě iNaturalist.
-  independence_email_body_questions_html: |
-    Můžete si <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">přečíst
-    více na blogu</a> a podívejte se na <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Často kladené
-     dotazy </a> (v angličtině). <a
-    href="https://www.inaturalist.org/pages/terms">Podmínky použití</a> a <a
-    href="https://www.inaturalist.org/pages/privacy">Zásady ochrany osobních údajů</a>
-    byly aktualizovány, aby odrážely novou organizaci.
-  independence_email_body_thank_you: Děkujeme vám, že jste součástí této komunity.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Dále,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Tým vedení iNaturalist</strong>
-  independence_email_body_ps: |
-    P.S. - Brzy oznámíme velkorysý grant, který poskytne
-    nezávislému iNaturalist pevný začátek. Finanční podpora
-    komunity iNaturalist umožnila náš vývoj a bude životně důležitá pro
-    dlouhodobou udržitelnost. Váš dar nyní oslaví tento vzrušující
-    milník a další bezpečnou budoucnost iNaturalist. Děkujeme!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Přispějte nyní
   computer_vision_suggestion: Návrh počítačového vidění
   computer_vision_suggestion_desc: |
     Počítačové vidění je proces, kterým se počítač učí rozpoznávat vzory v obrazech. Poskytujeme nástroje, které využívají modely počítačového vidění řízené fotografiemi z komunity, aby poskytly návrhy na identifikaci, jako jsou automatické úplnosti a funkce porovnání. Tento štítek označuje, kdy osoba přidala ID pomocí jednoho z těchto nástrojů.
@@ -7419,9 +7289,6 @@ cs:
     taxon_changes:
       move_children_desc: |
         Děti daného taxonu, které jsou rodové nebo ještě hruběji určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu s novým názvem rodu nebo druhu.
-      form:
-        move_children_desc_html: |
-          Zaškrtnutím tohoto políčka přesunete děti vstupního taxonu do cílového taxonu pro Swaps and Merges, pokud bude tato změna ověřena. Pokud se přesune na rod nebo níže, vytvoří se výměna taxonů pro všechny potomky, kteří mají implicitní změnu jména. Například, jestliže vy zaměníte rodinu Canidae do Dogidae, to modifikuje Canidae <i>Canis</i>rod do Dogidae. Změníte-li žánr <i>Canis</i>na<i>Dogis</i>, vytvoříte a validujete výměny taxonů pro změnu <i>Canis lupus </i> do <i>Dogis lupus</i> a <i>Canis lupus</i>ssp.<i>lupus</i>v<i>Dogis lupus</i>ssp.<i>lupus</i>do<i>Dogis lupus</i>ssp.<i>lupus</i>. To může způsobit určité nejasnosti, a proto to používejte opatrně.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7801,9 +7668,17 @@ cs:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d. %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%m %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d. %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Leden
@@ -7968,9 +7843,17 @@ cs:
     am: dopoledne
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %d, %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: odpoledne
@@ -8294,11 +8177,6 @@ cs:
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Import nebo čekání na import API klíče"
-              api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
             base:

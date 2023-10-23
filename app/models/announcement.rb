@@ -41,7 +41,7 @@ class Announcement < ApplicationRecord
 
   def targeted_to_user?( user )
     if prefers_target_unconfirmed_users
-      return !user.confirmed?
+      return user && !user.confirmed?
     end
 
     true

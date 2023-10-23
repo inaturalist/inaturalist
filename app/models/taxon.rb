@@ -615,8 +615,7 @@ class Taxon < ApplicationRecord
   def handle_after_activate
     return true unless saved_change_to_is_active?
 
-    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "Observation::update_stats_for_observations_of": id } ).
+    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow" ).
       update_stats_for_observations_of( id )
     true
   end

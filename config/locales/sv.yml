@@ -419,6 +419,7 @@ sv:
   all_comments: Alla kommentarer
   all_flags_must_be_resolved: Alla flaggor måste vara lösta
   all_life: Allt liv
+  all_media_must_be_unhidden: All media måste tas fram
   all_names: Alla namn
   all_observations: Alla fynd
   all_photos: Alla bilder
@@ -1056,14 +1057,13 @@ sv:
     ingå i automatiserade förslag med "Visuellt liknande"-etiketten.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Väntar
-  computer_vision_model_pending_desc: |
+  computer_vision_model_pending_desc2: |
     Den nuvarande bildigenkänningsmodellen känner inte till detta taxon, så även om
-    det kan inkluderas i automatiserade förslag med "Närliggande"-etiketten,
-    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven på
-    modellinkludering förändras med varje modell, men generellt bygger inkludering på
-    antal observationer, så för att öka chansen att detta taxon blir
-    inkluderat till nästa modellträning, lägga till eller bestäm fler fynd
-    av detta taxon.
+    det kan inkluderas i automatiserade förslag med "Förväntad i närheten"-etiketten,
+    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven för att inkluderas
+    i modellen förändras vissesrligen med varje modell, men generellt bygger inkludering
+    på antal observationer, så för att öka chansen att detta taxon blir inkluderat i nästa
+    modellträning, lägg till eller bestäm fler fynd av detta taxon.
   concept_status: Konceptets status
   confidential: Konfidentiell
   configure: Konfigurera
@@ -1742,55 +1742,10 @@ sv:
   email: E-post
   email_description: Din e-post delas inte med andra användare på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan respons
-  email_conf_banner_email_delivered_click_link: |
-    Bekräftelsemejl levererat. Klicka på länken i meddelandet.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Lägg till <code>%{email}</code> i din lista över kontakter och
-    <a href="%{url}">begär ett bekräftelsemejl till</a>.</strong> Om din e-postleverantör
-    blockerade bekräftelsemejlet, kanske detta kan övertyga dem om att
-    du faktiskt vill ha e-post från oss.
-  email_conf_banner_check_your_spam_folder_html: <strong>Kolla din skräppostmapp</strong>
-  email_conf_banner_contact_us_html: Fungerar fortfarande inte? Skicka mejl till oss på %{email} så vi kan hjälpa dig.
-  email_conf_banner_please_click: |
-    Klicka på länken i ditt mejl för att bekräfta din e-postadress.
-  email_conf_banner_search_for_emails_html: <strong>Leta efter mejl från <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Vi levererade ett bekräftelsemejl till dig den %{date}. Om du inte
-    fick det, är här några saker du kan göra:
   email_conf_required_after_grace_period: |
     E-postbekräftelse krävs från och med %{requirement_date} och du har inte
     bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
     för att komma åt ditt konto.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
-    Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
-    datumet kommer alla som inte har bekräftat sin e-postadress inte längre kunna
-    logga in såvida de inte återställer sitt lösenord. För att bekräfta din e-postadress,
-    gå till %{link_start_tag}kontoinställningar%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekräfta din %{site_name} e-postadress innan %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Vänligen bekräfta din e-postadress för att försäkra dig om fortsatt tillgång till
-    ditt konto. %{site_name} och mobilapparna iNaturalist och
-    Seek av iNaturalist kopplar ihop människor med naturen och varandra genom
-    att dela fynd av biologisk mångfald. Tack för att du är en del av iNaturalist-communityn!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Vi kommer att kräva bekräftade e-postadresser för alla konton med början
-    %{requirement_date}. Vänligen ta dig tid att bekräfta den nu.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Om du har några frågor, vänligen se
-    <a href="%{faq_url}">Vanliga frågor</a>. Tack för att du tog dig tid att anknyta
-    till naturen och %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Kontouppgifter
   email_copyright2: "&copy; %{year} iNaturalist, alla rättigheter förbehållna"
   email_notifications: E-postaviseringar
   embed: 'Bädda in'
@@ -1849,6 +1804,7 @@ sv:
   exit_full_screen: "Avsluta helskärmsläge"
   examples_of_data_use_by_network_members: Exempel på dataanvändning av Nätverksmedlemmar
   examples_of_ranking_organizations: Exempel på hotbedömande organisationer
+  expected_nearby: Förväntad i närheten
   explore: Utforska
   export: Exportera
   export_observations: Exportera fynd
@@ -2046,6 +2002,9 @@ sv:
   generate_your_stats: Generera din statistik
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
+  geomodel_expected_nearby_label_is_derived: |
+    Etiketten "Förväntad i närheten" härstammar från Geomodellen.
+    <a href="%{url}">Lär dig mer om Geomodellen här</a>.
   geoprivacy: Koordinatsekretess
   geoprivacy_is_obscured: Koordinatsekretess är diffuserad
   geoprivacy_is_obscured_desc: Observatören har valt att diffusera koordinaterna.
@@ -2148,7 +2107,13 @@ sv:
   hide: Dölj
   hide_content: Dölj innehåll
   hide_desc: |
-    Att dölja innehåll kommer att ta bort det från publik visning, men man kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
+    Att dölja innehåll kommer att undanta det från publik visning, men man kommer
+    fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren
+    till innehållet kommer fortfarande att kunna se det dolda innehållet. Dolda bestämningar
+    räknas inte för ett fynds Gemenskapstaxon.
+  hide_desc_staff_can_unhide: |
+    Endast personal på webbplatsen kan ta fram innehåll när det har dolts, så använd
+    endast detta för klara överträdelser av Communityns riktlinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
@@ -2209,8 +2174,10 @@ sv:
   #Notification when an identification has been deleted
   identification_deleted: Bestämning raderad.
   identification_saved: "Bestämning sparad!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Bestämningstext synliggjord
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Bestämning dold
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Bestämning ej dold
   #Notification when an identification has been updated
   identification_updated: Bestämning uppdaterad!
   identification_user_short: Best. användare
@@ -2218,82 +2185,6 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
-  independence_email_subject: "Sprider Våra Vingar: iNaturalist är nu oberoende och icke-vinstdrivande"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Kära %{name},
-  independence_email_body_exciting_news: |
-    iNaturalist-teamet har spännande nyheter! Vi är glada att kunna meddela att
-    tack vare stödet från denna fantastiska community, drivs nu iNaturalist
-    som en oberoende 501(c)(3) icke-vinstdrivande organisation baserad i USA.
-  independence_email_body_since_launching: |
-    Sedan lanseringen 2008 har iNaturalist-teamet och organisationen
-    utvecklats, och vi är glada för nästa milstolpe. iNaturalist började
-    som ett magisterprojekt vid University of California, Berkeley, blev ett
-    LLC, samarbetade med California Academy of Sciences från 2014. År
-    2017 blev iNaturalist ett gemensamt initiativ med California Academy of
-    Sciences och National Geographic Society. Nu är iNaturalist en
-    oberoende organisation.
-  independence_email_body_over_the_past: |
-    Under de senaste 15 åren har de otroliga bidragen från communityn
-    gjort iNaturalist till en av världens mest inflytelserika naturplattformar.
-  independence_email_body_so_far: "Hittills har iNaturalist-communityn:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Skapat över 146 000 000 verifierbara fynd (ökar med cirka 1 miljon per vecka!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Vuxit till 2,7 miljoner bidragsgivare
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Observerat mer än 430 000 arter
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Har citerats mer än 3 500 gånger
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via the Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Vi tackar California Academy of Sciences och National Geographic
-    Society för att de inkuberade iNaturalist då det växte dramatiskt under de senaste
-    9 åren. Vi är skyldiga dessa partner en enorm tacksamhet för deras investeringar,
-    stöd och förvaltarskap. Vi ser fram emot att samarbeta med båda
-    organisationerna i framtiden.
-  independence_email_body_the_way_html: |
-    <strong>Din användarupplevelse av iNaturalist kommer inte att förändras.</strong>
-    iNaturalist och Seek kommer att fortsätta att fritt hjälpa dig att bestämma
-    biologisk mångfald och bygga din egen koppling till naturen. Denna nya
-    organisationsstruktur kommer att göra det möjligt för oss att stödja iNaturalist i åratal
-    framöver alltmedan iNaturalist-communityn utökar vår samlade kunskap om
-    biologisk mångfald långt in i framtiden. Vi kommer att fortsätta vårt samarbete
-    med organisationer runt om i världen för att stödja iNaturalist-nätverket.
-  independence_email_body_questions_html: |
-    Du kan <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">läsa
-    mer på bloggen</a> och kolla på <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Vanliga
-    frågor</a> (på engelska). <a
-    href="https://www.inaturalist.org/pages/terms">Användarvillkor</a> och <a
-    href="https://www.inaturalist.org/pages/privacy">Integritetspolicy</a> har
-    uppdaterats för att återspegla den nya organisationen.
-  independence_email_body_thank_you: Tack för att du är en del av denna community.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Mot nya mål,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Leadership Team</strong>
-  independence_email_body_ps: |
-    P.S. - Snart kommer vi att tillkännage ett generöst bidrag som
-    kommer att ge det oberoende iNaturalist en stabil grund. Det
-    finansiella bidraget från iNaturalist-communityn gjorde det möjligt
-    för oss att utvecklas och kommer att vara livsviktigt för långsiktig
-    hållbarhet. Din donation nu kommer att prisa denna spännande
-    milstolpe och ytterligare säkra iNaturalists framtid. Tack!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Donera nu
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2354,6 +2245,7 @@ sv:
   include_places: Inkludera fyndplatser
   include_projects: Inkludera projekt
   include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
+  include_suggestions_not_expected_nearby: Inkludera förslag som inte förväntas i närheten
   include_taxa: Inkludera taxa
   include_users: Inkludera användare
   including: inklusive
@@ -2880,6 +2772,10 @@ sv:
     <strong>endast synligt för förvaltare</strong> och <strong>förvaltare kan inte se
     sin egen historik</strong>, så anteckningar om en person ska aldrig synas
     för den personen.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Dölj
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -3561,8 +3457,12 @@ sv:
   photo_credits: Fotograf
   photo_deleted: Bild raderad
   photo_destroyed_because_it_was_deleted_from: "Bilden förstördes eftersom den togs bort från den externa webbplatsen eller så har %{site_name} inte längre behörighet att visa den"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Bild dold
   photo_licensing: Bildlicensiering
   photo_type: Bildtyp
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Bild visas
   photo_urls_repaired: Bild-URL:er reparerade
   photos_chosen_for_this_taxon: Utvalda bilder för detta taxon
   photos_from: Bilder från
@@ -4504,7 +4404,7 @@ sv:
   #access their iNat account
   revoke_external_application: "Återkalla %{site_name}?"
   revoke_privacy_consent_warning: "Det enda sättet att återkalla detta samtycke är genom att ta bort ditt konto och all tillhörande data."
-  rg_observations: RG-fynd
+  rg_observations: FK-fynd
   role: Roll
   rotate_left: Rotera åt vänster
   rotate_right: Rotera åt höger
@@ -6072,6 +5972,33 @@ sv:
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kan <u>fördubbla</u> eller <u>tredubbla</u> din gåva! Tack vare
+        Gordon and Betty Moore-stiftelsen tredubblas alla månatliga, kvartals- och
+        årligen återkommande donationer, samtidigt som engångsdonationer fördubblas,
+        fram till 31 december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist är en av världens största communitys som ägnar sig
+        åt biologisk mångfald. Tack för att du är en del av den!
+        </p>
+        <p class="lead">
+        Om du tror på kraften hos denna globala community av naturälskare
+        att dela kunskap och generera oersättlig biologisk mångfalds-data,
+        överväg en engångs- eller återkommande gåva online, eller se
+        <a href="https://www.inaturalist.org/pages/giving">andra sätt att
+        ge</a>.
+        </p>
+        <p class="lead">
+        Din donation hjälper till att stödja iNaturalist när communityn växer, från
+        förbättringar av vår teknologi för att korrekt bestämma arter och
+        implementering av nya funktioner till att stödja våra servrar och personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist är en oberoende 501(c)(3) skattebefriad icke-vinstdrivande
+        organisation baserad i Amerikas förenta stater (Skatte-ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist är en av världens största communitys som ägnar sig åt
@@ -6097,6 +6024,34 @@ sv:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kan <u>tredubbla</u> din gåva! Tack vare Gordon and Betty
+          Moore-stiftelsen tredubblas alla månatliga donationer fram till 31
+          december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist är en av världens största communitys som ägnar sig
+          åt att utforska biologisk mångfald. Tack för att du är en del av den!
+          </p>
+          <p class="lead">
+          Om du älskar iNaturalist, överväg att bli en Månatlig givare. Återkommande
+          gåvor hjälper så att iNaturalistkan fortsätta skala upp vår infrastruktur
+          och personal genom att bidra med förutsägbara inkomster.
+          Och din månatliga gåva får ett tredubbelt genomslag! Du kan också
+          välja att visa din status som Månatlig givare på din användarprofil.
+          </p>
+          <p class="lead">
+          Din välgörenhetsdonation hjälper till att stödja iNaturalist när communityn
+          växer, från framsteg inom bildigenkänning och implementering av nya
+          funktioner till att stödja våra servrar och personal. Du kan även ge en
+          <a href="%{donate_url}">engångsdonation</a> och se
+          <a href="https://www.inaturalist.org/pages/giving">andra sätt att ge</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist är en oberoende 501(c)(3) skattebefriad, icke-vinstdrivande
+          organisation baserad i Amerikas förenta stater (Skatte-ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist är en av världens största communitys engagerad i att
@@ -6133,6 +6088,107 @@ sv:
           Det innehåll som kan flaggas är det primära textattributet för det flaggade objektet när flaggan skapades. Endast förvaltare och personal kan se detta. Endast personal kan se detta för meddelanden.
         flags_that_should_not_be_resolved_desc_html: |
           Vänligen fixa endast <code>spam-</code> och <code>upphovsrättsintrångs</code>flaggor om innehållet faktiskt inte är spam eller verkligen inte ett intrång på upphovsrätten.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodellens förutsägelser av %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodellen gör förutsägelser om var arter förekommer och var de saknas.
+          Vi använder Geomodellen för att sätta etiketten "Förväntad i närheten" tillsammans med förslag och
+          för att vikta dessa förslag baserat på fyndplatsen.
+        the_geo_model_is_trained: |
+          Liksom Bildigenkänningsmodellen, är Geomodellen tränad på iNaturalist-fynd
+          för samma uppsättning arter med lite mer än 100 bilder. Geomodellen gör inte
+          perfekta förutsägelser. Du kan läsa mer om hur Geomodellen är gjord
+          <a href="%{url}">här</a>.
+        nearby_map:
+          expected_nearby_map: Förväntad i närheten-karta
+          we_use_this_map: |
+            Vi använder denna karta för att sätta Förväntade i närheten-etiketten på förslag baserat på
+            fyndplatsen.
+          for_example: |
+            Till exempel kan ett fynd av en ödla i mitten av USA
+            ha Förväntad i närheten-etiketten satt på ett förslag av <i>Sceloporus consobrinus</i>
+            men inte <i>Sceloporus occidentalis</i> baserat på deras respektive Förväntad i näheten-kartor.
+          you_can_think: |
+            Du kan se på Förväntad i närheten-kartan som en bedömning av om arten
+            förekommer någonstans i en rutcell eller är helt frånvarande.
+          figure_alt_text: Geomodellen tillämpar Förväntad i närheten-etiketten
+        unthresholded_map:
+          unthresholded_map: Karta utan tröskelvärden
+          we_use_the_unthresholded_map: |
+            Vi använder Kartan utan tröskelvärden för att vikta bildigenkänningsvärden efter plats när
+            vi visar förslag.
+          for_example: |
+            Till exempel kan ett fynd av en ödla i mitten av USA få förslaget <i>Sceloporus
+            consobrinus</i> viktat mer än förslaget <i>Sceloporus occidentalis</i> baserat
+            på en jämförelse av Kartor utan tröskelvärde, trots att de är visuellt liknande.
+          you_can_think: |
+            Föreställ dig Karta utan tröskelvärden som den relativa sannolikheten att en art
+            förekommer i en rutcell.
+          figure_alt_text: Geomodellen viktar Bildigenkänningens resultat
+        range_comparison:
+          expected_nearby_vs_taxon_range: Förväntad i närheten vs Taxonutbredning
+          this_map_shows: |
+            Denna karta visar hur Taxonutbredningen för denna art överlappar Förväntad i närheten-kartan
+            som vi använder för att utvärdera Geomodellen.
+          this_gridded_version: |
+            Denna rutnätsversion av Taxonutbredningen är en ögonblicksbild tagen när modellen
+            var tränad och rutad med samma upplösning som Förväntad i närheten-kartan. Vi
+            använder bara Taxonutbredningar där minst 90% av träningsdata för den arten
+            faller inom Taxonutbredningen för att kontrollera för fel i Taxonutbredningar.
+          by_combining: |
+            Genom att kombinera Förväntad i närheten-kartan med Taxonutbredningen, kan vi
+            räkna ut statistik för att uppskatta hur väl Geomodellen presterar.
+          figure_alt_text: Förväntad i närheten-kartan och Taxonutbredning jämförs
+          combining_these_maps_produces: |
+            Kombinationen av dessa kartor ger 3 typer av celler:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Sann förekomst:
+          true_presences_definition: Områden där både Förväntad i närheten-kartan och Taxonutbredningen förutspår att ett taxon finns
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falsk förekomst:
+          false_presences_definition: Områden där endast Förväntad i närheten-kartan förutspår att ett taxon finns
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falsk avsaknad:
+          false_absences_definition: Områden där endast Taxonutbredningen finns
+          evaluation_statistics_for_taxon: Utvärderingsstatistik för %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Träffsäkerhet:
+          precision_description: Andelen av Förväntad i närheten-kartan som är Sann förekomst
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Sann förekomst / (Sann förekomst + Falsk förekomst) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Överensstämmelse:
+          recall_description: Andelen av Taxonutbredningen som är Sann förekomst
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Sann förekomst / (Sann förekomst + Falsk avsaknad) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: 'Medelvärdet (det harmoniska) av Precision och Överensstämmelse:'
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Sann förekomst / (2 × Sann förekomst + Falska förekomst + Falsk avsaknad) = %{f1}
+          perfect_overlap: |
+            Perfekt överlapp skulle resultera i 1 för Precision, Överensstämmelse och F1.
+            Inget överlapp skulle innebära 0 i Precision , Överensstämmelse, och F1.
     guides:
       index:
         deprecated_banner: |
@@ -7393,9 +7449,17 @@ sv:
         Barn till valt taxon som är släkten eller högre kommer att flyttas till utdata; arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
         med det nya släkt- eller artnamnet.
       form:
-        move_children_desc_html: |
-          Om du markerar denna ruta kommer barn till valt taxon att flyttas till utdatataxon för Byten och Hopslagningar när denna ändring är bekräftad. Om denna ändring är till ett släkte eller lägre, kommer det
-          att skapa Taxonbyten för alla underliggande som antyds byta namn. Till exempel, om du byter från familjen Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd det med försiktighet.
+        move_children_desc2_html: |
+          Om du markerar denna ruta kommer barn till indatataxon att flyttas till
+          utdatataxon för Taxonbyten och Taxonhopslagningar när denna ändring är bekräftad. Om
+          denna ändring är till ett släkte eller lägre, kommer det att skapa Taxonbyten för alla
+          underliggande som behöver byta namn. Till exempel, om du byter från familjen
+          Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till
+          Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer
+          det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till
+          <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis
+          lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd
+          det med försiktighet.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7900,9 +7964,11 @@ sv:
       AssessmentSection: Bedömningsdel
       Atlas: Atlas
       BlockedUser: Blockerad användare
+      Comment: Kommentar
       CompleteSet: Fullständig uppsättning
       #Noun
       Flag: Flagga
+      Identification: Artbestämning
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7914,6 +7980,7 @@ sv:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
+      Photo: Bild
       TaxonLink: Taxonlänk
     attributes:
       announcement:
@@ -8197,11 +8264,10 @@ sv:
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import för den Mushroom Observer-användaren körs eller väntar på import"
-              api_key_missing: "Mushroom Observer API-nyckel saknas"
+            user:
+              must_be_a_curator: måste vara förvaltare
         observation:
           attributes:
             base:

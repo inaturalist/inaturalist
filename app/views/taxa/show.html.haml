@@ -11,7 +11,11 @@
     };
     SERVER_PAYLOAD.taxon.wikipedia_summary = #{ @taxon.wikipedia_summary.to_json.html_safe };
     SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json.html_safe : "null" };
-  = javascript_include_tag "taxa-show-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/d3-webpack"
+  = javascript_include_tag "webpack/user-text-webpack"
+  = javascript_include_tag "webpack/taxa-show-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "taxa/show"
 - content_for :extrahead do

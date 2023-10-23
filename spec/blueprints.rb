@@ -197,6 +197,13 @@ LocalPhoto.blueprint do
   }
 end
 
+LocalSound.blueprint do
+  user { User.make }
+  file_content_type { "audio/mp4" }
+  file_file_name    { "foo.m4a" }
+  file_updated_at   { Time.now }
+end
+
 Message.blueprint do
   from_user { User.make! }
   to_user { User.make! }
@@ -215,10 +222,6 @@ ModeratorNote.blueprint do
   user { make_curator }
   body { Faker::Lorem.paragraph }
   subject_user { User.make! }
-end
-
-MushroomObserverImportFlowTask.blueprint do
-  user { User.make! }
 end
 
 OauthApplication.blueprint do

@@ -392,6 +392,7 @@ it:
   agree_: D'accordo
   agree?: D’accordo?
   agree_with_current_taxon: D'accordo con il taxon corrente
+  agree_with_observation_taxon: Concorda con il taxon d'osservazione
   agreeing: Accordo in corso...
   aka: o
   #Noun, title of a popup alerting you to something
@@ -402,6 +403,7 @@ it:
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
   all_life: Tutti gli esseri viventi
+  all_media_must_be_unhidden: Tutti i file multimediali non devono essere nascosti
   all_names: Tutti in Nomi
   all_observations: Tutte le osservazioni
   all_photos: Tutte le foto
@@ -1018,8 +1020,8 @@ it:
     Il Modello di Visione Computerizzata corrente conosce questo taxon, quindi potrebbe esser incluso nei suggerimenti automatizzati con l'etichetta "Visivamente Simile".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: In sospeso
-  computer_vision_model_pending_desc: |
-    Il Modello di Visione Computerizzata corrente non conosce questotaxon, quindi mentre potrebbe esser incluso nei suggerimenti automatici con l'etichetta "Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Mentre i requisiti per l'inclusione del modello cambiano ad ogni modello, generalmente l'inclusione si basa sul numero di osservazioni, così per aumentare le possibilità che questo taxon sia incluso durante l'addestramento del modello successivo, aggiungi o identifica più osservazioni di questo taxon.
+  computer_vision_model_pending_desc2: |
+    Il Modello di Visione Informatica attuale non conosce questo taxon, quindi, sebbene potrebbe essere incluso nei suggerimenti automatizzti con l'etichetta "Previsto Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Sebbene i requisiti per l'inclusione del modello cambiano con ogni modello, generalmente, l'inclusione, si basa sul numero di osservazioni, così da incrementare le possibilità che questo taxon sia incluso durante il prossimo addestramento del modello, e da aggiungere o identificare ulteriori osservazioni di tale taxon.
   concept_status: Stato del concetto
   confidential: Confidenziale
   configure: Configura
@@ -1673,46 +1675,8 @@ it:
   email: Email
   email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
-  email_conf_banner_email_delivered_click_link: |
-    Email di conferma consegnata. Clicca sul link nell'email.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Aggiungi <code>%{email}</code> alla tua lista di contatti e <a href="%{url}">richiedi un'altra email di conferma</a>.</strong> Se il tuo provider di posta elettronica ha bloccato l'email di conferma, questo potrebbe convincerli che vuoi realmente ricevere e-mail da noi.
-  email_conf_banner_check_your_spam_folder_html: <strong>Controlla la tua cartella spam</strong>
-  email_conf_banner_contact_us_html: Ancora non funziona? Mandaci un'email a %{email} così possiamo aiutarti.
-  email_conf_banner_please_click: |
-    Sei pregato di cliccare il link nella tua email per confermare il tuo indirizzo email.
-  email_conf_banner_search_for_emails_html: <strong>Cerca email da <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Ti abbiamo inviato un'email di conferma il %{date}. Se non l'hai ricevuto, ecco alcune cose che puoi fare:
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Per favore conferma il tuo indirizzo email%{link_end_tag}</strong>. Tutti gli utenti devono confermare il loro indirizzo email entro il %{date}. Dopo tale data chiunque non abbia confermato il proprio indirizzo email non potrà accedere a meno che non abbia reimpostato la propria password. Per confermare il tuo indirizzo email, vai alle impostazioni del tuo account %{link_start_tag}%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Conferma il tuo indirizzo email di %{site_name}, entro il %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Sei pregato di confermare il tuo indirizzo email oggi, per assicurarti di poter continuare ad
-    accedere al tuo profilo. %{site_name} e le app mobili
-    di iNaturalist e Seek by iNaturalist, connettono le persone alla natura e tra
-    loro, condividendo osservazioni sulla biodiversità. Grazie per aver preso parte
-    alla community di iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Richiederemo degli indirizzi email verificati a tutti i profili a partire dal
-    %{requirement_date}. Sei pregato di prenderti un momento per confermarlo adesso.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Se hai domande, sei pregato di fare riferimento alle
-    <a href="%{faq_url}">FAQ</a>. Grazie per aver dedicato del tempo a connetterti
-    con la natura e con %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Dettagli del Profilo
   email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
   email_notifications: Notifiche Email
   embed: 'Incorpora'
@@ -1771,6 +1735,7 @@ it:
   exit_full_screen: "Esci dalla modalità a tutto schermo"
   examples_of_data_use_by_network_members: Esempi d'Uso dei Dati dai Membri della Rete
   examples_of_ranking_organizations: Esempi di organizzazioni di classificazione
+  expected_nearby: Attese Nelle Vicinanze
   explore: Esplora
   export: Esporta
   export_observations: Esporta le osservazioni
@@ -1966,6 +1931,9 @@ it:
   generate_your_stats: Genera le tue Statistiche
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
+  geomodel_expected_nearby_label_is_derived: |
+    L'etichetta "Attese nelle Vicinanze" è derivata dal Geomodello.
+    <a href="%{url}">Scopri di più sul Geomodello qui</a>.
   geoprivacy: Geoprivacy
   geoprivacy_is_obscured: La geoprivacy è oscurata
   geoprivacy_is_obscured_desc: L'osservatore ha scelto di nascondere le coordinate.
@@ -2055,7 +2023,12 @@ it:
   hide: Nascondi
   hide_content: Nascondi il contenuto
   hide_desc: |
-    Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto. In generale, questo si applica solo al contenuto scritto, ad esempio se avete nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa operazione, e solamente il personale del sito può annullare l'occultamento di contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti particolarmente sgradevoli.
+    Nascondere i contenuti, li nasconderà dalla vista pubblica, ma le persone potrebbero comunque
+    vedere che qualcosa è stato nascosto e, i curatori del sito e l'autore del
+    contenuto, potranno continuare a vedere i contenuti nascosti. Le identificazioni nascoste non contribuiranno al Taxon della Community di un'osservazione.
+  hide_desc_staff_can_unhide: |
+    Soltanto lo staff del sito può mostrare i contenuti nascosti, quindi utilizzalo soltanto
+    per le violazioni palesi delle Linee Guida della Community.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Nascondi «Nessuna annotazione»
@@ -2111,8 +2084,10 @@ it:
   #Notification when an identification has been deleted
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Testo dell'identificazione mostrato
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identificazione nascosta
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identificazione non nascosta
   #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
@@ -2120,77 +2095,6 @@ it:
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
-  independence_email_subject: "Spieghiamo le Nostre Ali: iNaturalist è Ora una No-Profit Indipendente"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Caro %{name},
-  independence_email_body_exciting_news: |
-    Il team di iNaturalist ha delle entusiasmanti notizie! Siamo lieti di condividere che, grazie
-    al supporto di questa fantastica community, iNaturalist opera ora come
-    un'organizzazione senza scopo di lucro indipendente 501(c)(3), con sede negli Stati
-    Uniti d'America.
-  independence_email_body_since_launching: |
-    Dal suo lancio nel 2008, il team e l'organizzazione di iNaturalist si sono
-    evoluti, e siamo entusiasti su questa prossima tappa. iNaturalist è nata
-    come un progetto di master alla University of California, a Berkeley, è divenuta una
-    LLC, poi si è unita all'Accademia di Scienze della California nel 2014. Nel 2017,
-    iNaturalist è divenuta un'iniziativa congiunta con l'Accademia di Scienze della
-    California e la National Geographic Society. Ora, iNaturalist è
-    un'organizzazione indipendente.
-  independence_email_body_over_the_past: |
-    Negli ultimi 15 anni, gli incredibili contributi dalla community
-    hanno reso iNaturalist una delle piattaforme naturalistiche
-    più d'impatto al mondo.
-  independence_email_body_so_far: "Finora, la community di iNaturalist:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Ha creato oltre 146.000.000 osservazioni verificabili (aggiungendone circa 1 milione a settimana!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: È cresciuta a 2,7 milioni di collaboratori
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Ha osservato oltre 430.000 specie
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    È stata citata oltre 3.500 volte
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">tramite la Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Ringraziamo l'Accademia di Scienze della California e la National Geographic
-    Society per aver incubato iNaturalist, mentre cresceva drasticamente, negli ultimi
-    9 anni. Dobbiamo immensa gratitudine a tali partner per il loro investimento,
-    supporto e amministrazione. Non vediamo l'ora di collaborare con entrambe
-    le organizzazioni, in futuro.
-  independence_email_body_the_way_html: |
-    <strong>Il modo in cui sperimenti iNaturalist, non cambierà.</strong>
-    iNaturalist e Seek continuerà ad aiutarti liberamente a identificare la
-    biodiversità e a creare la tua connessione al mondo naturale. Questa nuova
-    struttura organizzativa ci consentirà di supportare iNaturalist per gli anni
-    a venire, mentre la community di iNaturalist espande la nostra conoscenza collettiva
-    della biodiversità, a lungo nel futuro. Continueremo a collaborare con le
-    organizzazioni in tutto il mondo, per supportare la Rete di iNaturalist.
-  independence_email_body_questions_html: |
-    Puoi <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">leggere di
-    più sul blog</a> e consultare le <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Domande
-    Frequenti</a> (in inglese). I <a
-    href="https://www.inaturalist.org/pages/terms">Termini di Utilizzo</a> e la <a
-    href="https://www.inaturalist.org/pages/privacy">Politica sulla Privacy</a> sono
-    stati aggiornati per riflettere la nuova organizzazione.
-  independence_email_body_thank_you: Grazie per essere parte di questa community.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Buon proseguimento,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Team di Leadership di iNaturalist</strong>
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Dona ora
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -2247,6 +2151,7 @@ it:
   include_places: Includi Luoghi
   include_projects: Includi Progetti
   include_suggestions_not_seen_nearby: Includi suggerimenti non visti nelle vicinanze
+  include_suggestions_not_expected_nearby: Includi suggerimenti delle non attese nelle vicinanze
   include_taxa: Includi Taxa
   include_users: Includi Utenti
   including: incluso
@@ -2413,6 +2318,7 @@ it:
     davawenyo: Davaoeño
     dutch: Olandese
     english: Inglese
+    esperanto: Esperanto
     estonian: Estone
     faroese: Faroese
     fijian: Fijano
@@ -2577,6 +2483,7 @@ it:
     es: Spagnolo
     es-AR: Spagnolo (Argentina)
     es-CO: Spagnolo (Colombia)
+    es-CR: Spagnolo (Costa Rica)
     es-MX: Spagnolo (Messico)
     et: Estone
     eu: Basco
@@ -2768,6 +2675,10 @@ it:
     e gli avvisi su tutto ciò che l'utente ha creato oltre ai taxa. Questo è 
     <strong>visibile solo ai curatori</strong> e <strong>i curatori non possono vedere la propria storia</strong>, quindi le note su una persona non dovrebbero mai essere visibili
     a quella persona.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Nascondi
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Annulla sospensione
   moderator_note_desc: |
     Le note dei moderatori sono registrazioni di risposte di moderazione o di preoccupazioni
     basate su prove circa un utente, ad esempio se sono un possibile account sockpuppet. Si prega di non includere le opinioni personali o dicerie sull'utente.
@@ -3445,8 +3356,12 @@ it:
   photo_credits: Crediti delle foto
   photo_deleted: Foto cancellata
   photo_destroyed_because_it_was_deleted_from: "Foto distrutta perché è stata eliminata dal sito esterno o perché %{site_name} non ha più il permesso di vederla"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto nascosta
   photo_licensing: Licenza delle foto
   photo_type: Tipo di foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto non nascosta
   photo_urls_repaired: URL della foto riparati
   photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
@@ -4478,6 +4393,8 @@ it:
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_less: Mostra meno
   show_more: Mostra di più
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostra più opzioni d'accesso
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostra «Nessuna annotazione»
@@ -5872,6 +5789,22 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Puoi <u>raddoppiare</u> o <u>triplicare</u> il tuo regalo! Grazie alla Fondazione Gordon e Betty Moore, tutte le donazioni ricorrenti mensili, trimestrali e annuali sono triplicate e le donazioni una tantum sono raddoppiate fino al 31 dicembre 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist è una delle più grandi comunità mondiali dedicate alla biodiversità. Grazie di farne parte!
+        </p>
+        <p class="lead">
+        Se credi nel potere di questa comunità globale di amanti della natura nel condividere le conoscenze e generare dati insostituibili di biodiversità, per favore considera un regalo una tantum o ricorrente online, o esplora <a href="https://www.inaturalist.org/pages/giving">altri modi per contribuire</a>.
+        </p>
+        <p class="lead">
+        La tua donazione è vitale per iNaturalist man mano che la nostra comunità cresce, sia per migliorare la nostra tecnologia per identificare accuratamente le specie sia per implementare nuove funzionalità per supportare i nostri server e il nostro personale.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un organizzazione indipendente 501(c)(3), esentasse, senza scopo dinlucro con sede negli Stati Uniti d'America (Tax ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist è una delle community più grandi al mondo, dedicate
@@ -5897,6 +5830,27 @@ it:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Puoi <u>triplicare</u> il tuo dono! Grazie alla Fondazione Gordon e Betty
+          Moore, tutte le donazioni mensili dei Sostenitori sono triplicate fino al 31 dicembre 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist è una delle più grandi comunità al mondo dedicate all'esplorazione della biodiversità. Grazie di farne parte!
+          </p>
+          <p class="lead">
+          Se ami iNaturalist, ti preghiamo di prendere in considerazione la possibilità di diventare un sostenitore mensile. I regali ricorrenti aiutano a garantire che iNaturalist possa continuare ad implementare le nostre infrastrutture e il nostro personale fornendo entrate prevedibili. E il tuo regalo mensile ha triplicato l'impatto!
+          Puoi anche scegliere di mostrare il tuo stato di Sostenitore Mensile sul tuo profilo utenteI.
+          </p>
+          <p class="lead">
+          Le tue donazioni di beneficenza contribuiscono a sostenere iNaturalist man mano che cresce la comunità, nell’avanzamento della visione informatica e nell’implementazione di nuove funzionalità
+          a supporto dei nostri server e del nostro personale. Puoi anche fare una <a href="%{donate_url}">donazione una tantum</a> o vedere gli
+          <a href="https://www.inaturalist.org/pages/giving">altri modi per contribuire</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist è un'organizzazione indipendente 501(c)(3), esente da imposte,
+          senza scopo di lucro e sede negli Stati Uniti diAmerica (Tax ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist è una delle più grandi community dedicate all'esplorazione
@@ -5929,6 +5883,93 @@ it:
           Il contenuto contrassegnabile è il l'attributo di testo principale dell'oggetto contrassegnato nel momento in cui il contrassegno è stato creato. Solo i curatori e lo staff lo possono vedere. Solo lo staff lo può vedere per i messaggi.
         flags_that_should_not_be_resolved_desc_html: |
           Per favore risolvi i contrassegni <code>spam</code> e <code> violazione del copyright</code> solo se il contenuto non è spam o violazione del copyright, rispettivamente.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Previsioni del Geomodello per %{taxon}
+        the_geo_model_makes_predictions: |
+          Il Geomodello fa previsioni su dove le specie sono presenti e dove sono assenti.
+          Usiamo il Geomodello per applicare l'etichetta "Attesa nelle vicinanze" accanto ai suggerimenti e per valutare questi suggerimenti in base alla posizione dell'osservazione.
+        the_geo_model_is_trained: |
+          CC
+          Ome il Modello di Visione Compiuterizzata, il Geomodelllo è addestrato dalle osservazioni iNaturalist per la stessa serie di specie con più di 100 foto. Il Geomodello non Ifa previsioni perfette. Puoi leggere di più su come il Geomodello è generato
+          <a href="%{url}">qui</a>.
+        nearby_map:
+          expected_nearby_map: Attese Nelle Vicinanze
+          we_use_this_map: |
+            Utilizziamo questa mappa per applicare l'etichetta Attese nelle Vicinanze, previste dai suggerimenti basati sulla posizione dell'osservazione.
+          for_example: |
+            Ad esempio, un'osservazione di una lucertola nel centro degli Stati Uniti potrebbe
+            avere l'etichetta Attesa nelle Vicinanze applicato ad un suggerimento di <i>Sceloporus consobrinus</i> ma non di <i>Sceloporus occidentalis</i> basandosi sulle rispettive mappe delle specie Attese nelle Vicinanze.
+          you_can_think: |
+            Puoi pensare alla Mappa delle Attese nelle Vicinanze come una valutazione se la specie sia presente da qualche parte nella cella della griglia o del tutto assente.
+          figure_alt_text: Il Geomodello applica l'etichetta Attese nelle Vicinanze
+        unthresholded_map:
+          unthresholded_map: Mappa Senza Soglia
+          we_use_the_unthresholded_map: |
+            Usiamo la Mappa Senza Soglia per pesare i punteggi per posizione della Visione Compiuterizzata quando offriamo i suggerimenti.
+          for_example: |
+            Ad esempio, un'osservazione di una lucertola nel centro degli Stati Uniti potrebbe dare suggerimento per <i>Sceloporus consobrinus</i> con maggior peso rispetto a <i>Sceloporus occidentalis</i> basandosi sul confronto delle Mappe Senza Soglia, anche se visivamente simili.
+          you_can_think: |
+            Puoi pensare alla Mappa Senza Soglia come la probabilità relativa che una specie
+            sia presente all'interno di una cella della griglia.
+          figure_alt_text: Il Geomodello pesa i risultati della Visione Compiuterizzata
+        range_comparison:
+          expected_nearby_vs_taxon_range: Attese nelle Vicinanze vs Areale del Taxon
+          this_map_shows: |
+            Questa mappa mostra l'Areale del Taxon per questa specie che si sovrappone alla Mappa delle Attese nelle Vicinanze che usiamo per valutare il Geomodello.
+          this_gridded_version: |
+            Questa versione a griglia dell'Areale del Taxon è un'istantanea scattata quando il modello era addestrato e grigliato alla stessa risoluzione della Mappa delle Attese nelle Vicinanze. Per controllare gli errori negli Areali, utilizziamo solo gli Areali dei Taxon in cui almeno il 90% dei dati per quella specie utilizzati per l'addestramento del modello rientra nell'Areale del Taxon.
+          by_combining: |
+            Combinando la Mappa delle Attese nelle Vicinanze con l'Areale del Taxon, calcoliamo le statistiche per stimare quanto funziona il Geomodello.
+          figure_alt_text: La mappa delle Attese nelle Vicinanze e l'Areale del Taxon sono confrontate
+          combining_these_maps_produces: |
+            La combinazione di queste mappe produce 3 tipi di celle:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Presenze Vere:
+          true_presences_definition: Aree in cui sia la mappa delle Attese nelle Vicinanze che l'Areale del Taxon prevedono che il taxon sia presente
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            False Presenze:
+          false_presences_definition: Aree in cui solo la Mappa delle Attese nelle Vicinanze prevede che il taxon sia presente
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            False Assenze:
+          false_absences_definition: Aree dove c'è solo l'Areale del Taxon
+          evaluation_statistics_for_taxon: Statistiche di valutazione per %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precisione:
+          precision_description: La frazione della Mappa delle Attese nelle Vicinanze che sono Vere Presenze
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Vere Presenze / (Vere Presenze + False Presenze) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Richiamo:
+          recall_description: La frazione dell'Areale del Taxon che sono Vere Presenze
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Vere Presenze / (Vere Presenze + False Assenze) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: La media (media armonica) di Precisione e Richiamo
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Vera Presenza / (2 × Vera Presenza + Falsa Presenza + Falsa Assenza) = %{f1}
+          perfect_overlap: |
+            Perfetta sovrapposizione valuterebbe con una Precisione, Richiamo e F1 di 1. Nessuna sovrapposizione valuterebbe con Precisione, Richiamo e F1 di 0.
     guides:
       index:
         deprecated_banner: |
@@ -6367,6 +6408,56 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
+        quality_assessment_help2_html: |
+          <p>
+          La valutazione della qualità dei dati è una sintesi dell'accuratezza di un'osservazione. Tutte le osservazioni iniziano come grado <strong>"Informale"</strong> e diventano <strong>"Ha bisogno di ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>l'osservazione <strong>ha una data</strong></li>
+          <li>l'osservazione <strong>è georeferenziata</strong> (cioè ha coordinate latitudine/longitudine)</li>
+          <li>l'osservazione <strong>ha foto o suoni</strong></li>
+          <li>l'osservazione <strong>non riguarda un essere umano</strong></li>
+          </ul>
+          <p>
+          Le osservazioni diventano <strong>"Livello Ricerca"</strong> quando
+          </p>
+          <ul>
+          <li>
+          la comunità %{site_name} <strong>è d'accordo sull'ID a livello di specie o inferiore</strong>, cioè quando più di 2/3 degli identificatori concordano su un taxon (se la comunità ha votato che il Taxon comunitario non può essere migliorato, questo ritorna all'ID di livello sottofamiglia o inferiore)
+          </li>
+          </ul>
+          <p>
+          Le osservazioni torneranno a essere <strong>"Informale"</strong> se le condizioni di cui sopra non vengono soddisfatte o se la community è d'accordo che
+          </p>
+          <ul>
+          <li>
+          la <strong>posizione non sembra accurata</strong> (ad esempio scimmie in mezzo all'oceano, ippopotami negli edifici per uffici, ecc.)
+          </li>
+          <li>
+          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio in cattività o coltivato dall'uomo o alieni spaziali intelligenti)
+          </li>
+          <li>
+          l'osservazione <strong>non presenta evidenza di un organismo</strong>, ad es. immagini di giochi d'acqua, rocce, paesaggi che non includono l'organismo, ecc.
+          </li>
+          <li>
+          l'osservazione <strong>non presenta prove recenti (~100 anni) della presenza dell'organismo</strong> (ad esempio fossili, ma tracce, escrementi e foglie morte sono ok)
+          </li>
+          <li>
+          l'osservazione non necessita più di una ID <em>e</em> l'ID della comunità è pari al livello Famiglia o superiore
+          </li>
+          <li>
+          l'osservatore ha rinunciato all'ID della comunità e l'ID del taxon della comunità non è un antenato o un discendente del taxon associato all'ID dell'osservatore
+          </li>
+          </ul>
+          <p>
+          E se ciò non fosse abbastanza complicato, ci sono anche situazioni in cui il sistema ottiene un voto:
+          </p>
+          <ul>
+          <li>
+          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se ci sono almeno altre 10 osservazioni a livello di genere o inferiore nel più piccolo luogo equivalente a una contea, uno stato o un paese che contiene questa osservazione, e l'80% o più di tali osservazioni sono state contrassegnate come non selvatiche/naturalizzate.
+          </li>
+          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
@@ -6976,6 +7067,9 @@ it:
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VISUALIZZA %{count} PUBBLICAZIONE"
+          other: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7066,8 +7160,17 @@ it:
       move_children_desc: |
         I discendenti del taxon di ingresso che sono generi o di livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà, ecc. saranno cambiate negli equivalenti con il nuovo genere o nome della specie.
       form:
-        move_children_desc_html: |
-          La selezione di questa casella sposterà i discendenti del taxon di ingresso al taxon di uscita per Cambi o Unioni, nel momento in cui questa modifica sarà confermata. Se questa modifica è applicata a un genere o a livelli inferiori, essa creerà dei Cambi di Taxon per tutti i discendenti implicati in una modifica del nome. Ad esempio, se tu Cambi la famiglia Canidae in Dogidae, questo cambierà l'antenato di <i>Canis</i> da Canidae a Dogidae. Se tu Cambi il genere <i>Canis</i> nel genere <i>Dogis</i>, questo creerà e applicherà un Cambio di Taxon da <i>Canis lupus</i> a <i>Dogis lupus</i> e da <i>Canis lupus</i> ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp. <i>lupus</i>. Questo può creare grandi pasticci, perciò usalo con attenzione.
+        move_children_desc2_html: |
+          Spuntare questa cartella, sposterà i derivati del taxon di input al
+          taxon di output per gli Scambi e le Unioni di Txon, all'invio di questa modifica. Se
+          questa è una modifica a un genere o inferiore, creerà degli Scambi di Txon per tutti i
+          discendenti con nomi che necessitano di modifiche. Ad esempio, se scambi
+          la famiglia Canidae in Dogidae, ciò modificherà il genitore del genere
+          <i>Canis</i> da Canidae a Dogidae. Se scambi il genere
+          <i>Canis</i> nel genere <i>Dogis</i>, creerà e invierà
+          gli Scambi di Taxon, per modificare <i>Canis Lupus</i> in <i>Dogis lupus</i> e 
+          <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp.
+          <i>lupus</i>. Ciò può causare un gran disordine, quindi, utilizzalo con cura.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7146,6 +7249,7 @@ it:
           </p>
           <p>Se qualcuno ti sta molestando o stalkerando su %{site_name}, <a href="mailto:%{help_email}">sei pregato di farcelo sapere</a>. Se questo rappresenta una violazione dei nostri Termini d'Uso o rappresenta altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
           </p>
+        common_scientific_name_display_order: Ordine di Visualizzazione del Nome Comune / Scientifico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7538,9 +7642,11 @@ it:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
       BlockedUser: Utente Bloccato
+      Comment: Commento
       CompleteSet: Elenco Completo
       #Noun
       Flag: Contrassegno
+      Identification: Identificazione
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7552,6 +7658,7 @@ it:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applicazione
+      Photo: Foto
       TaxonLink: Link del Taxon
     attributes:
       announcement:
@@ -7833,11 +7940,10 @@ it:
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "L'import per l'utente Osservatore Funghi è in corso o è accodato per l'importazione"
-              api_key_missing: "Manca la chiave API Osservatore Funghi"
+            user:
+              must_be_a_curator: dev'essere un curatore
         observation:
           attributes:
             base:
