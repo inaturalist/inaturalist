@@ -5,7 +5,7 @@
   = stylesheet_link_tag "projects/stats_slideshow"
   = stylesheet_link_tag "stats/search_slideshow"
   = javascript_include_tag 'i18n'
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
     SLIDESHOW_PARAMS = { created_d1: "2017-06-01", created_d2: "2017-06-12", verifiable: true };
@@ -18,6 +18,8 @@
   = javascript_include_tag "ang/models/taxon"
   = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"
-  = javascript_include_tag "search-slideshow-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/search-slideshow-webpack"
   = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
   = stylesheet_link_tag "fontastic-icons"

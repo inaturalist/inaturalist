@@ -1382,7 +1382,7 @@ class Observation < ApplicationRecord
   end
   
   def current_identifications_count
-    identifications.select( &:current? ).length
+    identifications.select( &:current? ).reject( &:hidden? ).length
   end
 
   def num_identifications_by_others
@@ -1391,8 +1391,8 @@ class Observation < ApplicationRecord
   
   def appropriate?
     return false if flagged?
-    return false if photos.detect{ |p| p.flagged? }
-    return false if sounds.detect{ |p| p.flagged? }
+    return false if photos.detect{ |p| p.flagged? || p.hidden? }
+    return false if sounds.detect{ |s| s.flagged? || s.hidden? }
     true
   end
   
@@ -1796,7 +1796,9 @@ class Observation < ApplicationRecord
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
-    working_idents = ids.select{|i| i.taxon.is_active }.sort_by(&:id)
+    working_idents = ids.select do |i|
+      i.taxon.is_active && !i.hidden?
+    end.sort_by( &:id )
     if options[:before].to_i > 0
       working_idents = working_idents.select{|i| i.id < options[:before].to_i }
     elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
@@ -2382,7 +2384,7 @@ class Observation < ApplicationRecord
   end
 
   def sound_url
-    if s = sounds.detect{|s| s.is_a?( LocalSound ) }
+    if s = sounds.select{ |s| !s.flagged? && !s.hidden? }.detect{|s| s.is_a?( LocalSound ) }
       return s.file.url
     end
   end
@@ -2792,21 +2794,27 @@ class Observation < ApplicationRecord
   def owners_identification
     if identifications.loaded?
       # if idents are loaded, the most recent current identification might be a new record
-      identifications.sort_by{|i| i.created_at || 1.minute.from_now}.select {|ident| 
-        ident.user_id == user_id && ident.current?
-      }.last
+      identifications.sort_by do |i|
+        i.created_at || 1.minute.from_now
+      end.select do |ident|
+        ident.user_id == user_id && ident.current? && !ident.hidden?
+      end.last
     else
-      identifications.current.by(user_id).last
+      identifications.current.by( user_id ).select do |i|
+        !i.hidden?
+      end.last
     end
   end
 
   def others_identifications
     if identifications.loaded?
       identifications.select do |i|
-        i.current? && i.user_id != user_id
+        i.current? && i.user_id != user_id && !i.hidden?
       end
     else
-      identifications.current.not_by(user_id)
+      identifications.current.not_by( user_id ).select do |i|
+        !i.hidden?
+      end
     end
   end
 
@@ -3126,10 +3134,16 @@ class Observation < ApplicationRecord
     end
   end
 
-  def observation_photos_finished_processing
+  def publicly_viewable_observation_photos
     observation_photos.select do |op|
-      ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
+      ! ( op.photo.is_a?( LocalPhoto ) && op.photo.processing? ) &&
+      !op.photo.flagged? &&
+      !op.photo.hidden?
     end
+  end
+
+  def publicly_viewable_observation_sounds
+    observation_sounds.select{ |os| !os.sound.flagged? && !os.sound.hidden? }
   end
 
   def interpolate_coordinates

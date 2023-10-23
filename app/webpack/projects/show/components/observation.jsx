@@ -22,9 +22,11 @@ const Observation = ( {
   hideUserIcon
 } ) => {
   const observedDate = observation.time_observed_at || observation.observed_on;
-  const identificationsCount = _.size( _.filter( observation.identifications, "current" ) );
+  const identificationsCount = _.size(
+    _.filter( observation.identifications, i => ( i.current && !i.hidden ) )
+  );
   const caption = (
-    <div className={`caption ${hideUserIcon ? "no-icon" : ""}`}>
+    <div className={`caption flex-grow-1 ${hideUserIcon ? "no-icon" : ""}`}>
       <SplitTaxon
         taxon={observation.taxon}
         noParens
@@ -62,7 +64,7 @@ const Observation = ( {
       </div>
     </div>
   );
-  const style = { width, maxWidth: 2 * width };
+  const style = { width };
   let img;
   if ( observation.photos.length > 0 ) {
     const photo = observation.photos[0];
@@ -91,12 +93,12 @@ const Observation = ( {
   }
   return (
     <div
-      className="ObservationsGridCell"
+      className="ObservationsGridCell d-flex flex-grow-1"
       style={style}
       key={`observation-grid-cell-${observation.id}`}
     >
       <div
-        className={`Observation ${className}`}
+        className={`Observation d-flex flex-grow-1 flex-column ${className}`}
       >
         <a
           href={`/observations/${observation.id}`}
@@ -127,7 +129,7 @@ const Observation = ( {
 Observation.propTypes = {
   observation: PropTypes.object.isRequired,
   width: PropTypes.number,
-  height: PropTypes.number.isRequired,
+  height: PropTypes.number,
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,

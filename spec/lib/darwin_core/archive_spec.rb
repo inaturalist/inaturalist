@@ -150,6 +150,42 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
+  it "should not include hidden photos" do
+    ModeratorAction.make!( resource: p, action: "hide" )
+    expect( p.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    csv = CSV.read( path )
+    expect( csv.size ).to eq 1 # just the header
+  end
+
+  it "should include sounds" do
+    p.destroy!
+    sound = Sound.make!( user: o.user )
+    ObservationSound.make!( sound: sound, observation: o )
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    CSV.foreach( path, headers: true) do |row|
+      expect( row["type"] ).to eq "Sound"
+    end
+  end
+
+  it "should not include hidden sounds" do
+    p.destroy!
+    sound = Sound.make!( user: o.user )
+    ObservationSound.make!( sound: sound, observation: o )
+    ModeratorAction.make!( resource: sound, action: "hide" )
+    expect( sound.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    CSV.foreach( path, headers: true) do |row|
+      expect( row["type"] ).to eq "Sound"
+    end
+  end
+
   describe "with photo_license is ignore" do
     it "should include CC_BY images" do
       expect( p.license ).to eq Photo::CC_BY

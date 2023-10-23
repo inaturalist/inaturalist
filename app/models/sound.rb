@@ -3,6 +3,8 @@ class Sound < ApplicationRecord
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
 
+  has_moderator_actions %w(hide unhide)
+
   serialize :native_response
 
   include Shared::LicenseModule
@@ -74,6 +76,10 @@ class Sound < ApplicationRecord
   def editable_by?(user)
     return false if user.blank?
     user.id == user_id || observations.exists?(:user_id => user.id)
+  end
+
+  def url
+    try( :file ).try( :url )
   end
 
   def self.from_observation_params(params, fieldset_index, owner)
@@ -191,6 +197,17 @@ class Sound < ApplicationRecord
     end
     observations.each do |o|
       o.update_mappable
+      Observation.set_quality_grade( o.id )
+      o.elastic_index!
+    end
+  end
+
+  def moderated_with( moderator_action, options = { } )
+    set_acl if respond_to?( :set_acl )
+    observations.each( &:update_stats )
+    observations.each do |o|
+      o.update_mappable
+      Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
   end

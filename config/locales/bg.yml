@@ -776,8 +776,6 @@ bg:
     Текущият Модел на компютърното зрение познава този таксон, така че таксона може да бъде включен в автоматичните предложения с обозначението „Визуално подобен“.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Предстои
-  computer_vision_model_pending_desc: |
-    Текущият Модел на компютърното зрение не познава този таксон. Затова, въпреки че може да бъде включен в автоматичните предложения с обозначението „Видян наоколо“, няма да има обозначението „Визуално подобен“. Конкретните изисквания за включването в модела се променят с генерирането на всеки нов модел, но включването зависи най-вече от броя наблюдения. Ще увеличите вероятността за включването на този таксон в следващия модел, ако добавите или разпознаете повече наблюдения на таксона.
   configure: Конфигуриране
   configure_a_widget_to_show: Конфигурирайте приставка, която да показва наблюдения от %{site_name} на Вашия уебсайт или блог. Може да се наложи да включите вградения CSS в <code>&lt;head&gt;</code> етикета на Вашия HTML код. Ако желаете - можете да промените CSS стила по Ваше усмотрение.
   confirm: Потвърди
@@ -1230,20 +1228,6 @@ bg:
   eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
   email_description: Вашият имейл не се споделя с други потребители на iNaturalist
-  email_conf_banner_email_delivered_click_link: |
-    Потвърдителният имейл е изпратен. Моля щракнете препратката в имейла.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Добавете<code>%{email}</code> във Вашия списък с контакти и <a href="%{url}">поискайте нов потвърдителен имейл</a>.</strong> Ако имейл сървърът Ви е блокирал потвърдителното писмо, това може да ги убеди, че наистина искате това писмо от нас.
-  email_conf_banner_check_your_spam_folder_html: <strong>Проверете папката си за спам</strong>
-  email_conf_banner_contact_us_html: Все още не работи? Изпратете ни имейл на %{email} за да Ви помогнем.
-  email_conf_banner_please_click: |
-    Моля, щракнете върху препратката във Вашия имейл, за да потвърдите адреса на имейла.
-  email_conf_banner_search_for_emails_html: <strong>Потърсете за писма от <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Изпратихме Ви потвърдителен имейл на %{date}. Ако не сте го получили, ето няколко неща които можете да направите:
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Моля, потвърдете имейл адреса си%{link_end_tag}</strong>. Всички потребители трябва да потвърдят адреса си до %{date}. След това, тези които не са потвърдили адреса си няма да могат да влязат, освен ако не нулират паролата си. За да потвърдите Вашия имейл адрес отидете във вашите %{link_start_tag}настройки на акаунта%{link_end_tag}.
   email_notifications: Известия по имейл
   embed_place_widget: Вмъкни приставка за място
   embed_widget_project: Вмъкни приставка за този проект на сайта си
@@ -1503,8 +1487,6 @@ bg:
   #Verb, usually a button to hide an interface element
   hide: Скрий
   hide_content: Скрий съдържанието
-  hide_desc: |
-    Скриването на съдържание ще го премахне от публичния изглед, но хората ще могат да виждат, че нещо е скрито, а кураторите на сайта и авторът на съдържанието ще могат да виждат скритото съдържание. Това се отнася за написано съдържание, например ако скриете съдържанието на разпознаване – самото разпознаване ще е видимо, но бележките към него ще са скрити. Не можете да отмените това действие, само персоналът на сайта може да отмени скриването, така че бъдете внимателни и използвайте функцията само за наистина нежелателно съдържание.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Скрий „Без анотация“
@@ -4939,9 +4921,17 @@ bg:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d %B %Y'
     month_names:
       - 
       - януари
@@ -5074,9 +5064,17 @@ bg:
     am: преди обед
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%-d %b %Y, %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y, %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b, %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: следобед

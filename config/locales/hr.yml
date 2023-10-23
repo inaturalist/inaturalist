@@ -1028,6 +1028,15 @@ hr:
     #kueda
     #added an observation
     observation: dodaje <a href="%{observation_url}">opažanje</a>
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: dodaje <strong>ID</strong> na %{observation_link} od %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: dodaje <strong>ID</strong>
   photo_credits: Zasluge za fotografiju
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Slike su zaključane
@@ -1742,7 +1751,15 @@ hr:
   user_added_an_observation_field_value_html: "%{user} dodaje vrijednost u dodatno polje opažanja"
   user_added_an_observation_html: "%{user} dodaje opažanje"
   #@gender operates on %{x}
+  user_added_an_x: "%{user} dodaje %{x}"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_html: "%{user} dodaje %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_user_html: "%{user} dodaje %{x} na %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_html: "%{user} dodaje %{x} na %{noun}"
   user_added_x_observations_html: "%{user} dodaje %{x} opažanja"
   user_autocomplete_placeholder: marinolinic, sebcato, itd.
   user_commented: "%{user} komentira"
@@ -1964,6 +1981,33 @@ hr:
         observations_per_year_by_date_added: Po datumu dodavanja
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          Većina kategorija organizama ima "zajedničke nazive" odnosno "uobičajena imena" u govornom jeziku.
+          Ova imena su obično prepoznatljiva, laka za izgovor,
+          i ne mijenjaju se prečesto, ali mnogi organizmi imaju nekoliko različitih
+          imena na različitim mjestima, čak i na istom jeziku, što može učiniti
+          komunikaciju o tim organizmima zbunjujućom.
+          Znanstvenici rješavaju ovaj problem koristeći jedan "znanstveni naziv"
+          za svaku kategoriju organizma koja je u skladu s pravilima
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biološke nomenklature</a>,
+          ali ti nazivi se obično temelje na latinskom, ničijem jeziku
+          govora, pa za mnoge nisu tako pamtljiva kao uobičajena, "narodna" imena.
+          Znanstvena imena također mogu odražavati položaj organizma u taksonomiji,
+          tako da se mogu mijenjati kada znanstvenici više razviju
+          točne teorije o evolucijskim odnosima između
+          različitih organizama, opet smanjujući njihovu korisnost u
+          komunikaciji, čak i među ljudima koji znaju znanstvena imena.
+          </p>
+          <p>
+          Stara poslovica to sažima: "Uobičajena imena mijenjaju se od mjesta do mjesta,
+          a znanstvena imena mijenjaju se s vremena na vrijeme."
+          </p>
+          <p>
+          Pokušavamo se pozabaviti ovim nedostacima pokazujući i uobičajena
+          i znanstvena imena gdje god je to moguće, te odabir uobičajenih imena
+          na temelju jezičnih i geografskih preferencija gledatelja.
+          </p>
         frequency:
           research: Istraživačka ocjena
           verifiable: Provjerljivo

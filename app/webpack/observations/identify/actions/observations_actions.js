@@ -151,6 +151,9 @@ function fetchObservations( ) {
               o.reviewedByCurrentUser = true;
             }
             o.identifications_count = _.size( _.filter( o.identifications, "current" ) );
+            o.identifications_count = _.size(
+              _.filter( o.identifications, i => ( i.current && !i.hidden ) )
+            );
             return o;
           } );
         }

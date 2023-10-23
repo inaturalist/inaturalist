@@ -98,23 +98,23 @@ class PhotoModal extends React.Component {
         <div className="taxon-content">
           <Grid fluid>
             <Row>
-              <Col xs={12}>
-                <a
-                  href={urlForTaxonPhotos( taxon )}
-                  className="btn btn-link text-center pull-right"
-                >
-                  { I18n.t( "more_photos" ) }
-                </a>
+              <Col xs={12} className="d-flex align-items-stretch justify-content-between">
                 <SplitTaxon
                   taxon={taxon}
                   url={linkToTaxon ? urlForTaxon( taxon ) : null}
                   user={config.currentUser}
                 />
                 { linkToTaxon ? (
-                  <a href={urlForTaxon( taxon )} className="taxon-link">
+                  <a href={urlForTaxon( taxon )} className="taxon-link d-flex align-items-center flex-2">
                     <i className="fa fa-arrow-circle-right" />
                   </a>
                 ) : null }
+                <a
+                  href={urlForTaxonPhotos( taxon )}
+                  className="btn btn-link text-center d-flex align-items-center"
+                >
+                  { I18n.t( "more_photos" ) }
+                </a>
               </Col>
             </Row>
           </Grid>

@@ -38,7 +38,7 @@ module DarwinCore
       end
 
       def resourceID
-        FakeView.observation_url( observation_id )
+        observation.uri
       end
 
       def relationshipOfResourceID

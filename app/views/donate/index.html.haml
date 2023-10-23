@@ -8,6 +8,13 @@
     } );
 - content_for :extracss do
   = stylesheet_link_tag :donate, media: "all", cache: true
+  :css
+    .daf-button-link {
+      display: block !important;
+      width: 100% !important;
+      min-width: 320px !important;
+      margin-bottom: 20px !important;
+    }
 - content_for :extrahead do
   %meta{ property: "og:title", content: t( :donate_to_inaturalist ) }
   %meta{ property: "og:description", content: t( "views.donate.donate_short_desc" ) }
@@ -22,8 +29,16 @@
     .col-md-5.col-md-offset-1.col-xs-12
       - # Note: the donorbox iframe does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
       %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      - if I18n.locale.to_s =~ /^en/
+        %script{ type: "text/javascript" }
+          var _msdaf_id = "d54712882b88c";
+        %script{ type: "text/javascript", src: "https://app.dafwidget.com/api/js/source.js" }
+
     .col-md-5.col-xs-12
-      =t "views.donate.donate_desc3_html"
+      - if params[:test] == "moore" || DateTime.now > @moore_start_date && DateTime.now < @moore_end_date
+        =t "views.donate.donate_desc_moore_html"
+      - else
+        =t "views.donate.donate_desc3_html"
       .sharing
         %p.lead.text-center=t :share_colon, default: t(:share)
         = link_to "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape( donate_url( utm_source: "facebook", utm_campaign: "share", utm_medium: "social" ) )}", class: "btn btn-inat btn-sm btn-facebook", target: "_blank" do

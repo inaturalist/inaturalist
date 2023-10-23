@@ -1,7 +1,9 @@
 - content_for :title do
   Geo Model
 - content_for :extrajs do
-  = javascript_include_tag "geo-model-index-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/geo-model-index-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "geo_model/index"
 #app

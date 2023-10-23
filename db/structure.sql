@@ -3867,31 +3867,11 @@ CREATE TABLE public.schema_migrations (
 --
 
 CREATE TABLE public.sessions (
-    id integer NOT NULL,
     session_id character varying NOT NULL,
     data text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sessions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 
 --
@@ -6026,13 +6006,6 @@ ALTER TABLE ONLY public.saved_locations ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
-
-
---
 -- Name: simplified_tree_milestone_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7037,7 +7010,7 @@ ALTER TABLE ONLY public.saved_locations
 --
 
 ALTER TABLE ONLY public.sessions
-    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (session_id);
 
 
 --
@@ -7396,6 +7369,13 @@ CREATE INDEX index_annotations_on_controlled_value_id ON public.annotations USIN
 
 
 --
+-- Name: index_annotations_on_observation_field_value_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_annotations_on_observation_field_value_id ON public.annotations USING btree (observation_field_value_id);
+
+
+--
 -- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7557,10 +7537,17 @@ CREATE INDEX index_colors_taxa_on_taxon_id_and_color_id ON public.colors_taxa US
 
 
 --
--- Name: index_comments_on_parent_type_and_parent_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_comments_on_parent_id_and_parent_type; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_comments_on_parent_type_and_parent_id ON public.comments USING btree (parent_type, parent_id);
+CREATE INDEX index_comments_on_parent_id_and_parent_type ON public.comments USING btree (parent_id, parent_type);
+
+
+--
+-- Name: index_comments_on_parent_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_comments_on_parent_type ON public.comments USING btree (parent_type);
 
 
 --
@@ -8240,6 +8227,13 @@ CREATE INDEX index_lists_on_user_id ON public.lists USING btree (user_id);
 --
 
 CREATE INDEX index_messages_on_user_id_and_from_user_id ON public.messages USING btree (user_id, from_user_id);
+
+
+--
+-- Name: index_messages_on_user_id_and_thread_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_messages_on_user_id_and_thread_id ON public.messages USING btree (user_id, thread_id);
 
 
 --
@@ -9146,13 +9140,6 @@ CREATE INDEX index_saved_locations_on_user_id ON public.saved_locations USING bt
 
 
 --
--- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
-
-
---
 -- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9276,6 +9263,13 @@ CREATE INDEX index_subscriptions_on_taxon_id ON public.subscriptions USING btree
 --
 
 CREATE INDEX index_subscriptions_on_user_id ON public.subscriptions USING btree (user_id);
+
+
+--
+-- Name: index_subscriptions_on_user_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_subscriptions_on_user_id_and_resource_type ON public.subscriptions USING btree (user_id, resource_type);
 
 
 --
@@ -9741,6 +9735,13 @@ CREATE INDEX index_users_on_place_id ON public.users USING btree (place_id);
 
 
 --
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
 -- Name: index_users_on_site_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9759,6 +9760,13 @@ CREATE INDEX index_users_on_spammer ON public.users USING btree (spammer);
 --
 
 CREATE INDEX index_users_on_state ON public.users USING btree (state);
+
+
+--
+-- Name: index_users_on_unconfirmed_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_unconfirmed_email ON public.users USING btree (unconfirmed_email);
 
 
 --
@@ -10370,6 +10378,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221214192739'),
 ('20221219015021'),
 ('20230224230316'),
-('20230407150700');
+('20230407150700'),
+('20230504154134'),
+('20230504154207'),
+('20230504154224'),
+('20230504154236'),
+('20230504154248'),
+('20230504154302'),
+('20230907210748');
 
 

@@ -79,7 +79,7 @@ const ActivityItemMenu = ( {
           { I18n.t( "flag" ) }
         </MenuItem>
       ) );
-      if ( viewerIsCurator && !item.hidden && !_.isEmpty( item.body ) ) {
+      if ( viewerIsCurator && !item.hidden ) {
         menuItems.push( (
           <MenuItem
             key={`identification-hide-${item.uuid}`}

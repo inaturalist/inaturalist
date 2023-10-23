@@ -37,6 +37,13 @@ input.failed, textarea.failed {
       height: 24px;
     }
   }
+  .navbar-btn[disabled] {
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+  .navbar-btn + .navbar-btn {
+    margin-left: 10px;
+  }
 }
 
 .nav_add_obs {

@@ -141,15 +141,6 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def moimport_finished( mot, errors = {}, warnings = {} )
-    @user = mot.user
-    @subject = "#{subject_prefix} Mushroom Observer Import Finished"
-    @errors = errors
-    @warnings = warnings
-    @exception = mot.exception
-    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
-  end
-
   def custom_email( user, subject, body )
     @user = user
     @subject = subject
@@ -237,62 +228,6 @@ class Emailer < ActionMailer::Base
     mail( set_site_specific_opts.merge(
       to: user.email,
       subject: t( :welcome_to_inat, site_name: site_name )
-    ) )
-    reset_locale
-  end
-
-  def email_confirmation_reminder( user, options = {} )
-    return if user&.confirmed?
-
-    @user = user
-    @user.send( :generate_confirmation_token! ) if @user.confirmation_token.blank?
-    set_locale( force: options[:force_locale] )
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
-    # Since this email is sent en masse, we'll try to send from the alternate
-    # IP pool to preserve the reputation of other IPs
-    if CONFIG&.sendgrid&.alternate_ip_pool
-      @x_smtpapi_headers[:ip_pool] = CONFIG&.sendgrid&.alternate_ip_pool
-    end
-    ident_response = Identification.elastic_search(
-      size: 0,
-      filters: [
-        { term: { "user.id": @user.id } },
-        { term: { own_observation: false } },
-        { term: { current: true } }
-      ],
-      aggregate: {
-        distinct_obs_users: {
-          cardinality: { field: "observation.user_id" }
-        }
-      },
-      track_total_hits: true
-    )
-    @identifications_count = ident_response&.total_entries || 0
-    @skip_donate = true
-    mail_with_defaults( set_site_specific_opts.merge(
-      to: user.email,
-      subject: t(
-        :email_confirmation_reminder_confirm_your_site_email_address_before_date,
-        site_name: @site.name,
-        vow_or_con: @site.name[0].downcase,
-        date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
-      )
-    ) )
-    reset_locale
-  end
-
-  def independence( user )
-    return unless user&.confirmed?
-    return if user.prefers_no_email
-    return if user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
-    return if user.suspended?
-
-    @user = user
-    set_locale
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
-    mail_with_defaults( set_site_specific_opts.merge(
-      to: user.email,
-      subject: t( :independence_email_subject )
     ) )
     reset_locale
   end

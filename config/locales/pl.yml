@@ -481,6 +481,7 @@ pl:
   agree_: Zgadzam się
   agree?: Zgadzasz się?
   agree_with_current_taxon: Zgadzam się z aktualnym taksonem
+  agree_with_observation_taxon: Zgadzam się z taksonem obserwacji
   agreeing: Zgoda...
   aka: vel
   #Noun, title of a popup alerting you to something
@@ -491,6 +492,7 @@ pl:
   all_comments: Wszystkie komentarze
   all_flags_must_be_resolved: Wszystkie zgłoszenia muszą zostać rozwiązane
   all_life: Wszelkie życie
+  all_media_must_be_unhidden: Wszystkie media muszą być odkryte
   all_names: Wszystkie nazwy
   all_observations: Wszystkie obserwacje
   all_photos: Wszystkie zdjęcia
@@ -707,6 +709,7 @@ pl:
   apply_fields: Zastosuj pola
   apply_geoprivacy: Zatwierdź prywatność lokalizacji
   apply_darr: "Zastosuj &darr;"
+  apply_establishment_means_to_descendant_places: "Zastosuj środki ustanawiające dla miejsc potomnych"
   apply_these_settings_to_all: Zastosuj te ustawienia do wszystkich poniższych obserwacji.
   appropriate?: Odpowiednie?
   arachnids: pajęczaki
@@ -714,6 +717,8 @@ pl:
   are_you_really_sure_want_delete_this_user: Czy jesteś naprawdę pewien, że chcesz usunąć tego użytkownika i cały jego wkład?
   are_you_sure?: Czy jesteś pewien?
   are_you_sure_no_undo: Czy jesteś pewien? Tej czynności nie można cofnąć.
+  are_you_sure_delete_conservation_status: |
+    Czy jesteś pewien, że chcesz usunąć ten status ochronny? Może to zmienić ukrycie obserwacji tego taksonu oraz taksonów w jego obrębie.
   are_you_sure_delete_post: Czy na pewno chcesz usunąć ten post?
   are_you_sure_delete_taxon_move_associates: "Czy jesteś pewien, że chcesz usunąć takson %{taxonname} (%{taxonid}) i przenieść wszystkie elementy z nim powiązane?"
   are_you_sure_delete_this_place: Czy na pewno chcesz usunąć tę lokalizację?
@@ -724,6 +729,8 @@ pl:
   are_you_sure_remove_taxon_from_list: "Czy na pewno chcesz usunąć ten takson z listy?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Czy jesteś pewien? Strona zostanie załadowana ponownie i możesz utracić niektóre zmiany.
+  are_you_sure_unresolve_flag?: |
+    Czy jesteś pewien, że chcesz cofnąć rozwiązanie tego zgłoszenia? Spowoduje to usunięcie rozwiązania i rozwiązującego użytkownika z tego zgłoszenia.
   are_you_sure_want_delete_taxon: "Czy na pewno chesz usunąć ten takson?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Czy jesteś pewien, że chcesz usunąć ten takson? Posiada on taksony potomne.
@@ -1261,6 +1268,8 @@ pl:
     Usuwać treści dodanych przez innych użytkowników.
   #Title of a page where people apply to become a curator
   curator_application_title: Podanie na kuratora
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Wykazałeś, że rozumiesz proces korekty, dodając kilka zgłoszeń.
   curators_changed_for_x_html: "Zmiana kuratorów %{x}"
   curators: Kuratorzy
   curator_identification: Oznaczenie kuratora
@@ -1464,6 +1473,9 @@ pl:
   download_csv: Pobierz CSV
   download_csv_template: Pobierz szablon CSV
   download_kml: Pobierz KML
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Przenieś oflagowany takson w dół.
   #Noun, as in a journal post that has not been published
   draft: szkic
   #Noun, as in a journal post that has not been published
@@ -1541,15 +1553,6 @@ pl:
   email: E‐mail
   email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
-  email_conf_banner_check_your_spam_folder_html: <strong>Sprawdź folder spamu</strong>
-  email_conf_banner_search_for_emails_html: <strong>Wyszukaj e-maili z <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Dostarczyliśmy Ci e-mail z potwierdzeniem dnia %{date}. Jeśli go nie otrzymałeś, oto kilka rzeczy, które możesz zrobić:
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Szczegóły konta
   email_copyright2: "&copy; %{year} iNaturalist, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
@@ -1694,6 +1697,8 @@ pl:
   flag_for_observation_title_html: |
     Zgłoszenie dla obserwacji: %{title}
   flag_for_photo_id_html: Zgłoszenie dla <a href="%{url}">Zdjęcia %{id}</a>
+  flag_for_place_title_html: |
+    Oflaguj miejsce: %{title}
   flag_for_post_title_html: |
     Zgłoszenie dla posta: %{title}
   flag_for_project_title_html: |
@@ -1714,6 +1719,7 @@ pl:
   flag_saved_thanks_html: Zgłoszenie zapisane. Dziękujemy! <a href="%{url}" class="readmore">Zobacz zgłoszenie</a>
   flag_this_observation: Zgłoś obserwację
   flag_this_photo: Zgłoś zdjęcie
+  flag_this_place: Oflaguj to miejsce
   flag_this_sound: Zgłoś nagranie
   flagged_: Zgłoszono
   flagged_for_curation: Zgłoszone do naprawy
@@ -1837,8 +1843,6 @@ pl:
   #Verb, usually a button to hide an interface element
   hide: Ukryj
   hide_content: Ukryj zawartość
-  hide_desc: |
-    Ukrycie zawartości usunie ją z widoku publicznego, ale ludzie wciąż będą mogli zobaczyć, że coś zostało ukryte. Opiekunowie strony i autor treści będą mogli zobaczyć ukrytą zawartość. Dotyczy to tylko treści tekstowej, więc jeśli ukryjesz zawartość identyfikacji, identyfikacja będzie wciąż widoczna, ale uwagi identyfikującego już nie. Uważaj, tego nie można odwrócić - tylko administratorzy mogą ponownie odkryć zawartość, dlatego używaj tego narzędzia z rozwagą.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
@@ -1867,6 +1871,10 @@ pl:
   #Notification when an identification has been deleted
   identification_deleted: Oznaczenie usunięte.
   identification_saved: "Oznaczenie zapisane!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Oznaczenie ukryte
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Oznaczenie odkryte
   #Notification when an identification has been updated
   identification_updated: Oznaczenie zaktualizowane!
   #Notification when an identification has been withdrawn
@@ -2337,6 +2345,8 @@ pl:
   #Label shown when a date has not been entered
   missing_date: Brak daty
   moderation_history_for_user_html: Historia moderacji dla %{user}
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Ukryj
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderator / Zgłaszający
   mollusks: mięczaki
@@ -3549,6 +3559,8 @@ pl:
   search_by_taxon_name_or_observation_id: Szukaj po nazwie taksonu lub ID obserwacji
   search_for_species: Szukaj gatunków
   search_projects: Szukaj Projektów
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Wyszukaj przyczyny
   search_species: Szukaj gatunków
   search_species_: Szukaj gatunków...
   search_this_taxon: szukaj tego taksonu
@@ -3986,6 +3998,8 @@ pl:
   updates_notification_email_subject: "%{prefix} Nowe aktualizacje %{date}"
   updating: Aktualizowanie...
   unpublish: Cofnij publikację
+  #Undo the action of resolving a flag
+  unresolve: Cofnij rozwiązanie
   unsubscribe: Anuluj subskrypcję
   unsuspend_user: Cofnij zawieszenie użytkownika
   update: Aktualizacja
@@ -4563,9 +4577,6 @@ pl:
     taxon_changes:
       move_children_desc: |
         Taksony podrzędne taksonu wejściowego, które są rodzajami lub taksonami wyższej rangi, zostaną przeniesione do taksonu wyjściowego; gatunki, podgatunki, odmiany itd. zostaną zastąpione odpowiadającymi im taksonami z nową nazwą rodzaju lub gatunku.
-      form:
-        move_children_desc_html: |
-          Zaznaczenie tego pola w przypadku zamian i scaleń taksonów spowoduje przeniesienie taksonów podrzędnych taksonu wejściowego do taksonu wyjściowego, gdy ta zmiana zostanie wykonana. Jeżeli zmiana dotyczy rodzaju lub taksonu niższej rangi, zostaną utworzone zamiany taksonów dla wszystkich taksonów podrzędnych, które mają sugerowaną zmianę nazwy. Na przykład, jeżeli zamienisz rodzinę Canidae na Dogidae, zostanie zamieniony takson nadrzędny dla rodzaju <i>Canis</i> z Canidae na Dogidae. Jeżeli zamienisz rodzaj <i>Canis</i> na <i>Dogis</i>, zostaną utworzone i wykonane zamiany taksonu w celu zmiany taksonu <i>Canis lupus</i> na <i>Dogis lupus</i> i <i>Canis lupus</i> ssp. <i>lupus</i> na <i>Dogis lupus</i> ssp. <i>lupus</i>. Może to spowodować niezły bałagan, dlatego używaj tej opcji ostrożnie.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -4919,11 +4930,18 @@ pl:
       Announcement: Ogłoszenie
       Atlas: Atlas
       BlockedUser: Zablokowany użytkownik
+      Comment: Komentarz
       #Noun
       Flag: Zgłoszenie
+      Identification: Oznaczenie
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Działanie moderatora
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikacja
+      Photo: Zdjęcie
       TaxonLink: Link do taksonu
     attributes:
       announcement:
@@ -4944,6 +4962,8 @@ pl:
       flag:
         #The reason the item was flagged
         reason: Powód
+        #The person who resolved the flag
+        resolver_id: Osoba rozwiązująca
         #The kind of flag that was made
         flag: Zgłoś
       guide:
@@ -5124,6 +5144,10 @@ pl:
         moderator_action:
           attributes:
             user_id:
+              must_be_a_curator: musi być kuratorem
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: musi być kuratorem
         observation:
           attributes:

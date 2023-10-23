@@ -1106,12 +1106,6 @@ be:
     уключаны ў аўтаматызаваныя прапановы з пазнакай "Візуальна падобны".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Чакае
-  computer_vision_model_pending_desc: |
-    Цяперашняя мадэль кампутарнага зроку не ведае пра гэты таксон, таму пакуль
-    ён можа быць уключаны ў аўтаматызаваныя прапановы з пазнакай "Побач" і
-    не будзе мець пазнакі "Візуальна падобны". Хаця патрабаванні да ўключэння мадэлі мяняюцца у залежнасці ад мадэлі, як правіла, даданне заснавана на колькасці назіранняў. Таму, каб павялічыць верагоднасць таго, што гэты таксон будзе 
-    дададзены падчас наступнага мадэльнага навучання, дадайце або вызначце больш назіранняў
-    гэтага таксона.
   concept_status: Статус канцэпцыі
   confidential: Канфідэнцыйна
   configure: Наладзіць
@@ -2071,8 +2065,6 @@ be:
   #Verb, usually a button to hide an interface element
   hide: Не паказваць
   hide_content: Не паказваць кантэнт
-  hide_desc: |
-    Схаванне кантэнту выдаліць яго з агульнага прагляду, але карыстальнікі па-ранейшаму змогуць бачыць, што нешта было схавана, а куратары сайта і аўтар кантэнту па-ранейшаму змогуць бачыць схаваны кантэнт. Як правіла, гэта датычыцца толькі пісьмовага зместу, напрыклад, калі схаваць змест вызначальніка, вызначэнне па-ранейшаму будзе бачная, але заўвагі вызначальніка будуць схаваныя. Вы не зможаце гэта адмяніць, і толькі супрацоўнікі сайта могуць паказваць кантэнт, калі ён быў схаваны, таму будзьце асцярожныя і выкарыстоўвайце гэта толькі для вельмі непрыемнага кантэнту.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не паказваць "Без анатацый"
@@ -2111,8 +2103,6 @@ be:
   #Notification when an identification has been deleted
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Тэкст вызначэння паказаны
   #Notification when an identification has been updated
   identification_updated: Вызначэнне абноўлена!
   identification_user_short: Вызн. карыстальнік

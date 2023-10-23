@@ -251,10 +251,10 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Hiroki IWAMA (higamma)](https://crowdin.com/profile/higamma)
 * [Ito Tsuyoshi (itots)](https://crowdin.com/profile/itots)
 * [Jane Widness (jwidness)](https://crowdin.com/profile/jwidness)
+* [Saryu MAE @iNaturalistJapan (Invertebratist)](https://crowdin.com/profile/Invertebratist)
 * [seec](https://crowdin.com/profile/seec)
 * [tbc_watanabe](https://crowdin.com/profile/tbc_watanabe)
 * [Yoshimasa Uchiyama (utchee)](https://crowdin.com/profile/utchee)
-* [前 朝琉　Saryu MAE   @iNaturalist (Invertebratist)](https://crowdin.com/profile/Invertebratist)
 * [桒原良輔 (sable)](https://crowdin.com/profile/sable)
 * [齊藤真慧 (m3110.ebi)](https://crowdin.com/profile/m3110.ebi)
 
@@ -373,10 +373,10 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
 
 ### Sinhala
+* [HelaBasa Group (HelaBasa)](https://crowdin.com/profile/HelaBasa)
 * [KPEIRIS](https://crowdin.com/profile/KPEIRIS)
 * [Nuwan Wijayaweera (Nu1Wijayaweera)](https://crowdin.com/profile/Nu1Wijayaweera)
 * [udendra](https://crowdin.com/profile/udendra)
-* [හෙළබස සමූහය (HelaBasa)](https://crowdin.com/profile/HelaBasa)
 
 ### Slovak (`sk`)
 * [Ela Baršváryová (elabarsvary)](https://crowdin.com/profile/elabarsvary)
@@ -432,7 +432,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Néstor Beltrán (nestorbeltran)](https://crowdin.com/profile/nestorbeltran)
 * [vdean](https://crowdin.com/profile/vdean)
 
-### Spanish, Costa Rica
+### Spanish, Costa Rica (`es-CR`)
 * [mich_croc](https://crowdin.com/profile/mich_croc)
 * [WUlate](https://crowdin.com/profile/WUlate)
 

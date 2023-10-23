@@ -1278,6 +1278,8 @@ kn:
   #short as possible
   donate: ದೇಣಿಗೆ ನೀಡಿ
   donate_again_today_caps: ಇಂದು ಮತ್ತೊಮ್ಮೆ ದೇಣಿಗೆ ನೀಡಿ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: iNaturalist ಗೆ ದೇಣಿಗೆ ನೀಡಿ
   done: ಸಂಪನ್ನವಾಗಿದೆ
   dont_have_an_account_sign_up_html: ಖಾತೆ ಇಲ್ಲವೇ? <strong>ನೋಂದಾಯಿಸಿಕೊಳ್ಳಿ.</strong>
   dont_use_double_quotes: ಇಮ್ಮಡಿ ಉದ್ಧರಣ ಚಿನ್ಹೆಗಳನ್ನು ಇನ್ನೆಲ್ಲಿಯೂ ಬಳಸಬೇಡಿ
@@ -1830,6 +1832,7 @@ kn:
     davawenyo: ದಾವಾವೆನ್ಯೋ
     dutch: ಡಚ್
     english: ಇಂಗ್ಲಿಷ್
+    esperanto: ಎಸ್ಪೆರಾಂಟೋ
     estonian: ಎಸ್ಟೋನಿಯನ್
     faroese: ಫಾರೋಸೀ
     finnish: ಫಿನ್ನಿಷ್
@@ -2118,6 +2121,8 @@ kn:
   missing_date: ಕಾಣೆಯಾದ ದಿನಾಂಕ
   mobile: ಮೊಬೈಲ್
   moderation_history_for_user_html: '%{user} ಅವರ ಸಂಭಾಳಕೆಯ ಇತಿಹಾಸ'
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: ಮರೆಮಾಡಿ
   mollusks: ಮೃದ್ವಂಗಿಗಳು
   momentjs:
     shortRelativeTime:
@@ -3433,6 +3438,7 @@ kn:
   refresh: ಹೊಸತಾಗಿಸಿ
   refreshing: ಹೊಸತಾಗಿಸುತ್ತಿದೆ
   regenerate_stats: ಅಂಕಿಅಂಶಗಳನ್ನು ಮರುರಚಿಸಿ
+  regional_names: ದೇಶೀಯ ಹೆಸರುಗಳು
   register_for_this_event_at_x_html: "ಈ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ %{x} ನಲ್ಲಿ ನೋಂದಣಿಯಾಗಿರಿ"
   reject?: ತಿರಸ್ಕರಿಸಬೇಕೆ?
   relative_observations: ಸಂಬಂಧಿತ ವೀಕ್ಷಣೆಗಳು
@@ -3645,6 +3651,8 @@ kn:
   show_keyboard_shortcuts: ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‍ಕಟ್‍ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_less: ಕಡಿಮೆ ತೋರಿಸಿ
   show_more: ಇನ್ನಷ್ಟು ತೋರಿಸಿ
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: ಹೆಚ್ಚಿನ ಲಾಗಿನ್ ಆಯ್ಕೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"ಕಿರು ಟಿಪ್ಪಣಿಗಳಿಲ್ಲ" ವನ್ನು ಪ್ರದರ್ಶಿಸಿ'
@@ -5502,9 +5510,17 @@ kn:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%b %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - ಜನವರಿ
@@ -5637,9 +5653,17 @@ kn:
     am: am
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %d, %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
@@ -5651,6 +5675,8 @@ kn:
       AssessmentSection: ಮೌಲ್ಯಮಾಪನ ವಿಭಾಗ
       Atlas: ಭೂಪಟ
       BlockedUser: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
+      Comment: ಅಭಿಪ್ರಾಯ
+      Identification: ಗುರುತಿಸುವಿಕೆ
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -5659,6 +5685,7 @@ kn:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: ಮಾಡರೇಟರ್ ಟಿಪ್ಪಣಿ
+      Photo: ಚಿತ್ರ
       TaxonLink: ಜೀವಿವರ್ಗದ ಲಿಂಕ್
     attributes:
       announcement:
@@ -5779,6 +5806,7 @@ kn:
         name_provider: ನಾಮಾವಳಿ ಪೂರೈಕೆದಾರರು
         position: ಸ್ಥಾನ
         source_url: ಮೂಲ URL
+        audit_comment: ಟಿಪ್ಪಣಿ
       user:
         email: ಮಿಂಚೆ
         login: ಬಳಕೆದಾರರ ಹೆಸರು
@@ -5947,6 +5975,8 @@ kn:
                 ಈ ಪದಕೋಶಕ್ಕೆ ಪ್ರಭೇದವೊಂದರ ವೈಜ್ಞಾನಿಕ ಹೆಸರನ್ನು ಹೋಲಿಕೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ
               must_match_the_taxon_if_valid: |
                 ಇದು ಸರಿಯಾದ ವೈಜ್ಞಾನಿಕ ಹೆಸರಾಗಿದ್ದಲ್ಲಿ ಜೀವಿವರ್ಗದ ಹೆಸರಿನೊಂದಿಗೆ ಹೋಲಿಕೆಯಾಗಲೇಬೇಕು
+            audit_comment:
+              needs_to_be_at_least_10_characters: ಕನಿಷ್ಟ 10 ಅಕ್ಷರಗಳಿರಬೇಕು
         taxon_photo:
           attributes:
             taxon:

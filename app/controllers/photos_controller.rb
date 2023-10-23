@@ -2,7 +2,7 @@
 class PhotosController < ApplicationController
   before_action :doorkeeper_authorize!, only: [:update],
     if: lambda { authenticate_with_oauth? }
-  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate, :hide]
   before_action :require_owner, :only => [:update, :destroy, :rotate]
   before_action :authenticate_user!, except: [:show],
     unless: lambda { authenticated_with_oauth? }
@@ -185,6 +185,11 @@ class PhotosController < ApplicationController
         end
       end
     end
+  end
+
+  def hide
+    @item = @photo
+    render "moderator_actions/hide_content"
   end
 
   private
