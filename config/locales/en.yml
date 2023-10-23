@@ -8701,6 +8701,36 @@ en:
           ambiguous (e.g. a split), you will receive an update about the
           change linking to a tool you can use to manually update your content
           if you choose.
+        taxon_name_priorities:
+          # A common name lexicon is a categorization of the vocabulary used. For example the
+          # lexicon could be a language, or a regional use of language (locale), or a lexicon
+          # could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Add a common name lexicon
+          # optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Add a place (optional)
+          common_name_lexicon_display_order: Common Name Lexicon Display Order
+          common_name_lexicons: Common Name Lexicons
+          common_name_lexicons_description:
+            By default, common names are displayed in your account language/locale. To see names in
+            other lexicons, or to prioritize names used in specific places (such as English
+            (Australia) or Spanish (Costa Rica)), add common name lexicons. A maximum of 3
+            common names can be displayed at a time. If no common name exists for a lexicon
+            you have chosen, it will be omitted from display.
+          for_multiple_common_name_lexicons_drag_and_drop:
+            For multiple common name lexicons, drag and drop the settings below to customize
+            the order in which they are displayed.
+          # declaring the common name lexicon will be dynamically chosen based
+          # on the user's langauge/locale setting
+          same_as_locale: Same as locale
+          # used as a form select dropdown option that users can choose instead of a choosing
+          # a fixed locale. Choosing this setting will allow the user to see common names in
+          # a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Same as user language/locale preference
+          select_a_lexicon: Select a lexicon
+          # a warning message given when users have added the maximum number of common name
+          # lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added:
+            The maximum of 3 common name lexicons have already been added
         this_only_applies_to_traditional_projects: |
           This only applies to traditional projects. You can't exclude observations
           from collection or umbrella projects, which are essentially saved searches.
