@@ -255,9 +255,20 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( [tn_en, tn_es], locale: :es ) ).to eq tn_es
   end
 
+  it "should choose a lexicon-specific name" do
+    tn_en = TaxonName.make!( name: "snail", lexicon: "English", taxon: t )
+    tn_es = TaxonName.make!( name: "caracol", lexicon: "Spanish", taxon: t )
+    expect( TaxonName.choose_common_name( [tn_en, tn_es], lexicon: "spanish" ) ).to eq tn_es
+  end
+
   it "should not choose a non-locale-specific name" do
     tn_en = TaxonName.make!( name: "snail", lexicon: "English", taxon: t )
     expect( TaxonName.choose_common_name( tn_en.taxon.taxon_names, locale: :es ) ).to be_blank
+  end
+
+  it "should not choose a non-lexicon-specific name" do
+    tn_en = TaxonName.make!( name: "snail", lexicon: "English", taxon: t )
+    expect( TaxonName.choose_common_name( tn_en.taxon.taxon_names, lexicon: "spanish" ) ).to be_blank
   end
 
   it "should choose a locale-specific name for traditional Chinese" do
@@ -266,10 +277,22 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( [tn_en, tn_zh_tw], locale: "zh-TW" ) ).to eq tn_zh_tw
   end
 
+  it "should choose a lexicon-specific name for traditional Chinese" do
+    tn_en = TaxonName.make!( name: "Queen's Wreath", lexicon: "English", taxon: t )
+    tn_zh_tw = TaxonName.make!( name: "藍花藤", lexicon: "Chinese (traditional)", taxon: t )
+    expect( TaxonName.choose_common_name( [tn_en, tn_zh_tw], lexicon: "chinese-traditional" ) ).to eq tn_zh_tw
+  end
+
   it "should choose a locale-specific name for simplified Chinese" do
     tn_en = TaxonName.make!( name: "Queen's Wreath", lexicon: "English", taxon: t )
     tn_zh_cn = TaxonName.make!( name: "藍花藤", lexicon: "Chinese (simplified)", taxon: t )
     expect( TaxonName.choose_common_name( [tn_en, tn_zh_cn], locale: "zh-CN" ) ).to eq tn_zh_cn
+  end
+
+  it "should choose a lexicon-specific name for simplified Chinese" do
+    tn_en = TaxonName.make!( name: "Queen's Wreath", lexicon: "English", taxon: t )
+    tn_zh_cn = TaxonName.make!( name: "藍花藤", lexicon: "Chinese (simplified)", taxon: t )
+    expect( TaxonName.choose_common_name( [tn_en, tn_zh_cn], lexicon: "chinese-simplified" ) ).to eq tn_zh_cn
   end
 
   it "should choose a Norwegian name for a Bokmal locale" do
@@ -286,6 +309,14 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( [tn_romanji, tn_ja], locale: "ja" ) ).to eq tn_ja
   end
 
+  it "should respect position when choosing a lexicon-specific name" do
+    tn_romanji = TaxonName.make!( name: "Hamachi", lexicon: "Japanese", taxon: t )
+    tn_ja = TaxonName.make!( name: "ブリ", lexicon: "Japanese", taxon: t )
+    tn_ja.update( position: 1 )
+    tn_romanji.update( position: 2 )
+    expect( TaxonName.choose_common_name( [tn_romanji, tn_ja], lexicon: "japanese" ) ).to eq tn_ja
+  end
+
   it "should choose a locale-specific place-specific name" do
     california = make_place_with_geom
     oregon = make_place_with_geom
@@ -298,6 +329,20 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( t.taxon_names, place: oregon ) ).to eq tn_or
     expect( TaxonName.choose_common_name( t.taxon_names, place: california ) ).to eq tn_ca
     expect( TaxonName.choose_common_name( t.taxon_names, locale: :en ) ).to eq tn_en
+  end
+
+  it "should choose a lexicon-specific place-specific name" do
+    california = make_place_with_geom
+    oregon = make_place_with_geom
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    tn_ca = TaxonName.make!( name: "California bay laurel", lexicon: "English", taxon: t )
+    PlaceTaxonName.make!( taxon_name: tn_ca, place: california )
+    tn_or = TaxonName.make!( name: "Oregon myrtle", lexicon: "English", taxon: t )
+    PlaceTaxonName.make!( taxon_name: tn_or, place: oregon )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: oregon ) ).to eq tn_or
+    expect( TaxonName.choose_common_name( t.taxon_names, place: california ) ).to eq tn_ca
+    expect( TaxonName.choose_common_name( t.taxon_names, lexicon: "english" ) ).to eq tn_en
   end
 
   it "should pick a locale-specific place-specific name for a parent of the requested place" do
@@ -333,6 +378,16 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( t.taxon_names, place: p, locale: "es" ) ).to eq tn_es
   end
 
+  it "should favor a lexicon within a place" do
+    p = make_place_with_geom
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
+    PlaceTaxonName.make!( taxon_name: tn_en, place: p, position: 1 )
+    PlaceTaxonName.make!( taxon_name: tn_es, place: p, position: 2 )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: p, lexicon: "spanish" ) ).to eq tn_es
+  end
+
   it "should not pick a name if it doesn't match the locale even if it matches an ancestor place" do
     ancestor_place = make_place_with_geom
     place = make_place_with_geom( parent: ancestor_place )
@@ -344,11 +399,30 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( t.taxon_names, place: place, locale: "ja" ) ).to be_blank
   end
 
+  it "should not pick a name if it doesn't match the lexicon even if it matches an ancestor place" do
+    ancestor_place = make_place_with_geom
+    place = make_place_with_geom( parent: ancestor_place )
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
+    PlaceTaxonName.make!( taxon_name: tn_en, place: ancestor_place, position: 1 )
+    PlaceTaxonName.make!( taxon_name: tn_es, place: ancestor_place, position: 2 )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: place, lexicon: "japanese" ) ).to be_blank
+  end
+
   it "should pick a name if it doesn't match the locale if it exactly matches a place" do
     place = make_place_with_geom
     tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
     PlaceTaxonName.make!( taxon_name: tn_en, place: place, position: 1 )
     t.reload
     expect( TaxonName.choose_common_name( t.taxon_names, place: place, locale: "ja" ) ).to eq tn_en
+  end
+
+  it "should not pick a name if it doesn't match the lexicon even if it exactly matches a place" do
+    place = make_place_with_geom
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    PlaceTaxonName.make!( taxon_name: tn_en, place: place, position: 1 )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: place, lexicon: "japanese" ) ).to be_blank
   end
 end
