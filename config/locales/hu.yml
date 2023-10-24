@@ -5425,6 +5425,26 @@ hu:
         same_day_geoprivacy_protection: Azonos napi helymegjelenítés védettsége
         taxon_change_desc: |
           Amikor a taxonokat egyesítik vagy átnevezik a %{site_name}-on, a megfigyeléseid, meghatározott taxonjaid, azonosításaid stb. automatikusan frissülnek az új taxonokra, amennyiben a változás egyértelmű. Ha leiratkozol, vagy a változás nem egyértelmű (pl. egy szétválasztás), akkor változásról küldött értesítésben, találsz majd egy linket a tartalmad manuális szerkesztéséhez.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Köznyelvi név-lexikon hozzáadása
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Hely hozzáadása (opcionális)
+          common_name_lexicon_display_order: Köznyelvi név-lexikon megjelenítési sorrend
+          common_name_lexicons: Köznyelvi név-lexikonok
+          common_name_lexicons_description: A köznyelvi nevek megjelenítése alapértelmezetten a fiókod nyelvi és helyi beállításait követi. Más lexikonok neveinek megjelenítéséhez, vagy meghatározott helyek neveinek megjelenítéséhez (pl. angol (Ausztrália) vagy Spanyol (Costa Rica), adj hozzá köznyelvi név-lexikont. Legfeljebb három köznyelvi név tud megjelenni egyszerre. Ha a kiválasztott lexikonban nem szerepel egy adott köznyelvi név, akkor az nem fog megjelenni.
+          for_multiple_common_name_lexicons_drag_and_drop: Több köznyelvi név-lexikon esetén a megjelenítési sorrend alább állítható be, az egyes lexikonok mozgatásával.
+          same_as_locale: A hellyel azonos
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: A felhasználó nyelvi/helyi beállításaival azonos
+          select_a_lexicon: Lexikon kiválasztása
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: A maximálisan kiválasztható három köznyelvi név-lexikon már hozzá van adva.
         this_only_applies_to_traditional_projects: |
           Ez csak hagyományos projektekre vonatkozik. Megfigyeléseket nem tudsz kivenni az ernyőprojektekből, amelyek lényegében mentett keresések. Bővebben <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">itt</a>.
       recent:
