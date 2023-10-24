@@ -7911,6 +7911,15 @@ da:
           Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
           taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
           tvetydig (f.eks ved en deling), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge til manuelt at opdatere dit indhold.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Tilføj et leksikon for almindelige navne
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Tilføj et sted (valgfrit)
+          common_name_lexicon_display_order: Visningsrækkefølge i leksikon for almindelige navne
+          common_name_lexicons: Leksika for almindelige navne
         this_only_applies_to_traditional_projects: |
           Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
           fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
