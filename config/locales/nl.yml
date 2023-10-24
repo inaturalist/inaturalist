@@ -7568,6 +7568,26 @@ nl:
         same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
         taxon_change_desc: |
           Wanneer taxa op %{site_name} worden samengevoegd of hernoemd, worden je waarnemingen, vermelde taxa, determinaties, etc. automatisch bijgewerkt naar de nieuwe taxa als de wijziging ondubbelzinnig is. Als je je afmeldt of als de wijziging niet eenduidig is (bijv. een splitsing), ontvang je een update over de wijziging met een link naar een tool die je kunt gebruiken om je inhoud handmatig bij te werken als je daarvoor kiest.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Voeg een lokale naam lexicon toe
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Voeg een plaats toe (optioneel)
+          common_name_lexicon_display_order: Weergave volgorde van lokale namen lexicon
+          common_name_lexicons: Lokale naam lexicon
+          common_name_lexicons_description: Lokale namen worden standaard weergegeven in jouw accounttaal/locale. Om namen in andere lexicons te zien of om voorrang te geven aan namen die op specifieke plaatsen worden gebruikt (zoals Engels (Australië) of Spaans (Costa Rica), voeg je lokale-naam-lexicons toe. Maximaal 3 lokale namen kunnen tegelijk worden weergegeven. Als er geen lokale naam bestaat voor een lexicon dat je hebt gekozen, zal het worden weggelaten van de weergave.
+          for_multiple_common_name_lexicons_drag_and_drop: Bij verscheidene lokale-naam-lexicons sleep en plak je de instellingen hieronder om de volgorde waarin ze worden weergegeven aan te passen.
+          same_as_locale: Hetzelfde als de locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Hetzelfde als taal gebruiker/locale voorkeur
+          select_a_lexicon: Selecteer een lexicon
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Het maximum van 3 lokale-naam-lexicons zijn al toegevoegd
         this_only_applies_to_traditional_projects: |
           Dit geldt alleen voor traditionele projecten. Je kunt waarnemingen niet uitsluiten
           van verzamel- of overkoepelende projecten, wat in feite opgeslagen zoekopdrachten zijn.
