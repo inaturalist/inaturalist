@@ -7288,6 +7288,26 @@ de:
         same_day_geoprivacy_protection: Geoprivatsphäre-Schutz am selben Tag
         taxon_change_desc: |
           Wenn Taxa auf %{site_name} zusammengeführt oder umbenannt werden, werden deine Beobachtungen, aufgelisteten Taxa, Identifikationen usw. automatisch auf die neuen Taxa aktualisiert, wenn die Änderung eindeutig ist. Wenn du dich abmeldest oder die Änderung mehrdeutig ist (z.B. eine Aufteilung), erhältst du ein Update über die Änderungsverknüpfung zu einem Tool, mit dem du deinen Inhalt manuell aktualisieren kannst, wenn du es willst.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Lexikon für Trivialnamen hinzufügen
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Gebiet hinzufügen (optional)
+          common_name_lexicon_display_order: Anzeigereihenfolge der Lexika für Trivialnamen
+          common_name_lexicons: Lexika für Trivialnamen
+          common_name_lexicons_description: Standardmäßig werden Trivialnamen in der Sprache deines Accounts angezeigt. Um Namen in anderen Lexika zu sehen, oder um Namen zu priorisieren, die an bestimmten Orten verwendet werden (wie z.B. Englisch (Australien) oder Spanisch (Costa Rica)), füge Lexika für Trivialnamen hinzu. Es können maximal 3 Trivialnamen gleichzeitig angezeigt werden. Wenn kein Trivialname für ein von dir gewähltes Lexikon existiert, wird er nicht angezeigt.
+          for_multiple_common_name_lexicons_drag_and_drop: Verwende drag&drop für die Einstellungen unten, um die Reihenfolge anzupassen, in der die verschiedenen Lexika für Trivialnamen angezeigt werden.
+          same_as_locale: entspricht der Regionalsprache
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: entspricht den Benutzereinstellungen für die Sprache
+          select_a_lexicon: Wähle ein Lexikon
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Es wurde bereits das Maximum von 3 Trivialnamen-Lexika hinzugefügt
         this_only_applies_to_traditional_projects: |
           Dies gilt nur für traditionelle Projekte. Du kannst Beobachtungen nicht von Sammel- oder Dach-Projekten ausschließen, die im Wesentlichen gespeicherte Suchen sind.
           Mehr <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a>.
