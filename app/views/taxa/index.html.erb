@@ -238,29 +238,27 @@
   <% end %>
 </div>
 
-<%- cache("taxa/index/iconic_taxa_#{I18n.locale}_#{@site.name}", :expires_in => 24.hours) do %>
-  <div id="iconic_taxa" class="column span-19">
-    <% for iconic_taxon in @iconic_taxa %>
-    <div id="<%= iconic_taxon.name %>" class="iconic_taxon clear column span-6 <%= cycle('first', '', 'last', :name => 'rowpos') %>">
-      <div class="photos clear">
-        <% for photo in iconic_taxon.photos[0..5] %>
-          <%- photo_tag = image_tag(
-            photo.is_a?(Photo) ? photo.square_url : "https://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
-            :width => 75, :height => 75, 
-            :title => photo.is_a?(Photo) ? "#{t(:photo)}: #{photo.native_username}" : "#{t(:photo)}: #{photo.photo_xml['ownername']}"
-          ) -%>
-          <%= link_to(photo_tag, iconic_taxon, :class => cycle('', '', 'last')) %>
-        <% end %>
-      </div>
-      <h3>
-        <%= link_to iconic_taxon do %>
-          <%= render :partial => 'shared/taxon', :object => iconic_taxon %>
-        <% end %>
-      </h3>
+<div id="iconic_taxa" class="column span-19">
+  <% for iconic_taxon in @iconic_taxa %>
+  <div id="<%= iconic_taxon.name %>" class="iconic_taxon clear column span-6 <%= cycle('first', '', 'last', :name => 'rowpos') %>">
+    <div class="photos clear">
+      <% for photo in iconic_taxon.photos[0..5] %>
+        <%- photo_tag = image_tag(
+          photo.is_a?(Photo) ? photo.square_url : "https://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
+          :width => 75, :height => 75,
+          :title => photo.is_a?(Photo) ? "#{t(:photo)}: #{photo.native_username}" : "#{t(:photo)}: #{photo.photo_xml['ownername']}"
+        ) -%>
+        <%= link_to(photo_tag, iconic_taxon, :class => cycle('', '', 'last')) %>
+      <% end %>
     </div>
-    <% end %>
+    <h3>
+      <%= link_to iconic_taxon do %>
+        <%= render :partial => 'shared/taxon', :object => iconic_taxon %>
+      <% end %>
+    </h3>
   </div>
-<% end %>
+  <% end %>
+</div>
 
 <div id="recently_observed" class="last column span-5">  
   <div class="box clear">
