@@ -1,17 +1,19 @@
 - label = label || nil
+- no_required_fields ||= nil
 - f = f || nil
 - if f
   .row.labels.form-horizontal
     .col-md-6
       .form-group
-        %label.col-sm-4.control-label Label
+        .col-sm-4.control-label= f.label :label
         .col-sm-8
-          = f.text_field :label, class: "form-control"
+          = f.text_field :label, class: "form-control", required: !no_required_fields, label: false
       .form-group
         %label.col-sm-4.control-label Label Locale
         .col-sm-8
           = f.text_field :locale, class: "form-control",
-            value: label && label.locale ? label.locale : (current_user.locale || "en")
+            value: label && label.locale ? label.locale : (current_user.locale || "en"),
+            label: false
       .form-group
         %label.col-sm-4.control-label Label Valid Within Clade
         .col-sm-8
@@ -21,10 +23,10 @@
       .form-group
         %label.col-sm-2.control-label Definition
         .col-sm-10
-          = f.text_area :definition, class: "form-control"
+          = f.text_area :definition, class: "form-control", required: !no_required_fields, label: false
       .form-group
         %label.col-sm-2.control-label Icon
         .col-sm-10
-          = f.file_field :icon, accept: "image/jpg,image/jpeg,image/png,image/gif"
+          = f.file_field :icon, accept: "image/jpg,image/jpeg,image/png,image/gif", label: false
           - if label && label.icon.exists?
             = image_tag label.icon.url, style: "max-width: 250px; max-height: 250px;"

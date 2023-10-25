@@ -22,7 +22,15 @@ describe ControlledTermsController do
     it "allows admins to create terms" do
       sign_in( make_admin )
       expect do
-        post :create, params: { controlled_term: { uri: "adminterm" } }
+        post :create, params: {
+          controlled_term: {
+            uri: "adminterm",
+            controlled_term_label: {
+              label: "foo",
+              definition: "bar"
+            }
+          }
+        }
       end.to change( ControlledTerm, :count ).by( 1 )
       expect( ControlledTerm.last.uri ).to eq "adminterm"
     end

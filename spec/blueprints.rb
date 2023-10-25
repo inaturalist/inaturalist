@@ -69,6 +69,7 @@ ConservationStatus.blueprint do
 end
 
 ControlledTerm.blueprint do
+  labels { [ControlledTermLabel.make!] }
 end
 
 ControlledTermLabel.blueprint do

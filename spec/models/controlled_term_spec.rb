@@ -29,6 +29,15 @@ describe ControlledTerm do
                                             .through(:controlled_term_taxa).source :taxon
   end
 
+  it "validates labels" do
+    expect( ControlledTerm.new ).not_to be_valid
+    invalid_label = ControlledTermLabel.new
+    expect( invalid_label ).not_to be_valid
+    expect( ControlledTerm.new( labels: [invalid_label] ) ).not_to be_valid
+    valid_label = ControlledTermLabel.new( label: "foo", definition: "bar" )
+    expect( valid_label ).to be_valid
+    expect( ControlledTerm.new( labels: [valid_label] ) ).to be_valid
+  end
 
   describe "values" do
     it "returns all values for a term" do
