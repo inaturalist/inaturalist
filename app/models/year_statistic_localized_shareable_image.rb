@@ -44,7 +44,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     # prepate the text elements
     text = prepare_text
     using_non_latin_chars = text.any?{ |k,v| v.to_s.non_latin_chars? }
-    light_font_path, medium_font_path, semibold_font_path = self.class.font_paths( using_non_latin_chars )
+    light_font_path, medium_font_path, semibold_font_path = font_paths( using_non_latin_chars )
 
     # populate an array of extra elements to overlay on the base image
     composites = []
@@ -94,7 +94,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def label_method
-    ( Rails.env.production? && locale.to_s =~ /^(il|he|ar)/ ) ? "pango" : "label"
+    ( Rails.env.production? && locale.to_s =~ /^(il|he|ar|kn|mr|sat|th)/ ) ? "pango" : "label"
   end
 
   def generate_icon_or_logo( work_path )
@@ -328,6 +328,31 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     text
   end
 
+  def font_paths( using_non_latin_chars )
+    if using_non_latin_chars
+      if Rails.env.production?
+        if locale =~ /^(ja|ko|zh)/
+          light_font_path = "Noto-Sans-CJK-HK"
+          medium_font_path = "Noto-Sans-CJK-HK"
+          semibold_font_path = "Noto-Sans-CJK-HK-Bold"
+        else
+          light_font_path = "DejaVu-Sans-ExtraLight"
+          medium_font_path = "DejaVu-Sans"
+          semibold_font_path = "DejaVu-Sans-Bold"
+        end
+      else
+        light_font_path = "Helvetica-Narrow"
+        medium_font_path = "Helvetica"
+        semibold_font_path = "Helvetica-Bold"
+      end
+    else
+      light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
+      medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+      semibold_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Semibold-Pro.otf" )
+    end
+    [light_font_path, medium_font_path, semibold_font_path]
+  end
+
   def self.cached_asset_exists_and_unexpired?( path )
     File.exist?( path ) &&
       ( File.mtime( path ) > ( Time.now - ASSET_CACHE_TIME ) )
@@ -378,31 +403,6 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       convert -size 500x500 xc:black -fill white \
         -draw "translate 250,250 circle 0,0 0,250" -alpha off
     BASH
-  end
-
-  def self.font_paths( using_non_latin_chars )
-    if using_non_latin_chars
-      if Rails.env.production?
-        if locale =~ /^(ja|ko|zh)/
-          light_font_path = "Noto-Sans-CJK-HK"
-          medium_font_path = "Noto-Sans-CJK-HK"
-          semibold_font_path = "Noto-Sans-CJK-HK-Bold"
-        else
-          light_font_path = "DejaVu-Sans-ExtraLight"
-          medium_font_path = "DejaVu-Sans"
-          semibold_font_path = "DejaVu-Sans-Bold"
-        end
-      else
-        light_font_path = "Helvetica-Narrow"
-        medium_font_path = "Helvetica"
-        semibold_font_path = "Helvetica-Bold"
-      end
-    else
-      light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
-      medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
-      semibold_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Semibold-Pro.otf" )
-    end
-    [light_font_path, medium_font_path, semibold_font_path]
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )
