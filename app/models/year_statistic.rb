@@ -162,6 +162,10 @@ class YearStatistic < ApplicationRecord
       }
     }
     year_statistic.update( data: json )
+    # generate the shareable image for this user's locale before returning, so one
+    # exists and can be fetched right away. Queue up generating shareables for all
+    # locales in a delayed job as that will take longer
+    year_statistic.generate_shareable_image( only_user_locale: true )
     year_statistic.delay(
       priority: USER_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
@@ -546,7 +550,10 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_localized_shareable_images( options = {} )
-    I18N_SUPPORTED_LOCALES.sort.each do |locale|
+    locales_to_generate = options[:only_user_locale] ?
+      [user&.locale || I18n.locale] :
+      I18N_SUPPORTED_LOCALES
+    locales_to_generate.sort.each do |locale|
       begin
         localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
           year_statistic: self,
@@ -704,18 +711,11 @@ class YearStatistic < ApplicationRecord
     save!
   end
 
-  # ImageMagick's SVG parser is... sensitive, so this filters out things it doesn't like
-  def clean_svg_for_imagemagick( svg_path )
-    tmp_path = "#{svg_path}.tmp"
-    run_cmd <<~BASH
-      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
-    BASH
-    run_cmd "mv #{tmp_path} #{svg_path}"
-  end
-
   def shareable_image_for_locale( locale )
     if year_statistic_localized_shareable_images.any?
-      year_statistic_localized_shareable_images.detect{ |si| si.locale == locale.to_s }&.shareable_image
+      year_statistic_localized_shareable_images.detect do |si|
+        si.locale == locale.to_s
+      end&.shareable_image
     else
       shareable_image
     end
