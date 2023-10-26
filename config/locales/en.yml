@@ -9381,11 +9381,13 @@ en:
         announcement:
           attributes:
             clients:
-              must_be_valid_for_specified_placement:
-                # Error message shown when an Announcement has a value in the
-                # clients attribute that is not a valid client for the
-                # annoumcement's placement attribute
-                must be valid for specified placement
+              # Error message shown when an Announcement has a value in the
+              # clients attribute that is not a valid client for the
+              # annoumcement's placement attribute. This might be used in a
+              # sentence like "clients must be valid for specified
+              # placement". Only site admins will see this texxt, so it's ok
+              # if it's not translated perfectly.
+              must_be_valid_for_specified_placement: must be valid for specified placement
         application:
           attributes:
             redirect_uri:
