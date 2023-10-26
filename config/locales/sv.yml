@@ -5950,6 +5950,9 @@ sv:
       locales_desc: |
         CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något kommer meddelandet att visas för alla användare oavsett lokalisering. Att välja ett språk utan en region kommer *inte* att rikta det mot lokaliseringar i regioner, t.ex. om du valde en kommer det inte att visas för personer som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill 
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt enkelt detta tomt.
+      clients_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något visas
+        tillkännagivandet för alla användare oavsett klient.
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
@@ -7335,6 +7338,9 @@ sv:
           %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VISA %{count} PUBLIKATION"
+          other: "VISA ALLA %{count} PUBLIKATIONER"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7565,6 +7571,7 @@ sv:
           Om någon trakasserar eller förföljer dig på %{site_name},
           <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om det visar sig vara ett brott mot våra Användarvillkor, eller något annat beteende som vi anser är olämpligt på vår webbplats, kommer vi att titta närmare på det.
           </p>
+        common_scientific_name_display_order: Visningsordning för vardagligt / vetenskapligt namn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7660,6 +7667,26 @@ sv:
         taxon_change_desc: |
           När taxa slås samman eller byter namn på %{site_name}, kommer dina fynd, listade taxa, bestämningar etc. automatiskt att uppdateras till dessa nya taxa om ändringen är entydig. Om du väljer bort det eller om ändringen är tvetydig (t.ex. vid en uppdelning), kommer du att få en uppdatering om ändringen med en länk till ett verktyg du kan använda
           för att manuellt uppdatera ditt innehåll om du vill.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Lägg till ett lexikon för vardagliga namn
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Lägg till en plats (valfritt)
+          common_name_lexicon_display_order: Visningsordning för vardagsnamnslexikon
+          common_name_lexicons: Vardagsnamnslexikon
+          common_name_lexicons_description: Som standard visas vardagligt namn på ditt kontos språk/lokalisering. Lägg till vardagsnamnslexikon ör att se namn ur andra lexikon, eller för att prioritera namn som används på specifika platser (såsom engelska (Australien) eller spanska (Costa Rica)). Högst 3 vardagliga namn kan visas samtidigt. Om det inte finns något vardagligt namn i ett lexikon du har valt, kommer det att utelämnas från visning.
+          for_multiple_common_name_lexicons_drag_and_drop: Dra och släpp i inställningarna nedan för att anpassa den ordning i vilken vardagsnamnslexikon visas.
+          same_as_locale: Samma som platsen
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Samma som preferens för användarspråk/plats
+          select_a_lexicon: Välj ett lexikon
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Max 3 vardagsnamnslexikon har redan lagts till
         this_only_applies_to_traditional_projects: |
           Det här gäller endast traditionella projekt. Du kan inte utesluta fynd från samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.
           Du kan läsa mer
@@ -7994,6 +8021,7 @@ sv:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Riktat mot obekräftade användare
+        clients: Klienter
       assessment:
         description: Beskrivning
       assessment_section:
@@ -8224,6 +8252,10 @@ sv:
           one: "%{count} fel hindrade denna %{model} från att sparas"
           other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
+        announcement:
+          attributes:
+            clients:
+              must_be_valid_for_specified_placement: '# Felmeddelande som visas när ett tillkännagivande har ett värde i'
         application:
           attributes:
             redirect_uri:

@@ -5965,6 +5965,9 @@ da:
         CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
         vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
         til alle medlemmer af en side, skal du bare lade dette stå tomt.
+      clients_desc: |
+        Vælg flere med klik + CMD eller SHIFT. Vælges ingen, vises
+        bekendtgørelsen til alle brugere uanset klient.
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
@@ -7911,6 +7914,26 @@ da:
           Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
           taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
           tvetydig (f.eks ved en deling), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge til manuelt at opdatere dit indhold.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Tilføj et leksikon for almindelige navne
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Tilføj et sted (valgfrit)
+          common_name_lexicon_display_order: Visningsrækkefølge i leksikon for almindelige navne
+          common_name_lexicons: Leksika for almindelige navne
+          common_name_lexicons_description: Som standard vises almindelige navne på kontosproget/jf. landestandarden. For at se navne i andre leksika, eller prioritere navne anvendt på bestemte steder (såsom engelsk (Australien) eller spansk (Costa Rica)), tilføj leksika for almindelige navne. Et maksimum på 3 almindelige navne kan vises ad gangen. Findes et almindeligt navn ikke for et valgt leksikon, udelades det fra visningen.
+          for_multiple_common_name_lexicons_drag_and_drop: For flere leksika for almindelige navne, træk og slip indstillingerne nedenfor for at tilpasse visningsrækkefølgen.
+          same_as_locale: Samme som landestandard
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Samme som brugersprog-/landestandardpræference
+          select_a_lexicon: Vælg et leksikon
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: De maksimalt 3 leksika for almindelige navne er allerede tilføjet
         this_only_applies_to_traditional_projects: |
           Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
           fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
@@ -8254,6 +8277,7 @@ da:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
+        clients: Kunder
       assessment:
         description: Beskrivelse
       assessment_section:
@@ -8485,6 +8509,10 @@ da:
           one: "En fejl forhindrede denne %{model} i at blive gemt"
           other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
       models:
+        announcement:
+          attributes:
+            clients:
+              must_be_valid_for_specified_placement: '# Fejlmeddelelse vises, når en bekendtgørelse har en værdi i'
         application:
           attributes:
             redirect_uri:
