@@ -5915,6 +5915,8 @@ nl:
     announcements:
       locales_desc: |
         CMD- of SHIFT-klik om meerdere opties te selecteren. Als je niets selecteert wordt de standaardaankondiging voor alle gebruikers getoond, ongeacht lokalisatie-instelling. Het kiezen van een taal zonder een regio zal *niet* toepasbaar zijn op lokalisatie-instellingen mét regio's, bijvoorbeeld als je "en" kiest zal dit het niet zichbaar zijn voor mensen die "en-US" hebben gekozen. Als je beide wilt bereiken, kies dan beide. Als je een aankondiging wilt weergeven voor alle leden van een site, laat je dit gewoon leeg.
+      clients_desc: |
+        CMD- of SHIFT-klik om meerdere te selecteren. Als niets wordt geselecteerd wordt de aankondiging aan alle gebruikers getoond, ongeacht de cliënt.
     content_freeze:
       content_freeze: Inhoud bevroren
       during_this_time: |
@@ -7572,11 +7574,11 @@ nl:
           #A common name lexicon is a categorization of the vocabulary used. For example the
           #lexicon could be a language, or a regional use of language (locale), or a lexicon
           #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
-          add_a_common_name_lexicon: Voeg een lokale naam lexicon toe
+          add_a_common_name_lexicon: Voeg een lokale-naam-lexicon toe
           #optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: Voeg een plaats toe (optioneel)
-          common_name_lexicon_display_order: Weergave volgorde van lokale namen lexicon
-          common_name_lexicons: Lokale naam lexicon
+          common_name_lexicon_display_order: Weergave volgorde van lokale-naam-lexicons
+          common_name_lexicons: Lokale-naam-lexicons
           common_name_lexicons_description: Lokale namen worden standaard weergegeven in jouw accounttaal/locale. Om namen in andere lexicons te zien of om voorrang te geven aan namen die op specifieke plaatsen worden gebruikt (zoals Engels (Australië) of Spaans (Costa Rica), voeg je lokale-naam-lexicons toe. Maximaal 3 lokale namen kunnen tegelijk worden weergegeven. Als er geen lokale naam bestaat voor een lexicon dat je hebt gekozen, zal het worden weggelaten van de weergave.
           for_multiple_common_name_lexicons_drag_and_drop: Bij verscheidene lokale-naam-lexicons sleep en plak je de instellingen hieronder om de volgorde waarin ze worden weergegeven aan te passen.
           same_as_locale: Hetzelfde als de locale
@@ -7935,6 +7937,7 @@ nl:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
+        clients: Client
       assessment:
         description: Beschrijving
       assessment_section:
