@@ -5950,6 +5950,9 @@ sv:
       locales_desc: |
         CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något kommer meddelandet att visas för alla användare oavsett lokalisering. Att välja ett språk utan en region kommer *inte* att rikta det mot lokaliseringar i regioner, t.ex. om du valde en kommer det inte att visas för personer som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill 
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt enkelt detta tomt.
+      clients_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något visas
+        tillkännagivandet för alla användare oavsett klient.
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
@@ -8018,6 +8021,7 @@ sv:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Riktat mot obekräftade användare
+        clients: Klienter
       assessment:
         description: Beskrivning
       assessment_section:
@@ -8248,6 +8252,10 @@ sv:
           one: "%{count} fel hindrade denna %{model} från att sparas"
           other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
+        announcement:
+          attributes:
+            clients:
+              must_be_valid_for_specified_placement: '# Felmeddelande som visas när ett tillkännagivande har ett värde i'
         application:
           attributes:
             redirect_uri:
