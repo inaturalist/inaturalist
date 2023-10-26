@@ -622,6 +622,9 @@ describe DarwinCore::Archive, "make_occurrence_data" do
       )
       @unannotated_o = make_research_grade_observation
       @sex_annotated_o = make_research_grade_observation
+      @sex_attribute.reload
+      @life_stage_attribute.reload
+      @unrecognized_attribute.reload
       Annotation.make!(
         resource: @sex_annotated_o,
         controlled_attribute: @sex_attribute,
