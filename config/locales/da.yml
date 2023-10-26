@@ -5965,6 +5965,9 @@ da:
         CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
         vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
         til alle medlemmer af en side, skal du bare lade dette stå tomt.
+      clients_desc: |
+        Vælg flere med klik + CMD eller SHIFT. Vælges ingen, vises
+        bekendtgørelsen til alle brugere uanset klient.
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
@@ -8274,6 +8277,7 @@ da:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
+        clients: Kunder
       assessment:
         description: Beskrivelse
       assessment_section:
@@ -8505,6 +8509,10 @@ da:
           one: "En fejl forhindrede denne %{model} i at blive gemt"
           other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
       models:
+        announcement:
+          attributes:
+            clients:
+              must_be_valid_for_specified_placement: '# Fejlmeddelelse vises, når en bekendtgørelse har en værdi i'
         application:
           attributes:
             redirect_uri:
