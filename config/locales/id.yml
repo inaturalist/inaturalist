@@ -5699,6 +5699,8 @@ id:
     announcements:
       locales_desc: |
         Klik CMD atau SHIFT untuk memilih beberapa. Tidak memilih apapun akan menampilkan pengumuman untuk semua pengguna tanpa memandang daerahnya. Memilih sebuah bahasa tanpa daerahnya *tidak* akan menargetkan bahasa yang memiliki daerah. Contohnya, jika Anda memilih en, hal ini tidak akan ditampilkan untuk orang yang telah memilih en-US. Jika Anda ingin menargetkan keduanya, pilihlah dua-duanya. JIka Anda hanya ingin mengumumkan kepada semua anggota dari suatu situs, biarkan kosong saja.
+      clients_desc: |
+        Klik-CMD atau Klik-Shift untuk memilih lebih dari satu. Jika Anda tidak memilih, pengumuman akan dikirimkan ke semua pengguna tanpa memandang kliennya.
     content_freeze:
       content_freeze: Pembekuan Konten
       during_this_time: |
@@ -7453,6 +7455,7 @@ id:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Target pengguna yang belum dikonfirmasi
+        clients: Klien
       assessment:
         description: Deskripsi
       assessment_section:
@@ -7674,6 +7677,10 @@ id:
         header:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
       models:
+        announcement:
+          attributes:
+            clients:
+              must_be_valid_for_specified_placement: '# Pesan eror yang ditampilkan saat Pengumuman memiliki nilai pada'
         application:
           attributes:
             redirect_uri:
