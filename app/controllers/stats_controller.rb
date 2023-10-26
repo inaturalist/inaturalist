@@ -85,8 +85,8 @@ class StatsController < ApplicationController
       @year_statistic = nil
     end
     @headless = @footless = true
-    @shareable_image_url = if @year_statistic&.shareable_image?
-      @year_statistic.shareable_image
+    @shareable_image_url = if shareable = @year_statistic&.shareable_image_for_locale( I18n.locale )
+      shareable.url
     elsif @display_user&.icon?
       @display_user.icon.url( :large )
     elsif @site.shareable_image?
