@@ -1183,10 +1183,12 @@ sv:
     cannot_be_determined: Kan inte bestämmas utifrån angiven information
     dead: Död organism eller visar tecken på snar död
     feather: En eller flera fjädrar som inte sitter fast på en organism
+    female: Det finns stöd för att organismen kan producera ägg för användning i sexuell fortplantning
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
     gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
+    male: Det finns stöd för att organismen kan producera spermier för användning i sexuell fortplantning
     molt: Kvarlämning av skinn eller exoskelett
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     organism: Hela eller delar av en organism
@@ -8255,7 +8257,13 @@ sv:
         announcement:
           attributes:
             clients:
-              must_be_valid_for_specified_placement: '# Felmeddelande som visas när ett tillkännagivande har ett värde i'
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: måste vara giltig för angiven placering
         application:
           attributes:
             redirect_uri:
