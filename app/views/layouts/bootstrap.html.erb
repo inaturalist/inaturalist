@@ -59,11 +59,11 @@
           </div>
         </div>
       <% end %>
-      <% if flash[:error] && !@flash_js %>
+      <% if ( alert = flash[:error] || flash[:alert] ) && !@flash_js %>
         <div class="bootstrap">
           <div class="container upstacked">
             <div class="alert alert-error upstacked">
-              <%= raw flash[:error] %>
+              <%= raw alert %>
             </div>
           </div>
         </div>
