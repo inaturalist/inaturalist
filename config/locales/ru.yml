@@ -8147,6 +8147,16 @@ ru:
           many: '%{count} ошибок препятствуют сохранению этой %{model}'
           other: '%{count} ошибок препятствуют сохранению этой %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: должно быть действительным для указанного места размещения
         application:
           attributes:
             redirect_uri:
