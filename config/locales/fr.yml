@@ -7725,8 +7725,25 @@ fr:
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
         taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Ajouter un lexique de nom commun
           #optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: Ajouter un lieu (facultatif)
+          common_name_lexicon_display_order: Ordre d'affichage du lexique de noms communs
+          common_name_lexicons: Lexiques de nom commun
+          common_name_lexicons_description: Par défaut, les noms courants sont affichés dans la langue locale de votre compte. Pour voir les noms dans d'autres lexiques, ou pour prioriser les noms utilisés dans des endroits spécifiques (comme l'anglais (Australie) ou l'espagnol (Costa Rica)), ajoutez des lexiques de nom courant. Un maximum de trois noms communs peuvent être affichés à la fois. Si aucun nom commun n'existe pour un lexique que vous avez choisi, il sera omis de l'affichage.
+          for_multiple_common_name_lexicons_drag_and_drop: Pour les lexiques de noms communs multiples, faites glisser les paramètres ci-dessous pour personnaliser l'ordre dans lequel ils sont affichés.
+          same_as_locale: Identique à la langue locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Identique à la préférence de langue locale de l'utilisateur
+          select_a_lexicon: Sélectionnez un lexique
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Le maximum de 3 lexiques de noms communs a déjà été ajouté
         this_only_applies_to_traditional_projects: |
           Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets-cadres, qui sont essentiellement des recherches sauvegardées.
           Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
@@ -8083,6 +8100,7 @@ fr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Pour les utilisateurs qui n'ont pas confirmé leur adresse mail
+        clients: Clients
       assessment:
         description: Description
       assessment_section:
