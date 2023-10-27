@@ -1086,10 +1086,12 @@ id:
     cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
     dead: Organisme telah mati atau memperlihatkan tanda-tanda akan mati
     feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
+    female: Bukti menunjukkan bahwa organismenya bisa menghasilkan telur untuk digunakan dalam reproduksi seksual
     flower_budding: Kuncup bunga terlihat namun tidak terbuka
     flowering: Bunga terlihat, terbuka, dan tetap menempel ke tanaman
     fruiting: Buah terlihat dan masih menempel ke tanaman
     gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
+    male: Bukti menunjukkan bahwa organismenya bisa menghasilkan sperma untuk digunakan dalam reproduksi seksual
     molt: Kulit yang dibuang atau eksoskeleton
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
     organism: Organisme penuh atau sebagian
@@ -7677,10 +7679,6 @@ id:
         header:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
       models:
-        announcement:
-          attributes:
-            clients:
-              must_be_valid_for_specified_placement: '# Pesan eror yang ditampilkan saat Pengumuman memiliki nilai pada'
         application:
           attributes:
             redirect_uri:
