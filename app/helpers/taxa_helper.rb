@@ -164,7 +164,7 @@ module TaxaHelper
 
   def common_taxon_names( taxon, options = {} )
     return nil if taxon.blank?
-    user = options[:user] || @user
+    user = options[:user]
     unless user && user.taxon_name_priorities.any?
       if common_name = common_taxon_name( taxon, options ).try( :name )
         return [common_name]
