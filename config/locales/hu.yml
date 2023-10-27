@@ -989,9 +989,11 @@ hu:
     alive: Az organizmus él és nem mutatja hamarosan bekövetkező halál jelét
     cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
     dead: Az élőlény halott vagy a haldoklik
+    female: Bizonyított, hogy az élőlény petesejtet tud termelni ivaros szaporodáshoz
     flower_budding: A virágbimbók látszanak, de nincsenek kinyílva
     flowering: A virág látszik, ki van nyílva, még mindig a növényen van
     fruiting: A gyümölcs látszik és még mindig a növényen van
+    male: Bizonyított, hogy az élőlény hímivarsejtet tud termelni ivaros szaporodáshoz
     molt: Levedlett bőr vagy más kültakaró
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
@@ -5879,6 +5881,16 @@ hu:
           one: "%{count} hiba miatt \"%{model}\" nem menthető el"
           other: '%{count} hiba miatt %{model} nem menthető el'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: érvényesnek kell lennie a megadott elhelyezéshez
         application:
           attributes:
             redirect_uri:
