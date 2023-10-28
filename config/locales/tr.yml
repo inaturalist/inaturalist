@@ -1138,10 +1138,12 @@ tr:
     cannot_be_determined: Sununlan kanıtlardan tespit edilemiyor
     dead: Organizma ölü ya da bir ölüm belirtisi gösteriyor
     feather: Bir organizmaya bağlı olmayan bir veya birden fazla tüy
+    female: Kanıtlar, organizmanın eşeyli üremede kullanılmak üzere yumurta üretebildiğini göstermektedir
     flower_budding: Çiçek tomurcukları görünür ama açmamış
     flowering: Çiçekler görünür, açık ve hâlâ bitkiye bağlı
     fruiting: Meyveler görünür ve hâlâ bitkiye bağlı
     gall: Parazit bir organizmanın neden olduğu deforme olmuş doku büyümesi
+    male: Kanıtlar, organizmanın eşeyli üremede kullanılmak üzere sperm üretebildiğini göstermektedir
     molt: Atılan deri veya dış iskelet
     no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
     organism: Organizmanın tamamı veya bir kısmı
@@ -5713,6 +5715,8 @@ tr:
     announcements:
       locales_desc: |
         Birden çok seçmek için CMD ya da SHIFT'e tıkla. Hiçbirini seçmediğinde duyuru yerelden bağımsız olarak tüm kullanıcılara gösterilecektir. Bölge olmadan bir dil seçmek, bölgeleri olan yerelleri *hedeflemeyecektir*, örneğin en seçtiysen, en-US seçeneğini seçen kişiler için görünmeyecektir. Her ikisini de hedeflemek istiyorsan, ikisini de seç. Bir sitenin tüm üyeleri için duyuru göstermek istiyorsan, bunu boş bırak.
+      clients_desc: |
+        Birden çok seçmek için CMD- veya SHIFT-'e tıkla. Hiçbirini seçmemek, duyuruyu istemciden bağımsız olarak tüm kullanıcılara gösterecektir.
     content_freeze:
       content_freeze: İçeriği Dondurma
       during_this_time: |
@@ -7654,6 +7658,7 @@ tr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
+        clients: İstemciler
       assessment:
         description: Açıklama
       assessment_section:
@@ -7884,6 +7889,16 @@ tr:
           one: "%{count} hata bu %{model}'in kaydedilmesini engelledi"
           other: '%{count} hata bu %{model}''in kaydedilmesini engelledi'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: belirtilen yerleşim için geçerli olmalıdır
         application:
           attributes:
             redirect_uri:
