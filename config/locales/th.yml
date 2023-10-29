@@ -331,7 +331,7 @@ th:
     suborder: เพิ่มอันดับย่อยทั้งหมดลงฐานข้อมูลแล้ว
     infraorder: เพิ่มอันดับฐานทั้งหมดลงฐานข้อมูลแล้ว
     superfamily: เพิ่มวงศ์ใหญ่ทั้งหมดลงฐานข้อมูลแล้ว
-    epifamily: เพิ่มวงศ์บนทั้งหมดลงฐานข้อมูลแล้ว
+    epifamily: เพิ่มลำดับเหนือวงศ์ทั้งหมดลงฐานข้อมูลแล้ว
     family: เพิ่มวงศ์ทั้งหมดลงฐานข้อมูลแล้ว
     subfamily: เพิ่มวงศ์ย่อยทั้งหมดลงฐานข้อมูลแล้ว
     supertribe: เพิ่มเผ่าใหญ่ทั้งหมดลงฐานข้อมูลแล้ว
@@ -951,6 +951,7 @@ th:
   edit_license: แก้ไขสัญญาอนุญาต
   edit_multiple_locations: แก้ไขหลายตำแหน่ง
   edit_multiple_species: แก้ไขหลายชนิด
+  edit_notes: แก้ไขหมายเหตุ
   edit_observations: แก้ไขการสังเกต
   edit_photos: แก้ไขรูปภาพ
   edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
@@ -1409,6 +1410,7 @@ th:
     uk: ภาษายูเครน
     zh-CN: ภาษาจีน (ตัวย่อ)
     zh-TW: ภาษาจีน (ดั้งเดิม)
+  locality_notes: หมายเหตุตำแหน่ง
   localized_species_accounts: บัญชีชนิดพันธุ์เฉพาะถิ่น
   location: ตำแหน่ง
   location_is_accurate: ตำแหน่งถูกต้อง
@@ -1628,6 +1630,7 @@ th:
   not_recorded: ไม่ได้บันทึก
   not_resolved: ไม่แก้ไข
   not_seeing_what_looking_for: ไม่พบสิ่งที่ค้นหา?
+  note: หมายเหตุ
   notes: คำอธิบาย
   notifications: การแจ้งเตือน
   notify_me_of_mentions_description: "หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีคนพูดถึงคุณใน %{site_name}"
@@ -1810,6 +1813,7 @@ th:
   place_imported: นำเข้าสถานที่แล้ว!
   place_must_have_a_boundary_defined: ต้องมีการกำหนดขอบเขตสถานที่
   place_name: ชื่อสถานที่
+  place_notes: หมายเหตุสถานที่
   place_updated: อัปเดตสถานที่แล้ว!
   places: สถานที่
   places_added_by_members_of_the_community: สถานที่ที่เพิ่มโดยสมาชิกชุมชน
@@ -1961,7 +1965,7 @@ th:
     zoosection: ส่วน
     zoosubsection: ส่วนย่อย
     superfamily: วงศ์ใหญ่
-    epifamily: วงศ์บน
+    epifamily: ลำดับเหนือวงศ์
     family: วงศ์
     x_families:
       other: วงศ์
@@ -2024,7 +2028,7 @@ th:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: วงศ์ใหญ่
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
-  ranks_lowercase_epifamily: วงศ์บน
+  ranks_lowercase_epifamily: ลำดับเหนือวงศ์
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: วงศ์
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
@@ -2080,6 +2084,7 @@ th:
   recently_resolved: เพิ่งแก้ไข
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
+  regional_names: ชื่อตามภูมิภาค
   reject?: ปฏิเสธ?
   relative_observations: การสังเกตสัมพัทธ์
   relationship: "ความสัมพันธ์"
@@ -2683,6 +2688,9 @@ th:
   whats_this?: นี่คืออะไร?
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
   where_were_you?: คุณอยู่ที่ไหน?
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: เปลี่ยนแปลงชื่อเพราะเหตุใด? (ไม่บังคับ)
+  why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
   why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครมองเห็นพิกัดได้บ้าง?
@@ -2953,7 +2961,7 @@ th:
     taxa:
       show:
         about_conservation_status_desc: |
-          สถานะการอนุรักษ์คือการจัดระดับความเสี่ยงต่อการสูญพันธุ์สำหรับกลุ่มสิ่งมีชีวิต
+          สถานะการอนุรักษ์แสดงถึงระดับความเสี่ยงต่อการสูญพันธุ์ของสิ่งมีชีวิตแต่ละกลุ่ม
         about_establishment_desc: |
           "การเข้ามาตั้งถิ่นฐาน" หมายถึงวิธีการที่สิ่งมีชีวิตเข้ามาอาศัยในพื้นที่ปัจจุบัน ชนิดพันธุ์ต่างถิ่นคือชนิดที่ถูกนำเข้ามาโดยมนุษย์ ชนิดพันธุ์พื้นเมืองคือชนิดที่เข้ามาเองตามธรรมชาติ ชนิดพันธุ์เฉพาะถิ่นคือชนิดที่พบประจำถิ่นเดียวและไม่พบที่อื่น
         charts_help_seasonality: |
