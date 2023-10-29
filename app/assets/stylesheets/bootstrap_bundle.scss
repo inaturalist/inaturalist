@@ -95,6 +95,15 @@ body > div > div > .popover[role="tooltip"] {
   line-break: auto;
 }
 
+[dir="rtl"] body > .popover[role="tooltip"],
+body > div > .popover[role="tooltip"],
+body > div > div > .popover[role="tooltip"] {
+  -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
 .popover.top {
   margin-top: -10px;
 }
