@@ -5346,6 +5346,42 @@ ALTER SEQUENCE public.wiki_pages_id_seq OWNED BY public.wiki_pages.id;
 
 
 --
+-- Name: year_statistic_localized_shareable_images; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.year_statistic_localized_shareable_images (
+    id bigint NOT NULL,
+    year_statistic_id integer NOT NULL,
+    locale character varying NOT NULL,
+    shareable_image_file_name character varying,
+    shareable_image_content_type character varying,
+    shareable_image_file_size bigint,
+    shareable_image_updated_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: year_statistic_localized_shareable_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.year_statistic_localized_shareable_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: year_statistic_localized_shareable_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.year_statistic_localized_shareable_images_id_seq OWNED BY public.year_statistic_localized_shareable_images.id;
+
+
+--
 -- Name: year_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6277,6 +6313,13 @@ ALTER TABLE ONLY public.wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.wiki_pages ALTER COLUMN id SET DEFAULT nextval('public.wiki_pages_id_seq'::regclass);
+
+
+--
+-- Name: year_statistic_localized_shareable_images id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.year_statistic_localized_shareable_images ALTER COLUMN id SET DEFAULT nextval('public.year_statistic_localized_shareable_images_id_seq'::regclass);
 
 
 --
@@ -7324,6 +7367,14 @@ ALTER TABLE ONLY public.wiki_page_versions
 
 ALTER TABLE ONLY public.wiki_pages
     ADD CONSTRAINT wiki_pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: year_statistic_localized_shareable_images year_statistic_localized_shareable_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.year_statistic_localized_shareable_images
+    ADD CONSTRAINT year_statistic_localized_shareable_images_pkey PRIMARY KEY (id);
 
 
 --
@@ -9855,6 +9906,13 @@ CREATE UNIQUE INDEX index_wiki_pages_on_path ON public.wiki_pages USING btree (p
 
 
 --
+-- Name: index_year_statistic_localized_shareable_images_on_ys_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_year_statistic_localized_shareable_images_on_ys_id ON public.year_statistic_localized_shareable_images USING btree (year_statistic_id);
+
+
+--
 -- Name: index_year_statistics_on_site_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10387,6 +10445,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230504154248'),
 ('20230504154302'),
 ('20230907210748'),
-('20231017190352');
+('20231017190352'),
+('20231025144604');
 
 

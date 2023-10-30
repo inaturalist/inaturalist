@@ -4,6 +4,8 @@ class YearStatistic < ApplicationRecord
   belongs_to :user
   belongs_to :site
 
+  has_many :year_statistic_localized_shareable_images, dependent: :destroy
+
   NUM_ES_WORKERS = [1, ( CONFIG.elasticsearch_hosts&.size || 2 ) - 1].max
 
   if CONFIG.usingS3
@@ -160,6 +162,10 @@ class YearStatistic < ApplicationRecord
       }
     }
     year_statistic.update( data: json )
+    # generate the shareable image for this user's locale before returning, so one
+    # exists and can be fetched right away. Queue up generating shareables for all
+    # locales in a delayed job as that will take longer
+    year_statistic.generate_shareable_image( only_user_locale: true )
     year_statistic.delay(
       priority: USER_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
@@ -531,16 +537,37 @@ class YearStatistic < ApplicationRecord
     if options[:debug]
       puts "[#{Time.now}] generate_shareable_image, options: #{options}"
     end
-    timeout = 10.seconds
+    timeout = 300.seconds
     Timeout.timeout timeout do
       if year >= 2020
-        generate_shareable_image_no_obs( options )
+        generate_localized_shareable_images( options )
       else
         generate_shareable_image_obs_grid( options )
       end
     end
   rescue Timeout::Error
     Rails.logger.error "Failed to generate shareable image for YearStatistic #{id} in #{timeout}s"
+  end
+
+  def generate_localized_shareable_images( options = {} )
+    locales_to_generate = options[:only_user_locale] ?
+      [user&.locale || I18n.locale] :
+      I18N_SUPPORTED_LOCALES
+    locales_to_generate.sort.each do |locale|
+      begin
+        localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
+          year_statistic: self,
+          locale: locale
+        )
+        # even though this instance was passed to the find_or_create_by, the association
+        # will not be populated and will still get queried for. Assigning it here saves
+        # that query and having to pass the same huge data attribute many times from the DB
+        localized_shareable.year_statistic = self
+        localized_shareable.generate( options )
+      rescue RuntimeError => e
+        pp e
+      end
+    end
   end
 
   def generate_shareable_image_obs_grid( options = {} )
@@ -684,302 +711,14 @@ class YearStatistic < ApplicationRecord
     save!
   end
 
-  # ImageMagick's SVG parser is... sensitive, so this filters out things it doesn't like
-  def clean_svg_for_imagemagick( svg_path )
-    tmp_path = "#{svg_path}.tmp"
-    run_cmd <<~BASH
-      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
-    BASH
-    run_cmd "mv #{tmp_path} #{svg_path}"
-  end
-
-  def generate_shareable_image_no_obs( options = {} )
-    debug = options.delete( :debug )
-    if debug
-      puts "[#{Time.now}] generate_shareable_image_no_obs, options: #{options}"
-    end
-    work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
-    FileUtils.mkdir_p work_path, mode: 0o755
-    # Get the icon
-    icon_url = if user
-      ApplicationController.helpers.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
-    elsif site
-      ApplicationController.helpers.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
-    elsif Site.default
-      ApplicationController.helpers.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+  def shareable_image_for_locale( locale )
+    if year_statistic_localized_shareable_images.any?
+      year_statistic_localized_shareable_images.detect do |si|
+        si.locale == locale.to_s
+      end&.shareable_image
     else
-      ApplicationController.helpers.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      shareable_image
     end
-    icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
-    icon_ext = File.extname( URI.parse( icon_url ).path )
-    icon_path = File.join( work_path, "icon#{icon_ext}" )
-    run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
-    clean_svg_for_imagemagick( icon_path ) if icon_ext.downcase == "svg"
-
-    # Resize icon to a 500x500 square
-    square_icon_path = File.join( work_path, "square_icon.png" )
-    resize_cmd = if user
-      <<~BASH
-        convert #{icon_path} \
-          -fill transparent \
-          -resize "500x500^" \
-          -gravity Center  \
-          -extent 500x500  \
-          #{square_icon_path}
-      BASH
-    else
-      <<~BASH
-        convert #{icon_path} \
-          -fill transparent \
-          -resize 500x500 \
-          -gravity Center  \
-          -extent 500x500  \
-          #{square_icon_path}
-      BASH
-    end
-    run_cmd resize_cmd
-
-    final_logo_path = File.join( work_path, "final-logo.png" )
-    if user
-      # Apply circle mask
-      circle_path = File.join( work_path, "circle.png" )
-      run_cmd <<~BASH
-        convert -size 500x500 xc:black -fill white \
-          -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}
-      BASH
-      run_cmd <<~BASH
-        convert #{square_icon_path} #{circle_path} \
-          -alpha Off -compose CopyOpacity -composite \
-          -scale 212x212 \
-          #{final_logo_path}
-      BASH
-    else
-      run_cmd "convert #{square_icon_path} -resize 212x212 #{final_logo_path}"
-    end
-
-    background_url = ApplicationController.helpers.image_url( "yir-background.png" ).to_s.
-      gsub( %r{([^:])//}, "\\1/" ).
-      gsub( "staging.inaturalist", "www.inaturalist" )
-    background_path = File.join( work_path, "background.png" )
-    run_cmd "curl -f -s -o #{background_path} #{background_url}"
-
-    left_vertical_offset = if user
-      0
-    else
-      30
-    end
-
-    # Overlay the icon onto the montage
-    background_with_icon_path = File.join( work_path, "background_with_icon.png" )
-    run_cmd <<~BASH
-      composite -gravity northwest \
-        -geometry +145+#{left_vertical_offset + 230} \
-        #{final_logo_path} #{background_path} #{background_with_icon_path}
-    BASH
-    wordmark_site = user&.site || site || Site.default
-    wordmark_url = ApplicationController.helpers.image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
-    wordmark_url = wordmark_url.sub( "staticdev", "static" )
-    wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
-    wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
-    run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
-    clean_svg_for_imagemagick( wordmark_path ) if wordmark_ext.downcase == "svg"
-    wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
-    run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
-    wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
-    density = 1024
-    begin
-      run_cmd <<~BASH
-        convert -resize 384x65 -background none +antialias -density #{density} \
-          #{wordmark_path} #{wordmark_resized_path}
-      BASH
-    rescue RuntimeError => e
-      density /= 2
-      raise e if density <= 8
-
-      retry
-    end
-    wordmark_composite_path = File.join( work_path, "wordmark-composite.png" )
-    run_cmd <<~BASH
-      convert #{wordmark_composite_bg_path} \
-        #{wordmark_resized_path} \
-        -type TrueColorAlpha \
-        -gravity north -geometry +0+#{left_vertical_offset + 70} \
-        -composite \
-        #{wordmark_composite_path}
-    BASH
-    background_icon_wordmark_path = File.join( work_path, "background-icon-wordmark.png" )
-    run_cmd <<~BASH
-      convert #{background_with_icon_path} #{wordmark_composite_path} \
-        -gravity west -composite #{background_icon_wordmark_path}
-    BASH
-
-    # Add the text
-    # background_with_icon_and_text_path = File.join( work_path, "background_with_icon_and_text.jpg" )
-    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
-    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
-    semibold_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Semibold-Pro.otf" )
-    final_path = File.join( work_path, "final.jpg" )
-    owner = if user
-      "@#{user.login}"
-    else
-      ""
-    end
-    locale = if user
-      user_site = user.site || Site.default
-      user.locale.presence || user_site.locale.presence || I18n.locale
-    elsif site
-      site.locale.presence || I18n.locale
-    else
-      default_site = Site.default
-      default_site.locale.presence || I18n.locale
-    end
-    title = I18n.t( :year_in_review, year: year, locale: locale )
-    title = title.mb_chars.upcase
-    obs_count = if ( qg_counts = data.dig( "observations", "quality_grade_counts" ) )
-      qg_counts["research"].to_i + qg_counts["needs_id"].to_i
-    else
-      0
-    end
-    species_count = data.dig( "taxa", "leaf_taxa_count" ).to_i
-    identifications_count = (
-      ( data.dig( "identifications", "category_counts" ) || {} ).inject( 0 ) do | sum, keyval |
-        sum += keyval[1].to_i
-        sum
-      end
-    ).to_i
-
-    locale = user.locale if user
-    locale ||= site.locale if site
-    locale ||= I18n.locale
-    label_method = if locale.to_s =~ /^(il|he|ar)/
-      "pango"
-    else
-      "label"
-    end
-    obs_translation = I18n.t( "x_observations_html",
-      count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
-      locale: locale )
-    obs_count_txt = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
-    obs_label_txt = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
-    species_translation = I18n.t( "x_species_html",
-      count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
-      locale: locale )
-    species_count_txt = species_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
-    species_label_txt = species_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
-    identifications_translation = I18n.t( "x_identifications_html",
-      count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
-      locale: locale )
-    identifications_count_txt = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
-    identifications_label_txt = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
-    if [owner, title, species_label_txt, identifications_label_txt, obs_label_txt].detect do | s |
-         s.to_s.non_latin_chars?
-       end
-      if Rails.env.production?
-        if locale =~ /^(ja|ko|zh)/
-          medium_font_path = "Noto-Sans-CJK-HK"
-          light_font_path = "Noto-Sans-CJK-HK"
-          semibold_font_path = "Noto-Sans-CJK-HK-Bold"
-        else
-          medium_font_path = "DejaVu-Sans"
-          light_font_path = "DejaVu-Sans-ExtraLight"
-          semibold_font_path = "DejaVu-Sans-Bold"
-        end
-      else
-        medium_font_path = "Helvetica"
-        light_font_path = "Helvetica-Narrow"
-        semibold_font_path = "Helvetica-Bold"
-      end
-    end
-    if label_method == "pango"
-      title = "<span size='#{1024 * 22}'>#{title}</span>"
-      owner = "<span size='#{1024 * 20}'>#{owner}</span>" unless owner.blank?
-      obs_count_txt = "<span size='#{1024 * 24}'>#{obs_count_txt}</span>"
-      obs_label_txt = "<span size='#{1024 * 20}'>#{obs_label_txt}</span>"
-      species_count_txt = "<span size='#{1024 * 24}'>#{species_count_txt}</span>"
-      species_label_txt = "<span size='#{1024 * 20}'>#{species_label_txt}</span>"
-      identifications_count_txt = "<span size='#{1024 * 24}'>#{identifications_count_txt}</span>"
-      identifications_label_txt = "<span size='#{1024 * 20}'>#{identifications_label_txt}</span>"
-    end
-    title_composite = <<~BASH
-      \\( \
-        -size 500x30 \
-        -background transparent \
-        -font #{light_font_path} \
-        -kerning 2 \
-        #{label_method}:"#{title}" \
-        -trim \
-        -gravity center \
-        -extent 500x30 \
-      \\) \
-      -gravity northwest \
-      -geometry +0+#{left_vertical_offset + 165} \
-      -composite
-    BASH
-    owner_composite = <<~BASH
-      \\( \
-        -size 500x40 \
-        -background transparent \
-        -font #{medium_font_path} \
-        #{label_method}:"#{owner}" \
-        -trim \
-        -gravity center \
-        -extent 500x40 \
-      \\) \
-      -gravity northwest \
-      -geometry +0+#{left_vertical_offset + 480} \
-      -composite
-    BASH
-    composites = [title_composite]
-    composites << owner_composite unless owner.blank?
-    [
-      [obs_count_txt, obs_label_txt],
-      [species_count_txt, species_label_txt],
-      [identifications_count_txt, identifications_label_txt]
-    ].each_with_index do | texts, idx |
-      count_txt, label_txt = texts
-      y = 80 + ( idx * 145 )
-      # text_width = 332 # this would go to the right edge
-      text_width = 312 # this provides a bit of margin
-      # Note that the use of label below will automatically try to choose the
-      # best font size to fit the space
-      composites << <<~BASH
-        \\( \
-          -size #{text_width}x55 \
-          -background transparent \
-          -font #{semibold_font_path} \
-          -fill white \
-          #{label_method}:"#{count_txt}" \
-          -trim \
-          -gravity west \
-          -extent #{text_width}x55 \
-        \\) \
-        -gravity northwest \
-        -geometry +668+#{y} \
-        -composite \
-        \\( \
-          -size #{text_width}x34 \
-          -background transparent \
-          -font #{medium_font_path} \
-          -kerning 2 \
-          -fill white \
-          #{label_method}:"#{label_txt}" \
-          -trim \
-          -gravity west \
-          -extent #{text_width}x34 \
-        \\) \
-        -gravity northwest \
-        -geometry +668+#{y + ( 148 - 80 )} \
-        -composite
-      BASH
-    end
-    run_cmd <<~BASH
-      convert #{background_icon_wordmark_path} \
-        #{composites.map( &:strip ).join( " \\\n" )} \
-        #{final_path}
-    BASH
-    puts "final_path: #{final_path}" if debug
-    self.shareable_image = File.open( final_path )
-    save!
   end
 
   def self.end_of_month( date )
