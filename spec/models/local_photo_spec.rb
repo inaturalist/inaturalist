@@ -83,6 +83,28 @@ describe LocalPhoto, "to_observation" do
       expect( o.taxon ).to eq t
     end
 
+    it "should set a taxon from the middle of a file name" do
+      photo = LocalPhoto.make
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "tidepooling-Cuthona_abronia-december.png"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      taxon = Taxon.make!( name: "Cuthona abronia" )
+      observation = photo.to_observation
+      expect( observation.taxon ).to eq taxon
+    end
+
+    it "should not set a taxon with a four-word name in the file name" do
+      taxon_name = TaxonName.make!( name: "very awesome bee mimic" )
+      photo = LocalPhoto.make
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "foo-#{taxon_name.name.split.join( '_' )}-bar.png"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      observation = photo.to_observation
+      expect( observation.taxon ).not_to eq taxon_name.taxon
+    end
+
     it "should not set a taxon based on an invalid name in the tags if a valid synonym exists" do
       p = LocalPhoto.make
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
@@ -366,7 +388,6 @@ describe LocalPhoto, "flagging" do
 end
 
 describe LocalPhoto, "hiding" do
-
   elastic_models( Observation )
   let( :lp ) { LocalPhoto.make! }
 
@@ -409,5 +430,39 @@ describe LocalPhoto do
     expect( lp.source_title ).to eq Site.default.name
     lp = LocalPhoto.new( subtype: "FlickrPhoto" )
     expect( lp.source_title ).to eq "Flickr"
+  end
+end
+
+describe LocalPhoto, "to_tags" do
+  context "with_file_name" do
+    it "should return unique tags" do
+      photo = LocalPhoto.make(
+        photo_metadata: PhotoMetadata.make(
+          metadata: { dc: { subject: ["tidepooling"] } }
+        )
+      )
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "tidepooling-Tidepooling-is-great-december.png"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      tags = photo.to_tags( with_file_name: true )
+      expect( tags ).to include "tidepooling"
+      expect( tags ).to include "tidepooling great december"
+      expect( tags.size ).to eq tags.uniq.size
+    end
+
+    it "should not return more than 12000 tags" do
+      photo = LocalPhoto.make(
+        photo_metadata: PhotoMetadata.make(
+          metadata: { dc: { subject: Faker::Lorem.words( number: 1000 ) } }
+        )
+      )
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "#{Faker::Lorem.words( number: 24 )}.jpg"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      tags = photo.to_tags( with_file_name: true )
+      expect( tags.size ).to be < 12_000
+    end
   end
 end
