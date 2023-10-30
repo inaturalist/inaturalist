@@ -703,9 +703,6 @@ $tip-opacity: 1;
         color: white;
         font-weight: 100;
       }
-      .sciname {
-        white-space: nowrap;
-      }
     }
     .media {
       height: $obs-grid-photo-size;
@@ -727,6 +724,9 @@ $tip-opacity: 1;
         }
       }
     }
+  }
+  .popular .ObservationsGridItem .UserImage {
+    top: 180px;
   }
 
   .Publications {
