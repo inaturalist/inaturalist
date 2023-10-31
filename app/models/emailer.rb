@@ -238,7 +238,7 @@ class Emailer < ActionMailer::Base
     return unless @user&.confirmed?
     return if @user.prefers_no_email?
     return if @user.suspended?
-    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+    return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
 
     @year = Date.today.year
     global_year_statistic = YearStatistic.

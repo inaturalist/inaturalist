@@ -15,7 +15,7 @@
       display: block;
     }
 = link_to @site.url do
-  = image_tag "yir-email-header", id: "header-image"
+  = image_tag image_url( "yir-email-header", host: @site.url ), id: "header-image"
 
 %h1=t :year_in_review_caps, year: @year
 
@@ -35,7 +35,7 @@
 
 %p.bleed
   = link_to year_stats_url( year: @year ) do
-    = image_tag @shareable_image_url
+    = image_tag image_url( @shareable_image_url, host: @site.url )
 
 = link_to t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
 

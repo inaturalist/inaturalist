@@ -3,7 +3,7 @@
   %head
     %title=t :yir_email_subject
     :css
-      #{render "emailer/fonts.css"}
+      #{render partial: "emailer/fonts", formats: :css}
       body,
       table,
       td,
@@ -11,6 +11,10 @@
       a,
       li,
       h1,
+      h2,
+      h3,
+      h4,
+      h5,
       blockquote,
       div {
         -webkit-text-size-adjust:100%;
