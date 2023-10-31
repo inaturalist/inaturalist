@@ -244,6 +244,7 @@ class Emailer < ActionMailer::Base
     global_year_statistic = YearStatistic.
       where( year: @year ).
       where( "user_id IS NULL" ).
+      where( "site_id IS NULL" ).
       first
     unless global_year_statistic
       raise "Cannot send YIR email if YIR for this year does not exist"
