@@ -1,0 +1,53 @@
+- content_for(:extracss) do
+  :css
+    .btn {
+      margin: 30px auto;
+      max-width: 320px;
+      text-align: center;
+      display: block;
+    }
+    small p {
+      color: #ddd;
+    }
+    #header-image {
+      width: 70%;
+      margin: 0px auto 40px;
+      display: block;
+    }
+= link_to @site.url do
+  = image_tag "yir-email-header", id: "header-image"
+
+%h1=t :year_in_review_caps, year: @year
+
+%p=t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase
+
+%p=t :yir_email_this_is_a_celebration
+
+%p=t :yir_email_of_your_observations, count: @user.observations_count, year: @year
+
+%p=t :yir_email_what_new_to_you
+
+%p= link_to t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
+
+%h2=t :yir_email_year_on_inaturalist_globally_caps, year: @year
+
+%p=t :yir_email_you_are_part_of_something
+
+%p.bleed
+  = link_to year_stats_url( year: @year ) do
+    = image_tag @shareable_image_url
+
+= link_to t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
+
+%h2=t :yir_email_what_else_will_you_observe_caps
+
+%p=t :yir_email_this_year_isnt_over
+
+%p=t :yir_email_thank_you
+
+%p=t :yir_email_with_gratitude
+
+%p=t :yir_email_the_inaturalist_team
+
+%p= link_to t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
+

@@ -1898,8 +1898,11 @@ en:
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   eligible_for_research_grade: Eligible for Research Grade
   email: Email
-  email_description: Your email is not shared with other users on iNaturalist
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
+  # Introductory form of address in an email. %{user} could be a username or a
+  # name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Dear %{user},
+  email_description: Your email is not shared with other users on iNaturalist
   email_conf_required_after_grace_period: |
     Email confirmation is required as of %{requirement_date} and you did not
     confirm your email address before the cutoff. Please reset your password
@@ -2167,6 +2170,8 @@ en:
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
   generate_your_stats: Generate Your Stats
+  # E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERATE YOUR %{year} YEAR IN REVIEW
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
   geomodel_expected_nearby_label_is_derived: |
@@ -2358,6 +2363,9 @@ en:
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
   inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+    organization based in the United States of America (Tax ID: 92-1296468).
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -6140,6 +6148,7 @@ en:
   year: Year
   year_in_review: "Year In Review %{year}"
   year_in_review2: "Year in Review %{year}"
+  year_in_review_caps: "YEAR IN REVIEW %{year}"
   year_month: year/month
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow
