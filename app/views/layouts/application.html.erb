@@ -95,8 +95,8 @@
     <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
     <% end %>
     
-    <% if flash[:error] || flash[:alert] %>
-    <p id="flash" class="error"><%= raw flash[:error] || flash[:alert] %></p>
+    <% if flash[:error] %>
+    <p id="flash" class="error"><%= raw flash[:error] %></p>
     <% end %>
 
     <% if @feature_test -%>
