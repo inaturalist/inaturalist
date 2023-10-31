@@ -1,0 +1,108 @@
+!!!
+%html
+  %head
+    %title=t :yir_email_subject
+    :css
+      #{render partial: "emailer/fonts", formats: :css}
+      body,
+      table,
+      td,
+      p,
+      a,
+      li,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      blockquote,
+      div {
+        -webkit-text-size-adjust:100%;
+        -ms-text-size-adjust:100%;
+        font-family: Whitney, Helvetica;
+        color: white;
+      }
+      a,
+      a:link,
+      a:visited,
+      a:active,
+      a:hover {
+        color: white !important;
+      }
+      .container {
+        background-color: #74ac00;
+        color: white;
+        font-weight: 100;
+        font-size: 16px;
+      }
+      .content {
+        width: 600px;
+        margin: 0 auto;
+        background-color: #1a1a1a;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      h1 {
+        border-top: 3px solid #74ac00;
+        border-bottom: 3px solid #74ac00;
+        font-size: 16px;
+        text-align: center;
+        padding: 10px 0;
+        letter-spacing: 0.3em;
+        font-weight: 600;
+      }
+
+      h2 {
+        font-size: 20px;
+        letter-spacing: 0.2em;
+        font-weight: bold;
+        margin-top: 40px;
+      }
+
+      p,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin-left: 60px;
+        margin-right: 60px;
+      }
+
+      p.bleed {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .btn {
+        background-color: #e65623;
+        border-radius: 10px;
+        color: white;
+        display: inline-block;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        line-height: 1.5em;
+        padding: 15px 10px;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background-color: #1E90FF;
+      }
+      img {
+        max-width: 100%;
+      }
+      .stacked { margin-bottom: 10px }
+      .upstacked {
+        margin-top: 10px;
+      }
+    = yield :extracss
+  %body
+    .container
+      .content
+        = yield
+        %center.upstacked
+          %small
+            %p=t :yir_email_you_received, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), site_name: ( @user.site || Site.default ).name
+            %p=t :inaturalist_is_an_independent_nonprofit
+            %p.upstacked
+              = link_to t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"

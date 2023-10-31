@@ -1,0 +1,11 @@
+<%= yield %>
+
+-----------------------------------------------------------------------------
+<% if @user %>
+<%= t( :yir_email_you_received, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), site_name: ( @user.site || Site.default ).name ).strip %>
+
+<%- end %>
+<%= t( :inaturalist_is_an_independent_nonprofit ).strip %>
+
+<%= t( :unsubscribe_from_emails_like_this ).strip %>
+{{asm_group_unsubscribe_raw_url}}

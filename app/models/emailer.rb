@@ -232,6 +232,36 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def year_in_review( user )
+    @user = user
+    return if @user&.email&.blank?
+    return unless @user&.confirmed?
+    return if @user.prefers_no_email?
+    return if @user.suspended?
+    return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
+
+    @year = Date.today.year
+    global_year_statistic = YearStatistic.
+      where( year: @year ).
+      where( "user_id IS NULL" ).
+      where( "site_id IS NULL" ).
+      first
+    unless global_year_statistic
+      raise "Cannot send YIR email if YIR for this year does not exist"
+    end
+
+    @shareable_image_url = global_year_statistic.
+      shareable_image_for_locale( I18n.locale )&.
+      url
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
+    set_locale
+    mail( to: user.email, subject: t( "yir_email_subject" ) ) do | format |
+      format.html { render layout: "emailer_dark" }
+      format.text { render layout: "emailer_dark" }
+    end
+    reset_locale
+  end
+
   private
 
   def mail_with_defaults( defaults = {} )
