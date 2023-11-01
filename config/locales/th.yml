@@ -1119,7 +1119,7 @@ th:
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
   geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
   geoprivacy_is_private: การเปิดเผยพิกัดเป็นส่วนตัว
-  get_started: เริ่มกันเลย
+  get_started: สร้างโครงการ
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
   #Prompt to donate money once
   give_now_caps: บริจาคเลย
@@ -1169,11 +1169,11 @@ th:
   id_categories:
     tooltips:
       leading: |
-        หน่วยอนุกรมวิธานนี้เป็นลูกหลานของหน่วยฯ ที่เห็นพ้องกัน ซึ่งจะช่วยให้เข้าใกล้คำตอบที่ถูกต้องมากขึ้น
+        หน่วยอนุกรมวิธานนี้เป็นสมาชิกของหน่วยฯ ที่เห็นพ้องกัน ซึ่งจะช่วยให้เข้าใกล้คำตอบที่ถูกต้องมากขึ้น
       improving: |
         คำแนะนำแรกของหน่วยอนุกรมวิธานที่ชุมชนยอมรับ ซึ่งจะช่วยให้หน่วยฯ ที่เห็นพ้องกันได้รับการจำแนกย่อยลงไป
       maverick: |
-        หน่วยอนุกรมวิธานนี้ไม่ใช่สมาชิกหรือบรรพบุรุษของหน่วยฯ ที่เสียงส่วนใหญ่ของชุมชนเห็นพ้องกัน
+        หน่วยอนุกรมวิธานนี้ไม่ใช่สมาชิกหรือลำดับที่ครอบคลุมหน่วยฯ ที่เสียงส่วนใหญ่ของชุมชนเห็นพ้องกัน
   id_withdrawn: ถอนการจำแนก
   identify: จำแนกชนิด
   identify_observations: "จำแนกการสังเกต"
@@ -1510,6 +1510,8 @@ th:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: เดือน
   #title for section describing people who donate to iNat every month
   monthly_supporters: ผู้สนับสนุนรายเดือน
@@ -1651,6 +1653,14 @@ th:
   #@this could also be translated like "Observation by %{user} (copyright)" or
   #@something.
   observation_attribution_copyright_html: การสังเกต &copy; %{user}
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} ใน%{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} ใน%{month} %{year} โดย %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} จาก %{place} ใน%{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} จาก %{place} ใน%{month} %{year} โดย %{user}"
   observations_by_category: "การสังเกตแบ่งตามประเภท"
   observations_by_app: การสังเกตแบ่งตามแอป
   observations_by_rank: การสังเกตแบ่งตามลำดับอนุกรมวิธาน
@@ -1703,10 +1713,17 @@ th:
   occurrence_status: สถานะการปรากฏ
   occurrence_status_descriptions:
     absent: ไม่พบในพื้นที่
-    common: พบบ่อย
+    common: พบบ่อยครั้ง
+    present: พบได้ในพื้นที่
+    uncommon: พบได้ปกติแต่มีจำนวนน้อย ต้องสำรวจตามถิ่นอาศัยที่เหมาะสม
+  occurrence_status_levels:
+    present: ปรากฏ
+    common: พบทั่วไป
+    uncommon: พบไม่บ่อย
   of_this_taxon: ของหน่วยฯ นี้
   onboarding:
     following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
+  one_of_your_lists: "รายการของคุณ"
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
@@ -1921,6 +1938,7 @@ th:
   project_requirements: ข้อกำหนดโครงการ
   project_rules: กฎของโครงการ
   project_settings: การตั้งค่าโครงการ
+  project_start_time_datetime: "เวลาเริ่ม: %{datetime}"
   projects: โครงการ
   projects_description: |
     การสร้างโครงการจะช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าจะเป็นเพื่อการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือเพื่อจดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะช่วยตอบโจทย์คุณได้
@@ -2134,6 +2152,7 @@ th:
   resolved: แก้ไขแล้ว
   resolved_by: แก้ไขโดย
   resolved_by_user_on_date_html: แก้ไขโดย %{user} เมื่อ %{date}
+  restart: เริ่มใหม่
   restore: คืนค่า
   review_all: ทบทวนทั้งหมด
   reviewed: ดูแล้ว
@@ -2279,7 +2298,7 @@ th:
   standard: มาตรฐาน
   start: เริ่มต้น
   start_a_new_project: เริ่มโครงการใหม่
-  start_a_project: เริ่มต้นโครงการ
+  start_a_project: สร้างโครงการ
   start_date_time: วันที่ / เวลาเริ่มต้น
   start_typing_field_name: พิมพ์ชื่อข้อมูลเสริม...
   start_typing_place_name: พิมพ์ชื่อสถานที่...
@@ -2765,6 +2784,9 @@ th:
     donate:
       donate_short_desc: "บริจาคเพื่อสนับสนุนเลย!"
       post_donate_social_media_text: ฉันสนับสนุน iNaturalist เพราะว่า...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: มาเป็นผู้สนับสนุน iNaturalist รายเดือน
+        become_a_monthly_supporter_of_inaturalist_caps: มาเป็นผู้สนับสนุน iNaturalist รายเดือน
     guides:
       index:
         funding_html: |
@@ -2819,6 +2841,8 @@ th:
         combined: รวม
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: แนวนอน
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: ช่วง
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: แนวตั้ง
       export:
@@ -2857,7 +2881,7 @@ th:
           verifiable: ตรวจสอบได้
           wild: พบตามธรรมชาติ
         trust_allow_members_to_trust: |-
-          อนุญาตให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้ในการเข้าถึงพิกัดที่ถูกซ่อน
+          ให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้เข้าถึงพิกัดที่ถูกซ่อนได้
       new:
         can_be_included_in_multiple: รวมเข้าไปในโครงการครอบคลุมหลายโครงการได้
         check_the_box_to_include_member_observations: |
@@ -2869,7 +2893,7 @@ th:
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
         do_you_need_features_from_traditional: |
-          คุณต้องการใช้คุณสมบัติจากโครงการรูปแบบเดิมหรือไม่ เช่น การเข้าถึงพิกัดจริง การกำหนดข้อมูลเสริมการสังเกตเอง หรือการเพิ่มการสังเกตที่ไม่สามารถรวมเข้าโครงการโดยอัตโนมัติได้?
+          คุณต้องการใช้คุณสมบัติจากโครงการแบบดั้งเดิมหรือไม่? เช่น การเข้าถึงพิกัดจริง การกำหนดข้อมูลเสริมการสังเกตเอง หรือการเพิ่มการสังเกตที่รวมเข้าโครงการโดยอัตโนมัติไม่ได้
         duplicate_project: คัดลอกโครงการ
         include_annotated_observations: |
           รวมเฉพาะการสังเกตที่ระบุหมายเหตุ (เช่น ระยะการเจริญ) หรือคุณลักษณะ (เช่น ระยะการเจริญ = ตัวเต็มวัย) โดยแต่ละโครงการใช้ตัวกรองหมายเหตุได้เพียงหนึ่งอย่างเท่านั้น
@@ -2911,7 +2935,7 @@ th:
         unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
         users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
         use_this_link_to_create_html: |
-          ไปที่<a href="%{url}">ลิงก์นี้</a>เพื่อสร้างโครงการรูปแบบเดิมแทน
+          ไปที่<a href="%{url}">ลิงก์นี้</a>เพื่อสร้างโครงการแบบดั้งเดิมแทน
         we_have_redesigned_projects: |
           โครงการจะช่วยรวบรวมทุกการสังเกตตามเงื่อนไขที่คุณกำหนด ได้แก่ สถานที่ หน่วยอนุกรมวิธาน ผู้ใช้งาน คุณภาพข้อมูล และวันที่ โดยสามารถเลือกสร้างโครงการ 2 ประเภทหลัก ได้แก่ โครงการสะสมชนิด และโครงการครอบคลุม ซึ่งมีลักษณะการใช้งานดังนี้:
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
@@ -2954,6 +2978,8 @@ th:
         percent_of_total_growth: "% การเติบโตทั้งหมด"
         observations_per_year: การสังเกต / ปี
         observations_per_year_by_date_added: ตามวันที่เพิ่ม
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: เป็นประจำ
         species_per_year: ชนิด / ปี
         species_per_year_by_date_added: ตามวันที่เพิ่ม
         stats_generated_datetime: สถิตินี้สร้างเมื่อ %{datetime}
@@ -3094,9 +3120,17 @@ th:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%-d %B %Y'
     month_names:
       - 
       - มกราคม
@@ -3179,9 +3213,17 @@ th:
   time:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%-d %b %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%-d %B %Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%-d %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
   activerecord:
