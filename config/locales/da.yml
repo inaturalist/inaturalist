@@ -1726,8 +1726,11 @@ da:
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
-  email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kære %{user},
+  email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_conf_required_after_grace_period: |
     Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
     for at tilgå kontoen.
@@ -1986,6 +1989,8 @@ da:
   generate_taxonomic_tags_for_flickr: Generér taksonomiske tags til dine Flickr-fotos.
   generate_widget: Generér widget
   generate_your_stats: Generér dine statistikker
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERER DIT %{year}-ÅRS TILBAGEBLIK
   generating_mobile_archive: "Genererer mobil arkiv"
   Genus: Slægt
   geomodel_expected_nearby_label_is_derived: |
@@ -2161,6 +2166,9 @@ da:
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
   inaturalist_global_year_in_review: "iNaturalists globale %{year} år i gennemgang"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profit organisation
+    baseret i USA (Skatte-ID: 92-1296468).
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -5774,6 +5782,7 @@ da:
   year: År
   year_in_review: "År i tilbageblik %{year}"
   year_in_review2: "År i gennemgang %{year}"
+  year_in_review_caps: "ÅR I TILBAGEBLIK %{year}"
   year_month: år/måned
   year_on_site: "Året på %{site} %{year}"
   yellow: gul
