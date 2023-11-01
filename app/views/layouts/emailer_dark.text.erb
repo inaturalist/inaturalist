@@ -4,9 +4,9 @@
 <%=plaintext_t :inaturalist_is_an_independent_nonprofit %>
 
 <% if @user %>
-<%=plaintext_t :you_received_this_email_notice, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ) %>
+<%=plaintext_t :you_received_this_email_notice, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase %>
 <% if @user.site && @user.site.id != Site.default.id %>
-  <%=plaintext_t :your_account_is_affiliated, site_name: @user.site.name, site_url: @user.site.url %>
+  <%=plaintext_t :your_account_is_affiliated, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase %>
 <% end -%>
 
 <%- end %>
