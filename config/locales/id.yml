@@ -1639,8 +1639,11 @@ id:
   either_that_user_doesnt_exist_or: "Entah pengguna tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk Kelas Riset
   email: Email
-  email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_address_for_comments_and_other_feedback: Alamat email untuk komentar dan umpan balik lainnya
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Halo %{user},
+  email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_conf_required_after_grace_period: |
     Konfiirmasi email diwajibkan sejak %{requirement_date} dan Anda belum mengonfirmasi alamat email Anda sebelum tanggal pemberlakuan aturan ini. Harap mengatur ulang kata sandi Anda sebelum mengakses akun Anda.
   email_copyright2: "&copy; %{year} iNaturalist, hak cipta dilindungi undang-undang"
@@ -1896,6 +1899,8 @@ id:
   generate_taxonomic_tags_for_flickr: Hasilkan label taksonomi untuk foto Flickr Anda.
   generate_widget: Buat Widget
   generate_your_stats: Buat Statistik Anda
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: BUAT ULASAN TAHUN %{year} KAMU
   generating_mobile_archive: "Buat arsip ponsel"
   Genus: Genus
   geoprivacy: Geoprivasi
@@ -2055,6 +2060,8 @@ id:
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist adalah organisasi nirlaba independen bebas pajak 501(c)(3) berbasis di Amerika Serikat (ID Pajak: 92-1296468).
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -5521,6 +5528,7 @@ id:
   year: Tahun
   year_in_review: "Melihat Kembali Tahun %{year}"
   year_in_review2: "Kilas Balik Satu Tahun %{year}"
+  year_in_review_caps: "ULASAN TAHUN %{year}"
   year_month: tahun/bulan
   year_on_site: "Tahun Di %{site} %{year}"
   yellow: kuning
