@@ -40,7 +40,8 @@
                 - unless is_me?(@user) || @user.is_admin? || current_user.is_site_admin_of?( @user.site )
                   - unless @user.spammer?
                     %li
-                      = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post
+                      = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post, |
+                      data: { confirm: t(:are_you_sure_you_want_to_flag_as_spammer, user: @user) }
                   - unless @user.known_non_spammer?
                     %li
                       = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
