@@ -1419,6 +1419,9 @@ hu:
   editing_this: '%{elem} szerkesztése'
   editors: Szerkesztők
   email: Email
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kedves %{user},
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
   email_conf_required_after_grace_period: |
     Az emailcím-megerősítés nem volt elvégezve %{requirement_date} határidőig, ezért kérjük, hogy állíts be új jelszót.
@@ -1632,6 +1635,8 @@ hu:
   generate_taxonomic_tags_for_flickr: Készíts rendszertani címkéket a Flickr fotóidból.
   generate_widget: Modul létrehozása
   generate_your_stats: Saját statisztika készítése
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: '%{year} ÉVI VISSZATEKINTŐ LÉTREHOZÁSA'
   Genus: Nemzetség
   geomodel_expected_nearby_label_is_derived: |
     "A közelben előfordulhat" megjelölés a Geomodellből származik.
@@ -1761,6 +1766,8 @@ hu:
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
+  inaturalist_is_an_independent_nonprofit: |
+    Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
@@ -4540,6 +4547,7 @@ hu:
   year: Év
   year_in_review: "%{year} áttekintése"
   year_in_review2: "%{year}. évi visszatekintő"
+  year_in_review_caps: "%{year} ÉVI VISSZATEKINTŐ"
   year_month: év/hónap
   year_on_site: "%{site}: %{year} áttekintése"
   yellow: sárga
