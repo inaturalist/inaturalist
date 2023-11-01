@@ -1742,8 +1742,11 @@ sv:
   either_that_user_doesnt_exist_or: "Antingen existerar inte den användaren, eller så följer du den redan."
   eligible_for_research_grade: Berättigad till forskningsklass
   email: E-post
-  email_description: Din e-post delas inte med andra användare på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan respons
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kära %{user},
+  email_description: Din e-post delas inte med andra användare på iNaturalist
   email_conf_required_after_grace_period: |
     E-postbekräftelse krävs från och med %{requirement_date} och du har inte
     bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
@@ -2002,6 +2005,8 @@ sv:
   generate_taxonomic_tags_for_flickr: Generera taxonomiska taggningar för dina Flickr-bilder.
   generate_widget: Generera widget
   generate_your_stats: Generera din statistik
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERERA DITT %{year} ÅRET SOM GÅTT
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
   geomodel_expected_nearby_label_is_derived: |
@@ -2187,6 +2192,9 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist är en oberoende 501(c)(3), skattebefriad, icke vinstdrivande
+    organisation baserad i Amerikas förenta stater (Tax ID: 92-1296468).
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -5765,6 +5773,7 @@ sv:
   year: År
   year_in_review: "Året som gått %{year}"
   year_in_review2: "Summering av %{year}"
+  year_in_review_caps: "ÅRET SOM GÅTT %{year}"
   year_month: år/månad
   year_on_site: "År %{year} på %{site}"
   yellow: gul
