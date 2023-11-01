@@ -2,7 +2,7 @@
 - content_for( :extracss ) do
   :css
     .btn {
-      margin: 30px auto;
+      margin: 30px auto 60px;
       max-width: 320px;
       text-align: center;
       display: block;
@@ -14,6 +14,9 @@
       width: 70%;
       margin: 0px auto 40px;
       display: block;
+    }
+    h1 {
+      margin-bottom: 40px;
     }
 = link_to @site.url do
   = image_tag image_url( "yir-email-header.png", host: @site.url ), id: "header-image"
@@ -40,7 +43,7 @@
   = link_to year_stats_url( year: @year ) do
     = image_tag image_url( @shareable_image_url, host: @site.url )
 
-= link_to t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
+%p= link_to t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
 
 %h2=t :yir_email_what_else_will_you_observe_caps
 
