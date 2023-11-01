@@ -1,7 +1,8 @@
 !!!
 %html
   %head
-    %title=t :yir_email_subject
+    %title
+      = yield :title
     :css
       #{render partial: "emailer/fonts", formats: :css}
       body,
@@ -17,10 +18,15 @@
       h5,
       blockquote,
       div {
-        -webkit-text-size-adjust:100%;
-        -ms-text-size-adjust:100%;
-        font-family: Whitney, Helvetica;
         color: white;
+      }
+      body {
+        font-family: Whitney, Helvetica;
+        line-height: 1.4em;
+      }
+      body,
+      p {
+        font-size: 16px;
       }
       a,
       a:link,
@@ -33,30 +39,35 @@
         background-color: #74ac00;
         color: white;
         font-weight: 100;
-        font-size: 16px;
       }
       .content {
-        width: 600px;
+        max-width: 600px;
         margin: 0 auto;
         background-color: #1a1a1a;
         padding-top: 40px;
         padding-bottom: 40px;
       }
 
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: 600;
+        letter-spacing: 3px;
+      }
+
       h1 {
         border-top: 3px solid #74ac00;
         border-bottom: 3px solid #74ac00;
-        font-size: 16px;
+        font-size: 100%;
         text-align: center;
         padding: 10px 0;
         letter-spacing: 0.3em;
-        font-weight: 600;
       }
 
       h2 {
-        font-size: 20px;
-        letter-spacing: 0.2em;
-        font-weight: bold;
+        font-size: 125%;
         margin-top: 40px;
       }
 
@@ -65,8 +76,8 @@
       h3,
       h4,
       h5 {
-        margin-left: 60px;
-        margin-right: 60px;
+        margin-left: 10%;
+        margin-right: 10%;
       }
 
       p.bleed {
@@ -79,8 +90,8 @@
         border-radius: 10px;
         color: white;
         display: inline-block;
-        font-weight: bold;
-        letter-spacing: 0.1em;
+        font-weight: 600;
+        letter-spacing: 3px;
         line-height: 1.5em;
         padding: 15px 10px;
         text-decoration: none;
@@ -96,13 +107,19 @@
         margin-top: 10px;
       }
     = yield :extracss
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
   %body
     .container
       .content
         = yield
         %center.upstacked
-          %small
-            %p=t :yir_email_you_received, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), site_name: ( @user.site || Site.default ).name
-            %p=t :inaturalist_is_an_independent_nonprofit
-            %p.upstacked
-              = link_to t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"
+          %p
+            %small=t :inaturalist_is_an_independent_nonprofit
+          - if @user
+            %p
+              %small=t :you_received_this_email_notice_html, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase
+            - if @user.site && @user.site.id != Site.default.id
+              %p
+                %small=t :your_account_is_affiliated_html, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase
+          %p
+            %small= link_to t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"

@@ -255,7 +255,7 @@ class Emailer < ActionMailer::Base
       url
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
     set_locale
-    mail( to: user.email, subject: t( "yir_email_subject" ) ) do | format |
+    mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
       format.html { render layout: "emailer_dark" }
       format.text { render layout: "emailer_dark" }
     end
