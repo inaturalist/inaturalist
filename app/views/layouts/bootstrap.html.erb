@@ -50,25 +50,6 @@
         <%= render :partial => 'shared/header' %>
       <% end -%>
 
-      <% if flash[:success] && !@flash_js %>
-        <div class="bootstrap">
-          <div class="container upstacked">
-            <div class="alert alert-success upstacked">
-              <%= flash[:success].html_safe %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <% if ( alert = flash[:error] || flash[:alert] ) && !@flash_js %>
-        <div class="bootstrap">
-          <div class="container upstacked">
-            <div class="alert alert-error upstacked">
-              <%= raw alert %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
       <% if !@headless && flash.empty? %>
         <% if current_user && session[:potential_site] %>
           <div class="bootstrap">
@@ -120,23 +101,17 @@
         <% end %>
       <% end %>
 
+      <% unless @flash_js %>
+        <%- for flash_type in [:success, :notice, :alert, :error] %>
+          <%= render( "shared/flash", type: flash_type ) if flash[flash_type] %>
+        <% end -%>
+      <% end -%>
+
       <div id="wrapper" class="bootstrap">
         <% if @feature_test -%>
           <div class="container">
             <div class="box bg-warning">
                 <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
-            </div>
-          </div>
-        <% end -%>
-        <% if flash[:warning] && !@flash_js -%>
-          <div class="container">
-            <div class="alert alert-warning">
-              <% if flash[:warning_title] -%>
-                <strong><%=raw flash[:warning_title] %></strong>
-              <% end -%>
-              <p class="unstacked">
-                <%=raw flash[:warning] %>
-              </p>
             </div>
           </div>
         <% end -%>
