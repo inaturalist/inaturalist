@@ -1,31 +1,33 @@
-<%= t( :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase ).strip %>
+<%=plaintext_t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase %>
 
-<%= t( :yir_email_this_is_a_celebration ).strip %>
+<%=plaintext_t :yir_email_because_of_you %>
 
-<%= t( :yir_email_of_your_observations, count: @user.observations_count, year: @year ).strip %>
+<%=plaintext_t :yir_email_of_your_observations, count: number_with_delimiter( @user.observations_count ), year: @year %>
 
-<%= t( :yir_email_what_new_to_you ).strip %>
+<%=plaintext_t :yir_email_what_new_to_you %>
+
+<%=plaintext_t :yir_email_log_in_to_generate %>
 
 
 <%= t :generate_your_year_in_review_caps, year: @year %>
 <%= your_year_stats_url( year: @year ) %>
 
 
-<%= t( :yir_email_year_on_inaturalist_globally_caps, year: @year ).strip %>
+<%=plaintext_t :yir_email_year_on_inaturalist_globally_caps, year: @year %>
 
-<%= t( :yir_email_you_are_part_of_something ).strip %>
+<%=plaintext_t :yir_email_you_are_part_of_something %>
 
 
-<%= t( :view_inaturalist_global_year_in_review_caps, year: @year ).strip %>
+<%=plaintext_t :view_inaturalist_global_year_in_review_caps, year: @year %>
 <%= year_stats_url( year: @year ) %>
 
 
-<%= t( :yir_email_what_else_will_you_observe_caps ).strip %>
+<%=plaintext_t :yir_email_what_else_will_you_observe_caps %>
 
-<%= t( :yir_email_this_year_isnt_over ).strip %>
+<%=plaintext_t :yir_email_the_year_isnt_over %>
 
-<%= t( :yir_email_thank_you ).strip %>
+<%=plaintext_t :yir_email_thank_you %>
 
-<%= t( :yir_email_with_gratitude ).strip %>
+<%=plaintext_t :yir_email_with_gratitude %>
 
-<%= t( :yir_email_the_inaturalist_team ).strip %>
+<%=plaintext_t :yir_email_the_inaturalist_team %>

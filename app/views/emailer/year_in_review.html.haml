@@ -1,4 +1,5 @@
-- content_for(:extracss) do
+- content_for( :title ) { t :yir_email_subject, year: @year }
+- content_for( :extracss ) do
   :css
     .btn {
       margin: 30px auto;
@@ -6,7 +7,7 @@
       text-align: center;
       display: block;
     }
-    small p {
+    p small {
       color: #ddd;
     }
     #header-image {
@@ -21,11 +22,13 @@
 
 %p=t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase
 
-%p=t :yir_email_this_is_a_celebration
+%p=t :yir_email_because_of_you
 
-%p=t :yir_email_of_your_observations, count: @user.observations_count, year: @year
+%p=t :yir_email_of_your_observations, count: number_with_delimiter( @user.observations_count ), year: @year
 
 %p=t :yir_email_what_new_to_you
+
+%p=t :yir_email_log_in_to_generate
 
 %p= link_to t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
 
@@ -33,7 +36,7 @@
 
 %p=t :yir_email_you_are_part_of_something
 
-%p.bleed
+%p.bleed{ style: "margin-top: 40px" }
   = link_to year_stats_url( year: @year ) do
     = image_tag image_url( @shareable_image_url, host: @site.url )
 
@@ -41,7 +44,7 @@
 
 %h2=t :yir_email_what_else_will_you_observe_caps
 
-%p=t :yir_email_this_year_isnt_over
+%p=t :yir_email_the_year_isnt_over
 
 %p=t :yir_email_thank_you
 
