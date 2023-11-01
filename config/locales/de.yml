@@ -1634,8 +1634,11 @@ de:
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
-  email_description: Deine E-Mail wird nicht mit anderen Benutzern von iNaturalist geteilt
   email_address_for_comments_and_other_feedback: E-Mail-Adresse für Kommentare oder Feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Liebe(r) %{user},
+  email_description: Deine E-Mail wird nicht mit anderen Benutzern von iNaturalist geteilt
   email_conf_required_after_grace_period: |
     Ab dem %{requirement_date} ist eine E-Mail-Bestätigung erforderlich und du hast deine E-Mail-Adresse nicht vor Ablauf der Frist bestätigt. Bitte setze dein Passwort zurück, um wieder Zugriff auf dein Konto zu erhalten
   email_copyright2: "&copy; %{year} iNaturalist, alle Rechte vorbehalten"
@@ -1889,6 +1892,8 @@ de:
   generate_taxonomic_tags_for_flickr: Erstelle taxonomische Tags für deine Flickr-Bilder.
   generate_widget: Widget generieren
   generate_your_stats: Deine Statistiken erzeugen
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: ERSTELLE DEINEN JAHRESRÜCKBLICK %{year}
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
   Genus: Gattung
   geomodel_expected_nearby_label_is_derived: |
@@ -2031,6 +2036,9 @@ de:
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   inaturalist_global_year_in_review: "Globaler Rückblick auf das iNaturalist-Jahr %{year}"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+    organization based in the United States of America (Tax ID: 92-1296468).
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -5530,6 +5538,7 @@ de:
   year: Jahr
   year_in_review: "Jahresrückblick von %{year}"
   year_in_review2: "Jahresrückblick %{year}"
+  year_in_review_caps: "JAHRESRÜCKBLICK %{year}"
   year_month: Jahr/Monat
   year_on_site: "Das Jahr %{year} auf %{site} "
   yellow: gelb
@@ -7298,7 +7307,7 @@ de:
           common_name_lexicon_display_order: Anzeigereihenfolge der Lexika für Trivialnamen
           common_name_lexicons: Lexika für Trivialnamen
           common_name_lexicons_description: Standardmäßig werden Trivialnamen in der Sprache deines Accounts angezeigt. Um Namen in anderen Lexika zu sehen, oder um Namen zu priorisieren, die an bestimmten Orten verwendet werden (wie z.B. Englisch (Australien) oder Spanisch (Costa Rica)), füge Lexika für Trivialnamen hinzu. Es können maximal 3 Trivialnamen gleichzeitig angezeigt werden. Wenn kein Trivialname für ein von dir gewähltes Lexikon existiert, wird er nicht angezeigt.
-          for_multiple_common_name_lexicons_drag_and_drop: Verwende drag&drop für die Einstellungen unten, um die Reihenfolge anzupassen, in der die verschiedenen Lexika für Trivialnamen angezeigt werden.
+          for_multiple_common_name_lexicons_drag_and_drop: Durch Ziehen und Verschieben kannst du die Reihenfolge der Lexika anpassen, so wie sie dir angezeigt werden sollen.
           same_as_locale: entspricht der Regionalsprache
           #used as a form select dropdown option that users can choose instead of a choosing
           #a fixed locale. Choosing this setting will allow the user to see common names in
