@@ -1729,8 +1729,11 @@ nl:
   either_that_user_doesnt_exist_or: "Deze gebruiker bestaat niet of je bent hem reeds aan het volgen."
   eligible_for_research_grade: Komt in aanmerking voor onderzoekskwaliteit
   email: E-mail
-  email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Beste %{name},
+  email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_conf_required_after_grace_period: |
     E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
     je e-mailadres nog niet bevestigd vóór de sluitingsdatum. Reset je wachtwoord
@@ -1987,6 +1990,8 @@ nl:
   generate_taxonomic_tags_for_flickr: Genereer taxonomie tags voor je Flickr foto's.
   generate_widget: Genereer Widget
   generate_your_stats: Genereer je statistieken
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: BEKIJK JE %{year} JAAROVERZICHT
   generating_mobile_archive: "Genereren van het mobiele archief"
   Genus: Geslacht
   geomodel_expected_nearby_label_is_derived: |
@@ -2164,6 +2169,8 @@ nl:
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
   inaturalist_global_year_in_review: "iNaturalist's %{year} Jaaroverzicht van de Wereld"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist is een onafhankelijke 501(c)(3) tax-exempt, non-profit organisatie gevestigd in de Verenigde Staten (EIN 92-1296468)
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |
     Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
@@ -5731,6 +5738,7 @@ nl:
   year: Jaar
   year_in_review: "Jaaroverzicht %{year}"
   year_in_review2: "Jaaroverzicht %{year}"
+  year_in_review_caps: "JAAROVERZICHT %{year}"
   year_month: jaar/maand
   year_on_site: "Jaar op %{site} %{year}"
   yellow: geel
