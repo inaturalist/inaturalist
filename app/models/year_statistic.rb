@@ -1617,19 +1617,17 @@ class YearStatistic < ApplicationRecord
     observed_or_identified_count = 0
     activity_counts_by_user.each do | _k, counts |
       observed_or_identified_count += 1
-      if counts[:observations]
-        observed_count += 1
-      end
-      if counts[:identifications]
-        identified_count += 1
-      end
       if counts[:observations] && counts[:identifications]
         observed_and_identified_count += 1
+      elsif counts[:observations]
+        observed_count += 1
+      elsif counts[:identifications]
+        identified_count += 1
       end
     end
     {
-      observed_count: observed_count,
-      identified_count: identified_count,
+      only_observed_count: observed_count,
+      only_identified_count: identified_count,
       observed_and_identified_count: observed_and_identified_count,
       observed_or_identified_count: observed_and_identified_count
     }

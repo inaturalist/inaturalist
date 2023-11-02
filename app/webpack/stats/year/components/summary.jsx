@@ -192,12 +192,12 @@ const Summary = ( {
               data={[
                 {
                   label: I18n.t( "views.stats.year.added_observations" ),
-                  value: data.users.obs_and_id_activity_counts.observed_count,
+                  value: data.users.obs_and_id_activity_counts.only_observed_count,
                   color: "#aaaaaa"
                 },
                 {
                   label: I18n.t( "views.stats.year.added_identifications" ),
-                  value: data.users.obs_and_id_activity_counts.identified_count,
+                  value: data.users.obs_and_id_activity_counts.only_identified_count,
                   color: COLORS.needsIdYellow
                 },
                 {
