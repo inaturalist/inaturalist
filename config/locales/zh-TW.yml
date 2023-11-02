@@ -346,6 +346,7 @@ zh-TW:
   agree_: 同意
   agree?: 同意嗎？
   agree_with_current_taxon: 同意以目前物種分類(學名)
+  agree_with_observation_taxon: 同意觀察記錄分類群
   agreeing: 同意中...
   aka: 也稱作
   #Noun, title of a popup alerting you to something
@@ -356,6 +357,7 @@ zh-TW:
   all_comments: 所有評論
   all_flags_must_be_resolved: 所有標記需要被解決
   all_life: 所有生物
+  all_media_must_be_unhidden: 所有媒體必須都必須取消隱藏
   all_names: 所有名稱
   all_observations: 所有觀察
   all_photos: 所有相片
@@ -637,6 +639,11 @@ zh-TW:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: 以 PKCE 授權
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (使用 <code>%{code_challenge}</code> 做為 <code>%{code_verifier_param}</code>)註記：這是一個基礎的範例。在生產代碼時，您必須使用 <code>%{code_challenge_method}</code> 並正確地雜湊 <code>%{code_challenge_param}</code> 。
   authorize_permissions_from_provider: "來自於%{provider}的授權許可"
   automatic_short: 自動
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
@@ -677,6 +684,10 @@ zh-TW:
   back_to_your_observations: 返回至您的觀察
   back_to_your_profile: 返回至您的個人檔案
   badges: 徽章
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    other: |
+      基於這些ID %{percent}% 的樣本，我們估計這將導致ID %{child} 的 <strong>%{count} 個潛在不一致 </strong> 。
   based_on_the_evidence_can_id_be_improved: |
     基於現有證據，仍需要確認或改善社群分類群嗎?
   batch: 批量
@@ -809,6 +820,8 @@ zh-TW:
   change_your_password: 更改您的密碼
   #Plural noun, as in changes to a taxon record over time
   changes: 改動
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: 將共祖更改為分類群的上層分類可能導致潛在不一致。請先剖析他們，這可能需要一點時間。
   changing_the_geoprivacy: '更改位置隱私會變動其他人如何查看您的觀察位置'
   check_above_for_errors: 檢查上方錯誤
   check_back_soon: 請稍後查看！
@@ -823,6 +836,7 @@ zh-TW:
   check_list_place: "%{place}的名錄"
   check_list_updated: 檢查列表已更新！
   check_lists_for: "用於%{place}的其它名錄"
+  check_out_the_inat_store: 查看 iNaturalist 商店
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_this_box_if_html: |
     如果您想套用<a
@@ -846,6 +860,12 @@ zh-TW:
   choose_what_kind_of_change_youre_creating: "選擇您所要更改的種類。"
   cid_d_to_genus: 已創建在屬層級的社群鑑定
   citation: 引用
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    潛在不一致發生於一個母分類群<strong>(B)</strong>因為子分類群<strong>(E)</strong>轉移到另一個分類樹而變少，導致現有母分類群的ID與轉移的子分類群ID產生不一致。
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    潛在不一致發生於一個母分類群<strong>(B)</strong>因為子分類群<strong>(E)</strong>替換到另一個分類樹而變少，導致現有母分類群的ID與替換的子分類群ID產生不一致。
   classification: 分類
   clear: 清除
   clear_filters: 清除篩選
@@ -853,6 +873,8 @@ zh-TW:
   click_the_map: "<strong>點擊地圖</strong>來添加一個位置。"
   close: 關閉
   code: 代碼
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: 專案貢獻者
   colors: 色彩
   columns: 欄位
   combine: 結合
@@ -883,6 +905,9 @@ zh-TW:
   committed_taxon_changes_cannot_be_deleted: 已提交的分類群更改無法刪除
   #Status message while a taxon change is being committed
   committing: 提交中…
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: 提交可能導致潛在不一致。請先剖析他們，這可能需要一點時間。
   common_name: 俗名
   community: 社群
   community_curated: 社群策劃
@@ -919,6 +944,9 @@ zh-TW:
     目前的電腦視覺模型認得此分類群，所以它可能會列在「視覺上相似」的自動建議中。
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 待確認中
+  computer_vision_model_pending_desc2: |
+    目前的電腦視覺模型不認得此分類群，所以它會列在「附近可見」的自動建議中，
+    而不會顯示「視覺上相似」的標籤。當納入每個模型的需求改變時，一般來說納入的依據是觀察紀錄的數量，所以若要增加此分類群包含在下次模型訓練時的機會，請針對此分類群多多新增或鑑定觀察紀錄。
   concept_status: 概念狀態
   confidential: 保密的
   configure: 設置
@@ -1036,10 +1064,12 @@ zh-TW:
     cannot_be_determined: 從提供的證據當中無法判定
     dead: 生物已經死亡或是顯示有立即死亡的徵兆
     feather: 一或多根未附著在某種生物上的羽毛
+    female: 證據代表生物體可以產生卵子來進行有性生殖
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
     gall: 由寄生生物引發的植物組織變形生長
+    male: 證據代表生物體可以產生精子來進行有性生殖
     molt: 蛻下的表皮或外骨骼
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
     organism: 整個或部分生物體
@@ -1407,6 +1437,8 @@ zh-TW:
     如果您沒有註冊 %{site_name} 帳號，請忽略此電子郵件。
   devise_confirmation_instructions_please_click: |
     請按此鏈結確認您的電子郵件地址：
+  devise_confirmation_instructions_resend_instructions: |
+    您必須有一個有效的的電子信箱來使用愛自然。當您註冊了一個帳號，您應會收到一封內含連結的驗證信，並點選連結以驗證您的電子信箱是有效的，但如果您未收到，您可以在此寄送另一封驗證信。
   devise_confirmation_instructions_send_confirmation_email: 傳送確認電子郵件
   devise_email_changed_you_requested: 您提交將 %{old_email} 改為 %{new_email} 。
   devise_email_changed_you_will_receive: |
@@ -1456,6 +1488,8 @@ zh-TW:
   donate: 贊助
   donate_again_caps: 再次捐款
   donate_again_today_caps: 今天再次捐款
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: 捐款給愛自然
   done: 完成
   dont_have_an_account_sign_up_html: 還沒有帳號嗎？現在就<strong>註冊</strong>。
   dont_use_double_quotes: 不要在任何其它地方使用雙引號
@@ -1565,6 +1599,7 @@ zh-TW:
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_conf_required_after_grace_period: |
     從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
+  email_copyright2: "&copy; %{year} 愛自然，保留所有權利"
   email_notifications: 電子郵件通知
   embed: '內嵌'
   embed_place_widget: 內嵌地點小工具
@@ -1618,6 +1653,7 @@ zh-TW:
   exit_full_screen: "結束全螢幕"
   examples_of_data_use_by_network_members: 國際網路成員使用資料的範例
   examples_of_ranking_organizations: 生物階層範例
+  expected_nearby: 附近曾看過
   explore: 探索
   export: 匯出
   export_observations: 匯出觀察
@@ -1796,6 +1832,7 @@ zh-TW:
   frequency: 頻率
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
+  from_flickr_etc: 從Flickr或其他
   from_list: 來自名錄
   from_photos: 來自照片
   from_place: 來自地點
@@ -1810,6 +1847,8 @@ zh-TW:
   generate_your_stats: 產生您的統計內容
   generating_mobile_archive: "產生移動歸檔"
   Genus: 屬
+  geomodel_expected_nearby_label_is_derived: |
+    「附近可見」的標籤是來自於地理模型<a href="%{url}">了解更多地理模型</a>
   geoprivacy: 位置隱私
   geoprivacy_is_obscured: 地理資訊隱私權為遮蔽
   geoprivacy_is_obscured_desc: 觀察者選擇遮蔽座標。
@@ -1904,6 +1943,8 @@ zh-TW:
   hide_content: 隱藏內容
   hide_desc: |
     隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。
+  hide_desc_staff_can_unhide: |
+    一旦這被隱藏了，只有網站工作人員可以取消隱藏內容，所以請只有在明顯違反社群準則時使用此選項。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隱藏「沒有註記」
@@ -1942,12 +1983,17 @@ zh-TW:
   #Notification when an identification has been deleted
   identification_deleted: 鑑定已刪除
   identification_saved: "鑑定已儲存！"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: 隱藏鑑定
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: 取消隱藏鑑定
   #Notification when an identification has been updated
   identification_updated: 鑑定已更新！
   identification_user_short: 識別用戶
   #Notification when an identification has been withdrawn
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
+  inaturalist_global_year_in_review: "愛自然的全球 %{year} 年回顧"
   computer_vision_suggestion: 電腦視覺建議
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
@@ -2053,6 +2099,8 @@ zh-TW:
   join: 加入
   join_and_add_an_observation_to_project_html: 參與並加入一筆觀察記錄至%{project}專案
   join_project: 加入此專案
+  #Prompt to join a specific project
+  join_project?: 加入 %{project} ？
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
   'joined!': 已加入！
@@ -2830,6 +2878,8 @@ zh-TW:
   observation_curation: 觀察策展
   observation_date: 日期
   observation_date?: 日期？
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: 分類群
   observation_field: 觀察欄位
   observation_field_details: 觀察欄位詳細內容
   observation_field_type_text: 文字
@@ -3078,8 +3128,12 @@ zh-TW:
   photo_credits: 照片出處
   photo_deleted: 照片已刪除
   photo_destroyed_because_it_was_deleted_from: "照片已損毀，因為它被外部網站所刪除或 %{site_name} 不再有檢視它的權限"
+  #Message displayed after a photo has been hidden
+  photo_hidden: 隱藏照片
   photo_licensing: 照片許可
   photo_type: 相片類型
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: 取消隱藏照片
   photo_urls_repaired: 需要照片 URL
   photos_chosen_for_this_taxon: 挑選用於此物種分類的照片
   photos_from: 照片來自
