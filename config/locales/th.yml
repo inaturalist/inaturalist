@@ -394,7 +394,7 @@ th:
       other: "%{count} โปรโตซัว"
     x_other_animals:
       other: "%{count} สัตว์อื่น ๆ"
-  all_taxa_: หน่วยอนุกรมวิธานทั้งหมด
+  all_taxa_: ทั้งหมด
   all_taxa_in_this_guide: หน่วยอนุกรมวิธานทั้งหมดในคู่มือนี้
   all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
   all_updates: อัปเดตทั้งหมด
@@ -1295,6 +1295,7 @@ th:
     english: ภาษาอังกฤษ
     estonian: ภาษาเอสโตเนีย
     faroese: ภาษาแฟโร
+    fijian: ภาษาฟิจิ
     finnish: ภาษาฟินแลนด์
     french: ภาษาฝรั่งเศส
     galician: ภาษากาลิเซีย
@@ -1345,10 +1346,12 @@ th:
     swedish: ภาษาสวีเดน
     tagalog: ภาษาตากาล็อก
     tahitian: ภาษาตาฮิติ
+    tamil: ภาษาทมิฬ
     thai: ภาษาไทย
     tokelauan: ภาษาโตเกเลา
     turkish: ภาษาตุรกี
     ukrainian: ภาษายูเครน
+    vietnamese: ภาษาเวียดนาม
     visayan: ภาษาวิซายัน
     waray_waray: ภาษาวาไร-วาไร
   life: สิ่งมีชีวิต
@@ -1396,6 +1399,7 @@ th:
     ko: ภาษาเกาหลี
     lb: ภาษาลักเซมเบิร์ก
     lt: ภาษาลิทัวเนีย
+    mi: เมารี
     nb: ภาษานอร์เวย์แบบบูกโมล
     nl: ภาษาดัตช์
     pl: ภาษาโปแลนด์
@@ -1839,54 +1843,58 @@ th:
     american_samoa: อเมริกันซามัว
     asia: เอเชีย
     azerbaijan: อาเซอร์ไบจาน
-    bangladesh: ประเทศบังกลาเทศ
-    bhutan: ประเทศภูฏาน
+    bangladesh: บังกลาเทศ
+    bhutan: ภูฏาน
     british_indian_ocean_territory: บริติชอินเดียนโอเชียนเทร์ริทอรี
-    brunei: ประเทศบรูไน
-    cambodia: ประเทศกัมพูชา
-    cameroon: ประเทศแคเมอรูน
+    brunei: บรูไน
+    cambodia: กัมพูชา
+    cameroon: แคเมอรูน
     central_african_republic: สาธารณรัฐแอฟริกากลาง
     central_america: อเมริกากลาง
-    china: ประเทศจีน
+    china: จีน
     czech_republic: สาธารณรัฐเช็ก
     europe: ยุโรป
-    georgia: ประเทศจอร์เจีย
-    germany: ประเทศเยอรมนี
+    fiji: ฟิจิ
+    georgia: จอร์เจีย
+    germany: เยอรมนี
     hong_kong: ฮ่องกง
-    india: ประเทศอินเดีย
-    indonesia: ประเทศอินโดนีเซีย
-    jamaica: ประเทศจาเมกา
-    japan: ประเทศญี่ปุ่น
-    kazakhstan: ประเทศคาซัคสถาน
-    laos: ประเทศลาว
-    malaysia: ประเทศมาเลเซีย
-    mongolia: ประเทศมองโกเลีย
-    myanmar: ประเทศเมียนมา
-    nepal: ประเทศเนปาล
+    india: อินเดีย
+    indonesia: อินโดนีเซีย
+    jamaica: จาเมกา
+    japan: ญี่ปุ่น
+    kazakhstan: คาซัคสถาน
+    laos: ลาว
+    malaysia: มาเลเซีย
+    mongolia: มองโกเลีย
+    myanmar: เมียนมา
+    nepal: เนปาล
     north_africa: แอฟริกาเหนือ
     north_america: อเมริกาเหนือ
-    pakistan: ประเทศปากีสถาน
-    peru: ประเทศเปรู
-    philippines: ประเทศฟิลิปปินส์
-    poland: ประเทศโปแลนด์
-    russia: ประเทศรัสเซีย
-    saudi_arabia: ประเทศซาอุดิอาระเบีย
-    singapore: ประเทศสิงคโปร์
-    slovakia: ประเทศสโลวาเกีย
+    pakistan: ปากีสถาน
+    panama: ปานามา
+    peru: เปรู
+    philippines: ฟิลิปปินส์
+    poland: โปแลนด์
+    russia: รัสเซีย
+    samoa: ซามัว
+    saudi_arabia: ซาอุดิอาระเบีย
+    singapore: สิงคโปร์
+    slovakia: สโลวาเกีย
     south_africa: แอฟริกาใต้
     south_america: อเมริกาใต้
-    south_korea: ประเทศเกาหลีใต้
-    sri_lanka: ประเทศศรีลังกา
-    taiwan: ประเทศไต้หวัน
-    thailand: ประเทศไทย
+    south_korea: เกาหลีใต้
+    sri_lanka: ศรีลังกา
+    taiwan: ไต้หวัน
+    thailand: ไทย
     trinidad_and_tobago: ตรินิแดดและโตเบโก
-    turkey: ประเทศตุรกี
-    ukraine: ประเทศยูเครน
-    united_arab_emirates: ประเทศสหรัฐอาหรับเอมิเรตส์
+    turkey: ตุรกี
+    ukraine: ยูเครน
+    united_arab_emirates: สหรัฐอาหรับเอมิเรตส์
     united_kingdom: สหราชอาณาจักร
     united_states: สหรัฐอเมริกา
-    vietnam: ประเทศเวียดนาม
+    vietnam: เวียดนาม
     west_africa: แอฟริกาตะวันตก
+    zambia: แซมเบีย
   places_of_interest: สถานที่น่าสนใจ
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
   #Title to a section warning a user to exercise caution
@@ -1923,6 +1931,8 @@ th:
   project_admins:
     other: แอดมินโครงการ
   project_assessments: การประเมินโครงการ
+  project_coordinate_access_warning: |
+    ถึงแม้ว่านักวิทยาศาสตร์จำเป็นต้องเข้าถึงพิกัด แต่ผู้ลักลอบล่าสัตว์ก็อาจเข้าถึงได้เช่นกัน โปรดตรวจสอบความน่าเชื่อถือของผู้ดูแลโครงการทุกคนก่อนเลือกไว้วางใจให้เข้าถึงพิกัด
   project_cover: รูปหน้าปกโครงการ
   project_created_on: สร้างโครงการนี้เมื่อ %{date}
   project_curator_tools: เครื่องมือผู้ดูแลโครงการ
@@ -2279,6 +2289,8 @@ th:
   source_list:
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2012'
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2013'
+  source_eg:
+    citation: 'เช่น Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: URL แหล่งที่มา
   sourced_to: อ้างอิงจาก
   spam: สแปม
@@ -2739,6 +2751,9 @@ th:
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
   year_month: ปี/เดือน
   'yes': "ใช่"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "ใช่ เปิดเผยพิกัดทุกการสังเกต"
   yes_i_want_to_join: ใช่ ฉันอยากเข้าร่วม
   yes_reject_it: ปฏิเสธ
   yesterday: เมื่อวาน
@@ -3226,6 +3241,7 @@ th:
       day_month_year: "%-d %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
+    pm: หลังเที่ยง
   activerecord:
     models:
       #Software application that operates iNat on a user's behalf, e.g. the
