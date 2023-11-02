@@ -1732,7 +1732,7 @@ nl:
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
-  email_dear_user: Beste %{name},
+  email_dear_user: Beste %{user},
   email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_conf_required_after_grace_period: |
     E-mailbevestiging is vereist vanaf %{requirement_date} en jij hebt
