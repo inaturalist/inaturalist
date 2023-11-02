@@ -5816,6 +5816,57 @@ da:
   yir_donate_banner_you_helped_inaturalist_thrive: Du hjalp iNaturalist med at trives i år. Tak!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behøver din støtte
+  yir_email_because_of_you: |
+    På grund af jer, er der flere data om biodiversitet i år end sidste
+    år. Året i tilbageblik er vores gave til jer for alt dét, I har
+    gjort for biodiversitet gennem iNaturalist.
+  yir_email_log_in_to_generate: |
+    Log ind for at generere et personligt år i tilbageblik for at se det!
+  yir_email_of_your_observations:
+    one: Af din %{count} observation, ved du, om den blev lavet i %{year}?
+    other: Af dine %{count} observationer, ved du, hvor mange der blev lavet i %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Dit %{year} iNaturalist-år i tilbageblik — fejr dit år med biodiversitet
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist-teamet
+  yir_email_the_year_isnt_over: |
+    Året er ikke omme endnu, og det er aldrig for sent at poste ældre
+    observationer. Efter at have delt flere observationer, vælg “Regenerér statistikker” i bunden af Året i tilbageblik for at se
+    opdateringerne.
+  yir_email_what_else_will_you_observe_caps: HVAD ANDET VIL DU OBSERVERE?
+  yir_email_what_new_to_you: |
+    Hvilke for dig nye arter registrerede du i år? Hvor mange personer hjalp
+    dig med identifikationer (og hvor mange hjalp du)?
+  yir_email_with_gratitude: Med taknemmelighed
+  yir_email_year_on_inaturalist_globally_caps: "%{year} PÅ INATURALIST GLOBALT"
+  yir_email_you_are_part_of_something: |
+    Du er en del af noget stort! Enhver person, der indsender observationer, tilføjer
+    identifikationer og spreder budskabet om iNaturalist gør en
+    forskel for biodiversitet. Gennem vores kollektive indsats gør vi
+    biodiversitetsdata og indsigter tilgængelige i et hidtil uset
+    omfang. Tak fordi du er en del af iNaturalist-fællesskabet!
+  yir_email_you_make_a_difference: |
+    Du gør en forskel for biodiversitet gennem iNaturalist. Tak for
+    alt det, du gør!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Du har modtaget denne e-mail, da %{email} er tilknyttet
+    https://www.inaturalist.org/people/%{username}, en iNaturalist-konto
+    oprettet d. %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Du har modtaget denne e-mail, da %{email} er tilknyttet
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    en iNaturalist konto oprettet d. %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Din konto er tilknyttet %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Din konto er tilknyttet <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generering og deling af højeffekts biodiversitetsdata i denne hidtil usete
     skala og hastighed har stigende omkostninger
