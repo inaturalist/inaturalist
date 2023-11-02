@@ -290,9 +290,7 @@
       - else
         = link_to "Unsuspend user", unsuspend_user_path(@display_user), class: "btn btn-block btn-success"
       - unless @display_user.spammer?
-        = link_to t(:flag_as_spammer), set_spammer_path(@display_user, spammer: true), method: :post, |
-          data: { confirm: t(:are_you_sure_you_want_to_flag_as_spammer, user: @display_user) }, |
-          class: "btn btn-block btn-warning"
+        = flag_as_spammer_button(@display_user, class_name: "btn btn-block btn-warning")
       - unless @display_user.known_non_spammer?
         = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
           method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |

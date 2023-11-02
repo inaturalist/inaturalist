@@ -98,4 +98,20 @@ module UsersHelper
       user.login
     end
   end
+
+  def flag_as_spammer_button( user, class_name: nil, return_to: nil )
+    spammer_path = if return_to
+      set_spammer_path( user, spammer: true, return_to: return_to )
+    else
+      set_spammer_path( user, spammer: true )
+    end
+
+    link_to(
+      t( :flag_as_spammer ),
+      spammer_path,
+      method: :post,
+      data: { confirm: t( :are_you_sure_you_want_to_flag_as_spammer ) },
+      class: class_name
+    )
+  end
 end
