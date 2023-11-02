@@ -1881,7 +1881,7 @@ hu:
   #the same as you move from one observation to another
   lock_zoom_level: Nagyítás mértékének rögzítése
   language_slash_locale: Nyelv/Hely
-  language_slash_locale_description: Ez a földrajzi helyed alapján állítja be a nyelvet és a dátumformátumot az iNaturalist-on. A változtatások a weboldal frissítésével érvényesülnek.
+  language_slash_locale_description: Ez a földrajzi helyed alapján állítja be a nyelvet és a dátumformátumot az iNaturaliston. A változtatások a weboldal frissítésével érvényesülnek.
   language_slash_type: Nyelv / Típus
   #Large photo size
   large: nagy
@@ -4575,6 +4575,43 @@ hu:
   yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: Az iNaturalist a támogatásodat kéri
+  yir_email_because_of_you: |
+    Neked köszönhetően idén több biodiverzitási adat áll rendelkezésre, mint tavaly. Az Évi visszatekintővel köszönetet mondunk mindazért, amit a biodiverzitásért tettél az iNaturalist használatával.
+  yir_email_log_in_to_generate: |
+    A személyes évi visszatekintőd lekéréséhez jelentkezz be!
+  yir_email_of_your_observations:
+    one: '%{count} megfigyelésed van eddig, de ebből mennyi készült %{year}-ban?'
+    other: '%{count} megfigyelésed van eddig, de ebből mennyi készült %{year}-ban?'
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    A %{year}. évi iNaturalist visszatekintőd - a biodverzitás évenkéni ünnepe
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Az iNaturalist csapata
+  yir_email_the_year_isnt_over: |
+    Az év még nem ért véget, ráadásul sosem késő korábbi megfigyeléseket feltölteni. Miután feltöltöttél további megfigyeléseket, a visszatekintőd alján található "Statisztikák újragenerálása" linkre kattintva frissítheted a visszatekintőt.
+  yir_email_what_else_will_you_observe_caps: MI MÁST FOGSZ MÉG MEGFIGYELNI?
+  yir_email_what_new_to_you: |
+    Hány új fajt figyeltél meg idén? Hány felhasználó segített neked az azonosításban (és hánynak segítettél te)?
+  yir_email_with_gratitude: Köszönettel,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} AZ INATURALISTON - GLOBÁLISAN"
+  yir_email_you_are_part_of_something: |
+    Egy nagy dolognak vagy része! Mindenki, aki megfigyeléseket tölt fel, meghatároz, vagy terjeszti az iNaturalistot, hozzájárul a biodiverzitáshoz. Az együttműködésünk eredményeként biodiverzitási információk sosem látott mértékben válnak közkincsé. Köszönjük, hogy az iNaturalist közösségének a tagja vagy!
+  yir_email_you_make_a_difference: |
+    Az iNaturalist használatával hozzájárulsz a biodiverzitáshoz. Köszönjük mindezt!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Ezt az emailt azért kaptad, mert a(z) %{email} email cím társítva van a https://www.inaturalist.org/people/%{username} iNaturalist-fiókkal, ami ekkor jött létre: %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Ezt az emailt azért kaptad, mert a(z) %{email} email cím társítva van a <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> iNaturalist-fiókkal, ami ekkor jött létre: %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    A fiókodhoz tartozó oldal: %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    A fiókodhoz tartozó oldal: <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     A magasszintű biodiverzitási adatok ilyen méretű és sebességű generálása és megosztása egyre növekvő költségekkel jár
   yir_millions_of_people_used_inaturalist: |
