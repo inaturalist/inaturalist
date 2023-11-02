@@ -64,6 +64,9 @@ class YearStatistic < ApplicationRecord
           options
         )
       },
+      users: {
+        obs_and_id_activity_counts: obs_and_id_activity_counts( year, options )
+      },
       growth: {
         observations: observations_histogram_by_created_month( options ),
         users: users_histogram_by_created_month( options )
@@ -1569,13 +1572,31 @@ class YearStatistic < ApplicationRecord
           }
         }
       }
+      observation_es_params = es_params.deep_dup
       identifications_es_params = es_params.deep_dup
       identifications_es_params[:filters] << {
         term: {
           own_observation: false
         }
       }
-      Observation.elastic_search( es_params ).aggregations.users.buckets.each do | bucket |
+      if ( site = options[:site] )
+        if site.place
+          observation_es_params[:filters] << {
+            term: { place_ids: site.place.id }
+          }
+          identifications_es_params[:filters] << {
+            term: { "observation.place_ids": site.place.id }
+          }
+        else
+          observation_es_params[:filters] << {
+            term: { site_id: site.id }
+          }
+          identifications_es_params[:filters] << {
+            term: { "observation.site_id": site.id }
+          }
+        end
+      end
+      Observation.elastic_search( observation_es_params ).aggregations.users.buckets.each do | bucket |
         activity_counts_by_user[bucket["key"]] ||= {}
         activity_counts_by_user[bucket["key"]][:observations] = bucket["doc_count"]
       end
@@ -1586,6 +1607,32 @@ class YearStatistic < ApplicationRecord
       start_id += batch_size
     end
     activity_counts_by_user
+  end
+
+  def self.obs_and_id_activity_counts( year, options = {} )
+    activity_counts_by_user = user_activity_counts( year, options )
+    observed_count = 0
+    identified_count = 0
+    observed_and_identified_count = 0
+    observed_or_identified_count = 0
+    activity_counts_by_user.each do | _k, counts |
+      observed_or_identified_count += 1
+      if counts[:observations]
+        observed_count += 1
+      end
+      if counts[:identifications]
+        identified_count += 1
+      end
+      if counts[:observations] && counts[:identifications]
+        observed_and_identified_count += 1
+      end
+    end
+    {
+      observed_count: observed_count,
+      identified_count: identified_count,
+      observed_and_identified_count: observed_and_identified_count,
+      observed_or_identified_count: observed_and_identified_count
+    }
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

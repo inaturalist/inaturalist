@@ -125,6 +125,12 @@ en:
     few: "%{count} people"
     many: "%{count} people"
     other: "%{count} people"
+  x_people_html:
+    zero: '<span class="count">%{count}</span> people'
+    one: '<span class="count">%{count}</span> person'
+    few: '<span class="count">%{count}</span> people'
+    many: '<span class="count">%{count}</span> people'
+    other: '<span class="count">%{count}</span> people'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} photo"
@@ -8094,6 +8100,11 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        # label used for a chart component that shows the count of users that
+        # added both identifications and observations
+        added_both: Added Both
+        added_identifications: Added Identifications
+        added_observations: Added Observations
         compare_desc: |
           How did this year compare to your previous years? With three years of
           usage or more we can start comparing yearly activity metrics. The

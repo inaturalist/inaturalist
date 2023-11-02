@@ -6,6 +6,8 @@ import { COLORS } from "../../../shared/util";
 import PieChart from "./pie_chart";
 import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
 
+/* global DEFAULT_SITE_ID */
+
 const Summary = ( {
   data,
   user,
@@ -30,9 +32,11 @@ const Summary = ( {
   } else {
     baseObsUrl += "&place_id=any";
   }
+  const hasDataForPeopleChart = data.users && data.users.obs_and_id_activity_counts;
+  const colWidth = hasDataForPeopleChart ? 3 : 4;
   return (
     <Row className="Summary">
-      <Col sm={12} md={4}>
+      <Col sm={12} md={colWidth}>
         { data.observations.quality_grade_counts ? (
           <div className="summary-panel">
             <div
@@ -82,7 +86,7 @@ const Summary = ( {
           </div>
         ) : null }
       </Col>
-      <Col sm={12} md={4}>
+      <Col sm={12} md={colWidth}>
         { data.taxa && data.taxa.iconic_taxa_counts ? (
           <div className="summary-panel">
             <div
@@ -117,7 +121,7 @@ const Summary = ( {
           </div>
         ) : null }
       </Col>
-      <Col sm={12} md={4}>
+      <Col sm={12} md={colWidth}>
         { data.identifications && data.identifications.category_counts ? (
           <div className="summary-panel">
             <div
@@ -169,6 +173,42 @@ const Summary = ( {
                 }
                 window.open( url, "_blank" );
               } : null}
+            />
+          </div>
+        ) : null }
+      </Col>
+      <Col sm={12} md={colWidth}>
+        { hasDataForPeopleChart ? (
+          <div className="summary-panel">
+            <div
+              className="main"
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "x_people_html", {
+                  count: data.users.obs_and_id_activity_counts.observed_or_identified_count
+                } )
+              }}
+            />
+            <PieChart
+              data={[
+                {
+                  label: I18n.t( "views.stats.year.added_observations" ),
+                  value: data.users.obs_and_id_activity_counts.observed_count,
+                  color: "#aaaaaa"
+                },
+                {
+                  label: I18n.t( "views.stats.year.added_identifications" ),
+                  value: data.users.obs_and_id_activity_counts.identified_count,
+                  color: COLORS.needsIdYellow
+                },
+                {
+                  label: I18n.t( "views.stats.year.added_both" ),
+                  value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
+                  color: COLORS.inatGreenLight
+                }
+              ]}
+              legendColumnWidth={120}
+              margin={pieMargin}
+              donutWidth={donutWidth}
             />
           </div>
         ) : null }
