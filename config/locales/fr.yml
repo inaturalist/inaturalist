@@ -1030,6 +1030,8 @@ fr:
     Le modèle actuel de vision par ordinateur connaît ce taxon. Celui-ci pourrait donc être inclus dans les suggestions automatiques avec l'étiquette « Visuellement semblable ».
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: En attente
+  computer_vision_model_pending_desc2: |
+    Le modèle actuel de vision par ordinateur ne connaît pas ce taxon, de sorte que s'il peut bien être inclus dans les suggestions automatisées avec l'étiquette "Attendu à proximité", il n'aura cependant pas l'étiquette "Visuellement similaire". Bien que les conditions d'inclusion dans le modèle changent avec chaque modèle, l'inclusion est généralement basée sur le nombre d'observations, donc pour augmenter les chances que ce taxon soit inclus lors de la prochaine formation du modèle, ajoutez ou identifiez plus d'observations de ce taxon.
   concept_status: État du concept
   confidential: Confidentiel
   configure: Configurer
@@ -1151,10 +1153,12 @@ fr:
     cannot_be_determined: Ne peut être déterminé à partir des données fournies
     dead: L'organisme est mort ou montre des signes de mort imminente
     feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
+    female: Les informations indiquent que l'organisme peut produire des ovules pour la reproduction sexuelle
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
     gall: Excroissance d'un tissu végétal causée par un parasite
+    male: Les informations indiquent que l'organisme peut produire du sperme pour la reproduction sexuelle
     molt: Dépouille ou exosquelette abandonné
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     organism: Tout ou partie d'un organisme
@@ -1696,8 +1700,11 @@ fr:
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
-  email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Cher %{user},
+  email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_conf_required_after_grace_period: |
     La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
   email_copyright2: "&copy; %{year} iNaturalist, tous droits réservés"
@@ -1954,6 +1961,8 @@ fr:
   generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos photos ''Flickr''.
   generate_widget: Générer le widget
   generate_your_stats: Générer vos statistiques
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
   geomodel_expected_nearby_label_is_derived: |
@@ -5639,6 +5648,7 @@ fr:
   year: Année
   year_in_review: "Revue de l'année %{year}"
   year_in_review2: "Rétrospective de l'année %{year}"
+  year_in_review_caps: "RÉTROSPECTIVE DE L'ANNÉE %{year}"
   year_month: année/mois
   year_on_site: "Année %{year} sur %{site}"
   yellow: jaune
@@ -5832,6 +5842,9 @@ fr:
         CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner affichera l’avertissement pour tous les utilisateurs quelle que soit leur localisation. Choisir une langue
         sans région ne ciblera *pas* les localisations avec région, par exemple si
         vous choisissez l'anglais en, il n’apparaîtra pas pour les personnes qui ont choisi l'anglais en-US. Si vous voulez cibler les deux, choisissez les deux. Si vous voulez afficher un avertissement pour tous les membres du site, laissez-le simplement vide.
+      clients_desc: |
+        CMD ou SHIFT-clic pour sélectionner plusieurs éléments. N'en sélectionner aucun affichera l'annonce
+        à tous les utilisateurs, quel que soit le client.
     content_freeze:
       content_freeze: Gel du contenu
       during_this_time: |
@@ -7725,8 +7738,25 @@ fr:
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
         taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Ajouter un lexique de nom commun
           #optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: Ajouter un lieu (facultatif)
+          common_name_lexicon_display_order: Ordre d'affichage du lexique de noms communs
+          common_name_lexicons: Lexiques de nom commun
+          common_name_lexicons_description: Par défaut, les noms courants sont affichés dans la langue locale de votre compte. Pour voir les noms dans d'autres lexiques, ou pour prioriser les noms utilisés dans des endroits spécifiques (comme l'anglais (Australie) ou l'espagnol (Costa Rica)), ajoutez des lexiques de nom courant. Un maximum de trois noms communs peuvent être affichés à la fois. Si aucun nom commun n'existe pour un lexique que vous avez choisi, il sera omis de l'affichage.
+          for_multiple_common_name_lexicons_drag_and_drop: Pour les lexiques de noms communs multiples, faites glisser les paramètres ci-dessous pour personnaliser l'ordre dans lequel ils sont affichés.
+          same_as_locale: Identique à la langue locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Identique à la préférence de langue locale de l'utilisateur
+          select_a_lexicon: Sélectionnez un lexique
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Le maximum de 3 lexiques de noms communs a déjà été ajouté
         this_only_applies_to_traditional_projects: |
           Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets-cadres, qui sont essentiellement des recherches sauvegardées.
           Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
@@ -8083,6 +8113,7 @@ fr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Pour les utilisateurs qui n'ont pas confirmé leur adresse mail
+        clients: Clients
       assessment:
         description: Description
       assessment_section:
@@ -8314,6 +8345,16 @@ fr:
           one: "1 erreur a empêché ce %{model} d’être enregistré"
           other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: doit être valide pour l'emplacement spécifié
         application:
           attributes:
             redirect_uri:

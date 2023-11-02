@@ -1086,10 +1086,12 @@ id:
     cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
     dead: Organisme telah mati atau memperlihatkan tanda-tanda akan mati
     feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
+    female: Bukti menunjukkan bahwa organismenya bisa menghasilkan telur untuk digunakan dalam reproduksi seksual
     flower_budding: Kuncup bunga terlihat namun tidak terbuka
     flowering: Bunga terlihat, terbuka, dan tetap menempel ke tanaman
     fruiting: Buah terlihat dan masih menempel ke tanaman
     gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
+    male: Bukti menunjukkan bahwa organismenya bisa menghasilkan sperma untuk digunakan dalam reproduksi seksual
     molt: Kulit yang dibuang atau eksoskeleton
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
     organism: Organisme penuh atau sebagian
@@ -1637,8 +1639,11 @@ id:
   either_that_user_doesnt_exist_or: "Entah pengguna tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk Kelas Riset
   email: Email
-  email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_address_for_comments_and_other_feedback: Alamat email untuk komentar dan umpan balik lainnya
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Halo %{user},
+  email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_conf_required_after_grace_period: |
     Konfiirmasi email diwajibkan sejak %{requirement_date} dan Anda belum mengonfirmasi alamat email Anda sebelum tanggal pemberlakuan aturan ini. Harap mengatur ulang kata sandi Anda sebelum mengakses akun Anda.
   email_copyright2: "&copy; %{year} iNaturalist, hak cipta dilindungi undang-undang"
@@ -1894,6 +1899,8 @@ id:
   generate_taxonomic_tags_for_flickr: Hasilkan label taksonomi untuk foto Flickr Anda.
   generate_widget: Buat Widget
   generate_your_stats: Buat Statistik Anda
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: BUAT ULASAN TAHUN %{year} KAMU
   generating_mobile_archive: "Buat arsip ponsel"
   Genus: Genus
   geoprivacy: Geoprivasi
@@ -2053,6 +2060,8 @@ id:
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist adalah organisasi nirlaba independen bebas pajak 501(c)(3) berbasis di Amerika Serikat (ID Pajak: 92-1296468).
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -5519,6 +5528,7 @@ id:
   year: Tahun
   year_in_review: "Melihat Kembali Tahun %{year}"
   year_in_review2: "Kilas Balik Satu Tahun %{year}"
+  year_in_review_caps: "ULASAN TAHUN %{year}"
   year_month: tahun/bulan
   year_on_site: "Tahun Di %{site} %{year}"
   yellow: kuning
@@ -5552,6 +5562,55 @@ id:
   yir_donate_banner_you_helped_inaturalist_thrive: Anda telah membantu perkembangan iNaturalist tahun ini. Terima kasih!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Membutuhkan Dukunganmu
+  yir_email_because_of_you: |
+    Karena kamu, ada lebih banyak data tentang keanekaragaman hayati tahun ini dibandingkan tahun lalu. Ulasan Tahun ini adalah hadiah kami untuk semua yang telah Anda lakukan untuk keanekaragaman hayati melalui iNaturalist.
+  yir_email_log_in_to_generate: |
+    Masuk untuk membuat ulasan tahun pribadimu dan melihatnya!
+  yir_email_of_your_observations:
+    other: Dari %{count} pengamatan Anda, apakah Anda tahu berapa yang dibuat pada %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ulasan Tahun iNaturalist %{year} Anda — rayakan tahun Anda dengan keanekaragaman hayati
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Tim iNaturalist
+  yir_email_the_year_isnt_over: |
+    Tahun ini belum berakhir, dan tidak ada kata terlambat untuk 
+    mengunggah pengamatan lama. Setelah kamu lebih banyak 
+    pengamatan, pastikan Anda memilih "Perbarui Statistik" di bawah 
+    Ulasan Tahun Anda untuk melihat perubahannya.
+  yir_email_what_else_will_you_observe_caps: APA LAGI YANG AKAN ANDA AMATI?
+  yir_email_what_new_to_you: |
+    Spesies baru apa yang Anda catat tahun ini? Berapa banyak orang yang menolong 
+    Anda untuk mengidentifikasi spesies (dan berapa banyak yang Anda tolong)?
+  yir_email_with_gratitude: Dengan ucapan syukur,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} DI INATURALIST GLOBAL"
+  yir_email_you_are_part_of_something: |
+    Anda adalah bagian dari sesuatu yang besar! Setiap orang yang mengunggah pengamatan, 
+    menambahkan identifikasi, dan menyebarkan kabar tentang iNaturalist telah membuat sebuah 
+    perubahan untuk keanekaragaman hayati. Melalui usaha kita bersama, kita sedang membuat 
+    data keanekaragaman hayati menjadi tersedia dalam skala yang belum pernah terpikirkan. 
+    Terima kasih telah menjadi bagian dari komunitas iNaturalist!
+  yir_email_you_make_a_difference: |
+    Anda sedang membuat sebuah perubahan untuk keanekaragaman hayati 
+    melalui iNaturalist. Terima kasih untuk semua hal yang sudah Anda buat!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Anda menerima email ini karena %{email} terhubung dengan 
+    https://www.inaturalist.org/people/%{username}, akun iNaturalist
+    yang dibuat pada %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Anda menerima email ini karena %{email} terhubung dengan 
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>, 
+    akun iNaturalist yang dibuat pada %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Akun Anda terhubung dengan %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Akun Anda terhubung dengan <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Menghasilkan dan membagikan data keanekaragaman hayati dengan skala dan kecepatan yang tidak pernah terbayangkan sebelumnya telah meningkatkan biaya-biaya
   yir_millions_of_people_used_inaturalist: |
@@ -7677,10 +7736,6 @@ id:
         header:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
       models:
-        announcement:
-          attributes:
-            clients:
-              must_be_valid_for_specified_placement: '# Pesan eror yang ditampilkan saat Pengumuman memiliki nilai pada'
         application:
           attributes:
             redirect_uri:

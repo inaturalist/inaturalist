@@ -989,9 +989,11 @@ hu:
     alive: Az organizmus él és nem mutatja hamarosan bekövetkező halál jelét
     cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
     dead: Az élőlény halott vagy a haldoklik
+    female: Bizonyított, hogy az élőlény petesejtet tud termelni ivaros szaporodáshoz
     flower_budding: A virágbimbók látszanak, de nincsenek kinyílva
     flowering: A virág látszik, ki van nyílva, még mindig a növényen van
     fruiting: A gyümölcs látszik és még mindig a növényen van
+    male: Bizonyított, hogy az élőlény hímivarsejtet tud termelni ivaros szaporodáshoz
     molt: Levedlett bőr vagy más kültakaró
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
@@ -1417,6 +1419,9 @@ hu:
   editing_this: '%{elem} szerkesztése'
   editors: Szerkesztők
   email: Email
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kedves %{user},
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
   email_conf_required_after_grace_period: |
     Az emailcím-megerősítés nem volt elvégezve %{requirement_date} határidőig, ezért kérjük, hogy állíts be új jelszót.
@@ -1630,6 +1635,8 @@ hu:
   generate_taxonomic_tags_for_flickr: Készíts rendszertani címkéket a Flickr fotóidból.
   generate_widget: Modul létrehozása
   generate_your_stats: Saját statisztika készítése
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: '%{year} ÉVI VISSZATEKINTŐ LÉTREHOZÁSA'
   Genus: Nemzetség
   geomodel_expected_nearby_label_is_derived: |
     "A közelben előfordulhat" megjelölés a Geomodellből származik.
@@ -1759,6 +1766,8 @@ hu:
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
+  inaturalist_is_an_independent_nonprofit: |
+    Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
@@ -1872,7 +1881,7 @@ hu:
   #the same as you move from one observation to another
   lock_zoom_level: Nagyítás mértékének rögzítése
   language_slash_locale: Nyelv/Hely
-  language_slash_locale_description: Ez a földrajzi helyed alapján állítja be a nyelvet és a dátumformátumot az iNaturalist-on. A változtatások a weboldal frissítésével érvényesülnek.
+  language_slash_locale_description: Ez a földrajzi helyed alapján állítja be a nyelvet és a dátumformátumot az iNaturaliston. A változtatások a weboldal frissítésével érvényesülnek.
   language_slash_type: Nyelv / Típus
   #Large photo size
   large: nagy
@@ -4538,6 +4547,7 @@ hu:
   year: Év
   year_in_review: "%{year} áttekintése"
   year_in_review2: "%{year}. évi visszatekintő"
+  year_in_review_caps: "%{year} ÉVI VISSZATEKINTŐ"
   year_month: év/hónap
   year_on_site: "%{site}: %{year} áttekintése"
   yellow: sárga
@@ -4565,6 +4575,43 @@ hu:
   yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: Az iNaturalist a támogatásodat kéri
+  yir_email_because_of_you: |
+    Neked köszönhetően idén több biodiverzitási adat áll rendelkezésre, mint tavaly. Az Évi visszatekintővel köszönetet mondunk mindazért, amit a biodiverzitásért tettél az iNaturalist használatával.
+  yir_email_log_in_to_generate: |
+    A személyes évi visszatekintőd lekéréséhez jelentkezz be!
+  yir_email_of_your_observations:
+    one: '%{count} megfigyelésed van eddig, de ebből mennyi készült %{year}-ban?'
+    other: '%{count} megfigyelésed van eddig, de ebből mennyi készült %{year}-ban?'
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    A %{year}. évi iNaturalist visszatekintőd - a biodverzitás évenkéni ünnepe
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Az iNaturalist csapata
+  yir_email_the_year_isnt_over: |
+    Az év még nem ért véget, ráadásul sosem késő korábbi megfigyeléseket feltölteni. Miután feltöltöttél további megfigyeléseket, a visszatekintőd alján található "Statisztikák újragenerálása" linkre kattintva frissítheted a visszatekintőt.
+  yir_email_what_else_will_you_observe_caps: MI MÁST FOGSZ MÉG MEGFIGYELNI?
+  yir_email_what_new_to_you: |
+    Hány új fajt figyeltél meg idén? Hány felhasználó segített neked az azonosításban (és hánynak segítettél te)?
+  yir_email_with_gratitude: Köszönettel,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} AZ INATURALISTON - GLOBÁLISAN"
+  yir_email_you_are_part_of_something: |
+    Egy nagy dolognak vagy része! Mindenki, aki megfigyeléseket tölt fel, meghatároz, vagy terjeszti az iNaturalistot, hozzájárul a biodiverzitáshoz. Az együttműködésünk eredményeként biodiverzitási információk sosem látott mértékben válnak közkincsé. Köszönjük, hogy az iNaturalist közösségének a tagja vagy!
+  yir_email_you_make_a_difference: |
+    Az iNaturalist használatával hozzájárulsz a biodiverzitáshoz. Köszönjük mindezt!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Ezt az emailt azért kaptad, mert a(z) %{email} email cím társítva van a https://www.inaturalist.org/people/%{username} iNaturalist-fiókkal, ami ekkor jött létre: %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Ezt az emailt azért kaptad, mert a(z) %{email} email cím társítva van a <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> iNaturalist-fiókkal, ami ekkor jött létre: %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    A fiókodhoz tartozó oldal: %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    A fiókodhoz tartozó oldal: <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     A magasszintű biodiverzitási adatok ilyen méretű és sebességű generálása és megosztása egyre növekvő költségekkel jár
   yir_millions_of_people_used_inaturalist: |
@@ -5879,6 +5926,16 @@ hu:
           one: "%{count} hiba miatt \"%{model}\" nem menthető el"
           other: '%{count} hiba miatt %{model} nem menthető el'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: érvényesnek kell lennie a megadott elhelyezéshez
         application:
           attributes:
             redirect_uri:

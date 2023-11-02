@@ -1139,10 +1139,12 @@ it:
     cannot_be_determined: Non può essere determinato in base alle prove fornite
     dead: L'organismo è morto o mostra segni di morte imminente
     feather: Una o più piume non attaccate a un organismo
+    female: Le prove indicano che l'organismo può produrre ovuli per la riproduzione sessuale
     flower_budding: I boccioli di fiore sono visibili ma non aperti
     flowering: Fiori visibili, aperti, ed ancora attaccati alla pianta
     fruiting: Frutti visibili ed ancora attaccati alla pianta
     gall: Escrescenza deformata del tessuto vegetale causata da un organismo parassitario
+    male: Le prove indicano che l'organismo può produrre sperma per la riproduzione sessuale
     molt: Pelle o esoscheletro scartati
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     organism: Organismo intero o parziale
@@ -1673,8 +1675,8 @@ it:
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
-  email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
+  email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
   email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
@@ -5767,6 +5769,8 @@ it:
     announcements:
       locales_desc: |
         CMD- o SHIFT-click per selezione multipla. Non selezionando niente verranno mostrate le notizie relative e tutti gli utenti indipendentemente dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito, lascia vuoto.
+      clients_desc: |
+        Fai click tenendo premuto CMD o SHIFT per selezionarne di più. Non selezionare nulla mostrerà l'annuncio a tutti gli utenti, indipendentemente dal client.
     content_freeze:
       content_freeze: Blocco Contenuti
       during_this_time: |
@@ -7340,6 +7344,26 @@ it:
         same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
         taxon_change_desc: |
           Quando dei taxa sono uniti o rinominati su %{site_name}, le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai un aggiornamento sulla modifica, con un link ad uno strumento che potrai usare per aggiornare manualmente il tuo contenuto.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Aggiungi il lessico di un nome comune
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Aggiungi un luogo (facoltativo)
+          common_name_lexicon_display_order: Ordine di Visualizzazione Lessico del Nome Comune
+          common_name_lexicons: Lessici del Nome Comune
+          common_name_lexicons_description: Di default, i nomi comuni sono mostrati nella lingua/locale del tuo profilo. Per visualizzare i nomi in altri lessici, o per dare priorità ai nomi utilizzati in luoghi specifici (come inglese (Australia) o spagnolo (Costa Rica)), aggiungi i lessici dei nomi comuni. Un massimo di 3 nomi comuni è visualizzabile in una volta. Se non esiste alcun nome comune per un lessico scelto, sarà omesso dalla visualizzazione.
+          for_multiple_common_name_lexicons_drag_and_drop: Per svariati lessici dei nomi comuni, trascina e rilascia le seguenti impostazioni per personalizzarne l'ordine di visualizzazione.
+          same_as_locale: Come il locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Come le preferenze linguistiche/locali dell'utente
+          select_a_lexicon: Seleziona un lessico
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Il massimo di 3 lessici di nomi comuni è stato già aggiunto
         this_only_applies_to_traditional_projects: |
           Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
       recent:
@@ -7672,6 +7696,7 @@ it:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Utenti di destinazione non confermati
+        clients: Client
       assessment:
         description: Descrizione
       assessment_section:
@@ -7902,6 +7927,16 @@ it:
           one: "1 errore impedisce di salvare questo %{model}"
           other: '%{count} errori impediscono di salvare questo %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: dev'essere valido per il posizionamento specificato
         application:
           attributes:
             redirect_uri:

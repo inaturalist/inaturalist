@@ -1170,10 +1170,12 @@ da:
     cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
     dead: Organisme død eller viser tegn på forestående død
     feather: En eller flere fjer ikke fastgjort til en organisme
+    female: Bevis indikerer, at organismen kan producere æg til brug i seksuel reproduktion
     flower_budding: Blomsterknopper er synlige, men ikke åbne
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
     gall: Deform udvækst af plantevæv forårsaget af parasitisk organisme
+    male: Bevis indikerer, at organismen kan producere sæd til brug i seksuel reproduktion
     molt: Afstødt hud eller exoskelet
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     organism: Hel eller partiel organisme
@@ -1724,8 +1726,11 @@ da:
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
-  email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kære %{user},
+  email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_conf_required_after_grace_period: |
     Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
     for at tilgå kontoen.
@@ -1984,6 +1989,8 @@ da:
   generate_taxonomic_tags_for_flickr: Generér taksonomiske tags til dine Flickr-fotos.
   generate_widget: Generér widget
   generate_your_stats: Generér dine statistikker
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERER DIT %{year}-ÅRS TILBAGEBLIK
   generating_mobile_archive: "Genererer mobil arkiv"
   Genus: Slægt
   geomodel_expected_nearby_label_is_derived: |
@@ -2159,6 +2166,9 @@ da:
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
   inaturalist_global_year_in_review: "iNaturalists globale %{year} år i gennemgang"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profit organisation
+    baseret i USA (Skatte-ID: 92-1296468).
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -5772,6 +5782,7 @@ da:
   year: År
   year_in_review: "År i tilbageblik %{year}"
   year_in_review2: "År i gennemgang %{year}"
+  year_in_review_caps: "ÅR I TILBAGEBLIK %{year}"
   year_month: år/måned
   year_on_site: "Året på %{site} %{year}"
   yellow: gul
@@ -5805,6 +5816,57 @@ da:
   yir_donate_banner_you_helped_inaturalist_thrive: Du hjalp iNaturalist med at trives i år. Tak!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behøver din støtte
+  yir_email_because_of_you: |
+    På grund af jer, er der flere data om biodiversitet i år end sidste
+    år. Året i tilbageblik er vores gave til jer for alt dét, I har
+    gjort for biodiversitet gennem iNaturalist.
+  yir_email_log_in_to_generate: |
+    Log ind for at generere et personligt år i tilbageblik for at se det!
+  yir_email_of_your_observations:
+    one: Af din %{count} observation, ved du, om den blev lavet i %{year}?
+    other: Af dine %{count} observationer, ved du, hvor mange der blev lavet i %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Dit %{year} iNaturalist-år i tilbageblik — fejr dit år med biodiversitet
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist-teamet
+  yir_email_the_year_isnt_over: |
+    Året er ikke omme endnu, og det er aldrig for sent at poste ældre
+    observationer. Efter at have delt flere observationer, vælg “Regenerér statistikker” i bunden af Året i tilbageblik for at se
+    opdateringerne.
+  yir_email_what_else_will_you_observe_caps: HVAD ANDET VIL DU OBSERVERE?
+  yir_email_what_new_to_you: |
+    Hvilke for dig nye arter registrerede du i år? Hvor mange personer hjalp
+    dig med identifikationer (og hvor mange hjalp du)?
+  yir_email_with_gratitude: Med taknemmelighed
+  yir_email_year_on_inaturalist_globally_caps: "%{year} PÅ INATURALIST GLOBALT"
+  yir_email_you_are_part_of_something: |
+    Du er en del af noget stort! Enhver person, der indsender observationer, tilføjer
+    identifikationer og spreder budskabet om iNaturalist gør en
+    forskel for biodiversitet. Gennem vores kollektive indsats gør vi
+    biodiversitetsdata og indsigter tilgængelige i et hidtil uset
+    omfang. Tak fordi du er en del af iNaturalist-fællesskabet!
+  yir_email_you_make_a_difference: |
+    Du gør en forskel for biodiversitet gennem iNaturalist. Tak for
+    alt det, du gør!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Du har modtaget denne e-mail, da %{email} er tilknyttet
+    https://www.inaturalist.org/people/%{username}, en iNaturalist-konto
+    oprettet d. %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Du har modtaget denne e-mail, da %{email} er tilknyttet
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    en iNaturalist konto oprettet d. %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Din konto er tilknyttet %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Din konto er tilknyttet <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generering og deling af højeffekts biodiversitetsdata i denne hidtil usete
     skala og hastighed har stigende omkostninger
@@ -8512,7 +8574,13 @@ da:
         announcement:
           attributes:
             clients:
-              must_be_valid_for_specified_placement: '# Fejlmeddelelse vises, når en bekendtgørelse har en værdi i'
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: skal være gyldig for angivet placering
         application:
           attributes:
             redirect_uri:

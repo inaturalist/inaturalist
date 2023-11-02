@@ -838,8 +838,8 @@ lb:
   editing_taxon_range_for_taxon_html: Verbreedungsgebiett fir %{taxon} beaarbechten
   editors: Auteuren
   email: E-Mail
-  email_description: Är E-Mail-Adress gëtt net mat anere Benotzer op iNaturalist gedeelt
   email_address_for_comments_and_other_feedback: E-Mail-Adress fir Kommentarer oder anere Feedback
+  email_description: Är E-Mail-Adress gëtt net mat anere Benotzer op iNaturalist gedeelt
   embed: 'Abannen'
   end: Schluss
   endangered: Bedréit
@@ -2766,6 +2766,9 @@ lb:
         species_per_year: Aarten / Joer
         species_per_year_by_date_observed: No Datum observeiert
         translators_title: Iwwersetzer
+        view_all_publications_count_caps2:
+          one: "%{count} PUBLIKATIOUN WEISEN"
+          other: "ALL %{count} PUBLIKATIOUNE WEISEN"
     taxa:
       show:
         about_conservation_status_desc: |
