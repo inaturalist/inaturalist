@@ -129,17 +129,18 @@ const DetailsView = ( {
     if ( lifelist.speciesPlaceFilter ) {
       searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
     }
-    // TODO iconic_taxon_name doesn't actually seem to be present on this
-    // taxon, but we'll want it to be if we want this to be translated
-    // properly in languages that have different rank names for different
-    // groups
     stats = (
       <div className="stats">
         <span className="stat">
           <span className="attr">
             { I18n.t( "views.lifelists.observed_rank", {
-              rank: rankLabel( { rank: lifelist.speciesViewRankFilter, withLeaves: false } ),
-              iconic_taxon: lifelist.detailsTaxon?.iconic_taxon_name
+              rank: rankLabel( {
+                rank: lifelist.speciesViewRankFilter,
+                withLeaves: false,
+                iconicTaxonName: lifelist.detailsTaxon
+                  ? lifelist.detailsTaxon.iconic_taxon_name
+                  : null
+              } )
             } ) }
           </span>
           <span className="value">
