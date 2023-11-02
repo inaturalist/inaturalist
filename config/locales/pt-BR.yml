@@ -1032,6 +1032,14 @@ pt-BR:
     incluído em sugestões automatizadas com o rótulo "Visualmente Similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendente
+  computer_vision_model_pending_desc2: |
+    O Modelo de Visão Computacional atual não tem dados sobre este táxon, então
+    ele pode ser incluído nas sugestões automatizadas com o rótulo "Esperado nas Proximidades", porém ele
+    não terá o rótulo "Visualmente Similar". Embora os requisitos para
+    a inclusão no modelo mudem com cada modelo, geralmente a inclusão é baseada em
+    número de observações, portanto, para aumentar a chance deste táxon ser
+    incluído no próximo treinamento do modelo, adicione ou identifique mais observações
+    deste táxon.
   concept_status: Conceito de Status
   confidential: Confidencial
   configure: Configurar
@@ -1715,6 +1723,9 @@ pt-BR:
   eligible_for_research_grade: Elegível para Nível de Pesquisa
   email: E-mail
   email_address_for_comments_and_other_feedback: Endereço de e-mail para comentários e outras colocações.
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Caro %{user},
   email_description: Seu e-mail não é compartilhado com outros usuários do iNaturalist
   email_conf_required_after_grace_period: |
     Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
@@ -1973,6 +1984,8 @@ pt-BR:
   generate_taxonomic_tags_for_flickr: Gerar marcações taxonômicas para suas fotos do Flickr.
   generate_widget: Gerar Widget
   generate_your_stats: Gerar suas estatísticas
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GERE SEU SUMÁRIO DO ANO de %{year}
   generating_mobile_archive: "Gerando arquivos móveis"
   Genus: Gênero
   geomodel_expected_nearby_label_is_derived: |
@@ -5731,6 +5744,7 @@ pt-BR:
   year: Ano
   year_in_review: "Resumo do ano %{year}"
   year_in_review2: "Ano em Revisão %{year}"
+  year_in_review_caps: "SUMÁRIO DO ANO %{year}"
   year_month: ano/mês
   year_on_site: "O %{year} em %{site}"
   yellow: amarelo
@@ -5920,6 +5934,9 @@ pt-BR:
         você escolheu en ele não aparecerá para as pessoas que escolheram en-US. Se vocês
         quer segmentar ambos, escolha ambos. Se você quiser mostrar um anúncio
         para todos os membros de um site, apenas deixe em branco.
+      clients_desc: |
+        Clique em CMD- ou SHIFT para selecionar vários. Sem selecionar nenhum mostrará o anúncio
+        para todos os usuários, independentemente do cliente.
     content_freeze:
       content_freeze: Congelamento de conteúdo
       during_this_time: |
@@ -7204,6 +7221,9 @@ pt-BR:
           Você sabia que o %{site_name} foi traduzido quase inteiramente por %{x_people}? Aqui estão todos os tradutores incríveis que adicionaram traduções este ano, junto ao número de palavras que eles traduziram para o %{website_link_tag}site%{link_tag_end}, o aplicativo iNaturalist para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, bem como o %{seek_link_tag}Seek%{link_tag_end}.Você pode ver todas as pessoas que contribuíram para traduções em todos os idiomas incluindo pessoas de anos passados e o pessoal da Translatewiki, em nosso repositório de códigos da%{view_all_web_link_tag}web%{link_tag_end} e %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Se você quiser ajudar a traduzir, %{link_tag}aprenda como%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VER %{count} PUBLICAÇÃO"
+          other: "VER TODAS AS %{count} PUBLICAÇÕES"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7441,6 +7461,7 @@ pt-BR:
           comportamentos que consideramos inapropriados em nosso site,
           investigaremos.
           </p>
+        common_scientific_name_display_order: Ordem de Exibição de Nome Comum / Científico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se você mudar de ideia você sempre pode
           <a href='/users/edit'>editar suas configurações</a>.
@@ -7560,6 +7581,26 @@ pt-BR:
         same_day_geoprivacy_protection: Proteção de geoprivacidade no mesmo dia
         taxon_change_desc: |
           Quando os táxons convergirem ou forem renomeados para %{site_name}, suas observações, táxons registrados, identificações, entre outros serão automaticamente atualizados para o novo táxon se a mudança não for ambígua.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Adicionar um léxico de nomes comuns
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Adicione um lugar (opcional)
+          common_name_lexicon_display_order: Ordem de Exibição do Léxico de Nomes Comuns
+          common_name_lexicons: Léxicos de Nomes Comuns
+          common_name_lexicons_description: Por padrão, nomes comuns são exibidos no idioma da localidade da sua conta. Para ver nomes em outros léxicos, ou para priorizar nomes usados em lugares específicos (como Inglês (Austrália) ou Espanhol (Costa Rica)), adicione léxicos de nomes comuns. No máximo 3 nomes comuns podem ser exibidos por vez. Se não existir nenhum nome comum para um léxico selecionado, ele será omitido da exibição.
+          for_multiple_common_name_lexicons_drag_and_drop: Para selecionar léxicos de nomes comuns, arraste e solte na lista abaixo para personalizar a ordem em que são exibidas.
+          same_as_locale: Mesmo que a local
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Igual à preferência de idioma/local de usuário
+          select_a_lexicon: Selecione um léxico
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: O máximo de 3 léxicos de nomes comuns já foi adicionado
         this_only_applies_to_traditional_projects: |
           Isso só se aplica a projetos tradicionais. Você não pode excluir observações
           de projetos de coleção ou guarda-chuva, que são essencialmente pesquisas salvas.
@@ -7900,6 +7941,7 @@ pt-BR:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: IDs do Site
+        clients: Clientes
       assessment:
         description: Descrição
       assessment_section:
