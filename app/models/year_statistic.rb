@@ -1533,6 +1533,61 @@ class YearStatistic < ApplicationRecord
     end
   end
 
+  # returns a hash indexed by user_id, containing a hash of activity counts.
+  # :observations contains a count of observations created in the given year
+  # :identifications contains a count of identifications created in the
+  # given year on observations other than their own
+  def self.user_activity_counts( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] user_activity_counts, year: #{year}, options: #{options}"
+    end
+    max_user_id = User.maximum( :id )
+    start_id = 1
+    batch_size = 500_000
+    activity_counts_by_user = {}
+    while start_id <= max_user_id
+      es_params = {
+        size: 0,
+        filters: [{
+          range: {
+            "user.id": {
+              gte: start_id,
+              lt: start_id + batch_size
+            }
+          }
+        }, {
+          term: {
+            "created_at_details.year": year
+          }
+        }],
+        aggregate: {
+          users: {
+            terms: {
+              field: "user.id",
+              size: batch_size
+            }
+          }
+        }
+      }
+      identifications_es_params = es_params.deep_dup
+      identifications_es_params[:filters] << {
+        term: {
+          own_observation: false
+        }
+      }
+      Observation.elastic_search( es_params ).aggregations.users.buckets.each do | bucket |
+        activity_counts_by_user[bucket["key"]] ||= {}
+        activity_counts_by_user[bucket["key"]][:observations] = bucket["doc_count"]
+      end
+      Identification.elastic_search( identifications_es_params ).aggregations.users.buckets.each do | bucket |
+        activity_counts_by_user[bucket["key"]] ||= {}
+        activity_counts_by_user[bucket["key"]][:identifications] = bucket["doc_count"]
+      end
+      start_id += batch_size
+    end
+    activity_counts_by_user
+  end
+
   def self.run_cmd( cmd, options = { timeout: 60 } )
     Timeout.timeout( options.delete( :timeout ) ) do
       system cmd, options.merge( exception: true )
