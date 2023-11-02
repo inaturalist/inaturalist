@@ -5562,6 +5562,55 @@ id:
   yir_donate_banner_you_helped_inaturalist_thrive: Anda telah membantu perkembangan iNaturalist tahun ini. Terima kasih!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Membutuhkan Dukunganmu
+  yir_email_because_of_you: |
+    Karena kamu, ada lebih banyak data tentang keanekaragaman hayati tahun ini dibandingkan tahun lalu. Ulasan Tahun ini adalah hadiah kami untuk semua yang telah Anda lakukan untuk keanekaragaman hayati melalui iNaturalist.
+  yir_email_log_in_to_generate: |
+    Masuk untuk membuat ulasan tahun pribadimu dan melihatnya!
+  yir_email_of_your_observations:
+    other: Dari %{count} pengamatan Anda, apakah Anda tahu berapa yang dibuat pada %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ulasan Tahun iNaturalist %{year} Anda — rayakan tahun Anda dengan keanekaragaman hayati
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Tim iNaturalist
+  yir_email_the_year_isnt_over: |
+    Tahun ini belum berakhir, dan tidak ada kata terlambat untuk 
+    mengunggah pengamatan lama. Setelah kamu lebih banyak 
+    pengamatan, pastikan Anda memilih "Perbarui Statistik" di bawah 
+    Ulasan Tahun Anda untuk melihat perubahannya.
+  yir_email_what_else_will_you_observe_caps: APA LAGI YANG AKAN ANDA AMATI?
+  yir_email_what_new_to_you: |
+    Spesies baru apa yang Anda catat tahun ini? Berapa banyak orang yang menolong 
+    Anda untuk mengidentifikasi spesies (dan berapa banyak yang Anda tolong)?
+  yir_email_with_gratitude: Dengan ucapan syukur,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} DI INATURALIST GLOBAL"
+  yir_email_you_are_part_of_something: |
+    Anda adalah bagian dari sesuatu yang besar! Setiap orang yang mengunggah pengamatan, 
+    menambahkan identifikasi, dan menyebarkan kabar tentang iNaturalist telah membuat sebuah 
+    perubahan untuk keanekaragaman hayati. Melalui usaha kita bersama, kita sedang membuat 
+    data keanekaragaman hayati menjadi tersedia dalam skala yang belum pernah terpikirkan. 
+    Terima kasih telah menjadi bagian dari komunitas iNaturalist!
+  yir_email_you_make_a_difference: |
+    Anda sedang membuat sebuah perubahan untuk keanekaragaman hayati 
+    melalui iNaturalist. Terima kasih untuk semua hal yang sudah Anda buat!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Anda menerima email ini karena %{email} terhubung dengan 
+    https://www.inaturalist.org/people/%{username}, akun iNaturalist
+    yang dibuat pada %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Anda menerima email ini karena %{email} terhubung dengan 
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>, 
+    akun iNaturalist yang dibuat pada %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Akun Anda terhubung dengan %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Akun Anda terhubung dengan <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Menghasilkan dan membagikan data keanekaragaman hayati dengan skala dan kecepatan yang tidak pernah terbayangkan sebelumnya telah meningkatkan biaya-biaya
   yir_millions_of_people_used_inaturalist: |
