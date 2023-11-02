@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
+import * as d3 from "d3";
 import { COLORS } from "../../../shared/util";
 import PieChart from "./pie_chart";
 import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
@@ -193,12 +194,12 @@ const Summary = ( {
                 {
                   label: I18n.t( "views.stats.year.added_observations" ),
                   value: data.users.obs_and_id_activity_counts.only_observed_count,
-                  color: "#aaaaaa"
+                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 )
                 },
                 {
                   label: I18n.t( "views.stats.year.added_identifications" ),
                   value: data.users.obs_and_id_activity_counts.only_identified_count,
-                  color: COLORS.needsIdYellow
+                  color: d3.color( COLORS.iconic.Insecta ).brighter( )
                 },
                 {
                   label: I18n.t( "views.stats.year.added_both" ),

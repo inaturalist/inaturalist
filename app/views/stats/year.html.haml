@@ -12,6 +12,7 @@
 - content_for :title do
   = @title.html_safe
 - content_for :extrajs do
+  = render partial: "shared/outlink_site_icons_js"
   :javascript
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
     var YEAR = #{ @year };

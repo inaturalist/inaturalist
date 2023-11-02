@@ -1,0 +1,8 @@
+:javascript
+    var OUTLINK_SITE_ICONS = _.assign( {
+      "Atlas of Living Australia": "#{ asset_url( "sites/ala.png" ) }",
+      "Calflora": "#{ asset_url( "sites/calflora.png" ) }",
+      "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
+      "GloBI": "#{ asset_url( "sites/globi.png" ) }",
+      "EDDMapS": "#{ asset_url( "sites/eddmaps.png" ) }",
+    }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = dp.logo&.url; memo}.to_json.html_safe} );

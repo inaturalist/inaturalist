@@ -130,7 +130,8 @@ class YearStatistic < ApplicationRecord
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
         popular: popular_observations( year, user: user ),
-        streaks: streaks( year, user: user )
+        streaks: streaks( year, user: user ),
+        outlink_counts: observation_outlink_counts( year, user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ),
@@ -1631,6 +1632,37 @@ class YearStatistic < ApplicationRecord
       observed_and_identified_count: observed_and_identified_count,
       observed_or_identified_count: observed_and_identified_count
     }
+  end
+
+  def self.observation_outlink_counts( year, user, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observation_outlinks, year: #{year}, user: #{user}, options: #{options}"
+    end
+    return unless user
+
+    es_params = {
+      size: 0,
+      filters: [{
+        term: {
+          "user.id": user.id
+        }
+      }, {
+        term: {
+          "created_at_details.year": year
+        }
+      }],
+      aggregate: {
+        outlinks: {
+          terms: {
+            field: "outlinks.source",
+            size: 10
+          }
+        }
+      }
+    }
+    Observation.elastic_search( es_params ).aggregations.outlinks.buckets.map do |bucket|
+      [bucket["key"], bucket["doc_count"]]
+    end.to_h
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

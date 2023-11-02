@@ -1526,6 +1526,41 @@ $tip-opacity: 1;
     }
   }
 
+  .BroaderImpacts {
+    .outlink-with-icon {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      .title-subtitle {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        .title {
+          font-size: 120%;
+        }
+        .subtitle {
+          font-size: 90%;
+          text-transform: uppercase;
+          a {
+            color: $gray;
+          }
+        }
+      }
+      .icon {
+        align-self: flex-start;
+        padding: 2px;
+        display: inline-block;
+        margin-right: 5px;
+        background: white;
+        img {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #ccc
+        }
+      }
+    }
+  }
+
   @media (max-width: 500px) {
     .DonateBanner {
       flex-direction: column;
