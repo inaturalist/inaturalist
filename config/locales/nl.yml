@@ -2170,7 +2170,7 @@ nl:
   identifications: Determinaties
   inaturalist_global_year_in_review: "iNaturalist's %{year} Jaaroverzicht van de Wereld"
   inaturalist_is_an_independent_nonprofit: |
-    iNaturalist is een onafhankelijke 501(c)(3) tax-exempt, non-profit organisatie gevestigd in de Verenigde Staten (EIN 92-1296468)
+    iNaturalist is een onafhankelijke 501(c)(3) vrijgesteld van belastingen, non-profit organisatie gevestigd in de Verenigde Staten (EIN 92-1296468)
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |
     Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
@@ -5971,7 +5971,7 @@ nl:
         Met jouw donatie steun je iNaturalist en help je de gemeenschap te groeien, het verder ontwikkelen van geavanceerde technologie zoals het bevorderen van Computer Vision en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
         </p>
         <p class="text-muted">
-        iNaturalist is een onafhankelijke, 501(c)(3) tax-exempt not-for-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
+        iNaturalist is een onafhankelijke, 501(c)(3) vrijgesteld van belastingen, non-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
@@ -5984,7 +5984,7 @@ nl:
         Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
         </p>
         <p class="text-muted">
-        iNaturalist is een onafhankelijke, 501(c)(3) tax-exempt not-for-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
+        iNaturalist is een onafhankelijke, 501(c)(3) vrijgesteld van belastingen, non-profit organisatie in de Verenigde Staten van Amerika (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
@@ -6026,7 +6026,7 @@ nl:
           <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
           </p>
           <p class="text-muted">
-          iNaturalist is een onafhankelijke 501(c)(3) tax-exempt not-for-profit organisatie gevestigd in de Verenigde Staten van Amerika (Ruling: 92-1296468).</p>
+          iNaturalist is een onafhankelijke 501(c)(3) vrijgesteld van belastingen, non-profit organisatie gevestigd in de Verenigde Staten van Amerika (Ruling: 92-1296468).</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
       temporarily_unavailable: |
@@ -7253,6 +7253,9 @@ nl:
           %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
         translators_prompt: |
           Als je wil helpen met vertalen, %{link_tag}leer hier hoe%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "TOON %{count} PUBLICATIE"
+          other: "TOON ALLE %{count} PUBLICATIES"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -8178,6 +8181,16 @@ nl:
           one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
           other: 'Door %{count} fouten kon dit %{model} niet worden opgeslagen'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
         application:
           attributes:
             redirect_uri:
