@@ -185,7 +185,10 @@ const Summary = ( {
               className="main"
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "x_people_html", {
-                  count: data.users.obs_and_id_activity_counts.observed_or_identified_count
+                  count: I18n.toNumber(
+                    data.users.obs_and_id_activity_counts.observed_or_identified_count,
+                    { precision: 0 }
+                  )
                 } )
               }}
             />

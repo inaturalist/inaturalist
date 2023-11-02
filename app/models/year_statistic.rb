@@ -1630,7 +1630,7 @@ class YearStatistic < ApplicationRecord
       only_observed_count: observed_count,
       only_identified_count: identified_count,
       observed_and_identified_count: observed_and_identified_count,
-      observed_or_identified_count: observed_and_identified_count
+      observed_or_identified_count: observed_or_identified_count
     }
   end
 
