@@ -15,7 +15,7 @@ const BroaderImpacts = ( {
   return (
     <div className="BroaderImpacts">
       <h3>
-        <a name="streaks" href="#streaks">
+        <a name="impacts" href="#impacts">
           <span>{ I18n.t( "views.stats.year.broader_impacts" ) }</span>
         </a>
       </h3>
@@ -36,7 +36,15 @@ const BroaderImpacts = ( {
                 </a>
               </div>
               <div className="title-subtitle">
-                <div className="title">{source}</div>
+                <div className="title">
+                  <a
+                    href={OUTLINK_SITES[source].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {source}
+                  </a>
+                </div>
                 <div className="subtitle">
                   <a href={
                     `/observations?place_id=any&verifiable=any&user_id=${user.id}`

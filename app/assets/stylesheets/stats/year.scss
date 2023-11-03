@@ -1540,6 +1540,9 @@ $tip-opacity: 1;
         flex-direction: column;
         .title {
           font-size: 120%;
+          a {
+            color: white;
+          }
         }
         .subtitle {
           font-size: 90%;
