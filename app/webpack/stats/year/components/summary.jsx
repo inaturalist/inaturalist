@@ -195,28 +195,37 @@ const Summary = ( {
             <PieChart
               data={[
                 {
-                  label: I18n.t( "views.stats.year.added_only_observations" ),
-                  //value: data.users.obs_and_id_activity_counts.only_observed_count,
-                  value: 100,
+                  label: _.truncate(
+                    I18n.t( "views.stats.year.added_only_observations" ),
+                    { length: 31 }
+                  ),
+                  fullLabel: I18n.t( "views.stats.year.added_only_observations" ),
+                  value: data.users.obs_and_id_activity_counts.only_observed_count,
                   color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ),
                   chartDisplayOrder: 0
                 },
                 {
-                  label: I18n.t( "views.stats.year.added_only_identifications" ),
-                  //value: data.users.obs_and_id_activity_counts.only_identified_count,
-                  value: 2,
+                  label: _.truncate(
+                    I18n.t( "views.stats.year.added_only_identifications" ),
+                    { length: 31 }
+                  ),
+                  fullLabel: I18n.t( "views.stats.year.added_only_identifications" ),
+                  value: data.users.obs_and_id_activity_counts.only_identified_count,
                   color: d3.color( COLORS.iconic.Insecta ).brighter( ),
                   chartDisplayOrder: 2
                 },
                 {
-                  label: I18n.t( "views.stats.year.added_observations_and_identifications" ),
-                  //value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
-                  value: 10,
+                  label: _.truncate(
+                    I18n.t( "views.stats.year.added_observations_and_identifications" ),
+                    { length: 31 }
+                  ),
+                  fullLabel: I18n.t( "views.stats.year.added_observations_and_identifications" ),
+                  value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
                   color: COLORS.inatGreenLight,
                   chartDisplayOrder: 1
                 }
               ]}
-              legendColumnWidth={230}
+              legendColumnWidth={190}
               margin={pieMargin}
               donutWidth={donutWidth}
             />

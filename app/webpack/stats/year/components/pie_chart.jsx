@@ -61,7 +61,7 @@ class PieChart extends React.Component {
         }
         const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
         const percent = _.round( degrees / 360 * 100, 2 );
-        return `<strong>${d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
+        return `<strong>${d.data.fullLabel || d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
       } );
     svg.call( tip );
 
