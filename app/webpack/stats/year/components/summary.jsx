@@ -195,22 +195,28 @@ const Summary = ( {
             <PieChart
               data={[
                 {
-                  label: I18n.t( "views.stats.year.added_observations" ),
-                  value: data.users.obs_and_id_activity_counts.only_observed_count,
-                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 )
+                  label: I18n.t( "views.stats.year.added_only_observations" ),
+                  //value: data.users.obs_and_id_activity_counts.only_observed_count,
+                  value: 100,
+                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ),
+                  chartDisplayOrder: 0
                 },
                 {
-                  label: I18n.t( "views.stats.year.added_identifications" ),
-                  value: data.users.obs_and_id_activity_counts.only_identified_count,
-                  color: d3.color( COLORS.iconic.Insecta ).brighter( )
+                  label: I18n.t( "views.stats.year.added_only_identifications" ),
+                  //value: data.users.obs_and_id_activity_counts.only_identified_count,
+                  value: 2,
+                  color: d3.color( COLORS.iconic.Insecta ).brighter( ),
+                  chartDisplayOrder: 2
                 },
                 {
-                  label: I18n.t( "views.stats.year.added_both" ),
-                  value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
-                  color: COLORS.inatGreenLight
+                  label: I18n.t( "views.stats.year.added_observations_and_identifications" ),
+                  //value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
+                  value: 10,
+                  color: COLORS.inatGreenLight,
+                  chartDisplayOrder: 1
                 }
               ]}
-              legendColumnWidth={120}
+              legendColumnWidth={230}
               margin={pieMargin}
               donutWidth={donutWidth}
             />

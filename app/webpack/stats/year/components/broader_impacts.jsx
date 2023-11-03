@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
-/* global OUTLINK_SITE_ICONS */
+/* global OUTLINK_SITES */
 
 const BroaderImpacts = ( {
   data,
@@ -22,22 +22,34 @@ const BroaderImpacts = ( {
       <p className="text-muted">
         { I18n.t( "views.stats.year.broader_impacts_desc" ) }
       </p>
-      <div className="outlinks">
-        { _.map( data, ( count, source ) => (
-          <div className="outlink-with-icon">
-            <div className="icon">
-              <img alt={source} src={OUTLINK_SITE_ICONS[source]} />
-            </div>
-            <div className="title-subtitle">
-              <div className="title">{source}</div>
-              <div className="subtitle">
-                <a href={`/observations?verifiable=any&user_id=${user.id}&outlink_source=${source}&year=${year}`}>
-                  {I18n.t( "x_observations", { count: I18n.toNumber( count, { precision: 0 } ) } )}
+      <div className="outlinks-container">
+        <div className="outlinks">
+          { _.map( data, ( count, source ) => (
+            <div className="outlink-with-icon" key={`outlink-${source}`}>
+              <div className="icon">
+                <a
+                  href={OUTLINK_SITES[source].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img alt={source} src={OUTLINK_SITES[source].icon} />
                 </a>
               </div>
+              <div className="title-subtitle">
+                <div className="title">{source}</div>
+                <div className="subtitle">
+                  <a href={
+                    `/observations?place_id=any&verifiable=any&user_id=${user.id}`
+                    + `&outlink_source=${source}&created_d1=${year}-01-01&created_d2=${year}-12-31`
+                  }
+                  >
+                    {I18n.t( "x_observations", { count: I18n.toNumber( count, { precision: 0 } ) } )}
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        ) ) }
+          ) ) }
+        </div>
       </div>
     </div>
   );

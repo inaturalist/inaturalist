@@ -58,7 +58,7 @@
         trusted_user_ids: current_user.friendships.where( "trust" ).pluck(:friend_id),
         testGroups: current_user.test_groups_array
       }
-  = render partial: "shared/outlink_site_icons_js"
+  = render partial: "shared/outlink_sites_js"
   :javascript
     var INITIAL_OBSERVATION_ID = "#{@observation.id}";
     var INITIAL_OBSERVATION_UUID = "#{@observation.uuid}";
