@@ -1038,7 +1038,7 @@ hu:
   couldnt_find_that_taxon: Nem találtuk azt a taxont.
   create: Létrehozás
   create_a_guide: Útmutató létrehozása
-  create_a_new_field: Új mező létrehozása
+  create_a_new_field: Új adatmező létrehozása
   create_a_new_place: Új hely létrehozása
   create_a_new_taxon: Új taxon létrehozása
   create_a_query: Lekérdezés létrehozása
@@ -1128,7 +1128,7 @@ hu:
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
-  custom_project_fields: Saját projektmezők
+  custom_project_fields: Egyéni projektmezők
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
   customize_location: Hely testreszabása
@@ -1376,8 +1376,8 @@ hu:
   edit_comment: A megjegyzésed szerkesztése
   edit_complete_set_for_taxon_in_place_html: "%{taxon} teljes halmazának a szerkesztése innen: %{place}"
   edit_conservation_status: Természetvédelmi státusz szerkesztése
-  edit_custom_project_fields: Saját projektmezők szerkesztése
-  edit_field: Mező szerkesztése
+  edit_custom_project_fields: Egyéni projektmezők szerkesztése
+  edit_field: Adatmező szerkesztése
   edit_license: Licenc módosítása
   edit_multiple_dates: Több dátum szerkesztése
   edit_multiple_descriptions: Több megjegyzés szerkesztése
@@ -1507,9 +1507,9 @@ hu:
   #Button to show fewer places
   fewer__context_places: Kevesebb
   failed: Sikertelen
-  fields: mezők
-  fields_: Mezők
-  fields_merged: Mezők egyesítve
+  fields: adatmezők
+  fields_: Adatmezők
+  fields_merged: Adatmezők egyesítve
   file: Fájl
   file_size: Fájlméret
   fill_out_project_observation_fields: A projekt adatmezőinek kitöltése
@@ -2297,7 +2297,7 @@ hu:
   #Button to show more translators, as in people who added translations
   more__context_translators_caps: TÖBB
   more_caps: TOVÁBBIAK
-  more_fields: További mezők
+  more_fields: További adatmezők
   more_filters: További szűrők
   more_from_x: Továbbiak %{x} felhasználótól
   more_import_options: További importálási lehetőségek
@@ -3643,7 +3643,7 @@ hu:
   save_changes: Módosítások mentése
   save_comment: Megjegyzés mentése
   save_draft: Piszkozat mentése
-  save_fields: Mezők mentése
+  save_fields: Adatmezők mentése
   save_flag: Bejelölés mentése
   save_guide_taxon: Útmutató taxon elmentve
   save_identification: Azonosítás elmentése
@@ -3823,7 +3823,7 @@ hu:
   start_a_new_project: Új projekt indítása
   start_a_project: Projekt indítása
   start_date_time: Kezdés dátuma és ideje
-  start_typing_field_name: Gépeld be a mezőnevet...
+  start_typing_field_name: Gépeld be az adatmezőnevet...
   start_typing_place_name: Gépeld be a helynevet...
   start_typing_taxon_name: Gépeld be a taxonnevet...
   start_typing_someones_name: "Gépeld be valakinek a nevét..."
@@ -4392,7 +4392,7 @@ hu:
   view: Megtekintés
   view_all: Összes
   view_all_caps: MIND MEGTEKINTÉSE
-  view_all_fields: Minden mező megtekintése
+  view_all_fields: Minden adatmező megtekintése
   view_all_flags: Minden bejelentés megtekintése
   view_all_members: Tagok megtekintése
   #As in "View all 5" to view all 5 observations, comments, or other
@@ -4404,7 +4404,7 @@ hu:
   view_check_list_page: Lista megjelenítése
   view_details: Részletek
   view_dynamic_lifelist_: DINAMUKUS ÉLETMŰ MEGTEKINTÉSE
-  view_field_options: Mező beállítások
+  view_field_options: Adatmező-beállítások
   view_flag: Bejelentés megtekintése
   view_flags: Bejelentések megjelenítése
   view_flags_for_x_html: "%{x} bejelentései"
@@ -4885,7 +4885,7 @@ hu:
           </p>
         your_id_does_not_match: |
           Az azonosításod (<span class="bold">%{taxon_name}</span>) nem egyezik a közösségi azonosítással
-      copy_tip: "Adj hozzá egy új megfigyelést miközben lemásolod e megfigyelés dátumát, helyét, képeit és megfigyelésmezőit."
+      copy_tip: "Adj hozzá egy új megfigyelést miközben lemásolod e megfigyelés dátumát, helyét, képeit és adatmezőit."
       captive_help_html: |
         <strong>Termesztették</strong> az organizmust vagy
         <strong>fogságban él</strong>? Például egy <strong>kertben,
@@ -4930,7 +4930,7 @@ hu:
         query_placeholder: "Válaszd ki alább a lekérdezés paramétereit, vagy illessz be egy megfigyelés URL-t"
         taxon_extras_help_html: "Fontos: ezek az oszlopok lelassítják a folyamatot"
         geo_help_html: |
-          Város, megye, állam és ország szűrők a koordináták alapján. Ha ezek a típusok nem alkalmazhatók a megfigyelésre, a rendszer párhuzamos adminisztartív szinteket vesz vigyelembe. A private_* mezők csak akkor fognak szerepelni a listában, ha a saját felhasználónevedre szűrsz, illetve ha a projekt szűrőt alkalmazod, és te vagy a project gondnoka.
+          Város, megye, állam és ország szűrők a koordináták alapján. Ha ezek a típusok nem alkalmazhatók a megfigyelésre, a rendszer párhuzamos adminisztartív szinteket vesz vigyelembe. A private_* adatmezők csak akkor fognak szerepelni a listában, ha a saját felhasználónevedre szűrsz, illetve ha a projekt szűrőt alkalmazod, és te vagy a projekt gondnoka.
         be_patient: |
           Türelmedet kérjük, mivel ez perceket vesz igénybe. Ha ez a folyamat elhúzódik:
         check_back: |
@@ -5921,7 +5921,7 @@ hu:
         requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
         taken: már foglalt
       template:
-        body: 'Problémák merültek fel az alábbi mezőkkel:'
+        body: 'Problémák merültek fel az alábbi adatmezőkkel:'
         header:
           one: "%{count} hiba miatt \"%{model}\" nem menthető el"
           other: '%{count} hiba miatt %{model} nem menthető el'
@@ -5987,8 +5987,8 @@ hu:
             value:
               dna_only_atcg: "DNS-hez csak az A, T, C vagy G karaktereket tartalmazhatja"
             observation_id:
-              user_does_not_accept_fields_from_others: a felhasználó nem fogad el mezőket másoktól
-              user_only_accepts_fields_from_site_curators: a felhasználó csak a honlap kurátoraitól fogad el mezőket
+              user_does_not_accept_fields_from_others: a felhasználó nem fogad el adatmezőket másoktól
+              user_only_accepts_fields_from_site_curators: a felhasználó csak a honlap kurátoraitól fogad el adatmezőket
         observations_export_flow_task:
           attributes:
             base:
