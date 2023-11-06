@@ -4726,6 +4726,12 @@ hu:
         Köszönjük, hogy támogatni szeretnéd az iNaturalistot! Az adományozást az iNaturalisthoz pillanatnyilag felfüggesztettük ameddig frissítjük az adományozó rendszerünket. Kérünk látogass vissza hamarosan.
     geo_model:
       explain:
+        geomodel_predictions_of_taxon: |
+          %{taxon} Geomodell-becslései
+        the_geo_model_makes_predictions: |
+          A Geomodell automatikusan megbecsüli, hogy az egyes fajok hol fordulhatnak elő és hol nem. A Geomodell alapján jelöljük meg bizonyos azonosítási javaslatokat "A közelben előfordulhat" címkével, és azalapján rangsoroljuk a javaslatokat, a megfigyelés helyének megfelelően.
+        the_geo_model_is_trained: |
+          Hasonlóan a Gépi látási modellhez, a Geomodell is az iNaturaliston szereplő, legalább 100 fényképpel rendelkező megfigyeléseken alapszik. A Geomodell nem tökéletes. <a href="%{url}">További információk</a> a Geomodell létrehozásáról.
         nearby_map:
           expected_nearby_map: Valószínűsíthető előfordulási térkép
           we_use_this_map: |
@@ -4735,6 +4741,15 @@ hu:
           you_can_think: |
             A Valószínűsíthető előfordulási térkép azt illusztrálja, hogy a faj nagy valószínűséggel előfordul-e a térképrácson belül, vagy nem.
           figure_alt_text: A Geomodell hozza létre "A közelben előfordulhat" megjelöléseket.
+        unthresholded_map:
+          unthresholded_map: Küszöb nélküli térkép
+          we_use_the_unthresholded_map: |
+            A Küszöb nélküli térképet az azonosítási javaslatok generálásánál a gépi látási pontozás súlyozására használjuk.
+          for_example: |
+            Például a Küszöb nélküli térkép alkalmazásával egy gyík megfigyeléséhez az USA középső részén a <i>Sceloporus consobrinus</i> javaslat magasabb súllyal jön fel mint a <i>Sceloporus occidentalis</i>, annak ellenére, hogy a kettő kinézetre hasonló.
+          you_can_think: |
+            A Küszöb nélküli térkép úgy is felfogható, mint az adott faj adott fölrajzi helyen (a térképrács egy cellájában) történő előfordulásának relatív valószínűsége.
+          figure_alt_text: A Geomodell a gépi látás javaslatait súlyozza
         range_comparison:
           expected_nearby_vs_taxon_range: Valószínűsíthető előfordulás vs. taxonrégió
           #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
@@ -5387,28 +5402,18 @@ hu:
       form:
         new_name_guidelines_html: |
           <ul>
-          <li><p>Igyekezz olyan neveket hozzáadni, amelyeket máshol is használnak már. Kérünk ne találj ki új neveket.</p></li>
-          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfélét "sólyom"-nak.</p></li>
-          <li><p>Magasabb rendű taxonoknak olyan nevet próbálj adni, amely minden leszármazottat magába foglal, például "sólyomfélék", "hangafélék", stb..</p></li>
-          <li>
-          <p>
-          Ne adj hozzá olyan információt ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni
-          </p>
-          </li>
-          <li>
-          <p>
-          Az új nevek csak magyarok lehetnek. Kérünk, ne adj hozzá lefordított nyelvneveket mint "Francia, Français" mert ez csak nehézzé vagy lehetetlenné teszi számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.
-          </p>
-          </li>
-          <li>
-          <p>
-          A lefordított nyelvekkel kapcsolatos köznevek alapértelmezettként fognak megjelenni azon a nyelven (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
-          <a class="readmore" href="/pages/translate">További információ a fordításról</a>
+          <li><p>Csak olyan neveket addj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
+          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomféléket "sólyom"-nak.</p></li>
+          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska)</p></li>
+          <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni</p></li>
+          <li><p>Ha új szókészletet töltesz fel (ez ritkán fordul elő, mivel a magyar mint szókészlet már szerepel!), akkor azt angolul nevezd el, különben lehetetlen lesz számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.</p></li>
+          <li><p>A lefordított köznevek alapértelmezettként fognak megjelenni, ha a felhasználó azon a nyelven használja a felületet (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
+          <a class="readmore" href="/pages/translate">További információ a felhasználó felület fordításáról</a>
           </p>
           </li>
           </ul>
         places_help_html: |
-          Adj hozzá egy nevet egy helyhez, ezzel elsőbbségben részesíted azon helyek honlapjain és felhasználói számára. Ha több név van egy helyhez, elsőbbséget hozhatsz létre <a href="%{url}">itt</a>. Kérjük <strong>ne adj hozzá</strong> nevet MINDEN helyhez ahol a nevet használják, csak olyan helyekhez ahol eltérő a név más helyekhez képest.
+          A nevet opcionálisan földrajzi helyhez rendelheted, ezzel a név elsőbbségben részesül az adott hely honlapjai és felhasználói számára. Ha több név van egy helyhez, sorrendiséget állíthatsz be <a href="%{url}">itt</a>. Kérjük <strong>ne adj hozzá</strong> nevet MINDEN helyhez külön-külön, ahol az adott nevet használják, csak olyan helyekhez, ahol eltérő a név más helyekhez képest.
     users:
       delete:
         by_deleting_your_account_you_will_remove: |
