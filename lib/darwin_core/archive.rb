@@ -90,10 +90,6 @@ module DarwinCore
       data_paths = make_data
       logger.debug "Data: #{data_paths.inspect}"
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
-      if @opts[:with_taxa]
-        logger.info "Making taxa extension..."
-        paths += [make_api_all_taxon_data]
-      end
       archive_path = make_archive( *paths )
       logger.debug "Archive: #{archive_path}"
       FileUtils.mv( archive_path, @opts[:path] )
@@ -606,61 +602,6 @@ module DarwinCore
 
     def make_vernacular_names_data
       DarwinCore::VernacularName.data( @opts )
-    end
-
-    def make_api_all_taxon_data
-      headers = [ "taxonID", "scientificName", "parentNameUsageID", "taxonRank" , "vernacularName", "wikipedia_url" ]
-      fname = "taxa.csv"
-      tmp_path = File.join(@opts[:work_path], fname)
-
-      params = { is_active: true }
-      last_id = 0
-      start_time = Time.now
-      rows_written = 0
-      total_results = nil
-      localization_place_id = Place.find_by_name("United States").try(:id)
-      CSV.open(tmp_path, "w") do |csv|
-        csv << headers
-        beginning_or_more_results = true
-        while beginning_or_more_results
-          begin
-            response = INatAPIService.taxa( params.merge({
-              order_by: "id",
-              order: "asc",
-              per_page: 500,
-              id_above: last_id,
-              preferred_place_id: localization_place_id,
-              locale: "en"
-            }), { retry_delay: 2.0, retries: 30 })
-            if !response || !response.results || response.results.length == 0
-              beginning_or_more_results = false
-              break
-            end
-            total_results ||= response.total_results
-            response.results.each do |taxon|
-              csv << [
-                taxon["id"],
-                taxon["name"],
-                taxon["parent_id"],
-                taxon["rank"],
-                taxon["preferred_common_name"],
-                taxon["wikipedia_url"]
-              ]
-            end
-            last_id = response.results.last["id"]
-            rows_written += response.results.length
-            running_seconds = Time.now - start_time
-            rows_per_second = ( rows_written / running_seconds ).round( 2 )
-            estimated_remaining_time = ( ( total_results - rows_written ) / rows_per_second ).round( 2 )
-            logger.debug "Taxa: #{rows_written} rows, #{rows_per_second}r/s, estimated #{estimated_remaining_time}s left"
-          rescue Exception => e
-            pp e
-            beginning_or_more_results = false
-            break
-          end
-        end
-      end
-      tmp_path
     end
 
     def self.partition_range( start_id, max_id, partitions = 1 )
