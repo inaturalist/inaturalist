@@ -8100,7 +8100,9 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
-        added_observations_and_identifications: Added Observations and Identifications
+        # label used for a chart component that shows the count of users that
+        # added both identifications and observations
+        added_both: Added Both
         added_only_identifications: Added Only Identifications
         added_only_observations: Added Only Observations
         # heading for a section displaying use of iNaturalist data by other organizations

@@ -216,10 +216,10 @@ const Summary = ( {
                 },
                 {
                   label: _.truncate(
-                    I18n.t( "views.stats.year.added_observations_and_identifications" ),
+                    I18n.t( "views.stats.year.added_both" ),
                     { length: 31 }
                   ),
-                  fullLabel: I18n.t( "views.stats.year.added_observations_and_identifications" ),
+                  fullLabel: I18n.t( "views.stats.year.added_both" ),
                   value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
                   color: COLORS.inatGreenLight,
                   chartDisplayOrder: 1
