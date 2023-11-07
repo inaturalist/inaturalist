@@ -3096,7 +3096,7 @@ de:
   observations_widget: Beobachtungen Widget
   observations_with_this_field: Beobachtungen mit diesem Feld
   observations_with_this_field_and_value: Beobachtungen mit diesem Feld und Wert
-  observations_without_this_field: Beobachtungen ohne diesem Feld
+  observations_without_this_field: Beobachtungen ohne dieses Feld
   observations_without_media: Ohne Foto/Audio
   observationcounts_refreshed: Beobachtungszahl aktualisiert
   observed: Beobachtet
@@ -5574,6 +5574,48 @@ de:
   yir_donate_banner_you_helped_inaturalist_thrive: iNaturalist hatte auch dank dir ein erfolgreiches Jahr. Vielen Dank!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
+  yir_email_because_of_you: |
+    auch dank dir gibt es mehr Daten über die biologische Vielfalt in diesem Jahr als im Vorjahr. Der Jahresrückblick ist unser Geschenk an dich für alles, was du mittels iNaturalist für die biologische Vielfalt getan hast.
+  yir_email_log_in_to_generate: |
+    Um das herauszufinden, melde dich an, um deinen persönlichen Jahresrückblick zu generieren!
+  yir_email_of_your_observations:
+    one: Von deiner %{count} Beobachtung, weißt du wie viele im Jahr %{year} gemacht wurden?
+    other: Weißt du, wie viele von deinen %{count} Beobachtungen du im Jahr %{year} gemacht hast?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Dein iNaturalist-Jahresrückblick %{year} – feiere dieses Jahr mit Biodiversität
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: das Team von iNaturalist
+  yir_email_the_year_isnt_over: |
+    Das Jahr ist noch nicht vorbei, und es ist nie zu spät, ältere Beobachtungen zu veröffentlichen. Nachdem du weitere Beobachtungen gemeldet hast, klicke auf 'Statistik neu erstellen', unten in deinem Jahresrückblick, um diese Aktualisierungen zu sehen.
+  yir_email_what_else_will_you_observe_caps: WAS WIRST DU NOCH BEOBACHTEN?
+  yir_email_what_new_to_you: |
+    Welche neuen Arten hast du dieses Jahr gefunden? Wie viele Leute haben dir durch Bestimmungen geholfen (und wie vielen hast du geholfen)?
+  yir_email_with_gratitude: In Dankbarkeit,
+  yir_email_year_on_inaturalist_globally_caps: "INATURALIST GLOBAL %{year}"
+  yir_email_you_are_part_of_something: |
+    Du bist Teil von etwas Großem! Jede Person, die Beobachtungen veröffentlicht,
+    Bestimmungen hinzufügt und von iNaturalist erzählt, leistet einen Beitrag für die Artenvielfalt. Durch unseren gemeinsamen Einsatz stellen wir Daten und Impressionen zur Artenvielfalt zur Verfügung - in einem beispiellosen Umfang. Vielen Dank, dass du Teil der iNaturalist-Gemeinschaft bist!
+  yir_email_you_make_a_difference: |
+    Vielen Dank für alles, was du tust! Mit deinem Einsatz leistest du einen Beitrag für die biologische Vielfalt.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Du hast diese E-Mail erhalten, weil %{email} mit
+    https://www.inaturalist.org/people/%{username} verknüpft ist, einem iNaturalist-Account, der am
+     %{created_date} erstellt wurde.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Du hast diese E-Mail erhalten, weil %{email} mit
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> verknüpft ist, einem iNaturalist-Account, der am
+     %{created_date} erstellt wurde.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Dein Konto ist mit %{site_name} verknüpft (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Dein Konto ist mit <a href="%{site_url}">%{site_name}</a> verknüpft.
   yir_generating_and_sharing: |
     Das Generieren und Bereitstellen von bedeutsamen Daten zur biologischen Vielfalt in dieser beispiellosen Größe und Geschwindigkeit bringt steigende Kosten mit sich
   yir_millions_of_people_used_inaturalist: |
