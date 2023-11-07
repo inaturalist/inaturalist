@@ -27,16 +27,8 @@ class TaxonNamePriorities extends Component {
       addTaxonNamePriority,
       taxonNamePriorities
     } = this.props;
-    if ( !( config && config.currentUser && (
-      config.currentUser.roles.indexOf( "admin" ) >= 0 || config.currentUser.sites_admined.length > 0 )
-    ) ) {
-      return null;
-    }
     return (
       <div className="TaxonNamePriorities">
-        <div className="alert alert-warning text-center">
-          Admin-only preview
-        </div>
         <SettingsItem
           header={I18n.t( "views.users.edit.taxon_name_priorities.common_name_lexicons" )}
           htmlFor="taxon_names_display"

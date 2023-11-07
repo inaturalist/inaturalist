@@ -162,6 +162,27 @@ module TaxaHelper
     )
   end
 
+  def common_taxon_names( taxon, options = {} )
+    return nil if taxon.blank?
+    user = options[:user]
+    unless user && user.taxon_name_priorities.any?
+      if common_name = common_taxon_name( taxon, options ).try( :name )
+        return [common_name]
+      end
+      return nil
+    end
+    names = user.taxon_name_priorities.sort_by( &:position ).map do|tnp|
+      n = TaxonName.choose_common_name(
+        @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names,
+        place: tnp.place,
+        lexicon: tnp.lexicon,
+        locale: tnp.lexicon ? nil : ( user.try( :locale ) || site.try( :locale ) ),
+        user: user
+      ).try( :name )
+    end.uniq.compact
+    names
+  end
+
   def capitalize_piece( piece )
     # \p{Word} matches any word in Unicode, \w does not, apparently
     # https://stackoverflow.com/questions/3576232/how-to-match-unicode-words-with-ruby-1-9#3576559

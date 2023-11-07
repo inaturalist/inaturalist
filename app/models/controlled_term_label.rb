@@ -1,8 +1,12 @@
-class ControlledTermLabel < ApplicationRecord
+# frozen_string_literal: true
 
+class ControlledTermLabel < ApplicationRecord
   belongs_to :controlled_term
   belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
     class_name: "Taxon"
+
+  validates :label, presence: true, on: :create
+  validates :definition, presence: true, on: :create
 
   if CONFIG.usingS3
     has_attached_file :icon,
@@ -24,5 +28,4 @@ class ControlledTermLabel < ApplicationRecord
   end
   validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /octet-stream/],
     message: "must be JPG or PNG"
-
 end

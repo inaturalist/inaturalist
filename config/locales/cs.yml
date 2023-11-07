@@ -509,6 +509,7 @@ cs:
   agree_: Souhlasím
   agree?: Souhlasíte?
   agree_with_current_taxon: Souhlasím s aktuálním taxonem
+  agree_with_observation_taxon: Souhlasit s pozorovacím taxonem
   agreeing: Souhlasím...
   aka: alias
   #Noun, title of a popup alerting you to something
@@ -519,6 +520,7 @@ cs:
   all_comments: Všechny komentáře
   all_flags_must_be_resolved: Všechna označení musí být vyřešena
   all_life: Veškerý život
+  all_media_must_be_unhidden: Všechna média musí být neskrytá
   all_names: Všechny názvy
   all_observations: Všechna pozorování
   all_photos: Všechny fotografie
@@ -1292,10 +1294,12 @@ cs:
     cannot_be_determined: Na základě poskytnutých důkazů nelze určit
     dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
     feather: Jedno nebo více per, které nejsou připevněny k organismu
+    female: Důkazy naznačují, že organismus může produkovat vajíčka pro použití při sexuální reprodukci
     flower_budding: Květinové pupeny jsou viditelné a nejsou otevřené
     flowering: Květiny viditelné, otevřené a stále připojené k rostlině
     fruiting: Květiny viditelné a stále připojené k rostlině
     gall: Deformovaný výrůst rostlinných tkání způsobený parazitickým organismem
+    male: Důkazy naznačují, že organismus může produkovat sperma pro použití při sexuální reprodukci
     molt: Odhozená kůže nebo exoskelet
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
     organism: Celý organismus nebo jeho část
@@ -1846,8 +1850,8 @@ cs:
   either_that_user_doesnt_exist_or: "Tento uživatel buď neexistuje, nebo už ho sledujete."
   eligible_for_research_grade: Vhodný pro výzkumnou klasifikaci
   email: E-mail
-  email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_address_for_comments_and_other_feedback: E-mailové adresy pro komentáře a jinou zpětnou vazbu.
+  email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_conf_required_after_grace_period: |
     Od %{requirement_date} je vyžadováno potvrzení e-mailu a před koncem období jste nepotvrdili svou e-mailovou adresu. Pro přístup ke svému účtu si prosím obnovte heslo.
   email_copyright2: "&copy; %{year} iNaturalist, všechna práva vyhrazena"
@@ -2257,6 +2261,10 @@ cs:
   #Notification when an identification has been deleted
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikace skrytá
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identifikace neskrytá
   #Notification when an identification has been updated
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
@@ -2830,6 +2838,10 @@ cs:
   moderation_history_for_user_html: Historie moderování pro %{user}
   moderation_history_desc_html: |
     Patří sem akce moderátora (např. skrývání nebo rušení skrývání komentářů), poznámky a příznaky u všeho, co tento uživatel vytvořil, kromě taxonů. Toto je <strong>viditelné pouze pro kurátory</strong> a <strong>kurátoři nemohou prohlížet svou vlastní historii</strong>, takže poznámky o dané osobě by nikdy neměly být viditelné pro tuto osobu.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Skrýt
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Obnovit
   moderator_note_desc: |
     Moderátorské poznámky jsou záznamy o reakcích moderátorů nebo o obavách ohledně uživatele, například o tom, zda se nejedná o falešný účet. Neuvádějte prosím osobní názory nebo pomluvy o uživateli.
   #Person who executed a moderator action or flagged something
@@ -6100,6 +6112,12 @@ cs:
         flags_that_should_not_be_resolved_desc_html: |
           Vyřešte prosím <code>spam</code> and <code>copyright
           infringement</code> pouze v případě, že obsah není spam nebo se nejedná o porušení autorských práv.
+    geo_model:
+      explain:
+        range_comparison:
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Přesnost:
     guides:
       index:
         deprecated_banner: |
@@ -7511,6 +7529,10 @@ cs:
         same_day_geoprivacy_protection: Ochrana soukromí zeměpisné polohy ve stejný den
         taxon_change_desc: |
           Když jsou na %{site_name} sloučeny nebo přejmenovány taxony, vaše pozorování, taxony na seznamu, identifikace atd. budou automaticky aktualizovány na nové taxony, pokud je změna jasná. Pokud si aktualizace zrušíte nebo je změna nejednoznačná (např. kvůli nejednotnosti názorů), dostanete oznámení o změně s odkazem na nástroj, který můžete použít k manuální aktualizaci svého obsahu, pokud chcete.
+        taxon_name_priorities:
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Přidat místo (volitelné)
+          select_a_lexicon: Vyberte slovník
         this_only_applies_to_traditional_projects: |
           To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.
           Další informace <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">zde</a>.
@@ -7865,9 +7887,11 @@ cs:
       AssessmentSection: Části hodnocení
       Atlas: Atlas
       BlockedUser: Blokovaný uživatel
+      Comment: Komentář
       CompleteSet: Dokončit sady
       #Noun
       Flag: Označit
+      Identification: Identifikace
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7879,6 +7903,7 @@ cs:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Žádost
+      Photo: Fotka
       TaxonLink: Odkazy taxonu
     attributes:
       announcement:
@@ -8176,6 +8201,10 @@ cs:
               only_staff_can_unhide: Pouze personál může odkrýt skrytý obsah
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
+              must_be_a_curator: musí být kurátor
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: musí být kurátor
         observation:
           attributes:

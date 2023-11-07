@@ -15,7 +15,7 @@ const ObservationsGridItem = ( {
   showAllPhotosPreview,
   photoSize
 } ) => {
-  let wrapperClass = "thumbnail borderless ObservationsGridItem";
+  let wrapperClass = "thumbnail borderless ObservationsGridItem d-flex flex-column";
   if ( o.reviewedByCurrentUser ) {
     wrapperClass += " reviewed";
   }
@@ -65,17 +65,15 @@ const ObservationsGridItem = ( {
           </div>
         ) }
       </a>
-      <div className="caption">
+      <div className="caption flex-grow-1">
         <UserImage user={o.user} linkTarget={linkTarget} />
-        {
-          <SplitTaxon
-            {...splitTaxonOptions}
-            taxon={o.taxon}
-            user={user}
-            url={`/observations/${o.id}`}
-            target={linkTarget}
-          />
-        }
+        <SplitTaxon
+          {...splitTaxonOptions}
+          taxon={o.taxon}
+          user={user}
+          url={`/observations/${o.id}`}
+          target={linkTarget}
+        />
         <div className="controls">
           { controls }
         </div>

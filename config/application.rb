@@ -32,6 +32,7 @@ module Inaturalist
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join( "config", "locales", "**", "*.{yml}" )]
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
@@ -77,7 +78,7 @@ module Inaturalist
 
     config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
 
-    config.action_controller.asset_host = proc do |path, request|
+    config.action_controller.asset_host = proc do | _path, request |
       if Rails.env.production? && request && request.controller_instance
         site = request.controller_instance.instance_variable_get( "@site" )
         site && site.url

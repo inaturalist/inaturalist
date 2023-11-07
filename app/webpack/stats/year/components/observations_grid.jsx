@@ -32,7 +32,7 @@ class ObservationsGrid extends React.Component {
     return (
       <div className={`${identifier} ${user ? "for-user" : ""}`}>
         { _.map( _.chunk( observations.slice( 0, obsToshow ), columns ), ( chunk, i ) => (
-          <Row key={`${identifier}-obs-chunk-${i}`}>
+          <Row key={`${identifier}-obs-chunk-${i}`} className="d-flex">
             { chunk.map( o => {
               const colSize = Math.floor( 12.0 / columns );
               const xsColSize = colSize <= 2 ? 6 : 12;
@@ -47,8 +47,10 @@ class ObservationsGrid extends React.Component {
                   md={colSize}
                   lg={colSize}
                   key={`popular-obs-${o.id}`}
+                  className="d-flex"
                 >
                   <ObservationsGridItem
+                    className="d-flex"
                     observation={new inatjs.Observation( o )}
                     splitTaxonOptions={{ noParens: true, noInactive: true }}
                     photoSize="medium"

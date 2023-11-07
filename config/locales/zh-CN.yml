@@ -1551,8 +1551,8 @@ zh-CN:
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
-  email_description: 您的电子邮件不会显示给其他iNaturalist用户
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
+  email_description: 您的电子邮件不会显示给其他iNaturalist用户
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
@@ -5940,6 +5940,7 @@ zh-CN:
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
         about_third_party_tracking: 关于第三方的追踪
+        common_scientific_name_display_order: 俗名/学名显示顺序
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
         licensing_desc_html: |

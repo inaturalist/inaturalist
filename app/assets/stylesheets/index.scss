@@ -360,12 +360,16 @@ span.button {
 
 /* Notices, Flashes, Attention Grabbers */
 #flash, .flash {
-    padding: 0.2em 0.5em;
-    width: 40%;
-    margin: 0.5em auto;
-    text-align: center;
-    background-color: #ffc;
-    border: none;
+  padding: 0.2em 0.5em;
+  width: 40%;
+  margin: 0.5em auto;
+  text-align: center;
+  background-color: #ffc;
+  border: none;
+
+  &.alert {
+    color: #817134
+  }
 }
 
 #flash.notice{background-color:#ffc;}

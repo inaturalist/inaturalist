@@ -21,8 +21,12 @@ Paperclip.interpolates( "icon_type_extension" ) do | attachment, _style |
   ext
 end
 
-Paperclip.interpolates( "root_url" ) do | _attachment, _style |
+Paperclip.interpolates( "root_url" ) do | attachment, _style |
   UrlHelper.root_url.chomp( "/" )
+end
+
+Paperclip.interpolates( "locale" ) do | attachment, _style |
+  attachment&.instance&.locale || ":locale"
 end
 
 Paperclip::UploadedFileAdapter.content_type_detector = InatContentTypeDetector

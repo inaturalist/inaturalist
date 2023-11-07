@@ -5,9 +5,18 @@
       width: 100%;
       min-height: 300px;
     }
+- content_for :extrajs do
+  :javascript
+    var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
+  = javascript_include_tag "announcements/form"
 = form_for @announcement, :builder => DefaultFormBuilder do |f|
   = f.error_messages
   = f.select :placement, Announcement::PLACEMENTS
+  - clients = Announcement::CLIENTS[@announcement.placement] || []
+  = f.select :clients, clients, { include_blank: t( :all ) }, {      |
+    multiple: true,                                                  |
+    description: t( "views.announcements.clients_desc" ),            |
+    size: [clients.length + 1, 5].min }                              |
   :ruby
     month_names = I18n.t( "date.month_names" )
     if month_names.is_a?( Hash )

@@ -1295,10 +1295,12 @@ en:
     cannot_be_determined: Cannot be determined from the evidence provided
     dead: Organism is dead or shows signs of imminent death
     feather: One or more feathers not attached to an organism
+    female: Evidence indicates that organism can produce ova for use in sexual reproduction
     flower_budding: Flower buds are visible but not open
     flowering: Flowers visible, open, and still attached to the plant
     fruiting: Fruit visible and still attached to the plant
     gall: Deformed plant tissue outgrowth caused by a parasitic organism
+    male: Evidence indicates that organism can produce sperm for use in sexual reproduction
     molt: Discarded skin or exoskeleton
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
     organism: Whole or partial organism
@@ -1896,8 +1898,11 @@ en:
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   eligible_for_research_grade: Eligible for Research Grade
   email: Email
-  email_description: Your email is not shared with other users on iNaturalist
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
+  # Introductory form of address in an email. %{user} could be a username or a
+  # name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Dear %{user},
+  email_description: Your email is not shared with other users on iNaturalist
   email_conf_required_after_grace_period: |
     Email confirmation is required as of %{requirement_date} and you did not
     confirm your email address before the cutoff. Please reset your password
@@ -2165,6 +2170,8 @@ en:
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
   generate_your_stats: Generate Your Stats
+  # E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERATE YOUR %{year} YEAR IN REVIEW
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
   geomodel_expected_nearby_label_is_derived: |
@@ -2356,6 +2363,9 @@ en:
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
   inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
+    organization based in the United States of America (Tax ID: 92-1296468).
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -3477,6 +3487,7 @@ en:
   observations_widget: Observations Widget
   observations_with_this_field: Observations with this field
   observations_with_this_field_and_value: Observations with this field and value
+  observations_without_this_field: Observations without this field
   observations_without_media: Observations w/o Media
   observationcounts_refreshed: Observation counts refreshed
   observed: Observed
@@ -6138,6 +6149,7 @@ en:
   year: Year
   year_in_review: "Year In Review %{year}"
   year_in_review2: "Year in Review %{year}"
+  year_in_review_caps: "YEAR IN REVIEW %{year}"
   year_month: year/month
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow
@@ -6172,6 +6184,58 @@ en:
   yir_donate_banner_you_helped_inaturalist_thrive: You helped iNaturalist thrive this year. Thank you!
   # "Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Needs Your Support
+  yir_email_because_of_you: |
+    Because of you, there is more data about biodiversity this year than last
+    year. The Year in Review is our gift to you for everything that you have
+    done for biodiversity through iNaturalist.
+  yir_email_log_in_to_generate: |
+    Log in to generate your personal year in review to find out!
+  yir_email_of_your_observations:
+    one: Of your %{count} observation, do you know how many were made in %{year}?
+    other: Of your %{count} observations, do you know how many were made in %{year}?
+  # Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Your %{year} iNaturalist Year in Review — celebrate your year with biodiversity
+  # This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: The iNaturalist Team
+  yir_email_the_year_isnt_over: |
+    The year isn’t over yet, and it’s never too late to post older
+    observations. After you share more observations, be sure to
+    select “Regenerate Stats” at the bottom of your Year in Review to see the
+    updates.
+  yir_email_what_else_will_you_observe_caps: WHAT ELSE WILL YOU OBSERVE?
+  yir_email_what_new_to_you: |
+    What new-to-you species did you record this year? How many people helped
+    you with identifications (and how many did you help)?
+  yir_email_with_gratitude: With gratitude,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} ON INATURALIST GLOBALLY"
+  yir_email_you_are_part_of_something: |
+    You are part of something big! Every person who posts observations, adds
+    identifications, and spreads the word about iNaturalist makes a
+    difference for biodiversity. Through our collective efforts, we are
+    making biodiversity data and insights available at an unprecedented
+    scale. Thank you for being part of the iNaturalist community!
+  yir_email_you_make_a_difference: |
+    You make a difference for biodiversity through iNaturalist. Thank you for
+    everything that you do!
+  # @vow_or_con works on %{username}. %{created_date} will use the date.long
+  # format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    You received this email because %{email} is associated with
+    https://www.inaturalist.org/people/%{username}, an iNaturalist account
+    created on %{created_date}.
+  # @vow_or_con works on %{username}. %{created_date} will use the date.long
+  # format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    You received this email because %{email} is associated with
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    an iNaturalist account created on %{created_date}.
+  # @vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Your account is affiliated with %{site_name} (%{site_url}).
+  # @vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Your account is affiliated with <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generating and sharing high-impact biodiversity data at this unprecedented
     scale and speed has increasing costs
@@ -6347,6 +6411,9 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
+      clients_desc: |
+        CMD- or SHIFT-click to select multiple. Not selecting any will show the
+        announcement to all users regardless of client.
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |
@@ -9138,6 +9205,7 @@ en:
         # Preference for an announcement that is only shown to users who have
         # not confirmed their email address
         prefers_target_unconfirmed_users: Target unconfirmed users
+        clients: Clients
       assessment:
         description: Description
       assessment_section:
@@ -9372,6 +9440,16 @@ en:
           one: "%{count} error prohibited this %{model} from being saved"
           other: '%{count} errors prohibited this %{model} from being saved'
       models:
+        announcement:
+          attributes:
+            clients:
+              # Error message shown when an Announcement has a value in the
+              # clients attribute that is not a valid client for the
+              # annoumcement's placement attribute. This might be used in a
+              # sentence like "clients must be valid for specified
+              # placement". Only site admins will see this texxt, so it's ok
+              # if it's not translated perfectly.
+              must_be_valid_for_specified_placement: must be valid for specified placement
         application:
           attributes:
             redirect_uri:

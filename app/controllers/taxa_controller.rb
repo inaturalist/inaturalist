@@ -93,7 +93,9 @@ class TaxaController < ApplicationController
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
         @featured_taxa = @featured_taxa.sort_by{rand}[0..10]
         Taxon.preload_associations(@featured_taxa, [
-          :iconic_taxon, :photos, :taxon_descriptions,
+          :iconic_taxon,
+          { photos: [:user, :file_prefix, :file_extension, :flags, :moderator_actions] },
+          :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
         @featured_taxa_obs = @featured_taxa.map do |taxon|
           taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
@@ -110,6 +112,9 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
+          Taxon.preload_associations(@iconic_taxa, [
+            { photos: [:user, :file_prefix, :file_extension, :flags, :moderator_actions] }
+          ] )
           recent_params = { d1: 1.month.ago.to_date.to_s,
             quality_grade: :research, order_by: :observed_on }
           if @site
@@ -119,7 +124,10 @@ class TaxaController < ApplicationController
           @recent = Observation.page_of_results(recent_params).
             group_by(&:taxon_id).map{ |k,v| v.first }[0...5]
           Observation.preload_associations(@recent,{
-            taxon: [ { taxon_names: :place_taxon_names }, :photos ] } )
+            taxon: [
+              { taxon_names: :place_taxon_names },
+              { photos: [:user, :file_prefix, :file_extension, :flags, :moderator_actions] }
+            ] } )
           @recent = @recent.sort_by(&:id).reverse
         end
       end
