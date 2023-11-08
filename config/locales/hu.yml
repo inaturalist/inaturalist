@@ -83,6 +83,9 @@ hu:
   x_people:
     one: "%{count} személy"
     other: "%{count} személy"
+  x_people_html:
+    one: '<span class="count">%{count}</span> személy'
+    other: '<span class="count">%{count}</span> személy'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user} felhasználónak <strong>%{y} meghatározással</strong>"
   x_photos:
     one: "%{count} fénykép"
@@ -5271,6 +5274,15 @@ hu:
           Létrehozva az <a href="https://www.inaturalist.org">iNaturalist</a>
           vagy az <a href="%{url}">iNaturalist Hálózat</a> honlapokkal
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Mindkettőt hozzáadott
+        added_only_identifications: Csak azonosítást adott hozzá
+        added_only_observations: Csak megfigyelést adott hozzá
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Az iNat-adatok felhasználásának eredményei
+        broader_impacts_desc: |
+          Számos külső partnerszervezet rendszeresen vesz át iNaturalist-megfigyeléseket tudományos és természetvédelmi célokból. A megfigyeléseid, azonosításaid a lincenszelési beállításaid alapján lehetővé teszik ezen szervezetek számára az adatok feldolgozását és megosztását a biodiverzitás védelme érdekében.
         compare_desc: |
           Hogy alakult ez az év az előzőekhez képest? Három vagy több év használat révén össze tudjuk hasonlítani az éves aktivitásaidat. A zöld csík jelzi az idei évet, a fehér függőleges vonal mutatja a tavalyi évet, a szürke mezők pedig a legalacsonyabb, legmagasabb és átlagos aktivitás évét. Az aktivitás nélküli éveket nem jelenítjük meg.
         compared_to_previous_years: Összehasonlítás az előző évekkel
