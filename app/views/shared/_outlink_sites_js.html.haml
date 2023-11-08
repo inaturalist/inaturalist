@@ -1,0 +1,23 @@
+:javascript
+    var OUTLINK_SITES = _.assign( {
+      "Atlas of Living Australia": {
+        icon: "#{ asset_url( "sites/ala.png" ) }",
+        url: "https://www.ala.org.au/"
+      },
+      "Calflora": {
+        icon: "#{ asset_url( "sites/calflora.png" ) }",
+        url: "https://www.calflora.org/"
+      },
+      "GBIF": {
+        icon: "#{ asset_url( "sites/gbif.png" ) }",
+        url: "https://www.gbif.org/"
+      },
+      "GloBI": {
+        icon: "#{ asset_url( "sites/globi.png" ) }",
+        url: "https://www.globalbioticinteractions.org/"
+      },
+      "EDDMapS": {
+        icon: "#{ asset_url( "sites/eddmaps.png" ) }",
+        url: "https://www.eddmaps.org/"
+      },
+    }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = { icon: dp.logo&.url }; memo}.to_json.html_safe} );
