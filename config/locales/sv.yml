@@ -83,6 +83,9 @@ sv:
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> personer'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} bestämningar</strong>"
   x_photos:
     one: "%{count} bild"
@@ -7308,6 +7311,19 @@ sv:
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
           eller <a href="%{url}">iNaturalist Network</a>-webbplatser
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Lade till båda
+        added_only_identifications: Lade endast till bestämningar
+        added_only_observations: Lade endast till fynd
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Bredare inverkan
+        broader_impacts_desc: |
+          Flera externa partner importerar regelbundet iNaturalist-fynd för att
+          stödja vetenskap och naturvård. Dina fynd, bestämningar och val av
+          öppna licenser gör det möjligt för dessa organisationer att tillhandahålla
+          användbar information om biologisk mångfald till människor som
+          behöver det runt om i världen.
         compare_desc: |
           Hur var detta år jämfört med dina tidigare år? Med tre år av användning eller mer kan vi börja jämföra årliga aktivitetsmått. Den gröna stapeln visar i år, den vita lodräta stapeln visar förra året, och de grå bakgrundsområdena visar de lägsta och högsta åren, såväl som medel för alla år. Statistik inkluderar inte år där antalet var noll.
         compare_site_desc: |
