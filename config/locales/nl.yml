@@ -83,6 +83,9 @@ nl:
   x_people:
     one: "%{count} persoon"
     other: "%{count} mensen"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persoon'
+    other: '<span class="count">%{count}</span> mensen'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   x_photos:
     one: "%{count} foto"
@@ -7206,6 +7209,18 @@ nl:
           Gemaakt met <a href="https://www.inaturalist.org">iNaturalist</a>
           of <a href="%{url}">iNaturalist Network</a> websites
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Beide toegevoegd
+        added_only_identifications: Alleen determinaties toegevoegd
+        added_only_observations: Alleen waarnemingen toegevoegd
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Brede impact
+        broader_impacts_desc: |
+          Verschillende externe partners importeren regelmatig iNaturalist waarnemingen om 
+          wetenschap en natuurbehoud te ondersteunen. Jouw waarnemingen, determinaties
+          en open licentiekeuzes maken het mogelijk dat deze organisaties nuttige
+          biodiversiteitsinformatie kunnen verstrekken aan mensen die het nodig hebben over de hele wereld.
         compare_desc: |
           Hoe verhoudt dit jaar zich tot voorgaande jaren? Met drie jaar
           gebruik of meer kunnen we beginnen jaarlijkse activiteitsstatistieken te vergelijken.
