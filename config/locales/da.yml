@@ -83,6 +83,9 @@ da:
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> personer'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
@@ -7452,6 +7455,18 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a>-websteder
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Tilføjet begge
+        added_only_identifications: Tilføjet kun identifikationer
+        added_only_observations: Tilføjet kun observationer
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Bredere indvirkninger
+        broader_impacts_desc: |
+          Adskillige eksterne partnere importerer jævnligt iNaturalist-observationer til
+          støtte for videnskab og bevaring. Dine observationer, identifikationer,
+          og åbne licensvalg tillader disse organisationer at give nyttige
+          biodiversitetsoplysninger til folk rundt om i verden, som behøver dem.
         compare_desc: |
           Hvordan var i år sammenlignet med tidligere år? Med minimum tre års brug
           kan vi begynde at sammenligne årlige aktivitetsmålinger. Den grønne bjælke viser dette år, den hvide lodrette bjælke viser sidste år, og de grå baggrundsområder viser de laveste og højeste år, samt gennemsnittet for
