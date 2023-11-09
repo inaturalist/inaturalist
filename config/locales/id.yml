@@ -56,6 +56,8 @@ id:
     other: "%{count} lainnya"
   x_people:
     other: "%{count} orang"
+  x_people_html:
+    other: '<span class="count">%{count}</span> orang'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} orang</strong> telah membantu %{user} dengan <strong>%{y} ID</strong>"
   x_photos:
     other: "%{count} foto"
@@ -6835,6 +6837,19 @@ id:
           Dibuat melalui <a href="https://www.inaturalist.org">iNaturalist</a>
           atau situs web <a href="%{url}">Jaringan iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Menambahkan Keduanya
+        added_only_identifications: Menambahkan Identifikasi Saja
+        added_only_observations: Menambahkan Pengamatan Saja
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Pengaruh Lebih Luas
+        broader_impacts_desc: |
+          Beberapa rekan sering mengimpor pengamatan iNaturalist untuk 
+          mendukung ilmu pengetahuan dan konservasi. Pengamatan, identifikasi, 
+          dan penggunaan lisensi terbuka mengizinkan organisasi-organisasi 
+          tersebut untuk menyediakan informasi biodiversitas yang berguna untuk 
+          orang-orang yang membutuhkannya di seluruh dunia.
         compare_desc: |
           Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Dengan penggunaan selama tiga tahun atau lebih, kami bisa memulai untuk membandingkan metrik aktivitas tahunan. Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun. Statistik tidak menyertakan tahun di mana semua hitungan berjumlah nol.
         compare_site_desc: |
@@ -7737,6 +7752,16 @@ id:
         header:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: harus valid untuk penempatan yang tertera
         application:
           attributes:
             redirect_uri:
