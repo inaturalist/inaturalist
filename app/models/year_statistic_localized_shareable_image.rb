@@ -27,7 +27,20 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
 
-  ASSET_CACHE_TIME = 10.minutes
+  ASSET_CACHE_TIME = if Rails.configuration.action_controller.perform_caching
+    10.minutes
+  else
+    0.minutes
+  end
+
+  def self.tmpdir
+    # Override if you want to see the actual intermeidate
+    Dir.tmpdir
+  end
+
+  def tmpdir
+    YearStatisticLocalizedShareableImage.tmpdir
+  end
 
   def generate( options = {} )
     debug = options.delete( :debug )
@@ -36,7 +49,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     end
     return if locale.blank? || !I18N_SUPPORTED_LOCALES.include?( locale )
 
-    work_path = File.join( Dir.tmpdir, "year-stat-shareable-#{year_statistic.id}-#{locale}-#{Time.now.to_i}" )
+    work_path = File.join( tmpdir, "year-stat-shareable-#{year_statistic.id}-#{locale}-#{Time.now.to_i}" )
     FileUtils.mkdir_p( work_path, mode: 0o755 )
 
     # generate the base image with background and site wordmark. This can be cached for
@@ -84,11 +97,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         #{final_path}
     BASH
 
-    puts "final_path: #{final_path}" if debug
     self.shareable_image = File.open( final_path )
     save!
-    FileUtils.rm( final_path )
-    FileUtils.rm( icon_or_logo_path )
+    FileUtils.rm( final_path ) unless Rails.env.development?
+    FileUtils.rm( icon_or_logo_path ) unless Rails.env.development?
     Dir.delete( work_path )
   end
 
@@ -150,12 +162,12 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     else
       self.class.run_cmd "convert #{square_path} -resize 212x212 #{path}"
     end
-    FileUtils.rm( square_path )
+    FileUtils.rm( square_path ) unless Rails.env.development?
     path
   end
 
   def generate_background_with_wordmark( _work_path )
-    background_path = self.class.generate_background
+    background_path = generate_background
     # Overlay the icon onto the montage
     wordmark_site = year_statistic.user&.site || year_statistic.site || Site.default
     wordmark_url = ApplicationController.helpers.
@@ -164,13 +176,15 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     wordmark_path = self.class.cache_asset( wordmark_url )
 
     background_with_wordmark_hash = Digest::MD5.hexdigest( background_path + wordmark_path )
-    path = File.join( Dir.tmpdir, "year-statistic-background-with-wordmark-#{background_with_wordmark_hash}" )
+    path = File.join( tmpdir, "year-statistic-background-with-wordmark-#{background_with_wordmark_hash}.png" )
     if self.class.cached_asset_exists_and_unexpired?( path )
       return path
     end
 
     wordmark_canvas_path = self.class.cache_imagemagick_template(
-      "convert -size 500x562 xc:transparent -type TrueColorAlpha"
+      # Weirdly if you use xc:transparent it creates an image with a grayscale
+      # color space in imagemagick 7 on a mac
+      "convert -size 500x562 xc:#FF000000 -type TrueColorAlpha"
     )
     wordmark_resized_path = "#{path}-wordmark-resized.png"
     density = 1024
@@ -186,7 +200,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       retry
     end
     wordmark_composite_path = "#{path}-wordmark-composite.png"
-    self.class.run_cmd <<~BASH
+    wordmark_composite_cmd = <<~BASH
       convert #{wordmark_canvas_path} \
         #{wordmark_resized_path} \
         -type TrueColorAlpha \
@@ -194,13 +208,14 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -composite \
         #{wordmark_composite_path}
     BASH
+    self.class.run_cmd wordmark_composite_cmd
     self.class.run_cmd <<~BASH
       convert #{background_path} #{wordmark_composite_path} \
         -gravity west -composite #{path}
     BASH
-    FileUtils.rm( wordmark_canvas_path )
-    FileUtils.rm( wordmark_resized_path )
-    FileUtils.rm( wordmark_composite_path )
+    FileUtils.rm( wordmark_canvas_path ) unless Rails.env.development?
+    FileUtils.rm( wordmark_resized_path ) unless Rails.env.development?
+    FileUtils.rm( wordmark_composite_path ) unless Rails.env.development?
     path
   end
 
@@ -366,20 +381,20 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
 
   def self.cache_asset( url )
     url_hash = Digest::MD5.hexdigest( url )
-    cache_path = File.join( Dir.tmpdir, "year-statistic-cached-asset-#{url_hash}" )
+    url_ext = File.extname( URI.parse( url ).path )
+    cache_path = File.join( tmpdir, "year-statistic-cached-asset-#{url_hash}#{url_ext}" )
     if cached_asset_exists_and_unexpired?( cache_path )
       return cache_path
     end
 
     run_cmd "curl -f -s -o #{cache_path} \"#{url}\""
-    url_ext = File.extname( URI.parse( url ).path )
-    clean_svg_for_imagemagick( cache_path ) if url_ext.downcase == "svg"
+    clean_svg_for_imagemagick( cache_path ) if url_ext.downcase == ".svg"
     cache_path
   end
 
   def self.cache_imagemagick_template( cmd )
     cmd_hash = Digest::MD5.hexdigest( cmd )
-    cache_path = File.join( Dir.tmpdir, "year-statistic-cached-template-#{cmd_hash}.png" )
+    cache_path = File.join( tmpdir, "year-statistic-cached-template-#{cmd_hash}.png" )
     if cached_asset_exists_and_unexpired?( cache_path )
       return cache_path
     end
@@ -392,16 +407,21 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   def self.clean_svg_for_imagemagick( svg_path )
     tmp_path = "#{svg_path}.tmp"
     run_cmd <<~BASH
-      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
+      cat #{svg_path} | sed 's/id="Path"//' > #{tmp_path}
     BASH
     run_cmd "mv #{tmp_path} #{svg_path}"
   end
 
-  def self.generate_background
-    background_url = ApplicationController.helpers.image_url( "yir-background.png" ).to_s.
+  def generate_background
+    background_filename = if year_statistic.year >= 2023
+      "yir-background-dark.png"
+    else
+      "yir-background.png"
+    end
+    background_url = ApplicationController.helpers.image_url( background_filename ).to_s.
       gsub( %r{([^:])//}, "\\1/" ).
       gsub( "staging.inaturalist", "www.inaturalist" )
-    cache_asset( background_url )
+    YearStatisticLocalizedShareableImage.cache_asset( background_url )
   end
 
   def self.generate_circle_mask
