@@ -83,6 +83,9 @@ de:
   x_people:
     one: "%{count} Person"
     other: "%{count} Personen"
+  x_people_html:
+    one: '<span class="count">%{count}</span> Person'
+    other: '<span class="count">%{count}</span> Personen'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Personen</strong> halfen %{user} mit <strong>%{y} IDs</strong>"
   x_photos:
     one: "Ein Foto"
@@ -6952,6 +6955,17 @@ de:
           Erstellt mittels <a href="https://www.inaturalist.org">iNaturalist</a>
           oder <a href="%{url}">iNaturalist Network</a>-Webseiten
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Beides hinzugefügt
+        added_only_identifications: Nur Bestimmungen hinzugefügt
+        added_only_observations: Nur Beobachtungen hinzugefügt
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Weitreichende Relevanz
+        broader_impacts_desc: |
+          Mehrere externe Partner importieren regelmäßig iNaturalist-Beobachtungen und unterstützen damit Wissenschaft und Naturschutzmaßnahmen. Deine Beobachtungen, Identifikationen 
+          sowie die Entscheidung zu offener Lizenzierung ermöglichen diesen Organisationen, nützliche
+          Informationen über die biologische Vielfalt mit Menschen zu teilen, die damit etwas Sinnvolles anfangen können.
         compare_desc: |
           Wie verlief dieses Jahr im Vergleich zu den Vorjahren? Mit mindestens drei Jahren iNaturalist-Verwendung können wir anfangen, jährliche Aktivitätsmetriken zu vergleichen.
         compare_site_desc: |
