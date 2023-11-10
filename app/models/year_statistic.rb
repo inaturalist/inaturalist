@@ -257,8 +257,9 @@ class YearStatistic < ApplicationRecord
         params[:site_id] = site.id
       end
     end
-    JSON.parse( INatAPIService.get_json( "/observations/histogram", params,
-      { timeout: 30 } ) )["results"][params[:interval]]
+    response = INatAPIService.get_json( "/observations/histogram", params, { timeout: 30 } )
+    json = JSON.parse( response )
+    json["results"][params[:interval]]
   end
 
   def self.identifications_histogram( year, options = {} )
@@ -554,23 +555,23 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_localized_shareable_images( options = {} )
-    locales_to_generate = options[:only_user_locale] ?
-      [user&.locale || I18n.locale] :
+    locales_to_generate = if options[:only_user_locale]
+      [user&.locale || I18n.locale]
+    else
       I18N_SUPPORTED_LOCALES
-    locales_to_generate.sort.each do |locale|
-      begin
-        localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
-          year_statistic: self,
-          locale: locale
-        )
-        # even though this instance was passed to the find_or_create_by, the association
-        # will not be populated and will still get queried for. Assigning it here saves
-        # that query and having to pass the same huge data attribute many times from the DB
-        localized_shareable.year_statistic = self
-        localized_shareable.generate( options )
-      rescue RuntimeError => e
-        pp e
-      end
+    end
+    locales_to_generate.sort.each do | locale |
+      localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
+        year_statistic: self,
+        locale: locale
+      )
+      # even though this instance was passed to the find_or_create_by, the association
+      # will not be populated and will still get queried for. Assigning it here saves
+      # that query and having to pass the same huge data attribute many times from the DB
+      localized_shareable.year_statistic = self
+      localized_shareable.generate( options )
+    rescue RuntimeError => e
+      pp e
     end
   end
 
@@ -717,7 +718,7 @@ class YearStatistic < ApplicationRecord
 
   def shareable_image_for_locale( locale )
     if year_statistic_localized_shareable_images.any?
-      year_statistic_localized_shareable_images.detect do |si|
+      year_statistic_localized_shareable_images.detect do | si |
         si.locale == locale.to_s
       end&.shareable_image
     else
@@ -1545,7 +1546,7 @@ class YearStatistic < ApplicationRecord
     if options[:debug]
       puts "[#{Time.now}] user_activity_counts, year: #{year}, options: #{options}"
     end
-    max_user_id = User.maximum( :id )
+    max_user_id = User.maximum( :id ) || 0
     start_id = 1
     batch_size = 500_000
     activity_counts_by_user = {}
@@ -1660,7 +1661,7 @@ class YearStatistic < ApplicationRecord
         }
       }
     }
-    Observation.elastic_search( es_params ).aggregations.outlinks.buckets.map do |bucket|
+    Observation.elastic_search( es_params ).aggregations.outlinks.buckets.map do | bucket |
       [bucket["key"], bucket["doc_count"]]
     end.to_h
   end

@@ -277,7 +277,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -extent #{text_width}x34 \
       \\) \
       -gravity northwest \
-      -geometry +668+#{_pos + ( 148 - 80 )} \
+      -geometry +668+#{y_pos + ( 148 - 80 )} \
       -composite
     BASH
   end
