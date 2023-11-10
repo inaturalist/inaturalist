@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class YearStatisticLocalizedShareableImage < ApplicationRecord
   belongs_to :year_statistic
 
@@ -43,7 +45,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
 
     # prepate the text elements
     text = prepare_text
-    using_non_latin_chars = text.any?{ |k,v| v.to_s.non_latin_chars? }
+    using_non_latin_chars = text.any? {| _k, v | v.to_s.non_latin_chars? }
     light_font_path, medium_font_path, semibold_font_path = font_paths( using_non_latin_chars )
 
     # populate an array of extra elements to overlay on the base image
@@ -70,7 +72,8 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       count_txt, label_txt = texts
       y = 80 + ( idx * 145 )
       text_width = 312 # this provides a bit of margin (332 would go to the right edge )
-      composites << label_and_count_composite( label_txt, count_txt, y, text_width, semibold_font_path, medium_font_path )
+      composites << label_and_count_composite( label_txt, count_txt, y, text_width, semibold_font_path,
+        medium_font_path )
     end
 
     # combine all composites with the base image into the final shareable image
@@ -94,13 +97,14 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def label_method
-    ( Rails.env.production? && locale.to_s =~ /^(il|he|ar|kn|mr|sat|th)/ ) ? "pango" : "label"
+    Rails.env.production? && locale.to_s =~ /^(il|he|ar|kn|mr|sat|th)/ ? "pango" : "label"
   end
 
   def generate_icon_or_logo( work_path )
     # Get the icon
     icon_or_logo_url = if year_statistic.user
-      ApplicationController.helpers.image_url( year_statistic.user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( year_statistic.user.icon.url( :large ) ).to_s.gsub( %r{([^:])//},
+        "\\1/" )
     elsif year_statistic.site
       ApplicationController.helpers.image_url( year_statistic.site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif Site.default
@@ -147,10 +151,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       self.class.run_cmd "convert #{square_path} -resize 212x212 #{path}"
     end
     FileUtils.rm( square_path )
-    return path
+    path
   end
 
-  def generate_background_with_wordmark( work_path )
+  def generate_background_with_wordmark( _work_path )
     background_path = self.class.generate_background
     # Overlay the icon onto the montage
     wordmark_site = year_statistic.user&.site || year_statistic.site || Site.default
@@ -168,7 +172,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     wordmark_canvas_path = self.class.cache_imagemagick_template(
       "convert -size 500x562 xc:transparent -type TrueColorAlpha"
     )
-    wordmark_resized_path = path + "-wordmark-resized.png"
+    wordmark_resized_path = "#{path}-wordmark-resized.png"
     density = 1024
     begin
       self.class.run_cmd <<~BASH
@@ -178,9 +182,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     rescue RuntimeError => e
       density /= 2
       raise e if density <= 8
+
       retry
     end
-    wordmark_composite_path = path + "-wordmark-composite.png"
+    wordmark_composite_path = "#{path}-wordmark-composite.png"
     self.class.run_cmd <<~BASH
       convert #{wordmark_canvas_path} \
         #{wordmark_resized_path} \
@@ -243,7 +248,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     BASH
   end
 
-  def label_and_count_composite( label_txt, count_txt, y, text_width, semibold_font_path, medium_font_path )
+  def label_and_count_composite( label_txt, count_txt, y_pos, text_width, semibold_font_path, medium_font_path )
     # Note that the use of label below will automatically try to choose the
     # best font size to fit the space
     <<~BASH
@@ -258,7 +263,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -extent #{text_width}x55 \
       \\) \
       -gravity northwest \
-      -geometry +668+#{y} \
+      -geometry +668+#{y_pos} \
       -composite \
       \\( \
         -size #{text_width}x34 \
@@ -272,7 +277,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -extent #{text_width}x34 \
       \\) \
       -gravity northwest \
-      -geometry +668+#{y + ( 148 - 80 )} \
+      -geometry +668+#{_pos + ( 148 - 80 )} \
       -composite
     BASH
   end
@@ -313,7 +318,8 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
       locale: locale )
     text[:identifications_count_txt] = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
-    text[:identifications_label_txt] = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
+    text[:identifications_label_txt] =
+      identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
 
     if label_method == "pango"
       text[:title] = "<span size='#{1024 * 22}'>#{text[:title]}</span>"
