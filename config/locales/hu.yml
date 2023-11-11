@@ -2324,20 +2324,20 @@ hu:
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: szerepelnie kell %{project} projektben
-  must_be_in_taxon: '%{taxon} taxonban kell legyen'
+  must_be_in_taxon: '%{taxon} taxon tagja'
   must_be_not_in_taxon: nem lehet %{taxon} taxonban
   must_be_not_observed_by_user: nem lehet %{user} által megfigyelve
-  must_be_not_observed_in_place: 'nem lehet ezen a helyen megfigyelve: %{place}'
-  must_be_observed_after: '%{operand} után kell legyen megfigyelve'
-  must_be_observed_before: '%{operand} előtt kell legyen megfigyelve'
-  must_be_observed_by_user: '%{user} által megfigyelve kell legyen'
-  must_be_observed_in_place: 'megfigyelve kell legyen ezen a helyen: %{place}'
+  must_be_not_observed_in_place: 'nem lehet ezen itt megfigyelve: %{place}'
+  must_be_observed_after: '%{operand} utáni megfigyelés'
+  must_be_observed_before: '%{operand} előtti megfigyelés'
+  must_be_observed_by_user: '%{user} általi megfigyelések'
+  must_be_observed_in_place: 'itteni megfigyelések: %{place}'
   must_be_less_than_x_MB: "Kisebbnek kell lennie mint %{x} MB"
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
-  must_have_photos: kell legyen kép
+  must_have_photos: kép szükséges
   #Grades is a comma separated list of quality grades
-  must_have_quality_grades: "a következő minősítése kell legyen: %{grades}"
-  must_have_sounds: kell legyen hang
+  must_have_quality_grades: "a következő minősítése: %{grades}"
+  must_have_sounds: hang szükséges
   must_have_x: "kell legyen %{x}"
   #Imperative verb, label for a button that lets you mute another user
   mute: Némítás
@@ -2694,8 +2694,8 @@ hu:
     following_panel_title: Kövess emebereket, taxonokat és helyeket
     following_panel_body: |
       %{site_name}-on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
-    comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak %{site_name}-on?
-    comments_panel_body: "<p>Az %{site_name} abból áll, hogy megoszd és megbeszéld élőlények megfigyeléseit. Alább találod a most lefolyó beszélgetéseket. (Megjegyzés: Automatikusan fel vagy iratkozva minden beszélgetésre, amelyhez hozzászólsz vagy amelyekhez azonosításokat adsz. Ezeket az értesítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
+    comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak az %{site_name}on?
+    comments_panel_body: "<p>Az %{site_name} lényege a megfigyelések megosztása és megvitatása. Alább találod a legújabb hozzászólásokat. (Megjegyzés: Automatikusan értesítést kapsz a megfigyeléseidhez és az azonosításaidhoz kapcsolódó hozzászólásokról. Ezeket az értesítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
     updates_by_you_panel_title: Ez a fül egy gyors szűrő a tartalmaid újdonságaihoz
     updates_by_you_panel_body: 'Emlékeztető: a "Minden aktivitás" fülön nemcsak a saját tartalmaidről kapsz értesítéseket, hanem a követett felhasználók tartalmairól is, valamint azokról a taxonokról, amelyekre feliratkoztál a jobbra található Feliratkozás opcióval.'
     youve_got_updates_panel_title: Új híreid vannak!
