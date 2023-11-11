@@ -67,6 +67,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     # add the title, e.g. Year In Review 2023
     composites << title_composite( light_font_path, text[:title] )
 
+    if year_statistic.year >= 2023
+      composites << green_circle_composite( self.class.generate_green_circle )
+    end
+
     # add the user icon or site logo
     icon_or_logo_path = generate_icon_or_logo( work_path )
     composites << icon_composite( icon_or_logo_path )
@@ -101,7 +105,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     save!
     FileUtils.rm( final_path ) unless Rails.env.development?
     FileUtils.rm( icon_or_logo_path ) unless Rails.env.development?
-    Dir.delete( work_path )
+    Dir.delete( work_path ) unless Rails.env.development?
   end
 
   def left_vertical_offset
@@ -151,7 +155,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     self.class.run_cmd resize_cmd
 
     path = File.join( work_path, "final_icon_or_logo.png" )
-    if year_statistic.user
+    if year_statistic.user || year_statistic.year >= 2023
       # Apply circle mask
       self.class.run_cmd <<~BASH
         convert #{square_path} #{self.class.generate_circle_mask} \
@@ -166,15 +170,30 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     path
   end
 
-  def generate_background_with_wordmark( _work_path )
-    background_path = generate_background
-    # Overlay the icon onto the montage
+  def wordmark_path_for_site
     wordmark_site = year_statistic.user&.site || year_statistic.site || Site.default
     wordmark_url = ApplicationController.helpers.
       image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" ).
       sub( "staticdev", "static" )
     wordmark_path = self.class.cache_asset( wordmark_url )
+    return wordmark_path unless year_statistic.year >= 2023
 
+    ext = File.extname( wordmark_path )
+    return wordmark_path unless ext == ".svg"
+
+    path_hash = Digest::MD5.hexdigest( wordmark_path )
+    darkmode_wordmark_path = File.join( tmpdir, "darkmode_wordmark_path-#{path_hash}#{ext}" )
+    darkmode_wordmark_cmd = <<~BASH
+      cat #{wordmark_path} | sed 's/#000000/#FFFFFF/' > #{darkmode_wordmark_path}
+    BASH
+    self.class.run_cmd darkmode_wordmark_cmd
+    darkmode_wordmark_path
+  end
+
+  def generate_background_with_wordmark( _work_path )
+    background_path = generate_background
+    # Overlay the icon onto the montage
+    wordmark_path = wordmark_path_for_site
     background_with_wordmark_hash = Digest::MD5.hexdigest( background_path + wordmark_path )
     path = File.join( tmpdir, "year-statistic-background-with-wordmark-#{background_with_wordmark_hash}.png" )
     if self.class.cached_asset_exists_and_unexpired?( path )
@@ -228,17 +247,43 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     BASH
   end
 
+  def green_circle_composite( circle_path )
+    <<~BASH
+      #{circle_path} \
+      -gravity northwest \
+      -geometry +135+#{left_vertical_offset + 220} \
+      -composite
+    BASH
+  end
+
+  def text_color
+    if year_statistic.year >= 2023
+      "white"
+    else
+      "black"
+    end
+  end
+
+  def title_height
+    if year_statistic.year >= 2023
+      35
+    else
+      30
+    end
+  end
+
   def title_composite( light_font_path, title )
     <<~BASH
       \\( \
-        -size 500x30 \
+        -size 500x#{title_height} \
         -background transparent \
+        -fill #{text_color} \
         -font #{light_font_path} \
         -kerning 2 \
         #{label_method}:"#{title}" \
         -trim \
         -gravity center \
-        -extent 500x30 \
+        -extent 500x#{title_height} \
       \\) \
       -gravity northwest \
       -geometry +0+#{left_vertical_offset + 165} \
@@ -246,12 +291,13 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     BASH
   end
 
-  def owner_composite( medium_font_path, owner )
+  def owner_composite( font_path, owner )
     <<~BASH
       \\( \
         -size 500x40 \
         -background transparent \
-        -font #{medium_font_path} \
+        -font #{font_path} \
+        -fill #{text_color} \
         #{label_method}:"#{owner}" \
         -trim \
         -gravity center \
@@ -367,7 +413,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         semibold_font_path = "Helvetica-Bold"
       end
     else
-      light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
+      light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Book-Pro.otf" )
       medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
       semibold_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Semibold-Pro.otf" )
     end
@@ -428,6 +474,13 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     cache_imagemagick_template <<~BASH
       convert -size 500x500 xc:black -fill white \
         -draw "translate 250,250 circle 0,0 0,250" -alpha off
+    BASH
+  end
+
+  def self.generate_green_circle
+    cache_imagemagick_template <<~BASH
+      convert -size 242x242 xc:transparent -fill "#74ac00" \
+        -draw "translate 116,116 circle 0,0 0,116"
     BASH
   end
 
