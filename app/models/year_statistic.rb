@@ -878,10 +878,9 @@ class YearStatistic < ApplicationRecord
     if options[:debug]
       puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
     end
-    # TODO: replace this with https://www.gbif.org/developer/literature
-    gbif_endpont = "https://www.gbif.org/api/resource/search"
+
+    gbif_endpoint = "https://api.gbif.org/v1/literature/search"
     gbif_params = {
-      contentType: "literature",
       # iNat RG Observations dataset identifier on GBIF We don't publish site-
       # specific datasets, so there's no reason not to hard-code it here.
       gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
@@ -889,20 +888,24 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    gbif_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
+    response = JSON.parse( RestClient.get( gbif_url ) )
+
     new_results = []
     response["results"].each do | result |
-      if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
+      altmetric_score = nil
+
+      if ( doi = result.dig( "identifiers", "doi" ) )
         url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
           am_response = RestClient.get( url )
-          result["altmetric_score"] = JSON.parse( am_response )["score"]
+          altmetric_score = JSON.parse( am_response )["score"]
         rescue RestClient::NotFound => e
           Rails.logger.debug "[DEBUG] Request failed for #{url}: #{e}"
         end
         sleep( 1 )
       end
-      result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
+
       new_result = result.slice(
         "title",
         "authors",
@@ -911,18 +914,27 @@ class YearStatistic < ApplicationRecord
         "websites",
         "publisher",
         "id",
-        "identifiers",
-        "_gbifDOIs",
-        "altmetric_score"
+        "identifiers"
       )
+
+      new_result["altmetric_score"] = altmetric_score
+
+      gbif_dois = result["tags"].select do | tag |
+        tag.start_with?( "gbifDOI:" )
+      end
+      gbif_dois = gbif_dois.take( 10 )
+      new_result["_gbifDOIs"] = gbif_dois.map {| tag | tag.delete_prefix( "gbifDOI:" ) }
+
       if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
         new_result["authors"] = []
       end
+
       new_results << new_result
     end
+
     {
-      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
-      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
+      results: new_results.sort_by {| result | result["altmetric_score"].to_f * -1 }[0..5],
+      url: gbif_url,
       count: response["count"]
     }
   end
