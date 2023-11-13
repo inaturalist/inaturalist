@@ -554,23 +554,23 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_localized_shareable_images( options = {} )
-    locales_to_generate = options[:only_user_locale] ?
-      [user&.locale || I18n.locale] :
+    locales_to_generate = if options[:only_user_locale]
+      [user&.locale || I18n.locale]
+    else
       I18N_SUPPORTED_LOCALES
-    locales_to_generate.sort.each do |locale|
-      begin
-        localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
-          year_statistic: self,
-          locale: locale
-        )
-        # even though this instance was passed to the find_or_create_by, the association
-        # will not be populated and will still get queried for. Assigning it here saves
-        # that query and having to pass the same huge data attribute many times from the DB
-        localized_shareable.year_statistic = self
-        localized_shareable.generate( options )
-      rescue RuntimeError => e
-        pp e
-      end
+    end
+    locales_to_generate.sort.each do | locale |
+      localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
+        year_statistic: self,
+        locale: locale
+      )
+      # even though this instance was passed to the find_or_create_by, the association
+      # will not be populated and will still get queried for. Assigning it here saves
+      # that query and having to pass the same huge data attribute many times from the DB
+      localized_shareable.year_statistic = self
+      localized_shareable.generate( options )
+    rescue RuntimeError => e
+      pp e
     end
   end
 
@@ -717,7 +717,7 @@ class YearStatistic < ApplicationRecord
 
   def shareable_image_for_locale( locale )
     if year_statistic_localized_shareable_images.any?
-      year_statistic_localized_shareable_images.detect do |si|
+      year_statistic_localized_shareable_images.detect do | si |
         si.locale == locale.to_s
       end&.shareable_image
     else
@@ -1672,7 +1672,7 @@ class YearStatistic < ApplicationRecord
         }
       }
     }
-    Observation.elastic_search( es_params ).aggregations.outlinks.buckets.map do |bucket|
+    Observation.elastic_search( es_params ).aggregations.outlinks.buckets.map do | bucket |
       [bucket["key"], bucket["doc_count"]]
     end.to_h
   end
