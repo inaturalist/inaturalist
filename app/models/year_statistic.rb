@@ -938,59 +938,6 @@ class YearStatistic < ApplicationRecord
     }
   end
 
-  def self.publications_old( year, options = {} )
-    if options[:debug]
-      puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
-    end
-    # TODO: replace this with https://www.gbif.org/developer/literature
-    gbif_endpont = "https://www.gbif.org/api/resource/search"
-    gbif_params = {
-      contentType: "literature",
-      # iNat RG Observations dataset identifier on GBIF We don't publish site-
-      # specific datasets, so there's no reason not to hard-code it here.
-      gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
-      literatureType: "journal",
-      year: year,
-      limit: 50
-    }
-    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
-    new_results = []
-    response["results"].each do | result |
-      if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
-        url = "https://api.altmetric.com/v1/doi/#{doi}"
-        begin
-          am_response = RestClient.get( url )
-          result["altmetric_score"] = JSON.parse( am_response )["score"]
-        rescue RestClient::NotFound => e
-          Rails.logger.debug "[DEBUG] Request failed for #{url}: #{e}"
-        end
-        sleep( 1 )
-      end
-      result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
-      new_result = result.slice(
-        "title",
-        "authors",
-        "year",
-        "source",
-        "websites",
-        "publisher",
-        "id",
-        "identifiers",
-        "_gbifDOIs",
-        "altmetric_score"
-      )
-      if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
-        new_result["authors"] = []
-      end
-      new_results << new_result
-    end
-    {
-      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
-      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
-      count: response["count"]
-    }
-  end
-
   def self.observations_histogram_by_created_month( options = {} )
     if options[:debug]
       puts "[#{Time.now}] observations_histogram_by_created_month, options: #{options}"

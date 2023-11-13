@@ -11,20 +11,15 @@ describe YearStatistic do
     it "should match the YearStatistic.publications method" do
       VCR.use_cassette( "search_gbif_literature" ) do
         publications = YearStatistic.publications( 2022 )
-        old_publications = YearStatistic.publications_old( 2022 )
-
-        publications[:results].each.with_index do | result, i |
-          expect( result.except( "_gbifDOIs", "title" ) ).to eq(
-            old_publications[:results][i].except( "_gbifDOIs", "title" )
-          )
-          expect( result["_gbifDOIs"] ).to eq(
-            old_publications[:results][i]["_gbifDOIs"].map {| doi | doi.delete_prefix( "doi:" ) }
-          )
-        end
-
-        expect( publications[:count] ).to eq( old_publications[:count] )
-
-        expect( publications[:url] ).not_to eq( old_publications[:url] )
+ 
+        expect( publications[:count] ).to be_kind_of( Numeric )
+        expect( publications[:url] ).to start_with( "https://api.gbif.org/v1/literature/search" )
+        expect( publications[:results] ).to be_an_instance_of( Array )
+        expect(
+          publications[:results][0]["_gbifDOIs"].any? do |doi|
+            doi.start_with?( "gbifDOI:" )
+          end
+        ).to be false
       end
     end
   end
