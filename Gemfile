@@ -150,4 +150,5 @@ group :test do
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "webmock"
+  gem "vcr"
 end
