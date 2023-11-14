@@ -36,6 +36,12 @@ en:
     few: '%{count} Identifications'
     many: '%{count} Identifications'
     other: '%{count} Identifications'
+  x_identifications_caps_html:
+    zero: '<span class="count">%{count}</span> IDENTIFICATIONS'
+    one: '<span class="count">%{count}</span> IDENTIFICATION'
+    few: '<span class="count">%{count}</span> IDENTIFICATIONS'
+    many: '<span class="count">%{count}</span> IDENTIFICATIONS'
+    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   # Number of people who have added identifications
   x_identifiers_html:
     # Number of people who have added identifications
@@ -104,6 +110,12 @@ en:
     few: "<span class='count'>%{count}</span> observations"
     many: "<span class='count'>%{count}</span> observations"
     other: "<span class='count'>%{count}</span> observations"
+  x_observations_caps_html:
+    zero: "<span class='count'>%{count}</span> OBSERVATIONS"
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    few: "<span class='count'>%{count}</span> OBSERVATIONS"
+    many: "<span class='count'>%{count}</span> OBSERVATIONS"
+    other: "<span class='count'>%{count}</span> OBSERVATIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
@@ -150,6 +162,12 @@ en:
     few: '%{count} Species'
     many: '%{count} Species'
     other: '%{count} Species'
+  x_species_caps_html:
+    zero: "<span class='count'>%{count}</span> SPECIES"
+    one: "<span class='count'>%{count}</span> SPECIES"
+    few: "<span class='count'>%{count}</span> SPECIES"
+    many: "<span class='count'>%{count}</span> SPECIES"
+    other: "<span class='count'>%{count}</span> SPECIES"
   x_species_html:
     zero: "<span class='count'>%{count}</span> species"
     one: "<span class='count'>%{count}</span> species"

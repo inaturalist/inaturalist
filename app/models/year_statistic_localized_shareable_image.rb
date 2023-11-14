@@ -114,6 +114,8 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def left_vertical_offset
+    return 30 if year_statistic.year >= 2023
+
     year_statistic.user ? 0 : 30
   end
 
@@ -157,7 +159,8 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         "ArgentiNat",
         "iNaturalist Ecuador",
         "iNaturalist Chile",
-        "NaturaLista Mexico"
+        "NaturaLista Mexico",
+        "Natusfera"
       ]
       if year_statistic.year >= 2023 && space_filling_logo_sites.include?( year_statistic&.site&.name )
         new_size = "400x400"
@@ -388,7 +391,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         #{label_method}:"#{label_txt}" \
         -trim \
         -gravity west \
-        -extent #{text_width}x#{label_height + 2} \
+        -extent #{text_width}x#{label_height} \
       \\) \
       -gravity northwest \
       -geometry +#{label_and_count_composite_x_pos}+#{y_pos + ( 148 - 80 - 2 )} \
@@ -403,8 +406,8 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     else
       ""
     end
-    title = I18n.t( :year_in_review, year: year_statistic.year, locale: locale )
-    text[:title] = title.mb_chars.upcase
+    title = I18n.t( :year_in_review_caps, year: year_statistic.year, locale: locale )
+    text[:title] = title
     obs_count = if ( qg_counts = year_statistic.data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i
     else
@@ -418,22 +421,52 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       end
     ).to_i
 
-    obs_translation = I18n.t( "x_observations_html",
-      count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
-      locale: locale )
-    text[:obs_count_txt] = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
-    text[:obs_label_txt] = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
-    species_translation = I18n.t( "x_species_html",
-      count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
-      locale: locale )
-    text[:species_count_txt] = species_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
-    text[:species_label_txt] = species_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
-    identifications_translation = I18n.t( "x_identifications_html",
-      count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
-      locale: locale )
-    text[:identifications_count_txt] = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
+    obs_translation = if I18n.has_t?( "x_observations_caps_html", locale: locale )
+      I18n.t(
+        "x_observations_caps_html",
+        count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
+        locale: locale
+      )
+    else
+      I18n.t(
+        "x_observations_html",
+        count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
+        locale: locale
+      )
+    end
+    text[:obs_count_txt] = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
+    text[:obs_label_txt] = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
+    species_translation = if I18n.has_t?( "x_species_caps_html", locale: locale )
+      I18n.t(
+        "x_species_caps_html",
+        count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
+        locale: locale
+      )
+    else
+      I18n.t(
+        "x_species_html",
+        count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
+        locale: locale
+      )
+    end
+    text[:species_count_txt] = species_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
+    text[:species_label_txt] = species_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
+    identifications_translation = if I18n.has_t?( "x_identifications_caps_html", locale: locale )
+      I18n.t(
+        "x_identifications_caps_html",
+        count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
+        locale: locale
+      )
+    else
+      I18n.t(
+        "x_identifications_html",
+        count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
+        locale: locale
+      )
+    end
+    text[:identifications_count_txt] = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s
     text[:identifications_label_txt] =
-      identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
+      identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip
 
     if label_method == "pango"
       text[:title] = "<span size='#{1024 * 22}'>#{text[:title]}</span>"
