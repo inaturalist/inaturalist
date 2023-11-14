@@ -34,7 +34,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def self.tmpdir
-    # Override if you want to see the actual intermeidate
+    # Override if you want to see the actual intermeidate files
     Dir.tmpdir
   end
 
@@ -87,7 +87,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       [text[:identifications_count_txt], text[:identifications_label_txt]]
     ].each_with_index do | texts, idx |
       count_txt, label_txt = texts
-      y = 80 + ( idx * 145 )
+      y = 80 + ( idx * label_and_count_composite_y_multiplier )
       text_width = 312 # this provides a bit of margin (332 would go to the right edge )
       composites << label_and_count_composite( label_txt, count_txt, y, text_width, semibold_font_path,
         medium_font_path )
@@ -109,7 +109,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def left_vertical_offset
-    year_statistic.user ? 0 : 30
+    year_statistic.user || year_statistic.year >= 2023 ? 0 : 30
   end
 
   def label_method
@@ -266,9 +266,17 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
 
   def title_height
     if year_statistic.year >= 2023
-      35
+      33
     else
       30
+    end
+  end
+
+  def title_kerning
+    if year_statistic.year >= 2023
+      4
+    else
+      2
     end
   end
 
@@ -279,16 +287,24 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -background transparent \
         -fill #{text_color} \
         -font #{light_font_path} \
-        -kerning 2 \
+        -kerning #{title_kerning} \
         #{label_method}:"#{title}" \
         -trim \
         -gravity center \
         -extent 500x#{title_height} \
       \\) \
       -gravity northwest \
-      -geometry +0+#{left_vertical_offset + 165} \
+      -geometry +0+#{left_vertical_offset + title_y_pos} \
       -composite
     BASH
+  end
+
+  def title_y_pos
+    if year_statistic.year >= 2023
+      155
+    else
+      165
+    end
   end
 
   def owner_composite( font_path, owner )
@@ -309,6 +325,22 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     BASH
   end
 
+  def label_and_count_composite_x_pos
+    if year_statistic.year >= 2023
+      638
+    else
+      668
+    end
+  end
+
+  def label_and_count_composite_y_multiplier
+    if year_statistic.year >= 2023
+      150
+    else
+      145
+    end
+  end
+
   def label_and_count_composite( label_txt, count_txt, y_pos, text_width, semibold_font_path, medium_font_path )
     # Note that the use of label below will automatically try to choose the
     # best font size to fit the space
@@ -324,7 +356,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -extent #{text_width}x55 \
       \\) \
       -gravity northwest \
-      -geometry +668+#{y_pos} \
+      -geometry +#{label_and_count_composite_x_pos}+#{y_pos} \
       -composite \
       \\( \
         -size #{text_width}x34 \
@@ -338,7 +370,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         -extent #{text_width}x34 \
       \\) \
       -gravity northwest \
-      -geometry +668+#{y_pos + ( 148 - 80 )} \
+      -geometry +#{label_and_count_composite_x_pos}+#{y_pos + ( 148 - 80 )} \
       -composite
     BASH
   end

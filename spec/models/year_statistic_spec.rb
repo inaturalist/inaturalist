@@ -38,19 +38,15 @@ describe YearStatistic, "generation" do
       headers: { "Content-Type" => "application/json" }
     )
     allow( ApplicationController.helpers ).to receive( :image_url ).
+      and_return "https://www.inaturalist.org/assets/bird.png"
+    allow( ApplicationController.helpers ).to receive( :image_url ).
       with( "yir-background.png" ).
       and_return(
-        "https://www.inaturalist.org/assets/yir-background-53da44f111e173166d77ae72876317451138608172da76c1a176504261a36397.png"
+        "https://www.inaturalist.org/assets/yir-background.png"
       )
-    allow( ApplicationController.helpers ).to receive( :image_url ).
-      with( "yir-background-dark.svg" ).
-      and_return "https://www.inaturalist.org/assets/homepage-owl.svg"
     allow( ApplicationController.helpers ).to receive( :image_url ).
       with( "logo-small.gif" ).
       and_return "https://www.inaturalist.org/assets/logo-small.gif"
-    allow( ApplicationController.helpers ).to receive( :image_url ).
-      with( "bird.png" ).
-      and_return "https://www.inaturalist.org/assets/bird.png"
   end
 
   it "generate_for_year should not raise an error" do
