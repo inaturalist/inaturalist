@@ -62,6 +62,9 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     # Whitney can display the text before we use it
     no_whitney_support = text.any? {| _k, v | !v.to_s.whitney_support? }
     light_font_path, medium_font_path, semibold_font_path = font_paths( no_whitney_support )
+    if debug
+      puts "Font paths: #{light_font_path}, #{medium_font_path}, #{semibold_font_path}"
+    end
 
     # populate an array of extra elements to overlay on the base image
     composites = []
@@ -297,9 +300,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def title_composite( light_font_path, title )
+    width = 460
     <<~BASH
       \\( \
-        -size 500x#{title_height} \
+        -size #{width}x#{title_height} \
         -background transparent \
         -fill #{text_color} \
         -font #{light_font_path} \
@@ -307,10 +311,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         #{label_method}:"#{title}" \
         -trim \
         -gravity center \
-        -extent 500x#{title_height} \
+        -extent #{width}x#{title_height + 2} \
       \\) \
       -gravity northwest \
-      -geometry +0+#{left_vertical_offset + title_y_pos} \
+      -geometry +20+#{left_vertical_offset + title_y_pos} \
       -composite
     BASH
   end
@@ -360,6 +364,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   def label_and_count_composite( label_txt, count_txt, y_pos, text_width, semibold_font_path, medium_font_path )
     # Note that the use of label below will automatically try to choose the
     # best font size to fit the space
+    label_height = 34
     <<~BASH
       \\( \
         -size #{text_width}x55 \
@@ -375,7 +380,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
       -geometry +#{label_and_count_composite_x_pos}+#{y_pos} \
       -composite \
       \\( \
-        -size #{text_width}x34 \
+        -size #{text_width}x#{label_height} \
         -background transparent \
         -font #{medium_font_path} \
         -kerning 2 \
@@ -383,10 +388,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
         #{label_method}:"#{label_txt}" \
         -trim \
         -gravity west \
-        -extent #{text_width}x34 \
+        -extent #{text_width}x#{label_height + 2} \
       \\) \
       -gravity northwest \
-      -geometry +#{label_and_count_composite_x_pos}+#{y_pos + ( 148 - 80 )} \
+      -geometry +#{label_and_count_composite_x_pos}+#{y_pos + ( 148 - 80 - 2 )} \
       -composite
     BASH
   end
