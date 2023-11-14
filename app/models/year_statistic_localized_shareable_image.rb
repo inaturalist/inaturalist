@@ -58,8 +58,10 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
 
     # prepate the text elements
     text = prepare_text
-    using_non_latin_chars = text.any? {| _k, v | v.to_s.non_latin_chars? }
-    light_font_path, medium_font_path, semibold_font_path = font_paths( using_non_latin_chars )
+    # Whitney does not have broad Unicode support, so we need to make sure
+    # Whitney can display the text before we use it
+    no_whitney_support = text.any? {| _k, v | !v.to_s.whitney_support? }
+    light_font_path, medium_font_path, semibold_font_path = font_paths( no_whitney_support )
 
     # populate an array of extra elements to overlay on the base image
     composites = []
@@ -109,7 +111,7 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def left_vertical_offset
-    year_statistic.user || year_statistic.year >= 2023 ? 0 : 30
+    year_statistic.user ? 0 : 30
   end
 
   def label_method
@@ -143,10 +145,24 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
           #{square_path}
       BASH
     else
+      # Some logos fill a circle or a square with some nice padding, but
+      # others tend to fill to the edges (i.e. they are roughly circular
+      # themselves), so here we scale down the latter ones so they fit a bit
+      # more nicely. Not the greatest solution, but it works.
+      new_size = "500x500"
+      space_filling_logo_sites = [
+        "ArgentiNat",
+        "iNaturalist Ecuador",
+        "iNaturalist Chile",
+        "NaturaLista Mexico"
+      ]
+      if year_statistic.year >= 2023 && space_filling_logo_sites.include?( year_statistic&.site&.name )
+        new_size = "400x400"
+      end
       <<~BASH
         convert #{original_path} \
           -fill transparent \
-          -resize 500x500 \
+          -resize #{new_size} \
           -gravity Center \
           -extent 500x500 \
           #{square_path}
@@ -427,8 +443,8 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     text
   end
 
-  def font_paths( using_non_latin_chars )
-    if using_non_latin_chars
+  def font_paths( no_whitney_support )
+    if no_whitney_support
       if Rails.env.production?
         if locale =~ /^(ja|ko|zh)/
           light_font_path = "Noto-Sans-CJK-HK"
