@@ -331,19 +331,30 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
   end
 
   def owner_composite( font_path, owner )
+    width = 500
+    x_offset = 0
+    y_offset = 480
+    kerning = ""
+    if year_statistic.year >= 2023
+      width = 300
+      x_offset = 100
+      y_offset = 470
+      kerning = "-kerning 0"
+    end
     <<~BASH
       \\( \
-        -size 500x40 \
+        -size #{width}x40 \
         -background transparent \
         -font #{font_path} \
+        #{kerning} \
         -fill #{text_color} \
         #{label_method}:"#{owner}" \
         -trim \
         -gravity center \
-        -extent 500x40 \
+        -extent #{width}x40 \
       \\) \
       -gravity northwest \
-      -geometry +0+#{left_vertical_offset + 480} \
+      -geometry +#{x_offset}+#{left_vertical_offset + y_offset} \
       -composite
     BASH
   end
@@ -406,7 +417,11 @@ class YearStatisticLocalizedShareableImage < ApplicationRecord
     else
       ""
     end
-    title = I18n.t( :year_in_review_caps, year: year_statistic.year, locale: locale )
+    title = if I18n.has_t?( "x_observations_caps_html", locale: locale )
+      I18n.t( :year_in_review_caps, year: year_statistic.year, locale: locale )
+    else
+      I18n.t( :year_in_review, year: year_statistic.year, locale: locale )
+    end
     text[:title] = title
     obs_count = if ( qg_counts = year_statistic.data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i
