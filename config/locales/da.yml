@@ -8961,6 +8961,20 @@ da:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Dyr
+        Actinopterygii: Strålefinnede fisk (Actinopterygii)
+        Aves: Fugle (Aves)
+        Reptilia: Krybdyr (Reptilia)
+        Amphibia: Padder (Amphibia)
+        Mammalia: Pattedyr (Mammalia)
+        Arachnida: Spindlere (Arachnida)
+        Insecta: Insekter (Insecta)
+        Plantae: Planter (Plantae)
+        Fungi: Svampe (Fungi)
+        Protozoa: Protozoer (Protozoa)
+        Mollusca: Bløddyr (Mollusca)
+        Chromista: Chromista ("planteagtige")
   #Title of a section warning the user about something
   warning_title: Advarsel
   wikimedia: Wikimedia
