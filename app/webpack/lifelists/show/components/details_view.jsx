@@ -133,8 +133,15 @@ const DetailsView = ( {
       <div className="stats">
         <span className="stat">
           <span className="attr">
-            { I18n.t( "views.lifelists.observed_rank",
-              { rank: rankLabel( { rank: lifelist.speciesViewRankFilter, withLeaves: false } ) } ) }
+            { I18n.t( "views.lifelists.observed_rank", {
+              rank: rankLabel( {
+                rank: lifelist.speciesViewRankFilter,
+                withLeaves: false,
+                iconicTaxonName: lifelist.detailsTaxon
+                  ? lifelist.detailsTaxon.iconic_taxon_name
+                  : null
+              } )
+            } ) }
           </span>
           <span className="value">
             { searchLoaded
