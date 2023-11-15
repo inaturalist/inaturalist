@@ -83,6 +83,9 @@ nl:
   x_people:
     one: "%{count} persoon"
     other: "%{count} mensen"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persoon'
+    other: '<span class="count">%{count}</span> mensen'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   x_photos:
     one: "%{count} foto"
@@ -3242,6 +3245,7 @@ nl:
   observations_widget: Waarnemingen Widget
   observations_with_this_field: Waarnemingen met dit veld
   observations_with_this_field_and_value: Waarnemingen met dit veld en waarde
+  observations_without_this_field: Waarnemingen zonder dit veld
   observations_without_media: Waarnemingen zonder media
   observationcounts_refreshed: Telling waarnemingen bijgewerkt
   observed: Waargenomen
@@ -5773,6 +5777,53 @@ nl:
   yir_donate_banner_you_helped_inaturalist_thrive: Je hebt iNaturalist dit jaar laten opbloeien. Bedankt!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist heeft jouw hulp nodig
+  yir_email_because_of_you: |
+    Door jou zijn er dit jaar meer gegevens over biodiversiteit beschikbaar dan vorig jaar
+    jaar. Het Jaaroverzicht onze gift aan jou voor alles wat je hebt 
+    gedaan voor biodiversiteit via iNaturalist.
+  yir_email_log_in_to_generate: |
+    Log in om jouw persoonlijke jaaroverzicht te genereren om erachter te komen!
+  yir_email_of_your_observations:
+    one: Weet jij hoeveel van jouw %{count} waarneming gemaakt is in %{year}?
+    other: Weet jij hoeveel van jouw %{count} waarnemingen gemaakt zijn in %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Jouw iNaturalist Jaaroverzicht %{year} - vier je jaar met biodiversiteit
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Het iNaturalist Team
+  yir_email_what_else_will_you_observe_caps: WAT ANDERS ZOU JE WAARNEMEN?
+  yir_email_what_new_to_you: |
+    Welke lifers heb je dit jaar geregistreerd? Hoeveel mensen hielpen
+    je met determinaties (en hoeveel mensen heb je geholpen)?
+  yir_email_with_gratitude: Met dankbaarheid,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} OP INATURALIST WERELDWIJD"
+  yir_email_you_are_part_of_something: |
+    Je maakt deel uit van iets groots! Iedereen die waarnemingen plaatst, 
+    determinaties toevoegt en de naamsbekendheid van iNaturalist vergroot maakt een
+    verschil voor biodiversiteit. Door middel van onze collectieve inspanningen maken we
+    biodiversiteitsdata en inzichten beschikbaar op een ongekende
+    schaal. Dank je dat je deel uitmaakt van de iNaturalist gemeenschap!
+  yir_email_you_make_a_difference: |
+    JIJ maakt het verschil voor de biodiversiteit door iNaturalist. Bedankt voor
+    alles wat je doet!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Je hebt deze e-mail ontvangen omdat %{email} is gekoppeld aan
+    https://www.inaturalist.org/people/%{username}, een iNaturalist-account
+    gemaakt op %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Je hebt deze e-mail ontvangen omdat %{email} is gekoppeld aan
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    een iNaturalist-account aangemaakt op %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Jouw account is verbonden met %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Uw account is verbonden met <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Het genereren en delen van gegevens met een hoge impact op biodiversiteit op deze ongekende
     schaal en snelheid heeft hoge kosten
@@ -7158,6 +7209,18 @@ nl:
           Gemaakt met <a href="https://www.inaturalist.org">iNaturalist</a>
           of <a href="%{url}">iNaturalist Network</a> websites
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Beide toegevoegd
+        added_only_identifications: Alleen determinaties toegevoegd
+        added_only_observations: Alleen waarnemingen toegevoegd
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Brede impact
+        broader_impacts_desc: |
+          Verschillende externe partners importeren regelmatig iNaturalist waarnemingen om 
+          wetenschap en natuurbehoud te ondersteunen. Jouw waarnemingen, determinaties
+          en open licentiekeuzes maken het mogelijk dat deze organisaties nuttige
+          biodiversiteitsinformatie kunnen verstrekken aan mensen die het nodig hebben over de hele wereld.
         compare_desc: |
           Hoe verhoudt dit jaar zich tot voorgaande jaren? Met drie jaar
           gebruik of meer kunnen we beginnen jaarlijkse activiteitsstatistieken te vergelijken.

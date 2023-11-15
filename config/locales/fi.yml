@@ -2481,13 +2481,15 @@ fi:
   message_from_user_on_date: Käyttäjältä %{user} %{date}
   messages: Viestit
   messages_new_correspondent_it_looks_like: |
-    Näyttää siltä, että et ole aiemmin viestitellyt tämän henkilön kanssa, joten ole hyvä
-    pitää nämä asiat mielessä:
+    Näyttää siltä, että et ole aiemmin viestitellyt tämän henkilön kanssa, joten pidä nämä asiat mielessä:
   messages_new_correspondent_specimens: |
-    Ole varovainen, jos henkilö pyytää näytteitä tai salattuja tietoja. Yritä varmistaa pyynnön esittäneen henkilön
-    henkilöllisyys, ja jos hän pyytää näytteitä, pyydä nähdä hänen lupansa.
+    Ole varovainen, jos henkilö pyytää näytteitä tai salattuja tietoja. Yritä varmistaa hänen henkilöllisyytensä ja onko hänellä hyvää syytä käsitellä näytteitä.
   messages_new_correspondent_personal: |
     Älä luovuta henkilökohtaisia tietoja itsestäsi ihmisille, joihin et luota.
+  messages_new_correspondent_actions_html: |
+    Jos vaikuttaa, että tämä henkilö rikkoo <a href="%{tos_url}"
+    target="_blank">käyttöehtoja</a> tai <a
+    href="%{guidelines_url}" target="_blank">yhteisöohjeita</a>, ole hyvä ja liputa viesti alla.
   misidentifications: Virhetunnistukset
   misleading_or_illegal_content_html: |
     Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa

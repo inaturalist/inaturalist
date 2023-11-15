@@ -7162,6 +7162,10 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Добавили и то, и другое
+        added_only_identifications: Добавили только идентификации
         compare_desc: |
           Как прошел этот год по сравнению с предыдущими? После трех и более лет использования мы можем начать сравнивать годовые показатели активности.
         compare_site_desc: |
