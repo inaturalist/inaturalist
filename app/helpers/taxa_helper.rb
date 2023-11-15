@@ -164,14 +164,14 @@ module TaxaHelper
   end
 
   def common_taxon_names( taxon, options = {} )
-    return nil if taxon.blank?
+    return [] if taxon.blank?
 
     user = options[:user]
     unless user&.taxon_name_priorities&.any?
       if ( common_name = common_taxon_name( taxon, options ).try( :name ) )
         return [common_name]
       end
-      return unless taxon.is_iconic? || taxon.root?
+      return [] unless taxon.is_iconic? || taxon.root?
 
       locale = options[:locale] || user&.try( :locale ) || @site&.try( :locale )
       translated_name = I18n.t(
@@ -181,7 +181,7 @@ module TaxaHelper
       )
       return [translated_name] if translated_name
 
-      return nil
+      return []
     end
 
     user.taxon_name_priorities.sort_by( &:position ).map do | tnp |
