@@ -1,4 +1,6 @@
-require "spec_helper.rb"
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe YearStatisticLocalizedShareableImage do
   it { is_expected.to belong_to :year_statistic }

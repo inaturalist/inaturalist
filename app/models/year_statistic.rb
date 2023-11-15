@@ -257,8 +257,9 @@ class YearStatistic < ApplicationRecord
         params[:site_id] = site.id
       end
     end
-    JSON.parse( INatAPIService.get_json( "/observations/histogram", params,
-      { timeout: 30 } ) )["results"][params[:interval]]
+    response = INatAPIService.get_json( "/observations/histogram", params, { timeout: 30 } )
+    json = JSON.parse( response )
+    json["results"][params[:interval]]
   end
 
   def self.identifications_histogram( year, options = {} )
@@ -1557,7 +1558,7 @@ class YearStatistic < ApplicationRecord
     if options[:debug]
       puts "[#{Time.now}] user_activity_counts, year: #{year}, options: #{options}"
     end
-    max_user_id = User.maximum( :id )
+    max_user_id = User.maximum( :id ) || 0
     start_id = 1
     batch_size = 500_000
     activity_counts_by_user = {}
