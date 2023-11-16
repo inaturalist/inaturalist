@@ -16,6 +16,8 @@ id:
     other: '<span class="count">%{count}</span> identifikasi'
   x_identifications_:
     other: '%{count} identifikasi'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> IDENTIFIKASI'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ id:
     other: "%{count} Pengamatan"
   x_observations_html:
     other: "<span class='count'>%{count}</span> pengamatan"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> PENGAMATAN"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} pengamatan</a>"
   x_observations_reviewed_html:
@@ -67,6 +71,8 @@ id:
     other: '%{count} Pengguna Baru'
   x_species:
     other: '%{count} Spesies'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> SPESIES"
   x_species_html:
     other: "<span class='count'>%{count}</span> spesies"
   x_species_link_html:
