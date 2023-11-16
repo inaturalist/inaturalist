@@ -24,6 +24,9 @@ fr:
   x_identifications_:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICATION'
+    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ fr:
   x_observations_html:
     one: "<span class='count'>%{count}</span> observation"
     other: "<span class='count'>%{count}</span> observations"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
@@ -96,6 +102,9 @@ fr:
   x_species:
     one: '1 espèce'
     other: '%{count} espèces'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÈCE"
+    other: "<span class='count'>%{count}</span> ESPÈCES"
   x_species_html:
     one: "<span class='count'>1</span> espèce"
     other: "<span class='count'>%{count}</span> espèces"
@@ -664,6 +673,7 @@ fr:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la check-list de « %{place} » ?"
+  are_you_sure_you_want_to_flag_as_spammer: Êtes-vous sûr de vouloir signaler cet utilisateur comme spammeur ?
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
   attention: Attention
