@@ -16,6 +16,8 @@ zh-TW:
     other: '<span class="count">%{count}</span> 項鑑定'
   x_identifications_:
     other: '%{count} 項鑑定'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> 筆鑑定'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ zh-TW:
     other: "%{count} 項觀察記錄"
   x_observations_html:
     other: "<span class='count'>%{count}</span> 個觀察記錄"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> 筆觀察紀錄"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count}</a>個觀察記錄"
   x_observations_reviewed_html:
@@ -65,6 +69,8 @@ zh-TW:
     other: '%{count} 個使用者'
   x_species:
     other: '%{count} 物種'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> 個物種"
   x_species_html:
     other: "<span class='count'>%{count}</span> 物種"
   x_species_link_html:
@@ -5123,6 +5129,17 @@ zh-TW:
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
+  yir_email_the_year_isnt_over: |
+    今年還未結束，上傳之前的觀察紀錄永遠不會太遲。當您分享更多的觀察紀錄時，別忘了在您的年度回顧頁面底下來選擇「重新產生統計」以查看更新。
+  yir_email_what_else_will_you_observe_caps: 您將來還會觀察什麼生物呢？
+  yir_email_what_new_to_you: |
+    今年您記錄了哪些新物種？有多少人協助您來鑑定物種（您又幫助了多少人呢）？
+  yir_email_with_gratitude: 由衷地致上我們的敬意，
+  yir_email_year_on_inaturalist_globally_caps: "2023 年《愛自然》在全世界的成就"
+  yir_email_you_are_part_of_something: |
+    您是偉大生物多樣性版圖的一部分！每一位發布觀察紀錄、鑑定物種、並推廣《愛自然(iNaturalist)》的人，都在為生物多樣性做出貢獻。透過我們的共同努力，我們正以前所未有的規模來建立生物多樣性的資料和見解。感謝您成為《愛自然》社群的一員！
+  yir_email_you_make_a_difference: |
+    透過《愛自然》，您為生物多樣性做出了貢獻。謝謝您所做的一切！
   you: 您
   you_: 您
   you_appear_offline_try_again: |
