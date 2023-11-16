@@ -24,6 +24,9 @@ tr:
   x_identifications_:
     one: '%{count} Tanımlama'
     other: '%{count} Tanımlama'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> TANIMLAMA'
+    other: '<span class="count">%{count}</span> TANIMLAMA'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ tr:
   x_observations_html:
     one: "<span class='count'>%{count}</span> gözlem"
     other: "<span class='count'>%{count}</span> gözlem"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> GÖZLEM"
+    other: "<span class='count'>%{count}</span> GÖZLEM"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} gözlem</a>"
     other: "<a href='%{url}'>%{count} gözlem</a>"
@@ -99,6 +105,9 @@ tr:
   x_species:
     one: '%{count} Tür'
     other: '%{count} Tür'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> TÜR"
+    other: "<span class='count'>%{count}</span> TÜR"
   x_species_html:
     one: "<span class='count'>%{count}</span> tür"
     other: "<span class='count'>%{count}</span> tür"
@@ -676,6 +685,7 @@ tr:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Bu gözlemi %{project} projesinden kaldırmak istediğinden emin misin?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu sınıfı %{place} konumunun kontrol listesinden kaldırmak istediğine emin misin?"
+  are_you_sure_you_want_to_flag_as_spammer: Bu kullanıcıyı istenmeyen olarak işaretlemek istediğinden emin misin?
   associated_observations: İlgili gözlemler
   associated_taxa: İlgili sınıflar
   attention: Dikkat
@@ -2221,6 +2231,7 @@ tr:
   journal: Günlük
   journal_archives_for: 'Günlük arşivleri:'
   journal_post: Günlük gönderisi
+  journal_post_: günlük gönderisi
   journal_post_deleted: Günlük gönderisi silindi.
   journal_posts: Günlük Gönderileri
   jpg_png_or_gif: "JPG, PNG, veya GIF"
@@ -7703,6 +7714,7 @@ tr:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Uygulama
       Photo: Fotoğraf
+      Post: Günlük Gönderisi
       TaxonLink: Sınıf Bağlantısı
     attributes:
       announcement:
@@ -8309,6 +8321,20 @@ tr:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Hayvanlar
+        Actinopterygii: Işınsal Yüzgeçliler
+        Aves: Kuşlar
+        Reptilia: Sürüngenler
+        Amphibia: Yüzergezerler
+        Mammalia: Memeliler
+        Arachnida: Örümceğimsiler
+        Insecta: Böcekler
+        Plantae: Bitkiler
+        Fungi: Mantarlar
+        Protozoa: Protozoa
+        Mollusca: Yumuşakçalar
+        Chromista: Kromistalar
   #Title of a section warning the user about something
   warning_title: Uyarı
   wikimedia: Wikimedia
