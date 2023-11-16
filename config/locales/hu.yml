@@ -24,6 +24,9 @@ hu:
   x_identifications_:
     one: '%{count} meghatározás'
     other: '%{count} meghatározás'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> MEGHATÁROZÁS'
+    other: '<span class="count">%{count}</span> MEGHATÁROZÁS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ hu:
   x_observations_html:
     one: "<span class='count'>%{count}</span> megfigyelés"
     other: "<span class='count'>%{count}</span> megfigyelés"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> MEGFIGYELÉS"
+    other: "<span class='count'>%{count}</span> MEGFIGYELÉS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} megfigyelés</a>"
     other: "<a href='%{url}'>%{count} megfigyelés</a>"
@@ -99,6 +105,9 @@ hu:
   x_species:
     one: '%{count} faj'
     other: '%{count} faj'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> FAJ"
+    other: "<span class='count'>%{count}</span> FAJ"
   x_species_html:
     one: "<span class='count'>%{count}</span> faj"
     other: "<span class='count'>%{count}</span> faj"
@@ -605,6 +614,7 @@ hu:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Biztosan eltávolítod ezt a megfigyelést %{project} projektből?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Biztosan törlöd ezt a taxont %{place} listájáról?"
+  are_you_sure_you_want_to_flag_as_spammer: Biztosan megjelölöd ezt a fálhasználót spammerként?
   associated_observations: Kapcsolódó megfigyelések
   associated_taxa: Társított taxonok
   attention: Figyelem
