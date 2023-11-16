@@ -24,6 +24,9 @@ da:
   x_identifications_:
     one: '1 Identifikation'
     other: '%{count} Identifikationer'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFIKATION'
+    other: '<span class="count">%{count}</span> IDENTIFIKATIONER'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ da:
   x_observations_html:
     one: "<span class='count'>1</span> observation"
     other: "<span class='count'>%{count}</span> observationer"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONER"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observation</a>"
     other: "<a href='%{url}'>%{count} observationer</a>"
@@ -99,6 +105,9 @@ da:
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTER"
   x_species_html:
     one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
@@ -681,6 +690,7 @@ da:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
+  are_you_sure_you_want_to_flag_as_spammer: Sikker på, at denne bruger skal markeres som spammer?
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
   attention: Bemærk
