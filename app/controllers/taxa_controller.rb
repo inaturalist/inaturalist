@@ -336,7 +336,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This active taxon has more than #{Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT} downstream observations or is covered by a taxon framework, so some taxonomic attributes can only be editable by staff or taxon curators associated with that taxon framework."
+      flash.now[:notice] ||= "This active taxon has more than #{Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON} downstream observations or is covered by a taxon framework, so some taxonomic attributes can only be editable by staff or taxon curators associated with that taxon framework."
     end
   end
 

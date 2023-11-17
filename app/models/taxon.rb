@@ -156,7 +156,8 @@ class Taxon < ApplicationRecord
     observations: { notification: "new_observations", include_owner: false }
   }
 
-  NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT = 200_000
+  NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON = 200_000
+  NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_COMMIT_TAXON_CHANGES = 75_000
   NUM_OBSERVATIONS_TRIGGERING_WARNING = 1000
 
   NAME_PROVIDER_TITLES = {
@@ -1342,7 +1343,7 @@ class Taxon < ApplicationRecord
   def observose_branch?
     return false unless observations_count
 
-    observations_count > NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
+    observations_count > NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON
   end
 
   def observose_warning_branch?
