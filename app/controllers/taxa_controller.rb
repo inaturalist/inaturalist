@@ -1319,7 +1319,7 @@ class TaxaController < ApplicationController
   end
   
   def flickr_tagger    
-    f = get_flickraw
+    f = get_flickr
     
     @taxon ||= Taxon.find_by_id(params[:id].to_i) if params[:id]
     @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
@@ -1335,7 +1335,7 @@ class TaxaController < ApplicationController
           end
         end
         flickr_photo
-      rescue FlickRaw::FailedResponse => e
+      rescue Flickr::FailedResponse => e
         flash[:notice] = t(:sorry_one_of_those_flickr_photos_either_doesnt_exist_or)
         nil
       end
@@ -1361,7 +1361,7 @@ class TaxaController < ApplicationController
       redirect_to :action => 'flickr_tagger' and return
     end
     
-    flickr = get_flickraw
+    flickr = get_flickr
     
     photos = Photo.where(subtype: 'FlickrPhoto', native_photo_id: params[:flickr_photos]).includes(:observations)
     
@@ -1400,7 +1400,7 @@ class TaxaController < ApplicationController
       return redirect_back_or_default( flickr_tagger_path )
     end
     
-    flickr = get_flickraw
+    flickr = get_flickr
 
     flickr_photo_ids = []
     @observations.each do | observation |
@@ -1423,7 +1423,7 @@ class TaxaController < ApplicationController
   end
   
   def flickr_photos_tagged
-    flickr = get_flickraw
+    flickr = get_flickr
     
     @tags = params[:tags]
     
@@ -1435,8 +1435,8 @@ class TaxaController < ApplicationController
     @flickr_photos = params[:flickr_photos].map do |flickr_photo_id|
       begin
         fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
-        FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-      rescue FlickRaw::FailedResponse => e
+        FlickrPhoto.new_from_flickr(fp, :user => current_user)
+      rescue Flickr::FailedResponse => e
         nil
       end
     end.compact
@@ -1637,7 +1637,7 @@ class TaxaController < ApplicationController
   end
   
   def tag_flickr_photo(flickr_photo_id, tags, options = {})
-    flickr = options[:flickr] || get_flickraw
+    flickr = options[:flickr] || get_flickr
     # Strip and enclose multiword tags in quotes
     if tags.is_a?(Array)
       tags = tags.map do |t|
@@ -1647,7 +1647,7 @@ class TaxaController < ApplicationController
     
     begin
       flickr.photos.addTags(:photo_id => flickr_photo_id, :tags => tags)
-    rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
+    rescue Flickr::FailedResponse, Flickr::OAuthClient::FailedResponse => e
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
         flash[:error] = ("#{@site.site_name_short} can't add tags to your photos until " +

@@ -195,13 +195,13 @@ end
 class FlickrCache
   class << self
     alias real_request request
-    def request( flickraw, type, method, params )
+    def request( flickr, type, method, params )
       fname = "flickr.#{type}.#{method}(#{params})".gsub( /\W+/, "_" )
       fixture_path = File.expand_path( File.dirname( __FILE__ ) + "/fixtures/flickr_cache/#{fname}" )
       if File.exist?( fixture_path )
         File.open( fixture_path, &:read )
       else
-        response = real_request( flickraw, type, method, params )
+        response = real_request( flickr, type, method, params )
         File.open( fixture_path, "w" ) do | f |
           f << response
           puts "Cached #{fixture_path}. Check it in to prevent this happening in the future."

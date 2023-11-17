@@ -17,8 +17,8 @@ describe FlickrPhoto do
       end
     end
 
-    it "should make a valid FlickrPhoto from a flickraw response" do
-      expect(FlickrPhoto.new_from_flickraw( @cc_flickr_photo_response, user: @user ) ).to be_valid
+    it "should make a valid FlickrPhoto from a flickr response" do
+      expect(FlickrPhoto.new_from_flickr( @cc_flickr_photo_response, user: @user ) ).to be_valid
     end
 
     it "should not be valid if the associated user didn't take the photo" do
@@ -66,7 +66,7 @@ describe FlickrPhoto do
       pending_flickr_setup do
         t = Taxon.make!
         @flickr_photo_hash["title"] = t.name
-        r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+        r = Flickr::Response.build(@flickr_photo_hash, "photo")
         fp = FlickrPhoto.new_from_api_response(r)
         expect(fp.to_taxon).to eq t
       end
@@ -76,7 +76,7 @@ describe FlickrPhoto do
       pending_flickr_setup do
         tn = TaxonName.make!
         @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
-        r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+        r = Flickr::Response.build(@flickr_photo_hash, "photo")
         fp = FlickrPhoto.new_from_api_response(r)
         expect(fp.to_taxon).to eq tn.taxon
       end
@@ -150,16 +150,16 @@ def setup_flickr_stuff
 
     json = JSON.load(FLICKR_PHOTO_JSON)
     type, json = json.to_a.first
-    @cc_flickr_photo_response = FlickRaw::Response.build(json, type)
+    @cc_flickr_photo_response = Flickr::Response.build(json, type)
     @cc_flickr_photo = FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => @user)
 
     json = JSON.load(NON_CC_FLICKR_PHOTO_JSON)
     type, json = json.to_a.first
-    @non_cc_flickr_photo_response = FlickRaw::Response.build(json, type)
+    @non_cc_flickr_photo_response = Flickr::Response.build(json, type)
     @non_cc_flickr_photo = FlickrPhoto.new_from_api_response(@non_cc_flickr_photo_response, :user => @user)
 
     @flickr_setup_exception = false
-  rescue FlickRaw::FailedResponse => e
+  rescue Flickr::FailedResponse => e
     @flickr_setup_exception = e
   end
 end

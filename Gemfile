@@ -49,7 +49,7 @@ gem "elasticsearch-rails"
 gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem
 gem "fastimage"
-gem "flickraw-cached"
+gem "flickr"
 gem "friendly_id"
 gem "gdata", git: "https://github.com/pleary/gdata.git"
 gem "georuby"
