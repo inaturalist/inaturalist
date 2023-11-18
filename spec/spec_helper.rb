@@ -25,7 +25,7 @@ include MakeHelpers
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join( "spec/support/**/*.rb" )].sort.each {| f | require f }
+Dir[Rails.root.join( "spec/support/**/*.rb" )].each {| f | require f }
 
 RSpec.configure do | config |
   # == Mock Framework
@@ -223,11 +223,17 @@ LocalPhoto.attachment_definitions[:file].tap do | d |
   end
 end
 
-VCR.configure do |config|
+VCR.configure do | config |
   config.allow_http_connections_when_no_cassette = true
   config.cassette_library_dir = "fixtures/vcr_cassettes"
-  config.hook_into(:webmock)
+  config.hook_into( :webmock )
   config.ignore_localhost = true
+  config.filter_sensitive_data( "<AUTHORIZATION>" ) do | interaction |
+    interaction.request.headers["Authorization"].first
+  end
+  config.filter_sensitive_data( "<COOKIE>" ) do | interaction |
+    interaction.response.headers["Set-Cookie"].first
+  end
 end
 
 # Turn on elastic indexing for certain models. We do this selectively b/c
@@ -318,7 +324,7 @@ def load_time_zone_geometries
   zip_fname = File.basename( url )
   shp_fname = "combined-shapefile-with-oceans.shp"
   puts "checking if #{File.join( fixtures_path, shp_fname )} exists"
-  if File.exists?( File.join( fixtures_path, shp_fname ) )
+  if File.exist?( File.join( fixtures_path, shp_fname ) )
     puts "#{shp_fname} exists, skipping download"
   else
     puts "Downloading #{url}"
