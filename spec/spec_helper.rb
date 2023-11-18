@@ -229,10 +229,10 @@ VCR.configure do | config |
   config.hook_into( :webmock )
   config.ignore_localhost = true
   config.filter_sensitive_data( "<AUTHORIZATION>" ) do | interaction |
-    interaction.request.headers["Authorization"].first
+    interaction.request.headers["Authorization"]&.first
   end
   config.filter_sensitive_data( "<COOKIE>" ) do | interaction |
-    interaction.response.headers["Set-Cookie"].first
+    interaction.response.headers["Set-Cookie"]&.first
   end
 end
 
