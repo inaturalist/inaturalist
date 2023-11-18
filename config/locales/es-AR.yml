@@ -2996,6 +2996,8 @@ es-AR:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} en %{place} de %{month} de %{year} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -3012,6 +3014,10 @@ es-AR:
   observation_export_column_type_basic: Básico
   #Geographic observation export fields
   observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxón
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Extras del taxón
   observation_field: Campo de observación
   observation_field_details: Detalles del campo de observación
   observation_field_type_text: Texto
@@ -3030,6 +3036,9 @@ es-AR:
     ej. "2019-10-29 13:12:21"
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_requirements: Requisitos de observación
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Requisitos de las observaciones actualizados el
   observation_rules: Reglas de observación
   observation_rules_description: |
     Puedes seleccionar reglas para determinar qué observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar o taxón. Si tienes más de una regla para un tipo de regla, las observaciones serán válidas si cumple cualquiera de las reglas. Por ejemplo, si tienes las reglas "debe ser Anfibio" y "debe ser Reptil", entonces el proyecto aceptará observaciones de reptiles o anfibios.
@@ -3074,6 +3083,7 @@ es-AR:
   observations_widget: Observaciones del widget
   observations_with_this_field: Observaciones con este campo
   observations_with_this_field_and_value: Observaciones con este campo y valor
+  observations_without_this_field: Observaciones sin este campo
   observations_without_media: Observaciones sin imágenes
   observationcounts_refreshed: Condes de observación refrescados
   observed: Observado el
@@ -3081,6 +3091,10 @@ es-AR:
   observed_on: Observado el
   observer: Observador
   observers: Observadores
+  observer_prefers_addition_to_traditional_projects_joined: |
+    El observador solo permite a otras personas añadir sus observaciones a proyectos a los que se han unido.
+  observer_prefers_no_traditional_project_addition: |
+    El observador no permite a otras personas añadir sus observaciones a los proyectos tradicionales.
   observer_short: Observ.
   occurence_status_describes_how: 'El estado de ocurrencia describe que tan común o raro es un taxón en un área determinada. Ver DarwinCore para <a href="http: //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">más información sobre terminología </a>.'
   occurrence_status: Estado de ocurrencia
