@@ -4859,12 +4859,14 @@ ja:
   update_with_site_content: "%{site_name}データで更新"
   updated: 更新済
   updated_by: 更新者
+  updated_by_user_on_date_html: 作成者:%{user}さん 作成日:%{date}
   updated_daily: 毎日更新されています
   updated_photo: 写真が更新されました
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
   upload_photo: 写真をアップロード
+  upload_range: 生息域をアップロード
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: アップロードしたユーザー：
   uploader:
@@ -5124,6 +5126,7 @@ ja:
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
   what_want_to_list?: リストにまとめたいものは？
+  what_were_you_looking_for?: "何をお探しですか？（ターゲットリスト）"
   whats_this?: もっと詳しく
   when: いつ？
   when_did_you_see_it?: いつ見ましたか？
@@ -7004,6 +7007,20 @@ ja:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: 動物界
+        Actinopterygii: 条鰭亜綱
+        Aves: 鳥綱
+        Reptilia: 爬虫綱
+        Amphibia: 両生綱
+        Mammalia: 哺乳綱
+        Arachnida: クモガタ綱
+        Insecta: 昆虫綱
+        Plantae: 植物界
+        Fungi: 菌界
+        Protozoa: 原生動物界
+        Mollusca: 軟体動物門
+        Chromista: クロミスタ界
   #Title of a section warning the user about something
   warning_title: 注意
   wikimedia: ウィキメディア
