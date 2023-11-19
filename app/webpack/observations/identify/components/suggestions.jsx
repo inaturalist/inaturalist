@@ -422,6 +422,7 @@ class Suggestions extends React.Component {
                   <TaxonomicBranch
                     taxon={detailTaxon}
                     chooseTaxon={t => setDetailTaxon( t )}
+                    currentUser={config.currentUser}
                     noHideable
                   />
                 </div>
