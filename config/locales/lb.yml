@@ -2596,6 +2596,12 @@ lb:
   yir_donate_banner_you_helped_inaturalist_thrive: Dir hutt dëst Joer gehollef dass den iNaturalist floréiert. Merci!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist brauch Är Ënnerstëtzung
+  yir_email_of_your_observations:
+    one: Vun Ärer %{count} Observatioun, wësst Dir, wéi vill der am Joer %{year} gemaach goufen?
+    other: Vun Äre(n) %{count} Observatiounen, wësst Dir, wéi vill der am Joer %{year} gemaach goufen?
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: D'iNaturalist-Team
+  yir_email_with_gratitude: Mat Dankbarkeet,
   yir_generating_and_sharing: |
     Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
   yir_millions_of_people_used_inaturalist: |
