@@ -92,9 +92,10 @@
             "return false;") %>
           <%= link_to_function(t(:hide), "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).prev().show(); $.fn.latLonSelector.stopEditAccuracy(); return false;", :style => 'display: none') %>
         </span>
-        
-        <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
-        
+
+        <%= o.hidden_field( :map_scale, class: "map_scale" ) %>
+        <%= o.hidden_field( :location_is_exact, class: "location_is_exact" ) %>
+
         <%= o.label(:positional_accuracy, t(:acc), :class => "inlineblock") %>
         <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock', "data-tip" => t(:accuracy_of_the_coordinates)) %>
         <%= o.label(:positional_accuracy, t(:src), :class => "inlineblock", "data-tip" => t(:source_of_coordinates)) %>

@@ -32,7 +32,7 @@ class ObservationsGrid extends React.Component {
     return (
       <div className={`${identifier} ${user ? "for-user" : ""}`}>
         { _.map( _.chunk( observations.slice( 0, obsToshow ), columns ), ( chunk, i ) => (
-          <Row key={`${identifier}-obs-chunk-${i}`} className="d-flex">
+          <Row key={`${identifier}-obs-chunk-${i}`} className="d-flex flex-wrap">
             { chunk.map( o => {
               const colSize = Math.floor( 12.0 / columns );
               const xsColSize = colSize <= 2 ? 6 : 12;
