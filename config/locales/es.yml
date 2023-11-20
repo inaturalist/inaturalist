@@ -5624,6 +5624,31 @@ es:
   yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a avanzar iNaturalist durante este año. ¡Gracias!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu Apoyo
+  yir_email_because_of_you: |
+    Gracias a ti, hay más datos sobre la biodiversidad este año que el año pasado. La Revisión del Año es nuestro regalo para ti por todo lo que has hecho por la biodiversidad a través de iNaturalist.
+  yir_email_log_in_to_generate: |
+    ¡Inicia sesión para generar tu revisión anual personal y descúbrelo!
+  yir_email_of_your_observations:
+    one: De su observación, ¿sabe cuántas se hicieron en %{year}?
+    other: De sus %{count} observaciones, ¿sabe cuántas se hicieron en %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Tu revisión anual de iNaturalist %{year} - celebra tu año con la biodiversidad
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: El equipo de iNaturalist
+  yir_email_the_year_isnt_over: |
+    El año aún no ha terminado y nunca es tarde para publicar observaciones antiguas. Después de compartir más observaciones, asegúrate de seleccionar "Regenerar estadísticas" en la parte inferior de tu Resumen anual para ver las actualizaciones.
+  yir_email_what_else_will_you_observe_caps: '¿QUÉ MÁS OBSERVARÁ?'
+  yir_email_what_new_to_you: |
+    ¿Qué especies nuevas para ti registraste este año? ¿Cuántas personas te ayudaron con identificaciones (y cuántas ayudaste tú)?
+  yir_email_with_gratitude: Con gratitud,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} EN INATURALIST GLOBALMENTE"
+  yir_email_you_are_part_of_something: |
+    ¡Eres parte de algo grande! Cada persona que comparte observaciones, añade identificaciones y corre la voz sobre iNaturalist marca la diferencia para la biodiversidad. Con nuestros esfuerzos colectivos, estamos logrando que los datos y el conocimiento sobre la biodiversidad estén disponibles a una escala sin precedentes. ¡Gracias por ser parte de la comunidad de iNaturalist!
+  yir_email_you_make_a_difference: |
+    Tu mensaje suena bien, pero puedes considerar una ligera modificación para mayor fluidez:
+
+    Con iNaturalist, marcas la diferencia para la biodiversidad. ¡Gracias por todo lo que haces!"
   yir_generating_and_sharing: |
     Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un coste creciente
   yir_millions_of_people_used_inaturalist: |
