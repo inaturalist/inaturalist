@@ -1602,6 +1602,9 @@ zh-TW:
   eligible_for_research_grade: 符合研究等級
   email: 電子郵件
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 親愛的%{user}，
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_conf_required_after_grace_period: |
     從%{requirement_date}開始，必須確認電子郵件，而您未在截止日期前確認您的電子郵件地址。請重設您的密碼來存取您的帳號。
@@ -1851,6 +1854,8 @@ zh-TW:
   generate_taxonomic_tags_for_flickr: 為您的 Flickr 照片產生物種分類標籤。
   generate_widget: 產生小工具
   generate_your_stats: 產生您的統計內容
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: 產製您的%{year}年年度回顧
   generating_mobile_archive: "產生移動歸檔"
   Genus: 屬
   geomodel_expected_nearby_label_is_derived: |
@@ -4945,6 +4950,7 @@ zh-TW:
   view_flags_for_x_html: "檢視用於%{x}的標記"
   view_full_observation: 檢視完整觀察
   view_full_size_photo: 瀏覽全尺寸的照片
+  view_inaturalist_global_year_in_review_caps: 檢視愛自然全球的 %{year} 年度回顧
   view_journal: 檢視日誌
   view_leaderboard_from_last_month: 查看上個月的排行榜
   view_leaderboard_from_last_year: 檢視去年的排行榜
@@ -5110,6 +5116,7 @@ zh-TW:
   x_wrote_y_new_posts_html: "%{x} 寫了 %{y} 篇發表文章"
   year: 年
   year_in_review: "回顧 %{year} 年"
+  year_in_review_caps: "%{year} 年的回顧"
   year_month: 年/月
   year_on_site: "%{site} 在 %{year} 年"
   yellow: 黃色
@@ -5129,6 +5136,17 @@ zh-TW:
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
+  yir_email_because_of_you: |
+    因為有您，今年的生物多樣性資料比去年更多。年度回顧是我們送您的禮物，感謝您透過愛自然為生物多樣性做的一切。
+  yir_email_log_in_to_generate: |
+    登入並產生您的個人年度回顧以看看您今年的觀察！
+  yir_email_of_your_observations:
+    other: 在您的%{count}筆觀察記錄中，您知道有多少是%{year}年觀察的嗎？
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    您的%{year}年愛自然年度回顧——以生物多樣性來慶祝您的這一年
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: 愛自然團隊
   yir_email_the_year_isnt_over: |
     今年還未結束，上傳之前的觀察紀錄永遠不會太遲。當您分享更多的觀察紀錄時，別忘了在您的年度回顧頁面底下來選擇「重新產生統計」以查看更新。
   yir_email_what_else_will_you_observe_caps: 您將來還會觀察什麼生物呢？
