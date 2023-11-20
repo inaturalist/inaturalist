@@ -1609,6 +1609,9 @@ fi:
   eligible_for_research_grade: Sovelias tutkimustasolle
   email: Sähköposti
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Hei %{user},
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_conf_required_after_grace_period: |
     Sähköpostin vahvistus vaadittiin %{requirement_date} mennessä, mutta et
@@ -1855,6 +1858,8 @@ fi:
   generate_taxonomic_tags_for_flickr: Luo taksonomisia tunnisteita Flickr-kuviisi.
   generate_widget: Luo pienoisohjelma
   generate_your_stats: Tuota tilastosi
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: LUO OMA VUODEN 2023 YHTEENVETOSI
   generating_mobile_archive: "Luodaan mobiiliarkistoa"
   Genus: Suku
   geoprivacy: Sijainnin tietosuoja
@@ -5038,6 +5043,7 @@ fi:
   year: Vuosi
   year_in_review: "Vuosikatsaus %{year}"
   year_in_review2: "Vuosikatsaus %{year}"
+  year_in_review_caps: "VUOSIYHTEENVETO 2023"
   year_month: vuosi/kuukausi
   year_on_site: "Vuosi %{year} %{site}issa"
   yellow: keltainen
@@ -5060,8 +5066,30 @@ fi:
     <a href="%{url}">Ohjelmistomme</a> on lähes kokonaan avointa lähdekoodia, mikä tarkoittaa, että
     kuka tahansa, joka osaa, voi osallistua sen kehittämiseen. Tässä ovat ihmiset, jotka vapaaehtoisesti koodasivat 
     tänä vuonna. Kiitos, kehittäjät!
+  yir_email_because_of_you: |
+    Sinun ansiostasi meillä on nyt enemmän tietoa biodiversiteetistä kuin viime vuonna. Vuosiyhteenveto on kiitoksemme sinulle.
+  yir_email_log_in_to_generate: |
+    Kirjaudu sisään luodaksesi oman vuosiyhteenvetosi.
+  yir_email_of_your_observations:
+    one: Tiedätkö, kuinka monta %{count} havainnostasi teit vuonna %{year}?
+    other: Tiedätkö, kuinka monta %{count} havainnoistasi teit vuonna %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Vuoden %{year} iNaturalist vuosiyhteenvetosi
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist-tiimi
   yir_email_the_year_isnt_over: |
     Vuosi ei ole vielä ohi, eikä ole koskaan liian myöhäistä lähettää vanhempia havaintoja. Jos tallennat lisää havaintoja, päivitä tilastosi “Luo tilastot uudelleen” -napista vuosiyhteenvedon alareunassa.
+  yir_email_what_else_will_you_observe_caps: MITÄ MUUTA HAVAITSIT?
+  yir_email_what_new_to_you: |
+    Mitä uusia lajeja kirjasit tänä vuonna? Kuinka moni ihminen auttoi sinua tunnistamaan havaintoja (ja kuinka monta sinä autoit)?
+  yir_email_with_gratitude: Kiitoksin,
+  yir_email_year_on_inaturalist_globally_caps: "INATURALIST VUONNA %{year}"
+  yir_email_you_are_part_of_something: |
+    Olet osa jotain suurta! Jokainen henkilö, joka tallentaa havaintoja, lisää tunnistuksia ja levittää sanaa iNaturalistista vaikuttaa
+    luonnon monimuotoisuuteen. Yhdessä tuomme biologista monimuotoisuutta koskevat tiedot ja oivallukset saataville ennennäkemättömissä määrin. Kiitos, että olet osa iNaturalist-yhteisöä!
+  yir_email_you_make_a_difference: |
+    Voit vaikuttaa luonnon monimuotoisuuteen iNaturalistin avulla. Kiitos kaikesta mitä teet!
   yir_monthly_supporters_random_selection: |
     Tässä on satunnainen valikoima iNatin sankarillisia yhteisön jäseniä, jotka lahjoittavat joka kuukausi.
   you: sinä
