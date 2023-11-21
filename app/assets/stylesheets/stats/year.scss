@@ -1028,7 +1028,8 @@ $tip-opacity: 1;
       $site-size: 150px;
       .site {
         width: $site-size;
-        height: $site-size + $user-image-overhang;
+        height: auto;
+        min-height: $site-size + $user-image-overhang;
         position: relative;
         margin: 0 30px;
         .site-icon {
@@ -1045,6 +1046,10 @@ $tip-opacity: 1;
             margin-top: ($site-size * 0.8) / -2;
           }
         }
+        @media (max-width: 500px) {
+          width: 30%;
+        }
+
 
         $ribbon-point-width: 8px;
         $ribbon-point-hypotenuse: 18px;
@@ -1064,6 +1069,8 @@ $tip-opacity: 1;
           .ribbon-content {
             max-height: none;
             word-break: break-word;
+            line-height: 14px;
+            padding: 3px 0px;
           }
         }
         a.ribbon:hover {
