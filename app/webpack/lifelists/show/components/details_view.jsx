@@ -170,20 +170,17 @@ const DetailsView = ( {
       </div>
     );
   }
-  const taxonClear = lifelist.detailsView === "unobservedSpecies" ? null : (
-    <button
-      type="button"
-      className="nostyle"
-      onClick={( ) => setDetailsTaxon( null )}
-    >
-      <span className="fa fa-times" />
-    </button>
-  );
   return (
     <div className="Details">
       { lifelist.detailsTaxon ? (
         <h3>
-          { taxonClear }
+          <button
+            type="button"
+            className="nostyle"
+            onClick={( ) => setDetailsTaxon( null )}
+          >
+            <span className="fa fa-times" />
+          </button>
           <SplitTaxon
             taxon={lifelist.detailsTaxon}
             url={`/taxa/${lifelist.detailsTaxon.id}`}
