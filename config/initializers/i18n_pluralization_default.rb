@@ -15,7 +15,9 @@ module I18n
 
         pluralizer = pluralizer( locale )
         if pluralizer.respond_to?( :call )
-          return entry[:zero] if count.zero? && entry.key?( :zero )
+          # rubocop:disable Style/NumericPredicate
+          return entry[:zero] if count == 0 && entry.key?( :zero )
+          # rubocop:enable Style/NumericPredicate
 
           # Sometimes the pluralizer is going to get a string that's a number
           # with delimiters, so we need to parse that into an actual number
