@@ -1859,7 +1859,7 @@ fi:
   generate_widget: Luo pienoisohjelma
   generate_your_stats: Tuota tilastosi
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
-  generate_your_year_in_review_caps: LUO OMA VUODEN 2023 YHTEENVETOSI
+  generate_your_year_in_review_caps: LUO OMA VUODEN %{year} YHTEENVETOSI
   generating_mobile_archive: "Luodaan mobiiliarkistoa"
   Genus: Suku
   geoprivacy: Sijainnin tietosuoja
@@ -5043,7 +5043,7 @@ fi:
   year: Vuosi
   year_in_review: "Vuosikatsaus %{year}"
   year_in_review2: "Vuosikatsaus %{year}"
-  year_in_review_caps: "VUOSIYHTEENVETO 2023"
+  year_in_review_caps: "VUOSIYHTEENVETO %{year}"
   year_month: vuosi/kuukausi
   year_on_site: "Vuosi %{year} %{site}issa"
   yellow: keltainen
