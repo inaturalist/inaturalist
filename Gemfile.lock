@@ -364,9 +364,7 @@ GEM
     faraday-retry (1.0.3)
     fastimage (2.2.5)
     ffi (1.15.4)
-    flickraw (0.9.10)
-    flickraw-cached (20120701)
-      flickraw (>= 0.9)
+    flickr (2.1.0)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     georuby (2.5.2)
@@ -701,6 +699,7 @@ GEM
     unicode-display_width (2.1.0)
     utf8-cleaner (1.0.0)
       activesupport
+    vcr (6.2.0)
     version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -783,7 +782,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fastimage
-  flickraw-cached
+  flickr
   friendly_id
   gdata!
   georuby
@@ -850,6 +849,7 @@ DEPENDENCIES
   terrapin
   uglifier
   utf8-cleaner
+  vcr
   watu_table_builder
   webmock
   whenever

@@ -55,13 +55,14 @@ class UserAutocomplete extends React.Component {
   }
 
   render( ) {
-    const { className, placeholder } = this.props;
+    const { className, placeholder, disabled } = this.props;
     return (
       <span className="UserAutocomplete form-group">
         <input
           type="search"
           name="user_login"
           className={`form-control ${className}`}
+          disabled={disabled}
           placeholder={placeholder || I18n.t( "username_or_user_id" )}
         />
         <input type="hidden" name="user_id" />
@@ -89,11 +90,13 @@ UserAutocomplete.propTypes = {
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/no-unused-prop-types
   projectID: PropTypes.number,
+  disabled: PropTypes.bool,
   config: PropTypes.object
 };
 
 UserAutocomplete.defaultProps = {
-  config: {}
+  config: {},
+  disabled: false
 };
 
 export default UserAutocomplete;

@@ -24,6 +24,9 @@ da:
   x_identifications_:
     one: '1 Identifikation'
     other: '%{count} Identifikationer'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFIKATION'
+    other: '<span class="count">%{count}</span> IDENTIFIKATIONER'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ da:
   x_observations_html:
     one: "<span class='count'>1</span> observation"
     other: "<span class='count'>%{count}</span> observationer"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONER"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observation</a>"
     other: "<a href='%{url}'>%{count} observationer</a>"
@@ -83,6 +89,9 @@ da:
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> personer'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
@@ -96,6 +105,9 @@ da:
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTER"
   x_species_html:
     one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
@@ -678,6 +690,7 @@ da:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
+  are_you_sure_you_want_to_flag_as_spammer: Sikker på, at denne bruger skal markeres som spammer?
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
   attention: Bemærk
@@ -2296,6 +2309,7 @@ da:
   journal: Journal
   journal_archives_for: Journal arkiveres til
   journal_post: Journalindlæg
+  journal_post_: journalindlæg
   journal_post_deleted: Journalindlæg slettet.
   journal_posts: Journalindlæg
   jpg_png_or_gif: "JPG, PNG, eller GIF"
@@ -3249,6 +3263,7 @@ da:
   observations_widget: Observations widget
   observations_with_this_field: Observationer med dette felt
   observations_with_this_field_and_value: Observationer med dette felt og værdi
+  observations_without_this_field: Observationer uden dette felt
   observations_without_media: Observationer uden media
   observationcounts_refreshed: Observations antal genopfrisket
   observed: Observeret
@@ -7098,6 +7113,8 @@ da:
           Hvis den eneste grund til, at du smutter, er at stoppe projekt kuratorer fra at se dine skjulte koordinater.
       edit:
         admins_must_be_existing_members: Admins skal være eksisterende projektmedlemmer.
+        admins_can_only_be_added_after_creation: |
+          Admins kan først tilføjes efter projektoprettelsen.
         aggregation_pending: Sammenlægning afventer
         new_place_desc_html: |
           Prøv at se
@@ -7451,6 +7468,18 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a>-websteder
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Tilføjet begge
+        added_only_identifications: Tilføjet kun identifikationer
+        added_only_observations: Tilføjet kun observationer
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Bredere indvirkninger
+        broader_impacts_desc: |
+          Adskillige eksterne partnere importerer jævnligt iNaturalist-observationer til
+          støtte for videnskab og bevaring. Dine observationer, identifikationer,
+          og åbne licensvalg tillader disse organisationer at give nyttige
+          biodiversitetsoplysninger til folk rundt om i verden, som behøver dem.
         compare_desc: |
           Hvordan var i år sammenlignet med tidligere år? Med minimum tre års brug
           kan vi begynde at sammenligne årlige aktivitetsmålinger. Den grønne bjælke viser dette år, den hvide lodrette bjælke viser sidste år, og de grå baggrundsområder viser de laveste og højeste år, samt gennemsnittet for
@@ -8326,6 +8355,7 @@ da:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
       Photo: Foto
+      Post: Journalindlæg
       TaxonLink: Takson link
     attributes:
       announcement:
@@ -8943,6 +8973,20 @@ da:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Dyr
+        Actinopterygii: Strålefinnede fisk (Actinopterygii)
+        Aves: Fugle (Aves)
+        Reptilia: Krybdyr (Reptilia)
+        Amphibia: Padder (Amphibia)
+        Mammalia: Pattedyr (Mammalia)
+        Arachnida: Spindlere (Arachnida)
+        Insecta: Insekter (Insecta)
+        Plantae: Planter (Plantae)
+        Fungi: Svampe (Fungi)
+        Protozoa: Protozoer (Protozoa)
+        Mollusca: Bløddyr (Mollusca)
+        Chromista: Chromista ("planteagtige")
   #Title of a section warning the user about something
   warning_title: Advarsel
   wikimedia: Wikimedia

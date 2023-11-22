@@ -24,6 +24,9 @@ fr:
   x_identifications_:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICATION'
+    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ fr:
   x_observations_html:
     one: "<span class='count'>%{count}</span> observation"
     other: "<span class='count'>%{count}</span> observations"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
@@ -96,6 +102,9 @@ fr:
   x_species:
     one: '1 espèce'
     other: '%{count} espèces'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÈCE"
+    other: "<span class='count'>%{count}</span> ESPÈCES"
   x_species_html:
     one: "<span class='count'>1</span> espèce"
     other: "<span class='count'>%{count}</span> espèces"
@@ -664,6 +673,7 @@ fr:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la check-list de « %{place} » ?"
+  are_you_sure_you_want_to_flag_as_spammer: Êtes-vous sûr de vouloir signaler cet utilisateur comme spammeur ?
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
   attention: Attention
@@ -3207,6 +3217,7 @@ fr:
   observations_widget: Widget d’observations
   observations_with_this_field: Observations avec ce champ
   observations_with_this_field_and_value: Observations avec ce champ et cette valeur
+  observations_without_this_field: Observations sans ce champ
   observations_without_media: Observations sans média
   observationcounts_refreshed: Comptes des observations rafraîchis
   observed: Observé
@@ -4878,7 +4889,7 @@ fr:
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
   taxonomy_details: Détails de la taxinomie
-  taxonomy_details_for: Détail de la taxonimie pour
+  taxonomy_details_for: Détail de la taxinomie pour
   taxonomy_details_info: 'La page de détails de la taxinomie utilise les cadres de taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En savoir plus</a>.'
   taxonomy_settings: Configuration de taxinomie
   teachers_guide: Guide de l’enseignant
@@ -5682,6 +5693,49 @@ fr:
   yir_donate_banner_you_helped_inaturalist_thrive: Vous avez aidé iNaturalist à prospérer cette année. Merci !
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist a besoin de votre appui
+  yir_email_because_of_you: |
+    Grâce à vous, il y a plus de données sur la biodiversité cette année que l'année dernière. Cette Rétrospective de l'Année est notre cadeau pour tout ce que vous avez fait pour la biodiversité à travers iNaturalist.
+  yir_email_log_in_to_generate: |
+    Connectez-vous pour générer votre Rétrospective de l'Année et pour en savoir plus !
+  yir_email_of_your_observations:
+    one: Savez-vous si votre observation a été réalisée en %{year} ?
+    other: Savez-vous combien de vos %{count} observations ont été réalisées en %{year} ?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Votre Rétrospective iNaturalist de l'Année %{year} - fêtez votre année avec la biodiversité
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: L'équipe iNaturalist
+  yir_email_the_year_isnt_over: |
+    L'année n'est pas encore terminée et il n'est jamais trop tard pour publier des observations
+    plus anciennes. Après avoir partagé plus d'observations, assurez-vous de
+    sélectionner "Régénérer les statistiques" en bas de votre Rétrospective de l'Année pour voir les mises à jour.
+  yir_email_what_else_will_you_observe_caps: QU'ALLEZ-VOUS OBSERVER D'AUTRE ?
+  yir_email_what_new_to_you: |
+    Quelles nouvelles espèces pour vous avez-vous observées cette année ? Combien de personnes vous ont-elles aidées pour vos identifications (et combien en avez-vous aidées) ?
+  yir_email_with_gratitude: Avec notre gratitude,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} SUR INATURALIST EN GENERAL"
+  yir_email_you_are_part_of_something: |
+    Vous participez à quelque chose de grand ! Chaque personne qui publie des observations, ajoute des identifications et fait connaître iNaturalist contribue à la biodiversité. Grâce à nos efforts collectifs, nous donnons accès à des données et des informations sur la biodiversité à une échelle sans précédent. Merci de faire partie de la communauté iNaturalist !
+  yir_email_you_make_a_difference: |
+    Vous contribuez à la biodiversité grâce à iNaturalist. Merci pour tout ce que vous faites !
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Vous avez reçu ce courriel parce que %{email} est associé à
+    https://www.inaturalist.org/people/%{username}, un compte iNaturalist
+    créé le %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Vous avez reçu ce courriel parce que %{email} est associé à
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    un compte iNaturalist créé le %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Votre compte est affilié à %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Votre compte est affilié à <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Il est de plus en plus coûteux de produire et de transmettre à cette échelle et à cette vitesse sans précédent des données sur la biodiversité à fort impact.
   yir_millions_of_people_used_inaturalist: |

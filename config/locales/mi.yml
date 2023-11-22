@@ -20,7 +20,7 @@ mi:
   x_observers_html:
     other: '<span class="count">%{count}</span> kaimātaki'
   x_new_species:
-    other: "%{count} Momo hōu"
+    other: "%{count} Momo hou"
   x_species:
     other: '%{count} Momo'
   x_species_html:
@@ -76,7 +76,7 @@ mi:
   add_description: "Tāpiri te %{description_name}"
   add_from_your_observations: Tāpiritia mai i āu mauhanga
   add_id: Tāpiri tautuhi
-  add_new_place: Tāpiri tētahi wāhi hōu
+  add_new_place: Tāpiri tētahi wāhi hou
   add_obs_from_a_list: Tapiritia ngā mauhanga i tētahi tūtira
   add_observations: Tāpiri ngā mauhanga
   add_observations_project: Tapiritia ngā mauhanga ki te kohinga nei
@@ -153,6 +153,7 @@ mi:
   animals: Kīrehe
   annotation: Kupu tāpiri
   annotations: Kupu tāpiri
+  announcements: Pānui
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
@@ -185,6 +186,9 @@ mi:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Āhuatanga
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Toharite
   back_to_all_species: Hoki ki ngā momo katoa
   back_to_friends: Hoki ki ngā hoa
   back_to_observation: Hoki ki te mauhanga
@@ -231,9 +235,18 @@ mi:
     merge: Hanumi
     swap: Whakawhiti
   change_your_password: Ka tīni tō kupuhipa
+  choose_a_place: Kōwhiria tetahi wāhi
+  choose_columns: Kōwhiria ngā tīwae
   choose_file: Kōwhiri kōnae
+  choose_files: Kōwhiria kōnae
+  choose_photos_for_this_taxon: Kōwhiria ngā whakaahua mō te rōpū nei
+  choose_taxon: Kōwhiria tetahi rōpū
   classification: Whakarōpū
+  clear: Ūkui
+  clear_filters: Ūkuia ngā tātari
+  clear_search: Ūkuia te rapunga
   click_the_map: "<strong>Pāwhiria te mahere</strong> i tāpiritia tētahi wāhi."
+  close: Kati
   columns: Tīwae
   #Noun, used to label a comment or a comment field in a form
   comment: kōrero
@@ -241,14 +254,14 @@ mi:
   comment_: Kōrero
   comment_deleted: I mukua te kōrero
   #Notice when a comment has been hidden by moderators
-  comment_hidden: I hunaia te kōrero
+  comment_hidden: Kua hunaia te kōrero
   comments: Kōrero
   community: Hapori
   community_guidelines: Aratohu hapori
   compare: Ine
   configure: Whirihora
   confirm: Whakaū
-  confirm_new_password: Whakaū i te kupuhipa hōu
+  confirm_new_password: Whakaū i te kupuhipa hou
   confirm_now: Whakaū ināianei
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: I whakamanahia i %{date}
@@ -258,7 +271,9 @@ mi:
   conservation_status: Tūnga whāomoomo
   conservation_status_created: I hanga te tūnga whāomoomo
   conservation_status_deleted: I muku te tūnga whāomoomo
-  conservation_status_updated: I whakahōu te tūnga whāomoomo
+  conservation_status_updated: I whakahou te tūnga whāomoomo
+  continue: Haere tonu
+  continue_to_site: Haere tonu ki %{site_name}
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Katoa
@@ -276,6 +291,7 @@ mi:
     adult: Pakeke
     pupa: Tūngoungou
     larva: Pūhouhou
+    egg: Hua
     alive_or_dead: Ora, mate rānei
     alive: Ora
     dead: Mate
@@ -310,10 +326,10 @@ mi:
   copyright_info_and_more: Mōhiohio manatārua me anō
   copyright_infringement: Hara manatārua
   couldnt_find_that_taxon: Kāore i kitea he tēnā rōpū
-  create_a_new_place: Hangaia he wāhi hōu
-  create_a_new_taxon: Hangaia he rōpū hōu
+  create_a_new_place: Hangaia he wāhi hou
+  create_a_new_taxon: Hangaia he rōpū hou
   create_an_account: Hangaia he pūkete
-  create_new_taxon: Hangaia he rōpū hōu
+  create_new_taxon: Hangaia he rōpū hou
   created: I hangaia
   created_by: I hangaia nā
   critically_endangered: Mōrea rukiruki
@@ -355,9 +371,16 @@ mi:
   date_observed: Rā mātakitia
   date_observed_: Rā mātakitia
   date_picker:
+    closeText: Kati
+    currentText: Nōnāianei
     #Contextual help for a button navigating to the next month in a date picker
     nextText: Panuku
   date_time: Rā/Wā
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Rā whakahou
   day: Rā
   #Default option
@@ -397,6 +420,7 @@ mi:
   donate_again_caps: TAKOHATIA ANŌ
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
+  download: Tikiake
   download_caps: TIKIAKE
   #Noun, as in a journal post that has not been published
   draft: hukihuki
@@ -420,11 +444,16 @@ mi:
   edit_taxon: Whakatika te rōpū
   edit_your_account_and_profile_html: "Whakatika i tāu tautuhinga pūkete me tāu kīwhaiaro"
   edited_by_name_html: "I whakatika nā %{name}"
+  editing_announcement: E whakatika ana te pānui
   editing_observation_id: "E whakatika ana te mauhanga %{obs_id}"
   editing_project: E whakatika ana %{project}
   editing_taxon: E whakatika ana %{taxon}
   editing_this: E whakatika ana %{elem}
+  editors: Kaiwhakatika
   email: Īmēra
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kia ora %{user},
   end_date_time: Rā/Wā mutunga
   endangered: Mōrearea
   endemic: Taketake
@@ -440,6 +469,10 @@ mi:
   facebook: Pukamata
   'false': 'Teka'
   Family: Whānau
+  file: Kōnae
+  file_size: Rahi kōnae
+  #The name of a computer file
+  filename: Ingoa kōnae
   filter: Tātari
   filtering: E tātari ana
   filters: Tātari
@@ -472,17 +505,24 @@ mi:
     Kara mō rōpū: %{title}
   flag_for_user_title_html: |
     Kara mō kaiwhakamahi: %{title}
+  flag_saved: Kua tiaki i te kara
+  flag_saved_thanks_html: Kua tiaki i te kara. Kia ora! <a href="%{url}" class="readmore">Tirohia te kara</a>
   flag_this_observation: Whakakara te mauhanga nei
   flag_this_photo: Whakakara te whakaahua nei
   flag_this_place: Whakakara te wāhi nei
   flag_this_sound: Whakakara te oro nei
+  flagged_: Kua karatia
+  flagged_for_curation: Kua karatia mō rauhītia
   flagger: Kaiwhakakara
+  flags: Kara
+  flags_with_count: Kara (%{count})
   flags_for_x_html: Ngā kara mō %{x}
   follow: Aru
   follow_user: "Aruhia a %{user}"
   followers: Kiriaru
   forgot_your_password: Kua warewarehia tō kupuhipa?
   forum: Wānanga
+  full_screen: Mata katoa
   fungi:
     other: hekaheka
   generate_your_stats: Tatauhia tāu tauanga
@@ -525,6 +565,8 @@ mi:
   identification_withdrawn: Kua maunu te tautuhi
   identifications: Tautuhi
   identifiers: Ngā kaitautuhi
+  ignore_and_continue: Waiho me haere tonu
+  ignore_times: Waihotia ngā wā
   import: Kawe mai
   import_observations: Kawe mai ngā mauhanga
   import_photos: Kawe mai ngā whakaahua
@@ -534,6 +576,7 @@ mi:
   inbox: Pouakauru
   inat_user_profile: "%{site_name}: Kīwhaiaro tō %{user}"
   insects: pepeke
+  instagram: Paeāhua
   jobs: He tūranga mahi
   join_the_largest_group_of_naturalists_in_the_world: E kuhu mai koe i te rōpū nui o kaitaiao i te ao!
   journal: Rangitaki
@@ -541,6 +584,8 @@ mi:
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
   location_unknown: Wāhi ngaro
+  #Large photo size
+  large: nui
   lat: Pae
   latitude: Ahopae
   latitude_in_decimals: 'Te ahopae i roto i nga tohu-a-ira, e.g. 38.123'
@@ -549,10 +594,13 @@ mi:
   learn: Ako
   learn_more: Akohia tonuhia
   lexicons:
+    maori: Te reo Māori
     spanish: Pāniora
   license: Raihana
   link_your_google_account: Ka hono tāu pūkete Kūkara
   list: Tūtira
+  list_views:
+    photo: whakaahua
   lists: Tūtira
   lists_by_login:
     title:
@@ -593,6 +641,9 @@ mi:
       observations: Mauhanga
   mark_as_reviewed: Tohutia i kua arotake
   mark_all_as_reviewed: Tohutia katoa i kua arotake
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: me
   meet: Tūtaki
   member_of_the_inaturalist_network_html: |
     He huānga i te <a href="%{url}">tūhononga iNaturalist</a>
@@ -603,6 +654,8 @@ mi:
   messages: Karere
   #Label shown when a date has not been entered
   missing_date: Rā ngaro
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Huna
   mollusks: kaiwhao
   momentjs:
     shortRelativeTime:
@@ -657,14 +710,16 @@ mi:
   name: Ingoa
   names: Ingoa
   names_for_taxon_html: "Ingoa mō %{taxon}"
-  new_conservation_status: Tūnga whāomoomo hōu
-  new_flag_for: Kara hōu mō
-  new_list: Tūtira hōu
-  new_members: "Huānga hōu"
+  new: Hou
+  new_announcement: Pānui hou
+  new_conservation_status: Tūnga whāomoomo hou
+  new_flag_for: Kara hou mō
+  new_list: Tūtira hou
+  new_members: "Huānga hou"
   new_message: Karere hou
-  new_password: Kupuhipa hōu
-  new_project: Kohinga hōu
-  new_users: Kaiwhakamahi hōu
+  new_password: Kupuhipa hou
+  new_project: Kohinga hou
+  new_users: Kaiwhakamahi hou
   next: Panuku
   next_date_short: Panuku
   next_observation: Mauhanga panuku
@@ -678,7 +733,7 @@ mi:
   no_license_all_rights_reserved: Raihana kore (kua rāhuitia ngā mōtika katoa)
   no_members_yet: "E kore ngā huānga anō"
   no_messages_yet: E kore ngā karere anō
-  no_new_messages: E kore ngā karere hōu
+  no_new_messages: E kore ngā karere hou
   no_observations: Mauhanga kore
   no_observations_from_this_place_yet: E kore ngā mauhanga i kōnei anō
   no_observations_submitted: "E kore ngā mauhanga i tukua!"
@@ -687,6 +742,7 @@ mi:
   no_photos: Whakaahua kore
   no_projects_yet: E kore ngā kohinga anō!
   no_recent_activity: E kore ngā hohenga inātata nei
+  no_taxa: Kāore ngā rōpū
   noble_curators: "Ngā kairauhī rangatira o %{site}"
   notes: Kupu tīpoka
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
@@ -720,6 +776,8 @@ mi:
   observations_by_user: "Mauhanga nā %{user}"
   observations_from_this_place: Ngā mauhanga ki te wāhi nei
   observations_map: Mauhanga/Mahere
+  observations_per_month: Mauhanga/Marama
+  observations_saved: Kua tiaki ngā mauhanga!
   observed: I mātakitia
   observed_by: I mātakitia nā
   observer: Kaimātaki
@@ -747,12 +805,26 @@ mi:
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
       without_observation: I tāpiri ia tētahi <strong>tautuhi</strong>
+  per_day: Ia rā
   per_month: Ia marama
+  per_week: Ia wiki
   person: Tangata
+  per_page: "Ia whārangi"
   photo: Whakaahua
   photo_attribution: "Whakaahua %{attribution}"
   photo_browser: Pūtirotiro whakaahua
   photo_by_id_attribution: "Whakaahua %{id}, %{attribution}"
+  photo_deleted: Kua mukua te whakaahua
+  #Message displayed after a photo has been hidden
+  photo_hidden: Kua hunaia te whakaahua
+  photos_or_sounds: Whakaahua, oro rānei
+  photos_or_sounds?: Whakaahua, oro rānei?
+  photos_size:
+    small: iti
+    medium: wawaenga
+    large: nui
+    original: taketake
+  photos_updated: Kua whakahou ngā whakaahua
   pi_consent_desc_title: Mō mōhiohio whaiaro
   place: Wāhi
   place_geo:
@@ -1066,6 +1138,7 @@ mi:
   satellite: amiorangi
   save: Tiaki
   save_all: Tiaki katoa
+  save_and_continue: "Tiaki &amp; haere tonu"
   save_identification: Tiakina te tautuhi
   save_observation: Tiakina te mauhanga
   save_photos: Tiakina ngā whakaahua
@@ -1146,6 +1219,7 @@ mi:
   taxonomy_details_for: Taipitopito whakarōpū mō
   teachers_guide: Aratohu o kaiako
   tell_the_world_a_little_about_yourself: Kōrero mai i a koe
+  tell_us_why: Kōrero mai he ai
   terms: Kuputaka
   terms_service: Tikanga whakamahi
   terrain: takoto
@@ -1179,13 +1253,13 @@ mi:
   trending: Ee rōpū te haere
   two_thirds: 2/3
   type_species_name: "Patopatohia te ingoa momo"
-  updating: E whakahōu ana...
-  update: Whakahōu
-  update_observations: Whakahōu ngā mauhanga
-  update_photos: Whakahōu ngā whakaahua
-  updated: I whakahōu
-  updated_by: I whakahōu nā
-  updated_daily: I whakahōu ai i rā
+  updating: E whakahou ana...
+  update: Whakahou
+  update_observations: Whakahou ngā mauhanga
+  update_photos: Whakahou ngā whakaahua
+  updated: I whakahou
+  updated_by: I whakahou nā
+  updated_daily: I whakahou ai i rā
   upload: Tukuatu
   uploader:
     tooltips:
@@ -1245,6 +1319,8 @@ mi:
   view_observations: Tirohia ngā mauhanga
   view_place: Tirohia te wāhi
   view_stats: Tirohia tauanga
+  view_taxon_page: Tirohia te whārangi rōpū
+  view_taxon_page_for_this_x: "Tirohia te whārangi rōpū mō te %{x} nei"
   view_taxononomy_details_for_taxon: "Tirohia ngā taipitopito whakarōpū mō %{taxon}"
   view_user_observations: "Tirohia ngā mauhanga o %{user}"
   view_x: "Tirohia %{x}"
@@ -1342,7 +1418,7 @@ mi:
         none: Kao.
     stats:
       year:
-        new_species_per_year: Momo hōu/Tau
+        new_species_per_year: Momo hou/Tau
         new_species_per_year_by_date_added: Nā rā tapiritia
         observations_per_year: Mauhanga/Tau
         observations_per_year_by_date_added: Nā rā tapiritia
@@ -1496,6 +1572,9 @@ mi:
       day_month_year: "%-d %B %Y"
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Pānui
       #Noun
       Flag: Kara
     attributes:

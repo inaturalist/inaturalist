@@ -205,10 +205,12 @@ class TaxonAutocomplete extends React.Component {
             const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
             const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
               rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
-              gender: snakeCaseRank
+              gender: snakeCaseRank,
+              iconic_taxon: item.iconic_taxon_name
             } );
             const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
-              defaultValue: labelInLocaleFallback
+              defaultValue: labelInLocaleFallback,
+              iconic_taxon: item.iconic_taxon_name
             } );
             let label = labelInLocale;
             if ( I18n.locale !== "en" && label === labelInEnglish ) {

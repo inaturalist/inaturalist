@@ -170,10 +170,10 @@ USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care
 INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
 OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
-# flickr api keys - these need to be set before Flickraw gets included
-FlickRaw.api_key = CONFIG.flickr.key
-FlickRaw.shared_secret = CONFIG.flickr.shared_secret
-FlickRaw.check_certificate = false
+# flickr api keys - these need to be set before Flickr gets included
+Flickr.api_key = CONFIG.flickr.key
+Flickr.shared_secret = CONFIG.flickr.shared_secret
+Flickr.check_certificate = false
 
 # force encoding
 Encoding.default_internal = Encoding::UTF_8

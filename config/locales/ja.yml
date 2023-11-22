@@ -16,6 +16,8 @@ ja:
     other: '<span class="count">%{count}</span>件の同定'
   x_identifications_:
     other: '%{count} 同定'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> 件の同定'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ ja:
     other: "%{count}件の観察記録"
   x_observations_html:
     other: "<span class='count'>%{count}</span>件の観察記録"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> 件の観察記録"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
@@ -65,6 +69,8 @@ ja:
     other: '%{count} 新規ユーザー'
   x_species:
     other: '%{count}種'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> 種"
   x_species_html:
     other: "<span class='count'>%{count}</span>種"
   x_species_link_html:
@@ -1626,6 +1632,9 @@ ja:
   eligible_for_research_grade: 研究用候補
   email: 電子メール
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: '%{user} さんへ'
   email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
   email_conf_required_after_grace_period: |
     %{requirement_date} の期限までにメールアドレスの確認が行われませんでした。アカウントにアクセスするには、パスワードをリセットしてください。
@@ -1876,6 +1885,8 @@ ja:
   generate_taxonomic_tags_for_flickr: あなたのFlickr写真のための分類群タグを作成
   generate_widget: ウィジェットを作成
   generate_your_stats: 統計を生成
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: あなたの %{year} 年を振り返る
   generating_mobile_archive: "モバイルアーカイブを作成中"
   Genus: 属
   geomodel_expected_nearby_label_is_derived: |
@@ -4859,12 +4870,14 @@ ja:
   update_with_site_content: "%{site_name}データで更新"
   updated: 更新済
   updated_by: 更新者
+  updated_by_user_on_date_html: 作成者:%{user}さん 作成日:%{date}
   updated_daily: 毎日更新されています
   updated_photo: 写真が更新されました
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
   upload_photo: 写真をアップロード
+  upload_range: 生息域をアップロード
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: アップロードしたユーザー：
   uploader:
@@ -5124,6 +5137,7 @@ ja:
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
   what_want_to_list?: リストにまとめたいものは？
+  what_were_you_looking_for?: "何をお探しですか？（ターゲットリスト）"
   whats_this?: もっと詳しく
   when: いつ？
   when_did_you_see_it?: いつ見ましたか？
@@ -5184,6 +5198,7 @@ ja:
   year: 年
   year_in_review: "%{year} 年を振り返る"
   year_in_review2: "%{year} 年を振り返る"
+  year_in_review_caps: "%{year} 年を振り返る"
   year_month: 年/月
   yellow: 黄
   'yes': "はい"
@@ -5216,6 +5231,31 @@ ja:
   yir_donate_banner_you_helped_inaturalist_thrive: 今年もiNaturalistの繁栄に協力してくださりありがとうございました！
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalistの資金源の大部分は皆様からの寄付です
+  yir_email_because_of_you: |
+    皆様のおかげで、今年は昨年よりも生物多様性に関するデータが増えました。Year in Reviewは、iNaturalistを通じて生物多様性のために尽力してくださったことすべてに対しての贈り物です。
+  yir_email_log_in_to_generate: |
+    ログインして、あなたの1年を振り返ってみてください！
+  yir_email_of_your_observations:
+    other: あなたの %{count} 件の観察記録のうち、%{year} に報告したものがいくつあるか知っていますか？
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    あなたの %{year} 年のiNaturalist Year in Review - 生物多様性と共にあなたの1年を祝う
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalistチーム
+  yir_email_the_year_isnt_over: |
+    まだ1年は終わっていませんし、古い観察記録を投稿するのに遅すぎるということはありません。
+    さらに観察記録を共有したら、Year in Reviewの一番下にある 「統計を再生成」を選択し、更新を確認してください。
+  yir_email_what_else_will_you_observe_caps: 他に何を観察しますか？
+  yir_email_what_new_to_you: |
+    今年はどのような新種（あなたにとっての）を記録しましたか？同定を手伝ってくれた人は何人いましたか（また、あなたは何人手伝いましたか）？
+  yir_email_with_gratitude: 感謝を込めて、
+  yir_email_year_on_inaturalist_globally_caps: "%{year} 年の世界全体のiNaturalistの活動"
+  yir_email_you_are_part_of_something: |
+    あなたは大きな何かの一部です！
+    観察記録を投稿し、同定を追加し、iNaturalistを広めるすべての人が生物多様性のために変化をもたらします。
+    私たちの努力の積み重ねにより、生物多様性のデータと知見がかつてない規模で利用できるようになっています。iNaturalistコミュニティの一員でいてくださることに感謝します！
+  yir_email_you_make_a_difference: |
+    あなたはiNaturalistを通して生物多様性に変化をもたらしています。ありがとうございます！
   yir_generating_and_sharing: |
     iNat上での生物多様性データの作成と共有は、かつてないほど大規模かつ高速に行われるようになり、そのコストは増大しています。
   yir_millions_of_people_used_inaturalist: |
@@ -7004,6 +7044,20 @@ ja:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: 動物界
+        Actinopterygii: 条鰭亜綱
+        Aves: 鳥綱
+        Reptilia: 爬虫綱
+        Amphibia: 両生綱
+        Mammalia: 哺乳綱
+        Arachnida: クモガタ綱
+        Insecta: 昆虫綱
+        Plantae: 植物界
+        Fungi: 菌界
+        Protozoa: 原生動物界
+        Mollusca: 軟体動物門
+        Chromista: クロミスタ界
   #Title of a section warning the user about something
   warning_title: 注意
   wikimedia: ウィキメディア

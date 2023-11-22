@@ -24,6 +24,9 @@ tr:
   x_identifications_:
     one: '%{count} Tanımlama'
     other: '%{count} Tanımlama'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> TANIMLAMA'
+    other: '<span class="count">%{count}</span> TANIMLAMA'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ tr:
   x_observations_html:
     one: "<span class='count'>%{count}</span> gözlem"
     other: "<span class='count'>%{count}</span> gözlem"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> GÖZLEM"
+    other: "<span class='count'>%{count}</span> GÖZLEM"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} gözlem</a>"
     other: "<a href='%{url}'>%{count} gözlem</a>"
@@ -83,6 +89,9 @@ tr:
   x_people:
     one: "%{count} kişi"
     other: "%{count} kişi"
+  x_people_html:
+    one: '<span class="count">%{count}</span> kişi'
+    other: '<span class="count">%{count}</span> kişi'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} kişi</strong> %{user} kullanıcısına <strong> %{y} tanımlamada</strong> yardım etti"
   x_photos:
     one: "%{count} fotoğraf"
@@ -96,6 +105,9 @@ tr:
   x_species:
     one: '%{count} Tür'
     other: '%{count} Tür'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> TÜR"
+    other: "<span class='count'>%{count}</span> TÜR"
   x_species_html:
     one: "<span class='count'>%{count}</span> tür"
     other: "<span class='count'>%{count}</span> tür"
@@ -673,6 +685,7 @@ tr:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Bu gözlemi %{project} projesinden kaldırmak istediğinden emin misin?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu sınıfı %{place} konumunun kontrol listesinden kaldırmak istediğine emin misin?"
+  are_you_sure_you_want_to_flag_as_spammer: Bu kullanıcıyı istenmeyen olarak işaretlemek istediğinden emin misin?
   associated_observations: İlgili gözlemler
   associated_taxa: İlgili sınıflar
   attention: Dikkat
@@ -1670,6 +1683,9 @@ tr:
   eligible_for_research_grade: Araştırma Sınıfı için Uygun
   email: E-posta
   email_address_for_comments_and_other_feedback: Yorumlar ve diğer geri bildirimler için e-posta adresi
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Sevgili %{user},
   email_description: E-posta adresin iNaturalist kullanıcılarıyla paylaşılmamaktadır
   email_conf_required_after_grace_period: |
     E-posta doğrulaması %{requirement_date} itibariyle gereklidir ve e-postanı son tarihten önce doğrulamadın. Hesabınıa erişmek için lütfen şifreni sıfırla.
@@ -1924,6 +1940,8 @@ tr:
   generate_taxonomic_tags_for_flickr: Flickr fotoğrafların için sınıflandırmasal etiketler oluştur.
   generate_widget: Widget Oluştur
   generate_your_stats: İstatistiklerini Oluştur
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: '%{year} YILI DEĞERLENDİRMENİ OLUŞTUR'
   generating_mobile_archive: "Mobil belgelik oluşturma"
   Genus: Cins
   geomodel_expected_nearby_label_is_derived: |
@@ -2086,6 +2104,8 @@ tr:
   identification_withdrawn: Tanımlama geri alındı.
   identifications: Tanımlamalar
   inaturalist_global_year_in_review: "iNaturalist'in Küresel %{year} Yılı Değerlendirmesi"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist, Amerika Birleşik Devletleri merkezli, vergiden muaf, kâr amacı gütmeyen bağımsız bir 501(c)(3) kuruluşudur (Vergi Kimliği: 92-1296468).
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -2211,6 +2231,7 @@ tr:
   journal: Günlük
   journal_archives_for: 'Günlük arşivleri:'
   journal_post: Günlük gönderisi
+  journal_post_: günlük gönderisi
   journal_post_deleted: Günlük gönderisi silindi.
   journal_posts: Günlük Gönderileri
   jpg_png_or_gif: "JPG, PNG, veya GIF"
@@ -3140,6 +3161,7 @@ tr:
   observations_widget: Gözlem Widgeti
   observations_with_this_field: Bu alandaki gözlemler
   observations_with_this_field_and_value: Bu alan ve değerdeki gözlemler
+  observations_without_this_field: Bu alanın olmadığı gözlemler
   observations_without_media: Medyasız Gözlemler
   observationcounts_refreshed: Gözlem sayıları yenilendi
   observed: Gözlem Tarihi
@@ -5539,6 +5561,7 @@ tr:
   year: Yıl
   year_in_review: "%{year} Yılı Değerlendirmesi"
   year_in_review2: "%{year} Yılı Değerlendirmesi"
+  year_in_review_caps: "%{year} YILI İNCELEMESİ"
   year_month: yıl/ay
   year_on_site: "%{site}'te %{year} Yıl"
   yellow: sarı
@@ -5570,6 +5593,43 @@ tr:
   yir_donate_banner_you_helped_inaturalist_thrive: Bu yıl iNaturalist'in gelişmesine yardımcı oldun. Teşekkür ederiz!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist'in Desteğine İhtiyacı Var
+  yir_email_because_of_you: |
+    Sayende bu yıl biyoçeşitlilik hakkında geçen yıla göre daha çok veri var. Yılın Değerlendirmesi, iNaturalist aracılığı ile biyoçeşitlilik için yaptığın her şey için sana bir hediyemizdir.
+  yir_email_log_in_to_generate: |
+    Öğrenmek için kişisel yıl değerlendirmeni oluşturmak üzere oturum aç!
+  yir_email_of_your_observations:
+    one: Yaptığın %{count} gözlemden %{year} içinde kaç tane yapıldığını biliyor musun?
+    other: Yaptığın %{count} gözlemden %{year} içinde kaç tane yapıldığını biliyor musun?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    %{year} iNaturalist Yıl Değerlendirmen - yılını biyoçeşitlilikle kutla
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist Ekibi
+  yir_email_the_year_isnt_over: |
+    Yıl henüz bitmedi ve eski gözlemleri paylaşmak için hiçbir zaman geç değil. Daha çok gözlem paylaştıktan sonra, güncellemeleri görmek için İnceleme Yılının altındaki "İstatistikleri Yeniden Oluştur" seçeneğini seçtiğinden emin ol.
+  yir_email_what_else_will_you_observe_caps: BAŞKA NELER GÖZLEMLEYECEKSİN?
+  yir_email_what_new_to_you: |
+    Bu yıl senin için yeni olan hangi türleri kaydettin? Kaç kişi tanımlama konusunda sana yardımcı oldu (ve sen kaç kişiye yardımcı oldun)?
+  yir_email_with_gratitude: Teşekkürlerimizle,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} YILINDA KÜRESEL OLARAK İNATURALIST"
+  yir_email_you_are_part_of_something: |
+    Büyük bir şeyin parçasısın! Gözlemlerini paylaşan, tanımlamalar ekleyen ve iNaturalist'i duyuran her kişi biyoçeşitlilik için bir fark yaratıyor. Ortak çabalarımız sayesinde, biyolojik çeşitlilik verilerini ve içgörülerini daha önce görülmemiş bir ölçekte kullanılabilir hale getiriyoruz. iNaturalist topluluğunun bir parçası olduğun için teşekkür ederiz!
+  yir_email_you_make_a_difference: |
+    iNaturalist aracılığıyla biyoçeşitlilik için fark yaratıyorsun. Yaptığın her şey için teşekkür ederiz!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Bu e-postayı aldın çünkü %{email}, %{created_date} tarihinde oluşturulmuş bir iNaturalist hesabı olan https://www.inaturalist.org/people/%{username} ile ilişkilidir.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Bu e-postayı aldın çünkü %{email}, %{created_date} tarihinde oluşturulmuş bir iNaturalist hesabı olan <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> ile ilişkilidir.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Hesabın %{site_name} (%{site_url}) ile bağlantılıdır.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Hesabın <a href="%{site_url}">%{site_name}</a> ile bağlantılıdır.
   yir_generating_and_sharing: |
     Yüksek etkili biyoçeşitlilik verilerinin bu benzeri görülmemiş ölçek ve hızda üretilmesi ve paylaşılmasının artan maliyetleri vardır
   yir_millions_of_people_used_inaturalist: |
@@ -6894,6 +6954,15 @@ tr:
         website_desc_html: |
           <a href="https://www.inaturalist.org">iNaturalist</a> veya <a href="%{url}">iNaturalist Ağı</a> internet siteleri üzerinden oluşturuldu
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Her İkisi de Eklendi
+        added_only_identifications: Yalnızca Tanımlamalar Eklendi
+        added_only_observations: Yalnızca Gözlemler Eklendi
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Daha Geniş Etkileri
+        broader_impacts_desc: |
+          Birçok dış ortak, bilimi ve korumayı desteklemek için iNaturalist gözlemlerini düzenli olarak içe aktarmaktadır. Gözlemlerin, tanımlamaların ve açık lisans tercihlerin, bu kuruluşların dünyanın dört bir yanında ihtiyaç duyan insanlara yararlı biyoçeşitlilik bilgileri sağlamasına olanak tanır.
         compare_desc: |
           Bu yılın geçen yıllara oranla nasıl? Üç yıllık kullanım ve sonrasında yıllık aktivite parametrelerini karşılaştırmaya başlarız. Yeşil çizgi bu yılı gösterir, beyaz yatay çizgi geçen yılı gösterir, gri arka plan alanı ise en düşük ve en yüksek yılları gösterirken aynı zamanda tüm yılların ortalamasını gösterir. İstatistikler sıfır sayımlı olan yılları içermez.
         compare_site_desc: |
@@ -7645,6 +7714,7 @@ tr:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Uygulama
       Photo: Fotoğraf
+      Post: Günlük Gönderisi
       TaxonLink: Sınıf Bağlantısı
     attributes:
       announcement:
@@ -8251,6 +8321,20 @@ tr:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Hayvanlar
+        Actinopterygii: Işınsal Yüzgeçliler
+        Aves: Kuşlar
+        Reptilia: Sürüngenler
+        Amphibia: Yüzergezerler
+        Mammalia: Memeliler
+        Arachnida: Örümceğimsiler
+        Insecta: Böcekler
+        Plantae: Bitkiler
+        Fungi: Mantarlar
+        Protozoa: Protozoa
+        Mollusca: Yumuşakçalar
+        Chromista: Kromistalar
   #Title of a section warning the user about something
   warning_title: Uyarı
   wikimedia: Wikimedia

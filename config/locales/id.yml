@@ -16,6 +16,8 @@ id:
     other: '<span class="count">%{count}</span> identifikasi'
   x_identifications_:
     other: '%{count} identifikasi'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> IDENTIFIKASI'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ id:
     other: "%{count} Pengamatan"
   x_observations_html:
     other: "<span class='count'>%{count}</span> pengamatan"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> PENGAMATAN"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} pengamatan</a>"
   x_observations_reviewed_html:
@@ -56,6 +60,8 @@ id:
     other: "%{count} lainnya"
   x_people:
     other: "%{count} orang"
+  x_people_html:
+    other: '<span class="count">%{count}</span> orang'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} orang</strong> telah membantu %{user} dengan <strong>%{y} ID</strong>"
   x_photos:
     other: "%{count} foto"
@@ -65,6 +71,8 @@ id:
     other: '%{count} Pengguna Baru'
   x_species:
     other: '%{count} Spesies'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> SPESIES"
   x_species_html:
     other: "<span class='count'>%{count}</span> spesies"
   x_species_link_html:
@@ -823,7 +831,7 @@ id:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: pisahkan dari
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: pisahkan menjadi
+    split_into: dipisahkan menjadi
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: dilebur menjadi
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -3126,6 +3134,7 @@ id:
   observations_widget: Widget Pengamatan
   observations_with_this_field: Pengamatan dengan bidang ini
   observations_with_this_field_and_value: Pengamatan dengan bidang dan nilai ini
+  observations_without_this_field: Pengamatan tanpa bidang ini
   observations_without_media: Pengamatan Tanpa Media
   observationcounts_refreshed: Jumlah pengamatan diperbarui
   observed: Diamati
@@ -6539,6 +6548,8 @@ id:
           Jika satu-satunya alasan Anda meninggalkan proyek ini adalah untuk menghentikan kurator proyek dari melihat koordinat tersembunyi Anda.
       edit:
         admins_must_be_existing_members: Pengelola harus merupakan anggota yang masih ada di dalam proyek.
+        admins_can_only_be_added_after_creation: |
+          Admin hanya bisa ditambahkan setelah proyek dibuat.
         aggregation_pending: Pengumpulan tertunda
         new_place_desc_html: |
           Coba lihat dulu <a href="%{places_url}" target="_blank">tempat-tempat yang sudah ada</a> dan pastikan Anda memasukkan nama tempatnya dengan benar. Jika Anda benar-benar tidak bisa menemukan tempat yang Anda inginkan, Anda boleh <a href="%{new_place_url}" target="_blank">membuat tempat baru</a>, tetapi tolong pastikan Anda tidak sedang membuat duplikat dari tempat yang sudah ada.
@@ -6834,6 +6845,19 @@ id:
           Dibuat melalui <a href="https://www.inaturalist.org">iNaturalist</a>
           atau situs web <a href="%{url}">Jaringan iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Menambahkan Keduanya
+        added_only_identifications: Menambahkan Identifikasi Saja
+        added_only_observations: Menambahkan Pengamatan Saja
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Pengaruh Lebih Luas
+        broader_impacts_desc: |
+          Beberapa rekan sering mengimpor pengamatan iNaturalist untuk 
+          mendukung ilmu pengetahuan dan konservasi. Pengamatan, identifikasi, 
+          dan penggunaan lisensi terbuka mengizinkan organisasi-organisasi 
+          tersebut untuk menyediakan informasi biodiversitas yang berguna untuk 
+          orang-orang yang membutuhkannya di seluruh dunia.
         compare_desc: |
           Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Dengan penggunaan selama tiga tahun atau lebih, kami bisa memulai untuk membandingkan metrik aktivitas tahunan. Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun. Statistik tidak menyertakan tahun di mana semua hitungan berjumlah nol.
         compare_site_desc: |
@@ -7736,6 +7760,16 @@ id:
         header:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: harus valid untuk penempatan yang tertera
         application:
           attributes:
             redirect_uri:
@@ -8090,6 +8124,20 @@ id:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Aktinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amfibia
+        Mammalia: Mamalia
+        Arachnida: Araknida
+        Insecta: Insekta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
+        Mollusca: Moluska
+        Chromista: Kromista
   #Title of a section warning the user about something
   warning_title: Peringatan
   wikimedia: Wikimedia

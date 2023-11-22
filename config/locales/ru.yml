@@ -40,6 +40,11 @@ ru:
     few: '%{count} идентификации'
     many: '%{count} идентификаций'
     other: '%{count} идентификаций'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
+    few: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИИ'
+    many: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
+    other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -112,6 +117,11 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения"
     many: "<span class='count'>%{count}</span> наблюдений"
     other: "<span class='count'>%{count}</span> наблюдений"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> НАБЛЮДЕНИЕ"
+    few: "<span class='count'>%{count}</span> НАБЛЮДЕНИЯ"
+    many: "<span class='count'>%{count}</span> НАБЛЮДЕНИЙ"
+    other: "<span class='count'>%{count}</span> НАБЛЮДЕНИЙ"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} наблюдение</a>"
     few: "<a href='%{url}'>%{count} наблюдения</a>"
@@ -158,6 +168,11 @@ ru:
     few: '%{count} вида'
     many: '%{count} видов'
     other: '%{count} видов'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ВИД"
+    few: "<span class='count'>%{count}</span> ВИДА"
+    many: "<span class='count'>%{count}</span> ВИДОВ"
+    other: "<span class='count'>%{count}</span> ВИДОВ"
   x_species_html:
     one: "<span class='count'>%{count}</span>вид"
     few: "<span class='count'>%{count}</span> вида"
@@ -5814,6 +5829,31 @@ ru:
   yir_donate_banner_you_helped_inaturalist_thrive: Вы помогли iNaturalist преуспеть в этом году. Спасибо!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist нужна ваша поддержка
+  yir_email_because_of_you: |
+    Благодаря вам в этом году появилось больше данных о биоразнообразии, чем в прошлом. Обзор года - это наш подарок вам за все, что вы сделали для сохранения биоразнообразия с помощью iNaturalist.
+  yir_email_log_in_to_generate: |
+    Войдите в систему, чтобы создать свой личный обзор за год и узнать больше!
+  yir_email_of_your_observations:
+    one: Знаете ли вы, сколько из вашего %{count} наблюдения было сделано в %{year} году?
+    few: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+    many: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+    other: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ваш %{year} в обзоре iNaturalist — отпразднуйте свой год с биоразнообразием
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Команда iNaturalist
+  yir_email_the_year_isnt_over: |
+    Год еще не закончился, и никогда не поздно публиковать более старые наблюдения. После того как вы поделитесь дополнительными наблюдениями, не забудьте выбрать опцию “Восстановить статистику” в нижней части вашего обзора за год, чтобы просмотреть обновления.
+  yir_email_what_else_will_you_observe_caps: КАКИЕ ЕЩЁ НАБЛЮДЕНИЯ ВЫ МОЖЕТЕ СДЕЛАТЬ?
+  yir_email_what_new_to_you: |
+    Наблюдения каких новые для вас видов вы разместили в этом году? Сколько людей помогли вам с идентификацией (и скольким помогли вы сами)?
+  yir_email_with_gratitude: С благодарностью,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} ГОД НА INATURALIST ГЛОБАЛЬНО"
+  yir_email_you_are_part_of_something: |
+    Вы - часть чего-то большого! Каждый человек, который публикует наблюдения, добавляет идентификационные данные и распространяет информацию об iNaturalist, вносит свой вклад в сохранение биоразнообразия. Благодаря нашим коллективным усилиям, мы предоставляем данные о биоразнообразии и аналитическую информацию в беспрецедентном масштабе. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
+  yir_email_you_make_a_difference: |
+    Вы вносите свой вклад в сохранение биоразнообразия с помощью iNaturalist. Спасибо вам за все, что вы делаете!
   yir_generating_and_sharing: |
     Создание и обмен данными о биоразнообразии с высокой отдачей в таких беспрецедентных масштабах и с такой скоростью сопряжены с растущими затратами
   yir_millions_of_people_used_inaturalist: |
@@ -7162,6 +7202,10 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Добавили и то, и другое
+        added_only_identifications: Добавили только идентификации
         compare_desc: |
           Как прошел этот год по сравнению с предыдущими? После трех и более лет использования мы можем начать сравнивать годовые показатели активности.
         compare_site_desc: |

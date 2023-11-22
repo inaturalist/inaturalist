@@ -5902,6 +5902,29 @@ cs:
   yir_donate_banner_you_helped_inaturalist_thrive: Tento rok iNaturalist vzkvétá i díky Vám. Děkujeme!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist potřebuje Vaši podporu
+  yir_email_because_of_you: |
+    Díky Vám máme letos více údajů o biodiverzitě než v minulém roce. Roční přehled je dárek od nás za vše, co jste prostřednictvím iNaturalist pro biologickou rozmanitost udělali.
+  yir_email_log_in_to_generate: |
+    Přihlaste se a nechte si vytvořit svůj roční přehled, ve kterém se to dozvíte!
+  yir_email_of_your_observations:
+    one: Víte, kolik z Vašeho %{count} pozorování jste provedli v roce %{year}?
+    few: Víte, kolik z Vašich %{count} pozorování jste provedli v roce %{year}?
+    many: Víte, kolik z Vašich %{count} pozorování jste provedli v roce %{year}?
+    other: Víte, kolik z Vašich %{count} pozorování jste provedli v roce %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Váš přehled roku %{year} na iNaturalist - oslavte svůj rok biodiverzity
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Tým iNaturalist
+  yir_email_the_year_isnt_over: |
+    Rok ještě neskončil a nikdy není pozdě zveřejňovat starší
+    pozorování. Až budete sdílet více pozorování, ujistěte se, že
+    vyberte "Regenerovat statistiky" v dolní části vašeho roku v recenzi, abyste viděli
+    aktualizace.
+  yir_email_what_else_will_you_observe_caps: CO DALŠÍHO BUDETE OBJEVOVAT?
+  yir_email_with_gratitude: s vděčností,
+  yir_email_you_make_a_difference: |
+    Prostřednictvím iNaturalist pomáháte biologické rozmanitosti. Děkujeme Vám za všechno, co děláte!
   yir_generating_and_sharing: |
     Vytváření a sdílení dat o biodiverzitě s vysokým impaktem v tomto nevídaném měřítku a rychlosti nese zvyšující se náklady.
   yir_millions_of_people_used_inaturalist: |

@@ -24,6 +24,9 @@ sv:
   x_identifications_:
     one: '%{count} bestämning'
     other: '%{count} bestämningar'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ARTBESTÄMNING'
+    other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ sv:
   x_observations_html:
     one: "<span class='count'>%{count}</span> fynd"
     other: "<span class='count'>%{count}</span> fynd"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> FYND"
+    other: "<span class='count'>%{count}</span> FYND"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} fynd</a>"
     other: "<a href='%{url}'>%{count} fynd</a>"
@@ -83,6 +89,9 @@ sv:
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> personer'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} bestämningar</strong>"
   x_photos:
     one: "%{count} bild"
@@ -96,6 +105,9 @@ sv:
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTER"
   x_species_html:
     one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
@@ -692,6 +704,7 @@ sv:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Är du säker på att du vill ta bort detta fynd från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
+  are_you_sure_you_want_to_flag_as_spammer: Är du säker på att du vill flagga den här användaren som en spammare?
   associated_observations: Tillhörande fynd
   associated_taxa: Tillhörande taxa
   attention: Märk väl
@@ -2326,6 +2339,7 @@ sv:
   journal: Dagbok
   journal_archives_for: Dagboksarkiv för
   journal_post: Dagboksinlägg
+  journal_post_: dagboksinlägg
   journal_post_deleted: Dagboksinlägg raderat.
   journal_posts: Dagboksinlägg
   jpg_png_or_gif: "JPG, PNG eller GIF"
@@ -3268,6 +3282,7 @@ sv:
   observations_widget: Fynd-widget
   observations_with_this_field: Fynd med detta fält
   observations_with_this_field_and_value: Fynd med detta fält och värde
+  observations_without_this_field: Fynd utan detta fält
   observations_without_media: Fynd utan media
   observationcounts_refreshed: Fyndantal uppdaterat
   observed: Observerad
@@ -5807,6 +5822,57 @@ sv:
   yir_donate_banner_you_helped_inaturalist_thrive: Du har hjälpt iNaturalist att frodas i år. Tack!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behöver ditt stöd
+  yir_email_because_of_you: |
+    På grund av dig, finns det mer data om biologisk mångfald det här året än 
+    förra året. Året Som Gått är vår gåva till dig för allt du har gjort för biologisk
+    mångfald genom iNaturalist.
+  yir_email_log_in_to_generate: |
+    Logga in för att generera ditt personliga Året Som Gått och ta reda på det!
+  yir_email_of_your_observations:
+    one: Av din %{count} observation, vet du hur många som gjordes %{year}?
+    other: Av dina %{count} observationer, vet du hur många som gjordes %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ditt iNaturalist-Året Som Gått %{year} – fira ditt år av biologisk mångfald
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist-teamet
+  yir_email_the_year_isnt_over: |
+    Året är inte över ännu, och det är aldrig för sent att lägga upp äldre
+    fynd. När du delat fler fynd, se till att välja “Skapa statistik igen”
+    längst ner på ditt Året Som Gått för att se uppdateringarna.
+  yir_email_what_else_will_you_observe_caps: VAD MER KOMMER DU ATT SE?
+  yir_email_what_new_to_you: |
+    Vilka nya-för-dig-arter sparade du i år? Hur många användare hjälpte
+    dig med bestämningar (och hur många hjälpte du)?
+  yir_email_with_gratitude: Med tacksamhet,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} PÅ INATURALIST GLOBALT"
+  yir_email_you_are_part_of_something: |
+    Du är del av något stort! Varje person som lägger upp fynd, lägger till
+    bestämningar och berättar om iNaturalist gör en skillnad för biologisk
+    mångfald. Genom vårt gemensamma arbete gör vi data och insikter om
+    biologisk mångfald tillgängliga i en aldrig tidigare skådad skala.
+    Tack för att du är en del av iNaturalist-communityn!
+  yir_email_you_make_a_difference: |
+    Du gör skillnad för biologisk mångfald genom iNaturalist. Tack för
+    allt du gör!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Du fick detta mejl eftersom %{email} är knutet till
+    https://www.inaturalist.org/people/%{username}, ett iNaturalist-konto
+    skapat %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Du fick detta mejl eftersom %{email} är knutet till
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    ett iNaturalist-konto skapat %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Ditt konto är anknutet till %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Ditt konto är anknutet till <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Att skapa och dela så mycket data om biologisk mångfald med sådan genomslagskraft och så snabbt och utan like har stadigt ökande kostnader
   yir_millions_of_people_used_inaturalist: |
@@ -6946,6 +7012,8 @@ sv:
           Om den enda anledningen till att du lämnar är för att hindra projektförvaltare från att se dina dolda koordinater.
       edit:
         admins_must_be_existing_members: Administratörer måste vara befintliga medlemmar i projektet.
+        admins_can_only_be_added_after_creation: |
+          Administratörer kan endast läggas till efter att projektet har skapats.
         aggregation_pending: Inväntar aggregering
         new_place_desc_html: |
           Försök kolla igenom
@@ -7256,6 +7324,19 @@ sv:
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
           eller <a href="%{url}">iNaturalist Network</a>-webbplatser
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Lade till båda
+        added_only_identifications: Lade endast till bestämningar
+        added_only_observations: Lade endast till fynd
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Bredare inverkan
+        broader_impacts_desc: |
+          Flera externa partner importerar regelbundet iNaturalist-fynd för att
+          stödja vetenskap och naturvård. Dina fynd, bestämningar och val av
+          öppna licenser gör det möjligt för dessa organisationer att tillhandahålla
+          användbar information om biologisk mångfald till människor som
+          behöver det runt om i världen.
         compare_desc: |
           Hur var detta år jämfört med dina tidigare år? Med tre år av användning eller mer kan vi börja jämföra årliga aktivitetsmått. Den gröna stapeln visar i år, den vita lodräta stapeln visar förra året, och de grå bakgrundsområdena visar de lägsta och högsta åren, såväl som medel för alla år. Statistik inkluderar inte år där antalet var noll.
         compare_site_desc: |
@@ -8019,6 +8100,7 @@ sv:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
       Photo: Bild
+      Post: Dagboksinlägg
       TaxonLink: Taxonlänk
     attributes:
       announcement:
@@ -8630,6 +8712,20 @@ sv:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amphibia
+        Mammalia: Mammalia
+        Arachnida: Arachnida
+        Insecta: Insecta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
+        Mollusca: Mollusca
+        Chromista: Chromista
   #Title of a section warning the user about something
   warning_title: Varning
   wikimedia: Wikimedia

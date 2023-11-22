@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import { Button } from "react-bootstrap";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import DateTimeFieldWrapper from "../../uploader/components/date_time_field_wrapper";
+import { parsableDatetimeFormat } from "../../uploader/models/util";
 
 class ObservationFieldInput extends React.Component {
   static sameValue( v1, v2 ) {
@@ -250,7 +251,7 @@ class ObservationFieldInput extends React.Component {
     } else if ( datatype === "date" ) {
       mode = "date";
     }
-    let format = "YYYY/MM/DD h:mm A z";
+    let format = parsableDatetimeFormat( );
     if ( datatype === "time" ) {
       format = "HH:mm";
     } else if ( datatype === "date" ) {
@@ -264,7 +265,6 @@ class ObservationFieldInput extends React.Component {
           ref="datetime"
           mode={mode}
           inputFormat={format}
-          timeZone={TIMEZONE}
           onChange={dateString => {
             this.setState( { observationFieldValue: dateString } );
             this.onChangeHandler( dateString );
@@ -282,7 +282,7 @@ class ObservationFieldInput extends React.Component {
           name="value"
           className="form-control"
           autoComplete="off"
-          value={observationFieldValue}
+          value={observationFieldValue || ""}
           onClick={() => {
             const { datetime } = this.refs;
             if ( datetime ) {

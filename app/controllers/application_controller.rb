@@ -237,8 +237,12 @@ class ApplicationController < ActionController::Base
     @observations = @site.login_featured_observations
   end
 
-  def get_flickraw
-    current_user ? FlickrPhoto.flickraw_for_user(current_user) : flickr
+  def get_flickr
+    if current_user
+      return FlickrPhoto.flickr_for_user( current_user )
+    end
+
+    Flickr.new( Flickr.api_key, Flickr.shared_secret )
   end
 
   def photo_identities_required

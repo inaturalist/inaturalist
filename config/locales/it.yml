@@ -1676,6 +1676,9 @@ it:
   eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Caro %{user},
   email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
@@ -1931,6 +1934,8 @@ it:
   generate_taxonomic_tags_for_flickr: Genera etichette tassonomiche dalle tue foto Flickr.
   generate_widget: Genera il Widget
   generate_your_stats: Genera le tue Statistiche
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERA LA TUA REVISIONE DELL'ANNO %{year}
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
   geomodel_expected_nearby_label_is_derived: |
@@ -5588,6 +5593,7 @@ it:
   year: Anno
   year_in_review: "Rassegna Anno %{year}"
   year_in_review2: "Rassegna dell'Anno %{year}"
+  year_in_review_caps: "REVISIONE DELL'ANNO %{year}"
   year_month: anno/mese
   year_on_site: "Anno su %{site} %{year}"
   yellow: giallo
@@ -5619,6 +5625,29 @@ it:
   yir_donate_banner_you_helped_inaturalist_thrive: Hai aiutato iNaturalist a prosperare quest'anno. Grazie!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Ha Bisogno del Tuo Supporto
+  yir_email_because_of_you: |
+    Grazie a voi, quest'anno abbiamo raccolto molti più dati sulla biodiversità rispetto all'anno scorso. La Revisione dell'Anno è il nostro dono per te, per tutto ciò che hai fatto per la biodiversità, tramite iNaturalist.
+  yir_email_log_in_to_generate: |
+    Per scoprirlo, accedi per generare la tua revisione personale dell'anno!
+  yir_email_of_your_observations:
+    one: Della tua %{count} osservazione, sai quante ne hai fatte nel %{year}?
+    other: Delle tue %{count} osservazioni, sai quante ne hai fatte nel %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    La tua Revisione dell'Anno %{year} di iNaturalist: celebra il tuo anno con la biodiversità.
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Il Team di iNaturalist
+  yir_email_the_year_isnt_over: |
+    L'anno non è ancora finito e non è mai troppo tardi per pubblicare vecchie osservazioni. Dopo averne condivise di più, assicurati di selezionare "Rigenera le statistiche" in fondo alla tua Revisione dell'Anno, per visualizzare gli aggiornamenti.
+  yir_email_what_else_will_you_observe_caps: CHE ALTRO OSSERVERAI?
+  yir_email_what_new_to_you: |
+    Quali specie a te nuove hai registrato quest'anno? Quante persone ti hanno aiutato con le identificazioni (e quante ne hai aiutate)?
+  yir_email_with_gratitude: Con gratitudine,
+  yir_email_year_on_inaturalist_globally_caps: "%{year}, GLOBALMENTE, SU INATURALIST"
+  yir_email_you_are_part_of_something: |
+    Fai parte di qualcosa di grande! Chiunque pubblichi osservazioni, aggiungi identificazioni e diffonda la parola su iNaturalist, fa la differenza per la biodiversità. Tramite i nostri sforzi collettivi, stiamo rendendo disponibili dati e dettagli sulla biodiversità, su una scala senza precedenti. Grazie per essere parte della community di iNaturalist!
+  yir_email_you_make_a_difference: |
+    Fai la differenza per la biodiversità con iNaturalist. Grazie per tutto ciò che fai!
   yir_generating_and_sharing: |
     Generare e condividere dati sulla biodiversità ad alto impatto a questa scala e velocità senza precedenti ha costi sempre maggiori
   yir_millions_of_people_used_inaturalist: |
