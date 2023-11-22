@@ -232,7 +232,7 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def year_in_review( user )
+  def year_in_review( user, options = {} )
     @user = user
     return if @user&.email&.blank?
     return unless @user&.confirmed?
@@ -255,9 +255,20 @@ class Emailer < ActionMailer::Base
       url
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
     set_locale
-    mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
-      format.html { render layout: "emailer_dark" }
-      format.text { render layout: "emailer_dark" }
+    if options[:raise_on_missing_translations]
+      Rails.configuration.i18n.raise_on_missing_translations = true
+      without_english_fallback do
+        mail( to: user.email, subject: t( :yir_email_subject, year: @year, throw: true, default: false ) ) do | format |
+          format.html { render layout: "emailer_dark" }
+          format.text { render layout: "emailer_dark" }
+        end
+      end
+      Rails.configuration.i18n.raise_on_missing_translations = false
+    else
+      mail( to: user.email, subject: t( :yir_email_subject, year: @year, throw: true, default: false ) ) do | format |
+        format.html { render layout: "emailer_dark" }
+        format.text { render layout: "emailer_dark" }
+      end
     end
     reset_locale
   end
