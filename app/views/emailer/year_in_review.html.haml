@@ -1,4 +1,4 @@
-- content_for( :title ) { t :yir_email_subject, year: @year }
+- content_for( :title ) { @i18n.t :yir_email_subject, year: @year }
 - content_for( :extracss ) do
   :css
     .btn {
@@ -21,39 +21,39 @@
 = link_to @site.url do
   = image_tag image_url( "yir-email-header.png", host: @site.url ), id: "header-image"
 
-%h1=t :year_in_review_caps, year: @year
+%h1=@i18n.t :year_in_review_caps, year: @year
 
-%p=t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase
+%p=@i18n.t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase
 
-%p=t :yir_email_because_of_you
+%p=@i18n.t :yir_email_because_of_you
 
-%p=t :yir_email_of_your_observations, count: number_with_delimiter( @user.observations_count ), year: @year
+%p=@i18n.t :yir_email_of_your_observations, count: number_with_delimiter( @user.observations_count ), year: @year
 
-%p=t :yir_email_what_new_to_you
+%p=@i18n.t :yir_email_what_new_to_you
 
-%p=t :yir_email_log_in_to_generate
+%p=@i18n.t :yir_email_log_in_to_generate
 
-%p= link_to t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
+%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
 
-%h2=t :yir_email_year_on_inaturalist_globally_caps, year: @year
+%h2=@i18n.t :yir_email_year_on_inaturalist_globally_caps, year: @year
 
-%p=t :yir_email_you_are_part_of_something
+%p=@i18n.t :yir_email_you_are_part_of_something
 
 %p.bleed{ style: "margin-top: 40px" }
   = link_to year_stats_url( year: @year ) do
     = image_tag image_url( @shareable_image_url, host: @site.url )
 
-%p= link_to t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
+%p= link_to @i18n.t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
 
-%h2=t :yir_email_what_else_will_you_observe_caps
+%h2=@i18n.t :yir_email_what_else_will_you_observe_caps
 
-%p=t :yir_email_the_year_isnt_over
+%p=@i18n.t :yir_email_the_year_isnt_over
 
-%p=t :yir_email_you_make_a_difference
+%p=@i18n.t :yir_email_you_make_a_difference
 
-%p=t :yir_email_with_gratitude
+%p=@i18n.t :yir_email_with_gratitude
 
-%p=t :yir_email_the_inaturalist_team
+%p=@i18n.t :yir_email_the_inaturalist_team
 
-%p= link_to t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
+%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
 

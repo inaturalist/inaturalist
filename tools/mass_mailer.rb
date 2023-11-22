@@ -295,16 +295,15 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
 
     begin
-      unless dry
-        if Emailer.instance_method( mailer_method ).arity == -2
-          Emailer.send( mailer_method, recipient, {
-            force_locale: @opts.force_locale,
-            raise_on_missing_translations: @opts.only_translated
-          } ).deliver_now
-        else
-          Emailer.send( mailer_method, recipient ).deliver_now
-        end
+      message = if Emailer.instance_method( mailer_method ).arity == -2
+        Emailer.send( mailer_method, recipient, {
+          force_locale: @opts.force_locale,
+          raise_on_missing_translations: @opts.only_translated
+        } )
+      else
+        Emailer.send( mailer_method, recipient )
       end
+      message.deliver_now unless dry
       process_emailed += 1
     rescue I18n::MissingTranslationData => e
       if debug
