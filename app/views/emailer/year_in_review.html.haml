@@ -39,9 +39,10 @@
 
 %p=@i18n.t :yir_email_you_are_part_of_something
 
-%p.bleed{ style: "margin-top: 40px" }
-  = link_to year_stats_url( year: @year ) do
-    = image_tag image_url( @shareable_image_url, host: @site.url )
+- if @shareable_image_url
+  %p.bleed{ style: "margin-top: 40px" }
+    = link_to year_stats_url( year: @year ) do
+      = image_tag image_url( @shareable_image_url, host: @site.url )
 
 %p= link_to @i18n.t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
 

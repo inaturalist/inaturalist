@@ -311,7 +311,9 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
         message.deliver_now
       end
       process_emailed += 1
-    rescue I18n::MissingTranslationData => e
+    rescue I18n::MissingTranslationData, ActionView::Template::Error => e
+      raise e unless e.message =~ /Translation missing/
+
       if debug
         puts "Translation failed: #{e}"
       end

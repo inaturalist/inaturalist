@@ -277,6 +277,7 @@ class Emailer < ActionMailer::Base
         format.text { render layout: "emailer_dark" }
       end
     end
+  ensure
     reset_locale
   end
 
