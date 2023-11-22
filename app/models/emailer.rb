@@ -264,7 +264,7 @@ class Emailer < ActionMailer::Base
           # Assign I18n instance with custom options to an instance var so it
           # can be accessed in views.
           @i18n = i18n
-          mail( to: user.email, subject: @i18n.t( :yir_email_subject, year: @year ) ) do | format |
+          mail( to: @user.email, subject: @i18n.t( :yir_email_subject, year: @year ) ) do | format |
             format.html { render layout: "emailer_dark" }
             format.text { render layout: "emailer_dark" }
           end
