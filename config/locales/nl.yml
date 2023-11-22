@@ -24,6 +24,9 @@ nl:
   x_identifications_:
     one: '1 determinatie'
     other: '%{count} determinaties'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> DETERMINATIE'
+    other: '<span class="count">%{count}</span> DETERMINATIES'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ nl:
   x_observations_html:
     one: "<span class='count'>%{count}</span> waarneming"
     other: "<span class='count'>%{count}</span> waarnemingen"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> WAARNEMING"
+    other: "<span class='count'>%{count}</span> WAARNEMINGEN"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} waarneming</a>"
     other: "<a href='%{url}'>%{count} waarnemingen</a>"
@@ -99,6 +105,9 @@ nl:
   x_species:
     one: '%{count} soort'
     other: '%{count} soorten'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> SOORT"
+    other: "<span class='count'>%{count}</span> SOORTEN"
   x_species_html:
     one: "<span class='count'>%{count}</span> soort"
     other: "<span class='count'>%{count}</span> soorten"
@@ -689,6 +698,7 @@ nl:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Weet je zeker dat je deze waarneming uit %{project} wilt verwijderen?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Weet je zeker dat je dit taxon wilt verwijderen uit de checklist voor %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Weet je zeker dat je deze gebruiker wilt markeren als een spammer?
   associated_observations: Bijhorende waarnemingen
   associated_taxa: Bijhorende taxa
   attention: Opgelet
@@ -2307,6 +2317,7 @@ nl:
   journal: Dagboek
   journal_archives_for: Logboekarchieven voor
   journal_post: Dagboekbericht
+  journal_post_: dagboekbericht
   journal_post_deleted: Logboekbericht verwijderd
   journal_posts: Dagboekberichten
   jpg_png_or_gif: "JPG, PNG, of GIF"
@@ -5791,6 +5802,8 @@ nl:
     Jouw iNaturalist Jaaroverzicht %{year} - vier je jaar met biodiversiteit
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: Het iNaturalist Team
+  yir_email_the_year_isnt_over: |
+    Het jaar is nog niet voorbij en het is nooit te laat om oude waarnemingen te posten. Nadat jij nieuwe waarnemingen hebt gedeeld, moet je zeker 'Statistieken opnieuw genereren' onderaan jouw Jaaroverzicht kiezen om de wijzigingen te zien.
   yir_email_what_else_will_you_observe_caps: WAT ANDERS ZOU JE WAARNEMEN?
   yir_email_what_new_to_you: |
     Welke lifers heb je dit jaar geregistreerd? Hoeveel mensen hielpen
@@ -8000,6 +8013,7 @@ nl:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Toepassing
       Photo: Foto
+      Post: Dagboekbericht
       TaxonLink: Taxonlink
     attributes:
       announcement:
@@ -8615,6 +8629,20 @@ nl:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Dieren
+        Actinopterygii: Straalvinnigen
+        Aves: Vogels
+        Reptilia: Reptielen
+        Amphibia: Amfibieën
+        Mammalia: Zoogdieren
+        Arachnida: Spinachtigen
+        Insecta: Insecten
+        Plantae: Vaatplanten en mossen
+        Fungi: Schimmels
+        Protozoa: Protozoa
+        Mollusca: Weekdieren
+        Chromista: Chromista
   #Title of a section warning the user about something
   warning_title: Waarschuwing
   wikimedia: Wikimedia

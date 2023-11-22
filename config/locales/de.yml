@@ -24,6 +24,9 @@ de:
   x_identifications_:
     one: 'Eine Bestimmung'
     other: '%{count} Bestimmungen'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> BESTIMMUNG'
+    other: '<span class="count">%{count}</span> BESTIMMUNGEN'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ de:
   x_observations_html:
     one: "<span class='count'>Eine</span> Beobachtung"
     other: "<span class='count'>%{count}</span> Beobachtungen"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> BEOBACHTUNG"
+    other: "<span class='count'>%{count}</span> BEOBACHTUNGEN"
   x_observations_link_html:
     one: "<a href='%{url}'>Eine Beobachtung</a>"
     other: "<a href='%{url}'>%{count} Beobachtungen</a>"
@@ -99,6 +105,9 @@ de:
   x_species:
     one: 'Eine Art'
     other: '%{count} Arten'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTEN"
   x_species_html:
     one: "<span class='count'>Eine</span> Art"
     other: "<span class='count'>%{count}</span> Arten"
@@ -661,6 +670,7 @@ de:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Bist du sicher, dass du diese Beobachtung aus "%{project}" entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
+  are_you_sure_you_want_to_flag_as_spammer: Ganz sicher, dass dies als Spam gekennzeichnet werden soll?
   associated_observations: Verbundene Beobachtungen
   associated_taxa: Verbundene Taxa
   attention: Achtung
@@ -6639,6 +6649,8 @@ de:
           Wenn der einzige Grund sein sollte, Projektkuratoren daran zu hindern, die versteckten Koordinaten deiner Beobachtungen zu sehen.
       edit:
         admins_must_be_existing_members: Administratoren müssen existierende Mitglieder des Projekts sein.
+        admins_can_only_be_added_after_creation: |
+          Admins können erst dann hinzugefügt werden, nachdem das Projekt erstellt wurde.
         aggregation_pending: ausstehende Zusammenfassung
         new_place_desc_html: |
           Durchsuche <a href="%{places_url}" target="_blank">unsere vorhandenen Gebiete</a>
@@ -8285,6 +8297,20 @@ de:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Tiere
+        Actinopterygii: Strahlenflosser
+        Aves: Vögel
+        Reptilia: Reptilien
+        Amphibia: Amphibien
+        Mammalia: Säugetiere
+        Arachnida: Spinnentiere
+        Insecta: Insekten
+        Plantae: Pflanzen
+        Fungi: Pilze
+        Protozoa: Protozoen
+        Mollusca: Mollusken
+        Chromista: Chromista
   #Title of a section warning the user about something
   warning_title: Warnung
   wikimedia: Wikimedia

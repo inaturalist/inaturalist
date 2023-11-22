@@ -24,6 +24,9 @@ sv:
   x_identifications_:
     one: '%{count} bestämning'
     other: '%{count} bestämningar'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ARTBESTÄMNING'
+    other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ sv:
   x_observations_html:
     one: "<span class='count'>%{count}</span> fynd"
     other: "<span class='count'>%{count}</span> fynd"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> FYND"
+    other: "<span class='count'>%{count}</span> FYND"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} fynd</a>"
     other: "<a href='%{url}'>%{count} fynd</a>"
@@ -99,6 +105,9 @@ sv:
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTER"
   x_species_html:
     one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
@@ -695,6 +704,7 @@ sv:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Är du säker på att du vill ta bort detta fynd från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
+  are_you_sure_you_want_to_flag_as_spammer: Är du säker på att du vill flagga den här användaren som en spammare?
   associated_observations: Tillhörande fynd
   associated_taxa: Tillhörande taxa
   attention: Märk väl
@@ -7002,6 +7012,8 @@ sv:
           Om den enda anledningen till att du lämnar är för att hindra projektförvaltare från att se dina dolda koordinater.
       edit:
         admins_must_be_existing_members: Administratörer måste vara befintliga medlemmar i projektet.
+        admins_can_only_be_added_after_creation: |
+          Administratörer kan endast läggas till efter att projektet har skapats.
         aggregation_pending: Inväntar aggregering
         new_place_desc_html: |
           Försök kolla igenom
@@ -8700,6 +8712,20 @@ sv:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amphibia
+        Mammalia: Mammalia
+        Arachnida: Arachnida
+        Insecta: Insecta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
+        Mollusca: Mollusca
+        Chromista: Chromista
   #Title of a section warning the user about something
   warning_title: Varning
   wikimedia: Wikimedia
