@@ -6548,6 +6548,8 @@ id:
           Jika satu-satunya alasan Anda meninggalkan proyek ini adalah untuk menghentikan kurator proyek dari melihat koordinat tersembunyi Anda.
       edit:
         admins_must_be_existing_members: Pengelola harus merupakan anggota yang masih ada di dalam proyek.
+        admins_can_only_be_added_after_creation: |
+          Admin hanya bisa ditambahkan setelah proyek dibuat.
         aggregation_pending: Pengumpulan tertunda
         new_place_desc_html: |
           Coba lihat dulu <a href="%{places_url}" target="_blank">tempat-tempat yang sudah ada</a> dan pastikan Anda memasukkan nama tempatnya dengan benar. Jika Anda benar-benar tidak bisa menemukan tempat yang Anda inginkan, Anda boleh <a href="%{new_place_url}" target="_blank">membuat tempat baru</a>, tetapi tolong pastikan Anda tidak sedang membuat duplikat dari tempat yang sudah ada.
