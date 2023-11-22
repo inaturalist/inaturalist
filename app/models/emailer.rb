@@ -232,10 +232,11 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def year_in_review( user )
+  def year_in_review( user, options = {} )
     @user = user
     return if @user&.email&.blank?
-    return unless @user&.confirmed?
+    # We are contemplating sending this to unconfirmed users
+    # return unless @user&.confirmed?
     return if @user.prefers_no_email?
     return if @user.suspended?
     return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
@@ -255,10 +256,28 @@ class Emailer < ActionMailer::Base
       url
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
     set_locale
-    mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
-      format.html { render layout: "emailer_dark" }
-      format.text { render layout: "emailer_dark" }
+    if options[:raise_on_missing_translations]
+      without_english_fallback do
+        # Set default options to raise errors on missing translation. I hope
+        # there's a better way to do this but I haven't figured out one
+        I18n.with_options( raise: true ) do | i18n |
+          # Assign I18n instance with custom options to an instance var so it
+          # can be accessed in views.
+          @i18n = i18n
+          mail( to: @user.email, subject: @i18n.t( :yir_email_subject, year: @year ) ) do | format |
+            format.html { render layout: "emailer_dark" }
+            format.text { render layout: "emailer_dark" }
+          end
+        end
+      end
+    else
+      @i18n = I18n
+      mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
+        format.html { render layout: "emailer_dark" }
+        format.text { render layout: "emailer_dark" }
+      end
     end
+  ensure
     reset_locale
   end
 
