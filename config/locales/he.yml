@@ -40,6 +40,11 @@ he:
     two: '%{count} זיהויים'
     many: '%{count} זיהויים'
     other: '%{count} זיהויים'
+  x_identifications_caps_html:
+    one: 'זיהוי <span class="count">%{count}</span>'
+    two: '<span class="count">%{count}</span> זיהויים'
+    many: '<span class="count">%{count}</span> זיהויים'
+    other: '<span class="count">%{count}</span> זיהויים'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -112,6 +117,11 @@ he:
     two: "<span class='count'>%{count}</span> תצפיות"
     many: "<span class='count'>%{count}</span> תצפיות"
     other: "<span class='count'>%{count}</span> תצפיות"
+  x_observations_caps_html:
+    one: "תצפית <span class='count'>%{count}</span>"
+    two: "<span class='count'>%{count}</span> תצפיות"
+    many: "<span class='count'>%{count}</span> תצפיות"
+    other: "<span class='count'>%{count}</span> תצפיות"
   x_observations_link_html:
     one: "<a href='%{url}'>תצפית %{count}</a>"
     two: "<a href='%{url}'>%{count} תצפיות</a>"
@@ -158,6 +168,11 @@ he:
     two: '%{count} מינים'
     many: '%{count} מינים'
     other: '%{count} מינים'
+  x_species_caps_html:
+    one: "מין <span class='count'>%{count}</span>"
+    two: "<span class='count'>%{count}</span> מינים"
+    many: "<span class='count'>%{count}</span> מינים"
+    other: "<span class='count'>%{count}</span> מינים"
   x_species_html:
     one: "מין <span class=\"count\">%{count}</span>"
     two: "<span class=\"count\">%{count}</span> מינים"
@@ -1767,8 +1782,11 @@ he:
   either_that_user_doesnt_exist_or: "או שהמשתמש אינו קיים, או שאתם כבר עוקבים אחריו."
   eligible_for_research_grade: מתאים לדרגת מחקר
   email: דוא״ל
-  email_description: כתובת הדוא"ל שלך לא משותפת עם משתמשות ומשתמשים אחרים ב-iNaturalist
   email_address_for_comments_and_other_feedback: כתובת דוא"ל להערות ומשובים אחרים
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: '%{user} היקר.ה,'
+  email_description: כתובת הדוא"ל שלך לא משותפת עם משתמשות ומשתמשים אחרים ב-iNaturalist
   email_conf_required_after_grace_period: |
     נדרש אישור דוא"ל נכון ל-%{requirement_date} ולא אישרת את כתובת הדוא"ל שלך לפני המועד האחרון. נא לאפס את הסיסמה שלך כדי לגשת לחשבונך.
   email_copyright2: "&copy; iNaturalist %{year}, כל הזכויות שמורות"
@@ -2025,6 +2043,8 @@ he:
   generate_taxonomic_tags_for_flickr: יצירת תגיות טקסונומיות לתמונות ה Flickr שלך.
   generate_widget: יצירת וידג'ט
   generate_your_stats: יצירת סטטיסטיקה
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: ליצירת סיכום השנה שלך ל-%{year}
   generating_mobile_archive: "מייצר ארכיון נייד"
   Genus: סוג
   geoprivacy: מיקום פרטי
@@ -5693,6 +5713,7 @@ he:
   year: שנה
   year_in_review: "%{year} - סקירת השנה"
   year_in_review2: "סיכום שנה %{year}"
+  year_in_review_caps: "סיכום שנה %{year}"
   year_month: שנה/חודש
   year_on_site: "שנה ב%{site} %{year}"
   yellow: צהוב
@@ -5724,6 +5745,31 @@ he:
   yir_donate_banner_you_helped_inaturalist_thrive: עזרת להעצים את iNaturalist השנה. תודה!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist צריכה את התמיכה שלך
+  yir_email_because_of_you: |
+    בזכותך, יש השנה יותר נתונים על המגוון הביולוגי לעומת שנה שעברה. סיכום השנה הוא המתנה שלנו בשבילך על כל מה שעשית למען המגוון הביולוגי דרך iNaturalist.
+  yir_email_log_in_to_generate: |
+    התחבר.י כדי להרכיב את סיכום השנה האישי שלך ולגלות!
+  yir_email_of_your_observations:
+    one: מתוך התצפית ה-%{count} שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
+    two: מתוך %{count} התצפיות שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
+    many: מתוך %{count} התצפיות שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
+    other: מתוך %{count} התצפיות שלך, האם את.ה יודע.ת כמה דווחו בשנת %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    סיכום שנת %{year} שלך ב-iNaturalist - לחגוג את השנה שלך עם המגוון הביולוגי
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: צוות iNaturalist
+  yir_email_the_year_isnt_over: |
+    השנה עוד לא הסתיימה, ואף פעם לא מאוחר מדי בשביל להעלות תצפיות ישנות. במידה ושיתפת תצפיות נוספות, יש לוודא לבחור "חישוב סטטיסטיקות מחדש" בתחתית סיכום השנה שלך כדי לראות את העדכונים.
+  yir_email_what_else_will_you_observe_caps: במה עוד תצפו?
+  yir_email_what_new_to_you: |
+    אילו מינים דיווחת השנה שהיו חדשים לך? כמה א.נשים עזרו לך בזיהויים (ולכמה עזרת בעצמך)?
+  yir_email_with_gratitude: בהוקרה,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} ב-iNaturalist בעולם"
+  yir_email_you_are_part_of_something: |
+    הנך לוקח.ת חלק בדבר גדול! כל מי שמעלה תצפיות, מוסיפ.ה זיהויים ומפיץ את בשורת iNaturalist עושה שינוי למען המגוון הביולוגי. באמצעות המאמצים המשותפים שלנו, אנו מנגישות ומנגישים נתונים ותובנות על המגוון הביולוגי בקנה מידה חסר תקדים. תודה שאת.ה חלק מקהילת iNaturalist!
+  yir_email_you_make_a_difference: |
+    את.ה עושה שינוי למען המגוון הביולוגי דרך iNaturalist. תודה על כל מה שאת.ה עושה!
   yir_generating_and_sharing: |
     יצירה ושיתוף של נתונים על מגוון עצום של מינים, בקנה מידה ובקצב חסר תקדים, מביאים עמם עלויות הולכות ועולות.
   yir_millions_of_people_used_inaturalist: |

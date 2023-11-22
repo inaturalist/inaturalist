@@ -258,14 +258,14 @@ class Emailer < ActionMailer::Base
     if options[:raise_on_missing_translations]
       Rails.configuration.i18n.raise_on_missing_translations = true
       without_english_fallback do
-        mail( to: user.email, subject: t( :yir_email_subject, year: @year, throw: true, default: false ) ) do | format |
+        mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
           format.html { render layout: "emailer_dark" }
           format.text { render layout: "emailer_dark" }
         end
       end
       Rails.configuration.i18n.raise_on_missing_translations = false
     else
-      mail( to: user.email, subject: t( :yir_email_subject, year: @year, throw: true, default: false ) ) do | format |
+      mail( to: user.email, subject: t( :yir_email_subject, year: @year ) ) do | format |
         format.html { render layout: "emailer_dark" }
         format.text { render layout: "emailer_dark" }
       end

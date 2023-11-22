@@ -1139,10 +1139,12 @@ it:
     cannot_be_determined: Non può essere determinato in base alle prove fornite
     dead: L'organismo è morto o mostra segni di morte imminente
     feather: Una o più piume non attaccate a un organismo
+    female: Le prove indicano che l'organismo può produrre ovuli per la riproduzione sessuale
     flower_budding: I boccioli di fiore sono visibili ma non aperti
     flowering: Fiori visibili, aperti, ed ancora attaccati alla pianta
     fruiting: Frutti visibili ed ancora attaccati alla pianta
     gall: Escrescenza deformata del tessuto vegetale causata da un organismo parassitario
+    male: Le prove indicano che l'organismo può produrre sperma per la riproduzione sessuale
     molt: Pelle o esoscheletro scartati
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     organism: Organismo intero o parziale
@@ -1673,8 +1675,11 @@ it:
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
-  email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Caro %{user},
+  email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
   email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
@@ -1929,6 +1934,8 @@ it:
   generate_taxonomic_tags_for_flickr: Genera etichette tassonomiche dalle tue foto Flickr.
   generate_widget: Genera il Widget
   generate_your_stats: Genera le tue Statistiche
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERA LA TUA REVISIONE DELL'ANNO %{year}
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
   geomodel_expected_nearby_label_is_derived: |
@@ -5586,6 +5593,7 @@ it:
   year: Anno
   year_in_review: "Rassegna Anno %{year}"
   year_in_review2: "Rassegna dell'Anno %{year}"
+  year_in_review_caps: "REVISIONE DELL'ANNO %{year}"
   year_month: anno/mese
   year_on_site: "Anno su %{site} %{year}"
   yellow: giallo
@@ -5617,6 +5625,29 @@ it:
   yir_donate_banner_you_helped_inaturalist_thrive: Hai aiutato iNaturalist a prosperare quest'anno. Grazie!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Ha Bisogno del Tuo Supporto
+  yir_email_because_of_you: |
+    Grazie a voi, quest'anno abbiamo raccolto molti più dati sulla biodiversità rispetto all'anno scorso. La Revisione dell'Anno è il nostro dono per te, per tutto ciò che hai fatto per la biodiversità, tramite iNaturalist.
+  yir_email_log_in_to_generate: |
+    Per scoprirlo, accedi per generare la tua revisione personale dell'anno!
+  yir_email_of_your_observations:
+    one: Della tua %{count} osservazione, sai quante ne hai fatte nel %{year}?
+    other: Delle tue %{count} osservazioni, sai quante ne hai fatte nel %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    La tua Revisione dell'Anno %{year} di iNaturalist: celebra il tuo anno con la biodiversità.
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Il Team di iNaturalist
+  yir_email_the_year_isnt_over: |
+    L'anno non è ancora finito e non è mai troppo tardi per pubblicare vecchie osservazioni. Dopo averne condivise di più, assicurati di selezionare "Rigenera le statistiche" in fondo alla tua Revisione dell'Anno, per visualizzare gli aggiornamenti.
+  yir_email_what_else_will_you_observe_caps: CHE ALTRO OSSERVERAI?
+  yir_email_what_new_to_you: |
+    Quali specie a te nuove hai registrato quest'anno? Quante persone ti hanno aiutato con le identificazioni (e quante ne hai aiutate)?
+  yir_email_with_gratitude: Con gratitudine,
+  yir_email_year_on_inaturalist_globally_caps: "%{year}, GLOBALMENTE, SU INATURALIST"
+  yir_email_you_are_part_of_something: |
+    Fai parte di qualcosa di grande! Chiunque pubblichi osservazioni, aggiungi identificazioni e diffonda la parola su iNaturalist, fa la differenza per la biodiversità. Tramite i nostri sforzi collettivi, stiamo rendendo disponibili dati e dettagli sulla biodiversità, su una scala senza precedenti. Grazie per essere parte della community di iNaturalist!
+  yir_email_you_make_a_difference: |
+    Fai la differenza per la biodiversità con iNaturalist. Grazie per tutto ciò che fai!
   yir_generating_and_sharing: |
     Generare e condividere dati sulla biodiversità ad alto impatto a questa scala e velocità senza precedenti ha costi sempre maggiori
   yir_millions_of_people_used_inaturalist: |
@@ -5767,6 +5798,8 @@ it:
     announcements:
       locales_desc: |
         CMD- o SHIFT-click per selezione multipla. Non selezionando niente verranno mostrate le notizie relative e tutti gli utenti indipendentemente dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito, lascia vuoto.
+      clients_desc: |
+        Fai click tenendo premuto CMD o SHIFT per selezionarne di più. Non selezionare nulla mostrerà l'annuncio a tutti gli utenti, indipendentemente dal client.
     content_freeze:
       content_freeze: Blocco Contenuti
       during_this_time: |
@@ -7340,6 +7373,26 @@ it:
         same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
         taxon_change_desc: |
           Quando dei taxa sono uniti o rinominati su %{site_name}, le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai un aggiornamento sulla modifica, con un link ad uno strumento che potrai usare per aggiornare manualmente il tuo contenuto.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Aggiungi il lessico di un nome comune
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Aggiungi un luogo (facoltativo)
+          common_name_lexicon_display_order: Ordine di Visualizzazione Lessico del Nome Comune
+          common_name_lexicons: Lessici del Nome Comune
+          common_name_lexicons_description: Di default, i nomi comuni sono mostrati nella lingua/locale del tuo profilo. Per visualizzare i nomi in altri lessici, o per dare priorità ai nomi utilizzati in luoghi specifici (come inglese (Australia) o spagnolo (Costa Rica)), aggiungi i lessici dei nomi comuni. Un massimo di 3 nomi comuni è visualizzabile in una volta. Se non esiste alcun nome comune per un lessico scelto, sarà omesso dalla visualizzazione.
+          for_multiple_common_name_lexicons_drag_and_drop: Per svariati lessici dei nomi comuni, trascina e rilascia le seguenti impostazioni per personalizzarne l'ordine di visualizzazione.
+          same_as_locale: Come il locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Come le preferenze linguistiche/locali dell'utente
+          select_a_lexicon: Seleziona un lessico
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Il massimo di 3 lessici di nomi comuni è stato già aggiunto
         this_only_applies_to_traditional_projects: |
           Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
       recent:
@@ -7672,6 +7725,7 @@ it:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Utenti di destinazione non confermati
+        clients: Client
       assessment:
         description: Descrizione
       assessment_section:
@@ -7902,6 +7956,16 @@ it:
           one: "1 errore impedisce di salvare questo %{model}"
           other: '%{count} errori impediscono di salvare questo %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: dev'essere valido per il posizionamento specificato
         application:
           attributes:
             redirect_uri:

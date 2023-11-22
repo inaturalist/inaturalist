@@ -112,8 +112,11 @@ lb:
     one: "<span class='count'>%{count}</span> Taxon Changement bäigesat"
     other: "<span class='count'>%{count}</span> Taxon Changementer bäigesat"
   _100_day_trends: Tendenz iwwer 100 Deeg
-  _percent_ID_d: "% ID bestëmmt"
+  _percent_ID_d: "% bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
+  a_default_taxon_name_will_automatically_created: |
+    E Standardtaxonnumm gëtt automatesch aus dem wëssenschaftlechen Numm Attribut vun dësem Taxon erstallt.
+    Wann Dir dësen neien Taxon gespäichert hutt, kënnt Dir aner Nimm bäisetzen (vernacular Nimm, al wëssenschaftlech Nimm, etc.).
   a_flag_for_x: "en Markéierung fir %{x}"
   a_member_of_taxon_html: "e Member vu(n) %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -838,8 +841,8 @@ lb:
   editing_taxon_range_for_taxon_html: Verbreedungsgebiett fir %{taxon} beaarbechten
   editors: Auteuren
   email: E-Mail
-  email_description: Är E-Mail-Adress gëtt net mat anere Benotzer op iNaturalist gedeelt
   email_address_for_comments_and_other_feedback: E-Mail-Adress fir Kommentarer oder anere Feedback
+  email_description: Är E-Mail-Adress gëtt net mat anere Benotzer op iNaturalist gedeelt
   embed: 'Abannen'
   end: Schluss
   endangered: Bedréit
@@ -2593,6 +2596,12 @@ lb:
   yir_donate_banner_you_helped_inaturalist_thrive: Dir hutt dëst Joer gehollef dass den iNaturalist floréiert. Merci!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist brauch Är Ënnerstëtzung
+  yir_email_of_your_observations:
+    one: Vun Ärer %{count} Observatioun, wësst Dir, wéi vill der am Joer %{year} gemaach goufen?
+    other: Vun Äre(n) %{count} Observatiounen, wësst Dir, wéi vill der am Joer %{year} gemaach goufen?
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: D'iNaturalist-Team
+  yir_email_with_gratitude: Mat Dankbarkeet,
   yir_generating_and_sharing: |
     Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
   yir_millions_of_people_used_inaturalist: |
@@ -2766,6 +2775,9 @@ lb:
         species_per_year: Aarten / Joer
         species_per_year_by_date_observed: No Datum observeiert
         translators_title: Iwwersetzer
+        view_all_publications_count_caps2:
+          one: "%{count} PUBLIKATIOUN WEISEN"
+          other: "ALL %{count} PUBLIKATIOUNE WEISEN"
     taxa:
       show:
         about_conservation_status_desc: |

@@ -36,6 +36,12 @@ en:
     few: '%{count} Identifications'
     many: '%{count} Identifications'
     other: '%{count} Identifications'
+  x_identifications_caps_html:
+    zero: '<span class="count">%{count}</span> IDENTIFICATIONS'
+    one: '<span class="count">%{count}</span> IDENTIFICATION'
+    few: '<span class="count">%{count}</span> IDENTIFICATIONS'
+    many: '<span class="count">%{count}</span> IDENTIFICATIONS'
+    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   # Number of people who have added identifications
   x_identifiers_html:
     # Number of people who have added identifications
@@ -104,6 +110,12 @@ en:
     few: "<span class='count'>%{count}</span> observations"
     many: "<span class='count'>%{count}</span> observations"
     other: "<span class='count'>%{count}</span> observations"
+  x_observations_caps_html:
+    zero: "<span class='count'>%{count}</span> OBSERVATIONS"
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    few: "<span class='count'>%{count}</span> OBSERVATIONS"
+    many: "<span class='count'>%{count}</span> OBSERVATIONS"
+    other: "<span class='count'>%{count}</span> OBSERVATIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
@@ -125,6 +137,12 @@ en:
     few: "%{count} people"
     many: "%{count} people"
     other: "%{count} people"
+  x_people_html:
+    zero: '<span class="count">%{count}</span> people'
+    one: '<span class="count">%{count}</span> person'
+    few: '<span class="count">%{count}</span> people'
+    many: '<span class="count">%{count}</span> people'
+    other: '<span class="count">%{count}</span> people'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} photo"
@@ -144,6 +162,12 @@ en:
     few: '%{count} Species'
     many: '%{count} Species'
     other: '%{count} Species'
+  x_species_caps_html:
+    zero: "<span class='count'>%{count}</span> SPECIES"
+    one: "<span class='count'>%{count}</span> SPECIES"
+    few: "<span class='count'>%{count}</span> SPECIES"
+    many: "<span class='count'>%{count}</span> SPECIES"
+    other: "<span class='count'>%{count}</span> SPECIES"
   x_species_html:
     zero: "<span class='count'>%{count}</span> species"
     one: "<span class='count'>%{count}</span> species"
@@ -773,6 +797,7 @@ en:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Are you sure you want to remove this observation from %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
+  are_you_sure_you_want_to_flag_as_spammer: Are you sure you want to flag this user as a spammer?
   associated_observations: Associated observations
   associated_taxa: Associated taxa
   attention: Attention
@@ -2508,6 +2533,7 @@ en:
   journal: Journal
   journal_archives_for: Journal archives for
   journal_post: Journal post
+  journal_post_: journal post
   journal_post_deleted: Journal post deleted.
   journal_posts: Journal Posts
   jpg_png_or_gif: "JPG, PNG, or GIF"
@@ -3487,6 +3513,7 @@ en:
   observations_widget: Observations Widget
   observations_with_this_field: Observations with this field
   observations_with_this_field_and_value: Observations with this field and value
+  observations_without_this_field: Observations without this field
   observations_without_media: Observations w/o Media
   observationcounts_refreshed: Observation counts refreshed
   observed: Observed
@@ -7677,6 +7704,8 @@ en:
           If the only reason you're leaving is to stop project curators from viewing your hidden coordinates.
       edit:
         admins_must_be_existing_members: Admins must be existing members of the project.
+        admins_can_only_be_added_after_creation: |
+          Admins can only be added after the project has been created.
         aggregation_pending: Aggregation pending
         new_place_desc_html: |
           Try looking through
@@ -8093,6 +8122,18 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        # label used for a chart component that shows the count of users that
+        # added both identifications and observations
+        added_both: Added Both
+        added_only_identifications: Added Only Identifications
+        added_only_observations: Added Only Observations
+        # heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Broader Impacts
+        broader_impacts_desc: |
+          Several external partners regularly import iNaturalist observations to
+          support science and conservation. Your observations, identifications,
+          and open license choices allow these organizations to provide useful
+          biodiversity information to people that need it around the world.
         compare_desc: |
           How did this year compare to your previous years? With three years of
           usage or more we can start comparing yearly activity metrics. The
@@ -9191,6 +9232,7 @@ en:
       # iNaturalist Android app or an app made by a third party
       OauthApplication: Application
       Photo: Photo
+      Post: Journal Post
       TaxonLink: Taxon Link
     attributes:
       announcement:
@@ -9822,6 +9864,20 @@ en:
         variety: "@n"
         # Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amphibia
+        Mammalia: Mammalia
+        Arachnida: Arachnida
+        Insecta: Insecta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
+        Mollusca: Mollusca
+        Chromista: Chromista
   # Title of a section warning the user about something
   warning_title: Warning
   wikimedia: Wikimedia

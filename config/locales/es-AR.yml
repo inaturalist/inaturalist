@@ -20,6 +20,9 @@ es-AR:
   x_identifications_:
     one: '1 identificación'
     other: '%{count} identificaciones'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
+    other: '<span class="count">%{count}</span> IDENTIFICACIONES'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -58,6 +61,9 @@ es-AR:
   x_observations_html:
     one: "<span class='count'>1</span> observación"
     other: "<span class='count'>%{count}</span> observaciones"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVACIÓN"
+    other: "<span class='count'>%{count}</span> OBSERVACIONES"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observación</a>"
     other: "<a href='%{url}'>%{count} observaciones</a>"
@@ -80,6 +86,9 @@ es-AR:
   x_species:
     one: '1 especie'
     other: '%{count} especies'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPECIE"
+    other: "<span class='count'>%{count}</span> ESPECIES"
   x_species_html:
     one: "<span class='count'>1</span> especie"
     other: "<span class='count'>%{count}</span> especies"
@@ -1651,8 +1660,11 @@ es-AR:
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
   email: Correo
-  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo electrónico para comentarios y retroalimentación
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 'Estimado/a %{user}:'
+  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_conf_required_after_grace_period: |
     La confirmación de email es requerida desde %{requirement_date} y no confirmaste tu dirección antes del corte. Por favor, reestablecé tu contraseña para acceder a tu cuenta.
   email_copyright2: "&copy; %{year} iNaturalist, todos los derechos reservados"
@@ -1903,6 +1915,8 @@ es-AR:
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para tus fotos de Flickr.
   generate_widget: Genera el widget
   generate_your_stats: Genera tus estadísticas
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERAR TU AÑO EN RESUMEN %{year}
   generating_mobile_archive: "Generando de archivos móviles"
   Genus: Género
   geoprivacy: Geoprivacidad
@@ -2996,6 +3010,8 @@ es-AR:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} en %{place} de %{month} de %{year} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -3012,6 +3028,10 @@ es-AR:
   observation_export_column_type_basic: Básico
   #Geographic observation export fields
   observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxón
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Extras del taxón
   observation_field: Campo de observación
   observation_field_details: Detalles del campo de observación
   observation_field_type_text: Texto
@@ -3030,6 +3050,9 @@ es-AR:
     ej. "2019-10-29 13:12:21"
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_requirements: Requisitos de observación
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Requisitos de las observaciones actualizados el
   observation_rules: Reglas de observación
   observation_rules_description: |
     Puedes seleccionar reglas para determinar qué observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar o taxón. Si tienes más de una regla para un tipo de regla, las observaciones serán válidas si cumple cualquiera de las reglas. Por ejemplo, si tienes las reglas "debe ser Anfibio" y "debe ser Reptil", entonces el proyecto aceptará observaciones de reptiles o anfibios.
@@ -3074,6 +3097,7 @@ es-AR:
   observations_widget: Observaciones del widget
   observations_with_this_field: Observaciones con este campo
   observations_with_this_field_and_value: Observaciones con este campo y valor
+  observations_without_this_field: Observaciones sin este campo
   observations_without_media: Observaciones sin imágenes
   observationcounts_refreshed: Condes de observación refrescados
   observed: Observado el
@@ -3081,6 +3105,10 @@ es-AR:
   observed_on: Observado el
   observer: Observador
   observers: Observadores
+  observer_prefers_addition_to_traditional_projects_joined: |
+    El observador solo permite a otras personas añadir sus observaciones a proyectos a los que se han unido.
+  observer_prefers_no_traditional_project_addition: |
+    El observador no permite a otras personas añadir sus observaciones a los proyectos tradicionales.
   observer_short: Observ.
   occurence_status_describes_how: 'El estado de ocurrencia describe que tan común o raro es un taxón en un área determinada. Ver DarwinCore para <a href="http: //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">más información sobre terminología </a>.'
   occurrence_status: Estado de ocurrencia
@@ -4986,6 +5014,7 @@ es-AR:
   view_flags_for_x_html: "Ve advertencias para %{x}"
   view_full_observation: Ve observación completa
   view_full_size_photo: Mira imagen a tamaño completo
+  view_inaturalist_global_year_in_review_caps: VER EL AÑO EN RESUMEN GLOBAL DE INATURALIST DEL %{year}
   view_journal: Ve Diario
   view_leaderboard_from_last_month: Ver el más activo del mes pasado
   view_leaderboard_from_last_year: Ver el más activo del año pasado
@@ -5142,6 +5171,7 @@ es-AR:
   x_wrote_y_new_posts_html: "%{x} escribió %{y} nuevas ingresos"
   year: Año
   year_in_review: "Resumen del año %{year}"
+  year_in_review_caps: "AÑO EN RESUMEN %{year}"
   year_month: año/mes
   year_on_site: "El %{year} en %{site}"
   yellow: amarillo
@@ -5163,6 +5193,29 @@ es-AR:
   yir_donate_banner_you_helped_inaturalist_thrive: Ayudaste a que iNaturalist avance durante este año. ¡Muchas gracias!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu apoyo
+  yir_email_because_of_you: |
+    Gracias a vos, hay más datos sobre la biodiversidad este año que el año pasado. El Año en Resumen es nuestro regalo para ti por todo lo que has hecho por la biodiversidad a través de iNaturalist.
+  yir_email_log_in_to_generate: |
+    ¡Iniciá sesión para generar tu año en resumen personal y descubrilo!
+  yir_email_of_your_observations:
+    one: '¿Sabés si tu %{count} observación fue hecha en %{year}?'
+    other: De tus %{count} observaciones, ¿sabés cuántas fueron hechas en %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Tu año en resumen de iNaturalist del %{year} - celebrá tu año con la biodiversidad
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: El equipo de iNaturalist
+  yir_email_the_year_isnt_over: |
+    El año aún no ha terminado y nunca es tarde para publicar observaciones antiguas. Después de compartir más observaciones, asegurate de seleccionar "Regenerar estadísticas" en la parte inferior de tu Año en Resumen para ver las actualizaciones.
+  yir_email_what_else_will_you_observe_caps: '¿QUÉ MÁS VAS A OBSERVAR?'
+  yir_email_what_new_to_you: |
+    ¿Qué especies nuevas para ti registraste este año? ¿Cuántas personas te ayudaron con identificaciones (y a cuántas ayudaste vos)?
+  yir_email_with_gratitude: Muchas gracias,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} EN INATURALIST A NIVEL GLOBAL"
+  yir_email_you_are_part_of_something: |
+    ¡Sos parte de algo grande! Cada persona que comparte observaciones, añade identificaciones y corre la voz sobre iNaturalist marca la diferencia para la biodiversidad. Con nuestros esfuerzos colectivos, estamos logrando que los datos y el conocimiento sobre la biodiversidad estén disponibles a una escala sin precedentes. ¡Gracias por ser parte de la comunidad de iNaturalist!
+  yir_email_you_make_a_difference: |
+    A través de iNaturalist, marcás una diferencia para la biodiversidad. ¡Gracias por todo lo que hacés!
   yir_generating_and_sharing: |
     Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un costo creciente
   yir_millions_of_people_used_inaturalist: |

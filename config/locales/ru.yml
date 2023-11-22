@@ -40,6 +40,11 @@ ru:
     few: '%{count} идентификации'
     many: '%{count} идентификаций'
     other: '%{count} идентификаций'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
+    few: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИИ'
+    many: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
+    other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -112,6 +117,11 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения"
     many: "<span class='count'>%{count}</span> наблюдений"
     other: "<span class='count'>%{count}</span> наблюдений"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> НАБЛЮДЕНИЕ"
+    few: "<span class='count'>%{count}</span> НАБЛЮДЕНИЯ"
+    many: "<span class='count'>%{count}</span> НАБЛЮДЕНИЙ"
+    other: "<span class='count'>%{count}</span> НАБЛЮДЕНИЙ"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} наблюдение</a>"
     few: "<a href='%{url}'>%{count} наблюдения</a>"
@@ -158,6 +168,11 @@ ru:
     few: '%{count} вида'
     many: '%{count} видов'
     other: '%{count} видов'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ВИД"
+    few: "<span class='count'>%{count}</span> ВИДА"
+    many: "<span class='count'>%{count}</span> ВИДОВ"
+    other: "<span class='count'>%{count}</span> ВИДОВ"
   x_species_html:
     one: "<span class='count'>%{count}</span>вид"
     few: "<span class='count'>%{count}</span> вида"
@@ -1132,6 +1147,8 @@ ru:
     включен в автоматизированные предложения с меткой "Визуально похожий".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Ожидает обработки
+  computer_vision_model_pending_desc2: |
+    Текущая модель не знает о существовании этого таксона, поэтому несмотря на то, что он может получить метку "Встречается поблизости", он не получит метку "Визуально похожий". Несмотря на то, что требования включения в модель меняются с каждой моделью, а общем случае включение основывается на числе наблюдений, поэтому для повышения шанса включения таксона в следующий тренинг модели добавьте больше наблюдений или идентификаций этого таксона.
   concept_status: Статус концепции
   confidential: Конфиденциально
   configure: Задать
@@ -1251,10 +1268,12 @@ ru:
     cannot_be_determined: Не может быть определен на основании представленных доказательств
     dead: Организм жив или проявляет признаки неизбежной смерти
     feather: Одно или несколько перьев не прикрепленных к организму
+    female: Свидетельства указывают на то, что организм может вырабатывать яйцеклетки для использования в половом размножении
     flower_budding: Цветочные почки видны, но не распустились
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
     gall: Уродливый рост ткани растения, вызванный паразитическим организмом
+    male: Свидетельства указывают на то, что организм может вырабатывать сперму для использования в половом размножении
     molt: Удалённая кожа или экзоскелет
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
     organism: Весь организм или его части
@@ -1787,8 +1806,11 @@ ru:
   either_that_user_doesnt_exist_or: "Эти пользователи либо не существуют, либо вы уже на них подписаны."
   eligible_for_research_grade: Доступно для Исследовательского уровня
   email: Адрес электронной почты
-  email_description: Ваш адрес электронной почты не будет доступен другим пользователям iNaturalist
   email_address_for_comments_and_other_feedback: Email адрес для комментариев и обратной связи
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Уважаемый %{user},
+  email_description: Ваш адрес электронной почты не будет доступен другим пользователям iNaturalist
   email_conf_required_after_grace_period: |
     Подтверждение электронной почты необходимо для %{requirement_date}, и вы не
     подтвердили ваш адрес электронной почты до истечения заданного времени. Пожалуйста, сбросьте пароль для доступа к вашей учетной записи.
@@ -2047,6 +2069,8 @@ ru:
   generate_taxonomic_tags_for_flickr: Создать таксономические теги для ваших фото на Flickr.
   generate_widget: Сгенерировать виджет
   generate_your_stats: Сгенерировать вашу статистику
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: СГЕНЕРИРУЙТЕ ОБЗОР ВАШЕГО ГОДА %{year}
   generating_mobile_archive: "Генерация мобильного архива"
   Genus: Род
   geomodel_expected_nearby_label_is_derived: |
@@ -2143,6 +2167,11 @@ ru:
   #Verb, usually a button to hide an interface element
   hide: Скрыть
   hide_content: Скрыть контент
+  hide_desc: |
+    Скрытие контента удалит его из публичного просмотра, но люди всё равно 
+    смогут видеть, что что-то было скрыто, а кураторы сайта и автор
+    контента по-прежнему смогут видеть скрытый контент. Скрытые
+    определения не будут использоваться для таксона сообщества у наблюдения.
   hide_desc_staff_can_unhide: |
     Только сотрудники сайта могут отобразить контент после того, как он был скрыт, поэтому используйте это только в случае явных нарушений правил сообщества.
   #Option to hide data series that show "No Annotation" data, i.e. records that
@@ -2212,6 +2241,9 @@ ru:
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   inaturalist_global_year_in_review: "Мировой обзор %{year} года iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки.
+    Америка (налоговый идентификационный номер: 92-1296468).
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -4117,13 +4149,13 @@ ru:
       many: Царств
       other: Царств
     subkingdom: Подцарство
-    phylum: Тип
+    phylum: Тип / отдел
     x_phyla:
-      one: Тип
+      one: Тип / отдел
       few: Типа
       many: Типов
       other: Типов
-    subphylum: Подтип
+    subphylum: Подтип / подотдел
     superclass: Надкласс
     class: Класс
     x_classes:
@@ -4134,7 +4166,7 @@ ru:
     subclass: Подкласс
     infraclass: Инфракласс
     superorder: Надотряд
-    order: Отряд
+    order: Отряд / порядок
     x_orders:
       one: Отряд
       few: Отряда
@@ -4190,9 +4222,9 @@ ru:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
   ranks_lowercase_subkingdom: подцарство
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
-  ranks_lowercase_phylum: тип
+  ranks_lowercase_phylum: тип / отдел
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
-  ranks_lowercase_subphylum: подтип
+  ranks_lowercase_subphylum: подтип / подотдел
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
   ranks_lowercase_superclass: надкласс
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
@@ -4204,7 +4236,7 @@ ru:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
   ranks_lowercase_superorder: надотряд
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
-  ranks_lowercase_order: отряд
+  ranks_lowercase_order: отряд / порядок
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
   ranks_lowercase_suborder: подотряд
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
@@ -5765,6 +5797,7 @@ ru:
   year: Год
   year_in_review: "Год обзора %{year}"
   year_in_review2: "Обзор %{year} года"
+  year_in_review_caps: "ГОД ОБЗОРА %{year}"
   year_month: год/месяц
   year_on_site: "Год на %{site}%{year}"
   yellow: жёлтый
@@ -5796,6 +5829,31 @@ ru:
   yir_donate_banner_you_helped_inaturalist_thrive: Вы помогли iNaturalist преуспеть в этом году. Спасибо!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist нужна ваша поддержка
+  yir_email_because_of_you: |
+    Благодаря вам в этом году появилось больше данных о биоразнообразии, чем в прошлом. Обзор года - это наш подарок вам за все, что вы сделали для сохранения биоразнообразия с помощью iNaturalist.
+  yir_email_log_in_to_generate: |
+    Войдите в систему, чтобы создать свой личный обзор за год и узнать больше!
+  yir_email_of_your_observations:
+    one: Знаете ли вы, сколько из вашего %{count} наблюдения было сделано в %{year} году?
+    few: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+    many: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+    other: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ваш %{year} в обзоре iNaturalist — отпразднуйте свой год с биоразнообразием
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Команда iNaturalist
+  yir_email_the_year_isnt_over: |
+    Год еще не закончился, и никогда не поздно публиковать более старые наблюдения. После того как вы поделитесь дополнительными наблюдениями, не забудьте выбрать опцию “Восстановить статистику” в нижней части вашего обзора за год, чтобы просмотреть обновления.
+  yir_email_what_else_will_you_observe_caps: КАКИЕ ЕЩЁ НАБЛЮДЕНИЯ ВЫ МОЖЕТЕ СДЕЛАТЬ?
+  yir_email_what_new_to_you: |
+    Наблюдения каких новые для вас видов вы разместили в этом году? Сколько людей помогли вам с идентификацией (и скольким помогли вы сами)?
+  yir_email_with_gratitude: С благодарностью,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} ГОД НА INATURALIST ГЛОБАЛЬНО"
+  yir_email_you_are_part_of_something: |
+    Вы - часть чего-то большого! Каждый человек, который публикует наблюдения, добавляет идентификационные данные и распространяет информацию об iNaturalist, вносит свой вклад в сохранение биоразнообразия. Благодаря нашим коллективным усилиям, мы предоставляем данные о биоразнообразии и аналитическую информацию в беспрецедентном масштабе. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
+  yir_email_you_make_a_difference: |
+    Вы вносите свой вклад в сохранение биоразнообразия с помощью iNaturalist. Спасибо вам за все, что вы делаете!
   yir_generating_and_sharing: |
     Создание и обмен данными о биоразнообразии с высокой отдачей в таких беспрецедентных масштабах и с такой скоростью сопряжены с растущими затратами
   yir_millions_of_people_used_inaturalist: |
@@ -5943,6 +6001,8 @@ ru:
     announcements:
       locales_desc: |
         Удерживайте CMD- или SHIFT, чтобы сделать множественный выбор. Если не выбирать ничего, объявление будет отображаться для всех пользователей, независимо от языкового стандарта. Выбор языка без региона *не* будет отображать языковые стандарты регионов, например, если вы выбрали en, объявление не будет отображаться для людей, которые выбрали en-US. Если вы хотите нацелиться на оба, выберите оба. Если вы хотите показать объявление для всех участников сайта, просто оставьте это поле пустым.
+      clients_desc: |
+        Нажмите CMD или SHIFT, чтобы выбрать несколько. Если ничего не выбрать, объявление будет показано всем пользователям независимо от клиента.
     content_freeze:
       content_freeze: Блокировка контента
       during_this_time: |
@@ -7142,6 +7202,10 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Добавили и то, и другое
+        added_only_identifications: Добавили только идентификации
         compare_desc: |
           Как прошел этот год по сравнению с предыдущими? После трех и более лет использования мы можем начать сравнивать годовые показатели активности.
         compare_site_desc: |
@@ -7226,6 +7290,11 @@ ru:
           %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы со всех языков, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Если вы хотите помочь с переводом, %{link_tag}узнайте, как это сделать%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИЮ"
+          few: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИИ"
+          many: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИЙ"
+          other: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИЙ"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7528,6 +7597,26 @@ ru:
         same_day_geoprivacy_protection: Защита геоприватности того же дня
         taxon_change_desc: |
           Когда таксоны объединяются или переименовываются на %{site_name}, ваши наблюдения, списки таксонов, идентификации и т.д. будут автоматически обновлены до нового таксона, если изменение однозначно. Если вы откажетесь от изменения или изменение неоднозначно (например, разделение таксона), вы получите уведомление об изменении со ссылкой на инструментарий, который позволит, если вы захотите, вручную обновить ваш контент.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Добавить язык народного названия
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Добавить место (опционально)
+          common_name_lexicon_display_order: Порядок отображения языков народных названий
+          common_name_lexicons: Языки народных названий
+          common_name_lexicons_description: По умолчанию, народные названия отображаются на языке вашей учетной записи. Чтобы просмотреть названия в других словарях или расставить приоритеты в названиях, используемых в определенных местах (например, английский (Австралия) или испанский (Коста-Рика)), добавьте языки общих названий. Одновременно может отображаться не более 3 народных названий. Если для выбранного вами языка не существует общего названия, оно не будет отображаться.
+          for_multiple_common_name_lexicons_drag_and_drop: Если у вас несколько языков для народных названий, разместите их методом drag and drop в нужном порядке
+          same_as_locale: То же, что и локализация
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: То же, что и предпочитаемые язык/локализация пользователя
+          select_a_lexicon: Выбрать язык
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Уже добавлено максимальное число языков для народных названий - 3
         this_only_applies_to_traditional_projects: |
           Это относится только к традиционным проектам. Вы не можете исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисками.
           Вы можете прочитать больше <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">здесь</a>.
@@ -7899,6 +7988,7 @@ ru:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Предназначено пользователям, которые не подтвердили свой е-мейл
+        clients: Клиенты
       assessment:
         description: Описание
       assessment_section:
@@ -8147,6 +8237,16 @@ ru:
           many: '%{count} ошибок препятствуют сохранению этой %{model}'
           other: '%{count} ошибок препятствуют сохранению этой %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: должно быть действительным для указанного места размещения
         application:
           attributes:
             redirect_uri:

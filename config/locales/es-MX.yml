@@ -1695,8 +1695,11 @@ es-MX:
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya te encuentras siguiendolo."
   eligible_for_research_grade: Elegible para grado de investigación
   email: Correo
-  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo para comentarios y feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 'Estimado/a %{user}:'
+  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_conf_required_after_grace_period: |
     La confirmación del correo electrónico es necesaria a partir de %{requirement_date} y no
     confirmó su dirección de correo electrónico antes del corte. Por favor, restablezca su contraseña para acceder a su cuenta.
@@ -1954,6 +1957,8 @@ es-MX:
   generate_taxonomic_tags_for_flickr: Genera etiquetas taxonómicas para tus fotos de Flickr
   generate_widget: Genera el widget
   generate_your_stats: Genera tus estadísticas
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERA TU AÑO %{year} EN RESUMEN
   generating_mobile_archive: "Generando archivos móviles"
   Genus: Género
   geoprivacy: Privacidad geográfica
@@ -5616,6 +5621,7 @@ es-MX:
   year: año
   year_in_review: "Resumen del año %{year}"
   year_in_review2: "Resumen del año %{year}"
+  year_in_review_caps: "EL %{year} EN RESUMEN"
   year_month: año/mes
   year_on_site: "El %{year} en %{site}"
   yellow: Amarillo
@@ -5649,6 +5655,32 @@ es-MX:
   yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a iNaturalist a existir durante este año. ¡Gracias!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu apoyo
+  yir_email_because_of_you: |
+    Gracias a ti, este año hay más datos sobre la biodiversidad que el último
+    año. El Año en Revisión es nuestro regalo para ti por todo lo que has 
+    hecho para la biodiversidad a través de iNaturalist.
+  yir_email_log_in_to_generate: |
+    ¡Inicia sesión para generar tu año personal en resumen para averiguarlo!
+  yir_email_of_your_observations:
+    one: De tus %{count} observaciones, ¿sabes cuántas se hicieron en %{year}?
+    other: De tus %{count} observaciones, ¿sabes cuántas se hicieron en %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Tu Año Naturalista %{year} en Resumen — celebra tu año con la biodiversidad
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: El equipo de iNaturalist
+  yir_email_the_year_isnt_over: |
+    El año aun no se acaba, y nunca es tarde para incluir observaciones antiguas. Una vez que compartas más observaciones, asegúrate de seleccionar "Estadísticas regeneradas" al final de Tu Año en Resumen para ver la actualización.
+  yir_email_what_else_will_you_observe_caps: '¿QUÉ MÁS OBSERVARÁS?'
+  yir_email_what_new_to_you: |
+    ¿Qué especies nuevas para tí, registraste este año? ¿Cuanta gente te ayudó con las identificaciones (y cuantas ayudaste tú?
+  yir_email_with_gratitude: Con agradecimiento,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} EN INATURALIST GLOBALMENTE"
+  yir_email_you_are_part_of_something: |
+    ¡Eres parte de algo grande! Cada persona que sube observaciones, añade identificaciones y promueve a iNaturalist hace la diferencia para la bioidversidad. A través de nuestros esfuerzos colectivos, estamos produciendo información y entendimiento sobre la biodiversidad a una escala sin precedentes. ¡Gracias por ser parte de la comunidad de iNaturalist!
+  yir_email_you_make_a_difference: |
+    Haces una diferencia para la biodiversidad a través de iNaturalist. ¡Gracias por
+    todo lo que haces!
   yir_generating_and_sharing: |
     Generar y compartir datos de biodiversidad de alto impacto en esta escala y velocidad
     sin precedentes tiene un costo creciente

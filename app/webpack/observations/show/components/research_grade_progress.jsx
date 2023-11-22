@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-/* global OUTLINK_SITE_ICONS */
+/* global OUTLINK_SITES */
 
 class ResearchGradeProgress extends React.Component {
   constructor( ) {
@@ -223,7 +223,7 @@ class ResearchGradeProgress extends React.Component {
             <div className="outlink" key={`outlink-${ol.source}`}>
               <a href={ol.url}>
                 <div className="squareIcon">
-                  <img alt={ol.source} src={OUTLINK_SITE_ICONS[ol.source]} />
+                  <img alt={ol.source} src={OUTLINK_SITES[ol.source].icon} />
                 </div>
                 <div className="title">{ ol.source }</div>
               </a>

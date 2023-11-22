@@ -16,6 +16,8 @@ ja:
     other: '<span class="count">%{count}</span>件の同定'
   x_identifications_:
     other: '%{count} 同定'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> 件の同定'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ ja:
     other: "%{count}件の観察記録"
   x_observations_html:
     other: "<span class='count'>%{count}</span>件の観察記録"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> 件の観察記録"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
@@ -65,6 +69,8 @@ ja:
     other: '%{count} 新規ユーザー'
   x_species:
     other: '%{count}種'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> 種"
   x_species_html:
     other: "<span class='count'>%{count}</span>種"
   x_species_link_html:
@@ -974,6 +980,8 @@ ja:
     現在のコンピュータビジョンはこの分類群を認識しているため、「視覚的に類似」ラベルのID自動提案に表示されます。
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 保留
+  computer_vision_model_pending_desc2: |
+    現在のコンピュータビジョンはこの分類群を認識していないため、「近隣で観察記録あり」ラベルのID自動提案には表示されますが、「視覚的に類似」ラベルのID自動提案には表示されません。次回のコンピュータービジョンのアップデートでこの種が認識されるようにするには、投稿または同定によってこの分類群の観察記録/画像の数を増やしてください。
   concept_status: コンセプトステータス
   confidential: 機密
   configure: 設定する
@@ -1623,8 +1631,11 @@ ja:
   either_that_user_doesnt_exist_or: "そのユーザーは存在しないか、もしくは、もうすでにフォローしている可能性があります。"
   eligible_for_research_grade: 研究用候補
   email: 電子メール
-  email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: '%{user} さんへ'
+  email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
   email_conf_required_after_grace_period: |
     %{requirement_date} の期限までにメールアドレスの確認が行われませんでした。アカウントにアクセスするには、パスワードをリセットしてください。
   email_copyright2: "&copy; %{year} iNaturalist, all rights reserved"
@@ -1874,6 +1885,8 @@ ja:
   generate_taxonomic_tags_for_flickr: あなたのFlickr写真のための分類群タグを作成
   generate_widget: ウィジェットを作成
   generate_your_stats: 統計を生成
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: あなたの %{year} 年を振り返る
   generating_mobile_archive: "モバイルアーカイブを作成中"
   Genus: 属
   geomodel_expected_nearby_label_is_derived: |
@@ -4857,12 +4870,14 @@ ja:
   update_with_site_content: "%{site_name}データで更新"
   updated: 更新済
   updated_by: 更新者
+  updated_by_user_on_date_html: 作成者:%{user}さん 作成日:%{date}
   updated_daily: 毎日更新されています
   updated_photo: 写真が更新されました
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
   upload_photo: 写真をアップロード
+  upload_range: 生息域をアップロード
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: アップロードしたユーザー：
   uploader:
@@ -5122,6 +5137,7 @@ ja:
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
   what_want_to_list?: リストにまとめたいものは？
+  what_were_you_looking_for?: "何をお探しですか？（ターゲットリスト）"
   whats_this?: もっと詳しく
   when: いつ？
   when_did_you_see_it?: いつ見ましたか？
@@ -5182,6 +5198,7 @@ ja:
   year: 年
   year_in_review: "%{year} 年を振り返る"
   year_in_review2: "%{year} 年を振り返る"
+  year_in_review_caps: "%{year} 年を振り返る"
   year_month: 年/月
   yellow: 黄
   'yes': "はい"
@@ -5214,6 +5231,31 @@ ja:
   yir_donate_banner_you_helped_inaturalist_thrive: 今年もiNaturalistの繁栄に協力してくださりありがとうございました！
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalistの資金源の大部分は皆様からの寄付です
+  yir_email_because_of_you: |
+    皆様のおかげで、今年は昨年よりも生物多様性に関するデータが増えました。Year in Reviewは、iNaturalistを通じて生物多様性のために尽力してくださったことすべてに対しての贈り物です。
+  yir_email_log_in_to_generate: |
+    ログインして、あなたの1年を振り返ってみてください！
+  yir_email_of_your_observations:
+    other: あなたの %{count} 件の観察記録のうち、%{year} に報告したものがいくつあるか知っていますか？
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    あなたの %{year} 年のiNaturalist Year in Review - 生物多様性と共にあなたの1年を祝う
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalistチーム
+  yir_email_the_year_isnt_over: |
+    まだ1年は終わっていませんし、古い観察記録を投稿するのに遅すぎるということはありません。
+    さらに観察記録を共有したら、Year in Reviewの一番下にある 「統計を再生成」を選択し、更新を確認してください。
+  yir_email_what_else_will_you_observe_caps: 他に何を観察しますか？
+  yir_email_what_new_to_you: |
+    今年はどのような新種（あなたにとっての）を記録しましたか？同定を手伝ってくれた人は何人いましたか（また、あなたは何人手伝いましたか）？
+  yir_email_with_gratitude: 感謝を込めて、
+  yir_email_year_on_inaturalist_globally_caps: "%{year} 年の世界全体のiNaturalistの活動"
+  yir_email_you_are_part_of_something: |
+    あなたは大きな何かの一部です！
+    観察記録を投稿し、同定を追加し、iNaturalistを広めるすべての人が生物多様性のために変化をもたらします。
+    私たちの努力の積み重ねにより、生物多様性のデータと知見がかつてない規模で利用できるようになっています。iNaturalistコミュニティの一員でいてくださることに感謝します！
+  yir_email_you_make_a_difference: |
+    あなたはiNaturalistを通して生物多様性に変化をもたらしています。ありがとうございます！
   yir_generating_and_sharing: |
     iNat上での生物多様性データの作成と共有は、かつてないほど大規模かつ高速に行われるようになり、そのコストは増大しています。
   yir_millions_of_people_used_inaturalist: |
@@ -6140,6 +6182,8 @@ ja:
         sunburst_desc_html: |
           観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁にある種で終わる。各円弧の大きさはその分類群の観測数に比例し、色はいつもの「象徴的な」分類群の色（植物は緑、昆虫はオレンジ、その他のほとんどの動物は青、など）におおよそ対応しているので、緑が多いということは、多くの植物を観測したことを意味します。<strong>円弧をクリックすると、その分類群が中心に配置され</strong>、その周囲に子分類群が配置されます。また、<strong>中心をクリックすると、階層が後ろに移動します</strong>。
         translators_title: 翻訳者
+        view_all_publications_count_caps2:
+          other: "%{count} 件の出版物を表示"
     taxa:
       show:
         about_names_desc: |
@@ -6234,6 +6278,7 @@ ja:
           アカウントを削除するには、フォームに%{confirmation_code}を入力する必要があります。
       edit:
         about_third_party_tracking: サードパーティのトラッキングについて
+        common_scientific_name_display_order: 一般名 / 学名の表示順
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           考えが変わっても、いつでも
           <a href='/users/edit'>設定</a>は変更できます。
@@ -6860,6 +6905,7 @@ ja:
         access_denied: 'リソース所有者または認証サーバーが要求を拒否しました。'
         invalid_scope: '要求されたスコープが無効、不明、または不正な形式です。'
         server_error: 'サーバーに予期せぬ事態が発生したため、要求を満たすことができません。'
+        unsupported_grant_type: '認証付与タイプは、この認証サーバでサポートされていません。'
     flash:
       applications:
         create:
@@ -6880,8 +6926,138 @@ ja:
       "@vow_or_con":
         vow: 母音
         con: 子音
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
+        m: 男性
         f: メス
+        "n": 中性
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+      "@iconic_taxon":
+        Animalia: 動物界
+        Actinopterygii: 条鰭亜綱
+        Aves: 鳥綱
+        Reptilia: 爬虫綱
+        Amphibia: 両生綱
+        Mammalia: 哺乳綱
+        Arachnida: クモガタ綱
+        Insecta: 昆虫綱
+        Plantae: 植物界
+        Fungi: 菌界
+        Protozoa: 原生動物界
+        Mollusca: 軟体動物門
+        Chromista: クロミスタ界
   #Title of a section warning the user about something
   warning_title: 注意
   wikimedia: ウィキメディア
@@ -6891,6 +7067,9 @@ ja:
     next_label: "次へ &#8594;"
     page_gap: "&hellip;"
   you_will_no_longer_be_following_or_trusting: "%{user} のフォロー・正確な位置情報の共有を停止します"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: アルファベット降順
   zoom_in: 拡大
   zoom_out: 縮小
   zoom_photo: 画像を拡大

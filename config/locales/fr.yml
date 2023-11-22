@@ -24,6 +24,9 @@ fr:
   x_identifications_:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICATION'
+    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ fr:
   x_observations_html:
     one: "<span class='count'>%{count}</span> observation"
     other: "<span class='count'>%{count}</span> observations"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
@@ -96,6 +102,9 @@ fr:
   x_species:
     one: '1 espèce'
     other: '%{count} espèces'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÈCE"
+    other: "<span class='count'>%{count}</span> ESPÈCES"
   x_species_html:
     one: "<span class='count'>1</span> espèce"
     other: "<span class='count'>%{count}</span> espèces"
@@ -664,6 +673,7 @@ fr:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la check-list de « %{place} » ?"
+  are_you_sure_you_want_to_flag_as_spammer: Êtes-vous sûr de vouloir signaler cet utilisateur comme spammeur ?
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
   attention: Attention
@@ -1030,6 +1040,8 @@ fr:
     Le modèle actuel de vision par ordinateur connaît ce taxon. Celui-ci pourrait donc être inclus dans les suggestions automatiques avec l'étiquette « Visuellement semblable ».
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: En attente
+  computer_vision_model_pending_desc2: |
+    Le modèle actuel de vision par ordinateur ne connaît pas ce taxon, de sorte que s'il peut bien être inclus dans les suggestions automatisées avec l'étiquette "Attendu à proximité", il n'aura cependant pas l'étiquette "Visuellement similaire". Bien que les conditions d'inclusion dans le modèle changent avec chaque modèle, l'inclusion est généralement basée sur le nombre d'observations, donc pour augmenter les chances que ce taxon soit inclus lors de la prochaine formation du modèle, ajoutez ou identifiez plus d'observations de ce taxon.
   concept_status: État du concept
   confidential: Confidentiel
   configure: Configurer
@@ -1151,10 +1163,12 @@ fr:
     cannot_be_determined: Ne peut être déterminé à partir des données fournies
     dead: L'organisme est mort ou montre des signes de mort imminente
     feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
+    female: Les informations indiquent que l'organisme peut produire des ovules pour la reproduction sexuelle
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
     gall: Excroissance d'un tissu végétal causée par un parasite
+    male: Les informations indiquent que l'organisme peut produire du sperme pour la reproduction sexuelle
     molt: Dépouille ou exosquelette abandonné
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     organism: Tout ou partie d'un organisme
@@ -1696,8 +1710,11 @@ fr:
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
-  email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Cher %{user},
+  email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_conf_required_after_grace_period: |
     La confirmation de l'adresse mail est requise depuis le %{requirement_date} et vous n'avez pas confirmé votre adresse avant la date limite. Veuillez réinitialiser votre mot de passe pour accéder à votre compte.
   email_copyright2: "&copy; %{year} iNaturalist, tous droits réservés"
@@ -1954,6 +1971,8 @@ fr:
   generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos photos ''Flickr''.
   generate_widget: Générer le widget
   generate_your_stats: Générer vos statistiques
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
   geomodel_expected_nearby_label_is_derived: |
@@ -3198,6 +3217,7 @@ fr:
   observations_widget: Widget d’observations
   observations_with_this_field: Observations avec ce champ
   observations_with_this_field_and_value: Observations avec ce champ et cette valeur
+  observations_without_this_field: Observations sans ce champ
   observations_without_media: Observations sans média
   observationcounts_refreshed: Comptes des observations rafraîchis
   observed: Observé
@@ -4869,7 +4889,7 @@ fr:
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
   taxonomy_details: Détails de la taxinomie
-  taxonomy_details_for: Détail de la taxonimie pour
+  taxonomy_details_for: Détail de la taxinomie pour
   taxonomy_details_info: 'La page de détails de la taxinomie utilise les cadres de taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En savoir plus</a>.'
   taxonomy_settings: Configuration de taxinomie
   teachers_guide: Guide de l’enseignant
@@ -5639,6 +5659,7 @@ fr:
   year: Année
   year_in_review: "Revue de l'année %{year}"
   year_in_review2: "Rétrospective de l'année %{year}"
+  year_in_review_caps: "RÉTROSPECTIVE DE L'ANNÉE %{year}"
   year_month: année/mois
   year_on_site: "Année %{year} sur %{site}"
   yellow: jaune
@@ -5672,6 +5693,49 @@ fr:
   yir_donate_banner_you_helped_inaturalist_thrive: Vous avez aidé iNaturalist à prospérer cette année. Merci !
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist a besoin de votre appui
+  yir_email_because_of_you: |
+    Grâce à vous, il y a plus de données sur la biodiversité cette année que l'année dernière. Cette Rétrospective de l'Année est notre cadeau pour tout ce que vous avez fait pour la biodiversité à travers iNaturalist.
+  yir_email_log_in_to_generate: |
+    Connectez-vous pour générer votre Rétrospective de l'Année et pour en savoir plus !
+  yir_email_of_your_observations:
+    one: Savez-vous si votre observation a été réalisée en %{year} ?
+    other: Savez-vous combien de vos %{count} observations ont été réalisées en %{year} ?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Votre Rétrospective iNaturalist de l'Année %{year} - fêtez votre année avec la biodiversité
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: L'équipe iNaturalist
+  yir_email_the_year_isnt_over: |
+    L'année n'est pas encore terminée et il n'est jamais trop tard pour publier des observations
+    plus anciennes. Après avoir partagé plus d'observations, assurez-vous de
+    sélectionner "Régénérer les statistiques" en bas de votre Rétrospective de l'Année pour voir les mises à jour.
+  yir_email_what_else_will_you_observe_caps: QU'ALLEZ-VOUS OBSERVER D'AUTRE ?
+  yir_email_what_new_to_you: |
+    Quelles nouvelles espèces pour vous avez-vous observées cette année ? Combien de personnes vous ont-elles aidées pour vos identifications (et combien en avez-vous aidées) ?
+  yir_email_with_gratitude: Avec notre gratitude,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} SUR INATURALIST EN GENERAL"
+  yir_email_you_are_part_of_something: |
+    Vous participez à quelque chose de grand ! Chaque personne qui publie des observations, ajoute des identifications et fait connaître iNaturalist contribue à la biodiversité. Grâce à nos efforts collectifs, nous donnons accès à des données et des informations sur la biodiversité à une échelle sans précédent. Merci de faire partie de la communauté iNaturalist !
+  yir_email_you_make_a_difference: |
+    Vous contribuez à la biodiversité grâce à iNaturalist. Merci pour tout ce que vous faites !
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Vous avez reçu ce courriel parce que %{email} est associé à
+    https://www.inaturalist.org/people/%{username}, un compte iNaturalist
+    créé le %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Vous avez reçu ce courriel parce que %{email} est associé à
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    un compte iNaturalist créé le %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Votre compte est affilié à %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Votre compte est affilié à <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Il est de plus en plus coûteux de produire et de transmettre à cette échelle et à cette vitesse sans précédent des données sur la biodiversité à fort impact.
   yir_millions_of_people_used_inaturalist: |
@@ -5832,6 +5896,9 @@ fr:
         CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner affichera l’avertissement pour tous les utilisateurs quelle que soit leur localisation. Choisir une langue
         sans région ne ciblera *pas* les localisations avec région, par exemple si
         vous choisissez l'anglais en, il n’apparaîtra pas pour les personnes qui ont choisi l'anglais en-US. Si vous voulez cibler les deux, choisissez les deux. Si vous voulez afficher un avertissement pour tous les membres du site, laissez-le simplement vide.
+      clients_desc: |
+        CMD ou SHIFT-clic pour sélectionner plusieurs éléments. N'en sélectionner aucun affichera l'annonce
+        à tous les utilisateurs, quel que soit le client.
     content_freeze:
       content_freeze: Gel du contenu
       during_this_time: |
@@ -7725,8 +7792,25 @@ fr:
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
         taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Ajouter un lexique de nom commun
           #optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: Ajouter un lieu (facultatif)
+          common_name_lexicon_display_order: Ordre d'affichage du lexique de noms communs
+          common_name_lexicons: Lexiques de nom commun
+          common_name_lexicons_description: Par défaut, les noms courants sont affichés dans la langue locale de votre compte. Pour voir les noms dans d'autres lexiques, ou pour prioriser les noms utilisés dans des endroits spécifiques (comme l'anglais (Australie) ou l'espagnol (Costa Rica)), ajoutez des lexiques de nom courant. Un maximum de trois noms communs peuvent être affichés à la fois. Si aucun nom commun n'existe pour un lexique que vous avez choisi, il sera omis de l'affichage.
+          for_multiple_common_name_lexicons_drag_and_drop: Pour les lexiques de noms communs multiples, faites glisser les paramètres ci-dessous pour personnaliser l'ordre dans lequel ils sont affichés.
+          same_as_locale: Identique à la langue locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Identique à la préférence de langue locale de l'utilisateur
+          select_a_lexicon: Sélectionnez un lexique
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Le maximum de 3 lexiques de noms communs a déjà été ajouté
         this_only_applies_to_traditional_projects: |
           Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets-cadres, qui sont essentiellement des recherches sauvegardées.
           Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
@@ -8083,6 +8167,7 @@ fr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Pour les utilisateurs qui n'ont pas confirmé leur adresse mail
+        clients: Clients
       assessment:
         description: Description
       assessment_section:
@@ -8314,6 +8399,16 @@ fr:
           one: "1 erreur a empêché ce %{model} d’être enregistré"
           other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: doit être valide pour l'emplacement spécifié
         application:
           attributes:
             redirect_uri:

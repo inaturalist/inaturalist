@@ -40,6 +40,11 @@ pl:
     few: '%{count} oznaczenia'
     many: '%{count} oznaczeń'
     other: '%{count} oznaczenia'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> OZNACZENIE'
+    few: '<span class="count">%{count}</span> OZNACZENIA'
+    many: '<span class="count">%{count}</span> OZNACZEŃ'
+    other: '<span class="count">%{count}</span> OZNACZENIA'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -112,6 +117,11 @@ pl:
     few: "<span class='count'>%{count}</span> obserwacje"
     many: "<span class='count'>%{count}</span> obserwacji"
     other: "<span class='count'>%{count}</span> obserwacji"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERWACJA"
+    few: "<span class='count'>%{count}</span> OBSERWACJE"
+    many: "<span class='count'>%{count}</span> OBSERWACJI"
+    other: "<span class='count'>%{count}</span> OBSERWACJI"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} obserwacja</a>"
     few: "<a href='%{url}'>%{count} obserwacje</a>"
@@ -158,6 +168,11 @@ pl:
     few: '%{count} gatunki'
     many: '%{count} gatunków'
     other: '%{count} gatunku'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> GATUNEK"
+    few: "<span class='count'>%{count}</span> GATUNKI"
+    many: "<span class='count'>%{count}</span> GATUNKÓW"
+    other: "<span class='count'>%{count}</span> GATUNKU"
   x_species_html:
     one: "<span class='count'>%{count}</span> gatunek"
     few: "<span class='count'>%{count}</span> gatunki"
@@ -1551,8 +1566,8 @@ pl:
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
-  email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
+  email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
   email_copyright2: "&copy; %{year} iNaturalist, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
@@ -5409,6 +5424,20 @@ pl:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Zwierzęta
+        Actinopterygii: Promieniopłetwe
+        Aves: Ptaki
+        Reptilia: Gady
+        Amphibia: Płazy
+        Mammalia: Ssaki
+        Arachnida: Pajęczaki
+        Insecta: Owady
+        Plantae: Rośliny
+        Fungi: Grzyby
+        Protozoa: Pierwotniaki
+        Mollusca: Mięczaki
+        Chromista: Chromisty
   #Title of a section warning the user about something
   warning_title: Ostrzeżenie
   wikimedia: Wikimedia

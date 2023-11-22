@@ -2,14 +2,15 @@
 place ||= @place
 no_common ||= false
 viewer ||= ( defined?( current_user ) ? current_user : nil ) rescue nil
-comname = common_taxon_name(
+comname = common_taxon_names(
   taxon,
   place: place || @site.try(:place),
   user: viewer
-).try(:name)
-comname = capitalize_name( comname ) if comname
+).first
 if taxon.rank == 'species' or taxon.rank == 'infraspecies'
   sciname = taxon.name
+elsif taxon.name == "Life"
+  sciname = t(:rank_sciname, rank: t( "ranks.#{taxon.rank}", default: taxon.rank ), name: comname )
 else
   sciname = t(:rank_sciname, rank: t( "ranks.#{taxon.rank}", default: taxon.rank ), name: taxon.name )
 end

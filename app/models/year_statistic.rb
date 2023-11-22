@@ -64,6 +64,9 @@ class YearStatistic < ApplicationRecord
           options
         )
       },
+      users: {
+        obs_and_id_activity_counts: obs_and_id_activity_counts( year, options )
+      },
       growth: {
         observations: observations_histogram_by_created_month( options ),
         users: users_histogram_by_created_month( options )
@@ -127,7 +130,8 @@ class YearStatistic < ApplicationRecord
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
         popular: popular_observations( year, user: user ),
-        streaks: streaks( year, user: user )
+        streaks: streaks( year, user: user ),
+        outlink_counts: observation_outlink_counts( year, user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ),
@@ -253,8 +257,9 @@ class YearStatistic < ApplicationRecord
         params[:site_id] = site.id
       end
     end
-    JSON.parse( INatAPIService.get_json( "/observations/histogram", params,
-      { timeout: 30 } ) )["results"][params[:interval]]
+    response = INatAPIService.get_json( "/observations/histogram", params, { timeout: 30 } )
+    json = JSON.parse( response )
+    json["results"][params[:interval]]
   end
 
   def self.identifications_histogram( year, options = {} )
@@ -550,23 +555,23 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_localized_shareable_images( options = {} )
-    locales_to_generate = options[:only_user_locale] ?
-      [user&.locale || I18n.locale] :
+    locales_to_generate = if options[:only_user_locale]
+      [user&.locale || I18n.locale]
+    else
       I18N_SUPPORTED_LOCALES
-    locales_to_generate.sort.each do |locale|
-      begin
-        localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
-          year_statistic: self,
-          locale: locale
-        )
-        # even though this instance was passed to the find_or_create_by, the association
-        # will not be populated and will still get queried for. Assigning it here saves
-        # that query and having to pass the same huge data attribute many times from the DB
-        localized_shareable.year_statistic = self
-        localized_shareable.generate( options )
-      rescue RuntimeError => e
-        pp e
-      end
+    end
+    locales_to_generate.sort.each do | locale |
+      localized_shareable = YearStatisticLocalizedShareableImage.find_or_create_by!(
+        year_statistic: self,
+        locale: locale
+      )
+      # even though this instance was passed to the find_or_create_by, the association
+      # will not be populated and will still get queried for. Assigning it here saves
+      # that query and having to pass the same huge data attribute many times from the DB
+      localized_shareable.year_statistic = self
+      localized_shareable.generate( options )
+    rescue RuntimeError => e
+      pp e
     end
   end
 
@@ -713,7 +718,7 @@ class YearStatistic < ApplicationRecord
 
   def shareable_image_for_locale( locale )
     if year_statistic_localized_shareable_images.any?
-      year_statistic_localized_shareable_images.detect do |si|
+      year_statistic_localized_shareable_images.detect do | si |
         si.locale == locale.to_s
       end&.shareable_image
     else
@@ -873,10 +878,9 @@ class YearStatistic < ApplicationRecord
     if options[:debug]
       puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
     end
-    # TODO: replace this with https://www.gbif.org/developer/literature
-    gbif_endpont = "https://www.gbif.org/api/resource/search"
+
+    gbif_endpoint = "https://api.gbif.org/v1/literature/search"
     gbif_params = {
-      contentType: "literature",
       # iNat RG Observations dataset identifier on GBIF We don't publish site-
       # specific datasets, so there's no reason not to hard-code it here.
       gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
@@ -884,20 +888,24 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    gbif_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
+    response = JSON.parse( RestClient.get( gbif_url ) )
+
     new_results = []
     response["results"].each do | result |
-      if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
+      altmetric_score = nil
+
+      if ( doi = result.dig( "identifiers", "doi" ) )
         url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
           am_response = RestClient.get( url )
-          result["altmetric_score"] = JSON.parse( am_response )["score"]
+          altmetric_score = JSON.parse( am_response )["score"]
         rescue RestClient::NotFound => e
           Rails.logger.debug "[DEBUG] Request failed for #{url}: #{e}"
         end
         sleep( 1 )
       end
-      result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
+
       new_result = result.slice(
         "title",
         "authors",
@@ -906,18 +914,27 @@ class YearStatistic < ApplicationRecord
         "websites",
         "publisher",
         "id",
-        "identifiers",
-        "_gbifDOIs",
-        "altmetric_score"
+        "identifiers"
       )
+
+      new_result["altmetric_score"] = altmetric_score
+
+      gbif_dois = result["tags"].select do | tag |
+        tag.start_with?( "gbifDOI:" )
+      end
+      gbif_dois = gbif_dois.take( 10 )
+      new_result["_gbifDOIs"] = gbif_dois.map {| tag | tag.delete_prefix( "gbifDOI:" ) }
+
       if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
         new_result["authors"] = []
       end
+
       new_results << new_result
     end
+
     {
-      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
-      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
+      results: new_results.sort_by {| result | result["altmetric_score"].to_f * -1 }[0..5],
+      url: gbif_url,
       count: response["count"]
     }
   end
@@ -1531,6 +1548,134 @@ class YearStatistic < ApplicationRecord
       new_pull["user"] = pull["user"].slice( "login", "avatar_url", "html_url" )
       new_pull
     end
+  end
+
+  # returns a hash indexed by user_id, containing a hash of activity counts.
+  # :observations contains a count of observations created in the given year
+  # :identifications contains a count of identifications created in the
+  # given year on observations other than their own
+  def self.user_activity_counts( year, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] user_activity_counts, year: #{year}, options: #{options}"
+    end
+    max_user_id = User.maximum( :id ) || 0
+    start_id = 1
+    batch_size = 500_000
+    activity_counts_by_user = {}
+    while start_id <= max_user_id
+      es_params = {
+        size: 0,
+        filters: [{
+          range: {
+            "user.id": {
+              gte: start_id,
+              lt: start_id + batch_size
+            }
+          }
+        }, {
+          term: {
+            "created_at_details.year": year
+          }
+        }],
+        aggregate: {
+          users: {
+            terms: {
+              field: "user.id",
+              size: batch_size
+            }
+          }
+        }
+      }
+      observation_es_params = es_params.deep_dup
+      identifications_es_params = es_params.deep_dup
+      identifications_es_params[:filters] << {
+        term: {
+          own_observation: false
+        }
+      }
+      if ( site = options[:site] )
+        if site.place
+          observation_es_params[:filters] << {
+            term: { place_ids: site.place.id }
+          }
+          identifications_es_params[:filters] << {
+            term: { "observation.place_ids": site.place.id }
+          }
+        else
+          observation_es_params[:filters] << {
+            term: { site_id: site.id }
+          }
+          identifications_es_params[:filters] << {
+            term: { "observation.site_id": site.id }
+          }
+        end
+      end
+      Observation.elastic_search( observation_es_params ).aggregations.users.buckets.each do | bucket |
+        activity_counts_by_user[bucket["key"]] ||= {}
+        activity_counts_by_user[bucket["key"]][:observations] = bucket["doc_count"]
+      end
+      Identification.elastic_search( identifications_es_params ).aggregations.users.buckets.each do | bucket |
+        activity_counts_by_user[bucket["key"]] ||= {}
+        activity_counts_by_user[bucket["key"]][:identifications] = bucket["doc_count"]
+      end
+      start_id += batch_size
+    end
+    activity_counts_by_user
+  end
+
+  def self.obs_and_id_activity_counts( year, options = {} )
+    activity_counts_by_user = user_activity_counts( year, options )
+    observed_count = 0
+    identified_count = 0
+    observed_and_identified_count = 0
+    observed_or_identified_count = 0
+    activity_counts_by_user.each do | _k, counts |
+      observed_or_identified_count += 1
+      if counts[:observations] && counts[:identifications]
+        observed_and_identified_count += 1
+      elsif counts[:observations]
+        observed_count += 1
+      elsif counts[:identifications]
+        identified_count += 1
+      end
+    end
+    {
+      only_observed_count: observed_count,
+      only_identified_count: identified_count,
+      observed_and_identified_count: observed_and_identified_count,
+      observed_or_identified_count: observed_or_identified_count
+    }
+  end
+
+  def self.observation_outlink_counts( year, user, options = {} )
+    if options[:debug]
+      puts "[#{Time.now}] observation_outlinks, year: #{year}, user: #{user}, options: #{options}"
+    end
+    return unless user
+
+    es_params = {
+      size: 0,
+      filters: [{
+        term: {
+          "user.id": user.id
+        }
+      }, {
+        term: {
+          "created_at_details.year": year
+        }
+      }],
+      aggregate: {
+        outlinks: {
+          terms: {
+            field: "outlinks.source",
+            size: 10
+          }
+        }
+      }
+    }
+    Observation.elastic_search( es_params ).aggregations.outlinks.buckets.map do | bucket |
+      [bucket["key"], bucket["doc_count"]]
+    end.to_h
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

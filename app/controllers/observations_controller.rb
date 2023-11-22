@@ -2202,12 +2202,12 @@ class ObservationsController < ApplicationController
   # Tries to create a new observation from the specified Flickr photo ID and
   # update the existing @observation with the new properties, without saving
   def sync_flickr_photo
-    flickr = get_flickraw
+    flickr = get_flickr
     begin
       fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id])
-      @flickr_photo = FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-    rescue FlickRaw::FailedResponse => e
-      Rails.logger.debug "[DEBUG] FlickRaw failed to find photo " +
+      @flickr_photo = FlickrPhoto.new_from_flickr(fp, :user => current_user)
+    rescue Flickr::FailedResponse => e
+      Rails.logger.debug "[DEBUG] Flickr failed to find photo " +
         "#{params[:flickr_photo_id]}: #{e}\n#{e.backtrace.join("\n")}"
       @flickr_photo = nil
     rescue Timeout::Error => e

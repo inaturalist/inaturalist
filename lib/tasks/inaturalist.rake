@@ -398,7 +398,8 @@ namespace :inaturalist do
       "yellow",
       "you_are_setting_this_project_to_aggregate",
       "i18n.inflections.@gender",
-      "i18n.inflections.@vow_or_con"
+      "i18n.inflections.@vow_or_con",
+      "i18n.inflections.@iconic_taxon"
     ]
     %w(
       all_rank_added_to_the_database

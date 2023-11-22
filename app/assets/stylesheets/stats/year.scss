@@ -527,8 +527,8 @@ $tip-opacity: 1;
         text-align: center;
         top: 115px;
         text-transform: uppercase;
-        font-weight: 100;
-        color: $gray;
+        font-weight: 700;
+        color: white;
         .count {
           display: block;
           font-size: 200%;
@@ -1028,7 +1028,8 @@ $tip-opacity: 1;
       $site-size: 150px;
       .site {
         width: $site-size;
-        height: $site-size + $user-image-overhang;
+        height: auto;
+        min-height: $site-size + $user-image-overhang;
         position: relative;
         margin: 0 30px;
         .site-icon {
@@ -1045,6 +1046,10 @@ $tip-opacity: 1;
             margin-top: ($site-size * 0.8) / -2;
           }
         }
+        @media (max-width: 500px) {
+          width: 30%;
+        }
+
 
         $ribbon-point-width: 8px;
         $ribbon-point-hypotenuse: 18px;
@@ -1064,6 +1069,8 @@ $tip-opacity: 1;
           .ribbon-content {
             max-height: none;
             word-break: break-word;
+            line-height: 14px;
+            padding: 3px 0px;
           }
         }
         a.ribbon:hover {
@@ -1523,6 +1530,60 @@ $tip-opacity: 1;
     &:focus,
     &:visited {
       color: white;
+    }
+  }
+
+  .BroaderImpacts {
+    .outlinks {
+      display: flex;
+      justify-content: space-around;
+    }
+    .outlink-with-icon {
+      display: flex;
+      align-items: center;
+      .title-subtitle {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        .title {
+          font-size: 120%;
+          a {
+            color: white;
+          }
+        }
+        .subtitle {
+          font-size: 90%;
+          text-transform: uppercase;
+          a {
+            color: $gray;
+          }
+        }
+      }
+      .icon {
+        align-self: flex-start;
+        padding: 2px;
+        display: inline-block;
+        margin-right: 15px;
+        background: white;
+        img {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #ccc
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .BroaderImpacts .outlinks-container {
+      text-align: center;
+      .outlinks {
+        display: inline-block;
+        text-align: left;
+        .outlink-with-icon + .outlink-with-icon {
+          margin-top: 20px;
+        }
+      }
     }
   }
 

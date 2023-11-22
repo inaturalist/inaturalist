@@ -11,6 +11,7 @@ import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
 import Identifications from "./identifications";
+import BroaderImpacts from "./broader_impacts";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
@@ -85,6 +86,11 @@ const App = ( {
                 user={user}
                 site={site}
                 currentUser={currentUser}
+              />
+              <BroaderImpacts
+                data={data.observations.outlink_counts}
+                user={user}
+                year={year}
               />
               { data && data.growth && (
                 <Growth

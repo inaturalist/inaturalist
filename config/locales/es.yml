@@ -1141,10 +1141,12 @@ es:
     cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
     dead: El organismo está muerto o muestra signos de muerte inminente
     feather: Una o más plumas no unidas a un organismo
+    female: La evidencia muestra que el organismo puede producir óvulos para la reproducción sexual
     flower_budding: Las yemas florales son visibles pero no están abiertas
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
     gall: Brote de tejido vegetal deformado causado por un organismo parásito o infección
+    male: La evidencia muestra que el organismo puede producir esperma para la reproducción sexual
     molt: Restos de piel o exoesqueleto
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
     organism: Todo o parte de un Organismo
@@ -1669,8 +1671,11 @@ es:
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
   email: Correo
-  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo electrónico para comentarios y retroalimentación
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 'Estimado/a %{user}:'
+  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_conf_required_after_grace_period: |
     La confirmación del correo electrónico es necesaria a partir de %{requirement_date} y no confirmó su dirección de correo electrónico antes del corte. Por favor, restablezca su contraseña para acceder a su cuenta.
   email_copyright2: "&copy; %{year} iNaturalist, todos los derechos reservados"
@@ -1925,6 +1930,8 @@ es:
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para tus fotos de Flickr.
   generate_widget: Genera el widget
   generate_your_stats: Genera tus estadísticas
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERAR SU AÑO %{year} EN RESUMEN
   generating_mobile_archive: "Generando de archivos móviles"
   Genus: Género
   geoprivacy: Geoprivacidad
@@ -2091,6 +2098,8 @@ es:
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist es una organización sin fines de lucro independiente y exenta de impuestos bajo el régimen fiscal 501(c)(3), con sede en los Estados Unidos de América (id. tributaria: 92-1296468).
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -2658,6 +2667,10 @@ es:
     <strong>sólo visible para los supervisores</strong> y <strong>los supervisores no pueden ver
     su propio historial</strong>, así que las notas sobre una persona nunca deberían ser visibles
     para esa persona.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Ocultar
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Anular suspensión
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -2878,6 +2891,8 @@ es:
   next_tab: Siguiente pestaña
   next_taxon_short: Siguiente
   'no': 'No'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Aún no hay ninguna aplicación
   no_assessments_have_been_added_to_this_project_yet: Todavía no se agregaron evaluaciones a este proyecto.
   no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
   no_comments_yet: No hay comentarios todavía.
@@ -3335,8 +3350,12 @@ es:
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
   photo_destroyed_because_it_was_deleted_from: "La foto fue destruida porque fue borrada de un sitio externo o %{site_name} no tiene permisos para mostrarla."
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto oculta
   photo_licensing: Licencia de la foto
   photo_type: Tipo de foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto visible
   photo_urls_repaired: Se repararon los URL de las fotos
   photos_chosen_for_this_taxon: Fotos elegidas para este taxón
   photos_from: Fotos de
@@ -5441,7 +5460,7 @@ es:
   visually_similar: Similar visualmente
   vulnerable: Vulnerable
   w00t_no_ungrafted_taxa: '¡No se aceptan taxones sin relaciones taxonómicas!'
-  w_photos_only: con fotos solamente
+  w_photos_only: con fotos
   w_sounds: con sonidos
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   #Species that are "wanted," e.g. we know they exist but haven't been observed
@@ -5501,6 +5520,7 @@ es:
   white: blanco
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: '¿Por qué estás haciendo este cambio? (opcional)'
+  why_are_you_making_this_change_cite_source_required: '¿Por qué quiere efectuar este cambio? Explíquelo y cite una fuente de ser posible. (Obligatorio)'
   why_you_can_see_the_coordinates: Por qué Puedes Ver las Coordenadas
   who_can_add_observation_fields_to_my_obs: '¿Quién puede añadir campos de observación a mis observaciones?'
   who_can_add_observations_to_this_project?: '¿Quiénes pueden añadir observaciones a este proyecto?'
@@ -5570,6 +5590,7 @@ es:
   year: Año
   year_in_review: "Resumen del año %{year}"
   year_in_review2: "Resumen del año %{year}"
+  year_in_review_caps: "EL %{year} EN RESUMEN"
   year_month: año/mes
   year_on_site: "El %{year} en %{site}"
   yellow: amarillo
@@ -5603,6 +5624,31 @@ es:
   yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a avanzar iNaturalist durante este año. ¡Gracias!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu Apoyo
+  yir_email_because_of_you: |
+    Gracias a ti, hay más datos sobre la biodiversidad este año que el año pasado. La Revisión del Año es nuestro regalo para ti por todo lo que has hecho por la biodiversidad a través de iNaturalist.
+  yir_email_log_in_to_generate: |
+    ¡Inicia sesión para generar tu revisión anual personal y descúbrelo!
+  yir_email_of_your_observations:
+    one: De su observación, ¿sabe cuántas se hicieron en %{year}?
+    other: De sus %{count} observaciones, ¿sabe cuántas se hicieron en %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Tu revisión anual de iNaturalist %{year} - celebra tu año con la biodiversidad
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: El equipo de iNaturalist
+  yir_email_the_year_isnt_over: |
+    El año aún no ha terminado y nunca es tarde para publicar observaciones antiguas. Después de compartir más observaciones, asegúrate de seleccionar "Regenerar estadísticas" en la parte inferior de tu Resumen anual para ver las actualizaciones.
+  yir_email_what_else_will_you_observe_caps: '¿QUÉ MÁS OBSERVARÁ?'
+  yir_email_what_new_to_you: |
+    ¿Qué especies nuevas para ti registraste este año? ¿Cuántas personas te ayudaron con identificaciones (y cuántas ayudaste tú)?
+  yir_email_with_gratitude: Con gratitud,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} EN INATURALIST GLOBALMENTE"
+  yir_email_you_are_part_of_something: |
+    ¡Eres parte de algo grande! Cada persona que comparte observaciones, añade identificaciones y corre la voz sobre iNaturalist marca la diferencia para la biodiversidad. Con nuestros esfuerzos colectivos, estamos logrando que los datos y el conocimiento sobre la biodiversidad estén disponibles a una escala sin precedentes. ¡Gracias por ser parte de la comunidad de iNaturalist!
+  yir_email_you_make_a_difference: |
+    Tu mensaje suena bien, pero puedes considerar una ligera modificación para mayor fluidez:
+
+    Con iNaturalist, marcas la diferencia para la biodiversidad. ¡Gracias por todo lo que haces!"
   yir_generating_and_sharing: |
     Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un coste creciente
   yir_millions_of_people_used_inaturalist: |
@@ -5708,6 +5754,8 @@ es:
   your_account_has_been_activated: Tu cuenta ha sido activada
   your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
   your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
+  #Title for a list of 3rd party applications you control
+  your_applications: Sus aplicaciones
   your_browser_does_not_support_the_audio_element: Tu navegador no parece ser compatible con el elemento <audio>.
   your_comment_was_saved: Su comentario ha sido guardado.
   your_content: Tu contenido
@@ -5749,6 +5797,8 @@ es:
     announcements:
       locales_desc: |
         Presiona CMD- o SHIFT para seleccionar múltiple. Si no seleccionas ninguna se  mostrará el anuncio para todos los usuarios sin importar su ubicación. Si seleccionas un lenguaje sin una región no cambiará localidades con regiones, p. ej. si escogiste EN no aparecerá para personas que han escogido EN-EE.UU. Si quieres apuntar a ambos, escoge ambos. Si quieres mostrar un anuncio para todos los miembros de un sitio, no llenes este espacio.
+      clients_desc: |
+        Pulse mientras presiona CMD o MAYÚS para seleccionar varios elementos. Si no se selecciona nada, se mostrará el anuncio a todos los usuarios sin importar el cliente que usen.
     content_freeze:
       content_freeze: Contenido bloqueado
       during_this_time: |
@@ -7492,6 +7542,7 @@ es:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Para usuarios sin confirmación
+        clients: Clientes
       assessment:
         description: Descripción
       assessment_section:
@@ -7722,6 +7773,16 @@ es:
           one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
           other: 'No se pudo guardar este/a %{model} porque se encontraron %{count} errores'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: debe ser válido para una colocación especificada
         application:
           attributes:
             redirect_uri:
@@ -7761,6 +7822,10 @@ es:
               staff_cannot_be_suspended: No se puede suspender a miembros del personal
             user_id:
               must_be_a_curator: Debe ser un supervisor
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: debe ser un curador
         observation:
           attributes:
             base:
@@ -7872,6 +7937,8 @@ es:
                 debe coincidir con el nombre del taxón si este es un nombre científico válido
               bad_format: |
                 solo puede contener caracteres latinos estándar, guiones, espacios, y ×; nota que no se permiten taxones putativos ni cultivares
+            audit_comment:
+              needs_to_be_at_least_10_characters: debe tener al menos 10 caracteres
         taxon_photo:
           attributes:
             taxon:
@@ -7896,6 +7963,8 @@ es:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff2: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos en iNat, acceder a todos los datos en iNat y son los mediadores finales de disputas, por lo que bloquearlos no evitará que se comuniquen contigo.
         user_parent:
           attributes:
             email:

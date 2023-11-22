@@ -2396,13 +2396,21 @@ class Observation < ApplicationRecord
   def scientific_name
     taxon.scientific_name.name if taxon && taxon.scientific_name
   end
-  
-  def common_name(options = {})
+
+  def common_name( options = {} )
     options[:locale] ||= localize_locale
     options[:place] ||= localize_place
-    taxon.common_name(options).name if taxon && taxon.common_name(options)
+    name_from_taxon_names = taxon&.common_name( options )&.name
+    return name_from_taxon_names if name_from_taxon_names
+    return unless taxon&.is_iconic? || taxon&.root?
+
+    I18n.t(
+      taxon.name.parameterize.underscore,
+      scope: :all_taxa,
+      locale: options[:locale] || user.try( :locale )
+    )
   end
-  
+
   def url
     uri
   end

@@ -376,6 +376,7 @@ mr:
   all_comments: सर्व टिप्पण्या
   all_flags_must_be_resolved: सर्व ध्वजांचे निराकरण करणे आवश्यक आहे
   all_life: सर्व जीवन
+  all_media_must_be_unhidden: सर्व मीडिया उघड केला पाहिजे
   all_names: सर्व नावे
   all_observations: सर्व निरीक्षणे
   all_photos: सर्व फोटोज
@@ -397,6 +398,7 @@ mr:
     family: डेटाबेसमध्ये सर्व कुळे जोडली गेली
     subfamily: डेटाबेसमध्ये सर्व उपकुळे जोडली गेली
     tribe: डेटाबेसमध्ये सर्व कुळे जोडली गेली
+    subgenus: डेटाबेसमध्ये सर्व उपगण जोडले गेले
     species: डेटाबेसमध्ये सर्व जाती जोडल्या गेल्या
     subspecies: डेटाबेसमध्ये सर्व उपजाती जोडल्या गेल्या
   all_rights_reserved: सर्व हक्क राखीव
@@ -418,7 +420,23 @@ mr:
   all_taxa_in_this_guide: ह्या मार्गदर्शकातली सर्व वर्गीकरणे
   all_taxonomic_groups: "&laquo; वर्गीकरणातील सर्व समूह"
   all_updates: सर्व अद्यतने
+  allowed_values: चालणाऱ्या संख्या
+  almost_there_: होत आलंय...
+  alphabetical: वर्णक्रमानुसार
+  alphabetical_order: वर्णक्रमानुसार
   already_have_an_account_log_in_html: याआधीच खाते आहे? <strong>लॉग इन करा</strong>
+  amphibians: उभयचर
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: अनपेक्षित मतभेदांचं विश्लेषण
+  android: अँड्रॉईड
+  animals: प्राणी
+  annotation: खूण
+  annotations: खुणा
+  announcement_was_successfully_created: घोषणा यशस्वीरित्या तयार केली गेली.
+  announcement_was_successfully_updated: घोषणा यशस्वीरित्या बदलली गेली.
+  announcements: घोषणा
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
@@ -441,6 +459,8 @@ mr:
   any_license: कोणतेही
   #Label for an option to show content with photos, sounds, or neither
   any_media: कोणतेही
+  #Label for an option to show content from any project
+  any_project: कोणतेही
   #Label for an option to show content with any quality grade
   any_quality_grade: कोणतेही
   #Label for an option to show observation with any reviewed status, i.e. both
@@ -582,6 +602,9 @@ mr:
   find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
   forum: मंच
   from_flickr_etc: फ्लिकर वरून इ.
+  geomodel_expected_nearby_label_is_derived: |
+    "अपेक्षित जवळपास" तर्क जिओमॉडेलवरून घेतला आहे.
+    <a href="%{url}">येथे जिओमॉडेलबद्दल अधिक जाणून घ्या</a>.
   grid: ओळखलेली निरीक्षणे
   guides: मार्गदर्शक
   help: मदत
@@ -1095,30 +1118,6 @@ mr:
         </p>
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist_caps: iNaturalist चे मासिक सहाय्यक व्हा
-        desc_moore_html: |
-          <p class="lead">
-          <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
-          जैवविविधता शोधत आहे. त्याचा भाग झाल्याबद्दल धन्यवाद!</strong>
-          </p>
-          <p class="lead">
-          आम्हाला iNaturalist वापरण्यासाठी मुक्त ठेवायचे आहे, परंतु ते विनामूल्य नाही
-          ऑपरेट तुम्हाला iNaturalist आवडत असल्यास, कृपया मासिक बनण्याचा विचार करा
-          समर्थक आवर्ती भेटवस्तू iNaturalist सुरू ठेवू शकतात याची खात्री करण्यात मदत करतात
-          अंदाजे प्रदान करून त्याच्या पायाभूत सुविधा आणि कर्मचारी मोजण्यासाठी
-          महसूल तुम्ही तुमची मासिक समर्थक स्थिती दर्शविण्यासाठी देखील निवडू शकता
-          आपले वापरकर्ता प्रोफाइल.
-          </p>
-          <p class="lead">
-          तुमच्या धर्मादाय देणग्या iNaturalist ला समुदाय म्हणून मदत करण्यास मदत करतात
-          संगणकाची दृष्टी विकसित करून आणि नवीन वैशिष्ट्ये लागू करण्यापासून वाढते
-          आमच्या सर्व्हर आणि कर्मचार्‍यांना समर्थन देण्यासाठी. आपण देण्यास प्राधान्य दिल्यास ए
-          एक-वेळ देणगी, कृपया <a href="%{donate_url}">येथे क्लिक करा</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist एक स्वतंत्र 501(c)(3), कर-सवलत,
-          युनायटेड स्टेट्स मध्ये स्थित गैर-नफा संस्था
-          अमेरिका (कर आयडी: ९२-१२९६४६८).
-          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
