@@ -217,7 +217,6 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
   if ( options.showLegend && !map._legend ) {
     // Create the DIV to hold the control and call the CenterControl( ) constructor
     // passing in this DIV.
-<<<<<<< HEAD
     var legendControlDiv = document.createElement('div');
     var legendControl = new iNaturalist.LegendControl(legendControlDiv, map);
     if ( $('html[dir="rtl"]').length > 0 ){
@@ -225,14 +224,8 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     } else {
       map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControlDiv);
     }
-=======
-    var legendControlDiv = document.createElement( "div" );
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push( legendControlDiv );
->>>>>>> d6bca4e1639814ec8327087bed258e668f3e7a20
-
     // Create the DIV to hold the control and call the CenterControl( ) constructor
     // passing in this DIV.
-<<<<<<< HEAD
     var legendDiv = document.createElement('div');
     map._legend = new iNaturalist.Legend(legendDiv, map);
     if ( $('html[dir="rtl"]').length > 0 ){
@@ -240,12 +233,6 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     } else {
       map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
     }
-    
-=======
-    var legendDiv = document.createElement( "div" );
-    map._legend = new iNaturalist.Legend( legendDiv, map );
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push( legendDiv );
->>>>>>> d6bca4e1639814ec8327087bed258e668f3e7a20
   }
 
   // Clear out all existing overlays so we can add new ones
