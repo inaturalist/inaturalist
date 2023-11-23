@@ -6939,6 +6939,8 @@ fr:
           Si le seul motif de votre départ est d’empêcher les responsables du projet de voir vos coordonnées masquées.
       edit:
         admins_must_be_existing_members: Les administrateurs doivent être des membres existants du projet.
+        admins_can_only_be_added_after_creation: |
+          Les administrateurs ne peuvent être ajoutés qu’après la création du projet.
         aggregation_pending: En attente d'aggrégation
         new_place_desc_html: |
           Parcourez <a href="%{places_url}" target="_blank">nos lieux</a> et vérifiez le nom de l'endroit. Si vous
