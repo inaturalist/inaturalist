@@ -6897,6 +6897,8 @@ nl:
           Als de enige reden dat je vertrekt het voorkomen dat projectcuratoren je verborgen coördinaten kunnen bekijken is.
       edit:
         admins_must_be_existing_members: Beheerders moeten bestaande deelnemers zijn in het project.
+        admins_can_only_be_added_after_creation: |
+          Beheerders kunnen alleen worden toegevoegd nadat het project is aangemaakt.
         aggregation_pending: Aggregatie is in behandeling
         new_place_desc_html: |
           Zoek bij <a href="%{places_url}" target="_blank">onze bestaande plaatsen</a> en zorg ervoor dat je de juiste naam van de plaats krijgt. Als jij echt niet de plaats kan vinden die je wilt, overweeg dan <a href="%{new_place_url}" target="_blank">een nieuwe plaats aan te maken</a>, maar zorg er alsjeblieft voor dat je niet een bestaande plaats dupliceert.
