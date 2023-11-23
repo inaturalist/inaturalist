@@ -54,7 +54,7 @@
     $(document).ready(function() {
 
       $('#place_parent_id').chooser({
-        collectionUrl: '/places/autocomplete.json',
+        collectionUrl: '/places/autocomplete.json?restrict_to_site_place=false',
         resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('place_parent_id').attr('data-json') + ')')
       })
