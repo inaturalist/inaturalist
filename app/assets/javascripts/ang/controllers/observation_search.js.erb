@@ -1969,11 +1969,17 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
         var swlng = bounds.swlng;
         var nelat = bounds.nelat;
         var nelng = bounds.nelng;
-        $scope.map.fitBounds( new google.maps.LatLngBounds(
-          new google.maps.LatLng( swlat, swlng ),
-          new google.maps.LatLng( nelat, nelng )
-        ) );
-        $rootScope.$emit( "offsetCenter", 130, 0 );
+        if ( !_.isNaN( swlat )
+          && !_.isNaN( swlng )
+          && !_.isNaN( nelat )
+          && !_.isNaN( nelng )
+        ) {
+          $scope.map.fitBounds( new google.maps.LatLngBounds(
+            new google.maps.LatLng( swlat, swlng ),
+            new google.maps.LatLng( nelat, nelng )
+          ) );
+          $rootScope.$emit( "offsetCenter", 130, 0 );
+        }
       } else if ( $scope.selectedPlaceLayer ) {
         // awkward check to see if it's a google.map.Data class. To determine the
         // appropriate zoom level for that requires examining the whole data structure

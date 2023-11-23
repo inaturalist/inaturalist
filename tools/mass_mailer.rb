@@ -46,6 +46,10 @@ require "optimist"
   opt :include_risky, "Send to addresses Sendgrid considers Risky", type: :boolean
   opt :min_risky_score, "Miniumum score required to send to Risky addresses. Value btwn 0 and 1", type: :float
   opt :force_locale, "Force the email to send in this locale", type: :string
+  opt :min_obs, "Only email users w/ at least this many obs", type: :integer
+  opt :min_obs_this_year, "Only email users w/ at least this many obs observed this year", type: :integer
+  opt :min_last_active, "Only email users active since at least this date (YYYY-MM-DD)", type: :string
+  opt :only_translated, "Only deliver mail if all strings are translated", type: :boolean
 end
 
 mailer_method = ARGV.shift
@@ -150,6 +154,12 @@ else
     # Don't email users who signed up in the last month
     scope = scope.where( "users.created_at < ?", 1.month.ago )
   end
+  if @opts.min_obs
+    scope = scope.where( "users.observations_count >= ?", @opts.min_obs )
+  end
+  if @opts.min_last_active
+    scope = scope.where( "users.last_active >= ?", @opts.min_last_active )
+  end
 end
 
 if @opts.english
@@ -175,6 +185,7 @@ puts "scope: #{scope.to_sql}" if @opts.debug
 @emailed = 0
 @failed = 0
 @failures_by_user_id = {}
+@failures_by_locale = {}
 @sendgrid_risky = 0
 @sendgrid_risky_approved = 0
 @sendgrid_invalid = 0
@@ -200,6 +211,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
   process_emailed = 0
   process_failed = 0
   process_failures_by_user_id = {}
+  process_failures_by_locale = {}
   sendgrid_risky = 0
   sendgrid_risky_approved = 0
   sendgrid_invalid = 0
@@ -270,17 +282,44 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
       end
     end
 
+    if @opts.min_obs_this_year
+      obs_count = Observation.elastic_query(
+        user_id: recipient.id,
+        verifiable: true,
+        year: Date.today.year,
+        size: 0
+      ).total_entries
+      next if obs_count < @opts.min_obs_this_year
+    end
+
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
 
     begin
-      unless dry
-        if Emailer.instance_method( mailer_method ).arity == -2
-          Emailer.send( mailer_method, recipient, { force_locale: @opts.force_locale } ).deliver_now
-        else
-          Emailer.send( mailer_method, recipient ).deliver_now
-        end
+      message = if Emailer.instance_method( mailer_method ).arity == -2
+        Emailer.send( mailer_method, recipient, {
+          force_locale: @opts.force_locale,
+          raise_on_missing_translations: @opts.only_translated
+        } )
+      else
+        Emailer.send( mailer_method, recipient )
+      end
+      if dry
+        # We may need to explicitly call these to trigger rendering
+        message.subject
+        message.body
+      else
+        message.deliver_now
       end
       process_emailed += 1
+    rescue I18n::MissingTranslationData, ActionView::Template::Error => e
+      raise e unless e.message =~ /Translation missing/
+
+      if debug
+        puts "Translation failed: #{e}"
+      end
+      locale = e.message[/Translation missing: (.+?)\./, 1]
+      process_failed += 1
+      process_failures_by_locale[locale] = e
     rescue StandardError => e
       if debug
         puts "Caught error: #{e}"
@@ -296,6 +335,7 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     emailed: process_emailed,
     failed: process_failed,
     failures_by_user_id: process_failures_by_user_id,
+    failures_by_locale: process_failures_by_locale,
     sendgrid_risky: sendgrid_risky,
     sendgrid_risky_approved: sendgrid_risky_approved,
     sendgrid_invalid: sendgrid_invalid,
@@ -320,6 +360,7 @@ results.each do | result |
   @sendgrid_failed += result[:sendgrid_failed]
   @sendgrid_valid += result[:sendgrid_valid]
   @failures_by_user_id = @failures_by_user_id.merge( result[:failures_by_user_id] )
+  @failures_by_locale = @failures_by_locale.merge( result[:failures_by_locale] )
 end
 
 puts
@@ -332,6 +373,14 @@ unless @failures_by_user_id.blank?
   puts "Failure user IDs: #{@failures_by_user_id.keys.join( ', ' )}"
   puts "First 5 failures:"
   @failures_by_user_id.to_a[0..5].each do | _user_id, error |
+    puts error
+    puts
+  end
+end
+unless @failures_by_locale.blank?
+  puts "Failure locales: #{@failures_by_locale.keys.sort.join( ', ' )}"
+  puts "First 5 failures:"
+  @failures_by_locale.to_a[0..5].each do | _locale, error |
     puts error
     puts
   end

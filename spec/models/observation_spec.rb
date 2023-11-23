@@ -889,6 +889,36 @@ describe Observation do
       expect( o.place_state ).to eq p
       expect( o.place_state_name ).to eq p.name
     end
+
+    it "should return place county" do
+      p = make_place_with_geom( place_type: Place::PLACE_TYPE_CODES["County"] )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( o.intersecting_places ).not_to be_blank
+      expect( o.place_county ).to eq p
+      expect( o.place_county_name ).to eq p.name
+    end
+
+    it "should return place county by admin level if type is different" do
+      p = make_place_with_geom(
+        place_type: Place::PLACE_TYPE_CODES["Parish"],
+        admin_level: Place::COUNTY_LEVEL
+      )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( o.intersecting_places ).not_to be_blank
+      expect( o.place_county ).to eq p
+      expect( o.place_county_name ).to eq p.name
+    end
+
+    it "should return admin level place" do
+      p = make_place_with_geom(
+        place_type: Place::PLACE_TYPE_CODES["County"],
+        admin_level: Place::COUNTY_LEVEL
+      )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( o.intersecting_places ).not_to be_blank
+      expect( o.place_admin2 ).to eq p
+      expect( o.place_admin2_name ).to eq p.name
+    end
   end
 
   describe "community taxon" do

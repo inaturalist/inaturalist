@@ -25,3 +25,18 @@ I18n.extend( I18nExtensions )
 I18n::Backend::Simple.include I18nCustomBackend
 
 I18n::JS.export_i18n_js_dir_path = "app/assets/javascripts"
+
+def without_english_fallback
+  old_fallbacks = I18n.fallbacks.clone
+  new_fallbacks = old_fallbacks.each_with_object( {} ) do | pair, memo |
+    locale, fallbacks = pair
+    memo[locale] = if fallbacks.include?( :en ) && locale.to_s !~ /^en/
+      fallbacks.without( :en )
+    else
+      fallbacks
+    end
+  end
+  I18n.fallbacks = I18n::Locale::Fallbacks.new( new_fallbacks )
+  yield
+  I18n.fallbacks = I18n::Locale::Fallbacks.new( old_fallbacks )
+end
