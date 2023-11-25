@@ -2730,7 +2730,7 @@ hu:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
     following_panel_title: Kövess emebereket, taxonokat és helyeket
     following_panel_body: |
-      %{site_name}-on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
+      Az %{site_name}on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
     comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak az %{site_name}on?
     comments_panel_body: "<p>Az %{site_name} lényege a megfigyelések megosztása és megvitatása. Alább találod a legújabb hozzászólásokat. (Megjegyzés: Automatikusan értesítést kapsz a megfigyeléseidhez és az azonosításaidhoz kapcsolódó hozzászólásokról. Ezeket az értesítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
     updates_by_you_panel_title: Ez a fül egy gyors szűrő a tartalmaid újdonságaihoz
@@ -3402,7 +3402,7 @@ hu:
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
-    Projektek révén egyesítheted a megfigyeléseidet másokéval az %{site_name}-on. Közösségi tudományos kezdeményezésektől kezdve a környezeted madarainak tanulmányozásáig a projektek sok mindenre jók.
+    Projektek révén egyesítheted több felhasználó %{site_name}-megfigyeléseit. Közösségi tudományos kezdeményezésektől kezdve a környezeted madarainak tanulmányozásáig a projektek sok mindenre jók.
   #@vow_or_con should work on %{place}
   projects_from_place: "Projektek innen: %{place}"
   projects_you_admin: Kezelt projektjeid
@@ -5571,7 +5571,7 @@ hu:
           Ez a beállítás nem ad hozzáférész a projekteknek a rejtett koordinátákhoz, és nem engedélyezi az értesítések küldését. Ezek engedélyezéséhez csatlakoznod kell a projekthez, vagy egyesével engedélyezned kell ezeket.
         same_day_geoprivacy_protection: Azonos napi helymegjelenítés védettsége
         taxon_change_desc: |
-          Amikor a taxonokat egyesítik vagy átnevezik a %{site_name}-on, a megfigyeléseid, meghatározott taxonjaid, azonosításaid stb. automatikusan frissülnek az új taxonokra, amennyiben a változás egyértelmű. Ha leiratkozol, vagy a változás nem egyértelmű (pl. egy szétválasztás), akkor változásról küldött értesítésben, találsz majd egy linket a tartalmad manuális szerkesztéséhez.
+          Amikor a taxonokat egyesítik vagy átnevezik az %{site_name}on, a megfigyeléseid, meghatározott taxonjaid, azonosításaid stb. automatikusan frissülnek az új taxonokra, amennyiben a változás egyértelmű. Ha leiratkozol, vagy a változás nem egyértelmű (pl. egy szétválasztás), akkor változásról küldött értesítésben, találsz majd egy linket a tartalmad manuális szerkesztéséhez.
         taxon_name_priorities:
           #A common name lexicon is a categorization of the vocabulary used. For example the
           #lexicon could be a language, or a regional use of language (locale), or a lexicon
