@@ -141,7 +141,7 @@ th:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: 'ความแม่นยำ (m)'
+  acc: 'ความแม่นยำ (เมตร)'
   #Filter for observations with positional accuracy above a certain value
   acc_above: คลาดเคลื่อนสูงกว่า
   #Filter for observations with positional accuracy below a certain value
@@ -155,7 +155,7 @@ th:
   accuracy: ความแม่นยำ
   accuracy_meters: ความแม่นยำ (เมตร)
   accuracy_of_the_coordinates: |
-    หน่วยความแม่นยำของพิกัดแสดงเป็นเมตร คุณสามารถแก้ไขโดยคลิกลิงก์ "แก้ไข" ด้านบนหรือคลิกบนแผนที่แล้วลากออก โดยพยายามลากวงกลมให้ครอบคลุมตำแหน่งการสังเกตที่คุณแน่ใจ
+    ความแม่นยำของพิกัดแสดงเป็นหน่วยเมตร สามารถแก้ไขโดยคลิกลิงก์ "แก้ไข" ด้านบนหรือคลิกบนแผนที่แล้วลากออก โดยพยายามลากวงกลมให้ครอบคลุมตำแหน่งการสังเกตที่คุณแน่ใจ
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: ปฏิบัติการ
   actions: การดำเนินการทั้งหมด
@@ -472,7 +472,7 @@ th:
   are_you_sure_delete_this_place: คุณแน่ใจหรือไม่ว่าต้องการลบสถานที่นี้?
   are_you_sure_leave_this_project: คุณแน่ใจหรือไม่ว่าต้องการออกจากโครงการนี้?
   are_you_sure_merge_these_places: คุณแน่ใจหรือไม่ว่าต้องการรวมสถานที่เหล่านี้? การดำเนินการนี้ไม่สามารถยกเลิกได้
-  are_you_sure_remove_photo: "คุณแน่ใจหรือไม่ว่าต้องการนำรูปภาพนี้ออก?"
+  are_you_sure_remove_photo: "แน่ใจหรือไม่ว่าต้องการลบรูปนี้?"
   are_you_sure_remove_relationship: คุณแน่ใจหรือไม่ว่าต้องการนำความสัมพันธ์นี้ออก? การดำเนินการนี้จะยกเลิกการติดตามบุคคลนี้และเพิกถอนการเข้าถึงพิกัดที่ซ่อนอยู่ของคุณหากคุณได้เปิดใช้งานการเข้าถึงดังกล่าว
   are_you_sure_remove_taxon_from_list: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจากรายการ?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
@@ -515,7 +515,7 @@ th:
   are_you_sure_want_delete_this_range: คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเหล่านี้?
   are_you_sure_you_want_to_delete_this: คุณแน่ใจไหมที่จะลบทิ้ง?
   are_you_sure_you_want_to_delete_this_assessment?: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
-  are_you_sure_you_want_to_delete_this_photo?: คุณแน่ใจหรือไม่ว่าต้องการนำรูปภาพนี้ออก?
+  are_you_sure_you_want_to_delete_this_photo?: แน่ใจหรือไม่ว่าต้องการลบรูปนี้?
   are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
   are_you_sure_you_want_to_delete_this_taxon_change: แน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนหน่วยอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
@@ -1032,6 +1032,8 @@ th:
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "รายการโปรด"
   featured: แนะนำ
+  fields: ข้อมูลเสริม
+  fields_: ข้อมูลเสริม
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   #The name of a computer file
   filename: ชื่อไฟล์
@@ -1165,6 +1167,8 @@ th:
   highest_rank: ลำดับสูงสุด
   history: ประวัติ
   home: หน้าหลัก
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "จำนวนชั่วโมงที่ปรับ"
   i_dont_know_but_i_am_sure_this_is_taxon: ฉันไม่รู้ แต่ฉันแน่ใจว่านี่คือ%{taxon}
   id_categories:
     tooltips:
@@ -1725,6 +1729,11 @@ th:
     common: พบทั่วไป
     uncommon: พบไม่บ่อย
   of_this_taxon: ของหน่วยฯ นี้
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "ปรับเวลา"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: ปรับ
+  old_observation_form: ฟอร์มการสังเกตแบบเก่า (เลิกใช้)
   onboarding:
     following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
   one_of_your_lists: "รายการของคุณ"
@@ -2180,6 +2189,7 @@ th:
   save_changes: บันทึกการเปลี่ยนแปลง
   save_comment: บันทึกความคิดเห็น
   save_draft: บันทึกฉบับร่าง
+  save_fields: บันทึกข้อมูลเสริม
   save_flag: บันทึกรายงาน
   save_identification: บันทึกการจำแนก
   save_observation: บันทึกการสังเกต
@@ -2194,6 +2204,7 @@ th:
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: ชื่อวิทยาศาสตร์
   search: ค้นหา
+  search_all_fields: ค้นหาข้อมูลเสริมทั้งหมด
   search_by_name_or_email: ค้นหาด้วยชื่อหรืออีเมล
   search_external_name_providers: ค้นหาชื่อจากแหล่งภายนอก
   search_for_a_location: ค้นหาตำแหน่ง
@@ -2659,6 +2670,7 @@ th:
   view_check_list_page: ดูหน้ารายการตรวจสอบ
   view_details: ดูรายละเอียด
   view_dynamic_lifelist_: ดูรายการสิ่งมีชีวิตแบบไดนามิก
+  view_field_options: ดูตัวเลือกข้อมูลเสริม
   view_flags: ดูการรายงาน
   view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
   view_full_size_photo: ดูรูปขนาดเต็ม
@@ -2790,7 +2802,7 @@ th:
   your_observations: การสังเกตของคุณ
   your_observations_couldnt_be_added_to_that_project: "เพิ่มการสังเกตของคุณเข้าโครงการนั้นไม่ได้: %{errors}"
   your_projects: โครงการของคุณ
-  your_pinned_locations: ตำแหน่งที่คุณปักหมุดไว้
+  your_pinned_locations: ตำแหน่งที่คุณปักหมุด
   your_recent_projects: โครงการล่าสุดของคุณ
   your_relationships: ความสัมพันธ์ของคุณ
   verifiable: ตรวจสอบได้
