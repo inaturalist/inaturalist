@@ -24,6 +24,9 @@ it:
   x_identifications_:
     one: '1 identificazione'
     other: '%{count} identificazioni'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICAZIONE'
+    other: '<span class="count">%{count}</span> IDENTIFICAZIONI'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ it:
   x_observations_html:
     one: "<span class='count'>1</span> osservazione"
     other: "<span class='count'>%{count}</span> osservazioni"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OSSERVAZIONE"
+    other: "<span class='count'>%{count}</span> OSSERVAZIONI"
   x_observations_link_html:
     one: "<a href='%{url}'>1 osservazione</a>"
     other: "<a href='%{url}'>%{count} osservazioni</a>"
@@ -83,6 +89,9 @@ it:
   x_people:
     one: "%{count} persona"
     other: "%{count} persone"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persona'
+    other: '<span class="count">%{count}</span> persone'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>"
   x_photos:
     one: "1 foto"
@@ -96,6 +105,9 @@ it:
   x_species:
     one: '1 specie'
     other: '%{count} specie'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> SPECIE"
+    other: "<span class='count'>%{count}</span> SPECIE"
   x_species_html:
     one: "<span class='count'>1</span> specie"
     other: "<span class='count'>%{count}</span> specie"
@@ -664,6 +676,7 @@ it:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Sei sicuro di voler rimuovere questa osservazione da %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Sei sicuro di voler rimuovere questo taxon dalla checklist di %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Sei sicuro di voler segnalare questo utente come spammer?
   associated_observations: Osservazioni associate
   associated_taxa: Taxa associati
   attention: Attenzione
@@ -2102,6 +2115,8 @@ it:
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle imposte e senza scopo di lucro, con sede negli Stati Uniti d'America (Tax ID: 92-1296468).
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -2228,6 +2243,7 @@ it:
   journal: Diario
   journal_archives_for: Archivi dei diari per
   journal_post: Post del diario
+  journal_post_: post del diario
   journal_post_deleted: Post del diario cancellato.
   journal_posts: Post del diario
   jpg_png_or_gif: "JPG, PNG o GIF"
@@ -3166,6 +3182,7 @@ it:
   observations_widget: Widget delle osservazioni
   observations_with_this_field: Osservazioni con questo campo
   observations_with_this_field_and_value: Osservazioni con questo stesso campo e valore
+  observations_without_this_field: Osservazioni senza questo campo
   observations_without_media: Osservazioni senza contenuti multimediali
   observationcounts_refreshed: Conteggio delle osservazioni aggiornato
   observed: Osservata
@@ -5648,6 +5665,20 @@ it:
     Fai parte di qualcosa di grande! Chiunque pubblichi osservazioni, aggiungi identificazioni e diffonda la parola su iNaturalist, fa la differenza per la biodiversità. Tramite i nostri sforzi collettivi, stiamo rendendo disponibili dati e dettagli sulla biodiversità, su una scala senza precedenti. Grazie per essere parte della community di iNaturalist!
   yir_email_you_make_a_difference: |
     Fai la differenza per la biodiversità con iNaturalist. Grazie per tutto ciò che fai!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Hai ricevuto quest'email perché "%{email}" è associata a https://www.inaturalist.org/people/%{username}, un profilo di iNaturalist creato il %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Hai ricevuto quest'email perché "%{email}" è associata a <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>, un profilo di iNaturalist creato il %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Il tuo profilo è affiliato a %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Il tuo profilo è affiliato a <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generare e condividere dati sulla biodiversità ad alto impatto a questa scala e velocità senza precedenti ha costi sempre maggiori
   yir_millions_of_people_used_inaturalist: |
@@ -6694,6 +6725,8 @@ it:
           Se l'unica ragione per cui tu stai abbandonando il progetto è la volontà di impedire ai curatori di vedere le coordinate nascoste.
       edit:
         admins_must_be_existing_members: Gli amministratori devono essere membri esistenti del progetto.
+        admins_can_only_be_added_after_creation: |
+          Gli amministratori possono essere aggiunti soltanto dopo la creazione del progetto.
         aggregation_pending: In attesa di Aggregazione
         new_place_desc_html: |
           Cerca nei
@@ -7002,6 +7035,15 @@ it:
           Create tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a>
           o quelli del <a href="%{url}">Network di iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Aggiunte entrambe
+        added_only_identifications: Sole identificazioni aggiunte
+        added_only_observations: Sole osservazioni aggiunte
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Impatti Più Ampi
+        broader_impacts_desc: |
+          Svariati partner esterni importano regolarmente le osservazioni di iNaturalist per supportare la scienza e la conservazione. Le tue osservazioni, identificazioni e scelte di licenza aperta consentono a tali organizzazioni di fornire utili informazioni sulla biodiversità, alle persone che le necessitano in tutto il mondo.
         compare_desc: |
           Come è quest'anno in confronto ai tuoi anni precedenti? Con tre anni o più di utilizzo possiamo iniziare a confrontare le statistiche di attività annuali.
         compare_site_desc: |
@@ -7712,6 +7754,7 @@ it:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applicazione
       Photo: Foto
+      Post: Post del Diario
       TaxonLink: Link del Taxon
     attributes:
       announcement:
@@ -8321,6 +8364,20 @@ it:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Uccelli
+        Reptilia: Rettili
+        Amphibia: Anfibi
+        Mammalia: Mammiferi
+        Arachnida: Aracnidi
+        Insecta: Insetti
+        Plantae: Piante
+        Fungi: Funghi
+        Protozoa: Protozoi
+        Mollusca: Molluschi
+        Chromista: Cromisti
   #Title of a section warning the user about something
   warning_title: Avvertenza
   wikimedia: Wikimedia
