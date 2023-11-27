@@ -24,6 +24,9 @@ es:
   x_identifications_:
     one: '1 identificación'
     other: '%{count} identificaciones'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
+    other: '<span class="count">%{count}</span> IDENTIFICACIONES'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ es:
   x_observations_html:
     one: "<span class='count'>1</span> observación"
     other: "<span class='count'>%{count}</span> observaciones"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVACIÓN"
+    other: "<span class='count'>%{count}</span> OBSERVACIONES"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observación</a>"
     other: "<a href='%{url}'>%{count} observaciones</a>"
@@ -96,6 +102,9 @@ es:
   x_species:
     one: '1 especie'
     other: '%{count} especies'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPECIE"
+    other: "<span class='count'>%{count}</span> ESPECIES"
   x_species_html:
     one: "<span class='count'>1</span> especie"
     other: "<span class='count'>%{count}</span> especies"
@@ -2227,6 +2236,7 @@ es:
   journal: Diario
   journal_archives_for: Archivos de diario de
   journal_post: Artículo en el diario
+  journal_post_: publicación de diario
   journal_post_deleted: La nota del diario ha sido borrada.
   journal_posts: Artículos en el diario
   jpg_png_or_gif: "JPG, PNG, o GIF"
@@ -3153,6 +3163,7 @@ es:
   observations_widget: Observaciones del widget
   observations_with_this_field: Observaciones con este campo
   observations_with_this_field_and_value: Observaciones con este campo y valor
+  observations_without_this_field: Observaciones sin este campo
   observations_without_media: Observaciones sin imágenes
   observationcounts_refreshed: Condes de observación refrescados
   observed: Observado el
@@ -5649,6 +5660,23 @@ es:
     Tu mensaje suena bien, pero puedes considerar una ligera modificación para mayor fluidez:
 
     Con iNaturalist, marcas la diferencia para la biodiversidad. ¡Gracias por todo lo que haces!"
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Ha recibido este mensaje porque %{email} se ha asociado con
+    https://www.inaturalist.org/people/%{username}, una cuenta de iNaturalist creada el %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Ha recibido este mensaje porque %{email} se ha asociado con
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    una cuenta de iNaturalist creada el %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Su cuenta está afiliada con %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Su cuenta está afiliada con <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un coste creciente
   yir_millions_of_people_used_inaturalist: |
@@ -5838,6 +5866,17 @@ es:
         flags_that_should_not_be_resolved_desc_html: |
           Por favor resolver marcas de <code>basura</code> y <code>contravenciones de derechos de autor</code> solamente si el contenido no es basura o no es una
           contravención de los derechos de autor, respectivamente.
+    geo_model:
+      explain:
+        nearby_map:
+          we_use_this_map: |
+            Utilizamos este mapa para aplicar la etiqueta Esperado cerca a las sugerencias basadas en la ubicación de la observación
+          you_can_think: |
+            Puedes considerar el Mapa de Esperado Cerca como una estimación de si la especie está presente en alguna parte dentro de la celda de la cuadrícula o si está completamente ausente.
+        range_comparison:
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precisión:
     guides:
       index:
         deprecated_banner: |
@@ -6922,6 +6961,9 @@ es:
           %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
         translators_prompt: |
           Si quieres ayudar a traducir, %{link_tag}aprende cómo%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VER %{count} PUBLICACIÓN"
+          other: "VER LAS %{count} PUBLICACIONES"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7531,6 +7573,7 @@ es:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplicación
+      Post: Publicación de diario
       TaxonLink: Enlace de taxón
     attributes:
       announcement:
