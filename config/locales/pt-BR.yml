@@ -24,6 +24,9 @@ pt-BR:
   x_identifications_:
     one: '%{count} Identificação'
     other: '%{count} Identificações'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
+    other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ pt-BR:
   x_observations_html:
     one: "<span class='count'>1</span> observação"
     other: "<span class='count'>%{count}</span> observações"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVAÇÃO"
+    other: "<span class='count'>%{count}</span> OBSERVAÇÕES"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observação</a>"
     other: "<a href='%{url}'>%{count} observações</a>"
@@ -83,6 +89,9 @@ pt-BR:
   x_people:
     one: "%{count} pessoa"
     other: "%{count} pessoas"
+  x_people_html:
+    one: '<span class="count">%{count}</span> pessoa'
+    other: '<span class="count">%{count}</span> pessoas'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -96,6 +105,9 @@ pt-BR:
   x_species:
     one: '1 Espécie'
     other: '%{count} Espécies'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÉCIE"
+    other: "<span class='count'>%{count}</span> ESPÉCIES"
   x_species_html:
     one: "<span class='count'>1</span> espécies"
     other: "<span class='count'>%{count}</span> espécies"
@@ -2164,6 +2176,8 @@ pt-BR:
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   inaturalist_global_year_in_review: "O ano %{year} do iNaturalist global em revisão"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist é uma organização independente sem fins lucrativos, com isenção de impostos conforme 501(c)(3), com sede nos Estados Unidos da América (Tax ID: 92-1296468)
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -3227,6 +3241,7 @@ pt-BR:
   observations_widget: Widget de Observações
   observations_with_this_field: Observações com este campo
   observations_with_this_field_and_value: Observações com este campo e valor
+  observations_without_this_field: Observações sem este campo
   observations_without_media: Observações sem mídia
   observationcounts_refreshed: Contagem de observações atualizada
   observed: Observado
@@ -5783,6 +5798,9 @@ pt-BR:
     Graças a você, temos mais dados sobre a biodiversidade este ano que no ano passado. O Sumário do Ano é a recompensa pelo que você fez pela biodiversidade através do iNaturalist
   yir_email_log_in_to_generate: |
     Descubra mais, faça login para gerar o seu Sumário do Ano pessoal!
+  yir_email_of_your_observations:
+    one: De sua %{count} observação, você sabe quantos foram feitos em %{year}?
+    other: Das suas %{count} observações, você sabe quantas foram feitas em %{year}?
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
     Seu Sumário do Ano de %{year} do iNaturalist — celebre seu ano na biodiversidade
@@ -5802,6 +5820,24 @@ pt-BR:
     Você é parte de algo grande! Todas as pessoas que publicam e identificam observações, e divulgam o iNaturalist, fazem diferença pela biodiversidade. Através do nosso esforço coletivo estamos fazendo os dados e visões sobre a biodiversidade disponíveis em uma escala sem precedentes. Obrigado por fazer parte da comunidade iNaturalist!
   yir_email_you_make_a_difference: |
     Você faz diferença pela biodiversidade através do iNaturalist. Obrigado por tudo que você faz!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Você recebeu este e-mail porque %{email} está associado a
+    https://www.inaturalist.org/people/%{username}, uma conta do iNaturalist
+    criada em %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Você recebeu esta mensagem porque %{email} está associado a
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    uma conta do iNaturalist criada em %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Sua conta está associada a %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Sua conta está associada a <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Gerar e compartilhar dados de alto impacto sobre a biodiversidade, nesta escala
     e velocidade sem precedentes, tem custos crescentes
@@ -6805,6 +6841,8 @@ pt-BR:
           Se a única razão da sua saída é impedir que os administradores do projeto acessem suas coordenadas ocultadas.
       edit:
         admins_must_be_existing_members: Administradores devem ser membros do projeto.
+        admins_can_only_be_added_after_creation: |
+          Admins somente podem ser adicionados após o projeto ser criado
         aggregation_pending: Associação pendente
         new_place_desc_html: |
           Tente buscar entre <a href="%{places_url}" target="_blank">nossos lugares existentes</a> e se certifique de inserir o nome correto na busca. Caso realmente não consiga encontrar o local buscado, considere <a href="%{new_place_url}" target="_blank">criar um novo local</a>, mas antes disso verifique cuidadosamente que sua ação não duplicará um local já criado anteriormente.
@@ -7136,6 +7174,15 @@ pt-BR:
           Criado via <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">a rede iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Adicionaram Ambas
+        added_only_identifications: Adicionaram Somente Identificações
+        added_only_observations: Adicionaram Apenas Observações
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Amplos Impactos
+        broader_impacts_desc: |
+          Vários parceiros externos importam observações do iNaturalist para fins científicos e de conservação. Suas observações, identificações, e opções de licença aberta permitem a estas organizações prover informações uteis sobre s biodiversidade para pessoas em todo o mundo que delas necessitam.
         compare_desc: |
           Como este ano foi, comparado com seus anos anteriores? Com três anos de uso de ou mais, podemos começar a comparar métricas de atividade anual. A barra verde mostra este ano, a barra vertical branca mostra o ano passado, e as áreas de fundo cinza mostram os anos mais baixos e mais altos, bem como a média para todos os anos. As estatísticas não incluem anos onde a contagem foi zero.
         compare_site_desc: |
