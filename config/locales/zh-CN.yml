@@ -210,7 +210,7 @@ zh-CN:
   #Status of a taxon that is available for use on iNat
   active_taxon_status: 有效的
   active_users: 活跃用户
-  activity: 活跃
+  activity: 动态
   adapted_by_name_from_a_work_by_original: "改编自由 %{original} 创作的作品 %{name}"
   add: 添加
   add_a_batch_of_observations: 新增一批观察记录
@@ -1146,7 +1146,7 @@ zh-CN:
   csv: CSV
   csv_file: CSV文件
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
-  cumulative_ids: "累计ID：%{count}个，共%{total}个"
+  cumulative_ids: "累计鉴定数：%{count}个，共%{total}个"
   curate_observations: 助理观察
   curate_taxa: 助理分类群
   curate_user: 策展用户
@@ -4509,6 +4509,7 @@ zh-CN:
   totals: 总计
   total_members: 成员总数
   total_observations: 总计观察
+  total_observations_caps: 观察记录总数
   total_unique_observers: 总计独立观察者
   translated_languages: 翻译的语言
   'true': '是'
@@ -4720,6 +4721,7 @@ zh-CN:
   view_check_list_page: 查看检查表页面
   view_contributions: 查看贡献
   view_details: 查看详情
+  view_dynamic_lifelist_: 查看动态生命列表
   view_field_options: 查看字段选项
   view_flag: 查看标记
   view_flags: 查看标记
@@ -4781,7 +4783,7 @@ zh-CN:
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
-  was_it_captive_cultivated?: "被俘虏/培养了吗？"
+  was_it_captive_cultivated?: "是被饲育/栽培的吗？"
   we_can_only_understand_csv_in: 我们只能解析此种格式的CSV文件
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_couldnt_find_a_user_with_that_activation_code: "我们找不到具有该激活码的用户。您可能已经激活了自己的帐户，请尝试登录。"
