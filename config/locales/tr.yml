@@ -6658,6 +6658,8 @@ tr:
           Ayrılmanın tek sebebi proje küratörlerinin gizli koordinatlarını görüntülemelerini engellemekse.
       edit:
         admins_must_be_existing_members: Yöneticiler projenin var olan üyeleri olmalıdır.
+        admins_can_only_be_added_after_creation: |
+          Yöneticiler yalnızca proje oluşturulduktan sonra eklenebilir.
         aggregation_pending: Yığınlama beklemede
         new_place_desc_html: |
           <a href="%{places_url}" target="_blank">Mevcut konumlarımıza</a> bakmayı dene ve konumun adını doğru aldığından emin ol. İstediğin konumu gerçekten bulamıyorsan, <a href="%{new_place_url}" target="_blank">yeni bir konum oluşturmayı</a> düşün ancak lütfen mevcut bir konumu kopyalamadığından emin ol.

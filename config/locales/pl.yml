@@ -790,6 +790,9 @@ pl:
   are_you_sure_you_want_to_remove_curator: Czy jesteś pewien, że chcesz usunąć %{user} jako kuratora?
   are_you_sure_you_want_to_remove_from_project: Czy na pewno chcesz usunąć %{user} z tego projektu?
   are_you_sure_you_want_to_remove_manager: Czy jesteś pewien, że chcesz usunąć %{user} jako menedżera?
+  are_you_sure_you_want_to_remove_spammer: |
+    Czy na pewno uważasz tego użytkownika za godnego?
+    Wszelkie flagi spamu na jego treści zostaną rozwiązane.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Czy jesteś pewien, że chcesz usunąć te %{x} taksonów?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Czy na pewno chcesz usunąć tę obserwację z projektu %{project}?
@@ -1077,12 +1080,14 @@ pl:
   complete: Kompletny
   complete_set_for_taxon_in_place_html: "Kompletny zbiór dla %{taxon} w %{place}"
   completed: Zakończone
+  completed_at: Ukończono o
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Kompleksowy?
   comprehensive_list: Kompleksowa lista
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Oczekujący
+  concept_status: Status konceptu
   confidential: Poufne
   configure: Konfiguruj
   configure_a_widget_to_show: Skonfiguruj widget, aby pokazać obserwacje z %{site_name} na swojej stronie lub blogu. Być może będziesz musiał uwzględnić CSS w <code>&lt;nagłówku</code> HTMLa. Jeśli potrzebujesz, możesz dostosować CSS do własnych potrzeb.
@@ -1150,6 +1155,7 @@ pl:
     female: Samica
     plant_phenology: Fenologia roślin
     budding: Pączkuje
+    flower_budding: Pączkuje
     flowering: Kwitnie
     fruiting: Owocuje
     life_stage: Stadium rozwoju
@@ -1259,6 +1265,7 @@ pl:
   cumulative_ids: "Skumulowane oznaczenia: %{count} z %{total}"
   curate_observations: Napraw obserwacje
   curate_taxa: Napraw taksony
+  curate_user: Zarządzaj użytkownikiem
   curating: Naprawianie
   curation: Naprawa
   curator: Kurator
@@ -4564,8 +4571,10 @@ pl:
           verifiable: Weryfikowalne
           "Alive or Dead=Alive": Żywy
           "Alive or Dead=Dead": Martwy
+          "Plant Phenology=Flower Budding": Pączkuje
           "Plant Phenology=Flowering": Kwitnie
           "Plant Phenology=Fruiting": Owocuje
+          "Plant Phenology=No Evidence of Flowering": Brak śladów kwitnienia
           "Life Stage=Adult": Osobnik dorosły
           "Life Stage=Egg": Jajo
           "Life Stage=Larva": Larwa

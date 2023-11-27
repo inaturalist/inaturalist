@@ -9,6 +9,9 @@ lb:
   x_comments_html:
     one: '<span class="count">%{count}</span> Kommentar'
     other: '<span class="count">%{count}</span> Kommentarer'
+  x_faves:
+    one: '%{count} Favoriséierung'
+    other: '%{count} Favoriséierungen'
   x_identifications:
     one: '%{count} Identifikatioun'
     other: '%{count} Identifikatiounen'
@@ -18,6 +21,9 @@ lb:
   x_identifications_:
     one: '1 Identifikatioun'
     other: '%{count} Identifikatiounen'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> BESTËMMUNG'
+    other: '<span class="count">%{count}</span> BESTËMMUNGEN'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -59,6 +65,9 @@ lb:
   x_observations_html:
     one: "<span class='count'>1</span> Observatioun"
     other: "<span class='count'>%{count}</span> Observatiounen"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATIOUN"
+    other: "<span class='count'>%{count}</span> OBSERVATIOUNEN"
   x_observations_link_html:
     one: "<a href='%{url}'>1 Observatioun</a>"
     other: "<a href='%{url}'>%{count} Observatiounen</a>"
@@ -87,6 +96,9 @@ lb:
   x_species:
     one: '1 Aart'
     other: '%{count} Aarten'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> AART"
+    other: "<span class='count'>%{count}</span> AARTEN"
   x_species_html:
     one: "<span class='count'>%{count}</span> Aart"
     other: "<span class='count'>%{count}</span> Aarten"
@@ -876,6 +888,8 @@ lb:
   facebook: Facebook
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Favoriséierungen
   Family: Famill
   favorites: "Favoriten"
   feedback: Feedback
@@ -972,6 +986,7 @@ lb:
   guides: Guiden
   guidelines: Richtlinnen
   has_already_been_flagged_by: gouf scho markéiert vum
+  has_one_or_more_faves: Huet eng oder méi Favoriséierungen
   has_photo: Huet eng Foto
   has_photos: Huet Fotoen
   has_photos_or_sounds: Huet Fotoen oder Sound
@@ -1608,6 +1623,8 @@ lb:
   observations_total: Observatiounen Total
   observations_w: Observatiounen w/
   observations_with_this_field: Observatiounen mat desem Feld
+  observations_with_this_field_and_value: Observatioune mat dësem Feld a Wäert
+  observations_without_this_field: Observatiounen ouni dëst Feld
   observed: Observéiert
   observed_by: Observéiert vum
   observer: Observateur
@@ -2442,6 +2459,8 @@ lb:
     one: 1 Mol benotzt
     other: '%{count} Mol benotzt'
   user: Benotzer
+  user1_and_user2_faved_this_observation: "D'Benotzer %{user1} a(n) %{user2} hunn dës Observatioun favoriséiert"
+  user1_user2_and_x_others_faved_this_observation: "D'Benotzer %{user1}, %{user2} an %{x_others} hunn dës Observatioun favoriséiert"
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
   #@gender operates on %{x}
   user_added_a_x: "%{user} huet e(n) %{x} derbäigesat"
@@ -2616,6 +2635,7 @@ lb:
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
   you_cant_delete_observation_fields_that_people_are_using: "Dir kennt keng Observatiounsfelder läschen déi vun aneren Notzer genotzt ginn."
   you_dont_have_permission_to_do_that: Dir hutt net d'Recht fir dat ze maachen.
+  you_faved_this: Dir hutt dat favoriséiert!
   you_have_left_x_project: "Dir hutt %{project} verlooss"
   you_joined_this_project: Dir sidd dësem Projet bäigetrueden!
   you_must_be_a_member_of_this_project_to_do_that: Dir musst e Member vun dësem Projet si fir dat ze maachen

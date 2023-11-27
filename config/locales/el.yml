@@ -20,6 +20,9 @@ el:
   x_identifications_:
     one: '%{count} Ταυτοποίηση'
     other: '%{count} Ταυτοποιήσεις'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span>ΤΑΥΤΟΠΟΙΗΣΗ'
+    other: '<span class="count">%{count}</span>ΤΑΥΤΟΠΟΙΗΣΕΙΣ'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -61,6 +64,9 @@ el:
   x_observations_html:
     one: "<span class='count'>1</span> παρατήρηση"
     other: "<span class='count'>%{count}</span> παρατηρήσεις"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span>ΠΑΡΑΤΗΡΗΣΗ"
+    other: "<span class='count'>%{count}</span>ΠΑΡΑΤΗΡΗΣΕΙΣ"
   x_observations_link_html:
     one: "<a href='%{url}'>1 παρατήρηση</a>"
     other: "<a href='%{url}'>%{count} παρατηρήσεις</a>"
@@ -89,6 +95,9 @@ el:
   x_species:
     one: '1 Είδος'
     other: '%{count} Είδη'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span>ΕΙΔΟΣ"
+    other: "<span class='count'>%{count}</span>ΕΙΔΗ"
   x_species_html:
     one: "<span class='count'>1</span> είδος"
     other: "<span class='count'>%{count}</span> είδη"
@@ -1413,6 +1422,9 @@ el:
   eligible_for_research_grade: Επιλέξιμο για Ερευνητικό Επίπεδο
   email: Διεύθυνση ηλ. ταχυδρομείου
   email_address_for_comments_and_other_feedback: Διευθύνσεις email για σχόλια και άλλη ανατροφοδότηση.
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Αγαπητέ%{user},
   email_description: Το email σας δεν κοινοποιείται στους άλλους χρήστες στο iNaturalist
   email_notifications: Ειδοποιήσεις Email
   embed: 'Ενσωμάτωση'
@@ -1644,6 +1656,8 @@ el:
   generate_taxonomic_tags_for_flickr: Παραγωγή ταξινομικών ετικετών για τις φωτογραφίες στο Flickr.
   generate_widget: Παράγωγή Widget
   generate_your_stats: Παραγωγή των στατιστικών σας
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: ΔΗΜΙΟΥΡΓΗΣΕ ΤΟ ΔΙΚΟ ΣΟΥ YEAR IN REVIEW ΓΙΑ ΤΟ %{year}
   generating_mobile_archive: "Παραγωγή αρχείου κινητού τηλεφώνου"
   Genus: Γένος
   geoprivacy: Γεωαπόρρητο
@@ -4347,6 +4361,7 @@ el:
   view_flags_for_x_html: "Προβολή αναφορών για %{x}"
   view_full_observation: Προβολή πλήρους παρατήρησης
   view_full_size_photo: Προβολή εικόνας πλήρους μεγέθους
+  view_inaturalist_global_year_in_review_caps: ΔΕΙΤΕ ΤΗΝ ΕΠΙΣΚΟΠΗΣΗ ΤΗΣ ΠΑΓΚΟΣΜΙΑΣ ΚΟΙΤΟΤΗΤΑΣ INATURALIST ΓΙΑ ΤΟ %{year}
   view_journal: Προβολή Ημερολογίου
   view_leaderboard_from_last_month: Δείτε λίστες κατάταξης από τον περασμένο μήνα
   view_leaderboard_from_last_year: Δείτε λίστες κατάταξης από την περασμένη χρονιά
@@ -4505,6 +4520,7 @@ el:
   x_wrote_y_new_posts_html: "Ο χρήστης %{x} έκανε %{y} νέες αναρτήσεις"
   year: Έτος
   year_in_review: "Ανασκόπηση έτους %{year}"
+  year_in_review_caps: "Η ΕΠΙΣΚΟΠΗΣΗ ΤΟΥ %{year}"
   year_month: έτος/μήνας
   year_on_site: "Έτος στο %{site} %{year}"
   yellow: κίτρινο
@@ -4524,6 +4540,31 @@ el:
   yes_reject_it: Ναι, απορρίψτε το
   yes_show_this_in_the_box: Ναι, να προβάλλεται αυτό στο μεγάλο κουτί στην κορυφή /taxa
   yesterday: Εχθές
+  yir_email_because_of_you: |
+    Εξαιτίας σας, φέτος τα δεδομένα βιοποικιλότητας εμπλουτίστηκαν σε σχέση με το περσυνό έτος. Η Επισκόπηση του έτους σας είναι το δώρο μας σε εσάς για όλα όσα έχετε προσφέρει για τη βιοποικιλότητα μέσω του iNaturalist.
+  yir_email_log_in_to_generate: |
+    Συνδεθείτε για να δημιουργήσετε την προσωπική σας επισκόπηση!
+  yir_email_of_your_observations:
+    one: Από την %{count} παρατήρησή σoυ, γνωρίζεις πόσες δημιουργήθηκαν το %{year};
+    other: Από τις %{count} παρατηρήσεις σου, γνωρίζεις πόσες δημιουργήθηκαν το %{year};
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Η επισκόπηση του %{year} iNaturalist έτους σας— γιορτάστε τη χρονιά σας με βιοποικιλότητα
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Η ομάδα του iNaturalist
+  yir_email_the_year_isnt_over: |
+    Η χρονιά δεν έχει τελειώσει ακόμη και ποτέ δεν είναι αργά για να δημοσιεύσεις παλαιότερες παρατηρήσεις σου. Αφού μοιραστείς περισσότερες παρατηρήσεις, φρόντισε να επιλέξεις «Ανανέωση στατιστικών στοιχείων» στο κάτω μέρος του Year in Review για να δεις τα ενημερωμένα στοιχεία σου.
+  yir_email_what_else_will_you_observe_caps: ΤΙ ΑΛΛΟ ΘΑ ΠΑΡΑΤΗΡΗΣΕΙΣ;
+  yir_email_what_new_to_you: |
+    Ποιο νέο είδος κατέγραψες φέτος; Πόσοι άνθρωποι σε βοήθησαν
+    με τις ταυτοποιήσεις (και σε πόσες βοήθησες εσύ);
+  yir_email_with_gratitude: Με εκτίμηση,
+  yir_email_year_on_inaturalist_globally_caps: "ΤΟ %{year} ΣΤΟ ΠΑΓΚΟΣΜΙΟ INATURALIST"
+  yir_email_you_are_part_of_something: |
+    Είσαι κομμάτι από κάτι μεγάλο! Κάθε άτομο που δημοσιεύει παρατηρήσεις, προσθέτει
+    ταυτοποιήσεις, και διαδίδει το iNaturalist κάνει τη διαφορά για τη βιοποικιλότητα. Μέσω των συλλογικών μας προσπαθειών, δημιουργούμε διαθέσιμα δεδομένα και γνώση για τη βιοποικιλότητα σε πρωτοφανή κλίμακα. Σ' ευχαριστούμε που είσαι μέλος της κοινότητας του iNaturalist!
+  yir_email_you_make_a_difference: |
+    Μέσω του iNaturalist κάνεις τη διαφορά για τη βιοποικιλότητα. Ευχαριστούμε για την προσφορά σου!
   you: εσύ
   you_: Εσείς
   you_appear_offline_try_again: |

@@ -147,6 +147,11 @@ ru:
     few: "%{count} человека"
     many: "%{count} человек"
     other: "%{count} человек"
+  x_people_html:
+    one: '<span class="count">%{count}</span> персона'
+    few: '<span class="count">%{count}</span> человека'
+    many: '<span class="count">%{count}</span> человек'
+    other: '<span class="count">%{count}</span> человек'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong>, оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   x_photos:
     one: "%{count} фото"
@@ -791,6 +796,7 @@ ru:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Вы уверены что хотите удалить это наблюдение из %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы уверены что хотите удалить этот таксон из контрольного списка %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Вы уверены, что хотите отметить этого пользователя как спамера?
   associated_observations: Связанные наблюдения
   associated_taxa: Связанные таксоны
   attention: Внимание
@@ -2371,6 +2377,7 @@ ru:
   journal: Журнал
   journal_archives_for: Архивы журнала для
   journal_post: Сообщение в журнале
+  journal_post_: сообщение в журнале
   journal_post_deleted: Сообщение в журнале удалено.
   journal_posts: Сообщения в журнале
   jpg_png_or_gif: "JPG, PNG или GIF"
@@ -3301,6 +3308,7 @@ ru:
   observations_widget: Виджет наблюдений
   observations_with_this_field: Наблюдения с таким полем
   observations_with_this_field_and_value: Наблюдения с этим полем и значением поля
+  observations_without_this_field: Наблюдения без этого поля
   observations_without_media: Наблюдения без медиа
   observationcounts_refreshed: Подсчёт наблюдений обновлён
   observed: Дата, время наблюдения
@@ -5854,6 +5862,22 @@ ru:
     Вы - часть чего-то большого! Каждый человек, который публикует наблюдения, добавляет идентификационные данные и распространяет информацию об iNaturalist, вносит свой вклад в сохранение биоразнообразия. Благодаря нашим коллективным усилиям, мы предоставляем данные о биоразнообразии и аналитическую информацию в беспрецедентном масштабе. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
   yir_email_you_make_a_difference: |
     Вы вносите свой вклад в сохранение биоразнообразия с помощью iNaturalist. Спасибо вам за все, что вы делаете!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Вы получили это электронное письмо, потому что адрес %{email} связан с
+    учетной записью iNaturalist https://www.inaturalist.org/people /%{username}, созданной %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Вы получили это электронное письмо, потому что адрес %{email} связан с
+    учетной записью iNaturalist <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people /%{username}</a>, созданной %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Ваша учетная запись связана с %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Ваша учетная запись связана с <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Создание и обмен данными о биоразнообразии с высокой отдачей в таких беспрецедентных масштабах и с такой скоростью сопряжены с растущими затратами
   yir_millions_of_people_used_inaturalist: |
@@ -6904,6 +6928,8 @@ ru:
           Если единственная причина, по которой вы покидаете проект, заключается в том, чтобы запретить просмотр кураторами проекта скрытых координат.
       edit:
         admins_must_be_existing_members: Администраторы должны быть существующими участниками проекта.
+        admins_can_only_be_added_after_creation: |
+          Администраторы могут быть добавлены только после создания проекта.
         aggregation_pending: Ожидание агрегации
         new_place_desc_html: |
           Попробуйте просмотреть <a href="%{places_url}" target="_blank">наши имеющиеся места</a> и убедитесь, что вы правильно указали название места. Если вы действительно не можете найти нужное место, рассмотрите <a href="%{new_place_url}" target="_blank">создание нового места</a>, но, пожалуйста, убедитесь, что вы не дублируете существующее место.
@@ -7206,6 +7232,11 @@ ru:
         #added both identifications and observations
         added_both: Добавили и то, и другое
         added_only_identifications: Добавили только идентификации
+        added_only_observations: Добавили только наблюдения
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Более широкие последствия
+        broader_impacts_desc: |
+          Несколько внешних партнеров регулярно импортируют наблюдения iNaturalist для поддержки науки и охраны природы. Ваши наблюдения, идентификации и выбор открытых лицензий позволяют этим организациям предоставлять полезную информацию о биоразнообразии по всему миру людям, которые в ней нуждаются, .
         compare_desc: |
           Как прошел этот год по сравнению с предыдущими? После трех и более лет использования мы можем начать сравнивать годовые показатели активности.
         compare_site_desc: |
@@ -7975,6 +8006,7 @@ ru:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Приложение
       Photo: Фото
+      Post: Сообщение в журнале
       TaxonLink: Ссылка на таксон
     attributes:
       announcement:
@@ -8597,6 +8629,20 @@ ru:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Животные
+        Actinopterygii: Лучепёрые рыбы
+        Aves: Птицы
+        Reptilia: Пресмыкающиеся
+        Amphibia: Земноводные
+        Mammalia: Млекопитающие
+        Arachnida: Паукообразные
+        Insecta: Насекомые
+        Plantae: Растения
+        Fungi: Грибы
+        Protozoa: Простейшие
+        Mollusca: Моллюски
+        Chromista: Хромисты
   #Title of a section warning the user about something
   warning_title: Предупреждение
   wikimedia: Викимедиа

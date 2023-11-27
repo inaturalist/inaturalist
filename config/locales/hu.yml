@@ -780,6 +780,7 @@ hu:
   change_icon: Ikon módosítása
   change_password: Jelszó módosítása
   change_types:
+    activated_soon: hamarosan aktiválva
     change_types: Típusok módosítása
     split: Szétválasztás
     merge: Egyesítés
@@ -1635,6 +1636,8 @@ hu:
   flickr_photos: Flickr fotók
   flickr_tags: Flickr címkék
   fluid_layout: Rugalmas elrendezés
+  #Adjective, as in a fluid layout of images
+  fluid: folyékony
   follow: Követés
   follow_receive_updates_about_new_observations: Kövesd (kapj értesítést új megfigyelésekről)
   follow_user: "%{user} követése"
@@ -1695,6 +1698,7 @@ hu:
     A Google Térkép nem indult el. Talán blokkoltad a Google Térkép hozzáférést egy böngészőkiegészítővel vagy tűzfallal, vagy valami más (pl. a szolgáltató) akadályozza a hozzáférést.
   got_it!: Rendben!
   got_your_data_somewhere_else?: Máshol vannak az adataid? Segíthetünk.
+  grant_role: "%{role} szerep %{grant}"
   grid: Rács
   grid_layout: Rácselrendezés
   grid_tooltip: Rácselrendezés megtekintése
@@ -1810,12 +1814,14 @@ hu:
   if_for_some_reason_a_user_doesnt_agree: |
     Ha valamilyen okból nem értesz egyet a közösségi taxonnal, elutasíthatod azt. Ez azt jelenti, hogy a saját meghatározásod alapján fog a megfigyelés más megfigyelésekkel társulni, a saját mehatórozásod alapján fog ez az életlistádon megjelenni, stb. Fontos továbbá, hogy a megfigyelésed csak akkor lehet tudományos szintű, ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
+  ignore_and_continue: Figyelmen kívül hagyod és folytatod
   import: Importálás
   import_all_photos_as_observations: Minden fotó importálása megfigyelésekként
   import_from_csv: Importálás CSV-ből
   import_from_other_photo_sites: Importálás más fotószolgáltatásból
   import_observations: Megfigyelések importálása
   import_photos: Fényképek importálása
+  import_ranges: Intervallum importálása
   import_sections: Bekezdés importálása
   import_tags_from_csv: Címkék importálása CSV-ből
   importing: "Importálás..."
@@ -1862,6 +1868,7 @@ hu:
   instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Idézet beszúrása
+  internal_server_error: Belső szerverhiba
   internal_taxon_rank: Belső taxonszint
   introduced: Jövevény
   introduced_in_place: "Behurcolva ide: %{place}"
@@ -1874,7 +1881,7 @@ hu:
   invited_x: "Meghívta %{x}t"
   iphone: iPhone
   is_not_following_anyone: nem követ senkit.
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Elégséges bizonyíték ez arra, hogy megerősítsd, hogy ez egy %{taxon}?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: A megfigyelés bizonyítja, hogy ez egy %{taxon}?
   is_this_offensive_html: 'Ez <a href="/help#inappropriate">kifogásolható</a>, kéretlen, szemét vagy sértő?'
   is_this_place_a_duplicate: Ez a hely már létezik?
   it_can_now_be_used_for_research: Már tudományos célra is felhasználható, és kiemelhető más oldalakon
@@ -2006,44 +2013,73 @@ hu:
     hebrew: Héber
     herero: Herero
     hiligaynon: Hiligaynon
+    hodges_number: Hodges szám
     hokkien: Hokkien
     hungarian: magyar
     icelandic: Izlandi
+    ilokano: Ilokano
     indonesian: Indonéz
     irish: Ír
     italian: Olasz
     japanese: Japán
+    kannada: Kannada
+    kazakh: Kazak
     korean: Koreai
+    kweyol: Kwéyòl
     latvian: Litván
     lithuanian: Litván
     luxembourgish: Luxemburgi
+    malagasy: Malgas
     malay: Maláj
+    malayalam: Malajálam
     maltese: Máltai
+    maori: Maori
+    marathi: Maráthi
     maya: Maja
     mongolian: Mongol
     nahuatl: Nahuatl
+    navajo: Navahó
+    ndebele: Ndebele
     norwegian: Norvég
     occitan: okszitán
+    ojibwe: Ojibwe
+    palauan: Palaui
+    pangasinan: Pangasinan
     persian: perzsa
     polish: Lengyel
     portuguese: Portugál
     romanian: Román
     russian: Orosz
+    santali: Szantáli
     scientific_names: Tudományos nevek
     serbian: szerb
+    shona: Sona
     sinhala: Szingaléz
     slovak: Szlovák
     slovenian: Szolvén
+    sotho: Sotho
+    sotho_northern: Sotho (Északi)
     spanish: Spanyol
     swahili: szuahéli
+    swati: Szvázi
     swedish: Svéd
+    tagalog: Tagalog
     tahitian: Tahiti
+    tamil: Tamil
     thai: Tháj
     tokelauan: Tokelaui
+    totonaco: Totonak
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Török
     ukrainian: Ukrán
     uyghur: Ujgur
+    venda: Venda
     vietnamese: Vietnámi
+    visayan: Viszajan
+    waray_waray: Waray-Waray
+    xhosa: Xhosza
+    zapoteco: Zapoték
     zulu: Zulu
   less: Kevesebb
   #Button show less text
@@ -2120,6 +2156,8 @@ hu:
     it: Olasz
     ja: Japán
     ka: Grúz
+    kk: Kazak
+    kn: Kannada
     ko: Koreai
     lb: Luxemburgi
     lt: Litván
@@ -2129,10 +2167,12 @@ hu:
     mr: Maráthi
     nb: Norvég bokmal
     nl: Holland
+    oc: Okszitán
     pl: Lengyel
     pt: Portugál
     pt-BR: Portugál (Brazília)
     ru: Orosz
+    sat: Szantáli
     sk: Szlovák
     sl: Szolvén
     sq: Albán
@@ -2730,7 +2770,7 @@ hu:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
     following_panel_title: Kövess emebereket, taxonokat és helyeket
     following_panel_body: |
-      %{site_name}-on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
+      Az %{site_name}on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
     comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak az %{site_name}on?
     comments_panel_body: "<p>Az %{site_name} lényege a megfigyelések megosztása és megvitatása. Alább találod a legújabb hozzászólásokat. (Megjegyzés: Automatikusan értesítést kapsz a megfigyeléseidhez és az azonosításaidhoz kapcsolódó hozzászólásokról. Ezeket az értesítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
     updates_by_you_panel_title: Ez a fül egy gyors szűrő a tartalmaid újdonságaihoz
@@ -3383,6 +3423,7 @@ hu:
     other: Projekt adminok
   project_coordinate_access_warning: |
     A koordinátákhoz való hozzáférés fontos a kutatók számára, de ezt kihasználhatják az orrvadászok és az illegális növénygyűjtők. Bizonyosodj meg arról, hogy bízol a projekt mindegyik kurátorában, mielőtt megbíznál ebben a projektben.
+  project_cover: Projekt borítója
   project_created_on: 'hozta létre ezt a projektet ekkor: %{date}'
   project_curators: A projekt kurátorai
   project_group_label: Csoport
@@ -3402,7 +3443,7 @@ hu:
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
-    Projektek révén egyesítheted a megfigyeléseidet másokéval az %{site_name}-on. Közösségi tudományos kezdeményezésektől kezdve a környezeted madarainak tanulmányozásáig a projektek sok mindenre jók.
+    Projektek révén egyesítheted több felhasználó %{site_name}-megfigyeléseit. Közösségi tudományos kezdeményezésektől kezdve a környezeted madarainak tanulmányozásáig a projektek sok mindenre jók.
   #@vow_or_con should work on %{place}
   projects_from_place: "Projektek innen: %{place}"
   projects_you_admin: Kezelt projektjeid
@@ -3634,6 +3675,8 @@ hu:
   replace_parentesis: (csere)
   reply: Válasz
   reptiles: hüllők
+  request_failed: "Kérés sikertelen"
+  request_timed_out: A kérés túllépte az időkorlátot!
   required: kötelező
   required_: Kötelező
   required_field: kötelező adat
@@ -3651,17 +3694,20 @@ hu:
   reset: Visszaállítás
   reset_filters_short: Visszaállítás
   reset_search_filters: Szűrők visszaállítása
+  resolve: Megoldás
   resolved: Megoldva
   resolved_by: 'Megoldotta:'
   resolved_by_user_on_date_html: 'Megoldotta %{user} ekkor: %{date}'
   restart: Újraindítás
   restore: Visszaállítás
+  restoring: Visszaállítás...
   review_all: Összes áttekintése
   reviewed: Átnézett
   revoke: Visszavonás
   revoke_caps: VISSZAVONÁS
   revoke_privacy_consent_warning: "E jóváhagyásod visszavonásának egyedüli módja az, ha törlöd a fiókodat és minden azzal kapcsolatos adatodat."
   rg_observations: Tud. szintű megfigyelések
+  role: Szerep
   rotate_left: Forgatás balra
   rotate_right: Forgatás jobbra
   row_singular_or_plural: Sor(ok)
@@ -3669,11 +3715,15 @@ hu:
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   rules_types:
     must_be_captive: Fogságban lévő / kultivált kell legyen
+    must_be_georeferenced: koordinátái kell legyenek
+    must_be_identified: azonosítva kell legyen
+    must_be_on_list: listán kell legyen
     must_be_observed_in_place: megfigyelve kell legyen a helyen
     must_be_in: taxonban kell legyen
     must_be_verifiable: legyen ellenőrizhető
     must_be_wild: vad kell legyen
   running_total: Kumulatív
+  said: mondta
   satellite: műholdkép
   save: Mentés
   save_all: Minden mentése
@@ -3697,6 +3747,7 @@ hu:
   saving_num_of_count_observations:
     one: Megfigyelések mentése...
     other: '%{count}/%{num} megfigyelés mentése...'
+  saving_verb: Mentés
   scale_colon: "Skála:"
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Tudományos név
@@ -3769,7 +3820,10 @@ hu:
   #could be more
   showing_first_x: Mutatva az első %{x}
   showing_taxa_from_place: "Taxonok innen: %{place}"
+  showing_x_of_y: '%{y} tételből %{x} látható'
   sign_in: Belépés
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Bejelentkezés Apple-el
   sign_in_with_provider: "Bejelentkezés %{provider}-profillal"
   sign_in_with_google: Bejelentkezés Google-fiókkal
   sign_out: Kijelentkezés
@@ -3788,9 +3842,12 @@ hu:
   site_admins: Honlap adminisztrátorai
   site_name_place: "%{site_name} hely"
   site_observations_export_from_date: "%{site_name} megfigyelések exportálása - %{date}"
+  site_site_admin: "%{site_name} honlap admin"
   site_staff: "%{site_name} munkatárs"
   site_stats: Webhelyforgalom
   site_taxon_page: "%{site_name} taxonlap"
+  sites_affiliation_about_desc_html: |
+    Ha a szervezeted szeretne csatlakozni az iNaturalist Hálózatába, tudj meg többet erről %{start_tag_join}itt%{end_tag_join}.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatikusan rejtett koordináták (kitakart vagy rejtett a "taxon helyvédelme" miatt)
   sites_affiliation_more_user_hidden_coordinates: |
@@ -3855,6 +3912,7 @@ hu:
     catalogue_of_life_2012_annual_checklist: 'Az élet katalógusa: 2012 évi lista'
     catalogue_of_life_2013_annual_checklist: 'Az élet katalógusa: 2013 évi lista'
   source_eg:
+    in_text: 'pl. Greene, 2000'
     url: pl. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
   source_url: Forrás URL
   sourced_to: 'Átemelve ide:'
@@ -3862,6 +3920,7 @@ hu:
   sources_youve_added: Források, melyeket hozzáadtál
   sources_and_credits: Források és közreműködők
   spam: Spam
+  spammer: Szemetelő
   #Plural
   species: Fajok
   species_from_around_the_world: Fajok a világ minden tájáról
@@ -3892,6 +3951,7 @@ hu:
     <strong>Felsőbb taxonszintről (%{taxon}) átvett státusz</strong>
   status_globally: '"%{status}" globálisan'
   status_in_place: '"%{status}" itt: %{place}'
+  still_no_luck?: A probléma még mindig fennáll?
   stop_editing: Szerkesztés befejezése
   stop_following_user: "%{user} követésének leállítása"
   stop_trusting_this_person_with_your_private_coordinates: Vond vissza ezen személytől, hogy láthassa rejtett koordinátáidat
@@ -4009,6 +4069,7 @@ hu:
   taxon_change_commit_may_still_be_processing: |
     A taxonmódosítás még folyamatban lehet, ezért elképzelhető, hogy nem minden adatsor van frissítve
   taxon_change_title_taxon_swap: Taxoncsere %{id}
+  taxon_deleted: Taxon törölve.
   taxon_ids: Taxonazonosítók
   taxon_map:
     overlays: Rétegek
@@ -4016,12 +4077,14 @@ hu:
   taxon_colors: Taxonszínek
   taxon_framework_deviations_with_count_html: "Eltérések: %{count}"
   taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
+  taxon_merge: taxonösszevonás
   taxon_name: Taxon neve
   taxon_name_must_match_an_existing_taxon_in_our_database: A táblázatban taxonnévnek egyeznie kell az adatbázisunk taxonneveivel
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a>, megfigyelő:
   taxon_observed_by_user: "%{taxon} megfigyelve %{user} által"
   taxon_photos_updated: Taxonfotó frissítve!
+  taxon_range: Taxonintervallum
   taxon_range_for_taxon_html: '%{taxon} taxonintervalluma'
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ez a taxon nincs rajta az IUCN Vörös Listán
   taxon_range_guidelines_learn_more_about_taxon_ranges: További információk a taxonintervallumokról
@@ -4077,6 +4140,10 @@ hu:
   the_world_is_full_of_interesting_places: |
     A világ tele van érdekes helyekkel, mindegyik tele furcsa és csodálatos életformákkal. Vannak amelyek a világ másik felén vannak, míg mások kint az utcán! %{site_name} Helyekkel felfedezheted az életet a bolygó minden pontján. Kezdj el felfedezni!
   then_keybord_sequence: majd
+  there_are_x_synonyms_html:
+    one: "<span class='count'>1</span> szinonima </span> van"
+    other: "<span class='count'>%{count}</span> szinonima</span> van"
+  there_is_no_wikipedia_page_matching: Nincs megfelelő Wikipedia lap
   there_merge_problems_with_the_merge: "Hiba történt az egyesítéssel: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
   there_were_problems_importing_that_place: "Hiba történt a hely importálásakor: %{place_error}"
@@ -5223,6 +5290,8 @@ hu:
         remove_observations_label: |
           Az összes megfigyelésed eltávolítása ebből a projektből
       edit:
+        admins_can_only_be_added_after_creation: |
+          Adminok csak a projekt létrehozása után adhatók hozzá.
         bioblitz_desc_html: |
           <p>
           A bioblitz egy olyan esemény, amely során a résztvevők minél több fajt próbálnak rögzíteni meghatározott területen és időben. Ez egy élvezetes módja a biodiverzitás népszerűsítésének, ugyanakkor értékes adatokat is gyűjtünk.
@@ -5569,7 +5638,7 @@ hu:
           Ez a beállítás nem ad hozzáférész a projekteknek a rejtett koordinátákhoz, és nem engedélyezi az értesítések küldését. Ezek engedélyezéséhez csatlakoznod kell a projekthez, vagy egyesével engedélyezned kell ezeket.
         same_day_geoprivacy_protection: Azonos napi helymegjelenítés védettsége
         taxon_change_desc: |
-          Amikor a taxonokat egyesítik vagy átnevezik a %{site_name}-on, a megfigyeléseid, meghatározott taxonjaid, azonosításaid stb. automatikusan frissülnek az új taxonokra, amennyiben a változás egyértelmű. Ha leiratkozol, vagy a változás nem egyértelmű (pl. egy szétválasztás), akkor változásról küldött értesítésben, találsz majd egy linket a tartalmad manuális szerkesztéséhez.
+          Amikor a taxonokat egyesítik vagy átnevezik az %{site_name}on, a megfigyeléseid, meghatározott taxonjaid, azonosításaid stb. automatikusan frissülnek az új taxonokra, amennyiben a változás egyértelmű. Ha leiratkozol, vagy a változás nem egyértelmű (pl. egy szétválasztás), akkor változásról küldött értesítésben, találsz majd egy linket a tartalmad manuális szerkesztéséhez.
         taxon_name_priorities:
           #A common name lexicon is a categorization of the vocabulary used. For example the
           #lexicon could be a language, or a regional use of language (locale), or a lexicon
