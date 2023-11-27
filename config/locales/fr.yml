@@ -89,6 +89,9 @@ fr:
   x_people:
     one: "%{count} personne"
     other: "%{count} personnes"
+  x_people_html:
+    one: '<span class="count">%{count}</span> personne'
+    other: '<span class="count">%{count}</span> personnes'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} sur <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} photo"
@@ -2138,6 +2141,9 @@ fr:
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   inaturalist_global_year_in_review: "Rétrospective de l'année %{year} de la communauté mondiale d'iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist est une organisation indépendante 501(c)(3), exonérée d'impôt, sans but lucratif,
+    basée aux États-Unis d'Amérique (ID fiscal : 92-1296468).
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -2270,6 +2276,7 @@ fr:
   journal: Journal
   journal_archives_for: Archives du journal de
   journal_post: Article du journal
+  journal_post_: article du journal
   journal_post_deleted: Article de journal supprimé.
   journal_posts: Articles du journal
   jpg_png_or_gif: "JPG, PNG ou GIF"
@@ -7293,6 +7300,15 @@ fr:
           Créée via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites web <a href="%{url}">Réseau iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: A ajouté les deux
+        added_only_identifications: N'a ajouté que des identifications
+        added_only_observations: N'a ajouté que des observations
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Impacts plus étendus
+        broader_impacts_desc: |
+          Plusieurs partenaires externes importent régulièrement des observations iNaturalist pour soutenir la science et la conservation. Vos observations, vos identifications et vos choix de licences ouvertes permettent à ces organisations de fournir des informations sur la biodiversité utiles aux personnes qui en ont besoin dans le monde.
         compare_desc: |
           Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
         compare_site_desc: |
@@ -8156,6 +8172,7 @@ fr:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Application
       Photo: Photo
+      Post: Article du journal
       TaxonLink: Lien de taxon
     attributes:
       announcement:
@@ -8774,6 +8791,20 @@ fr:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animaux
+        Actinopterygii: Actinoptérygiens
+        Aves: Oiseaux
+        Reptilia: Reptiles
+        Amphibia: Amphibiens
+        Mammalia: Mammifères
+        Arachnida: Arachnides
+        Insecta: Insectes
+        Plantae: Plantes
+        Fungi: Fonges
+        Protozoa: Protozoaires
+        Mollusca: Mollusques
+        Chromista: Chromistes
   #Title of a section warning the user about something
   warning_title: Avertissement
   wikimedia: Wikimédia
