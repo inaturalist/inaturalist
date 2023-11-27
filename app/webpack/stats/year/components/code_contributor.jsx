@@ -25,7 +25,7 @@ class CodeContributor extends React.Component {
     const { expanded } = this.state;
     const pullRequestsToDisplay = expanded
       ? userData.pullRequests
-      : _.slice( userData.pullRequests, 0, 5 );
+      : _.slice( userData.pullRequests, 0, 3 );
     const morePullRequestsToShow = pullRequestsToDisplay.length < userData.pullRequests.length;
     return (
       <div className="CodeContribitor stacked flex-row">

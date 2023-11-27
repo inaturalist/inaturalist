@@ -251,11 +251,11 @@ class Emailer < ActionMailer::Base
       raise "Cannot send YIR email if YIR for this year does not exist"
     end
 
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
+    set_locale
     @shareable_image_url = global_year_statistic.
       shareable_image_for_locale( I18n.locale )&.
       url
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
-    set_locale
     if options[:raise_on_missing_translations]
       without_english_fallback do
         # Set default options to raise errors on missing translation. I hope

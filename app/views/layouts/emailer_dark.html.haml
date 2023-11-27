@@ -1,3 +1,4 @@
+- @i18n ||= I18n
 !!!
 %html
   %head
@@ -114,12 +115,12 @@
         = yield
         %center.upstacked
           %p
-            %small=t :inaturalist_is_an_independent_nonprofit
+            %small=@i18n.t :inaturalist_is_an_independent_nonprofit
           - if @user
             %p
-              %small=t :you_received_this_email_notice_html, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase
+              %small=@i18n.t :you_received_this_email_notice_html, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase
             - if @user.site && @user.site.id != Site.default.id
               %p
-                %small=t :your_account_is_affiliated_html, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase
+                %small=@i18n.t :your_account_is_affiliated_html, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase
           %p
             %small= link_to t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"
