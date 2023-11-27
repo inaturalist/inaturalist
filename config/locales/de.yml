@@ -2044,6 +2044,8 @@ de:
   #Notification when an identification has been deleted
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Bestimmung verborgen
   #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
@@ -2631,6 +2633,8 @@ de:
   moderation_history_desc_html: |
     Dies beinhaltet Aktionen des Moderators (z.B. Kommentare verstecken oder freischalten), Anmerkungen und Markierungen über alles, was dieser Benutzer mit Ausnahme von Taxa erstellt hat. Dies ist <strong>nur für Kuratoren sichtbar</strong> und <strong>Kuratoren können
     ihren eigenen Verlauf nicht ansehen</strong>, also sollten Notizen über eine Person niemals für diese Person sichtbar sein sein.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Verbergen
   moderator_note_desc: |
     Moderator-Anmerkungen sind Aufzeichnungen von Moderationsantworten oder evidenzbasierten
     Bedenken über einen Benutzer, zum Beispiel, ob es sich um ein mögliches Zweit-Konto
