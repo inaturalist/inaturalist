@@ -1683,6 +1683,7 @@ th:
   observation_export_column_type_geo: ภูมิศาสตร์
   observation_field: ข้อมูลเสริมการสังเกต
   observation_field_details: รายละเอียดข้อมูลเสริม
+  observation_field_type_time: เวลา
   observation_field_type_datetime: วันที่และเวลา
   observation_fields: ข้อมูลเสริมการสังเกต
   #Help text to show what kind of values you can enter for the date an observation was observed
@@ -1836,6 +1837,8 @@ th:
       region: ภูมิภาค
       State: รัฐ
       state: รัฐ
+      Time_Zone: เขตเวลา
+      time_zone: เขตเวลา
       Town: เมือง
       town: เมือง
       Unknown: ไม่ทราบ
@@ -2761,6 +2764,7 @@ th:
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
+  year: ปี
   year_month: ปี/เดือน
   'yes': "ใช่"
   #Used when trusting a project and the user is agreeing to trust the project
@@ -3203,6 +3207,7 @@ th:
       hour: ชั่วโมง
       minute: นาที
       second: วินาที
+      year: ปี
   helpers:
     select:
       prompt: โปรดเลือก
