@@ -60,6 +60,8 @@ ja:
     other: "その他%{count}人"
   x_people:
     other: "%{count} 人"
+  x_people_html:
+    other: '<span class="count">%{count}</span>人'
   x_people_helped_user_with_y_ids_html: "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました"
   x_photos:
     other: "%{count}枚の写真"
@@ -372,6 +374,7 @@ ja:
   agree_: 同意
   agree?: 賛成する
   agree_with_current_taxon: 現在の分類群に賛成する
+  agree_with_observation_taxon: 観察記録の分類に同意する
   agreeing: 賛成しています...
   aka: 別名
   #Noun, title of a popup alerting you to something
@@ -640,6 +643,7 @@ ja:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     %{project} からこの観測記録を削除して本当によろしいですか？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "%{place}のチェックリストからこの分類群を削除して本当によろしいですか？"
+  are_you_sure_you_want_to_flag_as_spammer: このユーザーにスパムメールのフラグを立ててもよろしいですか？
   associated_observations: 関連している観測記録
   associated_taxa: 関連する分類群
   attention: 注意
@@ -1099,10 +1103,12 @@ ja:
     cannot_be_determined: 提供された証拠から判断することはできません
     dead: 生物は死んでいるか、瀕死である
     feather: 生物の本体から分離した羽毛
+    female: 生物が有性生殖に使用する卵子を生産できることを示す証拠
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
     gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
+    male: 生物が有性生殖に使用する精子を生産できることを示す証拠
     molt: 脱ぎ捨てられた皮膚または外骨格
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
     organism: 生物の本体またはその一部
@@ -1728,6 +1734,8 @@ ja:
   feedback: フィードバック
   #Plural noun, as in Atom and RSS feeds
   feeds: 'フィード'
+  #Button to show fewer places
+  fewer__context_places: 少ない
   failed: 失敗しました
   field_note: |
     <strong>注:</strong>フィールドを作成する場合は、重複を避けるため他のユーザーが既に作成していないかどうかを確認してください。
@@ -2046,6 +2054,8 @@ ja:
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
   inaturalist_global_year_in_review: "iNaturalistのグローバルな %{year} 年を振り返る"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalistはアメリカ合衆国に拠点を置く独立した501(c)(3)、非課税、非営利団体です（Tax ID: 92-1296468）。
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
@@ -2167,6 +2177,7 @@ ja:
   journal: 日記
   journal_archives_for: 日記のアーカイブ：
   journal_post: 日記
+  journal_post_: 日記
   journal_post_deleted: 日記が削除されました
   journal_posts: 日記
   jpg_png_or_gif: "JPG、PNG、またはGIF"
@@ -3029,6 +3040,7 @@ ja:
   observations_widget: 観察記録ウィジェット
   observations_with_this_field: このフィールドを使用している観察記録
   observations_with_this_field_and_value: このフィールドと値を含む観察記録
+  observations_without_this_field: このフィールドのない観察記録
   observations_without_media: メディアなしの観察記録
   observationcounts_refreshed: 観察記録数更新済
   observed: 観察
@@ -4312,6 +4324,7 @@ ja:
     ubio: uBio
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
+    new_zeland_organisms_register: ニュージーランド生物目録
     nzbrn_birds: NZBRN鳥類
     nzbrn_fungi: NZBRN菌類
     nzbrn_herpetofauna: NZBRN爬虫類
@@ -4575,6 +4588,7 @@ ja:
   the_world: 世界中
   the_world_is_full_of_interesting_places: |
     世界には面白い場所がいっぱいあり、どれにも珍しく素晴らしい生き物が生きています。世界の反対側でも、近所でも、どこでも面白い生き物を見つけることができます。%{site_name}の「場所」機能で世界中の生き物を探すことができます。ぜひ探してみてください！
+  then_keybord_sequence: 次に
   there_are_x_synonyms_html:
     other: "<span class='count'>%{count}つ</span>シノニムが存在します</span>"
   there_is_no_wikipedia_page_matching: 一致するウィキペディアページがありません
@@ -5256,6 +5270,20 @@ ja:
     私たちの努力の積み重ねにより、生物多様性のデータと知見がかつてない規模で利用できるようになっています。iNaturalistコミュニティの一員でいてくださることに感謝します！
   yir_email_you_make_a_difference: |
     あなたはiNaturalistを通して生物多様性に変化をもたらしています。ありがとうございます！
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    %{email} は %{created_date} に作成されたiNaturalistアカウントである https://www.inaturalist.org/people/%{username} に関連付けられているため、このメールを受け取りました。
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    %{email} は %{created_date} に作成されたiNaturalistアカウントである <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> に関連付けられているため、このメールを受け取りました。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    あなたのアカウントは %{site_name}（%{site_url}）と連携しています。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    あなたのアカウントは <a href="%{site_url}">%{site_name}</a> と連携しています。
   yir_generating_and_sharing: |
     iNat上での生物多様性データの作成と共有は、かつてないほど大規模かつ高速に行われるようになり、そのコストは増大しています。
   yir_millions_of_people_used_inaturalist: |
@@ -5389,6 +5417,9 @@ ja:
   verifiable: 研究用+要同定
   views:
     views: '閲覧回数'
+    announcements:
+      clients_desc: |
+        CMD-またはSHIFT-クリックで複数を選択します。何も選択しないと、クライアントに関係なくすべてのユーザーにアナウンスが表示されます。
     content_freeze:
       we_expect_this_functionality_will_return_by_date: |
         この機能は %{date} までに復帰する予定です。
@@ -5938,6 +5969,8 @@ ja:
           もしあなたが去る唯一の理由が、プロジェクトキュレーターがあなたの不明瞭/非公開の座標を閲覧できることを停止するためである場合
       edit:
         admins_must_be_existing_members: 管理者はプロジェクトの既存のメンバーでなければなりません。
+        admins_can_only_be_added_after_creation: |
+          管理者はプロジェクトの作成後にのみ追加できます。
         bioblitz_desc_html: |
           <p>
           バイオブリッツとは、参加者が一定期間内にできるだけ多くの生物種を観察しようとするイベントです。
@@ -6147,6 +6180,15 @@ ja:
         website_desc_html: |
           <a href="https://www.inaturalist.org">iNaturalist</a>または<a href="%{url}">iNaturalist Network</a>を介して作成
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: 両方を追加
+        added_only_identifications: 同定のみ追加
+        added_only_observations: 観察記録のみ追加
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: より大きな影響
+        broader_impacts_desc: |
+          いくつかの外部パートナーはiNaturalistの観察記録を定期的にインポートし、科学と自然保護に役立てています。あなたの観察記録、同定、オープンライセンスの選択により、これらの組織は世界中の必要とする人々に対して有用な生物多様性についての情報を提供することができます。
         compare_desc: |
           今年は前年と比べてどうでしたか？3年以上の使用実績があれば、年間の活動指標を比較することができます。緑色の棒は今年、白い縦棒は昨年、灰色の背景部分は最低と最高の年、そして全年の平均を表しています。統計には、カウントがゼロの年は含まれていません。
         compare_site_desc: |
@@ -6341,6 +6383,26 @@ ja:
           これは、あなたが非表示/不明瞭にした座標にアクセスしたり、更新情報を送信したりすることをプロジェクトに許可するものではないことを覚えておいてください。これらの許可を与えるためには、プロジェクトに参加するか、状況次第で許可を与える必要があります。
         taxon_change_desc: |
           分類群が%{site_name}で統合や改名されると、変化が明確であれば、あなたの観察記録、一覧にした分類群や同定などは自動的に新しいものに更新されます。通知の解除または変更があいまい（例：分割）な場合は、更新通知が届き、手動でコンテンツを更新するツールへのリンクから、自分で更新ができます。
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: 一般名の辞書を追加
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: 場所を追加 (オプション)
+          common_name_lexicon_display_order: 一般名辞書の表示順
+          common_name_lexicons: 一般名の辞書
+          common_name_lexicons_description: デフォルトでは、一般名はアカウントの言語/ロケールで表示されます。他の辞書の名前を表示したり、特定の場所で使用されている名前（英語（オーストラリア）やスペイン語（コスタリカ）など）を優先的に表示するには、一般名の辞書を追加します。一度に表示できる一般名は3つまでです。選択した辞書に一般名が存在しない場合、表示は省略されます。
+          for_multiple_common_name_lexicons_drag_and_drop: 複数の一般名の辞書を使用する場合は、以下の設定をドラッグ・アンド・ドロップして、表示順をカスタマイズします。
+          same_as_locale: ロケールと同じ
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: ユーザーの言語/ロケール設定と同じ
+          select_a_lexicon: 辞書を選択
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: 上限3つの一般名の辞書がすでに追加されています
         this_only_applies_to_traditional_projects: |
           これは従来のプロジェクトにのみ適用されます。基本的に保存された検索であるコレクションやアンブレラプロジェクト（親プロジェクト）から観察記録を除外することはできません。詳細は<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">こちら</a>をご覧ください。
       recent:
@@ -6580,10 +6642,12 @@ ja:
       #violations of the Community Guidelines for future reference
       ModeratorNote: モデレーターノート
       Photo: 写真
+      Post: 日記
     attributes:
       announcement:
         created_at: '作成:'
         updated_at: 'アップデート:'
+        clients: クライアント
       assessment:
         description: 説明
       assessment_section:
@@ -6722,6 +6786,16 @@ ja:
         header:
           other: 'この %{model} の保存を禁止する %{count} 件のエラーが発生しました。'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: 指定された配置に対して有効でなければなりません
         application:
           attributes:
             redirect_uri:
