@@ -1914,6 +1914,7 @@ cs:
   exit_full_screen: "Ukončit celou obrazovku"
   examples_of_data_use_by_network_members: Příklady využití dat členy sítě
   examples_of_ranking_organizations: Příklady klasifikujících organizací
+  expected_nearby: Očekáváno v okolí
   explore: Prozkoumat
   export: Exportovat
   export_observations: Exportovat pozorování
@@ -2332,6 +2333,7 @@ cs:
   include_places: Zahrnout místa
   include_projects: Zahrnout projekty
   include_suggestions_not_seen_nearby: Zahrnout i návrhy neviděné v okolí
+  include_suggestions_not_expected_nearby: Zahrnout i návrhy neviděné v okolí
   include_taxa: Zahrnout taxony
   include_users: Zahrnout uživatele
   including: včetně
@@ -2483,6 +2485,7 @@ cs:
     belarusian: Běloruština
     bengali: Bengálština
     bulgarian: Bulharština
+    carolinian: karolínština
     catalan: Katalánština
     cebuano: Cebuánština
     chinese_simplified: Čínština (zjednodušená)
@@ -2510,6 +2513,7 @@ cs:
     gujarati: Gudžarátština
     hawaiian: Havajština
     hebrew: Hebrejština
+    herero: hererština
     hiligaynon: Hiligaynon
     hokkien: Hokkienština
     hungarian: Maďarština
@@ -2535,6 +2539,7 @@ cs:
     misima_paneati: Misima-paneati
     mongolian: Mongolština
     nahuatl: Nahuatl
+    navajo: navažština
     norwegian: norsky
     occitan: okcitánština
     ojibwe: Ojibwe
@@ -5925,6 +5930,10 @@ cs:
   yir_email_with_gratitude: s vděčností,
   yir_email_you_make_a_difference: |
     Prostřednictvím iNaturalist pomáháte biologické rozmanitosti. Děkujeme Vám za všechno, co děláte!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Tento e-mail jste obdrželi, protože %{email} je propojen s účtem https://www.inaturalist.org/people/%{username} na iNaturalist vytvořeným dne %{created_date}.
   yir_generating_and_sharing: |
     Vytváření a sdílení dat o biodiverzitě s vysokým impaktem v tomto nevídaném měřítku a rychlosti nese zvyšující se náklady.
   yir_millions_of_people_used_inaturalist: |
@@ -6137,6 +6146,8 @@ cs:
           infringement</code> pouze v případě, že obsah není spam nebo se nejedná o porušení autorských práv.
     geo_model:
       explain:
+        nearby_map:
+          expected_nearby_map: Očekáváno v okolí
         range_comparison:
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
@@ -8546,6 +8557,20 @@ cs:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Zvířata
+        Actinopterygii: Paprskoploutví
+        Aves: Ptáci
+        Reptilia: Plazi
+        Amphibia: Obojživelníci
+        Mammalia: Savci
+        Arachnida: Pavoukovci
+        Insecta: Hmyz
+        Plantae: Rostliny
+        Fungi: Houby
+        Protozoa: Prvoci
+        Mollusca: Měkkýši
+        Chromista: Chromisté
   #Title of a section warning the user about something
   warning_title: Upozornění
   wikimedia: Wikimedia
