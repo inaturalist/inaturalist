@@ -2005,6 +2005,8 @@ zh-TW:
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
   inaturalist_global_year_in_review: "愛自然的全球 %{year} 年回顧"
+  inaturalist_is_an_independent_nonprofit: |
+    《愛自然(iNaturalist)》是位於美國的獨立 501(c)(3) 免稅、非營利組織（稅籍編號：92-1296468）。
   computer_vision_suggestion: 電腦視覺建議
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
@@ -5162,6 +5164,20 @@ zh-TW:
     您是偉大生物多樣性版圖的一部分！每一位發布觀察紀錄、鑑定物種、並推廣《愛自然(iNaturalist)》的人，都在為生物多樣性做出貢獻。透過我們的共同努力，我們正以前所未有的規模來建立生物多樣性的資料和見解。感謝您成為《愛自然》社群的一員！
   yir_email_you_make_a_difference: |
     透過《愛自然》，您為生物多樣性做出了貢獻。謝謝您所做的一切！
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    您收到此電子郵件是因為 %{email} 與 https://www.inaturalist.org/people/%{username} 相關聯，該地址為在 %{created_date} 所建立的一個《愛自然(iNaturalist)》 帳號。
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    您收到此電子郵件是因為 %{email} 與 ，<a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>相關聯，該位址為在 %{created_date} 所建立的一個《愛自然(iNaturalist)》 帳號。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    您的帳號是隸屬於%{site_name} (%{site_url})。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    您的帳號是隸屬於<a href="%{site_url}">%{site_name}</a>。
   you: 您
   you_: 您
   you_appear_offline_try_again: |
