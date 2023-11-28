@@ -671,8 +671,8 @@ de:
     Bist du sicher, dass du diese Beobachtung aus "%{project}" entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
   are_you_sure_you_want_to_flag_as_spammer: Ganz sicher, dass dies als Spam gekennzeichnet werden soll?
-  associated_observations: Verbundene Beobachtungen
-  associated_taxa: Verbundene Taxa
+  associated_observations: Assoziierte Beobachtung(en)
+  associated_taxa: Zugehörige Taxa
   attention: Achtung
   you_sure_delete_list: Bist du sicher, dass du diese Liste entfernen willst?
   you_sure_delete_taxon_from_list?: "Bist du sicher, dass du %{taxon} von der Liste entfernen möchtest?"
@@ -2783,7 +2783,7 @@ de:
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum; es bedarf aber einer gemeinschaftlichen Bestimmung auf (normalerweise) Artniveau, um "Forschungsqualität" zu erreichen. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
-  needs_to_be_identified: Muss bestimmt werden
+  needs_to_be_identified: Benötigt weitere Bestimmungen
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
