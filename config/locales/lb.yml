@@ -854,6 +854,9 @@ lb:
   editors: Auteuren
   email: E-Mail
   email_address_for_comments_and_other_feedback: E-Mail-Adress fir Kommentarer oder anere Feedback
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Léif/Léiw %{user}.
   email_description: Är E-Mail-Adress gëtt net mat anere Benotzer op iNaturalist gedeelt
   embed: 'Abannen'
   end: Schluss
@@ -970,6 +973,8 @@ lb:
     other: Pilzen
   gbif: GBIF
   generate_your_stats: Generéiert Är Statistiken
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERÉIERT ÄR IWWERSIICHT FIR D'JOER %{Joer}
   Genus: Gattung
   get_started: Fir unzefänken
   getting_started_guide: Guide fir unzefänken
@@ -1032,6 +1037,8 @@ lb:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikatioun zréckgezunn.
   identifications: Bestemmungen
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist ass eng onofhängege 501 (c) (3), steierfräi, not-for-profit Organisatioun baséiert an den USA (Steier ID: 92-1296468).
   identifiers: Bestëmmer
   ids: "IDen"
   ids_made_for_others: IDs fir een aneren gemaach
@@ -2434,6 +2441,7 @@ lb:
   unmute: Stomm schalten ausmaachen
   updating: Aktualiséierung...
   unsubscribe: Desabonéiren
+  unsubscribe_from_emails_like_this: Desabonnéiert Iech vun E-Maile wéi dëser
   unsuspend_user: Suspendéierung vum Benotzer ophiewen
   update: Aktualiséieren
   update_observations: Observatiounen aktualiséieren
@@ -2506,6 +2514,7 @@ lb:
   view_all_observations: All Observatioune weisen
   view_details: Detailer weisen
   view_dynamic_lifelist_: DYNAMESCH LIFE-LESCHT KUCKEN
+  view_inaturalist_global_year_in_review_caps: GLOBAL JOER %{year} AM RÉCKBLÉCK KUCKEN
   view_license: Lizenz weisen
   view_lists: Lëschte weisen
   view_more: Méi weisen
@@ -2593,6 +2602,7 @@ lb:
   x_sent_you_a_new_message_on_y_html: "%{x} huet Iech op %{y} en neie Message geschéckt:"
   year: Joer
   year_in_review: "Joer %{year} am Réckbléck"
+  year_in_review_caps: "JOER AM RÉCKBLÉCK %{year}"
   year_month: Joer/Mount
   year_on_site: "Joer %{year}op %{site}"
   yellow: giel
@@ -2615,12 +2625,44 @@ lb:
   yir_donate_banner_you_helped_inaturalist_thrive: Dir hutt dëst Joer gehollef dass den iNaturalist floréiert. Merci!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist brauch Är Ënnerstëtzung
+  yir_email_because_of_you: |
+    Wéinst Iech ginn et dëst Joer méi Daten iwwer d'Biodiversitéit wéi d'lescht Joer. D'Joer am Réckblèck ass eise Kaddo un Iech fir alles wat Dir
+    fir Biodiversitéit duerch iNaturalist gemaach hutt.
+  yir_email_log_in_to_generate: |
+    Iech aloggen fir Äert perséinlecht Joer am Réckbléck ze generéieren!
   yir_email_of_your_observations:
     one: Vun Ärer %{count} Observatioun, wësst Dir, wéi vill der am Joer %{year} gemaach goufen?
     other: Vun Äre(n) %{count} Observatiounen, wësst Dir, wéi vill der am Joer %{year} gemaach goufen?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Äert iNaturalist Joer %{year} am Réckblèck - feiert Äert Joer mat der Biodiversitéit
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: D'iNaturalist-Team
+  yir_email_the_year_isnt_over: |
+    D'Joer ass nach net eriwwer, an et ass ni ze spéit fir al Observatiounen ze posten. Nodeems Dir weider Observatioune gedeelt hutt, stellt sécher "Statistiken  Regeneréieren" um Enn vun Ärem Joer am Réckbléck ze drécken fir d'Resultater ze aktualiséieren.
+  yir_email_what_else_will_you_observe_caps: WAT ANESCHTERS WÄERT DIR OBSERVÉIEREN?
+  yir_email_what_new_to_you: |
+    Wat fir eng nei-fir-Iech Aarte hutt Dir dëst Joer gesinn? Wéi vill Leit hunn Iech mat Bestëmmung gehollef (a wéi vill hutt Dir gehollef)?
   yir_email_with_gratitude: Mat Dankbarkeet,
+  yir_email_year_on_inaturalist_globally_caps: "%{Joer} OP INATURALIST GLOBALT"
+  yir_email_you_are_part_of_something: |
+    Dir sidd Deel vun eppes Grousses! All Persoun déi Observatioune post, Bestëmmunge bäidréit an d'Wuert iwwer iNaturalist verbreet mécht en Ënnerscheed fir d'Biodiversitéit. Duerch eis kollektiv Efforte maache mir Biodiversitéitsdonnéeën an engem eemolegen Ausmooss verfügbar. Merci dass Dir Deel vun der iNaturalist Gemeinschaft sidd!
+  yir_email_you_make_a_difference: |
+    Dir maacht en Ënnerscheed fir d'Biodiversitéit duerch iNaturalist. Merci fir alles wat Dir maacht!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Dir hutt dës E-Mail kritt well %{email} mat https://www.inaturalist.org/people %{username} assoziéiert ass, engem iNaturalist Kont deen den %{created_date} erstallt gouf.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Dir hutt dës E-Mail kritt well %{email} mat <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username assoziéiert ass }</a>, engem iNaturalist Kont erstallt de %{created_date} assortéiert ass.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Äre Kont ass mat %{site_name} (%{site_url}) verbonnen.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Äre Kont ass mat <a href="%{site_url}">%{site_name}</a> verbonnen.
   yir_generating_and_sharing: |
     Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
   yir_millions_of_people_used_inaturalist: |
