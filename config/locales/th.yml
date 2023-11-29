@@ -1457,6 +1457,9 @@ th:
       checklist_places: สถานที่รายการตรวจสอบ
       range: ขอบเขต
   mark_as_reviewed: ทำเครื่องหมายว่าดูแล้ว
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    การทำเครื่องหมายว่าดูแล้วจะทำให้การสังเกตนี้ไม่แสดงในหน้าจำแนกชนิดอีก แต่ผู้อื่นยังมองเห็นการสังเกตนี้ในหน้าจำแนกชนิดได้
   mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าดูแล้ว
   mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ดู
   maverick: ขัดแย้ง
@@ -1744,6 +1747,7 @@ th:
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
   only_show_for_species_subspecies_varieties_etc: แสดงเฉพาะชนิด ชนิดย่อย พันธุ์ ฯลฯ
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
+  only_view_nearby_suggestions: ดูเฉพาะชนิดที่อาจพบในบริเวณใกล้เคียง
   open: เปิด
   open_: เปิด
   open_street_map: OpenStreetMap
