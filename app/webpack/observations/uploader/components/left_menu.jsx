@@ -90,6 +90,7 @@ class LeftMenu extends SelectionBasedComponent {
     const commonDescription = this.commonValue( "description" );
     const commonSelectedTaxon = this.commonValue( "selected_taxon", null, { defaultValue: undefined } );
     const commonDate = this.commonValue( "date" );
+    const commonSelectedDate = this.commonValue( "selected_date" );
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
@@ -143,16 +144,23 @@ class LeftMenu extends SelectionBasedComponent {
         <DateTimeFieldWrapper
           ref="datetime"
           inputFormat={inputFormat}
-          key={`multidate${commonDate}`}
-          reactKey={`multidate${commonDate}`}
-          dateTime={commonDate
-            ? moment( commonDate, inputFormat ).format( "x" )
+          key={`multidate${commonSelectedDate}`}
+          reactKey={`multidate${commonSelectedDate}`}
+          dateTime={commonSelectedDate
+            ? moment( commonSelectedDate, inputFormat ).format( "x" )
             : undefined
           }
-          onChange={dateString => updateSelectedObsCards( {
-            date: dateString,
-            selected_date: dateString
-          } )}
+          onChange={
+            dateString => updateSelectedObsCards( {
+              date: dateString
+            } )
+          }
+          onSelection={
+            dateString => updateSelectedObsCards( {
+              date: dateString,
+              selected_date: dateString
+            } )
+          }
         />
         <div
           className={`input-group${invalidDate ? " has-error" : ""}`}
