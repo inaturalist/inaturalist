@@ -16,6 +16,8 @@ th:
     other: '<span class="count">%{count}</span> การจำแนก'
   x_identifications_:
     other: '%{count} การจำแนก'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> การจำแนก'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ th:
     other: "%{count} การสังเกต"
   x_observations_html:
     other: "<span class='count'>%{count}</span> การสังเกต"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> การสังเกต"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
@@ -56,6 +60,8 @@ th:
     other: "%{count} อื่น ๆ"
   x_people:
     other: "%{count} คน"
+  x_people_html:
+    other: '<span class="count">%{count}</span> คน'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} คน</strong> ช่วย %{user} ด้วย <strong>%{y} การจำแนก</strong>"
   x_photos:
     other: "%{count} รูป"
@@ -65,6 +71,8 @@ th:
     other: '%{count} ผู้ใช้งานใหม่'
   x_species:
     other: '%{count} ชนิด'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> ชนิด"
   x_species_html:
     other: "<span class='count'>%{count}</span> ชนิด"
   x_species_link_html:
@@ -98,6 +106,26 @@ th:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: รายละเอียด
   about_charts: เกี่ยวกับแผนภูมิ
   about_community_taxa: เกี่ยวกับหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกัน
@@ -160,6 +188,8 @@ th:
   action: ปฏิบัติการ
   actions: การดำเนินการทั้งหมด
   active: กำลังดำเนินการ
+  #Status of a complete set that is available for use
+  active_complete_set_status: ใช้งาน
   #Status of a taxon that is available for use on iNat
   active_taxon_status: ใช้งาน
   active_users: ผู้ใช้ที่ยังมีความเคลื่อนไหว
@@ -311,9 +341,12 @@ th:
   #Noun, title of a popup alerting you to something
   alert: แจ้งเตือน
   all: ทั้งหมด
+  #Title for a list of all 3rd party applications
+  all_applications: แอปพลิเคชันทั้งหมด
   all_comments: ความคิดเห็นทั้งหมด
   all_flags_must_be_resolved: ธงปักทั้งหมดต้องได้รับการแก้ไข
   all_life: สิ่งมีชีวิตทั้งหมด
+  all_media_must_be_unhidden: ทุกสื่อต้องไม่ถูกซ่อน
   all_names: ชื่อทั้งหมด
   all_observations: การสังเกตทั้งหมด
   all_photos: รูปถ่ายทั้งหมด
@@ -408,6 +441,8 @@ th:
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
   amphibians: สัตว์สะเทินน้ำสะเทินบก
+  analyze_ids: วิเคราะห์การจำแนก
+  and_other_taxa: "&amp; หน่วยอนุกรมวิธานอื่น ๆ"
   android: แอนดรอยด์
   animals: สัตว์
   annotation: หมายเหตุ
@@ -583,6 +618,7 @@ th:
   back_to_your_journal: กลับไปที่วารสารของคุณ
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
+  badges: รางวัล
   based_on_the_evidence_can_id_be_improved: |
     จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังยืนยันหรือจำแนกย่อยได้อีกหรือไม่?
   batch_edit: แก้ไขหลายรายการ
@@ -714,6 +750,10 @@ th:
   confirm_now: ยืนยันเลย
   confirm_your_info: ยืนยันข้อมูลของคุณ
   confirming_ids: การจำแนกที่ยืนยัน
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: เชื่อมต่อ
+  connect_to_provider: "เชื่อมต่อกับ %{provider}"
   conservation_status: สถานะการอนุรักษ์
   conservation_status_geoprivacy_desc: |
     การเปิดเผยพิกัดเริ่มต้นที่ใช้กับการสังเกตทั้งหมดของหน่วยอนุกรมวิธานนี้ในสถานที่นี้
@@ -721,7 +761,14 @@ th:
   content: เนื้อหา
   content_and_display: เนื้อหา & การแสดงผล
   content_author: ผู้สร้างเนื้อหา
+  content_hidden: เนื้อหาถูกซ่อนไว้
+  content_hidden_by_user_on_date_because_reason_html: |
+    เนื้อหาถูกซ่อนโดย %{user} เมื่อ %{date} เนื่องจาก "%{reason}"
   content_type: ประเภทเนื้อหา
+  user_hid_this_item_because_reason_html: |
+    %{user} ซ่อน%{item}นี้ เนื่องจาก "%{reason}"
+  user_unhid_this_item_because_reason_html: |
+    %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
@@ -819,6 +866,8 @@ th:
   created_by_user_on_date: สร้างโดย %{user} เมื่อ %{date}
   created_on: สร้างเมื่อ
   critically_endangered: ใกล้สูญพันธุ์อย่างยิ่ง
+  csv: CSV
+  csv_file: ไฟล์ CSV
   cumulative_ids: "การจำแนกสะสม: %{count} จาก %{total}"
   curation: จัดการอนุกรมวิธาน
   curator: ผู้ดูแล
@@ -826,6 +875,8 @@ th:
   #curator
   curator_application_inelligible2: |
     ในการสมัครเป็น Curator คุณต้องเป็นผู้ใช้ 60 วันขึ้นไป และเพิ่มอย่างน้อย 5 flags และต้องมี 100 improving identifications ให้กับการสังเกตของทุกคน รวมถึงของคุณเอง (คุณได้เพิ่ม %{num_idents}) เมื่อมีคุณสมบัติตามเกณฑ์ที่กำหนด กลับมาหน้านี่และดำเนินการยื่นส่งใบสมัครได้
+  #Header
+  curator_application_what_curators_can_do: สิ่งที่ผู้ดูแลทำได้
   #Description of a curator's ability to edit places; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
@@ -877,6 +928,7 @@ th:
   date_observed_: วันที่สังเกต
   date_observed_on: สังเกตในวันที่
   date_picker:
+    closeText: ปิด
     currentText: วันนี้
     #Contextual help for a button navigating to the previous month in a date picker
     prevText: ก่อนหน้า
@@ -886,6 +938,11 @@ th:
   date_range: ช่วงวันที่
   date_specified: มีการระบุวันที่สังเกต
   date_time: วันที่/เวลา
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: วันที่อัปเดต
   day: วัน
   decrease_brightness: ลดความสว่าง
@@ -920,12 +977,19 @@ th:
   description_from: คำอธิบายจาก
   description_slash_tags: คำอธิบาย / แท็ก
   desription: คำอธิบาย
+  destroy: ทำลาย
   details: รายละเอียด
   devise:
     sessions:
       signed_out: 'ออกจากระบบเรียบร้อยแล้ว'
     registrations:
       destroyed: 'ลาก่อน! ยกเลิกบัญชีของคุณสำเร็จแล้ว เราหวังว่าจะได้พบคุณอีกในเร็ว ๆ นี้'
+    mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: ยืนยันอีเมลของคุณ
+  devise_reset_password_instructions_hello_email: สวัสดี %{email}
+  did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
   distance_traveled_value: "ระยะทาง: %{distance} เมตร"
   documentation_for_developers_html: เอกสารสำหรับ<a href="/pages/developers">ผู้พัฒนา</a>
@@ -935,6 +999,7 @@ th:
   donate_again_today_caps: บริจาคอีกครั้งในวันนี้
   done: เสร็จสิ้น
   download: ดาวน์โหลด
+  download_caps: ดาวน์โหลด
   download_csv: ดาวน์โหลด CSV
   download_kml: ดาวน์โหลด KML
   #Noun, as in a journal post that has not been published
@@ -963,6 +1028,7 @@ th:
   edit_your_account_and_profile_html: "แก้ไขบัญชีและโปรไฟล์ของคุณ"
   edit_your_default_settings: "แก้ไขการตั้งค่าเริ่มต้นของคุณ"
   edit_your_identification: แก้ไขการจำแนกของคุณ
+  edited_by_name_html: "แก้ไขโดย %{name}"
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
@@ -979,6 +1045,7 @@ th:
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
+  email: อีเมล
   email_notifications: การแจ้งเตือนทางอีเมล
   encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
@@ -2671,10 +2738,15 @@ th:
   verifiable_observations_by_observation_date: การสังเกตที่ตรวจสอบได้ตามวันที่สังเกต
   view: ดู
   view_all: ดูทั้งหมด
+  view_all_caps: ดูทั้งหมด
   view_all_fields: ดูข้อมูลเสริมทั้งหมด
   view_all_flags: ดูรายงานทั้งหมด
   view_all_members: ดูสมาชิกทุกคน
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    other: "ดูทั้งหมด %{count}"
   view_all_observations: ดูการสังเกตทั้งหมด
+  view_all_photocount_photos: "ดูทั้งหมด %{photo_count} รูป"
   view_check_list_page: ดูหน้ารายการตรวจสอบ
   view_details: ดูรายละเอียด
   view_dynamic_lifelist_: ดูรายการสิ่งมีชีวิตแบบไดนามิก
