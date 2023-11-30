@@ -198,6 +198,11 @@ module Logstasher
         total_time: ((args[2] - args[1]) * 1000).round(4),
         status_code: payload[:status]
       })
+      saved_params.each do | param, value |
+        if param.start_with?( "utm_" )
+          payload[param] = value
+        end
+      end
       # params are stored as a string in `params_string`,
       # so don't also store them as an object
       payload.delete(:status)

@@ -1661,7 +1661,7 @@ class YearStatistic < ApplicationRecord
         }
       }, {
         term: {
-          "created_at_details.year": year
+          "observed_on_details.year": year
         }
       }],
       aggregate: {

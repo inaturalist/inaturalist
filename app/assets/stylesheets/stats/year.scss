@@ -269,6 +269,15 @@ $tip-opacity: 1;
         display: flex;
         align-items: center;
         justify-content: center;
+        @media (max-width: 500px) {
+          flex-direction: column;
+          & > .fb-share-button, & > .btn {
+            margin: 0;
+          }
+          & > a.btn {
+            margin-top: 20px;
+          }
+        }
       }
       a {
         i {
@@ -1631,6 +1640,7 @@ $tip-opacity: 1;
     margin-bottom: 20px;
     text-decoration: underline;
     color: $inat-green;
+    text-wrap: wrap;
   }
 
   #app {

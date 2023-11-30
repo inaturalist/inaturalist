@@ -48,7 +48,7 @@ const BroaderImpacts = ( {
                 <div className="subtitle">
                   <a href={
                     `/observations?place_id=any&verifiable=any&user_id=${user.id}`
-                    + `&outlink_source=${source}&created_d1=${year}-01-01&created_d2=${year}-12-31`
+                    + `&outlink_source=${source}&year=${year}`
                   }
                   >
                     {I18n.t( "x_observations", { count: I18n.toNumber( count, { precision: 0 } ) } )}
