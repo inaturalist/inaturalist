@@ -5776,15 +5776,15 @@ he:
   #@vow_or_con works on %{username}. %{created_date} will use the date.long
   #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
   you_received_this_email_notice: |
-    קיבלת מייל זה בגלל שכתובת המייל {email}% מקושרת ל-
+    קיבלת מייל זה בגלל שכתובת המייל %{email} מקושרת ל-
     https://www.inaturalist.org/people/%{username}, חשבון iNaturalist
-    הנוצר ב- {created_date}%.
+    הנוצר ב- %{created_date}.
   #@vow_or_con works on %{username}. %{created_date} will use the date.long
   #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
   you_received_this_email_notice_html: |
-    קיבלת מייל זה בגלל שכתובת המייל {email}% מקושרת ל-
+    קיבלת מייל זה בגלל שכתובת המייל %{email} מקושרת ל-
     <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
-    חשבון iNaturalist הנוצר ב- {created_date}%.
+    חשבון iNaturalist הנוצר ב- %{created_date}.
   #@vow_or_con works on %{site_name}
   your_account_is_affiliated: |
     חשבונך מקושר ל- %{site_name} (%{site_url}).
