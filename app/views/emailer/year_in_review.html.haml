@@ -1,3 +1,4 @@
+- base_utm_params = { utm_medium: "email", utm_campaign: "#{@year}-year-in-review" }
 - content_for( :title ) { @i18n.t :yir_email_subject, year: @year }
 - content_for( :extracss ) do
   :css
@@ -18,8 +19,8 @@
     h1 {
       margin-bottom: 40px;
     }
-= link_to @site.url do
-  = image_tag image_url( "yir-email-header.png", host: @site.url ), id: "header-image"
+= link_to year_stats_url( base_utm_params.merge( utm_content: "header-img", year: @year ) ) do
+  = image_tag image_url( "yir-email-header.png", host: Site.default.url ), id: "header-image"
 
 %h1=@i18n.t :year_in_review_caps, year: @year
 
@@ -33,7 +34,7 @@
 
 %p=@i18n.t :yir_email_log_in_to_generate
 
-%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
+%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( base_utm_params.merge( utm_content: "generate-btn-1", year: @year ) ), class: "btn btn-primary"
 
 %h2=@i18n.t :yir_email_year_on_inaturalist_globally_caps, year: @year
 
@@ -41,10 +42,10 @@
 
 - if @shareable_image_url
   %p.bleed{ style: "margin-top: 40px" }
-    = link_to year_stats_url( year: @year ) do
-      = image_tag image_url( @shareable_image_url, host: @site.url )
+    = link_to year_stats_url( base_utm_params.merge( utm_content: "global-shareable", year: @year ) ) do
+      = image_tag image_url( @shareable_image_url, host: Site.default.url )
 
-%p= link_to @i18n.t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( year: @year ), class: "btn btn-default"
+%p= link_to @i18n.t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( base_utm_params.merge( utm_content: "global-btn", year: @year ) ), class: "btn btn-default"
 
 %h2=@i18n.t :yir_email_what_else_will_you_observe_caps
 
@@ -56,5 +57,5 @@
 
 %p=@i18n.t :yir_email_the_inaturalist_team
 
-%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( year: @year ), class: "btn btn-primary"
+%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( base_utm_params.merge( utm_content: "generate-btn-2", year: @year ) ), class: "btn btn-primary"
 
