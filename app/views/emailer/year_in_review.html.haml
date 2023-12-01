@@ -2,6 +2,19 @@
 - content_for( :title ) { @i18n.t :yir_email_subject, year: @year }
 - content_for( :extracss ) do
   :css
+    h1 {
+      border-top: 3px solid #74ac00;
+      border-bottom: 3px solid #74ac00;
+      font-size: 100%;
+      text-align: center;
+      padding: 10px 0;
+      letter-spacing: 0.3em;
+    }
+
+    h2 {
+      font-size: 125%;
+      margin-top: 40px;
+    }
     .btn {
       margin: 30px auto 60px;
       max-width: 320px;
