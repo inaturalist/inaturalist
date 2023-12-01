@@ -20,6 +20,9 @@ fi:
   x_identifications_:
     one: '1 tunnistus'
     other: '%{count} tunnistusta'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> TUNNISTUS'
+    other: '<span class="count">%{count}</span> TUNNISTUSTA'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -61,6 +64,9 @@ fi:
   x_observations_html:
     one: "<span class='count'>1</span> havainto"
     other: "<span class='count'>%{count}</span> havaintoa"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> HAVAINTO"
+    other: "<span class='count'>%{count}</span> HAVAINTOA"
   x_observations_link_html:
     one: "<a href='%{url}'>1 havainto</a>"
     other: "<a href='%{url}'>%{count} havaintoa</a>"
@@ -89,6 +95,9 @@ fi:
   x_species:
     one: '1 laji'
     other: '%{count} lajia'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> LAJI"
+    other: "<span class='count'>%{count}</span> LAJIA"
   x_species_html:
     one: "<span class='count'>1</span> laji"
     other: "<span class='count'>%{count}</span> lajia"
@@ -749,13 +758,11 @@ fi:
   bioblitz: Bioblitz
   birds: linnut
   birthday: Syntymäpäivä
-  black: musta
   block: Estä
   blocking_description: Estäminen estää yhteydenpidon sinun ja toisen käyttäjän välillä. Estäminen on tarkoitettu tilanteisiin, joissa toinen käyttäjä häiritsee sinua, esimerkiksi vainoaa tai tekee muuta väärinkäyttöä.
   block_removed: Esto poistettu
   blocked_users: Estetyt käyttäjät
   blog_widget: Blogi-pienoisohjelma
-  blue: sininen
   blue_butterfly_etc: "sininen, perhonen, jne."
   body: Leipäteksti
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -769,7 +776,6 @@ fi:
   #shown
   breadcrumbs_description: "Tässä yliajetaan h1 ja oletuksena olevat toimintakehotukset (\"calls to action\"), joten lisää nämä jos ne ovat tärkeitä tälle projektille ja muista että maksimileveys on 950px"
   brief_caption: Lyhyt kuvaus
-  brown: ruskea
   browse: Selaa
   browse_all_projects: Selaa kaikkia projekteja
   browse_all_species: Selaa kaikkia lajeja
@@ -1983,6 +1989,8 @@ fi:
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
   inaturalist_global_year_in_review: "iNaturalistin %{year} vuosikatsaus"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist on itsenäinen järjestö, joka toimii USA:ssa veroista vapautettuna epäkaupallisena 501(c)(3) -organisaationa (Tax ID: 92-1296468).
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -3030,7 +3038,6 @@ fi:
   #sign in with Apple OR Google
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
-  orange: oranssi
   order: Lahko
   order_by: 'Järjestä:'
   organism_is_wild: Eliö on villi
@@ -3178,7 +3185,6 @@ fi:
   data_transfer_consent_child_label: |
     Hyväksyn lapseni henkilötietojen siirtämisen Yhdysvaltoihin
   pin_verb: Kiinnitä
-  pink: pinkki
   pinned_locations_desc: |
     Kiinnitä tämä yhdistelmä koordinaateista, tarkkuudesta, paikannuksen yksityisyydestä ja sijainnista myöhempää käyttöä varten.
   place: Paikka
@@ -3700,7 +3706,6 @@ fi:
     sisään Googlen kautta.
   public_domain: Tekijänoikeudeton
   publish: Julkaise
-  purple: purppura
   quality_grade: Laatutaso
   quality_grade_: Laatutaso
   quality_grade_colon: "Laatutaso:"
@@ -3867,7 +3872,6 @@ fi:
   recently_finished: Saatu äskettäin valmiiksi
   recently_observed: Äskettäin havaitut
   recently_resolved: Äskettäin ratkaistut
-  red: punainen
   redo_search_in_map: Tee haku uudestaan kartalla
   redo_search_in_map_area: Tee haku uudestaan kartalla
   refresh: Päivitä
@@ -4982,7 +4986,6 @@ fi:
   where_were_they?: Missä he olivat?
   where_were_you?: Missä olit?
   which_projects_can_add_your_observations?: Mitkä perinteiset projektit voivat lisätä havaintojasi ko. projektiin?
-  white: valkoinen
   why_are_you_making_this_change_cite_source_required: Miksi teet tämän muutoksen? Ole hyvä ja selitä, ja mainitse lähde jos mahdollista. (Pakollinen)
   why_you_can_see_the_coordinates: Miksi näet koordinaatit
   who_can_add_observation_fields_to_my_obs: Kuka voi lisätä havaintokenttiä havaintoihini?
@@ -5046,7 +5049,6 @@ fi:
   year_in_review_caps: "VUOSIYHTEENVETO %{year}"
   year_month: vuosi/kuukausi
   year_on_site: "Vuosi %{year} %{site}issa"
-  yellow: keltainen
   'yes': "Kyllä"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5090,6 +5092,22 @@ fi:
     luonnon monimuotoisuuteen. Yhdessä tuomme biologista monimuotoisuutta koskevat tiedot ja oivallukset saataville ennennäkemättömissä määrin. Kiitos, että olet osa iNaturalist-yhteisöä!
   yir_email_you_make_a_difference: |
     Voit vaikuttaa luonnon monimuotoisuuteen iNaturalistin avulla. Kiitos kaikesta mitä teet!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Sait tämän viestin, koska osoitteesei %{email} on liitetty iNaturalist-käyttäjätunnukseen
+    https://www.inaturalist.org/people/%{username}, joka on luotu %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Sait tämän viestin, koska osoitteesei %{email} on liitetty iNaturalist-käyttäjätunnukseen 
+    <a href="https://www.inaturalist.org/people/%{username}">https://inaturalist.laji.fi/people/%{username}</a>,, joka on luotu %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Käyttäjätilisi kotiverkosto on %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Käyttäjätilisi kotiverkosto on <a href="%{site_url}">%{site_name}</a>.
   yir_monthly_supporters_random_selection: |
     Tässä on satunnainen valikoima iNatin sankarillisia yhteisön jäseniä, jotka lahjoittavat joka kuukausi.
   you: sinä
