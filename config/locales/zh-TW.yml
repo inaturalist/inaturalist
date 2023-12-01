@@ -717,13 +717,11 @@ zh-TW:
   bioblitz: 生物速查
   birds: 鳥類
   birthday: 生日
-  black: 黑色
   block: 封鎖
   blocking_description: 封鎖可以防止您與其他使用者之間的任何通訊。這一功能主要使用於其他使用者可能對您的安全構成風險的狀況下，例如跟蹤或其他濫用行為。
   block_removed: 封鎖已移除
   blocked_users: 已封鎖的使用者
   blog_widget: 部落格小工具
-  blue: 藍色
   blue_butterfly_etc: "藍色、蝴蝶、或其它。"
   body: 正文
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -737,7 +735,6 @@ zh-TW:
   #shown
   breadcrumbs_description: "這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要，請確認有包含到，另外請記住所允許的最大寬度是 950 像素"
   brief_caption: 簡要說明
-  brown: 棕色
   browse: 瀏覽
   browse_all_projects: 瀏覽所有專案
   browse_all_species: 瀏覽所有物種
@@ -2005,6 +2002,8 @@ zh-TW:
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
   inaturalist_global_year_in_review: "愛自然的全球 %{year} 年回顧"
+  inaturalist_is_an_independent_nonprofit: |
+    《愛自然(iNaturalist)》是位於美國的獨立 501(c)(3) 免稅、非營利組織（稅籍編號：92-1296468）。
   computer_vision_suggestion: 電腦視覺建議
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
@@ -3054,7 +3053,6 @@ zh-TW:
   #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
-  orange: 橘色
   order: 排序
   order_by: 排序依
   organism_is_wild: 野生生物
@@ -3171,7 +3169,6 @@ zh-TW:
     我同意允許讓 iNaturalist 儲存、處理關於我兒女的有限個人資訊，以便管理我兒女的帳號
   data_transfer_consent_desc_title: 關於個人資訊轉移同意書
   pin_verb: 釘選
-  pink: 粉紅色
   pinned_locations_desc: |
     釘選此座標、精確度、位置隱私以及地點標註的組合內容來供日後使用。
   place: 地點
@@ -3721,7 +3718,6 @@ zh-TW:
   provider_authorizations: 提供方授權
   public_domain: 公有領域
   publish: 發佈
-  purple: 紫色
   quality_grade: 品質等級
   quality_grade_: 品質等級
   quality_grade_colon: "品質等級："
@@ -3894,7 +3890,6 @@ zh-TW:
   recently_finished: 近期完成
   recently_observed: 最近觀察
   recently_resolved: 最近已解決
-  red: 紅色
   redo_search_in_map: 在地圖裡重新搜尋
   redo_search_in_map_area: 在地圖區域裡重新搜尋
   refresh: 重新整理
@@ -5059,7 +5054,6 @@ zh-TW:
   where_were_they?: 它們在何處？
   where_were_you?: 您在何處？
   which_projects_can_add_your_observations?: 哪個傳統專案可以添加您的觀察？
-  white: 白色
   why_you_can_see_the_coordinates: 為何您可以看到座標
   who_can_add_observation_fields_to_my_obs: 誰能夠新增觀察欄位到我的觀察紀錄中？
   who_can_add_observations_to_this_project?: 誰可以添加觀察至此專案？
@@ -5123,7 +5117,6 @@ zh-TW:
   year_in_review_caps: "%{year} 年的回顧"
   year_month: 年/月
   year_on_site: "%{site} 在 %{year} 年"
-  yellow: 黃色
   'yes': "是"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5162,6 +5155,20 @@ zh-TW:
     您是偉大生物多樣性版圖的一部分！每一位發布觀察紀錄、鑑定物種、並推廣《愛自然(iNaturalist)》的人，都在為生物多樣性做出貢獻。透過我們的共同努力，我們正以前所未有的規模來建立生物多樣性的資料和見解。感謝您成為《愛自然》社群的一員！
   yir_email_you_make_a_difference: |
     透過《愛自然》，您為生物多樣性做出了貢獻。謝謝您所做的一切！
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    您收到此電子郵件是因為 %{email} 與 https://www.inaturalist.org/people/%{username} 相關聯，該地址為在 %{created_date} 所建立的一個《愛自然(iNaturalist)》 帳號。
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    您收到此電子郵件是因為 %{email} 與 ，<a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>相關聯，該位址為在 %{created_date} 所建立的一個《愛自然(iNaturalist)》 帳號。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    您的帳號是隸屬於%{site_name} (%{site_url})。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    您的帳號是隸屬於<a href="%{site_url}">%{site_name}</a>。
   you: 您
   you_: 您
   you_appear_offline_try_again: |

@@ -780,13 +780,11 @@ ca:
   bioblitz: Bioblitz
   birds: aus
   birthday: Aniversari
-  black: negre
   block: Bloquejar
   blocking_description: El bloqueig impedeix qualsevol comunicació entre vostè i un altre usuari. És per a situacions en què un altre usuari pot posar en risc la vostra seguretat, com ara l'assetjament o altres comportaments abusius.
   block_removed: Blocatge eliminat
   blocked_users: Usuaris bloquejats
   blog_widget: Giny del blog
-  blue: blau
   blue_butterfly_etc: "blau, papallona, etc."
   body: Cos
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -800,7 +798,6 @@ ca:
   #shown
   breadcrumbs_description: "Això reemplaçarà l'h1 i la configuració per defecte de l'acció; assegureu-vos d'incloure-hi totes les opcions importants per a aquest projecte i recordeu que l'amplada màxima permesa és de 950 px."
   brief_caption: Breu llegenda
-  brown: marró
   browse: Navega
   browse_all_projects: Navegar per tots els projectes
   browse_all_species: Examina totes les espècies
@@ -1133,10 +1130,12 @@ ca:
     cannot_be_determined: No es pot determinar a partir de les dades aportades
     dead: L'organisme està mort o mostra signes de probable mort imminent
     feather: Una o més plomes, no unides a un organisme
+    female: L'evidència indica que l'organisme pot produir òvuls per utilitzar-los en la reproducció sexual
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
     gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
+    male: L'evidència indica que l'organisme pot produir espermatozoides per utilitzar-los en la reproducció sexual
     molt: Restes de pell o exoesquelet
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
     organism: Tot o part d'un organisme
@@ -1663,6 +1662,9 @@ ca:
   eligible_for_research_grade: Elegible per a grau de Recerca
   email: Correu
   email_address_for_comments_and_other_feedback: Adreça de correu electrònic per a comentaris i altres comentaris
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Benvolgut/da %{user},
   email_description: El vostre correu-e no es compartirà amb altres usuaris d'iNaturalist
   email_conf_required_after_grace_period: |
     La confirmació del correu electrònic és necessària a partir de %{requirement_date} i no heu confirmat la vostra adreça electrònica abans de la data límit. Si us plau reinicieu la vostra contrasenya per accedir al vostre compte.
@@ -2080,6 +2082,8 @@ ca:
   identification_withdrawn: Identificació retirada.
   identifications: Identificacions
   inaturalist_global_year_in_review: "Resum global de l'any %{year} d'iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist és una organització independent 501(c)(3), exempta d'impostos i sense ànim de lucre amb seu als Estats Units d'Amèrica (ID fiscal: 92-1296468).
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -3114,6 +3118,7 @@ ca:
   observations_widget: Giny d'Observacions
   observations_with_this_field: Observacions amb aquest camp
   observations_with_this_field_and_value: Observacions amb aquest camp i valor
+  observations_without_this_field: Observacions sense aquest camp
   observations_without_media: Observacions sense Suport gràfic
   observationcounts_refreshed: Nombre actualitzat d'observacions
   observed: Observat el
@@ -3221,7 +3226,6 @@ ca:
   #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
-  orange: taronja
   order: Ordre
   order_by: Ordenar per
   organism_is_wild: L'organisme és salvatge
@@ -3364,7 +3368,6 @@ ca:
   data_transfer_consent_child_label: |
     Dono el meu consentiment per a transmetre la informació personal dels meus infants als Estats Units d'Amèrica.
   pin_verb: Posar al mapa
-  pink: rosa
   pinned_locations_desc: |
     Enganxeu aquesta combinació de coordenades, precisió, geoprivacitat i notes de localitat per utilitzar-les més tard.
   place: Lloc
@@ -3823,6 +3826,8 @@ ca:
   posted_by: Publicat per
   #Shows the date a journal post was published
   posted_on_date_html: Publicat el %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicat el %{date} per %{user}
   posts: Publicacions
   potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
@@ -3925,7 +3930,6 @@ ca:
     Google no ha proporcionat una adreça de correu electrònic per a aquest compte, la qual és necessària. Creeu un compte en aquest lloc en comptes d'iniciar la sessió a través de Google.
   public_domain: Domini públic
   publish: Publica
-  purple: porpra
   quality_grade: Grau de qualitat
   quality_grade_: Grau de qualitat
   quality_grade_colon: "Grau de qualitat:"
@@ -4108,12 +4112,12 @@ ca:
   recently_resolved: Resolt recentment
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Registre
-  red: vermell
   redo_search_in_map: Refer la cerca al mapa
   redo_search_in_map_area: Torneu a realitzar la cerca a l'àrea del mapa
   refresh: Actualitza
   refreshing: actualitzant
   regenerate_stats: Torna a generar les estadístiques
+  regional_names: Noms regionals
   register_for_this_event_at_x_html: "Registrar-se per aquest event a %{x}"
   reject?: Ho refuseu?
   relative_observations: Observacions relacionades
@@ -4343,6 +4347,8 @@ ca:
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_less: Mostrar menys
   show_more: Mostrar més
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostra més opcions d'inici de sessió
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostra "Sense anotacions"
@@ -5441,7 +5447,6 @@ ca:
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?
-  white: blanc
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Perquè esteu fent aquest canvi? (opcional)
   why_you_can_see_the_coordinates: Per què podeu veure les coordenades?
@@ -5513,7 +5518,6 @@ ca:
   year_in_review2: "Resum de l'any %{year}"
   year_month: any/mes
   year_on_site: "L'any %{year} a %{site}"
-  yellow: groc
   'yes': "Sí­"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -6472,6 +6476,8 @@ ca:
         display_project_name: Mostra nom del projecte
         do_you_need_features_from_traditional: |
           Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
+        do_you_need_features_from_traditional2: |
+          Necessiteu característiques dels projectes tradicionals, com ara camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         duplicate_project: Duplica el projecte
         include_annotated_observations: |
           Incloure només observacions marcades amb un atribut determinat (p.e. estat biològic), o un atribut i valors determinats (p.e. estat biològic=adult). Hi ha una limitació d'un filtre d'atribut per projecte.

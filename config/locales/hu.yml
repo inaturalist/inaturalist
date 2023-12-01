@@ -716,12 +716,10 @@ hu:
   bioblitz: Bioblitz
   birds: madarak
   birthday: Születésnap
-  black: fekete
   block: Letiltás
   block_removed: Tiltás visszavonva
   blocked_users: Letiltott felhasználók
   blog_widget: Blog modul
-  blue: kék
   blue_butterfly_etc: "kék, pillangó, stb."
   body: Törzs
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -730,7 +728,6 @@ hu:
   bold_text: félkövér szöveg
   breadcrumbs: Navigációs útvonalak
   brief_caption: Rövid felirat
-  brown: barna
   browse: Böngészés
   browse_all_projects: Böngészés a projektek között
   browse_all_species: Összes faj böngészése
@@ -2810,7 +2807,6 @@ hu:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: VAGY
-  orange: narancssárga
   order: Rendezés
   order_by: Rendezés
   organism_is_wild: Vadon élő
@@ -2943,7 +2939,6 @@ hu:
   data_transfer_consent_child_label: |
     Engedélyezem, hogy a gyermekem személyes adatait át lehessen vinni az Amerikai Egyesült Államokba
   pin_verb: Rögzítés
-  pink: rózsaszín
   place: Hely
   placeholder: Helykitöltő
   place_autocomplete_placeholder: Zion Nemzeti Park, Miami, stb.
@@ -3450,7 +3445,6 @@ hu:
   protozoans: protozoa
   public_domain: Közkincs
   publish: Közzététel
-  purple: lila
   quality_grade: Minőségi szint
   quality_grade_: Minőségi szint
   quality_grade_colon: "Minőségi szint:"
@@ -3623,7 +3617,6 @@ hu:
   recently_added: Újonnan hozzáadva
   recently_created: Legutóbb létrehozott
   recently_observed: Nemrég megfigyelt
-  red: piros
   redo_search_in_map: Újrakeresés a térképen
   redo_search_in_map_area: Újrakeresés a térképterületen
   refresh: Frissít
@@ -4645,7 +4638,6 @@ hu:
   where_were_they?: Hol vannak?
   where_were_you?: Hol voltál?
   which_projects_can_add_your_observations?: Mely hagyományos projektek használhatják fel a megfigyeléseidet?
-  white: fehér
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Miért módosítasz? (opcionális)
   why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
@@ -4695,7 +4687,6 @@ hu:
   year_in_review_caps: "%{year} ÉVI VISSZATEKINTŐ"
   year_month: év/hónap
   year_on_site: "%{site}: %{year} áttekintése"
-  yellow: sárga
   'yes': "Igen"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5333,6 +5324,8 @@ hu:
         delete_project: Projekt törlése
         do_you_need_features_from_traditional: |
           Szükséged van a hagyományos projektek funkcióira, mint például a pontos koordináták, egyéni adatmezők vagy a megfigyelések manuális hozzáadása?
+        do_you_need_features_from_traditional2: |
+          Szükséged van a hagyományos projektek funkcióira, mint például az egyéni adatmezők vagy az olyan megfigyelések hozzáadásának lehetősége, amelyeket nem lehet szűrőkkel listázni?
         leaderboards_among_individuals: <strong>Egyének</strong> szerinti toplisták
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projektek</strong> szerinti toplisták

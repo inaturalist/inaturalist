@@ -714,7 +714,7 @@ zh-CN:
     other: |
       根据这些 ID中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的 ID <strong>无意中产生分歧</strong> 。
   based_on_the_evidence_can_id_be_improved: |
-    基于现有证据, 社区身份证还能被确认或改进吗？
+    基于现有证据, 社区鉴定能否被确认或仍需改进？
   batch: 批
   batch_edit: 批量编辑
   #Where x is the title of a list of taxa
@@ -736,13 +736,11 @@ zh-CN:
   bioblitz: 生物限时寻
   birds: 鸟
   birthday: 生日
-  black: 黑色
   block: 屏蔽
   blocking_description: 屏蔽可以阻止您与其他用户之间的任何通信。它适用于其他用户可能危及您安全的情况，如存心骚扰或其他辱骂行为。
   block_removed: 封禁已移除
   blocked_users: 封禁的用户
   blog_widget: 博客小部件
-  blue: 蓝色
   blue_butterfly_etc: "蓝色、蝴蝶等"
   body: 身体
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -756,7 +754,6 @@ zh-CN:
   #shown
   breadcrumbs_description: "这将取代h1和默认调用行为，因此如果它们对此项目很重要，请确保包含它们，并记住最大宽度允许值为950px"
   brief_caption: 简要描述
-  brown: 棕色
   browse: 浏览
   browse_all_projects: 浏览所有项目
   browse_all_species: 浏览所有物种
@@ -1033,7 +1030,7 @@ zh-CN:
     female: 雌性
     plant_phenology: 植物物候学
     budding: 发芽
-    flower_budding: 花芽
+    flower_budding: 花芽阶段
     flowering: 开花
     fruiting: 果实
     life_stage: 生命阶段
@@ -1839,7 +1836,7 @@ zh-CN:
   guide_was_successfully_updated: 指南已成功更新。
   guidelines: 指南
   has_already_been_flagged_by: 已被标记，标记者
-  has_id_supported_by_two_or_more: 由两个或以上ID所支持
+  has_id_supported_by_two_or_more: 由不少于两个鉴定结果所支持
   has_one_or_more_faves: 有一个或更多喜爱
   has_photo: 有照片
   has_photos: 有照片
@@ -1882,7 +1879,7 @@ zh-CN:
   high: 高
   highest_rank: 最高等级
   highlights_and_stats_from_year_on_site: "来自 %{site} 在 %{year} 年的要点与统计数据"
-  history: 历史
+  history: 历史记录
   home: 首页
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "要调整的小时："
@@ -2983,7 +2980,6 @@ zh-CN:
   #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
-  orange: 橙色
   order: 排序
   order_by: 排序方式：
   organism_is_wild: 生物是野生的
@@ -3096,7 +3092,6 @@ zh-CN:
   pi_consent_child_label: |
     我同意允许 iNaturalist 储存、处理关于我子女的有限个人信息，以便管理我子女的账号。
   pin_verb: 置顶
-  pink: 粉色
   pinned_locations_desc: |
     将坐标、精度、地理定位和局部注释结合起来以供以后使用。
   place: 地方
@@ -3624,7 +3619,6 @@ zh-CN:
   provider_authorizations: 提供方授权
   public_domain: 公有领域
   publish: 发布
-  purple: 紫色
   quality_grade: 质量等级
   quality_grade_: 质量等级
   quality_grade_colon: "质量等级："
@@ -3782,7 +3776,7 @@ zh-CN:
   receive_project_journal_notifications?: 接收项目日记通知吗？
   receive_updates_from_this_project: 从此项目接收更新
   recent: 最近
-  recent_evidence_of_organism: 生物的最新证据
+  recent_evidence_of_organism: 近期的生物证据
   recent_exports: 最近导出
   recent_new_users: 最近的新用户
   recent_observations: 最新观察
@@ -3799,7 +3793,6 @@ zh-CN:
   recently_resolved: 最近已解决
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: 记录
-  red: 红色
   redo_search_in_map: 在地图中重新搜索
   redo_search_in_map_area: 在地图区域上重新搜索
   refresh: 刷新
@@ -4689,7 +4682,7 @@ zh-CN:
   user_muted: 用户已禁言
   user_observed_on_on_date_in_place: |
     %{user} 于 %{date} 在 %{place} 上观察到一个
-  user_suggested_an_id: "%{user}建议了一个ID"
+  user_suggested_an_id: "%{user}提出了一个鉴定"
   user_trusts_you_with_their_private_coordinates: "%{user} 信任您的并向您公开隐藏坐标"
   user_trusts_you_with_their_private_coordinates_desc: |
     此观察者信任您的并向您公开其所有的隐藏坐标
@@ -4822,7 +4815,6 @@ zh-CN:
   where_were_they?: 他们在哪里？
   where_were_you?: 您在哪里？
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
-  white: 白色
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: 你为什么要做此修改？（可选）
   why_are_you_making_this_change_cite_source_required: 你为什么要做此修改？如果可能的话，请解释原因并附上依据。（必须）
@@ -4888,7 +4880,6 @@ zh-CN:
   year_in_review: "%{year}年中的复核"
   year_month: 年/月
   year_on_site: "%{site} %{year}一年"
-  yellow: 黄色
   'yes': "是"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of

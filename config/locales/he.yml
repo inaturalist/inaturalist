@@ -899,13 +899,11 @@ he:
   bioblitz: ביו־בליץ
   birds: עופות
   birthday: יום הולדת
-  black: שחור
   block: חסימה
   blocking_description: חסימה מונעת כל תקשורת בינך לבין משתמש.ת אחר.ת. היא מיועדת למצבים בהם משתמש.ת אחר.ת מאיימ.ת על בטחונך, כגון הטרדה או התנהגות פוגענית אחרת.
   block_removed: חסימה הוסרה
   blocked_users: משתמשים חסומים
   blog_widget: יישומון בלוג
-  blue: כחול
   blue_butterfly_etc: "כחול, פרפר, וכו'"
   body: גוף
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -919,7 +917,6 @@ he:
   #shown
   breadcrumbs_description: "זה יחליף את h1 ואת ברירת המחדל של קריאות לפעולה, יש להוסיף אותם אם הם חשובים לפרויקט הזה ולזכור שמרוחב המקסימלי הוא 950 פיקסלים"
   brief_caption: תיאור קצר
-  brown: חום
   browse: חיפוש
   browse_all_projects: חיפוש בכל הפרויקטים
   browse_all_species: חיפוש בכל המינים
@@ -2198,6 +2195,9 @@ he:
   identification_withdrawn: זיהוי בוטל
   identifications: זיהויים
   inaturalist_global_year_in_review: "סיכום שנת %{year} גלובלי של iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist הוא ארגון עצמאי (c)(3)501, פטור ממס, ארגון ללא מטרות רווח
+    הממוקם בארצות הברית (Tax ID: 92-1296468).
   computer_vision_suggestion: הצעת ראייה ממוחשבת
   computer_vision_suggestion_desc: |
     ראייה ממוחשבת היא התהליך של לימוד מחשבים לזהות דפוסים בתמונות. אנו מספקים כלים המשתמשים במודלים של ראייה ממוחשבת שהתאמנו על התמונות של הקהילה כדי לתת הצעות זיהוי, כמו הפיצ'רים של השלמה אוטומטית והשוואה. תווית זו מסמנת שמישהו או מישהי הוסיפו זיהוי באמצעות אחד מכלים אלו.
@@ -3357,7 +3357,6 @@ he:
   #sign in with Apple OR Google
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
-  orange: כתום
   order: סדרה
   order_by: 'סדר לפי:'
   organism_is_wild: פרט בבר
@@ -3496,7 +3495,6 @@ he:
   data_transfer_consent_child_label: |
     אני נותנ.ת את הסכמתי להעברת מידע אישי של בני/בתי לארצות הברית.
   pin_verb: נעץ
-  pink: ורוד
   pinned_locations_desc: |
     נעיצת שילוב זה של קואורדינטות, דיוק, פרטיות מיקום, והערות מיקום לשימוש בהמשך.
   place: מקום
@@ -4061,7 +4059,6 @@ he:
     גוגל לא סיפקו כתובת דוא"ל דרושה עבור חשבון זה. נא ליצור חשבון באתר זה במקום להתחבר דרך גוגל.
   public_domain: נחלת הכלל
   publish: פרסום
-  purple: סגול
   quality_grade: רמת זיהוי
   quality_grade_: רמת זיהוי
   quality_grade_colon: "רמת זיהוי:"
@@ -4258,7 +4255,6 @@ he:
   recently_resolved: נפתרו לאחרונה
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: רישום
-  red: אדום
   redo_search_in_map: חיפוש חוזר במפה
   redo_search_in_map_area: חיפוש חוזר בשטח המפה
   refresh: רענון‏
@@ -5637,7 +5633,6 @@ he:
   where_were_they?: היכן הם היו?
   where_were_you?: היכן היית?
   which_projects_can_add_your_observations?: אילו פרויקטים בסיסיים יכולים להוסיף את התצפיות שלך?
-  white: לבן
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: מדוע החלטת על שינוי זה? (אופציונאלי)
   why_are_you_making_this_change_cite_source_required: מדוע את.ה מבצע.ת את השינוי הזה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
@@ -5716,7 +5711,6 @@ he:
   year_in_review_caps: "סיכום שנה %{year}"
   year_month: שנה/חודש
   year_on_site: "שנה ב%{site} %{year}"
-  yellow: צהוב
   'yes': "כן"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5770,6 +5764,24 @@ he:
     הנך לוקח.ת חלק בדבר גדול! כל מי שמעלה תצפיות, מוסיפ.ה זיהויים ומפיץ את בשורת iNaturalist עושה שינוי למען המגוון הביולוגי. באמצעות המאמצים המשותפים שלנו, אנו מנגישות ומנגישים נתונים ותובנות על המגוון הביולוגי בקנה מידה חסר תקדים. תודה שאת.ה חלק מקהילת iNaturalist!
   yir_email_you_make_a_difference: |
     את.ה עושה שינוי למען המגוון הביולוגי דרך iNaturalist. תודה על כל מה שאת.ה עושה!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    קיבלת מייל זה בגלל שכתובת המייל %{email} מקושרת ל-
+    https://www.inaturalist.org/people/%{username}, חשבון iNaturalist
+    הנוצר ב- %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    קיבלת מייל זה בגלל שכתובת המייל %{email} מקושרת ל-
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    חשבון iNaturalist הנוצר ב- %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    חשבונך מקושר ל- %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    חשבונך מקושר ל- <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     יצירה ושיתוף של נתונים על מגוון עצום של מינים, בקנה מידה ובקצב חסר תקדים, מביאים עמם עלויות הולכות ועולות.
   yir_millions_of_people_used_inaturalist: |
