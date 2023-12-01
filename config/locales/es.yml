@@ -794,13 +794,11 @@ es:
   bioblitz: Maratón naturalista
   birds: aves
   birthday: Cumpleaños
-  black: negro
   block: Bloquear
   blocking_description: Bloquear evita cualquier comunicación entre usted y otro usuario. Es para situaciones en las que otro usuario puede poner su seguridad en peligro, como el acoso u otro comportamiento abusivo.
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
-  blue: azul
   blue_butterfly_etc: "azul, mariposa, etc."
   body: Cuerpo
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -814,7 +812,6 @@ es:
   #shown
   breadcrumbs_description: "Esto reemplazará el h1 y los llamados a acción por defecto, asegúrate de incluirlos si son importantes para este proyecto y recuerda que el ancho máximo permitido es de 950 px."
   brief_caption: Leyenda breve
-  brown: marrón
   browse: Examinar
   browse_all_projects: Examinar todos los proyectos
   browse_all_species: Examinar todas las especies
@@ -3270,7 +3267,6 @@ es:
   #sign in with Apple OR Google
   or_all_caps: o
   or_choose_high_level_taxa: "... o seleccione de algunos taxones de alto nivel"
-  orange: naranja
   order: Orden
   order_by: Ordenar por
   organism_is_wild: El organismo es silvestre
@@ -3416,7 +3412,6 @@ es:
   data_transfer_consent_child_label: |
     Doy mi consentimiento para que la información personal de los menores a mi cargo sea transferida a los Estados Unidos de América
   pin_verb: Fijar
-  pink: rosa
   pinned_locations_desc: |
     Selecciona esta combinación de notas de coordenadas, precisión, geoprivacidad y ubicación para más tarde.
   place: Lugar
@@ -3991,7 +3986,6 @@ es:
     a través de Google.
   public_domain: Dominio público
   publish: Publicar
-  purple: púrpura
   quality_grade: Grado de calidad
   quality_grade_: Grado de calidad
   quality_grade_colon: "Grado de calidad:"
@@ -4174,7 +4168,6 @@ es:
   recently_resolved: Resuelto recientemente
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Registro
-  red: rojo
   redo_search_in_map: Rehacer búsqueda en mapa
   redo_search_in_map_area: Vuelve a realizar la búsqueda en el área del mapa
   refresh: Refrescar
@@ -5528,7 +5521,6 @@ es:
   where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: <em>¿Dónde</em> estabas?
   which_projects_can_add_your_observations?: '¿Qué proyectos tradicionales pueden añadir tus observaciones?'
-  white: blanco
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: '¿Por qué estás haciendo este cambio? (opcional)'
   why_are_you_making_this_change_cite_source_required: '¿Por qué quiere efectuar este cambio? Explíquelo y cite una fuente de ser posible. (Obligatorio)'
@@ -5604,7 +5596,6 @@ es:
   year_in_review_caps: "EL %{year} EN RESUMEN"
   year_month: año/mes
   year_on_site: "El %{year} en %{site}"
-  yellow: amarillo
   'yes': "Sí"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5873,7 +5864,11 @@ es:
             Utilizamos este mapa para aplicar la etiqueta Esperado cerca a las sugerencias basadas en la ubicación de la observación
           you_can_think: |
             Puedes considerar el Mapa de Esperado Cerca como una estimación de si la especie está presente en alguna parte dentro de la celda de la cuadrícula o si está completamente ausente.
+        unthresholded_map:
+          figure_alt_text: El geomodelo pondera los resultados de la visión artificial
         range_comparison:
+          this_map_shows: |
+            Este mapa muestra el área de distribución taxonómica de esta especie superpuesta al mapa de esperado cerca que utilizamos para evaluar el Geomodelo.
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Precisión:
