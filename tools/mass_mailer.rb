@@ -135,7 +135,10 @@ if test_users.size.positive?
     if identifier.to_i.positive?
       identifier
     else
-      User.find_by_login( identifier ).id
+      test_user = User.find_by_login( identifier )
+      raise "Could not find user: #{identifier}" unless test_user
+
+      test_user.id
     end
   end
   scope = scope.where( id: test_user_ids )

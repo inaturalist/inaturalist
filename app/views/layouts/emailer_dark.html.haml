@@ -6,9 +6,6 @@
       = yield :title
     :css
       #{render partial: "emailer/fonts", formats: :css}
-      :root {
-        color-scheme: light dark;
-      }
       body,
       table,
       td,
@@ -97,44 +94,20 @@
       .upstacked {
         margin-top: 10px;
       }
-      #{
-        # What follows is some insane styling to get around background color
-        # inversion in dark mode GMail on iOS, which is not really a
-        # detriment to the user because this layout is already suitable for
-        # dark mode. Note that this does nothing to stop GMail from inverting
-        # some other colors, like buttons, borders, etc.
-        # https://www.hteumeuleu.com/2021/fixing-gmail-dark-mode-css-blend-modes/
-      }
-      .content {
-        background-color: #1a1a1a;
-        background-image:linear-gradient(#1a1a1a,#1a1a1a);
-      }
-      u + .body .gmail-blend-screen {
-        background:#1a1a1a;
-        mix-blend-mode:screen;
-      }
-      u + .body .gmail-blend-difference {
-        background:#1a1a1a;
-        mix-blend-mode:difference;
-      }
     = yield :extracss
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
-    %meta{ name: "color-scheme", content: "light dark" }
-  - # https://www.hteumeuleu.com/2021/fixing-gmail-dark-mode-css-blend-modes/
   %body.body
     .container
       .content
-        .gmail-blend-screen
-          .gmail-blend-difference
-            = yield
-            %center.upstacked
+        = yield
+        %center.upstacked
+          %p
+            %small=@i18n.t :inaturalist_is_an_independent_nonprofit
+          - if @user
+            %p
+              %small=raw @i18n.t :you_received_this_email_notice_html, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase
+            - if @user.site && @user.site.id != Site.default.id
               %p
-                %small=@i18n.t :inaturalist_is_an_independent_nonprofit
-              - if @user
-                %p
-                  %small=raw @i18n.t :you_received_this_email_notice_html, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase
-                - if @user.site && @user.site.id != Site.default.id
-                  %p
-                    %small=raw @i18n.t :your_account_is_affiliated_html, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase
-              %p
-                %small= link_to @i18n.t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"
+                %small=raw @i18n.t :your_account_is_affiliated_html, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase
+          %p
+            %small= link_to @i18n.t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"
