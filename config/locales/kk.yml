@@ -570,11 +570,9 @@ kk:
   bioblitz: Биоблиц
   birds: құстар
   birthday: Туған күні
-  black: қара
   block_removed: Бұғаттау алынып тасталды
   blocked_users: Бұғатталған пайдаланушылар
   blog_widget: Блог виджеті
-  blue: көк
   blue_butterfly_etc: "көк, көбелек және т.б."
   body: Мәтін
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -582,7 +580,6 @@ kk:
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: қалың мәтін
   breadcrumbs: Нан үгіндісі
-  brown: қоңыр
   browse: Шолу
   browse_all_projects: Барлық жобаларды шолу
   browse_all_species: Барлық түрлерді шолу
@@ -1243,19 +1240,67 @@ kk:
   notify_me_of_mentions: Маған ескертулер туралы хабарлау (мысалы, @username)
   observations_by_app: Қолданба бойынша бақылаулар
   observations_by_rank: Дәреже бойынша бақылаулар
+  observations_saved: Бақылау(лар) сақталды!
+  observations_specifying_this_field: Осы өрісті көрсететін бақылаулар
+  observations_specifying_this_field_with_value: Бұл өрісті "%{value}" арқылы көрсететін бақылаулар
+  observations_text_search_warning: |
+    Мәтіндік іздеулер басқа сүзгілермен біріктірілгенде оғаш нәтижелер беруі мүмкін. Белгілі бір түрді бақылауды тапқыңыз келсе, таксон сүзгісін пайдаланыңыз.
+  observations_total: Жалпы бақылаулар
+  observations_w: Бақылаулар/
+  observations_was_successfully_updated: Бақылау(лар) сәтті жаңартылды.
+  observations_widget: Бақылау виджеті
+  observations_with_this_field: Осы өріс бойынша бақылаулар
+  observations_with_this_field_and_value: Осы өріс пен мәнге ие бақылаулар
+  observations_without_this_field: Бұл өріссіз бақылаулар
+  observations_without_media: Медиасыз бақылаулар
+  observationcounts_refreshed: Бақылаулар саны жаңартылды
+  observed_by: Бақылаған
+  observer: Бақылаушы
+  observers: Бақылаушылар
+  observer_prefers_no_traditional_project_addition: |
+    Бақылауша басқа адамдарға өз бақылауларын дәстүрлі жобаларға қосуға мүмкіндік бермейді.
+  observer_short: Бақылаушы
+  occurrence_status_descriptions:
+    absent: Аймақта кездеспейді
+    common: Жиі кездеседі
+    present: Аймақта кездеседі
+    uncommon: Тұрақты түрде кездеседі, бірақ аз мөлшерде; қолайлы мекендеу ортасын мұқият іздеуді талап етеді
+  occurrence_status_levels:
+    present: бар
+    common: кәдімгі
+    uncommon: сирек
+    irregular: тұрақты емес
+    doubtful: күмәнді
+    absent: жоқ
+  of_places: орындар
+  off_caps: "ӨШІРУ"
+  official_blog: Ресми блог
   old_observation_form: Ескі бақылау нысаны (ескірген)
   ok: "ОК"
   on_caps: "ҚОСУ"
+  onboarding:
+    youve_got_updates_panel_title: Сізде жаңартулар бар!
+  one_by_one: "Бір-бірден"
+  open: ашық
+  open_: Ашық
+  open_street_map: OpenStreetMap
   options: Опциялар
   or: немесе
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: НЕМЕСЕ
   or_choose_high_level_taxa: "... немесе жоғары деңгейлі таксондардан таңдаңыз"
-  orange: қызғылт сары
+  organism_is_wild: Жабайы организм
+  organisms: Организмдер
+  original: Түпнұсқа
   password: Құпия сөз
   password_confirmation: 'Құпия сөзді растау'
   people: Адамдар
+  photos_or_sounds?: Фотолар немесе дыбыстар?
+  photos_size:
+    small: шағын
+    medium: орташа
+    large: үлкен
   pi_consent_desc_title: Жеке ақпарат
   pi_consent_desc_html: |
     <p>
@@ -1288,6 +1333,8 @@ kk:
     Мен жеке ақпаратымның Америка Құрама Штаттарына берілуіне рұқсат беремін
   data_transfer_consent_child_label: |
     Мен баламның жеке ақпаратын Америка Құрама Штаттарына жіберуге рұқсат беремін
+  place: Орын
+  placeholder: Толтырғыш
   place_geo:
     geo_planet_place_types:
       Airport: Әуежай
@@ -1681,6 +1728,10 @@ kk:
     zambia: Замбия
     zimbabwe: Зимбабве
   places_of_interest: Қызықты жерлер
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: Сақ болыңыз!
+  popular: Танымал
+  position: Позиция
   potential_disagreement: Ықтимал келіспеушілік
   privacy: Құпиялылық
   profile: Профиль
@@ -1709,7 +1760,6 @@ kk:
   project_rules: Жоба ережелері
   project_settings: Жоба баптаулары
   projects: Жобалар
-  purple: күлгін
   ranks:
     kingdom: Патшалық
     x_kingdoms:
@@ -2043,6 +2093,8 @@ kk:
       combine: Таңдалған бақылауларды біріктіру
       duplicate: Таңдалған бақылауларды қайталау
   username: Пайдаланушы аты
+  username_or_email: Қолданушы аты немесе электрондық пошта
+  users: Қолданушылар
   view_all_fields: Барлық өрістерді көру
   view_all_flags: Барлық белгілерді көру
   view_all_members: Барлық мүшелерді көру
@@ -2055,8 +2107,6 @@ kk:
   what_did_you_see?: <em>Сіз</em> не көрдіңіз?
   what_do_you_think: Сіз қалай ойлайсыз?
   what_to_keep: Нені сақтау керек
-  white: ақ
-  yellow: сары
   'yes': "Иә"
   yes_license_my_childs_observations: Иә, ғалымдар деректерді пайдалана алуы үшін баламның фотосуреттерін, дыбыстарын және бақылауларын лицензиялаңыз (ұсынылады).
   yes_license_my_observations_so_scientists_can_use: Иә, ғалымдар менің деректерімді пайдалана алатындай фотоларымды, дыбыстарды және бақылауларымды лицензиялаңыз (ұсынылады).
