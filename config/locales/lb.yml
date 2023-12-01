@@ -498,17 +498,14 @@ lb:
   bioblitz: Bioblitz
   birds: Vigel
   birthday: Gebuertsdag
-  black: schwaarz
   block_removed: Spär ewechgeholl
   blocked_users: Gespaart Benotzer
   blog_widget: Blog Widget
-  blue: blo
   blue_butterfly_etc: "blo, Päiperlek, asw."
   body: Kierper
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: fetten Text
   breadcrumbs: Broutgrimmelen
-  brown: brong
   browse: Duerchsichen
   browse_all_projects: All Projeten duerchsichen
   browse_all_species: All Aarten duersichen
@@ -974,7 +971,7 @@ lb:
   gbif: GBIF
   generate_your_stats: Generéiert Är Statistiken
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
-  generate_your_year_in_review_caps: GENERÉIERT ÄR IWWERSIICHT FIR D'JOER %{Joer}
+  generate_your_year_in_review_caps: GENERÉIERT ÄR IWWERSIICHT FIR D'JOER %{year}
   Genus: Gattung
   get_started: Fir unzefänken
   getting_started_guide: Guide fir unzefänken
@@ -1731,7 +1728,6 @@ lb:
   pi_consent_desc_title: Iwwer Perséinlech Informatiounen
   pi_consent_label: |
     Ech stemmen zou datt iNaturalist limitéiert perséinlech Donnéeën iwwert mech ka späicheren a veraarbechte fir mäin Kont kennen ze managen.
-  pink: rosa
   place: Plaz
   place_create_quota_exceeded: |
     Dir hutt d'Zuel vun Plazen iwwerschratt déi Dir an enger 24-Stonne-Period kreéiere kënnt
@@ -2175,7 +2171,6 @@ lb:
   recent_observations_: Rezent Observatiounen
   recently_active: Rezent aktiv
   recently_finished: Rezent fäerdeg gemaach
-  red: rout
   redo_search_in_map: Nach eng Kéier op der Kaart sichen
   refresh: Aktualiséieren
   regenerate_stats: Statistiken nei generéieren
@@ -2568,7 +2563,6 @@ lb:
   where_were_they?: Wou waren se?
   where_were_you?: Wou war Dir?
   which_projects_can_add_your_observations?: Wat fir traditionell Projete kënnen Är Observatiounen derbäisetzen?
-  white: wäiss
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Firwat wëllt Dir dës Ännerung maachen? (fakultativ)
   why_are_you_making_this_change_cite_source_required: Firwat wëllt Dir dës Ännerung maachen? Gitt wgl. Är Grënn an – wa méiglech – eng Quell un. (Obligatoresch)
@@ -2605,7 +2599,6 @@ lb:
   year_in_review_caps: "JOER AM RÉCKBLÉCK %{year}"
   year_month: Joer/Mount
   year_on_site: "Joer %{year}op %{site}"
-  yellow: giel
   'yes': "Jo"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
@@ -2644,7 +2637,7 @@ lb:
   yir_email_what_new_to_you: |
     Wat fir eng nei-fir-Iech Aarte hutt Dir dëst Joer gesinn? Wéi vill Leit hunn Iech mat Bestëmmung gehollef (a wéi vill hutt Dir gehollef)?
   yir_email_with_gratitude: Mat Dankbarkeet,
-  yir_email_year_on_inaturalist_globally_caps: "%{Joer} OP INATURALIST GLOBALT"
+  yir_email_year_on_inaturalist_globally_caps: "%{year} OP INATURALIST GLOBALT"
   yir_email_you_are_part_of_something: |
     Dir sidd Deel vun eppes Grousses! All Persoun déi Observatioune post, Bestëmmunge bäidréit an d'Wuert iwwer iNaturalist verbreet mécht en Ënnerscheed fir d'Biodiversitéit. Duerch eis kollektiv Efforte maache mir Biodiversitéitsdonnéeën an engem eemolegen Ausmooss verfügbar. Merci dass Dir Deel vun der iNaturalist Gemeinschaft sidd!
   yir_email_you_make_a_difference: |
@@ -2656,7 +2649,7 @@ lb:
   #@vow_or_con works on %{username}. %{created_date} will use the date.long
   #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
   you_received_this_email_notice_html: |
-    Dir hutt dës E-Mail kritt well %{email} mat <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username assoziéiert ass }</a>, engem iNaturalist Kont erstallt de %{created_date} assortéiert ass.
+    Dir hutt dës E-Mail kritt well %{email} mat <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> assoziéiert ass, engem iNaturalist Kont erstallt de %{created_date} assortéiert ass.
   #@vow_or_con works on %{site_name}
   your_account_is_affiliated: |
     Äre Kont ass mat %{site_name} (%{site_url}) verbonnen.
