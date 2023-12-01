@@ -31,13 +31,12 @@ var emptyLayer = new google.maps.ImageMapType({
   getTileUrl: function(tile, zoom) { }
 });
 
-
 google.maps.Map.prototype.createMarker = function(lat, lng, options) {
   options = options || {}
   options.position = new google.maps.LatLng(lat, lng)
   return new google.maps.Marker(options);
 };
-  
+
 // remove a single marker
 google.maps.Map.prototype.removeMarker = function(marker) {
   // gracefully clear the listeners out of memory
@@ -47,20 +46,20 @@ google.maps.Map.prototype.removeMarker = function(marker) {
   marker.setMap(null);
   this.removeOverlay(marker);
 };
-  
+
 google.maps.Map.prototype.addNewCenteredMarker = function(options) {
   return this.addNewUnsavedMarker(this.getCenter().lat(),
                                   this.getCenter().lng(),
                                   options);
 };
-  
+
 google.maps.Map.prototype.addNewUnsavedMarker = function(lat, lng, options) {
   this.removeLastUnsavedMarker();
   this.lastUnsavedMarker = this.createMarker(lat, lng, options);
   this.lastUnsavedMarker.setMap(this);
   return this.lastUnsavedMarker;
 };
-  
+
 // Call this to remove the marker object from the lastUnsavedMarker value in the
 // iNaturalist.Map object.  This is usually used when canceling input into
 // a form, or when the lastUnsavedMarker object needs to be cleared out.
