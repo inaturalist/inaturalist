@@ -252,6 +252,7 @@ class Emailer < ActionMailer::Base
     end
 
     @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
+    @force_default_site_url_options = true
     set_locale
     @shareable_image_url = global_year_statistic.
       shareable_image_for_locale( I18n.locale )&.
