@@ -1640,7 +1640,7 @@ $tip-opacity: 1;
     margin-bottom: 20px;
     text-decoration: underline;
     color: $inat-green;
-    text-wrap: wrap;
+    white-space: break-spaces;
   }
 
   #app {
