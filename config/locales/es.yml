@@ -89,6 +89,9 @@ es:
   x_people:
     one: "%{count} persona"
     other: "%{count} personas"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persona'
+    other: '<span class="count">%{count}</span> personas'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 imagen"
@@ -2884,8 +2887,8 @@ es:
   new_users: Usuarios nuevos
   new_users_in_year: "Nuevos usuarios en %{year}"
   new_users_w_7_obs: Usuarios nuevos w/ 7 Obs
-  newly_added: Añadido Recientemente
-  newly_added_species: Especie Añadida recientemente
+  newly_added: Añadido recientemente
+  newly_added_species: Especie añadida recientemente
   newly_observed_species: Especie Observada recientemente
   newly_observed_species_in_year: "Nuevas especies añadidas en %{year}"
   next: Siguiente
@@ -4634,7 +4637,7 @@ es:
   #can buy merchandise. Please try to keep translations as short as possible
   store: Tienda
   store_caps: TIENDA
-  studies_that_used_inaturalist_data_in_year: Estudios Que Utilizaron Datos de iNaturalist en %{year}
+  studies_that_used_inaturalist_data_in_year: Estudios que utilizaron datos de iNaturalist en %{year}
   stuff_just_added: "Lo que acabas de agregar..."
   subject_resolved_noun_html: "%{subject} resuelve %{noun}"
   subject_affecting_stuff_html: "%{subject} affecta %{stuff}"
@@ -5625,7 +5628,7 @@ es:
   #"You" is singular
   yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a avanzar iNaturalist durante este año. ¡Gracias!
   #"Your" is singular
-  yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu Apoyo
+  yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu apoyo
   yir_email_because_of_you: |
     Gracias a ti, hay más datos sobre la biodiversidad este año que el año pasado. La Revisión del Año es nuestro regalo para ti por todo lo que has hecho por la biodiversidad a través de iNaturalist.
   yir_email_log_in_to_generate: |
@@ -6869,6 +6872,18 @@ es:
           Creado vía <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">la red iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Agregó ambos
+        added_only_identifications: Sólo identificaciones agregadas
+        added_only_observations: Sólo observaciones agregadas
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Impactos más amplios
+        broader_impacts_desc: |
+          Varios socios externos importan periódicamente observaciones de iNaturalist a
+          apoyar la ciencia y la conservación. Sus observaciones, identificaciones,
+          y las opciones de licencia abiertas permiten a estas organizaciones proporcionar información útil
+          información sobre biodiversidad a personas que la necesitan en todo el mundo.
         compare_desc: |
           ¿Cómo ha sido este año comparado con tus años anteriores? Con un uso de tres o más años de uso podemos empezar a comparar estadísticas de vuestra actividad anual.
         compare_site_desc: |
@@ -6928,7 +6943,7 @@ es:
         observations_per_year_by_date_added: Por fecha de incorporación
         observations_per_year_by_date_observed: Por fecha de observación
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
-        observation_streaks: Racha de Observaciones
+        observation_streaks: Racha de observaciones
         observation_streaks_color_desc: |
           El color representa el número de días en una escala logarítmica:
         observation_streaks_desc2: |
