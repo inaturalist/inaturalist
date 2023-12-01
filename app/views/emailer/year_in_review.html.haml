@@ -9,6 +9,8 @@
       text-align: center;
       padding: 10px 0;
       letter-spacing: 0.3em;
+      margin-top: 0;
+      margin-bottom: 40px;
     }
 
     h2 {
@@ -25,12 +27,12 @@
       color: #ddd;
     }
     #header-image {
-      width: 70%;
-      margin: 0px auto 40px;
+      width: 100%;
+      margin: 0px auto;
       display: block;
     }
-    h1 {
-      margin-bottom: 40px;
+    .content {
+      padding-top: 0px;
     }
 = link_to year_stats_url( base_utm_params.merge( utm_content: "header-img", year: @year ) ) do
   = image_tag image_url( "yir-email-header.png", host: Site.default.url ), id: "header-image"
