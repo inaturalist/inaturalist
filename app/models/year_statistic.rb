@@ -171,7 +171,7 @@ class YearStatistic < ApplicationRecord
     # locales in a delayed job as that will take longer
     year_statistic.generate_shareable_image( only_user_locale: true )
     year_statistic.delay(
-      priority: USER_PRIORITY,
+      priority: USER_INTEGRITY_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
     ).generate_shareable_image
     year_statistic
