@@ -391,6 +391,8 @@ it:
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
   added_on_datetime: "Aggiunta il %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Ruolo aggiunto
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
@@ -1945,7 +1947,7 @@ it:
   generate_widget: Genera il Widget
   generate_your_stats: Genera le tue Statistiche
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
-  generate_your_year_in_review_caps: GENERA LA TUA REVISIONE DELL'ANNO %{year}
+  generate_your_year_in_review_caps: GENERA LA TUA RASSEGNA DELL'ANNO %{year}
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
   geomodel_expected_nearby_label_is_derived: |
@@ -1977,7 +1979,6 @@ it:
   graft: Innesta
   graft_taxon: Innesta %{taxon}
   grafting_attemps_to_insert_this_taxon: L'innesto prova a inserire il taxon nel nostro albero tassonomico, cercando di trovare un taxon parentale o creando tutti i necessari taxa intermedi al fine di collegarlo ad un taxon esistente di livello superiore
-  grant_role: "%{grant} %{role} ruolo"
   grid: Griglia
   grid_layout: Layout a griglia
   grid_tooltip: Mostra la visualizzazione a griglia
@@ -2848,7 +2849,6 @@ it:
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_id_tooltip_html: 'Le osservazioni di livello "Serve ID" hanno contenuto multimediale, una posizione e una data, ma richiedono ancora un consenso della comunità su una precisa identificazione. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
-  needs_to_be_identified: Ha bisogno essere identificato
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account da <strong>%{inat_site_name}</strong> verso <strong>%{site_name}</strong> e condividere i dati con le istituzioni locali?
@@ -4229,6 +4229,8 @@ it:
   remove_tags: Rimuovi i tag
   removed: Rimosso
   removed_project_user: Utente del progetto rimosso
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Ruolo rimosso
   removing: "Rimozione in corso..."
   reorder_by_taxonomy: Riordina per tassonomia
   repair_broken_urls: Ripara URL danneggiati
@@ -5602,7 +5604,7 @@ it:
   year: Anno
   year_in_review: "Rassegna Anno %{year}"
   year_in_review2: "Rassegna dell'Anno %{year}"
-  year_in_review_caps: "REVISIONE DELL'ANNO %{year}"
+  year_in_review_caps: "RASSEGNA DELL'ANNO %{year}"
   year_month: anno/mese
   year_on_site: "Anno su %{site} %{year}"
   'yes': "Sì"
@@ -5634,19 +5636,19 @@ it:
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Ha Bisogno del Tuo Supporto
   yir_email_because_of_you: |
-    Grazie a voi, quest'anno abbiamo raccolto molti più dati sulla biodiversità rispetto all'anno scorso. La Revisione dell'Anno è il nostro dono per te, per tutto ciò che hai fatto per la biodiversità, tramite iNaturalist.
+    Grazie a voi, quest'anno abbiamo raccolto molti più dati sulla biodiversità rispetto all'anno scorso. La Rassegna dell'Anno è il nostro dono per te, per tutto ciò che hai fatto per la biodiversità, tramite iNaturalist.
   yir_email_log_in_to_generate: |
-    Per scoprirlo, accedi per generare la tua revisione personale dell'anno!
+    Per scoprirlo, accedi per generare la tua rassegna personale dell'anno!
   yir_email_of_your_observations:
     one: Della tua %{count} osservazione, sai quante ne hai fatte nel %{year}?
     other: Delle tue %{count} osservazioni, sai quante ne hai fatte nel %{year}?
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
-    La tua Revisione dell'Anno %{year} di iNaturalist: celebra il tuo anno con la biodiversità.
+    La tua Rassegna dell'Anno %{year} di iNaturalist: celebra il tuo anno con la biodiversità.
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: Il Team di iNaturalist
   yir_email_the_year_isnt_over: |
-    L'anno non è ancora finito e non è mai troppo tardi per pubblicare vecchie osservazioni. Dopo averne condivise di più, assicurati di selezionare "Rigenera le statistiche" in fondo alla tua Revisione dell'Anno, per visualizzare gli aggiornamenti.
+    L'anno non è ancora finito e non è mai troppo tardi per pubblicare vecchie osservazioni. Dopo averne condivise di più, assicurati di selezionare "Rigenera le statistiche" in fondo alla tua Rassegna dell'Anno, per visualizzare gli aggiornamenti.
   yir_email_what_else_will_you_observe_caps: CHE ALTRO OSSERVERAI?
   yir_email_what_new_to_you: |
     Quali specie a te nuove hai registrato quest'anno? Quante persone ti hanno aiutato con le identificazioni (e quante ne hai aiutate)?
@@ -5689,7 +5691,7 @@ it:
   you_appear_offline_try_again: |
     Sembra che tu sia offline. Prova di nuovo quando sarai connesso ad Internet.
   youre_a_site_curator_which_means: |
-    Sei un curatore del sito, ciò significa che ti sei offerto di aiutare per aiutarci a revisionare i dati e monitorare i contenuti. Per favore non sentirti obbligato ad affrontare tutti i problemi, ma se hai tempo per controllarne qualcuno, non apprezzeremo tutto l'aiuto che puoi darci. Se hai domande sulle revisione dei contenuti o non vuoi più essere curatore, contattaci attraverso %{email}
+    Sei un curatore del sito, ciò significa che ti sei offerto di aiutare per aiutarci a revisionare i dati e monitorare i contenuti. Per favore non sentirti obbligato ad affrontare tutti i problemi, ma se hai tempo per controllarne qualcuno, noi apprezzeremo tutto l'aiuto che puoi darci. Se hai domande sulle revisione dei contenuti o non vuoi più essere curatore, contattaci attraverso %{email}
   you_are_now_following_x: "Ora stai seguendo %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>you</strong> sono ora amministratori di %{project}
@@ -6839,6 +6841,8 @@ it:
         display_project_name: Visualizza il nome del Progetto
         do_you_need_features_from_traditional: |
           Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?
+        do_you_need_features_from_traditional2: |
+          Hai bisogno di funzionalità dei progetti tradizionali, come campi di osservazione personalizzati, o l'aggiunta di singole osservazioni che non possono essere filtrate automaticamente?
         duplicate_project: Duplica progetto
         include_annotated_observations: |
           Includi solo le osservazioni annotate con un particolare attributo (ad es. stadio di vita),
@@ -7110,7 +7114,7 @@ it:
         translators_desc: |
           Sapevi che iNaturalist è stato tradotto in %{x_languages},
           quasi interamente da %{x_people}, alcune delle quali addirittura non usano iNat? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,
-          con il numero di parolo che hanno tradotto per
+          con il numero di parole che hanno tradotto per
           %{website_link_tag}il sito web%{link_tag_end}, le nostre app
           %{iphone_link_tag}iPhone%{link_tag_end} e
           %{android_link_tag}Android%{link_tag_end}, e
@@ -7122,7 +7126,7 @@ it:
         translators_desc_for_site: |
           Sapevi che %{site_name} è stato tradotto quasi interamente da
           %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,
-          con il numero di parolo che hanno tradotto per
+          con il numero di parole che hanno tradotto per
           %{website_link_tag}il sito web%{link_tag_end}, le nostre app
           %{iphone_link_tag}iPhone%{link_tag_end} e
           %{android_link_tag}Android%{link_tag_end}, e
