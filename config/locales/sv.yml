@@ -407,6 +407,8 @@ sv:
   added_by: Tillagd av
   added_by_user_on_date_html: "Tillagd av %{user} den %{date}"
   added_on_datetime: "Tillagd den %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Lade till roll
   added_to_favorites_html: |
     Tillagd i <a href="%{url}">favoriter</a>
   adding: "Lägger till..."
@@ -2050,7 +2052,6 @@ sv:
   graft: Ympa
   graft_taxon: Ympa %{taxon}
   grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till vårt taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
-  grant_role: "%{grant} %{role} roll"
   grid: Rutnät
   grid_layout: Rutnätslayout
   grid_tooltip: Visa rutnätsvy
@@ -2947,7 +2948,6 @@ sv:
   needs_id_: Behöver bestämmas
   needs_id_expandable_html: "<span class='full'>Behöver </span>bestämmas"
   needs_id_tooltip_html: '"Behöver bestämning"-fynd har media, fyndplats och datum, men kräver fortfarande att communityn är överens om en exakt artbestämning. <a href="https://www.inaturalist.org/pages/help#quality">Läs mer om kvalitetsklasser</a>'
-  needs_to_be_identified: Behöver bestämmas
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del av det internationella iNaturalist-
@@ -4371,6 +4371,8 @@ sv:
   remove_tags: Ta bort taggningar
   removed: Borttagen
   removed_project_user: Tog bort projektanvändare
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Tog bort roll
   removing: "Tar bort..."
   reorder_by_taxonomy: Ordna om efter taxonomi
   repair_broken_urls: Reparera brutna URL:er
@@ -7126,6 +7128,9 @@ sv:
         display_project_name: Visa projektnamn
         do_you_need_features_from_traditional: |
           Behöver du funktioner från traditionella projekt, såsom tillgång till exakta koordinater, anpassade fyndfält eller möjlighet att lägga till individuella fynd som inte kan filtreras automatiskt?
+        do_you_need_features_from_traditional2: |
+          Behöver du funktioner från traditionella projekt, såsom anpassade fyndfält
+          eller lägga till individuella fynd som inte kan filtreras automatiskt?
         duplicate_project: Dubblettprojekt
         include_annotated_observations: |
           Inkludera endast fynd med anteckning om ett visst attribut (t.ex. livsstadium), eller ett visst attribut och värde (t.ex. livsstadium = adult).
