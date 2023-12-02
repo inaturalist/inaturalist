@@ -2035,7 +2035,6 @@ nl:
   graft: Enten
   graft_taxon: Ent %{taxon}
   grafting_attemps_to_insert_this_taxon: Enten probeert dit taxon in onze taxonomische boom in te voegen, door een bestaand oudertaxon te vinden of alle noodzakelijke tussenliggende taxa te creëren om het aan een bestaand hoger taxon te koppelen.
-  grant_role: "%{grant} %{role} rol"
   grid: Raster
   grid_layout: Rooster layout
   grid_tooltip: Toon rooster weergave
@@ -2907,7 +2906,6 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_id_tooltip_html: '"ID nodig"-waarnemingen hebben media, locatie en een datum maar er is nog steeds een gemeenschapsconsensus nodig voor een nauwkeurige determinatie. <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
-  needs_to_be_identified: Moet worden gedetermineerd
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, onderdeel van het internationale iNaturalist
