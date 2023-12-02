@@ -1939,7 +1939,6 @@ de:
   graft: eingliedern
   graft_taxon: '%{taxon} eingliedern'
   grafting_attemps_to_insert_this_taxon: '"Eingliedern" beschreibt den Ansatz, dieses Taxon in unseren Stammbaum zu integrieren: ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.'
-  grant_role: "%{grant} %{role} Rolle"
   grid: Raster
   grid_layout: Rasteransicht
   grid_tooltip: Rasteransicht anzeigen
@@ -2780,7 +2779,6 @@ de:
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum; es bedarf aber einer gemeinschaftlichen Bestimmung auf (normalerweise) Artniveau, um "Forschungsqualität" zu erreichen. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
-  needs_to_be_identified: Benötigt weitere Bestimmungen
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
@@ -6773,6 +6771,8 @@ de:
         display_project_name: Projektname anzeigen
         do_you_need_features_from_traditional: |
           Brauchst du Funktionen aus traditionellen Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?
+        do_you_need_features_from_traditional2: |
+          Brauchst du Funktionen aus traditionellen Projekten, wie etwa benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?
         duplicate_project: Projekt duplizieren
         include_annotated_observations: |
           Nur Beobachtungen mit einer bestimmten Annotation (z.B. Entwicklungssstadium) 
