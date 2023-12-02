@@ -2032,7 +2032,6 @@ da:
   graft: Pode
   graft_taxon: Podet %{taxon}
   grafting_attemps_to_insert_this_taxon: Podning forsøger at indsætte denne takson i vores taksonomiske træ, finde et eksisterende overordnet takson eller opret alle de nødvendige mellemliggende taksa for at vedhæfte det til et eksisterende højere takson niveau.
-  grant_role: "%{grant} %{role} rolle"
   grid: Gitter
   grid_layout: Gittervisning
   grid_tooltip: Vis gittervisning
@@ -2918,7 +2917,6 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_id_tooltip_html: 'Observationstypen "Behøver ID" har medier, placering og dato, men mangler fortsat fællesskabskonsensus ift. en præcis identifikation. <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
-  needs_to_be_identified: Behøver en identifikation
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
@@ -7249,6 +7247,9 @@ da:
         display_project_name: Vis projektnavn
         do_you_need_features_from_traditional: |
           Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
+        do_you_need_features_from_traditional2: |
+          Brug for funktioner fra traditionelle projekter, såsom tilpassede observationsfelter,
+          eller tilføjelse af individuelle observationer, som ikke automatisk kan filtreres?
         duplicate_project: Duplikér Projekt
         include_annotated_observations: |
           Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
