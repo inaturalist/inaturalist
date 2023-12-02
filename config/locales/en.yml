@@ -500,6 +500,8 @@ en:
   added_by: Added by
   added_by_user_on_date_html: "Added by %{user} on %{date}"
   added_on_datetime: "Added on %{datetime}"
+  # Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Added role
   added_to_favorites_html: |
     Added to <a href="%{url}">favorites</a>
   adding: "Adding..."
@@ -2227,7 +2229,6 @@ en:
   graft: Graft
   graft_taxon: Graft %{taxon}
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
-  grant_role: "%{grant} %{role} role"
   grid: Grid
   grid_layout: Grid Layout
   grid_tooltip: Show grid view
@@ -3156,7 +3157,6 @@ en:
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_id_tooltip_html: '"Needs ID" observations have media, location, and a date, but still require community consensus on a precise identification. <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
-  needs_to_be_identified: Needs to be identified
   # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part of the international iNaturalist
@@ -4643,6 +4643,8 @@ en:
   remove_tags: Remove tags
   removed: Removed
   removed_project_user: Removed project user
+  # Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Removed role
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
   repair_broken_urls: Repair broken URLs
