@@ -1934,7 +1934,6 @@ id:
   graft: Cangkok
   graft_taxon: Cangkok %{taxon}
   grafting_attemps_to_insert_this_taxon: Mencangkok merupakan upaya untuk memasukkan takson ini ke pohon taksonomi kami, menemukan takson induk yang ada, atau menciptakan taksa apapun di antaranya yang diperlukan untuk menempelkannya ke tingkat takson yang lebih tinggi yang sudah ada.
-  grant_role: "%{grant} peran %{role}"
   grid: Grid
   grid_layout: Tata Letak Grid
   grid_tooltip: Tampilkan tampilan grid
@@ -2797,7 +2796,6 @@ id:
   needs_id_: Perlu ID
   needs_id_expandable_html: "<span class='full'>Perlu </span>ID"
   needs_id_tooltip_html: 'Pengamatan yang "Memerlukan ID" memiliki media, lokasi, dan tanggal, tetapi masih membutuhkan konsensus supaya menjadi identifikasi yang tepat. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
-  needs_to_be_identified: Perlu diidentifikasi
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, bagian dari Jaringan iNaturalist
@@ -6658,6 +6656,8 @@ id:
         display_project_name: Hapus nama proyek
         do_you_need_features_from_traditional: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti akses menuju koordinat sesungguhnya, kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
+        do_you_need_features_from_traditional2: |
+          Apakah Anda memerlukan fitur dari proyek tradisional, seperti kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         duplicate_project: Gandakan Proyek
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
