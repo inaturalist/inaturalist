@@ -1883,7 +1883,6 @@ zh-TW:
   graft: 轉移
   graft_taxon: 轉移 %{taxon}
   grafting_attemps_to_insert_this_taxon: 目前轉移嘗試插入此物種分類至我們的分類樹，找尋現有的父級物種分類，或創建在此之間全部所需的物種分類群，來附加到現有的更高階物種分類。
-  grant_role: "%{grant} %{role}身份"
   grid: 網格
   grid_layout: 網格佈局
   grid_tooltip: 顯示網格檢視
@@ -2638,7 +2637,6 @@ zh-TW:
   needs_id_: 需要鑑定
   needs_id_expandable_html: "<span class='full'>需要</span>鑑定"
   needs_id_tooltip_html: '「需要鑑定」的觀察記錄有多媒體、地點和日期，但社群仍須針對一個精確的鑑定取得共識。<a href="https://www.inaturalist.org/pages/help#quality">閱讀有關資料品質等級的細節</a>'
-  needs_to_be_identified: 需要被鑑定
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>，是 iNaturalist 國際網路的一部分，針對%{place}的生物多樣性和大眾。您想要把您的帳號所屬單位從<strong>%{inat_site_name}</strong>更改為<strong>%{site_name}</strong>以及與當地機構共享資料嗎？
