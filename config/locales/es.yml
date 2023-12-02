@@ -1970,7 +1970,6 @@ es:
   graft: Injertar
   graft_taxon: Insertar %{taxon}
   grafting_attemps_to_insert_this_taxon: Al injertar se trata de insertar este taxón en nuestro árbol taxonómico, encontrar un taxón padre existente o crear todos los taxones necesarios en el medio con el fin de adjuntarlo a un taxón de más alto nivel existente.
-  grant_role: "Se a %{grant} el permiso de %{role}"
   grid: Cuadrícula
   grid_layout: Diseño de cuadrícula
   grid_tooltip: Mostrar la vista de rejilla
@@ -2830,7 +2829,6 @@ es:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_id_tooltip_html: 'Las observaciones "Necesita ID" tienen medios, ubicación y fecha, pero todavía requieren consenso de la comunidad sobre su identificación precisa. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las notas de calidad</a>'
-  needs_to_be_identified: Necesita identificarse
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong> es parte de la red global de iNaturalist y se centra en la biodiversidad y la comunidad de naturalistas de %{place}. ¿Quieres afiliar tu cuenta de
@@ -6880,10 +6878,7 @@ es:
         #heading for a section displaying use of iNaturalist data by other organizations
         broader_impacts: Impactos más amplios
         broader_impacts_desc: |
-          Varios socios externos importan periódicamente observaciones de iNaturalist a
-          apoyar la ciencia y la conservación. Sus observaciones, identificaciones,
-          y las opciones de licencia abiertas permiten a estas organizaciones proporcionar información útil
-          información sobre biodiversidad a personas que la necesitan en todo el mundo.
+          Varios socios externos importan periódicamente observaciones de iNaturalist para apoyar la ciencia y la conservación. Sus observaciones, identificaciones y opciones de licencias abiertas permiten a estas organizaciones proporcionar información sobre biodiversidad a personas que la necesitan en todo el mundo.
         compare_desc: |
           ¿Cómo ha sido este año comparado con tus años anteriores? Con un uso de tres o más años de uso podemos empezar a comparar estadísticas de vuestra actividad anual.
         compare_site_desc: |
