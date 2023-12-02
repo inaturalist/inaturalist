@@ -1,51 +1,57 @@
+# frozen_string_literal: true
+
+require "English"
 require "socket"
 
 module Logstasher
-
   HTTP_PARAMS_TO_STASH = [
     "HTTP_FROM", "HTTP_HOST", "HTTP_USER_AGENT", "HTTP_X_CLUSTER_CLIENT_IP",
     "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
     "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
     "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
-    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT" ]
+    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT"
+  ].freeze
 
   IP_PARAMS = [
     "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_X_FORWARDED_FOR", "REMOTE_ADDR",
     "SERVER_ADDR", "clientip"
-  ]
+  ].freeze
 
   def self.logger
     return if Rails.env.test?
     return @logger if @logger
-    @logger = ActiveSupport::Logger.new("log/#{ Rails.env }.logstash.log")
+
+    @logger = ActiveSupport::Logger.new( "log/#{Rails.env}.logstash.log" )
   end
 
-  def self.ip_from_request_env(request_env)
+  def self.ip_from_request_env( request_env )
     # try a few params for IP. Proxies will shuffle around requester IP
-    %w( HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR ).each do |param|
-      return request_env[ param ] unless request_env[ param ].blank?
+    %w(HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
+      return request_env[param] unless request_env[param].blank?
     end
     nil
   end
 
-  def self.payload_from_request(request)
-    return { } unless request.is_a?(ActionDispatch::Request)
-    payload = { }
+  def self.payload_from_request( request )
+    return {} unless request.is_a?( ActionDispatch::Request )
+
+    payload = {}
     # grab nearly all the HTTP params from request.env
-    payload.merge!(request.env.select{ |k,v|
-      HTTP_PARAMS_TO_STASH.include?(k) && !v.blank? })
+    payload.merge!( request.env.select do | k, v |
+                      HTTP_PARAMS_TO_STASH.include?( k ) && !v.blank?
+                    end )
     # cleanup multiple IPs
-    payload = Logstasher.split_multiple_ips(payload)
-    payload[:clientip] = Logstasher.ip_from_request_env(payload)
+    payload = Logstasher.split_multiple_ips( payload )
+    payload[:clientip] = Logstasher.ip_from_request_env( payload )
     if request.env["HTTP_ACCEPT_LANGUAGE"]
       # there may be multiple variations of languages, plus other junk
       payload[:http_languages] = request.env["HTTP_ACCEPT_LANGUAGE"].
-        split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.map(&:downcase).first
+        split( /[;,]/ ).grep( /^[a-z-]+$/i ).map( &:downcase ).first
     end
     payload[:Via] = request.headers["Via"]
     payload[:x_via] = request.headers["X-Via"]
     payload[:ssl] = request.ssl?.to_s
-    payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
+    payload[:bot] = Logstasher.user_agent_a_bot?( request.user_agent )
     # this can be overwritten by merging Logstasher.payload_from_user
     payload[:logged_in] = false
     payload[:i18n_locale] = I18n.locale.to_s.downcase
@@ -56,50 +62,54 @@ module Logstasher
     payload
   end
 
-  def self.payload_from_session(session)
-    return { } unless session.is_a?(ActionDispatch::Request::Session)
-    { session: session.to_hash.select{ |k,v|
-      [ :session_id, :_csrf_token, :oauth_application_id ].include?(k.to_sym) } }
+  def self.payload_from_session( session )
+    return {} unless session.is_a?( ActionDispatch::Request::Session )
+
+    { session: session.to_hash.select do | k, _v |
+                 [:session_id, :_csrf_token, :oauth_application_id].include?( k.to_sym )
+               end }
   end
 
-  def self.payload_from_user(user)
-    return { } unless user&.class.name == "User"
+  def self.payload_from_user( user )
+    return {} unless user&.class&.name == "User"
+
     { user_id: user.id,
       user_name: user.login,
       logged_in: true }
   end
 
-  def self.replace_known_types!(hash)
-    if hash.key?(:request)
-      if hash[:request].is_a?(ActionDispatch::Request)
-        hash.merge!( Logstasher.payload_from_request(hash[:request]) )
+  def self.replace_known_types!( hash )
+    if hash.key?( :request )
+      if hash[:request].is_a?( ActionDispatch::Request )
+        hash.merge!( Logstasher.payload_from_request( hash[:request] ) )
       end
-      hash.delete(:request)
+      hash.delete( :request )
     end
-    if hash.key?(:session)
-      if hash[:session].is_a?(ActionDispatch::Request::Session)
-        hash.merge!( Logstasher.payload_from_session(hash[:session]) )
+    if hash.key?( :session )
+      if hash[:session].is_a?( ActionDispatch::Request::Session )
+        hash.merge!( Logstasher.payload_from_session( hash[:session] ) )
       else
-        hash.delete(:session)
+        hash.delete( :session )
       end
     end
-    if hash.key?(:user)
-      if hash[:user].is_a?(User)
-        hash.merge!( Logstasher.payload_from_user(hash[:user]) )
+    if hash.key?( :user )
+      if hash[:user].is_a?( User )
+        hash.merge!( Logstasher.payload_from_user( hash[:user] ) )
       end
-      hash.delete(:user)
+      hash.delete( :user )
     end
     hash
   end
 
-  def self.write_hash(hash_to_write)
+  def self.write_hash( hash_to_write )
     return if Rails.env.test?
+
     hash_to_write[:subtype] ||= "Custom"
-    Logstasher.replace_known_types!(hash_to_write)
+    Logstasher.replace_known_types!( hash_to_write )
     begin
-      stash_hash = { end_time: Time.now, pid: $$ }.
-        delete_if{ |k,v| v.blank? }.merge(hash_to_write)
-      Logstasher.logger.debug(stash_hash.to_json)
+      stash_hash = { end_time: Time.now, pid: $PROCESS_ID }.
+        delete_if {| _k, v | v.blank? }.merge( hash_to_write )
+      Logstasher.logger.debug( stash_hash.to_json )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_hash failed: #{e}"
     end
@@ -107,6 +117,7 @@ module Logstasher
 
   def self.write_unprocessable( request, response, session, current_user )
     return if Rails.env.test?
+
     payload = {
       request: request,
       session: session,
@@ -114,90 +125,91 @@ module Logstasher
     }
     Logstasher.replace_known_types!( payload )
     begin
-      Logstasher.write_hash( payload.merge({
+      Logstasher.write_hash( payload.merge( {
         "@timestamp": Time.now,
         subtype: "Unprocessable",
         error_message: response.body[0...1000],
         status_code: 422
-      }))
+      } ) )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_unprocessable failed: #{e}"
     end
   end
 
-  def self.write_exception(exception, custom={})
+  def self.write_exception( exception, custom = {} )
     return if Rails.env.test?
-    Logstasher.replace_known_types!(custom)
+
+    Logstasher.replace_known_types!( custom )
     begin
-      Logstasher.write_hash( custom.merge({
+      Logstasher.write_hash( custom.merge( {
         "@timestamp": Time.now,
         subtype: "Exception",
         error_type: exception.class.name,
-        error_message: [ exception.class.name, exception.message ].join(": "),
-        backtrace: exception.backtrace ? exception.backtrace[0...15].join("\n") : nil
-      }))
+        error_message: [exception.class.name, exception.message].join( ": " ),
+        backtrace: exception.backtrace ? exception.backtrace[0...15].join( "\n" ) : nil
+      } ) )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_exception failed: #{e}"
     end
   end
 
-  def self.write_custom_log(message, custom={})
+  def self.write_custom_log( message, custom = {} )
     return if Rails.env.test?
-    Logstasher.replace_known_types!(custom)
+
+    Logstasher.replace_known_types!( custom )
     begin
-      Logstasher.write_hash( custom.merge({
+      Logstasher.write_hash( custom.merge( {
         "@timestamp": Time.now,
         subtype: "Custom",
         error_message: message
-      }))
+      } ) )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_custom_log failed: #{e}"
     end
   end
 
-  def self.delayed_job(job, custom={})
+  def self.delayed_job( job, custom = {} )
     return if Rails.env.test?
+
     begin
-      Logstasher.write_hash( custom.merge({
+      Logstasher.write_hash( custom.merge( {
         subtype: custom[:job_duration] ? "DelayedJobDuration" : "DelayedJob"
-      }).merge(job.dashboard_info))
+      } ).merge( job.dashboard_info ) )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.delayed_job failed: #{e}"
     end
   end
 
-  def self.write_action_controller_log(args)
+  def self.write_action_controller_log( args )
     return if Rails.env.test?
+
     begin
-      payload = args[4].except(:headers, :response).deep_dup
+      payload = args[4].except( :headers, :response ).deep_dup
       format = payload[:format] || "all"
       format = "all" if format == "*/*"
-      saved_params = Hash[
-        payload[:params].delete_if{ |k,v|
+      saved_params =
+        payload[:params].delete_if do | k, v |
           # remove bank params, binary data params, and common or otherwise indexed params
           v.blank? ||
-          v.to_s.match( /^data:/ ) ||
-          [ :controller, :action, :utf8, :authenticity_token ].include?(k.to_sym)
-        }.map{ |k,v|
-          # flatten out nested object and complex params like uploads
-          [ k, v.to_s ]
-        }]
-      payload.merge!({
+            v.to_s.match( /^data:/ ) ||
+            [:controller, :action, :utf8, :authenticity_token].include?( k.to_sym )
+        end.transform_values( &:to_s )
+      payload.merge!( {
         "@timestamp": args[1],
         subtype: "ActionController",
         end_time: args[2],
-        controller_action: payload[:controller] + "::" + payload[:action],
-        method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
+        controller_action: "#{payload[:controller]}::#{payload[:action]}",
+        method: ( payload[:method] || payload[:params][:_method] || "GET" ).upcase,
         params_string: saved_params.any? ? saved_params.to_json : nil,
         param_keys: saved_params.keys,
         format: format,
-        view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : 0.0,
-        db_runtime: payload[:db_runtime] ? payload[:db_runtime].round(4) : 0.0,
-        elasticsearch_runtime: payload[:elasticsearch_runtime] ? payload[:elasticsearch_runtime].round(4) : 0.0,
+        view_runtime: payload[:view_runtime] ? payload[:view_runtime].round( 4 ) : 0.0,
+        db_runtime: payload[:db_runtime] ? payload[:db_runtime].round( 4 ) : 0.0,
+        elasticsearch_runtime: payload[:elasticsearch_runtime] ? payload[:elasticsearch_runtime].round( 4 ) : 0.0,
         # all the other times are in milliseconds
-        total_time: ((args[2] - args[1]) * 1000).round(4),
+        total_time: ( ( args[2] - args[1] ) * 1000 ).round( 4 ),
         status_code: payload[:status]
-      })
+      } )
       saved_params.each do | param, value |
         if param.start_with?( "utm_" )
           payload[param] = value
@@ -205,39 +217,39 @@ module Logstasher
       end
       # params are stored as a string in `params_string`,
       # so don't also store them as an object
-      payload.delete(:status)
-      payload.delete(:params)
-      payload[:remainder_time] = (payload[:total_time] - payload[:db_runtime] -
-        payload[:view_runtime] - payload[:elasticsearch_runtime]).round(4)
-      Logstasher.write_hash(payload)
+      payload.delete( :status )
+      payload.delete( :params )
+      payload[:remainder_time] = ( payload[:total_time] - payload[:db_runtime] -
+        payload[:view_runtime] - payload[:elasticsearch_runtime] ).round( 4 )
+      Logstasher.write_hash( payload )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_action_controller_log failed : #{e}"
     end
   end
 
-  def self.is_user_agent_a_bot?(user_agent)
-    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler|facebookexternalhit)" ].
-      detect { |bot| user_agent =~ /#{ bot }/i }
+  def self.user_agent_a_bot?( user_agent )
+    !!["(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler|facebookexternalhit|mastodon)"].
+      detect {| bot | user_agent =~ /#{bot}/i }
   end
 
-  def self.original_ip_in_list(ip_string)
-    return nil unless ip_string.is_a?(String)
+  def self.original_ip_in_list( ip_string )
+    return nil unless ip_string.is_a?( String )
+
     # sometimes IP fields contain multiple IPs delimited by commas
-    ip_string.split(",").last.strip
+    ip_string.split( "," ).last.strip
   end
 
-  def self.split_multiple_ips(payload)
-    extra_params = { }
-    payload.each do |k,v|
-      if IP_PARAMS.include?(k)
-        first_ip = Logstasher.original_ip_in_list(v)
-        if first_ip && first_ip != v
-          payload[k] = first_ip
-          extra_params["#{k}_ALL"] = v.split(",").map(&:strip)
-        end
+  def self.split_multiple_ips( payload )
+    extra_params = {}
+    payload.each do | k, v |
+      next unless IP_PARAMS.include?( k )
+
+      first_ip = Logstasher.original_ip_in_list( v )
+      if first_ip && first_ip != v
+        payload[k] = first_ip
+        extra_params["#{k}_ALL"] = v.split( "," ).map( &:strip )
       end
     end
-    payload.merge(extra_params)
+    payload.merge( extra_params )
   end
-
 end

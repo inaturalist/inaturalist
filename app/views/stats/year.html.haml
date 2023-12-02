@@ -14,9 +14,10 @@
 - content_for :extrajs do
   = render partial: "shared/outlink_sites_js"
   :javascript
+    var IS_BOT_REQUEST = #{ Logstasher.user_agent_a_bot?( request.user_agent ).to_json.html_safe };
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
     var YEAR = #{ @year };
-    var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
+    var YEAR_DATA = #{ Logstasher.user_agent_a_bot?( request.user_agent ) ? "{}" : @year_statistic.try(:data).to_json.html_safe };
     var DISPLAY_USER = #{ @display_user ? 
       @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url, display_donor_since: @display_user.display_donor_since ).to_json.html_safe
       :

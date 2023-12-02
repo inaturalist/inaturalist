@@ -32,7 +32,8 @@ const App = ( {
   sites,
   data,
   rootTaxonID,
-  updatedAt
+  updatedAt,
+  isBotRequest
 } ) => {
   let body;
   const inatUser = user ? new inatjs.User( user ) : null;
@@ -58,7 +59,10 @@ const App = ( {
         </p>
       );
     }
-  } else {
+  } else if ( !isBotRequest ) {
+    // If this is a bot request, the data will not be rendered in page to keep
+    // page size small (all the metadata necessary for rendering previews
+    // will still be added)
     body = (
       <div>
         <Grid fluid={fluid}>
@@ -406,7 +410,8 @@ App.propTypes = {
   site: PropTypes.object,
   sites: PropTypes.array,
   rootTaxonID: PropTypes.number,
-  updatedAt: PropTypes.object
+  updatedAt: PropTypes.object,
+  isBotRequest: PropTypes.bool
 };
 
 export default App;
