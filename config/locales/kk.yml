@@ -994,29 +994,80 @@ kk:
   drafts: Нобайлар
   edit_observations: Бақылауларды өңдеу
   email: Электрондық пошта
+  end_date_time: Аяқталу күні/уақыты
+  endangered: Қауіпті жағдайда
+  endemic: Эндемик
+  endemic_to_x: "%{x} үшін эндемикалық"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
+  eol_collection_url: "EOL жинағының URL мекенжайы"
+  error_updating_photo: "Фотосуретті жаңарту қатесі: %{photo_errors}"
   establishment:
+    endemic: Эндемик
+    invasive: Инвазивті
     native: Табиғи
+  establishment_means_descriptions:
+    native: осы аймақта дамыған немесе антропогендік емес жолмен келген
+    endemic: жергілікті және басқа еш жерде кездеспейді
+    introduced: өңірге антропогендік жолмен келген
+  everyone: барлығы
+  everyone_: Барлығы
+  everywhere: барлық жерде
+  exact: Нақты
+  exact_date: Нақты күн
+  exact_rank: Нақты дәреже
   explore: Зерттеу
+  extinct: жойылып кеткен
+  extinct_in_the_wild: табиғатта жойылып кеткен
   failed_to_save_record_with_errors: "Жазба сақталмады: %{errors}"
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Таңдаулы
   Family: Отбасы
   favorites: "Таңдаулылар"
+  file: Файл
+  file_size: Файл көлемі
   first_observer: 1-бақылаушы
   #Verb form, as in "Flag this item"
   flag: Белгі
   flag_as_inappropriate: Орынсыз деп белгілеу
   flickr_account_information: Flickr аккаунтыңыз туралы ақпарат
+  forgot_your_password: Құпиясөзді ұмыттыңыз ба?
   forum: Форум
   gbif: GBIF
   Genus: Тұқымдас
+  geoprivacy: Геоқұпиялылық
   google: Google
+  got_it!: Түсінікті!
+  graft: Байланыстыру
   grid: Тор
   group: Топ
   guides: Нұсқаулықтар
+  guide_deleted: Нұсқаулық жойылды
+  guide_was_successfully_updated: Нұсқаулық сәтті жаңартылды.
+  guidelines: Әдістемелік нұсқаулар
+  has_id_supported_by_two_or_more: Екі немесе одан да көп ID арқылы қолдау көрсетілген
+  has_one_or_more_faves: Бір немесе бірнеше рет таңдаулыға қосылған
+  has_photo: Фотосуреті бар
+  has_photos: Фотосуреттері бар
+  has_photo_and_sound: Фото да, дыбыс та бар
+  has_photos_or_sounds: Фотосуреттері немесе дыбыстары бар
+  has_sound: Дыбысы бар
+  has_sounds: Дыбыстары бар
+  hasnt_contributed_any_observations: бұл жобаға ешқандай бақылау енгізген жоқ.
+  header_your_observations: Сіздің бақылауларыңыз
+  header_your_calendar: Сіздің күнтізбеңіз
+  header_your_favorites: Сіздің таңдаулыларыңыз
+  header_your_lists: Сіздің тізімдеріңіз
+  header_your_journal: Сіздің журналыңыз
+  header_your_identifications: Сіздің идентификацияларыңыз
+  header_your_projects: Сіздің жобаларыңыз
+  header_your_profile: Сіздің профиліңіз
+  heads_up: Ескерту
   help: Көмек
+  help_translate!: Аударуға көмектесіңіз!
+  hi_user: "Сәлем %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Жасыру
   id: ID
   identify: Анықтау
   identification: идентификация
@@ -1896,6 +1947,11 @@ kk:
   recent_observations: Соңғы бақылаулар
   recent_observations_: Соңғы бақылаулар
   recent_post: Соңғы жазба
+  relationships:
+    many_to_many: көптен көпке
+    not_external: сыртқы емес
+    not_internal: ішкі емес
+    error: қате
   relationships_user_settings: Қарым-қатынастар
   relationship_html: "Қарым-қатынас: %{link}"
   reload_from_observations: Бақылаулардан қайта жүктеу
@@ -1905,6 +1961,7 @@ kk:
   remove: Жою
   remove_all_tags: Барлық тегтерді жою
   remove_comma_separated_tags: "Үтірмен бөлінген тегтерді жою"
+  remove_conservation_status: қорғау статусын жою
   remove_from: Келесіден жою
   remove_curator: Кураторды алып тастау
   remove_curator_status: Куратор мәртебесін жою
@@ -1919,6 +1976,7 @@ kk:
     other: '%{count} бақылауды жою керек пе?'
   remove_photo: Фотосуретті жою
   remove_place: Орынды жою
+  remove_range: Ауқымды жою
   remove_relationship: Қарым-қатынасты жою
   remove_relationship_caps: ҚАТЫНАСТЫ ЖОЮ
   remove_relationship_question: Қарым-қатынасты жою керек пе?
@@ -1926,6 +1984,9 @@ kk:
   remove_selected: Таңдалғанды жою
   remove_tags: Тегтерді жою
   removed: Жойылған
+  removed_project_user: Жоба пайдаланушысы жойылды
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Рөл жойылды
   removing: "Жойылуда..."
   reorder_by_taxonomy: Таксономия бойынша қайта реттеу
   repair_broken_urls: Бұзылған URL мекенжайларын жөндеу
@@ -2092,6 +2153,28 @@ kk:
       add: Бақылау(ларды) қосу
       combine: Таңдалған бақылауларды біріктіру
       duplicate: Таңдалған бақылауларды қайталау
+      remove_photo: Фотосуретті жою
+      select_all: Барлық бақылауларды таңдау
+      upload_failed: Жүктеп салу сәтсіз аяқталды
+  uploading_num_of_count_photos:
+    one: Фотосурет жүктеп салынуда...
+    other: '%{count} фотосуреттің %{number} жүктеп салынуда...'
+  url_identifier_of_a_project_derived_from: "Кейбір сыртқы ресурстан алынған жобаның URL/идентификаторы"
+  usage_stats: Пайдалану статистикасы
+  use_name_as_a_placeholder: |
+    Толтырғыш ретінде <span class='ac-placeholder'>"%{name}"</span> пайдаланыңыз
+  use_unique_file_names_for_separate_uploads: Бөлек жүктеп салулар үшін бірегей файл атауларын пайдаланыңыз
+  used_x_times:
+    one: 1 рет қолданылған
+    other: '%{count} рет қолданылған'
+  user: Пайдаланушы
+  user1_and_user2_faved_this_observation: "%{user1} және %{user2} бұл бақылауды таңдаулыға қосты"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} және %{x_others} бұл бақылауды таңдаулыға қосты"
+  user_added_a_comment_html: "%{user} пікір қосты"
+  user_added_a_fave_html: "%{user} таңдаулыға қосты"
+  user_added_a_flag_html: "%{user} белгі қосты"
+  #@gender operates on %{x}
+  user_added_a_x: "%{user} %{x} қосты"
   username: Пайдаланушы аты
   username_or_email: Қолданушы аты немесе электрондық пошта
   users: Қолданушылар
@@ -2107,24 +2190,54 @@ kk:
   what_did_you_see?: <em>Сіз</em> не көрдіңіз?
   what_do_you_think: Сіз қалай ойлайсыз?
   what_to_keep: Нені сақтау керек
+  year: Жыл
   'yes': "Иә"
   yes_license_my_childs_observations: Иә, ғалымдар деректерді пайдалана алуы үшін баламның фотосуреттерін, дыбыстарын және бақылауларын лицензиялаңыз (ұсынылады).
   yes_license_my_observations_so_scientists_can_use: Иә, ғалымдар менің деректерімді пайдалана алатындай фотоларымды, дыбыстарды және бақылауларымды лицензиялаңыз (ұсынылады).
   yesterday: Кеше
+  your_favorites: Сіздің таңдаулыларыңыз
   your_observations: Сіздің бақылауларыңыз
   your_recent_projects: Сіздің соңғы жобаларыңыз
   views:
+    geo_model:
+      explain:
+        range_comparison:
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
     guides:
+      pdf_layouts:
+        book: кітап
+        journal: журнал
       sorts:
         default: Нұсқаулық реті
+    lifelists:
+      dropdowns:
+        sort: Сұрыптау
+        taxonomic: Таксономиялық
+        name: Атауы
+        show: Көрсету
+        full_taxonomy: Толық таксономия
     observations:
+      compare:
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Интервал
       field_descriptions:
         license: Бақылаушының осы бақылау үшін таңдаған лицензиясы
         url: Бақылаудың URL мекенжайы
         image_url: Әдепкі кескіннің URL мекенжайы
+      import:
+        decimal_degrees_format: dd.dddd
     emailer:
       photos_missing:
         subject: Кейбір фотосуреттер жөндеуді қажет етеді
+    projects:
+      new:
+        delete_project: Жобаны жою
+      project_user_curator_coordinate_access_labels:
+        none: Жоқ.
     stats:
       index:
         TTCID: TTCID
@@ -2132,6 +2245,9 @@ kk:
       year:
         donors_guide_label_our_goal_is_1000: Біздің мақсатымыз айына 1000 тұрақты демеуші
         inaturalist_network: iNaturalist желісі
+        new_species_per_year: Жаңа түрлер / Жыл
+        observations_per_year: Бақылаулар / Жыл
+        translators_title: Аудармашылар
     taxa:
       show:
         frequency:
@@ -2154,10 +2270,31 @@ kk:
           "Sex=Cannot Be Determined": Анықтау мүмкін емес
           "Sex=Female": Ұрғашы
           "Sex=Male": Еркек
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Пікірлер
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Идентификациялар
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Хабарламалар
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Жоба журналындағы посттар
+        project_addition_preferences:
+          any: Кез-келген
     welcome:
       index:
         connect_with_nature: Табиғатпен байланыс
         explore_and_share: Табиғат әлемінен өз бақылауларыңызды зерттеп, бөлісіңіз.
+        observations_to_date:
+          one: "Бүгінгі күнге дейін бақылау"
+          other: "Бүгінгі күнге дейін бақылаулар"
+        species_observed:
+          one: "Бақыланған түр"
+          other: "Бақыланған түрлер"
+        people_signed_up:
+          one: "Тіркелген адам"
+          other: "Тіркелген адамдар"
         how_it_works: Бұл қалай жұмыс істейді
         record_your_observations: Өз бақылауларыңызды жазыңыз
         share_with_fellow_naturalists: Табиғат зерттеушілерімен бөлісіңіз
@@ -2185,6 +2322,9 @@ kk:
         who_uses_site_name: "%{site_name} кім пайдаланады?"
         what_are_you_waiting_for: Сіз не күтіп тұрсыз?
         join_today: Бүгін қосылыңыз
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Тіркемелерді қосу үшін сақтаңыз және өңдеңіз
   date:
     abbr_day_names:
       - Жек.
@@ -2308,6 +2448,15 @@ kk:
       month: Ай
       second: Секундтар
       year: Жыл
+  helpers:
+    defaults:
+      title: "БҰЛ ТАҚЫРЫП"
+    select:
+      prompt: Таңдаңыз
+    submit:
+      create: Жасау %{model}
+      submit: Сақтау %{model}
+      update: Жаңарту %{model}
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -2339,6 +2488,7 @@ kk:
           quadrillion: Квадриллион
           thousand: Мың
           trillion: Триллион
+          unit: ''
       format:
         precision: 3
         significant: true
@@ -2358,6 +2508,24 @@ kk:
       last_word_connector: ', және '
       two_words_connector: ' және '
       words_connector: ', '
+  time:
+    am: таң
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %-d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%I:%M %p"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %-d, %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      hours: "%l:%M %p"
+    pm: кеш
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -2366,9 +2534,11 @@ kk:
       AssessmentSection: Бағалау бөлімі
       Atlas: Атлас
       BlockedUser: Бұғатталған пайдаланушы
+      Comment: Пікір
       CompleteSet: Толық жинақ
       #Noun
       Flag: Белгі
+      Identification: Идентификация
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -2380,8 +2550,76 @@ kk:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Қолданба
+      Photo: Фото
+      Post: Журнал посты
       TaxonLink: Таксон сілтемесі
     attributes:
+      announcement:
+        created_at: Жасалған уақыты
+        updated_at: Жаңартылған уақыты
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Сайт ID
+        clients: Клиенттер
+      assessment:
+        description: Сипаттама
+      assessment_section:
+        title: Тақырып
+        body: Мәтін
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Бұғатталған пайдаланушы
+      conservation_status:
+        status: Статус
+        description: Сипаттама
+        authority: Билік
+        place_id: Орын
+        url: URL
+        geoprivacy: Геоқұпиялылық
+        iucn: IUCN эквиваленті
+      flag:
+        #The reason the item was flagged
+        reason: Себеп
+        #The person who resolved the flag
+        resolver_id: Шешуші
+        #The kind of flag that was made
+        flag: Белгі
+      guide:
+        source_url: Дереккөз URL мекенжайы
+        published_at: Басылым
+      message:
+        subject: Тақырып
+        body: Мәтін
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Себеп
+      observation:
+        description: Ескертпелер
+        observed_on: байқалған күн
+      observation_field_value:
+        value: 'мән'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Кезекте
+        #Date/time the task began processing
+        started_at: Басталды
+        #Date/time the task finished processing
+        finished_at: Аяқталды
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Құпия
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Құпиялық
+      place_taxon_name:
+        position: Позиция
+      post:
+        title: Атау
+        body: Мәтін
       project:
         title: Тақырып
         project_icon: Жоба белгішесі
@@ -2391,21 +2629,64 @@ kk:
         terms: Шарттар
         map_type: Карта түрі
         zoom_level: Масштабтау деңгейі
+        preferred_membership_model: Таңдаулы мүшелік үлгісі
+        preferred_submission_model: Таңдаулы ұсыну үлгісі
+        prefers_place_boundary_visible: Картадан жердің шекарасын көрсету
+        tracking_codes: Қадағалау кодтары
+        source_url: Дереккөз URL мекенжайы
         start_time: Басталу уақыты
+        last_aggregated_at: Соңғы рет жинақталған бақылаулар
       project_observation:
         user_id: Жіберуші
       place:
         code: Код
+        display_name: Көрсетілетін атау
         latitude: Ендік
         longitude: Бойлық
+        name: Атау
         place_type: Орын түрі
+        prefers_check_lists: Тексеру тізімдеріне рұқсат етілген бе?
         woeid: WOEID
+      site:
+        logo_email_banner: Электрондық пошта баннері
       source:
+        title: Тақырып
+        in_text: Мәтінде
         url: URL
+        citation: Сілтеме
+      taxon:
+        auto_description: Автоматты сипаттама
+        auto_photos: Автоматты фотосуреттер
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Толық дәреже
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Қорғау статусы
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Иконикалық таксон идентификаторы
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Белсенді?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Иконикалық?
+        locked: Құлыпталған
+        name: Аты
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Фотосуреттер құлыптаулы ма?
+        rank: Дәреже
+        rank_level: Дәреже деңгейі
+        wikipedia_summary: Wikipedia қысқаша мазмұны
+        wikipedia_title: Wikipedia тақырыбы
       taxon_name:
         is_valid: Жарамды ма?
+        lexicon: Сөздік
         name: Атауы
         name_provider: Атау провайдері
+        position: Позиция
+        audit_comment: Ескертпе
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -2580,10 +2861,26 @@ kk:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Жануарлар
+        Aves: Құстар
+        Reptilia: Бауырымен жорғалаушылар
+        Amphibia: Қосмекенділер
+        Mammalia: Сүтқоректілер
+        Arachnida: Өрмекшітәрізділер
+        Insecta: Жәндіктер
+        Plantae: Өсімдіктер
+        Fungi: Саңырауқұлақтар
+        Protozoa: Қарапайымдылар
+        Mollusca: Моллюскалар
+        Chromista: Хромисттер
   #Title of a section warning the user about something
   warning_title: Ескерту
   wikimedia: Уикимедиа
   wild: Жабайы
+  will_paginate:
+    next_label: "Келесі &#8594;"
+    page_gap: "&hellip;"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Я – А
