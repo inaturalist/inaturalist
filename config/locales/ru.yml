@@ -2105,7 +2105,6 @@ ru:
   graft: Привязка
   graft_taxon: Привязать %{taxon}
   grafting_attemps_to_insert_this_taxon: Попытки привязать этот таксон к нашему таксономическому дереву, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
-  grant_role: "%{grant} %{role} роль"
   grid: Плитка
   grid_layout: Разметка по сетке
   grid_tooltip: Показать в виде сетки
@@ -2976,7 +2975,6 @@ ru:
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
   needs_id_tooltip_html: 'Наблюдения "Требуется идентификация (ID)" содержат медиа, местоположение и дату, но всё же требуется консенсус сообщества по поводу точной идентификации.<a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
-  needs_to_be_identified: Нуждается в идентификации
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> и делиться данными с местными организациями?
