@@ -629,7 +629,7 @@ zh-CN:
   attention: 关注
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: "您确定要从列表中移除%{taxon}吗？"
-  asc: 升
+  asc: 升序
   ascending: 升序
   assessment: 评定
   assessment_has_benn_completed: 评定已完成
@@ -930,7 +930,7 @@ zh-CN:
   community_guidelines: 社群指引
   community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
-  community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
+  community_id_at_species_level_or_lower: 被社区鉴定确定到“种”或更低层级
   community_id_is_precise: 社区分类单元是精确的
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
@@ -1820,7 +1820,6 @@ zh-CN:
   graft: 移植
   graft_taxon: 转移 %{taxon}
   grafting_attemps_to_insert_this_taxon: 嫁接试图将该分类单元插入我们的分类树中，找到一个现有的父分类单元或创建所有必要的中间分类单元，以便将其附加到现有的更高级别分类单元中。
-  grant_role: "%{grant} %{role}角色"
   grid: 网格
   grid_layout: 网格布局
   grid_tooltip: 显示网格预览
@@ -2598,7 +2597,6 @@ zh-CN:
   needs_id: 待鉴定
   needs_id_: 需要ID
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
-  needs_to_be_identified: 需要被鉴定
   network_affiliation_prompt_from_other_site_html: |
     您想要把您的从属关系从 <strong>%{other_site_name}</strong> 更改为 <strong>%{site_name}</strong> 吗？
   new: 新增
@@ -3160,7 +3158,7 @@ zh-CN:
       land_feature: 地貌
       Local_Administrative_Area: 本地行政区域
       local_administrative_area: 本地行政区域
-      Local_Authority: 地方政权
+      Local_Authority: 地方行政区域
       local_authority: 地方政权
       Miscellaneous: 杂项
       miscellaneous: 杂项
@@ -3230,7 +3228,7 @@ zh-CN:
       village_block: 乡村街区
       Zone: 地区
       zone: 地带
-  place_guess: 地方猜想
+  place_guess: 地点猜测
   place_imported: 地点已导入！
   place_must_have_a_boundary_defined: 地点必须定义边界。
   place_name: 地名
