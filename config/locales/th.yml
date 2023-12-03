@@ -1183,6 +1183,8 @@ th:
   gbif_occurrences: รายงานการพบใน GBIF
   generate_taxonomic_tags_for_flickr: สร้างแท็กอนุกรมวิธานสำหรับรูป Flickr ของคุณ
   generate_widget: สร้างวิดเจ็ต
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: ดูสรุปภาพรวมปี %{year} ของคุณ
   Genus: สกุล
   geoprivacy: การเปิดเผยพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
@@ -1246,6 +1248,7 @@ th:
       maverick: |
         หน่วยอนุกรมวิธานนี้ไม่ใช่สมาชิกหรือลำดับที่ครอบคลุมหน่วยฯ ที่เสียงส่วนใหญ่ของชุมชนเห็นพ้องกัน
   id_withdrawn: ถอนการจำแนก
+  ids_by_taxon: การจำแนกตามอนุกรมวิธาน
   identify: จำแนกชนิด
   identify_observations: "จำแนกการสังเกต"
   identify_observations_by_these_users: จำแนกการสังเกตโดยผู้ใช้งานเหล่านี้
@@ -1260,6 +1263,7 @@ th:
   #Notification when an identification has been withdrawn
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
+  inaturalist_global_year_in_review: "สรุปภาพรวม iNaturalist ทั่วโลกในปี 2023"
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   ids: "การจำแนก"
   ids_made_for_others: การจำแนกให้ผู้อื่น
@@ -1510,6 +1514,8 @@ th:
   lowest_rank: ลำดับต่ำสุด
   #Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
+  make_curator: ตั้งเป็นผู้ดูแล
+  make_manager: ตั้งเป็นผู้จัดการ
   make_this_your_default_license: "ตั้งค่าเป็นสัญญาอนุญาตเริ่มต้นของ%{type}"
   mammals: สัตว์เลี้ยงลูกด้วยนม
   manage_all_your_subscriptions: จัดการการติดตามทั้งหมดของคุณ
@@ -1591,6 +1597,8 @@ th:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
@@ -1658,6 +1666,7 @@ th:
   new_users: ผู้ใช้งานใหม่
   new_users_in_year: "ผู้ใช้งานใหม่ในปี %{year}"
   new_users_w_7_obs: ผู้ใช้งานใหม่ที่มี 7 การสังเกต
+  newly_added: ชนิดที่เพิ่มใหม่
   newly_added_species: ชนิดที่เพิ่มใหม่
   newly_observed_species: ชนิดที่พบใหม่
   newly_observed_species_in_year: "ชนิดที่เพิ่มใหม่ในปี %{year}"
@@ -2198,6 +2207,7 @@ th:
   recently_resolved: เพิ่งแก้ไข
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
+  regenerate_stats: สร้างสถิติใหม่
   regional_names: ชื่อตามภูมิภาค
   reject?: ปฏิเสธ?
   relative_observations: การสังเกตสัมพัทธ์
@@ -2344,6 +2354,8 @@ th:
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "สรุปภาพรวม %{site} ปี %{year}"
   sizes: ขนาด
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
   small: เล็ก
@@ -2735,6 +2747,8 @@ th:
   users_journal: "วารสารของ %{user}"
   users_lists: "รายการของ %{user}"
   users_profile: "โปรไฟล์ของ %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "สรุปภาพรวม %{site} ปี %{year} ของ %{user}"
   value: ค่า
   values: ค่า
   verifiable_observations_by_observation_date: การสังเกตที่ตรวจสอบได้ตามวันที่สังเกต
@@ -2756,6 +2770,12 @@ th:
   view_flags: ดูการรายงาน
   view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
   view_full_size_photo: ดูรูปขนาดเต็ม
+  view_inaturalist_global_year_in_review: ดูสรุปภาพรวม iNaturalist ทั่วโลกในปี %{year}
+  view_inaturalist_global_year_in_review_caps: ดูสรุปภาพรวม iNaturalist ทั่วโลกในปี %{year}
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: ดูสรุปภาพรวม %{site} ปี %{year}
+  view_site_year_in_review_caps: ดูสรุปภาพรวม %{site} ปี %{year}
   view_journal: ดูวารสาร
   view_leaderboard_from_last_month: ดูกระดานจัดอันดับจากเดือนที่แล้ว
   view_leaderboard_from_last_year: ดูกระดานจัดอันดับจากปีที่แล้ว
@@ -2783,6 +2803,8 @@ th:
   view_your_dashboard: ดูหน้ารวมของคุณ
   view_your_inbox: ดูกล่องข้อความของคุณ
   view_your_observations: ดูการสังเกตของคุณ
+  view_your_personal_year_in_review: "ดูสรุปภาพรวมปี %{year} ของคุณ"
+  view_your_personal_year_in_review_caps: "ดูสรุปภาพรวมปี %{year} ของคุณ"
   view_yours: ดูของฉัน
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   visually_similar: รูปคล้ายกัน
@@ -2844,6 +2866,9 @@ th:
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
   year: ปี
+  year_in_review: "สรุปภาพรวมปี %{year}"
+  year_in_review2: "สรุปภาพรวมปี %{year}"
+  year_in_review_caps: "สรุปภาพรวมปี %{year}"
   year_month: ปี/เดือน
   'yes': "ใช่"
   #Used when trusting a project and the user is agreeing to trust the project
@@ -2853,6 +2878,15 @@ th:
   yes_reject_it: ปฏิเสธ
   yesterday: เมื่อวาน
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
+  yir_email_because_of_you: |
+    คุณเป็นผู้ที่ทำให้ข้อมูลความหลากหลายทางชีวภาพเพิ่มขึ้นกว่าปีที่แล้ว สรุปภาพรวมประจำปีจึงเป็นของขวัญสำหรับคุณที่ได้ส่งเสริมความหลากหลายทางชีวภาพผ่านทาง iNaturalist มาโดยตลอด
+  yir_email_log_in_to_generate: |
+    เข้าสู่ระบบเพื่อสร้างสรุปภาพรวมประจำปีของคุณ
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    สรุปภาพรวม iNaturalist ปี %{year} ของคุณ — เฉลิมฉลองปีของคุณด้วยความหลากหลายทางชีวภาพ
+  yir_email_the_year_isnt_over: |
+    ยังไม่สายเกินไปที่จะเพิ่มการสังเกตย้อนหลังก่อนจะสิ้นสุดปีนี้ หลังจากแชร์การสังเกตเพิ่มแล้ว อย่าลืมคลิก "สร้างสถิติใหม่" ที่ด้านล่างของหน้าสรุปภาพรวมประจำปีเพื่ออัปเดตสถิติของคุณ
   yir_millions_of_people_used_inaturalist: |
     ผู้คนนับล้านใช้ iNaturalist และ Seek by iNaturalist ในปีนี้เพื่อเชื่อมโยงกับธรรมชาติ
   yir_monthly_supporters_random_selection: |
@@ -3076,18 +3110,24 @@ th:
       year:
         compared_to_previous_years: เปรียบเทียบกับปีก่อน ๆ
         inaturalist_network: เครือข่าย iNaturalist
+        inaturalist_network_desc: |
+          ดูสรุปภาพรวมประจำปีสำหรับสมาชิกเครือข่าย iNaturalist
         growth_in_year_obs: "การเติบโตในปี %{year} (การสังเกต)"
         growth_title: การเติบโต
         new_species_desc: |
           ชนิดที่สังเกตเป็นครั้งแรกบน %{site_name} ในปีนี้ แสดง %{x} จาก <a href="%{url}">%{y} ชนิด</a>
         new_species_desc_html: |
-          ชนิดที่เพิ่มเข้ามาเป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และดูชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ ได้ด้วย แผนภูมินี้แสดงชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่นับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
+          หมายถึงชนิดที่เพิ่มใหม่เป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูจำนวนชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และสามารถดูจำนวนชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ แผนภูมินี้แสดงจำนวนชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่นับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
         new_species_per_year: ชนิดใหม่ / ปี
         new_species_per_year_by_date_added: ตามวันที่เพิ่ม
         percent_growth_in_year: "% การเติบโตในปี %{year}"
         percent_of_total_growth: "% การเติบโตทั้งหมด"
         observations_per_year: การสังเกต / ปี
         observations_per_year_by_date_added: ตามวันที่เพิ่ม
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: การสังเกตอย่างต่อเนื่อง
+        observation_streaks_color_desc: |
+          แสดงจำนวนวันด้วยสีตามมาตราส่วนลอการิทึม:
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: เป็นประจำ
         species_per_year: ชนิด / ปี
@@ -3176,6 +3216,8 @@ th:
       index:
         connect_with_nature: เชื่อมโยงกับธรรมชาติ
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
+        species_observed:
+          other: "ชนิดที่สังเกต"
         how_it_works: หลักการทำงาน
         record_your_observations: บันทึกการสังเกตของคุณ
         share_with_fellow_naturalists: แชร์ให้นักธรรมชาติวิทยาคนอื่น ๆ
