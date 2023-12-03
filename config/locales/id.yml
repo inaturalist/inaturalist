@@ -362,6 +362,8 @@ id:
   added_by: Ditambahkan oleh
   added_by_user_on_date_html: "Ditambahkan oleh %{user} pada %{date}"
   added_on_datetime: "Ditambahkan pada %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Peran ditambahkan
   added_to_favorites_html: |
     Ditambahkan ke <a href="%{url}">favorit</a>
   adding: "Menambahkan..."
@@ -4188,6 +4190,8 @@ id:
   remove_tags: Hapus label
   removed: Dihapus
   removed_project_user: Hapus pengguna proyek
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Peran dihapus
   removing: "Menghapus..."
   reorder_by_taxonomy: Urutkan kembali berdasarkan taksonomi
   repair_broken_urls: Perbaiki URL yang rusak
