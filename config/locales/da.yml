@@ -396,6 +396,8 @@ da:
   added_by: Tilføjet af
   added_by_user_on_date_html: "Tilføjet af %{user} den %{date}"
   added_on_datetime: "Tilføjet %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rolle tilføjet
   added_to_favorites_html: |
     Tilføjet til <a href="%{url}">favoritter</a>
   adding: "Tilføjer..."
@@ -4337,6 +4339,8 @@ da:
   remove_tags: Fjern tags
   removed: Fjernet
   removed_project_user: Fjernet projektbruger
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rolle fjernet
   removing: "Fjerner..."
   reorder_by_taxonomy: Sortér efter taksonomi
   repair_broken_urls: Reparér ødelagte URLs
