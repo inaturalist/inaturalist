@@ -1226,9 +1226,38 @@ kk:
     zh-TW: Қытайша (дәстүрлі)
   location: Орналасқан жер
   log_in: Жүйеге кіру
+  log_in_or_sign_up_to_add_comments_html: |
+    Пікір қосу үшін <a href="/login">Кіріңіз</a> немесе <a href="/signup">тіркеліңіз</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Идентификацияларды қосу үшін <a href="/login">Жүйеге кіріңіз</a> немесе <a href="/signup">тіркеліңіз</a>.
+  log_out: Шығу
+  log_out_caps: ШЫҒУ
+  #Application is a mobile app the user has authorized to access their iNat account
+  log_out_of_application: "%{site_name} жүйесінен шығу керек пе?"
+  #Status message shown while logging in
+  logging_in: Жүйеге кіру...
+  logo:
+    logo: Логотип
+    white_bg_gif: ақ түсті BG GIF
+    transparent_png: мөлдір PNG
+    white_text_transparent_png: ақ мәтін мөлдір PNG
+    none: жоқ
+  long: Бойлық
+  longitude: Бойлық
+  longitude_in_decimal: 'Ондық дәрежедегі бойлық, мысалы - 122.123'
+  longitude_slash_x_coord_slash_easting: Бойлық / х координатасы / шығыс
+  longitude_value: "Бойлық: %{longitude}"
+  look_up_name: "Атын іздеңіз"
+  looks_like_no_species_in_guide: Сіздің нұсқаулықта әлі түр жоқ сияқты.
+  lookup: Іздеу
+  low: Төмен
+  lowest_rank: Ең төменгі дәреже
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   #Stub text for the main content section when editing custom project data
   main_content_description: Негізгі контент осында
   make_a_new_place: Жаңа орын жасау
+  make_a_taxon_swap_instead?: Оның орнына TaxonSwap жасау керек пе?
   mammals: сүтқоректілер
   managing_projects: Жобаларды басқару
   map: Карта
@@ -1344,9 +1373,55 @@ kk:
   organism_is_wild: Жабайы организм
   organisms: Организмдер
   original: Түпнұсқа
+  parental_consent:
+    invalid_email: Электрондық пошта пішімі жарамсыз
   password: Құпия сөз
   password_confirmation: 'Құпия сөзді растау'
+  password_change_description: Құпия сөзді өзгерту сізді құрылғылардағы барлық белсенді iNaturalist сеанстарынан шығарады
+  password_change_logout_warning: Құпия сөзді өзгерткеннен кейін жүйеден шығасыз және жаңа құпия сөзбен қайта кіруіңіз керек.
+  password_change_observations_warning: Сіз сондай-ақ iNaturalist мобильді қолданбаларынан және сіздің атыңыздан iNaturalist сайтына жариялайтын кез келген басқа қолданбалардан немесе веб-сайттардан шығасыз, сондықтан мұны жасамас бұрын кез келген күтудегі бақылауларды жүктеп салғаныңызға көз жеткізіңіз. Жүктеп салынбаған кез келген бақылаулар жоғалады.
+  paste: Қою
+  paste_in_a_bunch_of_names: Әр жолға 1 атауды қойып, түймені басыңыз!
   people: Адамдар
+  people_following_user: "%{user} жаңартуларына жазылған адамдар"
+  people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: <a href="%{observation_url}">бақылау</a> қосу
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: '%{user_link} арқылы %{observation_link} үшін <strong>ID</strong> қосты'
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: <strong>ID</strong> қосты
+    comment:
+      with_by: '@vow_or_con{vow:an|a} %{comment_subject_link} бойынша %{by_link} пікір жазды'
+      without_by: '@vow_or_con{vow:an|a} %{comment_subject_link} пікір жазды'
+  per_day: Күніне
+  per_month: Айына
+  per_week: Аптасына
+  person: Адам
+  photo: Фотосурет
+  photo_attribution: "Фотосурет %{attribution}"
+  photo_browser: Фотобраузер
+  photo_by_id_attribution: "Фотосурет %{id}, %{attribution}"
+  photo_deleted: Фотосурет жойылды
+  photo_destroyed_because_it_was_deleted_from: "Фотосурет жойылды, себебі ол сыртқы сайттан жойылды немесе %{site_name} енді оны көруге рұқсаты жоқ"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Фотосурет жасырылған
+  photo_licensing: Фотосурет лицензиясы
+  photo_type: Фотосурет түрі
+  photo_urls_repaired: Фотосуреттің URL мекенжайлары жөнделді
+  photos_chosen_for_this_taxon: Осы таксон үшін таңдалған фотосуреттер
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Фотосуреттер құлыпталған
+  photos_locked_desc: Бұл таксон үшін әдепкі фотосуреттерді тек қызметкерлер өзгерте алады
+  photos_of_taxon_html: "%{taxon} фотосуреттері"
+  photos_or_sounds: Фотосуреттер немесе дыбыстар?
   photos_or_sounds?: Фотолар немесе дыбыстар?
   photos_size:
     small: шағын
@@ -2147,22 +2222,61 @@ kk:
   unfollow: Жазылудан бас тарту
   unlink_your_google_account: Google аккаунтыңызбен байланысты ажырату
   unlink_your_flickr_account: "Flickr аккаунтыңызбен байланысты ажырату"
+  unsubscribe: Жазылымнан бас тарту
+  upcoming_bioblitzes: Алдағы биоблицтер
+  update: Жаңарту
+  update_existing_observations_with_new_license: Бар бақылауларды жаңа лицензия таңдауларымен жаңарту
+  update_existing_photos_with_new_license: Бар фотосуреттерді жаңа лицензия таңдауларымен жаңарту
+  update_existing_sounds_with_new_license: Бар дыбыстарды жаңа лицензия таңдауларымен жаңарту
+  update_observations: Бақылауларды жаңарту
+  update_photos: Фотосуреттерді жаңарту
+  update_search: Іздеуді жаңарту
+  update_selected_taxa: Таңдалған таксондарды жаңарту
+  update_subscription: Жазылымды жаңарту
+  update_subscription_preferences: Жазылым таңдауларын жаңарту
+  update_x_selected_taxa:
+    one: "Таңдалған 1 таксонды жаңарту"
+    other: "Таңдалған %{count} таксонды жаңарту"
+  update_your_content: Контентті жаңарту
+  updated: Жаңартылған
+  updated_by: Жаңартқан
+  updated_by_user_on_date_html: '%{date} күні %{user} жаңартты'
+  updated_daily: Күн сайын жаңартылады
+  updated_photo: Жаңартылған фотосурет
   upload: Жүктеу
+  upload_a_csv_file: CSV файлын жүктеу
+  upload_new_photo: Жаңа фотосуретті жүктеу
+  upload_photo: Фотосуретті жүктеп салу
+  upload_range: Жүктеп салу ауқымы
+  #Label that notes who uploaded some content, not in a sentence
+  uploaded_by: Жүктеген
   uploader:
+    errors:
+      file_too_big: Файл %{megabytes} МБ-тан аз болуы керек
+      unsupported_file_type: Файл түрі қолданылмайды. Біз JPG, PNG, GIF, WAV, AAC, MP3 және MP4 (тек аудио) қабылдаймыз
+    resize_tip: |
+      Егер фото файлдарыңыз тым үлкен болса, оларды максимум 2048 x 2048 пиксельге дейін қиып көріңіз. Бұл бәрібір сервердегі барлық фотосуреттерде болады және жүктеп салуды жылдамырақ етеді.
     tooltips:
       add: Бақылау(ларды) қосу
       combine: Таңдалған бақылауларды біріктіру
       duplicate: Таңдалған бақылауларды қайталау
+      photo_failed: Фотосурет жүктеп салынбады
+      remove: Таңдалған бақылауларды жою
+      remove_observation: Бақылауды жою
       remove_photo: Фотосуретті жою
       select_all: Барлық бақылауларды таңдау
       upload_failed: Жүктеп салу сәтсіз аяқталды
   uploading_num_of_count_photos:
     one: Фотосурет жүктеп салынуда...
     other: '%{count} фотосуреттің %{number} жүктеп салынуда...'
+  url_for_your_app_outside_of_inaturalist: iNaturalist қолданбасынан тыс қолданбаның URL мекенжайы
   url_identifier_of_a_project_derived_from: "Кейбір сыртқы ресурстан алынған жобаның URL/идентификаторы"
+  url_of_this_taxon_on_the_source_website: Дереккөздің веб-сайтындағы осы таксонның URL мекенжайы
   usage_stats: Пайдалану статистикасы
   use_name_as_a_placeholder: |
     Толтырғыш ретінде <span class='ac-placeholder'>"%{name}"</span> пайдаланыңыз
+  use_this_form_to_create_a_new: |
+    Бұл пішінді кейінірек орындалатын белсенді таксондарды бөлу, біріктіру немесе ауыстыруды сипаттайтын жаңа таксономиялық өзгеріс жобасын жасау үшін пайдаланыңыз.
   use_unique_file_names_for_separate_uploads: Бөлек жүктеп салулар үшін бірегей файл атауларын пайдаланыңыз
   used_x_times:
     one: 1 рет қолданылған
