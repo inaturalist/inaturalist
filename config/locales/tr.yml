@@ -403,6 +403,8 @@ tr:
   added_by: Ekleyen
   added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
   added_on_datetime: "%{datetime} tarihinde eklendi"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Görev eklendi
   added_to_favorites_html: |
     <a href="%{url}">Favorilere</a> eklendi
   adding: "Ekleniyor..."
@@ -4203,6 +4205,8 @@ tr:
   remove_tags: Etiketleri kaldır
   removed: Kaldırıldı
   removed_project_user: Kaldırılan proje kullanıcısı
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Görev kaldırıldı
   removing: "Kaldırılıyor..."
   reorder_by_taxonomy: Sınıflandırmaya göre yeniden düzenle
   repair_broken_urls: Bozuk URL'leri onar
@@ -6770,6 +6774,8 @@ tr:
         do_you_need_features_from_traditional: |
           Gerçek koordinatlara erişim, özel gözlem alanları veya otomatik olarak filtrelenemeyen 
           bireysel gözlemler ekleme gibi geleneksel projelerden özelliklere mi ihtiyacınız var?
+        do_you_need_features_from_traditional2: |
+          Özel gözlem alanları veya otomatik olarak filtrelenemeyen bireysel gözlemler eklemek gibi geleneksel projelerdeki özelliklere mi ihtiyacın var?
         duplicate_project: Projeyi Kopyala
         include_annotated_observations: |
           Yalnızca belirli bir nitelikle (ör. yaşam evresi) ya da belirli bir nitelik ve değerle (ör. yaşam evresi = yetişkin) açıklanmış gözlemleri dahil et. Proje başına bir açıklama filtresi sınırı vardır.
