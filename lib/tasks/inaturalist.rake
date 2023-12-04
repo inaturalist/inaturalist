@@ -599,4 +599,10 @@ namespace :inaturalist do
     end
   end
 
+  desc "Unlock unfailed delayed jobs"
+  task unlock_unfailed_delayed_jobs: :environment do
+    Delayed::Job.where( "locked_at IS NOT NULL OR locked_by IS NOT NULL" ).
+      where( "failed_at IS NULL" ).
+      update( locked_by: nil, locked_at: nil )
+  end
 end
