@@ -1031,8 +1031,8 @@ zh-CN:
     plant_phenology: 植物物候学
     budding: 发芽
     flower_budding: 花芽阶段
-    flowering: 开花
-    fruiting: 果实
+    flowering: 开花阶段
+    fruiting: 附果阶段
     life_stage: 生命阶段
     adult: 成体
     teneral: 幼体
@@ -1251,7 +1251,7 @@ zh-CN:
   data_used: "使用资料："
   datatype: 数据类型
   date_: 日期
-  date_added: 日期已加入
+  date_added: 添加日期
   date_authorized: 授权日期
   date_created: 创建日期
   date_format:
@@ -4359,7 +4359,7 @@ zh-CN:
     管理员是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
   the_below_items_are_needed_to_achieve: |
     下列项目需要达到<span className="bold">研究等级：</span>
-  the_community_id_requires_at_least_two_identifications: 社区ID至少需要两个标识。
+  the_community_id_requires_at_least_two_identifications: 社群分类需要至少两个鉴定。
   the_community_must_feel_that: |
     社区必须认为此社区ID是最好的，它可以基于如下证据
   the_following_observations_could: "无法将以下观察添加到%{link}"
