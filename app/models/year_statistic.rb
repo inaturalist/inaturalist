@@ -170,10 +170,13 @@ class YearStatistic < ApplicationRecord
     # exists and can be fetched right away. Queue up generating shareables for all
     # locales in a delayed job as that will take longer
     year_statistic.generate_shareable_image( only_user_locale: true )
+    # skip generating the shareable for the user locale in the delayed job as that
+    # shareable has already been generated, and it doesn't need to be updated
+    # and the CloudFront cache for that image invalidated
     year_statistic.delay(
       priority: USER_INTEGRITY_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
-    ).generate_shareable_image
+    ).generate_shareable_image( skip_user_locale: true )
     year_statistic
   end
 
@@ -555,8 +558,11 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_localized_shareable_images( options = {} )
+    user_locale = [user&.locale || I18n.locale]
     locales_to_generate = if options[:only_user_locale]
-      [user&.locale || I18n.locale]
+      user_locale
+    elsif options[:skip_user_locale]
+      I18N_SUPPORTED_LOCALES - user_locale
     else
       I18N_SUPPORTED_LOCALES
     end
