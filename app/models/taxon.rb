@@ -392,7 +392,7 @@ class Taxon < ApplicationRecord
 
   # Names we don't use when trying to extract a taxon from text because they
   # usually map to the wrong thing. Also including all place names for
-  # state-level places and above that are also taoxn names, since they often get
+  # state-level places and above that are also taxon names, since they often get
   # used in photo tags
   months_to_days = I18N_SUPPORTED_LOCALES.map do | locale |
     [

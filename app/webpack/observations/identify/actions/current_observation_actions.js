@@ -458,7 +458,7 @@ function showNextObservation( ) {
       nextObservation = currentObservation.observation || observations.results[0];
     }
     if ( nextObservation ) {
-      dispatch( setControlledTermsForTaxon( nextObservation.taoxn ) );
+      dispatch( setControlledTermsForTaxon( nextObservation.taxon ) );
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
     } else {
@@ -482,7 +482,7 @@ function showPrevObservation( ) {
     prevIndex -= 1;
     const prevObservation = observations.results[prevIndex];
     if ( prevObservation ) {
-      dispatch( setControlledTermsForTaxon( prevObservation.taoxn ) );
+      dispatch( setControlledTermsForTaxon( prevObservation.taxon ) );
       dispatch( showCurrentObservation( prevObservation ) );
       dispatch( fetchCurrentObservation( prevObservation ) );
     }

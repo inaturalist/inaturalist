@@ -44,7 +44,7 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
