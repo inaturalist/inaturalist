@@ -22,7 +22,7 @@
       %td= link_to @user.identifications_count, identifications_by_login_url( login: @user.login ), target: "_blank"
     %tr
       %th Flags
-      %td= link_to @user.flags_as_flagger.count, flags_url( flagger_type: "user", flagger_name: @user.login, flagger_user_id: @user.id, resolved: "any" ), target: "_blank"
+      %td= link_to @user.flags_as_flagger.count, flags_url( flagger_type: "user", flagger_name: @user.login, flagger_user_id: @user.id, resolved: "any", flaggable_type: "all", deleted: "any", "flags": ["spam", "copyright infringement", "inappropriate", "other"] ), target: "_blank"
 
 
 - [:explanation, :taxonomy_examples, :name_examples, :moderation_examples].each do |a|

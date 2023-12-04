@@ -35,10 +35,10 @@ class AnnotationsController < ApplicationController
   end
 
   def destroy
-    if @annotation && @annotation.user == current_user
+    if @annotation&.deleteable_by?( current_user )
       @annotation.destroy
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         redirect_to @annotation.resource
       end

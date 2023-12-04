@@ -292,4 +292,18 @@ describe Annotation do
       end
     end
   end
+
+  describe "deletable_by?" do
+    it "users can delete their own annotations" do
+      a = make_annotation
+      expect( a.deleteable_by?( a.user ) ).to be true
+    end
+
+    it "resource owners can delete annotations on their resources" do
+      o = Observation.make!
+      a = make_annotation( resource: o )
+      expect( a.user ).not_to eq o.user
+      expect( a.deleteable_by?( o.user ) ).to be true
+    end
+  end
 end
