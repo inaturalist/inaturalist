@@ -2581,7 +2581,7 @@ hu:
   not_on_this_list: Nincs ezen a listán.
   not_recorded: Nincs adat
   not_resolved: Nincs megoldva
-  not_seeing_what_looking_for: Nem látod azt amit keresel?
+  not_seeing_what_looking_for: Nem találod, amit keresel?
   note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
@@ -3865,7 +3865,7 @@ hu:
   somewhere_on_earth: Valahol a Földön
   somewhere: (Valahol...)
   sorry_flickr_isnt_responding_at_the_moment: "Sajnos a Flickr jelenleg nem válaszol."
-  sorry_how_about_we_try_repeat: "Bocsánat! Mit szólnál ha megismételjük keresésedet valamilyen másik fajneveket tartalmazó adatbázisvan? Ha találunk valamit elmentjük, hogy legközelebb azt megtaláld."
+  sorry_how_about_we_try_repeat: "Sajnáljuk. Lefutatthatjuk a keresésedet egy másik fajnévadatbázisban? Ha találunk valamit, elmentjük, hogy ezentúl könnyen megtaláld."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Sajnos egyik azok közül a Flickr fotók közül vagy nem létezik vagy nics jogosultágot azt megtekinteni."
   sorry_that_photo_provider_isnt_responding: "Sajnos az a fotókiszolgáló nem válaszol jelenleg. Kérünk próbáld meg később."
   sorry_that_service_is_not_responding: "Sajnos az a szolgáltatás nem válaszol. Kérünk próbáld meg később."
@@ -5380,6 +5380,11 @@ hu:
         none: Nem.
       updates_desc: |
         Az értesítések a vezérlőpulton és a napi emailekben érkeznek.
+    search:
+      index:
+        no_taxa_add_a_flag: Jelentsd be a magasabb szintű taxont
+        no_taxa_add_a_flag_desc: |
+          Pl. a nemzetséget, amely a keresett fajt tartalmazza. A bejelentés alapján egy önkéntes kurátor hozzáadhatja a taxont az adatbázishoz, feltéve ha az összhangban van a taxonómiai irányelveinkkel.
     shared:
       not_found:
         sorry_that_doesnt_exist: A túróba, ez nem létezik!
