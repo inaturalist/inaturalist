@@ -12,7 +12,6 @@ class GooglePlacesAutocomplete extends React.Component {
     this.placesAutocomplete = new google.maps.places.Autocomplete(
       this.input.current,
       {
-        types: ["geocode"],
         fields: ["place_id"]
       }
     );
