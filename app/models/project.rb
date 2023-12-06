@@ -169,10 +169,15 @@ class Project < ApplicationRecord
       bucket: CONFIG.s3_bucket,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
       processors: [:deanimator],
-      path: "projects/:id-icon-:style.:extension",
+      path: proc {| a | a.instance.paperclip_versioned_path( :icon ) },
       url: ":s3_alias_url",
       default_url: "/attachment_defaults/general/:style.png"
-    invalidate_cloudfront_caches :icon, "projects/:id-icon-*"
+    paperclip_path_versioning(
+      :icon, [
+        "projects/:id-icon-:style.:extension",
+        "projects/:id-icon-:icon_version-:style.:extension"
+      ]
+    )
   else
     has_attached_file :icon,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
@@ -180,7 +185,7 @@ class Project < ApplicationRecord
       url: "/attachments/:class/:attachment/:id/:style/:basename.:extension",
       default_url: "/attachment_defaults/general/:style.png"
   end
-  
+
   validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
 
@@ -192,10 +197,15 @@ class Project < ApplicationRecord
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
-      path: "projects/:id-cover.:extension",
+      path: proc {| a | a.instance.paperclip_versioned_path( :cover ) },
       url: ":s3_alias_url",
       default_url: ""
-    invalidate_cloudfront_caches :cover, "projects/:id-cover.*"
+    paperclip_path_versioning(
+      :cover, [
+        "projects/:id-cover.:extension",
+        "projects/:id-:cover_version-cover.:extension"
+      ]
+    )
   else
     has_attached_file :cover,
       path: ":rails_root/public/attachments/:class/:id-cover.:extension",

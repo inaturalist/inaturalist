@@ -220,11 +220,16 @@ class User < ApplicationRecord
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
-      path: "/attachments/users/icons/:id/:style.:icon_type_extension",
+      path: proc {| a | a.instance.paperclip_versioned_path( :icon ) },
       default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
       url: ":s3_alias_url"
     )
-    invalidate_cloudfront_caches :icon, "attachments/users/icons/:id/*"
+    paperclip_path_versioning(
+      :icon, [
+        "/attachments/users/icons/:id/:style.:icon_type_extension",
+        "/attachments/users/icons/:id/:icon_version-:style.:icon_type_extension"
+      ]
+    )
   else
     has_attached_file :icon, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
