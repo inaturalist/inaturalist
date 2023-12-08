@@ -1031,10 +1031,29 @@ kk:
   exact: Нақты
   exact_date: Нақты күн
   exact_rank: Нақты дәреже
+  except: қоспағанда
+  exclude_places: Орындарды қоспау
+  exclude_projects: Жобаларды қоспау
+  exclude_taxa: Таксондарды қоспау
+  exclude_users: Пайдаланушыларды қоспау
+  existing_flags: Қолданыстағы жалаушалар
+  exit_full_screen: "Толық экраннан шығу"
+  examples_of_data_use_by_network_members: Желі мүшелерінің деректерді пайдалану мысалдары
+  examples_of_ranking_organizations: Рейтингтік ұйымдардың мысалдары
+  expected_nearby: Жақын жерде кездеседі
   explore: Зерттеу
+  export: Экспорттау
+  export_observations: Бақылауларды экспорттау
+  export_with_private_coordinates: Жасырын координаттармен экспорттау
+  exporting: "Экспорттауда..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Сыртқы қолданбалар
   extinct: жойылып кеткен
   extinct_in_the_wild: табиғатта жойылып кеткен
+  extra_properties: Қосымша сипаттар
   facebook: Facebook
+  failed_to_save_record: "Жазба сақталмады. Әрекетті кейінірек қайталаңыз."
   failed_to_save_record_with_errors: "Жазба сақталмады: %{errors}"
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Таңдаулы
@@ -1073,16 +1092,24 @@ kk:
   forgot_your_password: Құпиясөзді ұмыттыңыз ба?
   forum: Форум
   forum_categories:
+    forum_moderation: Форум модерациясы
+    nature_talk: Табиғат туралы әңгіме
+    news_and_updates: Жаңалықтар мен жаңартулар
     tutorials: Оқулықтар
+  fungi:
+    one: саңырауқұлақ
+    other: саңырауқұлақтар
   gbif: GBIF
   Genus: Тұқымдас
   geoprivacy: Геоқұпиялылық
   get_started: Жұмысты бастау
+  go_back: Артқа қайту
   google: Google
   got_it!: Түсінікті!
   graft: Байланыстыру
   grid: Тор
   group: Топ
+  grouping: Топтастыру
   guides: Нұсқаулықтар
   guide_deleted: Нұсқаулық жойылды
   guide_was_successfully_updated: Нұсқаулық сәтті жаңартылды.
@@ -1120,7 +1147,16 @@ kk:
   identification: идентификация
   identifications: Идентификациялар
   identotron: Идентотрон
+  inappropriate_content: Орынсыз мазмұн ба?
+  inat_account_action: "%{site_name} &#58; Аккаунт&#58; %{action_name}"
+  inat_user_profile: "%{site_name}: %{user} профилі"
+  inaturalist_activity_notifications: "%{site_name} белсенділік туралы хабарландырулар"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist қолданбалары"
+  inaturalist_places: "%{site_name} Орындар"
+  info: Ақпарат
   insects: жәндіктер
+  insect_life_stage: Жәндіктердің өмір сүру кезеңі
   instagram: Instagram
   introduced: Интродуцент
   iphone: iPhone
@@ -2068,6 +2104,11 @@ kk:
   plants: өсімдіктер
   #Title to a section warning a user to exercise caution
   please_be_careful!: Сақ болыңыз!
+  please_complete_the_following_to_add_project: |
+    Бұл ескертуді жобаға қосу үшін келесіні аяқтаңыз:
+  please_confirm_your_inat_username: "%{site_name} пайдаланушы атын растаңыз"
+  please_explain_why_you_want_to_hide_this: Мұны неге жасырып жатқаныңызды түсіндіріңіз
+  please_explain_why_you_want_to_unhide_this: Мұны неге жасырып жатқаныңызды түсіндіріңіз
   please_fix_your_csv_and_try_again: CSV файлын түзетіп, қайталап көріңіз.
   popular: Танымал
   position: Позиция
@@ -2517,7 +2558,18 @@ kk:
   seek: Seek
   select: Таңдау
   select_all: Барлығын таңдау
+  set_license: Лицензияны орнату
   settings: Баптаулар
+  share: Бөлісу
+  share_caps: БӨЛІСУ
+  share_colon: "Бөлісу:"
+  short_code_for_this_place: 'Бұл жердің қысқа коды, мысалы: АҚШ Америка Құрама Штаттары үшін'
+  show: Көрсету
+  show_hidden_content: Жасырын контентті көрсету
+  show_history_by_this_user: Осы пайдаланушының тарихын көрсету
+  show_history_for_this_record: Осы жазбаның тарихын көрсету
+  show_less: Азырақ көрсету
+  show_more: Көбірек көрсету
   sign_in: Кіру
   #Button to sign in to iNat with your Apple account
   sign_in_with_apple: Apple арқылы жүйеге кіру
@@ -2531,9 +2583,52 @@ kk:
   simple: Қарапайым
   single_observation: Жалғыз бақылау
   site_stats: Сайт статистикасы
+  some_agree: кейбірі келіседі
+  some_observations_are_missing_media_or_identifications: |
+    Кейбір бақылауларда медиа немесе идентификациялар жоқ
+  some_observations_are_missing_media_or_identifications_desc: |
+    Медиасыз бақылаулар іздеуде әдепкі бойынша көрінбейді, ал ешқандай сәйкестендірусіз бақылаулар нақты таксондарды іздейтін сарапшыларға көрінбеуі мүмкін. Тіпті «өсімдіктер» сияқты өте өрескел идентификация өсімдік сарапшысына сіздің бақылауыңызды табуға көмектеседі.
+  some_observations_failed_to_be_added: Кейбір бақылаулар жобаларға қосылмады
+  some_observations_failed_to_save: Кейбір бақылауларды сақтау мүмкін болмады
+  some_of_those_photos_couldnt_be_saved: "Кейбір фотосуреттерді сақтау мүмкін болмады: %{error}"
+  some_other_reason: Басқа себептерді төменде түсіндіре аласыз.
+  duplicate_observation_flag_warning: |
+    Қайталанатын бақылаулар үшін бақылаушыдан жалаушаны қосудың орнына мәселені шешуін сұраңыз, себебі сайт кураторлары бақылауларды жоя алмайды.
+  some_rights_reserved: кейбір құқықтар сақталған
   something: Бір нәрсе
   something_: бір нәрсе
+  something_went_wrong_adding: Бұл түрді тізіміңізге қосу кезінде бірдеңе дұрыс болмады
+  something_went_wrong_deleting_the_taxon_name: "'%{taxon_name}' таксон атауын жою кезінде бірдеңе дұрыс болмады!"
+  somewhere_on_earth: Жердің бір жерінде
+  somewhere: (Бір жерде...)
+  sorry_flickr_isnt_responding_at_the_moment: "Кешіріңіз, Flickr қазір жауап бермейді."
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Кешіріңіз, сол Flickr фотосуреттерінің бірі жоқ немесе оны көруге рұқсатыңыз жоқ."
+  sorry_that_photo_provider_isnt_responding: "Кешіріңіз, бұл фотопровайдер қазір жауап бермейді. Әрекетті кейінірек қайталаңыз."
+  sorry_that_service_is_not_responding: "Өкінішке орай, бұл қызмет жауап бермейді. Кейінірек қайталап көріңіз."
+  sorry_there_were_problems_with_your_request: "Кешіріңіз, сұрауыңызға қатысты мәселелер туындады: %{project_user}"
+  sorry_we_didnt_find_that_photo: "Кешіріңіз, бұл фотосуретті таппадық."
+  sorry_we_dont_have_any_metadata_for_that_photo: "Кешіріңіз, бізде бұл фотосуретке бақылау сипаттарын орнату үшін пайдалануға болатын метадеректер жоқ."
+  sorry_x_is_not_responding: "Кешіріңіз, %{x} жауап бермейді. Әрекетті кейінірек қайталаңыз."
+  sorry_you_can_only_add_1000_at_a_time: "Кешіріңіз, сіз бір уақытта тек 1000 қоса аласыз."
+  sorry_you_need_to_be_signed_in_and: Кешіріңіз, тегтерді тікелей Flickr қызметіне жариялау үшін жүйеге кіріп, байланыстырылған Flickr аккаунтыңыз болуы керек.
+  sort: Сұрыптау
+  sort_by: Сұрыптау
+  sorting_by: Сұрыптау
+  soundcloud_needs_to_confirm: "SoundCloud қызметі аккаунтыңызды %{site_name} сайтына қосқыңыз келетінін растауы керек."
   sounds:
+    add_media: Медиа қосу
+    add_sounds: Дыбыстарды қосу
+    before_importing_sounds: дыбыстарды импорттамас бұрын
+    import_from_soundcloud_description: "iNaturalist бақылауларына түрлендіру үшін SoundCloud аккаунтынан дыбыстарды таңдаңыз. Біз дыбыс метадеректерінен күн мен уақытты толтырамыз және тегтерден түр атауларын іздеуге тырысамыз."
+    import_from_sounds: Дыбыстардан импорттау
+    import_sounds: Дыбыстарды импорттау
+    listen: Тыңдау
+    no_photos_sounds: Фотосуреттер немесе дыбыстар жоқ
+    photos_sounds: Фотосуреттер / Дыбыстар
+    request_timed_out: SoundCloud қызметіне сұрау уақыты аяқталды. Әрекетті кейінірек қайталаңыз.
+    select_one_or_more_sounds: Бір немесе бірнеше дыбысты таңдаңыз
+    selected_sounds: Таңдалған дыбыстар
+    sound: Дыбыс
     sound_has_been_flagged: Бұл дыбысқа белгі қойылды.
     soundcloud_replied_with_an_error: SoundCloud қате туралы жауап берді. Әрекетті кейінірек қайталаңыз.
     sounds: Дыбыстар
@@ -2554,18 +2649,26 @@ kk:
     nzbrn_mammals: NZBRN Сүтқоректілер
     nzbrn_plants: NZBRN Өсімдіктер
     nzbrn_other: NZBRN Басқа
+    catalogue_of_life_2012_annual_checklist: 'Өмір каталогы: 2012 Жылдық бақылау тізімі'
+    catalogue_of_life_2013_annual_checklist: 'Өмір каталогы: 2013 Жылдық бақылау тізімі'
   source_eg:
+    title: 'мысалы, Snakes: The Evolution of Mystery in Nature'
+    in_text: 'мысалы, Greene, 2000'
     url: мысалы 'http://www.ucpress.edu/book.php?isbn=9780520224872'
+    citation: 'мысалы, Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: Дереккөз URL мекенжайы
   source_of_coordinates: 'Координаталар көзі және дәлдік өлшемі автоматты түрде орнатылады.'
+  sourced_to: Дереккөз
   sources: Дереккөздер
   sources_youve_added: Сіз қосқан дереккөздер
+  sourcing: Дереккөздер
   spam: Спам
   spammer: Спам жіберуші
   #Plural
   species: Түрлер
   species_by_category: санаттары бойынша түрлер
   species_from_around_the_world: Әлемнің түкпір-түкпірінен алынған түрлер
+  species_guess: түр болжамы
   species_name_cap: Түр атауы
   species_names: түр атауы
   species_search: Түрлерді іздеу
@@ -2585,12 +2688,23 @@ kk:
   submitted: Жіберілді
   subscribe_to_a_taxon: Таксонға жазылу
   subscribe_to_a_place: Орынға жазылу
+  suggestions: Ұсыныстар
+  suitable_for_the_global_biodiversity_information_facility: Жаһандық биоәртүрлілік ақпарат орталығы үшін қолайлы (GBIF)
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Wikipedia және басқа Wikimedia Foundation жобалары үшін қолайлы
+  summary: Түйіндеме
+  supporting: Қолдау
+  sw_lat: ОБ ендік
+  sw_lon: ОБ бойлық
+  sync: Синхрондау?
+  synonyms: Синонимдер
+  table: Кесте
   tags: Тегтер
   taxa: Таксондар
   taxa_info: Таксондар туралы ақпарат
   taxon: Таксон
   taxon_autocomplete_placeholder: Құстар, монарх көбелегі және т.б.
   taxonomy: Таксономия
+  taxon_deleted: Таксон жойылды.
   taxon_framework_deviations_with_count_html: "Ауытқулар: %{count}"
   taxonomic_groups: Таксономиялық топтар
   taxonomic_order: Таксономиялық тәртіп
@@ -2867,10 +2981,14 @@ kk:
   view_original: "Түпнұсқаны көру"
   view_sample: Үлгіні көру
   view_stats: Статистиканы көру
+  view_your_observations: Бақылауларыңызды қараңыз
   view_yours: Өзіңізді көру
+  view_all_of_your_observations_from_x: "%{x} сайтындағы барлық бақылауларыңызды көру"
   video_tutorials: Бейне оқулық
   visually_similar: Көрнекі ұқсас
   vulnerable: Әлсіз жағдайда
+  w_photos_only: фотолармен
+  w_sounds: дыбыстармен
   weather: Ауа райы
   website: Веб-сайт
   welcome: қош келдіңіз
@@ -2884,14 +3002,47 @@ kk:
   when_did_you_see_it?: Сіз оны қашан көрдіңіз?
   where_were_you?: Сіз қайда болдыңыз?
   widget: Виджет
+  widget_code: Виджет коды
+  wikipedia_attribution_cc_by_sa_3: |
+    Дереккөз: Уикипедия, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: Таксонға жатпайды
+  with_errors: Қателермен
   worldwide: Дүние жүзі бойынша
+  wondering_what_to_do_next: Табиғат әлемін бақылауға және анықтауға көмектесетін келесі қадамдар
+  would_you_prefer_to_view_common_names_used_in_place_html: <strong>%{place}</strong> ішінде қолданылатын жалпы атауларды көргіңіз келе ме?
+  x_blog: "%{x} блогы"
+  x_deleted: "%{x} жойылды"
+  x_does_not_exist: "\"%{x}\" жоқ"
+  x_flagged: "%{x} жалаушамен белгіленген"
+  x_flagged_as_flag: "%{x} %{flag} деп белгіленді"
+  x_journal: "%{user} журналы"
+  x_journal_archives_for_y: "%{user} журналы • Мұрағаттар"
+  x_journal_middot: "%{user} журналы •"
+  x_journal_new_post: "%{user} журналы • Жаңа жазба"
   x_of_y: "%{x} / %{y}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  x_of_count_confirmed:
+    one: "%{count} ішінен %{x} расталды"
+    other: "%{count} ішінен %{x} расталды"
+  x_of_count_observed:
+    one: "%{count} ішінен %{x} бақыланады"
+    other: "%{count} ішінен %{x} бақыланады"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{y} адамның %{x} (2/3 астам) мұнымен келіседі"
+  x_project_journal: "%{project} %{name}"
+  x_project_stats: "%{project} статистикасы"
+  x_wrote_a_new_post_html: "%{x} жаңа жазба жазды"
+  x_wrote_y_new_posts_html: "%{x} %{y} жаңа жазба жазды"
   year: Жыл
   year_month: жыл/ай
   'yes': "Иә"
+  yes_find_them!: "Иә, оларды табыңыз!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Иә, менің кез келген бақылауым үшін"
+  yes_i_want_to_join: Иә, қосылғым келеді
   yes_license_my_childs_observations: Иә, ғалымдар деректерді пайдалана алуы үшін баламның фотосуреттерін, дыбыстарын және бақылауларын лицензиялаңыз (ұсынылады).
   yes_license_my_observations_so_scientists_can_use: Иә, ғалымдар менің деректерімді пайдалана алатындай фотоларымды, дыбыстарды және бақылауларымды лицензиялаңыз (ұсынылады).
   yesterday: Кеше
@@ -3265,6 +3416,11 @@ kk:
           trillion: Триллион
           unit: ''
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half" this would be written as
+        #"1,000,002.5" in English, and "," is the delimiter. This should not be
+        #the same as the separator.
+        delimiter: ''
         precision: 3
         significant: true
         strip_insignificant_zeros: true
