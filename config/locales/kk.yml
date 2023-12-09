@@ -12,6 +12,9 @@ kk:
   x_faves:
     one: '%{count} таңдаулы'
     other: '%{count} таңдаулы'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> жалауша шешілді"
+    other: "<span class='count'>%{count}</span> жалауша шешілді"
   x_identifications:
     one: '%{count} идентификация'
     other: '%{count} идентификация'
@@ -21,6 +24,9 @@ kk:
   x_identifications_:
     one: '%{count} Идентификация'
     other: '%{count} Идентификация'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
+    other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -48,6 +54,14 @@ kk:
   x_misidentifications_of_this_species:
     one: "%{count} осы түрдің қате идентификациясы"
     other: "%{count} осы түрдің қате идентификациялары"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} осы туыстағы түрлердің қате идентификациясы"
+    other: "%{count} осы туыстағы түрлердің қате идентификациясы"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} осы %{rank} санатындағы түрлердің қате идентификациясы"
+    other: "%{count} осы %{rank} санатындағы түрлердің қате идентификациясы"
   x_observations:
     one: "%{count} бақылау"
     other: "%{count} бақылау"
@@ -57,6 +71,9 @@ kk:
   x_observations_html:
     one: "<span class='count'>%{count}</span> бақылау"
     other: "<span class='count'>%{count}</span> бақылау"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> БАҚЫЛАУ"
+    other: "<span class='count'>%{count}</span> БАҚЫЛАУ"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} бақылау</a>"
     other: "<a href='%{url}'>%{count} бақылау</a>"
@@ -72,6 +89,10 @@ kk:
   x_people:
     one: "%{count} адам"
     other: "%{count} адам"
+  x_people_html:
+    one: '<span class="count">%{count}</span> адам'
+    other: '<span class="count">%{count}</span> адам'
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} адам</strong> %{user} пайдаланушысына <strong>%{y} ID</strong> арқылы көмектесті"
   x_photos:
     one: "%{count} фотосурет"
     other: "%{count} фотосурет"
@@ -84,15 +105,24 @@ kk:
   x_species:
     one: '%{count} түр'
     other: '%{count} түр'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ТҮР"
+    other: "<span class='count'>%{count}</span> ТҮР"
   x_species_html:
     one: "<span class='count'>%{count}</span> түр"
     other: "<span class='count'>%{count}</span> түр"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} түр</a>"
     other: "<a href='%{url}'>%{count} түр</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} ұсыныс сүзгіден өткен:"
+    other: "%{count} ұсыныс сүзгіден өткен:"
   x_taxa:
     one: "%{count} таксон"
     other: "%{count} таксон"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> бақыланған таксон"
+    other: "<span class='count'>%{count}</span> бақыланған таксон"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> зерттеу-дәрежесіндегі бақылау"
     other: "<span class='count'>%{count}</span> зерттеу-дәрежесіндегі бақылау"
@@ -102,7 +132,11 @@ kk:
   x_taxa_matching_current_filters:
     one: "%{count} ағымдағы сүзгілерге сәйкес таксон"
     other: "%{count} ағымдағы сүзгілерге сәйкес таксон"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> таксон өзгерісі қосылды"
+    other: "<span class='count'>%{count}</span> таксон өзгерісі қосылды"
   _100_day_trends: 100 күндік трендтер
+  _percent_ID_d: "ID %"
   a_community_for_naturalist: Натуралистер қауымдастығы
   a_default_taxon_name_will_automatically_created: |
     Әдепкі таксон атауы осы таксонның ғылыми атрибутынан автоматты түрде жасалады.
@@ -150,8 +184,30 @@ kk:
   about_this_bioblitz: Осы биоблиц туралы
   about_this_map: Бұл карта туралы
   about_this_project: Осы жоба туралы
+  about_trips_html: |
+    <h4>
+    Сапарлар бақылауларыңызға контекст қосу арқылы бар-жоқтығы туралы деректерді жинауға мүмкіндік береді
+    </h4>
+    <p>
+    <strong>Неге</strong> Бар-жоқтығы туралы деректер таралу бойынша модельдеу сияқты ғылыми талдаулар үшін пайдалы іріктеу әрекеті туралы ақпаратты қамтиды (өңделмеген iNaturalist бақылаулары «тек бар» деректері болып саналады).
+    </p>
+    <p>
+    <strong>Қалай</strong> Саяхат жазу арқылы бақылауларыңызға контекст қосады:
+    </p>
+    <ul>
+    <li><strong>Нені</strong> іздедіңіз (мақсатты тізім)</li>
+    <li><strong>Қайда</strong> іздедіңіз (іздеу аймағы)</li>
+    <li><strong>Қашан</strong> іздедіңіз (іздеу аралығы)</li>
+    </ul>
+    <p>
+    Іздеу аймағында және аралықта байқауға болатын мақсатты тізімдегі түрлер «бар» ретінде түсіндіріледі. Сіздің мақсатты тізіміңіздегі сіз бақылай алмаған түрлер «жоқ» деп түсіндіріледі. Саяхаттар мен байланысты бақылаулардағы түрдің бар-жоқтығы жазбаларының кестесін жасау үшін «Сапарлардағы бар-жоқығы туралы деректерді кестелеу» түймесін басыңыз. <a href='%{url}'>Толығырақ</a>
+    </p>
   about_trusting_projects: Сенімді жобалар туралы
   about_trusting_projects_options_any: Осы жобадағы сіздің барлық бақылауларыңыз
+  about_trusting_projects_options_any_desc: |-
+    Бұған геоқұпиялылықты «жасырын» немесе «жеке» етіп орнатқан бақылаулар кіреді, мысалы: сіздің аулаңыздағы бақылаулар немесе басқа адамдар білгісі келмейтін жерлер.
+  about_trusting_projects_overview: |-
+    Жасырын координаттарыңызға рұқсат беру осы жобаның менеджерлеріне осы жобадағы бақылауларыңыздың шынайы, жасырын емес орнын көруге мүмкіндік береді. Бұл ғалымдарға немесе ресурстар менеджерлеріне талдау және шешім қабылдау үшін нақты координаттарға қол жеткізу қажет болған жағдайда өте маңызды.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -188,6 +244,8 @@ kk:
   active_users: Белсенді пайдаланушылар
   activity: Әрекет
   add: Қосу
+  add_a_batch_of_observations: Бірнеше бақылау қосу
+  add_a_batch_of_taxa: Бірнеше таксон қосу
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Таңбаланған тізім қосу
   add_a_comment: Пікір қосу
@@ -202,11 +260,19 @@ kk:
   add_a_numbered_list: Нөмірленген тізім қосу
   add_a_single_observation: Жалғыз бақылауды қосу.
   add_a_taxon: Таксон қосу
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Атын өзгерткіңіз келсе, <a target="_blank" href="%{url}">таксонды ауыстыру</a> қосыңыз
   add_an_assessment: Бағалау қосу
   add_an_identification: Идентификация қосу
   add_an_observation: Бақылау қосу
   add_an_observation_of: "%{taxon} таксонына бақылау қосу"
   add_an_observation_to_project_html: '%{project} жобасына бақылау қосу'
+  add_annotations_for_x: '"%{x}" үшін аңдатпа қосу'
+  add_annotations_for_controlled_attribute:
+    sex: '«Жыныс» үшін аңдатпа қосу'
+    plant_phenology: '«Өсімдіктердің фенологиясы» үшін аңдатпа қосу'
+    life_stage: '"Өмір кезеңі" үшін аңдатпа қосу'
+    evidence_of_presence: '«Бар болуының дәлелі» үшін аңдатпа қосу'
   add_another_flag: Тағы бір белгі қосу
   add_another_photo: Тағы бір фотосурет қосу
   add_another_section: Тағы бір бөлім қосу
@@ -231,10 +297,12 @@ kk:
   add_italic_text: Көлбеу мәтінді қосу
   add_muted_users: Еленбейтін пайдаланушыларды қосу
   add_new_lexicon: Жаңа лексикон қосу
+  add_new_photos_by_their_ids: Flickr идентификаторлары бойынша жаңа фотосуреттерді қосыңыз (Creative Commons болуы керек!)
   add_new_place: Жаңа орынды қосу
   add_new_rule: Жаңа ереже қосу
   add_new_source: "Жаңа дереккөз қосу..."
   add_new_taxon_name: Жаңа таксон атауын қосу
+  add_obs_from_a_link: "Тізімнен бақылау қосу: %{link}"
   add_observations: Бақылау қосу
   add_observations_project: Осы жобаға бақылаулар қосу
   #Used for buttons to add observations where the words "Add"
