@@ -393,6 +393,8 @@ pt-BR:
   added_by: Adicionado por
   added_by_user_on_date_html: "Adicionado por %{user} em %{date}"
   added_on_datetime: "Adicionado em %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Função adicionada
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "Adicionando..."
@@ -456,7 +458,7 @@ pt-BR:
     animals: Animais
     arachnids: Aracnídeos
     birds: Aves
-    chromista: Chromista - algas pardas e parentes
+    chromista: Algas Pardas e Afins
     fungi: Fungos
     fungi_including_lichens: Fungos, incluindo Líquenes
     insects: Insetos
@@ -465,7 +467,7 @@ pt-BR:
     other_animals: Outros Animais
     plants: Plantas
     protozoans: Protozoários
-    ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
+    ray_finned_fishes: Peixes com Nadadeiras Raiadas
     reptiles: Répteis
     life: Vida
     x_plantae:
@@ -484,8 +486,8 @@ pt-BR:
       one: "1 mamífero"
       other: "%{count} mamíferos"
     x_actinopterygii:
-      one: "1 peixes de barbatanas com raios"
-      other: "%{count} peixes de barbatanas com raios"
+      one: "1 peixe de nadadeiras raiadas"
+      other: "%{count} peixes de nadadeiras raiadas"
     x_reptilia:
       one: "1 réptil"
       other: "%{count} répteis"
@@ -502,8 +504,8 @@ pt-BR:
       one: "1 fungo"
       other: "%{count} fungos"
     x_chromista:
-      one: "1 algas pardas e parentes"
-      other: "%{count} algas pardas e parentes"
+      one: "1 alga parda ou afim"
+      other: "%{count} algas pardas e afins"
     x_protozoa:
       one: "1 protozoário"
       other: "%{count} protozoários"
@@ -1994,7 +1996,7 @@ pt-BR:
   generate_widget: Gerar Widget
   generate_your_stats: Gerar suas estatísticas
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
-  generate_your_year_in_review_caps: GERE SEU SUMÁRIO DO ANO de %{year}
+  generate_your_year_in_review_caps: GERE SUA REVISÃO DO ANO DE %{year}
   generating_mobile_archive: "Gerando arquivos móveis"
   Genus: Gênero
   geomodel_expected_nearby_label_is_derived: |
@@ -2149,7 +2151,7 @@ pt-BR:
       improving: |
         Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxilia a refinar o táxon da comunidade.
       maverick: |
-        Táxon não é um descendente ou ancestral da comunidade táxon, i.e. a comunidade não concorda com este táxon
+        Táxon não é um descendente ou ancestral do táxon comunitário, ou seja, a comunidade não concorda com este táxon
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
   id_two_of_taxon_move_html: "O ID 2 de táxon <strong>E</strong> será um desacordo não intencional com a ID 1 do táxon <strong>B</strong> após a mudança em ancestral"
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
@@ -2171,7 +2173,7 @@ pt-BR:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
-  inaturalist_global_year_in_review: "O ano %{year} do iNaturalist global em revisão"
+  inaturalist_global_year_in_review: "A Revisão do Ano de %{year} do iNaturalist global"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist é uma organização independente sem fins lucrativos, com isenção de impostos conforme 501(c)(3), com sede nos Estados Unidos da América (Tax ID: 92-1296468)
   computer_vision_suggestion: Sugestão de visão por computador
@@ -2182,7 +2184,7 @@ pt-BR:
   identotron_for: Auto-Identificador para
   identotron_help: Ajuda do Auto-Identificador
   ids: "IDs"
-  ids_made_for_others: Identificações feitas por outros
+  ids_made_for_others: Identificações feitas para outros usuários
   if_for_some_reason_a_user_doesnt_agree: |
     Se por alguma razão você não concordar com o táxon da comunidade, você pode rejeitá-lo, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2428,6 +2430,7 @@ pt-BR:
     kannada: canarês
     kazakh: Cazaque
     korean: Coreano
+    kweyol: Crioulo de Santa Lúcia (Kwéyòl)
     latvian: Letão
     lithuanian: Lituano
     lozi: Lozi
@@ -2693,7 +2696,7 @@ pt-BR:
   mark_all_as_reviewed: Marcar Todos como Revisado
   mark_all_as_unreviewed: Marcar Todos como Não Revisado
   matching_species_will_shown_up_here: As espécies encontradas serão mostradas aqui. Os mapas irão mostrar uma área se %{place} tiver uma para alguma espécie.
-  maverick: Maverick
+  maverick: Em desacordo
   maximum_positional_accuracy: Precisão máxima de localização
   maximum_positional_accuracy_including_unknown: |
     Precisão máxima posicional, incluindo observações sem precisão posicional
@@ -2839,7 +2842,7 @@ pt-BR:
   most_agree: a maioria concorda
   most_browser_print_pdf: "Nota: a maioria dos navegadores tem a opção de imprimir em PDF"
   most_disagree: a maioria discorda
-  most_comments_and_faves: A maioria dos comentários e dos favoritos
+  most_comments_and_faves: Com Mais Comentários e Favoritos
   most_observations: Mais observações
   most_recent_observation_by_date_observed: Observação mais recente já verificada por data de observação
   most_species: Mais espécies
@@ -3228,7 +3231,7 @@ pt-BR:
   observations_specifying_this_field_with_value: Observações especificando este campo com "%{value}"
   observations_text_search_warning: |
     Pesquisas de texto podem resultar em resultados estranhos quando combinadas com outros filtros. Se você deseja encontrar observações de uma espécie em particular, utilize o filtro de táxon.
-  observations_this_year_vs_last_year: Observações deste ano vs. último ano
+  observations_this_year_vs_last_year: Observações neste ano vs. no último ano
   observations_total: Total de Observações
   observations_w: Observações com
   observations_w_field: Observações com campo
@@ -4246,7 +4249,7 @@ pt-BR:
   ranges: Distribuições
   #Text to link to a taxon range as a KML file
   range_file: Arquivo do mapa
-  ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
+  ray_finned_fishes: peixes com nadadeiras raiadas
   re_order_photos: "Reorganize fotos &raquo;"
   read_more: Ler mais
   read_our_getting_started_guide: ler ou Acessar o guia de uso
@@ -4331,6 +4334,8 @@ pt-BR:
   remove_tags: Remova marcações
   removed: Removido
   removed_project_user: Usuário removido do projeto
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Função removida
   removing: "Removendo..."
   reorder_by_taxonomy: Reordenar por taxonomia
   repair_broken_urls: Reparar URLs quebrados
@@ -4547,7 +4552,7 @@ pt-BR:
   simple: Simples
   single_observation: Uma única observação
   #@vow_or_con should work with %{site}
-  site_year_in_review: "Veja o resumo do ano %{year} do %{site}"
+  site_year_in_review: "Veja a Revisão do Ano de %{year} do %{site}"
   sizes: Tamanhos
   skip_to_next_page: "Ir para a próxima página"
   small: pequeno
@@ -4886,8 +4891,8 @@ pt-BR:
     one: "%{taxon} é um %{rank} de moluscos com 1 observação"
     other: "%{taxon} é um %{rank} de moluscos com %{count} observações"
   taxon_is_a_rank_of_chromista_with_x_observations:
-    one: "%{taxon} é um %{rank} no Chromista (algas pardas e aliados) com 1 observação"
-    other: "%{taxon} é um %{rank} no Chromista (algas pardas e aliados) com %{count} observações"
+    one: "%{taxon} é um %{rank} em Chromista (algas pardas e afins) com 1 observação"
+    other: "%{taxon} é um %{rank} em Chromista (algas pardas e afins) com %{count} observações"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} é um reino com uma observação"
     other: "%{taxon} é um reino com %{count} observações"
@@ -5534,7 +5539,7 @@ pt-BR:
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
   #@vow_or_con should work with %{site}
-  users_site_year_in_review: "Resumo do Ano %{year} de %{user} no %{site}"
+  users_site_year_in_review: "Revisão do Ano de %{year} de %{user} no %{site}"
   valid_options_are: Opções válidas são
   value: Valor
   values: Valores
@@ -5563,12 +5568,12 @@ pt-BR:
   view_flags_for_x_html: "Ver Sinalizações para %{x}"
   view_full_observation: Ver observação completa
   view_full_size_photo: Ver foto em tamanho real
-  view_inaturalist_global_year_in_review: Visualizar o ano de %{year} do iNaturalist global em revisão
-  view_inaturalist_global_year_in_review_caps: VER O ANO GLOBAL DE %{year} DO INATURALISTA EM REVISÃO
+  view_inaturalist_global_year_in_review: Visualizar a Revisão do Ano de %{year} do iNaturalist global
+  view_inaturalist_global_year_in_review_caps: VISUALIZAR A REVISÃO DO ANO %{year} DO INATURALIST GLOBAL
   #Text in link to view Year in Review for a specific site. %{site} should
   #support @vow_or_con
-  view_site_year_in_review: Veja o ano de %{year} do %{site} em revisão
-  view_site_year_in_review_caps: VEJA O ANO DE %{year} DO %{site} EM REVISÃO
+  view_site_year_in_review: Veja a Revisão do Ano de %{year} do %{site}
+  view_site_year_in_review_caps: VEJA A REVISÃO DO ANO DE %{year} DO %{site}
   view_journal: Ver Boletim Informativo
   view_leaderboard_from_last_month: Ver ranking do último mês
   view_leaderboard_from_last_year: Ver ranking para o último ano
@@ -5613,8 +5618,8 @@ pt-BR:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Exibir painel de controle</a> para mais atualizações"
   view_your_inbox: Ver sua caixa de entrada
   view_your_observations: Ver suas observações
-  view_your_personal_year_in_review: "Veja seu Ano de %{year} Pessoal em Revisão"
-  view_your_personal_year_in_review_caps: "VEJA SEU ANO DE %{year} PESSOAL EM REVISÃO"
+  view_your_personal_year_in_review: "Veja sua Revisão do Ano pessoal de %{year}"
+  view_your_personal_year_in_review_caps: "VEJA SUA REVISÃO DO ANO PESSOAL DE %{year}"
   view_yours: Veja os Seus
   view_all_of_your_observations_from_x: "Ver todas as suas observações de %{x}"
   video_tutorials: Tutoriais em vídeo
@@ -5688,7 +5693,7 @@ pt-BR:
   who_can_see_the_coordinates_observer: A pessoa que fez a observação
   who_can_see_the_coordinates_projects: Curadores dos seguintes projetos
   who_can_see_the_coordinates_trusted: Indivíduos que o observador confiou em suas coordenadas ocultadas
-  who_helped_user_the_most: "Quem ajudou %{user} mais"
+  who_helped_user_the_most: "Quem mais ajudou %{user}"
   who_user_helped_the_most: "Quem %{user} ajudou mais"
   why_the_coordinates_are_obscured: Por que as coordenadas são obscurecidas
   with_annotation: Com anotação
@@ -5747,9 +5752,9 @@ pt-BR:
   x_wrote_a_new_post_html: "%{x} escreveu um novo artigo"
   x_wrote_y_new_posts_html: "%{x} escreveu %{y} novas publicações"
   year: Ano
-  year_in_review: "Resumo do ano %{year}"
-  year_in_review2: "Ano em Revisão %{year}"
-  year_in_review_caps: "SUMÁRIO DO ANO %{year}"
+  year_in_review: "Revisão do Ano de %{year}"
+  year_in_review2: "Revisão do Ano de %{year}"
+  year_in_review_caps: "REVISÃO DO ANO DE %{year}"
   year_month: ano/mês
   year_on_site: "O %{year} em %{site}"
   'yes': "Sim"
@@ -5792,7 +5797,7 @@ pt-BR:
     other: Das suas %{count} observações, você sabe quantas foram feitas em %{year}?
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
-    Seu Sumário do Ano de %{year} do iNaturalist — celebre seu ano na biodiversidade
+    Sua Revisão do Ano de %{year} do iNaturalist — celebre seu ano com a biodiversidade
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: A equipe iNaturalist
   yir_email_the_year_isnt_over: |
@@ -6965,6 +6970,8 @@ pt-BR:
         display_project_name: Exibir nome do projeto
         do_you_need_features_from_traditional: |
           Você precisa de características de projetos tradicionais, como acessar coordenadas reais, campos de observação personalizados ou adicionar observações individuais que não podem ser filtradas automaticamente?
+        do_you_need_features_from_traditional2: |
+          Você precisa de características de projetos tradicionais, tais como campos personalizados para observações ou adicionar observações individuais que não podem ser filtradas automaticamente?
         duplicate_project: Projeto duplicado
         include_annotated_observations: |
           Inclua apenas observações anotadas com um atributo em particular (por exemplo, fase de vida), ou um atributo e valor específicos (por exemplo, estágio de vida = adulto).
@@ -7171,9 +7178,9 @@ pt-BR:
         #heading for a section displaying use of iNaturalist data by other organizations
         broader_impacts: Amplos Impactos
         broader_impacts_desc: |
-          Vários parceiros externos importam observações do iNaturalist para fins científicos e de conservação. Suas observações, identificações, e opções de licença aberta permitem a estas organizações prover informações uteis sobre s biodiversidade para pessoas em todo o mundo que delas necessitam.
+          Vários parceiros externos importam observações do iNaturalist para fins científicos e de conservação. Suas observações, identificações, e opções de licença aberta permitem a estas organizações prover informações úteis sobre a biodiversidade para pessoas em todo o mundo que delas necessitam.
         compare_desc: |
-          Como este ano foi, comparado com seus anos anteriores? Com três anos de uso de ou mais, podemos começar a comparar métricas de atividade anual. A barra verde mostra este ano, a barra vertical branca mostra o ano passado, e as áreas de fundo cinza mostram os anos mais baixos e mais altos, bem como a média para todos os anos. As estatísticas não incluem anos onde a contagem foi zero.
+          Como este ano foi, comparado com seus anos anteriores? Com três anos de uso ou mais, podemos começar a comparar métricas de atividade anual. A barra verde mostra este ano, a barra vertical branca mostra o ano passado, e as áreas de fundo cinza mostram os anos mais baixos e mais altos, bem como a média para todos os anos. As estatísticas não incluem anos onde a contagem foi zero.
         compare_site_desc: |
           Como é que este ano foi, comparado com os anteriores? A barra verde mostra este
           ano, a barra vertical branca mostra o ano passado, e as áreas de fundo
@@ -7187,26 +7194,12 @@ pt-BR:
         donors_guide_label_our_goal_is_1000: A nossa meta é de 1.000 doadores recorrentes por mês
         inaturalist_network: Rede iNaturalist
         inaturalist_network_desc: |
-          Confira o Retrospectiva do Ano dos membros da Rede iNaturalist.
+          Confira a Revisão do Ano dos membros da Rede iNaturalist.
         include_usa: Incluir EUA
         growth_by_country_desc_html: |
-          Onde o crescimento está acontecendo? Este mapa e gráfico tentam quebrar isso
-          para baixo por país, o que acaba por ser complicado porque o crescimento por
-          país pode ser muito desequilibrado. Aqui nós escolhemos omitir o United
-          Estados e usar uma escala de log por padrão para acentuar diferenças
-          entre outros países. Se um país é preto, isso significa que
-          não contribuiu signicativamente para uma porcentagem, ou não teve crescimento
-          este ano, ou não teve mais observações este ano do que no ano passado
-          (passe o mouse sobre um país para ver um pouco mais de detalhes). <strong>"% do
-          crescimento total"</strong> significa quanto do crescimento mundial veio de um
-          determinado pas, por exemplo se houvesse 20 observações em 2018 e 10
-          em 2017, seriam 10 observações de crescimento, e se 5 delas
-          observações foram do Benim, Benin contribuiu com 50% do total
-          crescimento. <strong>"% de crescimento"</strong> significa o número de observações
-          este ano no país como um percentual de observações no ano passado em
-          esse país, por isso, se houvesse 10 observações no Laos no ano passado, mas
-          20 este ano, que seria de crescimento de 100%, e se houvesse 0 no ano passado
-          e 1 este ano, esse é% de crescimento infinito.
+          Onde o crescimento está acontecendo? Este mapa e gráfico tentam detalhar essa informação por país, o que acaba por ser complicado porque o crescimento por país pode ser muito desequilibrado. Aqui nós escolhemos omitir os Estados Unidos e usar uma escala logarítmica por padrão para acentuar diferenças
+          entre outros países. Se um país está em preto, isso significa que ele não contribuiu signicativamente para uma porcentagem, ou não teve crescimento este ano, ou não teve mais observações este ano do que no ano passado (passe o mouse sobre um país para ver mais detalhes). <strong>"% do crescimento total"</strong> significa quanto do crescimento mundial veio de um determinado país, por exemplo, se houvesse 20 observações em 2018 e 10 em 2017, seriam 10 observações de crescimento, e se 5 dessas
+          observações fossem do Benim, Benin teria contribuído com 50% do crescimento total. <strong>"% de crescimento"</strong> significa o número de observações deste ano no país como um percentual de observações no ano passado nesse país, por isso, se houvesse 10 observações no Laos no ano passado, mas 20 neste ano, teríamos um crescimento de 100%, e se houvesse 0 no ano passado e 1 este ano, isso seria um crescimento percentual infinito.
         growth_by_country_title: Crescimento por país
         growth_desc: |
           Os gráficos "Observações" e "Táxons" podem incluir dados visíveis em
@@ -7228,9 +7221,9 @@ pt-BR:
           Você também pode ver o acúmulo total de espécies ou mover o controle deslizante
           de volta no tempo para ver outras espécies recém-observadas. Este gráfico mostra
           espécies de observações verificáveis pelo mês em que foram carregadas
-          para %{site_name} (não o mês em que foram observados). Isso não
+          para o %{site_name} (e não o mês em que foram observadas). Os dados não
           incluem taxa de nível mais alto ou mais baixo, então uma observação identificada como
-          Mammalia não conta, e uma observação de <i>Canis lupus</i> ssp.
+          Mammalia não contará, e uma observação de <i>Canis lupus</i> ssp.
           <i>arctos</i> contará apenas como <i>Canis lupus</i>.
         new_species_per_year: Novas espécies / Ano
         new_species_per_year_by_date_added: Por data de adição
@@ -7238,7 +7231,7 @@ pt-BR:
         obs_in_year: Observadas em %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Doação única
-        percent_growth_in_year: "% crescimento em %{year}"
+        percent_growth_in_year: "% de crescimento em %{year}"
         percent_of_total_growth: "% do crescimento total"
         publications_desc_short_html: |
           Clique os gráficos em flor para mais informações sobre o que os números e cores significam. Gráficos e dados sobre impacto são cortesia de <a href="https://www.altmetric.com">Altmetric</a>. Informação sobre uso de data é cortesia de nossos amigos do <a href="https://www.gbif.org/">Sistema Global de Informação sobre Biodiversidade</a>.
@@ -7250,7 +7243,7 @@ pt-BR:
         observation_streaks_color_desc: |
           A cor representa o número de dias em uma escala logarítmica:
         observation_streaks_desc2: |
-          Uma sequência de observações é um período de pelo menos cinco dias em que alguém saiu e registrou novas observações verificáveis em cada dia. Aqui mostramos as maiores sequências que começaram este ano ou estavam em curso quando estas estatísticas foram geradas (para utilizadores individuai , também incluímos sequências que terminaram este ano).
+          Uma sequência de observações é um período de pelo menos cinco dias em que alguém saiu e registrou novas observações verificáveis em cada dia. Aqui mostramos as maiores sequências que começaram este ano ou estavam em curso quando estas estatísticas foram geradas (para utilizadores individuais, também incluímos sequências que terminaram este ano).
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Recorrente
         species_per_year: Espécies / Ano
@@ -7261,7 +7254,7 @@ pt-BR:
         store_prompt: |
           Quer mostrar seu orgulho iNat em todos os lugares em que for? Confira a loja iNat!
         sunburst_desc_html: |
-          Os táxons observados são organizados como um diagrama hierárquico "sunburst". A base da hierarquia está no centro, começando com "Vida" e terminando com espécies nas bordas externas. O tamanho de cada arco é proporcional ao número de observações desse táxon, e as cores correspondem às cores do nosso habitual táxon "icônico" (verde para plantas, laranja para insetos, azul para a maioria dos outros animais, etc), então se você vê muito verde, isso significa que você observou muitas plantas. <strong>Clique em um arco para colocar esse táxon no centro</strong> e seus dependentes em torno dele, ou<strong>clique no centro para voltar à hierarquia.</strong>
+          Os táxons observados são organizados como um diagrama hierárquico "sunburst". A base da hierarquia está no centro, começando com "Vida" e terminando com espécies nas bordas externas. O tamanho de cada arco é proporcional ao número de observações desse táxon, e as cores correspondem às nossas habituais cores "icônicas" dos táxons (verde para plantas, laranja para insetos, azul para a maioria dos outros animais, etc), então se você vê muito verde, isso significa que você observou muitas plantas. <strong>Clique em um arco para colocar esse táxon no centro</strong> e seus dependentes em torno dele, ou <strong>clique no centro para retroceder a hierarquia.</strong>
         translators_title: Tradutores
         translators_desc: |
           Você sabia que o iNaturalist foi traduzido para %{x_languages},
@@ -7857,7 +7850,7 @@ pt-BR:
         one: menos de 1 segundo
         other: less than %{count} segundos
       over_x_years:
-        one: mair de 1 ano
+        one: mais de 1 ano
         other: over %{count} anos
       x_days:
         one: "1 dia"
@@ -8592,6 +8585,20 @@ pt-BR:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Animais
+        Actinopterygii: Peixes de Nadadeiras Raiadas
+        Aves: Aves
+        Reptilia: Répteis
+        Amphibia: Anfíbios
+        Mammalia: Mamíferos
+        Arachnida: Aracnídeos
+        Insecta: Insetos
+        Plantae: Plantas
+        Fungi: Fungos
+        Protozoa: Protozoários
+        Mollusca: Moluscos
+        Chromista: Algas Pardas e Afins
   #Title of a section warning the user about something
   warning_title: Atenção
   wikimedia: Wikimedia
