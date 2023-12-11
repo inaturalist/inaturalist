@@ -13,9 +13,11 @@ zh-CN:
   x_identifications:
     other: '%{count} 次鉴定'
   x_identifications_html:
-    other: '<span class="count">%{count}</span> 个标识'
+    other: '<span class="count">%{count}</span> 个鉴定'
   x_identifications_:
     other: '%{count} 次鉴定'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span>个鉴定'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ zh-CN:
     other: "%{count} 次观察"
   x_observations_html:
     other: "<span class='count'>%{count}</span> 次观察"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> 次观察"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
@@ -65,6 +69,8 @@ zh-CN:
     other: '%{count} 个新用户'
   x_species:
     other: '%{count} 种物种'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> 种物种"
   x_species_html:
     other: "<span class='count'>%{count}</span> 种物种"
   x_species_link_html:
@@ -355,6 +361,8 @@ zh-CN:
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
   added_on_datetime: "添加于 %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: 添加职位
   added_to_favorites_html: |
     已添加至<a href="%{url}">收藏夹</a>
   adding: "正在添加……"
@@ -624,12 +632,13 @@ zh-CN:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     您确定要从%{project}中移除这条观察记录吗？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您确定要从%{place}的名录中移除这个分类单元吗？"
+  are_you_sure_you_want_to_flag_as_spammer: 您确定要将此用户标记为垃圾邮件发送者？
   associated_observations: 相关观察
   associated_taxa: 相关分类群
   attention: 关注
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: "您确定要从列表中移除%{taxon}吗？"
-  asc: 升
+  asc: 升序
   ascending: 升序
   assessment: 评定
   assessment_has_benn_completed: 评定已完成
@@ -930,7 +939,7 @@ zh-CN:
   community_guidelines: 社群指引
   community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
-  community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
+  community_id_at_species_level_or_lower: 被社区鉴定确定到“种”或更低层级
   community_id_is_precise: 社区分类单元是精确的
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
@@ -1031,8 +1040,8 @@ zh-CN:
     plant_phenology: 植物物候学
     budding: 发芽
     flower_budding: 花芽阶段
-    flowering: 开花
-    fruiting: 果实
+    flowering: 开花阶段
+    fruiting: 附果阶段
     life_stage: 生命阶段
     adult: 成体
     teneral: 幼体
@@ -1251,7 +1260,7 @@ zh-CN:
   data_used: "使用资料："
   datatype: 数据类型
   date_: 日期
-  date_added: 日期已加入
+  date_added: 添加日期
   date_authorized: 授权日期
   date_created: 创建日期
   date_format:
@@ -1481,6 +1490,10 @@ zh-CN:
   #Noun, as in journal posts that has not been published
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: 绘制圆形边界
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: 绘制矩形边界
   drawings: 绘画
   duplicate_verb: 复制
   duration_value: "持续时间：%{duration}分钟"
@@ -1497,6 +1510,7 @@ zh-CN:
   edit_body: 编辑正文
   edit_comment: 编辑您的评论
   edit_complete_set_for_taxon_in_place_html: "编辑 %{taxon} 在 %{place} 的完整名录集"
+  edit_conservation_status: 编辑保护状态
   edit_custom_project_fields: 编辑自定义项目字段
   edit_field: 编辑字段
   edit_license: 编辑许可协议
@@ -1549,6 +1563,9 @@ zh-CN:
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 亲爱的%{user}，
   email_description: 您的电子邮件不会显示给其他iNaturalist用户
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
@@ -1661,6 +1678,7 @@ zh-CN:
   filters: 过滤器
   find: 查找
   find_a_guide: 查找一个指南
+  find_a_post: 查找帖子
   find_a_place: 找到一个地点
   find_guides: 查找指南
   find_posts_for: "搜索相关帖子：%{journal_name}"
@@ -1820,7 +1838,6 @@ zh-CN:
   graft: 移植
   graft_taxon: 转移 %{taxon}
   grafting_attemps_to_insert_this_taxon: 嫁接试图将该分类单元插入我们的分类树中，找到一个现有的父分类单元或创建所有必要的中间分类单元，以便将其附加到现有的更高级别分类单元中。
-  grant_role: "%{grant} %{role}角色"
   grid: 网格
   grid_layout: 网格布局
   grid_tooltip: 显示网格预览
@@ -1912,6 +1929,10 @@ zh-CN:
   #Notification when an identification has been deleted
   identification_deleted: 身份验证已删除。
   identification_saved: "身份验证已保存！"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: 鉴定已隐藏
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: 识别已取消隐藏
   #Notification when an identification has been updated
   identification_updated: 鉴定已更新！
   identification_user_short: 鉴别用户
@@ -2079,6 +2100,7 @@ zh-CN:
   leaderboard_for_x: "用于 %{x} 的排行榜"
   leaderboards: 排行榜
   leaderboard_most:
+    species_in_month_year: 在%{month_year}中记录到最多的物种
     species_in_year: 在 %{year}记录的最多物种
     observations_in_month_year: 在%{month_year} 中记录到最多的观察记录
     observations_in_year: 在%{year} 中记录到最多的观察记录
@@ -2207,6 +2229,7 @@ zh-CN:
     ukrainian: 乌克兰语
     uyghur: 维吾尔语
     venda: 文达语
+    vermont_flora_codes: '《佛蒙特植物志》代码'
     vietnamese: 越南语
     visayan: 维萨扬文
     waray_waray: 瓦瑞瓦瑞语
@@ -2598,7 +2621,6 @@ zh-CN:
   needs_id: 待鉴定
   needs_id_: 需要ID
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
-  needs_to_be_identified: 需要被鉴定
   network_affiliation_prompt_from_other_site_html: |
     您想要把您的从属关系从 <strong>%{other_site_name}</strong> 更改为 <strong>%{site_name}</strong> 吗？
   new: 新增
@@ -2723,6 +2745,7 @@ zh-CN:
   no_species_on_this_list_for_owner: |
     您可以使用右边的“添加到您的列表”工具开始添加物种。
   no_subject_parens: "（无主题）"
+  no_such_wiki_page: 没有这样的页面。
   no_suggestions_available: 没有可用建议
   no_summary_from_wikipedia: 没有来自维基百科的概要
   no_summary_has_been_set: 尚无描述。
@@ -2820,6 +2843,8 @@ zh-CN:
   observation_curation: 观察策展
   observation_date: 日期
   observation_date?: 日期？
+  #Basic observation export fields
+  observation_export_column_type_basic: 基本
   #Taxon-related observation export fields
   observation_export_column_type_taxon: 分类阶元
   observation_field: 观察字段
@@ -2883,6 +2908,7 @@ zh-CN:
   observations_widget: 观察小窗口
   observations_with_this_field: 有此字段的观察
   observations_with_this_field_and_value: 有此字段和此值的观察
+  observations_without_this_field: 无此字段的观察
   observations_without_media: 包含/不包含媒体的观察
   observationcounts_refreshed: 观察计数已刷新
   observed: 观察日期
@@ -2948,7 +2974,11 @@ zh-CN:
          <li> <strong>您参与的讨论：</strong>在其他人的内容中评论或添加标识会自动为您订阅此内容的任何新活动。使用“管理您的订阅”工具来停止接收更新。</li>
       </ul>
   one_by_one: "一个接一个"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "以下之一必须为“是”："
   one_of_your_lists: "您的列表中的一个..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    一个或多个输入分类群与超过 1000 个观察结果相关联，所以可能需要一些时间才能处理。 您确定此分类单元更改是必要的吗？请牢记分类单元更改不能撤消。
   only_a_project_manager_can_add: 只有项目经理可以添加项目馆长状态
   only_administrators_may_access_that_page: 只有管理员可以访问该页面
   only_an_admin_can_remove_project_users: 只有管理员才能删除项目用户
@@ -2975,6 +3005,7 @@ zh-CN:
   open_description: "任何人可以查看观察，除非分类受到威胁。"
   open_street_map: 开放式街道地图
   optional: 可选
+  options: 选项
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
@@ -3034,6 +3065,7 @@ zh-CN:
   password_confirmation: '密码确认'
   password_change_description: 更改密码后，您的所有设备将从 iNaturalist 登出。
   password_change_logout_warning: 更改密码后，您的账号将被登出，请用新的密码重新登陆。
+  password_change_observations_warning: 您还将从iNaturalist 移动应用以及代表您发布到 iNaturalist 的其他应用或网站中登出。 请确保您已经上传任何待处理的观察记录才能这样做。 任何未上传的观察记录都将丢失。
   paste: 粘贴
   paste_in_a_bunch_of_names: 粘贴一系列名字，每行一个，然后点击按钮！
   people: 成员
@@ -3069,8 +3101,12 @@ zh-CN:
   photo_credits: 照片出处
   photo_deleted: 照片已删除
   photo_destroyed_because_it_was_deleted_from: "图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限"
+  #Message displayed after a photo has been hidden
+  photo_hidden: 照片已隐藏
   photo_licensing: 照片许可协议
   photo_type: 照片类型
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: 照片已取消隐藏
   photo_urls_repaired: 修复的照片URL
   photos_chosen_for_this_taxon: 为此分类单元选择的照片
   photos_from: 照片来自
@@ -3160,7 +3196,7 @@ zh-CN:
       land_feature: 地貌
       Local_Administrative_Area: 本地行政区域
       local_administrative_area: 本地行政区域
-      Local_Authority: 地方政权
+      Local_Authority: 地方行政区域
       local_authority: 地方政权
       Miscellaneous: 杂项
       miscellaneous: 杂项
@@ -3230,7 +3266,7 @@ zh-CN:
       village_block: 乡村街区
       Zone: 地区
       zone: 地带
-  place_guess: 地方猜想
+  place_guess: 地点猜测
   place_imported: 地点已导入！
   place_must_have_a_boundary_defined: 地点必须定义边界。
   place_name: 地名
@@ -3510,8 +3546,10 @@ zh-CN:
   places_of_interest: 名胜古迹
   places_merged_successfully: 地点已成功合并！
   plants: 植物
+  play_first_sound: 播放第一个声音
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
   please_allow_a_few_weeks_for_external_sites: 请耐心等待几周，来让其他网站同步对这个观察的更改 #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: 请从您的家长处获得许可
   #Title to a section warning a user to exercise caution
   please_be_careful!: 请小心！
   please_complete_the_following_to_add_project: |
@@ -3625,6 +3663,7 @@ zh-CN:
   queued: 已入队列
   query: 查询
   radius: 半径（m）
+  radius_km: 半径（km）
   radius_value: "半径（m）： %{radius}"
   random: 随机
   range: 范围
@@ -3846,6 +3885,8 @@ zh-CN:
   remove_tags: 移除标签
   removed: 已移除
   removed_project_user: 已移除项目用户
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: 删除职位
   removing: "正在移除……"
   reorder_by_taxonomy: 按分类法重新排序
   repair_broken_urls: 修复损毁 URL
@@ -3867,6 +3908,8 @@ zh-CN:
   research_grade_tooltip_html: '“研究等级观察含有媒体、地点、日期和社区对确切鉴定结果（通常是在物种一级）的共识。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级</a>'
   research_grade_observations_have: '达到“研究级别”的观察须具备观察日期、照片、坐标，以及由社区支持的鉴定结果。点击查看数据质量评估标准。'
   research_grade_qualification: 研究级资质
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: 重设
   reset_filters_short: 重设
   reset_brightness: 重新设定亮度
   reset_search_filters: 重置搜索过滤器
@@ -3902,6 +3945,7 @@ zh-CN:
     must_be_observed_in_place: 必须在原地观察
     must_be_in: 必须在分类群中
     must_be_coordinates_shareable_by_project_curators: 观察者必须允许项目馆长查看坐标。
+    must_be_verifiable: 必须可被验证
     must_be_wild: 必须是野生的
   running_total: 运行总计
   said: 说
@@ -3997,6 +4041,7 @@ zh-CN:
   set_license: 设置许可协议
   settings: 设置
   share: 分享
+  share_caps: 分享
   share_colon: "分享："
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   short_or_abbreviated_title_for_display: 在空间有限的区域显示简短或缩写的标题。 最多10个字符。
@@ -4361,7 +4406,7 @@ zh-CN:
     管理员是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
   the_below_items_are_needed_to_achieve: |
     下列项目需要达到<span className="bold">研究等级：</span>
-  the_community_id_requires_at_least_two_identifications: 社区ID至少需要两个标识。
+  the_community_id_requires_at_least_two_identifications: 社群分类需要至少两个鉴定。
   the_community_must_feel_that: |
     社区必须认为此社区ID是最好的，它可以基于如下证据
   the_following_observations_could: "无法将以下观察添加到%{link}"
@@ -4457,6 +4502,14 @@ zh-CN:
   time_: 时间
   time_ago: "%{time}前"
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: 欧洲中部时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: 南非时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: 东非时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: 阿根廷时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: 哥伦比亚时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_chicago: 中部时间（美国和加拿大）
@@ -4473,13 +4526,99 @@ zh-CN:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: 秘鲁时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: 太平洋时间（美国和加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: 中部时间(墨西哥)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: 东部时间(美国和加拿大)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: 亚利桑那时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: 大陆智利时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: 巴西利亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: 太平洋时间(墨西哥)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: 阿拉伯标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_bangkok: 中南半岛时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: 香港时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: 西印度尼西亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: 以色列标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: 印度标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: 克拉斯诺亚尔斯克时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: 中国标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: 新加坡标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: 台湾时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: 日本标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: 叶卡捷琳堡时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: 阿德莱德时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: 布里斯班时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: 墨尔本时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: 珀斯时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: 悉尼时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: 国际协调时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: 欧洲中部时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_athens: 欧洲东部时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: 东欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_istanbul: 土耳其时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: 东欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: 西欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: 西欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: 莫斯科时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: 东欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: 萨摩亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: 新西兰时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: 夏威夷-阿留申时间：
   #As in the title of a book or a blog post
   title: 标题
   title_and_description: "标题和描述"
@@ -4503,6 +4642,7 @@ zh-CN:
   total_members: 成员总数
   total_observations: 总计观察
   total_observations_caps: 观察记录总数
+  total_species_observed_caps: 总共被观察到的物种
   total_unique_observers: 总计独立观察者
   translated_languages: 翻译的语言
   'true': '是'
@@ -4706,6 +4846,7 @@ zh-CN:
   verifiable_observations_by_observation_date: 观察日期可核实的观察结果
   view: 查看
   view_all: 查看全部
+  view_all_fields: 查看所有字段
   view_all_flags: 查看所有标记
   view_all_members: 查看所有成员
   view_all_observations: 查看所有观察
@@ -4794,6 +4935,16 @@ zh-CN:
   welcome_to_inat: "欢迎来到%{site_name}！"
   welcome_to_guides: "欢迎来到%{site_name}指南！"
   welcome_to_x_project: "欢迎来到 %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 我们比较确定它属于这个属
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 我们比较确定它属于这个科
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 我们比较确定它属于这个目
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 我们比较确定它属于这个亚科
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 我们比较确定它属于这个总科
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -4838,6 +4989,8 @@ zh-CN:
   wikipedia_attribution_cc_by_sa_3_html: |
     此文章使用源自维基百科条目<a href="%{url}">"%{title}"</a>中的内容，该基于<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">创用 CC 姓名标示协议-相同方式分享 3.0 未本地化</a>授权条款所释出。该内容可能已从原始内容中去除，但还未有更改或扩充的內容。
   with: 带
+  #Filter for observations not in a particular taxon
+  without_taxon: 不在分类单元中
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: 放弃
@@ -4877,7 +5030,7 @@ zh-CN:
   x_wrote_a_new_post_html: "%{x}写了一个新帖子"
   x_wrote_y_new_posts_html: "%{x}写了%{y}篇新贴子"
   year: 年
-  year_in_review: "%{year}年中的复核"
+  year_in_review: "%{year}年的年度回顾"
   year_month: 年/月
   year_on_site: "%{site} %{year}一年"
   'yes': "是"
@@ -4900,6 +5053,9 @@ zh-CN:
     我们的 <a href="%{url}">软件</a> 几乎都是开源的，这意味着任何人都可以贡献自己的力量。以下是今年自愿提供代码的人员。谢谢你们，编码员们！
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist 需要您的支持
+  yir_email_what_else_will_you_observe_caps: 你还会观察什么？
+  yir_millions_of_people_used_inaturalist: |
+    数以百万计的人今年使用 iNaturalist 和Seek by iNaturalist 来与大自然连接
   yir_thank_your_for_being_generous2: |
     感谢您抽出宝贵的时间关注我们，也感谢您慷慨地分享专业知识与提供捐助！iNaturalist 是一个非营利的公益组织。这个项目依赖的是许多补助和捐助，包括来自社区极小一部分人的捐赠。我们非常感谢月捐人们，可持续的捐赠帮助我们规划 iNaturalist 的未来。
   you: 您
@@ -5356,6 +5512,8 @@ zh-CN:
       show:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
+        ancestor_disagreements_desc2: |
+          鉴定为上级分类单元、但不同意本种鉴定的个数（即“我认为它是这个属的，但它不是该种”）。
         community_taxon_desc_html: |
           <p class="ui">
           社区分类单元（或社区标识）表示%{site_name}社区认为在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会尝试<strong>选择超过2/3标识符的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是一个kingsnake，我认为它是响尾蛇，所以iNat选择能够包含所有蛇的亚目Serpentes）。该算法也略微支持异议，因为我们发现反对者通常是正确的。
@@ -5380,6 +5538,8 @@ zh-CN:
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
+        observer_does_not_allow_observation_fields: 观察者不允许添加额外的观察字段
+        observer_only_allows_curators_to_add_fields: 观察者只允许站点管理员添加观察字段
       user_stats:
         user_stats_desc: |
           用户统计已限于根据观察计数或物种计数最多500条，因此总共列出的人时常略多于500个，这是因为两个列表可能不包含相同用户。标记“*”的值意味着它未出现在那个统计数据的前500名。
@@ -5394,6 +5554,9 @@ zh-CN:
         </ol>
       dna_help: |
         要启用BOLD DNA条形码匹配功能，请确保您的字段名称包括文字“COI”、“COX1”、“ITS”或“matK,”对应这一字段目标的基因。
+      merge:
+        warning_html: |
+          请尊重其他人的数据，并且<strong>在合并之前与观察字段的创建者交谈</strong>。该工具将破坏正在合并的观察字段并将所有运用该字段的观察结果移动到其持有人。<strong>此操作无法撤消</strong>，因此请小心。
     emailer:
       bulk_import_success:
         success_message: |
@@ -5596,6 +5759,8 @@ zh-CN:
         display_project_name: 显示项目名称
         do_you_need_features_from_traditional: |
           您是否需要传统项目中的功能，例如访问真实坐标，自定义观察字段或添加无法自动过滤的单个观察？
+        do_you_need_features_from_traditional2: |
+          您是否需要传统项目中的功能，如自定义观察字段或添加无法自动过滤的单个观察？
         duplicate_project: 复制项目
         include_annotated_observations: |
           只包含注明特定属性(如生命阶段)或特定的属性和内容（如 生命阶段 = 成体）。
@@ -5760,6 +5925,17 @@ zh-CN:
         website_desc_html: |
           通过<a href="https://www.inaturalist.org">iNaturalist</a>或<a href="%{url}">iNaturalist网络</a>网站创建
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: 两者均添加
+        added_only_identifications: 只添加鉴定
+        added_only_observations: 只添加观察
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: 更广泛的影响
+        broader_impacts_desc: |
+          一些外部合作伙伴定期导入 iNaturist 观察结果以支持科学和保护活动。 您的观察、识别和开放许可选择使这些组织能够向世界各地有需要的人们提供有用的生物多样性信息。
+        compare_desc: |
+          今年与往年相比如何？ 使用三年或更长时间后，我们可以开始比较年度活动指标。 绿色条显示今年，白色垂直条显示去年，灰色背景区域显示最低和最高年份，以及所有年份的平均值。 统计数据不包括计数为零的年份。
         compared_to_previous_years: 与往年相比
         donate_title: "特别感谢我们所有的支持者"
         donate_desc2_html: |
@@ -5772,6 +5948,13 @@ zh-CN:
         include_usa: 包括美国
         growth_by_country_title: 按国家/地区显示增长
         growth_title: 增长
+        new_species_desc: |
+          今年首次在 %{site_name} 上观察到的物种。
+          显示<a href="%{url}">上%{y}个物种中的%{x}个</a>。
+        new_species_desc_html: |
+          今年首次添加的物种。
+          点击月份可查看该月添加的新物种。
+          您还可以查看物种总计，或移动时间回溯滑块以查看其他新观察到的物种。 此图表显示了按月份上传（而不是观察）到%{site_name}的拥有可验证观测的物种。它不包括更高或更低级别的分类群，因此被识别为哺乳动物的观察值不计算在内，而北极狼<i>Canis lupus</i> ssp. <i>arctos</i>的观察值会仅被算作狼<i>Canis lupus</i>。
         new_species_per_year: 新物种/年
         new_species_per_year_by_date_added: 按添加日期
         new_species_per_year_by_date_observed: 按观察日期
@@ -5787,6 +5970,8 @@ zh-CN:
         observation_streaks: 观察记录的规则
         observation_streaks_color_desc: |
           颜色表示在对数比例尺上的天数：
+        observation_streaks_desc2: |
+          连续观察记录是指观察者在一段不少于5天时间里每天走出室外记录新的、可核实的观察结果。这里是我们展示的是今年或者在这些统计数据产生时正在进行的最长的连续观察记录（对个人观察者而言我们还包括了截止到本年为止的连续观察记录）。
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: 定期
         species_per_year: 物种/年
@@ -5856,6 +6041,9 @@ zh-CN:
           "Life Stage=Pupa": 蛹
           "Life Stage=Subimago": 亚成虫
           "Life Stage=Teneral": 成熟前期
+          "Sex=Cannot Be Determined": 无法确定
+          "Sex=Female": 雌性
+          "Sex=Male": 雄性
           unannotated: 没有注释
         max_photos_desc: |
           一个分类群最多只能拥有 %{max} 张照片，您需要移除现有照片来增加别的照片。
@@ -6011,6 +6199,8 @@ zh-CN:
       index:
         connect_with_nature: 连接自然
         explore_and_share: 探索并分享您对自然世界的观察。
+        species_observed:
+          other: "观察到的物种"
         how_it_works: 它是如何工作的
         record_your_observations: 记录您的观察
         share_with_fellow_naturalists: 与自然学家分享
@@ -6203,21 +6393,41 @@ zh-CN:
     pm: 下午
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: 公告
       AssessmentSection: 评定章节
       Atlas: 地图集
+      BlockedUser: 已屏蔽用户
       CompleteSet: 完整集
       #Noun
       Flag: 标记
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: 管理操作
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: 管理批注
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: 应用
+      Photo: 照片
       TaxonLink: 分类单元链接
     attributes:
       announcement:
         created_at: 创建于
         updated_at: 更新于
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: 站点鉴定
         #Preference for an announcement that is only shown to staff
         prefers_target_staff: 目标工作人员 (用于测试)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: 针对未确认电子邮件地址的用户
+        clients: 客户端
       assessment:
         description: 描述
       assessment_section:
@@ -6271,6 +6481,8 @@ zh-CN:
         #Inputs to an export task, e.g. the query and the columns
         inputs: 输入
       oauth_application:
+        #Unique identifier for an application
+        uid: 鉴定
         #Noun, secret associated with an application, sort of like the application's password
         secret: 密钥
         #Adjective, whether or not this application can keep its secret
@@ -6452,6 +6664,10 @@ zh-CN:
               only_staff_can_unhide: 只有工作人员才能解除隐藏内容
             user_id:
               must_be_a_curator: 必须是管理者
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: 必须是管理员
         observation:
           attributes:
             base:
@@ -6611,6 +6827,9 @@ zh-CN:
     previous_label: "&#8592; 上一页"
     next_label: "下一页 &#8594;"
     page_gap: "&hellip;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: 从Z到A
   zoom_in: 放大
   zoom_out: 缩小
   zoom_photo: 缩放照片

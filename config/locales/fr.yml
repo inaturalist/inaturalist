@@ -396,6 +396,8 @@ fr:
   added_by: Ajouté par
   added_by_user_on_date_html: "Ajouté par %{user} le %{date}"
   added_on_datetime: "Ajouté le %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rôle ajouté
   added_to_favorites_html: |
     Ajouté aux <a href="%{url}">favoris</a>
   adding: "Ajout en cours…"
@@ -2006,7 +2008,6 @@ fr:
   graft: Greffer
   graft_taxon: Rattacher %{taxon}
   grafting_attemps_to_insert_this_taxon: Le greffage tente d’insérer ce taxon dans notre arbre taxinomique en trouvant un taxon de rang supérieur ou en créant tous les taxons intermédiaires afin de le rattacher à un taxon de rang supérieur.
-  grant_role: "%{grant} rôle %{role}"
   grid: Grille
   grid_layout: Grille de mise en page
   grid_tooltip: Afficher la vue en mode grille
@@ -2883,7 +2884,6 @@ fr:
   needs_id_: Nécessite une ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_id_tooltip_html: 'Les observations « besoin ID » sont documentées et ont un lieu et une date, mais n''ont pas encore d''identification précise faisant l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
-  needs_to_be_identified: Doit être identifié
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens au/aux/en/à %{place}. Voulez-vous changer votre affiliation d’<strong>%{inat_site_name}</strong> à <strong>%{site_name}</strong>?
@@ -4281,6 +4281,8 @@ fr:
   remove_tags: Supprimer les étiquettes
   removed: Supprimé
   removed_project_user: Utilisateur de projet supprimé
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rôle retiré
   removing: "Suppression en cours…"
   reorder_by_taxonomy: Réorganiser l’ordre par taxinomie
   repair_broken_urls: Réparer les URL cassées
@@ -7082,6 +7084,8 @@ fr:
         display_project_name: Afficher le nom du projet
         do_you_need_features_from_traditional: |
           Avez-vous besoin de fonctionnalités des projets traditionnels, comme l'accès aux coordonnées réelles, des champs d’observation personnalisés ou l'ajout d'observations qui ne peuvent pas être filtrées automatiquement ?
+        do_you_need_features_from_traditional2: |
+          Avez-vous besoin de fonctionnalités propres aux projets traditionnels, tels que des champs d’observation personnalisés, ou l’ajout d’observations individuelles qui ne peuvent pas être filtrées automatiquement ?
         duplicate_project: Dupliquer le projet
         include_annotated_observations: |
           Inclure uniquement les observations annotées avec un attribut particulier (par exemple le stade de développement),

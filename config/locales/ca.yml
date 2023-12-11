@@ -1951,7 +1951,6 @@ ca:
   graft: Insereix
   graft_taxon: Insereix %{taxon}
   grafting_attemps_to_insert_this_taxon: L’acció d’afegir pot fer referència a inserir aquest tàxon al nostre arbre taxonòmic, trobar un tàxon pare existent o crear tots els tàxons necessaris al mig per incorporar-lo a un tàxon existent d’un rang superior.
-  grant_role: "Es %{grant} el permís de %{role}"
   grid: Quadrícula
   grid_layout: Disseny en graella
   grid_tooltip: Mostra la visualització en quadrícula
@@ -2786,7 +2785,6 @@ ca:
   needs_id_: Necessita ID
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
   needs_id_tooltip_html: 'Les observacions qualificades com a "Necessita Identificació" tenen imatges o sons, localització i data però encara necessiten una identificació precisa consensuada per la comunitat. <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
-  needs_to_be_identified: Ha de ser identificat
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part de la xarxa internacional iNaturalist

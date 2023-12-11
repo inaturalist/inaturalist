@@ -403,6 +403,8 @@ tr:
   added_by: Ekleyen
   added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
   added_on_datetime: "%{datetime} tarihinde eklendi"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Görev eklendi
   added_to_favorites_html: |
     <a href="%{url}">Favorilere</a> eklendi
   adding: "Ekleniyor..."
@@ -1970,7 +1972,6 @@ tr:
   graft: Aşılama
   graft_taxon: '%{taxon} sınıfını aşıla'
   grafting_attemps_to_insert_this_taxon: Aşılama, bu sınıfı sınıflandırmasal ağacımıza eklemeye, mevcut bir üst sınıf bulmaya ya da mevcut bir üst düzey sınıfa eklemek için gerekli tüm ara sınıfları oluşturmaya yarar.
-  grant_role: "%{grant} %{role} rol"
   grid: Izgara
   grid_layout: Izgara Düzeni
   grid_tooltip: Izgara görünümü göster
@@ -2830,7 +2831,6 @@ tr:
   needs_id_: Tanımlama Gerekli
   needs_id_expandable_html: "Tanımlama <span class='full'>Gerekli</span>"
   needs_id_tooltip_html: '"Tanımlama Gerekli" gözlemlerinde medya, konum ve tarih bulunur ancak yine de kesin bir tanımlama için topluluk kararı gerekir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
-  needs_to_be_identified: Tanımlanması gerekenler
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, %{place} konumundaki insanlara ve biyoçeşitliliğe odaklı uluslararası iNaturalist Ağının parçasıdır. Hesap üyeliğini <strong>%{inat_site_name}</strong> yerine <strong>%{site_name}</strong> olarak değiştirmek ve verilerini yerel kurumlarla paylaşmak istiyor musun?
@@ -4205,6 +4205,8 @@ tr:
   remove_tags: Etiketleri kaldır
   removed: Kaldırıldı
   removed_project_user: Kaldırılan proje kullanıcısı
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Görev kaldırıldı
   removing: "Kaldırılıyor..."
   reorder_by_taxonomy: Sınıflandırmaya göre yeniden düzenle
   repair_broken_urls: Bozuk URL'leri onar
@@ -6772,6 +6774,8 @@ tr:
         do_you_need_features_from_traditional: |
           Gerçek koordinatlara erişim, özel gözlem alanları veya otomatik olarak filtrelenemeyen 
           bireysel gözlemler ekleme gibi geleneksel projelerden özelliklere mi ihtiyacınız var?
+        do_you_need_features_from_traditional2: |
+          Özel gözlem alanları veya otomatik olarak filtrelenemeyen bireysel gözlemler eklemek gibi geleneksel projelerdeki özelliklere mi ihtiyacın var?
         duplicate_project: Projeyi Kopyala
         include_annotated_observations: |
           Yalnızca belirli bir nitelikle (ör. yaşam evresi) ya da belirli bir nitelik ve değerle (ör. yaşam evresi = yetişkin) açıklanmış gözlemleri dahil et. Proje başına bir açıklama filtresi sınırı vardır.

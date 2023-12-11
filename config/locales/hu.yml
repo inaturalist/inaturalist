@@ -344,6 +344,8 @@ hu:
   added_by: 'Hozzáadta:'
   added_by_user_on_date_html: "Hozzáadta %{user} ekkor: %{date}"
   added_on_datetime: "Hozzáadás dátuma: %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Jogosultság hozzáadva
   added_to_favorites_html: |
     A <a href="%{url}">kedvencekhez</a> hozzáadva
   adding: "Hozzáadás..."
@@ -1695,7 +1697,6 @@ hu:
     A Google Térkép nem indult el. Talán blokkoltad a Google Térkép hozzáférést egy böngészőkiegészítővel vagy tűzfallal, vagy valami más (pl. a szolgáltató) akadályozza a hozzáférést.
   got_it!: Rendben!
   got_your_data_somewhere_else?: Máshol vannak az adataid? Segíthetünk.
-  grant_role: "%{role} szerep %{grant}"
   grid: Rács
   grid_layout: Rácselrendezés
   grid_tooltip: Rácselrendezés megtekintése
@@ -2444,7 +2445,6 @@ hu:
   needs_id_: Meghatározásra vár
   needs_id_expandable_html: "Azonosítás <span class='full'>kell</span>"
   needs_id_tooltip_html: 'A meghatározásra váró megfigyelésekhez tartozik kép (esetleg hang), hely és dátum, de a közösség még nem jutott egyetértésre a meghatározással kapcsolatban. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
-  needs_to_be_identified: Kell azonosítani
   new: Új
   new_and_noteworthy: Újdonságok
   new_announcement: Új felhívás
@@ -2581,7 +2581,7 @@ hu:
   not_on_this_list: Nincs ezen a listán.
   not_recorded: Nincs adat
   not_resolved: Nincs megoldva
-  not_seeing_what_looking_for: Nem látod azt amit keresel?
+  not_seeing_what_looking_for: Nem találod, amit keresel?
   note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
@@ -3659,6 +3659,8 @@ hu:
   remove_tags: Címkék eltávolítása
   removed: Eltávolítva
   removed_project_user: Projektfelhasználó eltávolítása
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Jogosultság eltávolítva
   removing: "Eltávolítás…"
   reorder_by_taxonomy: Rendszertani sorrend
   repair_broken_urls: Hibás URL-ek javítása
@@ -3700,7 +3702,7 @@ hu:
   revoke_caps: VISSZAVONÁS
   revoke_privacy_consent_warning: "E jóváhagyásod visszavonásának egyedüli módja az, ha törlöd a fiókodat és minden azzal kapcsolatos adatodat."
   rg_observations: Tud. szintű megfigyelések
-  role: Szerep
+  role: Jogosultság
   rotate_left: Forgatás balra
   rotate_right: Forgatás jobbra
   row_singular_or_plural: Sor(ok)
@@ -3863,7 +3865,7 @@ hu:
   somewhere_on_earth: Valahol a Földön
   somewhere: (Valahol...)
   sorry_flickr_isnt_responding_at_the_moment: "Sajnos a Flickr jelenleg nem válaszol."
-  sorry_how_about_we_try_repeat: "Bocsánat! Mit szólnál ha megismételjük keresésedet valamilyen másik fajneveket tartalmazó adatbázisvan? Ha találunk valamit elmentjük, hogy legközelebb azt megtaláld."
+  sorry_how_about_we_try_repeat: "Sajnáljuk. Lefutatthatjuk a keresésedet egy másik fajnévadatbázisban? Ha találunk valamit, elmentjük, hogy ezentúl könnyen megtaláld."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Sajnos egyik azok közül a Flickr fotók közül vagy nem létezik vagy nics jogosultágot azt megtekinteni."
   sorry_that_photo_provider_isnt_responding: "Sajnos az a fotókiszolgáló nem válaszol jelenleg. Kérünk próbáld meg később."
   sorry_that_service_is_not_responding: "Sajnos az a szolgáltatás nem válaszol. Kérünk próbáld meg később."
@@ -4115,6 +4117,7 @@ hu:
   that_observation_hasnt_been_added_this_project: A megfigyelést nem adtuk hozzá ehhez a projekthez.
   that_observation_no_longer_exists: Az a megfigyelés már nem létezik.
   that_project_doesnt_exist: "Az a projekt nem létezik."
+  that_role_doesnt_exist: Ez a jogosultság nem létezik
   that_was_the_last_observation_matching_the_current_filters: A megadott szűrési feltételekkel ez volt az utolsó megfigyelés.
   thats_not_a_real_date: Az nem egy igazi dátum!
   the_below_items_are_needed_to_achieve: |
@@ -4720,7 +4723,7 @@ hu:
     other: '%{count} megfigyelésed van eddig, de ebből mennyi készült %{year}-ban?'
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
-    A %{year}. évi iNaturalist visszatekintőd - a biodverzitás évenkéni ünnepe
+    A %{year}. évi iNaturalist visszatekintőd - a biodiverzitás évenkénti ünnepe
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: Az iNaturalist csapata
   yir_email_the_year_isnt_over: |
@@ -5377,6 +5380,11 @@ hu:
         none: Nem.
       updates_desc: |
         Az értesítések a vezérlőpulton és a napi emailekben érkeznek.
+    search:
+      index:
+        no_taxa_add_a_flag: Jelentsd be a magasabb szintű taxont
+        no_taxa_add_a_flag_desc: |
+          Pl. a nemzetséget, amely a keresett fajt tartalmazza. A bejelentés alapján egy önkéntes kurátor hozzáadhatja a taxont az adatbázishoz, feltéve ha az összhangban van a taxonómiai irányelveinkkel.
     shared:
       not_found:
         sorry_that_doesnt_exist: A túróba, ez nem létezik!
