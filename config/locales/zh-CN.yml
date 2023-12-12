@@ -4769,7 +4769,7 @@ zh-CN:
   #@gender operates on %{x}
   user_added_a_x: "%{user} 添加了一个 %{x}"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至%{by}的%{noun}"
   #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
   #@gender operates on %{x}
@@ -5977,8 +5977,6 @@ zh-CN:
         species_per_year: 物种/年
         species_per_year_by_date_added: 按添加日期
         species_per_year_by_date_observed: 按观察日期排序
-        sunburst_desc_html: |
-          观察到的分类群被安排为分层的“森伯斯特”图。层次结构的基础位于中心，从“生命”开始，到外边缘的物种结束。每个弧的大小与该分类单元的观察数量成正比，颜色大略地对应于我们通常的“标志性”分类颜色（植物为绿色，昆虫为橙色，大多数其他动物为蓝色等），所以如果您看到很多绿色，这意味着您观察了很多植物。<strong>点击圆弧以将该分类单元放置在中心</strong>及其周围的子项，或<strong>单击中心以向上移动层次结构</strong>。
         translators_title: 翻译人员
         translators_prompt: |
           如果您想要帮助翻译， %{link_tag}点此学习%{link_tag_end}。
