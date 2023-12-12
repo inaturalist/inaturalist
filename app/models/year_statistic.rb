@@ -860,6 +860,11 @@ class YearStatistic < ApplicationRecord
       half = ( d2 - d1 ) / 2
       d1_p1 = d1
       d2_p1 = YearStatistic.end_of_month( d1 + half.days )
+      # If d1 and d2 describe a span of or less than a month, we need to
+      # partition within the month
+      if d2_p1 <= d2
+        d2_p1 = d1 + half.days
+      end
       d1_p2 = d2_p1 + 1.day
       d2_p2 = d2
       es_params1 = es_params.dup
