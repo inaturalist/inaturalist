@@ -13,7 +13,7 @@ describe YearStatistic do
         publications = YearStatistic.publications( 2022 )
 
         expect( publications[:count] ).to be_kind_of( Numeric )
-        expect( publications[:url] ).to start_with( "https://api.gbif.org/v1/literature/search" )
+        expect( publications[:url] ).to start_with( "https://www.gbif.org/resource/search" )
         expect( publications[:results] ).to be_an_instance_of( Array )
         expect(
           publications[:results][0]["_gbifDOIs"].any? do | doi |

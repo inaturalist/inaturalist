@@ -894,8 +894,9 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    gbif_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
-    response = JSON.parse( RestClient.get( gbif_url ) )
+    gbif_api_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
+    gbif_web_url = "https://www.gbif.org/resource/search?contentType=literature&#{gbif_params.to_query}"
+    response = JSON.parse( RestClient.get( gbif_api_url ) )
 
     new_results = []
     response["results"].each do | result |
@@ -940,7 +941,7 @@ class YearStatistic < ApplicationRecord
 
     {
       results: new_results.sort_by {| result | result["altmetric_score"].to_f * -1 }[0..5],
-      url: gbif_url,
+      url: gbif_web_url,
       count: response["count"]
     }
   end
