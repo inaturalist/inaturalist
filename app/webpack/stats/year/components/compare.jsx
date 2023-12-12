@@ -21,21 +21,31 @@ class Compare extends Component {
       ? data.taxa.accumulation_by_date_observed
       : data.taxa.accumulation;
     const newSpeciesPerYear = _.reduce( taxaAccumulation, ( memo, row ) => {
-      const y = parseInt( row.date.split( "-" )[0], 0 );
+      const y = Number( row.date.split( "-" )[0] );
       if ( y > year ) {
         return memo;
       }
       memo[y] = ( memo[y] || 0 ) + row.novel_species_ids.length;
       return memo;
     }, {} );
-    const speciesPerYear = _.reduce( taxaAccumulation, ( memo, row ) => {
-      const y = parseInt( row.date.split( "-" )[0], 0 );
-      if ( y > year ) {
+    let speciesPerYear;
+    if (
+      data.taxa.leaf_taxa_counts_by_year_observed
+      && data.taxa.leaf_taxa_counts_by_year_observed
+    ) {
+      speciesPerYear = dateField === "observed_on"
+        ? data.taxa.leaf_taxa_counts_by_year_observed
+        : data.taxa.leaf_taxa_counts_by_year_added;
+    } else {
+      speciesPerYear = _.reduce( taxaAccumulation, ( memo, row ) => {
+        const y = Number( row.date.split( "-" )[0] );
+        if ( y > year ) {
+          return memo;
+        }
+        memo[y] = ( memo[y] || 0 ) + row.species_count;
         return memo;
-      }
-      memo[y] = ( memo[y] || 0 ) + row.species_count;
-      return memo;
-    }, {} );
+      }, {} );
+    }
     // If there's only one year represented, there's nothing to compare
     if ( _.keys( speciesPerYear ).length < 2 ) {
       // return <div />;
@@ -63,7 +73,7 @@ class Compare extends Component {
       : data.growth.observations;
     if ( obsMonths ) {
       const obsPerYear = _.reduce( obsMonths, ( memo, count, date ) => {
-        const y = parseInt( date.split( "-" )[0], 0 );
+        const y = Number( date.split( "-" )[0] );
         if ( y > year ) {
           return memo;
         }
@@ -80,9 +90,10 @@ class Compare extends Component {
           <div className="col-xs-12 col-md-2">
             <strong>{ I18n.t( "views.stats.year.observations_per_year" ) }</strong>
             <div className="text-muted">
-              { dateField === "created_at"
-                ? I18n.t( "views.stats.year.observations_per_year_by_date_added" )
-                : I18n.t( "views.stats.year.observations_per_year_by_date_observed" )
+              {
+                dateField === "created_at"
+                  ? I18n.t( "views.stats.year.observations_per_year_by_date_added" )
+                  : I18n.t( "views.stats.year.observations_per_year_by_date_observed" )
               }
             </div>
           </div>
@@ -178,9 +189,10 @@ class Compare extends Component {
           <div className="col-xs-12 col-md-2">
             <strong>{ I18n.t( "views.stats.year.species_per_year" ) }</strong>
             <div className="text-muted">
-              { dateField === "created_at"
-                ? I18n.t( "views.stats.year.species_per_year_by_date_added" )
-                : I18n.t( "views.stats.year.species_per_year_by_date_observed" )
+              {
+                dateField === "created_at"
+                  ? I18n.t( "views.stats.year.species_per_year_by_date_added" )
+                  : I18n.t( "views.stats.year.species_per_year_by_date_observed" )
               }
             </div>
           </div>

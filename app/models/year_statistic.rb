@@ -55,6 +55,16 @@ class YearStatistic < ApplicationRecord
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
+        # There shouldn't be *legit* records from before 1900
+        leaf_taxa_counts_by_year_observed: ( 1900..year ).to_a.reverse.each_with_object( {} ) do | count_year, memo |
+          count = leaf_taxa_count( count_year, options )
+          memo[count_year] = count if count.positive?
+        end,
+        # This should probably be from 2008, but I think there are some back-dated nz records
+        leaf_taxa_counts_by_year_added: ( 2000..year ).to_a.reverse.each_with_object( {} ) do | count_year, memo |
+          count = leaf_taxa_count( count_year, options.merge( date_field: "created_at" ) )
+          memo[count_year] = count if count.positive?
+        end,
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
         accumulation: observed_species_accumulation(
           {
@@ -148,6 +158,17 @@ class YearStatistic < ApplicationRecord
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
+        # Assume no one over the age of 120 is generating a YIR
+        leaf_taxa_counts_by_year_observed: ( ( year - 120 )..year ).to_a.reverse.
+          each_with_object( {} ) do | count_year, memo |
+            count = leaf_taxa_count( count_year, options.merge( user: user ) )
+            memo[count_year] = count if count.positive?
+          end,
+        leaf_taxa_counts_by_year_added: ( user.created_at.year..year ).to_a.
+          reverse.each_with_object( {} ) do | count_year, memo |
+            count = leaf_taxa_count( count_year, options.merge( user: user, date_field: "created_at" ) )
+            memo[count_year] = count if count.positive?
+          end,
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
         accumulation: observed_species_accumulation(
@@ -380,6 +401,13 @@ class YearStatistic < ApplicationRecord
       else
         params[:site_id] = site.id
       end
+    end
+    if options[:date_field] == "created_at"
+      new_params = params.clone
+      new_params.delete( :year )
+      new_params[:created_d1] = "#{year}-01-01"
+      new_params[:created_d2] = "#{year}-12-31"
+      params = new_params
     end
     # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
     JSON.parse( INatAPIService.get_json( "/observations/species_counts", params,
@@ -832,6 +860,11 @@ class YearStatistic < ApplicationRecord
       half = ( d2 - d1 ) / 2
       d1_p1 = d1
       d2_p1 = YearStatistic.end_of_month( d1 + half.days )
+      # If d1 and d2 describe a span of or less than a month, we need to
+      # partition within the month
+      if d2_p1 <= d2
+        d2_p1 = d1 + half.days
+      end
       d1_p2 = d2_p1 + 1.day
       d2_p2 = d2
       es_params1 = es_params.dup
