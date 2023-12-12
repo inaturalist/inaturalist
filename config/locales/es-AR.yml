@@ -6656,8 +6656,6 @@ es-AR:
         observation_streaks_desc2: |
           Una racha de observaciones es un período de al menos cinco días cuando alguien se acercó a la naturaleza y registró observaciones nuevas y verificables cada día particular. Acá mostramos las rachas más largas que comenzaron este año o estaban en progreso cuando estas estadísticas se generaron (para usuarios individuales, también incluímos rachas que terminaron este año).
         stats_generated_datetime: Estadísticas generadas el %{datetime}
-        sunburst_desc_html: |
-          Taxones observados dispuestos como un diagrama jerárquico de "resplandor solar". La base de la jerarquía está en el centro, comenzando con "Vida" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón "icónico" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
