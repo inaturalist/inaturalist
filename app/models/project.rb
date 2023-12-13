@@ -203,7 +203,7 @@ class Project < ApplicationRecord
     paperclip_path_versioning(
       :cover, [
         "projects/:id-cover.:extension",
-        "projects/:id-:cover_version-cover.:extension"
+        "projects/:id-cover-:cover_version.:extension"
       ]
     )
   else

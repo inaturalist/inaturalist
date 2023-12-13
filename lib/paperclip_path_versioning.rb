@@ -5,8 +5,19 @@ module PaperclipPathVersioning
 
   included do
     def paperclip_versioned_path( attachment_name )
-      attachment_path_versions = self.class.const_get( "PAPERCLIP_#{attachment_name.upcase}_PATHS" )
-      attachment_path_versions[send( "#{attachment_name}_path_version" )]
+      attachment_paths_constant = "PAPERCLIP_#{attachment_name.upcase}_PATHS"
+      unless self.class.const_defined?( attachment_paths_constant )
+        raise "`#{self.class.name}` has not implemented `PaperclipPathVersioning` on attachment " \
+          "`#{attachment_name}`"
+      end
+      attachment_path_versions = self.class.const_get( attachment_paths_constant )
+      path_version = send( "#{attachment_name}_path_version" )
+      versioned_path = attachment_path_versions[path_version]
+      if versioned_path.nil?
+        raise "`#{self.class.name}` implemented `PaperclipPathVersioning` but does not have a " \
+          "path version `#{path_version}` on attachment `#{attachment_name}`"
+      end
+      versioned_path
     end
 
     class << self
@@ -20,6 +31,10 @@ module PaperclipPathVersioning
         unless column_names.include?( attachment_path_version_method )
           raise "`#{name}` cannot implement `PaperclipPathVersioning` on attachment " \
             "`#{attachment_name}` as it is missing column `#{attachment_path_version_method}`"
+        end
+        unless path_patterns.is_a?( Array ) && path_patterns.size >= 2
+          raise "`#{name}` cannot implement `PaperclipPathVersioning` on attachment " \
+            "`#{attachment_name}` as `path_patterns` needs to be an array of at least 2 paths"
         end
 
         const_set( "PAPERCLIP_#{attachment_name.upcase}_PATHS", path_patterns )
