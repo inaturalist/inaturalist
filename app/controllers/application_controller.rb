@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   before_action :return_here_from_url
   before_action :preload_user_preferences
   before_action :user_logging
-  before_action :check_user_last_active
+  before_action :update_active_user_columns
   after_action :user_request_logging
   before_action :remove_header_and_footer_for_apps
   before_action :login_from_param
@@ -345,19 +345,24 @@ class ApplicationController < ActionController::Base
     Rails.logger.info msg
   end
 
-  def check_user_last_active
-    if current_user
-      # there is a current_user, so that user is active
-      if current_user.last_active.nil? || current_user.last_active != Date.today
-        current_user.last_active = Date.today
-        current_user.last_ip = Logstasher.ip_from_request_env( request.env )
-        current_user.save
-      end
-      # since they are active, unsuspend any stopped subscriptions
-      if current_user.subscriptions_suspended_at
-        current_user.update_column(:subscriptions_suspended_at, nil)
-      end
+  def update_active_user_columns
+    return unless current_user
+
+    # there is a current_user, so that user is active
+    update_columns = {}
+    request_ip = Logstasher.ip_from_request_env( request.env )
+    if request_ip != current_user.last_ip
+      update_columns[:last_ip] = request_ip
     end
+    if current_user.subscriptions_suspended_at?
+      update_columns[:subscriptions_suspended_at] = nil
+    end
+    if current_user.last_active.nil? || current_user.last_active != Date.today
+      update_columns[:last_active] = Date.today
+    end
+    return if update_columns.blank?
+
+    current_user.update_columns( update_columns )
   end
 
   #
