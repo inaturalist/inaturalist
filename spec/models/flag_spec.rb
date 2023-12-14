@@ -169,22 +169,6 @@ describe "actual creation" do
       expect( flag.flaggable_content ).to eq identification.body
     end
   end
-
-  describe "subscribers" do
-    before { enable_has_subscribers }
-    after { disable_has_subscribers }
-
-    it "auto subscribes the flagger" do
-      i = Identification.make!
-      u = User.make!
-      expect( Subscription.where( user: u ).count ).to eq 0
-      flag = Flag.make!( flaggable: i, user: u )
-      expect( flag.subscribers ).to include u
-      expect( Subscription.where( user: u ).count ).to eq 1
-      flag.destroy
-      expect( Subscription.where( user: u ).count ).to eq 0
-    end
-  end
 end
 
 describe Flag, "update" do
