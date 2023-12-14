@@ -1859,6 +1859,22 @@ describe Observation, "taxon_geoprivacy" do
     expect( o ).not_to be_coordinates_private
     expect( o ).to be_coordinates_obscured
   end
+
+  it "does not consider hidden identifications" do
+    o = Observation.make!(
+      latitude: p.latitude,
+      longitude: p.longitude
+    )
+    expect( o.taxon_geoprivacy ).to be_nil
+    expect( o ).not_to be_coordinates_obscured
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
+    expect( o ).to be_coordinates_obscured
+    ModeratorAction.make!( resource: i, action: ModeratorAction::HIDE )
+    o.reload
+    expect( o.taxon_geoprivacy ).to be_nil
+    expect( o ).not_to be_coordinates_obscured
+  end
 end
 
 describe Observation, "set_observations_taxa_for_user" do

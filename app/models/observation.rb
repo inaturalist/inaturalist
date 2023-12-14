@@ -2115,10 +2115,10 @@ class Observation < ApplicationRecord
   end
 
   def set_taxon_geoprivacy
-    taxon_ids = if identifications.loaded? 
-      identifications.select{|i| i.current? }.map(&:taxon_id)
+    taxon_ids = if identifications.loaded?
+      identifications.select( &:current? ).reject( &:hidden? ).map( &:taxon_id )
     else
-      identifications.current.pluck(:taxon_id)
+      identifications.current.reject( &:hidden? ).pluck( :taxon_id )
     end
     self.taxon_geoprivacy = Taxon.max_geoprivacy(
       taxon_ids,
@@ -2126,7 +2126,7 @@ class Observation < ApplicationRecord
       longitude: private_longitude.blank? ? longitude : private_longitude
     )
   end
-  
+
   def single_taxon_for_name(name)
     Taxon.single_taxon_for_name(name)
   end

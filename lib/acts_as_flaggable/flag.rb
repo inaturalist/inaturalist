@@ -31,6 +31,7 @@ class Flag < ApplicationRecord
       # existing flag whose comment has been changed
       !flag.saved_change_to_id && flag.saved_change_to_comment
     }
+  auto_subscribes :user
   auto_subscribes :resolver, on: :update, if: proc {| record, _resource |
     record.saved_change_to_resolved? && !record.resolver.blank? &&
       !record.resolver.subscriptions.where( resource_type: "Flag", resource_id: record.id ).exists?
