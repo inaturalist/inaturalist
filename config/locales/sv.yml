@@ -7408,6 +7408,9 @@ sv:
         stats_generation_schedule: Statistik kommer att genereras varje söndag i december och den 1 januari
         store_prompt: |
           Vill du visa din stolthet över iNat vart du än är? Kolla in iNat-butiken!
+        sunburst_desc_html: |
+          Observerade taxa ordnade i ett hierarkiskt soldiagram. Hierarkins bas är i centrum, där den börjar med "Liv" för att sluta med arter i ytterkanterna. Storleken på varje båge är proportionell mot antalet fynd av detta taxon, och färgerna motsvarar ungefär de vanliga "klassiska" taxonfärgerna (grönt för växter, orange för insekter, blått för de flesta andra djur etc.), så om du ser en hel del grönt, betyder det att du observerat en hel del växter.
+          <strong>Klicka på en båge för att placera detta taxon i mitten</strong> och dess barn runt det, eller <strong>klicka på mitten för att gå upp i hierarkin igen</strong>.
         translators_title: Översättare
         translators_desc: |
           Visste du att iNaturalist har översatts till %{x_languages}, nästan uteslutande av %{x_people}, av vilka några inte ens använder iNat? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för
