@@ -6719,6 +6719,8 @@ es-MX:
           los curadores del proyecto puedan ver mis coordendas privadas.
       edit:
         admins_must_be_existing_members: Los administradores deben ser miembros del proyecto.
+        admins_can_only_be_added_after_creation: |
+          Los administradores sólo pueden ser añadidos después de que el proyecto haya sido creado.
         aggregation_pending: Agregación pendiente
         new_place_desc_html: |
           Intenta buscar entre <a href="%{places_url}" target="_blank"> nuestros lugares existentes </a> y verifica que le estás dando el nombre correcto. Si realmente no puedes encontrar el lugar que desea, puedes <a href="%{new_place_url}" target="_blank"> crear un nuevo lugar </a>, pero asegúrate que no duplicas un sitio ya existente.
@@ -7063,6 +7065,9 @@ es-MX:
           Creado vía <a href="https://www.naturalista.mx">iNaturaList</a>
           o los sitios de <a href="%{url}">la red iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Agregó ambos
         added_only_identifications: Agregó Solo Identificaciones
         added_only_observations: Agregó Solo Observaciones
         #heading for a section displaying use of iNaturalist data by other organizations
@@ -7770,9 +7775,11 @@ es-MX:
       AssessmentSection: Sección de evaluación
       Atlas: Atlas
       BlockedUser: Usuario bloqueado
+      Comment: Comentario
       CompleteSet: Lista completa
       #Noun
       Flag: Advertencia
+      Identification: Identificación
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7784,6 +7791,7 @@ es-MX:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplicación
+      Photo: Foto
       Post: Publicación de diario
       TaxonLink: Enlace de taxón
     attributes:
@@ -7798,6 +7806,7 @@ es-MX:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Para usuarios sin confirmación
+        clients: Usuario
       assessment:
         description: Descripción
       assessment_section:
@@ -8029,6 +8038,16 @@ es-MX:
           one: "Un error no permitió que este %{model} se guardara"
           other: '%{count} errores no permitieron que este %{model} se guardara'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: debe ser válido para la ubicación especificada
         application:
           attributes:
             redirect_uri:
@@ -8069,6 +8088,10 @@ es-MX:
               staff_cannot_be_suspended: El staff no puede ser suspendido
             user_id:
               must_be_a_curator: debes ser un curador
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: debe ser un curador
         observation:
           attributes:
             base:
@@ -8381,6 +8404,17 @@ es-MX:
         #Default gender for nouns that aren't listed here
         default: "@n"
       "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amfhibia
+        Mammalia: Mammalia
+        Arachnida: Arachnida
+        Insecta: Insecta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
         Mollusca: Molusca
         Chromista: Chromista
   #Title of a section warning the user about something
