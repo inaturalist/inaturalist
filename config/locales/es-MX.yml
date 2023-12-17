@@ -6003,7 +6003,7 @@ es-MX:
           #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
           precision_equation: |
-            Presencias verdaderas / (Presencias verdaderas + ausencias falsas) = %{recall}
+            Presencias verdaderas / (Presencias verdaderas + ausencias falsas) = %{precision}
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Recordar:
