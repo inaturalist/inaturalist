@@ -1185,7 +1185,7 @@ th:
   generate_taxonomic_tags_for_flickr: สร้างแท็กอนุกรมวิธานสำหรับรูป Flickr ของคุณ
   generate_widget: สร้างวิดเจ็ต
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
-  generate_your_year_in_review_caps: ดูสรุปภาพรวมปี %{year} ของคุณ
+  generate_your_year_in_review_caps: ดูภาพรวมปี %{year} ของคุณ
   Genus: สกุล
   geoprivacy: การเปิดเผยพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
@@ -1265,7 +1265,7 @@ th:
   #Notification when an identification has been withdrawn
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
-  inaturalist_global_year_in_review: "สรุปภาพรวม iNaturalist ทั่วโลกในปี %{year}"
+  inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   ids: "การจำแนก"
   ids_made_for_others: การจำแนกให้ผู้อื่น
@@ -1436,6 +1436,7 @@ th:
     waray_waray: ภาษาวาไร-วาไร
   life: สิ่งมีชีวิต
   life_list: "รายการสิ่งมีชีวิตของ %{user}"
+  linear_scale_label: เส้นตรง
   list: รายการ
   list_saved: บันทึกรายการแล้ว
   list_views:
@@ -1504,6 +1505,7 @@ th:
   location_is_obscured: ตำแหน่งคลุมเครือ
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
+  log_scale_label: ล็อก
   logo:
     none: ไม่ระบุ
   long: ลองจิจูด
@@ -1609,6 +1611,8 @@ th:
   monthly_supporters: ผู้สนับสนุนรายเดือน
   months: เดือน
   more: เพิ่มเติม
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
   more_fields: ข้อมูลเสริมเพิ่มเติม
   more_filters: ตัวกรองเพิ่มเติม
@@ -1620,7 +1624,7 @@ th:
   more_observations: การสังเกตเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
   most_disagree: ไม่เห็นด้วยมากที่สุด
-  most_comments_and_faves: มีความคิดเห็นและถูกเพิ่มเข้ารายการโปรดมากสุด
+  most_comments_and_faves: มีความคิดเห็นและมีคนชอบมากที่สุด
   most_observations: ผู้ที่มีการสังเกตสูงสุด
   most_species: ผู้ที่พบจำนวนชนิดสูงสุด
   most_observed_species: ชนิดที่พบมากสุด
@@ -2306,6 +2310,7 @@ th:
   saved: บันทึกแล้ว
   saving_num_of_count_observations:
     other: กำลังบันทึก %{num} จาก %{count} การสังเกต...
+  scale_colon: "มาตราส่วน:"
   schemes: แบบแผน
   schemes_including: แบบแผนที่มี
   #E.g. "Homo sapiens" instead of "human"
@@ -2375,7 +2380,7 @@ th:
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
   #@vow_or_con should work with %{site}
-  site_year_in_review: "สรุปภาพรวม %{site} ปี %{year}"
+  site_year_in_review: "ภาพรวม %{site} ปี %{year}"
   sizes: ขนาด
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
   small: เล็ก
@@ -2445,6 +2450,7 @@ th:
   #can buy merchandise. Please try to keep translations as short as possible
   store: ร้านค้า
   store_caps: ร้านค้า
+  studies_that_used_inaturalist_data_in_year: การศึกษาที่ใช้ข้อมูลจาก iNaturalist ในปี %{year}
   subject_affecting_stuff_html: "%{subject}ที่ส่งผลต่อ %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} ได้%{thing}ที่ส่งผลต่อ %{stuff}"
   submit_observations:
@@ -2525,6 +2531,7 @@ th:
   terms_and_rules_html: "ข้อตกลง & กฎ"
   terms_service: ข้อตกลงการใช้งาน
   terrain: ภูมิประเทศ
+  thanks_from_all_of_us_here_at: ขอบคุณพวกเราทุกคนใน
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
   the_below_items_are_needed_to_achieve: |
     การสังเกตจะเป็น<span className="bold">ระดับงานวิจัย</span>ได้ต้องมีคุณสมบัติต่อไปนี้:
@@ -2768,7 +2775,7 @@ th:
   users_lists: "รายการของ %{user}"
   users_profile: "โปรไฟล์ของ %{user}"
   #@vow_or_con should work with %{site}
-  users_site_year_in_review: "สรุปภาพรวม %{site} ปี %{year} ของ %{user}"
+  users_site_year_in_review: "ภาพรวม %{site} ปี %{year} ของ %{user}"
   value: ค่า
   values: ค่า
   verifiable_observations_by_observation_date: การสังเกตที่ตรวจสอบได้ตามวันที่สังเกต
@@ -2790,12 +2797,12 @@ th:
   view_flags: ดูการรายงาน
   view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
   view_full_size_photo: ดูรูปขนาดเต็ม
-  view_inaturalist_global_year_in_review: ดูสรุปภาพรวม iNaturalist ทั่วโลกในปี %{year}
-  view_inaturalist_global_year_in_review_caps: ดูสรุปภาพรวม iNaturalist ทั่วโลกในปี %{year}
+  view_inaturalist_global_year_in_review: ดูภาพรวม iNaturalist ทั่วโลกในปี %{year}
+  view_inaturalist_global_year_in_review_caps: ดูภาพรวม iNaturalist ทั่วโลกในปี %{year}
   #Text in link to view Year in Review for a specific site. %{site} should
   #support @vow_or_con
-  view_site_year_in_review: ดูสรุปภาพรวม %{site} ปี %{year}
-  view_site_year_in_review_caps: ดูสรุปภาพรวม %{site} ปี %{year}
+  view_site_year_in_review: ดูภาพรวม %{site} ปี %{year}
+  view_site_year_in_review_caps: ดูภาพรวม %{site} ปี %{year}
   view_journal: ดูวารสาร
   view_leaderboard_from_last_month: ดูกระดานจัดอันดับจากเดือนที่แล้ว
   view_leaderboard_from_last_year: ดูกระดานจัดอันดับจากปีที่แล้ว
@@ -2823,8 +2830,8 @@ th:
   view_your_dashboard: ดูหน้ารวมของคุณ
   view_your_inbox: ดูกล่องข้อความของคุณ
   view_your_observations: ดูการสังเกตของคุณ
-  view_your_personal_year_in_review: "ดูสรุปภาพรวมปี %{year} ของคุณ"
-  view_your_personal_year_in_review_caps: "ดูสรุปภาพรวมปี %{year} ของคุณ"
+  view_your_personal_year_in_review: "ดูภาพรวมปี %{year} ของคุณ"
+  view_your_personal_year_in_review_caps: "ดูภาพรวมปี %{year} ของคุณ"
   view_yours: ดูของฉัน
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   visually_similar: รูปคล้ายกัน
@@ -2886,9 +2893,9 @@ th:
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
   year: ปี
-  year_in_review: "สรุปภาพรวมปี %{year}"
-  year_in_review2: "สรุปภาพรวมปี %{year}"
-  year_in_review_caps: "สรุปภาพรวมปี %{year}"
+  year_in_review: "ภาพรวมปี %{year}"
+  year_in_review2: "ภาพรวมปี %{year}"
+  year_in_review_caps: "ภาพรวมปี %{year}"
   year_month: ปี/เดือน
   'yes': "ใช่"
   #Used when trusting a project and the user is agreeing to trust the project
@@ -2899,14 +2906,14 @@ th:
   yesterday: เมื่อวาน
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
   yir_email_because_of_you: |
-    คุณเป็นผู้ที่ทำให้ข้อมูลความหลากหลายทางชีวภาพเพิ่มขึ้นกว่าปีที่แล้ว สรุปภาพรวมประจำปีจึงเป็นของขวัญสำหรับคุณที่ได้ส่งเสริมความหลากหลายทางชีวภาพผ่านทาง iNaturalist มาโดยตลอด
+    คุณเป็นผู้ที่ทำให้ข้อมูลความหลากหลายทางชีวภาพเพิ่มขึ้นกว่าปีที่แล้ว การสรุปภาพรวมประจำปีจึงเป็นของขวัญสำหรับคุณที่ได้ส่งเสริมความหลากหลายทางชีวภาพผ่านทาง iNaturalist มาโดยตลอด
   yir_email_log_in_to_generate: |
-    เข้าสู่ระบบเพื่อสร้างสรุปภาพรวมประจำปีของคุณ
+    เข้าสู่ระบบเพื่อสร้างภาพรวมประจำปีของคุณ
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
-    สรุปภาพรวม iNaturalist ปี %{year} ของคุณ — เฉลิมฉลองปีของคุณด้วยความหลากหลายทางชีวภาพ
+    ภาพรวม iNaturalist ปี %{year} ของคุณ — เฉลิมฉลองปีของคุณด้วยความหลากหลายทางชีวภาพ
   yir_email_the_year_isnt_over: |
-    ยังไม่สายเกินไปที่จะเพิ่มการสังเกตย้อนหลังก่อนจะสิ้นสุดปีนี้ หลังจากแชร์การสังเกตเพิ่มแล้ว อย่าลืมคลิก "สร้างสถิติใหม่" ที่ด้านล่างของหน้าสรุปภาพรวมประจำปีเพื่ออัปเดตสถิติของคุณ
+    ยังไม่สายเกินไปที่จะเพิ่มการสังเกตย้อนหลังก่อนจะสิ้นสุดปีนี้ หลังจากแชร์การสังเกตเพิ่มแล้ว อย่าลืมคลิก "สร้างสถิติใหม่" ที่ด้านล่างของหน้าภาพรวมประจำปีเพื่ออัปเดตสถิติของคุณ
   yir_millions_of_people_used_inaturalist: |
     ผู้คนนับล้านใช้ iNaturalist และ Seek by iNaturalist ในปีนี้เพื่อเชื่อมโยงกับธรรมชาติ
   yir_monthly_supporters_random_selection: |
@@ -3128,10 +3135,16 @@ th:
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
         observers_desc: เพิ่มการสังเกตในวันนี้
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: ทั้งคู่
+        added_only_identifications: จำแนกชนิดเท่านั้น
+        added_only_observations: เพิ่มการสังเกตเท่านั้น
         compared_to_previous_years: เปรียบเทียบกับปีก่อน ๆ
         inaturalist_network: เครือข่าย iNaturalist
         inaturalist_network_desc: |
-          ดูสรุปภาพรวมประจำปีสำหรับสมาชิกเครือข่าย iNaturalist
+          ดูภาพรวมประจำปีสำหรับสมาชิกเครือข่าย iNaturalist
+        include_usa: รวมสหรัฐอเมริกา
         growth_in_year_obs: "การเติบโตในปี %{year} (การสังเกต)"
         growth_title: การเติบโต
         new_species_desc: |
@@ -3140,6 +3153,7 @@ th:
           หมายถึงชนิดที่เพิ่มใหม่เป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูจำนวนชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และสามารถดูจำนวนชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ แผนภูมินี้แสดงจำนวนชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่นับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
         new_species_per_year: ชนิดใหม่ / ปี
         new_species_per_year_by_date_added: ตามวันที่เพิ่ม
+        obs_in_year: การสังเกตในปี %{year}
         percent_growth_in_year: "% การเติบโตในปี %{year}"
         percent_of_total_growth: "% การเติบโตทั้งหมด"
         observations_per_year: การสังเกต / ปี
@@ -3154,6 +3168,11 @@ th:
         species_per_year_by_date_added: ตามวันที่เพิ่ม
         stats_generated_datetime: สถิตินี้สร้างเมื่อ %{datetime}
         stats_generation_schedule: สถิติจะสร้างทุกวันอาทิตย์ในเดือนธันวาคมและวันที่ 1 มกราคม
+        translators_title: ผู้แปลภาษา
+        translators_desc: |
+          รู้หรือไม่ว่า iNaturalist มีการแปลเป็น %{x_languages} ภาษา โดยผู้แปลไม่น้อยกว่า %{x_people} คน? และบางคนไม่เคยใช้งาน iNat อีกด้วย นี่คือเหล่านักแปลที่ยอดเยี่ยมที่ได้เพิ่มคำแปลในปีนี้พร้อมกับจำนวนคำที่พวกเขาแปลใน%{website_link_tag}เว็บไซต์%{link_tag_end} ในแอป %{iphone_link_tag}iPhone%{link_tag_end} และ %{android_link_tag}Android%{link_tag_end} และใน %{seek_link_tag}Seek%{link_tag_end} คุณสามารถดูรายชื่อผู้แปลทั้งหมดรวมถึงผู้แปลในปีก่อน ๆ และผู้แปลจาก Translatewiki ใน%{view_all_web_link_tag}เว็บไซต์%{link_tag_end}และ %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories ของเรา
+        translators_desc_for_site: |
+          รู้หรือไม่ว่า %{site_name} มีผู้แปลภาษาไม่น้อยกว่า %{x_people} คน? นี่คือเหล่านักแปลที่ยอดเยี่ยมที่ได้เพิ่มคำแปลในปีนี้พร้อมกับจำนวนคำที่พวกเขาแปลใน%{website_link_tag}เว็บไซต์%{link_tag_end} ในแอป iNaturalist ของ %{iphone_link_tag}iPhone%{link_tag_end} และ %{android_link_tag}Android%{link_tag_end} และใน %{seek_link_tag}Seek%{link_tag_end} คุณสามารถดูรายชื่อผู้แปลทั้งหมดสำหรับทุกภาษา รวมถึงผู้แปลในปีก่อน ๆ และผู้แปลจาก Translatewiki ใน%{view_all_web_link_tag}เว็บไซต์%{link_tag_end}และ %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories ของเรา
     taxa:
       show:
         about_conservation_status_desc: |
