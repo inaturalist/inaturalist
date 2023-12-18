@@ -21,7 +21,7 @@ describe I18n do
     end
 
     it "should upcase the region" do
-      expect( normalize_locale( "es-mx" ) ).to eq :"es-MX "
+      expect( normalize_locale( "es-mx" ) ).to eq :"es-MX"
     end
 
     it "should map zh-Hans to zh-CN" do
@@ -46,6 +46,10 @@ describe I18n do
 
     it "should return the default for an unsupported locale" do
       expect( normalize_locale( "foo" ) ).to eq I18n.default_locale
+    end
+
+    it "should return a requested default for an unsupported locale" do
+      expect( normalize_locale( "foo", default: :fr ) ).to eq :fr
     end
   end
 end

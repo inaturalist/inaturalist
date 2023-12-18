@@ -41,7 +41,7 @@ def without_english_fallback
   I18n.fallbacks = I18n::Locale::Fallbacks.new( old_fallbacks )
 end
 
-def normalize_locale( locale )
+def normalize_locale( locale, options = {} )
   # Remove calendar stuff
   locale = locale.to_s.sub( /@.*/, "" )
 
@@ -71,7 +71,9 @@ def normalize_locale( locale )
     locale = locale.split( "-" ).first
   end
   # Set to default if locale isn't supported
-  return I18n.default_locale unless I18N_SUPPORTED_LOCALES.include?( locale )
+  unless I18N_SUPPORTED_LOCALES.include?( locale )
+    return options[:default] || I18n.default_locale
+  end
 
   locale.to_sym
 end
