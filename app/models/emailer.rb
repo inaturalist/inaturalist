@@ -317,15 +317,14 @@ class Emailer < ActionMailer::Base
     return if @locale_was
 
     @locale_was = I18n.locale
-    I18n.locale = if options[:force]
+    locale = if options[:force]
       options[:force]
     elsif !@user&.locale&.blank?
       @user&.locale
     elsif @user&.site && !@user&.site&.preferred_locale&.blank?
       @user&.site&.preferred_locale
-    else
-      I18n.default_locale
     end
+    I18n.locale = normalize_locale( locale )
     set_site
   end
 

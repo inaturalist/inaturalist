@@ -40,3 +40,38 @@ def without_english_fallback
   yield
   I18n.fallbacks = I18n::Locale::Fallbacks.new( old_fallbacks )
 end
+
+def normalize_locale( locale )
+  # Remove calendar stuff
+  locale = locale.to_s.sub( /@.*/, "" )
+
+  # Upcase region
+  if locale =~ /-[a-z]/
+    pieces = locale.split( "-" )
+    locale = "#{pieces[0].downcase}-#{pieces[1].upcase}"
+  end
+
+  # Handle outdated locale code for Hebrew
+  if locale.to_s == "iw"
+    locale = locale.to_s.sub( "iw", "he" )
+  end
+  if locale.starts_with?( "zh-" )
+    # Map script subtags for Chinese to relevant Crowdin locales
+    if locale.include?( "Hans" )
+      locale = "zh-CN"
+    elsif locale.include?( "Hant-HK" )
+      locale = "zh-HK"
+    elsif locale.include?( "Hant" )
+      locale = "zh-TW"
+    end
+  end
+
+  # Fall back to language code if language-region combo isn't supported
+  unless I18N_SUPPORTED_LOCALES.include?( locale )
+    locale = locale.split( "-" ).first
+  end
+  # Set to default if locale isn't supported
+  return I18n.default_locale unless I18N_SUPPORTED_LOCALES.include?( locale )
+
+  locale.to_sym
+end
