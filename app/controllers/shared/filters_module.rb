@@ -20,6 +20,12 @@ module Shared
         pieces = locale.split( "-" )
         locale = "#{pieces[0].downcase}-#{pieces[1].upcase}"
       end
+      set_i18n_locale_from_locale_string( locale )
+      @rtl = params[:test] == "rtl" && ["ar", "fa", "he"].include?( I18n.locale.to_s )
+      true
+    end
+
+    def set_i18n_locale_from_locale_string( locale, default_locale = I18n.default_locale )
       I18n.locale = locale
       # Handle outdated locale code for Hebrew
       if I18n.locale.to_s == "iw"
@@ -40,11 +46,9 @@ module Shared
         I18n.locale = I18n.locale.to_s.split( "-" ).first
       end
       # Set to default if locale isn't supported
-      unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-        I18n.locale = I18n.default_locale
-      end
-      @rtl = params[:test] == "rtl" && ["ar", "fa", "he"].include?( I18n.locale.to_s )
-      true
+      return if I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
+
+      I18n.locale = default_locale
     end
 
     def locale_from_header

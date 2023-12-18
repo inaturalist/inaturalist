@@ -67,7 +67,7 @@ class StatsController < ApplicationController
     end
 
     if @display_user && !current_user && !@display_user.locale.blank?
-      I18n.locale = @display_user.locale
+      set_i18n_locale_from_locale_string( @display_user.locale, I18n.locale )
     end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
