@@ -664,6 +664,10 @@ const actions = class actions {
 
   static confirmObservationsAvailableInAPI( ) {
     return function ( dispatch ) {
+      // set a fallback timeout to redirect the user should anything go wrong checking the API
+      setTimeout( ( ) => {
+        actions.loadUsersObservationsPage( );
+      }, 20000 );
       dispatch( actions.setState( { observationsAvailableStartTime: Date.now( ) } ) );
       setTimeout( ( ) => {
         dispatch( actions.checkObservationsAvaliableInAPI( ) );
@@ -680,9 +684,11 @@ const actions = class actions {
   static checkObservationsAvaliableInAPI( ) {
     return async function ( dispatch, getState ) {
       const s = getState( );
-      const maxSavedObservationID = _.max(
-        _.map( s.dragDropZone.obsCards, o => o?.serverResponse?.id )
-      );
+      const maxSavedObservationID = _.max( _.compact(
+        _.map( s.dragDropZone.obsCards, o => (
+          o.serverResponse ? o.serverResponse.id : null
+        ) )
+      ) );
       const timeElapsedSinceChecking = Date.now( ) - s.dragDropZone.observationsAvailableStartTime;
       // for whatever reason there were no observations saved, or the checking
       // loop has timed out, redirect the user to their observations page
@@ -699,12 +705,14 @@ const actions = class actions {
         per_page: 1,
         ttl: -1
       } );
-      const maxIDFromAPI = _.first( response?.results )?.id;
-      // if the highest ID from the API is the same or larger than the highest ID from this
-      // upload session, the API check has passed, so redirect the user to their osbervations page
-      if ( maxIDFromAPI && maxIDFromAPI >= maxSavedObservationID ) {
-        actions.loadUsersObservationsPage( );
-        return;
+      if ( response && response.results ) {
+        const maxIDFromAPI = _.first( response.results ).id;
+        // if the highest ID from the API is the same or larger than the highest ID from this
+        // upload session, the API check has passed, so redirect the user to their osbervations page
+        if ( maxIDFromAPI && maxIDFromAPI >= maxSavedObservationID ) {
+          actions.loadUsersObservationsPage( );
+          return;
+        }
       }
 
       // the API is not yet reflecting uploaded observations, so wait a couple seconds and try again
