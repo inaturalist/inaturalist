@@ -485,7 +485,10 @@ iNaturalist.Map.createMap = function(options) {
   })
   map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
   if ( !options.disableFullscreen ) {
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
+    var fullScreenPosition = $( 'html[dir="rtl"]' ).length > 0
+      ? google.maps.ControlPosition.TOP_LEFT
+      : google.maps.ControlPosition.TOP_RIGHT
+    map.controls[fullScreenPosition].push(new iNaturalist.FullScreenControl(map));
   }
 
   if (options.bounds) {
@@ -793,8 +796,12 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
       id = "layer_" + layers[0].layerID,
       description = options.description,
       checkbox = $("<input type='checkbox'/>"),
-      li = $("<li/>"),
-      controlPosition = google.maps.ControlPosition[options.controlPosition] || google.maps.ControlPosition.TOP_RIGHT;
+      li = $("<li/>");
+  var controlPosition = google.maps.ControlPosition[options.controlPosition] || (
+    $( "html[dir='rtl']" ).length > 0
+      ? google.maps.ControlPosition.TOP_LEFT
+      : google.maps.ControlPosition.TOP_RIGHT
+  );
   if (options.taxon) {
     // Stopgap solution to dealing with multiple taxon maps on a single page.
     // Will break if multiple maps have the same taxon
