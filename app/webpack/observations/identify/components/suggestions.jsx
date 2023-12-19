@@ -218,7 +218,7 @@ class Suggestions extends React.Component {
               <ChooserPopover
                 id="suggestions-sort-chooser"
                 label={I18n.t( "sort_by" )}
-                className="pull-right"
+                className="pull-left"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
                 choices={["default", "taxonomy", "sciname"]}

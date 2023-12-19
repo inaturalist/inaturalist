@@ -1198,7 +1198,7 @@ $photo-count-line-width: 1px;
 .bootstrap .btn-icon-stupidity i.fa {
   margin: 4px 1.5px;
 }
-.btn .glyphicon-minus { right: 1px; }
+.btn .glyphicon-minus { inset-inline-end: 1px; }
 
 #filters-observation-fields .observation-field,
 #filters-observation-fields .observation-field button {
