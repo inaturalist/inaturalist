@@ -73,6 +73,19 @@
   }
 }
 
+[dir = "rtl"] #lightboxBackdrop {
+  button[class*="left"] {
+    left: unset;
+    right: 0;
+    transform: rotate(180deg)
+  }
+  button[class*="right"] {
+    right: unset;
+    left: 0;
+    transform: rotate(180deg)
+  }
+}
+
 @mixin editor-textarea {
   textarea {
     min-height: 125px;
