@@ -2247,14 +2247,13 @@ time {
 
 .PreviousNextButtons {
   float: right;
+  display: flex;
   margin-top: 23px;
   .previous {
-    float: left;
-    padding-right: 3px;
+    padding-inline-end: 3px
   }
   .next {
-    float: left;
-    padding-left: 2px;
+    padding-inline-start: 2px
   }
   .previous, .next {
     display: inline-block;
@@ -2270,7 +2269,7 @@ time {
       cursor: not-allowed;
     }
     &:not(:first-child) {
-      margin-left: 8px;
+      margin-inline-start: 8px;
     }
     .fa {
       font-size: 14px;
@@ -2281,12 +2280,6 @@ time {
 
 [dir="rtl"] .PreviousNextButtons {
   float: left;
-  .previous {
-    float: left;
-  }
-  .next {
-    float: right;
-  }
 }
 
 .box.opt-out {
