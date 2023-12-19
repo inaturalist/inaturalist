@@ -761,10 +761,13 @@ class Observation < ApplicationRecord
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
-      { identifications: :stored_preferences },
-      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
+      { identifications: [:stored_preferences, :moderator_actions] },
+      { photos: [:flags, :user, :file_extension, :file_prefix, :moderator_actions] },
+      { sounds: [:flags, :moderator_actions] },
       :stored_preferences, :flags, :quality_metrics,
-      :votes_for ]
+      :votes_for,
+      :taggings
+    ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
       preloads.delete(:iconic_taxon)

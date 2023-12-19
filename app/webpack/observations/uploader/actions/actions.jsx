@@ -543,7 +543,7 @@ const actions = class actions {
       } );
       dispatch( { type: types.SET_STATE, attrs: { saveCounts: stateCounts } } );
       if ( nextToSave && stateCounts.saving < s.dragDropZone.maximumNumberOfUploads ) {
-        dispatch( nextToSave.save( { refresh: stateCounts.pending === 1 } ) );
+        dispatch( nextToSave.save( ) );
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
@@ -648,18 +648,70 @@ const actions = class actions {
               _.each( remaining, c => {
                 dispatch( actions.updateObsCard( c, { saveState: "saved" } ) );
               } );
-              actions.loadUsersObservationsPage( );
+              dispatch( actions.confirmObservationsAvailableInAPI( ) );
             }
           }
         } ) );
       } else {
-        actions.loadUsersObservationsPage( );
+        dispatch( actions.confirmObservationsAvailableInAPI( ) );
       }
     };
   }
 
   static loadUsersObservationsPage( ) {
     window.location = `/observations/${CURRENT_USER.login}`;
+  }
+
+  static confirmObservationsAvailableInAPI( ) {
+    return function ( dispatch ) {
+      dispatch( actions.setState( { observationsAvailableStartTime: Date.now( ) } ) );
+      setTimeout( ( ) => {
+        dispatch( actions.checkObservationsAvaliableInAPI( ) );
+      }, 2000 );
+    };
+  }
+
+  // observations are stored in Elasticsearch, which makes documents available to search
+  // after a refresh period. Previously we leveraged the refresh=wait_for parameter
+  // when saving the last observation to request that the save didn't respond until
+  // Elasticsearch performed a routine refresh. This method replaces that functionality
+  // with a loop querying users observations to check the observations created this session
+  // are available. Currently experimental to assess impact on Elasticsearch
+  static checkObservationsAvaliableInAPI( ) {
+    return async function ( dispatch, getState ) {
+      const s = getState( );
+      const maxSavedObservationID = _.max(
+        _.map( s.dragDropZone.obsCards, o => o?.serverResponse?.id )
+      );
+      const timeElapsedSinceChecking = Date.now( ) - s.dragDropZone.observationsAvailableStartTime;
+      // for whatever reason there were no observations saved, or the checking
+      // loop has timed out, redirect the user to their observations page
+      if ( !maxSavedObservationID || timeElapsedSinceChecking >= 20000 ) {
+        actions.loadUsersObservationsPage( );
+        return;
+      }
+
+      // query the API for the highest observation ID from this user
+      const response = await inaturalistjs.observations.search( {
+        user_id: CURRENT_USER.id,
+        order_by: "id",
+        order: "desc",
+        per_page: 1,
+        ttl: -1
+      } );
+      const maxIDFromAPI = _.first( response?.results )?.id;
+      // if the highest ID from the API is the same or larger than the highest ID from this
+      // upload session, the API check has passed, so redirect the user to their osbervations page
+      if ( maxIDFromAPI && maxIDFromAPI >= maxSavedObservationID ) {
+        actions.loadUsersObservationsPage( );
+        return;
+      }
+
+      // the API is not yet reflecting uploaded observations, so wait a couple seconds and try again
+      setTimeout( ( ) => {
+        dispatch( actions.checkObservationsAvaliableInAPI( ) );
+      }, 2000 );
+    };
   }
 
   static uploadFiles( ) {
