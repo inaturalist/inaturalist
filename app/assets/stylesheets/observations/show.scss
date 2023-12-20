@@ -236,8 +236,7 @@ a.UserImage,
   border: 1px solid $border-grey;
   padding: 1px;
   display: inline-block;
-  margin-right: 5px;
-  float: left;
+  margin-inline-end: 5px;
   img {
     width: 40px;
     height: 40px;
@@ -753,12 +752,14 @@ h3, h4 {
 }
 
 .Projects {
-  .projectEntry, .project, .projectFields {
-    display: inline-block;
+  .projectEntry,
+  .project,
+  .projectFields {
+    display: flex;
     width: 100%;
   }
   .project .squareIcon {
-    margin-right: 8px;
+    margin-inline-end: 8px;
   }
   .projectEntry + .projectEntry {
     margin-top: 15px;
@@ -767,8 +768,7 @@ h3, h4 {
     margin-top: 10px;
   }
   .info {
-    float: left;
-    width: 80%;
+    flex-grow: 1;
     .fieldLink {
       color: $other-link-color;
       cursor: pointer;
@@ -1060,7 +1060,7 @@ time {
     }
     .glyphicon {
       top: 3px;
-      margin-left: 5px;
+      margin-inline-start: 5px;
       color: #b2b2b2;
     }
     .glyphicon-remove-circle {
