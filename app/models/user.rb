@@ -945,17 +945,16 @@ class User < ApplicationRecord
   # all occur within a transaction. This method tries to circumvent some of
   # that madness by assigning communal assets to new users and pre-destroying
   # some associates
-  def sane_destroy(options = {})
+  def sane_destroy( options = {} )
     start_log_timer "sane_destroy user #{id}"
     taxon_ids = []
-    if response = INatAPIService.get("/observations/taxonomy", {user_id: id})
-      taxon_ids = response.results.map{|a| a["id"]}
+    if response = INatAPIService.get( "/observations/taxonomy", { user_id: id } )
+      taxon_ids = response.results.map {| a | a["id"] }
     end
-    project_ids = self.project_ids
 
     # delete lists without triggering most of the callbacks
-    lists.where("type = 'List' OR type IS NULL").find_each do |l|
-      l.listed_taxa.find_each do |lt|
+    lists.where( "type = 'List' OR type IS NULL" ).find_each do | l |
+      l.listed_taxa.find_each do | lt |
         lt.skip_sync_with_parent = true
         lt.skip_update_cache_columns = true
         lt.destroy
@@ -963,9 +962,9 @@ class User < ApplicationRecord
       l.destroy
     end
 
-    User.preload_associations(self, [ :stored_preferences, :roles, :flags ])
+    User.preload_associations( self, [:stored_preferences, :roles, :flags] )
     # delete observations without onerous callbacks
-    observations.includes([
+    observations.includes( [
       { user: :stored_preferences },
       :votes_for,
       :flags,
@@ -988,65 +987,70 @@ class User < ApplicationRecord
       :taxon,
       :quality_metrics,
       :sounds
-    ]).find_each(batch_size: 100) do |o|
+    ] ).find_each( batch_size: 100 ) do | o |
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
       o.bulk_delete = true
-      o.comments.each{ |c| c.bulk_delete = true }
-      o.annotations.each{ |a| a.bulk_delete = true }
+      o.comments.each {| c | c.bulk_delete = true }
+      o.annotations.each {| a | a.bulk_delete = true }
       o.destroy
     end
 
-    identification_observation_ids = Identification.where(user_id: id).
-      select(:observation_id).distinct.pluck(:observation_id)
-    comment_observation_ids = Comment.where(user_id: id, parent_type: "Observation").
-      select(:parent_id).distinct.pluck(:parent_id)
-    annotation_observation_ids = Annotation.where(user_id: id, resource_type: "Observation").
-      select(:resource_id).distinct.pluck(:resource_id)
-    unique_obs_ids = ( identification_observation_ids + comment_observation_ids +
-      annotation_observation_ids ).uniq
+    identification_ids = Identification.where( user_id: id ).pluck( :id )
+    identification_ids.in_groups_of( 100, false ) do | batch_ids |
+      identifications_batch = Identification.where( id: batch_ids ).
+        includes(
+          [
+            :observation,
+            :taxon,
+            :user,
+            :flags,
+            :moderator_actions
+          ]
+        )
+      obs_ids = identifications_batch.map( &:observation_id )
+      identifications_batch.each do | i |
+        i.observation.skip_indexing = true
+        i.observation.bulk_delete = true
+        i.bulk_delete = true
+        i.destroy
+      end
 
-    identifications.includes([
-      :observation,
-      :taxon,
-      :user,
-      :flags
-    ]).find_each(batch_size: 100) do |i|
-      i.observation.skip_indexing = true
-      i.observation.bulk_delete = true
-      i.bulk_delete = true
-      i.destroy
-    end
-
-    identification_observation_ids.in_groups_of(100, false) do |obs_ids|
-      Observation.where(id: obs_ids).includes(
+      Observation.where( id: obs_ids ).includes(
         { user: :stored_preferences },
         :votes_for,
         :flags,
         :taxon,
-        { photos: :flags },
-        { identifications: [ :taxon, { user: :flags } ] },
+        { photos: [:flags, :moderator_actions] },
+        { sounds: [:flags, :moderator_actions] },
+        { identifications: [:taxon, { user: :flags }, :moderator_actions] },
         :quality_metrics
-      ).each do |o|
+      ).each do | o |
         Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
         o.update_stats
       end
       Identification.elastic_index!(
-        scope: Identification.where(observation_id: obs_ids),
-        wait_for_index_refresh: true
+        scope: Identification.where( observation_id: obs_ids )
       )
+      Observation.elastic_index!( ids: obs_ids )
     end
 
-    comments.find_each(batch_size: 100) do |c|
+    comment_observation_ids = Comment.where( user_id: id, parent_type: "Observation" ).
+      select( :parent_id ).distinct.pluck( :parent_id )
+    comments.find_each( batch_size: 100 ) do | c |
       c.bulk_delete = true
       c.destroy
     end
+    Observation.elastic_index!( ids: comment_observation_ids )
 
-    annotations.includes(:votes_for).find_each(batch_size: 100) do |a|
-      a.votes_for.each{ |v| v.bulk_delete = true }
+    annotation_observation_ids = Annotation.where( user_id: id, resource_type: "Observation" ).
+      select( :resource_id ).distinct.pluck( :resource_id )
+    annotations.includes( :votes_for ).find_each( batch_size: 100 ) do | a |
+      a.votes_for.each {| v | v.bulk_delete = true }
       a.bulk_delete = true
       a.destroy
     end
+    Observation.elastic_index!( ids: annotation_observation_ids )
 
     # transition ownership of projects with observations, delete the rest
     Project.where( user_id: id ).find_each do | p |
@@ -1060,14 +1064,12 @@ class User < ApplicationRecord
       end
     end
 
-    Observation.elastic_index!(ids: unique_obs_ids, wait_for_index_refresh: true )
-
     # delete the user
     destroy
 
     # refresh check lists with relevant taxa
-    taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
+    taxon_ids.in_groups_of( 100 ) do | group |
+      CheckList.delay( priority: OPTIONAL_PRIORITY, queue: "slow" ).refresh( taxa: group.compact )
     end
 
     end_log_timer
