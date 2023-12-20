@@ -996,10 +996,13 @@ th:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: บริจาค
+  donate_again_caps: บริจาคอีกครั้ง
   donate_again_today_caps: บริจาคอีกครั้งในวันนี้
   done: เสร็จสิ้น
   download: ดาวน์โหลด
   download_caps: ดาวน์โหลด
+  download_bulk_import_template_html: |
+    <a href="%{url}">ดาวน์โหลดแม่แบบ</a>เพื่อใช้สำหรับ<a href="/observations/import?project_id=%{project_id}#csv_import">เครื่องมืออัปโหลดจำนวนมาก</a>
   download_csv: ดาวน์โหลด CSV
   download_kml: ดาวน์โหลด KML
   #Noun, as in a journal post that has not been published
@@ -1047,6 +1050,7 @@ th:
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
   email: อีเมล
   email_notifications: การแจ้งเตือนทางอีเมล
+  embed_widget_project: ฝังวิดเจตสำหรับโครงการนี้ในเว็บไซต์ของคุณ
   encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
   end_date_time: วันที่ / เวลาสิ้นสุด
@@ -1086,7 +1090,7 @@ th:
   explore: สำรวจ
   export: ส่งออก
   export_observations: ส่งออกการสังเกต
-  export_with_private_coordinates: ส่งออกด้วยพิกัดที่ซ่อนไว้
+  export_with_private_coordinates: ส่งออกพร้อมพิกัดที่ซ่อนไว้
   exporting: "กำลังส่งออก..."
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
@@ -2737,6 +2741,7 @@ th:
   uploaded_by: อัปโหลดโดย
   uploader:
     tooltips:
+      add: เพิ่มการสังเกต
       combine: รวมการสังเกตที่ถูกเลือก
       remove: ลบการสังเกตที่เลือก
       remove_observation: ลบการสังเกต
@@ -2908,6 +2913,9 @@ th:
   yes_reject_it: ปฏิเสธ
   yesterday: เมื่อวาน
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
+  yir_donate_banner_reaching_millions: เข้าถึงผู้คนนับล้าน เผยให้เห็นความหลากหลายทางชีวภาพ สร้างความร่วมมือระดับโลก
+  #"You" is singular
+  yir_donate_banner_all_thanks: ขอขอบคุณทุกท่านที่มีส่วนร่วม!
   yir_email_because_of_you: |
     คุณเป็นผู้ที่ทำให้ข้อมูลความหลากหลายทางชีวภาพเพิ่มขึ้นกว่าปีที่แล้ว การสรุปภาพรวมประจำปีจึงเป็นของขวัญสำหรับคุณที่ได้ส่งเสริมความหลากหลายทางชีวภาพผ่านทาง iNaturalist มาโดยตลอด
   yir_email_log_in_to_generate: |
