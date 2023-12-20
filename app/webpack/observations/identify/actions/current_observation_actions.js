@@ -896,15 +896,11 @@ export function zoomCurrentPhoto( ) {
     if ( easyZoom.isOpen ) {
       easyZoom.hide( );
     } else {
-      // const e = new MouseEvent( "mouseover", {
-      //   clientX: div.offset( ).left + ( div.width( ) / 2 ),
-      //   clientY: div.offset( ).top + ( div.height( ) / 2 )
-      // } );
-      // easyZoom.show( e );
-      // The above seemed to be causing an intermittent problem with zooming
-      // in which it just wouldn't happen. Leaving it commented for now in
-      // case there was a good reason for it. ~~~kueda 20231219
-      easyZoom.show( );
+      const e = new MouseEvent( "mouseover", {
+        clientX: div.offset( ).left + ( div.width( ) / 2 ),
+        clientY: div.offset( ).top + ( div.height( ) / 2 )
+      } );
+      easyZoom.show( e );
     }
   };
 }
