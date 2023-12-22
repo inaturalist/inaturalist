@@ -20,4 +20,4 @@
         icon: "#{ asset_url( "sites/eddmaps.png" ) }",
         url: "https://www.eddmaps.org/"
       },
-    }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = { icon: dp.logo&.url }; memo}.to_json.html_safe} );
+    }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = { icon: dp.logo&.url, url: dp.url }; memo}.to_json.html_safe} );
