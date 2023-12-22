@@ -4593,7 +4593,7 @@ de:
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
   subject_affecting_stuff_html: "%{subject} mit Einfluss auf %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} hat @gender{n:ein|f:eine|m:einen|ein} %{thing} bezüglich %{stuff} vorgenommen"
+  subject_committed_thing_affecting_stuff_html: "%{subject} hat @gender{n:ein|f:eine|m:einen|ein} %{thing} von %{stuff} durchgeführt"
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
   submit_observations:
@@ -4783,7 +4783,7 @@ de:
   taxon_schemes: "Taxon-Vorlagen"
   taxon_search: Taxon-Suche
   taxon_search_results_for: Taxon-Suchergebnisse für
-  taxon_split: Taxon-Aufteilung
+  taxon_split: Taxon-Split
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: Taxon-Vorbereitung
   taxon_swap: Taxon-Tausch
@@ -7050,7 +7050,7 @@ de:
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
         sunburst_desc_html: |
-          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis ist im Zentrum, beginnend mit 'Lebewesen' und schließlich endend auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, rosa für Pilze etc.), d.h. wenn viel Grün im Diagramm zu sehen ist, wurden viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon neu zu zentrieren</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie zurück nach oben zu gehen.</strong>
+          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis beginnt mit 'Lebewesen' ist im Zentrum, und endet schließlich auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, blau für die meisten anderen Tiere, etc.), d. h. wenn viel Grün im Diagramm zu sehen ist, hast du viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon ins Zentrum zu setzen</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie wieder zurück zu gehen</strong>.
         translators_title: Übersetzer
         translators_desc: |
           Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und dies fast ausschließlich von %{x_people} (von denen einige nicht einmal iNat verwenden)? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die

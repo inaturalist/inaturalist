@@ -43,8 +43,8 @@ pt-BR:
     #Count of number of taxa that represent the first addition to a life list
     other: "%{count} primeiras avistagens"
   x_journal_posts_html:
-    one: '<span class="count">1</span> publicação do boletim'
-    other: '<span class="count">%{count}</span> publicações do boletim'
+    one: '<span class="count">1</span> publicação de boletim'
+    other: '<span class="count">%{count}</span> publicações de boletim'
   x_matching_taxa:
     one: '1 táxon correspondente'
     other: '%{count} taxa correspondente'
@@ -414,10 +414,12 @@ pt-BR:
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Todas
+  #Title for a list of all 3rd party applications
+  all_applications: Todas os Aplicativos
   all_comments: Todos comentários
   all_flags_must_be_resolved: Todas as sinalizações devem ser resolvidas
   all_life: toda vida
-  all_media_must_be_unhidden: Todas as mídias devem ser abertas
+  all_media_must_be_unhidden: Todas as mídias devem ser reexibidas
   all_names: Todos os nomes
   all_observations: Todas as observações
   all_photos: Todas as fotos
@@ -594,7 +596,7 @@ pt-BR:
     Para enviar uma solicitação, sua conta deve ter pelo menos 2 meses e você
     ter feito pelo menos 10 sugestões de melhoria de identificações no mês passado.
   app_owner_application_fields_explanation_html: Descreva a funcionalidade do seu aplicativo e como você planeja usá-la.
-  app_owner_application_success: Inscrição de app de usuário enviada
+  app_owner_application_success: Candidatura para dono de aplicativo enviada
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicativo
@@ -629,7 +631,7 @@ pt-BR:
   are_you_sure_leave_this_project: Tem certeza que deseja sair deste projeto?
   are_you_sure_merge_these_places: Tem certeza que deseja combinar estes lugares? Isto não poderá ser desfeito.
   are_you_sure_remove_photo: "Tem certeza de que deseja remover esta foto?"
-  are_you_sure_remove_relationship: Tem certeza de que deseja excluir este relacionamento? Isso fará com que você pare de seguir essa pessoa e revogue o acesso às suas coordenadas ocultadas, se já tiver ativado esse acesso.
+  are_you_sure_remove_relationship: Tem certeza de que deseja remover esta relação? Isso fará com que você deixe de seguir essa pessoa e revogará o acesso às suas coordenadas ocultas se você tiver ativado esse acesso.
   are_you_sure_remove_taxon_from_list: "Você tem certeza que quer remover este táxon da lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Tem a certeza? Isto irá recarregar a página, você pode perder algumas de suas alterações.
@@ -686,6 +688,7 @@ pt-BR:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Você tem certeza que deseja remover esta observação do %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Você tem certeza que deseja remover este táxon da lista de verificação de %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Você está seguro de que quer sinalizar esse usuário como difusor de spam?
   associated_observations: Associar observações
   associated_taxa: Associar táxons
   attention: Atenção
@@ -769,7 +772,7 @@ pt-BR:
   back_to_your_calendar: Voltar ao seu calendário
   back_to_your_dashboard: Voltar ao seu painel
   back_to_your_lists: Voltar para sua lista
-  back_to_your_journal: Voltar para seu diário
+  back_to_your_journal: Voltar ao seu boletim
   back_to_your_observations: Voltar para suas observações
   back_to_your_profile: Voltar ao perfil
   badges: Insígnias
@@ -876,7 +879,7 @@ pt-BR:
     split: A espécie ou grupo foi subdividida em outras
     merge: Diversas espécies foram reunidas em um único grupo
     swap: Substituir táxon de entrada com táxon de saída
-    drop: O conceito de táxon ou grupo é totalmente inválido, seu uso está vinculado  a razões históricas e compatibilidades de pares
+    drop: Conceito de táxon completamente inválido, seu uso está vinculado a razões históricas e compatibilidades de pares
     stage: Prepara um conceito inativo para ser lançado como parte de um grupo de mudanças
   change_geoprivacy: 'Alterar geoprivacidade'
   change_group: Grupo de Mudanças
@@ -1051,7 +1054,7 @@ pt-BR:
     número de observações, portanto, para aumentar a chance deste táxon ser
     incluído no próximo treinamento do modelo, adicione ou identifique mais observações
     deste táxon.
-  concept_status: Conceito de Status
+  concept_status: Status do Conceito
   confidential: Confidencial
   configure: Configurar
   configure_a_widget_to_show: Configure o widget para mostrar as observações de %{site_name} no seu site ou blog. Você talvez tenha que incluir o código CSS no <code>&lt;head&gt;</code> do seu HTML. Fique a vontade para reescrever o CSS.
@@ -1172,10 +1175,12 @@ pt-BR:
     cannot_be_determined: Não pode ser determinado a partir da evidência fornecida
     dead: O organismo está morto ou mostra sinais de morte iminente
     feather: Uma ou mais penas não ligadas a um organismo
+    female: Evidência indica que o organismo pode produzir óvulos para utilização na reprodução sexual
     flower_budding: Botões de flor são visíveis, mas não abertos
     flowering: Flores visíveis, abertas e ainda presas à planta
     fruiting: Frutos visíveis e ainda anexados à planta
     gall: Crescimento anormal deformativo de tecido vegetal causado por parasita
+    male: Evidência indica que o organismo pode produzir espermatozoides para utilização na reprodução sexual
     molt: Pele ou exoesqueleto descartados
     no_evidence_of_flowering: Os meios de comunicação não dão provas de estruturas reprodutivas
     organism: Organismo inteiro ou parcial
@@ -1785,7 +1790,7 @@ pt-BR:
   events_only: Apenas eventos
   everyone: todos
   everyone_: Todos
-  everyone_journal_posts: Publicações de Todos nos Boletins Informativos
+  everyone_journal_posts: Publicações de Boletim de Todos
   everywhere: todos lugares
   exact: Exato
   exact_date: Data exata
@@ -1864,7 +1869,7 @@ pt-BR:
   find_a_post: Encontrar uma publicação
   find_a_place: Procurar um Lugar
   find_guides: Encontre Guias
-  find_posts_for: "Encontrar publicações para: %{journal_name}"
+  find_posts_for: "Encontrar Publicações para: %{journal_name}"
   find_new_place_to_explore: Procure um novo lugar para explorar!
   find_observations: Encontre observações
   find_photos: Encontre Fotos
@@ -1881,7 +1886,7 @@ pt-BR:
   first_inat_observation: "Primeira observação %{site_name}"
   first_observer: Primeiro observador
   #Verb form, as in "Flag this item"
-  flag: Sinalização
+  flag: Sinalizar
   flag_as_inappropriate: Marcar como inapropriado
   flag_an_item: Sinalizar um item
   flag_as_spammer: Marcar como difusor de spam
@@ -2057,7 +2062,7 @@ pt-BR:
   header_your_calendar: Seu Calendário
   header_your_favorites: Seus Favoritos
   header_your_lists: Suas Listas
-  header_your_journal: Seu Diário
+  header_your_journal: Seu Boletim
   header_your_identifications: Suas Identificações
   header_your_projects: Seus Projetos
   header_your_profile: Seu Perfil
@@ -2167,6 +2172,10 @@ pt-BR:
   #Notification when an identification has been deleted
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação salva!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identificação ocultada
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identificação reexibida
   #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
   identification_user_short: Usuário ident.
@@ -2250,7 +2259,7 @@ pt-BR:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inativo
-  inactive_taxon_concepts_are: A nomenclatura de táxon inativo se refere ou a táxons desatualizados ou a categorizas em processo de revisão. Estas nomenclaturas são mantidas somente para rastrear o histórico de determinada espécie ou grupo em relação a compatibilidade com outros sites parceiros.
+  inactive_taxon_concepts_are: Táxons inativos se referem ou a táxons desatualizados, ou a táxons que estão sendo revisados para uma mudança de táxon. Táxons desatualizados são mantidos para manter o histórico e a compatibilidade com alguns sites parceiros.
   inappropriate_content: Conteúdo inapropriado?
   inat_account_action: "%{site_name} &#58; Conta &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que é uma lista completa de táxons deste local."
@@ -2303,10 +2312,11 @@ pt-BR:
   joined_projects: Projetos a que aderiu
   joined_with_date: "Entrou: %{date}"
   journal: Boletim
-  journal_archives_for: Arquivos do Boletim Informativo
+  journal_archives_for: Arquivos de boletim para
   journal_post: Publicação do boletim
-  journal_post_deleted: Boletim informativo apagado.
-  journal_posts: Publicações de jornal
+  journal_post_: publicação de boletim
+  journal_post_deleted: Publicação do boletim apagada.
+  journal_posts: Publicações de Boletim
   jpg_png_or_gif: "JPG, PNG, ou GIF"
   jump_to_letter: Pule para a carta
   just_a_reminder: Apenas um lembrete, já que você pode ter dado permissões aos curadores do projeto para visualizar as coordenadas ocultas de suas observações neste projeto.
@@ -2669,7 +2679,7 @@ pt-BR:
   manage_your_relationships: Gerenciar seus relacionamentos
   manager: Moderador
   managers: Administradores
-  managers_can_do: Moderadores podem fazer tudo que os coordenadores fazem, assim como editar a configuração dos projetos e escrever as publicações dos boletins informativos.
+  managers_can_do: Moderadores podem fazer tudo que os coordenadores fazem, assim como editar a configuração dos projetos e realizar publicações nos boletins informativos.
   managing_projects: Gerenciando projetos
   map: Mapa
   map_legend: Legenda do Mapa
@@ -2936,7 +2946,7 @@ pt-BR:
   new_conservation_status: Novo status de conservação
   new_flag_for: Nova Sinalização para
   new_guide: Nova Guia
-  new_journal_post: Nova publicação no Boletim Informativo
+  new_journal_post: Nova Publicação de Boletim
   new_lexicon: Lèxico novo
   new_list: Nova entrada
   new_members: "Novos membros"
@@ -2980,6 +2990,8 @@ pt-BR:
   next_tab: Nova Aba
   next_taxon_short: Próximo
   'no': 'Não'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Nenhum aplicativo ainda
   no_assessments_have_been_added_to_this_project_yet: Nenhuma avaliação foi adicionada neste projeto ainda.
   no_but_it_is_a_member_of_taxon: "Não, mas é um membro de %{taxon}"
   no_comments_yet: Nenhum comentário ainda.
@@ -3000,7 +3012,7 @@ pt-BR:
   no_favorites_added:
     current_user: Você ainda não adicionou nenhum favorito.
     user: "%{user} ainda não adicionou nenhum favorito."
-  no_journal_posts_yet: Nenhuma publicação do diário ainda
+  no_journal_posts_yet: Nenhuma publicação de boletim ainda
   no_license_all_rights_reserved: Sem licenças (todos os direitos reservados)
   no_managers_set: Ainda não existem moderadores
   no_matching_article_from_x: "Nenhum artigo correspondente de %{x}"
@@ -3303,10 +3315,10 @@ pt-BR:
     youve_got_updates_panel_body_p1: Se mantenha atento as atualizações...
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Seu Conteúdo:</strong> As atividades em suas observações tal como comentários, identificações, ou quando marcadas como favoritas da comunidade do %{site_name}. Você também receberá atualizações sempre que alguém adicionar suas observações à um projeto, ou incluir anotações nos campos adicionais.</li>
-      <li><strong>Pessoas:</strong> Novas posts ou observações de pessoas que você segue.</li>
-      <li><strong>Organismos, Projetos e Lugares:</strong> Novas observações de organismos ou locais específicos que você acompanha. Você pode também ingressar em projetos assim, você será atualizado sempre que houveram novos posts nos jornais destes projetos.</li>
-      <li><strong>Discussões em que você participa:</strong> Ao comentar ou adicionar identificações as observações de alguém você se inscreve, automaticamente, para receber notificações sobre qualquer atividade neste conteúdo. Utilize a ferramenta 'Administre suas inscrições' para interromper o recebimento de atualizações.</li>
+      <li><strong>Seu Conteúdo:</strong> As atividades em suas observações, como comentários, identificações ou quando marcadas como favoritas, da comunidade do %{site_name}. Você também receberá atualizações sempre que alguém adicionar suas observações a um projeto, ou incluir anotações nos campos adicionais.</li>
+      <li><strong>Pessoas:</strong> Novas observações ou publicações de boletim de pessoas que você segue.</li>
+      <li><strong>Organismos, Projetos e Lugares:</strong> Novas observações de organismos ou locais específicos que você acompanha. Você pode também ingressar em projetos, assim você será atualizado sempre que houver novas publicações nos boletins destes projetos.</li>
+      <li><strong>Discussões que você participa:</strong> Ao comentar ou adicionar identificações às observações de alguém, você se inscreve, automaticamente, para receber notificações sobre qualquer nova atividade neste conteúdo. Utilize a ferramenta 'Administre suas inscrições' para interromper o recebimento de atualizações.</li>
       </ul>
   one_by_one: "Um por um"
   #Header for a list of project observation requirements
@@ -3975,9 +3987,9 @@ pt-BR:
   popular: Popular
   position: Posição
   #Post is a noun
-  post_from_journal_by_parent_html: Publicação do <a href="%{url}">boletim por %{parent}</a>
+  post_from_journal_by_parent_html: Publicação do <a href="%{url}">boletim de %{parent}</a>
   #Post is a noun
-  post_from_your_journal_html: Publicação de <a href="%{url}">seu jornal</a>
+  post_from_your_journal_html: Publicação do <a href="%{url}">seu boletim</a>
   post_published: Publicado!
   posted_by: Publicado por
   #Shows the date a journal post was published
@@ -4042,7 +4054,7 @@ pt-BR:
   project_group_description: Grupo ao qual pertence o projeto
   project_home: Página inicial do Projeto
   project_icon: Ícone do Projeto
-  project_journal: Diário do Projeto
+  project_journal: Boletim do Projeto
   project_id_or_url_slug: Identificador (ID) ou URL, exemplo 333 ou meu-projeto
   project_list: Lista do projeto
   project_list_defaults:
@@ -4326,7 +4338,7 @@ pt-BR:
   remove_photo: Remover a foto
   remove_place: Remover local
   remove_range: Remover a área de distribuição
-  remove_relationship: Remover relacionamento
+  remove_relationship: Remover Relação
   remove_relationship_caps: REMOVER RELAÇÃO
   remove_relationship_question: Remover Relação?
   remove_section: Remover a seção
@@ -4638,6 +4650,8 @@ pt-BR:
     pode ser afiliada apenas a um membro da Rede. Você pode rever ou alterar
     sua afiliação em suas %{start_tag_settings}configurações da conta%{end_tag_settings}.
   sites_affiliation_title: Saiba Mais Sobre a Afiliação à Rede
+  sites_network_agreements_html: |
+    O iNaturalist possui acordos formais com organizações em cada uma dessas regiões geográficas para apoiar o uso da plataforma iNaturalist. <strong>Se sua organização está interessada em participar da Rede iNaturalist, você pode encontrar mais detalhes%{start_tag_join}aqui%{end_tag_join}.</strong>
   sites_network_consists_of: "A Rede iNaturalist consiste em várias organizações:"
   sites_network_inaturalist_network_collection: |
     A Rede iNaturalist é uma coleção de sites localizados que estão totalmente
@@ -5109,7 +5123,7 @@ pt-BR:
   this_taxon_change_has_been_commited: |
     <strong>Esta alteração de táxon foi submetida!</strong>
     Por favor não edite os táxons. A edição de outros campos é permitida.
-  this_taxon_concept_is_inactive: o conceito de táxons está inativo
+  this_taxon_concept_is_inactive: este conceito de táxon está inativo
   this_taxon_has_more_than_1000_alt: |
     Este táxon tem mais de 1000 observações associadas a ele, então essas
     alterações podem levar algum tempo para serem processadas. Tem certeza de que elas são necessárias?
@@ -5533,7 +5547,7 @@ pt-BR:
   users_highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{user} durante %{year} no %{site}"
   users_id: "Identificação de %{user}"
   users_identifications: "Identificações de %{user}"
-  users_journal: "Diário de %{user}"
+  users_journal: "Boletim de %{user}"
   users_latest_observations_on_site: "Últimas observações de %{user} em %{site}"
   users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
@@ -5574,7 +5588,7 @@ pt-BR:
   #support @vow_or_con
   view_site_year_in_review: Veja a Revisão do Ano de %{year} do %{site}
   view_site_year_in_review_caps: VEJA A REVISÃO DO ANO DE %{year} DO %{site}
-  view_journal: Ver Boletim Informativo
+  view_journal: Ver Boletim
   view_leaderboard_from_last_month: Ver ranking do último mês
   view_leaderboard_from_last_year: Ver ranking para o último ano
   view_license: Ver licença
@@ -5725,10 +5739,10 @@ pt-BR:
   x_does_not_exist: "\"%{x}\" não existe"
   x_flagged: "%{x} sinalizado(a)"
   x_flagged_as_flag: "%{x} sinalizado(a) como %{flag}"
-  x_journal: "Boletim Informativo de %{user}"
-  x_journal_archives_for_y: "Boletim Informativo de %{user} • Arquivos de"
-  x_journal_middot: "Boletim Informativo de %{user} •"
-  x_journal_new_post: "Boletim Informativo de %{user} • Nova Publicação"
+  x_journal: "Boletim de %{user}"
+  x_journal_archives_for_y: "Boletim de %{user} • Arquivos para"
+  x_journal_middot: "Boletim de %{user} •"
+  x_journal_new_post: "Boletim de %{user} • Nova Publicação"
   x_observations_failed:
     one: "1 falha na observação"
     other: "%{count} falha nas observações"
@@ -5876,7 +5890,7 @@ pt-BR:
   you_arent_a_member_of_that_project: Você não é um membro deste projeto.
   you_arent_following_that_person: "Você não está seguindo nenhuma pessoa."
   you_can_accept_invitations: Você pode aceitar o convite aqui
-  you_can_choose_observations_associated: Você pode escolher observações para associar com esta publicação do seu Boletim.
+  you_can_choose_observations_associated: Você pode escolher observações para associar com esta publicação do seu boletim.
   you_can_edit_this_default_check_list_because: |
     Você pode editar esta lista de verificação padrão porque você é um administrador, mas isto não deveria ser algo com necessidade de ser feito.
   you_can_only_destroy_taxa_you_created2: |
@@ -5939,6 +5953,8 @@ pt-BR:
   your_account_has_been_activated: Sua conta foi ativada, eba!
   your_account_has_been_verified: "Sua conta %{site_name} foi verificada! Por favor entre para continuar."
   your_activation_code_was_missing: "Seu código de ativação está faltando. Por favor siga o endereço de URL que está no seu e-mail."
+  #Title for a list of 3rd party applications you control
+  your_applications: Seus Aplicativos
   your_browser_does_not_support_the_audio_element: Seu navegador não suporta o elemento de áudio.
   your_comment_was_saved: Seu conteúdo está salvo.
   your_content: Seu Conteúdo
@@ -6198,12 +6214,12 @@ pt-BR:
       pdf_layouts:
         grid: grade
         book: livro
-        journal: Boletim Informativo
+        journal: boletim
       pdf_layout_notes:
         grid: |
           Grade de imagens individuais, sem descrição
         journal: |
-          Divida a página, informações das espécies do lado esquerdo, espaço para notas do lado direito. As informações das espécies serão formatadas para caber na página.
+          Dividir a página: informações das espécies do lado esquerdo, espaço para notas do lado direito. As informações das espécies serão formatadas para caber na página.
         book: |
           Complete o guia incluindo todas as fotos e descrições, abrangendo várias páginas.
       pdf_generation_notice: |
@@ -6527,16 +6543,14 @@ pt-BR:
           discordo da espécie")
         community_taxon_desc_html: |
           <p class="ui">
-          O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
+          O táxon comunitário (ou identificação colaborativa) representa qual táxon do %{site_name} a comunidade acredita estar representado na observação. Se você está interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, nós tentamos <strong>escolher um táxon que mais de 2/3 dos identificadores concordam</strong>. Algumas vezes isso significa optar por um táxon mais alto que contenha os diferentes táxons sugeridos (por exemplo, se eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, o algoritmo do iNaturalist escolherá a subordem Serpentes para identificar o registro). Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
           </p>
           <p class="ui">
-            Utilizamos um táxon comunitário para compartilhar observações com parceiros, conectando diversos registros para o mesmo táxon no site, atualizando sua lifelist, entre outras coisas. Se por alguma razão você discordar de um táxon comunitário, você pode rejeitá-lo, o que significa que a sua identificação será aquela utilizada pelo sistema. 
-          Também significa que sua observação somente poderá ser incluída na categoria pesquisa quando os membros da comunidade concordarem com <em>você/em>.
-          Se você simplesmente não gosta do conceito de táxon comunitário, você pode se desligar do processo <a href="/users/edit" target="_blank">editando suas configurações</a>.
+          Uma observação em Nível de Pesquisa deve ter (junto a outros critérios) um táxon comunitário. Se uma observação só tem uma identificação, ela não terá um táxon comunitário. Todas as observações com ao menos uma identificação terão um táxon da observação. O táxon da observação é o táxon que usamos quando compartilhamos observações com parceiros, conectando observações do mesmo táxon no site, atualizando sua lista de vida etc. Na maioria dos casos, o táxon da observação eventualmente se tornará o táxon comunitário mas, às vezes, eles diferem, especialmente antes da comunidade se estabelecer em uma identificação. Por exemplo, se você acha que é uma serpente (suborder Serpentes) e eu acho que é uma jararaca (gênero <i>Lampropeltis<i>), o táxon da observação estará como jararaca (a partir apenas da minha identificação) mas o táxon comunitário estará em Serpentes (a partir de ao menos duas identificações). Se por alguma razão você discordar de um táxon comunitário, você pode rejeitá-lo em suas próprias observações, o que significa que a sua identificação será aquela utilizada pelo sistema.
+          Também significa que sua observação só pode se tornar Nível de Pesquisa quando os membros da comunidade concordarem com <em>você</em>. Se você simplesmente não gosta do conceito de táxon comunitário, você pode se desligar do processo <a href="/users/edit" target="_blank">editando suas configurações</a>.
           </p>
           <p class="ui">
-            <strong>O algoritmo:</strong> para todos os dados de identificação de espécies, como por exemplo, o táxon <i>Homo</i> engloba a espécie <i>Homo sapiens</i>), bingo, a razão entre o número de IDs acumuladas para o mesmo táxon através da soma das identificações acumuladas, o número de IDs mais conservadoras acrescentadas após a primeira ID desse táxon, além do número de IDs que são completamente diferentes (isto é, identificações
-             de táxons que não contêm o táxon ser marcado). Para os táxons identificados que possuem uma nota de acerto próxima a 2/3 e no mínimo 2 identificações, escolha o táxon mais baixo.
+          <strong>O algoritmo:</strong> para todos os táxons e os táxons que os contêm (por exemplo, o gênero <i>Homo</i> engloba a espécie <i>Homo sapiens</i>), pontue cada um como a razão entre o número de "acordos" - IDs cumulativas para aquele táxon sobre o total das IDs, e a soma de "desacordos" - o número de IDs que são completamente diferentes (ou seja, IDs de táxons que não possuem o táxon sendo pontuado), com os "desacordos de ancestrais" - o número de IDs mais conservativas que discordam com o táxon mais específico. Entre os táxons identificados que possuem uma pontuação acima de 2/3 e no mínimo 2 identificações, escolha o táxon de rank mais baixo.
           </p>
         cumulative_count_desc: '# de identificações para um único táxon e todos os seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
@@ -7029,8 +7043,8 @@ pt-BR:
         umbrella_project_features: "Recursos do projeto guarda-chuva:"
         unique_url_for_outreach: URL exclusivo para divulgação
         use_this_for_a_time_limited_event: |
-          Use isso para um evento com período determinado, uma bioblitz ou um projeto sazonal. Seleciona uma data específica, um intervalo de datas, ou quais meses do ano que as observações devem ser feitas (independente do ano). Caso estiver usando a seção de Intervalo de Datas, tenha certeza que você tem os horários e fuso-horários corretos selecionados, ou delete o horário/fuso-horário para incluir observações feitas em qualquer hora durante as datas especificadas. Você pode deixar a Data de Início ou Data Final em branco caso você quiser limitar o projeto a apenas uma data.
-        users_can_follow_your_project: Os usuários podem acompanhar seu projeto para atualizações por meio de publicações em diário
+          Use isso para um evento com período determinado, uma bioblitz ou um projeto sazonal. Seleciona uma data específica, um intervalo de datas, ou quais meses do ano que as observações devem ser feitas (independente do ano). Caso estiver usando a seção de Intervalo de Datas, tenha certeza que você tem os horários e fuso-horários corretos selecionados, ou delete o horário/fuso horário para incluir observações feitas em qualquer hora durante as datas especificadas. Você pode deixar a Data de Início ou Data Final em branco caso você quiser limitar o projeto a apenas uma data.
+        users_can_follow_your_project: Usuários podem acompanhar seu projeto para atualizações sobre as publicações do boletim
         use_this_link_to_create_html: |
           Use <a href="%{url}">esse link</a> para criar um projeto tradicional.
         visual_comparison_of_data_among: Comparações visuais de dados entre projetos sob o guarda-chuva
@@ -7092,10 +7106,10 @@ pt-BR:
           Clique aqui para converter este projeto em um projeto de coleção.
         no_journal_blurb_html: |
           <p>
-          O jornal do seu projeto é uma ferramenta específica para comunicação com todos os participantes de seus projeto. Você pode utilizá-lo para realizar anúncios, estabelecer prioridades ou compartilhar descobertas.
+          O boletim informativo do seu projeto é uma ferramenta específica para comunicação com todos os participantes de seus projeto. Você pode utilizá-lo para realizar anúncios, estabelecer prioridades ou compartilhar descobertas.
           </p>
           <p>
-          Para começar, <a href="%{url}" class="readmore">publique seu primeiro post</a>
+          Para começar, <a href="%{url}" class="readmore">faça sua primeira publicação</a>
           </p>
         curated_checklist_desc: |
           Esta é a lista de verificação moderada e a lista de contagem dos táxons de observações explicitas adicionadas à esta projeto, nem todas as observações foram gravadas neste local e neste período do evento.
@@ -7254,7 +7268,7 @@ pt-BR:
         store_prompt: |
           Quer mostrar seu orgulho iNat em todos os lugares em que for? Confira a loja iNat!
         sunburst_desc_html: |
-          Os táxons observados são organizados como um diagrama hierárquico "sunburst". A base da hierarquia está no centro, começando com "Vida" e terminando com espécies nas bordas externas. O tamanho de cada arco é proporcional ao número de observações desse táxon, e as cores correspondem às nossas habituais cores "icônicas" dos táxons (verde para plantas, laranja para insetos, azul para a maioria dos outros animais, etc), então se você vê muito verde, isso significa que você observou muitas plantas. <strong>Clique em um arco para colocar esse táxon no centro</strong> e seus dependentes em torno dele, ou <strong>clique no centro para retroceder a hierarquia.</strong>
+          Os táxons observados estão organizados em um diagrama hierárquico radial "sunburst". A base da hierarquia está no centro, começando com "Vida" e terminando com as espécies nas bordas externas. O tamanho de cada arco é proporcional ao número de observações desse táxon, e as cores correspondem às cores icônicas habituais dos táxons (verde para plantas, laranja para insetos, azul para a maioria dos outros animais, etc). Então, se você vê muito verde, isso significa que você observou muitas plantas. <strong>Clique em um arco para colocar esse táxon no centro</strong> e seus dependentes em torno dele, ou <strong>clique no centro para retroceder na hierarquia.</strong>
         translators_title: Tradutores
         translators_desc: |
           Você sabia que o iNaturalist foi traduzido para %{x_languages},
@@ -7332,10 +7346,7 @@ pt-BR:
         charts_help_relative_observations: |
           A exibição da frequência como uma proporção relativa de todas as observações ajuda a suavizar o efeito do crescimento geral do site. Por exemplo, se o site está crescendo enquanto obtemos mais observações a cada ano que passa, temos mais observações de qualquer táxon individual. Isso não diz nada sobre se há mais indivíduos desse táxon ou se há mais pessoas que o observam. Mostrando a proporção relativa significa que, se houver um total de 100 observações no total, mas 20 deste táxon, a proporção será de 0,2 (20 / 100). Se as pessoas observarem 2.000 observações no próximo ano e 400 observações desse táxon, a proporção ainda será de 0,2 (400 / 2.000). Isso causa algumas aberrações quando há muito poucos observadores em uma área, ou para táxons que não são muito observados, mas o mesmo acontece com as contagens totais.
         complete_taxon_desc: |
-          Os táxons "Completos" possuem todos os seus descendentes, taxa taxa existente de uma faixa específica presente no banco de dados do site. Quando um táxon é completo para as espécies, por exemplo, podemos dizer quantas de suas espécies
-          foram observados e quantos precisam ser observados. As contagens de
-          espécies em táxons "completos" completos até que as espécies não incluam espécies
-          "não contáveis" como espécies extintas ou espécies inativas, e incluem apenas espécies, e não taxa infraespecífica como subespécie ou variedades.
+          Os táxons "Completos" possuem todos os seus táxons descendentes e existentes de uma certa categoria taxonômica presente no banco de dados do site. Quando um táxon é completo até espécie, por exemplo, podemos dizer quantas de suas espécies já foram observados e quantas ainda precisam ser observadas. As contagens de espécies em táxons "completos" até espécie não incluem espécies "não contáveis", como espécies extintas ou espécies inativas, e incluem apenas espécies, e não táxons infraespecíficos como subespécie ou variedades.
         discoveries_desc: "As espécies identificadas mais recentemente neste táxon"
         frequency:
           research: Nível de Pesquisa
@@ -7483,7 +7494,7 @@ pt-BR:
           observações, identificar suas observações, e interagir com você de outra forma 
           em %{site_name}. Isso também remove as observações dele dos seus
           resultados de pesquisa e remove suas observações dos resultados da pesquisa 
-          dele. No entanto, não o torna invisível para ele. Ele ainda pode encontrar as
+          dele. No entanto, não te torna invisível para ele. Ele ainda pode encontrar as
           suas observações e ver o seu perfil, ele simplesmente não consegue
           interagir com você.
           </p>
@@ -7506,8 +7517,7 @@ pt-BR:
           <a href="mailto:%{help_email}">entre em contato conosco</a>.
           </p>
           <p>
-          Se alguém está assediando ou perseguindo você em %{site_name},
-          <a href="mailto:%{help_email}">, por favor, nos informe</a>. Se isso representa 
+          Se alguém está assediando ou perseguindo você em %{site_name}, <a href="mailto:%{help_email}">por favor, nos informe</a>. Se isso representa 
           uma violação dos nossos Termos de Uso ou representa outros 
           comportamentos que consideramos inapropriados em nosso site,
           investigaremos.
@@ -7518,25 +7528,25 @@ pt-BR:
           <a href='/users/edit'>editar suas configurações</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
-          A <a href="%{url}" target="_blank">iNaturalist Network</a> é uma coleção
+          A <a href="%{url}" target="_blank">Rede iNaturalist </a> é uma coleção
           de sites localizados que estão totalmente conectados à
           comunidade global iNaturalist. Os sites da rede são apoiados por instituições
-          locais que assinaram um acordo com a iNaturalist para
-          promover o uso local e beneficiar a biodiversidade local. Têm acesso
-          a verdadeiras coordenadas dos seus países que são automaticamente
+          locais que assinaram um acordo com o iNaturalist para
+          promover o uso local e beneficiar a biodiversidade local. Eles têm acesso
+          às coordenadas verdadeiras de seus países que são automaticamente
           ocultas da visão pública, a fim de proteger as espécies ameaçadas.
           </p>
           <p>
           O seu nome de utilizador e senha funcionam em todos os sites que fazem parte
-          da rede iNaturalist. Se você optar por se afiliar a uma rede
+          da Rede iNaturalist. Se você optar por se afiliar a uma rede
           local, as instituições locais que operam cada site terão também
           acesso ao seu endereço de e-mail (apenas para comunicar consigo sobre
-          atividades do site) e acesso às coordenadas verdadeiras para as observações
-          obscurecidas ou privadas do público.
+          atividades do site) e acesso às coordenadas verdadeiras das observações
+          publicamente ocultadas ou privadas.
           </p>
           <p>
           Nota: Por favor, não altere experimentalmente sua afiliação se
-          tiver mais de 1000 observações.
+          você tiver mais de 1000 observações.
           </p>
         licensing_desc_html: |
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
@@ -7552,17 +7562,11 @@ pt-BR:
           exatamente o mesmo endereço de email no Donorbox que você usa no iNaturalist
           para confirmarmos que você se tornou um Suporte mensal.
         muting_desc_html: |
-          ↓
           <p>
-          Silenciar alguém impede que você receba notificações sobre coisas
-             eles fazem, inclusive comentando suas observações, enviando mensagens para você,
-             mencionando você, etc. Muting ajuda você a ignorar alguém sem
-             impedindo-os de fazer qualquer coisa.
+          Silenciar alguém impede que você receba notificações sobre coisas que eles fazem, inclusive comentários em suas observações, mensagens para você, menções a você, etc. Silenciar ajuda você a ignorar alguém sem impedindo-los de fazer alguma coisa.
           </p>
           <p>
-          Você pode silenciar quantas pessoas quiser, mas tenha em mente que
-             você estará perdendo notificações potencialmente importantes, como
-             identificações que mudam o ID da Comunidade em suas observações.
+          Você pode silenciar quantas pessoas quiser, mas tenha em mente que você estará perdendo notificações potencialmente importantes, como identificações que mudam o táxon comunitário de suas observações.
           </p>
         name_place_help_html: |
           Priorize os nomes comuns usados neste local.
@@ -7575,7 +7579,7 @@ pt-BR:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Mensagens
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_journal_posts: Postagens do registro do Projeto
+        notification_preferences_project_journal_posts: Publicações do boletim do projeto
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Quando um projeto adiciona suas observações
         #Checkbox label for user preference about what to receive in the daily
@@ -7984,6 +7988,7 @@ pt-BR:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplicativo
       Photo: Foto
+      Post: Publicação de Boletim
       TaxonLink: Link de táxon
     attributes:
       announcement:
@@ -7992,6 +7997,11 @@ pt-BR:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: IDs do Site
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Para a equipe (para testes)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Para usuário não confirmados
         clients: Clientes
       assessment:
         description: Descrição
@@ -8224,6 +8234,16 @@ pt-BR:
           one: "Um erro impediu este %{model} de ser salvo"
           other: '%{count} erros impediram este %{model} de ser salvo'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: devem ser válidos para uma localização específica
         application:
           attributes:
             redirect_uri:

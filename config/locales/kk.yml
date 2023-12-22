@@ -783,6 +783,8 @@ kk:
   comparing_list_to_list: "%{list1} және %{list2} салыстырылуда"
   comparing_versions_x_and_y: "%{x} және %{y} нұсқаларын салыстыру"
   compiled_by_name: "Құрастырушы %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete: Толық
   complete_set_for_taxon_in_place_html: "%{taxon} үшін толық жиын %{place}"
   completed: Аяқталды
   #As in whether or not a check list is comprehensive, i.e. it contains all the
@@ -983,6 +985,10 @@ kk:
     Сайт кураторы болуға өтініш беру үшін сізде 60 күндік немесе одан да көп аккаунт болуы керек, кем дегенде 5 жалауша қосу керек және кез келген адамның бақылауларына, соның ішінде өзіңіздің бақылауыңызға 100 жақсартатын идентификацияларды қосу керек.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Куратор өтінімі жіберілді
+  #Header
+  curator_application_what_curators_can_do: Кураторлар не істей алады
+  #Header
+  curator_application_what_curators_cannot_do: Кураторлар не істей алмайды
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
@@ -1124,16 +1130,47 @@ kk:
       reset_password_instructions:
         subject: 'Құпия сөзді қалпына келтіру нұсқаулары'
   devise_confirmation_instructions_send_confirmation_email: Растау электрондық хатын жіберу
+  devise_email_changed_you_requested: Сіз %{old_email} орнына %{new_email} өзгертуді сұрадыңыз.
+  devise_email_changed_you_will_receive: |
+    Өзгерісті растау үшін сізге жаңа мекенжайға электрондық хат келеді, бірақ басқа біреу аккаунтыңызға кіруге рұқсат алған жағдайда және оны сіз білмей өзгертуге әрекеттеніп жатқан жағдайда сізге ескі мекенжайыңыз бойынша хабарлауды жөн көрдік. Егер сіз электрондық пошта мекенжайыңызды әдейі өзгертпеген болсаңыз, бұл электрондық поштаны дереу help@inaturalist.org мекенжайына жіберіңіз, сонда біз тексереміз.
   devise_reset_password_instructions_hello_email: Сәлеметсіз бе %{email}
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Бұны сұрамаған болсаңыз, бұл электрондық поштаны елемеуіңізді өтінеміз.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Біреу құпия сөзіңізді өзгерту үшін сілтеме сұрады. Мұны төмендегі сілтеме арқылы жасауға болады.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Жоғарыдағы сілтемеге кіріп, жаңасын жасамайынша, құпия сөзіңіз өзгермейді.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Жүйеге кіруге сәтсіз әрекеттердің шамадан тыс санына байланысты аккаунтыңыз құлыпталды.
+  devise_unlock_instructions_click_the_link: |
+    Аккаунтыңыздың құлпын ашу үшін төмендегі сілтемені басыңыз
+  devise_unlock_instructions_unlock: Аккаунтыңызды ашыңыз
+  discoveries: Ашулар
   disable: Өшіру
   disable_comments: Пікірлерді өшіру
+  disable_comments_desc: Адамдарға жаңа пікірлер қосуға жол бермеу
   disagree_: Келіспеймін
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Ажырату
   disconnect_caps: АЖЫРАТУ
   disconnect_provider: "%{provider} байланысын ажырату"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Бас тарту
+  display: Көрсету
+  display_monthly_supporter_badge: Профильде ай сайынғы қолдаушы белгішесін көрсету
+  display_name: Көрсетілетін есім
+  display_name_description: Бұл сіздің профиліңізде, сондай-ақ авторлық құқық атрибуты үшін көрсетілетін атау
+  distance_traveled_value: "Жүрген жол: %{distance}(м)"
+  distance_traveled: "Жүрген жол (м)"
+  do_not_show_this_message_again: Бұл хабарламаны қайта көрсетпеңіз
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |
+    Сіз нематодтарды зерттейсіз бе? Сіз шаяндар таксономиясы бойынша әлемдегі ең жетекші мамансыз ба? Сіз жай ғана әдемі гүлдерді көргенді ұнатасыз ба? Профильді толтыру кейбір тұлғалық қасиеттерді қосады және адамдарға идентификация арқылы көмектескен кезде сенімділікті орнатуға көмектеседі.
+  doh_something_went_wrong: Ой, бірдеңе дұрыс болмады.
+  doh_something_went_wrong_error: "Ой, бірдеңе дұрыс болмады: %{error}"
   done: Дайын
+  dont_have_an_account_sign_up_html: Аккаунт жоқ па? <strong>Тіркеліңіз.</strong>
+  dont_use_double_quotes: Қос тырнақшаны басқа жерде қолданбаңыз
   download: Жүктеу
   download_caps: ЖҮКТЕУ
   #Noun, as in a journal post that has not been published
@@ -1148,8 +1185,30 @@ kk:
   edit: Өңдеу
   #Title of the moderation note editor
   edit_moderator_note: Модератор ескертпесін өңдеу
+  edit_assessment: Бағалауды өңдеу
   edit_atlas: Атласты өңдеу
+  edit_atlas_for_taxon_html: '%{taxon} үшін атласты өңдеу'
+  edit_comment: Пікіріңізді өңдеу
+  edit_conservation_status: Қорғау статусын өңдеу
+  edit_field: Өрісті өңдеу
+  edit_license: Лицензияны өңдеу
+  edit_multiple_dates: Бірнеше күндерді өңдеу
+  edit_multiple_descriptions: Бірнеше ескертпелер өңдеу
+  edit_multiple_locations: Бірнеше орынды өңдеу
+  edit_multiple_species: Бірнеше түрді өңдеу
+  edit_notes: Ескертпелерді өңдеу
   edit_observations: Бақылауларды өңдеу
+  edit_photos: Фотоларды өңдеу
+  edit_photos_for_observation_id: "%{obs_id} бақылауына арналған фотосуреттерді өңдеу"
+  edit_place: Орынды өңдеу
+  edit_project: Жобаны өңдеу
+  edit_remove: Өңдеу/Жою
+  edit_selected: Таңдалғанды өңдеу
+  edit_source: Дереккөзді өңдеу
+  edit_taxa: Таксондарды өңдеу
+  edit_taxon: Таксонды өңдеу
+  edit_taxon_framework: Таксон құрылымын өңдеу
+  edit_taxon_link: Таксон сілтемесін өңдеу
   editing_taxon_name_for_taxon_html: '%{taxon} үшін "%{name}" таксон атауын өңдеу'
   editing_this: '%{elem} өңдеу'
   editors: Редакторлар
@@ -1212,6 +1271,8 @@ kk:
   Family: Отбасы
   favorite_taxa: Таңдаулы таксондар
   favorites: "Таңдаулылар"
+  fields: өрістер
+  fields_: Өрістер
   file: Файл
   file_size: Файл көлемі
   filter_by_place: Орын бойынша сүзгілеу
@@ -3323,6 +3384,9 @@ kk:
   yir_email_the_inaturalist_team: iNaturalist командасы
   you: сіз
   you_: Сіз
+  you_cant_leave_a_project_you_created: Сіз жасаған жобаны қалдыра алмайсыз.
+  you_cant_merge_standard_places: Сіз стандартты орындарды біріктіре алмайсыз
+  you_cant_rotate_photos_hostde_outside: "%{site_name} сайтынан тыс орналастырылған фотосуреттерді айналдыра алмайсыз."
   you_unlinked_your_provider_account: "Сіз %{provider} аккаунтыңызбен байланысты жойдыңыз"
   youll_need_to_link: Сізге сілтеме жасау керек
   youve_joined_the_x_project: "Сіз %{project_invitation} жобасына қосылдыңыз және бақылауыңыз қосылды"
@@ -3424,20 +3488,75 @@ kk:
         welcome_to_projects: Жобаларға қош келдіңіз!
       project_user_curator_coordinate_access_labels:
         none: Жоқ.
+    search:
+      index:
+        no_taxa_forum: Форуммен байланысыңыз
     stats:
       index:
+        avg_ttcid: Орташа TTCID
+        avg_ttid: Орташа TTID
         observers_desc: Бұл күні бақылау қосылды
         TTCID: TTCID
         TTID: TTID
       year:
+        compared_to_previous_years: Алдыңғы жылдармен салыстыру
+        donate_title: "Барша қолдаушыларымызға ерекше алғыс айтамыз"
         donors_guide_label_our_goal_is_1000: Біздің мақсатымыз айына 1000 тұрақты демеуші
         inaturalist_network: iNaturalist желісі
+        growth_in_year_obs: "%{year} бойынша өсім (бақ)"
+        growth_title: Өсім
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Төмен: %{low_value} (%{low_desc}), көрсету үшін тым кішкентай"
+        new_species_desc: |
+          %{site_name} сайтында биыл алғаш рет бақыланған түрлер. <a href="%{url}">%{y} түрдің</a> %{x} көрсетілуде.
         new_species_per_year: Жаңа түрлер / Жыл
+        new_species_per_year_by_date_added: Қосылған күні бойынша
+        new_species_per_year_by_date_observed: Бақыланған күні бойынша
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Бір реттік
+        percent_growth_in_year: "%{year} жылы % өсім"
+        percent_of_total_growth: "жалпы өсімнің %"
         observations_per_year: Бақылаулар / Жыл
+        observations_per_year_by_date_added: Қосылған күні бойынша
+        observations_per_year_by_date_observed: Бақыланған күні бойынша
+        observation_streaks_color_desc: |
+          Түс логарифмдік шкала бойынша күндер санын білдіреді:
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Қайталанатын
         species_per_year: Түрлер / Жыл
+        species_per_year_by_date_added: Қосылған күні бойынша
+        species_per_year_by_date_observed: Бақыланған күні бойынша
+        stats_generated_datetime: Статистика %{datetime} күні жасалған
+        stats_generation_schedule: Статистика желтоқсанның әр жексенбісінде және 1 қаңтарда жасалады
+        store_prompt: |
+          iNat мақтанышыңызды қайда барсаңыз да көрсеткіңіз келе ме? iNat дүкенін қараңыз!
         translators_title: Аудармашылар
+        view_all_publications_count_caps2:
+          one: "%{count} ЖАРИЯЛАНЫМДЫ КӨРУ"
+          other: "БАРЛЫҚ %{count} ЖАРИЯЛАНЫМДЫ КӨРУ"
     taxa:
+      edit:
+        complete_desc_html: |
+          "Толық" таксон iNaturalist таксонды басқару саясаттарына сәйкес келетін белгілі дәрежедегі <em>барлық</em> белгілі ұрпақ таксондарын қамтиды, олар бақыланғанына немесе бақыланбағандығына қарамастан. Қазіргі уақытта тек сайт әкімшілері таксондарды толық деп жариялай алады.
       show:
+        about_regional_names_desc: |
+          <p>
+          Әртүрлі елдер немесе аймақтар бір тілде әртүрлі жалпы атауларды пайдаланатын жағдайларда атаулар жерлерге (әдетте елдерге) қосылуы мүмкін. Мысалы, Мексика мен Коста-Рикада бір түр үшін әртүрлі испан атаулары болуы мүмкін.
+          </p>
+          <p>
+          Бұл кесте қай орындарға қандай атаулардың қосылғанын көрсетеді және әрбір орын үшін басымдық ретімен тізімделген. Мексикаға екі испан атауы қосылса, Мексикаға қосылған испан атауларын көргіңіз келсе, бірінші тізімде көрсетілген атау пайда болады.
+          </p>
+        about_conservation_status_desc: |
+          Қорғау статусы организмдер тобының жойылу қаупін қорытындылайды.
+        about_taxon_curators_desc: |
+          Бұл адамдар таксономиялық ағаштың осы таксонды қамтитын бөлігін басқарады. Өзгерістер енгізгіңіз келсе, осы таксонды белгілеңіз немесе осы адамдардың бірімен хабарласыңыз.
+        charts_help_seasonality: |
+          Бұл диаграмма айлар бойынша топтастырылған осы таксонның бақылауларының санын көрсетеді. Есіңізде болсын, бұл бақылаулар саны, сондықтан оларға организмді қашан байқауға болатыны да, адамдар оларды бақылайтын кезде де әсер етеді. Сонымен, құс мамыр айында өте белсенді болып көрінуі мүмкін, бірақ бұл мамырда құс салатын адамдардың көбірек болуына байланысты болуы мүмкін, олар кейінгі айларда бұл түрді елемейді. Сол сияқты, егер сіз маусым айында инеліктерді қаңтарға қарағанда көбірек көрсеңіз, бұл бізде оңтүстік жарты шарға қарағанда солтүстік жарты шарда көбірек бақылайтындықтан болуы мүмкін, бұл маусымда инеліктердің белсендірек болуынан емес, сондықтан осы диаграммаларды қарастырған кезде картаны тексеріңіз. Бақылаулардың аз саны және/немесе «Анықталатын» және «Зерттеу дәрежесі» бақылаулар санының арасында үлкен сәйкессіздіктер болған кезде бұл диаграммаларға күмәнмен қарау әрқашан жақсы идея.
+        charts_help_history: |
+          Бұл диаграмма соңғы он жылдағы осы таксонның айлар бойынша бақылаулар санын көрсетеді. Тағы да, ол бақылайтын адамдар санына байланысты, бірақ ол сізге бақылаулардағы әдеттен тыс өсулерді көрсетеді және бақылаушылар санының өсуіне қарамастан, ол тегіс немесе азайып көрінсе, бұл молшылықтың өзгеруін көрсетуі мүмкін.
+        discoveries_desc: "Бұл таксондағы ең соңғы жаңадан анықталған түрлер"
         frequency:
           research: Зерттеу дәрежесі
           verifiable: Анықталатын
@@ -3460,8 +3579,70 @@ kk:
           "Sex=Female": Ұрғашы
           "Sex=Male": Еркек
           unannotated: Аңдатпа жоқ
+        max_photos_desc: |
+          Таксонда тек %{max} фотосурет болуы мүмкін. Қосымша қосу үшін бар фотосуреттерді жою қажет.
+        no_trending_desc: Соңғы айда бұл таксоннан төмен ештеңе бақыланған жоқ
+        photo_chooser_modal_desc: |
+          Фотоларды сол жақтан осы жерге сүйреңіз немесе қайта реттеу үшін фотоларды осы жерге сүйреңіз.
+        photo_chooser_modal_explanation: |
+          Таксон бетінде осы таксонның және оның ұрпақтарының фотосуреттері көрсетілетінін ескеріңіз. Бұл таксон үшін таңдалған фотосуреттер бірінші болып көрсетіледі. Бірінші фотосурет сайтта қолданылатын әдепкі сурет болады.
+        site_curators_disabled_wikipedia_html: |
+          Сайт кураторлары <a href="%{url}">Уикипедиядағы осы мазмұнды</a> көрсетуді уақытша тоқтатты. Сіз Уикипедиядағы бетті осы таксонға сәйкес ету үшін өңдеу арқылы немесе сайт кураторларының назарына жеткізу үшін осы таксонды белгілеу арқылы көмектесе аласыз.
+        trending_desc: Соңғы айда ең көп байқалған таксондар
+        trending_in_place_desc_html: <a href="%{url}">%{place}</a> аймағында соңғы айда ең көп байқалған таксондар
+    taxon_links:
+      form:
+        name_with_rank_desc: |
+          Дәрежесі бар таксонның атауы. Инфратүрлi дәрежелер үшiн ранг биномнан кейiн енгiзiледi.
+    taxon_names:
+      taxon:
+        about_html: |
+          Таксондардың көптеген жалпы атаулары болуы мүмкін. Біз бір әдепкі жалпы атауды жаһандық деңгейде қолдаймыз, оны тізімнің жоғарғы жағына апару арқылы өзгертуге болады. Сондай-ақ, атауды өңдеу және орынды қосу арқылы әртүрлі жерлерде әдепкі атауларды көрсетуге болады, бірақ мұны әртүрлі орындарда қайшы келетін атаулар болған кезде ғана жасаңыз.
     users:
+      dashboard:
+        taxon_change_desc: |
+          Таксондық өзгерістер %{site_name} таксономиясындағы өзгерістерді білдіреді. Көбінесе %{site_name} осы өзгерістер орын алған кезде (егер сіз бас тартпасаңыз) контентіңізді автоматты түрде жаңартып отырады, бірақ біз әлі де деректеріңіздің қашан және қалай өзгеретінін хабарлауды жөн көреміз.
+        your_content_will_be_updated: Осы таксондарға қатысты контентіңіз автоматты түрде жаңартылады.
+        you_may_want_to_update: Сізде осы таксондарға қатысты кейбір контент бар, оларды жаңарту қажет болуы мүмкін.
+        cannot_update_your_content: "%{site_name} бұл өзгеріс үшін контентті автоматты түрде жаңарта алмайды."
+        new_project_admin_html: |
+          Неліктен сіз осы жобаның әкімшісі екеніңізді білгіңіз келе ме? Алдыңғы иесі сізді жаңа әкімші ретінде тағайындады немесе ол өз аккаунтын жойды және %{site_name} сізді тағайындады, себебі сіз жоба менеджері немесе сайт кураторысыз. Егер жоба әкімшісі болғыңыз келмесе, <a href="mailto:%{help_email}">%{help_email}</a> мекенжайына хабарласыңыз.
+        curators_can_see: |
+          Еске сала кетейік, жоба кураторлары сіз осы жобаға қосқан бақылаулардың жеке және жасырын координаттарын көре алады.
+      delete:
+        caching: |
+          Контентіңіздің бір бөлігін жоймақ болғаныңыз үшін аккаунтыңызды жойып жатсаңыз, бірақ оны картада немесе Интернеттің басқа жерінде көре алатын болсаңыз, карта деректері жазбалар жойылғаннан кейін де бір күнге дейін кэштелетінін есте сақтаңыз, және осы платформадағы контентті жою басқа сайттар мен платформалардағы көшірмелерге әсер етпеуі мүмкін (мысалы, GBIF).
+        x_observations_html:
+          one: |
+            <strong class="count">%{count} бақылау</strong>, соның ішінде сізге идентификациямен көмектескен <strong class="count">%{helpers_count} адамның</strong> жұмысы
+          other: |
+            <strong class="count">%{count} бақылау</strong>, соның ішінде сізге идентификациямен көмектескен <strong class="count">%{helpers_count} адамның</strong> жұмысы
+        x_projects_html:
+          one: |
+            Жаңа иесі бола алатын басқа менеджері немесе әкімшісі жоқ <strong class="count">%{count} жоба</strong>
+          other: |
+            Жаңа иесі бола алатын басқа менеджері немесе әкімшісі жоқ <strong class="count">%{count} жоба</strong>
+        x_comments_html:
+          one: Сіз қосқан <strong class="count">%{count} пікір</strong>
+          other: Сіз қосқан <strong class="count">%{count} пікір</strong>
+        furthermore_cannot_undo_html: |
+          Оған қоса, <strong>бұл әрекетті қайтару мүмкін емес.</strong> Егер кейінірек ойыңызды өзгертсеңіз, ол контенттің ешқайсысын қайтара алмайсыз.
+        settings_and_mute_html: |
+          Бұл сайт тым көп хабарландырулар жасаса, белгілі бір хабарландырулардан бас тарту немесе бізден электрондық хат алуды тоқтату үшін <a href="/users/edit">баптауларыңызды өңдеуді</a> қарастырыңыз. Егер сайтта белгілі бір адаммен қиындықтар туындаса, аккаунтыңызды жоюдың орнына <a href="/users/edit">оларды бұғаттауды</a> қарастырыңыз.
+        still_want_to_delete_html: |
+          Аккаунтыңызды әлі де жойғыңыз келетініне сенімді болсаңыз, төмендегі пішінге <code>%{confirmation_code}</code> енгізіңіз және аккаунтыңызды және барлық деректеріңізді жою үшін түймені басыңыз.
+        type_confirmation_code: '%{confirmation_code} теріңіз'
+        you_must_enter_confirmation_code_in_the_form: |
+          Аккаунтыңызды жою үшін пішінге "%{confirmation_code}" енгізуіңіз керек
       edit:
+        about_third_party_tracking: Үшінші тарап бақылауы туралы
+        common_scientific_name_display_order: Жалпы / Ғылыми атауды көрсету реті
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Егер ойыңызды өзгертсеңіз, сіз әрқашан <a href='/users/edit'>баптауларыңызды өңдеуге</a> болады.
+        licensing_desc_html: |
+          Контентіңізді лицензиялау кез келген адамға лицензия шарттарын орындайтын болса, оны сіздің рұқсатыңызды сұрамай пайдалануға заңды құқық береді. Бұған қоса, %{site_name} сіздің Creative Commons лицензиясы бар контентіңізді қызығушылық танытатын таңдаулы серіктес ұйымдар үшін жасалған жүйелі түрде жаңартылатын мұрағаттарға қосады. Мысалы, біз бүкіл әлемдегі биоәртүрлілік туралы ақпаратты құрастыратын және тарататын халықаралық, үкіметаралық ұйым <a href="http://www.gbif.org/">Жаһандық биоалуантүрлілік туралы ақпарат орталығы</a> (GBIF) үшін жасаған мұрағатқа авторлық құқығы жоқ (CC0), авторы көрсетілуі тиіс (CC BY) және коммерциялық емес пайдалану құқығы бар (CC BY-NC) жазбаларды қосамыз.
+        name_place_help_html: |
+          Осы жерде қолданылатын жалпы атауларға басымдық беру.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Пікірлер
         #Checkbox label for user preference about what to receive in the daily email update
@@ -3470,10 +3651,67 @@ kk:
         notification_preferences_messages: Хабарламалар
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Жоба журналындағы посттар
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Таксономиялық өзгерістер
         project_addition_preferences:
           any: Кез-келген
+          joined: Сіз қосылған жобалар
+          none: "Жоқ, тек сіз өз бақылауларыңызды жобаларға қоса аласыз"
         prefers_community_taxa_desc: |
           %{site_name} сіздің бақылауларыңыз не деп ойлайтынын және қауымдастықтың олар не деп ойлайтынын бақылайды. Егер қауымдастықтың пікірі өзіңіздің пікіріңізді жоққа шығаруы керек деп ойламасаңыз, осы жерден бас тартуыңызға болады. Адамдар идентификацияларды қоса алады, бірақ сіздің бақылауларыңыз идентификациялардағы таксонмен байланысты болып қалады. Бұл сіздің идентификацияңыз қауымдастықтың пікіріне сәйкес келмейінше, сіздің бақылауларыңыз Зерттеу дәрежесі мәртебесіне ие болмайды дегенді білдіреді.
+        prefers_no_tracking_label: Үшінші тарап қызметтерін пайдаланып тұрақтылық пен пайдалану деректерін жинамау
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Браузер мәліметтері, мысалы, құрастырушы, модель және нұсқа
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Ұялы телефонның маркасы мен моделі сияқты құрылғы мәліметтері
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Бұл үшінші тарап қызметтері</strong> iNaturalist-тің салыстырмалы түрде шағын қызметкерлерімен тұрақтылығы мен қолайлылығын сақтауда бізге үлкен мән береді. Мобильді құрылғыларда бағдарламалық жасақтама біз басқармайтын құрылғыларда жұмыс істеп тұрғандықтан туындайтын мәселелерді түсінудің басқа жолы жоқ. Кейде біз мұндай мәселелерді осы қызметтер ұсынатын деректерде көрмейінше, олардың орын алғанын білмейміз. <strong>Осы ақпаратты бөлісу арқылы сіз бізге және бүкіл iNaturalist қауымдастығына қызмет көрсетуге көмектесесіз.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Бұл опцияның біз осы компанияларға нақты жіберіп жатқан талдаулар мен ақау деректеріне ғана қолданылатынын ескеріңіз. Барлық iNaturalist серверлерін Microsoft қамтамасыз етеді және орналастырады, барлық iNaturalist суреттерін Amazon орналастырады және барлық дерлік iNaturalist карталарына Google қызмет көрсетеді, яғни iNaturalist сайтындағы бақылауды көрген сайын сіз осы компаниялар ұсынатын қызметтерге қосыласыз және кем дегенде оларға IP мекенжайыңызды көрсетесіз (iPhone қолданбасында біз Apple карталарын қолданамыз). iNaturalist бұл компаниялар ұсынатын қызметтерсіз жұмыс істей алмайды және iNat пайдалану кезінде олармен бөлісетін деректердің көлемі мен түрлерін шектей алатынымызға қарамастан, деректер ағынын толығымен тоқтата алмаймыз.
+        project_settings_desc: |
+          Есіңізде болсын, бұл жобаларға жасырын координаттарыңызға қол жеткізуге немесе жаңартуларды жіберуге рұқсат бермейді. Бұл рұқсаттарды беру үшін жобаларға қосылуыңыз керек немесе оларды жеке жағдайда беруіңіз керек.
+        taxon_change_desc: |
+          Таксондар %{site_name} сайтында біріктірілгенде немесе атауы өзгертілгенде, өзгерту бір мағыналы болса, бақылауларыңыз, тізімделген таксондар, идентификациялар және т.б. автоматты түрде жаңа таксонға жаңартылады. Егер сіз бас тартсаңыз немесе өзгеріс анық емес болса (мысалы, бөлу), таңдауыңыз бойынша, контентті қолмен жаңарту үшін пайдалануға болатын құралға байланыстыру туралы жаңартуды аласыз.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Жалпы атау сөздігін қосу
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Орын қосу (міндетті емес)
+          common_name_lexicon_display_order: Жалпы атау сөздігін көрсету реті
+          common_name_lexicons: Жалпы атаулар сөздіктері
+          common_name_lexicons_description: Әдепкі бойынша, жалпы атаулар аккаунтыңыздың тілінде/жергілікті тілде көрсетіледі. Басқа сөздіктердегі атауларды көру немесе белгілі бір жерлерде (мысалы, ағылшын (Аустралия) немесе испан (Коста-Рика)) пайдаланылатын атауларға басымдық беру үшін жалпы атау сөздіктерін қосыңыз. Бір уақытта ең көбі 3 жалпы атауды көрсетуге болады. Егер сіз таңдаған сөздік үшін жалпы атау болмаса, ол дисплейден алынып тасталады.
+          for_multiple_common_name_lexicons_drag_and_drop: Бірнеше жалпы атау сөздіктері үшін олардың көрсетілу ретін реттеу үшін төмендегі баптауларды сүйреп апарыңыз.
+          same_as_locale: Жергілікті тілмен бірдей
+          select_a_lexicon: Сөздікті таңдау
+      recent:
+        about_recent_users: Толығырақ
+      show:
+        take_a_moment_to_review_html: '<a href="%{link}">Нұсқаулықтарымызды</a> қарап шығуға бір сәт уақыт бөліңіз.'
+        favorites_list_prompt_html: |
+          Өзіңіздің сүйікті таксондарыңызды көрсеткіңіз келе ме? %{link_start_tag}"Таңдаулылар" атты%{link_end_tag} тізімін жасаңыз және ең соңғы толықтырулар осы кеңістікте пайда болады.
+    user_parents:
+      confirm:
+        we_will_send_you_an_email: |
+          Балаңыздың аккаунты белсендірілгеннен кейін сізге электрондық хат жібереміз.
+      new:
+        child_name_private: Баланың есімі (жеке)
+        parent_name_private: Ата-анасының немесе заңды қамқоршының аты-жөні (жеке)
+        parent_email: Ата-ананың немесе заңды қамқоршының электронды поштасы (жеке)
+        parent_information_private: Ата-ана туралы ақпарат (жеке)
+        step1_title: БАЛАҢЫЗ ҮШІН АККАУНТ ЖАСАҢЫЗ
+        step1_desc: |
+          Құпиялылық ережелерін сақтау үшін бізге 13 жасқа толмаған адамға аккаунт жасау үшін ата-ананың немесе заңды қамқоршының келісімі қажет. Балаңыздың iNaturalist қолданбасын пайдаланғанын қаласаңыз, бізге жеке басын куәландыратын және байланыс ақпаратын көрсетуіңіз керек.
+        step2_desc: |
+          Ересек адам екеніңізді растау үшін несие картасы арқылы iNaturalist компаниясына кемінде 1 АҚШ доллары көлемінде номиналды қайырымдылық жасауыңыз қажет. Бұл құпиялылық туралы заңдарды сақтауға мүмкіндік беретін жеке куәлікті тексерудің ең аз интрузивті түрі. Алдыңғы қадамда "ата-аналық электрондық пошта" ретінде енгізген электрондық пошта мекенжайын пайдалануды ұмытпаңыз.
+        step3_title: РАСТАУ ЭЛЕКТРОНДЫҚ ХАТТЫ КҮТІҢІЗ
+        step3_desc: |
+          Қайырымдылықта пайдаланылған электрондық поштаны сіз "ата-аналық электрондық пошта" ретінде енгізген электрондық поштаға сәйкестендіріп алған соң, баланың аккаунтын белсендіреміз және ата-анасына кіру нұсқаулары бар электрондық хат жібереміз. Бұл 24 сағатқа дейін созылуы мүмкін.
+        step3_donor_title: БАЛАҢЫЗДЫҢ АККАУНТЫ БЕЛСЕНДІЛДІ
+        step3_donor_desc: |
+          Сіз iNaturalist доноры болғандықтан, біз сіздің жеке басыңызды бұрынғы қайырымдылықпен растай алдық.
     welcome:
       index:
         connect_with_nature: Табиғатпен байланыс
@@ -3700,6 +3938,12 @@ kk:
           kb: КБ
           mb: МБ
           tb: TБ
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
   support:
     array:
       last_word_connector: ', және '
@@ -3848,6 +4092,7 @@ kk:
         latitude: Ендік
         longitude: Бойлық
         name: Атау
+        parent_id: ата-ана
         place_type: Орын түрі
         prefers_check_lists: Тексеру тізімдеріне рұқсат етілген бе?
         woeid: WOEID
@@ -3882,6 +4127,12 @@ kk:
         photos_locked: Фотосуреттер құлыптаулы ма?
         rank: Дәреже
         rank_level: Дәреже деңгейі
+        source_id: Дереккөз ID
+        source_identifier: Дереккөз идентификаторы
+        source_url: Дереккөз URL мекенжайы
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: Таксон құрылымының қатынасы ID
         wikipedia_summary: Wikipedia қысқаша мазмұны
         wikipedia_title: Wikipedia тақырыбы
       taxon_name:
@@ -3890,6 +4141,8 @@ kk:
         name: Атауы
         name_provider: Атау провайдері
         position: Позиция
+        source_url: Дереккөз URL мекенжайы
+        source_identifier: Дереккөз идентификаторы
         audit_comment: Ескертпе
       taxon_link:
         url: URL
@@ -3903,6 +4156,9 @@ kk:
         taxon: Таксон
         #Place this link is associated with
         place: Орын
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Ұрпақ таксондарын көрсету
       user:
         email: Электрондық пошта
         login: Пайдаланушы аты
@@ -3916,11 +4172,52 @@ kk:
       messages:
         accepted: қабылдануы керек
         blank: бос болуы мүмкін емес
+        confirmation: құпия сөзге сәйкес келмеді
+        empty: бос болуы мүмкін емес
+        equal_to:
+          one: '%{count} тең болуы керек'
+          other: '%{count} тең болуы керек'
+        exclusion: резервтелген
+        greater_than:
+          one: '%{count} үлкен болуы керек'
+          other: '%{count} үлкен болуы керек'
+        greater_than_or_equal_to:
+          one: '%{count} үлкен немесе тең болуы керек'
+          other: '%{count} үлкен немесе тең болуы керек'
+        inclusion: тізімге кірмейді
+        invalid: жарамсыз
+        less_than:
+          one: '%{count} аз болуы керек'
+          other: '%{count} аз болуы керек'
+        less_than_or_equal_to:
+          one: '%{count} аз немесе оған тең болуы керек'
+          other: '%{count} аз немесе оған тең болуы керек'
+        new_project_owner_must_be_a_manager: Жаңа жоба иесі әкімші болуы керек
+        not_a_number: сан емес
+        not_an_integer: бүтін сан болуы керек
+        odd: тақ болу керек
+        only_project_owner_can_change_project_owner: Жоба иесін тек жоба иесі ғана өзгерте алады
+        record_invalid: 'Тексеру сәтсіз аяқталды: %{errors}'
+        requires_privilege_speech: |
+          үш анықталатын бақылау немесе басқалар үшін үш идентификация болуы керек
+        requires_privilege_organizer: мұны істеу үшін 50 анықталатын бақылау болуы керек
+        too_long:
+          one: тым ұзын (ең көбі %{count} таңба)
+          other: тым ұзын (ең көбі %{count} таңба)
+        too_short:
+          one: тым қысқа (ең азы %{count} таңба)
+          other: тым қысқа (ең азы %{count} таңба)
+        wrong_length:
+          one: қате ұзындық (%{count} таңба болуы керек)
+          other: қате ұзындық (%{count} таңба болуы керек)
+      template:
+        body: 'Келесі өрістерде мәселелер туындады:'
       models:
         application:
           attributes:
             redirect_uri:
               fragment_present: "фрагментті қамтуға болмайды."
+              has_query_parameter: "сұрау баптауын қамтуға болмайды."
               invalid_uri: "жарамды URI болуы керек."
               relative_uri: "абсолютті URI болуы керек."
         comment:
@@ -3930,6 +4227,10 @@ kk:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: пікірлерді өшірді
+        flag:
+          attributes:
+            user_id:
+              already_flagged: "бұл элементті белгілеп қойған"
         guide:
           attributes:
             published_at:
@@ -3944,9 +4245,78 @@ kk:
               not_supported_for_this_kind_of_content: мұндай контентке қолдау көрсетілмейді
             base:
               only_staff_can_unhide: Тек қызметкерлер жасырын контентті көрсете алады
+            user_id:
+              must_be_a_curator: куратор болуы керек
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: куратор болуы керек
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: "координаттары 0,0 болуы мүмкін емес"
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                бақылау қосылған күннен артық болмауы керек
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: соңғы 130 жыл ішінде болуы керек
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: "ДНҚ тек A, T, C немесе G таңбаларын қамтуы мүмкін"
+            observation_id:
+              user_does_not_accept_fields_from_others: пайдаланушы басқалардың өрістерін қабылдамайды
+              user_only_accepts_fields_from_site_curators: пайдаланушы тек сайт кураторларының өрістерін қабылдайды
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_query: Сұрау бос болмауы керек
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: өңдеу үшін тым үлкен
+              is_too_large_to_import: импорттау үшін тым үлкен
+              contains_too_many_observations: импорттау үшін тым көп ескертпелер бар
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: бос болуы мүмкін емес
+              invalid_point: жарамсыз нүкте бар, мысалы, бойлық 180 үлкен немесе ендік -90 кем
+              must_have_more_than_three_points: 3 нүктеден көп болуы керек
+              polygon_with_fewer_than_four_points: 4 нүктеден аз көпбұрыш бар
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: осы жобаның кураторы болуы керек
+            observation_id:
+              must_be_observed_after: |
+                %{time} кейін бақылануы тиіс
+              must_be_observed_before: |
+                %{time} дейін бақылануы тиіс
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                тек осы таксонның кураторы ғана өзгерте алады
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                тек осы таксонның кураторы ғана өзгерте алады
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                тек осы таксонның кураторы ғана өзгерте алады
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                тек осы таксонның кураторы ғана өзгерте алады
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                тек осы таксонның кураторы ғана өзгерте алады
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                тек осы таксонның кураторы ғана өзгерте алады
         taxon_name:
           attributes:
             lexicon:
+              should_not_contain_commas_or_slashes: үтірлер немесе қиғаш сызықтар болмауы керек
               should_be_in_english: ағылшын тілінде болуы керек
             name:
               already_exists: бұл таксон үшін бұл сөздікте бұрыннан бар
@@ -3973,7 +4343,29 @@ kk:
           attributes:
             base:
               user_already_blocked: Сіз бұл пайдаланушыны әлдеқашан бұғаттап қойғансыз
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                бұрыннан бар пайдаланушыға тиесілі; аккаунтыңыз болса, жалғастырмас бұрын жүйеге кіріңіз немесе басқа электрондық пошта мекенжайын пайдаланыңыз
   doorkeeper:
+    scopes:
+      account_delete: |
+        Аккаунтыңызды өз атыңыздан жойыңыз.
+    errors:
+      messages:
+        #Common error messages
+        invalid_request: 'Сұрауда қажетті баптау жоқ, қолдау көрсетілмейтін баптау мәні бар немесе басқаша дұрыс емес.'
+        unauthorized_client: 'Клиенттің осы әдісті пайдаланып бұл сұрауды орындауға рұқсаты жоқ.'
+        access_denied: 'Ресурс иесі немесе авторизация сервері сұрауды қабылдамады.'
+        invalid_scope: 'Сұралған аумақ жарамсыз, белгісіз немесе дұрыс емес.'
+        server_error: 'Авторизация сервері сұрауды орындауға кедергі келтірген күтпеген жағдайға тап болды.'
+        temporarily_unavailable: 'Уақытша шамадан тыс жүктелу немесе серверге техникалық қызмет көрсету себебінен авторизация сервері қазір сұрауды өңдей алмайды.'
+        resource_owner_authenticator_not_configured: 'Doorkeeper.configure.resource_owner_authenticator конфигурацияланбағандықтан, ресурс иесін табу сәтсіз аяқталды.'
+        #Access grant errors
+        unsupported_response_type: 'Авторизация сервері бұл жауап түрін қолдамайды.'
+        #Password Access token errors
+        invalid_resource_owner: 'Берілген ресурс иесінің аккаунт деректері жарамсыз немесе ресурс иесін табу мүмкін емес'
     flash:
       applications:
         create:
@@ -4131,8 +4523,10 @@ kk:
   wikimedia: Уикимедиа
   wild: Жабайы
   will_paginate:
+    previous_label: "&#8592; Алдыңғы"
     next_label: "Келесі &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Сіз енді %{user} пайдаланушысына жазылмайсыз немесе оған сенбейтін боласыз"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Я – А
