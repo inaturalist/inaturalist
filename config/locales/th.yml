@@ -2497,6 +2497,7 @@ th:
   taxon_is_kingdom_of_life_with_x_observations:
     other: "%{taxon} เป็นอาณาจักรที่มี %{count} การสังเกต"
   taxon_is_threatened_coordinates_hidden: หน่วยอนุกรมวิธานถูกคุกคาม จึงต้องซ่อนพิกัดไว้
+  taxon_is_threatened_coordinates_obscured: ชนิดพันธุ์นี้ถูกคุกคาม จึงถูกซ่อนพิกัดโดยอัตโนมัติ
   taxonomy: อนุกรมวิธาน
   taxon_change_title_taxon_merge: ยุบรวมหน่วยอนุกรมวิธาน %{id}
   taxon_change_title_taxon_split: แยกหน่วยอนุกรมวิธาน %{id}
@@ -2877,12 +2878,12 @@ th:
   why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
   why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
-  who_can_see_the_coordinates: ใครมองเห็นพิกัดได้บ้าง?
+  who_can_see_the_coordinates: ใครมองเห็นพิกัดนี้ได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับความไว้วางใจจากผู้สังเกตในการเปิดเผยพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
-  why_the_coordinates_are_obscured: เหตุผลที่พิกัดคลุมเครือ
+  why_the_coordinates_are_obscured: พิกัดนี้คลุมเครือเพราะว่า
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้
   widget: วิดเจ็ต
