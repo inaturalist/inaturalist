@@ -1805,10 +1805,15 @@ th:
   observations_per_month: การสังเกต / เดือน
   observations_removed_from_the_project: "การสังเกตถูกลบออกจากโครงการ \"%{project}\""
   observations_saved: บันทึกการสังเกตแล้ว!
+  observations_specifying_this_field: การสังเกตที่ระบุข้อมูลเสริมนี้
+  observations_specifying_this_field_with_value: การสังเกตที่ระบุข้อมูลเสริมนี้และระบุว่า "%{value}"
   observations_this_year_vs_last_year: การสังเกตในปีนี้กับปีที่แล้ว
   observations_total: การสังเกตทั้งหมด
   observations_was_successfully_updated: อัปเดตการสังเกตเรียบร้อยแล้ว
   observations_widget: วิดเจ็ตการสังเกต
+  observations_with_this_field: การสังเกตที่มีข้อมูลเสริมนี้
+  observations_with_this_field_and_value: การสังเกตที่มีข้อมูลเสริมและค่านี้
+  observations_without_this_field: การสังเกตที่ไม่มีข้อมูลเสริมนี้
   observations_without_media: การสังเกตที่ไม่มีสื่อ
   observed: สังเกตเมื่อ
   observed_by: สังเกตโดย
@@ -2900,6 +2905,9 @@ th:
   withdrawing: กำลังถอน...
   worldwide: ทั่วโลก
   x_journal: "วารสารของ %{user}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
