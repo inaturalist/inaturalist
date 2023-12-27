@@ -1690,6 +1690,7 @@ et:
   everywhere: kõikjal
   exact: Täpne
   exact_date: Täpne kuupäev
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Täpne kategooria
   except: väljaarvatud
   exclude_places: Välja jäetud kohad
@@ -1992,6 +1993,8 @@ et:
   hide_running_total: Peida hetke koguarv
   hide_uncountable_species: Peida loendamatud liigid
   high: Kõrge
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Kõrgeim kategooria
   highlights_and_stats_from_year_on_site: "%{year}. aasta tipud ja statistika lehel %{site}"
   history: Ajalugu
@@ -2517,6 +2520,8 @@ et:
   looks_like_no_species_in_guide: Näib, et sinu juhendis pole veel ühtegi liiki.
   lookup: Leia
   low: Madal
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Madalaim kategooria
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3626,7 +3631,11 @@ et:
   radius_km: Raadius (km)
   random: Juhuslik
   range: Piirkond
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Kategooria
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Tase
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4249,6 +4258,7 @@ et:
   taxon_range: Taksoni piirkond
   taxon_range_created_notice: Taksoni piirkonna loomine õnnestus. See ilmub kaartidele paari minuti jooksul.
   taxon_range_updated_notice: Taksoni piirkonna uuendamine õnnestus. See ilmub kaartidele paari minuti jooksul
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksonite kategooriad
   taxon_removed_from_list: Takson eemaldatud nimekirjast.
   taxon_scheme: Taksoniskeem
