@@ -1451,6 +1451,7 @@ nb:
   everywhere: overalt
   exact: Nøyaktig
   exact_date: Nøyaktig dato
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Nøyaktig rang
   except: unntatt
   exclude_places: Ekskluder steder
@@ -1727,6 +1728,8 @@ nb:
   hide_running_total: Skjul løpende total
   hide_uncountable_species: Skjul arter som ikke kan telles
   high: Høy
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Høyeste rang
   highlights_and_stats_from_year_on_site: "Høydepunkter og statistikker fra %{year} på %{site}"
   history: Historikk
@@ -2151,6 +2154,8 @@ nb:
   looks_like_no_species_in_guide: Det ser ut som du ikke har noen arter i guiden din ennå.
   lookup: Slå opp
   low: Lav
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Laveste rang
   make_admin: Gjør til admin
   #Header for main content section of the project detail page when editing custom project data.
@@ -3379,7 +3384,11 @@ nb:
   radius_value: "Radius (m): %{radius}"
   random: Tilfeldig
   range: Intervall
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4065,6 +4074,7 @@ nb:
   taxon_range: Taksonutbredelse
   taxon_range_created_notice: Taksonutbredelse opprettet. Det kan ta noen minutter før det vises på kartene.
   taxon_range_updated_notice: Taksonutbredelse oppdatert. Det kan ta noen minutter før endringene vises på kartene.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksonranger
   taxon_removed_from_list: Takson fjernet fra listen.
   taxon_scheme: Taksonskjema
