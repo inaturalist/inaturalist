@@ -1572,6 +1572,7 @@ gl:
   everywhere: En todas partes
   exact: Exacta
   exact_date: Data Exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rango exacto
   except: Agás
   exclude_places: Excluír Lugares
@@ -1845,6 +1846,8 @@ gl:
   hide_running_total: Ocultar Total Acumulado
   hide_uncountable_species: Ocultar Especies Incontables
   high: Alto
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Rango máis alto
   highlights_and_stats_from_year_on_site: "Destacados e estatísticas do %{year} en %{site}"
   history: Histórico
@@ -2246,6 +2249,8 @@ gl:
   looks_like_no_species_in_guide: Parece que aínda non tes especies na túa guía.
   lookup: Procurar
   low: Baixo
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Rango máis baixo
   make_admin: Tornar administrador
   #Header for main content section of the project detail page when editing custom project data.
@@ -3520,7 +3525,11 @@ gl:
   radius_value: "Raio (m): %{radius}"
   random: Aleatorio
   range: Rango
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rango
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4220,6 +4229,7 @@ gl:
   taxon_range: Rango de taxón
   taxon_range_created_notice: O rango de taxon creouse correctamente. Por favor, agarde uns intres para que apareza nos mapas.
   taxon_range_updated_notice: O rango de taxon actualizouse correctamente. Por favor, agarde uns intres para que as mudanzas aparezan en los mapas.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Rangos Taxonómicos
   taxon_removed_from_list: Especie ou grupo eliminado da lista.
   taxon_scheme: Esquema de taxonomía
