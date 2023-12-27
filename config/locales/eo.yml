@@ -1419,7 +1419,11 @@ eo:
   radius: Radiuso (m)
   radius_value: "Radiuso (m): %{radius}"
   random: Hazarda
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rango
   ranks:
     kingdom: Regno
