@@ -1078,6 +1078,7 @@ th:
   everywhere: ทุกที่
   exact: เฉพาะวันที่
   exact_date: เฉพาะวันที่
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: เฉพาะลำดับ
   except: ยกเว้น
   exclude_places: ไม่รวมสถานที่นี้
@@ -1241,6 +1242,8 @@ th:
   hide_running_total: ซ่อนผลรวมสะสม
   hide_uncountable_species: ซ่อนชนิดที่นับไม่ได้
   high: สูง
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: ลำดับสูงสุด
   history: ประวัติ
   home: หน้าหลัก
@@ -1524,6 +1527,8 @@ th:
   look_up_name: "ค้นหาชื่อ"
   looks_like_no_species_in_guide: ดูเหมือนว่ายังไม่มีรายชื่อชนิดในคู่มือของคุณ
   low: ตํ่า
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: ลำดับต่ำสุด
   #Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
@@ -2096,7 +2101,11 @@ th:
   quality_grade_colon: "ระดับคุณภาพ"
   radius_value: "รัศมี (เมตร): %{radius}"
   random: สุ่ม
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ลำดับขั้น
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: อันดับ
   ranks:
     stateofmatter: สถานะของสสาร
@@ -2524,6 +2533,7 @@ th:
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: นี่ไม่ใช่แผนที่การกระจายของบัญชีแดง IUCN เนื่องจากหน่วยอนุกรมวิธานนี้ไม่อยู่ในบัญชีแดง IUCN
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: แผนที่การกระจายของบัญชีแดง IUCN สำหรับหน่วยอนุกรมวิธานนี้ไม่เหมาะสม
   taxon_range_guidelines_learn_more_about_taxon_ranges: เรียนรู้เพิ่มเติมเกี่ยวกับช่วงหน่วยอนุกรมวิธาน
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: ลำดับอนุกรมวิธาน
   taxon_removed_from_list: หน่วยอนุกรมวิธานที่ลบออกจากรายการ
   taxon_scheme: แบบแผนหน่วยอนุกรมวิธาน
