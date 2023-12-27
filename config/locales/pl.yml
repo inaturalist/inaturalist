@@ -1605,6 +1605,7 @@ pl:
   everywhere: wszędzie
   exact: Dokładna
   exact_date: Dokładna data
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Dokładna kategoria
   except: poza
   exclude_places: Wyklucz lokalizacje
@@ -1864,6 +1865,8 @@ pl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Najwyższa ranga
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
@@ -2292,6 +2295,8 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   lookup: Wyszukaj
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Najniższa ranga
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3317,6 +3322,9 @@ pl:
   query: Zapytanie
   radius: Promień (m)
   radius_value: "Promień (m): %{radius}"
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ranga
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3829,6 +3837,7 @@ pl:
   taxon_range: Zasięg taksonu
   taxon_range_for_taxon_html: Zasięg taksonu dla %{taxon}
   taxon_range_guidelines_learn_more_about_taxon_ranges: Dowiedz się więcej o zasięgach taksonów
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Kategorie taksonomiczne
   taxon_removed_from_list: Takson usunięty z listy.
   taxon_search: Wyszukiwanie taksonów
