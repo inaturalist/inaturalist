@@ -1734,6 +1734,7 @@ tr:
   everywhere: her yer
   exact: Tam
   exact_date: Tam Tarih
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tam Düzey
   except: dışında
   exclude_places: Konumları Hariç Tut
@@ -2043,6 +2044,8 @@ tr:
   hide_running_total: Toplamı Gizle
   hide_uncountable_species: Sayılamayan Türleri Gizle
   high: Yüksek
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: En Yüksek Sıra
   highlights_and_stats_from_year_on_site: "%{site} sayfasının %{year} yılındaki öne çıkanları ve istatistikleri"
   history: Geçmiş
@@ -2571,6 +2574,8 @@ tr:
   looks_like_no_species_in_guide: Görünüşe göre rehberinde henüz bir tür yok.
   lookup: Ara
   low: Düşük
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: En Düşük Sıra
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3979,7 +3984,11 @@ tr:
   radius_value: "Yarıçap (m): %{radius}"
   random: Rastgele
   range: Tarih Aralığı
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Düzey
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Düzey
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4789,6 +4798,7 @@ tr:
     Lütfen haritanın nasıl elde edildiğini izah etmek için açıklamayı kullanın ve ilgili işaretlere, taksonomik ayrımlara ya da yayınlanan IUCN Kırmızı Liste yayılımının neden değiştirilmesi gerektiğine dair diğer tartışmalara atıf yapın.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Sınıf yayılımları hakkında daha fazla bilgi edin
   taxon_range_updated_notice: Sınıf yayılımı başarıyla güncellendi. Değişikliklerin haritalarda görünmesi için lütfen birkaç dakika bekleyin.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Sınıf Düzeyleri
   taxon_removed_from_list: Sınıf listeden kaldırıldı.
   taxon_scheme: Sınıf şeması
@@ -7029,6 +7039,8 @@ tr:
         stats_generation_schedule: İstatistikler, aralık ayında her pazar ve 1 Ocak'ta oluşturulacaktır
         store_prompt: |
           iNat'ten duyduğun gururu gittiğin her yerde göstermek ister misin? iNat Mağazası'na göz at!
+        sunburst_desc_html: |
+          Gözlemlenen sınıflar hiyerarşik bir "güneş patlaması" diyagramı olarak düzenlenmiştir. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlar ve dış kenarlardaki türlerle sona erer. Her bir yayın boyutu o sınıfın gözlem sayısıyla orantılıdır ve renkler kabaca bizim alışılagelmiş "ikonik" sınıf renklerimize karşılık gelir (bitkiler için yeşil, böcekler için turuncu, diğer hayvanların çoğu için mavi vb.), yani çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğin anlamına gelir. <strong>Sınıfı; merkeze ve etrafındaki alt soya yerleştirmek için bir yaya tıkla</strong> veya <strong>hiyerarşide geri gitmek için merkeze tıkla</strong>.
         translators_title: Çevirmenler
         translators_desc: |
           iNaturalist'in, bazıları iNat bile kullanmayan neredeyse tamamen
