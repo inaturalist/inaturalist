@@ -1926,6 +1926,7 @@ cs:
   everywhere: všude
   exact: Přesný
   exact_date: Přesné datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Přesné pořadí
   except: mimo
   exclude_places: Vyloučit místa
@@ -2234,6 +2235,8 @@ cs:
   hide_running_total: Skrýt Running Total
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Nejvyšší pořadí
   highlights_and_stats_from_year_on_site: "Nejvýznamnější události a statistiky z roku %{year} v %{site}"
   history: Historie
@@ -2761,6 +2764,8 @@ cs:
   looks_like_no_species_in_guide: Vypadá to, že ve svém průvodci nemáte ještě žádný druh.
   lookup: Vyhledat
   low: nízká
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Nejnižší hodnost
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4214,7 +4219,11 @@ cs:
   radius_value: "Poloměr (m): %{radius}"
   random: Náhodně
   range: Rozsah
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikace
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikace
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -5093,6 +5102,7 @@ cs:
     V popisu vysvětlete, jak byla mapa odvozena, a uveďte odkazy na příslušné příznaky, taxonomické rozdělení nebo jiné diskuse o tom, proč bylo nutné změnit publikovaný rozsah Červeného seznamu IUCN.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Další informace o rozsahu taxonů
   taxon_range_updated_notice: Rozsah taxonu byl úspěšně aktualizován. Počkejte prosím pár minut, než se objeví na mapách.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Pořadí taxonu
   taxon_removed_from_list: Taxon byl odstraněn ze seznamu.
   taxon_scheme: Plán taxonu
