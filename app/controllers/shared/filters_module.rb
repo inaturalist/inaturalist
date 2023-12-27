@@ -15,7 +15,7 @@ module Shared
       locale = locale_from_header if locale.blank?
       locale = I18n.default_locale if locale.blank?
       I18n.locale = normalize_locale( locale )
-      @rtl = params[:test] == "rtl" && ["ar", "fa", "he"].include?( I18n.locale.to_s )
+      @rtl = params[:test] == "rtl" || current_user&.in_test_group?( "rtl" )
       true
     end
 

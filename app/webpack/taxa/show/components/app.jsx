@@ -17,6 +17,7 @@ import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
 import FlashMessage from "../../../observations/show/components/flash_message";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => (
   <div id="TaxonDetail">
@@ -144,6 +145,7 @@ const App = ( { taxon, showNewTaxon, config } ) => (
         </div>
       )
     }
+    <RtlTestGroupToggle config={config} />
   </div>
 );
 

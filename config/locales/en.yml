@@ -4702,6 +4702,15 @@ en:
   rotate_left: Rotate Left
   rotate_right: Rotate Right
   row_singular_or_plural: Row(s)
+  # Prompt to join a test of right-to-left layouts, e.g. for languages like
+  # Arabic and Hebrew
+  rtl_test_prompt: |
+    Test right-to-left layout? You can also use the test=rtl URL param. Note
+    that not all pages have been converted to right-to-left layout
+  # Message displayed when you have joined a test of right-to-left layouts,
+  # e.g. for languages like Arabic and Hebrew. Could also be translated
+  # as "You have joined..."
+  rtl_test_joined_status: Joined right-to-left layout test
   rules_and_formatting: "Rules & Formatting"
   rules_for_adding_observations: Rules for Adding Observations
   rules_for_becoming_a_member: Rules for Becoming a Member

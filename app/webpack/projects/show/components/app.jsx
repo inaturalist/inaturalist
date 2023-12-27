@@ -23,6 +23,7 @@ import FlashMessagesContainer from "../../../shared/containers/flash_messages_co
 import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
 import FlashMessage from "../../../observations/show/components/flash_message";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( {
   config, project, leave, setSelectedTab, convertProject
@@ -343,6 +344,7 @@ const App = ( {
           </div>
         )
       }
+      <RtlTestGroupToggle config={config} />
     </div>
   );
 };
