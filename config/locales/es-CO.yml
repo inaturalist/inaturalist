@@ -1545,6 +1545,7 @@ es-CO:
   everywhere: en todas partes
   exact: exacto
   exact_date: Fecha exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Categoría exacta
   except: excepto
   exclude_places: Excluir Lugares
@@ -1846,6 +1847,8 @@ es-CO:
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
   high: Alto
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Rango más alto
   highlights_and_stats_from_year_on_site: "Destacados y estadísticas del %{year} en %{site}"
   history: Historial
@@ -2217,6 +2220,8 @@ es-CO:
   looks_like_no_species_in_guide: Parece que aún no tienes ninguna especie en tu guía.
   lookup: Buscar
   low: Baja
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Categoría más baja
   make_admin: Hacer administrador
   #Header for main content section of the project detail page when editing custom project data.
