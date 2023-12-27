@@ -1832,6 +1832,7 @@ he:
   everywhere: בכל מקום
   exact: מדויק
   exact_date: תאריך מדויק
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: דירוג מדויק
   except: למעט
   exclude_places: הוצאת מקומות
@@ -2139,6 +2140,8 @@ he:
   hide_running_total: הסתרת סכום מצטבר
   hide_uncountable_species: הסתרת מינים שאינם ניתנים לספירה
   high: גבוה
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: הדירוג הגבוה ביותר
   highlights_and_stats_from_year_on_site: "רגעי השיא והסטטיסטיקות מ%{year} ב%{site}"
   history: היסטוריה
@@ -2662,6 +2665,8 @@ he:
   looks_like_no_species_in_guide: נראה כי עדיין אין מינים במגדיר שלך
   lookup: חיפוש
   low: נמוך
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: הדירוג הנמוך ביותר
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4067,7 +4072,11 @@ he:
   radius_value: "רדיוס (מ): %{radius}"
   random: אקראי
   range: טווח
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: דירוג
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: דירוג
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4923,6 +4932,7 @@ he:
     נא להשתמש בתיאור כדי להסביר כיצד המפה נבנתה, ולקשר לסימונים רלוונטיים, פיצולים טקסונומיים, או דיונים אחרים בנוגע לסיבה שבגללה התפוצה המפורסמת של הרשימה האדומה של ה-IUCN נדרשה לשינוי.
   taxon_range_guidelines_learn_more_about_taxon_ranges: מידע נוסף אודות תפוצות טקסונים
   taxon_range_updated_notice: תפוצת טקסון עודכנה בהצלחה. נא לתת כמה דקות עד שהשינויים יופיעו במפות.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: דרגות טקסונים
   taxon_removed_from_list: טקסון הוסר מהרשימה
   taxon_scheme: סכמת הטקסון
