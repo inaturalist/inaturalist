@@ -526,6 +526,7 @@ oc:
   everyone: tot lo monde
   everywhere: pertot
   exact_date: Data exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Reng exacte
   existing_flags: Bandièras existentas
   exit_full_screen: "Sortir del mòde ecran complet"
@@ -732,6 +733,8 @@ oc:
   longitude: Longitud
   lookup: Recèrca
   low: bas
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Rend lo mai bas
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contengut principal
@@ -979,6 +982,7 @@ oc:
   quality_grade: Gras de qualitat
   quality_grade_colon: "Gras de qualitat :"
   range: Interval
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Reng
   ranks:
     kingdom: règne
