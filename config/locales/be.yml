@@ -1765,6 +1765,7 @@ be:
   everywhere: усюды
   exact: Дакладна
   exact_date: Дакладная дата
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Дакладны ранг
   except: акрамя
   exclude_places: Выключыць месцы
@@ -2068,6 +2069,8 @@ be:
   hide_running_total: Не паказваць выніковую суму
   hide_uncountable_species: Схаваць віды, якія немагчыма падлічыць
   high: Найвышэйшы
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Найвышэйшы ранг
   highlights_and_stats_from_year_on_site: "Асноўныя моманты і статыстыка з %{year} на %{site}"
   history: Гісторыя
@@ -2510,6 +2513,8 @@ be:
   looks_like_no_species_in_guide: Здаецца, у вашым даведніку яшчэ няма відаў.
   lookup: Пошук
   low: Ніжэйшы
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Ніжэйшы ранг
   make_admin: Зрабіць адміністратарам
   #Header for main content section of the project detail page when editing custom project data.
