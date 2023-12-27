@@ -1700,6 +1700,7 @@ id:
   everywhere: di mana saja
   exact: Pasti
   exact_date: Tanggal Pasti
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tingkat Pasti
   except: kecuali
   exclude_places: Tempat Yang Dikecualikan
@@ -2006,6 +2007,8 @@ id:
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
   high: Tinggi
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Tingkat tertinggi
   highlights_and_stats_from_year_on_site: "Sorotan dan statistik pada %{year} di %{site}"
   history: Sejarah
@@ -2538,6 +2541,8 @@ id:
   looks_like_no_species_in_guide: Sepertinya Anda belum memiliki spesies apapun pada panduan Anda.
   lookup: Cari
   low: Rendah
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: TIngkat Terendah
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3972,7 +3977,11 @@ id:
   radius_value: "Radius (m): %{radius}"
   random: Acak
   range: Jangkauan
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Tingkat
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Tingkat
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4248,6 +4257,14 @@ id:
   rotate_left: Putar ke Kiri
   rotate_right: Putar ke Kanan
   row_singular_or_plural: Baris
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Uji tampilan kanan ke kiri? Anda juga bisa menggunakan param URL test=rtl. Harap diperhatikan bahwa masih ada beberapa halaman yang belum dikonversi ke tampilan kanan ke kiri
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Bergabung uji tampilan kanan ke kiri
   rules_and_formatting: "Aturan & Format"
   rules_for_adding_observations: Aturan untuk Penambahan Pengamatan
   rules_for_becoming_a_member: Aturan untuk Menjadi Anggota
@@ -4761,6 +4778,7 @@ id:
     Harap menggunakan kolom deskripsi untuk menjelaskan dari mana petanya berasal dan menghubungkan tanda-tanda yang relevan, pemisahan taksonomi, dan diskusi-diskusi lainnya tentang mengapa jangkauan Daftar Merah IUCN yang diterbitkan memerlukan perubahan.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Pelajari lebih lanjut tentang jangkauan takson
   taxon_range_updated_notice: Jangkauan takson sukses diperbarui. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Tingkat Takson
   taxon_removed_from_list: Takson dihapus dari daftar.
   taxon_scheme: Skema takson
