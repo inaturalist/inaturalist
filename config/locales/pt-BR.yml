@@ -1794,6 +1794,7 @@ pt-BR:
   everywhere: todos lugares
   exact: Exato
   exact_date: Data exata
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Classificação exata
   except: exceto
   exclude_places: Excluir Locais
@@ -2120,6 +2121,8 @@ pt-BR:
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alta
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Categoria mais alta
   highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{year} em %{site}"
   history: Histórico
@@ -2656,6 +2659,8 @@ pt-BR:
   looks_like_no_species_in_guide: Aparentemente você não tem nenhuma espécie nas suas guias ainda.
   lookup: Procurar
   low: Baixa
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Classificação mais baixa
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4120,7 +4125,11 @@ pt-BR:
   radius_value: "Raio (m): %{radius}"
   random: Aleatório
   range: Área de Distribuição
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Classificação
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Classificação
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4983,6 +4992,7 @@ pt-BR:
     Por favor utilize a descrição para explicar como o mapa foi produzido, referenciando sinalizações, divisões taxonômicas, ou outras questões indicativas de que o mapa de distribuição da Lista Vermelha da IUCN precisa ser alterado.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Mais informações sobre mapas de distribuição de táxon
   taxon_range_updated_notice: A área de distribuição do táxon foi atualizada com sucesso. Por favor aguarde alguns minutos até que as mudanças seja carregadas nos mapas.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Linhas de táxon
   taxon_removed_from_list: Táxon excluído da lista
   taxon_scheme: Esquema de taxonomía
