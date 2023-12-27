@@ -1981,6 +1981,7 @@ en:
   everywhere: everywhere
   exact: Exact
   exact_date: Exact Date
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exact Rank
   except: except
   exclude_places: Exclude Places
@@ -2320,6 +2321,8 @@ en:
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
+  # Highest taxonomic rank to filter by, where the "highest" possible rank is
+  # kingdom
   highest_rank: Highest Rank
   highlights_and_stats_from_year_on_site: "Highlights and stats from %{year} on %{site}"
   history: History
@@ -2876,6 +2879,8 @@ en:
   looks_like_no_species_in_guide: Looks like you don't have an species in your guide yet.
   lookup: Lookup
   low: Low
+  # Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  # subspecies or variety
   lowest_rank: Lowest Rank
   # Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4417,7 +4422,11 @@ en:
   radius_value: "Radius (m): %{radius}"
   random: Random
   range: Range
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rank
+  # A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  # etc.). Generally used as a column header in lists of observers and
+  # identifiers
   rank_position: Rank
   # When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   # Genus Noctua (but generally not Species Noctua pronuba)
@@ -5337,6 +5346,7 @@ en:
     of why the published IUCN Red List range required alteration.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Learn more about taxon ranges
   taxon_range_updated_notice: Taxon range was successfully updated. Please allow a few minutes for changes to appear on the maps.
+  # Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taxon Ranks
   taxon_removed_from_list: Taxon removed from list.
   taxon_scheme: Taxon scheme
