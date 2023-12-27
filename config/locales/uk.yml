@@ -1686,6 +1686,7 @@ uk:
   everywhere: всюди
   exact: Точна
   exact_date: Точна дата
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точний ранг
   except: окрім
   exclude_places: Виключити місця
@@ -1967,6 +1968,8 @@ uk:
   hide_running_total: Приховати поточний доробок
   hide_uncountable_species: Приховати незлічувані види
   high: Вищий
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Найвищий ранг
   highlights_and_stats_from_year_on_site: "Яскраві події та статистика року %{year} на сайті %{site}"
   history: Історія
@@ -2378,6 +2381,8 @@ uk:
   looks_like_no_species_in_guide: Схоже, у вашому посібнику ще немає жодного виду.
   lookup: Шукати
   low: Нижчий
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Найнижчий ранг
   make_admin: Зробити адміністратором
   #Header for main content section of the project detail page when editing custom project data.
@@ -3698,7 +3703,11 @@ uk:
   radius_value: "Радіус (м): %{radius}"
   random: Випадково
   range: Проміжок
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4450,6 +4459,7 @@ uk:
   taxon_range: Область поширення таксону
   taxon_range_created_notice: Область поширення таксону було успішно створено. За декілька хвилин він з'явиться на картах.
   taxon_range_updated_notice: Область поширення таксону було успішно оновлено. За декілька хвилин він з'явиться на картах.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Ранги таксону
   taxon_removed_from_list: Таксон видалено зі списку.
   taxon_scheme: Схема таксону
