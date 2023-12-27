@@ -1648,6 +1648,7 @@ zh-TW:
   everywhere: 任何地方
   exact: 準確
   exact_date: 精確日期
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 精確級別
   except: 除外
   exclude_places: 排除的地點
@@ -1959,6 +1960,8 @@ zh-TW:
   hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
   high: 高
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: 最高級別
   highlights_and_stats_from_year_on_site: "精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   history: 歷史
@@ -2405,6 +2408,8 @@ zh-TW:
   looks_like_no_species_in_guide: 看起來在您的指南裡尚未有物種。
   lookup: 查詢
   low: 低
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: 最低級別
   make_admin: 作為管理員
   #Header for main content section of the project detail page when editing custom project data.
@@ -3725,7 +3730,11 @@ zh-TW:
   radius_value: "半徑（m）： %{radius}"
   random: 隨機
   range: 範圍
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 分類位階
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: 級別
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4499,6 +4508,7 @@ zh-TW:
     請使用描述來解釋地圖是如何衍生的，與連結到任何相關標誌、分類拆分，或是其它為什麼發布的紅色名錄範圍需要更改的討論。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 閱覽更多有關分類群分布範圍的資訊
   taxon_range_updated_notice: 分類群範圍已更新成功。請等待幾分鐘來讓變更內容呈現在地圖上。
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: 分類群階層
   taxon_removed_from_list: 分類群已從名錄中移除。
   taxon_scheme: 分類群綱要
