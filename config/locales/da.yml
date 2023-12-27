@@ -1793,6 +1793,7 @@ da:
   everywhere: overalt
   exact: Præcis
   exact_date: Eksakt dato
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Eksakt række
   except: bort set fra
   exclude_places: Ekskludér steder
@@ -2116,6 +2117,8 @@ da:
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
   high: Høj
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Højeste rang
   highlights_and_stats_from_year_on_site: "Højdepunkter og statistikker fra %{year} på %{site}"
   history: Historik
@@ -2650,6 +2653,8 @@ da:
   looks_like_no_species_in_guide: Det ser ud som om du ikke har nogen arter i din guide endnu.
   lookup: Slå op
   low: lav
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Laveste rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4113,7 +4118,11 @@ da:
   radius_value: "Radius (m):%{radius}"
   random: Tilfældig
   range: Område
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4988,6 +4997,7 @@ da:
     om, hvorfor den publicerede IUCN-rødlisteudbredelse krævede ændringer.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Få mere at vide om taksonudbredelser
   taxon_range_updated_notice: Taksonområdet blev opdateret. Ændringerne vises på kortet om få minutter.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksonrangeringer
   taxon_removed_from_list: Takson fjernet fra liste.
   taxon_scheme: Taksonordning
