@@ -4243,6 +4243,14 @@ de:
   rotate_left: Nach links drehen
   rotate_right: Nach rechts drehen
   row_singular_or_plural: Zeile(n)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Layout von rechts nach links testen? Es kann auch der test=rtl URL-Parameter verwendet werden. Beachte, dass nicht alle Seiten in das "Rechts nach Links"-Layout konvertiert wurden
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: '"Rechts-nach-links"-Layout-Test beigetreten'
   rules_and_formatting: "Regeln & Formatierung"
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
