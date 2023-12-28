@@ -4438,6 +4438,15 @@ sv:
   rotate_left: Rotera åt vänster
   rotate_right: Rotera åt höger
   row_singular_or_plural: Rad(er)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Testa höger-till-vänster layout? Du kan också använda test=rtl URL-parametern.
+    Observera att inte alla sidor har konverterats till höger-till-vänster layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Gick med i höger-till-vänster layout-test
   rules_and_formatting: "Regler och formatering"
   rules_for_adding_observations: Regler för att lägga till fynd
   rules_for_becoming_a_member: Regler för att bli medlem
