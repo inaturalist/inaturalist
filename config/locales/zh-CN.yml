@@ -1926,6 +1926,8 @@ zh-CN:
   hide_content: 隐藏内容
   hide_desc: |
     隐藏的内容无法被公众查看，但人们仍然能看到有东西被隐藏，且网站管理员和内容作者仍然可以看到被隐藏的内容。通常这会被应用到文字内容，举个例子，如果您选择隐藏一个鉴定，这个鉴定仍然可以显示但鉴定者的备注内容将会被隐藏。仅有网站的工作人员可以解除隐藏，所以当您使用这个功能的时候请深思熟虑，最好仅将其用在非常令人反感的内容上。
+  hide_desc_staff_can_unhide: |
+    只有网站员工才能在隐藏后取消隐藏内容，所以只有在明显违反社区指导规则的情况下才使用它。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
@@ -4118,6 +4120,14 @@ zh-CN:
   rotate_left: 向左旋转
   rotate_right: 向右旋转
   row_singular_or_plural: 行
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    要测试从右向左布局？你还可以使用test=rtl URL参数。注意不是所有页面都已经被改为从右向左布局。
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: 加入从右向左布局测试
   rules_and_formatting: "规则和格式"
   rules_for_adding_observations: 添加观察的规则
   rules_for_becoming_a_member: 成为成员的规则
@@ -4424,6 +4434,10 @@ zh-CN:
   stats: 统计
   stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   status: 状态
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>状态来自于更高级别的分类单元</strong>%{taxon}
   status_globally: '全球 %{status}'
   status_in_place: '在 %{place} 为 %{status}'
   stay_and_try_again: 停留并重试
@@ -4457,6 +4471,7 @@ zh-CN:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}订阅%{tag_end}对此分类阶元合并的评论"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}订阅%{tag_end}对此分类阶元拆分的评论"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}订阅%{tag_end}对此分类阶元剔除的评论"
+  subscribe_to_observations_from_this_place_html: <a>订阅</a>此处的观察
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
   subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
   subscribe_to_this: 订阅此
@@ -4487,8 +4502,12 @@ zh-CN:
   tags: 标签
   tags_are_a_way: '标签是一种组织您的观察的方式。例如，您可以将所有潮池观察点标记为“tidepools”，便于以后查找。'
   take_me_flickr!: 是的，带我去Flickr！
+  target_list_alert: 您确定要观察目标列表所涵盖的所有物种吗？ 请记住，您没有观察到的目标列表所包含的任何东西都会被解释为缺失，因此确认您的目标列表准确地反映了您试图发现的物种是非常重要的。
+  target_list_warning: 请记住，目标列表中包含的任何您在活动范围和周期之内没有观察到的东西都会被解释为缺失。 您的目标列表准确地反映了您试图发现的物种是非常重要的。如果您没有尝试发现您的目标列表中所包含的所有物种， 请删除它。
   task_deleted: 任务已删除
   taxa: 分类单元
+  taxa_show_obs_photo_search_tip: |
+    提示：如果您想要从特定观察中选择照片，请在搜索字段中输入观察记录的ID。
   taxa_with_unknown_relationships: 含有未知关系的分类
   taxa_info: 分类群信息
   taxa_needing_curation: 需要策展的分类群
@@ -4536,7 +4555,9 @@ zh-CN:
   taxon_assessments_are: |
     分类评估是评估物种现状的文档，通常是其保护状况。
     例如，一个区域保护组织可能会利用它们来组织信息并调查关于该地区几个受威胁的分类群状况的反馈。
+  taxon_change_must_be_committed_to_update_records: 必须提交分类单元更改才能更新记录
   taxon_change_title_taxon_drop: 分类学剔除 %{id}
+  taxon_change_title_taxon_merge: 分类学合并 %{id}
   taxon_change_title_taxon_split: 分类的拆分 %{id}
   taxon_change_title_taxon_stage: 分类的阶段 %{id}
   taxon_change_title_taxon_swap: 分类学交换 %{id}
@@ -4578,6 +4599,8 @@ zh-CN:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: 这不是国际自然保护联盟（IUCN）的红色列表范围图，因为该地图不匹配
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: 这不是国际自然保护联盟（IUCN）的红色列表范围图，因为这个分类单元不在IUCN的红色列表中
   taxon_range_guidelines_each_taxon_can_have: 每个分类单元只能有一个分类单元范围。分类单元范围必须代表全球分布。
+  taxon_range_guidelines_if_you_are_not_uploading: "如果你没在上传国际自然保护联盟（IUCN）红色清单范围地图，这应该是由于："
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: 国际自然保护联盟红色名录范围图与此分类单元不匹配
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: 此分类单元不在国际自然保护联盟（IUCN）红色列表内
   taxon_range_guidelines_learn_more_about_taxon_ranges: 了解更多关于分类单元范围的信息
   taxon_range_updated_notice: 分类单元范围已成功更新。请等待几分钟就会在地图上显示更改。
@@ -4870,6 +4893,8 @@ zh-CN:
   top_identifiers_of_taxon: '%{taxon}的顶尖鉴定者'
   top_observer_caps: 最多观察记录的用户
   top_observers: 最多观察者
+  tos_privacy_guidelines_label: |
+    我同意<a href="/terms" target="_blank">使用条款</a>和<a href="/privacy" target="_blank">隐私政策</a>，我也阅读了<a href="/pages/community+guidelines" target="_blank">社区指导规则</a>。
   total: 总计
   totals: 总计
   total_members: 成员总数
@@ -5063,6 +5088,10 @@ zh-CN:
     %{user} 于 %{date} 在 %{place} 上观察到一个
   user_suggested_an_id: "%{user}提出了一个鉴定"
   user_trusts_this_project_for_none: 用户不信任该项目，因此不会向该项目展示隐藏坐标。
+  user_trusts_this_project_for_any: |
+    用户信任这个项目，对该项目开放因为各种原因而被遮盖的地理坐标。
+  user_trusts_this_project_for_taxon: |
+    用户部分信任这个项目，仅对其开放因分类群受到威胁而遭到遮盖的地理坐标。
   user_trusts_you_with_their_private_coordinates: "%{user} 信任您的并向您公开隐藏坐标"
   user_trusts_you_with_their_private_coordinates_desc: |
     此观察者信任您的并向您公开其所有的隐藏坐标
@@ -5521,10 +5550,42 @@ zh-CN:
             如果可以，请阅读我们的<a href="%{url}">教师指南</a>获得与学生使用%{site_name}的提示。
     donate:
       donate_short_desc: "立即捐款显示您的支持！"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>您可以<u>双倍</u>或者<u>三倍</u>赋予你的捐助！感谢戈登与贝蒂·摩尔基金会，在2023年12月31日之前所有月度、季度和年度重复捐助都将翻三倍，而一次性捐助则将翻倍。</strong>
+        </p>
+        <p class="lead">
+        iNaturalist是全球最大的生物多样性社群之一。感谢您成为它的一员！
+        </p>
+        <p class="lead">
+        如果你信任这个为自然爱好者分享知识和生成不可替代的生物多样性数据的全球性社群，请考虑一次性地或重复地在线提供捐助，或者<a href="https://www.inaturalist.org/pages/giving">查看其他捐助方式</a>。
+        </p>
+        <p class="lead">
+        您的捐助对社群日益扩大的iNaturalist至关重要，这能帮助我们改进我们精确识别物种的技术和引入新的特性，以支持我们的服务器和员工。
+        </p>
+        <p class="text-muted">
+        iNaturalist是一个设立于美国的独立501(c)(3)、免税、非盈利组织（税号：92-1296468）。
+        </p>
       post_donate_social_media_text: 我支持iNaturalist，因为…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成为iNaturalist 的月捐支持者
         become_a_monthly_supporter_of_inaturalist_caps: 成为INATURALIST的月度支持者
+        desc_moore_html: |
+          <p class="lead">
+          <strong>您可以<u>三倍</u>赋予你的捐助！感谢戈登与贝蒂·摩尔基金会，在2023年12月31日之前所有月度、季度和年度重复捐助都将翻三倍，而一次性捐助则将翻倍。</strong>
+          </p>
+          <p class="lead">
+          iNaturalist是全球最大的生物多样性社群之一。感谢您成为它的一员！
+          </p>
+          <p class="lead">
+          如果你喜爱iNaturalist，请考虑成为一名月度捐助人。重复性捐助能通过可预测的现金流帮助iNaturalist继续扩大我们的基础建设和员工规模。而且您的月度捐助的效果会是捐助金的三倍！您还可以在你的个人简介页面中显示您的月度捐助人身份。
+          </p>
+          <p class="lead">
+          您的慈善捐助对社群日益扩大的iNaturalist至关重要，这能帮助我们改进我们精确识别物种的技术和引入新的特性，以支持我们的服务器和员工。您还可以进行<a href="%{donate_url}">一次性捐助</a>或<a href="https://www.inaturalist.org/pages/giving">探索其他捐助方式</a>。
+          </p>
+          <p class="text-muted">
+          iNaturalist是一个设立于美国的独立501(c)(3)、免税、非盈利组织（税号：92-1296468）。
+          </p>
         thank_you_for_being_a_monthly_supporter: 感谢您成为每月支持者！
         thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
     geo_model:
@@ -5533,6 +5594,10 @@ zh-CN:
           %{taxon}的位置模型预测
         nearby_map:
           expected_nearby_map: 预料的附近地图
+          for_example: |
+            举例而言，一项定位在美国中部的蜥蜴的观察，<i>Sceloporus consobrinus</i>建议会带有“预料在附近”标记，而<i>Sceloporus occidentalis</i>则不会，这是基于二者各自的预料在附近地图。
+          you_can_think: |
+            你可以将预料在附近地图理解为对一个物种在网格坐标内的某个地方存在还是完全不存在的估计。
           figure_alt_text: 位置模型适用于预料在附近标签
         unthresholded_map:
           unthresholded_map: 无阈值地图
@@ -5601,6 +5666,8 @@ zh-CN:
             完美的重叠将得到精确率、召回率和F1为1的评估。没有重叠将意味着精确率、召回率和F1为0。
     guides:
       index:
+        deprecated_banner: |
+          请注意，自2019年1月起，导航特性的情况将“维持不变”；我们没有计划删除它，但也没有计划进一步开发了。
         funding_html: |
           指南开发的资金由<a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>提供
         welcome_message_html: |
@@ -5716,6 +5783,9 @@ zh-CN:
       filter_by: 筛选条件
       filtered_by: 根据此条件筛选
       apply_filters_to_export: 将过滤器应用到导出
+      restrict_to_leaf_taxa: 仅限终止节点
+      restrict_to_taxon: 仅限于%{taxon}
+      restrict_to_taxa_observed_in_place: 仅限于在%{place}观察到的分类群
       exporting_all_x_taxa:
         other: 输出%{count}个分类单元
       exporting_x_taxa:
@@ -5730,6 +5800,7 @@ zh-CN:
       reset_place_filter: 重置位置过滤器
       all_observations_in_this_taxon: 此分类单元中的所有观察
       observations_of_exactly_this_taxon: 此分类单元的观察
+      focus_tree_on_this_taxon: 将分类树聚焦在这个分类单元上
       expand_all_nodes_in_this_branch: 展开此分支中的所有节点
       collapse_this_branch: 折叠此分支
       dropdowns:
@@ -5855,8 +5926,13 @@ zh-CN:
           other: "%{count}独特"
       export:
         choose_columns_desc: 选择您想要导出的列
+        create_a_query_desc_html: |
+          像在网站上的其他地方一样创建观察查询。您还可以从网站的其他部分剪切和粘贴观察的URL。您的查询<strong>最多将返回200,000条结果</strong>。
+        export_in_progress_notice_html: |
+          您有一个<a href="%{url}">在进行中的导出</a>。您将需要等待它完成才能开始下一项导出。
         ident_by_user_desc_html: |
           用于当前由%{user}做出鉴定的列
+        limit_alert: 您的导出太大了。更改您的过滤器，直到观察数小于200,000条。
         query_placeholder: "选择下面的查询参数或粘贴观察的URL"
         taxon_extras_help_html: "注意：这些列会减慢导出数据的生成速度"
         geo_help_html: |
@@ -5893,10 +5969,14 @@ zh-CN:
         private_latitude: "私人纬度，如果观察是私密或模糊的，则设置此项"
         private_longitude: "私人经度，如果观察是私密或模糊的，则设置此项"
         geoprivacy: "观察者是否选择匿名或隐藏坐标"
+        taxon_geoprivacy: "基于当前鉴定的分类群的保护状态而适用的最保守的位置隐私。"
         coordinates_obscured: "坐标是否被隐藏，无论这是由于地理位置隐私保护或是由于该分类单元的生存受到威胁，"
         out_of_range: 此观察是否在分类单元的已知范围之外
         user_id: 用于观察者的唯一标识符
         user_login: 观察者的用户名
+        user_name: |
+          观察者名称，通常用于在本站内的传播。
+          是一个可选字段，可以是一个化名。
         created_at: 日期时间观察已创建
         updated_at: 日期时间观察最近已更新
         quality_grade: 此观察的质量等级。有关此含义的详细信息，请参阅“帮助”部分
@@ -5913,6 +5993,8 @@ zh-CN:
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
         unreview_all_tooltip: "移除本页所有观察的已审核状态"
+        too_many_results_desc: |
+          页数乘以每页结果数的积不能超过10,000。尝试应用过滤器来减少结果数量，或标记观察为“已复核”并使用"查看更多"按钮而非换页。
       import:
         coordinate_systems_help: |
           %{site_name}可接受多种不同坐标系的坐标系统，因此当您用并非纬度/经度的系统提供坐标时，我们需要知道您正在使用哪个坐标系，以便正确解析坐标。请确保您已为您的数据选择了正确的坐标系，否则记录的位置可能会与正确位置偏离很远。如果您的坐标来自GPS装置，请检查其设置以获取其正在使用的坐标系的名称。请注意，我们不会存储自定义坐标，只存储它们的纬度/经度转换结果。
@@ -5922,6 +6004,8 @@ zh-CN:
           地理位置隐私这一列必须为英文，要么值为空，要么值为“obscured”或“private”
         project_csv_template_notice_html: |
           这是一个用于此项目的模板文件，它可能帮助您了解CSV文件的结构。<a href="%{url}">下载模板</a>
+        soundcloud_notice_html: |
+          2018年，Soundcloud更改了他们的 API ，使我们无法做到与您的 Soundcloud 帐户建立新的连接。 如果他们恢复此功能，我们可以恢复连接帐户到 SoundCloud 。同时，您可以使用<a href="/observations/upload">上传功能</a>直接上传声音文件。
       show:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
@@ -5982,6 +6066,11 @@ zh-CN:
         requirements_have_changed: |-
           此项目对观察的要求近期发生改变：
         subject: '%{project} 的项目观察要求已更改'
+        wondering_what_this_means_html: |
+          想知道什么是“位置隐私”吗？
+          <a href="%{url}">读读我们的文档吧</a>。
+        you_can_change_html: |-
+          你可以在<a href="%{url}">项目主页</a>改变你的偏好或退出项目。
       observations_export_notification:
         your_observations_export_is_ready_html: |
           您的观察导出准备就绪。这封电子邮件带有附件，或者您也可以<a href="%{url}">下载您的导出结果</a>。
@@ -6025,6 +6114,8 @@ zh-CN:
         message: |
           您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
     photos:
+      forbidden_notice_html: |
+        我们现在没有访问这些照片的权限。 您可能需要在您的<a href="/users/edit">设置</a> 选项中断开连接并重连才能授予我们额外的权限。
       show:
         view_original_html: |
           您可以在<a href="%{url}">％{url}</a>上查看原文。如果此照片侵犯了版权，请将版权侵权标记保留为未解决。
@@ -6543,6 +6634,8 @@ zh-CN:
       delete:
         by_deleting_your_account_you_will_remove: |
           通过删除您的帐号，您将会删除
+        caching: |
+          如果您删除您的账号是为了删除一些您的内容，但在此后仍在地图或者其他地方看到了这些内容，请记住地图数据在数据删除后仍可能被缓存最多1天，删除本平台上的数据也不会影响到其它站点和平台（如GBIF）上存在的拷贝。
         x_observations_html:
           other: |
             <strong class="count">%{count} 个观察</strong>，为含有
@@ -6678,6 +6771,7 @@ zh-CN:
       recent:
         about_recent_users: 关于
       show:
+        take_a_moment_to_review_html: '花一点时间来阅读 <a href="%{link}">我们的指导规则</a>。'
         this_user_was_banned: 此用户已被停用
         favorites_list_prompt_html: |
           想要展示您喜爱的类群？ %{link_start_tag}创建一个名为 "喜爱" 的
@@ -7022,6 +7116,9 @@ zh-CN:
         #Inputs to an export task, e.g. the query and the columns
         inputs: 输入
       oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: 回退URL
         #Unique identifier for an application
         uid: 鉴定
         #Noun, secret associated with an application, sort of like the application's password
