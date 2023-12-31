@@ -4407,6 +4407,15 @@ da:
   rotate_left: Rotér til venstre
   rotate_right: Rotér til højre
   row_singular_or_plural: Række(r)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Test højre-til-venstre layout? Du kan også bruge test=rtl URL param. Bemærk,
+    at ikke alle sider er konverteret til højre-til-venstre layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Tilmeldt højre-til-venstre layouttest
   rules_and_formatting: "Regler og formatering"
   rules_for_adding_observations: Regler for tilføjelse af observationer
   rules_for_becoming_a_member: Regler for medlemsskab
