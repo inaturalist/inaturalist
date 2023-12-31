@@ -205,7 +205,7 @@ zh-CN:
   account_creation: 创建账户
   account_settings: 账户设置
   accept_community_identifications: 接受来自社群的鉴定
-  accuracy: 准确性
+  accuracy: 准确度
   accuracy_meters: 精确度（米）
   accuracy_of_the_coordinates: |
     坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使您能保证自己在圈内的某个位置。
@@ -2037,7 +2037,7 @@ zh-CN:
   include_places: 包含的地点
   include_projects: 包含的项目
   include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
-  include_suggestions_not_expected_nearby: 包括不在预料附近范围内的建议
+  include_suggestions_not_expected_nearby: 包括不在预料在附近范围内的建议
   include_taxa: 包含分类
   include_users: 包含用户
   including: 包括
@@ -2858,7 +2858,7 @@ zh-CN:
   not_atlased: 没有地图集
   not_completed: 未完成
   not_confident: 我们没有足够的信心来提出建议。
-  not_confident_top_suggestions: 我们没有足够的信心对此物种做出鉴定，但这是我们的10个最佳建议。
+  not_confident_top_suggestions: 我们没有足够的信心给出推荐鉴定，但这是我们的最佳建议
   not_covered_by_any_taxon_frameworks: 没有被任何分类单元所覆盖
   not_evaluated: 未评估
   not_findig_what_you_want: 找不到您想找的东西么？
@@ -3121,7 +3121,7 @@ zh-CN:
   only_view_nearby_suggestions: 只查看附近的建议
   only_you: 只有您
   open: 打开
-  open_: 打开
+  open_: 公开
   open_description: "任何人可以查看观察，除非分类受到威胁。"
   open_street_map: 开放式街道地图
   optional: 可选
@@ -4308,8 +4308,12 @@ zh-CN:
     iNaturalist 自动隐藏某些物种的坐标，以保护这些物种免受扰动、收集或偷猎。 如果观测坐标只是自动隐藏以保护物种，iNaturalist会对来自其所属国家的网络成员分享所有观察的真实坐标。
   sites_affiliation_more_email_addresses: |
     电子邮件地址仅为与网站相关的通信目的与网络成员共享。
+  sites_affiliation_more_twice_per_year: |
+    iNaturalist每年两次将相关账号的邮箱地址和一些隐藏的坐标（即被设置公开遮挡或私有的坐标）分享给iNaturalist网络成员，以将iNaturalist数据提供给相关区域的研究、保护和管理机构使用。两种不同的坐标隐藏方式会通过不同的方法进行分享，请参见下文的描述。
   sites_affiliation_more_user_hidden_coordinates: |
     用户隐藏坐标(因为“地理隐私”设置而变得模糊或私有)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    由用户意见进行坐标隐藏的观察通过一种更为有限和特别的方式进行分享。通过和网络站点向关联，inNaturalist将会和站点管理员分享被您设置或是因分类群位置隐私而被自动设置为已遮盖或是私有的的观察的精确坐标。这会让您的观测对当地的物种保护工作产生更大的价值。
   sites_affiliation_overview_current_member_list_html: |
     你可以在%{start_tag_network}iNaturalist网络%{end_tag_network}查看当前的成员列表。
   sites_affiliation_overview_in_order_to_advance: |
@@ -4461,7 +4465,7 @@ zh-CN:
   submission_model_description: 谁可以添加观察至您的项目？
   submit_observations:
     other: 提交 %{count} 个观察
-  submitted: 提交于
+  submitted: 提交日期
   subscribe_to_a_taxon: 订阅分类单元
   subscribe_to_a_place: 订阅地点
   subscribe_to_comments_on_this_flag_html: "%{tag_start}订阅%{tag_end} 关于此标记的评论"
@@ -4555,6 +4559,8 @@ zh-CN:
   taxon_assessments_are: |
     分类评估是评估物种现状的文档，通常是其保护状况。
     例如，一个区域保护组织可能会利用它们来组织信息并调查关于该地区几个受威胁的分类群状况的反馈。
+  taxon_change_commit_may_still_be_processing: |
+    分类单元更改提交可能仍在处理中，因此请注意一些记录尚未被更新
   taxon_change_must_be_committed_to_update_records: 必须提交分类单元更改才能更新记录
   taxon_change_title_taxon_drop: 分类学剔除 %{id}
   taxon_change_title_taxon_merge: 分类学合并 %{id}
@@ -4601,7 +4607,13 @@ zh-CN:
   taxon_range_guidelines_each_taxon_can_have: 每个分类单元只能有一个分类单元范围。分类单元范围必须代表全球分布。
   taxon_range_guidelines_if_you_are_not_uploading: "如果你没在上传国际自然保护联盟（IUCN）红色清单范围地图，这应该是由于："
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: 国际自然保护联盟红色名录范围图与此分类单元不匹配
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    例如，你手动缩小了它的范围，以反映在国际自然保护联盟（IUCN）红色清单上没有代表的分类分割，或者IUCN红色清单范围地图有重大错误，使其无法显示。
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: 此分类单元不在国际自然保护联盟（IUCN）红色列表内
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    例如，这个分类单元与国际自然保护联盟（IUCN）红色清单上的另一个分类单元相混合，所以你已经手动将它剥离，或者该分类单元缺少IUCN红色清单评估和范围图。
+  taxon_range_guidelines_please_provide_details: |
+    请使用描述来解释地图是如何生成的，并链接到任何相关的标记和分类分割上。 或讨论说明为什么要修改已发布的国际自然保护联盟红色列表范围。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 了解更多关于分类单元范围的信息
   taxon_range_updated_notice: 分类单元范围已成功更新。请等待几分钟就会在地图上显示更改。
   #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
@@ -4700,6 +4712,8 @@ zh-CN:
   there_were_some_problems_with_fields: "以下字段存在问题："
   there_were_some_problems_with_these_files: "这些档案出现了一些问题："
   theres_something_wrong_with_taxon_framework_relationship: 这里有些问题-我们无法确定任何内部和外部分类群之间的关系
+  therefore_committing_additional_taxon_changes: 因此，在进行分类群交换后再进行分类单元调整是没有必要的。
+  therefore_committing_taxon_changes: 因此，在进行祖先改变之后再进行分类单元调整是没有必要的。
   these_are_items_people_on: |
     这些是被网站上的人们标记为待处理的项目。垃圾信息评论应被删除，并且应该暂停发布垃圾信息的用户（转到他们的个人资料页面，并点击右下角的“暂停用户”以阻止他们登录）。其他被标记的项目只有当其明显令人厌恶、不合法时才应被删除。粗鲁，有冒犯性的语言等应该报以礼貌的评论。多次违规者应被报告给网站管理员或发送至%{email}
   these_are_taxa_that: |
@@ -4751,6 +4765,11 @@ zh-CN:
     如果这是您的账户，并且您认为这样做是错误的，请<a href="mailto:%{email}">联络我们</a>。
   this_will_add_listed_taxa: 这将添加从观察中列出的分类单元。这可能需要一段时间，所以请谨慎，请尽量在较小的清单上使用
   this_will_refresh_listed_taxa: 这将刷新从观察中列出的分类单元。这可能需要一段时间，所以请谨慎，请尽量在较小的清单上使用
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    这会让iNaturalist在您再次授权之前无法再以您的名义访问这一账号。您可能还需要更改外部站点的设置才能完全避免访问。
+  #Application is an app or service the user has authorized to access their
+  #iNat account
+  this_will_sign_you_out_current_session: 这将使您在这个应用程序上退出当前会话。
   this_will_try_to_add_tags_to_your_flickr: 这将尝试为您的Flickr照片添加标签。要继续吗？
   this_year: 今年
   those_observations_no_longer_exist: 这些观察已不存在。
@@ -4897,6 +4916,7 @@ zh-CN:
     我同意<a href="/terms" target="_blank">使用条款</a>和<a href="/privacy" target="_blank">隐私政策</a>，我也阅读了<a href="/pages/community+guidelines" target="_blank">社区指导规则</a>。
   total: 总计
   totals: 总计
+  total_ids_on_input_taxon: "输入分类的鉴定总数："
   total_members: 成员总数
   total_observations: 总计观察
   total_observations_caps: 观察记录总数
@@ -5102,6 +5122,8 @@ zh-CN:
   username_or_user_id: 用户名或用户ID
   users: 用户
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
+  users_edit_resend_confirmation_prompt_html: |
+    在您重新发送确认邮件后， 您将被登出，并在您点击电子邮件中的链接之前再也无法登陆，因此<strong>一定要确保您输入了正确的电子邮件地址</strong>。
   users_favorites: "%{user}的收藏夹"
   users_highlights_and_stats_from_year_on_site: "来自%{site}在%{year}年的%{user}的要点与统计数据"
   users_id: "%{user} 的鉴定"
@@ -5224,15 +5246,15 @@ zh-CN:
   welcome_to_guides: "欢迎来到%{site_name}指南！"
   welcome_to_x_project: "欢迎来到 %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
-  were_pretty_sure_this_is_in_the_genus: 我们比较确定它属于这个属
+  were_pretty_sure_this_is_in_the_genus: 我们非常确定它属于这个属
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
-  were_pretty_sure_this_is_in_the_family: 我们比较确定它属于这个科
+  were_pretty_sure_this_is_in_the_family: 我们非常确定它属于这个科
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
-  were_pretty_sure_this_is_in_the_order: 我们比较确定它属于这个目
+  were_pretty_sure_this_is_in_the_order: 我们非常确定它属于这个目
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
-  were_pretty_sure_this_is_in_the_subfamily: 我们比较确定它属于这个亚科
+  were_pretty_sure_this_is_in_the_subfamily: 我们非常确定它属于这个亚科
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
-  were_pretty_sure_this_is_in_the_superfamily: 我们比较确定它属于这个总科
+  were_pretty_sure_this_is_in_the_superfamily: 我们非常确定它属于这个总科
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -5588,12 +5610,19 @@ zh-CN:
           </p>
         thank_you_for_being_a_monthly_supporter: 感谢您成为每月支持者！
         thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
+      temporarily_unavailable: |
+        感谢您有兴趣支持iNaturalist！因我站正在更新捐助系统，捐助iNaturalist当前不可用。请过一阵再来。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
           %{taxon}的位置模型预测
+        the_geo_model_makes_predictions: |
+          位置模型用于预测物种在何处存在以及在何处不存在。
+          基于观察的所在位置，我们使用位置模型来赋予鉴定建议中的“预料在附近”标签，并调整鉴定建议的权重。
         nearby_map:
           expected_nearby_map: 预料的附近地图
+          we_use_this_map: |
+            基于观察的所在位置，我们使用这个地图来赋予鉴定建议中的“预料在附近”标签。
           for_example: |
             举例而言，一项定位在美国中部的蜥蜴的观察，<i>Sceloporus consobrinus</i>建议会带有“预料在附近”标记，而<i>Sceloporus occidentalis</i>则不会，这是基于二者各自的预料在附近地图。
           you_can_think: |
@@ -5965,7 +5994,7 @@ zh-CN:
         place_guess: 由观察者输入的所在地描述
         latitude: 公开可见纬度
         longitude: 公开可见经度
-        positional_accuracy: "协调精度（是的，是的，准确性 != 精度，名称选择不当）"
+        positional_accuracy: "坐标精度（对，对，准确性 != 精度，名称选择不当）"
         private_latitude: "私人纬度，如果观察是私密或模糊的，则设置此项"
         private_longitude: "私人经度，如果观察是私密或模糊的，则设置此项"
         geoprivacy: "观察者是否选择匿名或隐藏坐标"
@@ -6025,7 +6054,7 @@ zh-CN:
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
         data_quality_assessment_desc3_html: |
-          出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确性、精确性、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
+          出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确度、精度、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
@@ -6390,6 +6419,8 @@ zh-CN:
         no_taxa_add_a_flag_desc: |
           例如含有一种物种的属。 如果志愿管理员有时间，并且它与我们的分类学政策相匹配，将会添加分类单元。
         no_taxa_forum: 联系论坛
+        no_taxa_forum_desc_html: |
+          有很多志愿者管理员在跟踪%{link_start_tag}论坛%{link_end_tag}上的信息。
     shared:
       blocked:
         youve_been_blocked: 您已被封禁
@@ -6468,6 +6499,10 @@ zh-CN:
         growth_by_country_title: 按国家/地区显示增长
         growth_in_year_obs: "%{year}年增长率（观察）"
         growth_title: 增长
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "太低：%{low_value}（%{low_desc}），太小以至于无法显示"
         new_species_desc: |
           今年首次在 %{site_name} 上观察到的物种。
           显示<a href="%{url}">上%{y}个物种中的%{x}个</a>。
@@ -6647,6 +6682,8 @@ zh-CN:
           other: 您已添加了 <strong class="count">%{count} 条评论</strong>
         furthermore_cannot_undo_html: |
           此外， <strong>此操作无法撤销。</strong> 即使您稍后更改您的主意，您也将无法回复任何内容。
+        settings_and_mute_html: |
+          如果这个站点产生了太多的提示，请考虑<a href="/users/edit">修改设置</a>以筛出一部分提示，或是停止接收来自我站的邮件。如果您在网站上和某个特定的人物发生了矛盾，请考虑<a href="/users/edit">屏蔽他们</a>而非删除自己的账号。
         still_want_to_delete_html: |
           如果您仍然确定要删除您的帐户。 在下面的表格中输入<code>%{confirmation_code}</code> 并点击按钮来删除您的帐户和所有数据。
         type_confirmation_code: 输入%{confirmation_code}
@@ -6770,6 +6807,7 @@ zh-CN:
           这只适用于过去的项目。您不能将观察排除在收藏或总括项目之外，这些项目基本上都是已保存的搜索。您可以<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">点击这里</a>阅读更多。
       recent:
         about_recent_users: 关于
+        definitions_html: <dl><dt>疑似骚扰账号</dt><dd>用户可能是骚扰账号，这意味着他们没有观察和坚定，但是却有个人简介。</dd><dt>自动标记骚扰账号</dt><dd>被系统自动标记的骚扰账号。</dd><dt>手动标记骚扰账号</dt><dd>被站点管理员手动标记的骚扰账号。</dd><dt>假阳性</dt><dd>被标记为骚扰账号，但被发现不是，因此标记被站点管理员去除。</dd></dl>
       show:
         take_a_moment_to_review_html: '花一点时间来阅读 <a href="%{link}">我们的指导规则</a>。'
         this_user_was_banned: 此用户已被停用
@@ -6803,7 +6841,11 @@ zh-CN:
         step1_desc: |
           为了遵守隐私条例， 我们需要父母或法定监护人同意才能为13岁以下的儿童创建帐户。 如果您想要您的孩子使用 iNaturalist，您必须提供给我们的一些身份和联系信息。
         step2_title: 通过信用卡来确认您的身份
+        step2_desc: |
+          要证明你是一名成年人，我们需要您使用信用卡对iNaturalist进行不少于1美元的象征性捐款。这是能允许我们在遵守隐私法律的情况下实现身份识别的冒犯性最低的手段。请确保您所使用的邮箱地址和您在之前步骤中输入的“父母邮箱”地址相同。
         step3_title: 等待用于确认的电子邮件
+        step3_desc: |
+          一旦我们将捐助所用的邮箱地址和您在“父母邮箱”项目中所输入的地址实现匹配，我们就将激活孩子的账号并向父母邮箱发送包含登录指引的邮件。这可能需要最多24小时。
         step3_donor_title: 您孩子的账号已经被激活
         step3_donor_desc: |
           因为你是一个 iNaturalist 捐赠者，我们可以用您现有的捐赠来验证您的身份。
