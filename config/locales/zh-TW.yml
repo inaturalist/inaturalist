@@ -3604,6 +3604,7 @@ zh-TW:
   plants: 植物
   please_add_a_citation_for_this_change: 請為此次更改添加引用。
   please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改 #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: 請向您的父母取得同意
   #Title to a section warning a user to exercise caution
   please_be_careful!: 請務必小心！
   please_complete_the_following_to_add_project: |
@@ -3719,6 +3720,14 @@ zh-TW:
   proposed_taxa_that_support_the_community_id: 所提出物種分類群贊同社群鑑定
   protozoans: 原生動物
   provider_authorizations: 提供方授權
+  provider_without_email_error_apple: |
+    Apple 並沒有提供該帳號的電子郵件地址（這是必需的）。 請在此網站上建立帳號，而不是透過 Apple 登入。
+  provider_without_email_error_flickr: |
+    Flickr 並沒有提供該帳號的電子郵件地址（這是必需的）。 請在此網站上建立帳號，而不是透過 Flickr 登入。
+  provider_without_email_error_generic: |
+    此服務並沒有提供該帳號的電子郵件地址（這是必需的）。 請在此網站上建立帳號，而不是透過第三方登入。
+  provider_without_email_error_google_oauth2: |
+    Google 並沒有提供該帳號的電子郵件地址（這是必需的）。 請在此網站上建立帳號，而不是透過 Google 登入。
   public_domain: 公有領域
   publish: 發佈
   quality_grade: 品質等級
@@ -3727,6 +3736,7 @@ zh-TW:
   queued: 已排程
   query: 查詢
   radius: 半徑（m）
+  radius_km: 半徑（km）
   radius_value: "半徑（m）： %{radius}"
   random: 隨機
   range: 範圍
@@ -3974,6 +3984,8 @@ zh-TW:
   #you out until you do
   resend_and_sign_out: 再次傳送並登出
   resend_confirmation_email: 再次傳送確認電子郵件
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: 重設
   reset_filters_short: 重設
   reset_brightness: 重新設定亮度
   reset_search_filters: 重新設定搜尋篩選
@@ -4478,6 +4490,7 @@ zh-TW:
   taxon_framework_relationship_unknown_count_html: "未知關聯的數量：%{count}"
   taxon_framework_relationships: 分類群框架關聯
   taxon_framework_taxon: 分類群框架的分類單元
+  taxon_history_notice: 歷史記錄是在 2022 年 2 月引入，因此沒有在該日期之前的可用歷史紀錄。
   taxon_merge: 分類群合併
   taxon_name: 分類群名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 分類群名稱必須符合在我們資料庫裡既有的分類群
@@ -4670,7 +4683,59 @@ zh-TW:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_johannesburg: 南非時間(SAST)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: 東非時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: 阿根廷時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: 哥倫比亞時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: 中部時間（美國與加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: 太平洋時間（墨西哥）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: 山區時間（美國與加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: 瓜地馬拉時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: 大西洋時間（加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: 玻利維亞時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: 祕魯時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: 太平洋時間（美國與加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: 中部時間（墨西哥）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: 東部時間（美國與加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: 亞利桑那時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: 大陸智利時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: 巴西利亞時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: 太平洋時間（墨西哥）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: 阿拉伯標準時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: 印度支那時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: 香港時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: 台灣時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: 日本標準時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: 凱薩琳堡時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: 伯斯時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: 雪梨時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: 歐洲東部時間
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_berlin: 歐洲中部時間(CET)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4678,7 +4743,15 @@ zh-TW:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_copenhagen: 歐洲中部時間(CET)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: 歐洲東部時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: 土耳其時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: 歐洲東部時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: 莫斯科時間
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_paris: 歐洲中部時間(CET)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4693,6 +4766,12 @@ zh-TW:
   time_zone_europe_warsaw: 歐洲中部時間(CET)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: 薩摩亞時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: 紐西蘭時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: 夏威夷-阿留申時間
   #As in the title of a book or a blog post
   title: 標題
   title_and_description: "標題與描述"
@@ -7067,6 +7146,8 @@ zh-TW:
         blank: 不可留空
         confirmation: 密碼不符
         empty: 不能為空
+        equal_to:
+          other: 必須等於 %{count}
         even: 必須是偶數
         exclusion: 已被保留
         inclusion: 未包含在名錄中
@@ -7419,6 +7500,19 @@ zh-TW:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: 動物界
+        Aves: 鳥綱
+        Reptilia: 爬蟲綱
+        Amphibia: 兩棲綱
+        Mammalia: 哺乳綱
+        Arachnida: 蛛形綱
+        Insecta: 昆蟲綱
+        Plantae: 植物界
+        Fungi: 真菌界
+        Protozoa: 原生動物界
+        Mollusca: 軟體動物門
+        Chromista: 色藻界
   #Title of a section warning the user about something
   warning_title: 警告
   wikimedia: 維基百科
