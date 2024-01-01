@@ -3694,6 +3694,8 @@ zh-CN:
     zimbabwe: 津巴布韦
   places_of_interest: 名胜古迹
   places_merged_successfully: 地点已成功合并！
+  places_warning_look_for_existing2_html: |
+    寻找<a href="/search?source[]=places">现存地方</a>以确定你没有创建重复地方。我们已经设置了所有大洲和国家以及很多政治边界的地方。
   places_warning_please_keep_in_mind: |
     请铭记下列限制：
   places_warning_projects_can_have_multiple_places: |
@@ -4953,7 +4955,7 @@ zh-CN:
   type_species_name: "输入物种名称"
   type_taxon_name: "输入分类名称"
   uicn_red_list_status: "IUCN红色名录状态："
-  umbrella_projects: 伞项目
+  umbrella_projects: 伞形项目
   unable_to_save_comment: 对不起，我们无法保存这一评论。
   unblock: 解封
   unclassified: 未分类
@@ -5625,6 +5627,8 @@ zh-CN:
         the_geo_model_makes_predictions: |
           位置模型用于预测物种在何处存在以及在何处不存在。
           基于观察的所在位置，我们使用位置模型来赋予鉴定建议中的“预料在附近”标签，并调整鉴定建议的权重。
+        the_geo_model_is_trained: |
+          像计算机视觉模型一样，位置模型是利用iNaturalist的观察进行训练的，建成一个物种的训练集需要略微超过100张照片。 位置模型无法进行做完美的预测。您可以<a href="%{url}">在这里</a>阅读更多关于位置模型是如何制作的信息。
         nearby_map:
           expected_nearby_map: 预料的附近地图
           we_use_this_map: |
@@ -6175,6 +6179,8 @@ zh-CN:
       umbrella: 雨伞
       tracks_multiple_projects: 追踪多个项目
       projects_included: 包含的项目
+      collection_and_umbrellas_do_not_support: |
+        集合和伞形项目目前不支持访问隐藏坐标。
       curator_coordinate_access_desc_html: |
         请注意，<strong>项目馆长可以将任何观察添加到他们的项目中</strong>，除非您已在<a href="/users/edit">帐户设置</a>中选择退出。只有在您准许项目馆长查看您添加到此项目中的任何观察的私人坐标时，再选中此选项。如果您不希望授予他们此权限，您仍然可以对各个观察逐一授予对私人坐标的访问权限。
       confirm_leave:
@@ -6206,6 +6212,8 @@ zh-CN:
           bioblitz是一个活动，参与者试图在一段时间内观察尽可能多的物种。这是一种向人们介绍生物多样性同时收集有价值数据的有趣方式。
           </p>
         change_admin_desc: 选择一位项目馆长作为新管理员。
+        change_owner_alert: |
+          这将取消您删除此项目或再次转移所有权的能力。您想要继续吗？
         cover_desc: "可选的横幅图片，将显示在项目页面的顶部。宽度必须是950px，高度必须低于400px。"
         custom_project_fields_means: "自定义项目标志，添加一些内容，及编辑CSS。"
         end_time_desc: "bioblitz的结束时间。不得晚于开始时间一年以上"
@@ -6296,11 +6304,11 @@ zh-CN:
         a_project_allows_you_to_gather: |
           集合项目允许您使用核心iNaturalist搜索工具收集和可视化观察。这消除了手动添加观察的需要，因为将自动包含满足项目设置的参数的所有内容。
         an_umbrella_project_can_be_used_to: |
-          伞项目可用于比较两个或多个集合或传统项目的统计数据。在将它们添加到伞项目之前，其他项目需要存在。您可以在一个保护伞下包含数百个项目。伞项目不能包含其他伞项目。
+          伞形项目可用于比较两个或多个集合或传统项目的统计数据。在将它们添加到伞形项目之前，其他项目需要存在。您可以在一个伞形项目下容纳数百个项目。伞形项目不能包含其他伞形项目。
         are_you_ready_to_duplicate: |
           您是否准备离开这一复制项目页面？ 请注意项目图标和横幅将不会被复制，需要重新上传到重复的项目。
         are_you_sure_you_want_to_delete: 您确定要删除这个项目么？
-        can_be_included_in_multiple: 可以包含在多个伞项目中
+        can_be_included_in_multiple: 可以包含在多个伞形项目中
         check_the_box_to_include_member_observations: |
           选中下面的框，项目将仅包含已加入此项目的用户所做的观察。使用上面的排除用户过滤器来排除特定用户的观察，包括项目所有者和管理员。
         click_through_to_individual_projects: 单个项目的点击次数
@@ -6361,7 +6369,9 @@ zh-CN:
           您可以选择多个物种(或其它分类单元)、位置、日期或其他条件来自动包含某些观察。
         start_and_end_times_for_bioblitzes: 用于bioblitz的开始和结束时间
         traditional_projects_cannot_be_copied: 传统项目无法复制
-        umbrella_project_features: "伞项目功能："
+        trusting_members_will_be_notified: |
+          您已更改项目要求或启用用户信任。 这将通知任何已经信任项目并对其开放了隐藏坐标的项目成员，以便他们有机会决定是否仍然要信任该项目（考虑到新的要求）。
+        umbrella_project_features: "伞形项目功能："
         unique_url_for_outreach: 用于拓展的唯一URL
         use_this_for_a_time_limited_event: |
           将其用于限时活动、生物风暴或季节性项目。 选择单个日期、日期范围或必须在一年中的哪些月份进行观察（无论年份）。 如果使用“日期范围”部分，请确保选择了正确的时间和时区，或者删除时间/时区文本以包含全天任何时间进行的观察。 如果您只想将项目限制为一个日期，则可以将开始日期或结束日期留空。
@@ -6370,7 +6380,7 @@ zh-CN:
           使用<a href="%{url}">此链接</a>创建传统项目。
         visual_comparison_of_data_among: 对同一伞内项目的可视化数据比较
         we_have_redesigned_projects: |
-          我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞项目，它们共享以下功能：
+          我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞形项目，它们共享以下功能：
         welcome_to_projects: 欢迎来到项目！
         you_can_learn_more_html: |
           您可以在<a href="https://www.inaturalist.org/pages/managing-projects">这里</a>了解更多关于管理项目
@@ -6603,6 +6613,8 @@ zh-CN:
           此图表显示按月分组的此分类单元的观察数量。请记住，这些是观察的数量，因此它们受到观察生物体的时间和人们懒得观察它们的影响。因此，一只鸟可能在五月似乎非常活跃，但这也可能是由于5月份有更多人观看，他们在后来的几个月里往往会忽视这一物种。同样，如果你在6月看到的蜻蜓比1月份更多，这可能是因为我们在北半球观察的人数多于南半球，而不是因为蜻蜓在6月更活跃，所以在考虑这些图表时请查看地图。当“可验证”和“研究级”观察数量之间的观察数量较少和/或存在较大差异时，对这些图表持怀疑态度总是一个好主意。
         charts_help_history: |
           该图表显示了过去十年中该分类单位的观察数量。同样，它受到观察人数的偏倚，但它会向你显示观察中不寻常的峰值，如果观察者数量增加，它看起来是平的还是减少，这可能表明丰度的变化。
+        charts_help_other: |
+          我们还展示观察注释的季节性图示。注释是使用受控术语将元数据添加到观测中的一种方式，比如观察中的植物是处于开花阶段还是挂果阶段。
         charts_help_relative_observations: |
           将频率显示为所有观察的相对比例有助于平滑场地整体增长的影响。例如，如果网站正在增长，因为我们每过一年就会得到更多的观察结果，我们会对任何单独的分类单元进行更多的观察，这并没有告诉您是否有更多的分类单元要观察，只是有更多的人观察它。显示相对比例意味着如果总共有100个观察值但是对该分类单元进行了20次观察，则该比例为0.2（20/100）。如果人们观察到明年的2000次观察和400次该分类单位的观察，则该比例仍为0.2（400/2000）。当一个区域中的观察者很少，或者很少观察到的分类群时，这会导致一些异常情况，但总数也是如此。
         complete_taxon_desc: |
@@ -6697,6 +6709,9 @@ zh-CN:
           other: |
             <strong class="count">%{count} 个观察</strong>，为含有
             <strong class="count">%{helpers_count} 名人们</strong>以鉴定协助您的成果
+        x_projects_html:
+          other: |
+            <strong class="count">%{count}项目</strong>没有其他的经办人或管理员能成为新的所有者
         x_identifications_html:
           other: |
             您在其他 <strong class="count">%{helpees_count} 个人</strong>的观察中的 <strong class="count">%{count} 个鉴定</strong>，似乎会影响到这些观察的品质
@@ -6952,9 +6967,13 @@ zh-CN:
       7: 六
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%Y-%m-%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%Y年 %b %-d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -7082,6 +7101,10 @@ zh-CN:
       long: '%Y年%B%d日 %p %I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%I:%M %p"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      observed_at: '%I:%M %p %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
