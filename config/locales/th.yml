@@ -325,6 +325,8 @@ th:
   added_by: เพิ่มโดย
   added_by_user_on_date_html: "เพิ่มโดย %{user} เมื่อ %{date}"
   added_on_datetime: "เพิ่มเมื่อ %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: ได้รับการแต่งตั้ง
   added_to_favorites_html: |
     เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
   adding: "กำลังทำการเพิ่ม..."
@@ -1541,6 +1543,7 @@ th:
   manage_your_projects: จัดการโครงการของคุณ
   manage_your_relationships: จัดการความสัมพันธ์ของคุณ
   managers: ผู้จัดการ
+  managers_can_do: ผู้จัดการสามารถทำได้ทุกอย่างเช่นเดียวกับผู้ดูแล รวมถึงการแก้ไขการตั้งค่าและการเขียนโพสต์วารสารโครงการ
   map: แผนที่
   map_legend: คำอธิบายสัญลักษณ์
   map_of_observations: แผนที่แสดงพิกัดการสังเกต
@@ -2291,6 +2294,8 @@ th:
   remove_tags: ลบแท็ก
   removed: ลบออกแล้ว
   removed_project_user: ผู้ใช้โครงการที่ถูกลบ
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: บทบาทถูกยกเลิก
   required: จำเป็น
   required_: จำเป็น
   research: งานวิจัย
@@ -2309,6 +2314,7 @@ th:
   review_all: ทบทวนทั้งหมด
   reviewed: ดูแล้ว
   rg_observations: การสังเกตระดับงานวิจัย
+  role: บทบาท
   rotate_left: หมุน​ซ้าย
   rotate_right: หมุนขวา
   rules_types:
@@ -2558,6 +2564,9 @@ th:
   terrain: ภูมิประเทศ
   thanks_from_all_of_us_here_at: ขอบคุณพวกเราทุกคนใน
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
+  that_role_doesnt_exist: ไม่มีบทบาทนั้น
+  the_admin_is_the_person_who: |
+    แอดมินเป็นผู้สร้างโครงการ สามารถทำได้ทุกอย่างเช่นเดียวกับผู้จัดการและผู้ดูแล รวมถึงการลบโครงการ
   the_below_items_are_needed_to_achieve: |
     การสังเกตจะเป็น<span className="bold">ระดับงานวิจัย</span>ได้ต้องมีคุณสมบัติต่อไปนี้:
   the_community_id_requires_at_least_two_identifications: จะต้องมีผู้ช่วยจำแนกอย่างน้อยสองคน
