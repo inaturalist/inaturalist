@@ -406,6 +406,7 @@ es:
   agree_: Aceptar
   agree?: '¿De acuerdo?'
   agree_with_current_taxon: De acuerdo con el taxón actual
+  agree_with_observation_taxon: Aceptar taxón de observación
   agreeing: Aceptando...
   aka: alias
   #Noun, title of a popup alerting you to something
@@ -416,6 +417,7 @@ es:
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben solucionar todos los indicadores
   all_life: Toda la vida
+  all_media_must_be_unhidden: Todos los medios deben estar visible
   all_names: Todos los nombres
   all_observations: Todas las observaciones
   all_photos: Todas las fotos
@@ -675,6 +677,7 @@ es:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     ¿Estás seguro de que quieres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "¿Estás seguro que deseas eliminar a esta especie o grupo de la lista de verificación de %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: '¿Está seguro de que desea agregar a este usuario como spammer?'
   associated_observations: Observaciones asociadas
   associated_taxa: Taxones asociados
   attention: Atención
@@ -1029,6 +1032,8 @@ es:
     ser incluido en sugerencias automáticas con la etiqueta "Visualmente Similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendiente
+  computer_vision_model_pending_desc2: |
+    El Modelo de Visión por Ordenador actual no conoce sobre este taxón, así que aunque pueda ser incluido en sugerencias automatizadas con la etiqueta "Esperado cerca", no tendrá la etiqueta "Visualmente similar". Aunque los requisitos para inclusión del modelo cambian con cada modelo, generalmente la inclusión se base en varias observaciones, así que para aumentar la probilidad de que este taxñon sea includio durante el siguiente entrenamiento del modelo, añada o identifica más observaciones de este taxón.
   concept_status: Concepto de la situación
   confidential: Confidencial
   configure: Configurar
@@ -1271,6 +1276,14 @@ es:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     No muestra un comportamiento correcto él mismo.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Para solicitar ser creador del sitio debes tener al menos 60 días de antigüedad, haber añadido al menos 5 marcas, y debes haber añadido 100 propuestas de mejora de identificación a cualquier, incluyendo las tuvas propias (has añadido %{num_idents}). Cuando cumplas con estos requisitos, regresa aquí y podría enviar su aplicación.
+  curator_application_inelligible_error2: |
+    Para solicitar ser supervisor del sitio debes tener una cuenta por al menos 60
+    días, haber añadido al menos 5 marcas, y añadido 100 identificaciones mejoradas
+    identificaciones a las observaciones de cualquiera, incluyendo la tuya.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Solicitud para ser conservador enviada
   #Header
@@ -1329,6 +1342,8 @@ es:
     Sólo deberías solicitar ser conservador si:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Llevas contribuyendo con identificaciones y/o observaciones unos meses y tienes la intención de continuar.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Has demostrado que entiende el proceso de curación por añadir unas marcas.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1745,6 +1760,7 @@ es:
   exit_full_screen: "Sal de la pantalla completa"
   examples_of_data_use_by_network_members: Ejemplos de uso de datos por miembros de la red
   examples_of_ranking_organizations: Ejemplos de organizaciones clasificatorias
+  expected_nearby: Esperado cerca
   explore: Explora
   export: Exporta
   export_observations: Exporta observaciones
@@ -1944,6 +1960,8 @@ es:
   generate_your_year_in_review_caps: GENERAR SU AÑO %{year} EN RESUMEN
   generating_mobile_archive: "Generando de archivos móviles"
   Genus: Género
+  geomodel_expected_nearby_label_is_derived: |
+    La etiqueta "Esperado cerca" se deriva del Geomodel. <a href="%{url}">Aprende más del Geomodel aquí</a>.
   geoprivacy: Geoprivacidad
   geoprivacy_is_obscured: Geoprivacidad está oculto
   geoprivacy_is_obscured_desc: El observador ha escogido ocultar las coordenadas.
@@ -2044,6 +2062,10 @@ es:
   #Verb, usually a button to hide an interface element
   hide: Ocultar
   hide_content: Ocultar contenido
+  hide_desc: |
+    Ocultar contenido lo borrará de la vista pública, pero la gente todavía podrá ver que algo se escondió, y curadores del sitio y el autor del contenido todavía podrá ver el contenido oculto. Identificaciones ocultas no contribuirán al Taxón de la comunidad de una observación.
+  hide_desc_staff_can_unhide: |
+    Solamente el personal del sitio puede mostrar contenido cuando se ocultó, así, solo use eso para violaciones clara de las Directrices de la Comunidad.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
@@ -2102,6 +2124,10 @@ es:
   #Notification when an identification has been deleted
   identification_deleted: Identificación eliminada.
   identification_saved: "¡Identificación guardada!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: La identificación se oculta
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: La identificación se muestra
   #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
   identification_user_short: Usuario ident.
@@ -2167,6 +2193,7 @@ es:
   include_places: Incluye Lugares
   include_projects: Incluye Proyectos
   include_suggestions_not_seen_nearby: Incluir sugerencias que no han sido vistas cerca de aquí
+  include_suggestions_not_expected_nearby: Incluye sugerencias no esperadas cerca de aquí
   include_taxa: Incluye Taxones
   include_users: Incluye Usuarios
   including: incluyendo
@@ -2320,11 +2347,14 @@ es:
     basque: Euskera
     belarusian: Bielorruso
     bengali: Bengalí
+    bikol: bicolano
     bulgarian: Búlgaro
+    carolinian: carolino
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
+    chuvash: chuvasio
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
     croatian: Croata
@@ -2347,7 +2377,10 @@ es:
     gujarati: Gujarati
     hawaiian: Hawaiano
     hebrew: Hebreo
+    herero: herero
     hiligaynon: Hiligainón
+    hill_mari: Mari de las colinas
+    hodges_number: Número de Hodges
     hokkien: Hokkien
     hungarian: Húngaro
     icelandic: Islandés
@@ -2359,8 +2392,10 @@ es:
     kannada: Canarés
     kazakh: Kazajo
     korean: Coreano
+    kweyol: Criollo antillano
     latvian: Letón
     lithuanian: Lituano
+    lozi: lozi
     luxembourgish: Luxemburgués
     malagasy: Malgache
     malay: Malayo
@@ -2387,23 +2422,34 @@ es:
     santali: Santalí
     scientific_names: Nombres científicos
     serbian: Serbio
+    shona: shona
     sinhala: Cingalés
     slovak: Eslovaco
     slovenian: Esloveno
+    sotho: sesoto
+    sotho_northern: sotho septentrional
     spanish: Español
     swahili: Suajili
+    swati: suazi
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
+    tamil: tamil
     thai: Tailandés
     tokelauan: Tokelauano
     totonaco: Totonaco
+    tsonga: tsonga
+    tswana: setsuana
     turkish: Turco
+    u_s_d_a_symbol: símbolo U.S.D.A.
     ukrainian: Ucraniano
     uyghur: Uyghur
+    venda: venda
+    vermont_flora_codes: Códigos de flora Vermont
     vietnamese: Vietnamita
     visayan: Bisayo
     waray_waray: Samareño
+    xhosa: xhosa
     zapoteco: Zapoteco
     zulu: Zulú
   less: Menos
@@ -5854,12 +5900,43 @@ es:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>¡Usted puede <u>doblar</u> o <u>triplicar</u> su regalo! Gracias a la Fundación de Gordon y Betty Moore, todas las donaciones mensuales, trimestrales y anuales se triplican y donaciones excepcionales se duplican hasta el 31 de diciembre de 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist es una de las comunidades más grandes del mundo dedicada a la biodiversidad ¡Gracias por ser parte de ella!
+        </p>
+        <p class="lead">
+        Si creces en el poder de esta comunidad mundial de los amores de la naturaleza de compatir conocimiento y generar data de la bioversidad irreemplezable, por favor considera un regalo excepcional o recurriente en línea, o explora <a href="https://www.inaturalist.org/pages/giving">otras maneras de donar</a>.
+        </p>
+        <p class="lead">
+        Su donación es fundamental para iNaturalist mientras crece nuestra comunidad, de mejorando nuestra tecnología hasta identificar especies con exactitud y de implementar nuevos atractivos hasta soportando nuestros servers y personal. 
+        </p>
+        <p class="text-muted">
+        iNaturalist es una organización independiente (501(c)(3)), libre de impuesto y sin ánimo de luco ubicada en los Estados Unidos. (Tax ID: 92-1296468).
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist es una de las comunidades más grandes del mundo dedicada a la biodiversidad ¡Gracias por ser parte de ella!</strong>
+        </p>
+        <p class="lead">
+        Si creces en el poder de esta comunidad mundial de los amores de la naturaleza de compatir conocimiento y generar data de la bioversidad irreemplezable, por favor considera un regalo excepcional o recurriente en línea, o explora <a href="https://www.inaturalist.org/pages/giving">otras maneras de donar</a>.
+        </p>
+        <p class="lead">
+        Su donación es fundamental para iNaturalist mientras crece nuestra comunidad, de mejorando nuestra tecnología hasta identificar especies con exactitud y de implementar nuevos atractivos hasta soportando nuestros servers y personal. 
+        </p>
+        <p class="text-muted">
+        iNaturalist es una organización independiente (501(c)(3)), libre de impuesto y sin ánimo de luco ubicada en los Estados Unidos. (Tax ID: 92-1296468).
+        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.
         become_a_monthly_supporter_of_inaturalist_caps: CONVIÉRTETE EN UN PATROCINADOR MENSUAL DE INATURALIST
         thank_you_for_being_a_monthly_supporter: '¡Gracias por ser un Patrocinador Mensual!'
         thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
+      temporarily_unavailable: |
+        ¡Gracias por su interés en apoyar a iNaturalist! Donar a iNaturalist no está disponible mientras actualizamos nuestros sistemas de donación. Por favor, vuelve más tarde.
     flags:
       show:
         flaggable_content_desc: |
@@ -5870,16 +5947,45 @@ es:
           contravención de los derechos de autor, respectivamente.
     geo_model:
       explain:
+        geomodel_predictions_of_taxon: |
+          Predicciones del Geomodel de %{taxon}
+        the_geo_model_makes_predictions: |
+          El Geomodel hace predicciones de donde ocurre la especie y de donde no está. Usamos el Geomodel para aplicar la etiqueta "Esperado Cerca" junto a las sugerencias y para ponderar las sugerencias basándose en la ubicación de la observación.
+        the_geo_model_is_trained: |
+          Como el Modelo de Visión por Ordenador, el Geomodel se ha entrenado en observaciónes de iNaturales por la misma lista de especies con aproximadamente más que 100 fotos. El Geomodel no hace predicciones perfectas. Puede leer más sobre como se hace el Geomodel <a href="%{url}">aquí</a>.
         nearby_map:
+          expected_nearby_map: Mapa "Esperado Cerca"
           we_use_this_map: |
             Utilizamos este mapa para aplicar la etiqueta Esperado cerca a las sugerencias basadas en la ubicación de la observación
+          for_example: |
+            Por ejemplo, una observación de un lagarto en el centro de los EE. UU. puede que tenga la etiqueta "Esperado cerca" aplicada a una sugerencia de <i>Sceloporus consobrinus</i> pero no <i>Sceloporus occidentalis</i> basado en los Mapas del "Esperado Cerca".
           you_can_think: |
             Puedes considerar el Mapa de Esperado Cerca como una estimación de si la especie está presente en alguna parte dentro de la celda de la cuadrícula o si está completamente ausente.
+          figure_alt_text: El Geomodel aplica la etiqueta "Esperado cerca"
         unthresholded_map:
+          unthresholded_map: Mapa sin umbrales
+          we_use_the_unthresholded_map: |
+            Usamos el Mapa sin umbrales para ponderar las puntuaciones de visión informáticas por ubicación cuando ofrece sugerencias.
+          for_example: |
+            Por ejemplo, una observación de un lagarto en el centro de los EE. UU. puede que tenga las sugerencias de <i>Sceloporus consobrinus</i> ponderadas más que las sugerencias de <i>Sceloporus occidentalis</i> basado en la comparación de los Mapas sin Umbrales, a pesar de ser similares visualmente.
+          you_can_think: |
+            Se puede pensar en el Mapa sin Umbrales como la probabilidad relativa que una especie ocurra dentro de una célula de cuadrícula.
           figure_alt_text: El geomodelo pondera los resultados de la visión artificial
         range_comparison:
+          expected_nearby_vs_taxon_range: '"Esperado cerca" contra el Rango de Taxón.'
           this_map_shows: |
             Este mapa muestra el área de distribución taxonómica de esta especie superpuesta al mapa de esperado cerca que utilizamos para evaluar el Geomodelo.
+          figure_alt_text: El mapa "Esperado Cerca" y el Rango de Taxones se compara.
+          combining_these_maps_produces: |
+            Combinar estos mapas produce 3 tipos de células:
+          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Presencias verificadas:
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Ausencias falsas
+          false_absences_definition: Áreas en las que sólo está presente el Rango de Taxones
+          evaluation_statistics_for_taxon: Estadísticas de evaluación de %{taxon}
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Precisión:
