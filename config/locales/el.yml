@@ -1462,6 +1462,7 @@ el:
   everywhere: παντού
   exact: Ακριβές
   exact_date: Ακριβής ημερομηνία
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Ακριβής κατάταξη
   except: εκτός
   exclude_places: Εξαίρεση τοποθεσιών
@@ -1733,6 +1734,8 @@ el:
   hide_running_total: Κρύψτε το Τρεχούμενο Σύνολο 
   hide_uncountable_species: Απόκρυψη μη μετρήσιμων ειδών
   high: υψηλό
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Υψηλότερη κατάταξη
   highlights_and_stats_from_year_on_site: "Καλύτερα Σημεία και Στατιστικά από το %{year} στο %{site}"
   history: Ιστορικό
@@ -2112,6 +2115,8 @@ el:
   looks_like_no_species_in_guide: Φαίνεται πως δεν έχετε κάποιο είδος στον οδηγό σας ακόμα.
   lookup: Αναζήτηση
   low: χαμηλό
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Χαμηλότερη κατάταξη
   make_admin: Ορισμός διαχειριστή
   #Header for main content section of the project detail page when editing custom project data.
@@ -3335,7 +3340,11 @@ el:
   radius_value: "Ακτίνα (μ): %{radius}"
   random: Τυχαίο
   range: Εύρος
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Κατάταξη
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Κατάταξη
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3963,6 +3972,7 @@ el:
   taxon_range: Εξάπλωση Ταξινομικής Βαθμίδας
   taxon_range_created_notice: Το εύρος ταξινομικής βαθμίδας δημιουργήθηκε επιτυχώς. Παρακαλούμε περιμένετε λίγα λεπτά για να εμφανιστεί στους χάρτες.
   taxon_range_updated_notice: Το εύρος ταξινομικής βαθμίδας ανανεώθηκε επιτυχώς. Παρακαλούμε περιμένετε λίγα λεπτά για να εμφανιστεί στους χάρτες.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Κατάταξη ταξινόμησης
   taxon_removed_from_list: Η ταξινομική βαθμίδα αφαιρέθηκε από τη λίστα.
   taxon_scheme: Σχέδιο ταξινομικής βαθμίδας

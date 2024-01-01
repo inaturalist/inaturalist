@@ -1401,6 +1401,7 @@ pt:
   everywhere: todos os locais
   exact: Exacto
   exact_date: Data exata
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Classificação exata
   existing_flags: Sinalizadores existentes
   exit_full_screen: "Sair do modo de ecrã inteiro"
@@ -1592,6 +1593,8 @@ pt:
   hide_running_total: Ocultar total acumulado
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alto
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Classificação mais alta
   highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{year} em %{site}"
   history: Histórico
@@ -1917,6 +1920,8 @@ pt:
   looks_like_no_species_in_guide: Aparentemente ainda não tem nenhuma espécie nos seus manuais.
   lookup: Procurar
   low: baixa
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Classificação mais baixa
   make_admin: Tornar administrador
   #Header for main content section of the project detail page when editing custom project data.
@@ -2762,7 +2767,11 @@ pt:
   queued: Em espera
   query: Consulta
   range: Intervalo
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Classificação
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Classificação
   ranks:
     kingdom: reino

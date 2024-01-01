@@ -1241,6 +1241,7 @@ kk:
   everywhere: барлық жерде
   exact: Нақты
   exact_date: Нақты күн
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Нақты дәреже
   except: қоспағанда
   exclude_places: Орындарды қоспау
@@ -1605,6 +1606,8 @@ kk:
   looks_like_no_species_in_guide: Сіздің нұсқаулықта әлі түр жоқ сияқты.
   lookup: Іздеу
   low: Төмен
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Ең төменгі дәреже
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2510,7 +2513,11 @@ kk:
   radius_value: "Радиус (м): %{radius}"
   random: Кездейсоқ
   range: Ауқым
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Дәреже
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Дәреже
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)

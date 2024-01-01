@@ -1700,6 +1700,7 @@ lv:
   everywhere: visur
   exact: Konkrēts
   exact_date: Konkrēts datums
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Konkrēta klasifikācija
   except: izņemot
   exclude_places: Nerādīt šīs vietas
@@ -1999,6 +2000,8 @@ lv:
   hide_running_total: Nerādīt kopējo skaitu
   hide_uncountable_species: Paslēpt nesaskaitāmās sugas
   high: Augsts
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Augstākā klasifikācija
   highlights_and_stats_from_year_on_site: "Būtiskākie momenti un statistika %{year}, gadā %{site} vietnē"
   history: Vēsture
@@ -2458,6 +2461,8 @@ lv:
   looks_like_no_species_in_guide: Izskatās, ka padomiem vēl neesi pievienojis nevienu sugu.
   lookup: Meklēt
   low: Zems
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Zemākā klasifikācija
   make_admin: Padarīt par administratoru
   #Header for main content section of the project detail page when editing custom project data.
@@ -3771,7 +3776,11 @@ lv:
   radius_value: "Rādiuss (m): %{radius}"
   random: Nejauši
   range: Periods
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikācija
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikācija
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4574,6 +4583,7 @@ lv:
     Lūdzu, aizpildi apraksta lauku, lai paskaidrotu, kā tika iegūta karte, un lai norādītu saites uz būtiskiem karodziņiem, taksonu sadalīšanu vai citu informāciju, kas paskaidro, kādēļ bija jāveic izmaiņas publicētajā IUCN Sarkanās grāmatas apgabalu kartē.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Uzzināt vairāk par taksonu izplatības apgabaliem
   taxon_range_updated_notice: Taksona izplatības apgabals veiksmīgi izlabots. Paies pāris minūtes līdz tas būs redzams kartēs.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksonu klasifikācija
   taxon_removed_from_list: Taksons izdzēsts no saraksta.
   taxon_scheme: Taksonu shēma

@@ -864,6 +864,7 @@ sk:
   everywhere: všade
   exact: Presný
   exact_date: Presný dátum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Presné poradie
   except: okrem
   exclusion_filters: Vylučovacie filtre
@@ -1058,6 +1059,8 @@ sk:
   hide_content: Skryť obsah
   hide_uncountable_species: Skryť nespočítateľné druhy
   high: Vysoká
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Najvyššie poradie
   highlights_and_stats_from_year_on_site: "Najvýznamnejšie udalosti a štatistiky z roku %{year} v %{site}"
   history: História
@@ -1359,6 +1362,8 @@ sk:
   looks_like_no_species_in_guide: Vyzerá to, že vo svojom sprievodcovi nemáte ešte žiadny druh.
   lookup: Vyhľadať
   low: Nízka
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Najnižšia hodnosť
   make_admin: Vytvoriť admina
   #Header for main content section of the project detail page when editing custom project data.
@@ -2264,7 +2269,11 @@ sk:
   radius_value: "Polomer (m): %{radius}"
   random: Náhodný
   range: Rozsah
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikácia
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikácia
   ranks:
     stateofmatter: Stav veci
@@ -2709,6 +2718,7 @@ sk:
   taxon_range: Rozsah taxónu
   taxon_range_created_notice: Rozsah taxónu bol úspešne vytvorený. Počkajte prosím pár minút, než sa objaví na mapách.
   taxon_range_updated_notice: Rozsah taxónu bol úspešne aktualizovaný. Počkajte prosím pár minut, než sa objaví na mapách.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Poradie taxónu
   taxon_removed_from_list: Taxón bol odstránený zo zoznamu.
   taxon_scheme: Plán taxónu

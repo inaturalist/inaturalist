@@ -1193,6 +1193,8 @@ cs:
     zahrnut do automatizovaných návrhů se štítkem "Vizuálně podobný".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Čekající
+  computer_vision_model_pending_desc2: |
+    Aktuální model počítačového vidění tento taxon nepoznává, takže zatímco může být zahrnut do automatických návrhů se štítkem "Očekáváno v okolí", nebude mít štítek "Vizuálně podobný". Přestože požadavky na zahrnutí do modelu se mění s každou změnou modelu, obecně je zahrnutí založeno na počtu pozorování, čili aby se zvýšila šance, že se tento taxon dostane do trénování příštího modelu, přidejte nebo identifikuje více pozorování tohoto taxonu.
   concept_status: Status konceptu
   confidential: Důvěrné
   configure: Konfigurovat
@@ -1926,6 +1928,7 @@ cs:
   everywhere: všude
   exact: Přesný
   exact_date: Přesné datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Přesné pořadí
   except: mimo
   exclude_places: Vyloučit místa
@@ -2139,6 +2142,9 @@ cs:
   generate_your_year_in_review_caps: VYGENEROVAT VÁŠ PŘEHLED ROKU %{year}
   generating_mobile_archive: "Generování mobilního archivu"
   Genus: Rod
+  geomodel_expected_nearby_label_is_derived: |
+    Štítek "Očekáváno v okolí" je odvozen od výstupů Geomodelu.
+    <a href="%{url}">O Geomodelu se dozvíte víc zde</a>.
   geoprivacy: Soukromí zeměpisné polohy
   geoprivacy_is_obscured: Soukromí zeměpisné polohy je nastaveno na přibližné
   geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zveřejnit jen přibližné souřadnice.
@@ -2227,6 +2233,14 @@ cs:
   #Verb, usually a button to hide an interface element
   hide: Skrýt
   hide_content: Skrýt obsah
+  hide_desc: |
+    Skrytý obsah sice nebude vidět veřejně, ale bude vidět, že je něco skryté.
+    Obsah také i po skrytí zůstane viditelný jednak pro kurátory a jednak
+    pro autora obsahu. Skryté identifikace se nezapočítávají při určování
+    Komunitního taxonu daného pozorování.
+  hide_desc_staff_can_unhide: |
+    Jakmile je obsah jednou skryt, znovu ho odkrýt můžou jen správci stránky,
+    proto tuto možnost používejte jen v případě jasného porušení Pravidel komunity.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
@@ -2234,6 +2248,8 @@ cs:
   hide_running_total: Skrýt Running Total
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Nejvyšší pořadí
   highlights_and_stats_from_year_on_site: "Nejvýznamnější události a statistiky z roku %{year} v %{site}"
   history: Historie
@@ -2431,6 +2447,7 @@ cs:
   journal: Deník
   journal_archives_for: Archivy deníků pro
   journal_post: Záznam v deníku
+  journal_post_: záznam v deníku
   journal_post_deleted: Záznam v deníku smazán.
   journal_posts: Deník
   jpg_png_or_gif: "JPG, PNG, nebo GIF"
@@ -2556,8 +2573,10 @@ cs:
     kannada: Kannadština
     kazakh: Kazachština
     korean: Korejština
+    kweyol: Antilská kreolština
     latvian: Lotyština
     lithuanian: Litevština
+    lozi: Lozi
     luxembourgish: Lucemburština
     malagasy: Malgaština
     malay: Malajština
@@ -2570,6 +2589,7 @@ cs:
     mongolian: Mongolština
     nahuatl: Nahuatl
     navajo: navažština
+    ndebele: Ndebele
     norwegian: norsky
     occitan: okcitánština
     ojibwe: Ojibwe
@@ -2583,27 +2603,35 @@ cs:
     santali: santálština
     scientific_names: Vědecké názvy
     serbian: Srbština
+    shona: Šona
     sinhala: Sinhálština
     slovak: Slovenština
     slovenian: Slovinština
+    sotho: Sotho
+    sotho_northern: Sotho (severní)
     spanish: španělsky
     swahili: Svahilština
+    swati: Siswati
     swedish: švédsky
     tagalog: Tagalog
     tahitian: tahitsky
     tamil: Tamilština
     thai: Thajština
     tokelauan: Tokelauan
+    totonaco: Totonaco
     tsonga: Tsongština
     tswana: Tswanština
     turkish: turecky
     u_s_d_a_symbol: Znak U.S.D.A.
     ukrainian: Ukrajinština
     uyghur: Ujghurština
+    venda: Venda
+    vermont_flora_codes: Kódy Flóry Vermontu
     vietnamese: Vietnamština
     visayan: Visayan
     waray_waray: Waray-Waray
     xhosa: Xhoština
+    zapoteco: Zapotečtina
     zulu: Zuluština
   less: Méně
   #Button show less text
@@ -2761,6 +2789,8 @@ cs:
   looks_like_no_species_in_guide: Vypadá to, že ve svém průvodci nemáte ještě žádný druh.
   lookup: Vyhledat
   low: nízká
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Nejnižší hodnost
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3566,8 +3596,12 @@ cs:
   photo_credits: Foto kredity
   photo_deleted: Fotka smazána
   photo_destroyed_because_it_was_deleted_from: "Fotka byla zničena, protože byla smazána z externí stránky nebo %{site_name} už nemá povolení k jejímu zobrazování"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Fotka skryta
   photo_licensing: Licence k fotce
   photo_type: Typ fotky
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Fotka odkryta
   photo_urls_repaired: URL fotky opravena
   photos_chosen_for_this_taxon: Fotky vybrané pro tento taxon
   photos_from: Fotky z
@@ -4214,7 +4248,11 @@ cs:
   radius_value: "Poloměr (m): %{radius}"
   random: Náhodně
   range: Rozsah
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikace
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikace
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -5093,6 +5131,7 @@ cs:
     V popisu vysvětlete, jak byla mapa odvozena, a uveďte odkazy na příslušné příznaky, taxonomické rozdělení nebo jiné diskuse o tom, proč bylo nutné změnit publikovaný rozsah Červeného seznamu IUCN.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Další informace o rozsahu taxonů
   taxon_range_updated_notice: Rozsah taxonu byl úspěšně aktualizován. Počkejte prosím pár minut, než se objeví na mapách.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Pořadí taxonu
   taxon_removed_from_list: Taxon byl odstraněn ze seznamu.
   taxon_scheme: Plán taxonu
@@ -6184,6 +6223,27 @@ cs:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Staňte se měsíčním podporovatelem iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: STAŇTE SE MĚSÍČNÍM PODPOROVATELEM INATURALIST
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist je jednou z největších světových komunit věnovaných
+          průzkumu biologické rozmanitosti. Děkujeme, že se na ní podílíte!</strong>
+          </p>
+          <p class="lead">
+          Chceme, aby byl iNaturalist dostupný zdarma, ale bez financování se neobejde.
+          Pokud máte iNaturalist rádi, zvažte prosím možnost stát se měsíční podporovatelem.
+          Pravidelné dary nám pomáhají zajistit, aby iNaturalist i nadále rozvíjel
+          svou infrastrukturu a zaměstnance. Jako podporovatel se také můžete
+          svou podporou pochlubit na svém uživatelském profilu, pokud chcete.
+          </p>
+          <p class="lead">
+          Vaše dary pomáhají podpořit iNaturalist i při rostoucí komunitě - od
+          vylepšování počítačového vidění a implementace nových funkcí až po financování
+          našich serverů a zaměstnanců. Pokud preferujete jednorázový dar, prosím <a href="%{donate_url}">klikněte zde</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist je nezávislá nezisková organizace se sídlem ve Spojených státech amerických,
+          podle 501(c)(3) osvobozená od daně z příjmu (Tax ID: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Děkujeme, že jste měsíční podporovatel!
         thank_you_for_being_a_monthly_supporter_caps: DĚKUJEME ŽE JSTE SE STAL MĚSÍČNÍM PODPO|RO|VATELEM
       temporarily_unavailable: |
@@ -6222,6 +6282,7 @@ cs:
           you_can_think: |
             Můžete si představit mapu Očekáváno v okolí jako odhad, jestli se daný druh
             vyskytuje někde uvnitř buňky mapy, anebo se tam vůbec nevyskytuje.
+          figure_alt_text: Geomodel vytváří štítky Očekáváno v okolí
         unthresholded_map:
           unthresholded_map: Predikce Geomodelu před prahováním
         range_comparison:
@@ -6244,15 +6305,33 @@ cs:
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Přesnost:
+          precision_description: V jak velké části mapy Očekáváno v okolí se taxon skutečně vyskytuje
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Pravdivě přítomné / (Pravdivě přítomné + Falešně přítomné) = %{precision}
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Senzitivita:
+          recall_description: Jak velká část mapy skutečného výskytu taxonu je označena Očekáváno v okolí
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Pravdivě přítomné / (Pravdivě přítomné + Falešně nepřítomné) = %{recall}
           #The average (harmonic mean) of Precision (fraction of the Expected
           #Nearby Map that are True Presences) and Recall (fraction of the
           #Taxon Range that are True Presences)
           f1_colon: |
             F1-skóre:
           f1_description: Harmonický průměr z přesnosti a senzitivity
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Pravdivě přítomné / (2 × Pravdivě přítomné + Falešně přítomné + Falešně nepřítomné) = %{f1}
           perfect_overlap: |
             Dokonalý překryv se projeví přesností, senzitivitou i F1-skórem rovnými 1.
             Žádný překryv se projeví přesností, senzitivitou i F1-skórem rovnými 0.
@@ -6953,6 +7032,8 @@ cs:
           Pokud odcházíte jen proto, že nechcete, aby kurátoři projektu viděli vaše soukromé souřadnice.
       edit:
         admins_must_be_existing_members: Administrátoři musí být existujícími členy projektu.
+        admins_can_only_be_added_after_creation: |
+          Administrátoři mohou být přidáni pouze po vytvoření projektu.
         aggregation_pending: Seskupení ve frontě
         new_place_desc_html: |
           Zkuste si projít
@@ -7077,6 +7158,8 @@ cs:
         do_you_need_features_from_traditional: |
           Potřebujete informace z tradičních projektů, jako je přístup k souřadnicím, nebo přidávání jednotlivých pozorování, která nemohou být automaticky
           filtrována?
+        do_you_need_features_from_traditional2: |
+          Potřebujete funkce z tradičních projektů, jako jsou vlastní pole pozorování, nebo přidávání jednotlivých pozorování, která nelze automaticky filtrovat?
         duplicate_project: Duplikovat projekt
         include_annotated_observations: |
           Zahrnout pouze pozorování anotované určitým atributem (např. životní stádium),
@@ -7268,6 +7351,16 @@ cs:
           Vytvořeno pomocí <a href="https://www.inaturalist.org"> iNaturalist </a>
           <a href="%{url}"> iNaturalist síť </a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Přidáno obojí
+        added_only_identifications: Přidány pouze identifikace
+        added_only_observations: Přidána pouze pozorování
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Široké dopady
+        broader_impacts_desc: |
+          Několik externích partnerů pravidelně importuje pozorování iNaturalist kvůli 
+          podpoře vědy a ochraně přírody. Vaše pozorování, identifikace a možnosti otevřené licence umožňují těmto organizacím poskytovat užitečné informace o biologické rozmanitosti lidem, kteří je potřebují po celém světě.
         compare_desc: |
           Jak se tento rok porovnával s vašimi předchozími roky? Se třemi roky
           nebo více můžeme začít srovnávat ukazatele roční aktivity.
@@ -8057,6 +8150,7 @@ cs:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Žádost
       Photo: Fotka
+      Post: Záznam v deníku
       TaxonLink: Odkazy taxonu
     attributes:
       announcement:

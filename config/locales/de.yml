@@ -1697,6 +1697,7 @@ de:
   everywhere: überall
   exact: Genau
   exact_date: Genaues Datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Genauer Rang
   except: außer
   exclude_places: Gebiete ausschließen
@@ -1997,6 +1998,8 @@ de:
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Nicht-zählbare Arten verstecken
   high: Obergrenze
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Höchster Rang
   highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} in %{site}"
   history: Historie
@@ -2514,6 +2517,8 @@ de:
   looks_like_no_species_in_guide: Sieht aus, als hättest du noch keine Art in deinem Guide.
   lookup: Nachschlagen
   low: Untergrenze
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Niedrigster Rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3952,7 +3957,11 @@ de:
   radius_value: "Radius (m): %{radius}"
   random: Zufällig
   range: Zeitraum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4234,6 +4243,14 @@ de:
   rotate_left: Nach links drehen
   rotate_right: Nach rechts drehen
   row_singular_or_plural: Zeile(n)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Layout von rechts nach links testen? Es kann auch der test=rtl URL-Parameter verwendet werden. Beachte, dass nicht alle Seiten in das "Rechts nach Links"-Layout konvertiert wurden
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: '"Rechts-nach-links"-Layout-Test beigetreten'
   rules_and_formatting: "Regeln & Formatierung"
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
@@ -4777,6 +4794,7 @@ de:
     Bitte nutze das Feld "Bemerkungen" um zu beschreiben, worauf die Karte des Verbreitungsgebietes basiert und verlinken alle relevanten Meldungen, taxonomischen Splits und andere Diskussionen, die zeigen, warum das Verbreitungsgebiet basierend auf der Roten Liste der IUCN geändert werden musste.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Erfahre mehr über Verbreitungsgebiete
   taxon_range_updated_notice: Verbreitungsgebiet des Taxons wurde erfolgreich aktualisiert. Bitte warte ein paar Minuten, damit die Änderungen auf den Karten sichtbar werden.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taxonränge
   taxon_removed_from_list: Taxon aus der Liste entfernt.
   taxon_scheme: Taxon-Vorlage
@@ -5234,8 +5252,8 @@ de:
   #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_an_identification_html: "Bestimmung hinzugefügt von: %{user}"
-  user_added_an_observation_field_html: '%{user} hat einen Wert für "%{field_name}" zu einer Beobachtung von %{owner} hinzugefügt'
-  user_added_an_observation_field_value_html: "%{user} hat einen Wert in einem Beobachtungsfeld hinzugefügt"
+  user_added_an_observation_field_html: 'Von %{user} wurde ein Wert für "%{field_name}" zu einer Beobachtung von %{owner} hinzugefügt'
+  user_added_an_observation_field_value_html: "Ein Wert in einem Beobachtungsfeld wurde von %{user} hinzugefügt"
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
   #@gender operates on %{x}
   user_added_an_x: "%{user}: %{x} hinzugefügt"

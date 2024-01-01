@@ -1014,7 +1014,11 @@ mi:
   radius_value: "Pūtoro (m): %{radius}"
   random: Matapōkere
   range: Ine whānui
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Kapa
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Kapa
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)

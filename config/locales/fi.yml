@@ -1666,6 +1666,7 @@ fi:
   everywhere: kaikkialla
   exact: Tarkka
   exact_date: Tarkka päiväys
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tarkka arvo
   except: paitsi
   exclude_places: Rajaa pois paikat
@@ -1952,6 +1953,8 @@ fi:
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Korkein arvo
   highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   history: Historia
@@ -2407,6 +2410,8 @@ fi:
   looks_like_no_species_in_guide: Näyttää siltä, että sinulla ei ole vielä yhtään lajia oppaassasi.
   lookup: Hae
   low: Alhainen
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Alhaisin arvo
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostat
@@ -3714,7 +3719,11 @@ fi:
   radius_value: "Säde (m): %{radius}"
   random: Satunnainen
   range: Väli
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Sija
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Sija
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4384,6 +4393,7 @@ fi:
   taxon_range_guidelines_please_provide_details: |
     Käyttäkää kuvausta selittääksenne, miten kartta on johdettu, ja linkittäkää kaikki merkitykselliset liput, taksonomiset jaot, tai muut keskustelut, miksi julkaistu IUCN Red List alue tarvitsee muutoksen.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Lue lisää taksonin alueista
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksoniluokat
   taxon_removed_from_list: Taksoni poistettu luettelosta.
   taxon_scheme: Taksonirakenne

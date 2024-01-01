@@ -632,6 +632,7 @@ id:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Apakah Anda yakin Anda ingin menghapus pengamatan ini dari %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Apakah Anda yakin ingin menghapus takson ini dari daftar centang %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Apakah Anda yakin ingin menandai pengguna ini sebagai spammer?
   associated_observations: Pengamatan terkait
   associated_taxa: Taksa yang terkait
   attention: Perhatian
@@ -1700,6 +1701,7 @@ id:
   everywhere: di mana saja
   exact: Pasti
   exact_date: Tanggal Pasti
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tingkat Pasti
   except: kecuali
   exclude_places: Tempat Yang Dikecualikan
@@ -1910,6 +1912,9 @@ id:
   generate_your_year_in_review_caps: BUAT ULASAN TAHUN %{year} KAMU
   generating_mobile_archive: "Buat arsip ponsel"
   Genus: Genus
+  geomodel_expected_nearby_label_is_derived: |
+    Label "Perkiraan Terdekat" berasal dari Geomodel.
+    <a href="%{url}">Pelajari lebih lanjut tentang Geomodel di sini</a>.
   geoprivacy: Geoprivasi
   geoprivacy_is_obscured: Geoprivasi dikaburkan
   geoprivacy_is_obscured_desc: Pengamat telah memilih untuk mengkaburkan koordinatnya.
@@ -2006,6 +2011,8 @@ id:
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
   high: Tinggi
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Tingkat tertinggi
   highlights_and_stats_from_year_on_site: "Sorotan dan statistik pada %{year} di %{site}"
   history: Sejarah
@@ -2196,6 +2203,7 @@ id:
   journal: Jurnal
   journal_archives_for: Arsip jurnal untuk
   journal_post: Posting jurnal
+  journal_post_: posting jurnal
   journal_post_deleted: Posting jurnal dihapus.
   journal_posts: Posting Jurnal
   jpg_png_or_gif: "JPG, PNG, atau GIF"
@@ -2538,6 +2546,8 @@ id:
   looks_like_no_species_in_guide: Sepertinya Anda belum memiliki spesies apapun pada panduan Anda.
   lookup: Cari
   low: Rendah
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: TIngkat Terendah
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -3972,7 +3982,11 @@ id:
   radius_value: "Radius (m): %{radius}"
   random: Acak
   range: Jangkauan
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Tingkat
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Tingkat
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4248,6 +4262,14 @@ id:
   rotate_left: Putar ke Kiri
   rotate_right: Putar ke Kanan
   row_singular_or_plural: Baris
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Uji tampilan kanan ke kiri? Anda juga bisa menggunakan param URL test=rtl. Harap diperhatikan bahwa masih ada beberapa halaman yang belum dikonversi ke tampilan kanan ke kiri
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Bergabung uji tampilan kanan ke kiri
   rules_and_formatting: "Aturan & Format"
   rules_for_adding_observations: Aturan untuk Penambahan Pengamatan
   rules_for_becoming_a_member: Aturan untuk Menjadi Anggota
@@ -4761,6 +4783,7 @@ id:
     Harap menggunakan kolom deskripsi untuk menjelaskan dari mana petanya berasal dan menghubungkan tanda-tanda yang relevan, pemisahan taksonomi, dan diskusi-diskusi lainnya tentang mengapa jangkauan Daftar Merah IUCN yang diterbitkan memerlukan perubahan.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Pelajari lebih lanjut tentang jangkauan takson
   taxon_range_updated_notice: Jangkauan takson sukses diperbarui. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Tingkat Takson
   taxon_removed_from_list: Takson dihapus dari daftar.
   taxon_scheme: Skema takson
@@ -5784,6 +5807,34 @@ id:
             Jika ya, silakan membaca <a href="%{url}">Panduan Guru</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
     donate:
       donate_short_desc: "Donasi sekarang untuk memberikan dukungan!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Dapatkan hadiah <u>dua</u> atau <u>tiga</u> kali lipat untuk Anda! Terima kasih kepada
+        Gordon and Betty Moore Foundation, semua donasi bulanan, kuartalan, dan
+        donasi berulang tahunan akan dilipatgandakan dan donasi satu kali akan
+        dua kali lipat hingga 31 Desember 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist adalah salah satu komunitas terbesar di dunia yang didedikasikan untuk
+        keanekaragaman hayati. Terima kasih telah menjadi bagian darinya!
+        </p>
+        <p class="lead">
+        Jika Anda percaya pada kekuatan komunitas global pecinta alam ini
+        pecinta alam global ini untuk berbagi pengetahuan dan menghasilkan keanekaragaman hayati yang tak tergantikan
+        keanekaragaman hayati yang tak ternilai harganya, mohon pertimbangkan untuk memberikan hadiah satu kali atau berulang secara online, atau
+        jelajahi <a href="https://www.inaturalist.org/pages/giving">cara lain
+        cara lain untuk memberi</a>.
+        </p>
+        <p class="lead">
+        Donasi Anda sangat penting bagi iNaturalist seiring dengan pertumbuhan komunitas kami, mulai dari
+        meningkatkan teknologi kami untuk mengidentifikasi spesies secara akurat dan
+        mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami.
+        </p>
+        <p class="text-muted">
+        iNaturalist adalah organisasi nirlaba 501(c)(3) independen, bebas pajak, dan nirlaba
+        nirlaba, bebas pajak, dan berbasis di Amerika Serikat (Tax ID:
+        92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
@@ -5801,6 +5852,37 @@ id:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: MENJADI PENDUKUNG BULANAN INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Dapatkan hadiah <u>tiga kali lipat</u> unuk Anda! Terima kasih kepada Gordon dan Betty
+          Moore Foundation, semua donasi Pendukung Bulanan akan
+          dilipatgandakan tiga kali lipat hingga 31 Desember 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist adalah salah satu komunitas terbesar di dunia yang didedikasikan untuk
+          mengeksplorasi keanekaragaman hayati. Terima kasih telah menjadi bagian darinya!
+          </p>
+          <p class="lead">
+          Jika Anda menyukai iNaturalist, mohon pertimbangkan untuk menjadi
+          Pendukung Bulanan. Hadiah berulang membantu memastikan bahwa iNaturalist dapat
+          terus meningkatkan infrastruktur dan staf kami dengan menyediakan
+          pendapatan yang dapat diprediksi. Dan hadiah bulanan Anda memiliki dampak tiga kali lipat!
+          Anda juga dapat memilih untuk menampilkan status Pendukung Bulanan Anda di
+          Anda di profil pengguna.
+          </p>
+          <p class="lead">
+          Donasi amal Anda membantu mendukung iNaturalist sebagai
+          komunitas tumbuh, dari memajukan visi komputer dan mengimplementasikan
+          fitur-fitur baru hingga mendukung server dan staf kami. Anda juga dapat
+          memberikan <a href="%{donate_url}">donasi satu kali</a> dan jelajahi
+          <a href="https://www.inaturalist.org/pages/giving">cara lain untuk
+          berdonasi</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist adalah organisasi independen 501(c)(3), bebas pajak,
+          organisasi nirlaba yang berbasis di Amerika Serikat
+          Amerika Serikat (ID Pajak: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
@@ -5828,34 +5910,103 @@ id:
       explain:
         geomodel_predictions_of_taxon: |
           Prediksi Geomodel %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodel membuat prediksi tentang di mana spesies muncul dan di mana mereka tidak ada.
+          Kami menggunakan Geomodel untuk menerapkan label "Diperkirakan Ada di Sekitar" bersama dengan saran dan untuk membobotkan saran-saran ini berdasarkan lokasi pengamatan.
+        the_geo_model_is_trained: |
+          Seperti Model Visi Komputer, Geomodel dilatih berdasarkan pengamatan iNaturalis
+          untuk set spesies yang sama dengan sekitar lebih dari 100 foto. Geomodel tidak
+          membuat prediksi yang sempurna. Anda dapat membaca lebih lanjut tentang bagaimana Geomodel dibuat
+          <a href="%{url}">di sini</a>.
         nearby_map:
           expected_nearby_map: Peta Terlihat Di Sekitar
+          we_use_this_map: |
+            Kami menggunakan peta ini untuk menerapkan label Terdekat yang Diharapkan pada saran berdasarkan
+            lokasi pengamatan.
+          for_example: |
+            Sebagai contoh, pengamatan seekor kadal di pusat Amerika Serikat mungkin
+            memiliki label Diharapkan Terdekat yang diterapkan pada saran <i>Sceloporus consobrinus</i>
+            tetapi tidak untuk <i>Sceloporus occidentalis</i> berdasarkan Peta Ekspektasi Terdekat masing-masing.
+          you_can_think: |
+            Anda dapat menganggap Peta Terdekat yang Diharapkan sebagai perkiraan apakah spesies
+            ada di suatu tempat di dalam sel kisi atau sama sekali tidak ada.
+          figure_alt_text: Geomodel menerapkan label Ekspektasi Terdekat
         unthresholded_map:
           unthresholded_map: Peta Tanpa Ambang
+          we_use_the_unthresholded_map: |
+            Kami menggunakan Peta Tanpa Ambang Batas untuk memberi bobot skor visi komputer berdasarkan lokasi saat
+            menawarkan saran.
+          for_example: |
+            Sebagai contoh, pengamatan terhadap seekor kadal di pusat Amerika Serikat mungkin
+            memiliki saran dari <i>Sceloporus consobrinus</i> yang lebih berbobot daripada saran
+            dari <i>Sceloporus occidentalis</i> berdasarkan perbandingan Peta Tanpa Ambang Batas, meskipun
+            secara visual mirip.
+          you_can_think: |
+            Anda dapat menganggap Peta Tanpa Ambang Batas sebagai probabilitas relatif bahwa suatu spesies
+            terjadi dalam sel kisi.
+          figure_alt_text: Geomodel membobotkan hasil Visi Komputer
         range_comparison:
           expected_nearby_vs_taxon_range: Terlihat Di Sekitar vs Jangkauan Takson
+          this_map_shows: |
+            Peta ini menunjukkan Kisaran Takson untuk spesies ini yang tumpang tindih dengan Peta Terdekat yang Diharapkan
+            yang kami gunakan untuk mengevaluasi Geomodel.
+          this_gridded_version: |
+            Versi kisi-kisi dari Kisaran Takson ini adalah cuplikan yang diambil ketika model
+            dilatih dan di-grid pada resolusi yang sama dengan Peta Terdekat yang Diharapkan. Kami hanya
+            menggunakan Rentang Takson di mana setidaknya 90% dari data pelatihan untuk spesies tersebut
+            berada di dalam Rentang Takson untuk mengontrol kesalahan dalam Rentang Takson.
+          by_combining: |
+            Dengan menggabungkan Peta Terdekat yang Diharapkan dengan Jangkauan Takson, kami menghitung statistik
+            untuk memperkirakan seberapa baik kinerja Geomodel.
+          figure_alt_text: Peta Terdekat yang Diharapkan dan Jangkauan Takson dibandingkan
+          combining_these_maps_produces: |
+            Menggabungkan peta-peta ini menghasilkan 3 jenis sel:
           #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Keberadaan Benar:
+          true_presences_definition: Area di mana Peta Terdekat yang Diharapkan dan Jangkauan Takson memprediksi bahwa takson tersebut ada
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Keberadaan Salah:
+          false_presences_definition: Area di mana hanya Peta Terdekat yang memprediksi keberadaan takson
           #Areas where only the Taxon Range is present
           false_absences_colon: |
             Ketidakberadaan Salah:
+          false_absences_definition: Area yang hanya memiliki Rentang Takson
           evaluation_statistics_for_taxon: Statistik evaluasi untuk %{taxon}
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Precision:
+          precision_description: Fraksi Peta Terdekat yang Diharapkan yang Benar-Benar Ada
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Kehadiran Benar / (Kehadiran Benar + Kehadiran Salah) = %{precision}
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Recall:
+          recall_description: Fraksi dari Rentang Takson yang Benar-Benar Ada
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Kehadiran Benar / (Kehadiran Benar + Ketidakhadiran Salah) = %{recall}
           #The average (harmonic mean) of Precision (fraction of the Expected
           #Nearby Map that are True Presences) and Recall (fraction of the
           #Taxon Range that are True Presences)
           f1_colon: |
             F1:
           f1_description: Rata-rata (harmonik) Precision dan Recall
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Kehadiran Benar / (2 × Kehadiran Benar + Kehadiran Salah + Ketidakhadiran Salah) = %{f1}
+          perfect_overlap: |
+            Tumpang tindih sempurna akan dievaluasi dengan Precision, Recall, dan F1 sebesar 1. Tidak ada tumpang tindih
+            akan dievaluasi dengan Precision, Recall, dan F1 sebesar 0.
     guides:
       index:
         deprecated_banner: |
@@ -7520,6 +7671,7 @@ id:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikasi
       Photo: Foto
+      Post: Pos Jurnal
       TaxonLink: Tautan Takson
     attributes:
       announcement:

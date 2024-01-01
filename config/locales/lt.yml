@@ -1537,6 +1537,7 @@ lt:
   everywhere: visur
   exact: Tikslus
   exact_date: Tiksli data
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tikslus rangas
   except: išskyrus
   exclude_places: Neįtraukti vietų
@@ -1794,6 +1795,8 @@ lt:
   hide_content: Paslėpti turinį
   hide_uncountable_species: Paslėpti nepriskaičiuojamas rūšis
   high: Aukštas
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Aukščiausias rangas
   highlights_and_stats_from_year_on_site: "Svarbiausi %{site} momentai ir statistika iš %{year} metų"
   history: Istorija
@@ -2164,6 +2167,8 @@ lt:
   looks_like_no_species_in_guide: Panašu, kad savo vadove dar neturite rūšių.
   lookup: Ieškoti
   low: Žemas
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Žemiausias rangas
   make_admin: Padaryti administratoriumi
   #Header for main content section of the project detail page when editing custom project data.
@@ -3204,7 +3209,11 @@ lt:
   radius_value: "Spindulys (m): %{radius}"
   random: Atsitiktinis
   range: Ribos
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rangas
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rangas
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)

@@ -1404,6 +1404,7 @@ kn:
   everywhere: ಎಲ್ಲೆಲ್ಲಿಯೂ
   exact: ನಿಖರವಾದ
   exact_date: ನಿಖರವಾದ ದಿನಾಂಕ
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: ಕರಾರುವಾಕ್ಕಾದ ಶ್ರೇಣಿ
   except: ಹೊರತು
   exclude_places: ಸ್ಥಳಗಳನ್ನು ಹೊರತುಪಡಿಸಿ
@@ -1607,6 +1608,8 @@ kn:
   hide_running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ
   hide_uncountable_species: ಎಣಿಸಲಾಗದ ಪ್ರಭೇದಗಳನ್ನು ಮರೆಮಾಡಿ
   high: ಉನ್ನತ
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: ಅತ್ಯುನ್ನತ ಶ್ರೇಣಿ
   highlights_and_stats_from_year_on_site: "%{year} ನಲ್ಲಿ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   history: ಇತಿಹಾಸ
@@ -2032,6 +2035,8 @@ kn:
   looks_like_no_species_in_guide: ನಿಮ್ಮ ಕೈಪಿಡಿಯಲ್ಲಿ ಇನ್ನೂ ಯಾವುದೇ ಪ್ರಭೇಧ ಇರುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.
   lookup: ಹುಡುಕಿ
   low: ಕೆಳಹಂತ
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: ಕೆಳಹಂತದ ದರ್ಜೆ
   make_admin: ನಿರ್ವಾಹಕರನ್ನಾಗಿ ಮಾಡಿ
   #Header for main content section of the project detail page when editing custom project data.
@@ -3267,7 +3272,11 @@ kn:
   radius_km: ತ್ರಿಜ್ಯ (km)
   radius_value: "ತ್ರಿಜ್ಯ (m):%{radius}"
   range: ವ್ಯಾಪ್ತಿ
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ಶ್ರೇಣಿ
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: ಶ್ರೇಣಿ
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3973,6 +3982,7 @@ kn:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: ಈ ಜೀವಿವರ್ಗ IUCN ಕೆಂಪುಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ
   taxon_range_guidelines_learn_more_about_taxon_ranges: ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
   taxon_range_updated_notice: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ. ಅದು ಭೂಪಟದ ಮೇಲೆ ಪ್ರದರ್ಶಿತವಾಗಲು ದಯವಿಟ್ಟು ಕೆಲವು ನಿಮಿಷಗಳ ಸಮಯ ನೀಡಿ.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಗಳು
   taxon_removed_from_list: ಪಟ್ಟಿಯಿಂದ ಜೀವಿವರ್ಗವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.
   taxon_scheme: ಜೀವಿವರ್ಗದ ಕಾರ್ಯಯೋಜನೆ

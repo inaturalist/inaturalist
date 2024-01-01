@@ -411,6 +411,8 @@ nl:
   added_by: Toegevoegd door
   added_by_user_on_date_html: "Toegevoegd door %{user} op %{date}"
   added_on_datetime: "Toegevoegd op %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Toegevoegde rol
   added_to_favorites_html: |
     Toegevoegd aan <a href="%{url}">favorieten</a>
   adding: "Bezig met toevoegen..."
@@ -1794,6 +1796,7 @@ nl:
   everywhere: overal
   exact: Exact
   exact_date: Exacte datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exacte rang
   except: met uitzondering van
   exclude_places: Exclusief de plaatsen
@@ -2116,6 +2119,8 @@ nl:
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
   high: Hoog
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Hoogste rang
   highlights_and_stats_from_year_on_site: "Hoogtepunten en statistieken van %{year} op %{site}"
   history: Geschiedenis
@@ -2638,6 +2643,8 @@ nl:
   looks_like_no_species_in_guide: Zo te zien heb er nog geen soorten in je gids.
   lookup: Opzoeken
   low: Laag
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Laagste rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4103,7 +4110,11 @@ nl:
   radius_value: "Straal (m): %{radius}"
   random: Willekeurig
   range: Periode
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4329,6 +4340,8 @@ nl:
   remove_tags: Labels verwijderen
   removed: Verwijderd
   removed_project_user: Projectgebruiker verwijderd
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rol verwijderd
   removing: "Bezig met verwijderen..."
   reorder_by_taxonomy: Herschik volgens taxonomie
   repair_broken_urls: Repareer gebroken URLs
@@ -4951,6 +4964,7 @@ nl:
     Gebruik de beschrijving om uit te leggen hoe de kaart is afgeleid en link naar alle relevante vlaggen, taxonomische splitsingen of andere discussies of waarom de gepubliceerde IUCN Rode Lijst verspreiding moet worden gewijzigd.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Meer informatie over de verspreiding van het taxon
   taxon_range_updated_notice: De verspreiding van het taxon is succesvol bijgewerkt. Wacht een paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taxon Rangen
   taxon_removed_from_list: Taxon uit lijst verwijderd.
   taxon_scheme: Taxonschema

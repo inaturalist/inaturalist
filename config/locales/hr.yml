@@ -1374,7 +1374,11 @@ hr:
   quality_grade: Ocjena kvalitete
   quality_grade_: Ocjena kvalitete
   quality_grade_colon: "Ocjena kvalitete:"
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)

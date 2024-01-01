@@ -883,6 +883,7 @@ sq:
   everywhere: gjithkund
   exact: I/E saktë
   exact_date: Data e saktë
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Katergoria e saktë
   existing_flags: Flamujt ekzistues
   exit_full_screen: "Dil nga ekrani i plotë"
@@ -1052,6 +1053,8 @@ sq:
   hi_user: "Përshëndetje %{user}"
   hide_uncountable_species: Fsheh speciet e pallogaritshme
   high: I lartë
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Grada më të lartë
   highlights_and_stats_from_year_on_site: "Pikat kryesore dhe statistikat nga %{year} në %{site}"
   history: Historiku
@@ -1340,6 +1343,8 @@ sq:
   looks_like_no_species_in_guide: Duket sikur nuk keni një specie në udhërrëfyesin ruaj.
   lookup: Kërko
   low: ulët
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Niveli më i ulët
   make_admin: Bëje admin
   #Header for main content section of the project detail page when editing custom project data.
@@ -2086,7 +2091,11 @@ sq:
   queued: I rradhitur
   query: Pyetje
   range: Rangu
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Renditja
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Renditja
   ranks:
     kingdom: mbretëri

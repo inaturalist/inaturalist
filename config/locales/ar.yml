@@ -917,6 +917,7 @@ ar:
   everywhere: في كل مكان
   exact: دقيق
   exact_date: التاريخ المحدد
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: الترتيب الدقيق
   except: إلا
   exclusion_filters: مرشحات الاستبعاد
@@ -1122,6 +1123,8 @@ ar:
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: أعلى رتبة
   highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{year} في %{site}"
   history: التاريخ
@@ -1463,6 +1466,8 @@ ar:
   looks_like_no_species_in_guide: يبدو أنه ليست لديك أنواع في دليلك حتى الآن.
   lookup: ابحث عن
   low: منخفضة
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: أدنى رتبة
   make_admin: اصنع إداري
   #Header for main content section of the project detail page when editing custom project data.
@@ -2514,7 +2519,11 @@ ar:
   radius_value: "نصف القطر (م): %{radius}"
   random: عشوائي
   range: النطاق
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: المرتبة
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: المرتبة
   ranks:
     stateofmatter: حالة من المسألة
@@ -3009,6 +3018,7 @@ ar:
   taxon_range: نطاق الأصنوفة
   taxon_range_created_notice: تم إنشاء نطاق الأصنوفة بنجاح، يُرجَى الانتظار لبضع دقائق ليظهر على الخرائط.
   taxon_range_updated_notice: تم تحديث نطاق الأصنوفة بنجاح، يُرجَى الانتظار لبضع دقائق لتظهر التغييرات على الخرائط.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: رتب الأصنوفة
   taxon_removed_from_list: أُزِيلت الأصنوفة من القائمة
   taxon_scheme: مخطط الأصنوفة

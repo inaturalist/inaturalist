@@ -1433,6 +1433,7 @@ sr:
   everywhere: svuda
   exact: Tačan
   exact_date: Tačan datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Precizan rang
   except: osim
   exclude_places: Izostavi mesta
@@ -1651,6 +1652,8 @@ sr:
   #have no annotation
   hide_no_annotation: Sakrij "Bez pribeleške"
   high: Viši
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Najviši rank
   history: Istorija
   home: Početna
@@ -2056,6 +2059,8 @@ sr:
   longitude_in_decimal: 'Geografska dužina u decimalnom prikazu, npr. -122.123'
   longitude_value: "Geografska dužina: %{longitude}"
   low: Niži
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Najniži rang
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Glavni sadržaj
@@ -3148,7 +3153,11 @@ sr:
   radius_value: "Poluprečnik (m): %{radius}"
   random: Nasumično
   range: Opseg
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3817,6 +3826,7 @@ sr:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ovaj takson nije na IUCN crvenoj listi
   taxon_range_guidelines_learn_more_about_taxon_ranges: Saznaj više o rasprostranjenosti taksona
   taxon_range_updated_notice: Rasprostranjenost taksona je uspešno izmenjena. Sačekaj par minuta da bi se promene pojavile na mapi.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Rangovi taksona
   taxon_removed_from_list: Takson uklonjen sa liste.
   taxon_scheme: Taksonomska šema

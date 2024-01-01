@@ -1,4 +1,9 @@
 ro:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} modificare"
+    few: "%{count} modificări"
+    other: "%{count} modificări"
   x_journal_posts_html:
     one: '<span class="număr">%{count}</span> postare jurnal'
     few: '<span class="număr">%{count}</span> postări jurnal'
@@ -7,6 +12,7 @@ ro:
     one: "<span class='count'>%{count}</span> taxon observat"
     few: "<span class='count'>%{count}</span>taxoni observați"
     other: "<span class='count'>%{count}</span> taxon observat"
+  _100_day_trends: Tendințe pe 100 de zile
   _percent_ID_d: "% ID"
   a_community_for_naturalist: O comunitate pentru naturaliști
   a_default_taxon_name_will_automatically_created: |
@@ -19,7 +25,69 @@ ro:
   a_to_z: "A la Z"
   about: Despre
   about_charts: Despre Diagrame
+  about_complete_taxa: Despre taxoni compleți
+  about_conservation_status: Despre starea de conservare
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Despre mijloacele de stabilire
+  about_license_options: Despre opțiunile de licențe
+  about_licenses: Despre licențe
+  #Header for a section describing taxon names
+  about_names: Despre nume
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Despre %{place}"
   about_places: Despre Locuri
+  about_the_network: Despre rețea
+  about_this_bioblitz: Despre acest bioblitz
+  about_this_map: Despre această hartă
+  about_this_project: Despre acest proiect
+  about_trusting_projects: Despre încrederea în proiecte
+  about_trusting_projects_options_any: Toate observațiile tale în acest proiect
+  account: Cont
+  account_creation: Cont creat
+  account_settings: Setări cont
+  accept_community_identifications: Acceptă identificările comunității
+  accuracy: Precizie
+  accuracy_meters: Precizie (metri)
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: Acțiune
+  actions: Acțiuni
+  active: Activ
+  #Status of a complete set that is available for use
+  active_complete_set_status: Activ
+  active_users: Utilizatori activi
+  activity: Activitate
+  add: Adaugă
+  add_a_comment: Adaugă un comentariu
+  add_a_field: Adaugă un câmp
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Adaugă un link
+  add_a_note: Adaugă o notă
+  add_a_single_observation: Adaugă o singură observație.
+  add_an_assessment: Adaugă o evaluare
+  add_an_identification: Adaugă o identificare
+  add_an_observation: Adaugă o observație
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Adaugă text îngroșat
+  add_comment: Adaugă un comentariu
+  add_link: Adaugă un link
+  add_id: Adaugă ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Adaugă text italic
+  add_new_rule: Adaugă o regulă nouă
+  add_new_source: "Adaugă sursă nouă..."
+  #Prompt to add a new journal post
+  add_one: Adaugă unul!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Adaugă una acum
+  add_place: Adaugă locație
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Adaugă relație'
+  #As in a Guide Section
+  add_section: Adaugă secțiune
   agree_with_observation_taxon: De acord cu taxonul observat
   number:
     format:

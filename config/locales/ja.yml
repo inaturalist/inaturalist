@@ -1687,6 +1687,7 @@ ja:
   everywhere: すべての場所
   exact: 完全一致
   exact_date: 正確な日付
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 階級指定
   except: を除いて
   exclude_places: 場所を除く
@@ -1990,6 +1991,8 @@ ja:
   hide_running_total: 現在の総計を非表示
   hide_uncountable_species: 数えられない種を非表示
   high: 高
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: 最高位階級
   highlights_and_stats_from_year_on_site: "%{year} の%{site} のハイライトと統計"
   history: 履歴
@@ -2511,6 +2514,8 @@ ja:
   looks_like_no_species_in_guide: ガイドにはまだ種が入っていないようです
   lookup: 調べる
   low: 低
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: 最下位階級
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat.org
@@ -3811,7 +3816,11 @@ ja:
   radius_value: "半径 (m): %{radius}"
   random: ランダム
   range: 分布・生息区域
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 階級
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: 順位
   ranks:
     stateofmatter: 物質の状態
@@ -4513,6 +4522,7 @@ ja:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: 分類群のランク
   taxon_removed_from_list: リストから分類群が削除されました
   taxon_search: 分類群検索

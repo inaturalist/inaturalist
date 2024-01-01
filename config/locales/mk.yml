@@ -648,6 +648,7 @@ mk:
   everyone: сите
   everyone_journal_posts: Сечии дневнички објави
   everywhere: насекаде
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
   explore: Истражете
@@ -731,6 +732,8 @@ mk:
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Највисок ранг
   home: Почетна
   icon_size: Големина на иконата
@@ -980,6 +983,8 @@ mk:
   look_up_name: "Побарај го името"
   looks_like_neither_have!: Изгледа обете немаат никакви таксони!
   lookup: Побарај
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Најнизок ранг
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Главна содржина
@@ -1361,7 +1366,11 @@ mk:
   publish: Објави
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)

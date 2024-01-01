@@ -1794,6 +1794,7 @@ pt-BR:
   everywhere: todos lugares
   exact: Exato
   exact_date: Data exata
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Classificação exata
   except: exceto
   exclude_places: Excluir Locais
@@ -2120,6 +2121,8 @@ pt-BR:
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alta
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Categoria mais alta
   highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{year} em %{site}"
   history: Histórico
@@ -2656,6 +2659,8 @@ pt-BR:
   looks_like_no_species_in_guide: Aparentemente você não tem nenhuma espécie nas suas guias ainda.
   lookup: Procurar
   low: Baixa
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Classificação mais baixa
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -4120,7 +4125,11 @@ pt-BR:
   radius_value: "Raio (m): %{radius}"
   random: Aleatório
   range: Área de Distribuição
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Classificação
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Classificação
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4404,6 +4413,15 @@ pt-BR:
   rotate_left: Girar a esquerda
   rotate_right: Girar a direita
   row_singular_or_plural: Linha(s)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Testar o arranjo direita-esquerda? Você também pode usar o parâmetro URL test=rtl. Observe
+    que nem todas as páginas foram convertidas para o arranjo da direita para a esquerda
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Entrou no teste de arranjo direita para esquerda
   rules_and_formatting: "Regras & Formatação"
   rules_for_adding_observations: Regras para Adicionar Observações
   rules_for_becoming_a_member: Regras para se tornar um membro
@@ -4983,6 +5001,7 @@ pt-BR:
     Por favor utilize a descrição para explicar como o mapa foi produzido, referenciando sinalizações, divisões taxonômicas, ou outras questões indicativas de que o mapa de distribuição da Lista Vermelha da IUCN precisa ser alterado.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Mais informações sobre mapas de distribuição de táxon
   taxon_range_updated_notice: A área de distribuição do táxon foi atualizada com sucesso. Por favor aguarde alguns minutos até que as mudanças seja carregadas nos mapas.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Linhas de táxon
   taxon_removed_from_list: Táxon excluído da lista
   taxon_scheme: Esquema de taxonomía
@@ -6046,10 +6065,53 @@ pt-BR:
         <p class="text-muted">
         iNaturalist é uma organização baseada nos Estados Unidos da América, independente, sem fins lucrativos e isenta de impostos, atendendo 501(c)(3) (Tax ID:92-1296468).
         </p>
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
+        </p>
+        <p class="lead">
+        Se você acredita no poder desta comunidade global de amantes da natureza no compartilhamento de conhecimento e geração de dados insubstituíveis sobre a biodiversidade, por favor considere uma doação única ou recorrente online, ou veja <a
+        href="https://www.inaturalist.org/pages/giving">outras maneiras de doar</a>.
+        </p>
+        <p class="lead">
+        Sua doação ajuda a apoiar o iNaturalist a medida que a comunidade cresce, a melhorar a visão computacional e implementar novos recursos e até apoiar nossos servidores e equipe.
+        </p>
+        <p class="text-muted">
+        O iNaturalist é uma organização 501(c)(3), isenta de impostos e sem fins lucrativos sediada nos Estados Unidos da América (Tax ID: 92-1296468).
+        </p>
       post_donate_social_media_text: Eu apoio o iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Torne-se um apoiador mensal do iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: TORNE-SE UM CONTRIBUINTE MENSAL DE INATURALISTA
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Você pode <u>triplicar</u> sua doação! Graças a Gordon and Betty Moore Foundation, todas as doações recorrentes mensais serão triplicadas até 31 de dezembro de 2023.</strong>
+          </p>
+          <p class="lead">
+          O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!
+          </p>
+          <p class="lead">
+          Se você ama o iNaturalist, por favor considere se tornar um Apoiador Mensal. Doações recorrentes ajudam a garantir que o iNaturalist possa continuar aumentar nossa infraestrutura e equipe por fornecer uma renda predicável. E sua doação mensal tem o triplo de impacto! Você pode também optar por exibir seu status de Contribuidor Mensal em seu perfil de usuário.
+          </p>
+          <p class="lead">
+          Suas doações de caridade ajudam a suportar o iNaturalist a medida que a comunidade cresce, de aprimorar a computação visual e implementação de novos recursos a suportar nossos servidores e equipe. Você ainda pode dar uma <a href="%{donate_url}">doação única</a> e explorar <a href="https://www.inaturalist.org/pages/giving">outras maneiras de doar</a>.
+          </p>
+          <p class="text-muted">
+          O iNaturalist é uma organização 501(c)(3), isenta de impostos e sem fins lucrativos sediada nos Estados Unidos da América (Tax ID: 92-1296468).
+          </p>
+        desc3_html: |
+          <p class="lead">
+          <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
+          </p>
+          <p class="lead">
+          Nós queremos manter o iNaturalist gratuito para usar, mas ele não é gratuito para operar. Se você ama o iNaturalist, por favor considere se tornar um contribuidor mensal. Doações recorrentes ajudam a garantir que o iNaturalist possa continuar aumentar nossa infraestrutura e equipe por fornecer uma renda predicável. E sua doação mensal tem o triplo de impacto! Você pode também optar por exibir seu status de Contribuidor Mensal em seu perfil de usuário.
+          </p>
+          <p class="lead">
+          Suas doações de caridade ajudam a suportar o iNaturalist a medida que a comunidade cresce, de aprimorar a computação visual e implementação de novos recursos a suportar nossos servidores e equipe. Se você prefere fazer uma doação única, por favor, <a href="%{donate_url}">clique aqui</a>.
+          </p>
+          <p class="text-muted">
+          O iNaturalist é uma organização 501(c)(3), isenta de impostos e sem fins lucrativos sediada nos Estados Unidos da América (Tax ID: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Obrigado por ser um Apoiador Mensal!
         thank_you_for_being_a_monthly_supporter_caps: OBRIGADO POR SER UM APOIADOR MENSAL
       temporarily_unavailable: |
@@ -6097,6 +6159,12 @@ pt-BR:
           this_map_shows: |
             Este mapa mostra a Área do Táxon para a espécie sobrepondo o Mapa
             Esperado nas Proximidades que usamos para ponderar o Geomodel.
+          this_gridded_version: |
+            Esta versão em quadrados da Área de Distribuição é uma captura instantânea tirada quando o modelo foi treinado e divido na mesma resolução do Mapa de Esperado nas Proximidades. Utilizamos apenas as Áreas de Distribuição onde pelo menos 90% dos dados de treinamento para essa espécie estejam contidos na Área de Distribuição em quadrados, para controlar erros nas Áreas de Distribuição.
+          by_combining: |
+            Ao combinar o Mapa de Esperado nas Proximidades com a Área de Distribuição, calculamos as estatísticas
+            para estimar o bom funcionamento do Geomodel.
+          figure_alt_text: O mapa de Esperado nas Proximidades e a Área de Distribuição são comparados
           combining_these_maps_produces: |
             A combinação destes mapas produz três categorias de células:
           #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
@@ -6116,16 +6184,32 @@ pt-BR:
           precision_colon: |
             Precisão:
           precision_description: A fração do Mapa Esperado nas Proximidades que são Presenças Reais
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Presenças Verdadeiras / (Presenças Verdadeiras + Presenças falsas) = %{precision}
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Recall:
           recall_description: A fração da Área do Táxon que são Presenças Reais
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Presenças Verdadeiras / (Presenças Verdadeiras + Ausências Falsas) = %{recall}
           #The average (harmonic mean) of Precision (fraction of the Expected
           #Nearby Map that are True Presences) and Recall (fraction of the
           #Taxon Range that are True Presences)
           f1_colon: |
             F1:
           f1_description: O valor médio entre Precisão e Recall
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Presenças Verdadeiras / (2 × Presenças Verdadeiras + Presenças Falsas) = %{f1}
           perfect_overlap: |
             Sobreposição perfeita seria avaliada com Precisão, Recall e F1 de 1. Nenhuma sobreposição
             avaliaria Precisão, Recall e F1 de 0.
@@ -7390,6 +7474,10 @@ pt-BR:
         Filhos do táxon de entrada que são mais ou menos generosos serão movidos para
         a saída; espécies, subespécies, variedades, etc. serão convertidos em
         equivalentes com o novo nome de gênero ou espécie.
+      form:
+        move_children_desc2_html: |
+          Marcar esra caixa moverá os descendentes do táxon de entrada para o táxon de saída durante Trocas de Táxons e Fusões de Táxons quando essa alteração for confirmada. Se
+          isto é uma mudança para um gênero ou menor, vai criar Trocas de Táxon para todos os descendentes que precisem mudar de nome. Por exemplo, se você trocar a família Canidae por Dogidae, isto mudará pai do gênero <i>Canis</i> de Canidae para Dogidae. Se você trocar o gênero <i>Canis</i> pelo gênero <i>Dogis</i>, irá criar e enviar Trocas de Táxon para mudar <i>Canis lupus</i> para <i>Dogis lupus</i> e <i>Canis lupus</i> ssp. <i>lupus</i> para <i>Dogis lupus</i> ssp. <i>lupus</i>. Isso pode causar uma grande bagunça, então use com cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |

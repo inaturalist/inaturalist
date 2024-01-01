@@ -1115,6 +1115,7 @@ eu:
   everywhere: edonon
   exact: Zehatza
   exact_date: Data zehatza
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tarte zehatza
   except: salbu
   existing_flags: Existitzen diren banderak
@@ -1266,6 +1267,8 @@ eu:
   here_are_3_examples: Hemen ondo osatutako datuen 3 adibide daude
   hex_color_eg: Kolorea hamaseitarrean, adib. 65644F
   hi_user: "Kaixo %{user}"
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Mailarik altuena
   history: Historia
   home: Hasiera
@@ -1468,6 +1471,8 @@ eu:
   look_up_name: "Izena bilatu"
   looks_like_neither_have!: Badirudi batek ere ez duela taxonik!
   lookup: Bilatu
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Mailarik baxuena
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Eduki nagusia
@@ -1926,6 +1931,7 @@ eu:
   quality_grade: Kalitate maila
   quality_grade_colon: "Kalitate maila:"
   range: Maila
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: maila
   ranks:
     kingdom: Erreinua

@@ -1492,6 +1492,7 @@ hu:
   everywhere: mindenhol
   exact: Pontos
   exact_date: Pontos dátum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Pontos rang
   except: kivéve
   exclude_places: Helyek kizárása
@@ -1752,6 +1753,8 @@ hu:
   hide_running_total: Kumulatív elrejtése
   hide_uncountable_species: Megszámlálhatatlan fajok elrejtése
   high: Felső
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Legmagasabb rang
   history: Idővonal
   home: Kezdőlap
@@ -2213,6 +2216,8 @@ hu:
   looks_like_no_species_in_guide: Úgy néz ki még nincs egy faj sem az útmutatódban.
   lookup: Keresés
   low: Alsó
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Legalacsonyabb rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2452,7 +2457,7 @@ hu:
   new_assessment: Új értékelés
   new_check_list: Új lista
   new_check_list_for: "%{place}: új lista létrehozása &raquo;"
-  new_comment_on_a_parent_by_user_link: 'Új hozzászólás: %{user_link} %{parent}'
+  new_comment_on_a_parent_by_user_link: Új hozzászólás %{user_link} %{parent}éhez
   new_conservation_status: Új természetvédelmi státusz
   new_flag_for: 'Új bejelentés ehhez:'
   new_guide: Új útmutató
@@ -3454,7 +3459,11 @@ hu:
   radius_km: Sugár (km)
   random: Véletlenszerű
   range: Tartomány
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Besorolás
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Besorolás
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4084,6 +4093,7 @@ hu:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ez a taxon nincs rajta az IUCN Vörös Listán
   taxon_range_guidelines_learn_more_about_taxon_ranges: További információk a taxonintervallumokról
   taxon_range_updated_notice: A taxonintervallum sikeresen frissítve. Kérünk várj pár percet ameddig a vátoztatások megjelennek a térképeken.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Rendszertani besorolás
   taxon_removed_from_list: Taxon eltávolítva a listáról.
   taxon_scheme: Taxonrendszer
