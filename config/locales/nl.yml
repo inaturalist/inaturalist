@@ -411,6 +411,8 @@ nl:
   added_by: Toegevoegd door
   added_by_user_on_date_html: "Toegevoegd door %{user} op %{date}"
   added_on_datetime: "Toegevoegd op %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Toegevoegde rol
   added_to_favorites_html: |
     Toegevoegd aan <a href="%{url}">favorieten</a>
   adding: "Bezig met toevoegen..."
@@ -4338,6 +4340,8 @@ nl:
   remove_tags: Labels verwijderen
   removed: Verwijderd
   removed_project_user: Projectgebruiker verwijderd
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rol verwijderd
   removing: "Bezig met verwijderen..."
   reorder_by_taxonomy: Herschik volgens taxonomie
   repair_broken_urls: Repareer gebroken URLs
