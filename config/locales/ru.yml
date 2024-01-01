@@ -485,6 +485,8 @@ ru:
   added_by: Добавлено 
   added_by_user_on_date_html: "Добавлено %{user} %{date}"
   added_on_datetime: "Добавлено %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Добавленная роль
   added_to_favorites_html: |
     Добавлено в <a href="%{url}">фавориты</a>
   adding: "Добавление..."
@@ -4386,6 +4388,8 @@ ru:
   remove_tags: Удалить теги
   removed: Удалено
   removed_project_user: Участник проекта удалён
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Удалённая роль
   removing: "Удаление..."
   reorder_by_taxonomy: Упорядочить согласно таксономии
   repair_broken_urls: Исправить неработающие URL
@@ -4442,6 +4446,14 @@ ru:
   rotate_left: Повернуть влево
   rotate_right: Повернуть вправо
   row_singular_or_plural: Строка(и)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Хотите протестировать раскладку справа налево? Вы также можете использовать параметр URL test=rtl. Обратите внимание, что не все страницы были преобразованы в формат справа налево
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Вы присоединились к тестированию раскладок справа налево
   rules_and_formatting: "Правила и форматирование"
   rules_for_adding_observations: Правила добавления наблюдений
   rules_for_becoming_a_member: Как стать участником
@@ -7044,6 +7056,8 @@ ru:
         display_project_name: Отобразить название проекта
         do_you_need_features_from_traditional: |
           Нужны ли вам функции традиционных проектов, такие как доступ к реальным  координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
+        do_you_need_features_from_traditional2: |
+          Нужны ли вам такие функции традиционных проектов, как доступ к реальным координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
         duplicate_project: Дублировать проект
         include_annotated_observations: |
           Включить только наблюдения, имеющие определенным атрибут (например, этап жизни) или конкретный атрибутом и его значение (например, этап жизни = взрослый).
@@ -7299,6 +7313,8 @@ ru:
         store_prompt: |
           Хотите показать как вы гордитесь iNat везде, куда бы вы ни пошли? Посетите магазин iNat
           Store!
+        sunburst_desc_html: |
+          Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.
         translators_title: Переводчики
         translators_desc: |
           Знаете ли вы, что iNaturalist был переведён на %{x_languages},
