@@ -900,11 +900,11 @@ hu:
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Szerepel
   computer_vision_model_included_desc: |
-    A jelenlegi Gépi látás model ismeri ezt a taxont, ezért az megjelenhet az automatikus javaslatok között "Kinézetre hasonló" megjelöléssel.
+    A jelenlegi Gépi látás modell ismeri ezt a taxont, ezért az megjelenhet az automatikus javaslatok között "Kinézetre hasonló" megjelöléssel.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Függőben
   computer_vision_model_pending_desc2: |
-    A jelenlegi Gépi látás model nem ismeri ezt a taxont, ezért bár az megjelenhet az automatikus javaslatok között "A közelben előfordulhat" megjelöléssel, nem fog mellette szerepelni a "Kinézetre hasonló" címke. A modellek változóak képfelismeréshez támasztott követelményeik terén, viszont az általánosságban elmondható, hogy a megfigyelések és az azonosítások száma növeli annak az esélyét, hogy a taxon bekerül a következő modelltanításba.
+    A jelenlegi Gépi látás modell nem ismeri ezt a taxont, ezért bár az megjelenhet az automatikus javaslatok között "A közelben előfordulhat" megjelöléssel, nem fog mellette szerepelni a "Kinézetre hasonló" címke. A modellek változóak képfelismeréshez támasztott követelményeik terén, viszont az általánosságban elmondható, hogy a megfigyelések és az azonosítások száma növeli annak az esélyét, hogy a taxon bekerül a következő modelltanításba.
   confidential: Bizalmas
   configure: Konfigurálás
   configure_a_widget_to_show: A modul konfigurálásával az %{site_name} megfigyeléseit közzéteheted a weboldaladon vagy blogodon. Ehhez szükség lehet a CSS-kódrészlet beillesztésére a HTML <code>&lt;head&gt;</code> részébe. A CSS tetszőlegesen módosítható.
