@@ -123,6 +123,11 @@ p.ui { margin-bottom: 10px; }
   margin-right: 0;
 }
 
+[dir = "rtl"] .right,
+.button.right {
+  clear: left;
+}
+
 /* Default Form Styles */
 textarea.text,
 input.text,

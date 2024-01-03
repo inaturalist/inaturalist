@@ -3,7 +3,7 @@
   .taxonomy {
     list-style: none;
     li {
-      margin-left: 15px;
+      margin-inline-start: 15px;
       margin-top: 5px;
     }
     .name-row {
@@ -84,7 +84,7 @@
       content: '';
     }
     .taxon {
-      margin-left: 3px;
+      margin-inline-start: 3px;
       a {
         color: #333;
       }
@@ -120,6 +120,13 @@
   }
 }
 
+[dir="rtl"] .TaxonomicBranch{
+  .taxonomy{
+    .row-content:before {
+      content: '\21B2';
+    }
+  }
+}
 .complete-taxon-popover {
   max-width: 400px;
 }

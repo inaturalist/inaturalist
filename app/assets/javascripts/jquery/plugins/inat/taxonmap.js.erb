@@ -137,11 +137,17 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     return;
   }
   var map;
+  var mapTypeControlOptions = {
+    ...options.mapTypeControlOptions,
+    position: $( "html[dir='rtl']" ).length > 0
+      ? google.maps.ControlPosition.BLOCK_START_INLINE_END
+      : google.maps.ControlPosition.BLOCK_START_INLINE_START
+  };
   var mapOptions = $.extend( true, { }, {
     backgroundColor: "#E3EAF6",
     gestureHandling: options.gestureHandling,
     mapTypeControl: ( options.mapTypeControl !== false ),
-    mapTypeControlOptions: options.mapTypeControlOptions,
+    mapTypeControlOptions,
     minZoom: options.minZoom,
     placement: options.placement,
     scrollwheel: ( options.scrollwheel !== false ),
@@ -164,7 +170,12 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     map = iNaturalist.Map.createMap( $.extend( true, { }, mapOptions, {
       div: elt,
       disableFullscreen: true,
-      fullscreenControl: !options.disableFullscreen
+      fullscreenControl: !options.disableFullscreen,
+      fullscreenControlOptions: !options.disableFullscreen && {
+        position: $( "html[dir='rtl']" ).length > 0
+          ? google.maps.ControlPosition.LEFT_TOP
+          : google.maps.ControlPosition.BLOCK_START_INLINE_START
+      }
     } ) );
   }
 
@@ -218,13 +229,21 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     // Create the DIV to hold the control and call the CenterControl( ) constructor
     // passing in this DIV.
     var legendControlDiv = document.createElement( "div" );
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push( legendControlDiv );
-
+    var legendControl = new iNaturalist.LegendControl( legendControlDiv, map );
+    if ( $( 'html[dir="rtl"]' ).length > 0 ) {
+      map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push( legendControlDiv );
+    } else {
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push( legendControlDiv );
+    }
     // Create the DIV to hold the control and call the CenterControl( ) constructor
     // passing in this DIV.
     var legendDiv = document.createElement( "div" );
-    map._legend = new iNaturalist.Legend( legendDiv, map );
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push( legendDiv );
+    map._legend = new iNaturalist.Legend(legendDiv, map);
+    if ( $( 'html[dir="rtl"]' ).length > 0 ) {
+      map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push( legendDiv );
+    } else {
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push( legendDiv );
+    }
   }
 
   // Clear out all existing overlays so we can add new ones
