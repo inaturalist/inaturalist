@@ -2156,7 +2156,10 @@ en:
   # Adjective, as in a fluid layout of images
   fluid: fluid
   follow: Follow
+  # Text for a button to follow updates on an observation
+  follow_observation: Follow observation
   follow_receive_updates_about_new_observations: Follow (receive updates about new observations)
+  # Text for a button to follow updates from a specific user
   follow_user: "Follow %{user}"
   followers: Followers
   following: Following
@@ -3618,7 +3621,9 @@ en:
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
   only_view_nearby_suggestions: Only view nearby suggestions
   only_you: Only you
+  # Geoprivacy status in which no privacy has been applied
   open: open
+  # Geoprivacy status in which no privacy has been applied
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   open_street_map: OpenStreetMap
@@ -5730,7 +5735,10 @@ en:
   unknown: Unknown
   unknown_error: Unknown error
   unknown_rank: '(Unknown Rank)'
-  unfollow: Unfollow
+  # Text for a button to stop following updates on an observation
+  unfollow_observation: Unfollow observation
+  # Text for a button to stop following updates from a user
+  unfollow_user: Unfollow user
   unlink_your_google_account: Unlink Your Google Account
   unlink_your_flickr_account: "Unlink your Flickr Account"
   unmute: Unmute
