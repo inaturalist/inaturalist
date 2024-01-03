@@ -31,6 +31,13 @@ const SPECIES_COUNTS_FIELDS = {
   taxon: TAXON_FIELDS
 };
 
+const USER_FIELDS = {
+  id: true,
+  login: true,
+  name: true,
+  icon_url: true
+};
+
 const OBSERVATION_FIELDS = {
   id: true,
   observed_on: true,
@@ -68,12 +75,7 @@ const OBSERVATION_FIELDS = {
     rank: true,
     rank_level: true
   },
-  user: {
-    id: true,
-    login: true,
-    name: true,
-    icon_url: true
-  }
+  user: USER_FIELDS
 };
 
 export default function reducer( state = { }, action ) {
@@ -116,10 +118,18 @@ export function setAttributes( attributes ) {
 
 export function fetchMembers( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    const params = { id: state.project.id, per_page: 100, order_by: "login" };
-    if ( state.config.currentUser ) {
+    const { project, config } = getState( );
+    const { testingApiV2 } = config;
+    const params = {
+      id: project.id,
+      per_page: 100,
+      order_by: "login"
+    };
+    if ( config.currentUser ) {
       params.ttl = -1;
+    }
+    if ( testingApiV2 ) {
+      params.fields = { user: USER_FIELDS };
     }
     return inatjs.projects.members( params ).then( response => {
       dispatch( setAttributes( {
@@ -132,8 +142,13 @@ export function fetchMembers( ) {
 
 export function fetchCurrentProjectUser( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
-    return inatjs.projects.membership( { id: project.id } )
+    const { project, config } = getState( );
+    const { testingApiV2 } = config;
+    const params = { id: project.id };
+    if ( testingApiV2 ) {
+      params.fields = "all";
+    }
+    return inatjs.projects.membership( params )
       .then( response => {
         if ( response.results[0] ) {
           dispatch( setAttributes( { currentProjectUser: response.results[0] } ) );
@@ -750,8 +765,16 @@ export function deleteFlag( id ) {
 }
 
 export function updateProjectUser( projectUser ) {
-  return dispatch => {
-    inatjs.project_users.update( { id: projectUser.id, project_user: projectUser } )
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
+    const params = {
+      id: projectUser.id,
+      project_user: projectUser
+    };
+    if ( config.testingApiV2 ) {
+      params.project_user = _.omit( params.project_user, "id" );
+    }
+    inatjs.project_users.update( params )
       .then( ( ) => dispatch( fetchCurrentProjectUser( ) ) )
       .catch( e => alert( e ) );
   };

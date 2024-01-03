@@ -42,7 +42,7 @@ const store = createStore(
 const testingApiV2 = ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
