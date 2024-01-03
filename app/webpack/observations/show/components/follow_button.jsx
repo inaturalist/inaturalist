@@ -14,13 +14,13 @@ const FollowButton = ( {
   subscriptionsLoaded,
   unfollowUser
 } ) => {
-  const followStatus = subscription => {
+  const followStatus = ( subscription, unfollowText ) => {
     if ( subscription ) {
       return subscription.api_status
         ? <div className="loading_spinner" />
         : (
           <span className="unfollow">
-            { `"${I18n.t( "unfollow" )}"` }
+            { unfollowText }
           </span>
         );
     }
@@ -30,19 +30,33 @@ const FollowButton = ( {
   if ( subscriptionsLoaded ) {
     const loggedIn = config && config.currentUser;
     if ( _.isEmpty( observation ) || !loggedIn ) { return ( <div /> ); }
-    let followingUser;
-    let followingObservation;
+    let userSubscription;
+    let observationSubscription;
     _.each( subscriptions, s => {
-      if ( s.resource_type === "User" ) { followingUser = s; }
-      if ( s.resource_type === "Observation" ) { followingObservation = s; }
+      if ( s.resource_type === "User" ) { userSubscription = s; }
+      if ( s.resource_type === "Observation" ) { observationSubscription = s; }
     } );
-    const followUserPending = followingUser && followingUser.api_status;
-    const followObservationPending = followingObservation && followingObservation.api_status;
+    const followUserPending = userSubscription && userSubscription.api_status;
+    const followObservationPending = observationSubscription && observationSubscription.api_status;
     let followUserAction;
     let followObservationAction;
     if ( !followUserPending && !followObservationPending ) {
-      followUserAction = followingUser ? unfollowUser : followUser;
+      followUserAction = userSubscription ? unfollowUser : followUser;
       followObservationAction = subscribe;
+    }
+    let followUserButtonContent = I18n.t( "follow_user", { user: observation?.user?.login } );
+    if ( userSubscription ) {
+      followUserButtonContent = followStatus(
+        userSubscription,
+        I18n.t( "unfollow_user", { user: observation?.user?.login } )
+      );
+    }
+    let followObservationButtonContent = I18n.t( "follow_observation" );
+    if ( observationSubscription ) {
+      followObservationButtonContent = followStatus(
+        observationSubscription,
+        I18n.t( "unfollow_observation" )
+      );
     }
     dropdownMenu = (
       <Dropdown.Menu className="dropdown-menu-right">
@@ -55,8 +69,7 @@ const FollowButton = ( {
               return false;
             }}
           >
-            { observation.user && observation.user.login }
-            { followStatus( followingUser ) }
+            { followUserButtonContent }
           </a>
         </li>
         <li
@@ -70,8 +83,7 @@ const FollowButton = ( {
               return false;
             }}
           >
-            { I18n.t( "this_observation" ) }
-            { followStatus( followingObservation ) }
+            { followObservationButtonContent }
           </a>
         </li>
       </Dropdown.Menu>
