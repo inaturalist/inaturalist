@@ -44,11 +44,12 @@ const FollowButton = ( {
       followUserAction = userSubscription ? unfollowUser : followUser;
       followObservationAction = subscribe;
     }
-    let followUserButtonContent = I18n.t( "follow_user", { user: observation?.user?.login } );
+    const observerLogin = ( observation && observation.user && observation.user.login ) || "";
+    let followUserButtonContent = I18n.t( "follow_user", { user: observerLogin } );
     if ( userSubscription ) {
       followUserButtonContent = followStatus(
         userSubscription,
-        I18n.t( "unfollow_user", { user: observation?.user?.login } )
+        I18n.t( "unfollow_user", { user: observerLogin } )
       );
     }
     let followObservationButtonContent = I18n.t( "follow_observation" );
