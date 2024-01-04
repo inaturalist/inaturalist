@@ -1640,6 +1640,7 @@ hu:
   fluid: folyékony
   follow: Követés
   follow_receive_updates_about_new_observations: Kövesd (kapj értesítést új megfigyelésekről)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} követése"
   followers: Követők
   following: Követve
@@ -2802,7 +2803,9 @@ hu:
   only_staff_can_edit_standard_places: Csak a honlap személyzete módosíthat helyeket a standard rangsorból.
   only_view_nearby_suggestions: Csak közeli javaslatok megjelenítése
   only_you: Csak te
+  #Geoprivacy status in which no privacy has been applied
   open: nyilvános
+  #Geoprivacy status in which no privacy has been applied
   open_: Nyilvános
   open_description: "Mindenki láthatja a koordinátákat, kivéve ha a taxon veszélyeztetett."
   open_street_map: OpenStreetMap
@@ -4359,7 +4362,6 @@ hu:
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
   unknown_rank: '(Ismeretlen besorolás)'
-  unfollow: Leiratkozás
   unlink_your_google_account: Google-fiók leválasztása
   unlink_your_flickr_account: "Flickr-fiók leválasztása"
   unmute: Némítás feloldása
