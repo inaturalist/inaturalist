@@ -274,7 +274,7 @@ body > [role="dialog"] .ActivityItem {
 }
 
 [dir ="rtl"] .ActivityItem,
-body > [role="dialog"] .ActivityItem {
+[dir ="rtl"] body > [role="dialog"] .ActivityItem {
   .icon {
     float: right;
   }

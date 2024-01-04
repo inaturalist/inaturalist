@@ -620,8 +620,15 @@ button.list-group-item {
   inset-inline-start: 5px;
 }
 
+.pull-right {
+  float: inline-end !important;
+}
+.pull-left {
+  float: inline-start !important;
+}
+}
+
 .popover {
-  inset-inline-start: 0;
   text-align: start;
 }
 
@@ -657,13 +664,6 @@ button.list-group-item {
   inset-inline-end: 1px;
 }
 
-.pull-right {
-  float: inline-end !important;
-}
-.pull-left {
-  float: inline-start !important;
-}
-}
 #bodywrapper {
   direction: rtl;
 }

@@ -65,7 +65,7 @@ body > div > .popover[role="tooltip"],
 body > div > div > .popover[role="tooltip"] {
   position: absolute;
   top: 0;
-  right: 0 !important;
+  left: 0;
   z-index: 1060;
   display: none;
   padding: 1px;
