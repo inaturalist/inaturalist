@@ -1846,6 +1846,7 @@ uk:
   fluid: адаптивний
   follow: Підписатися
   follow_receive_updates_about_new_observations: Підписатися (отримувати оновлення про нові спостереження)
+  #Text for a button to follow updates from a specific user
   follow_user: "Підписатися на користувача %{user}"
   followers: Підписники
   following: Підписки
@@ -2992,7 +2993,9 @@ uk:
   only_the_project_admin_can_delete_this_project: Цей проєкт може видалити лише адміністратор проєкту.
   only_view_nearby_suggestions: Дивитися лише пропозиції поблизу
   only_you: Лише ви
+  #Geoprivacy status in which no privacy has been applied
   open: відкриті
+  #Geoprivacy status in which no privacy has been applied
   open_: Відкриті
   open_description: "Координати може бачити будь-хто, у разі якщо таксон не знаходиться під загрозою."
   open_street_map: OpenStreetMap
@@ -4690,7 +4693,6 @@ uk:
   unknown: Невідомий
   unknown_error: Невідома помилка
   unknown_rank: '(Невідомий ранг)'
-  unfollow: Не стежити
   unlink_your_google_account: Від'єднати свій обліковий запис Google
   unlink_your_flickr_account: "Від'єднати свій обліковий запис Flickr"
   unmute: Скасувати ігнорування
