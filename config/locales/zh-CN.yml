@@ -1816,6 +1816,7 @@ zh-CN:
   fluid: 液体
   follow: 关注
   follow_receive_updates_about_new_observations: 关注（接收有关新观察的更新）
+  #Text for a button to follow updates from a specific user
   follow_user: "关注%{user}"
   followers: 关注者
   following: 关注中
@@ -3124,7 +3125,9 @@ zh-CN:
   only_the_project_admin_can_delete_this_project: 只有项目管理员才能删除此项目。
   only_view_nearby_suggestions: 只查看附近的建议
   only_you: 只有您
+  #Geoprivacy status in which no privacy has been applied
   open: 打开
+  #Geoprivacy status in which no privacy has been applied
   open_: 公开
   open_description: "任何人可以查看观察，除非分类受到威胁。"
   open_street_map: 开放式街道地图
@@ -4968,7 +4971,6 @@ zh-CN:
   unknown: 未知
   unknown_error: 未知错误
   unknown_rank: '（未知排名）'
-  unfollow: 不关注
   unlink_your_google_account: 取消链接您的Google账户
   unlink_your_flickr_account: "取消连接至您的 Flickr 账号"
   unmute: 取消禁言
