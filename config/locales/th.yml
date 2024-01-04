@@ -1167,6 +1167,7 @@ th:
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
   follow: ติดตาม
   follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
+  #Text for a button to follow updates from a specific user
   follow_user: "ติดตาม %{user}"
   followers: ผู้ติดตาม
   following: กำลังติดตาม
@@ -1854,7 +1855,9 @@ th:
   only_show_for_species_subspecies_varieties_etc: แสดงเฉพาะชนิด ชนิดย่อย พันธุ์ ฯลฯ
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
   only_view_nearby_suggestions: ดูเฉพาะชนิดที่อาจพบในบริเวณใกล้เคียง
+  #Geoprivacy status in which no privacy has been applied
   open: เปิด
+  #Geoprivacy status in which no privacy has been applied
   open_: เปิด
   open_street_map: OpenStreetMap
   optional: ไม่บังคับ
@@ -2742,7 +2745,6 @@ th:
   unknown: ไม่ทราบ
   unknown_error: ข้อผิดพลาดที่ไม่รู้จัก
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
-  unfollow: เลิกติดตาม
   unpublish: เลิกเผยแพร่
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
