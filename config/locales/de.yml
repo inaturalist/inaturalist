@@ -1868,6 +1868,7 @@ de:
   fluid: Flexibel
   follow: Folgen
   follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
+  #Text for a button to follow updates from a specific user
   follow_user: "Folge %{user}"
   followers: Follower
   following: Abonnements
@@ -3208,7 +3209,9 @@ de:
   only_the_project_admin_can_delete_this_project: Nur der Projektadministrator kann dieses Projekt löschen.
   only_view_nearby_suggestions: Vorschläge auf die nähere Umgebung beschränken
   only_you: Nur du
+  #Geoprivacy status in which no privacy has been applied
   open: offen
+  #Geoprivacy status in which no privacy has been applied
   open_: öffentlich
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
   open_street_map: OpenStreetMap
@@ -5148,7 +5151,6 @@ de:
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
   unknown_rank: '(Unbekannter Rang)'
-  unfollow: Nicht mehr folgen
   unlink_your_google_account: Dein Google-Konto trennen
   unlink_your_flickr_account: "Entferne dein Flickr-Konto"
   unmute: Ton an
