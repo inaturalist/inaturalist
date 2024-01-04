@@ -1033,6 +1033,7 @@ ar:
   fluid: مائع
   follow: تابع
   follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات الجديدة)
+  #Text for a button to follow updates from a specific user
   follow_user: "اتبع %{user}"
   followers: متابعون
   following: التالي
@@ -1930,7 +1931,9 @@ ar:
   only_the_owner_of_this_list_can_do_that: يمكن  لمالك هذه القائمة فقط القيام بذلك، لا تكن شريرا.
   only_the_project_admin_can_delete_this_project: يستطيع إداري المشروع فقط حذف هذا المشروع.
   only_you: أنت فقط
+  #Geoprivacy status in which no privacy has been applied
   open: فتح
+  #Geoprivacy status in which no privacy has been applied
   open_: فتح
   open_description: "يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة."
   open_street_map: خريطة الشارع المفتوحة
@@ -3224,7 +3227,6 @@ ar:
   unknown: غير معروف
   unknown_error: خطأ غير معروف
   unknown_rank: '(رتبة غير معروفة)'
-  unfollow: إلغاء المتابعة
   unlink_your_google_account: إلغاء ربط حسابك في جوجل
   unmute: تنشيط الصوت
   updates_notification_email_subject: "%{prefix}  تحديثات جديدة %{date}"
