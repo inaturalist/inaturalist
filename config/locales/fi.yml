@@ -1828,6 +1828,7 @@ fi:
   fluid: neste
   follow: Seuraa
   follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
+  #Text for a button to follow updates from a specific user
   follow_user: "Seuraa käyttäjää %{user}"
   followers: Seuraajat
   following: Seuraamasi
@@ -3030,7 +3031,9 @@ fi:
   only_the_project_admin_can_delete_this_project: Vain projektin ylläpitäjä voi poistaa tämän projektin.
   only_view_nearby_suggestions: Näytä vain ehdotukset lajeista, jotka on havaittu lähistöllä
   only_you: Vain sinä
+  #Geoprivacy status in which no privacy has been applied
   open: avoin
+  #Geoprivacy status in which no privacy has been applied
   open_: Avoin
   open_description: "Jokainen voi nähdä koordinaatit, ellei taksoni ole uhanalainen."
   open_street_map: OpenStreetMap
@@ -4686,7 +4689,6 @@ fi:
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
   unknown_rank: '(Tuntematon arvo)'
-  unfollow: Älä seuraa
   unlink_your_google_account: Poista linkitys Google-tiliisi
   unlink_your_flickr_account: "Poista linkitys Flickr-tiliisi"
   unmute: Poista hiljennys
