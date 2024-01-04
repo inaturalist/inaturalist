@@ -1884,6 +1884,7 @@ ca:
   fluid: fluida
   follow: Seguiu
   follow_receive_updates_about_new_observations: Seguiu (rebeu actualitzacions de les noves observacions)
+  #Text for a button to follow updates from a specific user
   follow_user: "Segueix a %{user}"
   followers: seguidors
   following: Seguint
@@ -3218,7 +3219,9 @@ ca:
   only_the_project_admin_can_delete_this_project: Només l'administrador del projecte pot eliminar aquest projecte.
   only_view_nearby_suggestions: Veure només suggeriments propers
   only_you: Només tu
+  #Geoprivacy status in which no privacy has been applied
   open: Transparent
+  #Geoprivacy status in which no privacy has been applied
   open_: Obre
   open_description: "Tots els usuaris poden veure les coordenades tret que el tàxon estigui en perill."
   open_street_map: OpenStreetMap
@@ -5107,7 +5110,6 @@ ca:
   unknown: Desconegut
   unknown_error: Error desconegut
   unknown_rank: '(Classificació desconeguda)'
-  unfollow: Deixeu de seguir
   unlink_your_google_account: Desvinculeu el vostre compte de Google
   unlink_your_flickr_account: "Desenllaçar el compte de Flickr"
   unmute: No silenciar
