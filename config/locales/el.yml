@@ -1618,6 +1618,7 @@ el:
   fluid: Ρευστό
   follow: Ακολουθήστε
   follow_receive_updates_about_new_observations: Ακολουθήστε (λαμβάνετε ενημερώσεις σχετικά με νέες παρατηρήσεις)
+  #Text for a button to follow updates from a specific user
   follow_user: "Ακολουθήστε τον %{user}"
   followers: Ακόλουθοι
   following: Ακολουθεί
@@ -2674,7 +2675,9 @@ el:
   only_the_owner_of_this_list_can_do_that: Μόνο ο ιδιοκτήτης αυτής της λίστας μπορεί να το κάνει αυτό. Μη γίνεστε κακός.
   only_the_project_admin_can_delete_this_project: Μόνο ο ιδιοκτήτης του πρότζεκτ μπορεί να διαγράψει αυτό το πρότζεκτ.
   only_you: Μόνο εσείς
+  #Geoprivacy status in which no privacy has been applied
   open: Άνοιγμα
+  #Geoprivacy status in which no privacy has been applied
   open_: Ανοιχτό
   open_description: "Ο καθένας μπορεί να δει τις συντεταγμένες εκτός και αν το taxon είναι απειλούμενο."
   open_street_map: OpenStreetMap
@@ -4182,7 +4185,6 @@ el:
   unknown: Άγνωστο
   unknown_error: Άγνωστο σφάλμα
   unknown_rank: '(Άγνωστη Κατάταξη)'
-  unfollow: Σταματήστε να ακολουθείτε
   unlink_your_google_account: Αποσυνδέστε τον Google λογαριασμό σας
   unlink_your_flickr_account: "Αποσυνδέστε τον λογαριασμό σας στο Flickr"
   unmute: Κατάργηση σίγασης
