@@ -672,6 +672,7 @@ hr:
   flagged_for_curation: Prijavljeno za kuraciju
   follow: Prati
   follow_receive_updates_about_new_observations: Prati (budi obaviješten o novim opažanjima)
+  #Text for a button to follow updates from a specific user
   follow_user: "Prati %{user}"
   followers: Pratitelji
   following: Pratiš
@@ -1734,7 +1735,6 @@ hr:
   two_thirds: 2/3
   unable_to_save_comment: Nažalist nismo mogli spremiti komentar.
   unclassified: Neklasificirano
-  unfollow: Prestani pratiti
   unlink_your_google_account: Otkači svoj Google račun
   updates_notification_email_subject: "%{prefix} Novosti %{date}"
   #Undo the action of resolving a flag
