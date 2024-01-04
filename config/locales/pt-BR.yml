@@ -1964,6 +1964,7 @@ pt-BR:
   fluid: fluído
   follow: Seguir
   follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre novas observações)
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
   followers: Seguidores
   following: Seguindo
@@ -3354,7 +3355,9 @@ pt-BR:
   only_the_project_admin_can_delete_this_project: Somente o administrador deste projeto pode apagá-lo.
   only_view_nearby_suggestions: Ver apenas sugestões nas proximidades
   only_you: Só você
+  #Geoprivacy status in which no privacy has been applied
   open: abrir
+  #Geoprivacy status in which no privacy has been applied
   open_: Abrir
   open_description: "Qualquer um pode ter acesso as coordenadas a não ser que o táxon esteja em perigo."
   open_street_map: OpenStreetMap
@@ -5352,7 +5355,6 @@ pt-BR:
   unknown: Desconhecido
   unknown_error: Erro desconhecido
   unknown_rank: '(Classificação Desconhecida)'
-  unfollow: Deixar de seguir
   unlink_your_google_account: Desvincular a sua conta Google
   unlink_your_flickr_account: "Desvincule sua conta do Flickr"
   unmute: Reativar

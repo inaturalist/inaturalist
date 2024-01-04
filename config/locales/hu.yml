@@ -900,11 +900,11 @@ hu:
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Szerepel
   computer_vision_model_included_desc: |
-    A jelenlegi Gépi látás model ismeri ezt a taxont, ezért az megjelenhet az automatikus javaslatok között "Kinézetre hasonló" megjelöléssel.
+    A jelenlegi Gépi látás modell ismeri ezt a taxont, ezért az megjelenhet az automatikus javaslatok között "Kinézetre hasonló" megjelöléssel.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Függőben
   computer_vision_model_pending_desc2: |
-    A jelenlegi Gépi látás model nem ismeri ezt a taxont, ezért bár az megjelenhet az automatikus javaslatok között "A közelben előfordulhat" megjelöléssel, nem fog mellette szerepelni a "Kinézetre hasonló" címke. A modellek változóak képfelismeréshez támasztott követelményeik terén, viszont az általánosságban elmondható, hogy a megfigyelések és az azonosítások száma növeli annak az esélyét, hogy a taxon bekerül a következő modelltanításba.
+    A jelenlegi Gépi látás modell nem ismeri ezt a taxont, ezért bár az megjelenhet az automatikus javaslatok között "A közelben előfordulhat" megjelöléssel, nem fog mellette szerepelni a "Kinézetre hasonló" címke. A modellek változóak képfelismeréshez támasztott követelményeik terén, viszont az általánosságban elmondható, hogy a megfigyelések és az azonosítások száma növeli annak az esélyét, hogy a taxon bekerül a következő modelltanításba.
   confidential: Bizalmas
   configure: Konfigurálás
   configure_a_widget_to_show: A modul konfigurálásával az %{site_name} megfigyeléseit közzéteheted a weboldaladon vagy blogodon. Ehhez szükség lehet a CSS-kódrészlet beillesztésére a HTML <code>&lt;head&gt;</code> részébe. A CSS tetszőlegesen módosítható.
@@ -1640,6 +1640,7 @@ hu:
   fluid: folyékony
   follow: Követés
   follow_receive_updates_about_new_observations: Kövesd (kapj értesítést új megfigyelésekről)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} követése"
   followers: Követők
   following: Követve
@@ -2802,7 +2803,9 @@ hu:
   only_staff_can_edit_standard_places: Csak a honlap személyzete módosíthat helyeket a standard rangsorból.
   only_view_nearby_suggestions: Csak közeli javaslatok megjelenítése
   only_you: Csak te
+  #Geoprivacy status in which no privacy has been applied
   open: nyilvános
+  #Geoprivacy status in which no privacy has been applied
   open_: Nyilvános
   open_description: "Mindenki láthatja a koordinátákat, kivéve ha a taxon veszélyeztetett."
   open_street_map: OpenStreetMap
@@ -4359,7 +4362,6 @@ hu:
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
   unknown_rank: '(Ismeretlen besorolás)'
-  unfollow: Leiratkozás
   unlink_your_google_account: Google-fiók leválasztása
   unlink_your_flickr_account: "Flickr-fiók leválasztása"
   unmute: Némítás feloldása

@@ -1930,6 +1930,7 @@ be:
   fluid: адаптыўны
   follow: Падпісацца
   follow_receive_updates_about_new_observations: Падпісацца (атрымліваць аднаўленні пра новыя назіранні)
+  #Text for a button to follow updates from a specific user
   follow_user: "Падпісацца на %{user}"
   followers: Падпіснікі
   following: Падпіскі
@@ -3150,7 +3151,9 @@ be:
   only_the_project_admin_can_delete_this_project: Толькі адміністратар праекта можа выдаліць гэты праект.
   only_view_nearby_suggestions: Праглядзець толькі прапановы паблізу
   only_you: Толькі вы
+  #Geoprivacy status in which no privacy has been applied
   open: адкрыць
+  #Geoprivacy status in which no privacy has been applied
   open_: Адкрыць
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap

@@ -1872,7 +1872,10 @@ id:
   #Adjective, as in a fluid layout of images
   fluid: mengalir
   follow: Ikuti
+  #Text for a button to follow updates on an observation
+  follow_observation: Ikuti pengamatan ini
   follow_receive_updates_about_new_observations: Ikuti (dapatkan informasi terbaru tentang pengamatan baru)
+  #Text for a button to follow updates from a specific user
   follow_user: "Ikuti %{user}"
   followers: Pengikut
   following: Mengikuti
@@ -3237,7 +3240,9 @@ id:
   only_the_project_admin_can_delete_this_project: Hanya pengelola proyek yang dapat menghapus proyek ini.
   only_view_nearby_suggestions: Hanya tampilkan rekomendasi yang ditemui di sekitar
   only_you: Hanya Anda
+  #Geoprivacy status in which no privacy has been applied
   open: terbuka
+  #Geoprivacy status in which no privacy has been applied
   open_: Buka
   open_description: "Semua orang dapat melihat koordinatnya kecuali takson yang terancam."
   open_street_map: OpenStreetMap
@@ -5137,7 +5142,10 @@ id:
   unknown: Tidak diketahui
   unknown_error: Eror tidak diketahui
   unknown_rank: '(Peringkat Tidak Diketahui)'
-  unfollow: Berhenti Ikuti
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Berhenti mengikuti pengamatan ini
+  #Text for a button to stop following updates from a user
+  unfollow_user: Berhenti mengikuti pengguna
   unlink_your_google_account: Putuskan Akun Google Anda
   unlink_your_flickr_account: "Putuskan Akun Flickr Anda"
   unmute: Bunyikan

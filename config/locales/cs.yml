@@ -2097,6 +2097,7 @@ cs:
   fluid: proměnlivý
   follow: Sledovat
   follow_receive_updates_about_new_observations: Sledujte (obdržíte informace o nových pozorováních)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sledovat %{user}"
   followers: Sledující
   following: Sledovaní
@@ -2376,7 +2377,7 @@ cs:
   include_places: Zahrnout místa
   include_projects: Zahrnout projekty
   include_suggestions_not_seen_nearby: Zahrnout i návrhy neviděné v okolí
-  include_suggestions_not_expected_nearby: Zahrnout i návrhy neviděné v okolí
+  include_suggestions_not_expected_nearby: Zahrnout i návrhy neočekávané v okolí
   include_taxa: Zahrnout taxony
   include_users: Zahrnout uživatele
   including: včetně
@@ -3495,7 +3496,9 @@ cs:
   only_the_project_admin_can_delete_this_project: Tento projekt může smazat pouze správce projektu.
   only_view_nearby_suggestions: Zobrazit pouze návrhy v blízkosti
   only_you: Jen vy
+  #Geoprivacy status in which no privacy has been applied
   open: otevřený
+  #Geoprivacy status in which no privacy has been applied
   open_: Otevřený
   open_description: "Souřadnice uvidí všichni, pokud není taxon ohrožený."
   open_street_map: OpenStreetMap
@@ -5493,7 +5496,6 @@ cs:
   unknown: Neznámý
   unknown_error: Neznámá chyba
   unknown_rank: '(Neznámé zařazení)'
-  unfollow: Přestat sledovat
   unlink_your_google_account: Zrušit propojení vašeho účtu na Googlu
   unlink_your_flickr_account: "Odpojit svůj účet na Flickru"
   unmute: Zapnout zvuk

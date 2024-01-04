@@ -1864,6 +1864,7 @@ lv:
   fluid: plūstošs
   follow: Sekot
   follow_receive_updates_about_new_observations: Sekot (saņemt ziņojumus par jauniem novērojumiem)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sekot lietotājam %{user}"
   followers: Sekotāji
   following: Abonēts saturs
@@ -3101,7 +3102,9 @@ lv:
   only_the_project_admin_can_delete_this_project: Tikai projekta administrators var dzēst projektu.
   only_view_nearby_suggestions: Skatīt tikai tos indivīdu minējumus, kas novēroti tuvumā
   only_you: Tikai tu
+  #Geoprivacy status in which no privacy has been applied
   open: publisks
+  #Geoprivacy status in which no privacy has been applied
   open_: Publisks
   open_description: "Koordinātas ir redzamas visiem, ja vien taksons nav apdraudēts."
   open_street_map: OpenStreetMap
@@ -4928,7 +4931,6 @@ lv:
   unknown: Nezināms
   unknown_error: Nezināma kļūda
   unknown_rank: '(Nezināma klasifikācija)'
-  unfollow: Beigt sekot
   unlink_your_google_account: Atvienot Google kontu
   unlink_your_flickr_account: "Atvienot Flickr kontu"
   unmute: Iespējot paziņojumus

@@ -1903,6 +1903,7 @@ tr:
   fluid: kayma
   follow: Takip Et
   follow_receive_updates_about_new_observations: Takip et (yeni gözlemler ile ilgili güncelleme al)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} kullanıcısını takip et"
   followers: Takipçiler
   following: Takip Edilen
@@ -3259,7 +3260,9 @@ tr:
   only_the_project_admin_can_delete_this_project: Bu projeyi yalnızca proje yöneticisi silebilir.
   only_view_nearby_suggestions: Sadece yakındaki önerileri göster
   only_you: Yalnızca sen
+  #Geoprivacy status in which no privacy has been applied
   open: açık
+  #Geoprivacy status in which no privacy has been applied
   open_: Açık
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
   open_street_map: OpenStreetMap
@@ -5147,7 +5150,6 @@ tr:
   unknown: Bilinmeyen
   unknown_error: Bilinmeyen hata
   unknown_rank: '(Bilinmeyen Düzey)'
-  unfollow: Takibi bırak
   unlink_your_google_account: Google Hesabının Bağlantısını Kaldır
   unlink_your_flickr_account: "Flickr Hesabının Bağlantısını Kaldır"
   unmute: Sessizden Çıkart

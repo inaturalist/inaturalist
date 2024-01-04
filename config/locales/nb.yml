@@ -1805,6 +1805,7 @@ nb:
   fluid: flytende
   follow: Følg
   follow_receive_updates_about_new_observations: Følg (få beskjed om nye observasjoner)
+  #Text for a button to follow updates from a specific user
   follow_user: "Følg %{user}"
   followers: Følgere
   following: Følger
@@ -3027,7 +3028,9 @@ nb:
   only_the_project_admin_can_delete_this_project: Kun prosjektets admin kan slette dette prosjektet.
   only_view_nearby_suggestions: Vis bare forslag i nærheten
   only_you: Kun du
+  #Geoprivacy status in which no privacy has been applied
   open: åpen
+  #Geoprivacy status in which no privacy has been applied
   open_: Åpen
   open_description: "Alle kan se koordinatene med mindre taksonet er truet."
   open_street_map: OpenStreetMap
@@ -4720,7 +4723,6 @@ nb:
   unknown: Ukjent
   unknown_error: Ukjent feil
   unknown_rank: '(Ukjent rang)'
-  unfollow: Slutt å følge
   unlink_your_google_account: Frakoble din Google-konto
   unlink_your_flickr_account: "Frakoble din Flickr-konto"
   unmute: Fjern demping

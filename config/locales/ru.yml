@@ -2034,6 +2034,7 @@ ru:
   fluid: жидкий
   follow: Подписка
   follow_receive_updates_about_new_observations: Подписаться (получать обновления о новых наблюдениях)
+  #Text for a button to follow updates from a specific user
   follow_user: "Подписаться на %{user}"
   followers: Подписчики
   following: Подписка
@@ -3406,7 +3407,9 @@ ru:
   only_the_project_admin_can_delete_this_project: Только администратор проекта может удалить этот проект
   only_view_nearby_suggestions: Только предложения, встречающиеся поблизости
   only_you: Только вы
+  #Geoprivacy status in which no privacy has been applied
   open: открытая
+  #Geoprivacy status in which no privacy has been applied
   open_: Открытое
   open_description: "Любой может видеть координаты, если только таксон не находится под угрозой исчезновения."
   open_street_map: OpenStreetMap
@@ -5377,7 +5380,6 @@ ru:
   unknown: Неизвестно
   unknown_error: Неизвестная ошибка
   unknown_rank: '(Неизвестный ранг)'
-  unfollow: Отменить подписку
   unlink_your_google_account: Отвязать ваш аккаунт Google
   unlink_your_flickr_account: "Отвязать свою учётную запись Flickr"
   unmute: Отмена игнорирования
@@ -6148,7 +6150,7 @@ ru:
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
-          Прогноз геомодели по %{taxon}
+          Прогноз геомодели по виду: %{taxon}
         the_geo_model_makes_predictions: |
           Геомодель даёт прогнозы, где виды встречаются, а где они отсутствуют.
           Мы используем геомодель для получения метки «Встречаются поблизости» наряду с предложениями взвесить эти предложения в зависимости от места наблюдения.

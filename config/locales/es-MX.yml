@@ -1942,6 +1942,7 @@ es-MX:
   fluid: fluida
   follow: Seguir
   follow_receive_updates_about_new_observations: Sigue (recibe actualizaciones sobre observaciones nuevas)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sigue a  %{user}"
   followers: Seguidores
   following: Siguiendo
@@ -3327,7 +3328,9 @@ es-MX:
   only_the_project_admin_can_delete_this_project: Solo el administrador del proyecto puede eliminar este proyecto.
   only_view_nearby_suggestions: Solo mostrar las sugerencias que hayan sido vistas en la cercanía
   only_you: Solo tú
+  #Geoprivacy status in which no privacy has been applied
   open: Abierta
+  #Geoprivacy status in which no privacy has been applied
   open_: Abierto
   open_description: "Todos pueden ver las coordenadas a menos que la especie esté en riesgo"
   open_street_map: Mapa OpenStreetMap
@@ -5256,7 +5259,6 @@ es-MX:
   unknown: Desconocido
   unknown_error: Error desconocido
   unknown_rank: '(Clasificación desconocida)'
-  unfollow: Dejar de seguir
   unlink_your_google_account: Desvincular tu cuenta de Google
   unlink_your_flickr_account: "Desvincular tu cuenta de Flickr"
   unmute: Desactivar silenciamiento

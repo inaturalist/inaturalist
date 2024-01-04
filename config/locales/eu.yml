@@ -1203,6 +1203,7 @@ eu:
   #Adjective, as in a fluid layout of images
   fluid: arina
   follow: Jarraitu
+  #Text for a button to follow updates from a specific user
   follow_user: "Honi jarraitu: %{user}"
   followers: jarraitzaileak
   following: Jarraitzen
@@ -1702,6 +1703,7 @@ eu:
   only_showing_taxa_from: zerrenda honetako taxonak soilik erakutsita
   only_the_owner_of_this_list_can_do_that: Zerrenda honen jabeak soilik egin dezake hori.  Ez izan gaiztoa.
   only_the_project_admin_can_delete_this_project: Proiektuko administratzaileak soilik ezaba dezake proiektu hau.
+  #Geoprivacy status in which no privacy has been applied
   open: Transparente
   open_description: "Mundu guztiak ikus ditzake koordenatuak, non eta taxona arriskuan ez dagoen."
   optional: aukerakoa
@@ -2352,7 +2354,6 @@ eu:
   unique_observers: behatzaile bakarrak
   unknown: Ezezaguna
   unknown_rank: '(Sailkapen ezezaguna)'
-  unfollow: Jarraitzeari utzi
   unlink_your_google_account: Zure Google zerrendaren estekatu kendu
   updates_notification_email_subject: "%{prefix} Eguneraketa berriak %{date}"
   updating: Eguneratzen...

@@ -945,6 +945,7 @@ lb:
   fluid: flësseg
   follow: Suivéieren
   follow_receive_updates_about_new_observations: Suivéieren (Updates iwwer nei Observatiounen kréien)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} suivéieren"
   following: Suivéiert
   following_x_people:
@@ -1670,7 +1671,9 @@ lb:
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
   only_view_nearby_suggestions: Nëmme Suggestiounen aus der Géigend kucken
   only_you: Nëmmen Dir
+  #Geoprivacy status in which no privacy has been applied
   open: opmaachen
+  #Geoprivacy status in which no privacy has been applied
   open_: Opmaachen
   open_street_map: OpenStreetMap
   optional: fakultativ
@@ -2439,7 +2442,6 @@ lb:
   unblock: Spär ophiewen
   unknown: Onbekannt
   unknown_error: Onbekannte Feeler
-  unfollow: Net mei suivéieren
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
   unmute: Stomm schalten ausmaachen
   updating: Aktualiséierung...

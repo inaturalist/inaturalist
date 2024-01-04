@@ -1508,6 +1508,7 @@ pt:
   #Adjective, as in a fluid layout of images
   fluid: fluído
   follow: Seguir
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
   followers: Seguidores
   following: a seguir
@@ -2387,7 +2388,9 @@ pt:
   only_the_project_admin_can_delete_this_project: Só o administrador do projeto pode eleminar este projeto.
   only_view_nearby_suggestions: Ver apenas sugestões nas proximidades
   only_you: Só você
+  #Geoprivacy status in which no privacy has been applied
   open: abrir
+  #Geoprivacy status in which no privacy has been applied
   open_: Abrir
   open_description: "Qualquer um pode ver as coordenadas a menos que o táxon esteja ameaçado."
   optional: opcional
@@ -3261,7 +3264,6 @@ pt:
   unknown: Desconhecido
   unknown_error: Erro desconhecido
   unknown_rank: '(Classificação Desconhecida)'
-  unfollow: Deixar de seguir
   unlink_your_google_account: Desvincular a Sua Conta Google
   updating: A atualizar...
   unpublish: Não publicado

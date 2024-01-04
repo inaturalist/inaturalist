@@ -974,6 +974,7 @@ sk:
   fluid: premenlivé
   follow: Sledovať
   follow_receive_updates_about_new_observations: Sledujte (dostanete informácie o nových pozorovaniach)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sledovať %{user}"
   followers: Sledovatelia
   following: Sledovať
@@ -1761,7 +1762,9 @@ sk:
   only_staff_can_edit_large_places: Iba personál stránky môže upravovať veľmi veľké miesta
   only_staff_can_edit_standard_places: Iba personál stránky môže upraviť miesta v štandardnej hierarchii
   only_you: Iba vy
+  #Geoprivacy status in which no privacy has been applied
   open: otvorený
+  #Geoprivacy status in which no privacy has been applied
   open_: Otvorený
   optional: voliteľný
   or: alebo
@@ -2830,7 +2833,6 @@ sk:
   unknown: Neznámy
   unknown_error: Neznáma chyba
   unknown_rank: '(Neznáme zaradenie)'
-  unfollow: Prestať sledovať
   unlink_your_google_account: Zrušiť pripojenie vášho účtu Google
   unmute: Zapnúť zvuk
   updates_notification_email_subject: "%{prefix} Nové aktualizácie %{date}"

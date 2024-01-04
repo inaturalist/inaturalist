@@ -13,7 +13,7 @@ fr:
     one: '1 favori'
     other: '%{count} favoris'
   x_flags_resolved_html:
-    one: "<span class='count'>%{count}</span> signalement résolue"
+    one: "<span class='count'>%{count}</span> signalement résolu"
     other: "<span class='count'>%{count}</span> signalements résolus"
   x_identifications:
     one: '1 identification'
@@ -1936,7 +1936,10 @@ fr:
   #Adjective, as in a fluid layout of images
   fluid: fluide
   follow: Suivre
+  #Text for a button to follow updates on an observation
+  follow_observation: Suivre l'observation
   follow_receive_updates_about_new_observations: Suivre (recevoir les modifications sur les nouvelles observations)
+  #Text for a button to follow updates from a specific user
   follow_user: "Suivre %{user}"
   followers: Abonnés
   following: Suivi
@@ -3322,7 +3325,9 @@ fr:
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet peut supprimer ce projet.
   only_view_nearby_suggestions: Voir uniquement les suggestions à proximité
   only_you: Seulement vous
+  #Geoprivacy status in which no privacy has been applied
   open: ouvert
+  #Geoprivacy status in which no privacy has been applied
   open_: Ouverte
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
   open_street_map: OpenStreetMap
@@ -5242,7 +5247,10 @@ fr:
   unknown: Inconnu
   unknown_error: Erreur inconnue
   unknown_rank: '(Rang inconnu)'
-  unfollow: Ne plus suivre
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Ne plus suivre l'observation
+  #Text for a button to stop following updates from a user
+  unfollow_user: Ne plus suivre l'utilisateur
   unlink_your_google_account: Supprimer le lien de votre compte Google
   unlink_your_flickr_account: "Dé-lier votre compte Flickr"
   unmute: Supprimer la mise en silence
@@ -7386,6 +7394,11 @@ fr:
         stats_generation_schedule: Les statistiques seront générées tous les dimanches de décembre et le 1er janvier
         store_prompt: |
           Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat !
+        sunburst_desc_html: |
+          Taxons observés, arrangés sous forme d’un diagramme « en soleil » hiérarchisé. La base de la hiérarchie est au centre, en commençant par « Êtres vivants » et se termine par les espèces situées aux bords extérieurs. La taille de chaque arc est proportionnelle au nombre d’observations de ce taxon et les couleurs correspondent à peu près à nos couleurs habituelles de taxons emblématiques (vert pour les plantes, orange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous voyez beaucoup de vert, cela veut dire que vous avez observé beaucoup de plantes.
+          <strong>Cliquez sur un des arcs pour placer ce taxon au centre</strong> et
+          ses enfants autour, ou <strong>cliquez sur le centre pour remonter dans
+          la hiérarchie</strong>.
         translators_title: Traducteurs
         translators_desc: |
           Saviez-vous que iNaturalist a été traduit dans %{x_languages} presque entièrement par

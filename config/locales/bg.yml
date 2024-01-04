@@ -1394,6 +1394,7 @@ bg:
   flickr_needs_to_confirm: "Flickr трябва да потвърди, че искате да свържете акаунта си с %{site_name}."
   flickr_tags: Flickr етикети
   follow: Следвай
+  #Text for a button to follow updates from a specific user
   follow_user: "Следвай %{user}"
   followers: Последователи
   following: Следване
@@ -2367,7 +2368,9 @@ bg:
   only_the_project_admin_can_delete_this_project: Само администратора на проекта може да го изтрие.
   only_view_nearby_suggestions: Виж предложения само от околността
   only_you: Само Вие
+  #Geoprivacy status in which no privacy has been applied
   open: открито
+  #Geoprivacy status in which no privacy has been applied
   open_: Открито
   open_description: "Всеки може да види координатите освен когато таксонът е застрашен."
   optional: незадължително
@@ -3811,7 +3814,6 @@ bg:
   unique_observers: различни наблюдатели
   unknown: Неизвестен
   unknown_rank: '(Неизвестен ранг)'
-  unfollow: Спри следването
   unlink_your_google_account: Откачи акаунта си на Google
   updating: Обновяване...
   unpublish: Непубликувано

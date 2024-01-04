@@ -1730,6 +1730,7 @@ gl:
   fluid: Fluída
   follow: Seguir
   follow_receive_updates_about_new_observations: Seguir (recebe novidades sobre novas observacións)
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir a %{user}"
   followers: Seguidores
   following: Seguindo
@@ -2850,7 +2851,9 @@ gl:
   only_the_project_admin_can_delete_this_project: Só o administrador do proxecto pode eliminar este proxecto.
   only_view_nearby_suggestions: Ver só suxestións das proximidades
   only_you: Só ti
+  #Geoprivacy status in which no privacy has been applied
   open: Transparente
+  #Geoprivacy status in which no privacy has been applied
   open_: Aberto
   open_description: "Todo o mundo pode ver as coordenadas a menos que o taxón estea en perigo."
   open_street_map: OpenStreetMap
@@ -4447,7 +4450,6 @@ gl:
   unknown: Descoñecido
   unknown_error: Erro descoñecido
   unknown_rank: '(Clasificación descoñecida)'
-  unfollow: Deixar de Seguir
   unlink_your_google_account: Desvincula A Túa Conta De Google
   unlink_your_flickr_account: "Desvincula A Túa Conta De Flickr"
   unmute: Desactivar Silenciamento
