@@ -137,12 +137,16 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     return;
   }
   var map;
-  var mapTypeControlOptions = {
-    ...options.mapTypeControlOptions,
-    position: $( "html[dir='rtl']" ).length > 0
-      ? google.maps.ControlPosition.BLOCK_START_INLINE_END
-      : google.maps.ControlPosition.BLOCK_START_INLINE_START
-  };
+  // eslint-disable-next-line prefer-object-spread
+  var mapTypeControlOptions = Object.assign(
+    {},
+    options.mapTypeControlOptions,
+    {
+      position: $( "html[dir='rtl']" ).length > 0
+        ? google.maps.ControlPosition.BLOCK_START_INLINE_END
+        : google.maps.ControlPosition.BLOCK_START_INLINE_START
+    }
+  );
   var mapOptions = $.extend( true, { }, {
     backgroundColor: "#E3EAF6",
     gestureHandling: options.gestureHandling,
