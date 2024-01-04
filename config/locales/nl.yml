@@ -1966,6 +1966,7 @@ nl:
   fluid: vloeiend
   follow: Volg
   follow_receive_updates_about_new_observations: Volgen (ontvang informatie over nieuwe waarnemingen)
+  #Text for a button to follow updates from a specific user
   follow_user: "Volg %{user}"
   followers: Volgers
   following: Aan het volgen
@@ -3359,7 +3360,9 @@ nl:
   only_the_project_admin_can_delete_this_project: Alleen de projectadministrator kan dit project verwijderen.
   only_view_nearby_suggestions: Bekijk alleen soorten uit de omgeving
   only_you: Alleen jij
+  #Geoprivacy status in which no privacy has been applied
   open: open
+  #Geoprivacy status in which no privacy has been applied
   open_: Open
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
   open_street_map: OpenStreetMap
@@ -5329,7 +5332,6 @@ nl:
   unknown: Onbekend
   unknown_error: Onbekende fout
   unknown_rank: '(Onbekende Rang)'
-  unfollow: Ontvolg
   unlink_your_google_account: Verbreek de koppeling met je Google-account
   unlink_your_flickr_account: "Verbreek koppeling met je Flickr-account"
   unmute: Niet meer dempen
