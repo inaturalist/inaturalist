@@ -1761,6 +1761,7 @@ pl:
   flickr_tags: Tagi z Flickra
   follow: Obserwuj
   follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
+  #Text for a button to follow updates from a specific user
   follow_user: "Obserwuj %{user}"
   followers: Obserwujący
   following: Obserwowany
@@ -2795,7 +2796,9 @@ pl:
   only_show_active_taxa: Pokaż tylko aktywne taksony
   only_the_project_admin_can_delete_this_project: Tylko administrator projektu może usunąć ten projekt.
   only_you: Tylko Ty
+  #Geoprivacy status in which no privacy has been applied
   open: otwarta
+  #Geoprivacy status in which no privacy has been applied
   open_: Otwarta
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
@@ -4014,7 +4017,6 @@ pl:
   unknown: Nieznany
   unknown_error: Nieznany błąd
   unknown_rank: '(Nieznana ranga)'
-  unfollow: Przestań obserwować
   unlink_your_google_account: Odłącz swoje konto Google
   unlink_your_flickr_account: "Odłącz swoje konto Flickr"
   unmute: Usuń wyciszenie
