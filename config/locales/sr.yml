@@ -1563,6 +1563,7 @@ sr:
   flickr_photos: Flickr fotografije
   follow: Prati
   follow_receive_updates_about_new_observations: Prati (primaj obaveštenja o novim opservacijama)
+  #Text for a button to follow updates from a specific user
   follow_user: "Prati %{user}"
   followers: Pratioci
   following: Pratiš
@@ -2563,7 +2564,9 @@ sr:
   only_the_project_admin_can_delete_this_project: Samo administrator projekta može izbrisati ovaj projekat.
   only_view_nearby_suggestions: Pogledaj samo preporuke iz okoline
   only_you: Samo ti
+  #Geoprivacy status in which no privacy has been applied
   open: otvoren
+  #Geoprivacy status in which no privacy has been applied
   open_: Otvoreno
   open_description: "Svi mogu videti koordinate osim u slučaju ugroženog taksona."
   open_street_map: OpenStreetMap
@@ -4027,7 +4030,6 @@ sr:
   unknown: Nеpoznato
   unknown_error: Nepoznata greška
   unknown_rank: '(Nepoznat rang)'
-  unfollow: Otprati
   unlink_your_google_account: Odveži tvoj Google nalog
   unlink_your_flickr_account: "Odveži tvoj Flickr nalog"
   updates_notification_email_subject: "%{prefix} Novosti %{date}"
