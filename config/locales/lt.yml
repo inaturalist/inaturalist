@@ -1686,6 +1686,7 @@ lt:
   flickr_tags: Flickr Žymės
   follow: Sekti
   follow_receive_updates_about_new_observations: Sekti (gauti naujienas apie naujus stebėjimus)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sekti %{user}"
   followers: Sekėjai
   following: sekama
@@ -2615,7 +2616,9 @@ lt:
   only_show_events_that_last_less_than_2_weeks: Rodyti tik tuos įvykius, kurie trunka trumpiau nei 2 savaites
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
   only_you: Tik jūs
+  #Geoprivacy status in which no privacy has been applied
   open: atviras
+  #Geoprivacy status in which no privacy has been applied
   open_: Atviras
   open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
   open_street_map: OpenStreetMap
@@ -4003,7 +4006,6 @@ lt:
   unknown: Nežinoma
   unknown_error: Nežinoma klaida
   unknown_rank: '(Nežinomas rangas)'
-  unfollow: Nebesekti
   unlink_your_google_account: Atsieti savo Google paskyrą
   unlink_your_flickr_account: "Atsieti savo Flickr paskyrą"
   unmute: Įjungti garsą
