@@ -1860,6 +1860,7 @@ et:
   fluid: voolav
   follow: Jälgi
   follow_receive_updates_about_new_observations: Jälgi (saa teateid uute vaatluste kohta)
+  #Text for a button to follow updates from a specific user
   follow_user: "Jälgi kasutajat %{user}"
   followers: Jälgijad
   following: Jälgitavad
@@ -3087,7 +3088,9 @@ et:
   only_the_owner_of_this_list_can_do_that: Seda saab teha ainult antud postituse omanik. Ära tee pahandusi.
   only_the_project_admin_can_delete_this_project: Ainult projekti administraator saab seda kustutada
   only_you: Vaid sina
+  #Geoprivacy status in which no privacy has been applied
   open: avalik
+  #Geoprivacy status in which no privacy has been applied
   open_: Avalik
   open_description: "Kõik näevad koordinaate kui takson pole ohustatud."
   open_street_map: OpenStreetMap
@@ -4453,7 +4456,6 @@ et:
   unknown: Teadmata
   unknown_error: Teadmata viga
   unknown_rank: '(Tundmatu kategooria)'
-  unfollow: Lõpeta jälgimine
   unlink_your_google_account: Ühenda oma Google'i konto lahti
   unmute: Lõpeta vaigistamine
   updates_notification_email_subject: "%{prefix} uudised %{date}"
