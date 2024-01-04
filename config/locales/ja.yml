@@ -1855,6 +1855,7 @@ ja:
   fluid: 可変
   follow: フォロー
   follow_receive_updates_about_new_observations: フォロー(新しい観察記録の情報を受け取る)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user}さんをフォロー"
   followers: フォロワー
   following: フォロー中
@@ -3128,7 +3129,9 @@ ja:
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
   only_view_nearby_suggestions: 近隣で観察された候補のみ表示
   only_you: 自分のみ
+  #Geoprivacy status in which no privacy has been applied
   open: 公開
+  #Geoprivacy status in which no privacy has been applied
   open_: オープン
   open_description: "分類群の位置情報は、絶滅の恐れがある場合を除き一般公開されます"
   open_street_map: OpenStreetMap
@@ -4848,7 +4851,6 @@ ja:
   unknown: 不明
   unknown_error: 不明なエラー
   unknown_rank: '(階級不明）'
-  unfollow: フォローを外す
   unlink_your_google_account: Googleアカウントとの連携を解除する
   unlink_your_flickr_account: "Flickrアカウントとの連携を解除"
   unmute: ミュート解除
