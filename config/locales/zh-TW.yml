@@ -1817,6 +1817,7 @@ zh-TW:
   fluid: 流動
   follow: 追蹤
   follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
+  #Text for a button to follow updates from a specific user
   follow_user: "關注 %{user}"
   followers: 關注者
   following: 追蹤中
@@ -3046,7 +3047,9 @@ zh-TW:
   only_the_project_admin_can_delete_this_project: 僅專案管理員可刪除此專案。
   only_view_nearby_suggestions: 僅顯示附近的鑑定建議
   only_you: 僅有您
+  #Geoprivacy status in which no privacy has been applied
   open: 開啟
+  #Geoprivacy status in which no privacy has been applied
   open_: 開啟
   open_description: "任何人皆可查看座標，除非該物種分類受到瀕臨滅絕危險。"
   open_street_map: 開放街圖
@@ -4837,7 +4840,6 @@ zh-TW:
   unknown: 未知
   unknown_error: 不明錯誤
   unknown_rank: '（未知級別）'
-  unfollow: 取消追蹤
   unlink_your_google_account: 取消連結您的 Google 帳號
   unlink_your_flickr_account: "取消連結至您的 Flickr 帳號"
   unmute: 取消禁言
