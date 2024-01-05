@@ -1963,6 +1963,8 @@ da:
   #Adjective, as in a fluid layout of images
   fluid: flydende
   follow: Følg
+  #Text for a button to follow updates on an observation
+  follow_observation: Følg observation
   follow_receive_updates_about_new_observations: Følg (modtag opdateringer om nye observationer)
   #Text for a button to follow updates from a specific user
   follow_user: "Følg %{user}"
@@ -5378,6 +5380,10 @@ da:
   unknown: Ukendt
   unknown_error: Ukendt fejl
   unknown_rank: '(Ukendt rang)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Følg ikke længere observation
+  #Text for a button to stop following updates from a user
+  unfollow_user: Følg ikke længere bruger
   unlink_your_google_account: Frakobl din Google konto
   unlink_your_flickr_account: "Fjern din Flickr-konto"
   unmute: Tænd
