@@ -1477,6 +1477,7 @@ sr:
   fields_: Polja
   file: Fajl
   file_size: Veličina fajla
+  file_should_be_in_the_following_format: "Fahl treba biti u sledećem formatu: naziv taksona, opis"
   fill_out_your_profile: popuni tvoj profil
   #The name of a computer file
   filename: Naziv fajla
@@ -1562,6 +1563,8 @@ sr:
   flickr_photo: Flickr fotografija
   flickr_photos: Flickr fotografije
   follow: Prati
+  #Text for a button to follow updates on an observation
+  follow_observation: Prati opservaciju
   follow_receive_updates_about_new_observations: Prati (primaj obaveštenja o novim opservacijama)
   #Text for a button to follow updates from a specific user
   follow_user: "Prati %{user}"
@@ -4030,6 +4033,10 @@ sr:
   unknown: Nеpoznato
   unknown_error: Nepoznata greška
   unknown_rank: '(Nepoznat rang)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Otprati opservaciju
+  #Text for a button to stop following updates from a user
+  unfollow_user: Otprati korisnika
   unlink_your_google_account: Odveži tvoj Google nalog
   unlink_your_flickr_account: "Odveži tvoj Flickr nalog"
   updates_notification_email_subject: "%{prefix} Novosti %{date}"
