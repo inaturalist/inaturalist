@@ -1639,6 +1639,8 @@ hu:
   #Adjective, as in a fluid layout of images
   fluid: folyékony
   follow: Követés
+  #Text for a button to follow updates on an observation
+  follow_observation: Megfigyelés követése
   follow_receive_updates_about_new_observations: Kövesd (kapj értesítést új megfigyelésekről)
   #Text for a button to follow updates from a specific user
   follow_user: "%{user} követése"
@@ -4362,6 +4364,10 @@ hu:
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
   unknown_rank: '(Ismeretlen besorolás)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Megfigyelés követésének leállítása
+  #Text for a button to stop following updates from a user
+  unfollow_user: A felhasználó követésének leállítása
   unlink_your_google_account: Google-fiók leválasztása
   unlink_your_flickr_account: "Flickr-fiók leválasztása"
   unmute: Némítás feloldása
