@@ -1854,6 +1854,8 @@ ja:
   #Adjective, as in a fluid layout of images
   fluid: 可変
   follow: フォロー
+  #Text for a button to follow updates on an observation
+  follow_observation: 観察記録をフォロー
   follow_receive_updates_about_new_observations: フォロー(新しい観察記録の情報を受け取る)
   #Text for a button to follow updates from a specific user
   follow_user: "%{user}さんをフォロー"
@@ -4071,6 +4073,14 @@ ja:
   rotate_left: 左回転
   rotate_right: 右回転
   row_singular_or_plural: 行
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    右から左へのレイアウトをテストしますか？URLパラメータに test=rtl を使うこともできます。すべてのページが右から左のレイアウトに変換されているわけではないことに注意してください。
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: 右から左へのレイアウトのテストに参加しました
   rules_and_formatting: "ルールとフォーマット"
   rules_for_adding_observations: 観測記録の追加に関するルール
   rules_for_becoming_a_member: 新規メンバーに関するルール
@@ -4851,6 +4861,10 @@ ja:
   unknown: 不明
   unknown_error: 不明なエラー
   unknown_rank: '(階級不明）'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: 観察記録のフォローを解除
+  #Text for a button to stop following updates from a user
+  unfollow_user: ユーザーのフォローを解除
   unlink_your_google_account: Googleアカウントとの連携を解除する
   unlink_your_flickr_account: "Flickrアカウントとの連携を解除"
   unmute: ミュート解除
