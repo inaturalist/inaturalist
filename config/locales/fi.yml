@@ -1827,6 +1827,8 @@ fi:
   #Adjective, as in a fluid layout of images
   fluid: neste
   follow: Seuraa
+  #Text for a button to follow updates on an observation
+  follow_observation: Seuraa havaintoa
   follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
   #Text for a button to follow updates from a specific user
   follow_user: "Seuraa käyttäjää %{user}"
@@ -4689,6 +4691,10 @@ fi:
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
   unknown_rank: '(Tuntematon arvo)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Lopeta havainnon seuranta
+  #Text for a button to stop following updates from a user
+  unfollow_user: Lopeta käyttäjän seuraaminen
   unlink_your_google_account: Poista linkitys Google-tiliisi
   unlink_your_flickr_account: "Poista linkitys Flickr-tiliisi"
   unmute: Poista hiljennys
