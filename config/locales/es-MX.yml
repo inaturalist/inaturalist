@@ -1941,6 +1941,8 @@ es-MX:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguir
+  #Text for a button to follow updates on an observation
+  follow_observation: Seguir esta observación
   follow_receive_updates_about_new_observations: Sigue (recibe actualizaciones sobre observaciones nuevas)
   #Text for a button to follow updates from a specific user
   follow_user: "Sigue a  %{user}"
@@ -4358,6 +4360,14 @@ es-MX:
   rotate_left: Gira a la izquierda
   rotate_right: Gira a la derecha
   row_singular_or_plural: Fila(s)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    ¿Probar diseño de derecha a izquierda? También puede utilizar el parámetro test=rtl URL. Tenga en cuenta que no todas las páginas se han convertido en diseño de derecha a izquierda
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Se unió a la prueba de diseño de derecha a izquierda
   rules_and_formatting: "Reglas & formato"
   rules_for_adding_observations: Reglas para añadir observaciones
   rules_for_becoming_a_member: Reglas para convertirse en miembro
@@ -5259,6 +5269,10 @@ es-MX:
   unknown: Desconocido
   unknown_error: Error desconocido
   unknown_rank: '(Clasificación desconocida)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Dejar de seguir esta observación
+  #Text for a button to stop following updates from a user
+  unfollow_user: Dejar de seguir usuario
   unlink_your_google_account: Desvincular tu cuenta de Google
   unlink_your_flickr_account: "Desvincular tu cuenta de Flickr"
   unmute: Desactivar silenciamiento
@@ -6873,6 +6887,8 @@ es-MX:
         display_project_name: Exhibe nombre del proyecto
         do_you_need_features_from_traditional: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
+        do_you_need_features_from_traditional2: |
+          ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         duplicate_project: Duplicar Proyecto
         include_annotated_observations: |
           Incluye solo observaciones marcadas con un atributo particular (p.e, etapa de vida),
@@ -7482,6 +7498,7 @@ es-MX:
           una actualización sobre el cambio con un enlace a una herramienta que puedes usar
           manualmente para actualizar el contenido.
         taxon_name_priorities:
+          common_name_lexicons_description: Por defecto, los nombres comunes se muestran en el idioma/idioma de tu cuenta. Para ver nombres en otros léxicos, o priorizar los nombres utilizados en lugares específicos (como Inglés o Español (Costa Rica)), añadir léxicos de nombre común. Se puede mostrar un máximo de 3 nombres comunes a la vez. Si no existe un nombre común para un léxico que ha elegido, se omitirá de la pantalla.
           for_multiple_common_name_lexicons_drag_and_drop: Para varios léxicos de nombre común, arrastre y suelte los ajustes de abajo para personalizar el orden en el que se muestran.
           same_as_locale: Igual que el local
           #used as a form select dropdown option that users can choose instead of a choosing
