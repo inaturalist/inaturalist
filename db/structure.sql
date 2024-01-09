@@ -9974,6 +9974,96 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 
 CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
+--
+-- Observation Accuracy Experiment
+--
+
+CREATE TABLE public.observation_accuracy_experiments (
+    id bigint NOT NULL,
+    sample_generation_date timestamp without time zone,
+    validator_contact_date timestamp without time zone,
+    validator_deadline_date timestamp without time zone,
+    assessment_date timestamp without time zone,
+    low_acuracy_mean double precision,
+    low_acuracy_variance double precision,
+    high_accuracy_mean double precision,
+    precision_mean double precision,
+    precision_variance double precision,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+CREATE SEQUENCE public.observation_accuracy_experiments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE public.observation_accuracy_experiments_id_seq OWNED BY public.observation_accuracy_experiments.id;
+
+CREATE TABLE public.observation_accuracy_samples (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    observation_id integer,
+    taxon_id integer,
+    quality_grade character varying,
+    year integer,
+    iconic_taxon_name character varying,
+    continent character varying,
+    taxon_observations_count integer,
+    taxon_rank_level integer,
+    descendant_count integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+CREATE SEQUENCE public.observation_accuracy_samples_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE public.observation_accuracy_samples_id_seq OWNED BY public.observation_accuracy_samples.id;
+
+CREATE TABLE public.observation_accuracy_validators (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    user_id integer,
+    observation_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+CREATE SEQUENCE public.observation_accuracy_validators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE public.observation_accuracy_validators_id_seq OWNED BY public.observation_accuracy_validators.id;
+
+ALTER TABLE ONLY public.observation_accuracy_experiments ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_experiments_id_seq'::regclass);
+
+ALTER TABLE ONLY public.observation_accuracy_samples ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_samples_id_seq'::regclass);
+
+ALTER TABLE ONLY public.observation_accuracy_validators ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_validators_id_seq'::regclass);
+
+ALTER TABLE ONLY public.observation_accuracy_experiments
+    ADD CONSTRAINT observation_accuracy_experiments_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.observation_accuracy_samples
+    ADD CONSTRAINT observation_accuracy_samples_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.observation_accuracy_validators
+    ADD CONSTRAINT observation_accuracy_validators_pkey PRIMARY KEY (id);
+
+CREATE INDEX index_oas_on_oae_id ON public.observation_accuracy_samples USING btree (observation_accuracy_experiment_id);
+
+CREATE INDEX index_oav_on_oae_id ON public.observation_accuracy_validators USING btree (observation_accuracy_experiment_id);
+
 
 --
 -- PostgreSQL database dump complete
@@ -10446,6 +10536,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230504154302'),
 ('20230907210748'),
 ('20231017190352'),
-('20231025144604');
+('20231025144604'),
+('20240109034635'),
+('20240109035846'),
+('20240109035854');
 
 

@@ -130,7 +130,7 @@ group :test, :development, :prod_dev do
   gem "byebug"
   gem "capybara"
   gem "lefthook", require: false
-  gem "puma"
+  gem "puma", "~> 4.3.5"
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
 end
