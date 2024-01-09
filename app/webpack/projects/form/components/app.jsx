@@ -153,7 +153,7 @@ const App = ( { config, form, createNewProject } ) => {
             />
             { config.currentUser.privileges.indexOf( "organizer" ) >= 0 && (
               <p className="contact">
-                { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
+                { I18n.t( "views.projects.new.do_you_need_features_from_traditional2" ) }
                 <span
                   dangerouslySetInnerHTML={{
                     __html:
