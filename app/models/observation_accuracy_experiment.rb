@@ -43,9 +43,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def assess_quality( test_taxon_id, groundtruth_taxon_id, disagreement )
     test_taxon = Taxon.find( test_taxon_id )
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
-    return 1 if test_taxon_id == groundtruth_taxon_id || is_ancestor( test_taxon, groundtruth_taxon )
+    return 1 if test_taxon_id == groundtruth_taxon_id || ancestor?( test_taxon, groundtruth_taxon )
 
-    return 0 if ( is_ancestor( groundtruth_taxon, test_taxon ) &&
+    return 0 if ( ancestor?( groundtruth_taxon, test_taxon ) &&
        disagreement ) || sibling?( test_taxon, groundtruth_taxon )
 
     nil
@@ -305,7 +305,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         parent_ancestry = if taxon_id == root_id
           taxon_id.to_s
         else
-          "#{parent.ancestry} / #{parent.id}"
+          "#{parent.ancestry}/#{parent.id}"
         end
         taxa = Taxon.select( :ancestry, :id ).
           where(
@@ -413,45 +413,45 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     qualities = []
     obs_data.each do | obs |
-      oid = obs[:id].to_i
+      oid = obs[:observation_id].to_i
       puts oid
       test_taxon = obs[:taxon_id].to_i
       matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact
       if matches.empty?
-        qualities << { id: oid, quality: nil }
+        qualities << { observation_id: oid, quality: nil }
       else
         qualities_for_row = []
         matches.each do | match |
           groundtruth_taxon = match[:taxon_id]
           disagreement = match[:disagreement]
           quality = assess_quality( test_taxon, groundtruth_taxon, disagreement )
-          qualities_for_row << { id: oid, quality: quality }
+          qualities_for_row << { observation_id: oid, quality: quality }
         end
         qualities << if !qualities_for_row.map {| q | q[:quality].nil? }.all? &&
             qualities_for_row.map {| q | q[:quality] }.compact.uniq.count > 1
           # conflict
-          { id: oid, quality: -1 }
+          { observation_id: oid, quality: -1 }
         else
           qualities_for_row[0]
         end
       end
     end
 
+    ####  !!!! remove/replace oaes.
     if qualities.select {| q | q[:quality] == -1 }.count.positive?
-      obs_ids = qualities.select {| q | q[:quality] == -1 }.map {| a | a[:id] }.join( "," )
+      obs_ids = qualities.select {| q | q[:quality] == -1 }.map {| q | q[:observation_id] }.join( "," )
       puts "There is at least one conflict"
       puts "https://www.inaturalist.org/observations/identify?" \
         "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids} )"
     else
-      subset = obs_data.select {| o | o[:continent] == "North America" }.map {| o | o[:id].to_i }
-      quality_stats = get_quality_stats( qualities.select {| o | subset.include? o[:id] } )
+      quality_stats = get_quality_stats( qualities )
       precisions = obs_data.map do | o |
         {
-          id: o[:id].to_i,
+          id: o[:observation_id].to_i,
           precision: 1 / ( o[:descendant_count].to_i.zero? ? 1 : o[:descendant_count] ).to_f
         }
       end
-      precision_vals = precisions.select {| o | subset.include? o[:id] }.map {| o | o[:precision] }
+      precision_vals = precisions.map {| o | o[:precision] }
       precision_stats = get_precisions_stats( precision_vals )
       self.assessment_date = Time.now
       self.low_acuracy_mean = quality_stats[0]
