@@ -162,7 +162,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       transform_values {| observations | observations.pluck( :observation_id ) }
 
     puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
-    identifiers_by_taxon_id = oae.get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id )
+    identifiers_by_taxon_id = get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id )
 
     puts "Fetch the top IDers..."
     top_iders = fetch_top_iders
