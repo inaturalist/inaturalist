@@ -2584,6 +2584,7 @@ CREATE TABLE public.observation_accuracy_experiments (
     low_acuracy_mean double precision,
     low_acuracy_variance double precision,
     high_accuracy_mean double precision,
+    high_accuracy_variance double precision,
     precision_mean double precision,
     precision_variance double precision,
     created_at timestamp(6) without time zone NOT NULL,

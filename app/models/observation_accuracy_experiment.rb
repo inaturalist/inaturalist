@@ -130,12 +130,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     result["results"][0..499].map {| r | [r["user_id"], r["count"]] }.to_h
   end
 
-  def associate_observations_with_identifiers(
-    obs_ids_grouped_by_taxon_id,
-    identifiers_by_taxon_id,
-    top_iders,
-    validator_redundancy_factor
-  )
+  def associate_observations_with_identifiers( obs_ids_grouped_by_taxon_id, identifiers_by_taxon_id, top_iders )
     associations = Hash.new {| hash, key | hash[key] = [] }
     obs_ids_grouped_by_taxon_id.each do | taxon_id, obs_ids |
       sorted_identifiers = identifiers_by_taxon_id[taxon_id] || []
@@ -160,13 +155,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def distribute_to_validators( obs_data, validator_redundancy_factor )
-    puts "Divide up the sample among identifiers with a redundancy of #{validator_redundancy_factor}..."
+  def distribute_to_validators( obs_data )
+    puts "Divide up the sample among identifiers"
+    puts "with a validator redundancy factor of #{validator_redundancy_factor}..."
     observation_ids_grouped_by_taxon_id = obs_data.group_by {| observation | observation[:taxon_id] }.
-      transform_values {| observations | observations.pluck( :id ) }
+      transform_values {| observations | observations.pluck( :observation_id ) }
 
     puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
-    identifiers_by_taxon_id = get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id )
+    identifiers_by_taxon_id = oae.get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id )
 
     puts "Fetch the top IDers..."
     top_iders = fetch_top_iders
@@ -175,8 +171,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     obs_id_by_user = associate_observations_with_identifiers(
       observation_ids_grouped_by_taxon_id,
       identifiers_by_taxon_id,
-      top_iders,
-      validator_redundancy_factor
+      top_iders
     )
 
     obs_id_by_user.each do | user_id, observation_ids |
@@ -191,12 +186,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def generate_sample
+    start_time = Time.now
     sample_size = self.sample_size
-    validator_redundancy_factor = self.validator_redundancy_factor
     return nil if Observation.count.zero?
 
-    puts "Generating sample of size #{sample_size}"
-    puts "with validator redundancy factor of #{validator_redundancy_factor}..."
+    puts "Generating sample of size #{sample_size}..."
     ceil = Observation.last.id
     random_numbers = ( 1..ceil ).to_a.sample( sample_size * 2 )
     o = Observation.select( :id ).where( "id IN (?)", random_numbers )
@@ -343,10 +337,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     ObservationAccuracySample.create!( obs_data )
 
-    distribute_to_validators( obs_data, validator_redundancy_factor )
+    distribute_to_validators( obs_data )
 
     self.sample_generation_date = Time.now
     save!
+
+    end_time = Time.now
+    duration = end_time - start_time
+    puts "Sample generated in #{duration} seconds."
   end
 
   def contact_validators( validator_deadline_date )

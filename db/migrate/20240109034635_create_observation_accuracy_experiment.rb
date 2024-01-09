@@ -12,6 +12,7 @@ class CreateObservationAccuracyExperiment < ActiveRecord::Migration[6.1]
       t.float :low_acuracy_mean
       t.float :low_acuracy_variance
       t.float :high_accuracy_mean
+      t.float :high_accuracy_variance
       t.float :precision_mean
       t.float :precision_variance
 
