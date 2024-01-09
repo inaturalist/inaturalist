@@ -2581,6 +2581,8 @@ CREATE TABLE public.observation_accuracy_experiments (
     validator_contact_date timestamp without time zone,
     validator_deadline_date timestamp without time zone,
     assessment_date timestamp without time zone,
+    responding_validators integer,
+    validated_observations integer,
     low_acuracy_mean double precision,
     low_acuracy_variance double precision,
     high_accuracy_mean double precision,

@@ -60,8 +60,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
     stdev_high = Math.sqrt( var_high )
     var_low = bootstrap_variance( qualities_low )
     stdev_low = Math.sqrt( var_low )
-    puts "#{mean_low.round( 4 )} +/- #{stdev_low.round( 4 )}"
-    puts "#{mean_high.round( 4 )} +/- #{stdev_high.round( 4 )}"
+    puts "Accuracy (lower): #{mean_low.round( 4 )} +/- #{stdev_low.round( 4 )}"
+    puts "Accuracy (higher): #{mean_high.round( 4 )} +/- #{stdev_high.round( 4 )}"
     [mean_low, var_low, mean_high, var_high]
   end
 
@@ -69,7 +69,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     mean_precision = precisions.sum / precisions.count.to_f
     var_precision = bootstrap_variance( precisions )
     stdev_precision = Math.sqrt( var_precision )
-    puts "#{mean_precision.round( 4 )} +/- #{stdev_precision.round( 4 )}"
+    puts "Precision: #{mean_precision.round( 4 )} +/- #{stdev_precision.round( 4 )}"
     [mean_precision, var_precision]
   end
 
@@ -79,7 +79,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     counter = 0
     denom = observation_ids_grouped_by_taxon_id.count
     observation_ids_grouped_by_taxon_id.each_key do | taxon_id |
-      if taxon_id.nil? || taxon_id == root_id
+      if taxon_id == root_id
         url = URI.parse( "https://stagingapi.inaturalist.org/v1/observations/identifiers?d1=2023-01-01" )
         http = Net::HTTP.new( url.host, url.port )
         http.use_ssl = true if url.scheme == "https"
@@ -196,18 +196,106 @@ class ObservationAccuracyExperiment < ApplicationRecord
     o = Observation.select( :id ).where( "id IN (?)", random_numbers )
     o = o.map {| a | a[:id] }.shuffle[0..( sample_size - 1 )]
     observations = Observation.includes( :taxon ).find( o )
-    puts "\t"
 
-    puts "Generating taxonomic rank groupings..."
+    puts "Fetching continent groupings"
+    continent_obs = {}
+    continents = Place.where( admin_level: -10 ).map( &:id )
+    o.each_slice( 100 ) do | batch |
+      oo = INatAPIService.observations( id: batch )
+      oo.results.each do | o_api |
+        continent = ( continents & o_api["place_ids"] ).first
+        continent_obs[o_api["id"]] = continent
+      end
+    end
+    continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
+
+    puts "Fetching number of descendants"
+    root_id = Taxon.where( rank_level: Taxon::ROOT_LEVEL ).first.id
+    taxon_descendant_count = {}
+    observations.pluck( :taxon_id ).uniq.each do | taxon_id |
+      taxon_id = root_id if taxon_id.nil?
+      parent = Taxon.find( taxon_id )
+      if parent.rank_level <= 10
+        leaf_descendants = 1
+      else
+        parent_ancestry = if taxon_id == root_id
+          taxon_id.to_s
+        else
+          "#{parent.ancestry}/#{parent.id}"
+        end
+        taxa = Taxon.select( :ancestry, :id ).
+          where(
+            "rank_level >= 10 AND ( ancestry = ? OR ancestry LIKE ( ? ) ) AND is_active = TRUE",
+            parent_ancestry,
+            "#{parent_ancestry}/%"
+          )
+        ancestors = taxa.map {| t | t.ancestry.split( "/" ).map( &:to_i ) }.flatten.uniq
+        taxon_ids = taxa.map( &:id ).uniq
+        leaf_descendants = ( taxon_ids - ancestors ).count
+      end
+      taxon_descendant_count[taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
+    end
+
+    iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
+    obs_data = observations.map do | obs |
+      {
+        observation_accuracy_experiment_id: id,
+        observation_id: obs.id,
+        taxon_id: obs.taxon_id.nil? ? root_id : obs.taxon_id,
+        quality_grade: obs.quality_grade,
+        year: obs.created_at.year,
+        iconic_taxon_name: iconic_taxon_key[obs.iconic_taxon_id],
+        continent: continent_key[continent_obs[obs.id]],
+        taxon_observations_count: obs.taxon&.observations_count,
+        taxon_rank_level: obs.taxon_id.nil? ? Taxon::ROOT_LEVEL : obs.taxon&.rank_level,
+        descendant_count: taxon_descendant_count[obs.taxon_id]
+      }
+    end
+
+    ObservationAccuracySample.create!( obs_data )
+
+    distribute_to_validators( obs_data )
+
+    self.sample_generation_date = Time.now
+    save!
+
+    end_time = Time.now
+    duration = end_time - start_time
+    puts "Sample generated in #{duration} seconds."
+  end
+
+  # this method replaces all validators with ones attributed to a single user for testing
+  def replace_validators_for_testing( user_id )
+    o = ObservationAccuracySample.
+      where( observation_accuracy_experiment_id: id ).
+      limit( 200 ).
+      pluck( :observation_id )
+    return nil if o.count.zero?
+
+    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).destroy_all
+    o.each do | oid |
+      oav = ObservationAccuracyValidator.new(
+        observation_accuracy_experiment_id: id,
+        user_id: user_id,
+        observation_id: oid
+      )
+      oav.save!
+    end
+  end
+
+  def generate_report
+    samples = ObservationAccuracySample.
+      where( observation_accuracy_experiment_id: id )
+    return nil if samples.empty?
+
+    puts "Sample consistes of #{samples.count} observations generated on #{sample_generation_date}"
+
+    puts "Sample grouped by taxonomic rank:"
     rank_level_obs = {}
     obs_count_obs = {}
-    observations.each do | observation |
-      taxon = observation.taxon
-      observation_id = observation.id
-      taxon_rank_level = taxon&.rank_level
-      rank_level_obs[observation_id] = taxon_rank_level
-      taxon_observations_count = taxon&.observations_count
-      obs_count_obs[observation_id] = taxon_observations_count
+    samples.each do | sample |
+      rank_level_obs[sample.observation_id] = sample.taxon_rank_level
+      obs_count_obs[sample.observation_id] = sample.taxon_observations_count
     end
     rank_level_frequencies = rank_level_obs.group_by do | _, count |
       case count
@@ -236,7 +324,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts sorted_rank_level_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
     puts "\t"
 
-    puts "Generating obs count groupings..."
+    puts "Sample grouped by observation count:"
     obs_count_frequencies = obs_count_obs.group_by do | _, count |
       case count
       when 1..100
@@ -256,95 +344,37 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts sorted_obs_count_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
     puts "\t"
 
-    puts "Generating obs quality groupings..."
-    quality_frequencies = observations.group_by( &:quality_grade ).transform_values( &:count )
-    sorted_quality_frequencies = quality_frequencies.sort_by {| _, count | -count }.to_h
-    puts sorted_quality_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-    puts "\t"
+    attributes_to_group_by = [:quality_grade, :iconic_taxon_name, :year, :continent]
 
-    puts "Generating iconic taxa groupings..."
-    iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
-    iconic_taxon_frequencies = observations.group_by {| obs | iconic_taxon_key[obs.iconic_taxon_id] }.
-      transform_values( &:count )
-    sorted_iconic_taxon_frequencies = iconic_taxon_frequencies.sort_by {| _, count | -count }.to_h
-    puts sorted_iconic_taxon_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-    puts "\t"
-
-    puts "Generating year groupings"
-    year_frequencies = observations.group_by {| obs | obs.created_at.year }.transform_values( &:count )
-    sorted_year_frequencies = year_frequencies.sort_by {| _, count | -count }.to_h
-    puts sorted_year_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-    puts "\t"
-
-    puts "Generating continent groupings"
-    continent_obs = {}
-    continents = Place.where( admin_level: -10 ).map( &:id )
-    o.each_slice( 100 ) do | batch |
-      oo = INatAPIService.observations( id: batch )
-      oo.results.each do | o_api |
-        continent = ( continents & o_api["place_ids"] ).first
-        continent_obs[o_api["id"]] = continent
-      end
-    end
-    continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
-    continent_frequencies = continent_obs.group_by {| _, continent | continent_key[continent] }.
-      transform_values( &:count )
-    sorted_continent_frequencies = continent_frequencies.sort_by {| _, count | -count }.to_h
-    puts sorted_continent_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-    puts "\t"
-
-    puts "Calculating number of descendants"
-    root_id = Taxon.where( rank_level: Taxon::ROOT_LEVEL ).first.id
-    taxon_descendant_count = {}
-    observations.pluck( :taxon_id ).uniq.each do | taxon_id |
-      taxon_id = root_id if taxon_id.nil?
-      parent = Taxon.find( taxon_id )
-      if parent.rank_level <= 10
-        leaf_descendants = 1
-      else
-        parent_ancestry = if taxon_id == root_id
-          taxon_id.to_s
-        else
-          "#{parent.ancestry}/#{parent.id}"
-        end
-        taxa = Taxon.select( :ancestry, :id ).
-          where(
-            "rank_level >= 10 AND ( ancestry = ? OR ancestry LIKE ( ? ) ) AND is_active = TRUE",
-            parent_ancestry,
-            "#{parent_ancestry}/%"
-          )
-        ancestors = taxa.map {| t | t.ancestry.split( "/" ).map( &:to_i ) }.flatten.uniq
-        taxon_ids = taxa.map( &:id ).uniq
-        leaf_descendants = ( taxon_ids - ancestors ).count
-      end
-      taxon_descendant_count[taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
+    attributes_to_group_by.each do | attribute |
+      puts "Sample grouped by #{attribute.to_s.humanize}:"
+      frequencies = samples.group_by( &attribute ).transform_values( &:count )
+      sorted_frequencies = frequencies.sort_by {| _, count | -count }.to_h
+      puts sorted_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
+      puts "\t"
     end
 
-    obs_data = observations.map do | obs |
-      {
-        observation_accuracy_experiment_id: id,
-        observation_id: obs.id,
-        taxon_id: obs.taxon_id,
-        quality_grade: obs.quality_grade,
-        year: obs.created_at.year,
-        iconic_taxon_name: iconic_taxon_key[obs.iconic_taxon_id],
-        continent: continent_key[continent_obs[obs.id]],
-        taxon_observations_count: obs.taxon&.observations_count,
-        taxon_rank_level: obs.taxon&.rank_level,
-        descendant_count: taxon_descendant_count[obs.taxon_id]
-      }
+    number_of_validators = ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).
+      distinct.
+      count( :user_id )
+    puts "Distributed to #{number_of_validators} validators"
+    puts "with a validator redundancy factor of #{validator_redundancy_factor}"
+
+    unless validator_contact_date.nil?
+      puts "Validators contacted on #{validator_contact_date} with a deadline of #{validator_deadline_date}"
     end
 
-    ObservationAccuracySample.create!( obs_data )
+    return if assessment_date.nil?
 
-    distribute_to_validators( obs_data )
-
-    self.sample_generation_date = Time.now
-    save!
-
-    end_time = Time.now
-    duration = end_time - start_time
-    puts "Sample generated in #{duration} seconds."
+    puts "Experiment assessed on #{assessment_date}"
+    puts "At that time #{responding_validators} validators responded"
+    puts "(#{( responding_validators / number_of_validators.to_f ).round( 4 )})"
+    puts "covering #{validated_observations} samples"
+    puts "(#{( validated_observations / samples.count.to_f ).round( 4 )})"
+    puts "\t"
+    puts "Accuracy (lower): #{low_acuracy_mean.round( 4 )} +/- #{Math.sqrt( low_acuracy_variance ).round( 4 )}"
+    puts "Accuracy (higher): #{high_accuracy_mean.round( 4 )} +/- #{Math.sqrt( high_accuracy_variance ).round( 4 )}"
+    puts "Precision: #{precision_mean.round( 4 )} +/- #{Math.sqrt( precision_variance ).round( 4 )}"
   end
 
   def contact_validators( validator_deadline_date )
@@ -404,17 +434,22 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     groundtruths = {}
     obs_id_by_user.each do | user_id, oids |
-      groundtruth_taxa = Identification.select( "observation_id, taxon_id, disagreement" ).
+      groundtruth_taxa = Identification.
+        select( "DISTINCT ON ( observation_id ) observation_id, taxon_id, disagreement" ).
         where( observation_id: oids, user_id: user_id, current: true ).
-        group( :observation_id, :taxon_id, :disagreement ).
-        map {| i | [i.observation_id, { taxon_id: i.taxon_id, disagreement: i.disagreement }] }.to_h
+        order( "observation_id DESC, created_at DESC" ).
+        pluck( :observation_id, :taxon_id, :disagreement ).
+        group_by( &:shift ).
+        transform_values {| values | values.map {| v | { taxon_id: v[0], disagreement: v[1] } } }
       groundtruths[user_id] = groundtruth_taxa
     end
+
+    responding_validators = groundtruths.keys.count
+    validated_observations = groundtruths.values.map( &:keys ).flatten.uniq.count
 
     qualities = []
     obs_data.each do | obs |
       oid = obs[:observation_id].to_i
-      puts oid
       test_taxon = obs[:taxon_id].to_i
       matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact
       if matches.empty?
@@ -437,7 +472,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       end
     end
 
-    ####  !!!! remove/replace oaes.
     if qualities.select {| q | q[:quality] == -1 }.count.positive?
       obs_ids = qualities.select {| q | q[:quality] == -1 }.map {| q | q[:observation_id] }.join( "," )
       puts "There is at least one conflict"
@@ -454,6 +488,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
       precision_vals = precisions.map {| o | o[:precision] }
       precision_stats = get_precisions_stats( precision_vals )
       self.assessment_date = Time.now
+      self.responding_validators = responding_validators
+      self.validated_observations = validated_observations
       self.low_acuracy_mean = quality_stats[0]
       self.low_acuracy_variance = quality_stats[1]
       self.high_accuracy_mean = quality_stats[2]
