@@ -4,6 +4,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
   has_many :observation_accuracy_samples, dependent: :destroy
   has_many :observation_accuracy_validators, dependent: :destroy
 
+  attribute :sample_size, :integer, default: 1_000
+  attribute :validator_redundancy_factor, :integer, default: 10
+
   after_create :generate_sample
 
   def bootstrap_variance( original_sample )
@@ -127,7 +130,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
     result["results"][0..499].map {| r | [r["user_id"], r["count"]] }.to_h
   end
 
-  def associate_observations_with_identifiers( obs_ids_grouped_by_taxon_id, identifiers_by_taxon_id, top_iders, redund )
+  def associate_observations_with_identifiers(
+    obs_ids_grouped_by_taxon_id,
+    identifiers_by_taxon_id,
+    top_iders,
+    validator_redundancy_factor
+  )
     associations = Hash.new {| hash, key | hash[key] = [] }
     obs_ids_grouped_by_taxon_id.each do | taxon_id, obs_ids |
       sorted_identifiers = identifiers_by_taxon_id[taxon_id] || []
@@ -135,9 +143,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
       obs_ids.each do | obs_id |
         top_user_ids = start_with = sorted_identifiers.reject {| user_id, _ | user_obs_count[user_id] >= 100 }.
-          select {| k, _ | top_iders.keys.include? k }.take( redund ).map( &:first )
+          select {| k, _ | top_iders.keys.include? k }.take( validator_redundancy_factor ).map( &:first )
         top_user_ids << sorted_identifiers.reject {| user_id, _ | user_obs_count[user_id] >= 100 }.
-          take( redund - start_with.count ).
+          take( validator_redundancy_factor - start_with.count ).
           map( &:first )
         top_user_ids = top_user_ids.flatten
         top_user_ids.each {| user_id | user_obs_count[user_id] += 1 }
@@ -152,8 +160,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def distribute_to_validators( obs_data, redund )
-    puts "Divide up the sample among identifiers with a redundancy of #{redund}..."
+  def distribute_to_validators( obs_data, validator_redundancy_factor )
+    puts "Divide up the sample among identifiers with a redundancy of #{validator_redundancy_factor}..."
     observation_ids_grouped_by_taxon_id = obs_data.group_by {| observation | observation[:taxon_id] }.
       transform_values {| observations | observations.pluck( :id ) }
 
@@ -168,7 +176,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       observation_ids_grouped_by_taxon_id,
       identifiers_by_taxon_id,
       top_iders,
-      redund
+      validator_redundancy_factor
     )
 
     obs_id_by_user.each do | user_id, observation_ids |
@@ -182,14 +190,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def generate_sample( num = 1000, redund = 10 )
+  def generate_sample
+    sample_size = self.sample_size
+    validator_redundancy_factor = self.validator_redundancy_factor
     return nil if Observation.count.zero?
 
-    puts "Generating sample..."
+    puts "Generating sample of size #{sample_size}"
+    puts "with validator redundancy factor of #{validator_redundancy_factor}..."
     ceil = Observation.last.id
-    random_numbers = ( 1..ceil ).to_a.sample( num * 2 )
+    random_numbers = ( 1..ceil ).to_a.sample( sample_size * 2 )
     o = Observation.select( :id ).where( "id IN (?)", random_numbers )
-    o = o.map {| a | a[:id] }.shuffle[0..( num - 1 )]
+    o = o.map {| a | a[:id] }.shuffle[0..( sample_size - 1 )]
     observations = Observation.includes( :taxon ).find( o )
     puts "\t"
 
@@ -332,7 +343,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     ObservationAccuracySample.create!( obs_data )
 
-    distribute_to_validators( obs_data, redund )
+    distribute_to_validators( obs_data, validator_redundancy_factor )
 
     self.sample_generation_date = Time.now
     save!
