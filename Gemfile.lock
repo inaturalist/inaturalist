@@ -508,7 +508,7 @@ GEM
     patron (0.13.3)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (4.3.12)
+    puma (5.6.7)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -816,7 +816,7 @@ DEPENDENCIES
   parallel
   patron
   pg
-  puma (~> 4.3.5)
+  puma
   rack-cors
   rack-mobile-detect
   rack-tracker
@@ -863,4 +863,4 @@ RUBY VERSION
    ruby 3.0.4p208
 
 BUNDLED WITH
-   2.5.4
+   2.3.9
