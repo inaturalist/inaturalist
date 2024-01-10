@@ -2246,7 +2246,7 @@ cs:
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
   #Label for a button to hide the running total of an accumulation chart
-  hide_running_total: Skrýt Running Total
+  hide_running_total: Skrýt průběžný součet
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
@@ -2771,7 +2771,7 @@ cs:
   log_out_caps: ODHLÁSIT SE
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Odhlásit se z %{site_name}?"
-  log_scale_label: Protokol
+  log_scale_label: logaritmické
   #Status message shown while logging in
   logging_in: Přihlašování...
   logo:
@@ -4569,7 +4569,7 @@ cs:
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
     must_be_verifiable: musí být ověřitelné
     must_be_wild: musí být volně žijící
-  running_total: Spuštění celkem
+  running_total: Průběžný součet
   said: řekl/a
   satellite: satelitní
   save: Uložit
@@ -4637,7 +4637,7 @@ cs:
   second_person_possessive_singular: "Váš %{noun}"
   see_something_wrong_with_taxon: Je s tímto taxonem něco v nepořádku? Dejte to vědět kurátorům.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
-  seek: Hledat
+  seek: Seek
   seen_nearby: Viděn poblíž
   seen_one: Viděli jste ho?
   select: Vybrat
@@ -4692,7 +4692,7 @@ cs:
   show_only: Zobrazit jen
   show_relative_proportions_of_all_observations: Zobrazte příbuzné části všech pozorování
   #Label for a button to show the running total of an accumulation chart
-  show_running_total: Zobrazit Running Total
+  show_running_total: Zobrazit průběžný součet
   show_taxa_from_both: (zobrazit taxony z obou seznamů)
   show_taxa_from_everywhere: "Zobrazit taxony ze všech míst"
   show_taxa_from_place: "Zobrazit taxony z %{place}"
@@ -4910,7 +4910,7 @@ cs:
   #can buy merchandise. Please try to keep translations as short as possible
   store: OBCHOD
   store_caps: OBCHOD
-  studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data v %{year}
+  studies_that_used_inaturalist_data_in_year: Studie používající data iNaturalist v roce %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
   subject_affecting_stuff_html: "%{subject} ovlivňující %{stuff}"
@@ -7382,7 +7382,7 @@ cs:
         inaturalist_network: síť iNaturalist
         inaturalist_network_desc: |
           Podívejte se na rok v recenzi pro členy sítě iNaturalist.
-        include_usa: Zahrnuje US
+        include_usa: Zahrnout USA
         growth_by_country_desc_html: |
           Kde je růst? Tato mapa a graf se snaží sdílet tyto informace podle zemí, což je komplikované, protože růst země může být velmi nevyvážený. Zde jsme se rozhodli vynechat Spojené státy a použít výchozí logaritmické měřítko k zvýraznění rozdílů s ostatními zeměmi. Pokud se země objeví v černém, znamená to, že k tomuto procentu významně nepřispěla, nebo že letos neprokázala růst, nebo v tomto roce neměla více pozorování než v loňském roce (více informací najdete nad zemí). <strong> „% celkového růstu“ </strong> znamená podíl globálního růstu pocházejícího z určité země, například pokud je v roce 2018 20 pozorování a 10 v roce 2017, představuje to 10 pozorování růstu a pokud se jich 5 týká Beninu, pak Benin přispěl k 50% celkového růstu. <strong> "% růst" </strong> představuje procento letošních pozorování v této zemi ve srovnání s loňskými pozorováními v této zemi, takže pokud by bylo 10 pozorování o Laosu za rok minulost a 20 letošního roku představuje 100% růst, a pokud by bylo loni a 1 letos 0, představuje to nekonečné procento růstu.
         growth_by_country_title: Růst podle země
@@ -7391,7 +7391,7 @@ cs:
           %{site_name} vložená lidmi, kteří nejsou přidruženi k
           %{site_name}, zatímco "Uživatelé" graf zobrazuje pouze data, kdy se uživatelé
           připojili k %{site_name} k iNaturalist.
-        growth_in_year_obs: "Růst v%{year}(obs)"
+        growth_in_year_obs: "Růst v %{year} (pozorování)"
         growth_title: Růst
         #Label when a mark on a chart has a value that is too small to
         #visualize. low_value is the value (usually a number), low_desc is
@@ -7441,17 +7441,17 @@ cs:
         translators_title: Překladatelé
         translators_desc: |
           Věděli jste, že iNaturalist byl přeložen do %{x_languages},
-          téměř úplně %{x_people}, z nichž někteří iNat nepoužívají? Tady
-          jsou úžasní překladatelé, kteří letos přidali překlady,
-          spolu s počtem slov, která přeložili do
-          %{website_link_tag} web %{link_tag_end}, náš
+          téměř celý od %{x_people}, z nichž někteří iNat nepoužívají? Tady
+          jsou úžasní překladatelé, kteří letos překlady přidali,
+          spolu s počtem slov, která přeložili na
+          %{website_link_tag} webové stránce %{link_tag_end}, v našich aplikacích pro
           %{iphone_link_tag} iPhone %{link_tag_end} a
-          %{android_link_tag} Aplikace pro Android %{link_tag_end} a
-          %{seek_link_tag} Vyhledejte %{link_tag_end}. Můžete si prohlédnout
-          všichny lidi, kteří přispěli překlady,
-          včetně lidí z minulých let a lidí z Translatewiki
-          %{view_all_web_link_tag} webu %{link_tag_end} a
-          %{view_all_mobile_link_tag} mobilního %{link_tag_end} úložiště kódů.
+          %{android_link_tag} Android %{link_tag_end} a v aplikaci
+          %{seek_link_tag} Seek %{link_tag_end}. Můžete si prohlédnout
+          všichny, kteří přispěli překlady,
+          včetně lidí z minulých let a lidí z Translatewiki, na náš
+          %{view_all_web_link_tag} web %{link_tag_end} a do
+          %{view_all_mobile_link_tag} mobilních aplikaci %{link_tag_end} v úložišti kódů.
         translators_desc_for_site: |
           Věděli jste, že %{site_name} byl přeložen téměř úplně uživateli %{x_people}? Zde jsou všichni úžasní překladatelé, kteří
           přidali překlady letos společně s počtem slov,
@@ -7463,7 +7463,7 @@ cs:
            %{view_all_web_link_tag}webo%{link_tag_end} a
            %{view_all_mobile_link_tag}mobilního%{link_tag_end} úložiště kódů.
         translators_prompt: |
-          Pokud chcete pomoci s překladem, %{link_tag}se dozvíte, jak%{link_tag_end}.
+          Pokud chcete pomoci s překladem, %{link_tag}podívejte se jak%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

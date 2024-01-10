@@ -1980,6 +1980,8 @@ sv:
   #Adjective, as in a fluid layout of images
   fluid: responsiv
   follow: Följ
+  #Text for a button to follow updates on an observation
+  follow_observation: Följ fynd
   follow_receive_updates_about_new_observations: Följ (få uppdateringar om nya fynd)
   #Text for a button to follow updates from a specific user
   follow_user: "Följ %{user}"
@@ -5364,6 +5366,10 @@ sv:
   unknown: Okänd
   unknown_error: Okänt fel
   unknown_rank: '(Okänd rang)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Sluta följa fynd
+  #Text for a button to stop following updates from a user
+  unfollow_user: Sluta följa användaren
   unlink_your_google_account: Koppla från ditt Google-konto
   unlink_your_flickr_account: "Koppla från ditt Flickr-konto"
   unmute: Ta bort "tysta"

@@ -2033,6 +2033,8 @@ ru:
   #Adjective, as in a fluid layout of images
   fluid: жидкий
   follow: Подписка
+  #Text for a button to follow updates on an observation
+  follow_observation: Подписаться на наблюдение
   follow_receive_updates_about_new_observations: Подписаться (получать обновления о новых наблюдениях)
   #Text for a button to follow updates from a specific user
   follow_user: "Подписаться на %{user}"
@@ -5380,6 +5382,10 @@ ru:
   unknown: Неизвестно
   unknown_error: Неизвестная ошибка
   unknown_rank: '(Неизвестный ранг)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Отписаться от наблюдения
+  #Text for a button to stop following updates from a user
+  unfollow_user: Отписаться от пользователя
   unlink_your_google_account: Отвязать ваш аккаунт Google
   unlink_your_flickr_account: "Отвязать свою учётную запись Flickr"
   unmute: Отмена игнорирования

@@ -1867,6 +1867,8 @@ de:
   #Adjective, as in a fluid layout of images
   fluid: Flexibel
   follow: Folgen
+  #Text for a button to follow updates on an observation
+  follow_observation: Der Beobachtung folgen
   follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
   #Text for a button to follow updates from a specific user
   follow_user: "Folge %{user}"
@@ -5151,6 +5153,10 @@ de:
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
   unknown_rank: '(Unbekannter Rang)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Der Beobachtung nicht mehr folgen
+  #Text for a button to stop following updates from a user
+  unfollow_user: Dem Benutzer nicht mehr folgen
   unlink_your_google_account: Dein Google-Konto trennen
   unlink_your_flickr_account: "Entferne dein Flickr-Konto"
   unmute: Ton an
