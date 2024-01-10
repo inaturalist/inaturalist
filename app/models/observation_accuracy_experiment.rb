@@ -6,6 +6,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   attribute :sample_size, :integer, default: 1_000
   attribute :validator_redundancy_factor, :integer, default: 10
+  attribute :taxon_id, :integer
 
   after_create :generate_sample
 
@@ -188,12 +189,23 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def generate_sample
     start_time = Time.now
     sample_size = self.sample_size
+    taxon_id = self.taxon_id
     return nil if Observation.count.zero?
 
     puts "Generating sample of size #{sample_size}..."
     ceil = Observation.last.id
     random_numbers = ( 1..ceil ).to_a.sample( sample_size * 2 )
-    o = Observation.select( :id ).where( "id IN (?)", random_numbers )
+    o = if taxon_id.nil?
+      Observation.select( :id ).where( "id IN (?)", random_numbers )
+    else
+      Observation.
+        joins( :taxon ).select( "observations.id" ).
+        where(
+          "taxa.ancestry LIKE ( ? ) AND observations.id IN ( ? )",
+          "#{Taxon.find( taxon_id ).ancestry}/%",
+          random_numbers
+        )
+    end
     o = o.map {| a | a[:id] }.shuffle[0..( sample_size - 1 )]
     observations = Observation.includes( :taxon ).find( o )
 
@@ -212,14 +224,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Fetching number of descendants"
     root_id = Taxon.where( rank_level: Taxon::ROOT_LEVEL ).first.id
     taxon_descendant_count = {}
-    observations.pluck( :taxon_id ).uniq.each do | taxon_id |
-      taxon_id = root_id if taxon_id.nil?
-      parent = Taxon.find( taxon_id )
+    observations.pluck( :taxon_id ).uniq.each do | obs_taxon_id |
+      obs_taxon_id = root_id if obs_taxon_id.nil?
+      parent = Taxon.find( obs_taxon_id )
       if parent.rank_level <= 10
         leaf_descendants = 1
       else
-        parent_ancestry = if taxon_id == root_id
-          taxon_id.to_s
+        parent_ancestry = if obs_taxon_id == root_id
+          obs_taxon_id.to_s
         else
           "#{parent.ancestry}/#{parent.id}"
         end
@@ -233,7 +245,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         taxon_ids = taxa.map( &:id ).uniq
         leaf_descendants = ( taxon_ids - ancestors ).count
       end
-      taxon_descendant_count[taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
+      taxon_descendant_count[obs_taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
     end
 
     iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
@@ -265,7 +277,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   # this method replaces all validators with ones attributed to a single user for testing
-  def replace_validators_for_testing( user_id )
+  def replace_validators_for_testing( user_ids )
     o = ObservationAccuracySample.
       where( observation_accuracy_experiment_id: id ).
       limit( 200 ).
@@ -273,13 +285,15 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return nil if o.count.zero?
 
     ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).destroy_all
-    o.each do | oid |
-      oav = ObservationAccuracyValidator.new(
-        observation_accuracy_experiment_id: id,
-        user_id: user_id,
-        observation_id: oid
-      )
-      oav.save!
+    user_ids.each do | user_id |
+      o.each do | oid |
+        oav = ObservationAccuracyValidator.new(
+          observation_accuracy_experiment_id: id,
+          user_id: user_id,
+          observation_id: oid
+        )
+        oav.save!
+      end
     end
   end
 
@@ -289,7 +303,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return nil if samples.empty?
 
     puts "Sample consistes of #{samples.count} observations generated on #{sample_generation_date}"
-
+    puts "restricted to #{Taxon.find( taxon_id ).name}" if taxon_id
+    puts "\t"
     puts "Sample grouped by taxonomic rank:"
     rank_level_obs = {}
     obs_count_obs = {}
@@ -367,10 +382,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return if assessment_date.nil?
 
     puts "Experiment assessed on #{assessment_date}"
-    puts "At that time #{responding_validators} validators responded"
-    puts "(#{( responding_validators / number_of_validators.to_f ).round( 4 )})"
-    puts "covering #{validated_observations} samples"
-    puts "(#{( validated_observations / samples.count.to_f ).round( 4 )})"
+    responding_validators_percent = ( responding_validators / number_of_validators.to_f ).round( 2 ) * 100
+    puts "At that time #{responding_validators} validator(s) responded (#{responding_validators_percent}%)"
+    validated_observations_percent = ( validated_observations / samples.count.to_f ).round( 2 ) * 100
+    puts "and validated #{validated_observations} sample(s) (#{validated_observations_percent}%)"
     puts "\t"
     puts "Accuracy (lower): #{low_acuracy_mean.round( 4 )} +/- #{Math.sqrt( low_acuracy_variance ).round( 4 )}"
     puts "Accuracy (higher): #{high_accuracy_mean.round( 4 )} +/- #{Math.sqrt( high_accuracy_variance ).round( 4 )}"
@@ -401,6 +416,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
       puts email_text
     end
     self.validator_contact_date = Time.now
+    self.validator_deadline_date = validator_deadline_date
+    save!
   end
 
   def assess_experiment
@@ -451,7 +468,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     obs_data.each do | obs |
       oid = obs[:observation_id].to_i
       test_taxon = obs[:taxon_id].to_i
-      matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact
+      matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact.flatten
       if matches.empty?
         qualities << { observation_id: oid, quality: nil }
       else

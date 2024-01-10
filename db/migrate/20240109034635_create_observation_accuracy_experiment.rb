@@ -4,6 +4,7 @@ class CreateObservationAccuracyExperiment < ActiveRecord::Migration[6.1]
   def change
     create_table :observation_accuracy_experiments do | t |
       t.integer :sample_size
+      t.integer :taxon_id
       t.integer :validator_redundancy_factor
       t.datetime :sample_generation_date
       t.datetime :validator_contact_date

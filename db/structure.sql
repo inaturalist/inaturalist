@@ -2576,6 +2576,7 @@ ALTER SEQUENCE public.oauth_applications_id_seq OWNED BY public.oauth_applicatio
 CREATE TABLE public.observation_accuracy_experiments (
     id bigint NOT NULL,
     sample_size integer,
+    taxon_id integer,
     validator_redundancy_factor integer,
     sample_generation_date timestamp without time zone,
     validator_contact_date timestamp without time zone,
