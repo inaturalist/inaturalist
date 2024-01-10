@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ObservationAccuracyExperiment < ApplicationRecord
-  include ApplicationHelper
-
   has_many :observation_accuracy_samples, dependent: :destroy
 
   attribute :sample_size, :integer, default: 1_000
@@ -403,7 +401,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def contact_validators( validator_deadline_date, send_emails: false )
+  def contact_validators( validator_deadline_date )
     sample_id_by_validator = get_sample_id_by_validator
 
     sample_id_by_validator.each do | validator_id, sample_ids |
@@ -444,7 +442,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         "<p>With gratitude,</p>" \
         "<p>Scott Loarie</p>" \
         "<p>On behalf of the iNaturalist team</p>"
-      Emailer.custom_email( user, subject, helper.formatted_user_text( body ) ).deliver_now if send_emails
+      Emailer.custom_email( user, subject, ApplicationController.helpers.formatted_user_text( body ) ).deliver_now
       validator.email_date = Time.now
       validator.save!
     end
