@@ -9,8 +9,8 @@ class CreateObservationAccuracyExperiment < ActiveRecord::Migration[6.1]
       t.datetime :validator_contact_date
       t.datetime :validator_deadline_date
       t.datetime :assessment_date
+      t.integer :responding_validators
       t.integer :validated_observations
-      t.integer :low_acuracy_mean
       t.float :low_acuracy_mean
       t.float :low_acuracy_variance
       t.float :high_accuracy_mean
