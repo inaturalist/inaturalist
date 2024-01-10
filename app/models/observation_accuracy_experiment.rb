@@ -177,7 +177,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
 
     obs_id_by_user.each do | user_id, observation_ids |
-      # Create ObservationAccuracyValidator
       observation_validator = ObservationAccuracyValidator.create( user_id: user_id )
       observation_validator.observation_accuracy_samples << ObservationAccuracySample.
         where( observation_id: observation_ids )
@@ -276,22 +275,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   # this method replaces all validators with ones attributed to a single user for testing
   def replace_validators_for_testing( user_ids )
-    o = ObservationAccuracySample.
-      where( observation_accuracy_experiment_id: id ).
-      limit( 200 ).
-      pluck( :observation_id )
+    o = observation_accuracy_samples.
+      limit( 200 )
     return nil if o.count.zero?
 
-    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).destroy_all
+    observation_validator_ids = observation_accuracy_samples.joins( :observation_accuracy_validators ).
+      pluck( :observation_accuracy_validator_id ).uniq
+    ObservationAccuracyValidator.where( id: observation_validator_ids ).destroy_all
+
     user_ids.each do | user_id |
-      o.each do | oid |
-        oav = ObservationAccuracyValidator.new(
-          observation_accuracy_experiment_id: id,
-          user_id: user_id,
-          observation_id: oid
-        )
-        oav.save!
-      end
+      observation_validator = ObservationAccuracyValidator.create( user_id: user_id )
+      observation_validator.observation_accuracy_samples << o
     end
   end
 
@@ -367,14 +361,13 @@ class ObservationAccuracyExperiment < ApplicationRecord
       puts "\t"
     end
 
-    number_of_validators = ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).
-      distinct.
-      count( :user_id )
-    puts "Distributed to #{number_of_validators} validator(s)"
+    number_of_validators = observation_accuracy_samples.joins( :observation_accuracy_validators ).
+      pluck( :observation_accuracy_validator_id ).uniq.count
+    puts "Sample distributed among #{number_of_validators} candidate validator(s)"
     puts "with a validator redundancy factor of #{validator_redundancy_factor}"
 
     unless validator_contact_date.nil?
-      puts "Validators contacted on #{validator_contact_date} with a deadline of #{validator_deadline_date}"
+      puts "Candidate validators contacted on #{validator_contact_date} with a deadline of #{validator_deadline_date}"
     end
 
     return if assessment_date.nil?
@@ -414,7 +407,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     sample_id_by_validator = get_sample_id_by_validator
 
     sample_id_by_validator.each do | validator_id, sample_ids |
-      validator = ObservationAccuracyValidator.find( validator_id ).first
+      validator = ObservationAccuracyValidator.find( validator_id )
       user_id = validator.user_id
       obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
       sample_url = "https://www.inaturalist.org/observations/identify?" \
@@ -485,7 +478,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     groundtruths = {}
     sample_id_by_validator.each do | validator_id, sample_ids |
       obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
-      validator = ObservationAccuracyValidator.find( validator_id ).first
+      validator = ObservationAccuracyValidator.find( validator_id )
       user_id = validator.user_id
       groundtruth_taxa = Identification.
         select( "DISTINCT ON ( observation_id ) observation_id, taxon_id, disagreement" ).
