@@ -1615,6 +1615,7 @@ pl:
   exclusion_filters: Filtry wykluczające
   existing_flags: Istniejące zgłoszenia
   exit_full_screen: "Wyjdź z trybu pełnoekranowego"
+  expected_nearby: Spodziewany w pobliżu
   explore: Przeglądaj
   export: Eksport
   export_observations: Eksport obserwacji
@@ -1760,6 +1761,8 @@ pl:
   flickr_tagger: Tagger Flickr
   flickr_tags: Tagi z Flickra
   follow: Obserwuj
+  #Text for a button to follow updates on an observation
+  follow_observation: Obserwuj obserwację
   follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
   #Text for a button to follow updates from a specific user
   follow_user: "Obserwuj %{user}"
@@ -1939,6 +1942,8 @@ pl:
   inaturalist_network: Sieć iNaturalist
   #Label for messages you've received
   inbox: skrzynka odbiorcza
+  include_suggestions_not_seen_nearby: Uwzględnij sugestie organizmów niewidzianych w pobliżu
+  include_suggestions_not_expected_nearby: Uwzględnij sugestie organizmów niespodziewanych w pobliżu
   increase_brightness: Zwiększ jasność
   in_progress: w trakcie
   in_the_past: w przeszłości
@@ -2944,6 +2949,8 @@ pl:
       municipality: gmina
       Nationality: Narodowość
       nationality: narodowość
+      Nearby_Building: Pobliski budynek
+      nearby_building: pobliski budynek
       Nearby_Intersection: Pobliskie skrzyżowanie
       nearby_intersection: pobliskie skrzyżowanie
       Open_Space: Otwarta przestrzeń
@@ -4017,6 +4024,10 @@ pl:
   unknown: Nieznany
   unknown_error: Nieznany błąd
   unknown_rank: '(Nieznana ranga)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Przestań obserwować obserwację
+  #Text for a button to stop following updates from a user
+  unfollow_user: Przestań obserwować użytkownika
   unlink_your_google_account: Odłącz swoje konto Google
   unlink_your_flickr_account: "Odłącz swoje konto Flickr"
   unmute: Usuń wyciszenie
@@ -4371,6 +4382,14 @@ pl:
         become_a_monthly_supporter_of_inaturalist_caps: ZOSTAŃ COMIESIĘCZNYM OFIARODAWCĄ INATURALIST
         thank_you_for_being_a_monthly_supporter: Dziękujemy za bycie comiesięcznym ofiarodawcą!
         thank_you_for_being_a_monthly_supporter_caps: DZIĘKUJEMY ZA BYCIE COMIESIĘCZNYM OFIARODAWCĄ!
+    geo_model:
+      explain:
+        nearby_map:
+          expected_nearby_map: Mapa organizmów spodziewanych w pobliżu
+        range_comparison:
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Dokładność:
     guides:
       show:
         draft_desc: |
