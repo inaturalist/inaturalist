@@ -4,7 +4,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
   include ApplicationHelper
 
   has_many :observation_accuracy_samples, dependent: :destroy
-  has_many :observation_accuracy_validators, dependent: :destroy
 
   attribute :sample_size, :integer, default: 1_000
   attribute :validator_redundancy_factor, :integer, default: 10
@@ -178,13 +177,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
 
     obs_id_by_user.each do | user_id, observation_ids |
-      observation_ids.each do | observation_id |
-        ObservationAccuracyValidator.create!(
-          observation_accuracy_experiment_id: id,
-          user_id: user_id,
-          observation_id: observation_id
-        )
-      end
+      # Create ObservationAccuracyValidator
+      observation_validator = ObservationAccuracyValidator.create( user_id: user_id )
+      observation_validator.observation_accuracy_samples << ObservationAccuracySample.
+        where( observation_id: observation_ids )
     end
   end
 
@@ -394,19 +390,33 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Precision: #{precision_mean.round( 4 )} +/- #{Math.sqrt( precision_variance ).round( 4 )}"
   end
 
-  def contact_validators( validator_deadline_date )
-    observation_accuracy_validators = ObservationAccuracyValidator.
-      where( observation_accuracy_experiment_id: id )
+  def get_sample_id_by_validator
+    observation_validator_ids = observation_accuracy_samples.joins( :observation_accuracy_validators ).
+      pluck( :observation_accuracy_validator_id ).uniq
+    observation_accuracy_validators = ObservationAccuracyValidator.where( id: observation_validator_ids )
     return nil if observation_accuracy_validators.empty?
 
-    obs_id_by_user = {}
-    observation_accuracy_validators.each do | observation_accuracy_validator |
-      user_id = observation_accuracy_validator.user_id
-      observation_id = observation_accuracy_validator.observation_id
-      obs_id_by_user[user_id] ||= []
-      obs_id_by_user[user_id] << observation_id
+    validator_id_by_sample = {}
+    observation_accuracy_samples.each do | sample |
+      validator_ids = sample.observation_accuracy_validators.pluck( :id )
+      validator_id_by_sample[sample.id] = validator_ids
     end
-    obs_id_by_user.each do | user_id, obs_ids |
+
+    validator_id_by_sample.each_with_object( {} ) do | ( sample_id, validator_ids ), result |
+      validator_ids.each do | validator_id |
+        result[validator_id] ||= []
+        result[validator_id] << sample_id
+      end
+    end
+  end
+
+  def contact_validators( validator_deadline_date, send_emails: false )
+    sample_id_by_validator = get_sample_id_by_validator
+
+    sample_id_by_validator.each do | validator_id, sample_ids |
+      validator = ObservationAccuracyValidator.find( validator_id ).first
+      user_id = validator.user_id
+      obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
       sample_url = "https://www.inaturalist.org/observations/identify?" \
         "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids.join( ',' )}"
       user = User.find( user_id )
@@ -422,7 +432,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         "<p>Will you help us with an experiment to estimate the accuracy of iNaturalist observations?</p>" \
         "<p>If so, we've made a <a href='#{sample_url}'>set of #{num_obs} observations</a> that we think you " \
         "can identify based on your activity on iNat. <b>Please add the finest ID you can to each before " \
-        "#{oae.validator_deadline_date}</b>.</p>" \
+        "#{validator_deadline_date}</b>.</p>" \
         "<p>We’ll calculate accuracy by comparing your ID to the  Observation Taxon. Make sure to add an ID " \
         "to every observation, even if the observation is already Research Grade to help track your progress. You " \
         "can skip observations where you’ve previously added an ID if that ID is still relevant.</p>" \
@@ -441,7 +451,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
         "<p>With gratitude,</p>" \
         "<p>Scott Loarie</p>" \
         "<p>On behalf of the iNaturalist team</p>"
-      Emailer.custom_email( user, subject, helper.formatted_user_text( body ) ).deliver_now
+      Emailer.custom_email( user, subject, helper.formatted_user_text( body ) ).deliver_now if send_emails
+      validator.email_date = Time.now
+      validator.save!
     end
     self.validator_contact_date = Time.now
     self.validator_deadline_date = validator_deadline_date
@@ -467,21 +479,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
         descendant_count: sample.descendant_count
       }
     end
-    observation_accuracy_validators = ObservationAccuracyValidator.
-      where( observation_accuracy_experiment_id: id )
-    obs_id_by_user = {}
-    observation_accuracy_validators.each do | observation_accuracy_validator |
-      user_id = observation_accuracy_validator.user_id
-      observation_id = observation_accuracy_validator.observation_id
-      obs_id_by_user[user_id] ||= []
-      obs_id_by_user[user_id] << observation_id
-    end
+
+    sample_id_by_validator = get_sample_id_by_validator
 
     groundtruths = {}
-    obs_id_by_user.each do | user_id, oids |
+    sample_id_by_validator.each do | validator_id, sample_ids |
+      obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
+      validator = ObservationAccuracyValidator.find( validator_id ).first
+      user_id = validator.user_id
       groundtruth_taxa = Identification.
         select( "DISTINCT ON ( observation_id ) observation_id, taxon_id, disagreement" ).
-        where( observation_id: oids, user_id: user_id, current: true ).
+        where( observation_id: obs_ids, user_id: user_id, current: true ).
         order( "observation_id DESC, created_at DESC" ).
         pluck( :observation_id, :taxon_id, :disagreement ).
         group_by( &:shift ).

@@ -22,7 +22,6 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
-
 --
 -- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -2655,14 +2654,23 @@ ALTER SEQUENCE public.observation_accuracy_samples_id_seq OWNED BY public.observ
 
 
 --
+-- Name: observation_accuracy_samples_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples_validators (
+    observation_accuracy_sample_id bigint NOT NULL,
+    observation_accuracy_validator_id bigint NOT NULL
+);
+
+
+--
 -- Name: observation_accuracy_validators; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.observation_accuracy_validators (
     id bigint NOT NULL,
-    observation_accuracy_experiment_id integer,
     user_id integer,
-    observation_id integer,
+    email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -8500,6 +8508,20 @@ CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING bt
 
 
 --
+-- Name: index_oa_samples_oa_validators; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_samples_oa_validators ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_sample_id, observation_accuracy_validator_id);
+
+
+--
+-- Name: index_oa_validators_oa_samples; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_validators_oa_samples ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_validator_id, observation_accuracy_sample_id);
+
+
+--
 -- Name: index_oas_on_oae_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8549,10 +8571,17 @@ CREATE UNIQUE INDEX index_oauth_applications_on_uid ON public.oauth_applications
 
 
 --
--- Name: index_oav_on_oae_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_observation_accuracy_samples_on_observation_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_oav_on_oae_id ON public.observation_accuracy_validators USING btree (observation_accuracy_experiment_id);
+CREATE INDEX index_observation_accuracy_samples_on_observation_id ON public.observation_accuracy_samples USING btree (observation_id);
+
+
+--
+-- Name: index_observation_accuracy_validators_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_accuracy_validators_on_user_id ON public.observation_accuracy_validators USING btree (user_id);
 
 
 --
@@ -10625,6 +10654,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231025144604'),
 ('20240109034635'),
 ('20240109035846'),
-('20240109035854');
+('20240109035854'),
+('20240110183622');
 
 

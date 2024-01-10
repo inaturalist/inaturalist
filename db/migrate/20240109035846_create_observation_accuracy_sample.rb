@@ -17,6 +17,7 @@ class CreateObservationAccuracySample < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
+    add_index :observation_accuracy_samples, :observation_id
     add_index :observation_accuracy_samples, :observation_accuracy_experiment_id,
       name: "index_oas_on_oae_id"
   end
