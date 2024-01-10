@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ObservationAccuracyExperiment < ApplicationRecord
+  include ApplicationHelper
+
   has_many :observation_accuracy_samples, dependent: :destroy
   has_many :observation_accuracy_validators, dependent: :destroy
 
@@ -372,7 +374,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     number_of_validators = ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).
       distinct.
       count( :user_id )
-    puts "Distributed to #{number_of_validators} validators"
+    puts "Distributed to #{number_of_validators} validator(s)"
     puts "with a validator redundancy factor of #{validator_redundancy_factor}"
 
     unless validator_contact_date.nil?
@@ -405,15 +407,41 @@ class ObservationAccuracyExperiment < ApplicationRecord
       obs_id_by_user[user_id] << observation_id
     end
     obs_id_by_user.each do | user_id, obs_ids |
-      url = "https://www.inaturalist.org/observations/identify?" \
+      sample_url = "https://www.inaturalist.org/observations/identify?" \
         "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids.join( ',' )}"
       user = User.find( user_id )
-      email_text = "
-      Dear #{user.login},
-      Can you please ID thes by #{validator_deadline_date}
-      #{url}
-      "
-      puts email_text
+      user_name = user.name.nil? ? user.login : user.name
+      num_obs = obs_ids.count
+      blog_url = "https://www.inaturalist.org/blog/88501"
+      image1 = "https://static.inaturalist.org/wiki_page_attachments/3676-original.png"
+      image2 = "https://static.inaturalist.org/wiki_page_attachments/3675-original.png"
+      image3 = "https://static.inaturalist.org/wiki_page_attachments/3674-original.png"
+      image4 = "https://static.inaturalist.org/wiki_page_attachments/3673-original.png"
+      subject = "Will you help us estimate the accuracy of iNaturalist observations?"
+      body = "<p>Dear #{user_name},</p>" \
+        "<p>Will you help us with an experiment to estimate the accuracy of iNaturalist observations?</p>" \
+        "<p>If so, we've made a <a href='#{sample_url}'>set of #{num_obs} observations</a> that we think you " \
+        "can identify based on your activity on iNat. <b>Please add the finest ID you can to each before " \
+        "#{oae.validator_deadline_date}</b>.</p>" \
+        "<p>We’ll calculate accuracy by comparing your ID to the  Observation Taxon. Make sure to add an ID " \
+        "to every observation, even if the observation is already Research Grade to help track your progress. You " \
+        "can skip observations where you’ve previously added an ID if that ID is still relevant.</p>" \
+        "<img src='#{image1}' />" \
+        "<p>IDs equal to (A) or finer than (B) the Observation Taxon will be counted as Agreements.</p>" \
+        "<img src='#{image2}' />" \
+        "<p>IDs sibling to (C) or coarser than the Observation Taxon where you choose 'No, but…' to the " \
+        "'Potential Disagreement' dialog (D) will be counted as Disagreements.</p>" \
+        "<img src='#{image3}' />" \
+        "<p>IDs coarser than the Observation Taxon where you choose 'I don’t know but…' to the 'Potential " \
+        "Disagreement' dialog (E) will be counted as Uncertain.</p>" \
+        "<img src='#{image4}' />" \
+        "<p>We're so grateful for your help as an identifier on iNaturalist, and thank you very much for " \
+        "participating in this study. Please read <a href='#{blog_url}'>this blog post</a> if you’re " \
+        "interested in learning more about this experiment.</p>" \
+        "<p>With gratitude,</p>" \
+        "<p>Scott Loarie</p>" \
+        "<p>On behalf of the iNaturalist team</p>"
+      Emailer.custom_email( user, subject, helper.formatted_user_text( body ) ).deliver_now
     end
     self.validator_contact_date = Time.now
     self.validator_deadline_date = validator_deadline_date
@@ -461,7 +489,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       groundtruths[user_id] = groundtruth_taxa
     end
 
-    responding_validators = groundtruths.keys.count
+    responding_validators = groundtruths.values.reject( &:empty? ).count
     validated_observations = groundtruths.values.map( &:keys ).flatten.uniq.count
 
     qualities = []
