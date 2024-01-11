@@ -40,13 +40,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
       ( child_ancestor_ids - parent_ancestor_ids ).count.positive?
   end
 
-  def assess_quality( test_taxon_id, groundtruth_taxon_id, disagreement )
+  def assess_quality( test_taxon_id, groundtruth_taxon_id, disagreement, previous_observation_taxon_id )
     test_taxon = Taxon.find( test_taxon_id )
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
     return 1 if test_taxon_id == groundtruth_taxon_id || ancestor?( test_taxon, groundtruth_taxon )
 
     return 0 if ( ancestor?( groundtruth_taxon, test_taxon ) &&
-       disagreement ) || sibling?( test_taxon, groundtruth_taxon )
+      disagreement && previous_observation_taxon_id == test_taxon_id ) ||
+      sibling?( test_taxon, groundtruth_taxon )
 
     nil
   end
@@ -461,7 +462,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def assess_experiment
     samples = ObservationAccuracySample.
-      where( observation_accuracy_experiment_id: oae.id )
+      where( observation_accuracy_experiment_id: id )
     return nil if samples.empty?
 
     obs_data = []
@@ -487,12 +488,15 @@ class ObservationAccuracyExperiment < ApplicationRecord
       validator = ObservationAccuracyValidator.find( validator_id )
       user_id = validator.user_id
       groundtruth_taxa = Identification.
-        select( "DISTINCT ON ( observation_id ) observation_id, taxon_id, disagreement" ).
+        select( "DISTINCT ON ( observation_id ) observation_id, taxon_id, " \
+          "disagreement, previous_observation_taxon_id" ).
         where( observation_id: obs_ids, user_id: user_id, current: true ).
         order( "observation_id DESC, created_at DESC" ).
-        pluck( :observation_id, :taxon_id, :disagreement ).
+        pluck( :observation_id, :taxon_id, :disagreement, :previous_observation_taxon_id ).
         group_by( &:shift ).
-        transform_values {| values | values.map {| v | { taxon_id: v[0], disagreement: v[1] } } }
+        transform_values do | values |
+          values.map {| v | { taxon_id: v[0], disagreement: v[1], previous_observation_taxon_id: v[2] } }
+        end
       groundtruths[user_id] = groundtruth_taxa
     end
 
@@ -511,7 +515,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
         matches.each do | match |
           groundtruth_taxon = match[:taxon_id]
           disagreement = match[:disagreement]
-          quality = assess_quality( test_taxon, groundtruth_taxon, disagreement )
+          previous_observation_taxon_id = match[:previous_observation_taxon_id]
+          quality = assess_quality( test_taxon, groundtruth_taxon, disagreement, previous_observation_taxon_id )
           qualities_for_row << { observation_id: oid, quality: quality }
         end
         qualities << if !qualities_for_row.map {| q | q[:quality].nil? }.all? &&
@@ -550,5 +555,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
       self.precision_variance = precision_stats[1]
       save!
     end
+  end
+
+  def get_sample_for_user_id( user_id )
+    sample_id_by_validator = get_sample_id_by_validator
+    oids = sample_id_by_validator[ObservationAccuracyValidator.where( user_id: user_id ).first.id].join( "," )
+    "https://www.inaturalist.org/observations/identify?reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{oids}"
   end
 end
