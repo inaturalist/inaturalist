@@ -86,7 +86,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
         request = Net::HTTP::Get.new( "#{url.path}?#{url.query}" )
         response = http.request( request )
         result = JSON.parse( response.body )
-        sorted_frequency_hash = result["results"][0..49].map {| r | [r["user_id"], r["count"]] }.to_h
+        sorted_frequency_hash = if result.nil?
+          {}
+        else
+          result["results"][0..49].map {| r | [r["user_id"], r["count"]] }.to_h
+        end
       else
         url = URI.parse( "https://stagingapi.inaturalist.org/v1/observations/identifiers?taxon_id=#{taxon_id}" )
         http = Net::HTTP.new( url.host, url.port )
@@ -94,22 +98,26 @@ class ObservationAccuracyExperiment < ApplicationRecord
         request = Net::HTTP::Get.new( "#{url.path}?#{url.query}" )
         response = http.request( request )
         result = JSON.parse( response.body )
-        iders = result["results"].map {| r | r["user_id"] }
-        ids = INatAPIService.get( "/identifications",
-          { per_page: 200, taxon_id: taxon_id, category: "improving", d1: "2023-01-01", user_id: iders[0..49] } )
-        if ids.results.empty?
+        if result.nil?
+          sorted_frequency_hash = {}
+        else
+          iders = result["results"].map {| r | r["user_id"] }
           ids = INatAPIService.get( "/identifications",
-            { per_page: 200, taxon_id: taxon_id, category: "improving", d1: "2023-01-01" } )
+            { per_page: 200, taxon_id: taxon_id, category: "improving", d1: "2023-01-01", user_id: iders[0..49] } )
+          if ids.results.empty?
+            ids = INatAPIService.get( "/identifications",
+              { per_page: 200, taxon_id: taxon_id, category: "improving", d1: "2023-01-01" } )
+          end
+          if ids.results.empty?
+            ids = INatAPIService.get( "/identifications", { per_page: 200, taxon_id: taxon_id, category: "improving" } )
+          end
+          if ids.results.empty?
+            ids = INatAPIService.get( "/identifications", { per_page: 200, taxon_id: taxon_id, category: "leading" } )
+          end
+          user_ids = ids.results.map {| r | r["user"]["id"] }
+          frequency_hash = user_ids.group_by( &:itself ).transform_values( &:count )
+          sorted_frequency_hash = frequency_hash.sort_by {| _, count | -count }.to_h
         end
-        if ids.results.empty?
-          ids = INatAPIService.get( "/identifications", { per_page: 200, taxon_id: taxon_id, category: "improving" } )
-        end
-        if ids.results.empty?
-          ids = INatAPIService.get( "/identifications", { per_page: 200, taxon_id: taxon_id, category: "leading" } )
-        end
-        user_ids = ids.results.map {| r | r["user"]["id"] }
-        frequency_hash = user_ids.group_by( &:itself ).transform_values( &:count )
-        sorted_frequency_hash = frequency_hash.sort_by {| _, count | -count }.to_h
       end
       identifiers_by_taxon_id[taxon_id] = sorted_frequency_hash
       counter += 1
@@ -453,7 +461,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def assess_experiment
     samples = ObservationAccuracySample.
-      where( observation_accuracy_experiment_id: id )
+      where( observation_accuracy_experiment_id: oae.id )
     return nil if samples.empty?
 
     obs_data = []
