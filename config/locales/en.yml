@@ -356,6 +356,7 @@ en:
   active_taxon_status: Active
   active_users: Active Users
   activity: Activity
+  activity_on_a_flag_for_x: Activity on a flag for %{x}
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
   add_a_batch_of_observations: Add a Batch of Observations
@@ -2119,6 +2120,7 @@ en:
     Flag for User: %{title}
   flag_it!: Flag it!
   flag_marked_as_resolved_html: '<span class="meta">Flag marked as</span> <strong>resolved.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Flag marked as</span> <strong>unresolved.</strong>'
   # Label for the object that was flagged, e.g. a table header
   flag_object: Object
   flag_reason: "&ldquo;I'm flagging this %{record} because"
@@ -3639,6 +3641,7 @@ en:
   organism_is_wild: Organism is wild
   organisms: Organisms
   original: Original
+  original_flag: Original flag
   originally_flagged_by: Originally flagged by
   originally_imported_from_url_html: "Originally imported from <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Original page URL for this photo."
