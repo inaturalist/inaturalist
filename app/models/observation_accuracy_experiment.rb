@@ -53,8 +53,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_quality_stats( qualities )
-    qualities_low = qualities.map {| value | value[:quality].nil? ? 0 : value[:quality] }
-    qualities_high = qualities.map {| value | value[:quality].nil? ? 1 : value[:quality] }
+    qualities_low = qualities.map {| q | q.nil? ? 0 : q }
+    qualities_high = qualities.map {| q | q.nil? ? 1 : q }
     mean_high = qualities_high.sum / qualities_high.count.to_f
     mean_low = qualities_low.sum / qualities_low.count.to_f
     var_high = bootstrap_variance( qualities_high )
@@ -417,12 +417,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
       validator = ObservationAccuracyValidator.find( validator_id )
       user_id = validator.user_id
       obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
-      sample_url = "https://www.inaturalist.org/observations/identify?" \
+      sample_url = "#{Site.default.url}/observations/identify?" \
         "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids.join( ',' )}"
       user = User.find( user_id )
       user_name = user.name.nil? ? user.login : user.name
       num_obs = obs_ids.count
-      blog_url = "https://www.inaturalist.org/blog/88501"
+      blog_url = "#{Site.default.url}/blog/88501"
       image1 = "https://static.inaturalist.org/wiki_page_attachments/3676-original.png"
       image2 = "https://static.inaturalist.org/wiki_page_attachments/3675-original.png"
       image3 = "https://static.inaturalist.org/wiki_page_attachments/3674-original.png"
@@ -460,25 +460,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
     save!
   end
 
+  def calculate_precision( number )
+    1 / ( number.zero? ? 1 : number ).to_f
+  end
+
   def assess_experiment
     samples = ObservationAccuracySample.
       where( observation_accuracy_experiment_id: id )
     return nil if samples.empty?
-
-    obs_data = []
-    samples.each do | sample |
-      obs_data << {
-        observation_id: sample.observation_id,
-        taxon_id: sample.taxon_id,
-        quality_grade: sample.quality_grade,
-        year: sample.year,
-        iconic_taxon_name: sample.iconic_taxon_name,
-        continent: sample.continent,
-        taxon_observations_count: sample.taxon_observations_count,
-        taxon_rank_level: sample.taxon_rank_level,
-        descendant_count: sample.descendant_count
-      }
-    end
 
     sample_id_by_validator = get_sample_id_by_validator
 
@@ -503,13 +492,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
     responding_validators = groundtruths.values.reject( &:empty? ).count
     validated_observations = groundtruths.values.map( &:keys ).flatten.uniq.count
 
-    qualities = []
-    obs_data.each do | obs |
-      oid = obs[:observation_id].to_i
-      test_taxon = obs[:taxon_id].to_i
+    samples.each do | sample |
+      oid = sample.observation_id
+      test_taxon = sample.taxon_id
       matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact.flatten
       if matches.empty?
-        qualities << { observation_id: oid, quality: nil }
+        sample.correct = nil
       else
         qualities_for_row = []
         matches.each do | match |
@@ -517,33 +505,27 @@ class ObservationAccuracyExperiment < ApplicationRecord
           disagreement = match[:disagreement]
           previous_observation_taxon_id = match[:previous_observation_taxon_id]
           quality = assess_quality( test_taxon, groundtruth_taxon, disagreement, previous_observation_taxon_id )
-          qualities_for_row << { observation_id: oid, quality: quality }
+          qualities_for_row << quality
         end
-        qualities << if !qualities_for_row.map {| q | q[:quality].nil? }.all? &&
-            qualities_for_row.map {| q | q[:quality] }.compact.uniq.count > 1
+        sample.correct = if !qualities_for_row.map( &:nil? ).all? &&
+            qualities_for_row.compact.uniq.count > 1
           # conflict
-          { observation_id: oid, quality: -1 }
+          -1
         else
           qualities_for_row[0]
         end
       end
+      sample.save!
     end
 
-    if qualities.select {| q | q[:quality] == -1 }.count.positive?
-      obs_ids = qualities.select {| q | q[:quality] == -1 }.map {| q | q[:observation_id] }.join( "," )
+    if samples.select {| q | q.correct == -1 }.count.positive?
+      obs_ids = qualities.select {| q | q.correct == -1 }.map( &:observation_id ).join( "," )
       puts "There is at least one conflict"
-      puts "https://www.inaturalist.org/observations/identify?" \
+      puts "#{Site.default.url}/observations/identify?" \
         "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids} )"
     else
-      quality_stats = get_quality_stats( qualities )
-      precisions = obs_data.map do | o |
-        {
-          id: o[:observation_id].to_i,
-          precision: 1 / ( o[:descendant_count].to_i.zero? ? 1 : o[:descendant_count] ).to_f
-        }
-      end
-      precision_vals = precisions.map {| o | o[:precision] }
-      precision_stats = get_precisions_stats( precision_vals )
+      quality_stats = get_quality_stats( samples.map( &:correct ) )
+      precision_stats = get_precisions_stats( samples.map {| sample | calculate_precision( sample.descendant_count ) } )
       self.assessment_date = Time.now
       self.responding_validators = responding_validators
       self.validated_observations = validated_observations
@@ -558,8 +540,20 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_sample_for_user_id( user_id )
-    sample_id_by_validator = get_sample_id_by_validator
-    oids = sample_id_by_validator[ObservationAccuracyValidator.where( user_id: user_id ).first.id].join( "," )
-    "https://www.inaturalist.org/observations/identify?reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{oids}"
+    return nil unless validator == ObservationAccuracyValidator.where( user_id: user_id ).first
+
+    samples = validator.observation_accuracy_samples.where( observation_accuracy_experiment_id: id )
+    return nil unless samples.count.positive?
+
+    oids = samples.map( &:observation_id ).join( "," )
+    "#{Site.default.url}/observations/identify?reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{oids}"
+  end
+
+  def get_incorrect_observations_in_sample
+    samples = ObservationAccuracySample.where( observation_accuracy_experiment_id: id, correct: 0 )
+    return nil unless samples.count.positive?
+
+    oids = samples.map( &:observation_id ).join( "," )
+    "#{Site.default.url}/observations/identify?reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{oids}"
   end
 end
