@@ -223,6 +223,7 @@ id:
   active_taxon_status: Aktif
   active_users: Pengguna Aktif
   activity: Aktivitas
+  activity_on_a_flag_for_x: Aktivitas pada tanda untuk %{x}
   adapted_by_name_from_a_work_by_original: "Diadaptasi oleh %{name} dari sebuah karya oleh %{original}"
   add: Tambahkan
   add_a_batch_of_observations: Tambahkan Sejumlah Pengamatan
@@ -1835,6 +1836,7 @@ id:
     Tanda untuk Pengguna: %{title}
   flag_it!: Tandai ini!
   flag_marked_as_resolved_html: '<span class="meta">Tanda dianggap</span> <strong>sudah diselesaikan.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Tanda ditandai sebagai</span> <strong>belum selesai</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Benda
   flag_reason: "&ldquo;Saya menandai %{record} ini karena"
@@ -3258,6 +3260,7 @@ id:
   organism_is_wild: Organisme ini liar
   organisms: Organisme
   original: Asli
+  original_flag: Tanda asli
   originally_flagged_by: Aslinya ditandai oleh
   originally_imported_from_url_html: "Aslinya diimpor dari <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL halaman asli untuk foto ini."
