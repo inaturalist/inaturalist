@@ -264,6 +264,7 @@ sv:
   active_taxon_status: Aktivt
   active_users: Aktiva användare
   activity: Aktivitet
+  activity_on_a_flag_for_x: Flaggaktivitet för %{x}
   adapted_by_name_from_a_work_by_original: "Antaget av %{name} från ett verk av %{original}"
   add: Lägg till
   add_a_batch_of_observations: Lägg till flera fynd
@@ -1944,6 +1945,7 @@ sv:
     Flagga för användare: %{title}
   flag_it!: Flagga det!
   flag_marked_as_resolved_html: '<span class="meta">Flagga markerad som</span> <strong>löst.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Flagga markerad som</span> <strong>olöst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Jag flaggar detta %{record} eftersom"
@@ -3403,6 +3405,7 @@ sv:
   organism_is_wild: Vild organism
   organisms: Organismer
   original: Original
+  original_flag: Ursprunglig flagga
   originally_flagged_by: Ursprungligen flaggad av
   originally_imported_from_url_html: "Ursprungligen importerad från <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Ursprungssidans URL för denna bild."
