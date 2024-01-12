@@ -254,6 +254,7 @@ de:
   active_taxon_status: Aktiv
   active_users: Aktive Benutzer
   activity: Aktivität
+  activity_on_a_flag_for_x: Aktivität einer Meldung bezüglich %{x}
   adapted_by_name_from_a_work_by_original: "Angepasst von %{name} aus einer Arbeit von %{original}"
   add: Hinzufügen
   add_a_batch_of_observations: Einen Satz an Beobachtungen hinzufügen
@@ -1831,6 +1832,7 @@ de:
     Meldung des Benutzers: %{title}
   flag_it!: Melden!
   flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt </strong><span class="meta">gekennzeichnet</span>.'
+  flag_marked_as_unresolved_html: '<span class="meta">Meldung gekennzeichnet als</span> <strong>"ungeklärt".</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Gegenstand der Meldung
   flag_reason: "&ldquo;I'm flagging this %{record} because"
@@ -3229,6 +3231,7 @@ de:
   organism_is_wild: Organismus ist wild
   organisms: Organismen
   original: Orginal
+  original_flag: Ursprüngliche Meldung
   originally_flagged_by: Anfängliche Meldung von
   originally_imported_from_url_html: "Ursprünglich von <a href='%{url}'>%{url}</a> importiert"
   original_page_url_for_this_photo: "Ursprüngliche Seiten-URL für dieses Foto."
