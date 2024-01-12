@@ -2,7 +2,7 @@
 
 %p=t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase
 %p=t :observation_accuracy_validator_email_will_you_help_us
-%p=t :observation_accuracy_validator_email_if_so, num_obs: number_with_delimiter( @num_obs ), sample_url: @sample_url, validator_deadline_date: @validator_deadline_date
+%p=t :observation_accuracy_validator_email_if_so, num_obs_html: number_with_delimiter( @num_obs ), sample_url: @sample_url, validator_deadline_date: @validator_deadline_date
 %p=t :observation_accuracy_validator_email_we_will_calculate
 %img{src: "https://static.inaturalist.org/wiki_page_attachments/3676-original.png"}
 %p=t :observation_accuracy_validator_email_ids_equal_to
@@ -11,7 +11,7 @@
 %img{src: "https://static.inaturalist.org/wiki_page_attachments/3674-original.png"}
 %p=t :observation_accuracy_validator_email_ids_coarser_than
 %img{src: "https://static.inaturalist.org/wiki_page_attachments/3673-original.png"}
-%p=t :observation_accuracy_validator_email_we_are_so_grateful, url: @blog_url
+%p=t :observation_accuracy_validator_email_we_are_so_grateful_html, url: @blog_url
 %p=t :observation_accuracy_validator_email_with_gratitude
 %p=t :observation_accuracy_validator_email_the_inaturalist_team
 
