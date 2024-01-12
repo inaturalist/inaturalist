@@ -3370,7 +3370,7 @@ en:
   observation_accuracy_validator_email_subject: "Will you help us estimate the accuracy of iNaturalist observations?"
   observation_accuracy_validator_email_will_you_help_us: |
     Will you help us with an experiment to estimate the accuracy of iNaturalist observations?
-  observation_accuracy_validator_email_if_so: |
+  observation_accuracy_validator_email_if_so_html: |
     If so, we've made a <a href="%{sample_url}">set of %{num_obs} observations</a>
     that we think you can identify based on your activity on iNat. <b>Please add
     the finest ID you can to each before %{validator_deadline_date}</b>.
@@ -3387,7 +3387,7 @@ en:
   observation_accuracy_validator_email_ids_coarser_than: |
     IDs coarser than the Observation Taxon where you choose 'I don’t know but…' to
     the 'Potential Disagreement' dialog (E) will be counted as Uncertain.
-  observation_accuracy_validator_email_we_are_so_grateful: |
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
     We're so grateful for your help as an identifier on iNaturalist, and thank you
     very much for participating in this study. Please read <a href="%{url}">this
     blog post</a> if you’re interested in learning more about this experiment.
