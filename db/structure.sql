@@ -9,7 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -2568,6 +2567,138 @@ CREATE SEQUENCE public.oauth_applications_id_seq
 --
 
 ALTER SEQUENCE public.oauth_applications_id_seq OWNED BY public.oauth_applications.id;
+
+
+--
+-- Name: observation_accuracy_experiments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_experiments (
+    id bigint NOT NULL,
+    sample_size integer,
+    taxon_id integer,
+    validator_redundancy_factor integer,
+    improving_id_threshold integer,
+    recent_window character varying,
+    sample_generation_date timestamp without time zone,
+    validator_contact_date timestamp without time zone,
+    validator_deadline_date timestamp without time zone,
+    assessment_date timestamp without time zone,
+    responding_validators integer,
+    validated_observations integer,
+    low_acuracy_mean double precision,
+    low_acuracy_variance double precision,
+    high_accuracy_mean double precision,
+    high_accuracy_variance double precision,
+    precision_mean double precision,
+    precision_variance double precision,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: observation_accuracy_experiments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_experiments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_experiments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_experiments_id_seq OWNED BY public.observation_accuracy_experiments.id;
+
+
+--
+-- Name: observation_accuracy_samples; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    observation_id integer,
+    taxon_id integer,
+    quality_grade character varying,
+    year integer,
+    iconic_taxon_name character varying,
+    continent character varying,
+    taxon_observations_count integer,
+    taxon_rank_level integer,
+    descendant_count integer,
+    correct integer,
+    reviewers integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: observation_accuracy_samples_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_samples_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_samples_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_samples_id_seq OWNED BY public.observation_accuracy_samples.id;
+
+
+--
+-- Name: observation_accuracy_samples_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples_validators (
+    observation_accuracy_sample_id bigint NOT NULL,
+    observation_accuracy_validator_id bigint NOT NULL
+);
+
+
+--
+-- Name: observation_accuracy_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_validators (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    user_id integer,
+    email_date timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: observation_accuracy_validators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_validators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_validators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_validators_id_seq OWNED BY public.observation_accuracy_validators.id;
 
 
 --
@@ -5854,6 +5985,27 @@ ALTER TABLE ONLY public.oauth_applications ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: observation_accuracy_experiments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_experiments ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_experiments_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_samples id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_samples ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_samples_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_validators id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_validators ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_validators_id_seq'::regclass);
+
+
+--
 -- Name: observation_field_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6831,6 +6983,30 @@ ALTER TABLE ONLY public.oauth_access_tokens
 
 ALTER TABLE ONLY public.oauth_applications
     ADD CONSTRAINT oauth_applications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_experiments observation_accuracy_experiments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_experiments
+    ADD CONSTRAINT observation_accuracy_experiments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_samples observation_accuracy_samples_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_samples
+    ADD CONSTRAINT observation_accuracy_samples_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_validators observation_accuracy_validators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_validators
+    ADD CONSTRAINT observation_accuracy_validators_pkey PRIMARY KEY (id);
 
 
 --
@@ -8338,6 +8514,27 @@ CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING bt
 
 
 --
+-- Name: index_oa_samples_oa_validators; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_samples_oa_validators ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_sample_id, observation_accuracy_validator_id);
+
+
+--
+-- Name: index_oa_validators_oa_samples; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_validators_oa_samples ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_validator_id, observation_accuracy_sample_id);
+
+
+--
+-- Name: index_oas_on_oae_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oas_on_oae_id ON public.observation_accuracy_samples USING btree (observation_accuracy_experiment_id);
+
+
+--
 -- Name: index_oauth_access_grants_on_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8377,6 +8574,20 @@ CREATE INDEX index_oauth_applications_on_owner_id_and_owner_type ON public.oauth
 --
 
 CREATE UNIQUE INDEX index_oauth_applications_on_uid ON public.oauth_applications USING btree (uid);
+
+
+--
+-- Name: index_oav_on_oae_id_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_oav_on_oae_id_uid ON public.observation_accuracy_validators USING btree (user_id, observation_accuracy_experiment_id);
+
+
+--
+-- Name: index_observation_accuracy_samples_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_accuracy_samples_on_observation_id ON public.observation_accuracy_samples USING btree (observation_id);
 
 
 --
@@ -10446,6 +10657,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230504154302'),
 ('20230907210748'),
 ('20231017190352'),
-('20231025144604');
+('20231025144604'),
+('20240109034635'),
+('20240109035846'),
+('20240109035854'),
+('20240110183622');
 
 
