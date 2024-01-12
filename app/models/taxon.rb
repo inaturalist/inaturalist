@@ -1645,7 +1645,7 @@ class Taxon < ApplicationRecord
     ancestor_ids.include?( taxon.id )
   end
 
-  def sibling_of?( taxon )
+  def in_same_branch_of?( taxon )
     return false if taxon.id == id
 
     return false if ancestor_of?( taxon )

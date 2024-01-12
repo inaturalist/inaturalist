@@ -30,7 +30,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
     return 1 if groundtruth_taxon_id == test_taxon_id || groundtruth_taxon.descendant_of?( test_taxon )
 
-    return 0 if groundtruth_taxon.sibling_of?( test_taxon ) ||
+    return 0 if groundtruth_taxon.in_same_branch_of?( test_taxon ) ||
       ( groundtruth_taxon.ancestor_of?( test_taxon ) &&
       disagreement && previous_observation_taxon_id == test_taxon_id )
 
@@ -219,14 +219,18 @@ class ObservationAccuracyExperiment < ApplicationRecord
     taxon_id = self.taxon_id
     ceil = last_obs.id
     random_numbers = ( 1..ceil ).to_a.sample( sample_size * 2 )
-    o = if taxon_id.nil?
+    o = if taxon_id.nil? || taxon_id == Taxon::LIFE.id
       Observation.select( :id ).where( "id IN (?)", random_numbers )
     else
+      taxon = Taxon.find( taxon_id )
+      ancestry_string = "#{taxon.ancestry}/#{taxon.id}"
       Observation.
         joins( :taxon ).select( "observations.id" ).
         where(
-          "taxa.ancestry LIKE ( ? ) AND observations.id IN ( ? )",
-          "#{Taxon.find( taxon_id ).ancestry}/%",
+          "( taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ( ? ) ) AND observations.id IN ( ? )",
+          taxon_id,
+          ancestry_string,
+          "#{ancestry_string}/%",
           random_numbers
         )
     end
