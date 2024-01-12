@@ -59,30 +59,30 @@ class ObservationAccuracyExperiment < ApplicationRecord
     [mean_precision, var_precision]
   end
 
-  def fetch_top_iders( recent_window: nil, taxon_id: nil, size: nil )
-    params = { d1: recent_window, taxon_id: taxon_id }.compact
+  def fetch_top_iders( window: nil, taxon_id: nil, size: nil )
+    params = { d1: window, taxon_id: taxon_id }.compact
     result = INatAPIService.get( "/observations/identifiers", params )
     iders = result&.results&.to_h {| r | [r["user_id"], r["count"]] } || {}
     iders = iders.first( size ).to_h if size
     iders
   end
 
-  def get_improving_identifiers( candidate_iders: nil, taxon_id: nil, recent_window: nil, page: 1 )
+  def get_improving_identifiers( candidate_iders: nil, taxon_id: nil, window: nil, page: 1 )
     params = {
       category: "improving",
       per_page: 200,
       page: page,
       user_id: candidate_iders,
-      d1: recent_window,
+      d1: window,
       taxon_id: taxon_id
     }.compact
     ids = INatAPIService.get( "/identifications", params )
     ids&.results&.map {| r | r.dig( "user", "id" ) } || []
   end
 
-  def get_qualified_candidates( taxon_id: nil, recent_window: nil, top_iders_only: true )
+  def get_qualified_candidates( taxon_id: nil, window: nil, top_iders_only: true )
     if top_iders_only
-      candidate_top_taxon_iders = fetch_top_iders( recent_window: recent_window, taxon_id: taxon_id ).
+      candidate_top_taxon_iders = fetch_top_iders( window: window, taxon_id: taxon_id ).
         select {| _, v | v >= improving_id_threshold }.keys
       return [] if candidate_top_taxon_iders.empty?
 
@@ -97,7 +97,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       new_values = get_improving_identifiers(
         candidate_iders: candidate_top_taxon_iders,
         taxon_id: taxon_id,
-        recent_window: recent_window,
+        window: window,
         page: page
       )
       break if new_values.empty?
@@ -115,7 +115,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   # Qualified candidate identifiers have made at least improving_id_threshold number of improving IDs
   # preferably within recent_window. We want up to validator_redundancy_factor of each. Every taxon
   # might not have qualified identifers. Its slow because we have to make idententifications API calls
-  def get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id, top_50_iders, recent_window )
+  def get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id, top_50_iders )
     root_id = Taxon::LIFE.id
     identifiers_by_taxon_id = {}
     counter = 0
@@ -127,26 +127,28 @@ class ObservationAccuracyExperiment < ApplicationRecord
       else
         recent_qualified_candidates = get_qualified_candidates(
           taxon_id: taxon_id,
-          recent_window: recent_window,
+          window: recent_window,
           top_iders_only: true
         )
         if recent_qualified_candidates.count < validator_redundancy_factor
           top_ider_qualified_candidates = get_qualified_candidates(
             taxon_id: taxon_id,
-            recent_window: nil,
+            window: nil,
             top_iders_only: true
           )
+          recent_qualified_candidates = recent_qualified_candidates.
+            union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
         end
-        recent_qualified_candidates = recent_qualified_candidates.
-          union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
         if recent_qualified_candidates.count < validator_redundancy_factor
           all_qualified_candidates = get_qualified_candidates(
             taxon_id: taxon_id,
-            recent_window: nil,
+            window: nil,
             top_iders_only: false
           )
+          recent_qualified_candidates = recent_qualified_candidates.
+            union( all_qualified_candidates ).first( validator_redundancy_factor * 2 )
         end
-        recent_qualified_candidates.union( all_qualified_candidates ).first( validator_redundancy_factor * 2 )
+        recent_qualified_candidates
       end
       counter += 1
       puts "Processed #{counter} records of #{denom}" if ( counter % 10 ).zero?
@@ -184,13 +186,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
       transform_values {| sample | sample.map( &:observation_id ) }
 
     puts "Fetch the top IDers..."
-    top_iders = fetch_top_iders( recent_window: recent_window )
+    top_iders = fetch_top_iders( window: recent_window )
 
     puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
     identifiers_by_taxon_id = get_candidate_identifiers_by_taxon(
       observation_ids_grouped_by_taxon_id,
-      top_iders.first( 50 ).to_h,
-      recent_window
+      top_iders.first( 50 ).to_h
     )
 
     puts "Assign observations to identifiers..."
