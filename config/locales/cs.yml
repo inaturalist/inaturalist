@@ -2096,6 +2096,8 @@ cs:
   #Adjective, as in a fluid layout of images
   fluid: proměnlivý
   follow: Sledovat
+  #Text for a button to follow updates on an observation
+  follow_observation: Sledovat pozorování
   follow_receive_updates_about_new_observations: Sledujte (obdržíte informace o nových pozorováních)
   #Text for a button to follow updates from a specific user
   follow_user: "Sledovat %{user}"
@@ -4556,6 +4558,15 @@ cs:
   rotate_left: Otočit doleva
   rotate_right: Otočit doprava
   row_singular_or_plural: Řádek/Řádky
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Připojíte se k testu rozložení zprava doleva? Můžete také použít parametr test=rtl v URL.
+    Pozor: ne všechny stránky jsou upravené na rozložení zprava doleva.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Připojili jste se k testu rozložení zprava doleva
   rules_and_formatting: "Pravidla a formátování"
   rules_for_adding_observations: Pravidla pro přidávání pozorování
   rules_for_becoming_a_member: Pravidla pro vznik členství
@@ -5496,6 +5507,10 @@ cs:
   unknown: Neznámý
   unknown_error: Neznámá chyba
   unknown_rank: '(Neznámé zařazení)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Přestat sledovat pozorování
+  #Text for a button to stop following updates from a user
+  unfollow_user: Přestat sledovat uživatele
   unlink_your_google_account: Zrušit propojení vašeho účtu na Googlu
   unlink_your_flickr_account: "Odpojit svůj účet na Flickru"
   unmute: Zapnout zvuk
