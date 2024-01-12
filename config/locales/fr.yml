@@ -252,6 +252,7 @@ fr:
   active_taxon_status: Actif
   active_users: Utilisateurs actifs
   activity: Activité
+  activity_on_a_flag_for_x: Activité sur un signalement pour %{x}
   adapted_by_name_from_a_work_by_original: "Adapté à partir d'un travail de %{original} par %{name}"
   add: Ajouter
   add_a_batch_of_observations: Ajouter un groupe d’observations
@@ -1901,6 +1902,7 @@ fr:
     Signalement pour l'utilisateur : %{title}
   flag_it!: Signalez !
   flag_marked_as_resolved_html: '<span class="meta">Drapeau indiquant que le problème</span> <strong>est résolu.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Signalement marqué comme</span> <strong>non résolu.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objet
   flag_reason: "&ldquo;Je signale ce %{record} parce que"
@@ -3343,6 +3345,7 @@ fr:
   organism_is_wild: L’organisme est sauvage
   organisms: Organismes
   original: Original
+  original_flag: Signalement d’origine
   originally_flagged_by: Signalé à l'origine par
   originally_imported_from_url_html: "Importé à l'origine de <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Lien de la page d'origine de cette photo."
