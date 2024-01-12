@@ -203,7 +203,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     obs_id_by_user.each do | user_id, observation_ids |
       observation_validator = ObservationAccuracyValidator.
-        create( user_id: user_id, observation_accuracy_experiment: id )
+        create( user_id: user_id, observation_accuracy_experiment_id: id )
       observation_validator.observation_accuracy_samples << ObservationAccuracySample.
         where( observation_id: observation_ids )
     end
@@ -306,11 +306,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
       limit( 200 )
     return nil if o.count.zero?
 
-    ObservationAccuracyValidator.where( observation_accuracy_experiment: id ).destroy_all
+    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).destroy_all
 
     user_ids.each do | user_id |
       observation_validator = ObservationAccuracyValidator.
-        create( user_id: user_id, observation_accuracy_experiment: id )
+        create( user_id: user_id, observation_accuracy_experiment_id: id )
       observation_validator.observation_accuracy_samples << o
     end
   end
@@ -416,9 +416,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
     sample_ids_by_validator_id
   end
 
-  def contact_validators( validator_deadline_date )
+  def contact_validators( validator_deadline_date: 1.week.from_now.strftime( "%Y-%m-%d" ) )
     observation_accuracy_validators.each do | validator |
-      if Emailer.observation_accuracy_validator_contact( validator ).deliver_now
+      if Emailer.observation_accuracy_validator_contact( validator, validator_deadline_date ).deliver_now
         validator.email_date = Time.now
         validator.save!
       end
@@ -453,7 +453,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     responding_validators = groundtruths.values.reject( &:empty? ).count
     validated_observations = groundtruths.values.map( &:keys ).flatten.uniq.count
 
-    samples.each do | sample |
+    observation_accuracy_samples.each do | sample |
       oid = sample.observation_id
       test_taxon = sample.taxon_id
       matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact.flatten
@@ -481,13 +481,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
       sample.save!
     end
 
-    if samples.select {| q | q.correct == -1 }.count.positive?
+    if observation_accuracy_samples.select {| q | q.correct == -1 }.count.positive?
       obs_ids = qualities.select {| q | q.correct == -1 }.map( &:observation_id ).join( "," )
       puts "There is at least one conflict"
       FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids )
     else
-      quality_stats = get_quality_stats( samples.map( &:correct ) )
-      precision_stats = get_precisions_stats( samples.map {| sample | calculate_precision( sample.descendant_count ) } )
+      quality_stats = get_quality_stats( observation_accuracy_samples.map( &:correct ) )
+      precision_stats = get_precisions_stats( observation_accuracy_samples.
+        map {| sample | calculate_precision( sample.descendant_count ) } )
       self.assessment_date = Time.now
       self.responding_validators = responding_validators
       self.validated_observations = validated_observations

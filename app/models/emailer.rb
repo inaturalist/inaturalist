@@ -201,9 +201,9 @@ class Emailer < ActionMailer::Base
     @num_obs = obs_ids.count
     @sample_url = FakeView.
       identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids.join( "," ) )
+    @blog_url = FakeView.site_post_url( 88_501 )
     user_id = validator.user_id
-    user = User.find( user_id )
-    @user_name = user.name.nil? ? user.login : user.name
+    @user = User.find( user_id )
     @validator_deadline_date = validator_deadline_date
     mail_with_defaults(
       subject: [
