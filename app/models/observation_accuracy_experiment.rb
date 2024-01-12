@@ -30,7 +30,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
     return 1 if groundtruth_taxon_id == test_taxon_id || groundtruth_taxon.descendant_of?( test_taxon )
 
-    return 0 if groundtruth_taxon.in_same_branch_of?( test_taxon ) ||
+    return 0 if groundtruth_taxon.not.in_same_branch_of?( test_taxon ) ||
       ( groundtruth_taxon.ancestor_of?( test_taxon ) &&
       disagreement && previous_observation_taxon_id == test_taxon_id )
 
