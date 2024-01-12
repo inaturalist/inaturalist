@@ -1646,11 +1646,11 @@ class Taxon < ApplicationRecord
   end
 
   def in_same_branch_of?( taxon )
-    return false if taxon.id == id
+    return true if taxon.id == id
 
-    return false if ancestor_of?( taxon )
+    return true if ancestor_of?( taxon )
 
-    !descendant_of?( taxon )
+    descendant_of?( taxon )
   end
 
   def descendant_conditions
