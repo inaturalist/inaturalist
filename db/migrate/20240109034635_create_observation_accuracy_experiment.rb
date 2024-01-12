@@ -6,6 +6,8 @@ class CreateObservationAccuracyExperiment < ActiveRecord::Migration[6.1]
       t.integer :sample_size
       t.integer :taxon_id
       t.integer :validator_redundancy_factor
+      t.integer :improving_id_threshold
+      t.string :recent_window
       t.datetime :sample_generation_date
       t.datetime :validator_contact_date
       t.datetime :validator_deadline_date

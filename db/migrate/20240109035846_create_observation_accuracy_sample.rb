@@ -14,6 +14,7 @@ class CreateObservationAccuracySample < ActiveRecord::Migration[6.1]
       t.integer :taxon_rank_level
       t.integer :descendant_count
       t.integer :correct
+      t.integer :reviewers
 
       t.timestamps
     end

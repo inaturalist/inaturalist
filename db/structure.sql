@@ -22,6 +22,7 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
+
 --
 -- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -2577,6 +2578,8 @@ CREATE TABLE public.observation_accuracy_experiments (
     sample_size integer,
     taxon_id integer,
     validator_redundancy_factor integer,
+    improving_id_threshold integer,
+    recent_window character varying,
     sample_generation_date timestamp without time zone,
     validator_contact_date timestamp without time zone,
     validator_deadline_date timestamp without time zone,
@@ -2630,6 +2633,7 @@ CREATE TABLE public.observation_accuracy_samples (
     taxon_rank_level integer,
     descendant_count integer,
     correct integer,
+    reviewers integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -2670,6 +2674,7 @@ CREATE TABLE public.observation_accuracy_samples_validators (
 
 CREATE TABLE public.observation_accuracy_validators (
     id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
     user_id integer,
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
@@ -8572,17 +8577,17 @@ CREATE UNIQUE INDEX index_oauth_applications_on_uid ON public.oauth_applications
 
 
 --
+-- Name: index_oav_on_oae_id_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_oav_on_oae_id_uid ON public.observation_accuracy_validators USING btree (user_id, observation_accuracy_experiment_id);
+
+
+--
 -- Name: index_observation_accuracy_samples_on_observation_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_observation_accuracy_samples_on_observation_id ON public.observation_accuracy_samples USING btree (observation_id);
-
-
---
--- Name: index_observation_accuracy_validators_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_observation_accuracy_validators_on_user_id ON public.observation_accuracy_validators USING btree (user_id);
 
 
 --

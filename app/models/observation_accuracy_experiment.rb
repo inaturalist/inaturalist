@@ -2,9 +2,12 @@
 
 class ObservationAccuracyExperiment < ApplicationRecord
   has_many :observation_accuracy_samples, dependent: :destroy
+  has_many :observation_accuracy_validators, dependent: :destroy
 
-  attribute :sample_size, :integer, default: 1_000
-  attribute :validator_redundancy_factor, :integer, default: 10
+  attribute :sample_size, :integer, default: 100
+  attribute :validator_redundancy_factor, :integer, default: 5
+  attribute :improving_id_threshold, :integer, default: 3
+  attribute :recent_window, :string, default: 1.year.ago.strftime( "%Y-%m-%d" )
   attribute :taxon_id, :integer
 
   after_create :generate_sample
@@ -22,32 +25,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
     sum_squared_diff / ( bootstrap_means.size - 1 ).to_f
   end
 
-  def sibling?( test_taxon, groundtruth_taxon )
-    test_taxon_ancestor_ids = test_taxon.ancestor_ids
-    test_taxon_ancestor_ids << test_taxon.id
-    groundtruth_taxon_ancestor_ids = groundtruth_taxon.ancestor_ids
-    groundtruth_taxon_ancestor_ids << groundtruth_taxon.id
-    ( test_taxon_ancestor_ids - groundtruth_taxon_ancestor_ids ).count.positive? &&
-      ( groundtruth_taxon_ancestor_ids - test_taxon.ancestor_ids ).count.positive?
-  end
-
-  def ancestor?( parent, child )
-    parent_ancestor_ids = parent.ancestor_ids
-    parent_ancestor_ids << parent.id
-    child_ancestor_ids = child.ancestor_ids
-    child_ancestor_ids << child.id
-    ( parent_ancestor_ids - child_ancestor_ids ).count.zero? &&
-      ( child_ancestor_ids - parent_ancestor_ids ).count.positive?
-  end
-
   def assess_quality( test_taxon_id, groundtruth_taxon_id, disagreement, previous_observation_taxon_id )
     test_taxon = Taxon.find( test_taxon_id )
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
-    return 1 if test_taxon_id == groundtruth_taxon_id || ancestor?( test_taxon, groundtruth_taxon )
+    return 1 if groundtruth_taxon_id == test_taxon_id || groundtruth_taxon.descendant_of?( test_taxon )
 
-    return 0 if ( ancestor?( groundtruth_taxon, test_taxon ) &&
-      disagreement && previous_observation_taxon_id == test_taxon_id ) ||
-      sibling?( test_taxon, groundtruth_taxon )
+    return 0 if groundtruth_taxon.sibling_of?( test_taxon ) ||
+      ( groundtruth_taxon.ancestor_of?( test_taxon ) &&
+      disagreement && previous_observation_taxon_id == test_taxon_id )
 
     nil
   end
@@ -74,84 +59,112 @@ class ObservationAccuracyExperiment < ApplicationRecord
     [mean_precision, var_precision]
   end
 
-  def get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id )
-    root_id = Taxon.where( rank_level: Taxon::ROOT_LEVEL ).first.id
+  def fetch_top_iders( recent_window: nil, taxon_id: nil, size: nil )
+    params = { d1: recent_window, taxon_id: taxon_id }.compact
+    result = INatAPIService.get( "/observations/identifiers", params )
+    iders = result&.results&.to_h {| r | [r["user_id"], r["count"]] } || {}
+    iders = iders.first( size ).to_h if size
+    iders
+  end
+
+  def get_improving_identifiers( candidate_iders: nil, taxon_id: nil, recent_window: nil, page: 1 )
+    params = {
+      category: "improving",
+      per_page: 200,
+      page: page,
+      user_id: candidate_iders,
+      d1: recent_window,
+      taxon_id: taxon_id
+    }.compact
+    ids = INatAPIService.get( "/identifications", params )
+    ids&.results&.map {| r | r.dig( "user", "id" ) } || []
+  end
+
+  def get_qualified_candidates( taxon_id: nil, recent_window: nil, top_iders_only: true )
+    if top_iders_only
+      candidate_top_taxon_iders = fetch_top_iders( recent_window: recent_window, taxon_id: taxon_id ).
+        select {| _, v | v >= improving_id_threshold }.keys
+      return [] if candidate_top_taxon_iders.empty?
+
+    else
+      candidate_top_taxon_iders = nil
+    end
+    improving_identifiers = []
+    enough_candidates = false
+    page = 1
+    sorted_frequency_hash = {}
+    until enough_candidates
+      new_values = get_improving_identifiers(
+        candidate_iders: candidate_top_taxon_iders,
+        taxon_id: taxon_id,
+        recent_window: recent_window,
+        page: page
+      )
+      break if new_values.empty?
+
+      improving_identifiers.concat( new_values )
+      frequency_hash = improving_identifiers.group_by( &:itself ).transform_values( &:count )
+      sorted_frequency_hash = frequency_hash.sort_by {| _, count | -count }.to_h
+      enough_candidates = sorted_frequency_hash.count > validator_redundancy_factor &&
+        sorted_frequency_hash.values[validator_redundancy_factor - 1] >= improving_id_threshold
+      page += 1
+    end
+    sorted_frequency_hash.select {| _, v | v >= improving_id_threshold }.keys.first( validator_redundancy_factor * 2 )
+  end
+
+  # Qualified candidate identifiers have made at least improving_id_threshold number of improving IDs
+  # preferably within recent_window. We want up to validator_redundancy_factor of each. Every taxon
+  # might not have qualified identifers. Its slow because we have to make idententifications API calls
+  def get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id, top_50_iders, recent_window )
+    root_id = Taxon::LIFE.id
     identifiers_by_taxon_id = {}
     counter = 0
     denom = observation_ids_grouped_by_taxon_id.count
     observation_ids_grouped_by_taxon_id.each_key do | taxon_id |
-      if taxon_id == root_id
-        url = URI.parse( "https://stagingapi.inaturalist.org/v1/observations/identifiers?d1=2023-01-01" )
-        http = Net::HTTP.new( url.host, url.port )
-        http.use_ssl = true if url.scheme == "https"
-        request = Net::HTTP::Get.new( "#{url.path}?#{url.query}" )
-        response = http.request( request )
-        result = JSON.parse( response.body )
-        sorted_frequency_hash = if result.nil?
-          {}
-        else
-          result["results"][0..49].map {| r | [r["user_id"], r["count"]] }.to_h
-        end
+      identifiers_by_taxon_id[taxon_id] = if taxon_id == root_id
+        qualified_candidates = top_50_iders.select {| _, v | v >= improving_id_threshold }
+        qualified_candidates.values[0..( validator_redundancy_factor - 1 )] || []
       else
-        url = URI.parse( "https://stagingapi.inaturalist.org/v1/observations/identifiers?taxon_id=#{taxon_id}" )
-        http = Net::HTTP.new( url.host, url.port )
-        http.use_ssl = true if url.scheme == "https"
-        request = Net::HTTP::Get.new( "#{url.path}?#{url.query}" )
-        response = http.request( request )
-        result = JSON.parse( response.body )
-        if result.nil?
-          sorted_frequency_hash = {}
-        else
-          iders = result["results"].map {| r | r["user_id"] }
-          ids = INatAPIService.get( "/identifications",
-            { per_page: 200, taxon_id: taxon_id, category: "improving", d1: "2023-01-01", user_id: iders[0..49] } )
-          if ids.results.empty?
-            ids = INatAPIService.get( "/identifications",
-              { per_page: 200, taxon_id: taxon_id, category: "improving", d1: "2023-01-01" } )
-          end
-          if ids.results.empty?
-            ids = INatAPIService.get( "/identifications", { per_page: 200, taxon_id: taxon_id, category: "improving" } )
-          end
-          if ids.results.empty?
-            ids = INatAPIService.get( "/identifications", { per_page: 200, taxon_id: taxon_id, category: "leading" } )
-          end
-          user_ids = ids.results.map {| r | r["user"]["id"] }
-          frequency_hash = user_ids.group_by( &:itself ).transform_values( &:count )
-          sorted_frequency_hash = frequency_hash.sort_by {| _, count | -count }.to_h
+        recent_qualified_candidates = get_qualified_candidates(
+          taxon_id: taxon_id,
+          recent_window: recent_window,
+          top_iders_only: true
+        )
+        if recent_qualified_candidates.count < validator_redundancy_factor
+          top_ider_qualified_candidates = get_qualified_candidates(
+            taxon_id: taxon_id,
+            recent_window: nil,
+            top_iders_only: true
+          )
         end
+        recent_qualified_candidates = recent_qualified_candidates.
+          union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
+        if recent_qualified_candidates.count < validator_redundancy_factor
+          all_qualified_candidates = get_qualified_candidates(
+            taxon_id: taxon_id,
+            recent_window: nil,
+            top_iders_only: false
+          )
+        end
+        recent_qualified_candidates.union( all_qualified_candidates ).first( validator_redundancy_factor * 2 )
       end
-      identifiers_by_taxon_id[taxon_id] = sorted_frequency_hash
       counter += 1
-      if ( counter % 10 ).zero?
-        puts "Processed #{counter} records of #{denom}"
-      end
+      puts "Processed #{counter} records of #{denom}" if ( counter % 10 ).zero?
     end
     identifiers_by_taxon_id
   end
 
-  def fetch_top_iders
-    url = URI.parse( "https://stagingapi.inaturalist.org/v1/observations/identifiers?d1=2023-01-01" )
-    http = Net::HTTP.new( url.host, url.port )
-    http.use_ssl = true if url.scheme == "https"
-    request = Net::HTTP::Get.new( "#{url.path}?#{url.query}" )
-    response = http.request( request )
-    result = JSON.parse( response.body )
-    result["results"][0..499].map {| r | [r["user_id"], r["count"]] }.to_h
-  end
-
   def associate_observations_with_identifiers( obs_ids_grouped_by_taxon_id, identifiers_by_taxon_id, top_iders )
     associations = Hash.new {| hash, key | hash[key] = [] }
+    user_obs_count = Hash.new( 0 )
     obs_ids_grouped_by_taxon_id.each do | taxon_id, obs_ids |
       sorted_identifiers = identifiers_by_taxon_id[taxon_id] || []
-      user_obs_count = Hash.new( 0 )
-
       obs_ids.each do | obs_id |
-        top_user_ids = start_with = sorted_identifiers.reject {| user_id, _ | user_obs_count[user_id] >= 100 }.
-          select {| k, _ | top_iders.keys.include? k }.take( validator_redundancy_factor ).map( &:first )
-        top_user_ids << sorted_identifiers.reject {| user_id, _ | user_obs_count[user_id] >= 100 }.
-          take( validator_redundancy_factor - start_with.count ).
-          map( &:first )
-        top_user_ids = top_user_ids.flatten
+        top_user_ids = start_with = sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
+          select {| user_id | top_iders.keys.include? user_id }.take( validator_redundancy_factor )
+        top_user_ids << sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
+          take( validator_redundancy_factor - start_with.count )
+        top_user_ids = top_user_ids.flatten.uniq
         top_user_ids.each {| user_id | user_obs_count[user_id] += 1 }
         associations[obs_id] += top_user_ids
       end
@@ -164,17 +177,21 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def distribute_to_validators( obs_data )
+  def distribute_to_validators( samples )
     puts "Divide up the sample among identifiers"
     puts "with a validator redundancy factor of #{validator_redundancy_factor}..."
-    observation_ids_grouped_by_taxon_id = obs_data.group_by {| observation | observation[:taxon_id] }.
-      transform_values {| observations | observations.pluck( :observation_id ) }
-
-    puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
-    identifiers_by_taxon_id = get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon_id )
+    observation_ids_grouped_by_taxon_id = samples.group_by( &:taxon_id ).
+      transform_values {| sample | sample.map( &:observation_id ) }
 
     puts "Fetch the top IDers..."
-    top_iders = fetch_top_iders
+    top_iders = fetch_top_iders( recent_window: recent_window )
+
+    puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
+    identifiers_by_taxon_id = get_candidate_identifiers_by_taxon(
+      observation_ids_grouped_by_taxon_id,
+      top_iders.first( 50 ).to_h,
+      recent_window
+    )
 
     puts "Assign observations to identifiers..."
     obs_id_by_user = associate_observations_with_identifiers(
@@ -184,20 +201,22 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
 
     obs_id_by_user.each do | user_id, observation_ids |
-      observation_validator = ObservationAccuracyValidator.create( user_id: user_id )
+      observation_validator = ObservationAccuracyValidator.
+        create( user_id: user_id, observation_accuracy_experiment: id )
       observation_validator.observation_accuracy_samples << ObservationAccuracySample.
         where( observation_id: observation_ids )
     end
   end
 
   def generate_sample
+    last_obs = Observation.last
+    return nil if last_obs.nil?
+
+    puts "Generating sample of size #{sample_size}..."
     start_time = Time.now
     sample_size = self.sample_size
     taxon_id = self.taxon_id
-    return nil if Observation.count.zero?
-
-    puts "Generating sample of size #{sample_size}..."
-    ceil = Observation.last.id
+    ceil = last_obs.id
     random_numbers = ( 1..ceil ).to_a.sample( sample_size * 2 )
     o = if taxon_id.nil?
       Observation.select( :id ).where( "id IN (?)", random_numbers )
@@ -226,7 +245,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 
     puts "Fetching number of descendants"
-    root_id = Taxon.where( rank_level: Taxon::ROOT_LEVEL ).first.id
+    root_id = Taxon::LIFE.id
     taxon_descendant_count = {}
     observations.pluck( :taxon_id ).uniq.each do | obs_taxon_id |
       obs_taxon_id = root_id if obs_taxon_id.nil?
@@ -264,13 +283,13 @@ class ObservationAccuracyExperiment < ApplicationRecord
         continent: continent_key[continent_obs[obs.id]],
         taxon_observations_count: obs.taxon&.observations_count,
         taxon_rank_level: obs.taxon_id.nil? ? Taxon::ROOT_LEVEL : obs.taxon&.rank_level,
-        descendant_count: taxon_descendant_count[obs.taxon_id]
+        descendant_count: taxon_descendant_count[obs.taxon_id.nil? ? root_id : obs.taxon_id]
       }
     end
 
-    ObservationAccuracySample.create!( obs_data )
+    samples = ObservationAccuracySample.create!( obs_data )
 
-    distribute_to_validators( obs_data )
+    distribute_to_validators( samples )
 
     self.sample_generation_date = Time.now
     save!
@@ -286,12 +305,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
       limit( 200 )
     return nil if o.count.zero?
 
-    observation_validator_ids = observation_accuracy_samples.joins( :observation_accuracy_validators ).
-      pluck( :observation_accuracy_validator_id ).uniq
-    ObservationAccuracyValidator.where( id: observation_validator_ids ).destroy_all
+    ObservationAccuracyValidator.where( observation_accuracy_experiment: id ).destroy_all
 
     user_ids.each do | user_id |
-      observation_validator = ObservationAccuracyValidator.create( user_id: user_id )
+      observation_validator = ObservationAccuracyValidator.
+        create( user_id: user_id, observation_accuracy_experiment: id )
       observation_validator.observation_accuracy_samples << o
     end
   end
@@ -368,8 +386,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       puts "\t"
     end
 
-    number_of_validators = observation_accuracy_samples.joins( :observation_accuracy_validators ).
-      pluck( :observation_accuracy_validator_id ).uniq.count
+    number_of_validators = observation_accuracy_validators.count
     puts "Sample distributed among #{number_of_validators} candidate validator(s)"
     puts "with a validator redundancy factor of #{validator_redundancy_factor}"
 
@@ -391,69 +408,19 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_sample_id_by_validator
-    observation_validator_ids = observation_accuracy_samples.joins( :observation_accuracy_validators ).
-      pluck( :observation_accuracy_validator_id ).uniq
-    observation_accuracy_validators = ObservationAccuracyValidator.where( id: observation_validator_ids )
-    return nil if observation_accuracy_validators.empty?
-
-    validator_id_by_sample = {}
-    observation_accuracy_samples.each do | sample |
-      validator_ids = sample.observation_accuracy_validators.pluck( :id )
-      validator_id_by_sample[sample.id] = validator_ids
+    sample_ids_by_validator_id = {}
+    observation_accuracy_validators.each do | validator |
+      sample_ids_by_validator_id[validator.id] = validator.observation_accuracy_samples.pluck( :id )
     end
-
-    validator_id_by_sample.each_with_object( {} ) do | ( sample_id, validator_ids ), result |
-      validator_ids.each do | validator_id |
-        result[validator_id] ||= []
-        result[validator_id] << sample_id
-      end
-    end
+    sample_ids_by_validator_id
   end
 
   def contact_validators( validator_deadline_date )
-    sample_id_by_validator = get_sample_id_by_validator
-
-    sample_id_by_validator.each do | validator_id, sample_ids |
-      validator = ObservationAccuracyValidator.find( validator_id )
-      user_id = validator.user_id
-      obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
-      sample_url = "#{Site.default.url}/observations/identify?" \
-        "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids.join( ',' )}"
-      user = User.find( user_id )
-      user_name = user.name.nil? ? user.login : user.name
-      num_obs = obs_ids.count
-      blog_url = "#{Site.default.url}/blog/88501"
-      image1 = "https://static.inaturalist.org/wiki_page_attachments/3676-original.png"
-      image2 = "https://static.inaturalist.org/wiki_page_attachments/3675-original.png"
-      image3 = "https://static.inaturalist.org/wiki_page_attachments/3674-original.png"
-      image4 = "https://static.inaturalist.org/wiki_page_attachments/3673-original.png"
-      subject = "Will you help us estimate the accuracy of iNaturalist observations?"
-      body = "<p>Dear #{user_name},</p>" \
-        "<p>Will you help us with an experiment to estimate the accuracy of iNaturalist observations?</p>" \
-        "<p>If so, we've made a <a href='#{sample_url}'>set of #{num_obs} observations</a> that we think you " \
-        "can identify based on your activity on iNat. <b>Please add the finest ID you can to each before " \
-        "#{validator_deadline_date}</b>.</p>" \
-        "<p>We’ll calculate accuracy by comparing your ID to the  Observation Taxon. Make sure to add an ID " \
-        "to every observation, even if the observation is already Research Grade to help track your progress. You " \
-        "can skip observations where you’ve previously added an ID if that ID is still relevant.</p>" \
-        "<img src='#{image1}' />" \
-        "<p>IDs equal to (A) or finer than (B) the Observation Taxon will be counted as Agreements.</p>" \
-        "<img src='#{image2}' />" \
-        "<p>IDs sibling to (C) or coarser than the Observation Taxon where you choose 'No, but…' to the " \
-        "'Potential Disagreement' dialog (D) will be counted as Disagreements.</p>" \
-        "<img src='#{image3}' />" \
-        "<p>IDs coarser than the Observation Taxon where you choose 'I don’t know but…' to the 'Potential " \
-        "Disagreement' dialog (E) will be counted as Uncertain.</p>" \
-        "<img src='#{image4}' />" \
-        "<p>We're so grateful for your help as an identifier on iNaturalist, and thank you very much for " \
-        "participating in this study. Please read <a href='#{blog_url}'>this blog post</a> if you’re " \
-        "interested in learning more about this experiment.</p>" \
-        "<p>With gratitude,</p>" \
-        "<p>Scott Loarie</p>" \
-        "<p>On behalf of the iNaturalist team</p>"
-      Emailer.custom_email( user, subject, ApplicationController.helpers.formatted_user_text( body ) ).deliver_now
-      validator.email_date = Time.now
-      validator.save!
+    observation_accuracy_validators.each do | validator |
+      if Emailer.observation_accuracy_validator_contact( validator ).deliver_now
+        validator.email_date = Time.now
+        validator.save!
+      end
     end
     self.validator_contact_date = Time.now
     self.validator_deadline_date = validator_deadline_date
@@ -465,16 +432,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def assess_experiment
-    samples = ObservationAccuracySample.
-      where( observation_accuracy_experiment_id: id )
-    return nil if samples.empty?
-
-    sample_id_by_validator = get_sample_id_by_validator
-
     groundtruths = {}
-    sample_id_by_validator.each do | validator_id, sample_ids |
-      obs_ids = ObservationAccuracySample.find( sample_ids ).pluck( :observation_id )
-      validator = ObservationAccuracyValidator.find( validator_id )
+    observation_accuracy_validators.each do | validator |
+      obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
       user_id = validator.user_id
       groundtruth_taxa = Identification.
         select( "DISTINCT ON ( observation_id ) observation_id, taxon_id, " \
@@ -498,6 +458,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       matches = groundtruths.values.map {| groundtruth_taxa | groundtruth_taxa[oid] }.compact.flatten
       if matches.empty?
         sample.correct = nil
+        sample.reviewers = 0
       else
         qualities_for_row = []
         matches.each do | match |
@@ -514,6 +475,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         else
           qualities_for_row[0]
         end
+        sample.reviewers = matches.count
       end
       sample.save!
     end
@@ -521,8 +483,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     if samples.select {| q | q.correct == -1 }.count.positive?
       obs_ids = qualities.select {| q | q.correct == -1 }.map( &:observation_id ).join( "," )
       puts "There is at least one conflict"
-      puts "#{Site.default.url}/observations/identify?" \
-        "reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{obs_ids} )"
+      FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids )
     else
       quality_stats = get_quality_stats( samples.map( &:correct ) )
       precision_stats = get_precisions_stats( samples.map {| sample | calculate_precision( sample.descendant_count ) } )
@@ -540,13 +501,15 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_sample_for_user_id( user_id )
-    return nil unless validator == ObservationAccuracyValidator.where( user_id: user_id ).first
+    validator = ObservationAccuracyValidator.
+      where( user_id: user_id, observation_accuracy_experiment_id: id ).first
+    return nil unless validator
 
-    samples = validator.observation_accuracy_samples.where( observation_accuracy_experiment_id: id )
+    samples = validator.observation_accuracy_samples
     return nil unless samples.count.positive?
 
     oids = samples.map( &:observation_id ).join( "," )
-    "#{Site.default.url}/observations/identify?reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{oids}"
+    FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: oids )
   end
 
   def get_incorrect_observations_in_sample
@@ -554,6 +517,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return nil unless samples.count.positive?
 
     oids = samples.map( &:observation_id ).join( "," )
-    "#{Site.default.url}/observations/identify?reviewed=any&quality_grade=needs_id%2Cresearch%2Ccasual&id=#{oids}"
+    FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: oids )
   end
 end

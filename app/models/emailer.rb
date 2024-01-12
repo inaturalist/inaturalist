@@ -196,6 +196,22 @@ class Emailer < ActionMailer::Base
     )
   end
 
+  def observation_accuracy_validator_contact( validator, validator_deadline_date )
+    obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
+    @num_obs = obs_ids.count
+    @sample_url = FakeView.
+      identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids.join( "," ) )
+    user_id = validator.user_id
+    user = User.find( user_id )
+    @user_name = user.name.nil? ? user.login : user.name
+    @validator_deadline_date = validator_deadline_date
+    mail_with_defaults(
+      subject: [
+        :observation_accuracy_validator_email_subject
+      ]
+    )
+  end
+
   def curator_application( user, application )
     set_site
     opts = set_site_specific_opts

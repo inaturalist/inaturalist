@@ -3367,6 +3367,33 @@ en:
     cell that contains the true coordinates.
   observation: Observation
   observation_: observation
+  observation_accuracy_validator_email_subject: |
+    Will you help us estimate the accuracy of iNaturalist observations?
+  observation_accuracy_validator_email_will_you_help_us: |
+    Will you help us with an experiment to estimate the accuracy of iNaturalist observations?
+  observation_accuracy_validator_email_if_so: |
+    If so, we've made a <a href="%{sample_url}">set of %{num_obs} observations</a>
+    that we think you can identify based on your activity on iNat. <b>Please add
+    the finest ID you can to each before %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    We’ll calculate accuracy by comparing your ID to the Observation Taxon. Make
+    sure to add an ID to every observation, even if the observation is already
+    Research Grade to help track your progress. You can skip observations where
+    you’ve previously added an ID if that ID is still relevant.
+  observation_accuracy_validator_email_ids_equal_to: |
+    IDs equal to (A) or finer than (B) the Observation Taxon will be counted as Agreements.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    IDs sibling to (C) or coarser than the Observation Taxon where you choose 'No,
+    but…' to the 'Potential Disagreement' dialog (D) will be counted as Disagreements.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    IDs coarser than the Observation Taxon where you choose 'I don’t know but…' to
+    the 'Potential Disagreement' dialog (E) will be counted as Uncertain.
+  observation_accuracy_validator_email_we_are_so_grateful: |
+    We're so grateful for your help as an identifier on iNaturalist, and thank you
+    very much for participating in this study. Please read <a href="%{url}">this
+    blog post</a> if you’re interested in learning more about this experiment.
+  observation_accuracy_validator_email_with_gratitude: With gratitude,
+  observation_accuracy_validator_email_the_inaturalist_team: The iNaturalist Team
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
   # Attributes an observation to a user. %{user} can be a username or a full
