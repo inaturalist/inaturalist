@@ -253,6 +253,7 @@ da:
   active_taxon_status: Aktiv
   active_users: Aktive brugere
   activity: Aktivitet
+  activity_on_a_flag_for_x: Aktivitet på et flag for %{x}
   adapted_by_name_from_a_work_by_original: "Tilpasset efter %{name} fra et værk af %{original}"
   add: Tilføj
   add_a_batch_of_observations: Tilføj et bundt observationer
@@ -1926,6 +1927,7 @@ da:
     Markér til Bruger: %{title}
   flag_it!: Markér den!
   flag_marked_as_resolved_html: '<span class="meta">Markér som</span> <strong>resolved.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Flagmarkeret som</span> <strong>uløst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Jeg markerer denne %{record} fordi"
@@ -3384,6 +3386,7 @@ da:
   organism_is_wild: Organisme er vild
   organisms: Organismer
   original: Oprindelig
+  original_flag: Oprindeligt flag
   originally_flagged_by: Oprindeligt markeret af
   originally_imported_from_url_html: "Oprindeligt importeret fra <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Oprindelig side URL for dette foto."
