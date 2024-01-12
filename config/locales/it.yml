@@ -1909,6 +1909,8 @@ it:
   #Adjective, as in a fluid layout of images
   fluid: fluido
   follow: Segui
+  #Text for a button to follow updates on an observation
+  follow_observation: Segui osservazione
   follow_receive_updates_about_new_observations: Segui (ricevi aggiornamenti sulle nuove osservazioni)
   #Text for a button to follow updates from a specific user
   follow_user: "Segui %{user}"
@@ -4299,6 +4301,14 @@ it:
   rotate_left: Ruota a sinistra
   rotate_right: Ruota a destra
   row_singular_or_plural: Riga
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Stai testando la disposizione da destra verso sinistra? Puoi anche utilizzare il parametro test=rtl URL. Nota che non tutte le pagine sono state convertite a questo layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Aderito al test del layout da destra verso sinistra
   rules_and_formatting: "Regole & Formattazione"
   rules_for_adding_observations: Regole per l'aggiunta di osservazioni
   rules_for_becoming_a_member: Regole per diventare un Membro
@@ -5186,6 +5196,10 @@ it:
   unknown: Sconosciuto
   unknown_error: Errore sconosciuto
   unknown_rank: '(Rango Sconosciuto)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Smetti di seguire osservazione
+  #Text for a button to stop following updates from a user
+  unfollow_user: Smetti di seguire utente
   unlink_your_google_account: Scollega il tuo account Google
   unlink_your_flickr_account: "Scollega il tuo Account Flickr"
   unmute: Riattiva
