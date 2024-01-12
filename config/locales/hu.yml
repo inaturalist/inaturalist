@@ -220,6 +220,7 @@ hu:
   active_taxon_status: Aktív
   active_users: Aktív felhasználó
   activity: Aktivitás
+  activity_on_a_flag_for_x: '%{x}: bejelentések aktivitása'
   adapted_by_name_from_a_work_by_original: "%{original} munkája alapján adaptálta %{name}"
   add: Hozzáadás
   add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
@@ -1608,6 +1609,7 @@ hu:
     Felhasználó bejelentése: %{title}
   flag_it!: Bejelentés
   flag_marked_as_resolved_html: '<span class="meta">Bejelentés</span> <strong>megoldva.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">A bejelentés</span><strong>megoldatlanként</strong> megjelölve.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objektum
   flag_reason: "&ldquo;Bejelentem ezt a %{record}t, mert"
@@ -2822,6 +2824,7 @@ hu:
   organism_is_wild: Vadon élő
   organisms: Élőlények
   original: Eredeti
+  original_flag: Eredeti bejelentés
   original_page_url_for_this_photo: "E fotó eredeti oldal URL-je"
   organism_appears_captive_cultivated: Az élőlény fogságban lévő vagy kultivált
   other: Egyéb
