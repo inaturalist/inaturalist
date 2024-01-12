@@ -1963,6 +1963,8 @@ pt-BR:
   #Adjective, as in a fluid layout of images
   fluid: fluído
   follow: Seguir
+  #Text for a button to follow updates on an observation
+  follow_observation: Seguir a observação
   follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre novas observações)
   #Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
@@ -2700,7 +2702,7 @@ pt-BR:
       gbif_network_description2: Registros de museus e outros provedores de ocorrência distribuídos pelo Sistema Global de Informação sobre Biodiversidade
       observations: Observações
       place_boundary: Colocar limite
-      checklist_places: Checklist de lugares
+      checklist_places: Lugares com checklists disponíveis.
       checklist_places_description: Lugares onde este táxon foi listado
       range: Área de Distribuição
   map_tooltip: Mostre a vista do mapa
@@ -3356,9 +3358,9 @@ pt-BR:
   only_view_nearby_suggestions: Ver apenas sugestões nas proximidades
   only_you: Só você
   #Geoprivacy status in which no privacy has been applied
-  open: abrir
+  open: aberta
   #Geoprivacy status in which no privacy has been applied
-  open_: Abrir
+  open_: Aberta
   open_description: "Qualquer um pode ter acesso as coordenadas a não ser que o táxon esteja em perigo."
   open_street_map: OpenStreetMap
   optional: opcional
@@ -4480,7 +4482,7 @@ pt-BR:
   search_external_name_providers: Buscar em provedores externos
   search_for_a_location: Buscar por localização
   search_for_species: Buscar espécies
-  search_list: Lista de pesquisas
+  search_list: Pesquisar na lista
   search_observations: "Pesquisar observações"
   search_projects: Procurar por projetos
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
@@ -5355,6 +5357,10 @@ pt-BR:
   unknown: Desconhecido
   unknown_error: Erro desconhecido
   unknown_rank: '(Classificação Desconhecida)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Deixar de seguir a observação
+  #Text for a button to stop following updates from a user
+  unfollow_user: Deixar de seguir o usuário
   unlink_your_google_account: Desvincular a sua conta Google
   unlink_your_flickr_account: "Desvincule sua conta do Flickr"
   unmute: Reativar
