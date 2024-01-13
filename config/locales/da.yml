@@ -3127,6 +3127,29 @@ da:
     Offentlige koordinater vist som et tilfældigt punkt inden for 0,2 længde- og breddegrad af feltet, som indeholder de korrekte koordinater.
   observation: Observation
   observation_: observation
+  observation_accuracy_validator_email_subject: "Vil du hjælpe os med at vurdere korrektheden af iNaturalist-observationer?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Vil du hjælpe os et eksperiment til vurdering af korrektheden af iNaturalist-observationer?
+  observation_accuracy_validator_email_if_so_html: |
+    Hvis ja, så vi har foretaget et <a href="%{sample_url}">sæt %{num_obs} observationer</a>,
+    som vi tror, du kan identificere baseret på din aktivitet på iNat. <b>Tilføj det fineste ID du kan til hver inden %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vi beregner nøjagtigheden ved at sammenligne dit ID med Observationstakson. Sørg for at tilføje et ID til hver observation, selvom observationen allerede er af 
+    Forskningskvalitet, for at hjælpe med at monitorere dine fremskridt. Observationer, du tidligere har føjet et ID til, kan overspringes, såfremt ID'et stadig er relevant.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Er ID'er lig med (A) eller finere end (B), medregnes Observationstaksonen som Enigheder.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID'er søskende til (C) eller grovere end Observationstakson, hvor du vælger 'Nej,
+    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Uenigheder.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID'er grovere end Observationstakson, hvor du vælger 'Jeg ved det ikke,
+    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Usikker.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Vi er så taknemmelige for din hjælp som identifikator på iNaturalist og takker dig
+    meget for at deltage i denne undersøgelse. Læs endelig <a href="%{url}">dette
+    blogindlæg</a>, hvis du er interesseret i at vide mere om dette eksperiment.
+  observation_accuracy_validator_email_with_gratitude: Med taknemmelighed
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
   #Attributes an observation to a user. %{user} can be a username or a full
