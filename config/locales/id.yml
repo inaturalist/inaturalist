@@ -3011,6 +3011,25 @@ id:
     Koordinat publik yang ditampilkan sebagai titik acak dalam jangkauan 0.2 derajat lin/buj yang memiliki koordinat sebenarnya.
   observation: Pengamatan
   observation_: pengamatan
+  observation_accuracy_validator_email_subject: "Bisakah kamu membantu kami mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Bisakah kamu membantu kami dalam sebuah eksperimen untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
+  observation_accuracy_validator_email_if_so_html: |
+    Jika kamu mau, kami sudah mengumpulkan <a href="%{sample_url}">%{num_obs} pengamatan</a> yang sepertinya bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin menurutmu sebelum %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Kami akan menghitung akurasinya dengan membandingkan ID kamu dengan Takson Pengamatan. Pastikan 
+    kamu menambahkan ID untuk setiap pengamatan, bahkan jika pengamatannya sudah Kelas Riset, untuk membantu melacak progresmu. Kamu bisa melewati pengamatan-pengamatan yang sudah kamu tambahkan ID-nya sebelumnya jika ID-nya masih relevan.
+  observation_accuracy_validator_email_ids_equal_to: |
+    ID yang sama dengan (A) atau lebih rinci dari (B), Takson Pengamatannya akan dihitung sebagai Kesepakatan.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID yang setingkat dengan (C) atau kurang spesifik dari Takson Pengamatan yang kamu pilih 'Tidak, tapi…' untuk dialog (D) 'Potensi Ketidaksetujuan' akan dihitung sebagai Ketidaksetujuan.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID yang kurang spesifik dari Takson Pengamatan yang kamu pilih 'Saya tidak tahu, tapi…' untuk dialog (E) 'Potensi Ketidaksetujuan' akan dihitung sebagai Tidak Pasti.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Kami berterima kasih atas bantuanmu sebagai pengidentifikasi, dan terima kasih 
+    banyak atas partisipasimu dalam penelitian ini. Silakan membaca <a href="%{url}">postingan blog ini</a> jika kamu tertarik untuk mengetahui lebih lanjut tentang eksperimen ini.
+  observation_accuracy_validator_email_with_gratitude: Dengan terima kasih,
+  observation_accuracy_validator_email_the_inaturalist_team: Tim iNaturalist
   observation_added_to_the_project: "Pengamatan yang ditambahkan ke proyek \"%{project}\""
   observation_aggregation: Kumpulan Pengamatan
   #Attributes an observation to a user. %{user} can be a username or a full
