@@ -1659,6 +1659,7 @@ zh-CN:
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
+  examples_of_data_use_by_network_members: 网络成员使用数据的实例
   examples_of_ranking_organizations: 排名机构的例子
   expected_nearby: 预料在附近
   explore: 探索
@@ -2906,6 +2907,11 @@ zh-CN:
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
+  observation_accuracy_validator_email_subject: "您会帮助我们估计iNaturalist 观察的准确度吗？"
+  observation_accuracy_validator_email_will_you_help_us: |
+    您是否会帮助我们进行一次实验，以估计iNaturalist 观察的准确度？
+  observation_accuracy_validator_email_with_gratitude: "此致  \n敬礼，"
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist 团队
   observation_added_to_the_project: "添加观察到项目“%{project}”"
   observation_aggregation: 观察聚合
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3154,6 +3160,7 @@ zh-CN:
   organism_is_wild: 生物是野生的
   organisms: 有机体
   original: 原文
+  original_flag: 原始标记
   originally_flagged_by: 最初标记来自于
   originally_imported_from_url_html: "最初导入来自于<a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "本图片的原始页面URL。"
@@ -3193,9 +3200,9 @@ zh-CN:
   overlapping_downstream_taxon_frameworks_html: "重复的下游物种分类框架数量：%{count}"
   owner: 所有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
-  parent: 父
+  parent: 上级
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
-  parent_name: 父名称
+  parent_name: 上级名称
   parental_consent:
     must_specify_email: 您必须指定一个电子邮件地址
     invalid_email: 无效的电子邮件格式
@@ -7382,7 +7389,7 @@ zh-CN:
         latitude: 纬度
         longitude: 经度
         name: 名称
-        parent_id: 父
+        parent_id: 上级
         place_type: 地点类型
         prefers_check_lists: 是否允许检查列表？
       site:
@@ -7417,7 +7424,7 @@ zh-CN:
         name: 名称
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: 名称提供方
-        parent_id: 父ID
+        parent_id: 上级ID
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: 照片被锁定？
