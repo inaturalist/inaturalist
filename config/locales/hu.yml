@@ -2610,6 +2610,23 @@ hu:
     A nyílvános koordinátákat egy véletlenszerű pontként mutatjuk egy 0.2 fokos szél/hossz területen belül ami tartalmazza a valódi koordinátákat.
   observation: Megfigyelés
   observation_: megfigyelés
+  observation_accuracy_validator_email_subject: "Segítesz nekünk megmérni az iNaturalist-megfigyelések pontosságát?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Segítesz nekünk egy kísérletben, amelynek célja az iNaturalist-megfigyelések pontosságának mérése?
+  observation_accuracy_validator_email_if_so_html: |
+    Ha igen: létrehoztunk <a href="%{sample_url}">egy %{num_obs} megfigyelést tartalmazó csoportot</a>, amelyeket az iNat-on végzett tevékenységed alapján úgy gondoljuk, hogy azonosítani tudsz. <b>Kérünk, hogy mindegyikhez add meg a lehető legpontosabb azonosítást %{validator_deadline_date} határidő előtt</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    A pontosságot úgy fogjuk kiszámítani, hogy összehasonlítjuk az általad megadott azonosítást a megfigyelési taxonnal. Minden megfigyeléshez adj egy azonosítást, még akkor is, ha a megfigyelés már tudományos szintű, ezzel nyomon tudjuk követni, hogyan halad a kísérlet. Kihagyhatod azokat a megfigyeléseket, ahol korábban már adtál hozzá azonosítást, ha az azonosítás még mindig releváns.
+  observation_accuracy_validator_email_ids_equal_to: |
+    A megfigyelési taxonnal megegyező (A) vagy annál szűkebb (B) meghatározásokat egyetértésként regisztráljuk.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    A megfigyelési taxontól eltérő (C), vagy annál magasabb szintű azonosításokat, ahol a "Lehetséges konfliktus" (E) panelen a "Nem, de..." opciót választod, ellentmondásként vesszük figyelembe.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    A megfigyelési taxonnál magasabb szintű meghatározást, amelynél a "Lehetséges konfliktus" (E) panelen a "Nem tudom, de..." opciót választod, bizonytalanként regisztráljuk.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Nagyon hálásak vagyunk az azonosításaidért, és köszönjük, hogy részt veszel a kísérletben. <a href="%{url}">Ebből a blogbejegyzést</a> többet is megtudhatsz erről a kísérletről.
+  observation_accuracy_validator_email_with_gratitude: Köszönettel,
+  observation_accuracy_validator_email_the_inaturalist_team: Az iNaturalist csapata
   observation_added_to_the_project: "A megfigyelést hozzáadták a \"%{project}\" projekthez"
   observation_aggregation: Megfigyelés összevonás
   #Attributes an observation to a user. %{user} can be a username or a full
