@@ -2619,8 +2619,6 @@ hu:
     A pontosságot úgy fogjuk kiszámítani, hogy összehasonlítjuk az általad megadott azonosítást a megfigyelési taxonnal. Minden megfigyeléshez adj egy azonosítást, még akkor is, ha a megfigyelés már tudományos szintű, ezzel nyomon tudjuk követni, hogyan halad a kísérlet. Kihagyhatod azokat a megfigyeléseket, ahol korábban már adtál hozzá azonosítást, ha az azonosítás még mindig releváns.
   observation_accuracy_validator_email_ids_equal_to: |
     A megfigyelési taxonnal megegyező (A) vagy annál szűkebb (B) meghatározásokat egyetértésként regisztráljuk.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    A megfigyelési taxontól eltérő (C), vagy annál magasabb szintű azonosításokat, ahol a "Lehetséges konfliktus" (E) panelen a "Nem, de..." opciót választod, ellentmondásként vesszük figyelembe.
   observation_accuracy_validator_email_ids_coarser_than: |
     A megfigyelési taxonnál magasabb szintű meghatározást, amelynél a "Lehetséges konfliktus" (E) panelen a "Nem tudom, de..." opciót választod, bizonytalanként regisztráljuk.
   observation_accuracy_validator_email_we_are_so_grateful_html: |
