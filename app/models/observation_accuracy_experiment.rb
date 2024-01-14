@@ -300,7 +300,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       pluck( :id )
     captive = quality_metric_observation_ids( o, "wild" )
     no_evidence = quality_metric_observation_ids( o, ["evidence"] )
-    other_dqa_issue = quality_metric_observation_ids( observation_ids, ["location", "date", "recent"] )
+    other_dqa_issue = quality_metric_observation_ids( o, ["location", "date", "recent"] )
 
     obs_data = observations.map do | obs |
       {
@@ -324,7 +324,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     samples = ObservationAccuracySample.create!( obs_data )
 
-    distribute_to_validators( samples.where( no_evidence: false ) )
+    distribute_to_validators( samples.select {| a | a.no_evidence == false } )
 
     self.sample_generation_date = Time.now
     save!
