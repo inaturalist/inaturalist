@@ -12,6 +12,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   after_create :generate_sample
 
+  def quality_metric_observation_ids( observation_ids, metrics )
+    QualityMetric.
+      select( :observation_id ).
+      where( observation_id: observation_ids, metric: metrics ).
+      group( :observation_id, :metric ).
+      having(
+        "COUNT( CASE WHEN agree THEN 1 ELSE NULL END ) < COUNT( CASE WHEN agree THEN NULL ELSE 1 END )"
+      ).
+      distinct.pluck( :observation_id )
+  end
+
   def bootstrap_variance( original_sample )
     num_iterations = 1000
     bootstrap_means = []
@@ -277,6 +288,20 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
 
     iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
+    no_media = Observation.includes( :photos, :sounds ).
+      where( id: o ).
+      where( photos: { id: nil }, sounds: { id: nil } ).pluck( :id )
+    sounds_only = Observation.includes( :photos, :sounds ).
+      where( id: o ).
+      where( photos: { id: nil }, sounds: "sounds.id IS NOT NULL" ).
+      pluck( :id )
+    has_cid = Observation.
+      where( "id IN ( ? ) AND community_taxon_id IS NOT NULL AND community_taxon_id = taxon_id", o ).
+      pluck( :id )
+    captive = quality_metric_observation_ids( o, "wild" )
+    no_evidence = quality_metric_observation_ids( o, ["evidence"] )
+    other_dqa_issue = quality_metric_observation_ids( observation_ids, ["location", "date", "recent"] )
+
     obs_data = observations.map do | obs |
       {
         observation_accuracy_experiment_id: id,
@@ -288,13 +313,18 @@ class ObservationAccuracyExperiment < ApplicationRecord
         continent: continent_key[continent_obs[obs.id]],
         taxon_observations_count: obs.taxon&.observations_count,
         taxon_rank_level: obs.taxon_id.nil? ? Taxon::ROOT_LEVEL : obs.taxon&.rank_level,
-        descendant_count: taxon_descendant_count[obs.taxon_id.nil? ? root_id : obs.taxon_id]
+        descendant_count: taxon_descendant_count[obs.taxon_id.nil? ? root_id : obs.taxon_id],
+        no_evidence: no_media.include?( obs.id ) || no_evidence.include?( obs.id ),
+        sounds_only: sounds_only.include?( obs.id ),
+        has_cid: has_cid.include?( obs.id ),
+        captive: captive.include?( obs.id ),
+        other_dqa_issue: other_dqa_issue.include?( obs.id )
       }
     end
 
     samples = ObservationAccuracySample.create!( obs_data )
 
-    distribute_to_validators( samples )
+    distribute_to_validators( samples.where( no_evidence: false ) )
 
     self.sample_generation_date = Time.now
     save!

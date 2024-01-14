@@ -2635,7 +2635,12 @@ CREATE TABLE public.observation_accuracy_samples (
     correct integer,
     reviewers integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    sounds_only boolean,
+    has_cid boolean,
+    captive boolean,
+    no_evidence boolean,
+    other_dqa_issue boolean
 );
 
 
@@ -10661,6 +10666,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240109034635'),
 ('20240109035846'),
 ('20240109035854'),
-('20240110183622');
+('20240110183622'),
+('20240114022417');
 
 
