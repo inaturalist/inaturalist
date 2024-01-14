@@ -2982,6 +2982,24 @@ de:
     Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Längen-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
   observation: Beobachtung
   observation_: Beobachtung
+  observation_accuracy_validator_email_subject: "Möchtest du uns dabei helfen, die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Möchtest du uns bei einem Experiment unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
+  observation_accuracy_validator_email_if_so_html: |
+    Falls ja, haben wir eine <a href="%{sample_url}">Zusammenstellung von %{num_obs} Beobachtungen</a> vorbereitet, die du nach unserer Beurteilung deiner iNat-Aktivität identifizieren können solltest. <b>Bitte jeweils die - nach deinen Möglichkeiten - genauest mögliche Bestimmung vor dem %{validator_deadline_date}</b> abgeben.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Wir werden die Genauigkeit berechnen, indem wir deine ID mit dem Beobachtungstaxon vergleichen. Bitte bei jeder einzelnen Beobachtung eine ID hinzufügen, auch wenn die Beobachtung bereits
+    Forschungsqualität hat, um deinen Einsatz nachvollziehen zu können. Beobachtungen, die du bereits zuvor bestimmt hattest, können übersprungen werden (falls du deine ursprüngliche ID beibehalten möchtest).
+  observation_accuracy_validator_email_ids_equal_to: |
+    Bestimmungen, die dem Beobachtungstaxon entsprechen (A) oder genauer sind (B), werden als Zustimmung gezählt.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    IDs auf abweichenden Stammbaum-Ästen (C) oder höher als das Beobachtungstaxon UND bei denen in der Dialog-Box ein Widerspruch (D) ausgedrückt wurde, werden als Nichtübereinstimmung gezählt.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    IDs höher als das Beobachtungstaxon, bei denen du im "Widerspruchs-Dialog" (E) die Option 'kein Veto...' gewählt hast, werden als 'unsicher' gewertet.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Wir sind sehr dankbar für deine Bestimmungs-Hilfe auf iNaturalist und vielen Dank für die Teilnahme an dieser Studie. <a href="%{url}">In diesem Blog-Beitrag</a> kannst du mehr über dieses Experiment erfahren.
+  observation_accuracy_validator_email_with_gratitude: In Dankbarkeit,
+  observation_accuracy_validator_email_the_inaturalist_team: das Team von iNaturalist
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
   observation_aggregation: Beobachtungs Ansammlung
   #Attributes an observation to a user. %{user} can be a username or a full
