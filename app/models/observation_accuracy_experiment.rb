@@ -41,7 +41,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
     return 1 if groundtruth_taxon_id == test_taxon_id || groundtruth_taxon.descendant_of?( test_taxon )
 
-    return 0 if groundtruth_taxon.not.in_same_branch_of?( test_taxon ) ||
+    return 0 if !groundtruth_taxon.in_same_branch_of?( test_taxon ) ||
       ( groundtruth_taxon.ancestor_of?( test_taxon ) &&
       disagreement && previous_observation_taxon_id == test_taxon_id )
 
@@ -168,18 +168,42 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def associate_observations_with_identifiers( obs_ids_grouped_by_taxon_id, identifiers_by_taxon_id, top_iders )
+    validator_candidates = identifiers_by_taxon_id.values.flatten.uniq
+    observation_ids = obs_ids_grouped_by_taxon_id.values.flatten.uniq
+    observer_hash = Observation.find( observation_ids ).map {| o | [o.id, o.user_id] }.to_h
+    user_blocks = UserBlock.
+      where( blocked_user_id: validator_candidates ).
+      group( :blocked_user_id ).
+      pluck( :blocked_user_id, Arel.sql( "ARRAY_AGG(user_id)" ) ).to_h
+    observation_identifications_hash = Observation.
+      joins( :identifications ).
+      where( id: observation_ids ).
+      group( :id ).
+      pluck( :id, Arel.sql( "ARRAY_AGG(DISTINCT identifications.user_id) AS user_ids" ) ).to_h
     associations = Hash.new {| hash, key | hash[key] = [] }
     user_obs_count = Hash.new( 0 )
     obs_ids_grouped_by_taxon_id.each do | taxon_id, obs_ids |
       sorted_identifiers = identifiers_by_taxon_id[taxon_id] || []
       obs_ids.each do | obs_id |
-        top_user_ids = start_with = sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
-          select {| user_id | top_iders.keys.include? user_id }.take( validator_redundancy_factor )
-        top_user_ids << sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
-          take( validator_redundancy_factor - start_with.count )
-        top_user_ids = top_user_ids.flatten.uniq
-        top_user_ids.each {| user_id | user_obs_count[user_id] += 1 }
-        associations[obs_id] += top_user_ids
+        top_ider_candidates = sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
+          select {| user_id | top_iders.keys.include? user_id }
+        top_ider_candidates.concat( sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
+          reject {| user_id | top_ider_candidates.include? user_id } )
+        top_ider_candidates = top_ider_candidates.reject do | user_id |
+          user_blocks[user_id] && ( user_blocks[user_id].include? observer_hash[obs_id] )
+        end
+        if top_ider_candidates.length > validator_redundancy_factor
+          observation_identifications = observation_identifications_hash[obs_id] || []
+          running_length = top_ider_candidates.length
+          top_ider_candidates = top_ider_candidates.reject do | user_id |
+            include_user = observation_identifications.include?( user_id ) &&
+              running_length > validator_redundancy_factor
+            running_length -= 1 if include_user
+            include_user
+          end
+        end
+        top_ider_candidates.each {| user_id | user_obs_count[user_id] += 1 }
+        associations[obs_id] += top_ider_candidates
       end
     end
     associations.each_with_object( {} ) do | ( obs_id, user_ids ), result |
@@ -212,11 +236,19 @@ class ObservationAccuracyExperiment < ApplicationRecord
       top_iders
     )
 
-    obs_id_by_user.each do | user_id, observation_ids |
-      observation_validator = ObservationAccuracyValidator.
-        create( user_id: user_id, observation_accuracy_experiment_id: id )
-      observation_validator.observation_accuracy_samples << ObservationAccuracySample.
-        where( observation_id: observation_ids )
+    puts "Optimally reduce to validator redundancy factor and save..."
+    sorted_obs_id_by_user = obs_id_by_user.sort_by {| _user_id, observation_ids | observation_ids.length }.to_h
+    sorted_obs_id_by_user.each do | user_id, observation_ids |
+      if observation_ids.all? do | obs_id |
+        sorted_obs_id_by_user.count {| _, obs_ids | obs_ids.include?( obs_id ) } > validator_redundancy_factor
+      end
+        sorted_obs_id_by_user.delete( user_id )
+      else
+        observation_validator = ObservationAccuracyValidator.
+          create( user_id: user_id, observation_accuracy_experiment_id: id )
+        observation_validator.observation_accuracy_samples << ObservationAccuracySample.
+          where( observation_id: observation_ids )
+      end
     end
   end
 

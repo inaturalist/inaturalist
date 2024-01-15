@@ -200,7 +200,12 @@ class Emailer < ActionMailer::Base
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
     @num_obs = obs_ids.count
     @sample_url = FakeView.
-      identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids.join( "," ) )
+      identify_observations_url(
+        place_id: "any",
+        reviewed: "any",
+        quality_grade: "needs_id,research,casual",
+        id: obs_ids.join( "," )
+      )
     @blog_url = FakeView.site_post_url( 88_501 )
     user_id = validator.user_id
     @user = User.find( user_id )
