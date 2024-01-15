@@ -3155,6 +3155,31 @@ sv:
     Publika koordinater visas som en slumpmässig punkt inom en 0,2 grader stor lat/long-cell som innehåller de exakta koordinaterna.
   observation: Fynd
   observation_: fynd
+  observation_accuracy_validator_email_subject: "Kan du tänka dig att hjälpa oss uppskatta fynds träffsäkerhet på iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Kan du tänka dig att hjälpa oss med ett experiment för att uppskatta fynds träffsäkerhet på iNaturalist?
+  observation_accuracy_validator_email_if_so_html: |
+    I så fall har vi gjort en <a href="%{sample_url}">uppsättning %{num_obs} fynd</a>
+    som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till
+    den mest exakta bestämning du kan för vart och ett innan %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vi beräknar träffsäkerheten genom att jämföra din bestämning med fyndets taxon. Se till att
+    lägga till en bestämning till varje fynd, även om fyndet redan har
+    forskningsklass, för att hålla reda på dina framsteg. Du kan hoppa över fynd där
+    du tidigare har lagt till en bestämning om den fortfarande är relevant.
+  observation_accuracy_validator_email_ids_equal_to: |
+    För bestämningar lika med (A) eller exaktare än (B) kommer fyndets taxon att räknas som Överensstämmer.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Bestämningar på olika grenar eller mindre exakt än fyndets taxon där du väljer 'Nej, men…' vid 'Möjlig meningsskiljaktighet'-frågan (D) kommer att räknas som Meningsskiljaktigheter.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Bestämningar mindre exakta än fyndets taxon där du väljer "Jag vet inte men…" för
+    dialogrutan "Möjlig meningsskiljaktighet" (E) kommer att räknas som Osäker.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Vi är så tacksamma för din hjälp med bestämningar på iNaturalist, och tack
+    så mycket för att du deltagit i denna studie. Läs <a href="%{url}">detta
+    blogginlägg</a> för att svara på vanliga frågor om detta experiment.
+  observation_accuracy_validator_email_with_gratitude: Stort tack,
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
   observation_aggregation: Aggregering av fynd
   #Attributes an observation to a user. %{user} can be a username or a full
