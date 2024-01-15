@@ -373,6 +373,7 @@ cs:
   active_taxon_status: Aktivní
   active_users: Aktivní uživatelé
   activity: Aktivita
+  activity_on_a_flag_for_x: Aktivita označení pro %{x}
   adapted_by_name_from_a_work_by_original: "Upravil/a %{name}, převzato z práce %{original}"
   add: Vložit
   add_a_batch_of_observations: Vložit soubor sledování
@@ -517,7 +518,7 @@ cs:
   added_by_user_on_date_html: "Přidáno uživatelem %{user} dne %{date}"
   added_on_datetime: "Přidáno na %{datetime}"
   #Message displayed after a project user changes role, e.g. they become a manager or a curator
-  added_role: Přidána role
+  added_role: Role přidána
   added_to_favorites_html: |
     Přidáno k <a href="%{url}">oblíbeným</a>
   adding: "Přidávání..."
@@ -2061,6 +2062,7 @@ cs:
     Označení pro uživatele: %{title}
   flag_it!: Označit!
   flag_marked_as_resolved_html: '<span class="meta">Vlajka označena jako</span> <strong>vyřešená.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Označeno jako</span> <strong>nevyřešené.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Tento %{record} označuji, protože"
@@ -3262,6 +3264,31 @@ cs:
     Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
   observation: Pozorování
   observation_: pozorování
+  observation_accuracy_validator_email_subject: "Pomůžete nám odhadnout přesnost pozorování v iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Pomůžete nám s experimentem, který by měl odhadnout přesnost pozorování v iNaturalist?
+  observation_accuracy_validator_email_if_so_html: |
+    Pokud se chcete zapojit, vytvořili jsme na základě vaší aktivity na iNaturalist <a href="%{sample_url}">sadu %{num_obs} pozorování</a>, které byste mohli umět identifikovat. <b>Prosím přidejte
+    ke každému pozorování co nejkonkrétnější identifikaci do %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Porovnáním vaší identifikace se skutečným taxonem stanovíme přesnost. Prosím
+    přidejte identifikaci ke každému pozorování, i když už třeba dosáhlo Výzkumného
+    stupně, ať od vás máme dostatek dat. Nemusíte přidávat identifikace u těch pozorování,
+    které už od vás ID mají, pokud je toto ID stále relevantní.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Stejná identifikace (A) nebo konkrétnější (B), než taxon pozorování, bude započítána mezi Shody.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Pokud vaše ID bude v jiné větvi taxonomického stromu (C) nebo bude hrubší než taxon pozorování a v dialogu
+    Potenciální neshody (D) uvedete "Ne, ale…", bude to započítáno mezi Neshody.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Pokud vaše identifikace bude hrubší než taxon pozorování a v dialogu Potenciální
+    neshody (E) uvedete "Nevím, ale…", bude to započítáno mezi Nejisté.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Hodně si vážíme vaší pomoci s identifikacemi na iNaturalist a vřele
+    děkujeme za účast v této studii. Pro zodpovězení často kladených otázek
+    si prosím přečtěte <a href="%{url}">tento příspěvek na blogu</a>.
+  observation_accuracy_validator_email_with_gratitude: S vděčností,
+  observation_accuracy_validator_email_the_inaturalist_team: Tým iNaturalist
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3516,6 +3543,7 @@ cs:
   organism_is_wild: Organismus žije ve volné přírodě
   organisms: Organismy
   original: Původní
+  original_flag: Původní označení
   originally_flagged_by: Původně označeno uživatelem
   originally_imported_from_url_html: "Původně importováno z <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Původní URL stránky pro tuto fotku."
@@ -6010,13 +6038,13 @@ cs:
   yir_email_the_year_isnt_over: |
     Rok ještě neskončil a nikdy není pozdě zveřejňovat starší
     pozorování. Až budete sdílet více pozorování, ujistěte se, že
-    vyberte "Regenerovat statistiky" v dolní části vašeho roku v recenzi, abyste viděli
+    vyberete "Obnovit statistiky" v dolní části vašeho ročního přehledu, abyste viděli
     aktualizace.
   yir_email_what_else_will_you_observe_caps: CO DALŠÍHO BUDETE OBJEVOVAT?
   yir_email_what_new_to_you: |
     Kolik pro vás nových druhů se vám povedlo zaznamenat? Kolik lidí vám pomohlo s identifikací (a kolika jste pomohl/a vy)?
-  yir_email_with_gratitude: s vděčností,
-  yir_email_year_on_inaturalist_globally_caps: "ROK %{year} CELKOVĚ NA INATURALIST"
+  yir_email_with_gratitude: S vděčností,
+  yir_email_year_on_inaturalist_globally_caps: "ROK %{year} GLOBÁLNĚ NA INATURALIST"
   yir_email_you_are_part_of_something: |
     Účastníte se něčeho velkého! Každý, kdo publikuje pozorování,
     přidá identifikace nebo šíří slovo o iNaturalistu, dělá něco pro biologickou
@@ -7453,6 +7481,8 @@ cs:
         store_prompt: |
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
           Obchod!
+        sunburst_desc_html: |
+          Pozorované taxony jsou uspořádány jako hierarchický „paprskovitý“ diagram. Základní úroveň hierarchie je uprostřed, začíná „Životem“ a končí druhy na vnějších okrajích. Velikost každého oblouku je úměrná počtu pozorování daného taxonu a barvy zhruba odpovídají obvyklým „tradičním“ barvám taxonů (zelená pro rostliny, oranžová pro hmyz, modrá pro většinu ostatních zvířat atd.), takže pokud vidíte hodně zelené, znamená to, že jste pozorovali hodně rostlin. <strong>Taxon do středu umístíte kliknutím na oblouk</strong> a jeho následné taxony se rozmístí okolo, nebo <strong>klikněte na střed a posuňte se výš v hierarchii</strong>.
         translators_title: Překladatelé
         translators_desc: |
           Věděli jste, že iNaturalist byl přeložen do %{x_languages},
