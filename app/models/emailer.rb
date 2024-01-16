@@ -197,7 +197,7 @@ class Emailer < ActionMailer::Base
   end
 
   def observation_accuracy_validator_contact( validator, validator_deadline_date )
-    return unless ( @user = User.where( validator.user_id ).first )
+    return unless ( @user = User.where( id: validator.user_id ).first )
 
     return if @user&.email&.blank?
 
