@@ -3373,14 +3373,22 @@ en:
   observation_accuracy_validator_email_will_you_help_us: |
     Will you help us with an experiment to estimate the accuracy of iNaturalist observations?
   observation_accuracy_validator_email_if_so_html: |
-    If so, we've made a <a href="%{sample_url}">set of %{num_obs} observations</a>
+    <ol>
+    <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom). </li>
+    <li>If you see the “Potential Disagreement” popup…
+      <ul>
+        <li>and you are confident it’s mis-ID’d click the orange button,</li>
+        <li>or if you’re uncertain beyond your ID, click the green button</li>
+      </ul>
+     </li>
+     <li>Do this by %{validator_deadline_date}</li>
+    </ol>
+    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>
     that we think you can identify based on your activity on iNat. <b>Please add
-    the finest ID you can to each before %{validator_deadline_date}</b>.
+    the finest ID you can to each of the observations before %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
-    We’ll calculate accuracy by comparing your ID to the Observation Taxon. Make
-    sure to add an ID to every observation, even if the observation is already
-    Research Grade to help track your progress. You can skip observations where
-    you’ve previously added an ID if that ID is still relevant.
+    We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where
+    you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
   observation_accuracy_validator_email_ids_equal_to: |
     IDs equal to (A) or finer than (B) the Observation Taxon will be counted as Agreements.
   observation_accuracy_validator_email_ids_sibling_to: |
