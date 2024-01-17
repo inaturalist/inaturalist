@@ -27,26 +27,23 @@ class TaxonNamePriorities extends Component {
       addTaxonNamePriority,
       taxonNamePriorities
     } = this.props;
-    if ( !( config && config.currentUser && (
-      config.currentUser.roles.indexOf( "admin" ) >= 0 || config.currentUser.sites_admined.length > 0 )
-    ) ) {
-      return null;
-    }
     return (
       <div className="TaxonNamePriorities">
-        <div className="alert alert-warning text-center">
-          Admin-only preview
-        </div>
-        <SettingsItem header="Common Names Display" htmlFor="taxon_names_display">
+        <SettingsItem
+          header={I18n.t( "views.users.edit.taxon_name_priorities.common_name_lexicons" )}
+          htmlFor="taxon_names_display"
+        >
           <p
             className="text-muted"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: "By default, common names will appear in the language associated with you language/locale settings. Enter common name lexions with an optional place to customize the common names you see across iNaturalist. You can display a maximum of 3 common names at a time, and if no common name exists for a lexicon you have chosen, it will be omitted in display."
+              __html: I18n.t( "views.users.edit.taxon_name_priorities.common_name_lexicons_description" )
             }}
           />
-          { ( _.size( taxonNamePriorities ) < 3 ) && (
-            <div>
+          { ( _.size( taxonNamePriorities ) < 3 ) ? (
+            <div
+              key={`lexicon-selector-${this.state.selectedLexicon}`}
+            >
               <select
                 id="user_locale"
                 className="form-control dropdown"
@@ -54,10 +51,10 @@ class TaxonNamePriorities extends Component {
                 onChange={e => { this.state.selectedLexicon = e.target.value === "locale" ? null : e.target.value; }}
               >
                 <option value={undefined} key="no-lexicon">
-                  Select a lexicon
+                  { I18n.t( "views.users.edit.taxon_name_priorities.select_a_lexicon" ) }
                 </option>
                 <option value="locale" key="dynamic-lexicon">
-                  Same as user locale preference
+                  { I18n.t( "views.users.edit.taxon_name_priorities.same_as_language_locale_preference" ) }
                 </option>
                 { TaxonNamePriorities.taxonNamePriorityLexicons( ) }
               </select>
@@ -67,12 +64,12 @@ class TaxonNamePriorities extends Component {
                 bootstrapClear
                 afterSelect={e => { this.state.selectedPlaceID = e.item.id; }}
                 afterClear={( ) => { this.state.selectedPlaceID = null; }}
-                placeholder={I18n.t( "place_autocomplete_placeholder" )}
+                placeholder={I18n.t( "views.users.edit.taxon_name_priorities.add_a_place_optional" )}
               />
               <div className="add-button">
                 <button
                   type="button"
-                  className="btn btn-default"
+                  className="btn btn-default btn-primary"
                   onClick={( ) => {
                     if ( !_.isUndefined( this.state.selectedLexicon ) ) {
                       addTaxonNamePriority(
@@ -82,19 +79,26 @@ class TaxonNamePriorities extends Component {
                     }
                   }}
                 >
-                  Add a common name to display
+                  {I18n.t( "views.users.edit.taxon_name_priorities.add_a_common_name_lexicon" )}
                 </button>
               </div>
             </div>
-          ) }
+          ) : (
+            <div className="alert alert-warning text-center">
+              { I18n.t( "views.users.edit.taxon_name_priorities.the_maximum_number_of_lexicons_have_been_added" ) }
+            </div>
+          )}
         </SettingsItem>
         { ( _.size( taxonNamePriorities ) > 0 ) && (
-          <SettingsItem header="Common Names Display Priority" htmlFor="taxon_name_priorities">
+          <SettingsItem
+            header={I18n.t( "views.users.edit.taxon_name_priorities.common_name_lexicon_display_order" )}
+            htmlFor="taxon_name_priorities"
+          >
             <p
               className="text-muted"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
-                __html: "For multiple common names, drag and drop the common name lexicons below to customize the order in while they are prioritized in display across iNaturalist."
+                __html: I18n.t( "views.users.edit.taxon_name_priorities.for_multiple_common_name_lexicons_drag_and_drop" )
               }}
             />
             <TaxonNamePrioritiesDragdropContainer />

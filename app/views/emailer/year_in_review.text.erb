@@ -1,0 +1,33 @@
+<%=plaintext_t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase %>
+
+<%=plaintext_t :yir_email_because_of_you %>
+
+<%=plaintext_t :yir_email_of_your_observations, count: number_with_delimiter( @user.observations_count ), year: @year %>
+
+<%=plaintext_t :yir_email_what_new_to_you %>
+
+<%=plaintext_t :yir_email_log_in_to_generate %>
+
+
+<%= t :generate_your_year_in_review_caps, year: @year %>
+<%= your_year_stats_url( year: @year ) %>
+
+
+<%=plaintext_t :yir_email_year_on_inaturalist_globally_caps, year: @year %>
+
+<%=plaintext_t :yir_email_you_are_part_of_something %>
+
+
+<%=plaintext_t :view_inaturalist_global_year_in_review_caps, year: @year %>
+<%= year_stats_url( year: @year ) %>
+
+
+<%=plaintext_t :yir_email_what_else_will_you_observe_caps %>
+
+<%=plaintext_t :yir_email_the_year_isnt_over %>
+
+<%=plaintext_t :yir_email_you_make_a_difference %>
+
+<%=plaintext_t :yir_email_with_gratitude %>
+
+<%=plaintext_t :yir_email_the_inaturalist_team %>

@@ -428,13 +428,10 @@ mk:
   batch_edit_taxa_for_x_html: "Збурно уредување на таксони за %{x}"
   batch_operations: Збирни постапки
   bg_color: заднинска боја
-  black: црна
   blog_widget: Блоговски елемент
-  blue: сина
   body: Содржина
   breadcrumbs: Трошки
   brief_caption: Краток опис
-  brown: кафеава
   browse: Прелистај
   browse_all_projects: Прелистај по сите проекти
   browse_all_species: Прелистај по сите видови
@@ -651,6 +648,7 @@ mk:
   everyone: сите
   everyone_journal_posts: Сечии дневнички објави
   everywhere: насекаде
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
   explore: Истражете
@@ -694,6 +692,7 @@ mk:
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
   flickr_tags: Ознаки на Flickr
+  #Text for a button to follow updates from a specific user
   follow_user: "Следи го/ја %{user}"
   following: следач
   for_a_taxon: за таксон
@@ -734,6 +733,8 @@ mk:
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Највисок ранг
   home: Почетна
   icon_size: Големина на иконата
@@ -983,6 +984,8 @@ mk:
   look_up_name: "Побарај го името"
   looks_like_neither_have!: Изгледа обете немаат никакви таксони!
   lookup: Побарај
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Најнизок ранг
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Главна содржина
@@ -1160,12 +1163,12 @@ mk:
   on_day: "на"
   one_by_one: "Еден по еден"
   one_of_your_lists: "еден од вашите списоци..."
+  #Geoprivacy status in which no privacy has been applied
   open: отворено
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: ИЛИ
-  orange: портокалова
   order: Редослед
   order_by: Подреди по
   original: изворна
@@ -1206,7 +1209,6 @@ mk:
   data_transfer_consent_child_label: |
     Се согласувам да дозволам личните податоци на моето дете
     да бидат префрлени во САД
-  pink: розова
   place: Место
   place_deleted: Местото е избришано.
   place_geo:
@@ -1364,10 +1366,13 @@ mk:
   protozoans: праживотни
   public_domain: Јавна сопственост
   publish: Објави
-  purple: виолетова
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -1406,7 +1411,6 @@ mk:
   recent_observations_by: "Скорешни набљудувања од %{login}"
   recently_active: Неодамна активни
   recently_created: Неодамна создадени
-  red: црвена
   redo_search_in_map_area: Пребарај одново за ова подрачје од картата
   refresh: Превчитај
   remember_me: Запомни ме
@@ -1698,7 +1702,6 @@ mk:
   where: Каде
   where_were_they?: Каде беа?
   where_were_you?: Каде бевте?
-  white: бела
   widget: Елемент
   widget_code: Код на елементот
   widget_for: Елемент за
@@ -1717,7 +1720,6 @@ mk:
   x_wrote_y_new_posts_html: "%{x} напиша %{y} нови мислења"
   year: Година
   year_month: година/месец
-  yellow: жолта
   'yes': "Да"
   yes_find_them!: "Да, најди ги!"
   yes_i_want_to_join: Да, сакам да се придружам

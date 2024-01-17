@@ -15,8 +15,9 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     setConfig: attributes => { dispatch( setConfig( attributes ) ); },
-    infiniteScrollSpecies: nextScrollIndex => dispatch(
-      infiniteScrollSpecies( nextScrollIndex ) )
+    infiniteScrollSpecies: ( previousScrollIndex, nextScrollIndex ) => dispatch(
+      infiniteScrollSpecies( previousScrollIndex, nextScrollIndex )
+    )
   };
 }
 

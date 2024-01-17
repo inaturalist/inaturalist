@@ -613,12 +613,10 @@ eu:
   bioblitz: Bioblitz
   birds: hegaztiak
   birthday: Urtebetetzea
-  black: beltza
   blocking_description: Blokeatzeak, zu eta beste edozein erabiltzaileren arteko komunikazioa galarazten du. Beste erabiltzaile batek zure seguratsuna arriskuan jartzen duen egoeratarako da, hala nola, mehatxu edo abusuzko jarreretarako.
   block_removed: Blokeoa kendu
   blocked_users: Blokeatutako Erabiltzaileak
   blog_widget: Blogeko widget-a
-  blue: urdina
   blue_butterfly_etc: "urdina, tximeleta, etab..."
   body: Gorputza
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -632,7 +630,6 @@ eu:
   #shown
   breadcrumbs_description: "Horrek h1 eta ekintzako lehenetsitako doikuntzak ordezkatuko ditu; ziurtatu proiektu honetarako garrantzitsuak direnak gehitu dituzula."
   brief_caption: Oin-ohar laburra
-  brown: marroia
   browse: Taxonomian nabigatu
   browse_all_projects: Proiektu guztiak bilatu
   browse_all_species: Espezie guztiak arakatu
@@ -1118,6 +1115,7 @@ eu:
   everywhere: edonon
   exact: Zehatza
   exact_date: Data zehatza
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tarte zehatza
   except: salbu
   existing_flags: Existitzen diren banderak
@@ -1205,6 +1203,7 @@ eu:
   #Adjective, as in a fluid layout of images
   fluid: arina
   follow: Jarraitu
+  #Text for a button to follow updates from a specific user
   follow_user: "Honi jarraitu: %{user}"
   followers: jarraitzaileak
   following: Jarraitzen
@@ -1239,7 +1238,6 @@ eu:
   got_your_data_somewhere_else?: Zure datuak beste nonbait eskuratu dituzu? Lagun diezazukegu.
   graft: Txertatu
   grafting_attemps_to_insert_this_taxon: Eranstearekin taxon hau gure zuhaitz taxonomikoan txertatzea, existitzen den taxon nagusia topatzea edo baliabidean beharrezkoak diren taxon guztiak sortzea esan nahi dugu, existitzen den maila altuagoko taxonera txertatzeko xedearekin.
-  grant_role: "%{grant} egiten da %{role} baimena"
   grid: Sareta
   group: Taldea
   grouping: Taldekatzen
@@ -1270,6 +1268,8 @@ eu:
   here_are_3_examples: Hemen ondo osatutako datuen 3 adibide daude
   hex_color_eg: Kolorea hamaseitarrean, adib. 65644F
   hi_user: "Kaixo %{user}"
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Mailarik altuena
   history: Historia
   home: Hasiera
@@ -1472,6 +1472,8 @@ eu:
   look_up_name: "Izena bilatu"
   looks_like_neither_have!: Badirudi batek ere ez duela taxonik!
   lookup: Bilatu
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Mailarik baxuena
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Eduki nagusia
@@ -1701,12 +1703,12 @@ eu:
   only_showing_taxa_from: zerrenda honetako taxonak soilik erakutsita
   only_the_owner_of_this_list_can_do_that: Zerrenda honen jabeak soilik egin dezake hori.  Ez izan gaiztoa.
   only_the_project_admin_can_delete_this_project: Proiektuko administratzaileak soilik ezaba dezake proiektu hau.
+  #Geoprivacy status in which no privacy has been applied
   open: Transparente
   open_description: "Mundu guztiak ikus ditzake koordenatuak, non eta taxona arriskuan ez dagoen."
   optional: aukerakoa
   or: edo
   or_choose_high_level_taxa: "... Edo aukeratu maila altuko zenbait taxonetatik"
-  orange: laranja
   order: Ordena
   order_by: 'Honen arabera ordenatu:'
   original: Jatorrizkoa
@@ -1744,7 +1746,6 @@ eu:
     large: handia
     original: jatorrizkoa
   photos_updated: Eguneratutako argazkiak.
-  pink: arrosa
   place: Tokia
   place_deleted: Tokia ezabatuta.
   place_geo:
@@ -1929,10 +1930,10 @@ eu:
   protozoans: protozoarioak
   provider_authorizations: Hornitzaileen baimenak
   publish: Argitaratu
-  purple: purpura
   quality_grade: Kalitate maila
   quality_grade_colon: "Kalitate maila:"
   range: Maila
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: maila
   ranks:
     kingdom: Erreinua
@@ -1974,7 +1975,6 @@ eu:
   recently_created: Duela gutxi sortuak
   recently_observed: Duela gutxi behatuak
   recently_resolved: Duela gutxi ebatziak
-  red: gorria
   redo_search_in_map_area: Egin berriz bilaketa mapako eremuan
   refresh: Freskatu
   reject?: Ukatu?
@@ -2354,7 +2354,6 @@ eu:
   unique_observers: behatzaile bakarrak
   unknown: Ezezaguna
   unknown_rank: '(Sailkapen ezezaguna)'
-  unfollow: Jarraitzeari utzi
   unlink_your_google_account: Zure Google zerrendaren estekatu kendu
   updates_notification_email_subject: "%{prefix} Eguneraketa berriak %{date}"
   updating: Eguneratzen...
@@ -2473,7 +2472,6 @@ eu:
   where: Non
   where_were_they?: <em>Non</em> zeuden?
   where_were_you?: <em>Non</em> zeunden zu?
-  white: zuria
   with_annotation: Oharrekin
   without_annotation: Oharrik gabe
   widget: Widget-a
@@ -2496,7 +2494,6 @@ eu:
   x_wrote_y_new_posts_html: "%{x}-(e)k %{y} sarrera berri egin zituen"
   year: Urtea
   year_month: urtea/hilabetea
-  yellow: horia
   'yes': "Bai"
   yes_find_them!: "Bai, aurki itzazu!"
   yes_i_want_to_join: Bai, bat egin nahi dut

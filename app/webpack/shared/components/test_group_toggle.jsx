@@ -41,15 +41,24 @@ const TestGroupToggle = ( {
       { userInGroup ? (
         <div>
           { joinedStatus }
-          &nbsp;
-          <button className="btn btn-warning" onClick={ ( ) => toggleGroup( ) }>
+          <button
+            type="button"
+            className="btn btn-warning"
+            onClick={( ) => toggleGroup( )}
+            style={{ marginInlineStart: "0.5em" }}
+          >
             { I18n.t( "stop_testing" ) }
           </button>
         </div>
       ) : (
         <div>
           { joinPrompt }
-          <button className="btn btn-success" onClick={ ( ) => toggleGroup( ) } style={{ marginLeft: "0.5em" }}>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={( ) => toggleGroup( )}
+            style={{ marginInlineStart: "0.5em" }}
+          >
             { I18n.t( "yes" ) }
           </button>
         </div>

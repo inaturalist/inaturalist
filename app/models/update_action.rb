@@ -30,8 +30,9 @@ class UpdateAction < ApplicationRecord
     notifier_user ||= notifier.try(:user)
     if notifier_user
       excepted_user_ids = UserBlock.
-        where( "user_id = ? OR blocked_user_id = ?", notifier_user.id, notifier_user.id ).
-        pluck(:user_id, :blocked_user_id).flatten.uniq
+        where( "user_id = ?", notifier_user.id ).pluck( :blocked_user_id )
+      excepted_user_ids += UserBlock.
+        where( "blocked_user_id = ?", notifier_user.id ).pluck( :user_id )
       excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
       return user_ids -= excepted_user_ids.uniq
     end

@@ -46,6 +46,7 @@ import TagsContainer from "../containers/tags_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 import FlashMessage from "./flash_message";
 
 moment.updateLocale( "en", {
@@ -426,6 +427,7 @@ const App = ( {
           </div>
         )
       }
+      <RtlTestGroupToggle config={config} />
     </div>
   );
 };

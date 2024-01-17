@@ -67,7 +67,7 @@ class StatsController < ApplicationController
     end
 
     if @display_user && !current_user && !@display_user.locale.blank?
-      I18n.locale = @display_user.locale
+      I18n.locale = normalize_locale( @display_user.locale, default: I18n.locale )
     end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
@@ -85,8 +85,8 @@ class StatsController < ApplicationController
       @year_statistic = nil
     end
     @headless = @footless = true
-    @shareable_image_url = if @year_statistic&.shareable_image?
-      @year_statistic.shareable_image
+    @shareable_image_url = if ( shareable = @year_statistic&.shareable_image_for_locale( I18n.locale ) )
+      shareable.url
     elsif @display_user&.icon?
       @display_user.icon.url( :large )
     elsif @site.shareable_image?

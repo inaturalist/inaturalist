@@ -9,7 +9,10 @@
       ancestorsShown: #{ @ancestors_shown.to_json.html_safe },
       preferred_taxon_photos_query: #{ ( current_user ? current_user.preferred_taxon_photos_query : nil ).to_json.html_safe }
     }
-  = javascript_include_tag "taxa-photos-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-dnd-webpack"
+  = javascript_include_tag "webpack/taxa-photos-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "taxa/show", "taxa/photos"
 - content_for :extrahead do

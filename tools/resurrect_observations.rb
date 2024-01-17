@@ -267,6 +267,8 @@ if OPTS.from_user_resurrection && @user
   puts "Indexing commands for a resurrected users data"
   puts "  Observation.elastic_index!( scope: Observation.where( user_id: #{@user.id} ) )"
   puts "  Observation.elastic_index!( scope: Observation.joins( :identifications ).where( \"identifications.user_id=#{@user.id}\" ) )"
+  puts "  Identification.elastic_index!( scope: Identification.where( user_id: #{@user.id} ) )"
+  puts "  Identification.elastic_index!( scope: Identification.joins(:observation).where( \"observations.user_id: #{@user.id}\" ) )"
   puts "  User.update_identifications_counter_cache( #{@user.id} )"
   puts "  User.update_observations_counter_cache( #{@user.id} )"
   puts "  User.find( #{@user.id} ).elastic_index!"

@@ -1,0 +1,113 @@
+- @i18n ||= I18n
+!!!
+%html
+  %head
+    %title
+      = yield :title
+    :css
+      #{render partial: "emailer/fonts", formats: :css}
+      body,
+      table,
+      td,
+      p,
+      a,
+      li,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      blockquote,
+      div {
+        color: white;
+      }
+      body {
+        font-family: Whitney, Helvetica;
+        line-height: 1.4em;
+        background-color: #74ac00;
+      }
+      body,
+      p {
+        font-size: 16px;
+      }
+      a,
+      a:link,
+      a:visited,
+      a:active,
+      a:hover {
+        color: white !important;
+      }
+      .container {
+        background-color: #74ac00;
+        color: white;
+        font-weight: 100;
+      }
+      .content {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #1a1a1a;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: 600;
+        letter-spacing: 3px;
+      }
+
+      p,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+
+      p.bleed {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .btn {
+        background-color: #e65623;
+        border-radius: 10px;
+        color: white;
+        display: inline-block;
+        font-weight: 600;
+        letter-spacing: 3px;
+        line-height: 1.5em;
+        padding: 15px 10px;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background-color: #1E90FF;
+      }
+      img {
+        max-width: 100%;
+      }
+      .stacked { margin-bottom: 10px }
+      .upstacked {
+        margin-top: 10px;
+      }
+    = yield :extracss
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+  %body.body
+    .container
+      .content
+        = yield
+        %center.upstacked
+          %p
+            %small=@i18n.t :inaturalist_is_an_independent_nonprofit
+          - if @user
+            %p
+              %small=raw @i18n.t :you_received_this_email_notice_html, email: @user.email, username: @user.login, created_date: l( @user.created_at.to_date, format: :long ), vow_or_con: @user.login[0].downcase
+            - if @user.site && @user.site.id != Site.default.id
+              %p
+                %small=raw @i18n.t :your_account_is_affiliated_html, site_name: @user.site.name, site_url: @user.site.url, vow_or_con: @user.site.name[0].downcase
+          %p
+            %small= link_to @i18n.t(:unsubscribe_from_emails_like_this), "{{asm_group_unsubscribe_raw_url}}"

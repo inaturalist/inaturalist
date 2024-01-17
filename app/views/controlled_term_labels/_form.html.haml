@@ -1,10 +1,11 @@
 - label = label || nil
+- no_required_fields ||= nil
 - if @term
   .row
     .form-horizontal
       = form_for label || ControlledTermLabel.new(controlled_term: @term) do |f|
         = f.hidden_field :controlled_term_id, value: @term.id
-        = render partial: "controlled_term_labels/form_fields", locals: { f: f, label: label }
+        = render partial: "controlled_term_labels/form_fields", locals: { f: f, label: label, no_required_fields: no_required_fields }
         .row
           .col-md-12.text-center
             = f.submit class: "btn btn-primary"

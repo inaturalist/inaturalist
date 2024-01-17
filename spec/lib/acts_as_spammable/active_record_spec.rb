@@ -164,6 +164,17 @@ describe "ActsAsSpammable", "ActiveRecord" do
       "Validation failed: User cannot be spammer")
   end
 
+  it "allows spammer objects to be updated" do
+    u = User.make!
+    observation = Observation.make!( user: u, quality_grade: Observation::RESEARCH_GRADE )
+    expect( observation.quality_grade ).to eq Observation::RESEARCH_GRADE
+    u.update( spammer: true )
+    observation.reload
+    observation.update( quality_grade: Observation::CASUAL )
+    observation.reload
+    expect( observation.quality_grade ).to eq Observation::CASUAL
+  end
+
   describe "User Exceptions" do
     it "checks users for spam when they have descriptions" do
       u = User.make!

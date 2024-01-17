@@ -3,8 +3,8 @@
 - new_term ||= false
 .container
   .row
-    = form_for term do |f|
-      = f.fields_for primary_term_label do |ctl_f|
+    = form_for term, builder: BootstrapFormBuilder do |f|
+      = f.fields_for primary_term_label, builder: BootstrapFormBuilder do |ctl_f|
         = ctl_f.hidden_field :id, value: primary_term_label.id
         = render partial: "controlled_term_labels/form_fields", locals: { f: ctl_f, label: primary_term_label }
       .row.form-horizontal
@@ -12,26 +12,26 @@
           .form-group
             %label.col-sm-2.control-label Ontology URI
             .col-sm-10
-              = f.text_field :ontology_uri, class: "form-control"
+              = f.text_field :ontology_uri, class: "form-control", label: false
           .form-group
             %label.col-sm-2.control-label URI
             .col-sm-10
-              = f.text_field :uri, class: "form-control"
+              = f.text_field :uri, class: "form-control", label: false
           .form-group
             .col-sm-offset-2.col-sm-10
               .checkbox
                 %label
-                  = f.check_box :is_value
+                  = f.check_box :is_value, skip_builder: true
                   Is a value?
                 - unless term.is_value?
                   %label
-                    = f.check_box :multivalued
+                    = f.check_box :multivalued, skip_builder: true
                     Multivalued?
                 %label
-                  = f.check_box :blocking
+                  = f.check_box :blocking, skip_builder: true
                   Blocks annotations of other values?
                 %label
-                  = f.check_box :active
+                  = f.check_box :active, skip_builder: true
                   Active?
       .row
         .col-sm-2.form-horizontal
@@ -61,17 +61,17 @@
       - term.controlled_term_value_attrs.each do |ctv|
         .row
           .form-group
-            %label.col-sm-2.control-label= ctv.controlled_attribute.label
-            .col-sm-10
+            %label.col-sm-3.control-label= ctv.controlled_attribute.label
+            .col-sm-9
               = button_to "remove association", ctv, method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-danger"
       - if term.possible_attribute_associates.any?
         .row
           = form_for ControlledTermValue.new do |f|
             = f.hidden_field :controlled_value_id, value: term.id
             .form-group
-              %label.col-sm-2.control-label
-                = f.select :controlled_attribute_id, term.possible_attribute_associates, class: "form-control"
-              .col-sm-10
+              %label.col-sm-3.control-label
+                = f.select :controlled_attribute_id, term.possible_attribute_associates, class: "form-control", label: false
+              .col-sm-9
                 = f.submit "Create attribute association", class: "btn btn-primary"
 
     - term.labels.where("id != ?", primary_term_label).order(:id).each do |l|
@@ -88,5 +88,5 @@
     %hr
     .row
       %h3 Create a New Label
-      = render partial: "controlled_term_labels/form"
+      = render "controlled_term_labels/form", no_required_fields: true
 

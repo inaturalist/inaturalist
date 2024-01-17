@@ -22,6 +22,7 @@ render(
     data={YEAR_DATA}
     rootTaxonID={ROOT_TAXON_ID}
     updatedAt={YEAR_STATISTIC_UPDATED_AT}
+    isBotRequest={IS_BOT_REQUEST}
   />,
   document.getElementById( "app" )
 );

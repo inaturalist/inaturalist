@@ -133,8 +133,15 @@ const DetailsView = ( {
       <div className="stats">
         <span className="stat">
           <span className="attr">
-            { I18n.t( "views.lifelists.observed_rank",
-              { rank: rankLabel( { rank: lifelist.speciesViewRankFilter, withLeaves: false } ) } ) }
+            { I18n.t( "views.lifelists.observed_rank", {
+              rank: rankLabel( {
+                rank: lifelist.speciesViewRankFilter,
+                withLeaves: false,
+                iconicTaxonName: lifelist.detailsTaxon
+                  ? lifelist.detailsTaxon.iconic_taxon_name
+                  : null
+              } )
+            } ) }
           </span>
           <span className="value">
             { searchLoaded
@@ -163,20 +170,17 @@ const DetailsView = ( {
       </div>
     );
   }
-  const taxonClear = lifelist.detailsView === "unobservedSpecies" ? null : (
-    <button
-      type="button"
-      className="nostyle"
-      onClick={( ) => setDetailsTaxon( null )}
-    >
-      <span className="fa fa-times" />
-    </button>
-  );
   return (
     <div className="Details">
       { lifelist.detailsTaxon ? (
         <h3>
-          { taxonClear }
+          <button
+            type="button"
+            className="nostyle"
+            onClick={( ) => setDetailsTaxon( null )}
+          >
+            <span className="fa fa-times" />
+          </button>
           <SplitTaxon
             taxon={lifelist.detailsTaxon}
             url={`/taxa/${lifelist.detailsTaxon.id}`}

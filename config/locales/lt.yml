@@ -820,11 +820,9 @@ lt:
   bioblitz: Bioblicas
   birds: paukščiai
   birthday: Gimtadienis
-  black: juoda
   block_removed: Blokavimas panaikintas
   blocked_users: Blokuoti naudotojai
   blog_widget: Tinklaraščio valdiklis
-  blue: mėlyna
   blue_butterfly_etc: "mėlyna, drugelis ir t. t."
   body: Tekstas
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -838,7 +836,6 @@ lt:
   #shown
   breadcrumbs_description: "Tai pakeis „h1“ ir numatytuosius raginimus veikti (CTA), todėl būtinai įtraukite juos, jei jie yra svarbūs šiam projektui, ir nepamirškite, kad maksimalus leistinas plotis yra 950 taškų (px)."
   brief_caption: Trumpa antraštė
-  brown: ruda
   browse: Naršyti
   browse_all_projects: Naršyti visus projektus
   browse_all_species: Peržiūrėti visas rūšis
@@ -1019,8 +1016,6 @@ lt:
     Dabartinis kompiuterinio matymo modelis žino apie šį taksoną, todėl jis gali būti įtrauktas į automatinius pasiūlymus su etikete „vizualiai panašus“.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Laukiama
-  computer_vision_model_pending_desc: |
-    Dabartinis kompiuterinio matymo modelis nežino apie šį taksoną, taigi, nors šis taksonas gali būti įtrauktas į automatinių pasiūlymų sąrašą su etikete „netoliese“, prie jo nebus etiketės „vizualiai panašus“. Kiekvienam modeliui galioja skirtingos įtrauktimo taisyklės, tačiau dažniausiai įtraukimas priklauso nuo stebėjimų skaičiaus, todėl, norint padidinti galimybę šiam taksonui būti įtrauktam kito modelio mokymo metu, įkelkite arba identifikuokite daugiau šio taksono stebėjimų.
   concept_status: Koncepcijos Būsena
   confidential: Konfidencialu
   configure: Konfigūruoti
@@ -1542,6 +1537,7 @@ lt:
   everywhere: visur
   exact: Tikslus
   exact_date: Tiksli data
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tikslus rangas
   except: išskyrus
   exclude_places: Neįtraukti vietų
@@ -1690,6 +1686,7 @@ lt:
   flickr_tags: Flickr Žymės
   follow: Sekti
   follow_receive_updates_about_new_observations: Sekti (gauti naujienas apie naujus stebėjimus)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sekti %{user}"
   followers: Sekėjai
   following: sekama
@@ -1752,7 +1749,6 @@ lt:
   got_your_data_somewhere_else?: Jūsų duomenys kažkur kitur?  Mes galime padėti.
   graft: Prijungti
   graft_taxon: Prijungti %{taxon}
-  grant_role: "%{grant} %{role} vaidmenį"
   grid: Tinklelis
   grid_layout: Tinklelio išdėstymas
   grid_tooltip: Rodyti tinklelyje
@@ -1800,6 +1796,8 @@ lt:
   hide_content: Paslėpti turinį
   hide_uncountable_species: Paslėpti nepriskaičiuojamas rūšis
   high: Aukštas
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Aukščiausias rangas
   highlights_and_stats_from_year_on_site: "Svarbiausi %{site} momentai ir statistika iš %{year} metų"
   history: Istorija
@@ -2170,6 +2168,8 @@ lt:
   looks_like_no_species_in_guide: Panašu, kad savo vadove dar neturite rūšių.
   lookup: Ieškoti
   low: Žemas
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Žemiausias rangas
   make_admin: Padaryti administratoriumi
   #Header for main content section of the project detail page when editing custom project data.
@@ -2363,7 +2363,6 @@ lt:
   needs_id: reikia ID
   needs_id_: Trūksta ID
   needs_id_expandable_html: "<span class='full'>Trūksta</span>ID"
-  needs_to_be_identified: Reikia idendifikacijos
   #Column header in a table listing iNaturalist Network members
   network_member: Tinklo narys
   new: Nauji
@@ -2617,7 +2616,9 @@ lt:
   only_show_events_that_last_less_than_2_weeks: Rodyti tik tuos įvykius, kurie trunka trumpiau nei 2 savaites
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
   only_you: Tik jūs
+  #Geoprivacy status in which no privacy has been applied
   open: atviras
+  #Geoprivacy status in which no privacy has been applied
   open_: Atviras
   open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
   open_street_map: OpenStreetMap
@@ -2628,7 +2629,6 @@ lt:
   #sign in with Apple OR Google
   or_all_caps: ARBA
   or_choose_high_level_taxa: "...arba rinkitės aukštesnio lygio taksonus"
-  orange: oranžinė
   order_by: Rikiuoti pagal
   organism_is_wild: Organizmas yra laukinis
   organisms: Organizmai
@@ -2711,7 +2711,6 @@ lt:
   photos_updated: Nuotraukos atnaujintos.
   pi_consent_desc_title: Apie asmeninę informaciją
   pin_verb: Žymė
-  pink: rožinė
   place: Vieta
   placeholder: Užpildas
   place_autocomplete_placeholder: Zion National Park, Miami ir t. t.
@@ -3204,7 +3203,6 @@ lt:
   protozoans: pirmuonys
   public_domain: Viešo naudojimo
   publish: Paskelbti
-  purple: violetinė
   quality_grade: Kokybės įvertinimas
   quality_grade_: Kokybės įvertinimas
   quality_grade_colon: "Kokybės įvertinimas:"
@@ -3214,7 +3212,11 @@ lt:
   radius_value: "Spindulys (m): %{radius}"
   random: Atsitiktinis
   range: Ribos
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rangas
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rangas
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3347,7 +3349,6 @@ lt:
   recently_resolved: Neseniai išspręsti
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Įrašas
-  red: raudona
   redo_search_in_map: Pakartoti paiešką žemėlapyje
   redo_search_in_map_area: Pakartoti paiešką žemėlapio plote
   refresh: Atnaujinti
@@ -4005,7 +4006,6 @@ lt:
   unknown: Nežinoma
   unknown_error: Nežinoma klaida
   unknown_rank: '(Nežinomas rangas)'
-  unfollow: Nebesekti
   unlink_your_google_account: Atsieti savo Google paskyrą
   unlink_your_flickr_account: "Atsieti savo Flickr paskyrą"
   unmute: Įjungti garsą
@@ -4233,7 +4233,6 @@ lt:
   where: Kur
   where_were_they?: Kur jie?
   where_were_you?: Kur buvote?
-  white: balta
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Kodėl darote šį pakeitimą? (neprivaloma)
   why_you_can_see_the_coordinates: Kodėl galite matyti koordinates
@@ -4290,7 +4289,6 @@ lt:
   year_in_review: "%{year} Metų Apžvalga"
   year_month: metais/mėnuo
   year_on_site: "%{site} %{year} metų apžvalga"
-  yellow: geltona
   'yes': "Taip"
   yes_find_them!: "Taip, suraskite juos!"
   yes_i_want_to_join: Taip, aš noriu prisijungti

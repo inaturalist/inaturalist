@@ -117,16 +117,8 @@ class EmailerPreview < ActionMailer::Preview
     } )
   end
 
-  def welcome
-    Emailer.welcome( User.last )
-  end
-
-  def email_confirmation_reminder
-    Emailer.email_confirmation_reminder( User.last )
-  end
-
-  def independence
-    Emailer.independence( User.where( "confirmed_at is not null" ).last )
+  def year_in_review
+    Emailer.year_in_review( User.first )
   end
 
   private

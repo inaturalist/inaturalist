@@ -1,19 +1,23 @@
 <%-
   taxon ||= @taxon
-  include_article ||= false
   one_name ||= false
-  singular ||= false
   exclude_rank ||= false
   no_common ||= false
   place ||= nil
   viewer ||= defined?( current_user ) ? current_user : nil
-  comname ||= common_taxon_name(
-    taxon,
-    locale: I18n.locale,
-    place: place || @site.try(:place),
-    user: viewer
-  ).try(:name) unless no_common
-  comname = capitalize_name( comname ) if comname
+  unless no_common
+    comnames ||= common_taxon_names(
+      taxon,
+      locale: I18n.locale,
+      place: place || @site.try(:place),
+      user: viewer
+    )
+    unless comnames.blank?
+      comnames = comnames.map{ |cn| capitalize_name( cn ) }
+    end
+  end
+
+
   if taxon.species_or_lower?
     pieces = taxon.name.split.map{|piece| h( piece) }
     sciname = if taxon.variety? && pieces.size == 3
@@ -40,7 +44,6 @@
   
   include_parens ||= true unless include_parens == false
   link_url ||= nil
-  singular ||= false
 
   taxon_class = "taxon taxon-#{taxon.id} #{taxon_class}"
   taxon_class << " #{taxon.rank.downcase}" if taxon.rank
@@ -51,16 +54,9 @@
   if named_ancestor == true
     named_ancestor = taxon.ancestors.reverse.detect{|t| !t.common_name.blank?}
   end
-  truncate ||= false
-  trunclength = truncate ? 23 : 500
-  comname_html = singular ? truncate( comname.singularize, length: trunclength ) : truncate( comname, length: trunclength )
+  comnames_html = comnames.blank? ? nil : comnames.join( " · " )
 -%>
-<% if comname.nil? || no_common == true %>
-  <% if include_article %>
-    <% if taxon.rank != 'species' && taxon.rank != 'infraspecies' %>
-      in
-    <% end %>
-  <% end -%>
+<% if comnames.blank? || no_common == true %>
     <span class="<%= taxon_class %> <%= 'display_name' if named_ancestor %>"><%= link_url ? link_to(sciname.html_safe, link_url) : sciname.html_safe -%></span><%- if named_ancestor -%>,
       <span class="named_ancestor meta">
         <%=t :a_member_of_taxon_html, :taxon => render("shared/taxon", :taxon => named_ancestor, :link_url => named_ancestor) %>
@@ -68,49 +64,29 @@
     </span>
   <% end -%>
 <% elsif viewer && viewer.prefers_scientific_name_first? %>
-  <% if include_article %>
-    <% if 'aeiou'.include? taxon.name.first.downcase %>
-      an
-    <% else %>
-      a
-    <% end %>
-  <% end -%>
   <span class="<%= taxon_class %>">
     <% if link_url %>
       <%= link_to sciname.html_safe, link_url %>
     <% else %>
       <%= sciname.html_safe %>
     <% end %>
-    <% if truncate %>
-      <br/>
-    <% end %>
     <%- unless one_name %>
       <span class="othernames">
         <span class="comname <%= 'display_name' if named_ancestor %>">
-          <%- if include_parens -%>(<%- end -%><%= comname_html.html_safe -%><%- if include_parens -%>)<%- end -%>
+          <%- if include_parens -%>(<%- end -%><%= comnames_html.html_safe -%><%- if include_parens -%>)<%- end -%>
         </span>
       </span>
     <% end %>
   </span>
 <% else %>
-  <% if include_article %>
-    <% if 'aeiou'.include? comname.first.downcase %>
-      an
-    <% else %>
-      a
-    <% end %>
-  <% end -%>
   <span class="<%= taxon_class %>">
     <span class="comname <%= 'display_name' if named_ancestor %>">
       <% if link_url %>
-        <%= link_to( comname_html.html_safe, link_url) %>
+        <%= link_to( comnames_html.html_safe, link_url) %>
       <% else %>
-        <%= comname_html.html_safe %>
+        <%= comnames_html.html_safe %>
       <% end %>
     </span>
-    <% if truncate %>
-      <br/>
-    <% end %>
     <%- unless one_name %>
       <span class="othernames">
         <% if include_parens %>

@@ -32,7 +32,7 @@
         #header-community-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
           = link_to t(:community), people_path
           %i.fa.fa-angle-down
-        %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
+        %ul.dropdown-menu.dropdown-menu-left{ aria: { labelledby: "header-community-dropdown-toggle" } }
           %li= link_to t(:people), people_path
           %li= link_to t(:projects), projects_path
           %li= link_to t(:journal_posts), journals_path

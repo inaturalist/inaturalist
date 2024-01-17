@@ -393,11 +393,9 @@ sq:
   before_importing_photos: para importimit të fotografive
   bg_color: Ngjyra e sfondit
   birds: zogjtë
-  black: e zezë
   block_removed: Blloku u hoq
   blocked_users: Përdoruesit e bllokuar
   blog_widget: Vegla e blogut
-  blue: kaltër
   blue_butterfly_etc: "kaltër, flutur, etj."
   body: Trupi i mesazhit
   breadcrumbs: Thërrime buke
@@ -407,7 +405,6 @@ sq:
   #shown
   breadcrumbs_description: "Kjo do të zëvendësojë h1 dhe thirrjet automatike për veprim, prandaj sigurohuni që t'i përfshini ato nëse janë të rëndësishme për këtë projekt dhe mos harroni që gjerësia maksimale e lejuar është 950px"
   brief_caption: Titull i shkurtër
-  brown: bojë kafe
   browse: Shfleto
   browse_all_projects: Shfleto të gjitha projektet
   browse_all_species: Shfleto të gjitha speciet
@@ -886,6 +883,7 @@ sq:
   everywhere: gjithkund
   exact: I/E saktë
   exact_date: Data e saktë
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Katergoria e saktë
   existing_flags: Flamujt ekzistues
   exit_full_screen: "Dil nga ekrani i plotë"
@@ -985,6 +983,7 @@ sq:
   #Adjective, as in a fluid layout of images
   fluid: lëngshëm
   follow: Ndjek
+  #Text for a button to follow updates from a specific user
   follow_user: "Ndiq %{user}"
   followers: Ndjekësit
   following: duke ndjekur
@@ -1019,7 +1018,6 @@ sq:
   got_your_data_somewhere_else?: Ke të dhënat e tua diku tjetër? Ne mund të të ndihmojmë.
   graft: Shartimi
   grafting_attemps_to_insert_this_taxon: Përpjekjet për ta futur këtë taxon në pemën tonë të taksonomisë, gjetja e një klase prind ose krijimi i të gjitha ndërklasave të nevojshme për t’ia bashkangjitur një taxon ekzistues më të lartë.
-  grant_role: "%{grant} %{role} rol"
   grid: Rrjet
   grid_layout: Ekspozimi në formë rrjeti
   grid_tooltip: Trego pamjen e rrjetit
@@ -1056,6 +1054,8 @@ sq:
   hi_user: "Përshëndetje %{user}"
   hide_uncountable_species: Fsheh speciet e pallogaritshme
   high: I lartë
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Grada më të lartë
   highlights_and_stats_from_year_on_site: "Pikat kryesore dhe statistikat nga %{year} në %{site}"
   history: Historiku
@@ -1344,6 +1344,8 @@ sq:
   looks_like_no_species_in_guide: Duket sikur nuk keni një specie në udhërrëfyesin ruaj.
   lookup: Kërko
   low: ulët
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Niveli më i ulët
   make_admin: Bëje admin
   #Header for main content section of the project detail page when editing custom project data.
@@ -1482,7 +1484,6 @@ sq:
   needs_id: Nevojitet ID
   needs_id_: Ka nevojë për ID
   needs_id_expandable_html: "<span class='full'>Ka nevojë për </span>ID"
-  needs_to_be_identified: E nevojshme të identifikohen
   new_and_noteworthy: E re dhe me vlerë
   new_announcement: Njoftim i ri
   new_assessment: Vlerësim i ri
@@ -1749,13 +1750,14 @@ sq:
   only_the_owner_of_this_list_can_do_that: Vetëm pronari i kesaj liste mund ta bëjë këtë. Mos u bëni i ligë.
   only_the_project_admin_can_delete_this_project: Vetem administratori i projektit mund ta fshije kete projekt.
   only_you: Vetem ju
+  #Geoprivacy status in which no privacy has been applied
   open: hape
+  #Geoprivacy status in which no privacy has been applied
   open_: Hape
   open_description: "Çdokush mund ti shohë koordinatat përveç nëse taxon-i është i rrezikuar."
   optional: zgjedhore
   or: ose
   or_choose_high_level_taxa: "...ose zgjidh nga ndonjë taxa e nivelit më të lartë"
-  orange: Portokalli
   order: Rendit
   order_by: Rendit sipas
   organism_is_wild: Organizmi është i egër
@@ -1826,7 +1828,6 @@ sq:
     large: e madhe
     original: origjinale
   photos_updated: fotografia u përditësua.
-  pink: njgyre roze
   place: Vend
   placeholder: Vend-mbajtes
   place_autocomplete_placeholder: Parku nacional Zion, Majami,etj
@@ -2087,14 +2088,17 @@ sq:
   provider_authorizations: Autorizimet e ofruesit
   public_domain: Domeni publik
   publish: Publiko
-  purple: vjollcë
   quality_grade: Shkalla e kualitetit
   quality_grade_: Shkalla e kualitetit
   quality_grade_colon: "Shkalla e kualitetit:"
   queued: I rradhitur
   query: Pyetje
   range: Rangu
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Renditja
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Renditja
   ranks:
     kingdom: mbretëri
@@ -2150,7 +2154,6 @@ sq:
   recently_finished: Përfunduar së fundmi
   recently_observed: E vëzhguar kohëve të fundit
   recently_resolved: Zgjidhur së fundmi
-  red: e kuqe
   redo_search_in_map: Ribëje kërkimin në hartë
   redo_search_in_map_area: Ribëje kërkimin në zonën e hartës
   refresh: Rifresko

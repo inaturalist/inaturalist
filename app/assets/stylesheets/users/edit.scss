@@ -476,6 +476,13 @@ select.dropdown {
       top: -1px;
     }
   }
+  button.inverse-toggle {
+    border: none;
+    padding: 0;
+    background: none;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
 }
 
 .AlertModal.modal {
@@ -491,13 +498,13 @@ select.dropdown {
   }
   .add-button {
     text-align: center;
-    .btn {
-      font-weight: 700;
-    }
+  }
+  .PlaceAutocomplete .ac-chooser {
+    margin-top: 5px;
   }
   .TaxonNamePriority {
     min-height: 34px;
-    cursor: pointer;
+    cursor: grab;
     margin-bottom: 5px;
     font-weight: 700;
     display: flex;
@@ -532,12 +539,7 @@ select.dropdown {
         content: ")"
       }
     }
-    .delete-button {
-      display: flex;
-      align-items: center;
-    }
     button {
-      font-weight: 700;
       float: right;
     }
   }

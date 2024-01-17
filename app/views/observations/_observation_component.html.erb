@@ -228,7 +228,7 @@ Some notes:
         <% if observation.needs_id? -%>
           <li class="last">
             <%= link_to t(:needs_id_expandable_html), obs_url, :class => "needs_id_notice",
-              "data-tip" => t(:needs_to_be_identified),
+              "data-tip" => t(:needs_id_tooltip_html),
               "data-tip-show-delay" => 1000 %>
           </li>
         <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>

@@ -21,8 +21,7 @@ const defaultObservationParams = ( state, options = { } ) => {
     verifiable: true,
     taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
     place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
-    preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
-    locale: I18n.locale
+    preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
   };
   if ( state.config.chosenPlace ) {
     // TODO: explore should use integer IDs until the explore-apiv2 branch is merged
@@ -159,11 +158,11 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
   const {
     prefers_captive_obs_maps: currentUserPrefersCaptiveObs,
     prefers_gbif_layer_maps: currentUserPrefersGbifLayer,
-    prefers_medialess_obs_maps: currentUserPrefersMedialessObs,
+    prefers_medialess_obs_maps: currentUserPrefersMedialessObs
   } = currentUser || {
     prefers_captive_obs_maps: false,
     prefers_gbif_layer_maps: false,
-    prefers_medialess_obs_maps: false,
+    prefers_medialess_obs_maps: false
   };
   return {
     taxon,
@@ -204,7 +203,9 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
     gbif: {
       disabled: !currentUserPrefersGbifLayer,
       legendColor: "#F7005A",
-      onChange: currentUser && ( e => updateCurrentUser( { prefers_gbif_layer_maps: e.target.checked } ) ),
+      onChange: currentUser && ( e => updateCurrentUser( {
+        prefers_gbif_layer_maps: e.target.checked
+      } ) )
     },
     places: true,
     ranges: true

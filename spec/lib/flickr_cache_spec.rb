@@ -4,12 +4,12 @@ describe FlickrCache,
   disabled: (CONFIG.flickr.shared_secret == "09af09af09af09af") do
 
   before(:all) do
-    @flickraw = flickr
+    @flickr = Flickr.new( Flickr.api_key, Flickr.shared_secret )
   end
 
   it "creates the endpoint" do
     expect(ApiEndpoint.count).to eq 0
-    FlickrCache.fetch(@flickraw, "photos", "search", tags: "animals")
+    FlickrCache.fetch(@flickr, "photos", "search", tags: "animals")
     expect(ApiEndpoint.count).to eq 1
     endpoint = ApiEndpoint.first
     expect(endpoint.title).to eq "Flickr"
@@ -21,7 +21,7 @@ describe FlickrCache,
 
   it "caches the result" do
     expect(ApiEndpointCache.count).to eq 0
-    fetched = FlickrCache.fetch(@flickraw, "photos", "search", tags: "animals")
+    fetched = FlickrCache.fetch(@flickr, "photos", "search", tags: "animals")
     expect(ApiEndpointCache.count).to eq 1
     cache = ApiEndpointCache.first
     expect(cache.request_url).to eq "flickr.photos.search({\"tags\":\"animals\"})"
@@ -35,8 +35,8 @@ describe FlickrCache,
   # 
   # it "cached calls to any method" do
   #   expect(ApiEndpointCache.count).to eq 0
-  #   # expect(@flickraw.photos).to receive(:getSizes).and_return(@flickr_response)
-  #   fetched = FlickrCache.fetch(@flickraw, "photos", "getSizes", tags: "animals")
+  #   # expect(@flickr.photos).to receive(:getSizes).and_return(@flickr_response)
+  #   fetched = FlickrCache.fetch(@flickr, "photos", "getSizes", tags: "animals")
   #   expect(ApiEndpointCache.count).to eq 1
   #   cache = ApiEndpointCache.first
   #   expect(cache.request_url).to eq "flickr.photos.getSizes({\"tags\":\"animals\"})"

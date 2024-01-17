@@ -37,9 +37,12 @@ class DonateController < ApplicationController
       nil
     end
     utm_source ||= URI.parse( Site.default.domain )&.host || Site.default.domain
+    default_site_uri = URI.parse( Site.default.url )
     if Site.default && @site && @site.id != Site.default.id
       {
-        host: Site.default.domain,
+        protocol: default_site_uri.scheme,
+        host: default_site_uri.host,
+        port: default_site_uri.port,
         utm_source: utm_source,
         redirect: true
       }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
@@ -48,7 +51,9 @@ class DonateController < ApplicationController
       # params from the URL of the parent window, and will ignore them all if
       # utm_source isn't set
       {
-        host: Site.default.domain,
+        protocol: default_site_uri.scheme,
+        host: default_site_uri.host,
+        port: default_site_uri.port,
         utm_source: utm_source,
         utm_medium: "web",
         redirect: true

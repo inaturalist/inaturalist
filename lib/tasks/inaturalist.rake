@@ -398,7 +398,8 @@ namespace :inaturalist do
       "yellow",
       "you_are_setting_this_project_to_aggregate",
       "i18n.inflections.@gender",
-      "i18n.inflections.@vow_or_con"
+      "i18n.inflections.@vow_or_con",
+      "i18n.inflections.@iconic_taxon"
     ]
     %w(
       all_rank_added_to_the_database
@@ -598,4 +599,10 @@ namespace :inaturalist do
     end
   end
 
+  desc "Unlock unfailed delayed jobs"
+  task unlock_unfailed_delayed_jobs: :environment do
+    Delayed::Job.where( "locked_at IS NOT NULL OR locked_by IS NOT NULL" ).
+      where( "failed_at IS NULL" ).
+      update( locked_by: nil, locked_at: nil )
+  end
 end

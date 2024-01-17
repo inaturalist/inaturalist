@@ -25,7 +25,10 @@ class Flag < ApplicationRecord
   has_subscribers to: {
     comments: { notification: "activity", include_owner: true }
   }
-  notifies_subscribers_of :self, notification: "activity", include_owner: true,
+  notifies_subscribers_of :self,
+    notification: "activity",
+    include_owner: true,
+    include_notifier: true,
     on: :update,
     queue_if: proc {| flag |
       # existing flag whose comment has been changed

@@ -410,7 +410,7 @@ class ObservationModal extends React.Component {
                 key={`keyboard-shortcuts-${shortcut.keys.join( "-" )}`}
               >
                 <td>
-                  <span dangerouslySetInnerHTML={{ __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) }} />
+                  <span dangerouslySetInnerHTML={{ __html: shortcut.keys.map( k => `<kbd>${k}</kbd>` ).join( " + " ) }} />
                 </td>
                 <td>{ shortcut.label }</td>
               </tr>
@@ -558,11 +558,11 @@ class ObservationModal extends React.Component {
                                             key={`keyboard-shortcuts-${labelKey}`}
                                           >
                                             <td>
-                                              <code>{ shortcut.keys[0] }</code>
+                                              <kbd>{ shortcut.keys[0] }</kbd>
                                               { " " }
                                               { I18n.t( "then_keybord_sequence" ) }
                                               { " " }
-                                              <code>{ shortcut.keys[1] }</code>
+                                              <kbd>{ shortcut.keys[1] }</kbd>
                                             </td>
                                             <td>
                                               {

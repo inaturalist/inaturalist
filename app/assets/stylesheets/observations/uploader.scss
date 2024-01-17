@@ -37,6 +37,13 @@ input.failed, textarea.failed {
       height: 24px;
     }
   }
+  .navbar-btn[disabled] {
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+  .navbar-btn + .navbar-btn {
+    margin-left: 10px;
+  }
 }
 
 .nav_add_obs {
@@ -1124,7 +1131,7 @@ $tickmark: 6px;
   margin-top: 15px;
 }
 
-.GooglePlacesSearchBox {
+.GooglePlacesAutocomplete {
   position: absolute;
   top: 16px;
   left: 181px;

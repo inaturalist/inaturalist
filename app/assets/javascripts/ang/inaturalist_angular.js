@@ -243,7 +243,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         } else {
           names.push( scope.taxon.name );
         }
-        return names;
+        return _.uniq( names );
       }
       scope.secondaryNames = function() {
         var names = [];
@@ -259,7 +259,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         } else if ( scope.taxon.preferred_common_name ) {
           names.push( scope.taxon.name );
         }
-        return names;
+        return _.uniq( names );
       }
       scope.showRank = function() {
         return scope.taxon && scope.taxon.rank_level > 10;

@@ -83,6 +83,9 @@ ca:
   x_people:
     one: "%{count} persona"
     other: "%{count} persones"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persona'
+    other: '<span class="count">%{count}</span> persones'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -777,13 +780,11 @@ ca:
   bioblitz: Bioblitz
   birds: aus
   birthday: Aniversari
-  black: negre
   block: Bloquejar
   blocking_description: El bloqueig impedeix qualsevol comunicació entre vostè i un altre usuari. És per a situacions en què un altre usuari pot posar en risc la vostra seguretat, com ara l'assetjament o altres comportaments abusius.
   block_removed: Blocatge eliminat
   blocked_users: Usuaris bloquejats
   blog_widget: Giny del blog
-  blue: blau
   blue_butterfly_etc: "blau, papallona, etc."
   body: Cos
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -797,7 +798,6 @@ ca:
   #shown
   breadcrumbs_description: "Això reemplaçarà l'h1 i la configuració per defecte de l'acció; assegureu-vos d'incloure-hi totes les opcions importants per a aquest projecte i recordeu que l'amplada màxima permesa és de 950 px."
   brief_caption: Breu llegenda
-  brown: marró
   browse: Navega
   browse_all_projects: Navegar per tots els projectes
   browse_all_species: Examina totes les espècies
@@ -1013,8 +1013,6 @@ ca:
     L’actual Model de Visió per Ordinador reconeix aquest tàxon, per tant, podria ser inclòs en suggeriments automatitzats amb l'etiqueta "Visualment similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendent
-  computer_vision_model_pending_desc: |
-    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper" no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien amb cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon obtingui la inclusió durant el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
   confidential: Confidencial
   configure: Configura
@@ -1132,10 +1130,12 @@ ca:
     cannot_be_determined: No es pot determinar a partir de les dades aportades
     dead: L'organisme està mort o mostra signes de probable mort imminent
     feather: Una o més plomes, no unides a un organisme
+    female: L'evidència indica que l'organisme pot produir òvuls per utilitzar-los en la reproducció sexual
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
     gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
+    male: L'evidència indica que l'organisme pot produir espermatozoides per utilitzar-los en la reproducció sexual
     molt: Restes de pell o exoesquelet
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
     organism: Tot o part d'un organisme
@@ -1661,45 +1661,13 @@ ca:
   either_that_user_doesnt_exist_or: "Aquest usuari no existeix o ja l'esteu seguint."
   eligible_for_research_grade: Elegible per a grau de Recerca
   email: Correu
-  email_description: El vostre correu-e no es compartirà amb altres usuaris d'iNaturalist
   email_address_for_comments_and_other_feedback: Adreça de correu electrònic per a comentaris i altres comentaris
-  email_conf_banner_email_delivered_click_link: |
-    Correu electrònic de confirmació lliurat. Feu clic a l'enllaç del correu electrònic.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Afegiu <code>%{email}</code> a la vostra llista de contactes i <a href="%{url}">sol·licita un altre correu de confirmació</a>.</strong> Si el proveïdor del vostre correu electrònic ha blocat el correu de confirmació, això podria convèncer-los que, de fet, vols rebre un correu electrònic nostre.
-  email_conf_banner_check_your_spam_folder_html: <strong>Comprova la carpeta de correu brossa</strong>
-  email_conf_banner_contact_us_html: Encara no funciona? Envia'ns un correu electrònic a %{email} perquè us puguem ajudar.
-  email_conf_banner_please_click: |
-    Feu clic a l'enllaç del vostre correu electrònic per confirmar la vostra adreça electrònica.
-  email_conf_banner_search_for_emails_html: <strong>Cerca correus electrònics procedents de <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Us hem enviat un correu de confirmació el %{date}. Si no l'heu rebut, aquí hi ha algunes coses que podrieu fer:
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Benvolgut/da %{user},
+  email_description: El vostre correu-e no es compartirà amb altres usuaris d'iNaturalist
   email_conf_required_after_grace_period: |
     La confirmació del correu electrònic és necessària a partir de %{requirement_date} i no heu confirmat la vostra adreça electrònica abans de la data límit. Si us plau reinicieu la vostra contrasenya per accedir al vostre compte.
-  email_conf_faq_html: |
-    Si teniu preguntes, si us plau consulteu aquestes <a href="%{url}">Preguntes freqüents</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag} Confirmeu la vostra adreça electrònica%{link_end_tag}</strong>.
-    Tots els usuaris han de confirmar la seva adreça electrònica abans de %{date}. Després d'aquesta data, qualsevol persona que no hagi confirmat la seva adreça electrònica no podrà iniciar la sessió a menys que restableixi la contrasenya. Per confirmar la vostra adreça de correu electrònic, aneu a %{link_start_tag}paràmetres del compte%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Confirmeu la vostra adreça electrònica de %{site_name} abans de %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Si us plau, confirmeu la vostra adreça de correu electrònic avui per assegurar-vos que podeu continuar accedint al vostre compte. %{site_name} i a les aplicacions mòbils
-    iNaturalist i Seek d'iNaturalist connecten les persones amb la natura i entre elles compartint observacions de la biodiversitat. Gràcies per formar part de la comunitat iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    A partir de %{requirement_date} es requeriran adreces de correu electrònic verificades per a tots els comptes. Si us plau, dediqueu un moment per confirmar-la ara.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Si teniu cap pregunta, si us plau consulteu les <a href="%{faq_url}">Preguntes freqüents</a>. Gràcies per dedicar el vostre temps a connectar amb la natura i amb %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detalls del compte
   email_copyright2: "&copy; %{year} iNaturalist, tots els drets reservats"
   email_notifications: Notificacions per correu electrònic
   embed: 'Insereix:'
@@ -1746,6 +1714,7 @@ ca:
   everywhere: a tot arreu
   exact: Exacte
   exact_date: Data exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rang exacte
   except: excepte
   exclude_places: Excloure Llocs
@@ -1915,6 +1884,7 @@ ca:
   fluid: fluida
   follow: Seguiu
   follow_receive_updates_about_new_observations: Seguiu (rebeu actualitzacions de les noves observacions)
+  #Text for a button to follow updates from a specific user
   follow_user: "Segueix a %{user}"
   followers: seguidors
   following: Seguint
@@ -1983,7 +1953,6 @@ ca:
   graft: Insereix
   graft_taxon: Insereix %{taxon}
   grafting_attemps_to_insert_this_taxon: L’acció d’afegir pot fer referència a inserir aquest tàxon al nostre arbre taxonòmic, trobar un tàxon pare existent o crear tots els tàxons necessaris al mig per incorporar-lo a un tàxon existent d’un rang superior.
-  grant_role: "Es %{grant} el permís de %{role}"
   grid: Quadrícula
   grid_layout: Disseny en graella
   grid_tooltip: Mostra la visualització en quadrícula
@@ -2055,6 +2024,8 @@ ca:
   hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
   high: Alta
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Tàxon superior
   highlights_and_stats_from_year_on_site: "Destacats i estadístiques des de%{year} a %{site}"
   history: Historial
@@ -2114,6 +2085,8 @@ ca:
   identification_withdrawn: Identificació retirada.
   identifications: Identificacions
   inaturalist_global_year_in_review: "Resum global de l'any %{year} d'iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist és una organització independent 501(c)(3), exempta d'impostos i sense ànim de lucre amb seu als Estats Units d'Amèrica (ID fiscal: 92-1296468).
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -2559,6 +2532,8 @@ ca:
   looks_like_no_species_in_guide: Sembla que encara no teniu cap espècie a la vostra guia.
   lookup: Cerca
   low: Baixa
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Tàxon inferior
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2816,7 +2791,6 @@ ca:
   needs_id_: Necessita ID
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
   needs_id_tooltip_html: 'Les observacions qualificades com a "Necessita Identificació" tenen imatges o sons, localització i data però encara necessiten una identificació precisa consensuada per la comunitat. <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
-  needs_to_be_identified: Ha de ser identificat
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part de la xarxa internacional iNaturalist
@@ -3148,6 +3122,7 @@ ca:
   observations_widget: Giny d'Observacions
   observations_with_this_field: Observacions amb aquest camp
   observations_with_this_field_and_value: Observacions amb aquest camp i valor
+  observations_without_this_field: Observacions sense aquest camp
   observations_without_media: Observacions sense Suport gràfic
   observationcounts_refreshed: Nombre actualitzat d'observacions
   observed: Observat el
@@ -3244,7 +3219,9 @@ ca:
   only_the_project_admin_can_delete_this_project: Només l'administrador del projecte pot eliminar aquest projecte.
   only_view_nearby_suggestions: Veure només suggeriments propers
   only_you: Només tu
+  #Geoprivacy status in which no privacy has been applied
   open: Transparent
+  #Geoprivacy status in which no privacy has been applied
   open_: Obre
   open_description: "Tots els usuaris poden veure les coordenades tret que el tàxon estigui en perill."
   open_street_map: OpenStreetMap
@@ -3255,7 +3232,6 @@ ca:
   #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
-  orange: taronja
   order: Ordre
   order_by: Ordenar per
   organism_is_wild: L'organisme és salvatge
@@ -3398,7 +3374,6 @@ ca:
   data_transfer_consent_child_label: |
     Dono el meu consentiment per a transmetre la informació personal dels meus infants als Estats Units d'Amèrica.
   pin_verb: Posar al mapa
-  pink: rosa
   pinned_locations_desc: |
     Enganxeu aquesta combinació de coordenades, precisió, geoprivacitat i notes de localitat per utilitzar-les més tard.
   place: Lloc
@@ -3857,6 +3832,8 @@ ca:
   posted_by: Publicat per
   #Shows the date a journal post was published
   posted_on_date_html: Publicat el %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicat el %{date} per %{user}
   posts: Publicacions
   potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
@@ -3959,7 +3936,6 @@ ca:
     Google no ha proporcionat una adreça de correu electrònic per a aquest compte, la qual és necessària. Creeu un compte en aquest lloc en comptes d'iniciar la sessió a través de Google.
   public_domain: Domini públic
   publish: Publica
-  purple: porpra
   quality_grade: Grau de qualitat
   quality_grade_: Grau de qualitat
   quality_grade_colon: "Grau de qualitat:"
@@ -3970,7 +3946,11 @@ ca:
   radius_value: "Radi (m): %{radius}"
   random: A l’atzar
   range: Interval
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Classificació
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4142,12 +4122,12 @@ ca:
   recently_resolved: Resolt recentment
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Registre
-  red: vermell
   redo_search_in_map: Refer la cerca al mapa
   redo_search_in_map_area: Torneu a realitzar la cerca a l'àrea del mapa
   refresh: Actualitza
   refreshing: actualitzant
   regenerate_stats: Torna a generar les estadístiques
+  regional_names: Noms regionals
   register_for_this_event_at_x_html: "Registrar-se per aquest event a %{x}"
   reject?: Ho refuseu?
   relative_observations: Observacions relacionades
@@ -4377,6 +4357,8 @@ ca:
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_less: Mostrar menys
   show_more: Mostrar més
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostra més opcions d'inici de sessió
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostra "Sense anotacions"
@@ -4777,6 +4759,7 @@ ca:
     Utilitzeu la descripció per explicar com es va modificar el mapa i enllaçar-hi qualsevol indicador rellevant, fraccionaments taxonòmics o altres discussions sobre el motiu pel qual el rang publicat a la Llista Vermella de la UICN requeria una modificació.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Coneix més sobre la distribució dels tàxons
   taxon_range_updated_notice: El rang del tàxon a estat actualitzat correctament. Espereu uns minut perquè els canvis apareguin als mapes.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Categories del Taxon
   taxon_removed_from_list: Tàxon eliminat de la llista.
   taxon_scheme: Esquema de taxonomia
@@ -5127,7 +5110,6 @@ ca:
   unknown: Desconegut
   unknown_error: Error desconegut
   unknown_rank: '(Classificació desconeguda)'
-  unfollow: Deixeu de seguir
   unlink_your_google_account: Desvinculeu el vostre compte de Google
   unlink_your_flickr_account: "Desenllaçar el compte de Flickr"
   unmute: No silenciar
@@ -5475,7 +5457,6 @@ ca:
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?
-  white: blanc
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Perquè esteu fent aquest canvi? (opcional)
   why_you_can_see_the_coordinates: Per què podeu veure les coordenades?
@@ -5547,7 +5528,6 @@ ca:
   year_in_review2: "Resum de l'any %{year}"
   year_month: any/mes
   year_on_site: "L'any %{year} a %{site}"
-  yellow: groc
   'yes': "Sí­"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -6506,6 +6486,8 @@ ca:
         display_project_name: Mostra nom del projecte
         do_you_need_features_from_traditional: |
           Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
+        do_you_need_features_from_traditional2: |
+          Necessiteu característiques dels projectes tradicionals, com ara camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         duplicate_project: Duplica el projecte
         include_annotated_observations: |
           Incloure només observacions marcades amb un atribut determinat (p.e. estat biològic), o un atribut i valors determinats (p.e. estat biològic=adult). Hi ha una limitació d'un filtre d'atribut per projecte.
@@ -6684,6 +6666,15 @@ ca:
         website_desc_html: |
           Creat via <a href="https://www.inaturalist.org">iNaturalist</a> o els websites de la <a href="%{url}">Xarxa iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Afegides ambdues
+        added_only_identifications: Afegides només les Identificacions
+        added_only_observations: Afegides només les Observacions
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Impactes amples
+        broader_impacts_desc: |
+          Molts col·laboradors externs importen, de forma regular observacions d'iNaturalist donant suport a la ciència i la conservació. Les vostres observacions, identificacions i selecció de llicències lliures permeten a aquestes organitzacions subministrar informació útil sobre biodiversitat a les persones de tot el món que les necessiten.
         compare_desc: |
           Com ha estat aquest any comparat amb els vostres darrers anys? Després de tres o més anys d'ús podem comparar les mètriques anuals d'activitat.
         compare_site_desc: |
@@ -6742,8 +6733,6 @@ ca:
         stats_generation_schedule: Les estadístiques es generaran cada diumenge de desembre i l'1 de gener
         store_prompt: |
           Vols mostrar amb orgull la teva pertinença a iNat allà on vagis? Fes-li una ullada a la Botiga d'iNat!
-        sunburst_desc_html: |
-          Els tàxons observats es disposen en un diagrama radial (Sunburst) jeràrquic. La base de la jerarquia és al centre, començant per "Vida" i acaba amb les espècies als extrems exteriors. La mida de cada arc és proporcional al nombre d’observacions d’aquest tàxon i els colors corresponen als colors habituals amb els quals representem els tàxons (verd per a plantes, taronja per a insectes, blau per a la majoria d’altres animals, etc.), així que si veieu molt de verd, això significa que heu observat moltes plantes. <strong> Feu clic a un arc per col·locar aquest tàxon al centre </strong> i els seus fills al seu voltant o <strong> feu clic al centre per tornar a la jerarquia </strong>.
         translators_title: Traductors
         translators_desc: |
           Sabies que iNaturalist ha estat traduït a %{x_languages}, gairebé en la seva totalitat per %{x_people}, algunes de les qual, fins i tot, no han utilitzat mai iNat? Aquí tens tots els extraordinaris traductors que han afegit traduccions enguany, juntament amb el número de mots han traduït per al %{website_link_tag}lloc web%{link_tag_end}, les nostres Apps a %{iphone_link_tag}iPhone%{link_tag_end} i %{android_link_tag}Android%{link_tag_end}, i a %{seek_link_tag}Seek%{link_tag_end}. Pots veure

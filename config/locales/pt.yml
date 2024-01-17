@@ -20,6 +20,9 @@ pt:
   x_identifications_:
     one: '1 identificação'
     other: '%{count} identificações'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
+    other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -61,6 +64,9 @@ pt:
   x_observations_html:
     one: "<span class='count'>1</span> observação"
     other: "<span class='count'>%{count}</span> observações"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVAÇÃO"
+    other: "<span class='count'>%{count}</span> OBSERVAÇÕES"
   x_observations_link_html:
     one: "<a href='%{url}'>1</a> observação"
     other: "<a href='%{url}'>%{count}</a> observações"
@@ -89,6 +95,9 @@ pt:
   x_species:
     one: '1 Espécie'
     other: '%{count} Espécies'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÉCIE"
+    other: "<span class='count'>%{count}</span> ESPÉCIES"
   x_species_html:
     one: "<span class='count'>Uma</span> espécie"
     other: "<span class='count'>%{count}</span> espécies"
@@ -695,11 +704,9 @@ pt:
   bioblitz: Bioblitz
   birds: aves
   birthday: Aniversário
-  black: preto
   block_removed: Bloqueio removido
   blocked_users: Utilizadores Bloqueados
   blog_widget: Blog Widget
-  blue: azul
   blue_butterfly_etc: "azul, borboleta, etc."
   body: Corpo
   #Text inserted into a textarea when the bold button is clicked but no text was selected
@@ -711,7 +718,6 @@ pt:
   #shown
   breadcrumbs_description: "Isto irá substituir o h1 e as ações padrão, portanto certifique-se que são importantes para este projeto e lembre-se que a largura máxima é 950px"
   brief_caption: Breve legenda
-  brown: castanho
   browse: Pesquisar
   browse_all_projects: Pesquisar todos os projectos
   browse_all_species: Pesquisar todas as espécies
@@ -1348,8 +1354,11 @@ pt:
   either_that_user_doesnt_exist_or: "Este utilizador não existe ou já está a seguir ele."
   eligible_for_research_grade: Elegível para Grau de Pesquisa
   email: Email
-  email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Caro %{user},
+  email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_conf_required_after_grace_period: |
     Confirmação por e-mail é necessária a partir de %{requirement_date} e você não
     confirmou seu endereço de e-mail até esta data. Por favor, redefina sua senha
@@ -1392,6 +1401,7 @@ pt:
   everywhere: todos os locais
   exact: Exacto
   exact_date: Data exata
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Classificação exata
   existing_flags: Sinalizadores existentes
   exit_full_screen: "Sair do modo de ecrã inteiro"
@@ -1498,6 +1508,7 @@ pt:
   #Adjective, as in a fluid layout of images
   fluid: fluído
   follow: Seguir
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
   followers: Seguidores
   following: a seguir
@@ -1521,6 +1532,8 @@ pt:
   generate_taxonomic_tags_for_flickr: Gerar etiquetas taxonómicas para as suas fotografias do Flickr.
   generate_widget: Gerar componente
   generate_your_stats: Gerar as Suas Estatísticas
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GERE SEU ANO DE %{year} EM REVISTA
   generating_mobile_archive: "A gerar ficheiros móveis"
   Genus: Género
   geoprivacy: Geoprivacidade
@@ -1539,7 +1552,6 @@ pt:
   got_your_data_somewhere_else?: Tem os seus dados noutro local? Nós podemos ajudar.
   graft: Enxertar
   grafting_attemps_to_insert_this_taxon: Histórico de tentativas para inserir este táxon na nossa árvore taxonómica, buscando um taxon parente existente ou criando todos os táxon intermediários necessários para inseri-lo num taxon de nível mais alto.
-  grant_role: "%{grant} a função de %{role}"
   grid: Grelha
   grid_layout: Composição de Grelha
   grid_tooltip: Mostrar grelha
@@ -1582,6 +1594,8 @@ pt:
   hide_running_total: Ocultar total acumulado
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alto
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Classificação mais alta
   highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{year} em %{site}"
   history: Histórico
@@ -1616,6 +1630,8 @@ pt:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
+  inaturalist_is_an_independent_nonprofit: |
+    O iNaturalist é uma organização independente 501(c)(3), isenta de impostos, sem fins lucrativos, com sede nos Estados Unidos da América (Tax ID: 92-1296468).
   identifiers: Identificadores
   identotron_for: Identotron para
   identotron_help: Ajuda com Identotron
@@ -1905,6 +1921,8 @@ pt:
   looks_like_no_species_in_guide: Aparentemente ainda não tem nenhuma espécie nos seus manuais.
   lookup: Procurar
   low: baixa
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Classificação mais baixa
   make_admin: Tornar administrador
   #Header for main content section of the project detail page when editing custom project data.
@@ -2071,7 +2089,6 @@ pt:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_id_tooltip_html: 'As observações "Precisa de ID" possuem media, localização e data, mas ainda exigem consenso da comunidade sobre uma identificação exata. <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre as notas de qualidade</a>'
-  needs_to_be_identified: Precisa ser identificado
   network_affiliation_prompt_from_other_site_html: |
     Gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
     <strong>%{site_name}</strong>?
@@ -2371,13 +2388,14 @@ pt:
   only_the_project_admin_can_delete_this_project: Só o administrador do projeto pode eleminar este projeto.
   only_view_nearby_suggestions: Ver apenas sugestões nas proximidades
   only_you: Só você
+  #Geoprivacy status in which no privacy has been applied
   open: abrir
+  #Geoprivacy status in which no privacy has been applied
   open_: Abrir
   open_description: "Qualquer um pode ver as coordenadas a menos que o táxon esteja ameaçado."
   optional: opcional
   or: ou
   or_choose_high_level_taxa: "... ou escolha a partir de um taxa de nível superior"
-  orange: laranja
   order: Ordem
   order_by: Ordenar por
   organism_is_wild: O organismo é selvagem
@@ -2442,7 +2460,6 @@ pt:
     medium: médio
     large: grande
   photos_updated: Fotos atualizadas.
-  pink: rosa
   place: Lugar
   placeholder: Carácter de preenchimento
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
@@ -2747,14 +2764,17 @@ pt:
   provider_authorizations: Autorizações dos Provedores
   public_domain: Domínio Público
   publish: Publicar
-  purple: púrpura
   quality_grade: Grau de Qualidade
   quality_grade_: Grau de Qualidade
   quality_grade_colon: "Grau de Qualidade:"
   queued: Em espera
   query: Consulta
   range: Intervalo
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Classificação
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Classificação
   ranks:
     kingdom: reino
@@ -2814,7 +2834,6 @@ pt:
   recently_finished: Terminado recentemente
   recently_observed: Observado recentemente
   recently_resolved: Resolvido recentemente
-  red: vermelho
   redo_search_in_map: Procurar novamente no mapa
   redo_search_in_map_area: Procurar novamente na área do mapa
   refresh: Atualizar
@@ -3245,10 +3264,10 @@ pt:
   unknown: Desconhecido
   unknown_error: Erro desconhecido
   unknown_rank: '(Classificação Desconhecida)'
-  unfollow: Deixar de seguir
   unlink_your_google_account: Desvincular a Sua Conta Google
   updating: A atualizar...
   unpublish: Não publicado
+  unsubscribe_from_emails_like_this: Cancelar assinatura de e-mails como este
   update: Atualizar
   update_observations: Atualizar observações
   update_photos: Atualizar as fotos
@@ -3307,6 +3326,7 @@ pt:
   view_flag: Ver sinalizador
   view_flags: Ver sinalizadores
   view_flags_for_x_html: "Ver sinalizadores para %{x}"
+  view_inaturalist_global_year_in_review_caps: VER O ANO %{year} GLOBAL DO INATURALISTA
   view_more: Ver mais
   view_more_observations_from_this_place: Ver mais observações deste local
   view_more_observations_of_x_project: "Ver mais observações do projeto %{project} em <nobr>%{site_name} &raquo;</nobr>"
@@ -3331,6 +3351,7 @@ pt:
   wondering_what_to_do_next: Seguem algumas dicas para o ajudar a começar a observar e identificar o mundo natural
   x_flagged: "%{x} sinalizado(a)"
   x_flagged_as_flag: "%{x} sinalizado(a) como %{flag}"
+  year_in_review_caps: "ANO %{year} EM REVISTA"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
@@ -3342,6 +3363,50 @@ pt:
   yes_for_any_of_my_observations: "Sim, para qualquer uma das minhas observações"
   yes_i_want_to_join: Sim, quero participar
   yesterday: Ontem
+  yir_email_because_of_you: |
+    Graças a si há mais dados da biodiversidade este ano do que no anterior. O Ano Em Revista é o nosso presente para si por tudo o que fez pela biodiversidade através do iNaturalist/BioDiversity4All.
+  yir_email_log_in_to_generate: |
+    Faça login para gerar o seu ano pessoal em revista para descobrir!
+  yir_email_of_your_observations:
+    one: De sua observação %{count} , você sabe quantos foram feitos em %{year}?
+    other: Das suas %{count} observações, sabe quantas foram feitas em %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    O seu ano %{year} em revista — celebre o seu ano com biodiversidade
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: A equipa do iNaturalist / BioDiversity4All
+  yir_email_the_year_isnt_over: |
+    O ano ainda não acabou, e nunca é tarde demais para inserir observações
+    mais antigas. Após compartilhar mais observações, certifique-se de
+    selecionar "Regenerar Estatísticas" na parte inferior do seu Ano em Revista para ver as atualizações.
+  yir_email_what_else_will_you_observe_caps: O QUE MAIS IRÁ OBSERVAR?
+  yir_email_what_new_to_you: |
+    Que espécies novas-para-si registou este ano? Quantas pessoas o ajudaram nas identificações (e quantas ajudou)?
+  yir_email_with_gratitude: Com gratidão,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} NO INATURALIST GLOBALMENTE"
+  yir_email_you_are_part_of_something: |
+    Você faz parte de algo grande! Cada pessoa que regista observações, adiciona identificações e espalha palavra sobre o iNaturalist faz diferença para a biodiversidade. Através do nosso esforço coletivo estamos a disponibilizar dados e informação sobre a biodiversidade a uma escala sem precedentes. Obrigado por fazer parte da comunidade iNaturalist!
+  yir_email_you_make_a_difference: |
+    Você faz a diferença para a biodiversidade através do iNaturalist. Obrigado por
+    tudo o que faz!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Você recebeu este e-mail porque %{email} está associado a
+    https://www.inaturalist.org/people/%{username}, uma conta do iNaturalist
+    criada em %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Você recebeu este e-mail porque %{email} está associado a
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    uma conta iNaturalist criada em %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    A sua conta está associada a %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    A sua conta está associada a <a href="%{site_url}">%{site_name}</a>.
   you_can_only_destroy_taxa_you_created2: |
     Só pode excluir táxons que você criou que não estão associados a
     alterações, identificações ou outro conteúdo

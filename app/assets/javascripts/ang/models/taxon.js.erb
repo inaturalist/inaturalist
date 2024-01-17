@@ -146,6 +146,9 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
 };
 
 iNatModels.Taxon.capitalize = function( s ) {
+  if ( _.isEmpty( s ) ) {
+    return s;
+  }
   // As far as I can tell, Javascript has no word metacharacter that matches
   // Unicode characters, and even support for explicit Unicode matches like this
   // only works in modern browsers. Might be an argument for performing

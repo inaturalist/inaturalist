@@ -132,4 +132,46 @@ describe UpdateAction do
       }.to_not raise_error
     end
   end
+
+  describe "user_ids_without_blocked_and_muted" do
+    it "returns the notifier user when there are no blocks or mutes" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      user_ids = [flag.user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to eq user_ids
+    end
+
+    it "returns any user when there are no blocks or mutes" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      user_ids = [flag.user_id, User.make!.id, User.make!.id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to eq user_ids
+    end
+
+    it "removes users the notifier has blocked" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      block = UserBlock.make!( user: flag.user )
+      user_ids = [flag.user_id, block.blocked_user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( block.blocked_user_id )
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to include( flag.user_id )
+    end
+
+    it "removes users that have blocked the notifier" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      block = UserBlock.make!( blocked_user: flag.user )
+      user_ids = [flag.user_id, block.user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( block.user_id )
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to include( flag.user_id )
+    end
+
+    it "removes users that have muted the notifier" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      mute = UserMute.make!( muted_user: flag.user )
+      user_ids = [flag.user_id, mute.user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( mute.user_id )
+    end
+  end
 end

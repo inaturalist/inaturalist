@@ -119,8 +119,7 @@ module ActsAsElasticModel
             queue: queue
           ).elastic_index!( options.merge(
             ids: result_ids,
-            indexed_before: 5.minutes.from_now.strftime("%FT%T"),
-            wait_for_index_refresh: true
+            indexed_before: 5.minutes.from_now.strftime("%FT%T")
           ) )
         end
         # now we can preload all associations needed for efficient indexing

@@ -68,7 +68,7 @@ class TaxonNamePriority extends React.Component {
         ? TAXON_NAME_LEXICONS[taxonNamePriority.lexicon]
         : taxonNamePriority.lexicon;
     } else {
-      lexicon = "Same as locale";
+      lexicon = I18n.t( "views.users.edit.taxon_name_priorities.same_as_locale" );
     }
     return connectDragSource( connectDropTarget(
       <div className={className}>

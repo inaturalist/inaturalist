@@ -132,6 +132,11 @@ class SiteDataExporter
     )
   }.freeze
 
+  ASSOC_REQUIRED_ATTRIBUTES = {
+    observation_photos: "photo",
+    observation_sounds: "sound"
+  }.freeze
+
   def initialize( site, options = {} )
     @options = options
     @site = site
@@ -508,9 +513,21 @@ class SiteDataExporter
           CSV.open( assoc_csv_paths[association], "a" ) do | csv |
             observations.each do | o |
               o.send( association ).each do | associate |
+                # skip associates that lack a required attribute,
+                # e.g. an observation_photo without a photo
+                if ASSOC_REQUIRED_ATTRIBUTES[association] &&
+                    !associate.send( ASSOC_REQUIRED_ATTRIBUTES[association] )
+                  if @options[:debug]
+                    msg = "Skipping #{association} #{associate} due to "
+                    msg += "missing #{ASSOC_REQUIRED_ATTRIBUTES[association]}"
+                    puts msg
+                  end
+                  next
+                end
+                # add the specified attributes of the associate as columns to its CSV file
                 csv << cols.map do | col |
                   # allow dot-notation in column names, while still using the safer `send` method
-                  col.split( "." ).inject( associate, :send )
+                  col.split( "." ).inject( associate, :send ) rescue nil
                 end
               end
             end

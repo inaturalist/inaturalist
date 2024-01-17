@@ -1282,24 +1282,32 @@ var SearchController = function (
       dayNamesMin: _.compact( _.values( I18n.t( "date.day_names_min" ) ) )
     } );
   };
+
   $scope.setupPlaceSearchbox = function ( ) {
     if ( !googleMapsIsLoaded( ) ) return;
-    // only search for "geocode" types, not businesses
+    // only search for "geocode" types, not businesses. It is important to
+    // specify the fields to return as that dictates which Autocomplete SKU
+    // is used for billing purposes, and we want the minimal version
     $scope.placeSearchBox = new google.maps.places.Autocomplete(
       document.getElementById( "place_name" ),
-      { types: ["geocode"] }
+      {
+        types: ["geocode"],
+        fields: ["place_id"]
+      }
     );
     $scope.placeSearchBox.addListener( "place_changed", function ( ) {
       var place = $scope.placeSearchBox.getPlace( );
-      if ( place && place.geometry ) {
-        $scope.setSearchedPlace( place );
+      if ( place && place.place_id ) {
+        $scope.geocodeSearchedPlaceID( place.place_id );
         return;
       }
-      // there was no selected place, so query with the current input value
+      // there was no selected place (i.e. the user hit enter w/o selecting
+      // from the provided options), so query with the current input value
       $scope.searchPlaceAutocompleteService( );
     } );
     $scope.placeAutocompleteService = new google.maps.places.AutocompleteService( );
   };
+
   $scope.searchPlaceAutocompleteService = function ( ) {
     var q = $( "#place_name" ).val( );
     if ( !q ) { return; }
@@ -1308,21 +1316,24 @@ var SearchController = function (
       { input: q },
       function ( predictions, status ) {
         if ( status !== google.maps.places.PlacesServiceStatus.OK
-         || predictions.length === 0 || !predictions[0].place_id ) { return; }
-        // now that we have the result, we need to query the PlacesService
-        // for the geometry. That service needs to be associated with an
-        // element, so use the map if we can, otherwise make one up
-        var e = $scope.viewing( "observations", "map" ) ? $( "#map" ).data( "taxonMap" )
-          : document.createElement( "div" );
-        var s = new google.maps.places.PlacesService( e );
-        s.getDetails( { placeId: predictions[0].place_id }, function ( place ) {
-          if ( status !== google.maps.places.PlacesServiceStatus.OK ) { return; }
-          // use the details of the fetched place
-          $scope.setSearchedPlace( place );
-        } );
+         || predictions.length === 0 || !predictions[0].place_id ) {
+          return;
+        }
+        $scope.geocodeSearchedPlaceID( predictions[0].place_id );
       }
     );
   };
+
+  $scope.geocodeSearchedPlaceID = function ( placeID ) {
+    var s = new google.maps.Geocoder( );
+    s.geocode( { placeId: placeID }, function ( results, status ) {
+      if ( status !== google.maps.GeocoderStatus.OK ) {
+        return;
+      }
+      $scope.setSearchedPlace( results[0] );
+    } );
+  };
+
   $scope.setSearchedPlace = function ( place ) {
     if ( !place || !place.geometry ) { return; }
     $scope.searchedPlace = place;
@@ -1331,74 +1342,81 @@ var SearchController = function (
       $scope.mapNeedsAligning = true;
     }
   };
+
   $scope.focusOnSearchedPlace = function ( ) {
-    if ( $scope.searchedPlace ) {
-      // setting a timer for automatching the searched place to a known place
-      $scope.placeLastSearched = new Date( ).getTime( );
-      $scope.autoPlaceSelect = true;
-      $scope.mapBounds = null;
-      var location = $scope.searchedPlace.geometry.location;
-      var bounds;
-      if ( $scope.searchedPlace.geometry.viewport ) {
-        var viewport = $scope.searchedPlace.geometry.viewport;
-        bounds = googleMapsBoundsToObject( viewport );
-      } else {
-        // use some bounds which equate roughly to zoom level 15
-        bounds = {
-          swlat: location.lat( ) - 0.01,
-          swlng: location.lng( ) - 0.02,
-          nelat: location.lat( ) + 0.01,
-          nelng: location.lng( ) + 0.02
-        };
+    if ( !$scope.searchedPlace ) {
+      return;
+    }
+    $scope.mapBounds = null;
+    var bounds;
+    var location = $scope.searchedPlace.geometry.location;
+    if ( $scope.searchedPlace.geometry.viewport ) {
+      var viewport = $scope.searchedPlace.geometry.viewport;
+      bounds = googleMapsBoundsToObject( viewport );
+    } else {
+      // use some bounds which equate roughly to zoom level 15
+      bounds = {
+        swlat: location.lat( ) - 0.01,
+        swlng: location.lng( ) - 0.02,
+        nelat: location.lat( ) + 0.01,
+        nelng: location.lng( ) + 0.02
+      };
+    }
+
+    $scope.drawing.currentShape = null;
+    $scope.drawing.manager.setMap( null );
+    $scope.drawing.currentShape = null;
+    $scope.drawing.disabled = false;
+    $scope.drawing.pendingDrawing = null;
+    $scope.removeDragIcon( );
+    $scope.removeSelectedBounds( );
+
+    // if the searched place is specific enough to have an street number
+    if ( $scope.searchedPlace.address_components
+      && _.some( $scope.searchedPlace.address_components, function ( component ) {
+        return !_.isEmpty( _.intersection( component.types, ["street_number"] ) );
+      } ) ) {
+      // align the map immediately w/o looking up an iNat place to choose
+      $scope.mapBounds = bounds;
+      $rootScope.$emit( "updateParamsForCurrentRect" );
+      $rootScope.$emit( "alignMap" );
+      $scope.$apply( );
+      return;
+    }
+
+    var name;
+    if ( _.isObject( $scope.searchedPlace )
+      && _.has( $scope.searchedPlace, "address_components" )
+    ) {
+      name = $scope.searchedPlace.address_components[0].long_name;
+    }
+    var options = {
+      bounds: bounds,
+      params: {
+        per_page: 1,
+        name: name,
+        lat: location.lat( ),
+        lng: location.lng( )
       }
-      // if the searched place is specific enough to have an address
-      if ( $scope.searchedPlace.adr_address
-        && $scope.searchedPlace.adr_address.match( /address/ ) ) {
-        // align the map straight away w/o looking for a best place to choose
+    };
+    // search for a best nearby place with a similar name
+    $rootScope.$emit( "searchForNearbyPlaces", options, function ( response ) {
+      if ( !response || !response.data || !response.data.results ) {
         $scope.mapBounds = bounds;
         $rootScope.$emit( "updateParamsForCurrentRect" );
         $rootScope.$emit( "alignMap" );
-        $scope.$apply( );
-      } else {
-        var name = ( _.isObject( $scope.searchedPlace )
-          ? $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
-        var options = {
-          bounds: bounds,
-          params: {
-            per_page: 1,
-            name: name,
-            lat: location.lat( ),
-            lng: location.lng( )
-          }
-        };
-        $scope.drawing.currentShape = null;
-        $scope.drawing.manager.setMap( null );
-        $scope.drawing.currentShape = null;
-        $scope.drawing.disabled = false;
-        $scope.drawing.pendingDrawing = null;
-        $scope.removeDragIcon( );
-        $scope.removeSelectedBounds( );
-        // search for a best nearby place with a similar name
-        $rootScope.$emit( "searchForNearbyPlaces", options, function ( response ) {
-          if ( !response || !response.data || !response.data.results ) {
-            $rootScope.$emit( "alignMap" );
-            return;
-          }
-          if ( response.data.results.standard.length > 0 ) {
-            $scope.filterByPlace( response.data.results.standard[0] );
-          } else if ( response.data.results.community.length > 0 ) {
-            $scope.filterByPlace( response.data.results.community[0] );
-          } else {
-            $scope.mapBounds = bounds;
-            $rootScope.$emit( "updateParamsForCurrentRect" );
-            $rootScope.$emit( "alignMap" );
-          }
-        } );
+        return;
       }
-    } else {
-      // no searched place yet, so try searching with place input text
-      $scope.searchPlaceAutocompleteService( );
-    }
+      if ( response.data.results.standard.length > 0 ) {
+        $scope.filterByPlace( response.data.results.standard[0] );
+      } else if ( response.data.results.community.length > 0 ) {
+        $scope.filterByPlace( response.data.results.community[0] );
+      } else {
+        $scope.mapBounds = bounds;
+        $rootScope.$emit( "updateParamsForCurrentRect" );
+        $rootScope.$emit( "alignMap" );
+      }
+    } );
   };
   // when the place search input changes, delete the stored searched place
   $scope.$watch( "placeSearch", function ( ) {
@@ -1969,11 +1987,17 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
         var swlng = bounds.swlng;
         var nelat = bounds.nelat;
         var nelng = bounds.nelng;
-        $scope.map.fitBounds( new google.maps.LatLngBounds(
-          new google.maps.LatLng( swlat, swlng ),
-          new google.maps.LatLng( nelat, nelng )
-        ) );
-        $rootScope.$emit( "offsetCenter", 130, 0 );
+        if ( !_.isNaN( swlat )
+          && !_.isNaN( swlng )
+          && !_.isNaN( nelat )
+          && !_.isNaN( nelng )
+        ) {
+          $scope.map.fitBounds( new google.maps.LatLngBounds(
+            new google.maps.LatLng( swlat, swlng ),
+            new google.maps.LatLng( nelat, nelng )
+          ) );
+          $rootScope.$emit( "offsetCenter", 130, 0 );
+        }
       } else if ( $scope.selectedPlaceLayer ) {
         // awkward check to see if it's a google.map.Data class. To determine the
         // appropriate zoom level for that requires examining the whole data structure

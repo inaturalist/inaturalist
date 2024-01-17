@@ -94,11 +94,18 @@
     // Listen for clicks on the map
     google.maps.event.addListener(map, 'click', handleMapClick);
     
-    // Update scale field on zoomend
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-      $.fn.latLonSelector._currentInput._lastScale = map.getZoom()
-      $.fn.latLonSelector.updateFormScale(map.getZoom())
-    })
+    // setting a small delay before enabling the updating of map_scale. On page load,
+    // if there are default map BOUNDS (e.g. the user is on a site with default bounds),
+    // there will be a slightly delayed fitting of the map to the bounds, which may
+    // modify the zoom. This cannot easily trigger an action when done. This delay
+    // is a hacky way to attempt to not set map_scale on this initial BOUNDS fitting
+    setTimeout( function( ) {
+      // Update scale field on zoom_changed
+      google.maps.event.addListener(map, 'zoom_changed', function( e ) {
+        $.fn.latLonSelector._currentInput._lastScale = map.getZoom()
+        $.fn.latLonSelector.updateFormScale(map.getZoom())
+      })
+    }, 1000 );
     
     // Set the default markers
     if (typeof options.marker != 'undefined') {

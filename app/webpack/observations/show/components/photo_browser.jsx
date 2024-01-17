@@ -39,9 +39,20 @@ class PhotoBrowser extends React.Component {
     } );
   }
 
-  componentDidUpdate( ) {
+  componentDidUpdate( prevProps ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".add-photo", domNode ).appendTo( ".image-gallery-thumbnails-container", domNode );
+    const { observation } = this.props;
+    const prevObservationID = prevProps.observation ? prevProps.observation.id : null;
+    const currObservationID = observation ? observation.id : null;
+    if ( prevObservationID !== currObservationID ) {
+      // ensure the image gallery is reset to the first item when the observation changes
+      this.resetSlideIndex( );
+    }
+  }
+
+  resetSlideIndex( ) {
+    this.setState( { slideIndex: 0 } );
   }
 
   attributionIcon( media, type ) {
