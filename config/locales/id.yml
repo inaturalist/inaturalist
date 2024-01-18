@@ -3014,11 +3014,9 @@ id:
   observation_accuracy_validator_email_subject: "Bisakah kamu membantu kami mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us: |
     Bisakah kamu membantu kami dalam sebuah eksperimen untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
-  observation_accuracy_validator_email_if_so_html: |
-    Jika kamu mau, kami sudah mengumpulkan <a href="%{sample_url}">%{num_obs} pengamatan</a> yang sepertinya bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin menurutmu sebelum %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
-    Kami akan menghitung akurasinya dengan membandingkan ID kamu dengan Takson Pengamatan. Pastikan 
-    kamu menambahkan ID untuk setiap pengamatan, bahkan jika pengamatannya sudah Kelas Riset, untuk membantu melacak progresmu. Kamu bisa melewati pengamatan-pengamatan yang sudah kamu tambahkan ID-nya sebelumnya jika ID-nya masih relevan.
+    Kami akan menghitung akurasi dengan membandingkan ID kamu dengan Takson Pengamatan. 
+    Kamu bisa melewati pengamatan-pengamatan yang IDnya sudah ditambahkan jika IDnya masih relevan. Untuk selebihnya tentang bagaimana kita menghitung kesepakatan dan ketidaksepakatan, teruslah membaca.
   observation_accuracy_validator_email_ids_equal_to: |
     ID yang sama dengan (A) atau lebih rinci dari (B), Takson Pengamatannya akan dihitung sebagai Kesepakatan.
   observation_accuracy_validator_email_ids_sibling_to: |
