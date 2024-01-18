@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
-import ProjectFieldsModal from "../components/project_fields_modal";
+import ProjectFieldsModal from "../../show/components/project_fields_modal";
 import {
   addObservationFieldValue,
   updateObservationFieldValue
-} from "../ducks/observation";
-import { setProjectFieldsModalState } from "../ducks/project_fields_modal";
+} from "../actions/current_observation_actions";
+import { setProjectFieldsModalState } from "../../show/ducks/project_fields_modal";
 
 function mapStateToProps( state ) {
   return Object.assign( { }, state.projectFieldsModal, {
-    observation: state.observation,
+    observation: state.currentObservation.observation,
     config: state.config
   } );
 }

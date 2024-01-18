@@ -1,20 +1,21 @@
 import { connect } from "react-redux";
-import Projects from "../components/projects";
+import Annotations from "../../show/components/projects";
 import {
   addToProject,
   confirmRemoveFromProject,
   joinProject,
   removeObservationFieldValue,
   updateObservationFieldValue
-} from "../ducks/observation";
-import { updateCuratorAccess } from "../ducks/project_observations";
-import { updateSession } from "../ducks/users";
-import { setProjectFieldsModalState } from "../ducks/project_fields_modal";
+} from "../actions/current_observation_actions";
+import { updateCuratorAccess } from "../../show/ducks/project_observations";
+import { setProjectFieldsModalState } from "../../show/ducks/project_fields_modal";
 
 function mapStateToProps( state ) {
   return {
-    observation: state.observation,
-    config: state.config
+    observation: state.currentObservation.observation,
+    config: state.config,
+    collapsible: false,
+    placeholder: I18n.t( "add_a_field" )
   };
 }
 
@@ -28,7 +29,6 @@ function mapDispatchToProps( dispatch ) {
     updateObservationFieldValue: ( id, options ) => {
       dispatch( updateObservationFieldValue( id, options ) );
     },
-    updateSession: params => { dispatch( updateSession( params ) ); },
     showProjectFieldsModal: project => {
       dispatch( setProjectFieldsModalState( {
         show: true,
@@ -36,12 +36,13 @@ function mapDispatchToProps( dispatch ) {
         project
       } ) );
     }
+
   };
 }
 
-const ProjectsContainer = connect(
+const AnnotationsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( Projects );
+)( Annotations );
 
-export default ProjectsContainer;
+export default AnnotationsContainer;

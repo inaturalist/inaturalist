@@ -18,6 +18,7 @@ import SuggestionsContainer from "../containers/suggestions_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
+import ProjectsContainer from "../containers/projects_container";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
@@ -846,6 +847,8 @@ class ObservationModal extends React.Component {
                   <AnnotationsContainer />
                   <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
                   <ObservationFieldsContainer />
+                  <div className="column-header">{ I18n.t( "projects" ) }</div>
+                  <ProjectsContainer />
                 </div>
               ) }
               { activeTabs.indexOf( "data-quality" ) < 0 ? null : (

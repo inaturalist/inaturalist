@@ -85,7 +85,7 @@ class ConfirmModal extends Component {
       <Modal
         show={show}
         className={`ConfirmModal confirm ${type}`}
-        onHide={this.close}
+        onHide={this.cancel}
       >
         <Modal.Body>
           { _.isObject( confirmMessage ) ? (

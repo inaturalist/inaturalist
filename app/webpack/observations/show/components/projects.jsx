@@ -63,10 +63,12 @@ class Projects extends React.Component {
   }
 
   render( ) {
-    const { observation, config } = this.props;
+    const { observation, config, collapsible } = this.props;
     const loggedIn = config && config.currentUser;
 
-    const projectsOrProjObs = observation.non_traditional_projects || [];
+    const projectsOrProjObs = observation.non_traditional_projects
+      ? _.cloneDeep( observation.non_traditional_projects )
+      : [];
     _.each( observation.project_observations, po => {
       // trying to avoid duplicate project listing. This can happen for formerly
       // traditional projects that have been turned into collection projects
@@ -117,6 +119,27 @@ class Projects extends React.Component {
         </form>
       );
     }
+
+    const panelContent = (
+      <div>
+        { addProjectInput }
+        { projectsOrProjObs.map( obj => (
+          <ProjectListing
+            key={obj.project.id}
+            displayObject={obj}
+            {...this.props}
+          />
+        ) ) }
+      </div>
+    );
+    if ( !collapsible ) {
+      return (
+        <div className="Projects">
+          { panelContent }
+        </div>
+      );
+    }
+
     const count = projectsOrProjObs.length > 0
       ? `(${projectsOrProjObs.length})`
       : "";
@@ -143,14 +166,7 @@ class Projects extends React.Component {
         <Panel id="projects-panel" expanded={this.state.open} onToggle={() => null}>
           <Panel.Collapse>
             <Panel.Body>
-              { addProjectInput }
-              { projectsOrProjObs.map( obj => (
-                <ProjectListing
-                  key={obj.project.id}
-                  displayObject={obj}
-                  {...this.props}
-                />
-              ) ) }
+              { panelContent }
             </Panel.Body>
           </Panel.Collapse>
         </Panel>
@@ -168,7 +184,12 @@ Projects.propTypes = {
   observation: PropTypes.object,
   setErrorModalState: PropTypes.func,
   updateSession: PropTypes.func,
-  showProjectFieldsModal: PropTypes.func
+  showProjectFieldsModal: PropTypes.func,
+  collapsible: PropTypes.bool
+};
+
+Projects.defaultProps = {
+  collapsible: true
 };
 
 export default Projects;
