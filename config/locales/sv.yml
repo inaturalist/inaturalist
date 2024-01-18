@@ -3158,15 +3158,9 @@ sv:
   observation_accuracy_validator_email_subject: "Kan du tänka dig att hjälpa oss uppskatta fynds träffsäkerhet på iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us: |
     Kan du tänka dig att hjälpa oss med ett experiment för att uppskatta fynds träffsäkerhet på iNaturalist?
-  observation_accuracy_validator_email_if_so_html: |
-    I så fall har vi gjort en <a href="%{sample_url}">uppsättning %{num_obs} fynd</a>
-    som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till
-    den mest exakta bestämning du kan för vart och ett innan %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
-    Vi beräknar träffsäkerheten genom att jämföra din bestämning med fyndets taxon. Se till att
-    lägga till en bestämning till varje fynd, även om fyndet redan har
-    forskningsklass, för att hålla reda på dina framsteg. Du kan hoppa över fynd där
-    du tidigare har lagt till en bestämning om den fortfarande är relevant.
+    Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
+    du bestämt innan om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
   observation_accuracy_validator_email_ids_equal_to: |
     För bestämningar lika med (A) eller exaktare än (B) kommer fyndets taxon att räknas som Överensstämmer.
   observation_accuracy_validator_email_ids_sibling_to: |
