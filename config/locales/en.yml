@@ -3372,7 +3372,7 @@ en:
   observation_accuracy_validator_email_subject: "Will you help us estimate the accuracy of iNaturalist observations?"
   observation_accuracy_validator_email_will_you_help_us: |
     Will you help us with an experiment to estimate the accuracy of iNaturalist observations?
-  observation_accuracy_validator_email_if_so_html: |
+  observation_accuracy_validator_email_if_so2_html: |
     <ol>
     <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom). </li>
     <li>If you see the “Potential Disagreement” popup…
@@ -3385,7 +3385,7 @@ en:
     </ol>
     Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>
     that we think you can identify based on your activity on iNat. <b>Please add
-    the finest ID you can to each of the observations before %{validator_deadline_date}</b>.
+    the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where
     you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
