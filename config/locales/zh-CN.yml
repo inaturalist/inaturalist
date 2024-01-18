@@ -1514,6 +1514,7 @@ zh-CN:
   downstream_coverage_rank: 覆盖层级下限
   downstream_coverage_colon_rank: "下游分类层级：%{rank}"
   downstream_deviations: 下游偏离
+  downstream_deviations_for_taxon: "%{taxon}的下游偏移"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: 被标记的下游分类群
@@ -1594,6 +1595,7 @@ zh-CN:
   editing_taxon: 编辑 %{taxon}
   editing_taxon_link: 正在编辑分类链接
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分类群名称「%{name}」
+  editing_taxon_range_for_taxon_html: 修改%{taxon}的分类单元范围
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
@@ -1605,6 +1607,8 @@ zh-CN:
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: 亲爱的%{user}，
   email_description: 您的电子邮件不会显示给其他iNaturalist用户
+  email_conf_required_after_grace_period: |
+    在%{requirement_date}之前需要邮件验证，而您在截止日期之前未完成认证。请重设密码以登录您的账号。
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
@@ -1859,6 +1863,8 @@ zh-CN:
   generate_your_year_in_review_caps: 生成您的%{year}年年度回顾
   generating_mobile_archive: "生成移动存档"
   Genus: 类
+  geomodel_expected_nearby_label_is_derived: |
+    "预料在附近"标签来自地理位置模型。<a href="%{url}">在这里了解更多关于地理位置模型的情况</a>。
   geoprivacy: 位置隐私
   geoprivacy_is_obscured: 地理信息隐私权为模糊处理
   geoprivacy_is_obscured_desc: 观察者选择遮盖坐标
@@ -1918,6 +1924,8 @@ zh-CN:
   header_your_projects: 您的项目
   header_your_profile: 你的个人资料
   heads_up: 小心
+  heads_up_there_are_other_draft_taxon_changes_html:
+    other: "<strong>注意：</strong>还有关于同一个分类群的%{count}个分类群变化草案。"
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
   heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
@@ -2767,7 +2775,7 @@ zh-CN:
   new_updates_in_the_last_24_hours_from: "来自%{site_name}的近24小时新更新"
   new_users: 新用户
   new_users_in_year: "在 %{year} 年的新用户"
-  new_users_w_7_obs: 新用户w/ 7观察
+  new_users_w_7_obs: 有不少于7个观察的新用户
   newly_added: 新添加
   newly_added_species: 新添加的物种
   newly_observed_species: 最近被观察到的物种：
@@ -2910,6 +2918,8 @@ zh-CN:
   observation_accuracy_validator_email_subject: "您会帮助我们估计iNaturalist 观察的准确度吗？"
   observation_accuracy_validator_email_will_you_help_us: |
     您是否会帮助我们进行一次实验，以估计iNaturalist 观察的准确度？
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    我们十分感激您在 iNaturalist 上帮助鉴定，也十分感谢您参与本次研究。请先阅读<a href="%{url}">这篇博客</a>，了解有关本次实验的常见问题。
   observation_accuracy_validator_email_with_gratitude: "此致  \n敬礼，"
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist 团队
   observation_added_to_the_project: "添加观察到项目“%{project}”"
@@ -6609,19 +6619,19 @@ zh-CN:
         med_ttid: 中位数TTID
         new_users_desc: 于此日注册
         obs_1_day: "观察（1天）"
-        obs_1_day_desc: "在同一天内创建的观察"
+        obs_1_day_desc: "在当天创建的观察"
         obs_cid_d_desc: 在此前7天内创建，并有一个社群鉴定
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: 观察被社群鉴定到属一级
         obs_cid_d_to_genus_desc: 在此前7天内创建，并且社群鉴定到属或更低层级
-        obs_desc: 在过去7天创建
+        obs_desc: 在此前7天内创建
         obs_id_d_desc: 在此前7天内创建，并且拥有鉴定（可以是观察者的）
         observations_1_week_moving_window: 观察记录 (一周移动视窗)
         observers_desc: 此日添加了观察记录
         other_desc_html: 通过由<a href="%{url}">开发者</a>制作的其他应用程序创建
         recent_desc: 在过去7天注册
         recent_w_0_obs: 最近，0个观察
-        recent_w_0_obs_desc: 在7天前注册，并添加了0个观察
+        recent_w_0_obs_desc: 在此前7天内注册，并添加了0个观察
         recent_w_7_obs: 最近，不少于7个观察
         recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
         time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
@@ -6786,6 +6796,8 @@ zh-CN:
           请注意，分类单元页面将显示此分类单元及其后代的照片。然而，为这个分类选择的照片将首先显示。第一张照片将是整个网站使用的默认图片。
         rare_desc: 最少观察到受威胁的分类群
         rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>中观察到最少的受威胁的分类群
+        site_curators_disabled_wikipedia_html: |
+          站点馆长临时关闭显示<a href="%{url}">来自维基百科的这一内容</a>。你可以通过编辑维基百科页面来让其符合对该分类单元的描述，或者对这一分类单元进行标记，吸引站点馆主来处置。
         trending_desc: 上个月观察到最多的分类群
         trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
         wanted_desc: 此分类中尚未观察到的物种。
