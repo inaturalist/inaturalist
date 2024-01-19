@@ -3130,6 +3130,20 @@ da:
   observation_accuracy_validator_email_subject: "Vil du hjælpe os med at vurdere korrektheden af iNaturalist-observationer?"
   observation_accuracy_validator_email_will_you_help_us: |
     Vil du hjælpe os et eksperiment til vurdering af korrektheden af iNaturalist-observationer?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (endda kongerige). </li>
+    <li>Vises en “Potentiel uenighed”-pop op…,
+    <ul>
+    <li>og du er sikker på, at det er en fejlidentifikation, klik på den orange knap,</li>
+    <li>eller hvis du er usikker udover dit ID, klik på den grønne knap</li>
+    </ul>
+    </li>
+    <li>Gør dette senest <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Her er <a href="%{sample_url}">delmængden af %{num_obs} observationer</a>,
+    som vi tror, at du kan identificere baseret på din aktivitet på iNat. <b>Tilføj 
+    dit mest præcise ID til hver af observationerne senest %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Vi beregner nøjagtigheden ved at sammenligne dit ID med observationstaksonen. Observationer, hvor du
     tidligere har tilføjet et ID, der fortsat har relevans, kan overspringes. Læs videre for mere information om, hvordan vi tæller enigheder og uenigheder.
