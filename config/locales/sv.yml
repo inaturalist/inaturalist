@@ -3158,6 +3158,20 @@ sv:
   observation_accuracy_validator_email_subject: "Kan du tänka dig att hjälpa oss uppskatta fynds träffsäkerhet på iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us: |
     Kan du tänka dig att hjälpa oss med ett experiment för att uppskatta fynds träffsäkerhet på iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Bestäm alla fynd i länken nedan så exakt du kan, även om de har forskningsklass, och även om din mest exakta bestämning är på en högre taxonomisk nivå (även rike). </li>
+    <li>Om du ser “Möjlig meningsskiljaktighet” poppa upp…
+    <ul>
+    <li>och du är säker på att det är felbestämt, klicka på den orangea knappen,</li>
+    <li>eller om du är osäker på din bestämning, klicka på den gröna knappen</li>
+    </ul>
+    </li>
+    <li>Gör detta till <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Här är den <a href="%{sample_url}">delmängd av %{num_obs} fynd</a>
+    som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till
+    den exaktaste bestämning du kan för varje fynd till %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
     du bestämt innan om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
