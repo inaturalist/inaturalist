@@ -2985,6 +2985,17 @@ de:
   observation_accuracy_validator_email_subject: "Möchtest du uns dabei helfen, die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
   observation_accuracy_validator_email_will_you_help_us: |
     Möchtest du uns bei einem Experiment unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol><li>Bestimme alle Beobachtungen im unten angegebenen Link so genau wie möglich, auch wenn sie bereits Forschungsqualität besitzen, und auch wenn deine genaueste ID nur auf höherer taxonomischer Ebene möglich ist (sogar 'Reich'). </li>
+    <li>Wenn sich das "Besteht Einwand...?" Pop-up Fenster öffnet… 
+    <ul>
+    <li>und du dir sicher bist dass die Beobachtung falsch bestimmt wurde, klicke die orangene Option,</li>
+    <li>oder wenn du unsicher bist, wähle die grüne Option</li>
+    </ul>
+    </li>
+    <li>Bitte die Bestimmungen bist zum <b>%{validator_deadline_date}</b> abschließen</li>
+    </ol>
+    Hier ist deine<a href="%{sample_url}"><a href="%{sample_url}">Auswahl von %{num_obs} Beobachtungen</a>, von der wir aufgrund deiner iNat-Aktivität vermuten, dass du sie identifizieren könntest. <b>Bitte deine genauestmögliche ID bis zum %{validator_deadline_date} abgeben</b> . 
   observation_accuracy_validator_email_we_will_calculate: |
     Wir berechnen die Genauigkeit, indem wir deine Bestimmung mit dem Beobachtungstaxon vergleichen. Du kannst Beobachtungen überspringen, bei denen du zuvor bereits eine ID hinzugefügt hast - es sei denn du möchtest dieses ID nun revidieren. Lies weiter, wenn du mehr darüber erfahren möchtest, wie wir Zustimmungen und Widersprüche evaluieren werden.
   observation_accuracy_validator_email_ids_equal_to: |
