@@ -3014,6 +3014,19 @@ id:
   observation_accuracy_validator_email_subject: "Bisakah kamu membantu kami mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us: |
     Bisakah kamu membantu kami dalam sebuah eksperimen untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
+    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
+    <ul>
+    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
+    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
+    </ul>
+    </li>
+    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
+    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Kami akan menghitung akurasi dengan membandingkan ID kamu dengan Takson Pengamatan. 
     Kamu bisa melewati pengamatan-pengamatan yang IDnya sudah ditambahkan jika IDnya masih relevan. Untuk selebihnya tentang bagaimana kita menghitung kesepakatan dan ketidaksepakatan, teruslah membaca.
