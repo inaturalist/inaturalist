@@ -1,0 +1,56 @@
+  h1 {
+    font: 24px sans-serif;
+  }
+  .correct {
+    fill: lightgreen;
+  }
+  .uncertain {
+    fill: lightgray;
+  }
+  .incorrect {
+    fill: pink;
+  }
+
+  .correct:hover {
+    fill: green;
+  }
+  
+  .uncertain:hover {
+    fill: gray;
+  }
+  
+  .incorrect:hover {
+    fill: red;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+  
+  .dashed-line {
+    stroke-dasharray: 5, 5;
+  }
+  
+  /* Custom tooltip styles */
+  #tooltip {
+    background: #fff; /* White background */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 3px;
+    padding: 8px;
+    position: absolute;
+    display: none;
+    font: 10px sans-serif;
+    color: #333; /* Dark text color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }

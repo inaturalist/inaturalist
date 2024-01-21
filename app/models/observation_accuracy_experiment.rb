@@ -598,4 +598,32 @@ class ObservationAccuracyExperiment < ApplicationRecord
       id: oids
     )
   end
+
+  def get_stats_for_single_bar( key: "quality_grade", value: "research" )
+    value_condition = value == "none" ? "#{key} IS NULL" : "#{key} = ?"
+    counts = {
+      incorrect: observation_accuracy_samples.where( "#{value_condition} AND correct = 0", value ).
+        map( &:observation_id ),
+      uncertain: observation_accuracy_samples.
+        where( "#{value_condition} AND ( correct IS NULL OR correct = -1 )", value ).
+        map( &:observation_id ),
+      correct: observation_accuracy_samples.where( "#{value_condition} AND correct = 1", value ).
+        map( &:observation_id )
+    }
+    total = counts.values.flatten.count
+    stats = counts.transform_values do | ids |
+      norm = ( total.zero? ? 0 : ids.count / total.to_f * 100 ).round( 2 )
+      { url: FakeView.observations_url( verifiable: "any", place_id: "any", id: ids.join( "," ) ), height: norm }
+    end
+    [stats[:incorrect], stats[:uncertain], stats[:correct]]
+  end
+
+  def get_barplot_data( the_key )
+    thevals = observation_accuracy_samples.map( &the_key.to_sym ).map {| val | val.nil? ? "none" : val }.uniq.sort
+    data = {}
+    thevals.each do | the_val |
+      data[the_val] = get_stats_for_single_bar( key: the_key, value: the_val )
+    end
+    data
+  end
 end

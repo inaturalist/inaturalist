@@ -1,0 +1,19 @@
+  function showTooltip(evt, text) {
+    let tooltip = document.getElementById("tooltip");
+    tooltip.innerHTML = text;
+    tooltip.style.display = "block";
+
+    // Calculate the center position of the rectangle
+    const rect = evt.target.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // Set the tooltip position
+    tooltip.style.left = centerX + 'px';
+    tooltip.style.top = centerY + 'px';
+  }
+
+  function hideTooltip() {
+    var tooltip = document.getElementById("tooltip");
+    tooltip.style.display = "none";
+  }
