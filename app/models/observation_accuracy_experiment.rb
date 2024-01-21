@@ -49,8 +49,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_quality_stats( qualities )
-    qualities_low = qualities.map {| q | q.nil? ? 0 : q }
-    qualities_high = qualities.map {| q | q.nil? ? 1 : q }
+    qualities_low = qualities.map {| q | q.nil? || q == -1 ? 0 : q }
+    qualities_high = qualities.map {| q | q.nil? || q == -1 ? 1 : q }
     mean_high = qualities_high.sum / qualities_high.count.to_f
     mean_low = qualities_low.sum / qualities_low.count.to_f
     var_high = bootstrap_variance( qualities_high )
@@ -134,7 +134,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     observation_ids_grouped_by_taxon_id.each_key do | taxon_id |
       identifiers_by_taxon_id[taxon_id] = if taxon_id == root_id
         qualified_candidates = top_50_iders.select {| _, v | v >= improving_id_threshold }
-        qualified_candidates.values[0..( validator_redundancy_factor - 1 )] || []
+        qualified_candidates.keys[0..( validator_redundancy_factor - 1 )] || []
       else
         recent_qualified_candidates = get_qualified_candidates(
           taxon_id: taxon_id,
@@ -247,7 +247,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         observation_validator = ObservationAccuracyValidator.
           create( user_id: user_id, observation_accuracy_experiment_id: id )
         observation_validator.observation_accuracy_samples << ObservationAccuracySample.
-          where( observation_id: observation_ids )
+          where( observation_id: observation_ids, observation_accuracy_experiment_id: id )
       end
     end
   end
@@ -539,8 +539,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
             qualities_for_row.compact.uniq.count > 1
           # conflict
           -1
+        elsif qualities_for_row.map( &:nil? ).all?
+          nil
         else
-          qualities_for_row[0]
+          qualities_for_row.compact[0]
         end
         sample.reviewers = matches.count
       end
@@ -548,24 +550,23 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
 
     if observation_accuracy_samples.select {| q | q.correct == -1 }.count.positive?
-      obs_ids = qualities.select {| q | q.correct == -1 }.map( &:observation_id ).join( "," )
+      obs_ids = observation_accuracy_samples.select {| q | q.correct == -1 }.map( &:observation_id ).join( "," )
       puts "There is at least one conflict"
-      FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids )
-    else
-      quality_stats = get_quality_stats( observation_accuracy_samples.map( &:correct ) )
-      precision_stats = get_precisions_stats( observation_accuracy_samples.
-        map {| sample | calculate_precision( sample.descendant_count ) } )
-      self.assessment_date = Time.now
-      self.responding_validators = responding_validators
-      self.validated_observations = validated_observations
-      self.low_acuracy_mean = quality_stats[0]
-      self.low_acuracy_variance = quality_stats[1]
-      self.high_accuracy_mean = quality_stats[2]
-      self.high_accuracy_variance = quality_stats[3]
-      self.precision_mean = precision_stats[0]
-      self.precision_variance = precision_stats[1]
-      save!
+      puts FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids )
     end
+    quality_stats = get_quality_stats( observation_accuracy_samples.map( &:correct ) )
+    precision_stats = get_precisions_stats( observation_accuracy_samples.
+      map {| sample | calculate_precision( sample.descendant_count ) } )
+    self.assessment_date = Time.now
+    self.responding_validators = responding_validators
+    self.validated_observations = validated_observations
+    self.low_acuracy_mean = quality_stats[0]
+    self.low_acuracy_variance = quality_stats[1]
+    self.high_accuracy_mean = quality_stats[2]
+    self.high_accuracy_variance = quality_stats[3]
+    self.precision_mean = precision_stats[0]
+    self.precision_variance = precision_stats[1]
+    save!
   end
 
   def get_sample_for_user_id( user_id )
@@ -577,7 +578,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return nil unless samples.count.positive?
 
     oids = samples.map( &:observation_id ).join( "," )
-    FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: oids )
+    FakeView.identify_observations_url(
+      place_id: "any",
+      reviewed: "any",
+      quality_grade: "needs_id,research,casual",
+      id: oids
+    )
   end
 
   def get_incorrect_observations_in_sample
@@ -585,6 +591,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return nil unless samples.count.positive?
 
     oids = samples.map( &:observation_id ).join( "," )
-    FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: oids )
+    FakeView.identify_observations_url(
+      place_id: "any",
+      reviewed: "any",
+      quality_grade: "needs_id,research,casual",
+      id: oids
+    )
   end
 end
