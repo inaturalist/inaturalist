@@ -1,19 +1,29 @@
-  function showTooltip(evt, text) {
-    let tooltip = document.getElementById("tooltip");
-    tooltip.innerHTML = text;
-    tooltip.style.display = "block";
+$(function() {
+  $(document).on('mousemove', '.bar-rect', function(evt) {
+    showTooltip(evt, $(this).data('tooltip-text'));
+  });
 
-    // Calculate the center position of the rectangle
-    const rect = evt.target.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+  $(document).on('mouseout', '.bar-rect', function() {
+    hideTooltip();
+  });
+});
 
-    // Set the tooltip position
-    tooltip.style.left = centerX + 'px';
-    tooltip.style.top = centerY + 'px';
-  }
+function showTooltip(evt, text) {
+  var tooltip = $("#tooltip");
+  tooltip.html(text);
+  tooltip.css("display", "block");
 
-  function hideTooltip() {
-    var tooltip = document.getElementById("tooltip");
-    tooltip.style.display = "none";
-  }
+  // Calculate the center position of the rectangle
+  var rect = evt.target.getBoundingClientRect();
+  var centerX = rect.left + rect.width / 2;
+  var centerY = rect.top + rect.height / 2;
+
+  // Set the tooltip position
+  tooltip.css("left", centerX + 'px');
+  tooltip.css("top", centerY + 'px');
+}
+
+function hideTooltip() {
+  var tooltip = $("#tooltip");
+  tooltip.css("display", "none");
+}
