@@ -470,7 +470,7 @@ const actions = class actions {
     return function ( dispatch, getState ) {
       const s = getState( );
       const missingPhotosOrTaxa = _.some( s.dragDropZone.obsCards, c => (
-        c.validationErrors.media || c.validationErrors.taxa
+        c.validationErrors.media || c.validationErrors.taxon
       ) );
       if ( missingPhotosOrTaxa ) {
         dispatch( actions.setState( {

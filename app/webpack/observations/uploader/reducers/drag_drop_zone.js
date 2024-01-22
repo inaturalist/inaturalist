@@ -92,7 +92,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       if ( obsCard.validationErrors.date && attrs.date ) {
         delete attrs.validationErrors.date;
       }
-      if ( obsCard.validationErrors.location && ( attrs.latitude || attrs.locality_notes ) ) {
+      if ( obsCard.validationErrors.location && attrs.latitude && attrs.longitude ) {
         delete attrs.validationErrors.location;
       }
 

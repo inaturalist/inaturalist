@@ -417,9 +417,6 @@ input.failed, textarea.failed {
   margin: 3px;
   width: $obs-card-width;
   position: relative;
-  &.validation-error {
-    box-shadow: 0 0 0px 3px rgba(220, 53, 69, 0.8);
-  }
   &.ui-selecting {
     box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
   }
@@ -428,9 +425,6 @@ input.failed, textarea.failed {
   }
   &.dragging {
     box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
-    &.validation-error {
-      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.8);
-    }
   }
   &.saved {
     box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
@@ -443,6 +437,9 @@ input.failed, textarea.failed {
   }
   &.saving {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+  &.validation-error {
+    border: 3px dashed rgba(220,53,69,0.8);
   }
   textarea {
     resize: none;

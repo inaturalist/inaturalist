@@ -201,7 +201,7 @@ const ObsCard = class ObsCard {
     if ( !this.date ) {
       this.validationErrors.date = true;
     }
-    if ( ( !this.latitude && !this.locality_notes ) ) {
+    if ( ( !this.latitude || !this.longitude ) ) {
       this.validationErrors.location = true;
     }
   }
