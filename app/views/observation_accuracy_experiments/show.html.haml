@@ -7,35 +7,39 @@
 - content_for :extracss do
   = stylesheet_link_tag "observation_accuracy_experiments/show"
 
-%h1 Observation Accuracy Experiment
+%h1= "Observation Accuracy Experiment #{@experiment.id}"
 
+%p="Sample generation date: #{@experiment.sample_generation_date}"
+%p="Sample size: #{@experiment.sample_size}"
+%p="Assessment date: #{@experiment.assessment_date}"
+
+#tooltip
 - @data.each_pair do |key, barplot_data|
-  %svg{ width: "#{100 + 54 * barplot_data.count}", height: "150" }
-    %g{ transform: "translate(40,30)" }
-      %g.y.axis
-        - (0..5).each do |tick_value|
-          - tick_position = tick_value * 20
-          %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
-            %line{ x2: "-6", y2: "0" }
-            %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
-        %path.domain{ d: "M-6,0H0V100H-6" }
-        %text{ x: "70", y: "-20", dy: ".71em", style: "text-anchor: end;" }= key
+  .barplot-container
+    %h4= key
+    %svg{ width: "#{50 + 54 * barplot_data.count}", height: "150" }
+      %g{ transform: "translate(40,10)" }
+        %g.y.axis
+          - (0..5).each do |tick_value|
+            - tick_position = tick_value * 20
+            %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
+              %line{ x2: "-6", y2: "0" }
+              %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
+          %path.domain{ d: "M-6,0H0V100H-6" }
 
-      %g.x.axis{ transform: "translate(0,100)" }
-        - barplot_data.keys.each_with_index do |label, index|
-          %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
-            %line{ y2: "6", x2: "0" }
-            %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
+        %g.x.axis{ transform: "translate(0,100)" }
+          - barplot_data.keys.each_with_index do |label, index|
+            %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
+              %line{ y2: "6", x2: "0" }
+              %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
 
-      - barplot_data.values.each_with_index do |group, index|
-        - accumulated_height = 0
-        - group.each_with_index do |item, sub_index|
-          %a{ href: item[:url] }
-            - sub_label = %w[incorrect uncertain correct][sub_index]
-            %rect{ class: sub_label, x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();" }
-          - accumulated_height += item[:height]
+        - barplot_data.values.each_with_index do |group, index|
+          - accumulated_height = 0
+          - group.each_with_index do |item, sub_index|
+            %a{ href: item[:url] }
+              - sub_label = %w[incorrect uncertain correct][sub_index]
+              %rect{ class: sub_label, x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();" }
+            - accumulated_height += item[:height]
 
-      %g.axis
-        %line.dashed-line{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "10", y2: "10" }
-
-  #tooltip
+        %g.axis
+          %line.dashed-line{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "10", y2: "10" }

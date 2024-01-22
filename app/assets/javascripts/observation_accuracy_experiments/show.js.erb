@@ -19,6 +19,7 @@ function showTooltip(evt, text) {
   var centerY = rect.top + rect.height / 2;
 
   // Set the tooltip position
+  tooltip.css("position", "fixed");
   tooltip.css("left", centerX + 'px');
   tooltip.css("top", centerY + 'px');
 }

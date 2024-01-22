@@ -41,9 +41,15 @@
   .dashed-line {
     stroke-dasharray: 5, 5;
   }
+
+  .barplot-container {
+    display: inline-block;
+    margin-right: 20px;
+  }
   
   /* Custom tooltip styles */
   #tooltip {
+    position: fixed;
     background: #fff; /* White background */
     border: 1px solid #ccc; /* Light gray border */
     border-radius: 3px;

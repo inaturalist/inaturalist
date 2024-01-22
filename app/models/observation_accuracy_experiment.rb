@@ -599,7 +599,57 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
   end
 
-  def get_stats_for_single_bar( key: "quality_grade", value: "research" )
+  def taxon_rank_level_categories( key )
+    case key
+    when 5 then "subspecies"
+    when 10 then "species"
+    when 11..20 then "sp.-gen."
+    when 21..30 then "gen.-fam."
+    when 31..40 then "fam.-ord."
+    when 41..50 then "ord.-class"
+    when 51..60 then "class-phy."
+    when 61..70 then "phy.-king."
+    else "life"
+    end
+  end
+
+  def taxon_observations_count_categories( key )
+    case key
+    when 1..100 then "1-100"
+    when 101..1_000 then "100-1k"
+    when 1_001..10_000 then "1k-10k"
+    when 10_001..100_000 then "10k-100k"
+    else ">100k"
+    end
+  end
+
+  def normalize_counts( counts )
+    total = counts.values.flatten.count
+    stats = counts.transform_values do | ids |
+      norm = ( total.zero? ? 0 : ids.count / total.to_f * 100 ).round( 2 )
+      { url: FakeView.observations_url( verifiable: "any", place_id: "any", id: ids.join( "," ) ), height: norm }
+    end
+    [stats[:incorrect], stats[:uncertain], stats[:correct]]
+  end
+
+  def group_counts( ungrouped_counts, key )
+    counts = Hash.new {| h, k | h[k] = { correct: [], uncertain: [], incorrect: [] } }
+    ungrouped_counts.reverse_each do | k, v |
+      category = k
+      category = taxon_rank_level_categories( k ) if key == "taxon_rank_level"
+      category = taxon_observations_count_categories( k ) if key == "taxon_observations_count"
+      counts[category][:correct].concat( v[:correct] )
+      counts[category][:uncertain].concat( v[:uncertain] )
+      counts[category][:incorrect].concat( v[:incorrect] )
+    end
+    data = {}
+    counts.each do | k, v |
+      data[k] = normalize_counts( v )
+    end
+    data
+  end
+
+  def get_stats_for_single_bar( key: "quality_grade", value: "research", raw: false )
     value_condition = value == "none" ? "#{key} IS NULL" : "#{key} = ?"
     counts = {
       incorrect: observation_accuracy_samples.where( "#{value_condition} AND correct = 0", value ).
@@ -610,20 +660,28 @@ class ObservationAccuracyExperiment < ApplicationRecord
       correct: observation_accuracy_samples.where( "#{value_condition} AND correct = 1", value ).
         map( &:observation_id )
     }
-    total = counts.values.flatten.count
-    stats = counts.transform_values do | ids |
-      norm = ( total.zero? ? 0 : ids.count / total.to_f * 100 ).round( 2 )
-      { url: FakeView.observations_url( verifiable: "any", place_id: "any", id: ids.join( "," ) ), height: norm }
-    end
-    [stats[:incorrect], stats[:uncertain], stats[:correct]]
+    return counts if raw
+
+    normalize_counts( counts )
   end
 
   def get_barplot_data( the_key )
-    thevals = observation_accuracy_samples.map( &the_key.to_sym ).map {| val | val.nil? ? "none" : val }.uniq.sort
+    thevals = observation_accuracy_samples.map( &the_key.to_sym ).map do | val |
+      if val.nil?
+        ["taxon_observations_count", "year", "taxon_rank_level"].include?( the_key ) ? 0 : "none"
+      else
+        val
+      end
+    end.uniq.sort
     data = {}
     thevals.each do | the_val |
-      data[the_val] = get_stats_for_single_bar( key: the_key, value: the_val )
+      data[the_val] = if ["taxon_observations_count", "taxon_rank_level"].include? the_key
+        get_stats_for_single_bar( key: the_key, value: the_val, raw: true )
+      else
+        get_stats_for_single_bar( key: the_key, value: the_val )
+      end
     end
+    data = group_counts( data, the_key ) if ["taxon_observations_count", "taxon_rank_level"].include? the_key
     data
   end
 end
