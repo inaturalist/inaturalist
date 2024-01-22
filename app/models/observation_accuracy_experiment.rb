@@ -599,6 +599,22 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
   end
 
+  def get_top_level_stats
+    counts = {
+      incorrect: observation_accuracy_samples.where( correct: 0 ).count,
+      uncertain: observation_accuracy_samples.where( "( correct IS NULL OR correct = -1 )" ).count,
+      correct: observation_accuracy_samples.where( correct: 1 ).count
+    }
+    total = counts.values.sum
+    stats = counts.transform_values {| count | ( count / total.to_f * 100 ).round( 2 ) }
+    {
+      incorrect: stats[:incorrect],
+      uncertain: stats[:uncertain],
+      correct: stats[:correct],
+      precision: ( precision_mean * 100 ).round( 2 )
+    }
+  end
+
   def taxon_rank_level_categories( key )
     case key
     when 5 then "subspecies"
@@ -627,7 +643,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
     total = counts.values.flatten.count
     stats = counts.transform_values do | ids |
       norm = ( total.zero? ? 0 : ids.count / total.to_f * 100 ).round( 2 )
-      { url: FakeView.observations_url( verifiable: "any", place_id: "any", id: ids.join( "," ) ), height: norm }
+      {
+        url: FakeView.observations_url( verifiable: "any", place_id: "any", id: ids.join( "," ) ),
+        height: norm,
+        altheight: ids.count
+      }
     end
     [stats[:incorrect], stats[:uncertain], stats[:correct]]
   end

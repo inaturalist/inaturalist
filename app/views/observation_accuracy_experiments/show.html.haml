@@ -12,7 +12,9 @@
 %p="Sample generation date: #{@experiment.sample_generation_date}"
 %p="Sample size: #{@experiment.sample_size}"
 %p="Assessment date: #{@experiment.assessment_date}"
-
+%p
+- @stats_string = @stats.map {| k, v | "#{k}: #{v}%"}.join(", ")
+%p= @stats_string
 #tooltip
 - @data.each_pair do |key, barplot_data|
   .barplot-container
@@ -24,7 +26,7 @@
             - tick_position = tick_value * 20
             %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
               %line{ x2: "-6", y2: "0" }
-              %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
+              %text{ class: "ytext", dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
           %path.domain{ d: "M-6,0H0V100H-6" }
 
         %g.x.axis{ transform: "translate(0,100)" }
@@ -38,8 +40,10 @@
           - group.each_with_index do |item, sub_index|
             %a{ href: item[:url] }
               - sub_label = %w[incorrect uncertain correct][sub_index]
-              %rect{ class: sub_label, x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();" }
+              %rect{ class: "#{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}", x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", altheight: "#{item[:altheight]}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();",
+                 data: { altheight: item[:altheight], height: item[:height]} }
             - accumulated_height += item[:height]
 
         %g.axis
           %line.dashed-line{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "10", y2: "10" }
+%button.toggle-button Toggle Scale
