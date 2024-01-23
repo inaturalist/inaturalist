@@ -704,4 +704,25 @@ class ObservationAccuracyExperiment < ApplicationRecord
     data = group_counts( data, the_key ) if ["taxon_observations_count", "taxon_rank_level"].include? the_key
     data
   end
+
+  def format_validator_name( user_data )
+    return user_data.last if user_data.second.nil? || user_data.second.gsub( "\n", "" ) == ""
+
+    name_parts = user_data.second.split
+    "#{name_parts.first[0].capitalize}. #{name_parts.last.capitalize}"
+  end
+
+  def get_validator_names( limit: 20, offset: 0 )
+    validators_query = observation_accuracy_validators.offset( offset )
+    validators_query = validators_query.limit( limit ) unless limit.nil?
+
+    user_ids = validators_query.map( &:user_id )
+    users_data = User.where( id: user_ids ).pluck( :id, :name, :login )
+    users = users_data.index_by( &:first )
+
+    user_ids.map do | user_id |
+      user_data = users[user_id]
+      { name: format_validator_name( user_data ), id: user_id }
+    end
+  end
 end

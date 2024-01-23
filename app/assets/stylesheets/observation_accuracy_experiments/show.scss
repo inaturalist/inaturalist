@@ -1,6 +1,17 @@
   h1 {
     font: 24px sans-serif;
   }
+
+  #additional-validators {
+    color: #337ab7;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #additional-validators:hover {
+    text-decoration: none;
+  }
+
   .correct {
     fill: lightgreen;
   }
@@ -10,16 +21,19 @@
   .incorrect {
     fill: pink;
   }
+  .precision {
+    fill: lightblue;
+  }
 
-  .correct:hover {
+  .acc.correct:hover {
     fill: green;
   }
   
-  .uncertain:hover {
+  .acc.uncertain:hover {
     fill: gray;
   }
   
-  .incorrect:hover {
+  .acc.incorrect:hover {
     fill: red;
   }
 

@@ -7,43 +7,82 @@
 - content_for :extracss do
   = stylesheet_link_tag "observation_accuracy_experiments/show"
 
-%h1= "Observation Accuracy Experiment #{@experiment.id}"
+.container
+  .row
+    .col-xs-12
+      .alert.alert-warning{ role: "alert" } Experiment still in progress. Deadline for validating samples is January 31, 2024
+      %h1= "Observation Accuracy Experiment #{@experiment.id}"
+      %h4= @experiment.assessment_date.strftime("%B %d, %Y")
+      %p
+        Validators:
+        = [@validators,{name:"",id:0}].flatten.map { |user| link_to(user[:name], user_path(user[:id])) }.join(', ').html_safe
+        %span#additional-validators (162 additional validators)
+      .nav.nav-tabs
+        %li.nav-item.active
+          %a.nav-link.active{href: "#", 'aria-current': "page"} Resesarch Grade Results
+        %li.nav-item
+          %a.nav-link{href: "#"} Verifiable Results
+        %li.nav-item
+          %a.nav-link{href: "#"} All Results
+        %li.nav-item
+          %a.nav-link{href: "#"} Methods
+  .row
+    .col-xs-12
+      %svg{  viewBox: "0 0 920 110", preserveAspectRatio: "xMinYMin meet" }
+        %g{ transform: "translate(70,10)" }
+          %g.y.axis
+            - ["Correct", "Uncertain", "Incorrect", "Precision"].each_with_index do |label, index|
+              %g.tick{ transform: "translate(0,#{10 + 20 * index})", style: "opacity: 1;" }
+                %text{ dy: ".2em", x: "-70", y: "-2", style: "text-anchor: start; font-size: 14px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;" }= label
 
-%p="Sample generation date: #{@experiment.sample_generation_date}"
-%p="Sample size: #{@experiment.sample_size}"
-%p="Assessment date: #{@experiment.assessment_date}"
-%p
-- @stats_string = @stats.map {| k, v | "#{k}: #{v}%"}.join(", ")
-%p= @stats_string
-#tooltip
-- @data.each_pair do |key, barplot_data|
-  .barplot-container
-    %h4= key
-    %svg{ width: "#{50 + 54 * barplot_data.count}", height: "150" }
-      %g{ transform: "translate(40,10)" }
-        %g.y.axis
-          - (0..5).each do |tick_value|
-            - tick_position = tick_value * 20
-            %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
-              %line{ x2: "-6", y2: "0" }
-              %text{ class: "ytext", dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
-          %path.domain{ d: "M-6,0H0V100H-6" }
+          %g.x.axis{ transform: "translate(0,80)" }
+            - (0..10).each do |tick_value|
+              - tick_position = (10 - tick_value) * 80
+              %g.tick{ transform: "translate(#{tick_position},0)", style: "opacity: 1;" }
+                %line{ y2: "6", x2: "0" }
+                %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" } #{100 - tick_value * 10}%
+          %path.domain{ d: "M0,80H#{(10 * 80).to_i}", stroke: "black" }
 
-        %g.x.axis{ transform: "translate(0,100)" }
-          - barplot_data.keys.each_with_index do |label, index|
-            %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
-              %line{ y2: "6", x2: "0" }
-              %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
+          - @stats.each do |key, value|
+            %rect{ class: "stat #{key}", x: "0", height: "15", width: "#{value * 8}", y: "#{20 * @stats.keys.index(key)}" }
+            %text{ dy: ".71em", y: "#{20 * @stats.keys.index(key)+2}", x: "#{value * 8 + 25}", style: "text-anchor: middle;" } #{value}%
+        %p="Sample size: #{@experiment.sample_size}"
+  .row
+    .col-md-10
+      %h4 Accuracy Results
+    .col-md-2.text-end
+      %button.btn.btn-primary.toggle-button{ type: "button" } Toggle Scale
+  #tooltip
+  - @data.each_pair do |key, barplot_data|
+    .barplot-container
+      %h5= key
+      %svg{ width: "#{50 + 54 * barplot_data.count}", height: "150" }
+        %g{ transform: "translate(40,10)" }
+          %g.y.axis
+            - (0..5).each do |tick_value|
+              - tick_position = tick_value * 20
+              %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
+                %line{ x2: "-6", y2: "0" }
+                %text{ class: "ytext", dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
+            %path.domain{ d: "M-6,0H0V100H-6" }
 
-        - barplot_data.values.each_with_index do |group, index|
-          - accumulated_height = 0
-          - group.each_with_index do |item, sub_index|
-            %a{ href: item[:url] }
-              - sub_label = %w[incorrect uncertain correct][sub_index]
-              %rect{ class: "#{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}", x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", altheight: "#{item[:altheight]}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();",
-                 data: { altheight: item[:altheight], height: item[:height]} }
-            - accumulated_height += item[:height]
+          %g.x.axis{ transform: "translate(0,100)" }
+            - barplot_data.keys.each_with_index do |label, index|
+              %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
+                %line{ y2: "6", x2: "0" }
+                %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
 
-        %g.axis
-          %line.dashed-line{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "10", y2: "10" }
-%button.toggle-button Toggle Scale
+          - barplot_data.values.each_with_index do |group, index|
+            - accumulated_height = 0
+            - group.each_with_index do |item, sub_index|
+              %a{ href: item[:url] }
+                - sub_label = %w[incorrect uncertain correct][sub_index]
+                %rect{ class: "acc #{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}", x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", altheight: "#{item[:altheight]}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();",
+                   data: { altheight: item[:altheight], height: item[:height]} }
+              - accumulated_height += item[:height]
+
+          %g.axis
+            %line.dashed-line{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "10", y2: "10" }
+  .row
+    .col-xs-12
+      %h4 Precision Results

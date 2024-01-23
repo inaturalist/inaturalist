@@ -131,7 +131,11 @@ Rails.application.routes.draw do
       put :merge, to: "observation_fields#merge_field"
     end
   end
-  resources :observation_accuracy_experiments, only: [:show]
+  resources :observation_accuracy_experiments, only: [:show] do
+    member do
+      get "get_more_validators"
+    end
+  end
   get "/" => "welcome#index"
   get "/home" => "users#dashboard", :as => :home
   get "/home.:format" => "users#dashboard", :as => :formatted_home
