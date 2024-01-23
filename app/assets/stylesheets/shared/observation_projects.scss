@@ -35,6 +35,9 @@
   }
   .title {
     font-size: 16px;
+    a {
+      color: inherit;
+    }
   }
   .control-group {
     float: right;
@@ -70,6 +73,7 @@
     }
   }
   .projectObservationFields {
+    margin-top: 10px;
     .panel {
       background: none;
       border: 0;

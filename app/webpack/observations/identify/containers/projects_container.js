@@ -9,6 +9,7 @@ import {
 } from "../actions/current_observation_actions";
 import { updateCuratorAccess } from "../../show/ducks/project_observations";
 import { setProjectFieldsModalState } from "../../show/ducks/project_fields_modal";
+import { updateSession } from "../../show/ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -35,8 +36,8 @@ function mapDispatchToProps( dispatch ) {
         alreadyInProject: true,
         project
       } ) );
-    }
-
+    },
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 

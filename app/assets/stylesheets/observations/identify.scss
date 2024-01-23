@@ -326,3 +326,7 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
     }
   }
 }
+
+body>[role="dialog"] .modal-backdrop {
+  z-index: 1050;
+}

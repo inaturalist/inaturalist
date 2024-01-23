@@ -63,7 +63,13 @@ class Projects extends React.Component {
   }
 
   render( ) {
-    const { observation, config, collapsible } = this.props;
+    const {
+      observation,
+      config,
+      collapsible,
+      updateSession
+    } = this.props;
+    const { open } = this.state;
     const loggedIn = config && config.currentUser;
 
     const projectsOrProjObs = observation.non_traditional_projects
@@ -123,7 +129,7 @@ class Projects extends React.Component {
     const panelContent = (
       <div>
         { addProjectInput }
-        { projectsOrProjObs.map( obj => (
+        { _.sortBy( projectsOrProjObs, po => po.project.title ).map( obj => (
           <ProjectListing
             key={obj.project.id}
             displayObject={obj}
@@ -143,32 +149,24 @@ class Projects extends React.Component {
     const count = projectsOrProjObs.length > 0
       ? `(${projectsOrProjObs.length})`
       : "";
-    const sectionOpen = this.state.open;
     return (
       <div className="Projects collapsible-section">
-        <button
-          type="button"
-          className="btn btn-nostyle"
+        <h4
+          className="collapsible"
           onClick={( ) => {
             if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_projects: sectionOpen } );
+              updateSession( { prefers_hide_obs_show_projects: open } );
             }
-            this.setState( { open: !sectionOpen } );
+            this.setState( { open: !open } );
           }}
         >
-          <h4 className="collapsible">
-            <i className={`fa fa-chevron-circle-${this.state.open ? "down" : "right"}`} />
-            { I18n.t( "projects" ) }
-            { " " }
-            { count }
-          </h4>
-        </button>
-        <Panel id="projects-panel" expanded={this.state.open} onToggle={() => null}>
-          <Panel.Collapse>
-            <Panel.Body>
-              { panelContent }
-            </Panel.Body>
-          </Panel.Collapse>
+          <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
+          { I18n.t( "projects" ) }
+          { " " }
+          { count }
+        </h4>
+        <Panel id="projects-panel" expanded={open} onToggle={() => null}>
+          <Panel.Collapse>{ panelContent }</Panel.Collapse>
         </Panel>
       </div>
     );

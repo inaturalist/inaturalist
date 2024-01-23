@@ -611,7 +611,7 @@ a.UserImage,
     }
   }
   .opposite_activity {
-    & > .row > .col-xs-12 > div {
+    & > .row .col-xs-12 > div {
       margin-bottom: 15px;
     }
     h4 {
@@ -953,9 +953,6 @@ time {
 
 .Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
   border-top: 1px solid $border-grey;
-}
-.top-row .Projects {
-  border-top: none;
 }
 
 .collapsible-section {

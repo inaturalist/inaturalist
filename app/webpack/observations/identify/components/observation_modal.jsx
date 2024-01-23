@@ -845,10 +845,10 @@ class ObservationModal extends React.Component {
                 <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`} tabIndex="-1">
                   <div className="column-header">{ I18n.t( "annotations" ) }</div>
                   <AnnotationsContainer />
-                  <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
-                  <ObservationFieldsContainer />
                   <div className="column-header">{ I18n.t( "projects" ) }</div>
                   <ProjectsContainer />
+                  <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
+                  <ObservationFieldsContainer />
                 </div>
               ) }
               { activeTabs.indexOf( "data-quality" ) < 0 ? null : (

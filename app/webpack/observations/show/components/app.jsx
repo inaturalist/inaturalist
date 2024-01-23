@@ -336,7 +336,7 @@ const App = ( {
                   </Col>
                 </LazyLoad>
               </Row>
-              <Row className={_.isEmpty( controlledTerms ) ? "top-row" : ""}>
+              <Row>
                 <Col xs={12}>
                   <ProjectsContainer />
                 </Col>
