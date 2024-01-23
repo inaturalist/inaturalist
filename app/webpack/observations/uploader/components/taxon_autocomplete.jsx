@@ -687,13 +687,21 @@ class TaxonAutocomplete extends React.Component {
       value,
       onChange,
       placeholder,
-      onKeyDown
+      onKeyDown,
+      inputGroupClass
     } = this.props;
     const smallClass = small ? "input-sm" : "";
+    const inputGroupClasses = ["ac-chooser", "input-group"];
+    if ( small ) {
+      inputGroupClasses.push( "small" );
+    }
+    if ( inputGroupClass ) {
+      inputGroupClasses.push( inputGroupClass );
+    }
     return (
       <div className="form-group TaxonAutocomplete">
         <input type="hidden" name="taxon_id" />
-        <div className={`ac-chooser input-group ${small && "small"}`}>
+        <div className={inputGroupClasses.join( " " )}>
           <div className={`ac-select-thumb input-group-addon ${smallClass}`}>
             <Glyphicon glyph="search" />
           </div>
@@ -740,7 +748,8 @@ TaxonAutocomplete.propTypes = {
   observedByUserID: PropTypes.number,
   perPage: PropTypes.number,
   config: PropTypes.object,
-  onKeyDown: PropTypes.func
+  onKeyDown: PropTypes.func,
+  inputGroupClass: PropTypes.string
 };
 
 export default TaxonAutocomplete;

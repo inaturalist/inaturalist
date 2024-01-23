@@ -6,6 +6,7 @@
 @import "../shared/loading_spinner";
 @import "../shared/modals";
 @import "../shared/observation_fields";
+@import "../shared/observation_projects";
 @import "../shared/quality_metrics";
 @import "../shared/split_taxon";
 @import "../shared/user_with_icon";
@@ -610,7 +611,7 @@ a.UserImage,
     }
   }
   .opposite_activity {
-    & > .row > .col-xs-12 > div {
+    & > .row .col-xs-12 > div {
       margin-bottom: 15px;
     }
     h4 {
@@ -744,70 +745,6 @@ h3, h4 {
   .user a,
   .others {
     font-weight: 700;
-  }
-}
-
-.Projects {
-  .projectEntry,
-  .project,
-  .projectFields {
-    display: flex;
-    width: 100%;
-  }
-  .project .squareIcon {
-    margin-inline-end: 8px;
-  }
-  .projectEntry + .projectEntry {
-    margin-top: 15px;
-  }
-  .panel {
-    margin-top: 10px;
-  }
-  .info {
-    flex-grow: 1;
-    .fieldLink {
-      color: $other-link-color;
-      cursor: pointer;
-      .fa {
-        font-size: 12px;
-      }
-    }
-  }
-  .title {
-    font-size: 16px;
-  }
-  .control-group {
-    float: right;
-    .btn-group button .fa {
-      color: $text-grey;
-    }
-  }
-  button.dropdown-toggle {
-    border: none;
-    background: inherit !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    &:hover {
-      border: none;
-      background: inherit;
-    }
-    padding: 0;
-    line-height: 0px;
-  }
-  .dropdown {
-    .allow {
-      display: inline-block;
-      padding: 10px 20px 3px 20px;
-      input[type="checkbox"] {
-        margin-right: 5px;
-      }
-      .text-muted {
-        margin-top: 5px;
-      }
-      label {
-        font-weight: normal;
-      }
-    }
   }
 }
 
@@ -1016,9 +953,6 @@ time {
 
 .Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
   border-top: 1px solid $border-grey;
-}
-.top-row .Projects {
-  border-top: none;
 }
 
 .collapsible-section {
@@ -2016,7 +1950,7 @@ time {
   }
 }
 
-.LicensingModal.modal, .CommunityIDModal.modal, .ProjectFieldsModal.modal {
+.LicensingModal.modal, .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
     height: 85%;
@@ -2297,84 +2231,6 @@ time {
   font-size: 16px;
   button {
     margin-left: 10px;
-  }
-}
-
-.ProjectFieldsModal.modal {
-  .modal-dialog {
-    width: 600px;
-    min-width: 400px;
-    .modal-content {
-      padding-bottom: 120px;
-    }
-  }
-  .modal-header {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    background: #337ab7;
-    .modal-title {
-      color: white;
-    }
-    .close {
-      color: white;
-      opacity: 0.6;
-      text-shadow: 0 1px 0 #333333;
-      &:hover {
-        color: white;
-        opacity: 1;
-      }
-    }
-  }
-  .modal-body {
-    .intro {
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    .observation-field {
-      position: relative;
-      margin-bottom: 10px;
-      &.editing {
-        background: inherit;
-        padding: 0;
-        button {
-          background-color: #5cb85c;
-          border-color: #4cae4c;
-          &:hover {
-            color: white;
-            background-color: #449d44;
-            border-color: #398439;
-          }
-        }
-      }
-      &:not(.dna-field) {
-        button.standalone {
-          position: absolute;
-          top: 34px;
-          right: 0px;
-        }
-      }
-      &:not(:first-child) {
-        margin-top: 20px;
-      }
-      .form-group {
-        margin-bottom: 0px;
-      }
-      .field-name {
-        font-weight: 600;
-        font-size: 15px;
-        margin: 0px 0px 4px 0px;
-        .required {
-          margin-left: 5px;
-        }
-      }
-      .btn.standalone {
-        margin: 0;
-      }
-      .help-block {
-        margin-top: 8px;
-        margin-bottom: 0px;
-      }
-    }
   }
 }
 

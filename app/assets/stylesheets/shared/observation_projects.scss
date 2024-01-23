@@ -1,0 +1,188 @@
+@import "../colors";
+
+.Projects {
+  .project,
+  .projectFields {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .project .squareIcon {
+    margin-inline-end: 8px;
+    border: 1px solid $border-grey;
+    padding: 1px;
+    display: inline-block;
+    margin-inline-end: 5px;
+    img {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #B3B2B7;
+    }
+  }
+  .projectEntry + .projectEntry {
+    margin-top: 15px;
+  }
+  .panel {
+    margin-top: 10px;
+  }
+  .info {
+    flex-grow: 1;
+    .fieldLink {
+      color: $other-link-color;
+      cursor: pointer;
+      .fa {
+        font-size: 12px;
+      }
+    }
+  }
+  .title {
+    font-size: 16px;
+    a {
+      color: inherit;
+    }
+  }
+  .control-group {
+    float: right;
+    .btn-group button .fa {
+      color: $text-grey;
+    }
+  }
+  .projectEntry button.dropdown-toggle {
+    border: none;
+    background: inherit !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    &:hover {
+      border: none;
+      background: inherit;
+    }
+    padding: 0;
+    line-height: 0px;
+  }
+  .dropdown {
+    .allow {
+      display: inline-block;
+      padding: 10px 20px 3px 20px;
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+      .text-muted {
+        margin-top: 5px;
+      }
+      label {
+        font-weight: normal;
+      }
+    }
+  }
+  .projectObservationFields {
+    margin-top: 10px;
+    .panel {
+      background: none;
+      border: 0;
+      margin: 0;
+      box-shadow: none;
+    }
+    .panel-body {
+      padding: 0;
+    }
+  }
+}
+
+.ProjectFieldsModal.modal {
+  .modal-dialog {
+    width: 90%;
+    height: 85%;
+    max-width: 950px;
+    min-width: 750px;
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      padding-bottom: 65px;
+      overflow: hidden;
+    }
+    .modal-body {
+      height: 100%;
+      overflow-x: auto;
+      max-height: none;
+    }
+  }
+}
+
+.ProjectFieldsModal.modal {
+  .modal-dialog {
+    width: 600px;
+    min-width: 400px;
+    .modal-content {
+      padding-bottom: 120px;
+    }
+  }
+  .modal-header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: #337ab7;
+    .modal-title {
+      color: white;
+    }
+    .close {
+      color: white;
+      opacity: 0.6;
+      text-shadow: 0 1px 0 #333333;
+      &:hover {
+        color: white;
+        opacity: 1;
+      }
+    }
+  }
+  .modal-body {
+    .intro {
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .observation-field {
+      position: relative;
+      margin-bottom: 10px;
+      &.editing {
+        background: inherit;
+        padding: 0;
+        button {
+          background-color: #5cb85c;
+          border-color: #4cae4c;
+          &:hover {
+            color: white;
+            background-color: #449d44;
+            border-color: #398439;
+          }
+        }
+      }
+      &:not(.dna-field) {
+        button.standalone {
+          position: absolute;
+          top: 34px;
+          right: 0px;
+        }
+      }
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+      .form-group {
+        margin-bottom: 0px;
+      }
+      .field-name {
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0px 0px 4px 0px;
+        .required {
+          margin-left: 5px;
+        }
+      }
+      .btn.standalone {
+        margin: 0;
+      }
+      .help-block {
+        margin-top: 8px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
