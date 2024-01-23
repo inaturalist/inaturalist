@@ -60,15 +60,10 @@ $(function() {
   });
 
   $(document).on('click', '#additional-validators', function() {
-    // Get the current URL
     var currentURL = window.location.href;
-
-    // Use a regular expression to extract the experiment ID from the URL
     var match = currentURL.match(/\/observation_accuracy_experiments\/(\d+)/);
-
-    // Check if a match was found
     if (match) {
-      var experimentId = match[1]; // The experiment ID is in the first capturing group
+      var experimentId = match[1];
     } else {
       console.error('Experiment ID not found in the URL.');
     }
@@ -77,8 +72,6 @@ $(function() {
       type: 'GET',
       dataType: 'html', // Expecting HTML response
       success: function(data) {
-        console.log(data);
-        // Update the content of the span with the additional validators
         $('#additional-validators').html(data);
       },
       error: function() {

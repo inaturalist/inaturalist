@@ -16,7 +16,8 @@
       %p
         Validators:
         = [@validators,{name:"",id:0}].flatten.map { |user| link_to(user[:name], user_path(user[:id])) }.join(', ').html_safe
-        %span#additional-validators (162 additional validators)
+        - if @experiment.responding_validators > 20
+          %span#additional-validators (#{@experiment.responding_validators - 20} additional validators)
       .nav.nav-tabs
         %li.nav-item.active
           %a.nav-link.active{href: "#", 'aria-current': "page"} Resesarch Grade Results

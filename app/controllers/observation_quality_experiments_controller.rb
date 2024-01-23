@@ -4,6 +4,8 @@ class ObservationAccuracyExperimentsController < ApplicationController
   layout "bootstrap"
 
   def get_more_validators
+    experiment_id = params[:experimentId]
+    @experiment = ObservationAccuracyExperiment.find( experiment_id )
     @more_validators = get_validator_names( limit: nil, offset: 20 )
     respond_to do | format |
       format.html { render partial: "additional_validators", locals: { validators: @more_validators } }
