@@ -423,17 +423,23 @@ input.failed, textarea.failed {
   &.selected {
     box-shadow: 0 0 0 3px rgba(116, 172, 0, 1);
   }
-  &.dragging, &.saved {
+  &.dragging {
+    box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
+  }
+  &.saved {
     box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
   }
   &.hover, &.dragOver {
     box-shadow: 0 0 0 5px rgba(116, 172, 0, 1);
   }
   &.dragOver.dragging, &.failed {
-    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.8);
   }
   &.saving {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+  &.validation-error {
+    border: 3px dashed rgba(220,53,69,0.8);
   }
   textarea {
     resize: none;
@@ -539,10 +545,18 @@ input.failed, textarea.failed {
     text-align: center;
     height: 144px;
     line-height: 144px;
-    .placeholder .glyphicon {
-      line-height: 144px;
-      font-size: 100px;
-      opacity: 0.07;
+    .placeholder {
+      .glyphicon {
+        line-height: 144px;
+        font-size: 100px;
+        opacity: 0.07;
+      }
+      &.has-error {
+        color: #dc3545;
+        .glyphicon {
+          opacity: 0.15;
+        }
+      }
     }
     .gallery-item > .glyphicon,
     .gallery-item > .failed > .glyphicon {

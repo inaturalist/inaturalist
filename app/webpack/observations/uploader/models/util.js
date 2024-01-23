@@ -33,15 +33,17 @@ export function parsableDatetimeFormat( ) {
 }
 
 const util = class util {
-  static isOnline( callback ) {
-    // temporary until we have a ping API
-    fetch( "/pages/about", {
-      method: "head",
-      mode: "no-cors",
-      cache: "no-store"
-    } )
-      .then( ( ) => callback( true ) )
-      .catch( ( ) => callback( false ) );
+  static async isOnline( ) {
+    try {
+      await fetch( "/ping", {
+        method: "head",
+        mode: "no-cors",
+        cache: "no-store"
+      } );
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   // returns a Promise
