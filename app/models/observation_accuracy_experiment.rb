@@ -599,19 +599,37 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
   end
 
-  def get_top_level_stats
+  def get_top_level_stats( subset )
+    subset_filter = case subset
+    when "verifiable_results" then "( quality_grade = 'research' OR quality_grade = 'needs_id' )"
+    when "all_results" then nil
+    else "quality_grade = 'research'"
+    end
+
     counts = {
-      incorrect: observation_accuracy_samples.where( correct: 0 ).count,
-      uncertain: observation_accuracy_samples.where( "( correct IS NULL OR correct = -1 )" ).count,
-      correct: observation_accuracy_samples.where( correct: 1 ).count
+      incorrect: observation_accuracy_samples.
+        where( [subset_filter, "correct = 0"].compact.join( " AND " ).to_s ).count,
+      uncertain: observation_accuracy_samples.
+        where( [subset_filter, "( correct IS NULL OR correct = -1 )"].compact.join( " AND " ).to_s ).count,
+      correct: observation_accuracy_samples.
+        where( [subset_filter, "correct = 1"].compact.join( " AND " ).to_s ).count
     }
     total = counts.values.sum
-    stats = counts.transform_values {| count | ( count / total.to_f * 100 ).round( 2 ) }
+    stats = counts.transform_values {| count | ( total.zero? ? 0 : count / total.to_f * 100 ).round( 2 ) }
+
+    descendant_counts = observation_accuracy_samples.where( subset_filter.to_s ).map( &:descendant_count )
+    mean_precision = if descendant_counts.empty?
+      0
+    else
+      descendant_counts.map {| descendant_count | calculate_precision( descendant_count ) }.
+        sum / descendant_counts.count
+    end
+
     {
-      incorrect: stats[:incorrect],
-      uncertain: stats[:uncertain],
       correct: stats[:correct],
-      precision: ( precision_mean * 100 ).round( 2 )
+      uncertain: stats[:uncertain],
+      incorrect: stats[:incorrect],
+      precision: ( mean_precision * 100 ).round( 2 )
     }
   end
 
@@ -669,8 +687,32 @@ class ObservationAccuracyExperiment < ApplicationRecord
     data
   end
 
-  def get_stats_for_single_bar( key: "quality_grade", value: "research", raw: false )
+  def group_precision_counts( ungrouped_counts, key )
+    counts = Hash.new {| h, k | h[k] = [] }
+    ungrouped_counts.reverse_each do | k, v |
+      category = k
+      category = taxon_rank_level_categories( k ) if key == "taxon_rank_level"
+      category = taxon_observations_count_categories( k ) if key == "taxon_observations_count"
+      counts[category].concat( v )
+      counts[category].concat( v )
+      counts[category].concat( v )
+    end
+    data = {}
+    counts.each do | k, descendant_counts |
+      data[k] = if descendant_counts.empty?
+        0
+      else
+        descendant_counts.
+          map {| descendant_count | calculate_precision( descendant_count ) }.sum / descendant_counts.count
+      end
+    end
+  end
+
+  def get_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
     value_condition = value == "none" ? "#{key} IS NULL" : "#{key} = ?"
+
+    value_condition = [subset, value_condition].compact.join( " AND " ) unless key == "quality_grade"
+
     counts = {
       incorrect: observation_accuracy_samples.where( "#{value_condition} AND correct = 0", value ).
         map( &:observation_id ),
@@ -685,8 +727,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
     normalize_counts( counts )
   end
 
-  def get_barplot_data( the_key )
-    thevals = observation_accuracy_samples.map( &the_key.to_sym ).map do | val |
+  def get_barplot_data( the_key, subset )
+    subset_filter = case subset
+    when "verifiable_results" then "( quality_grade = 'research' OR quality_grade = 'needs_id' )"
+    when "all_results" then nil
+    else "quality_grade = 'research'"
+    end
+
+    thevals = observation_accuracy_samples.where( subset_filter ).map( &the_key.to_sym ).map do | val |
       if val.nil?
         ["taxon_observations_count", "year", "taxon_rank_level"].include?( the_key ) ? 0 : "none"
       else
@@ -696,12 +744,56 @@ class ObservationAccuracyExperiment < ApplicationRecord
     data = {}
     thevals.each do | the_val |
       data[the_val] = if ["taxon_observations_count", "taxon_rank_level"].include? the_key
-        get_stats_for_single_bar( key: the_key, value: the_val, raw: true )
+        get_stats_for_single_bar( key: the_key, value: the_val, raw: true, subset: subset_filter )
       else
-        get_stats_for_single_bar( key: the_key, value: the_val )
+        get_stats_for_single_bar( key: the_key, value: the_val, subset: subset_filter )
       end
     end
     data = group_counts( data, the_key ) if ["taxon_observations_count", "taxon_rank_level"].include? the_key
+    data
+  end
+
+  def get_precision_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
+    value_condition = value == "none" ? "#{key} IS NULL" : "#{key} = ?"
+
+    value_condition = [subset, value_condition].compact.join( " AND " ) unless key == "quality_grade"
+
+    descendant_counts = observation_accuracy_samples.where( value_condition, value.to_s ).
+      map( &:descendant_count )
+    return descendant_counts if raw
+
+    if descendant_counts.empty?
+      0
+    else
+      descendant_counts.
+        map {| descendant_count | calculate_precision( descendant_count ) }.sum / descendant_counts.count
+    end
+    precision_stat
+  end
+
+  def get_precision_barplot_data( the_key, subset )
+    subset_filter = case subset
+    when "verifiable_results" then "( quality_grade = 'research' OR quality_grade = 'needs_id' )"
+    when "all_results" then nil
+    else "quality_grade = 'research'"
+    end
+
+    thevals = observation_accuracy_samples.where( subset_filter ).map( &the_key.to_sym ).map do | val |
+      if val.nil?
+        ["taxon_observations_count", "year", "taxon_rank_level"].include?( the_key ) ? 0 : "none"
+      else
+        val
+      end
+    end.uniq.sort
+    data = {}
+    thevals.each do | the_val |
+      data[the_val] = if ["taxon_observations_count", "taxon_rank_level"].include? the_key
+        get_precision_stats_for_single_bar( key: the_key, value: the_val, raw: true, subset: subset_filter )
+      else
+        get_precision_stats_for_single_bar( key: the_key, value: the_val, subset: subset_filter )
+      end
+    end
+    data = group_precision_counts( data, the_key ) if ["taxon_observations_count", "taxon_rank_level"].include? the_key
     data
   end
 
