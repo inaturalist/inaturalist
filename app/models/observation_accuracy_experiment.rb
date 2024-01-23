@@ -768,7 +768,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       descendant_counts.
         map {| descendant_count | calculate_precision( descendant_count ) }.sum / descendant_counts.count
     end
-    precision_stat
   end
 
   def get_precision_barplot_data( the_key, subset )
