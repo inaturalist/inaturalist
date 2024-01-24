@@ -3368,6 +3368,7 @@ he:
   organism_is_wild: פרט בבר
   organisms: אורגניזמים
   original: מקור
+  original_flag: סימון מקורי
   originally_flagged_by: סומן במקור על ידי
   originally_imported_from_url_html: "מיובא במקור מ<a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "קישור מקורי עבור תמונה זו."
@@ -3453,8 +3454,12 @@ he:
   photo_credits: קרדיטים לתמונה
   photo_deleted: תמונה נמחקה
   photo_destroyed_because_it_was_deleted_from: "תמונה הושמדה בגלל שהיא נמחקה מאתר חיצוני או של%{site_name} לא קיימות יותר הרשאות צפייה"
+  #Message displayed after a photo has been hidden
+  photo_hidden: התמונה הוסתרה
   photo_licensing: רישוי תמונות
   photo_type: סוג תמונה
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: בוטלה הסתרת התמונה
   photo_urls_repaired: URL של התמונה תוקן
   photos_chosen_for_this_taxon: תמונות שנבחרו לטקסון זה
   photos_from: תמונות מ
@@ -4321,6 +4326,8 @@ he:
   remove_tags: הסרת תגיות
   removed: הוסר
   removed_project_user: הסרת משתמש פרוייקט
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: התפקיד הוסר
   removing: "מתבצעת הסרה..."
   reorder_by_taxonomy: סדר מחדש לפי טקסונומיה
   repair_broken_urls: תקן URLים שבורים
@@ -4377,6 +4384,14 @@ he:
   rotate_left: סיבוב לשמאל
   rotate_right: סיבוב לימין
   row_singular_or_plural: שורה/ות
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    לנסות פריסה מימין לשמאל? באפשרותך להשתמש גם בפרמטר test=rtl. יש לציין כי לא כל הדפים הומרו לפריסה מימין לשמאל.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: הצטרפת למבחן פריסה מימין לשמאל
   rules_and_formatting: "כללים ופורמטים"
   rules_for_adding_observations: כללים להוספת תצפיות
   rules_for_becoming_a_member: כללים להצטרפות
@@ -4504,6 +4519,8 @@ he:
   show_keyboard_shortcuts: הצגת קיצורי-מקלדת
   show_less: להציג פחות
   show_more: להציג עוד
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: הצגת אפשרויות התחברות נוספות
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: הצגת "ללא תוויות"
@@ -5288,6 +5305,10 @@ he:
   unknown: לא ידוע
   unknown_error: שגיאה לא ידועה
   unknown_rank: '(דירוג לא ידוע)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: ביטול מעקב אחר התצפית
+  #Text for a button to stop following updates from a user
+  unfollow_user: ביטול מעקב אחר המשתמש.ת
   unlink_your_google_account: ניתוק חשבון גוגל
   unlink_your_flickr_account: "ניתוק חשבון פליקר"
   unmute: ביטול השתקה
@@ -6000,6 +6021,10 @@ he:
           התוכן הניתן לסימון הוא תכונת הטקסט העיקרי של האובייקט שסומן בזמן יצירת הסימון. רק אוצרות.ים והצוות יכולים לראות תוכן זה. רק הצוות יכול לראות את זה עבור הודעות.
         flags_that_should_not_be_resolved_desc_html: |
           נא לפתור סימוני <code>ספאם</code> ו<code>הפרת זכויות יוצרים</code> רק במידה והתוכן אינו ספאם או הפרת זכויות יוצרים, בהתאמה.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          חיזוי גיאו-מודל עבור %{taxon}
     guides:
       index:
         deprecated_banner: |
