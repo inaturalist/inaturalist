@@ -2,6 +2,14 @@
     font: 24px sans-serif;
   }
 
+  h.sampleSize {
+    display: none;
+  }
+
+  p.sampleSize {
+    display: none;
+  }
+
   #additional-validators {
     color: #337ab7;
     text-decoration: none;
@@ -23,6 +31,10 @@
   }
   .precision {
     fill: lightblue;
+  }
+
+  .pre.precision:hover {
+    fill: blue;
   }
 
   .acc.correct:hover {

@@ -14,6 +14,8 @@ class ObservationAccuracyExperimentsController < ApplicationController
 
   def show
     @experiment = ObservationAccuracyExperiment.find( params[:id] )
+    @explorable = ( @experiment.validator_deadline_date > Time.now ) ||
+      ( logged_in? && ( current_user.is_admin? || is_curator_or_site_admin ) )
     @validators = @experiment.get_validator_names( limit: 20, offset: 0 )
     @tab = params[:tab] || "research_grade_results"
     @stats, @data, @precision_data = get_data_for_tab unless @tab == "methods"
@@ -34,6 +36,11 @@ class ObservationAccuracyExperimentsController < ApplicationController
     @precision_data = keys.each_with_object( {} ) do | key, data |
       data[key] = @experiment.get_precision_barplot_data( key, @tab )
     end
-    [@stats, @data, @precision_data]
+    @ylims = {}
+    @data.each do | key, sub_data |
+      max = sub_data.transform_values {| items | items.sum {| item | item[:altheight] } }.values.max
+      @ylims[key.to_sym] = ( max.to_f / 100 ).ceil * 100
+    end
+    [@stats, @data, @precision_data, @ylims]
   end
 end
