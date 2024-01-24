@@ -283,6 +283,13 @@ th:
   add_life_stage_larva_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวอ่อน"'
   add_life_stage_juvenile_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: วัยอ่อน"'
   add_life_stage_egg_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ไข่"'
+  add_evidence_of_presence_organism_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ตัวสิ่งมีชีวิต"'
+  add_evidence_of_presence_feather_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ขนนก"'
+  add_evidence_of_presence_gall_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ปุ่มปมในพืช"'
+  add_evidence_of_presence_scat_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: มูลสัตว์"'
+  add_evidence_of_presence_track_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: รอยตามทาง"'
+  add_evidence_of_presence_bone_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: กระดูก"'
+  add_evidence_of_presence_molt_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: คราบ"'
   #As in a Taxon Framework Relationship
   add_relationship: 'เพิ่มความสัมพันธ์'
   #As in a Guide Section
@@ -338,6 +345,7 @@ th:
   agree_: เห็นด้วย
   agree?: เห็นด้วย
   agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
+  agree_with_observation_taxon: เห็นด้วยกับหน่วยอนุกรมวิธานของการสังเกต
   agreeing: กำลังยืนยัน...
   aka: เป็นที่รู้จักกันในชื่อ
   #Noun, title of a popup alerting you to something
@@ -444,6 +452,7 @@ th:
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
   amphibians: สัตว์สะเทินน้ำสะเทินบก
   analyze_ids: วิเคราะห์การจำแนก
+  ancestor_taxon: หน่วยอนุกรมวิธานบรรพบุรุษ
   and_other_taxa: "&amp; หน่วยอนุกรมวิธานอื่น ๆ"
   android: แอนดรอยด์
   animals: สัตว์
@@ -564,6 +573,7 @@ th:
     แน่ใจหรือไม่ว่าต้องการลบการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "แน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการตรวจสอบของ %{place}?"
   associated_observations: การสังเกตที่เกี่ยวข้อง
+  attention: โปรดทราบ
   you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
   you_sure_delete_taxon_from_list?: "แน่ใจหรือไม่ว่าต้องการลบ %{taxon} ออกจากรายการ?"
   asc: น้อยไปมาก
@@ -583,6 +593,7 @@ th:
   attribution_uploaded_by_user: "%{attribution} อัปโหลดโดย %{user}"
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
+    natureserve: NatureServe
     cites: CITES
   automatic_short: อัตโนมัติ
   automatically_add_observations_to_this_project: เพิ่มการสังเกตเข้าโครงการนี้อัตโนมัติ
@@ -1110,6 +1121,7 @@ th:
   featured: แนะนำ
   fields: ข้อมูลเสริม
   fields_: ข้อมูลเสริม
+  fields_merged: ข้อมูลเสริมถูกรวม
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   #The name of a computer file
   filename: ชื่อไฟล์
@@ -1533,6 +1545,8 @@ th:
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
   lowest_rank: ลำดับต่ำสุด
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   #Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
   make_curator: ตั้งเป็นผู้ดูแล
@@ -1971,11 +1985,13 @@ th:
   places_name:
     africa: แอฟริกา
     american_samoa: อเมริกันซามัว
+    argentina: อาร์เจนตินา
     asia: เอเชีย
     azerbaijan: อาเซอร์ไบจาน
     bangladesh: บังกลาเทศ
     bhutan: ภูฏาน
     british_indian_ocean_territory: บริติชอินเดียนโอเชียนเทร์ริทอรี
+    british_virgin_islands: หมู่เกาะบริติชเวอร์จิน
     brunei: บรูไน
     cambodia: กัมพูชา
     cameroon: แคเมอรูน
@@ -2000,7 +2016,9 @@ th:
     jordan: จอร์แดน
     kazakhstan: คาซัคสถาน
     korea: เกาหลี
+    kyrgyzstan: คีร์กีซสถาน
     laos: ลาว
+    luxembourg: ลักเซมเบิร์ก
     malaysia: มาเลเซีย
     mongolia: มองโกเลีย
     morocco: โมร็อกโก
@@ -2037,7 +2055,9 @@ th:
     united_kingdom: สหราชอาณาจักร
     united_states: สหรัฐอเมริกา
     united_states_minor_outlying_islands: เกาะเล็กรอบนอกของสหรัฐอเมริกา
+    united_states_virgin_islands: หมู่เกาะเวอร์จินของสหรัฐ
     vietnam: เวียดนาม
+    virgin_islands: หมู่เกาะเวอร์จิน
     west_africa: แอฟริกาตะวันตก
     zambia: แซมเบีย
   places_of_interest: สถานที่น่าสนใจ
@@ -2667,6 +2687,8 @@ th:
   time_zone_asia_tokyo: เวลาญี่ปุ่นมาตรฐาน
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_yekaterinburg: เวลาเยคาเตรินบุร์ก
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: เวลาบริสเบน
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_melbourne: เวลาเมลเบิร์น
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -3549,6 +3571,11 @@ th:
           attributes:
             value:
               dna_only_atcg: "สำหรับ DNA จะต้องมีอักษร A T C หรือ G เท่านั้น"
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: มีขนาดใหญ่เกินไปจึงแก้ไขไม่ได้
+              is_too_large_to_import: มีขนาดใหญ่เกินไปจึงนำเข้าไม่ได้
         taxon_name:
           attributes:
             lexicon:
