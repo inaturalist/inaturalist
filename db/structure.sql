@@ -2584,8 +2584,8 @@ CREATE TABLE public.observation_accuracy_experiments (
     validator_contact_date timestamp without time zone,
     validator_deadline_date timestamp without time zone,
     assessment_date timestamp without time zone,
-    responding_validators integer,
-    validated_observations integer,
+    responding_validators integer DEFAULT 0,
+    validated_observations integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     version character varying
@@ -2628,15 +2628,14 @@ CREATE TABLE public.observation_accuracy_samples (
     taxon_rank_level integer,
     descendant_count integer,
     correct integer,
-    reviewers integer,
+    reviewers integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     sounds_only boolean,
     has_cid boolean,
     captive boolean,
     no_evidence boolean,
-    other_dqa_issue boolean,
-    validator_count integer
+    other_dqa_issue boolean
 );
 
 
@@ -10668,6 +10667,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124195720'),
 ('20240124195743'),
 ('20240124195835'),
-('20240124195908');
+('20240124214427'),
+('20240124214436');
 
 

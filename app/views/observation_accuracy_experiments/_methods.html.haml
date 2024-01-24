@@ -8,7 +8,7 @@
   .col-xs-12
     .container2
       %img{src: "https://static.inaturalist.org/wiki_page_attachments/3709-original.png", style: "width:500px;float: left;clear: left;margin: 0 30px 30px 0"}
-      = "Sample generated: #{@experiment.validator_deadline_date.strftime('%B %d, %Y')}"
+      = "Sample generated: #{@experiment.sample_generation_date.strftime('%B %d, %Y')}"
       %br
       = "Sample size: #{@experiment.sample_size}"
       %br
@@ -45,6 +45,7 @@
 
   .col-xs-6
     .barplot-container
+      - scale_factor = @validators_per_sample_ylim / 100 
       %svg{ width: "#{50 + 54 * @validators_per_sample.count}", height: "150" }
         %g{ transform: "translate(40,10)" }
           %g.y.axis
@@ -52,7 +53,7 @@
               - tick_position = tick_value * 20
               %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
                 %line{ x2: "-6", y2: "0" }
-                %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{1000 - tick_value * 200}
+                %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{( 100 - tick_value * 20 ) * scale_factor}
             %path.domain{ d: "M-6,0H0V100H-6" }
             %text{ transform: "rotate(-90)", y: "6", dy: ".71em", style: "text-anchor: end;"} Frequency
 
@@ -64,7 +65,7 @@
 
           - @validators_per_sample.values.each_with_index do |values, index|
             %a{ href: @explorable ? FakeView.observations_url( verifiable: "any", place_id: "any", id: values.join( "," ) ) : '#' }
-              %rect{ class: "validators", x: "#{10 + 54 * index}", width: "50", y: "#{100-values.count/10}", height: "#{values.count/10}", onmousemove: "showTooltip(evt, '#{values.count}');", onmouseout: "hideTooltip();",}
+              %rect{ class: "validators", x: "#{10 + 54 * index}", width: "50", y: "#{100 - values.count / scale_factor}", height: "#{values.count / scale_factor}", onmousemove: "showTooltip(evt, '#{values.count}');", onmouseout: "hideTooltip();",}
 .row
   .col-xs-12
     %h2 Step3: Scoring sample observations from validations

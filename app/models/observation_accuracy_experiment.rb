@@ -23,19 +23,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       distinct.pluck( :observation_id )
   end
 
-  def bootstrap_variance( original_sample )
-    num_iterations = 1000
-    bootstrap_means = []
-    num_iterations.times do
-      bootstrap_sample = Array.new( original_sample.size ) { original_sample.sample }
-      bootstrap_mean = bootstrap_sample.sum / bootstrap_sample.size.to_f
-      bootstrap_means << bootstrap_mean
-    end
-    mean_of_bootstrap_means = bootstrap_means.sum / bootstrap_means.size.to_f
-    sum_squared_diff = bootstrap_means.map {| mean | ( mean - mean_of_bootstrap_means )**2 }.sum
-    sum_squared_diff / ( bootstrap_means.size - 1 ).to_f
-  end
-
   def assess_quality( test_taxon_id, groundtruth_taxon_id, disagreement, previous_observation_taxon_id )
     test_taxon = Taxon.find( test_taxon_id )
     groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
@@ -46,28 +33,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       disagreement && previous_observation_taxon_id == test_taxon_id )
 
     nil
-  end
-
-  def get_quality_stats( qualities )
-    qualities_low = qualities.map {| q | q.nil? || q == -1 ? 0 : q }
-    qualities_high = qualities.map {| q | q.nil? || q == -1 ? 1 : q }
-    mean_high = qualities_high.sum / qualities_high.count.to_f
-    mean_low = qualities_low.sum / qualities_low.count.to_f
-    var_high = bootstrap_variance( qualities_high )
-    stdev_high = Math.sqrt( var_high )
-    var_low = bootstrap_variance( qualities_low )
-    stdev_low = Math.sqrt( var_low )
-    puts "Accuracy (lower): #{mean_low.round( 4 )} +/- #{stdev_low.round( 4 )}"
-    puts "Accuracy (higher): #{mean_high.round( 4 )} +/- #{stdev_high.round( 4 )}"
-    [mean_low, var_low, mean_high, var_high]
-  end
-
-  def get_precisions_stats( precisions )
-    mean_precision = precisions.sum / precisions.count.to_f
-    var_precision = bootstrap_variance( precisions )
-    stdev_precision = Math.sqrt( var_precision )
-    puts "Precision: #{mean_precision.round( 4 )} +/- #{stdev_precision.round( 4 )}"
-    [mean_precision, var_precision]
   end
 
   def fetch_top_iders( window: nil, taxon_id: nil, size: nil )
@@ -366,122 +331,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Sample generated in #{duration} seconds."
   end
 
-  # this method replaces all validators with ones attributed to a single user for testing
-  def replace_validators_for_testing( user_ids )
-    o = observation_accuracy_samples.
-      limit( 200 )
-    return nil if o.count.zero?
-
-    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: id ).destroy_all
-
-    user_ids.each do | user_id |
-      observation_validator = ObservationAccuracyValidator.
-        create( user_id: user_id, observation_accuracy_experiment_id: id )
-      observation_validator.observation_accuracy_samples << o
-    end
-  end
-
-  def generate_report
-    samples = ObservationAccuracySample.
-      where( observation_accuracy_experiment_id: id )
-    return nil if samples.empty?
-
-    puts "Sample consistes of #{samples.count} observations generated on #{sample_generation_date}"
-    puts "restricted to #{Taxon.find( taxon_id ).name}" if taxon_id
-    puts "\t"
-    puts "Sample grouped by taxonomic rank:"
-    rank_level_obs = {}
-    obs_count_obs = {}
-    samples.each do | sample |
-      rank_level_obs[sample.observation_id] = sample.taxon_rank_level
-      obs_count_obs[sample.observation_id] = sample.taxon_observations_count
-    end
-    rank_level_frequencies = rank_level_obs.group_by do | _, count |
-      case count
-      when 5
-        "subspecies"
-      when 10
-        "species"
-      when 11..20
-        "genus"
-      when 21..30
-        "family"
-      when 31..40
-        "order"
-      when 41..50
-        "class"
-      when 51..60
-        "phylum"
-      when 61..70
-        "kingdom"
-      else
-        "life"
-      end
-    end.transform_values( &:count )
-    bin_order = ["subspecies", "species", "genus", "family", "order", "class", "phylum", "kingdom", "life"]
-    sorted_rank_level_frequencies = rank_level_frequencies.sort_by {| bin, _ | bin_order.index( bin ) }.to_h
-    puts sorted_rank_level_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-    puts "\t"
-
-    puts "Sample grouped by observation count:"
-    obs_count_frequencies = obs_count_obs.group_by do | _, count |
-      case count
-      when 1..100
-        "1-100"
-      when 101..1_000
-        "100-1000"
-      when 1_001..10_000
-        "1000-10000"
-      when 10_001..100_000
-        "10000-100000"
-      else
-        ">100000"
-      end
-    end.transform_values( &:count )
-    bin_order = ["1-100", "100-1000", "1000-10000", "10000-100000", ">100000"]
-    sorted_obs_count_frequencies = obs_count_frequencies.sort_by {| bin, _ | bin_order.index( bin ) }.to_h
-    puts sorted_obs_count_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-    puts "\t"
-
-    attributes_to_group_by = [:quality_grade, :iconic_taxon_name, :year, :continent]
-
-    attributes_to_group_by.each do | attribute |
-      puts "Sample grouped by #{attribute.to_s.humanize}:"
-      frequencies = samples.group_by( &attribute ).transform_values( &:count )
-      sorted_frequencies = frequencies.sort_by {| _, count | -count }.to_h
-      puts sorted_frequencies.map {| k, v | "#{k}: #{v}" }.join( ", " )
-      puts "\t"
-    end
-
-    number_of_validators = observation_accuracy_validators.count
-    puts "Sample distributed among #{number_of_validators} candidate validator(s)"
-    puts "with a validator redundancy factor of #{validator_redundancy_factor}"
-
-    unless validator_contact_date.nil?
-      puts "Candidate validators contacted on #{validator_contact_date} with a deadline of #{validator_deadline_date}"
-    end
-
-    return if assessment_date.nil?
-
-    puts "Experiment assessed on #{assessment_date}"
-    responding_validators_percent = ( responding_validators / number_of_validators.to_f ).round( 2 ) * 100
-    puts "At that time #{responding_validators} validator(s) responded (#{responding_validators_percent}%)"
-    validated_observations_percent = ( validated_observations / samples.count.to_f ).round( 2 ) * 100
-    puts "and validated #{validated_observations} sample(s) (#{validated_observations_percent}%)"
-    puts "\t"
-    puts "Accuracy (lower): #{low_acuracy_mean.round( 4 )} +/- #{Math.sqrt( low_acuracy_variance ).round( 4 )}"
-    puts "Accuracy (higher): #{high_accuracy_mean.round( 4 )} +/- #{Math.sqrt( high_accuracy_variance ).round( 4 )}"
-    puts "Precision: #{precision_mean.round( 4 )} +/- #{Math.sqrt( precision_variance ).round( 4 )}"
-  end
-
-  def get_sample_id_by_validator
-    sample_ids_by_validator_id = {}
-    observation_accuracy_validators.each do | validator |
-      sample_ids_by_validator_id[validator.id] = validator.observation_accuracy_samples.pluck( :id )
-    end
-    sample_ids_by_validator_id
-  end
-
   def contact_validators( validator_deadline_date: 1.week.from_now.strftime( "%Y-%m-%d" ) )
     observation_accuracy_validators.each do | validator |
       if Emailer.observation_accuracy_validator_contact( validator, validator_deadline_date ).deliver_now
@@ -514,6 +363,11 @@ class ObservationAccuracyExperiment < ApplicationRecord
           values.map {| v | { taxon_id: v[0], disagreement: v[1], previous_observation_taxon_id: v[2] } }
         end
       groundtruths[user_id] = groundtruth_taxa
+      validation_count = groundtruth_taxa.count
+      if validation_count.positive?
+        validator.validation_count = validation_count
+        validator.save!
+      end
     end
 
     responding_validators = groundtruths.values.reject( &:empty? ).count
@@ -554,18 +408,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
       puts "There is at least one conflict"
       puts FakeView.identify_observations_url( reviewed: "any", quality_grade: "needs_id,research,casual", id: obs_ids )
     end
-    quality_stats = get_quality_stats( observation_accuracy_samples.map( &:correct ) )
-    precision_stats = get_precisions_stats( observation_accuracy_samples.
-      map {| sample | calculate_precision( sample.descendant_count ) } )
     self.assessment_date = Time.now
     self.responding_validators = responding_validators
     self.validated_observations = validated_observations
-    self.low_acuracy_mean = quality_stats[0]
-    self.low_acuracy_variance = quality_stats[1]
-    self.high_accuracy_mean = quality_stats[2]
-    self.high_accuracy_variance = quality_stats[3]
-    self.precision_mean = precision_stats[0]
-    self.precision_variance = precision_stats[1]
     save!
   end
 
@@ -575,19 +420,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return nil unless validator
 
     samples = validator.observation_accuracy_samples
-    return nil unless samples.count.positive?
-
-    oids = samples.map( &:observation_id ).join( "," )
-    FakeView.identify_observations_url(
-      place_id: "any",
-      reviewed: "any",
-      quality_grade: "needs_id,research,casual",
-      id: oids
-    )
-  end
-
-  def get_incorrect_observations_in_sample
-    samples = ObservationAccuracySample.where( observation_accuracy_experiment_id: id, correct: 0 )
     return nil unless samples.count.positive?
 
     oids = samples.map( &:observation_id ).join( "," )
@@ -806,7 +638,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_validator_names( limit: 20, offset: 0 )
-    validators_query = observation_accuracy_validators.offset( offset )
+    validators_query = observation_accuracy_validators.where.not( validation_count: nil ).
+      order( validation_count: :desc ).offset( offset )
     validators_query = validators_query.limit( limit ) unless limit.nil?
 
     user_ids = validators_query.map( &:user_id )

@@ -20,39 +20,11 @@ class ObservationAccuracyExperimentsController < ApplicationController
     @validators = @experiment.get_validator_names( limit: 20, offset: 0 )
 
     @tab = params[:tab] || "research_grade_results"
-    @stats, @data, @precision_data = get_data_for_tab unless @tab == "methods"
-
     if @tab == "methods"
-      @candidate_validators = @experiment.observation_accuracy_validators.count
-
-      @mean_validators_per_sample = @experiment.observation_accuracy_samples.
-        average( :reviewers )
-
-      grouped_observation_ids = @experiment.observation_accuracy_samples.
-        group( :reviewers ).pluck( :reviewers, "ARRAY_AGG(observation_id)" )
-      @validators_per_sample = { "0": [], "1": [], "2": [], "3-4": [], ">4": [] }
-      grouped_observation_ids.each do | reviewers, observation_ids |
-        case reviewers
-        when 0
-          @validators_per_sample[:"0"] = observation_ids
-        when 1
-          @validators_per_sample[:"1"] = observation_ids
-        when 2
-          @validators_per_sample[:"2"] = observation_ids
-        when 3..4
-          @validators_per_sample[:"3-4"] += observation_ids
-        else
-          @validators_per_sample[:">4"] += observation_ids
-        end
-      end
-
-      samples_by_validators = @experiment.observation_accuracy_validators.joins( :observation_accuracy_samples ).
-        group( "observation_accuracy_validators.id" ).count
-      @mean_validator_count = samples_by_validators.values.sum / samples_by_validators.count.to_f
-
-      validators_by_samples = @experiment.observation_accuracy_samples.joins( :observation_accuracy_validators ).
-        group( "observation_accuracy_samples.id" ).count
-      @mean_sample_count = validators_by_samples.values.sum / validators_by_samples.count.to_f
+      @candidate_validators, @mean_validators_per_sample, @validators_per_sample, \
+      @mean_validator_count, @mean_sample_count = get_data_for_methods
+    else
+      @stats, @data, @precision_data = get_data_for_tab
     end
     render "show"
   end
@@ -76,6 +48,57 @@ class ObservationAccuracyExperimentsController < ApplicationController
       max = sub_data.transform_values {| items | items.sum {| item | item[:altheight] } }.values.max
       @ylims[key.to_sym] = ( max.to_f / 100 ).ceil * 100
     end
+
     [@stats, @data, @precision_data, @ylims]
+  end
+
+  def get_data_for_methods
+    @candidate_validators = @experiment.observation_accuracy_validators.count
+
+    mean_validators_per_sample_query = @experiment.observation_accuracy_samples.
+      where( "reviewers IS NOT NULL" ).average( :reviewers )
+    @mean_validators_per_sample = if mean_validators_per_sample_query.nil?
+      0
+    else
+      mean_validators_per_sample_query.round
+    end
+
+    grouped_observation_ids = @experiment.observation_accuracy_samples.
+      group( :reviewers ).pluck( :reviewers, "ARRAY_AGG(observation_id)" )
+    @validators_per_sample = { "0": [], "1": [], "2": [], "3-4": [], ">4": [] }
+    grouped_observation_ids.each do | reviewers, observation_ids |
+      case reviewers
+      when 0
+        @validators_per_sample[:"0"] = observation_ids
+      when 1
+        @validators_per_sample[:"1"] = observation_ids
+      when 2
+        @validators_per_sample[:"2"] = observation_ids
+      when 3..4
+        @validators_per_sample[:"3-4"] += observation_ids
+      else
+        @validators_per_sample[:">4"] += observation_ids
+      end
+    end
+
+    max = @validators_per_sample.map {| _, v | v.count }.max
+    @validators_per_sample_ylim = ( max.to_f / 100 ).ceil * 100
+
+    samples_by_validators = @experiment.observation_accuracy_validators.joins( :observation_accuracy_samples ).
+      group( "observation_accuracy_validators.id" ).count
+    @mean_validator_count = samples_by_validators.values.sum / samples_by_validators.count
+
+    validators_by_samples = @experiment.observation_accuracy_samples.joins( :observation_accuracy_validators ).
+      group( "observation_accuracy_samples.id" ).count
+    @mean_sample_count = validators_by_samples.values.sum / validators_by_samples.count
+
+    [
+      @candidate_validators,
+      @mean_validators_per_sample,
+      @validators_per_sample,
+      @validators_per_sample_ylim,
+      @mean_validator_count,
+      @mean_sample_count
+    ]
   end
 end
