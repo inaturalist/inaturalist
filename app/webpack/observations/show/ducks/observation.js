@@ -17,11 +17,17 @@ import { fetchSubscriptions, resetSubscriptions, setSubscriptions } from "./subs
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "./confirm_modal";
-import { setProjectFieldsModalState } from "./project_fields_modal";
 import { updateSession } from "./users";
-import util from "../util";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 import RejectedFilesError from "../../../shared/components/rejected_files_error";
+import {
+  addToProject as sharedAddToProject,
+  removeFromProject as sharedRemoveFromProject,
+  joinProject as sharedJoinProject,
+  addObservationFieldValue as sharedAddObservationFieldValue,
+  updateObservationFieldValue as sharedUpdateObservationFieldValue,
+  removeObservationFieldValue as sharedRemoveObservationFieldValue
+} from "../../shared/ducks/observation";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
@@ -355,7 +361,14 @@ export function getActionTime( ) {
 }
 
 export function hasObsAndLoggedIn( state ) {
-  return ( state && state.config && state.config.currentUser && state.observation );
+  return (
+    state
+    && state.config
+    && state.config.currentUser
+    && ( state.observation || (
+      state.currentObservation && state.currentObservation.observation
+    ) )
+  );
 }
 
 export function userIsObserver( state ) {
@@ -541,19 +554,20 @@ export function afterAPICall( options = { } ) {
     }
     if ( options.callback ) {
       options.callback( );
-    } else {
-      if ( options.actionTime && lastAction !== options.actionTime ) {
-        return;
-      }
-      if ( state.observation ) {
-        dispatch(
-          fetchObservation(
-            testingApiV2 ? state.observation.uuid : state.observation.id,
-            options
-          )
-        );
-      }
+      return;
     }
+    if (
+      ( options.actionTime && lastAction !== options.actionTime )
+      || !state.observation
+    ) {
+      return;
+    }
+    dispatch(
+      fetchObservation(
+        testingApiV2 ? state.observation.uuid : state.observation.id,
+        options
+      )
+    );
   };
 }
 
@@ -1200,96 +1214,37 @@ export function unvoteMetric( metric ) {
   };
 }
 
-export function addToProjectSubmit( project ) {
+export function addToProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newProjectObs = _.clone( state.observation.project_observations );
-    newProjectObs.unshift( {
-      project,
-      user_id: state.config.currentUser.id,
-      user: state.config.currentUser,
-      api_status: "saving"
-    } );
-    dispatch( setAttributes( { project_observations: newProjectObs } ) );
-
-    const actionTime = getActionTime( );
     const { testingApiV2 } = state.config;
-    const errorHandler = e => {
-      dispatch( handleAPIError( e, `Failed to add to project ${project.title}`, {
-        onConfirm: ( ) => {
-          const currentProjObs = getState( ).observation.project_observations;
-          dispatch( setAttributes( {
-            project_observations:
-              _.filter( currentProjObs, po => ( po.project.id !== project.id ) )
-          } ) );
-        }
-      } ) );
-    };
-    if ( testingApiV2 ) {
-      const payload = {
-        project_observation: {
-          project_id: project.id,
-          observation_id: state.observation.uuid
-        }
-      };
-      inatjs.project_observations.create( payload ).then( ( ) => {
-        dispatch( afterAPICall( { actionTime } ) );
-      } ).catch( errorHandler );
-    } else {
-      const payload = { id: project.id, observation_id: state.observation.id };
-      inatjs.projects.add( payload ).then( ( ) => {
-        dispatch( afterAPICall( { actionTime } ) );
-      } ).catch( errorHandler );
-    }
-  };
-}
-
-export function addToProject( project, options = { } ) {
-  return ( dispatch, getState ) => {
-    const state = getState( );
-    if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const missingFields = util.observationMissingProjectFields( state.observation, project );
-    if ( !_.isEmpty( missingFields ) && !options.ignoreMissing ) {
-      // there are empty required project fields, so show the modal
-      dispatch( setProjectFieldsModalState( {
-        show: true,
-        project,
-        onSubmit: ( ) => {
-          dispatch( setProjectFieldsModalState( { show: false } ) );
-          // user may have chosen to leave some non-required fields empty
-          dispatch( addToProject( project, { ignoreMissing: true } ) );
-        }
-      } ) );
-      return;
-    }
-    // there are no empty required fields, so proceed with adding
-    dispatch( addToProjectSubmit( project ) );
+    dispatch( sharedAddToProject(
+      state.observation,
+      project,
+      setAttributes,
+      ( ) => {
+        dispatch( fetchObservation(
+          testingApiV2 ? state.observation.uuid : state.observation.id
+        ) );
+      }
+    ) );
   };
 }
 
 export function removeFromProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const poToDelete = _.find(
-      state.observation.project_observations,
-      po => po.project.id === project.id
-    );
-    const newProjectObs = state.observation.project_observations.filter( po => (
-      po.project.id !== project.id
-    ) );
-    dispatch( setAttributes( { project_observations: newProjectObs } ) );
     const { testingApiV2 } = state.config;
-    if ( testingApiV2 ) {
-      dispatch( callAPI(
-        inatjs.project_observations.delete,
-        { id: poToDelete.uuid || poToDelete.id }
-      ) );
-    } else {
-      const payload = { id: project.id, observation_id: state.observation.id };
-      dispatch( callAPI( inatjs.projects.remove, payload ) );
-    }
+    dispatch( sharedRemoveFromProject(
+      state.observation,
+      project,
+      setAttributes,
+      ( ) => {
+        dispatch( fetchObservation(
+          testingApiV2 ? state.observation.uuid : state.observation.id
+        ) );
+      }
+    ) );
   };
 }
 
@@ -1306,67 +1261,72 @@ export function confirmRemoveFromProject( project ) {
   };
 }
 
+export function joinProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    dispatch( sharedJoinProject(
+      state.observation,
+      project,
+      setAttributes,
+      ( ) => {
+        dispatch( fetchObservation(
+          testingApiV2 ? state.observation.uuid : state.observation.id
+        ) );
+      }
+    ) );
+  };
+}
+
 export function addObservationFieldValue( options ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !hasObsAndLoggedIn( state ) || !options.observationField ) { return; }
     const { testingApiV2 } = state.config;
-    const newOfvs = _.clone( state.observation.ofvs );
-    newOfvs.unshift( {
-      datatype: options.observationField.datatype,
-      name: options.observationField.name,
-      value: options.value,
-      observation_field: options.observationField,
-      api_status: "saving",
-      taxon: options.taxon
-    } );
-    dispatch( setAttributes( { ofvs: newOfvs } ) );
-    const payload = {
-      observation_field_value: {
-        observation_field_id: options.observationField.id,
-        observation_id: testingApiV2 ? state.observation.uuid : state.observation.id,
-        value: options.value
-      }
-    };
-    dispatch( callAPI( inatjs.observation_field_values.create, payload ) );
+    dispatch( sharedAddObservationFieldValue(
+      state.observation,
+      setAttributes,
+      ( ) => {
+        dispatch( fetchObservation(
+          testingApiV2 ? state.observation.uuid : state.observation.id
+        ) );
+      },
+      options
+    ) );
   };
 }
 
 export function updateObservationFieldValue( id, options ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !hasObsAndLoggedIn( state ) || !options.observationField ) { return; }
     const { testingApiV2 } = state.config;
-    const newOfvs = state.observation.ofvs.map( ofv => (
-      ofv.uuid === id ? {
-        datatype: options.observationField.datatype,
-        name: options.observationField.name,
-        value: options.value,
-        observation_field: options.observationField,
-        api_status: "saving",
-        taxon: options.taxon
-      } : ofv ) );
-    dispatch( setAttributes( { ofvs: newOfvs } ) );
-    const payload = {
-      uuid: id,
-      observation_field_value: {
-        observation_field_id: options.observationField.id,
-        observation_id: testingApiV2 ? state.observation.uuid : state.observation.id,
-        value: options.value
-      }
-    };
-    dispatch( callAPI( inatjs.observation_field_values.update, payload ) );
+    dispatch( sharedUpdateObservationFieldValue(
+      state.observation,
+      id,
+      setAttributes,
+      ( ) => {
+        dispatch( fetchObservation(
+          testingApiV2 ? state.observation.uuid : state.observation.id
+        ) );
+      },
+      options
+    ) );
   };
 }
 
 export function removeObservationFieldValue( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newOfvs = state.observation.ofvs.map( ofv => (
-      ofv.uuid === id ? { ...ofv, api_status: "deleting" } : ofv ) );
-    dispatch( setAttributes( { ofvs: newOfvs } ) );
-    dispatch( callAPI( inatjs.observation_field_values.delete, { id } ) );
+    const { testingApiV2 } = state.config;
+    dispatch( sharedRemoveObservationFieldValue(
+      state.observation,
+      id,
+      setAttributes,
+      ( ) => {
+        dispatch( fetchObservation(
+          testingApiV2 ? state.observation.uuid : state.observation.id
+        ) );
+      }
+    ) );
   };
 }
 

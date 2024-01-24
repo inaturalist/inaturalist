@@ -436,38 +436,43 @@ const actions = class actions {
     };
   }
 
-  static trySubmitObservations( ) {
-    return function ( dispatch ) {
-      util.isOnline( online => {
-        if ( online ) {
-          dispatch( actions.submitCheckNoPhotoOrNoID( ) );
-        } else {
-          dispatch( actions.setState( {
-            confirmModal: {
-              show: true,
-              hideCancel: true,
-              confirmText: I18n.t( "ok" ),
-              message: I18n.t( "you_appear_offline_try_again" )
-            }
-          } ) );
-        }
+  static validateObservationMetadata( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      _.each( s.dragDropZone.obsCards, c => {
+        c.validate( );
+        dispatch( actions.updateObsCard( c, { validationErrors: c.validationErrors } ) );
       } );
+    };
+  }
+
+  static trySubmitObservations( ) {
+    return async function ( dispatch ) {
+      const isOnline = await util.isOnline( );
+      if ( !isOnline ) {
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            hideCancel: true,
+            confirmText: I18n.t( "ok" ),
+            message: I18n.t( "you_appear_offline_try_again" )
+          }
+        } ) );
+        return;
+      }
+      dispatch( actions.selectObsCards( { } ) );
+      dispatch( actions.validateObservationMetadata( ) );
+      dispatch( actions.submitCheckNoPhotoOrNoID( ) );
     };
   }
 
   static submitCheckNoPhotoOrNoID( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      let failed;
-      _.each( s.dragDropZone.obsCards, c => {
-        if (
-          !failed
-          && ( _.size( c.files ) === 0 || ( !c.taxon_id && !c.species_guess ) )
-        ) {
-          failed = true;
-        }
-      } );
-      if ( failed ) {
+      const missingPhotosOrTaxa = _.some( s.dragDropZone.obsCards, c => (
+        c.validationErrors.media || c.validationErrors.taxon
+      ) );
+      if ( missingPhotosOrTaxa ) {
         dispatch( actions.setState( {
           confirmModal: {
             show: true,
@@ -489,13 +494,10 @@ const actions = class actions {
   static submitCheckPhotoNoDateOrLocation( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      let failed;
-      _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && ( !c.date || ( !c.latitude && !c.locality_notes ) ) ) {
-          failed = true;
-        }
-      } );
-      if ( failed ) {
+      const missingDateOrLocation = _.some( s.dragDropZone.obsCards, c => (
+        c.validationErrors.date || c.validationErrors.location
+      ) );
+      if ( missingDateOrLocation ) {
         dispatch( actions.setState( {
           confirmModal: {
             show: true,
@@ -516,7 +518,6 @@ const actions = class actions {
   static submitObservations( ) {
     return function ( dispatch ) {
       dispatch( { type: types.SET_STATE, attrs: { saveStatus: "saving" } } );
-      dispatch( actions.selectObsCards( { } ) );
       dispatch( actions.saveObservations( ) );
     };
   }
@@ -535,6 +536,9 @@ const actions = class actions {
       let nextToSave;
       _.each( s.dragDropZone.obsPositions, cardID => {
         const c = s.dragDropZone.obsCards[cardID];
+        if ( !c ) {
+          return;
+        }
         stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
         stateCounts[c.saveState] += 1;
         if ( c.saveState === "pending" && !nextToSave ) {
