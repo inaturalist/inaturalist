@@ -2,11 +2,7 @@
     font: 24px sans-serif;
   }
 
-  h.sampleSize {
-    display: none;
-  }
-
-  p.sampleSize {
+  .sampleSize {
     display: none;
   }
 
@@ -20,6 +16,12 @@
     text-decoration: none;
   }
 
+  .validators {
+    fill: #F9DD8F;
+  }
+  .validators:hover {
+    fill: #B29A5B;
+  }
   .correct {
     fill: lightgreen;
   }

@@ -12,20 +12,14 @@ $(function() {
     useAltHeight = !useAltHeight;
     updateRects();
 
+    var $button = $('.toggle-button');
+    useAltHeight ? $button.text("show percent") : $button.text("show frequency");
+
     var $axisElement = $('line.dashed-line.acc');
     useAltHeight ? $axisElement.hide() : $axisElement.show();
 
-    var $pSampleSize = $('p.sampleSize');
-    useAltHeight ? $pSampleSize.show() : $pSampleSize.hide();
-
-    var $pAccuracy = $('p.accuracy');
-    useAltHeight ? $pAccuracy.hide() : $pAccuracy.show();
-
-    var $hSampleSize = $('h4.sampleSize');
-    useAltHeight ? $hSampleSize.show() : $hSampleSize.hide();
-
-    var $hAccuracy = $('h4.accuracy');
-    useAltHeight ? $hAccuracy.hide() : $hAccuracy.show();
+    var $sampleSize = $('.sampleSize');
+    useAltHeight ? $sampleSize.show() : $sampleSize.hide();
 
     var $yTextElements = $('.ytext');
     $yTextElements.each(function(index, element) {

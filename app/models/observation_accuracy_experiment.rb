@@ -629,7 +629,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
       correct: stats[:correct],
       uncertain: stats[:uncertain],
       incorrect: stats[:incorrect],
-      precision: ( mean_precision * 100 ).round( 2 )
+      precision: ( mean_precision * 100 ).round( 2 ),
+      sample_size: descendant_counts.count
     }
   end
 

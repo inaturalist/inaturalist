@@ -35,13 +35,13 @@
   - else
     .row
       .col-xs-12
-        %svg{  viewBox: "0 0 920 110", preserveAspectRatio: "xMinYMin meet" }
-          %g{ transform: "translate(70,10)" }
+        %svg{  viewBox: "0 0 920 140", preserveAspectRatio: "xMinYMin meet" }
+          %g{ transform: "translate(70,20)" }
             %g.y.axis
               - ["Correct", "Uncertain", "Incorrect", "Precision"].each_with_index do |label, index|
                 %g.tick{ transform: "translate(0,#{10 + 20 * index})", style: "opacity: 1;" }
-                  %text{ dy: ".2em", x: "-70", y: "-2", style: "text-anchor: start; font-size: 14px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;" }= label
-
+                  %text{ dy: ".2em", x: "-70", y: "-2", style: "text-anchor: start; font-size: #{label=="Precision" ? 14 : 10}px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;" }= label
+              %text{ dy: ".2em", x: "-70", y: "-10", style: "text-anchor: start; font-size: 14px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;" } Accuracy
             %g.x.axis{ transform: "translate(0,80)" }
               - (0..10).each do |tick_value|
                 - tick_position = (10 - tick_value) * 80
@@ -51,19 +51,22 @@
             %path.domain{ d: "M0,80H#{(10 * 80).to_i}", stroke: "black" }
 
             - @stats.each do |key, value|
+              - next if key == :sample_size
               %rect{ class: "stat #{key}", x: "0", height: "15", width: "#{value * 8}", y: "#{20 * @stats.keys.index(key)}" }
               %text{ dy: ".71em", y: "#{20 * @stats.keys.index(key)+2}", x: "#{value * 8 + 25}", style: "text-anchor: middle;" } #{value.round}%
     .row
+      .col-md-12
+        %h4 Accuracy results by subset
+    .row
       .col-md-10
-        %h4.accuracy Accuracy results by subset
-        %h4.sampleSize Sample size by subset
+        %p
+          - if @explorable
+            Click on bars to explore subsets.
+          %span.sampleSize= "  Sample size: #{@stats[:sample_size]}"
       .col-md-2.text-end
-        %button.btn.btn-primary.toggle-button{ type: "button" } Toggle Units
+        %button.btn.btn-primary.toggle-button{ type: "button" } show frequency
     .row
       .col-md-12
-        - if @explorable
-          %p.accuracy Click on bars to explore observations
-        %p.sampleSize= "Sample size: #{@experiment.sample_size}"
         - @data.each_pair do |key, barplot_data|
           - scale_factor = @ylims[key.to_sym] / 100 
           - if scale_factor > 0

@@ -19,6 +19,30 @@ class ObservationAccuracyExperimentsController < ApplicationController
     @validators = @experiment.get_validator_names( limit: 20, offset: 0 )
     @tab = params[:tab] || "research_grade_results"
     @stats, @data, @precision_data = get_data_for_tab unless @tab == "methods"
+    if @tab == "methods"
+      @candidate_validators = @experiment.observation_accuracy_validators.count
+      @mean_validators_per_sample = @experiment.observation_accuracy_samples.
+        map( &:reviewers ).sum / @experiment.observation_accuracy_samples.count
+      @mean_validator_count = @experiment.observation_accuracy_samples.includes( :observation_accuracy_validators ).
+        average( "observation_accuracy_validators.id" )
+      @mean_sample_count = @experiment.observation_accuracy_validators.includes( :observation_accuracy_samples ).
+        average( "observation_accuracy_samples.id" )
+      grouped_observation_ids = @experiment.observation_accuracy_samples.
+        group( :reviewers ).pluck( :reviewers, "ARRAY_AGG( observation_id )" )
+      @validators_per_sample = { "0": [], "1": [], "2-5": [], ">5": [] }
+      grouped_observation_ids.each do | reviewers, observation_ids |
+        case reviewers
+        when 0
+          @validators_per_sample[:"0"] = observation_ids
+        when 1
+          @validators_per_sample[:"1"] = observation_ids
+        when 2..5
+          @validators_per_sample[:"2-5"] += observation_ids
+        else
+          @validators_per_sample[:">5"] += observation_ids
+        end
+      end
+    end
     render "show"
   end
 
