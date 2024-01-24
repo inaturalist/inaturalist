@@ -35,13 +35,14 @@
     %h2 Step2: Validating samples
 .row
   .col-xs-6
-    = "We contacted candidate validators and asked them to add identifications to their subsamples."
+    = "We contacted candidate validators and asked them to add identifications to their subsamples. The graph to the right groups sample observation by the number of validators"
+    %br
+    = "Mean number of validators per sample observation: #{@mean_validators_per_sample}"
     %br
     = "Number of participating validators: #{@experiment.responding_validators} (#{ ( @experiment.responding_validators /  @candidate_validators.to_f * 100 ).round}%)"
     %br
     = "Percent of sample validated: #{( @experiment.validated_observations / @experiment.sample_size.to_f * 100 ).round}%"
-    %br
-    = "Mean number of validators per sample: #{@mean_validators_per_sample}"
+
   .col-xs-6
     .barplot-container
       %svg{ width: "#{50 + 54 * @validators_per_sample.count}", height: "150" }
@@ -62,7 +63,8 @@
                 %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
 
           - @validators_per_sample.values.each_with_index do |values, index|
-            %rect{ class: "validators", x: "#{10 + 54 * index}", width: "50", y: "#{100-values.count/10}", height: "#{values.count/10}", onmousemove: "showTooltip(evt, '#{values.count}');", onmouseout: "hideTooltip();",}
+            %a{ href: @explorable ? FakeView.observations_url( verifiable: "any", place_id: "any", id: values.join( "," ) ) : '#' }
+              %rect{ class: "validators", x: "#{10 + 54 * index}", width: "50", y: "#{100-values.count/10}", height: "#{values.count/10}", onmousemove: "showTooltip(evt, '#{values.count}');", onmouseout: "hideTooltip();",}
 .row
   .col-xs-12
     %h2 Step3: Scoring sample observations from validations
