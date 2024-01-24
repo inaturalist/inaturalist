@@ -28,7 +28,7 @@ class ObservationAccuracyExperimentsController < ApplicationController
       @mean_sample_count = @experiment.observation_accuracy_validators.includes( :observation_accuracy_samples ).
         average( "observation_accuracy_samples.id" )
       grouped_observation_ids = @experiment.observation_accuracy_samples.
-        group( :reviewers ).pluck( :reviewers, "ARRAY_AGG( observation_id )" )
+        group( :reviewers ).pluck( :reviewers, "ARRAY_AGG(observation_id)" )
       @validators_per_sample = { "0": [], "1": [], "2-5": [], ">5": [] }
       grouped_observation_ids.each do | reviewers, observation_ids |
         case reviewers
