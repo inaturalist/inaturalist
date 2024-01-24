@@ -16,7 +16,7 @@ class ObservationAccuracyExperimentsController < ApplicationController
     @experiment = ObservationAccuracyExperiment.find( params[:id] )
     @validators = @experiment.get_validator_names( limit: 20, offset: 0 )
     @tab = params[:tab] || "research_grade_results"
-    @stats, @data, @precision_data = get_data_for_tab
+    @stats, @data, @precision_data = get_data_for_tab unless @tab == "methods"
     render "show"
   end
 

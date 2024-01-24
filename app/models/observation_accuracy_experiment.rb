@@ -706,6 +706,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
           map {| descendant_count | calculate_precision( descendant_count ) }.sum / descendant_counts.count
       end
     end
+    data
   end
 
   def get_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
