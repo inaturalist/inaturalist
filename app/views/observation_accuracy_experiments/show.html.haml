@@ -43,12 +43,19 @@
     - else
       .row
         .col-xs-12
-          - if @experiment.validator_deadline_date > Time.now
-            %p= "As observations from this sample are validated, the uncertain percentage will decrease and the precentage correct and incorrect will increase. See the methods tab for details."
-          - else
-            %p= "Our accuracy estimate resulting from this experiment is #{@stats[:correct].round} percent correct. See the methods tab for details."
+          %p
+            - if @experiment.validator_deadline_date > Time.now
+              As observations from this sample are validated, the uncertain percentage will decrease and the precentage correct and incorrect will increase.
+            - else
+              = "Our accuracy estimate resulting from this experiment is #{@stats[:correct].round} percent correct."
+            - if @tab == 'research_grade_results'
+              %br
+              = "Our goal for the estimated Accuracy (Correct) and Precision of the Research Grade subset is greater than 95% (dashed line)"
           %svg{  viewBox: "0 0 920 140", preserveAspectRatio: "xMinYMin meet" }
             %g{ transform: "translate(70,20)" }
+              - if @tab == 'research_grade_results'
+                %g.axis
+                  %line.dashed-line{ x1: "#{95 * 8}", x2: "#{95 * 8}", y1: "-10", y2: "#{30 * 3}" }
               %g.y.axis
                 - ["Correct", "Uncertain", "Incorrect", "Precision"].each_with_index do |label, index|
                   %g.tick{ transform: "translate(0,#{10 + 20 * index})", style: "opacity: 1;" }
@@ -65,7 +72,10 @@
               - @stats.each do |key, value|
                 - next if key == :sample_size
                 %rect{ class: "stat #{key}", x: "0", height: "15", width: "#{value * 8}", y: "#{20 * @stats.keys.index(key)}" }
-                %text{ dy: ".71em", y: "#{20 * @stats.keys.index(key)+2}", x: "#{value * 8 + 25}", style: "text-anchor: middle;" } #{value.round}%
+                - if @tab == 'research_grade_results'
+                  %rect{ x: "#{value * 8 + 10}", y: "#{20 * @stats.keys.index(key)}", width: "30", height: "18", style: "fill: white;" }
+                %text{ dy: ".71em", y: "#{20 * @stats.keys.index(key)+2}", x: "#{value * 8 + 25}", style: "text-anchor: middle;" }
+                  = "#{value.round}%"
       .row
         .col-md-12
           %h4 Accuracy results by subset
@@ -83,7 +93,7 @@
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
-                %h5= key
+                %h5=t key.to_sym
                 %svg{ width: "#{50 + 54 * barplot_data.count}", height: "150" }
                   %g{ transform: "translate(40,10)" }
                     %g.y.axis
@@ -108,8 +118,9 @@
                           %rect{ class: "acc #{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}", x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", altheight: "#{item[:altheight]}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();",
                              data: { altheight: item[:altheight], height: item[:height], scalefactor: "#{scale_factor}"} }
                           - accumulated_height += item[:height]
-                    %g.axis
-                      %line.dashed-line.acc{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "10", y2: "10" }
+                    - if @tab == 'research_grade_results'
+                      %g.axis
+                        %line.dashed-line.acc{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "5", y2: "5" }
       .row
         .col-xs-12
           %h4 Precision results by subset
@@ -117,7 +128,7 @@
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
-                %h5= key
+                %h5=t key.to_sym
                 %svg{ width: "#{50 + 54 * precision_bar.count}", height: "150" }
                   %g{ transform: "translate(40,10)" }
                     %g.y.axis
@@ -136,6 +147,7 @@
 
                     - precision_bar.values.each_with_index do |value, index|
                       %rect{ class: "pre precision", x: "#{10 + 54 * index}", width: "50", y: "#{100-value*100}", height: "#{value*100}", onmousemove: "showTooltip(evt, '#{value*100}%');", onmouseout: "hideTooltip();",}
-                    %g.axis
-                      %line.dashed-line{ x1: "0", x2: "#{10 + 54 * precision_bar.count}", y1: "10", y2: "10" }
+                    - if @tab == 'research_grade_results'
+                      %g.axis
+                        %line.dashed-line{ x1: "0", x2: "#{10 + 54 * precision_bar.count}", y1: "5", y2: "5" }
       #tooltip
