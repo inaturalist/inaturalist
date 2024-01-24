@@ -20,7 +20,7 @@
       .col-xs-12
         -if @experiment.assessment_date
           %h4= @experiment.assessment_date.strftime("%B %d, %Y")
-        -if !@experiment.responding_validators.present? &&  @experiment.responding_validators > 0
+        -if @experiment.responding_validators > 0
           %p
             Validators:
             - @validators << {name: "", id: 0} if ( @experiment.responding_validators > 20 )
@@ -28,7 +28,7 @@
             - if @experiment.responding_validators > 20
               %span#additional-validators (#{@experiment.responding_validators - 20} additional validators)
         %p
-          Abstract: We generated a sample of observations on #{@experiment.sample_generation_date.strftime('%B %d, %Y')} and coordinaged a team of validators to assess their accuracy by #{@experiment.validator_deadline_date.strftime('%B %d, %Y')}. All results shown below show characteristics of the sample observations at the time the sample was generated (for example Research Grade or not). The accuracy of the sample observations was assesed on #{@experiment.assessment_date.strftime("%B %d, %Y")}. See the methods tab for more details.
+          Abstract: We generated a sample of observations on #{@experiment.sample_generation_date.strftime('%B %d, %Y')} and coordinated a team of validators to assess their accuracy by #{@experiment.validator_deadline_date.strftime('%B %d, %Y')}. All results shown below show characteristics of the sample observations at the time the sample was generated (for example Research Grade or not). The accuracy of the sample observations was assesed on #{@experiment.assessment_date.strftime("%B %d, %Y")}. See the methods tab for more details.
         .nav.nav-tabs
           %li.nav-item{class: ('active' if @tab == 'research_grade_results')}
             %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: 'research_grade_results')} Research Grade Results
@@ -44,9 +44,9 @@
       .row
         .col-xs-12
           - if @experiment.validator_deadline_date > Time.now
-            %p= "Our accuracy estimate resulting from this experiment is #{@stats[:correct].round} percent correct. See the methods tab for details."
-          - else
             %p= "As observations from this sample are validated, the uncertain percentage will decrease and the precentage correct and incorrect will increase. See the methods tab for details."
+          - else
+            %p= "Our accuracy estimate resulting from this experiment is #{@stats[:correct].round} percent correct. See the methods tab for details."
           %svg{  viewBox: "0 0 920 140", preserveAspectRatio: "xMinYMin meet" }
             %g{ transform: "translate(70,20)" }
               %g.y.axis

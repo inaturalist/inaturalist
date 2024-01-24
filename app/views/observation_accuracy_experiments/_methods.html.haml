@@ -35,8 +35,7 @@
     %h2 Step2: Validating samples
 .row
   .col-xs-6
-    = "We contacted candidate validators and asked them to add identifications to their subsamples. The graph to the right groups sample observation by the number of validators"
-    %br
+    %p= "We contacted candidate validators and asked them to add identifications to their subsamples. The graph to the right groups sample observation by the number of validators."
     = "Mean number of validators per sample observation: #{@mean_validators_per_sample}"
     %br
     = "Number of participating validators: #{@experiment.responding_validators} (#{ ( @experiment.responding_validators /  @candidate_validators.to_f * 100 ).round}%)"
@@ -90,7 +89,7 @@
     .container2
       %img{src: "https://static.inaturalist.org/wiki_page_attachments/3713-original.png", style: "width:400px;float: right;clear: right;margin: 0px 40px 40px 60px"}
       %p
-        We calculated Accuracy as the percent correct for the entire sample as well as subsets such as the Research Grade subset. We also calculated the percent Uncertain and the percent Incorrect
+        We calculated Accuracy as the percent correct for the entire sample as well as subsets such as the Research Grade subset. We also calculated the percent Uncertain and the percent Incorrect. In the example figure to the right, the percentage correct would be 83, the percentage uncertain would be 6 and the percentage incorrect would be 11.
       %div{style: "clear: both;"}
     %h3
       Precision
@@ -98,5 +97,7 @@
       %img{src: "https://static.inaturalist.org/wiki_page_attachments/3714-original.png", style: "width:400px;float: right;clear: right;margin: 0px 40px 40px 60px"}
       %p
         If every sample observation was at a coarse taxon such as kingdom, the accuracy of the iNaturalist dataset might be very high, but the precision might be too low to make the dataset very useful. To estimate precision, we counted the number of leaf descendants in the iNaturalist taxonomy for each taxon associated with each sample observation. We calculated precision as 1 divided by the number of leaf descendants. If the taxon was a leaf taxon the precision is 100%. We ignored ranks below species in the precision calculation.
+      %p 
+        In the example figure to the right the average precision of three sample observations would be 51%.
       %div{style: "clear: both;"}
 #tooltip

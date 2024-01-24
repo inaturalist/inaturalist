@@ -14,24 +14,24 @@ class ObservationAccuracyExperimentsController < ApplicationController
 
   def show
     @experiment = ObservationAccuracyExperiment.find( params[:id] )
-    @explorable = ( @experiment.validator_deadline_date > Time.now ) ||
+    @explorable = ( @experiment.validator_deadline_date < Time.now ) ||
       ( logged_in? && ( current_user.is_admin? || is_curator_or_site_admin ) )
 
     @validators = @experiment.get_validator_names( limit: 20, offset: 0 )
 
     @tab = params[:tab] || "research_grade_results"
     if @tab == "methods"
-      @candidate_validators, @mean_validators_per_sample, @validators_per_sample, \
-      @mean_validator_count, @mean_sample_count = get_data_for_methods
+      @candidate_validators, @mean_validator_count, @mean_sample_count = get_assignment_methods
+      @mean_validators_per_sample, @validators_per_sample, @validators_per_sample_ylim = get_validation_methods
     else
-      @stats, @data, @precision_data = get_data_for_tab
+      @stats, @data, @precision_data = get_results_data
     end
     render "show"
   end
 
   private
 
-  def get_data_for_tab
+  def get_results_data
     valid_tabs = %w(research_grade_results verifiable_results all_results methods)
     @tab = "research_grade_results" unless valid_tabs.include?( @tab )
     @stats = @experiment.get_top_level_stats( @tab )
@@ -52,9 +52,21 @@ class ObservationAccuracyExperimentsController < ApplicationController
     [@stats, @data, @precision_data, @ylims]
   end
 
-  def get_data_for_methods
+  def get_assignment_methods
     @candidate_validators = @experiment.observation_accuracy_validators.count
 
+    samples_by_validators = @experiment.observation_accuracy_validators.joins( :observation_accuracy_samples ).
+      group( "observation_accuracy_validators.id" ).count
+    @mean_validator_count = samples_by_validators.values.sum / samples_by_validators.count
+
+    validators_by_samples = @experiment.observation_accuracy_samples.joins( :observation_accuracy_validators ).
+      group( "observation_accuracy_samples.id" ).count
+    @mean_sample_count = validators_by_samples.values.sum / validators_by_samples.count
+
+    [@candidate_validators, @mean_validator_count, @mean_sample_count]
+  end
+
+  def get_validation_methods
     mean_validators_per_sample_query = @experiment.observation_accuracy_samples.
       where( "reviewers IS NOT NULL" ).average( :reviewers )
     @mean_validators_per_sample = if mean_validators_per_sample_query.nil?
@@ -84,21 +96,6 @@ class ObservationAccuracyExperimentsController < ApplicationController
     max = @validators_per_sample.map {| _, v | v.count }.max
     @validators_per_sample_ylim = ( max.to_f / 100 ).ceil * 100
 
-    samples_by_validators = @experiment.observation_accuracy_validators.joins( :observation_accuracy_samples ).
-      group( "observation_accuracy_validators.id" ).count
-    @mean_validator_count = samples_by_validators.values.sum / samples_by_validators.count
-
-    validators_by_samples = @experiment.observation_accuracy_samples.joins( :observation_accuracy_validators ).
-      group( "observation_accuracy_samples.id" ).count
-    @mean_sample_count = validators_by_samples.values.sum / validators_by_samples.count
-
-    [
-      @candidate_validators,
-      @mean_validators_per_sample,
-      @validators_per_sample,
-      @validators_per_sample_ylim,
-      @mean_validator_count,
-      @mean_sample_count
-    ]
+    [@mean_validators_per_sample, @validators_per_sample, @validators_per_sample_ylim]
   end
 end
