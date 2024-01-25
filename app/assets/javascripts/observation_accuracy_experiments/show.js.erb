@@ -50,19 +50,25 @@ $( function () {
         var incorrectHeight = useAltHeight
           ? $( "rect.acc.incorrect." + lastClass ).data( "altheight" ) / scalefactor
           : $( "rect.acc.incorrect." + lastClass ).data( "height" );
-        let y = 0;
+        var y = 0;
         if ( firstClass === "correct" ) {
-          y = useAltHeight
-            ? 100 - parseFloat( correctHeight )
-            : parseFloat( incorrectHeight ) + parseFloat( uncertainHeight );
+          if ( useAltHeight ) {
+            y = 100 - parseFloat( correctHeight );
+          } else {
+            y = parseFloat( incorrectHeight ) + parseFloat( uncertainHeight );
+          }
         } else if ( firstClass === "uncertain" ) {
-          y = useAltHeight
-            ? 100 - parseFloat( correctHeight ) - parseFloat( uncertainHeight )
-            : parseFloat( incorrectHeight );
+          if ( useAltHeight ) {
+            y = 100 - parseFloat( correctHeight ) - parseFloat( uncertainHeight );
+          } else {
+            y = parseFloat( incorrectHeight );
+          }
         } else if ( firstClass === "incorrect" ) {
-          y = useAltHeight
-            ? 100 - parseFloat( correctHeight ) - parseFloat( uncertainHeight ) - parseFloat( incorrectHeight )
-            : 0;
+          if ( useAltHeight ) {
+            y = 100 - parseFloat( correctHeight ) - parseFloat( uncertainHeight ) - parseFloat( incorrectHeight );
+          } else {
+            y = 0;
+          }
         }
         $this.attr( "y", y );
         var onmousemove = useAltHeight
