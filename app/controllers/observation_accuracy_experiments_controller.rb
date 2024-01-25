@@ -22,7 +22,7 @@ class ObservationAccuracyExperimentsController < ApplicationController
       @candidate_validators, @mean_validator_count, @mean_sample_count = @experiment.get_assignment_methods
       @mean_validators_per_sample, @validators_per_sample, @validators_per_sample_ylim = @experiment.get_val_methods
     else
-      @stats, @data, @precision_data = @experiment.get_results_data
+      @stats, @data, @precision_data, @ylims = @experiment.get_results_data
     end
     render "show"
   end
