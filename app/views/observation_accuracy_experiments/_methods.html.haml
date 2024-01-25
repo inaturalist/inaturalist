@@ -63,7 +63,7 @@
                 %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
 
           - @validators_per_sample.values.each_with_index do |values, index|
-            %a{ href: @explorable ? FakeView.observations_url( verifiable: "any", place_id: "any", id: values.join( "," ) ) : '#' }
+            %a{ href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.join( "," ) ) : '#' }
               %rect{ class: "validators", x: "#{10 + 54 * index}", width: "50", y: "#{100 - values.count / scale_factor}", height: "#{values.count / scale_factor}", onmousemove: "showTooltip(evt, '#{values.count}');", onmouseout: "hideTooltip();",}
 .row
   .col-xs-12

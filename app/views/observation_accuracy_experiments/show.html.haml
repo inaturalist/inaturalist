@@ -114,7 +114,7 @@
                     - barplot_data.values.each_with_index do |group, index|
                       - accumulated_height = 0
                       - group.each_with_index do |item, sub_index|
-                        %a{ href: @explorable ? item[:url] : '#' }
+                        %a{ href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: item[:ids].join( "," ) ) : '#' }
                           - sub_label = %w[incorrect uncertain correct][sub_index]
                           %rect{ class: "acc #{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}", x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", altheight: "#{item[:altheight]}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();",
                              data: { altheight: item[:altheight], height: item[:height], scalefactor: "#{scale_factor}"} }

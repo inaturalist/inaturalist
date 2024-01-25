@@ -2,6 +2,6 @@
 
 class SetDefaultReviewersToZeroInObservationAccuracySamples < ActiveRecord::Migration[6.1]
   def change
-    change_column_default( :observation_accuracy_samples, :reviewers, 0 )
+    change_column_default( :observation_accuracy_samples, :reviewers, from: nil, to: 0 )
   end
 end
