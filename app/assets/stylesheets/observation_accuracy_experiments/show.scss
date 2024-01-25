@@ -16,6 +16,12 @@
     text-decoration: none;
   }
 
+  #hide_validators{
+    display: none;
+    color: #337ab7;
+    cursor: pointer;
+  }
+
   .validators {
     fill: #F9DD8F;
   }

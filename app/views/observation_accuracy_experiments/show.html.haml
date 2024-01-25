@@ -27,6 +27,7 @@
             = @validators.map { |user| link_to(user[:name], user_path(user[:id])) }.join(', ').html_safe
             - if @experiment.responding_validators > 20
               %span#additional-validators (#{@experiment.responding_validators - 20} additional validators)
+            %span#hide_validators (hide additional validators)
         %p
           Abstract: We generated a sample of observations on #{@experiment.sample_generation_date.strftime('%B %d, %Y')} and coordinated a team of validators to assess their accuracy by #{@experiment.validator_deadline_date.strftime('%B %d, %Y')}. All results shown below show characteristics of the sample observations at the time the sample was generated (for example Research Grade or not). The accuracy of the sample observations was assesed on #{@experiment.assessment_date.strftime("%B %d, %Y")}. See the methods tab for more details.
         .nav.nav-tabs

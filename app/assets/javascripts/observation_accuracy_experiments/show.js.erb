@@ -1,4 +1,5 @@
 $(function() {
+  $("#hide_validators").hide()
   $(document).on('mousemove', '.bar-rect', function(evt) {
     showTooltip(evt, $(this).data('tooltip-text'));
   });
@@ -85,10 +86,18 @@ $(function() {
       dataType: 'html', // Expecting HTML response
       success: function(data) {
         $('#additional-validators').html(data);
+        $("#hide_validators").show();
       },
       error: function() {
         console.error('Failed to load additional validators.');
       }
+    });
+  });
+
+  $("#hide_validators").on("click", function() {
+    $("#additional-validators").toggle();
+    $(this).text(function(i, text) {
+      return text === "(hide additional validators)" ? "(show additional validators)" : "(hide additional validators)";
     });
   });
 });
