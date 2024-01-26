@@ -1,0 +1,103 @@
+
+.row
+  .col-xs-12
+    %h2 Step 1: Sample Generation and Assignment
+    %p
+      From the iNaturalist database of observations (A), we generated a random sample (B). Subsamples were assigned to candidate validators based on the criteria described below. We aimed to assign each sample observation to multiple candidate validators ( "Target validator redundancy" ).
+.row
+  .col-xs-12
+    .container2
+      %img{src: "https://static.inaturalist.org/wiki_page_attachments/3709-original.png", style: "width:500px;float: left;clear: left;margin: 0 30px 30px 0"}
+      = "Sample generated: #{@experiment.sample_generation_date.strftime('%B %d, %Y')}"
+      %br
+      = "Sample size: #{@experiment.sample_size}"
+      %br
+      = "Target validator redundancy: #{@experiment.validator_redundancy_factor}"
+      %br
+      = "Number of candidate validators: #{@candidate_validators}"
+      %br
+      = "Mean subsample size per candidate validator: #{@mean_sample_count}"
+      %br
+      ="Mean number of candidate validators per sample observation: #{@mean_validator_count}"
+      %div{style: "clear: both;"}
+.row
+  .col-xs-12
+    %h3 Validator candidate criteria
+    .container2
+      %img{src: "https://static.inaturalist.org/wiki_page_attachments/3708-original.png", style: "width:500px;float: right;clear: right;margin: 0px 40px 0px 60px"}
+      %p
+        If an identifier had made at least 3 improving identifications on a taxon, we considered them qualified to validate that taxon. Improving identifications are the first suggestion of a taxon that the community subsequently agrees with.
+      %p
+        For example, Identifier 1 adds an ID of A to an observation. If Identifier 2 later adds a leading ID of B, Identifier 1's ID on A becomes an improving ID. If Identifier 3 later adds a supporting ID to B, Identifier 2's ID on B becomes an improving ID.
+      %div{style: "clear: both;"}
+.row
+  .col-xs-12
+    %h2 Step2: Validating samples
+.row
+  .col-xs-6
+    %p= "We contacted candidate validators and asked them to add identifications to their subsamples. The graph to the right groups sample observation by the number of validators."
+    = "Mean number of validators per sample observation: #{@mean_validators_per_sample}"
+    %br
+    = "Number of participating validators: #{@experiment.responding_validators} (#{ ( @experiment.responding_validators /  @candidate_validators.to_f * 100 ).round}%)"
+    %br
+    = "Percent of sample validated: #{( @experiment.validated_observations / @experiment.sample_size.to_f * 100 ).round}%"
+
+  .col-xs-6
+    .barplot-container
+      - scale_factor = @validators_per_sample_ylim / 100 
+      %svg{ width: "#{50 + 54 * @validators_per_sample.count}", height: "150" }
+        %g{ transform: "translate(40,10)" }
+          %g.y.axis
+            - (0..5).each do |tick_value|
+              - tick_position = tick_value * 20
+              %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
+                %line{ x2: "-6", y2: "0" }
+                %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{( 100 - tick_value * 20 ) * scale_factor}
+            %path.domain{ d: "M-6,0H0V100H-6" }
+            %text{ transform: "rotate(-90)", y: "6", dy: ".71em", style: "text-anchor: end;"} Frequency
+
+          %g.x.axis{ transform: "translate(0,100)" }
+            - @validators_per_sample.keys.each_with_index do |label, index|
+              %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
+                %line{ y2: "6", x2: "0" }
+                %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
+
+          - @validators_per_sample.values.each_with_index do |values, index|
+            %a{ href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.join( "," ) ) : '#' }
+              %rect{ class: "validators", x: "#{10 + 54 * index}", width: "50", y: "#{100 - values.count / scale_factor}", height: "#{values.count / scale_factor}", onmousemove: "showTooltip(evt, '#{values.count}');", onmouseout: "hideTooltip();",}
+.row
+  .col-xs-12
+    %h2 Step3: Scoring sample observations from validations
+    %p
+      We scored observations in the sample as Correct, Uncertain, or Incorrect by comparing the validator identifications to the each sample observation’s taxon. Identifications matching or finer thant the sample’s observation taxon were scored as Correct. Non-disagreeing coarser identifications were scored as Uncertain as were scenarios where multiple validators disagreed. Disagreeing coarser identifications or identifications on different branches were scored as Incorrect.
+    %div
+      %div{style: "position: relative; float: left; margin-right: 10px; text-align: center;"}
+        %img{src: "https://static.inaturalist.org/wiki_page_attachments/3710-original.png", style: "height:130px;"}
+        %span{style: "position: absolute; top: 0%; left: 0%; background-color: #A8CE90; padding: 3px;"} Correct
+      %div{style: "position: relative; float: left; margin-right: 10px; text-align: center;"}
+        %img{src: "https://static.inaturalist.org/wiki_page_attachments/3711-original.png", style: "height:130px;"}
+        %span{style: "position: absolute; top: 0%; left: 0%; background-color: lightgray; padding: 3px;"} Uncertain
+      %div{style: "position: relative; float: left; text-align: center;"}
+        %img{src: "https://static.inaturalist.org/wiki_page_attachments/3712-original.png", style: "height:130px;"}
+        %div{style: "position: absolute; top: 0%; left: 0%; background-color: pink; padding: 3px;"} Incorrect
+.row
+  .col-xs-12
+    %h2
+      Step 4: Accuracy and Precision calculation
+    %h3
+      Accuracy
+    .container2
+      %img{src: "https://static.inaturalist.org/wiki_page_attachments/3713-original.png", style: "width:400px;float: right;clear: right;margin: 0px 40px 40px 60px"}
+      %p
+        We calculated Accuracy as the percent correct for the entire sample as well as subsets such as the Research Grade subset. We also calculated the percent Uncertain and the percent Incorrect. In the example figure to the right, the percentage correct would be 83, the percentage uncertain would be 6 and the percentage incorrect would be 11.
+      %div{style: "clear: both;"}
+    %h3
+      Precision
+    .container2
+      %img{src: "https://static.inaturalist.org/wiki_page_attachments/3714-original.png", style: "width:400px;float: right;clear: right;margin: 0px 40px 40px 60px"}
+      %p
+        If every sample observation was at a coarse taxon such as kingdom, the accuracy of the iNaturalist dataset might be very high, but the precision might be too low to make the dataset very useful. To estimate precision, we counted the number of leaf descendants in the iNaturalist taxonomy for each taxon associated with each sample observation. We calculated precision as 1 divided by the number of leaf descendants. If the taxon was a leaf taxon the precision is 100%. We ignored ranks below species in the precision calculation.
+      %p 
+        In the example figure to the right the average precision of three sample observations would be 51%.
+      %div{style: "clear: both;"}
+#tooltip
