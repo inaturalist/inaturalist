@@ -18,11 +18,13 @@ class ObservationAccuracyExperimentsController < ApplicationController
 
     @validators = @experiment.get_validator_names( limit: 20, offset: 0 )
     @tab = params[:tab] || "research_grade_results"
+    valid_tabs = %w(research_grade_results verifiable_results all_results methods)
+    @tab = "research_grade_results" unless valid_tabs.include?( @tab )
     if @tab == "methods"
       @candidate_validators, @mean_validator_count, @mean_sample_count = @experiment.get_assignment_methods
       @mean_validators_per_sample, @validators_per_sample, @validators_per_sample_ylim = @experiment.get_val_methods
     else
-      @stats, @data, @precision_data, @ylims = @experiment.get_results_data
+      @stats, @data, @precision_data, @ylims = @experiment.get_results_data( @tab )
     end
     render "show"
   end

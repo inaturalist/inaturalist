@@ -647,17 +647,15 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def get_results_data
-    valid_tabs = %w(research_grade_results verifiable_results all_results methods)
-    tab = "research_grade_results" unless valid_tabs.include?( tab )
+  def get_results_data( tab )
     stats = get_top_level_stats( tab )
     keys = ["quality_grade", "continent", "year", "iconic_taxon_name", "taxon_observations_count", "taxon_rank_level"]
-    keys.delete( "quality_grade" ) if @tab == "research_grade_results"
+    keys.delete( "quality_grade" ) if tab == "research_grade_results"
     data = keys.each_with_object( {} ) do | key, sub_data |
       sub_data[key] = get_barplot_data( key, tab )
     end
     precision_data = keys.each_with_object( {} ) do | key, sub_data |
-      sub_data[key] = get_precision_barplot_data( key, @tab )
+      sub_data[key] = get_precision_barplot_data( key, tab )
     end
     ylims = {}
     data.each do | key, sub_data |
