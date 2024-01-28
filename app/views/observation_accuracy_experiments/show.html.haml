@@ -138,7 +138,7 @@
                             - else
                               - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "..." )
                           - elsif key == "quality_grade"
-                              - lab = truncate( t( label ), length: 8, omission: "..." )
+                            - lab = truncate( t( label ), length: 8, omission: "..." )
                           -else
                             - lab = label
                           %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
@@ -194,7 +194,7 @@
                             - else
                               - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "..." )
                           - elsif key == "quality_grade"
-                              - lab = truncate( t( label ), length: 8, omission: "..." )
+                            - lab = truncate( t( label ), length: 8, omission: "..." )
                           -else
                             - lab = label
                           %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
