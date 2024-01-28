@@ -131,12 +131,14 @@
                             - if rank.length == 2
                               - lab = "#{t( "ranks.#{rank[0]}" )[0..1].capitalize}.-#{t( "ranks.#{rank[1]}" )[0..1].capitalize}"
                             - else
-                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "...")
+                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "..." )
                           - elsif key == "continent"
                             - if label == "none"
-                              - lab = t( label )
+                              - lab = truncate( t( label ), length: 8, omission: "..." )
                             - else
-                              - lab = t( "places_name.#{label.gsub( " ","_" ).downcase}" )
+                              - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "..." )
+                          - elsif key == "quality_grade"
+                              - lab = truncate( t( label ), length: 8, omission: "..." )
                           -else
                             - lab = label
                           %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
@@ -166,7 +168,7 @@
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
-                %h5=t key.to_sym
+                %h5=t "observation_accuracy_experiment_#{key.gsub(" ","_")}".to_sym
                 %svg{width: "#{50 + 54 * precision_bar.count}", height: "150"}
                   %g{transform: "translate( 40, 10 )"}
                     %g.y.axis
@@ -185,12 +187,14 @@
                             - if rank.length == 2
                               - lab = "#{t( "ranks.#{rank[0]}" )[0..1].capitalize}.-#{t( "ranks.#{rank[1]}" )[0..1].capitalize}"
                             - else
-                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "...")
+                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "..." )
                           - elsif key == "continent"
                             - if label == "none"
-                              - lab = truncate( t( label ), length: 8, omission: "...")
+                              - lab = truncate( t( label ), length: 8, omission: "..." )
                             - else
-                              - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "...")
+                              - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "..." )
+                          - elsif key == "quality_grade"
+                              - lab = truncate( t( label ), length: 8, omission: "..." )
                           -else
                             - lab = label
                           %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab

@@ -631,10 +631,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     if name_parts.count == 2 &&
         ( first_char.match?( /[a-zA-Z]/ ) || first_char.match?( /[а-яА-Я]/ ) || first_char.match?( /[Α-Ωα-ω]/ ) )
       "#{first_char.capitalize}. #{name_parts.last.capitalize}"
-    elsif first_char.match?( /\p{Han}/ ) ||
-        first_char.match?( /\p{Hiragana}/ ) ||
-        first_char.match?( /\p{Katakana}/ )
-      "#{first_char}. #{name_parts.last}"
+    elsif user_data.second.match?( /\A\p{Han}*\z/ ) ||
+        user_data.second.match?( /\A\p{Hiragana}*\z/ ) ||
+        user_data.second.match?( /\A\p{Katakana}*\z/ )
+      user_data.second
     else
       user_data.last
     end
