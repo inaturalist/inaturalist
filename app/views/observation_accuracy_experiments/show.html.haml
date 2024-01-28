@@ -35,9 +35,10 @@
           =t(
             :observation_accuracy_experiment_abstract,
             sample_generation_date: l( @experiment.sample_generation_date.to_date, format: :long ),
-            deadline_date: l( @experiment.validator_deadline_date.to_date, format: :long )
+            deadline_date: l( @experiment.validator_deadline_date.to_date, format: :long ),
             assessment_date: l( @experiment.assessment_date.to_date, format: :long )
           )
+
         .nav.nav-tabs
           %li.nav-item{class: ( "active" if @tab == "research_grade_results" )}
             %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "research_grade_results" )}
