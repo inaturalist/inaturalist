@@ -1,5 +1,5 @@
 - content_for :title do
-  Observation Accuracy Experiment
+  =t :observation_accuracy_experiment_observation_accuracy_experiment
 
 - content_for :extrajs do
   = javascript_include_tag "observation_accuracy_experiments/show"
@@ -10,145 +10,196 @@
   .row
     .col-xs-12
       - if @experiment.validator_deadline_date > Time.now
-        .alert.alert-warning{ role: "alert" }
-          = "Experiment still in progress. Stats will update daily until deadline for validating samples on #{@experiment.validator_deadline_date.strftime('%B %d, %Y')}"
-      %h1= "Observation Accuracy Experiment (#{@experiment.version})"
+        .alert.alert-warning{role: "alert"}
+          =t :observation_accuracy_experiment_experiment_still, date: l( @experiment.validator_deadline_date, format: :long )
+      %h1
+        =t :observation_accuracy_experiment_observation_accuracy_experiment
+        ="(#{@experiment.version})"
   - if !@experiment.sample_generation_date
-    The sample for this experiment has not yet been generated
+    =t :observation_accuracy_experiment_the_sample_for
   - else
     .row
       .col-xs-12
         -if @experiment.assessment_date
-          %h4= @experiment.assessment_date.strftime("%B %d, %Y")
+          %h4= l( @experiment.assessment_date, format: :long )
         -if @experiment.responding_validators > 0
           %p
-            Validators:
+            =t :observation_accuracy_experiment_validators
             - @validators << {name: "", id: 0} if ( @experiment.responding_validators > 20 )
-            = @validators.map { |user| link_to(user[:name], user_path(user[:id])) }.join(', ').html_safe
+            = @validators.map { |user| link_to(user[:name], user_path(user[:id])) }.join(", ").html_safe
             - if @experiment.responding_validators > 20
-              %span#additional-validators (#{@experiment.responding_validators - 20} additional validators)
-            %span#hide_validators (hide additional validators)
+              %span#additional-validators
+                =t :observation_accuracy_experiment_additional_validators, number: @experiment.responding_validators - 20
+            %span#hide_validators=t :observation_accuracy_experiment_hide_additional_validators
         %p
-          Abstract: We generated a sample of observations on #{@experiment.sample_generation_date.strftime('%B %d, %Y')} and coordinated a team of validators to assess their accuracy by #{@experiment.validator_deadline_date.strftime('%B %d, %Y')}. All results shown below show characteristics of the sample observations at the time the sample was generated (for example Research Grade or not). The accuracy of the sample observations was assesed on #{@experiment.assessment_date.strftime("%B %d, %Y")}. See the methods tab for more details.
+          =t :observation_accuracy_experiment_abstract
         .nav.nav-tabs
-          %li.nav-item{class: ('active' if @tab == 'research_grade_results')}
-            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: 'research_grade_results')} Research Grade Results
-          %li.nav-item{class: ('active' if @tab == 'verifiable_results')}
-            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: 'verifiable_results')} Verifiable Results
-          %li.nav-item{class: ('active' if @tab == 'all_results')}
-            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: 'all_results')} All Results
-          %li.nav-item{class: ('active' if @tab == 'methods')}
-            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: 'methods')} Methods
-    - if @tab == 'methods'
-      = render partial: 'methods'
+          %li.nav-item{class: ( "active" if @tab == "research_grade_results" )}
+            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "research_grade_results" )}
+              =t :observation_accuracy_experiment_research_grade_results
+          %li.nav-item{class: ( "active" if @tab == "verifiable_results" )}
+            %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "verifiable_results" )}
+              =t :observation_accuracy_experiment_verifiable_results
+          %li.nav-item{class: ( "active" if @tab == "all_results" )}
+            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "all_results" )}
+              =t :observation_accuracy_experiment_all_results
+          %li.nav-item{class: ( "active" if @tab == "methods" )}
+            %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "methods" )}
+              =t :observation_accuracy_experiment_methods
+    - if @tab == "methods"
+      = render partial: "methods"
     - else
       .row
         .col-xs-12
           %p
             - if @experiment.validator_deadline_date > Time.now
-              As observations from this sample are validated, the uncertain percentage will decrease and the precentage correct and incorrect will increase.
+              =t :observation_accuracy_experiment_as_observations
             - else
-              = "Our accuracy estimate resulting from this experiment is #{@stats[:correct].round} percent correct."
-            - if @tab == 'research_grade_results'
+              =t :observation_accuracy_experiment_our_accuracy_estimate, percent: "#{@stats[:correct].round}%"
+            - if @tab == "research_grade_results"
               %br
-              = "Our goal for the estimated Accuracy (Correct) and Precision of the Research Grade subset is greater than 95% (dashed line)"
-          %svg{  viewBox: "0 0 920 140", preserveAspectRatio: "xMinYMin meet" }
-            %g{ transform: "translate(70,20)" }
-              - if @tab == 'research_grade_results'
+              =t :observation_accuracy_experiment_our_goak
+          %svg{viewBox: "0 0 920 140", preserveAspectRatio: "xMinYMin meet"}
+            %g{transform: "translate( 70, 20 )"}
+              - if @tab == "research_grade_results"
                 %g.axis
-                  %line.dashed-line{ x1: "#{95 * 8}", x2: "#{95 * 8}", y1: "-10", y2: "#{30 * 3}" }
+                  %line.dashed-line{x1: "#{95 * 8}", x2: "#{95 * 8}", y1: "-10", y2: "#{30 * 3}"}
               %g.y.axis
-                - ["Correct", "Uncertain", "Incorrect", "Precision"].each_with_index do |label, index|
-                  %g.tick{ transform: "translate(0,#{10 + 20 * index})", style: "opacity: 1;" }
-                    %text{ dy: ".2em", x: "-70", y: "-2", style: "text-anchor: start; font-size: #{label=="Precision" ? 14 : 10}px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;" }= label
-                %text{ dy: ".2em", x: "-70", y: "-10", style: "text-anchor: start; font-size: 14px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;" } Accuracy
-              %g.x.axis{ transform: "translate(0,80)" }
-                - (0..10).each do |tick_value|
-                  - tick_position = (10 - tick_value) * 80
-                  %g.tick{ transform: "translate(#{tick_position},0)", style: "opacity: 1;" }
-                    %line{ y2: "6", x2: "0" }
-                    %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" } #{100 - tick_value * 10}%
-              %path.domain{ d: "M0,80H#{(10 * 80).to_i}", stroke: "black" }
-
-              - @stats.each do |key, value|
+                - ["Correct", "Uncertain", "Incorrect", "Precision"].each_with_index do | label, index |
+                  %g.tick{transform: "translate( 0, #{10 + 20 * index} )", style: "opacity: 1;"}
+                    %text{dy: ".2em",x: "-70",y: "-2",style: "text-anchor: start; font-size: #{label=="Precision" ? 14 : 10}px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}=t "observation_accuracy_experiment_#{label.downcase}".to_sym
+                %text{dy: ".2em", x: "-70", y: "-10", style: "text-anchor: start; font-size: 14px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}=t :observation_accuracy_experiment_accuracy
+              %g.x.axis{transform: "translate( 0, 80 )"}
+                - ( 0..10 ).each do | tick_value |
+                  - tick_position = ( 10 - tick_value ) * 80
+                  %g.tick{transform: "translate( #{tick_position}, 0 )", style: "opacity: 1;"}
+                    %line{y2: "6", x2: "0"}
+                    %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"} #{100 - tick_value * 10}%
+              %path.domain{d: "M0,80H#{( 10 * 80 ).to_i}", stroke: "black"}
+              - @stats.each do | key, value |
                 - next if key == :sample_size
-                %rect{ class: "stat #{key}", x: "0", height: "15", width: "#{value * 8}", y: "#{20 * @stats.keys.index(key)}" }
-                - if @tab == 'research_grade_results'
-                  %rect{ x: "#{value * 8 + 10}", y: "#{20 * @stats.keys.index(key)}", width: "30", height: "18", style: "fill: white;" }
-                %text{ dy: ".71em", y: "#{20 * @stats.keys.index(key)+2}", x: "#{value * 8 + 25}", style: "text-anchor: middle;" }
+                %rect{class: "stat #{key}", x: "0", height: "15", width: "#{value * 8}", y: "#{20 * @stats.keys.index( key )}"}
+                - if @tab == "research_grade_results"
+                  %rect{x: "#{value * 8 + 10}", y: "#{20 * @stats.keys.index( key )}", width: "30", height: "18", style: "fill: white;"}
+                %text{dy: ".71em", y: "#{20 * @stats.keys.index( key )+2}", x: "#{value * 8 + 25}", style: "text-anchor: middle;"}
                   = "#{value.round}%"
       .row
         .col-md-12
-          %h4 Accuracy results by subset
+          %h4
+            =t :observation_accuracy_experiment_accuracy_results
       .row
         .col-md-10
           %p
             - if @explorable
-              Click on bars to explore subsets.
-            %span.sampleSize= "  Sample size: #{@stats[:sample_size]}"
+              =t( :observation_accuracy_experiment_click_on_bars )&nbsp;
+            %span.sampleSize=t :observation_accuracy_experiment_sample_size, number: @stats[:sample_size]
         .col-md-2.text-end
-          %button.btn.btn-primary.toggle-button{ type: "button" } show frequency
+          %button.btn.btn-primary.toggle-button{type: "button"}=t :observation_accuracy_experiment_show_frequency
       .row
         .col-md-12
-          - @data.each_pair do |key, barplot_data|
+          - @data.each_pair do | key, barplot_data |
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
-                %h5=t key.to_sym
-                %svg{ width: "#{50 + 54 * barplot_data.count}", height: "150" }
-                  %g{ transform: "translate(40,10)" }
+                %h5=t "observation_accuracy_experiment_#{key.gsub(" ","_")}".to_sym
+                %svg{width: "#{50 + 54 * barplot_data.count}", height: "150"}
+                  %g{transform: "translate( 40, 10 )"}
                     %g.y.axis
-                      - (0..5).each do |tick_value|
+                      - ( 0..5 ).each do | tick_value |
                         - tick_position = tick_value * 20
-                        %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
-                          %line{ x2: "-6", y2: "0" }
-                          %text{ class: "ytext", dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;", data: { scalefactor: "#{scale_factor}" } } #{100 - tick_value * 20}%
-                      %path.domain{ d: "M-6,0H0V100H-6" }
-
-                    %g.x.axis{ transform: "translate(0,100)" }
-                      - barplot_data.keys.each_with_index do |label, index|
-                        %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
-                          %line{ y2: "6", x2: "0" }
-                          %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
-
-                    - barplot_data.values.each_with_index do |group, index|
+                        %g.tick{transform: "translate( 0, #{tick_position} )", style: "opacity: 1;"}
+                          %line{x2: "-6", y2: "0"}
+                          %text{
+                            class: "ytext",
+                            dy: ".32em",
+                            x: "-9",
+                            y: "0",
+                            style: "text-anchor: end;",
+                            data: {scalefactor: "#{scale_factor}"}
+                          } #{100 - tick_value * 20}%
+                      %path.domain{d: "M-6,0H0V100H-6"}
+                    %g.x.axis{transform: "translate( 0, 100 )"}
+                      - barplot_data.keys.each_with_index do | label, index |
+                        %g.tick{transform: "translate( #{35 + 54 * index},0 )", style: "opacity: 1;"}
+                          %line{y2: "6", x2: "0"}
+                          - if key == "taxon_rank_level"
+                            - rank = get_rank_and_parent( label )                            
+                            - if rank.length == 2
+                              - lab = "#{t( "ranks.#{rank[0]}" )[0..1].capitalize}.-#{t( "ranks.#{rank[1]}" )[0..1].capitalize}"
+                            - else
+                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "...")
+                          - elsif key == "continent"
+                            - if label == "none"
+                              - lab = t( label )
+                            - else
+                              - lab = t( "places_name.#{label.gsub( " ","_" ).downcase}" )
+                          -else
+                            - lab = label
+                          %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
+                    - barplot_data.values.each_with_index do | group, index |
                       - accumulated_height = 0
-                      - group.each_with_index do |item, sub_index|
-                        %a{ href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: item[:ids].join( "," ) ) : '#' }
+                      - group.each_with_index do | item, sub_index |
+                        %a{href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: item[:ids].join( "," ) ) : "#"}
                           - sub_label = %w[incorrect uncertain correct][sub_index]
-                          %rect{ class: "acc #{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}", x: "#{10 + 54 * index}", width: "50", y: "#{accumulated_height}", altheight: "#{item[:altheight]}", height: "#{item[:height]}", onmousemove: "showTooltip(evt, '#{sub_label}: #{item[:height]}%');", onmouseout: "hideTooltip();",
-                             data: { altheight: item[:altheight], height: item[:height], scalefactor: "#{scale_factor}"} }
+                          %rect{
+                            class: "acc #{sub_label} #{key}_#{barplot_data.keys[index].to_s.gsub(/[>. ]/, '_')}",
+                            x: "#{10 + 54 * index}",
+                            width: "50",
+                            y: "#{accumulated_height}",
+                            altheight: "#{item[:altheight]}",
+                            height: "#{item[:height]}",
+                            onmousemove: "showTooltip( evt, '#{sub_label}: #{item[:height]}%' );",
+                            onmouseout: "hideTooltip();",
+                            data: {altheight: item[:altheight], height: item[:height], scalefactor: "#{scale_factor}"}}
                           - accumulated_height += item[:height]
-                    - if @tab == 'research_grade_results'
+                    - if @tab == "research_grade_results"
                       %g.axis
-                        %line.dashed-line.acc{ x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "5", y2: "5" }
+                        %line.dashed-line.acc{x1: "0", x2: "#{10 + 54 * barplot_data.count}", y1: "5", y2: "5"}
       .row
         .col-xs-12
           %h4 Precision results by subset
-          - @precision_data.each_pair do |key, precision_bar|
+          - @precision_data.each_pair do | key, precision_bar |
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
                 %h5=t key.to_sym
-                %svg{ width: "#{50 + 54 * precision_bar.count}", height: "150" }
-                  %g{ transform: "translate(40,10)" }
+                %svg{width: "#{50 + 54 * precision_bar.count}", height: "150"}
+                  %g{transform: "translate( 40, 10 )"}
                     %g.y.axis
-                      - (0..5).each do |tick_value|
+                      - ( 0..5 ).each do | tick_value |
                         - tick_position = tick_value * 20
-                        %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
-                          %line{ x2: "-6", y2: "0" }
-                          %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{100 - tick_value * 20}%
-                      %path.domain{ d: "M-6,0H0V100H-6" }
-
-                    %g.x.axis{ transform: "translate(0,100)" }
-                      - precision_bar.keys.each_with_index do |label, index|
-                        %g.tick{ transform: "translate(#{35 + 54 * index},0)", style: "opacity: 1;" }
-                          %line{ y2: "6", x2: "0" }
-                          %text{ dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;" }= label
-
-                    - precision_bar.values.each_with_index do |value, index|
-                      %rect{ class: "pre precision", x: "#{10 + 54 * index}", width: "50", y: "#{100-value*100}", height: "#{value*100}", onmousemove: "showTooltip(evt, '#{value*100}%');", onmouseout: "hideTooltip();",}
-                    - if @tab == 'research_grade_results'
+                        %g.tick{transform: "translate( 0,#{tick_position} )", style: "opacity: 1;"}
+                          %line{x2: "-6", y2: "0"}
+                          %text{dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;"} #{100 - tick_value * 20}%
+                      %path.domain{d: "M-6,0H0V100H-6"}
+                    %g.x.axis{ transform: "translate( 0, 100 )" }
+                      - precision_bar.keys.each_with_index do | label, index |
+                        %g.tick{transform: "translate( #{35 + 54 * index},0 )", style: "opacity: 1;"}
+                          %line{y2: "6", x2: "0"}
+                          - if key == "taxon_rank_level"
+                            - rank = get_rank_and_parent( label )                            
+                            - if rank.length == 2
+                              - lab = "#{t( "ranks.#{rank[0]}" )[0..1].capitalize}.-#{t( "ranks.#{rank[1]}" )[0..1].capitalize}"
+                            - else
+                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "...")
+                          - elsif key == "continent"
+                            - if label == "none"
+                              - lab = t( label )
+                            - else
+                              - lab = t( "places_name.#{label.gsub( " ","_" ).downcase}" )
+                          -else
+                            - lab = label
+                          %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
+                    - precision_bar.values.each_with_index do | value, index |
+                      %rect{
+                        class: "pre precision",
+                        x: "#{10 + 54 * index}",
+                        width: "50", y: "#{100-value*100}",
+                        height: "#{value*100}",
+                        onmousemove: "showTooltip( evt, '#{value*100}%' );",
+                        onmouseout: "hideTooltip();"
+                      }
+                    - if @tab == "research_grade_results"
                       %g.axis
-                        %line.dashed-line{ x1: "0", x2: "#{10 + 54 * precision_bar.count}", y1: "5", y2: "5" }
+                        %line.dashed-line{x1: "0", x2: "#{10 + 54 * precision_bar.count}", y1: "5", y2: "5"}
       #tooltip

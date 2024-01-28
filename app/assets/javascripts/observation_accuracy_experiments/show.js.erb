@@ -128,10 +128,12 @@ $( function () {
     }
   } );
 
-  $( "#hide_validators" ).on( "click", function () {
+  $( document ).on( "click", "#hide_validators", function () {
     $( "#additional-validators" ).toggle();
-    $( this ).text( function ( i, text ) {
-      return text === "(hide additional validators)" ? "(show additional validators)" : "(hide additional validators)";
-    } );
-  } );
+    $( this ).text( ( i, text ) => {
+        const showAdditionalValidators = I18n.t( "observation_accuracy_experiment_show_additional_validators" );
+        const hideAdditionalValidators = I18n.t( "observation_accuracy_experiment_hide_additional_validators" );
+        return I18n.t( "observation_accuracy_experiment_show_additional_validators" );
+    });
+  });
 } );

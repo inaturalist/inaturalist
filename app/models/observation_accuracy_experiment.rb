@@ -290,7 +290,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
       where( photos: { id: nil }, sounds: { id: nil } ).pluck( :id )
     sounds_only = Observation.includes( :photos, :sounds ).
       where( id: o ).
-      where( photos: { id: nil }, sounds: "sounds.id IS NOT NULL" ).
+      where( photos: { id: nil } ).
+      where.not( sounds: { id: nil } ).
       pluck( :id )
     has_cid = Observation.
       where( "id IN ( ? ) AND community_taxon_id IS NOT NULL AND community_taxon_id = taxon_id", o ).
@@ -463,15 +464,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def taxon_rank_level_categories( key )
     case key
-    when 5 then "subspecies"
-    when 10 then "species"
-    when 11..20 then "sp.-gen."
-    when 21..30 then "gen.-fam."
-    when 31..40 then "fam.-ord."
-    when 41..50 then "ord.-class"
-    when 51..60 then "class-phy."
-    when 61..70 then "phy.-king."
-    else "life"
+    when 5, 10, 100
+      key
+    when ( 11..70 )
+      ( key / 10 ) * 10
+    else
+      100
     end
   end
 
@@ -629,7 +627,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return user_data.last if user_data.second.nil? || user_data.second.gsub( "\n", "" ) == ""
 
     name_parts = user_data.second.split
-    "#{name_parts.first[0].capitalize}. #{name_parts.last.capitalize}"
+    first_char = name_parts.first[0]
+    if first_char.match?( /[a-zA-Z]/ )
+      "#{first_char.capitalize}. #{name_parts.last.capitalize}"
+    else
+      user_data.last
+    end
   end
 
   def get_validator_names( limit: 20, offset: 0 )
