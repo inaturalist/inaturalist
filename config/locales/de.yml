@@ -2982,6 +2982,57 @@ de:
     Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Längen-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
   observation: Beobachtung
   observation_: Beobachtung
+  observation_accuracy_experiment_the_sample_for: "Die Stichprobe für dieses Experiment wurde noch nicht erstellt"
+  observation_accuracy_experiment_our_accuracy_estimate: "Wir schätzen die Genauigkeit, die sich aus diesem Experiment ergibt, auf %{percent} korrekt."
+  observation_accuracy_experiment_our_goak: "Unser Ziel für die geschätzte Genauigkeit (korrekt) und Präzision der Beobachtungen mit Forschungsqualität ist höher als 95 % (gestrichelte Linie)"
+  observation_accuracy_experiment_precision_results: "Ergebnisse der Präzision nach Teilmengen"
+  observation_accuracy_experiment_taxon_rank_level: "Taxon-Rangstufe"
+  observation_accuracy_experiment_taxon_observations_count: "Anzahl der Beobachtungen des Taxons"
+  observation_accuracy_experiment_iconic_taxon_name: "Name des Symbol-Taxons"
+  observation_accuracy_experiment_continent: "Kontinent"
+  observation_accuracy_experiment_year: "Jahr"
+  observation_accuracy_experiment_quality_grade: "Qualitätsstufe"
+  observation_accuracy_experiment_show_frequency: "zeige Häufigkeit an"
+  observation_accuracy_experiment_click_on_bars: "Klicke auf die Balken, um die Untergruppen zu erkunden."
+  observation_accuracy_experiment_accuracy_results: "Genauigkeitsergebnisse nach Untergruppen"
+  observation_accuracy_experiment_as_observations: "Während Beobachtungen aus dieser Probe validiert werden, sinkt der Anteil der 'unsicheren', während die Anteile von 'korrekt' und 'inkorrekt' zunehmen."
+  observation_accuracy_experiment_experiment_still: "Das Experiment ist noch im Gange. Die Statistik wird täglich bis zur Frist für die Validierung der Proben am %{date} aktualisiert"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experiment zur Beobachtungsgenauigkeit"
+  observation_accuracy_experiment_validators: "Prüfer:"
+  observation_accuracy_experiment_show_additional_validators: "(zusätzliche Prüfer anzeigen)"
+  observation_accuracy_experiment_hide_additional_validators: "(Zusätzliche Prüfer ausblenden)"
+  observation_accuracy_experiment_additional_validators: "(%{number} zusätzliche Prüfer)"
+  observation_accuracy_experiment_abstract: "Zusammenfassung: Wir haben eine Stichprobe von Beobachtungen am %{sample_generation_date} erstellt und ein Team von Prüfern koordiniert, um die Beobachtungsgenauigkeit bis zum %{deadline_date} zu beurteilen. Alle unten angezeigten Ergebnisse geben die Eigenschaften der Probenbeobachtungen zum Zeitpunkt der Erstellung wieder (z.B. Forschungsqualität oder nicht). Die Genauigkeit der Probenbeobachtungen wurde am %{assessment_date} beurteilt. Weitere Details gibt es unter 'Methoden'."
+  observation_accuracy_experiment_research_grade_results: "Ergebnisse der Beobachtungen mit Forschungsqualität"
+  observation_accuracy_experiment_verifiable_results: "Ergebnisse verifizierbarer Beobachtungen"
+  observation_accuracy_experiment_all_results: "Alle Ergebnisse"
+  observation_accuracy_experiment_methods: "Methoden"
+  observation_accuracy_experiment_step_1: "Schritt 1: Erstellung der Stichproben und Zuordnung"
+  observation_accuracy_experiment_from_the: "Aus den Beobachtungen der iNaturalist-Datenbank (A) haben wir eine zufällige Stichprobe (B) erzeugt. Teilmengen dieser Proben wurden dann den Prüfern zugeordnet, basierend auf den unten beschriebenen Kriterien. Wir haben uns zum Ziel gesetzt, jede Beobachtung mehreren Prüfern zuzuweisen (\"Target validator redundancy\")."
+  observation_accuracy_experiment_sample_generated: "Stichprobe erstellt: %{date}"
+  observation_accuracy_experiment_sample_size: "Stichprobengröße: %{number}"
+  observation_accuracy_experiment_target_validator: "Target validator redundancy: %{number}"
+  observation_accuracy_experiment_number_of: "Anzahl der Prüfer: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Mittelwert der Teilproben-Größe pro Prüfer: %{number}"
+  observation_accuracy_experiment_mean_number: "Mittelwert der Prüfer pro Beobachtung: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kriterien an die Prüfer"
+  observation_accuracy_experiment_if_an_identifier: "Wenn Bestimmer mindestens 3 Identifikationen (Verbesserung) für ein Taxon gemacht haben, hielten wir sie für qualifiziert, dieses Taxon zu validieren. Der Status 'Verbesserung' bei einer Bestimmung wird für die erste Bestimmung eines Taxon vergeben, welcher andere Bestimmer in weiterer Folge zugestimmt haben."
+  observation_accuracy_experiment_for_example: "Zum Beispiel fügt Bestimmer 1 einer Beobachtung die ID 'A' hinzu. Wenn Bestimmer 2 später eine verfeinerte, initiative ID 'B' hinzufügt, wird die ID 'A' von Bestimmer 1 zu einer 'Verbesserung'. Wenn Bestimmer 3 später eine unterstützende ID von 'B' hinzufügt, wird nun die ID 'B' von Bestimmer 2 zu einer 'Verbesserung'."
+  observation_accuracy_experiment_step_2: "Schritt 2: Stichproben validieren"
+  observation_accuracy_experiment_we_contacted: "Wir haben die Prüfer kontaktiert und sie gebeten, für ihre jeweiligen Teilproben Bestimmungen abzugeben. Der Graph rechts gruppiert Beobachtungen nach der Anzahl der Prüfer."
+  observation_accuracy_experiment_number_percent_of: "Anzahl der teilnehmenden Prüfer: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Prozentsatz der validierten Stichproben: %{percent}"
+  observation_accuracy_experiment_step_3: "Schritt 3: Bewertung der Beobachtungen durch die Validierungen"
+  observation_accuracy_experiment_we_scored: "Wir haben der Beobachtungen der Stichprobe als korrekt, unsicher oder inkorrekt eingestuft, indem wir die Prüfer-IDs mit dem Beobachtungstaxon jeder Probe verglichen. Bestimmungen, die mit der Stichprobe übereinstimmten, oder sie verbesserten, wurden als korrekt eingestuft. Nicht-widersprechende, höherrangige IDs wurden als unsicher eingestuft, ebenso wie Situationen, bei denen mehrere Prüfer sich nicht einig waren. Widersprüche wurden als inkorrekt eingestuft."
+  observation_accuracy_experiment_correct: "Korrekt"
+  observation_accuracy_experiment_uncertain: "Unsicher"
+  observation_accuracy_experiment_incorrect: "Inkorrekt"
+  observation_accuracy_experiment_step_4: "Schritt 4: Berechnung von Genauigkeit und Präzision"
+  observation_accuracy_experiment_accuracy: "Genauigkeit"
+  observation_accuracy_experiment_we_calculated: "Wir berechneten die Genauigkeit als den Prozentsatz an korrekten Beobachtungen, sowohl für die gesamte Stichprobe als auch für die Teilmengen der Beobachtungen mit Forschungsqualität. Wir berechneten auch den Prozentsatz für unsicher und inkorrekt. Im rechten Beispiel wären 83& der Beobachtungen korrekt, 6% unsicher und der 11% inkorrekt."
+  observation_accuracy_experiment_precision: "Präzision"
+  observation_accuracy_experiment_if_every_sample: "Wäre jede Beobachtung der Stichprobe nur auf einem höheren Rang, wie z.B. Reich, bestimmt, wäre die Genauigkeit des iNaturalist-Datensatzes zwar sehr hoch, aber die Präzision könnte zu niedrig sein, um einen aussagekräftigen Datensatz zu haben. Um die Präzision abzuschätzen, haben wir für jede Beobachtung die Anzahl der niedrigeren Taxon-Rangstufen für jedes Taxon gezählt. Wir kalkulierten dabei die Präzision als 1 geteilt durch die Anzahl der nachfolgenden Rangstufen. Wenn das Taxon ein End-Taxon ist, beträgt die Genauigkeit 100% (Ränge unterhalb des Artniveaus werden für die Berechnung ignoriert)."
+  observation_accuracy_experiment_in_the_example: "Im rechten Beispiel würde die durchschnittliche Präzision der drei Stichprobenbeobachtungen 51 % betragen."
   observation_accuracy_validator_email_subject: "Möchtest du uns dabei helfen, die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
   observation_accuracy_validator_email_will_you_help_us: |
     Möchtest du uns bei einem Experiment unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
@@ -3735,6 +3786,7 @@ de:
     north_korea: Nordkorea
     northern_cyprus: Nordzypern
     norway: Norwegen
+    oceania: Ozeanien
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -7893,7 +7945,7 @@ de:
         #Datetime this taxon was featured for display on /taxa
         featured_at: Empfohlen am
         #ID of the iconic taxon this taxon belongs to
-        iconic_taxon_id: Symbolische Taxon-ID
+        iconic_taxon_id: Symboltaxon-ID
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktiv?
         locked: Gesperrt
