@@ -32,12 +32,10 @@
                 =t :observation_accuracy_experiment_additional_validators, number: @experiment.responding_validators - 20
             %span#hide_validators=t :observation_accuracy_experiment_hide_additional_validators
         %p
-          =t(
-            :observation_accuracy_experiment_abstract,
+          =t :observation_accuracy_experiment_abstract,
             sample_generation_date: l( @experiment.sample_generation_date.to_date, format: :long ),
             deadline_date: l( @experiment.validator_deadline_date.to_date, format: :long ),
             assessment_date: l( @experiment.assessment_date.to_date, format: :long )
-          )
 
         .nav.nav-tabs
           %li.nav-item{class: ( "active" if @tab == "research_grade_results" )}
