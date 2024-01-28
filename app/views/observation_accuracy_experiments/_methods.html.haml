@@ -12,7 +12,7 @@
         src: "https://static.inaturalist.org/wiki_page_attachments/3715-original.png",
         style: "width:500px;float: left;clear: left;margin: 0 30px 30px 0"
       }
-      =t :observation_accuracy_experiment_sample_generated, date: l( @experiment.sample_generation_date, format: :long )
+      =t :observation_accuracy_experiment_sample_generated, date: l( @experiment.sample_generation_date.to_date, format: :long )
       %br
       =t :observation_accuracy_experiment_sample_size, number: @experiment.sample_size
       %br

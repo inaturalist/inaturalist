@@ -11,7 +11,7 @@
     .col-xs-12
       - if @experiment.validator_deadline_date > Time.now
         .alert.alert-warning{role: "alert"}
-          =t :observation_accuracy_experiment_experiment_still, date: l( @experiment.validator_deadline_date, format: :long )
+          =t :observation_accuracy_experiment_experiment_still, date: l( @experiment.validator_deadline_date.to_date, format: :long )
       %h1
         =t :observation_accuracy_experiment_observation_accuracy_experiment
         ="(#{@experiment.version})"
@@ -21,7 +21,7 @@
     .row
       .col-xs-12
         -if @experiment.assessment_date
-          %h4= l( @experiment.assessment_date, format: :long )
+          %h4= l( @experiment.assessment_date.to_date, format: :long )
         -if @experiment.responding_validators > 0
           %p
             =t :observation_accuracy_experiment_validators
@@ -32,7 +32,12 @@
                 =t :observation_accuracy_experiment_additional_validators, number: @experiment.responding_validators - 20
             %span#hide_validators=t :observation_accuracy_experiment_hide_additional_validators
         %p
-          =t :observation_accuracy_experiment_abstract
+          =t(
+            :observation_accuracy_experiment_abstract,
+            sample_generation_date: l( @experiment.sample_generation_date.to_date, format: :long ),
+            deadline_date: l( @experiment.validator_deadline_date.to_date, format: :long )
+            assessment_date: l( @experiment.assessment_date.to_date, format: :long )
+          )
         .nav.nav-tabs
           %li.nav-item{class: ( "active" if @tab == "research_grade_results" )}
             %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "research_grade_results" )}
@@ -184,9 +189,9 @@
                               - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "...")
                           - elsif key == "continent"
                             - if label == "none"
-                              - lab = t( label )
+                              - lab = truncate( t( label ), length: 8, omission: "...")
                             - else
-                              - lab = t( "places_name.#{label.gsub( " ","_" ).downcase}" )
+                              - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "...")
                           -else
                             - lab = label
                           %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab

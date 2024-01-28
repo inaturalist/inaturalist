@@ -3389,7 +3389,7 @@ en:
   observation_accuracy_experiment_show_additional_validators: "(show additional validators)"
   observation_accuracy_experiment_hide_additional_validators: "(hide additional validators)"
   observation_accuracy_experiment_additional_validators: "(%{number} additional validators)"
-  observation_accuracy_experiment_abstract: "Abstract: We generated a sample of observations on January 16, 2024 and coordinated a team of validators to assess their accuracy by January 30, 2024. All results shown below show characteristics of the sample observations at the time the sample was generated (for example Research Grade or not). The accuracy of the sample observations was assesed on January 26, 2024. See the methods tab for more details."
+  observation_accuracy_experiment_abstract: "Abstract: We generated a sample of observations on %{sample_generation_date} and coordinated a team of validators to assess their accuracy by %{deadline_date}. All results shown below show characteristics of the sample observations at the time the sample was generated (for example Research Grade or not). The accuracy of the sample observations was assesed on %{assessment_date}. See the methods tab for more details."
   observation_accuracy_experiment_research_grade_results: "Research Grade Results"
   observation_accuracy_experiment_verifiable_results: "Verifiable Results"
   observation_accuracy_experiment_all_results: "All Results"
