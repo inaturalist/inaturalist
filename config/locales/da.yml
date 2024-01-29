@@ -3132,6 +3132,7 @@ da:
   observation_accuracy_experiment_our_goak: "Vores mål for anslået Nøjagtighed (Korrekt) og Præcision af Forskningskvalitet-undergruppen er større end 95% (stiplet linje)"
   observation_accuracy_experiment_precision_results: "Præcisionsresultater pr. undergruppe"
   observation_accuracy_experiment_taxon_rank_level: "Taksonrangeringsniveau"
+  observation_accuracy_experiment_taxon_observations_count: "Taksonobservationsantal"
   observation_accuracy_experiment_iconic_taxon_name: "Ikonisk Taksonnavn"
   observation_accuracy_experiment_continent: "Kontinent"
   observation_accuracy_experiment_year: "År"
@@ -3142,6 +3143,11 @@ da:
   observation_accuracy_experiment_as_observations: "Når observationer fra denne prøve efterhånden bekræftes, vil usikkerhedsprocentdelen falde, og procenterne for korrekt og ukorrekt vil stige."
   observation_accuracy_experiment_experiment_still: "Eksperiment stadig i gang. Statistik opdateres dagligt indtil prøvebekræftelsesdeadlinen pr. %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Observationsnøjagtighedseksperiment"
+  observation_accuracy_experiment_validators: "Validatorer:"
+  observation_accuracy_experiment_show_additional_validators: "(vis yderligere validatorer)"
+  observation_accuracy_experiment_hide_additional_validators: "(skjul yderligere validatorer)"
+  observation_accuracy_experiment_additional_validators: "(%{number} yderligere validatorer)"
+  observation_accuracy_experiment_abstract: "Resumé: Vi genererede en prøve af observationer d. 16. januar 2024 og koordinerede et team af validatorer til at vurdere deres nøjagtighed inden 30. januar 2024. Alle nedenstående resultater viser karakteristika for prøveobservationerne på tidspunktet for prøvens generering (f.eks. Forskningskvalitet/-klasse eller ej). Nøjagtigheden af prøveobservationer blev vurderet d. 26. januar 2024. Se fanen Metoder for flere detaljer."
   observation_accuracy_experiment_research_grade_results: "Resultater af Forskningskvalitet"
   observation_accuracy_experiment_verifiable_results: "Verificerbare resultater"
   observation_accuracy_experiment_all_results: "Alle resultater"
@@ -3160,6 +3166,16 @@ da:
   observation_accuracy_experiment_we_contacted: "Vi kontaktede kandidatvalidatorer og bad dem føje identifikationer til deres delprøver. Grafen til højre grupperer prøveobservation efter antallet af validatorer."
   observation_accuracy_experiment_number_percent_of: "Antal deltagende validatorer: %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Procent af prøve bekræftet: %{percent}"
+  observation_accuracy_experiment_we_scored: "Vi scoretildelte observationer i prøven som Korrekt, Usikker eller Forkert ved at sammenligne validatoridentifikationer med de enkelte prøveobservationers takson. Identifikationer, som matchede eller var finere end prøvens observationstakson, blev scoret som Korrekt. Ikke-uenige, grovere identifikationer blev scoret som Usikker ligesom scenarier, hvor flere validatorer var uenige. Uenige, grovere identifikationer eller identifikationer på forskellige grene blev scoret som Forkert."
+  observation_accuracy_experiment_correct: "Korrekt"
+  observation_accuracy_experiment_uncertain: "Usikker"
+  observation_accuracy_experiment_incorrect: "Forkert"
+  observation_accuracy_experiment_step_4: "Trin 4: Nøjagtigheds- og præcisionsberegning"
+  observation_accuracy_experiment_accuracy: "Nøjagtighed"
+  observation_accuracy_experiment_we_calculated: "Vi beregnede Nøjagtighed som procent korrekte for hele prøven samt delsæt, såsom Forskningskvalitetdelmængden. Vi beregnede også procentdelen Usikker og procentuel Ukorrekt. I eksemplet til højre ville procentsatsen Korrekt være 83, procentsatsen Usikker ville være 6, og procentsatsen Ukorrekt ville være 11."
+  observation_accuracy_experiment_precision: "Præcision"
+  observation_accuracy_experiment_if_every_sample: "Var hver prøveobservation på en grov takson, såsom rige, ville nøjagtigheden af iNaturalist-datasættet kunne være meget høj, men præcisionen kunne være for lav til at gøre datasættet specielt nyttigt. For at anslå præcisionen har vi talt antallet af bladefterkommere i iNaturalist-taksonomien for hver takson for hver prøveobservation. Vi beregnede præcision som 1 divideret med antallet af bladefterkommere. Var taksonen en bladtakson, er præcisionen 100%. Vi ignorerede rangeringer under arter i præcisionsberegningen."
+  observation_accuracy_experiment_in_the_example: "I eksemplet til højre, ville den gns. præcision af tre prøveobservationer være 51%."
   observation_accuracy_validator_email_subject: "Vil du hjælpe os med at vurdere korrektheden af iNaturalist-observationer?"
   observation_accuracy_validator_email_will_you_help_us: |
     Vil du hjælpe os et eksperiment til vurdering af korrektheden af iNaturalist-observationer?
@@ -3928,6 +3944,7 @@ da:
     north_korea: Nordkorea
     northern_cyprus: Nordcypern
     norway: Norge
+    oceania: Oceanien
     oman: Oman
     pakistan: Pakistan
     palau: Palau
