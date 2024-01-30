@@ -707,9 +707,12 @@ class User < ApplicationRecord
     Observation.elastic_index!(ids: Observation.by(self).pluck(:id), wait_for_index_refresh: true)
   end
 
-  def merge(reject)
+  def merge( reject )
     raise "Can't merge a user with itself" if reject.id == id
-    reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    reject.friendships.where( friend_id: id ).each( &:destroy )
+    # update this has_one relationship on user_parent
+    UserParent.where( user_id: reject.id ).update_all( user_id: id )
 
     # Conditions should match index_votes_on_unique_obs_fave
     reject.votes

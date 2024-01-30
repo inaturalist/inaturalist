@@ -1063,6 +1063,22 @@ describe User do
       o.vote_by voter: reject, vote: true
       expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
     end
+
+    describe "user_parents" do
+      it "should merge user_parents where this user is the child" do
+        up = UserParent.make!( user: reject )
+        keeper.merge( reject )
+        expect( keeper.user_parent ).not_to be_nil
+        expect( keeper.user_parent.id ).to eq up.id
+      end
+
+      it "should merge user_parents where this user is the parent" do
+        up = UserParent.make!( parent_user: reject )
+        keeper.merge( reject )
+        expect( keeper.parentages ).not_to be_empty
+        expect( keeper.parentages.first.id ).to eq up.id
+      end
+    end
   end
 
   describe "suggest_login" do
