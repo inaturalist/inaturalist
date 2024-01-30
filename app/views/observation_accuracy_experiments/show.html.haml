@@ -95,7 +95,8 @@
         .col-md-10
           %p
             - if @explorable
-              =t( :observation_accuracy_experiment_click_on_bars )&nbsp;
+              =t( :observation_accuracy_experiment_click_on_bars )
+              ="&nbsp;".html_safe
             %span.sampleSize=t :observation_accuracy_experiment_sample_size, number: @stats[:sample_size]
         .col-md-2.text-end
           %button.btn.btn-primary.toggle-button{type: "button"}=t :observation_accuracy_experiment_show_frequency
