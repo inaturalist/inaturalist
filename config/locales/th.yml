@@ -101,7 +101,7 @@ th:
   a_default_taxon_name_will_automatically_created: |
     ชื่อตามลำดับอนุกรมวิธานจะถูกสร้างขึ้นมาโดยอัตโนมัติจากชื่อวิทยาศาสตร์ของสิ่งมีชีวิตในลำดับอนุกรมวิธานดังกล่าว
     เมื่อบันทึกชื่อตามอนุกรมวิธานใหม่นี้ ผู้ใช้สามารถเพิ่มชื่ออื่น ๆ ได้ที่นี่ (ชื่อสามัญ ชื่อวิทยาศาสตร์เดิมที่ถูกยกเลิก ฯลฯ)
-  a_flag_for_x: "ติดธงสำหรับ %{x}"
+  a_flag_for_x: "รายงานสำหรับ %{x}"
   a_member_of_taxon_html: "สมาชิกของ%{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -225,7 +225,7 @@ th:
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
-  add_another_flag: ติดธงเพิ่ม
+  add_another_flag: เพิ่มอีกรายงาน
   add_another_photo: เพิ่มภาพถ่ายอีกใบ
   add_another_section: เพิ่มส่วนอื่น ๆ
   add_another_subscription: เพิ่มคำอธิบายตัวกรอง
@@ -1178,6 +1178,8 @@ th:
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
   follow: ติดตาม
+  #Text for a button to follow updates on an observation
+  follow_observation: ติดตามการสังเกต
   follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
   #Text for a button to follow updates from a specific user
   follow_user: "ติดตาม %{user}"
@@ -2785,6 +2787,8 @@ th:
   unknown: ไม่ทราบ
   unknown_error: ข้อผิดพลาดที่ไม่รู้จัก
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: เลิกติดตามการสังเกต
   unpublish: เลิกเผยแพร่
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
