@@ -37,7 +37,7 @@ base: &base
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
         tilestache: 'http://localhost:8080'
-        elasticsearch: http://localhost:4000/v1
+        elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
 
     google_webmaster:
         verification: abiglongkey
@@ -114,8 +114,8 @@ base: &base
 
     # An instance of https://github.com/inaturalist/iNaturalistAPI, the
     # same code running at CONFIG.tile_servers.elasticsearch
-    node_api_url: http://<%= ENV.fetch("INAT_API_HOST") { "api" } %>:4000/v1
-    public_node_api_url: http://<%= ENV.fetch("INAT_API_PUBLIC_URL") { "localhost:4000" } %>/v1
+    node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://api:4000/v1" } %>
+    public_node_api_url: <%= ENV.fetch("INAT_API_PUBLIC_URL") { "http://localhost:4000/v1" } %>
 
     # The secrets used to sign the JWT for authenticated requests to the
     # iNaturalistAPI. These need to be same as in the API's config.js.
