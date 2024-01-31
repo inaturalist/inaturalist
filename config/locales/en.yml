@@ -3410,7 +3410,7 @@ en:
   observation_accuracy_experiment_mean_number: "Mean number of validators per sample observation: %{number}"
   observation_accuracy_experiment_number_percent_of: "Number of participating validators: %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Percent of sample validated: %{percent}"
-  observation_accuracy_experiment_step_3: "Step3: Scoring sample observations from validations"
+  observation_accuracy_experiment_step_3: "Step 3: Scoring sample observations from validations"
   observation_accuracy_experiment_we_scored: "We scored observations in the sample as Correct, Uncertain, or Incorrect by comparing the validator identifications to the each sample observation’s taxon. Identifications matching or finer thant the sample’s observation taxon were scored as Correct. Non-disagreeing coarser identifications were scored as Uncertain as were scenarios where multiple validators disagreed. Disagreeing coarser identifications or identifications on different branches were scored as Incorrect."
   observation_accuracy_experiment_correct: "Correct"
   observation_accuracy_experiment_uncertain: "Uncertain"
