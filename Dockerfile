@@ -32,6 +32,7 @@ RUN npm install
 
 COPY --chown=inaturalist:inaturalist config/config.docker.yml /code/config/config.yml
 COPY --chown=inaturalist:inaturalist config/database.docker.yml /code/config/database.yml
+COPY --chown=inaturalist:inaturalist config/smtp.docker.yml /code/config/smtp.yml
 
 RUN npm run webpack
 
