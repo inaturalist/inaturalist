@@ -188,7 +188,7 @@ nl:
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
   about_place: "Over %{place}"
-  about_places: Over plaatsen
+  about_places: Over Gebieden
   about_taxon_ranges: Over de verspreidingen van het taxon
   about_taxon_ranges_desc: |
     De verspreiding van een taxon geeft de wereldwijde verspreiding van een taxon weer. Taxon verspreidingsgebieden zijn
@@ -325,7 +325,7 @@ nl:
   add_muted_users: Gedempte gebruikers toevoegen
   add_new_lexicon: Nieuw lexicon toevoegen
   add_new_photos_by_their_ids: Nieuwe foto's op basis van hun Flickr-ID's toevoegen (moet Creative Commons zijn!)
-  add_new_place: Nieuwe plaats toevoegen
+  add_new_place: Nieuwe Gebied toevoegen
   add_new_rule: Nieuwe regel toevoegen
   add_new_source: "Nieuwe bron toevoegen..."
   add_new_taxon_name: Nieuwe taxonnaam toevoegen
@@ -343,7 +343,7 @@ nl:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Voeg er nu één toe
-  add_place: Plaats toevoegen
+  add_place: Gebied toevoegen
   add_alive_or_dead_alive_annotation: 'Aantekening "Levend of dood: levend" toevoegen'
   add_alive_or_dead_cannot_be_determined_annotation: 'Aantekening "Levend of dood: kan niet worden vastgesteld" toevoegen'
   add_alive_or_dead_dead_annotation: 'Aantekening "Levend of dood: dood" toevoegen'
@@ -441,7 +441,7 @@ nl:
   all_names: Alle namen
   all_observations: Alle waarnemingen
   all_photos: Alle foto's
-  all_places: "Alle plaatsen"
+  all_places: "Alle Gebieden"
   all_projects: Alle projecten
   all_rank_added_to_the_database:
     phylum: Alle stammen (phyla) toegevoegd aan de database
@@ -639,7 +639,7 @@ nl:
     de vervaging van waarnemingen van dit taxon en taxa erbinnen veranderen.
   are_you_sure_delete_post: Weet je zeker dat je dit bericht wilt verwijderen?
   are_you_sure_delete_taxon_move_associates: "Weet je zeker dat je %{taxonname} (%{taxonid}) wilt verwijderen en alle verwante items wilt verplaatsen?"
-  are_you_sure_delete_this_place: Weet je zeker dat je deze plaats wilt verwijderen?
+  are_you_sure_delete_this_place: Weet je zeker dat je dit gebied wilt verwijderen?
   are_you_sure_leave_this_project: Weet je zeker dat je dit project wilt verlaten?
   are_you_sure_merge_these_places: Weet je zeker dat je deze plaatsen wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
   are_you_sure_remove_photo: "Weet je zeker dat je deze foto wilt verwijderen?"
@@ -2685,8 +2685,8 @@ nl:
       gbif_network: GBIF netwerk
       gbif_network_description2: Gegevens van musea en andere aanbieders van verspreidingsgegevens geleverd door de Global Biodiversity Information Facility
       observations: Waarnemingen
-      place_boundary: Plaats grens
-      checklist_places: Checklist plaatsen
+      place_boundary: Gebiedsgrens
+      checklist_places: Checklist gebieden
       checklist_places_description: Plaatsen waar dit taxon in de lijst is opgenomen
       range: Verspreiding
   map_tooltip: Kaartweergave tonen
