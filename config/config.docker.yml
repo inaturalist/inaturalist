@@ -42,9 +42,12 @@ base: &base
     google_webmaster:
         verification: abiglongkey
 
-    s3_bucket: yourbucketname
+    s3_bucket: staticdev.inaturalist.org
     s3_protocol: https
     s3_region: us-east-1
+    s3_public_host: staticdev-public.s3.amazonaws.com
+    s3_public_region: us-east-1
+    s3_public_bucket: staticdev-public
 
     memcached: memcached
 
