@@ -3414,7 +3414,7 @@ en:
   observation_accuracy_experiment_we_scored: "We scored observations in the sample as Correct, Uncertain, or Incorrect by comparing the validator identifications to the each sample observation’s taxon. Identifications matching or finer thant the sample’s observation taxon were scored as Correct. Non-disagreeing coarser identifications were scored as Uncertain as were scenarios where multiple validators disagreed. Disagreeing coarser identifications or identifications on different branches were scored as Incorrect."
   observation_accuracy_experiment_correct: "Correct"
   observation_accuracy_experiment_uncertain: "Uncertain"
-  observation_accuracy_experiment_incorrect: "Incorect"
+  observation_accuracy_experiment_incorrect2: "Incorrect"
   observation_accuracy_experiment_step_4: "Step 4: Accuracy and Precision calculation"
   observation_accuracy_experiment_accuracy: "Accuracy"
   observation_accuracy_experiment_we_calculated: "We calculated Accuracy as the percent correct for the entire sample as well as subsets such as the Research Grade subset. We also calculated the percent Uncertain and the percent Incorrect. In the example figure to the right, the percentage correct would be 83, the percentage uncertain would be 6 and the percentage incorrect would be 11."
@@ -6758,10 +6758,10 @@ en:
           figure_alt_text: The Expected Nearby map and Taxon Range are compared
           combining_these_maps_produces: |
             Combining these maps produces 3 types of cells:
-          # Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          # Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             True Presences:
-          true_presences_definition: Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_definition2: Areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
           # Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             False Presences:
