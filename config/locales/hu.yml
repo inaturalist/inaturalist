@@ -2610,6 +2610,29 @@ hu:
     A nyílvános koordinátákat egy véletlenszerű pontként mutatjuk egy 0.2 fokos szél/hossz területen belül ami tartalmazza a valódi koordinátákat.
   observation: Megfigyelés
   observation_: megfigyelés
+  observation_accuracy_experiment_the_sample_for: "A minta erre a kísérletre még nem készült el"
+  observation_accuracy_experiment_our_accuracy_estimate: "A pontosság becslése erről a kísérletről %{percent} helyes."
+  observation_accuracy_experiment_taxon_rank_level: "Taxon rangjának a szintje"
+  observation_accuracy_experiment_continent: "Földrész"
+  observation_accuracy_experiment_year: "Év"
+  observation_accuracy_experiment_quality_grade: "Minőségi szint"
+  observation_accuracy_experiment_show_frequency: "gyakoriság megjelenítése"
+  observation_accuracy_experiment_click_on_bars: "Kattints az oszlopokra a részhalmazokért."
+  observation_accuracy_experiment_observation_accuracy_experiment: "Kísérlet a megfigyelések pontosságáról"
+  observation_accuracy_experiment_abstract: "Összefoglalás: Egy mintát generáltunk megfigyelésekből a %{sample_generation_date} dátumon, és egy validáló csapat segítségével kiértékeljük azok pontosságát %{deadline_date} határidőig. Az alábbi eredmények a minta megfigyeléseinek jellemzőit mutatják azok generálásának idején (például tudományos szintű-e vagy sem). A minta megfigyeléseinek pontosságát %{assessment_date} dátumon értékeltük. További részletekért lásd a módszertani fület."
+  observation_accuracy_experiment_research_grade_results: "Tudományos szintű eredmények"
+  observation_accuracy_experiment_verifiable_results: "Hiteles eredmények"
+  observation_accuracy_experiment_all_results: "Összes eredmény"
+  observation_accuracy_experiment_methods: "Módszerek"
+  observation_accuracy_experiment_sample_generated: "A mintavétel ideje: %{date}"
+  observation_accuracy_experiment_sample_size: "Mintaméret: %{number}"
+  observation_accuracy_experiment_step_2: "2. lépés: a minták validálása"
+  observation_accuracy_experiment_percent_of: "Hitelesített minták százaléka: %{percent}"
+  observation_accuracy_experiment_correct: "Helyes"
+  observation_accuracy_experiment_uncertain: "Bizonytalan"
+  observation_accuracy_experiment_incorrect: "Helytelen"
+  observation_accuracy_experiment_accuracy: "Pontosság"
+  observation_accuracy_experiment_precision: "Pontosság"
   observation_accuracy_validator_email_subject: "Segítesz nekünk megmérni az iNaturalist-megfigyelések pontosságát?"
   observation_accuracy_validator_email_will_you_help_us: |
     Segítesz nekünk egy kísérletben, amelynek célja az iNaturalist-megfigyelések pontosságának mérése?
@@ -3289,6 +3312,7 @@ hu:
     north_korea: Észak-Korea
     northern_cyprus: Észak-Ciprus
     norway: Norvégia
+    oceania: Óceánia
     oman: Omán
     pakistan: Pakisztán
     palau: Palau
