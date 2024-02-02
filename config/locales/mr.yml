@@ -476,19 +476,33 @@ mr:
   #curator
   apply_curator: लागू करा
   apply_to_be_an_app_owner: अॅप मालक होण्यासाठी अर्ज करा
+  arachnids: अष्टपाद
   are_you_sure?: नक्की ?
   are_you_sure_no_undo: तुमचं नक्की आहे? हे पूर्ववत केले जाऊ शकत नाही.
   are_you_sure_delete_conservation_status: |
     तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
   are_you_sure_delete_post: आपण खरंच ही टिप्पणी हटवू इच्छिता?
+  are_you_sure_delete_this_place: तुम्हाला हे ठिकाण नक्की खोडून टाकायचे आहे ना?
+  are_you_sure_leave_this_project: तुम्हाला नक्की प्रकल्प सोडायचा आहे ?
+  are_you_sure_merge_these_places: तुम्हाला हि ठिकाणे नक्की एकत्र करायची आहेत ना? ती परत विलग करता येणार नाहीत.
+  are_you_sure_remove_photo: "तुम्हाला नक्की हे छायाचित्र काढून टाकायचे आहे ना?"
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, ने अपलोड केले %{user}"
+  birds: पक्षी
   birthday: जन्मतारीख
   block: प्रतिबंध
   blocking_description: अवरोधित केल्याने तुमचा आणि दुसर्‍या वापरकर्त्यामधील कोणताही संवाद प्रतिबंधित होतो. काही विशिष्ट परिस्थितींमध्ये, जसे की तुमच्या व्यवहारांवर कोणी पाळत ठेऊन आढळल्यास किंवा तुमच्याबरोबर कोणी गैरवर्तन करीत असल्यास, तुमची सुरक्षितता लक्षात घेता, अशा प्रकारचा प्रतिबंध लावता येऊ शकतो.
+  blue_butterfly_etc: "निळे, फुलपाखरू, इत्यादी"
+  by_everyone: सर्वांनी
+  by_user: "%{user} ने"
+  by_you: तुम्ही
   calendar: दिनदर्शिका
+  change_group: गट बदल
+  change_types:
+    change_types: बदलाचा प्रकार
+    split: विभाजन
   #Plural noun, as in changes to a taxon record over time
   changes: बदल
   check_this_box_if_html: |
@@ -737,6 +751,8 @@ mr:
   new_conservation_status: नवीन संवर्धन स्थिती
   #Filter for observations not in a particular place
   not_in_place: याठिकाणी नाही
+  observation_accuracy_validator_email_ids_sibling_to: |
+    वेगवेगळ्या शाखांवरील आयडी (C) किंवा टॅक्सनपेक्षा कमी दर्जाचे निरीक्षण जेथे तुम्ही 'नाही, पण...'' निवडता ते 'संभाव्य असहमत' संवाद (D) असहमती म्हणून गणले जाईल.
   #Basic observation export fields
   observation_export_column_type_basic: सामान्य
   #Geographic observation export fields
