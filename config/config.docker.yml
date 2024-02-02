@@ -118,7 +118,6 @@ base: &base
     # An instance of https://github.com/inaturalist/iNaturalistAPI, the
     # same code running at CONFIG.tile_servers.elasticsearch
     node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://api:4000/v1" } %>
-    public_node_api_url: <%= ENV.fetch("INAT_API_PUBLIC_URL") { "http://localhost:4000/v1" } %>
 
     # The secrets used to sign the JWT for authenticated requests to the
     # iNaturalistAPI. These need to be same as in the API's config.js.
