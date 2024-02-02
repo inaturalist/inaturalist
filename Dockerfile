@@ -39,6 +39,8 @@ RUN npm run webpack
 
 FROM base as assets
 
+RUN mkdir /code/public/assets
+
 COPY --chown=inaturalist:inaturalist config/database.docker.assets.yml /code/config/database.yml
 
 RUN RAILS_ENV=production SECRET_KEY_BASE=1 PRECOMPILE_ASSETS=true rake inaturalist:generate_translations_js
