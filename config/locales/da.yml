@@ -3167,10 +3167,10 @@ da:
   observation_accuracy_experiment_we_contacted: "Vi kontaktede kandidatvalidatorer og bad dem føje identifikationer til deres delprøver. Grafen til højre grupperer prøveobservation efter antallet af validatorer."
   observation_accuracy_experiment_number_percent_of: "Antal deltagende validatorer: %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Procent af prøve bekræftet: %{percent}"
+  observation_accuracy_experiment_step_3: "Trin 3: Scoretildeling af prøveobservationer fra godkendelser"
   observation_accuracy_experiment_we_scored: "Vi scoretildelte observationer i prøven som Korrekt, Usikker eller Forkert ved at sammenligne validatoridentifikationer med de enkelte prøveobservationers takson. Identifikationer, som matchede eller var finere end prøvens observationstakson, blev scoret som Korrekt. Ikke-uenige, grovere identifikationer blev scoret som Usikker ligesom scenarier, hvor flere validatorer var uenige. Uenige, grovere identifikationer eller identifikationer på forskellige grene blev scoret som Forkert."
   observation_accuracy_experiment_correct: "Korrekt"
   observation_accuracy_experiment_uncertain: "Usikker"
-  observation_accuracy_experiment_incorrect: "Forkert"
   observation_accuracy_experiment_step_4: "Trin 4: Nøjagtigheds- og præcisionsberegning"
   observation_accuracy_experiment_accuracy: "Nøjagtighed"
   observation_accuracy_experiment_we_calculated: "Vi beregnede Nøjagtighed som procent korrekte for hele prøven samt delsæt, såsom Forskningskvalitetdelmængden. Vi beregnede også procentdelen Usikker og procentuel Ukorrekt. I eksemplet til højre ville procentsatsen Korrekt være 83, procentsatsen Usikker ville være 6, og procentsatsen Ukorrekt ville være 11."
@@ -6327,10 +6327,9 @@ da:
           figure_alt_text: Forventet i nærheden-kortet og Taksonudbredelse sammenlignes
           combining_these_maps_produces: |
             Kombination af disse kort producerer 3 typer af celler:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Sand tilstedeværelse:
-          true_presences_definition: Områder, hvor både Forventet i nærheden-kortet og Taksoudbredelsen forudser, at taksonen forefindes.
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Falsk tilstedeværelse:
