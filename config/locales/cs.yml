@@ -3264,6 +3264,31 @@ cs:
     Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
   observation: Pozorování
   observation_: pozorování
+  observation_accuracy_experiment_the_sample_for: "Vzorek pro tento experiment ještě nebyl vytvořen."
+  observation_accuracy_experiment_our_accuracy_estimate: "Na základě tohoto experimentu odhadujeme správnost (accuracy) na %{percent}."
+  observation_accuracy_experiment_precision_results: "Výsledná přesnost podle podmnožiny"
+  observation_accuracy_experiment_taxon_rank_level: "Taxonomická kategorie"
+  observation_accuracy_experiment_iconic_taxon_name: "Ikonický taxon"
+  observation_accuracy_experiment_continent: "Světadíl"
+  observation_accuracy_experiment_year: "Rok"
+  observation_accuracy_experiment_quality_grade: "Úroveň kvality"
+  observation_accuracy_experiment_show_frequency: "zobrazit frekvenci"
+  observation_accuracy_experiment_accuracy_results: "Výsledná správnost podle podmnožiny"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experiment na správnost pozorování"
+  observation_accuracy_experiment_validators: "Validátoři:"
+  observation_accuracy_experiment_show_additional_validators: "(zobrazit další validátory)"
+  observation_accuracy_experiment_hide_additional_validators: "(skrýt další validátory)"
+  observation_accuracy_experiment_additional_validators: "(%{number} dalších validátorů)"
+  observation_accuracy_experiment_research_grade_results: "Výsledky pro Výzkumný stupeň"
+  observation_accuracy_experiment_verifiable_results: "Ověřitelné výsledky"
+  observation_accuracy_experiment_all_results: "Všechny výsledky"
+  observation_accuracy_experiment_methods: "Metodika"
+  observation_accuracy_experiment_step_1: "Krok 1: vytvoření a rozřazení vzorku"
+  observation_accuracy_experiment_correct: "Správně"
+  observation_accuracy_experiment_uncertain: "Nejisté"
+  observation_accuracy_experiment_step_4: "Krok 4: výpočet správnosti a přesnosti"
+  observation_accuracy_experiment_accuracy: "Správnost (accuracy)"
+  observation_accuracy_experiment_precision: "Přesnost (precision)"
   observation_accuracy_validator_email_subject: "Pomůžete nám odhadnout přesnost pozorování v iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us: |
     Pomůžete nám s experimentem, který by měl odhadnout přesnost pozorování v iNaturalist?
@@ -4006,6 +4031,7 @@ cs:
     north_korea: Severní Korea
     northern_cyprus: Severní Kypr
     norway: Norsko
+    oceania: Oceánie
     oman: Omán
     pakistan: Pakistán
     palau: Palau
