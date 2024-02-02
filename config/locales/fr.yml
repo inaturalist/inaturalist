@@ -3088,6 +3088,74 @@ fr:
     Les coordonnées qui sont visibles pour tout le monde sont montrées comme un point au hasard dans les 0,2 degrés de latitude/longitude contenant les vraies coordonnées.
   observation: Observation
   observation_: observation
+  observation_accuracy_experiment_the_sample_for: "L'échantillon pour cette expérience n'a pas encore été généré"
+  observation_accuracy_experiment_our_accuracy_estimate: "Notre estimation de la précision résultant de cette expérience est de %{percent}."
+  observation_accuracy_experiment_our_goak: "Notre objectif pour la précision estimée (correcte) et la précision du sous-ensemble de Niveau de Recherche est supérieure à 95% (ligne pointillée)"
+  observation_accuracy_experiment_precision_results: "Résultats de la précision par sous-ensemble"
+  observation_accuracy_experiment_taxon_observations_count: "Nombre d'observations de taxon"
+  observation_accuracy_experiment_continent: "Continent"
+  observation_accuracy_experiment_year: "Année"
+  observation_accuracy_experiment_quality_grade: "Niveau de qualité"
+  observation_accuracy_experiment_show_frequency: "afficher la fréquence"
+  observation_accuracy_experiment_click_on_bars: "Cliquez sur les barres pour explorer les sous-ensembles."
+  observation_accuracy_experiment_accuracy_results: "Résultats de l'exactitude par sous-ensemble"
+  observation_accuracy_experiment_as_observations: "Comme les observations de cet échantillon sont validées, le pourcentage d'incertitude diminuera et le pourcentage correct et incorrect augmentera."
+  observation_accuracy_experiment_experiment_still: "Expérience toujours en cours. Les statistiques seront mises à jour quotidiennement jusqu'à la date limite de validation des échantillons le %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Expérience d'exactitude d'observation"
+  observation_accuracy_experiment_validators: "Validateurs :"
+  observation_accuracy_experiment_show_additional_validators: "(afficher les validateurs supplémentaires)"
+  observation_accuracy_experiment_hide_additional_validators: "(masquer les validateurs supplémentaires)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validateurs supplémentaires)"
+  observation_accuracy_experiment_abstract: "Résumé : Nous avons généré un échantillon d’observations le %{sample_generation_date} et coordonné une équipe de validateurs pour évaluer leur exactitude avant le %{deadline_date}. Tous les résultats présentés ci-dessous montrent les caractéristiques des observations de l'échantillon au moment où celui-ci a été généré (par exemple le niveau \"Qualité de Recherche\" ou non). La précision des observations de l'échantillon a été évaluée le %{assessment_date}. Voir l'onglet méthodes pour plus de détails."
+  observation_accuracy_experiment_research_grade_results: "Résultats de niveau Recherche"
+  observation_accuracy_experiment_verifiable_results: "Résultats vérifiables"
+  observation_accuracy_experiment_all_results: "Tous les résultats"
+  observation_accuracy_experiment_methods: "Méthodes"
+  observation_accuracy_experiment_step_1: "Étape 1 : Génération et Affectation des Échantillons"
+  observation_accuracy_experiment_from_the: "À partir de la base de données des observations iNaturalist (A), nous avons généré un échantillon aléatoire (B). Des sous-échantillons ont été attribués aux validateurs candidats en fonction des critères décrits ci-dessous. Nous avons cherché à assigner chaque exemple d'observation à plusieurs validateurs candidats (\"Redondance du validateur cible\")."
+  observation_accuracy_experiment_sample_generated: "Échantillon généré le : %{date}"
+  observation_accuracy_experiment_sample_size: "Taille de l'échantillon : %{number}"
+  observation_accuracy_experiment_target_validator: "Redondance du validateur cible : %{number}"
+  observation_accuracy_experiment_number_of: "Nombre de validateurs candidats : %{number}"
+  observation_accuracy_experiment_mean_subsample: "Taille moyenne du sous-échantillon par candidat validateur : %{number}"
+  observation_accuracy_experiment_mean_number: "Nombre moyen de validateurs par observation : %{number}"
+  observation_accuracy_experiment_validator_candidate: "Critère d'éligibilité du validateur"
+  observation_accuracy_experiment_if_an_identifier: "Si un identificateur avait fait au moins 3 identifications améliorantes sur un taxon, nous l'avons considéré qualifié pour valider ce taxon. L'identification améliorante est la première suggestion d'un taxon avec laquelle la communauté est par la suite d'accord."
+  observation_accuracy_experiment_step_2: "Étape 2 : Validation des échantillons"
+  observation_accuracy_experiment_percent_of: "Pourcentage de l'échantillon validé : %{percent}"
+  observation_accuracy_experiment_step_3: "Étape 3 : Évaluation des observations d'un échantillon à partir des validations"
+  observation_accuracy_experiment_correct: "Correct"
+  observation_accuracy_experiment_uncertain: "Incertain"
+  observation_accuracy_experiment_step_4: "Étape 4 : Calcul de l'exactitude et de la précision"
+  observation_accuracy_experiment_accuracy: "Exactitude"
+  observation_accuracy_experiment_precision: "Précision"
+  observation_accuracy_validator_email_subject: "Accepteriez-vous de nous aider pour estimer la précision des observations d'iNaturalist ?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Accepteriez-vous de nous aider avec une expérience pour estimer la précision des observations d'iNaturalist ?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifiez toutes les observations en suivant le lien ci-dessous, aussi finement que possible, même si elles sont déjà au Niveau de Recherche, et même si votre identification la plus fine est à un niveau taxonomique plus élevé (même royaume). </li>
+    <li>Si vous voyez apparaître la fenêtre "Désaccord potentiel"…
+    <ul>
+    <li>et que vous êtes certain qu'il s'agit d'une mauvaise identification, cliquez sur le bouton orange,</li>
+    <li>ou bien, si vous n'êtes pas certain de votre identification, cliquez sur le bouton vert</li>
+    </ul>
+    </li>
+    <li>Merci de faire ceci avant le <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Voici le <a href="%{sample_url}">sous ensemble de %{num_obs} observations</a>
+    que nous pensons que vous pouvez identifier, sur la base de votre activité sur iNat. <b>Merci d'ajouter l'identification la plus fine possible pour chacune des observations avant le %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Les identifiants égaux à (A) ou plus fins que (B) le taxon d’observation seront comptés comme des Accords.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Les IDs sur des branches différentes (C) ou moins précis que le Taxon d'Observation où vous choisissez 'Non,
+    mais…' dans la boîte de dialogue 'Désaccord potentiel' (D) seront considérés comme des Désaccords.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Les ID moins précis que le Taxon d'Observation pour lesquels vous choisissez "Je ne sais pas mais..." dans la boîte de dialogue "Désaccord potentiel" (E) seront comptés comme incertains.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Nous vous sommes très reconnaissants pour votre aide en tant d'identifieur sur iNaturalist, et nous vous remercions pour votre participation à cette étude. Vous pouvez lire <a href="%{url}">ce post de blog</a> qui répond aux questions les plus fréquentes au sujet de cette expérience.
+  observation_accuracy_validator_email_with_gratitude: Avec nos remerciements,
+  observation_accuracy_validator_email_the_inaturalist_team: L'équipe iNaturalist
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
   observation_aggregation: Agrégation d’observations
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3817,6 +3885,7 @@ fr:
     north_korea: Corée du Nord
     northern_cyprus: Chypre du nord
     norway: Norvège
+    oceania: Océanie
     oman: Sultanat d'Oman
     pakistan: Pakistan
     palau: Palaos
@@ -4356,6 +4425,15 @@ fr:
   rotate_left: Pivoter vers la gauche
   rotate_right: Pivoter vers la droite
   row_singular_or_plural: Ligne(s)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Vous voulez tester la mise en page de droite à gauche ? Vous pouvez également utiliser le paramètre test=rtl URL. Notez
+    que toutes les pages n'ont pas été converties pour la mise en page de droite à gauche
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Vous testez désormais la mise en page de droite à gauche
   rules_and_formatting: "Règles et mise en forme"
   rules_for_adding_observations: Règles pour l’ajout d’observations
   rules_for_becoming_a_member: Règles pour devenir membre
