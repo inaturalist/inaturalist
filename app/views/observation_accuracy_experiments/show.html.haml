@@ -57,7 +57,7 @@
         .col-xs-12
           %p
             - if @experiment.validator_deadline_date > Time.now
-              =t :observation_accuracy_experiment_as_observations
+              =t :observation_accuracy_experiment_as_observations2
             - else
               =t :observation_accuracy_experiment_our_accuracy_estimate, percent: "#{@stats[:correct].round}%"
             - if @tab == "research_grade_results"
