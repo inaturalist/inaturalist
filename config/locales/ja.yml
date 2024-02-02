@@ -2930,6 +2930,29 @@ ja:
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
   observation: 観察記録
   observation_: 観察記録
+  observation_accuracy_validator_email_subject: "iNaturalistの観察記録の精度を推定するのを手伝っていただけませんか？"
+  observation_accuracy_validator_email_will_you_help_us: |
+    iNaturalistの観察記録の精度を推定する実験に協力していただけませんか？
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>以下のリンクにある観察記録は、たとえそれが研究グレードであっても、またあなたの最も細かい同定がより高い分類学的レベルであっても、できる限り細かく同定してください（界レベルであっても）。</li>
+    <li>もしあなたが "Potential Disagreement "のポップアップを見て…
+    <ul>
+    <li>それが間違った同定だと確信が持てたらオレンジのボタンを、</li>
+    <li>同定以上の情報が不明な場合は緑色のボタンをクリックしてください。</li>
+    </ul>
+    </li>
+    <li><b>%{validator_deadline_date}</b>までにこれを行う</li>
+    </ol>
+    ここに、iNatでのあなたの活動に基づいて同定できると思われる<a href="%{sample_url}">%{num_obs}件の観察記録のサブセット</a>があります。<b>%{validator_deadline_date}までに、それぞれの観察記録にできるだけ細かい同定を付けてください。</b>
+  observation_accuracy_validator_email_we_will_calculate: |
+    私たちは、あなたの同定と観察記録の分類群を比較して精度を計算します。もしその同定がまだ適切であれば、以前に同定を追加した観察記録をスキップすることができます。一致と不一致をどのようにカウントするかについては、このまま読み進めてください。
+  observation_accuracy_validator_email_ids_equal_to: |
+    観察記録と同じ (A) か、それよりも細かい同定 (B) は「同意」としてカウントされます。
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    iNaturalistの同定者としてご協力いただき、この研究にご参加いただき本当にありがとうございます。この実験に関するよくある質問については、<a href="%{url}">こちらの記事</a>をご覧ください。
+  observation_accuracy_validator_email_with_gratitude: 感謝の気持ちを込めて、
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalistチーム
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
   observation_aggregation: 観察記録の集合体
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6237,6 +6260,8 @@ ja:
         species_per_year_by_date_added: 追加した日付順
         species_per_year_by_date_observed: 観察した日付順
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
+        sunburst_desc_html: |
+          観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁の種で終わります。各円弧の大きさはその分類群の観察記録の数に比例し、色は通常の「分類群を象徴する」色（植物は緑、昆虫はオレンジ、その他の動物は青など）にほぼ対応しています。<strong>円弧をクリックすると、その分類群が中心に配置され、</strong>その周りに子分類群が配置され、<strong>中心をクリックすると、階層が上に戻ります</strong>。
         translators_title: 翻訳者
         view_all_publications_count_caps2:
           other: "%{count} 件の出版物を表示"
