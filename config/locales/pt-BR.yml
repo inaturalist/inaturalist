@@ -250,6 +250,7 @@ pt-BR:
   active_taxon_status: Ativo
   active_users: Usuários ativos
   activity: Atividade
+  activity_on_a_flag_for_x: Atividade numa sinalização para %{x}
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} from a work by %{original}"
   add: Adicionar
   add_a_batch_of_observations: Adicionar um grupo de observações
@@ -1927,6 +1928,7 @@ pt-BR:
     Sinalização para Usuário: %{title}
   flag_it!: Sinalizá-lo!
   flag_marked_as_resolved_html: '<span class="meta">Sinalização indicada como</span> <strong>resolvida.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Sinalização marcada como</span> <strong>não resolvida.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Item
   flag_reason: "&ldquo;Estou sinalizando este %{record} porque"
@@ -3123,6 +3125,69 @@ pt-BR:
     Coordenadas públicas mostradas como um ponto aleatório dentro da célula lat/lon de 0,2 grau que contém as coordenadas verdadeiras.
   observation: Observação
   observation_: observação
+  observation_accuracy_experiment_the_sample_for: "A amostra para esse experimento ainda não foi gerada"
+  observation_accuracy_experiment_our_accuracy_estimate: "Nossa estimativa de precisão resultante deste experimento é %{percent} correta."
+  observation_accuracy_experiment_our_goak: "Nosso objetivo para a Precisão (Correta) e a Precisão do subconjunto de Nível Pesquisa é maior que 95% (linha tracejada)"
+  observation_accuracy_experiment_precision_results: "Resultados de precisão por subconjunto"
+  observation_accuracy_experiment_taxon_rank_level: "Nível Táxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nome do Táxon Icônico"
+  observation_accuracy_experiment_continent: "Continente"
+  observation_accuracy_experiment_year: "Ano"
+  observation_accuracy_experiment_quality_grade: "Grau de Qualidade"
+  observation_accuracy_experiment_show_frequency: "mostrar frequência"
+  observation_accuracy_experiment_click_on_bars: "Clique nas barras para explorar os subconjuntos."
+  observation_accuracy_experiment_accuracy_results: "Resultados de precisão por subconjunto"
+  observation_accuracy_experiment_as_observations: "À medida que as observações desta amostra forem validadas, a incerteza em porcentagem diminuirá e a porcentagem correta e incorreta aumentará."
+  observation_accuracy_experiment_experiment_still: "Experimento ainda em andamento. Estatísticas serão atualizadas diariamente até o prazo para validação de amostras em %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experimento de Precisão de Observações"
+  observation_accuracy_experiment_validators: "Validadores"
+  observation_accuracy_experiment_show_additional_validators: "(mostrar validadores adicionais)"
+  observation_accuracy_experiment_hide_additional_validators: "(ocultar validadores adicionais)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validadores adicionais)"
+  observation_accuracy_experiment_abstract: "Resumo: Geramos uma amostra de observações em %{sample_generation_date} e solicitamos a uma equipe de validadores para avaliar sua precisão em %{deadline_date}. Todos os resultados mostrados abaixo mostram as características da amostra de observações no momento em que a amostra foi gerada (por exemplo, Nível de Pesquisa ou não). A precisão das observações da amostra foi avaliada em %{assessment_date}. Clique na guia Métodos para mais detalhes."
+  observation_accuracy_experiment_research_grade_results: "Resultados de Nível de Pesquisa"
+  observation_accuracy_experiment_verifiable_results: "Resultados Verificáveis"
+  observation_accuracy_experiment_all_results: "Todos os Resultados"
+  observation_accuracy_experiment_methods: "Métodos"
+  observation_accuracy_experiment_step_1: "Passo 1: Geração de Amostragem e Atribuição"
+  observation_accuracy_experiment_from_the: "A partir da base de dados de observações do iNaturalist (A) foi gerada uma amostra aleatória (B). Subamostras foram atribuídas a validadores candidatos com base nos critérios descritos abaixo. O objetivo era o de atribuir cada amostra de observação a múltiplos validadores candidatos ( \"Redundancia de Validadores Alvos\" )."
+  observation_accuracy_experiment_sample_generated: "Amostra gerada em: %{date}"
+  observation_accuracy_experiment_sample_size: "Tamanho da amostra: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundância de validadores alvo: %{number}"
+  observation_accuracy_experiment_number_of: "Número de candidatos a validadores: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Tamanho médio de subamostra por candidato a validador: %{number}"
+  observation_accuracy_experiment_mean_number: "Número médio de validadores por amostra de observações: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Critério para validador candidato"
+  observation_accuracy_experiment_if_an_identifier: "Se um identificador tiver feito pelo menos 3 identificações de melhoria de um táxon, é considerado qualificado para validar esse táxon. Identificação de melhoria é a primeira sugestão de um táxon com o qual a comunidade concorda posteriormente."
+  observation_accuracy_experiment_for_example: "Por exemplo, o identificador 1 identifica uma observação como \"A\". Se mais tarde o identificador 2 identifica em um novo ramo (leading) esta observação como \"B\", a identificação de 1 muda para \"melhorando\". Se posteriormente o identificador 3 concorda com identificador 2 na identificação como \"B\" do identificador 2, esta se torna uma ID grau \"melhorando\"."
+  observation_accuracy_experiment_step_2: "Etapa 2: Validação de amostras"
+  observation_accuracy_experiment_we_contacted: "Contactamos os candidatos a validadores e solicitamos que identificassem suas subamostras. O gráfico à direita agrupa as observações da amostra por número de validadores"
+  observation_accuracy_experiment_number_percent_of: "Número de validadores participantes: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Porcentagem de amostra validada: %{percent}"
+  observation_accuracy_experiment_we_scored: "Classificamos observações na amostra como Corretas, Inseguras ou Incorretas, comparando as identificações do validador com o táxon de cada observação. Identificação igual ou mais precisa que o táxon da observação da amostra foi marcada como Correta. Identificações menos precisas sem divergência foram marcadas como Inseguras evidenciando um cenário em que vários validadores discordaram entre si. Desacordo nas identificações ou identificações mais grosseiras em ramos diferentes foram marcadas como Incorretas."
+  observation_accuracy_experiment_correct: "Correta"
+  observation_accuracy_experiment_uncertain: "Incerta"
+  observation_accuracy_experiment_step_4: "Cálculo de Exatidão e Precisão"
+  observation_accuracy_experiment_accuracy: "Exatidão"
+  observation_accuracy_experiment_we_calculated: "A Exatidão é calculada como a porcentagem correta para toda a amostra bem como para os subconjuntos tais como o do subconjunto das amostras no grau Nivel de Pesquisa. Também são calculadas as porcentagens para incertas e incorretas. No exemplo à direita, a porcentagem correta seria 83, a porcentagem incerta seria 6 e a porcentagem incorreta seria 11"
+  observation_accuracy_experiment_precision: "Precisão"
+  observation_accuracy_experiment_if_every_sample: "Se toda observação da amostra estivesse em um táxon mais grosseiro tal como reino, a exatidão do conjunto de dados do iNaturalis seria alta, mas a precisão poderia ser muito baixa para ser útil. Para estimar a precisão, computamos o número de \"folhas descendentes\" na taxonomia do iNaturalist para cada observação da amostra. A precisão é calculada como o inverso do número de \"folhas descendentes\". Se o taxon for um taxon \"folha\", a precisão é 100%"
+  observation_accuracy_experiment_in_the_example: "No exemplo à direita, a precisão média de três observações da amostra seria de 51%."
+  observation_accuracy_validator_email_subject: "Você nos ajudaria a avaliar a precisão das observações do iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Você nos ajudaria em um experimento para avaliar a precisão das observações do iNaturalist?
+  observation_accuracy_validator_email_ids_equal_to: |
+    Para IDs iguais a (A) ou melhores que (B) o Táxon de Observação serão contados como Concordantes.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    IDs em ramos diferentes (C) ou mais grosseiro que o Táxon da Observação onde você escolher 'Não,
+    mas…' para o "Desacordo Potencial" (D) serão contados como Desacordos.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    IDs mais grosseiras que o Táxon da Observação onde você selecionar 'Eu não sei, mas…' para
+    a opção 'Possível Desacordo' (E) serão computados como Incertezas.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Somos muito gratos pela sua ajuda como um identificador do iNaturalist, e lhe agradecemos muito por participar deste estudo. Por favor, leia <a href="%{url}">este post no blog</a> para respostas a perguntas frequentes sobre este experimento.
+  observation_accuracy_validator_email_with_gratitude: Com gratidão,
+  observation_accuracy_validator_email_the_inaturalist_team: A equipe iNaturalist
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
   observation_aggregation: Observações associadas
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3375,6 +3440,7 @@ pt-BR:
   organism_is_wild: Organismo selvagem
   organisms: Organismos
   original: Original
+  original_flag: Sinalização original
   originally_flagged_by: Originalmente sinalizado por
   originally_imported_from_url_html: "Originalmente importado por <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Endereço da página original desta foto"
@@ -3863,6 +3929,7 @@ pt-BR:
     north_korea: Coreia do Norte
     northern_cyprus: Chipre do Norte
     norway: Noruega
+    oceania: Oceania
     oman: Omã
     pakistan: Paquistão
     palau: Palau
