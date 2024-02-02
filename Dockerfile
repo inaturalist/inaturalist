@@ -41,7 +41,9 @@ FROM base as assets
 
 COPY --chown=inaturalist:inaturalist config/database.docker.assets.yml /code/config/database.yml
 
-RUN RAILS_ENV=production SECRET_KEY_BASE=1 PRECOMPILE_ASSETS=true rails assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE=1 PRECOMPILE_ASSETS=true rake inaturalist:generate_translations_js
+
+RUN RAILS_ENV=production SECRET_KEY_BASE=1 PRECOMPILE_ASSETS=true rake assets:precompile
 
 FROM base as production
 
