@@ -162,6 +162,7 @@ bg:
   #should work here
   about_place: "Относно %{place}"
   about_places: Относно местата
+  about_the_network: За мрежата
   about_this_bioblitz: Относно този биоблиц
   about_this_map: За тази карта
   about_this_project: За този проект
@@ -224,6 +225,7 @@ bg:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Добави препратка
   add_a_name: Добавяне на име
+  add_a_note: Добавяне на бележка
   add_a_new_change_group: Добави нова група от промени
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Добави номериран списък
@@ -331,6 +333,8 @@ bg:
   added_by: Добавено от
   added_by_user_on_date_html: "Добавено от %{user} на %{date}"
   added_on_datetime: "Добавено на %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Добавена роля
   added_to_favorites_html: |
     Добавено в <a href="%{url}">любими</a>
   adding: "Добавяне..."
@@ -347,6 +351,8 @@ bg:
   #Noun, title of a popup alerting you to something
   alert: Внимание
   all: Всичко
+  #Title for a list of all 3rd party applications
+  all_applications: Всички приложения
   all_comments: Всички коментари
   all_flags_must_be_resolved: Всички маркери трябва да бъдат разрешени
   all_life: Всичкият живот
@@ -612,6 +618,8 @@ bg:
   bioblitz: Биоблиц
   birds: птици
   birthday: Рожден ден
+  block: Блокиране
+  block_removed: Блокирането премахнато
   blocked_users: Блокирани потребители
   blog_widget: Приставка за блог
   blue_butterfly_etc: "червен, пеперуда и т.н."
@@ -691,6 +699,8 @@ bg:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} бяха обединени във %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} ще бъдат обединени във %{output_taxon}"
   change_your_password: Промяна на паролата
+  #Plural noun, as in changes to a taxon record over time
+  changes: Промени
   changing_the_geoprivacy: 'Геоповерителността определя как другите хора виждат местоположението на Вашето наблюдение.'
   check_above_for_errors: Проверете по-горе за грешки
   check_back_soon: Проверете пак скоро!
@@ -725,6 +735,7 @@ bg:
   classification: Класификация
   clear: изчисти
   clear_filters: Изчисти филтрите
+  clear_search: Изчистване на търсенето
   close: Затваряне
   code: Код
   #People who have contributed code to iNat open-source software projects
@@ -1199,10 +1210,15 @@ bg:
   edit_body: Редактирай съдържанието
   edit_field: Редактирай полето
   edit_license: Редактиране на лиценза
+  edit_notes: Редактиране на бележки
   edit_observations: Редактиране на наблюдения
   edit_photos: Редактиране на снимки
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
+  edit_place: Редактиране на място
   edit_project: Редактирай проекта
+  edit_remove: Редактиране/премахване
+  edit_selected: Редактиране на избраното
+  edit_source: Редактиране на източник
   edit_taxa: Редактирай таксони
   edit_taxon_link: Редактирай таксономична препратка
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
@@ -1221,9 +1237,13 @@ bg:
   editing_project: Редактиране на %{project}
   editing_taxon_link: Редактиране на таксономична препратка
   editing_taxon_name_for_taxon_html: Редактиране на име „%{name}“ за таксон %{taxon}
+  editors: Редактори
   either_that_user_doesnt_exist_or: "Или потребителят не съществува или вече го следвате."
   eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Драги, %{user},
   email_description: Вашият имейл не се споделя с други потребители на iNaturalist
   email_notifications: Известия по имейл
   embed_place_widget: Вмъкни приставка за място
@@ -1393,6 +1413,8 @@ bg:
   flickr_has_no_creative_commons: Flickr няма снимки с лиценз Криейтив комънс от това място.
   flickr_needs_to_confirm: "Flickr трябва да потвърди, че искате да свържете акаунта си с %{site_name}."
   flickr_tags: Flickr етикети
+  #Adjective, as in a fluid layout of images
+  fluid: течност
   follow: Следвай
   #Text for a button to follow updates from a specific user
   follow_user: "Следвай %{user}"
@@ -1658,9 +1680,12 @@ bg:
   lexicon: Лексика
   lexicons:
     afrikaans: африканс
+    alabama: Алабама
     albanian: албански
     arabic: арабски
     armenian: арменски
+    asturian: Астурски
+    basque: баски
     belarusian: беларуски
     bengali: бенгалски
     bulgarian: български
@@ -1668,6 +1693,7 @@ bg:
     cebuano: себуански
     chinese_simplified: китайски (опростен)
     chinese_traditional: китайски (традиционен)
+    chuvash: чувашки
     creole_french: креолски (френски)
     creole_portuguese: креолски (португалски)
     croatian: хърватски
@@ -1676,28 +1702,38 @@ bg:
     davawenyo: даваонски
     dutch: нидерландски
     english: английски
+    esperanto: есперанто
     estonian: естонски
     faroese: фарьорски
+    fijian: фиджийски
     finnish: фински
     french: френски
     galician: галисийски
     gela: гелански
+    georgian: грузински
     german: немски
     greek: гръцки
+    gujarati: гуджарати
     hawaiian: хавайски
     hebrew: иврит
+    herero: хереро
     hiligaynon: илонго
     hungarian: унгарски
     icelandic: исландски
     ilokano: илокано
     indonesian: индонезийски
+    irish: ирландски
     italian: италиански
     japanese: японски
     kannada: каннада
+    kazakh: казахски
     korean: корейски
+    kweyol: куейол
     latvian: латвийски
     lithuanian: литовски
+    lozi: силозки
     luxembourgish: люксембургски
+    malagasy: малгашки
     malay: малайски
     malayalam: малаялам
     maltese: малтийски
@@ -1707,8 +1743,11 @@ bg:
     misima_paneati: мисимски
     mongolian: монголски
     nahuatl: науатъл
+    navajo: навахо
+    ndebele: ндебеле
     norwegian: норвежки
     occitan: окситански
+    ojibwe: оджибуей
     palauan: палауански
     pangasinan: пангасинан
     persian: персийски
@@ -1718,18 +1757,34 @@ bg:
     russian: руски
     santali: сантали
     scientific_names: Научни имена
+    serbian: сръбски
+    shona: шона
+    sinhala: синхалски
     slovak: словашки
     slovenian: словенски
+    sotho: сото
+    sotho_northern: сото (северен)
     spanish: испански
     swahili: суахили
+    swati: свази
     swedish: шведски
     tagalog: тагалог
     tahitian: таитянски
+    tamil: тамилски
     thai: тайландски
     tokelauan: токелау
+    totonaco: тотонако
+    tsonga: цонга
+    tswana: тсвана
     turkish: турски
     ukrainian: украински
+    uyghur: уйгурски
+    venda: венда
+    vietnamese: виетнамски
+    visayan: висайски
     waray_waray: варайски
+    xhosa: кхоса
+    zulu: зулуски
   less: По-малко
   #Button show less text
   less__context_text: По-малко
@@ -1801,6 +1856,8 @@ bg:
     id: индонезийски
     it: италиански
     ja: японски
+    ka: грузински
+    kk: казахски
     kn: каннада
     ko: корейски
     lb: люксембургски
@@ -1846,6 +1903,8 @@ bg:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Излизане от %{site_name}?"
   log_scale_label: Лог.
+  #Status message shown while logging in
+  logging_in: Влизане...
   logo:
     logo: Лого
     white_bg_gif: GIF с бял фон
@@ -1897,6 +1956,9 @@ bg:
   mark_all_as_reviewed: Отбелязване на всички като проверени
   mark_all_as_unreviewed: Отбелязване на всички като непроверени
   media: Мултимедия
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: и
   media_type: Тип медия
   medium: среден
   meet: Запознайте се
@@ -1917,6 +1979,7 @@ bg:
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} Ви спомена във %{x} на %{noun} от Вас"
   merge: Обединяване
   merge_it_with_another_place: Обедини с друго място
+  merging: Сливане
   message: Съобщение
   message_from_user_on_date: От %{user} на %{date}
   messages: Съобщения
@@ -1934,6 +1997,8 @@ bg:
     Подвеждащо или нелегално съдържание, расистки или етнически нападки и т.н. За по-подробна дефиниция на „неуместно“, погледнете <a href="/help#inappropriate">ЧЗВ</a>.
   #Label shown when a date has not been entered
   missing_date: Липсва дата
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Скриване
   mollusks: мекотели
   momentjs:
     shortRelativeTime:
@@ -2138,8 +2203,10 @@ bg:
   no_photos_of_that_size: Няма снима с такъв размер.
   no_places_available: Няма налични места
   no_post_yet: Все още няма публикации!
+  no_project_selected: Няма избран проект
   no_project_to_admin_current_user: "Не администрирате никакви проекти"
   no_project_to_admin_login: "%{login} не администрира никакви проекти"
+  no_projects_yet: Още няма проекти
   no_recent_activity: Няма скорошна активност
   no_relevant_annotations: Няма подходящи анотации
   no_reply_yet: Няма отговор
@@ -3583,6 +3650,7 @@ bg:
   terms_service: Условия за ползване
   terrain: терен
   text: Текст
+  thanks!: Благодарности!
   thanks_from_all_of_us_here_at: Благодарности от всички нас тук на
   that_photo_doesnt_exist: Тази снимка не съществува.
   that_observation_doesnt_exist: Това наблюдение не съществува.
@@ -3813,6 +3881,7 @@ bg:
   unblock: Отблокиране
   unique_observers: различни наблюдатели
   unknown: Неизвестен
+  unknown_error: Незнайна грешка
   unknown_rank: '(Неизвестен ранг)'
   unlink_your_google_account: Откачи акаунта си на Google
   updating: Обновяване...
@@ -3857,6 +3926,7 @@ bg:
       remove_observation: Премахни наблюдение
       remove_photo: Премахни снимка
       select_all: Избери всички наблюдения
+      upload_failed: Неуспешно качване
   uploading_num_of_count_photos:
     one: Качване на снимка...
     other: Качване на %{num} от %{count} снимки...
@@ -3900,6 +3970,7 @@ bg:
   user_added_an_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
+  user_blocked: Блокиран потребител
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
   user_faved_this_observation: "%{user} хареса това наблюдение"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
