@@ -341,6 +341,7 @@ ru:
   active_taxon_status: Активный
   active_users: Активные пользователи
   activity: Активность
+  activity_on_a_flag_for_x: Активность флага для %{x}
   adapted_by_name_from_a_work_by_original: "Адаптировано %{name}, оригинальный источник %{original}"
   add: Добавить
   add_a_batch_of_observations: Добавить несколько наблюдений
@@ -1998,6 +1999,7 @@ ru:
     Флаг для пользователя: %{title}
   flag_it!: Пометить!
   flag_marked_as_resolved_html: '<span class="meta">Флаг помечен как</span> <strong>разрешённый.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Флаг помечен как</span> <strong>неразрешённый.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Объект
   flag_reason: "&ldquo;Я пометил эту %{record}, потому что"
@@ -3179,6 +3181,84 @@ ru:
     Публичные координаты показываются как произвольная точка, лежащая в пределах ячейки в 0,2 градуса шир/долг от истинных координат.
   observation: Наблюдение
   observation_: наблюдение
+  observation_accuracy_experiment_the_sample_for: "Выборка наблюдений для этого эксперимента ещё не сгенерирована"
+  observation_accuracy_experiment_our_accuracy_estimate: "Наша оценка достоверности, полученная в результате эксперимента, верна для %{percent}."
+  observation_accuracy_experiment_our_goak: "Наша цель - оценить подмножество выборки наблюдений исследовательского уровня, для которого достоверность (правильность) и точность больше чем 95% (пунктирная линия)"
+  observation_accuracy_experiment_precision_results: "Результаты точности по выборке"
+  observation_accuracy_experiment_taxon_rank_level: "Уровень ранга таксона"
+  observation_accuracy_experiment_taxon_observations_count: "Число наблюдений таксона"
+  observation_accuracy_experiment_iconic_taxon_name: "Традиционное имя таксона"
+  observation_accuracy_experiment_continent: "Континент"
+  observation_accuracy_experiment_year: "Год"
+  observation_accuracy_experiment_quality_grade: "Уровень наблюдения"
+  observation_accuracy_experiment_show_frequency: "показать частоту"
+  observation_accuracy_experiment_click_on_bars: "Нажмите на полосу, чтобы извлечь выборку"
+  observation_accuracy_experiment_accuracy_results: "Результаты достоверности по выборке"
+  observation_accuracy_experiment_as_observations: "По мере подтверждения наблюдений из этой выборки процент неопределенностей будет уменьшаться, а процент правильных и неправильных увеличится."
+  observation_accuracy_experiment_experiment_still: "Эксперимент всё ещё продолжается. Статистика обновляется каждый день до крайнего срока проверки выборки, до %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Эксперимент по достоверности наблюдения"
+  observation_accuracy_experiment_validators: "Участники эксперимента:"
+  observation_accuracy_experiment_show_additional_validators: "(показать дополнительных участников)"
+  observation_accuracy_experiment_hide_additional_validators: "(скрыть число дополнительных участников)"
+  observation_accuracy_experiment_additional_validators: "(%{number} дополнительных участников)"
+  observation_accuracy_experiment_abstract: "Аннотация: Мы сгенерировали выборку наблюдений на %{sample_generation_date} и скоординировали команду участников для оценки их достоверности на %{deadline_date}. Все результаты, показанные ниже, показывают характеристики наблюдений выборок на момент создания выборки (например, исследовательский уровень или нет). Достоверность наблюдений выборок оценивалась на дату %{assessment_date}. Более подробную информацию смотрите на вкладке Методы."
+  observation_accuracy_experiment_research_grade_results: "Результаты для Исследовательского уровня"
+  observation_accuracy_experiment_verifiable_results: "Проверяемые результаты"
+  observation_accuracy_experiment_all_results: "Все результаты"
+  observation_accuracy_experiment_methods: "Методы"
+  observation_accuracy_experiment_step_1: "Шаг 1: Создание выборки и её назначение"
+  observation_accuracy_experiment_from_the: "Из базы данных наблюдений iNaturalist (A) мы сгенерировали случайную выборку (B). Подвыборки были распределены между кандидатами в участники на основе критериев, описанных ниже. Мы стремились назначить каждую выборку наблюдений нескольким участникам (\"Избыточность целевого участника\")."
+  observation_accuracy_experiment_sample_generated: "Выборка сгенерирована: %{date}"
+  observation_accuracy_experiment_sample_size: "Размер выборки: %{number}"
+  observation_accuracy_experiment_target_validator: "Избыточность целевого участника: %{number}"
+  observation_accuracy_experiment_number_of: "Число кандидатов-участников: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Средний размер подвыборки для каждого кандидата-участника: %{number}"
+  observation_accuracy_experiment_mean_number: "Среднее число участников на одно наблюдение: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Критерии отбора кандидата-участника"
+  observation_accuracy_experiment_if_an_identifier: "Если участник имеет по крайней мере 3 улучшающие идентификации для таксона, мы считаем, что он подходит для проверки этого таксона. Улучшающие идентификации - это первое предложение о таксоне, с которым впоследствии соглашается сообщество."
+  observation_accuracy_experiment_for_example: "Например, участник 1 добавляет идентификатор A к наблюдению. Если участник 2 позже добавляет ведущий идентификатор B, идентификато A участника 1 становится улучшающим идентификатором. Если участник 3 позже добавляет такой же идентификатор B, идентификатор B участника 2 становится улучшающим идентификатором."
+  observation_accuracy_experiment_step_2: "Шаг 2: Проверяемые выборки"
+  observation_accuracy_experiment_we_contacted: "Мы связались с кандидатами-участниками и попросили их добавить идентификаторы к своим подвыборкам. На графике справа сгруппированы выборки наблюдений с числом проверяющих участников."
+  observation_accuracy_experiment_number_percent_of: "Число участников: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Процент проверки выборки: %{percent}"
+  observation_accuracy_experiment_step_3: "Шаг 3: Оценка выборок наблюдений участниками"
+  observation_accuracy_experiment_we_scored: "Мы оценили в выборке наблюдений наблюдения как правильные, неопределенные или некорректные, сравнив иденимфикации участника с таксоном каждого наблюдения. Идентификации, совпадающие или более точные по отношению к таксону наблюдения в выборке, засчитаны как \"Правильные\". Не согласующиеся с вышестоящими таксонами идентификаторы были оценены как \"Неопределенные\", так же были квалифицированы результаты, в которых несколько участников не сошлись во мнении. Различающиеся результаты в вышестоящих таксонах в различных ветвях были засчитаны как \"Неправильные\"."
+  observation_accuracy_experiment_correct: "Неправильные значения в эксперименте по достоверности наблюдения"
+  observation_accuracy_experiment_uncertain: "Неопределённость в эксперименте по достоверности наблюдения"
+  observation_accuracy_experiment_step_4: "Шаг 4: Достоверность и точность расчета"
+  observation_accuracy_experiment_accuracy: "Достоверность"
+  observation_accuracy_experiment_we_calculated: "Мы рассчитали Достоверность как процент правильности для всей выборки, а также для ее подмножеств, таких как подмножество исследовательского уровня. Мы также рассчитали процент неопределенных и процент неправильных ответов. В примере на рисунке справа процент правильных ответов будет 83, процент неопределенных 6, а процент неправильных 11."
+  observation_accuracy_experiment_precision: "Точность"
+  observation_accuracy_experiment_if_every_sample: "Если бы каждое выборочное наблюдение относилось к самому общему таксону, такому как королевство, точность набора данных iNaturalist могла бы быть очень высокой, но, чтобы сделать набор данных очень полезным, точность должна бы быть низкой. Чтобы оценить точность, мы подсчитали количество потомков листьев в таксономическом дереве iNaturalist для каждого таксона, связанного с каждым образцом наблюдения. Мы рассчитали точность как 1, делённая на количество потомков-листьев. Если таксон является листовым таксоном, точность составляет 100%. При расчете точности мы игнорировали ранги ниже видов."
+  observation_accuracy_experiment_in_the_example: "В примере на рисунке справа средняя точность трёх выборок составит 51%."
+  observation_accuracy_validator_email_subject: "Не поможете ли вы нам оценить достоверность наблюдений iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Не поможете ли вы нам в качестве эксперимента оценить достоверность наблюдений iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Идентифицируйте все наблюдения в ссылке ниже настолько точно, насколько это возможно, даже если они имеют Research Grade, и даже если ваш лучший ID находится на высоком таксономическом уровне (даже королевство). </li>
+    <li>Если вы видите всплывающее окно «Возможное согласие»…
+    <ul>
+    <li>и вы уверены что это неверный ID, нажмите оранжевую кнопку,</li>
+    <li>или если вы не уверены в своем ID, нажмите зеленую кнопку</li>
+    </ul>
+    </li>
+    <li>Делайте это по датам <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Здесь имеется подмножество <a href="%{sample_url}">наблюдений %{num_obs}</a>
+     на основе вашей активности на iNat, которые, как мы считаем, вы можете идентифицировать. <b>Пожалуйста, добавьте лучший ID, который вы можете дать каждому из наблюдений, до %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Мы рассчитаем достоверность, сравнив ваш идентификатор с таксоном наблюдения. Вы можете пропустить наблюдения, в которые вы ранее добавили идентификатор, если этот идентификатор все еще актуален. Для получения дополнительной информации о том, как мы будем учитывать соглашения и разногласия, продолжайте чтение.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Идентификаторы, равные (A) или более точные, чем (B) таксона наблюдения, будут засчитаны как ваше согласие.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Идентификации, близкие к (C) или сильно отличающиеся от таксона наблюдения, когда вы выберете "Нет, но..." в диалоге потенциального несогласия (D), будут рассматриваться как ваше несогласие.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Идентификаторы, сильно отличающиеся от таксона наблюдения, когда вы выбираете "Я не знаю, но..." в диалоге потенциального несогласия (E), будут рассматриваться как неопределенность
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Мы очень признательны вам за вашу помощь как эксперта iNaturalist и благодарим за участие в этом исследовании. Пожалуйста, прочтите <a href="%{url}">пост в этом блоге</a>, чтобы ответить на часто задаваемые вопросы об этом эксперименте.
+  observation_accuracy_validator_email_with_gratitude: С благодарностью,
+  observation_accuracy_validator_email_the_inaturalist_team: Команда iNaturalist
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3427,6 +3507,7 @@ ru:
   organism_is_wild: Организм является диким
   organisms: Организмы
   original: Исходный
+  original_flag: Исходный флаг
   originally_flagged_by: Первоначально помеченный
   originally_imported_from_url_html: "Первоначально импортированный из <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL исходной страницы этого фото."
@@ -3900,6 +3981,7 @@ ru:
     north_korea: Северная Корея
     northern_cyprus: Северный Кипр
     norway: Норвегия
+    oceania: Океания
     oman: Оман
     pakistan: Пакистан
     palau: Палау
