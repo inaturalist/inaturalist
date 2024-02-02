@@ -3112,6 +3112,16 @@ nl:
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
   observation: Waarneming
   observation_: waarneming
+  observation_accuracy_experiment_continent: "Continent"
+  observation_accuracy_experiment_year: "Jaar"
+  observation_accuracy_experiment_quality_grade: "Kwaliteitsklasse"
+  observation_accuracy_experiment_show_frequency: "toon frequentie"
+  observation_accuracy_experiment_verifiable_results: "Verifieerbare resultaten"
+  observation_accuracy_experiment_all_results: "Alle resultaten"
+  observation_accuracy_experiment_methods: "Methoden"
+  observation_accuracy_experiment_uncertain: "Onzeker"
+  observation_accuracy_experiment_accuracy: "Nauwkeurigheid"
+  observation_accuracy_experiment_precision: "Precisie"
   observation_accuracy_validator_email_subject: "Wil je ons helpen om de nauwkeurigheid van iNaturalist waarnemingen in te schatten?"
   observation_accuracy_validator_email_will_you_help_us: |
     Wil je ons helpen met een experiment om de nauwkeurigheid van iNaturalist waarnemingen in te schatten?
@@ -3120,6 +3130,8 @@ nl:
     je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Voor meer over hoe we overeenkomsten en meningsverschillen gaan tellen, lees verder.
   observation_accuracy_validator_email_ids_equal_to: |
     'Determinaties gelijk aan (A) of fijner dan (B) zal het Waargenomen Taxon worden geteld als Overeenkomst.
+  observation_accuracy_validator_email_with_gratitude: Met dankbaarheid,
+  observation_accuracy_validator_email_the_inaturalist_team: Het iNaturalist Team
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3861,6 +3873,7 @@ nl:
     north_korea: Noord-Korea
     northern_cyprus: Noord-Cyprus
     norway: Noorwegen
+    oceania: Oceanië
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4411,6 +4424,10 @@ nl:
   rotate_left: Linksom draaien
   rotate_right: Rechtsom draaien
   row_singular_or_plural: Rij(en)
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Deelgenomen aan de rechter-naar-links lay-out test
   rules_and_formatting: "Regels & Opmaak"
   rules_for_adding_observations: Regels voor toevoegen waarnemingen
   rules_for_becoming_a_member: Voorwaarden om lid te kunnen worden
