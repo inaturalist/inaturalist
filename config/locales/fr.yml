@@ -1070,7 +1070,7 @@ fr:
   connect_to_flickr_again_to_authorize_write_permissions: Se connecter à nouveau à Flickr pour autoriser les autorisations d'écriture
   connecting_your_inat_account_to_accounts_other_sites: "La connexion de votre compte\n%{site_name} aux comptes d’autres sites vous permettra d’ouvrir une session\n%{site_name} au moyen de vos identifiants de ces sites."
   cannot_be_changed_during_a_content_freeze: Non modifiable pendant un gel des données
-  conservation_status: Etat de conservation
+  conservation_status: État de conservation
   conservation_status_created: Statut de conservation créé
   conservation_status_deleted: Statut de conservation supprimé
   conservation_status_updated: Statut de conservation mis à jour
@@ -1608,7 +1608,7 @@ fr:
   #Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: Faire un don à iNaturalist
   done: Valider
-  dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
+  dont_have_an_account_sign_up_html: Vous n’avez pas de compte ? <strong>Inscrivez-vous.</strong>
   dont_use_double_quotes: N’utilisez pas de guillemets anglais ailleurs
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -6066,10 +6066,9 @@ fr:
           figure_alt_text: La carte de présence attendue à proximité et l'aire de répartition sont comparées
           combining_these_maps_produces: |
             La combinaison de ces cartes produit 3 types de cellules :
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Vraies présences :
-          true_presences_definition: Zones où la carte de présence attendue à proximité et l'aire de répartition prédisent la présence du taxon
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Fausses présences :
