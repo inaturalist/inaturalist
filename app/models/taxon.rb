@@ -345,7 +345,11 @@ class Taxon < ApplicationRecord
     "Animalia" => "Other Animals"
   )
 
-  LIFE = Taxon.roots.find_by_name( "Life" )
+  if ENV['PRECOMPILE_ASSETS']
+    LIFE = nil
+  else
+    LIFE = Taxon.roots.find_by_name( "Life" )
+  end
 
   IUCN_NOT_EVALUATED = 0
   IUCN_DATA_DEFICIENT = 5

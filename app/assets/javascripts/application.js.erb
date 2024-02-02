@@ -1620,7 +1620,7 @@ $.fn.leaderboard = function(options) {
       var userLink = $('<a>')
           .attr('href', '/people/'+this.user.login)
           .html(
-            $('<img>').attr('src', this.user.user_icon_url || '<%= image_path(User.new.icon.url(:thumb)) %>')
+            $('<img>').attr('src', this.user.user_icon_url)
           ).prop('outerHTML') +
         $('<a>')
           .attr('href', '/people/'+this.user.login)

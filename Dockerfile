@@ -1,8 +1,8 @@
-FROM ruby:3.0
+FROM ruby:3.0 as base
 
 ENV RAILS_ENV=development
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip openjdk-17-jdk
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -\
   && apt-get update -qq && apt-get install -qq --no-install-recommends \
@@ -36,6 +36,16 @@ COPY --chown=inaturalist:inaturalist config/secrets.docker.yml /code/config/secr
 COPY --chown=inaturalist:inaturalist config/smtp.docker.yml /code/config/smtp.yml
 
 RUN npm run webpack
+
+FROM base as assets
+
+COPY --chown=inaturalist:inaturalist config/database.docker.assets.yml /code/config/database.yml
+
+RUN RAILS_ENV=production SECRET_KEY_BASE=1 PRECOMPILE_ASSETS=true rails assets:precompile
+
+FROM base as production
+
+COPY --from=assets /code/public/assets /code/public/assets
 
 RUN mkdir /code/public/attachments
 RUN chown inaturalist:inaturalist /code/public/attachments

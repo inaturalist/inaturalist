@@ -1,0 +1,4 @@
+production:
+  database: inaturalist_production
+  adapter: nulldb
+  schema: 'db/schema-assets.rb'
