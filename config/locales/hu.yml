@@ -2628,9 +2628,9 @@ hu:
   observation_accuracy_experiment_sample_size: "Mintaméret: %{number}"
   observation_accuracy_experiment_step_2: "2. lépés: a minták validálása"
   observation_accuracy_experiment_percent_of: "Hitelesített minták százaléka: %{percent}"
+  observation_accuracy_experiment_step_3: "3. lépés: A minta megfigyeléseinek pontozása"
   observation_accuracy_experiment_correct: "Helyes"
   observation_accuracy_experiment_uncertain: "Bizonytalan"
-  observation_accuracy_experiment_incorrect: "Helytelen"
   observation_accuracy_experiment_accuracy: "Pontosság"
   observation_accuracy_experiment_precision: "Pontosság"
   observation_accuracy_validator_email_subject: "Segítesz nekünk megmérni az iNaturalist-megfigyelések pontosságát?"
@@ -4949,7 +4949,7 @@ hu:
           figure_alt_text: A Geomodell a gépi látás javaslatait súlyozza
         range_comparison:
           expected_nearby_vs_taxon_range: Valószínűsíthető előfordulás vs. taxonrégió
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Valós előfordulás
           #Areas where only the Expected Nearby Map predicts the taxon exists
