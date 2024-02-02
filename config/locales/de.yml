@@ -3026,7 +3026,6 @@ de:
   observation_accuracy_experiment_we_scored: "Wir haben der Beobachtungen der Stichprobe als korrekt, unsicher oder inkorrekt eingestuft, indem wir die Prüfer-IDs mit dem Beobachtungstaxon jeder Probe verglichen. Bestimmungen, die mit der Stichprobe übereinstimmten, oder sie verbesserten, wurden als korrekt eingestuft. Nicht-widersprechende, höherrangige IDs wurden als unsicher eingestuft, ebenso wie Situationen, bei denen mehrere Prüfer sich nicht einig waren. Widersprüche wurden als inkorrekt eingestuft."
   observation_accuracy_experiment_correct: "Korrekt"
   observation_accuracy_experiment_uncertain: "Unsicher"
-  observation_accuracy_experiment_incorrect: "Inkorrekt"
   observation_accuracy_experiment_step_4: "Schritt 4: Berechnung von Genauigkeit und Präzision"
   observation_accuracy_experiment_accuracy: "Genauigkeit"
   observation_accuracy_experiment_we_calculated: "Wir berechneten die Genauigkeit als den Prozentsatz an korrekten Beobachtungen, sowohl für die gesamte Stichprobe als auch für die Teilmengen der Beobachtungen mit Forschungsqualität. Wir berechneten auch den Prozentsatz für unsicher und inkorrekt. Im rechten Beispiel wären 83& der Beobachtungen korrekt, 6% unsicher und der 11% inkorrekt."
@@ -6017,10 +6016,9 @@ de:
           figure_alt_text: Die Karte zur erwarteten Verbreitung und die Verbreitungsdaten des Taxons werden miteinander verglichen
           combining_these_maps_produces: |
             Durch die Kombination dieser Karten werden 3 Arten von Rastern erzeugt:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Wahre Anwesenheiten:
-          true_presences_definition: Gebiete, in denen sowohl die Karte zum erwarteten Vorkommen als auch die Verbreitungsdaten vorhersagen, dass das Taxon dort vorkommt
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Falsche Anwesenheiten:
