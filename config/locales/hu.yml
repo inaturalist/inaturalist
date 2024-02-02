@@ -220,6 +220,7 @@ hu:
   active_taxon_status: Aktív
   active_users: Aktív felhasználó
   activity: Aktivitás
+  activity_on_a_flag_for_x: '%{x}: bejelentések aktivitása'
   adapted_by_name_from_a_work_by_original: "%{original} munkája alapján adaptálta %{name}"
   add: Hozzáadás
   add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
@@ -1608,6 +1609,7 @@ hu:
     Felhasználó bejelentése: %{title}
   flag_it!: Bejelentés
   flag_marked_as_resolved_html: '<span class="meta">Bejelentés</span> <strong>megoldva.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">A bejelentés</span><strong>megoldatlanként</strong> megjelölve.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objektum
   flag_reason: "&ldquo;Bejelentem ezt a %{record}t, mert"
@@ -2608,6 +2610,43 @@ hu:
     A nyílvános koordinátákat egy véletlenszerű pontként mutatjuk egy 0.2 fokos szél/hossz területen belül ami tartalmazza a valódi koordinátákat.
   observation: Megfigyelés
   observation_: megfigyelés
+  observation_accuracy_experiment_the_sample_for: "A minta erre a kísérletre még nem készült el"
+  observation_accuracy_experiment_our_accuracy_estimate: "A pontosság becslése erről a kísérletről %{percent} helyes."
+  observation_accuracy_experiment_taxon_rank_level: "Taxon rangjának a szintje"
+  observation_accuracy_experiment_iconic_taxon_name: "Ikonnal rendelkező taxon neve"
+  observation_accuracy_experiment_continent: "Földrész"
+  observation_accuracy_experiment_year: "Év"
+  observation_accuracy_experiment_quality_grade: "Minőségi szint"
+  observation_accuracy_experiment_show_frequency: "gyakoriság megjelenítése"
+  observation_accuracy_experiment_click_on_bars: "Kattints az oszlopokra a részhalmazokért."
+  observation_accuracy_experiment_observation_accuracy_experiment: "Kísérlet a megfigyelések pontosságáról"
+  observation_accuracy_experiment_abstract: "Összefoglalás: Egy mintát generáltunk megfigyelésekből a %{sample_generation_date} dátumon, és egy validáló csapat segítségével kiértékeljük azok pontosságát %{deadline_date} határidőig. Az alábbi eredmények a minta megfigyeléseinek jellemzőit mutatják azok generálásának idején (például tudományos szintű-e vagy sem). A minta megfigyeléseinek pontosságát %{assessment_date} dátumon értékeltük. További részletekért lásd a módszertani fület."
+  observation_accuracy_experiment_research_grade_results: "Tudományos szintű eredmények"
+  observation_accuracy_experiment_verifiable_results: "Hiteles eredmények"
+  observation_accuracy_experiment_all_results: "Összes eredmény"
+  observation_accuracy_experiment_methods: "Módszerek"
+  observation_accuracy_experiment_sample_generated: "A mintavétel ideje: %{date}"
+  observation_accuracy_experiment_sample_size: "Mintaméret: %{number}"
+  observation_accuracy_experiment_step_2: "2. lépés: a minták validálása"
+  observation_accuracy_experiment_percent_of: "Hitelesített minták százaléka: %{percent}"
+  observation_accuracy_experiment_step_3: "3. lépés: A minta megfigyeléseinek pontozása"
+  observation_accuracy_experiment_correct: "Helyes"
+  observation_accuracy_experiment_uncertain: "Bizonytalan"
+  observation_accuracy_experiment_accuracy: "Pontosság"
+  observation_accuracy_experiment_precision: "Pontosság"
+  observation_accuracy_validator_email_subject: "Segítesz nekünk megmérni az iNaturalist-megfigyelések pontosságát?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Segítesz nekünk egy kísérletben, amelynek célja az iNaturalist-megfigyelések pontosságának mérése?
+  observation_accuracy_validator_email_we_will_calculate: |
+    A pontosságot az azonosításod és a megfigyelési taxon összehasonlításával állapítjuk meg. Ha a saját korábbi azonosításod az adott megfigyelésen pontos, kihagyhatod azt. Alább további részleteket olvashatsz arról, hogy miként vesszük figyelembe az egyetértéseket és a konfliktusokat.
+  observation_accuracy_validator_email_ids_equal_to: |
+    A megfigyelési taxonnal megegyező (A) vagy annál szűkebb (B) meghatározásokat egyetértésként regisztráljuk.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    A megfigyelési taxonnál magasabb szintű meghatározást, amelynél a "Lehetséges konfliktus" (E) panelen a "Nem tudom, de..." opciót választod, bizonytalanként regisztráljuk.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Nagyon hálásak vagyunk az azonosításaidért és köszönjük, hogy részt veszel ebben a kísérletben. <a href="%{url}">Ebből a blogbejegyzésből</a> többet is megtudhatsz erről a kísérletről.
+  observation_accuracy_validator_email_with_gratitude: Köszönettel,
+  observation_accuracy_validator_email_the_inaturalist_team: Az iNaturalist csapata
   observation_added_to_the_project: "A megfigyelést hozzáadták a \"%{project}\" projekthez"
   observation_aggregation: Megfigyelés összevonás
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2822,6 +2861,7 @@ hu:
   organism_is_wild: Vadon élő
   organisms: Élőlények
   original: Eredeti
+  original_flag: Eredeti bejelentés
   original_page_url_for_this_photo: "E fotó eredeti oldal URL-je"
   organism_appears_captive_cultivated: Az élőlény fogságban lévő vagy kultivált
   other: Egyéb
@@ -3273,6 +3313,7 @@ hu:
     north_korea: Észak-Korea
     northern_cyprus: Észak-Ciprus
     norway: Norvégia
+    oceania: Óceánia
     oman: Omán
     pakistan: Pakisztán
     palau: Palau
@@ -4909,7 +4950,7 @@ hu:
           figure_alt_text: A Geomodell a gépi látás javaslatait súlyozza
         range_comparison:
           expected_nearby_vs_taxon_range: Valószínűsíthető előfordulás vs. taxonrégió
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Valós előfordulás
           #Areas where only the Expected Nearby Map predicts the taxon exists

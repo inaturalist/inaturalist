@@ -223,6 +223,7 @@ id:
   active_taxon_status: Aktif
   active_users: Pengguna Aktif
   activity: Aktivitas
+  activity_on_a_flag_for_x: Aktivitas pada tanda untuk %{x}
   adapted_by_name_from_a_work_by_original: "Diadaptasi oleh %{name} dari sebuah karya oleh %{original}"
   add: Tambahkan
   add_a_batch_of_observations: Tambahkan Sejumlah Pengamatan
@@ -1587,7 +1588,7 @@ id:
   #Title of the moderation note editor
   edit_moderator_note: Edit Catatan Moderator
   edit_a_batch_of_observations: Ubah Sejumlah Pengamatan
-  edit_account_settings_and_profile: "Rubah pengaturan akun &amp; profil"
+  edit_account_settings_and_profile: "Ubah pengaturan akun &amp; profil"
   edit_assessment: Ubah Penilaian
   edit_atlas: Ubah Atlas
   edit_atlas_for_taxon_html: Ubah Atlas untuk %{taxon}
@@ -1835,6 +1836,7 @@ id:
     Tanda untuk Pengguna: %{title}
   flag_it!: Tandai ini!
   flag_marked_as_resolved_html: '<span class="meta">Tanda dianggap</span> <strong>sudah diselesaikan.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Tanda ditandai sebagai</span> <strong>belum selesai</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Benda
   flag_reason: "&ldquo;Saya menandai %{record} ini karena"
@@ -3009,6 +3011,87 @@ id:
     Koordinat publik yang ditampilkan sebagai titik acak dalam jangkauan 0.2 derajat lin/buj yang memiliki koordinat sebenarnya.
   observation: Pengamatan
   observation_: pengamatan
+  observation_accuracy_experiment_the_sample_for: "Sampel untuk eksperimen ini belum dibuat"
+  observation_accuracy_experiment_our_accuracy_estimate: "Akurasi dari eksperimen ini diperkirakan sebesar %{percent}."
+  observation_accuracy_experiment_our_goak: "Target kami untuk Akurasi dan Presisi subset Kelas Riset lebih besar dari 95% (garis putus-putus)"
+  observation_accuracy_experiment_precision_results: "Hasil presisi berdasarkan subset"
+  observation_accuracy_experiment_taxon_rank_level: "Tingkat Kategori Takson"
+  observation_accuracy_experiment_taxon_observations_count: "Jumlah Pengamatan Takson"
+  observation_accuracy_experiment_iconic_taxon_name: "Nama Ikonik Takson"
+  observation_accuracy_experiment_continent: "Benua"
+  observation_accuracy_experiment_year: "Tahun"
+  observation_accuracy_experiment_quality_grade: "Tingkat Kualitas"
+  observation_accuracy_experiment_show_frequency: "tampilkan frekuensi"
+  observation_accuracy_experiment_click_on_bars: "Klik batangnya untuk melihat subset-subsetnya."
+  observation_accuracy_experiment_accuracy_results: "Hasil akurasi berdasarkan subset"
+  observation_accuracy_experiment_as_observations: "Karena pengamatan dari sampel ini sudah divalidasi, persentase ketidakpastian akan menurun dan persentase sampel benar dan salah akan meningkat."
+  observation_accuracy_experiment_experiment_still: "Eksperimen masih berlangsung. Statistik akan diperbarui setiap hari hingga tenggat waktu validasi sampel pada %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Eksperimen Akurasi Pengamatan"
+  observation_accuracy_experiment_validators: "Validator:"
+  observation_accuracy_experiment_show_additional_validators: "(tampilkan validator tambahan)"
+  observation_accuracy_experiment_hide_additional_validators: "(sembunyikan validator tambahan)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validator tambahan)"
+  observation_accuracy_experiment_abstract: "Abstrak: Kami mengumpulkan sampel pengamatan pada %{sample_generation_date} dan berkoordinasi dengan tim validator untuk menilai akurasinya sebelum %{deadline_date}. Semua hasil di bawah ini menunjukkan ciri-ciri pengamatan-pengamatan sampel pada waktu sampelnya dibuat (contohnya Kelas Riset atau bukan). Akurasi pengamatan-pengamatan sampel dinilai pada %{assessment_date}. Lihat tab metode untuk detail lebih lanjut."
+  observation_accuracy_experiment_research_grade_results: "Hasil Kelas Riset"
+  observation_accuracy_experiment_verifiable_results: "Hasil yang Dapat Diverifikasi"
+  observation_accuracy_experiment_all_results: "Semua Hasil"
+  observation_accuracy_experiment_methods: "Metode"
+  observation_accuracy_experiment_step_1: "Langkah 1: Pembuatan serta Pelabelan Sampel"
+  observation_accuracy_experiment_from_the: "Dari basis data pengamatan iNaturalist (A), kami membuat sampel acak (B). Subsampel diberikan kepada kandidat validator berdasarkan kriteria yang dijelaskan di bawah ini. Kami ingin menugaskan setiap pengamatan sampel ke beberapa kandidat validator (\"Redundansi validator target\")."
+  observation_accuracy_experiment_sample_generated: "Sampel dibuat pada: %{date}"
+  observation_accuracy_experiment_sample_size: "Jumlah sampel: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundansi validator target: %{number}"
+  observation_accuracy_experiment_number_of: "Jumlah validator kandidat: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Rerata jumlah subsampel per kandidat validator: %{number}"
+  observation_accuracy_experiment_mean_number: "Rerata jumlah validator per pengamatan sampel: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kriteria kandidat validator"
+  observation_accuracy_experiment_if_an_identifier: "Jika seorang pengidentifikasi telah membuat setidaknya 3 identifikasi pengembang untuk suatu takson, kami menganggap identifikasi-identifikasi ini cukup untuk memvalidasi takson tersebut. Identifikasi pengembang ini adalah usulan takson pertama yang kemudian disetujui oleh komunitas."
+  observation_accuracy_experiment_for_example: "Sebagai contoh, Pengidentifikasi 1 menambahkan ID A untuk suatu pengamatan. Jika Pengidentifikasi 2 kemudian menambahkan ID pemimpin B, ID A dari Pengidentifikasi 1 menjadi ID pengembang. Jika Pengidentifikasi 3 kemudian menambahkan ID pendukung untuk B, ID Pengidentifikasi 2 pada B menjadi ID pengembang."
+  observation_accuracy_experiment_step_2: "Langkah 2: Validasi sampel"
+  observation_accuracy_experiment_we_contacted: "Kami menghubungi kandidat validator dan meminta mereka untuk menambahkan identifikasi untuk subsampel mereka. Grafik di kanan mengelompokkan pengamatan sampel berdasarkan jumlah validator."
+  observation_accuracy_experiment_number_percent_of: "Jumlah validator yang ikut: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Jumlah sampel yang divalidasi: %{percent}"
+  observation_accuracy_experiment_step_3: "Langkah 3: Menilai pengamatan sampel dari validasi"
+  observation_accuracy_experiment_we_scored: "Kami memberikan penilaian Benar, Tidak Pasti, atau Salah pada pengamatan-pengamatan sampelnya dengan membandingkan identifikasi dari validator dengan takson dari setiap pengamatan sampelnya. Identifikasi yang sesuai atau lebih spesifik dari takson pengamatan sampel dinilai sebagai Benar. Identifikasi yang kurang spesifik dan tidak ada keberatan dinilai sebagai Tidak Pasti, sama juga halnya seperti skenario-skenario di mana validator-validator saling tidak setuju. Identifikasi yang kurang spesifik dan ada yang tidak setuju atau identifikasi yang ada pada cabang yang berbeda dinilai sebagai Salah."
+  observation_accuracy_experiment_correct: "Benar"
+  observation_accuracy_experiment_uncertain: "Tidak pasti"
+  observation_accuracy_experiment_incorrect2: "Salah"
+  observation_accuracy_experiment_step_4: "Langkah 4: Perhitungan Akurasi dan Presisi"
+  observation_accuracy_experiment_accuracy: "Akurasi"
+  observation_accuracy_experiment_we_calculated: "Kami menghitung akurasi sebagai persentase benar dari keseluruhan sampel beserta subsetnya seperti subset Kelas Riset. Kami juga menghitung persentase Tidak Pasti serta persentasi Salah. Pada gambar contoh di kanan, persentase benar adalah 83, persentase tidak pasti adalah 6, dan persentase salah adalah 11."
+  observation_accuracy_experiment_precision: "Presisi"
+  observation_accuracy_experiment_if_every_sample: "Jika setiap pengamatan sampel berada pada takson yang kurang spesifik, seperti kingdom, akurasi iNaturalist dataset mungkin menjadi tinggi, tapi presisinya mungkin menjadi sangat rendah sehingga datasetnya kurang berguna. Untuk memperkirakan presisi, kami menghitung jumlah keturunan daun (ujung) pada taksonomi iNaturalist untuk masing-masing takson yang diasosiasikan dengan masing-masing pengamatan sampel. Perhitungan presisi kami adalah 1 dibagi jumlah keturunan daun. Jika taksonnya merupakan takson daun, presisinya 100%. Kami mengabaikan kategori-kategori di bawah spesies di dalam perhitungan presisi ini."
+  observation_accuracy_experiment_in_the_example: "Pada gambar contoh di kanan, rerata presisi dari tiga pengamatan sampel adalah 51%."
+  observation_accuracy_validator_email_subject: "Bisakah kamu membantu kami mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Bisakah kamu membantu kami dalam sebuah eksperimen untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
+    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
+    <ul>
+    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
+    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
+    </ul>
+    </li>
+    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
+    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Kami akan menghitung akurasi dengan membandingkan ID kamu dengan Takson Pengamatan. 
+    Kamu bisa melewati pengamatan-pengamatan yang IDnya sudah ditambahkan jika IDnya masih relevan. Untuk selebihnya tentang bagaimana kita menghitung kesepakatan dan ketidaksepakatan, teruslah membaca.
+  observation_accuracy_validator_email_ids_equal_to: |
+    ID yang sama dengan (A) atau lebih rinci dari (B), Takson Pengamatannya akan dihitung sebagai Kesepakatan.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID yang berada pada cabang (C) yang berbeda atau kurang spesifik dari Takson Pengamatan yang kamu pilih 'Tidak, tapi…' untuk dialog (D) 'Potensi Ketidaksetujuan' akan dihitung sebagai Ketidaksetujuan.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID yang kurang spesifik dari Takson Pengamatan yang kamu pilih 'Saya tidak tahu, tapi…' untuk dialog (E) 'Potensi Ketidaksetujuan' akan dihitung sebagai Tidak Pasti.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Kami berterima kasih atas bantuanmu sebagai pengidentifikasi, dan terima kasih 
+    banyak atas partisipasimu dalam penelitian ini. Silakan membaca <a href="%{url}">postingan blog ini</a> untuk mencari jawaban dari pertanyaan-pertanyaan umum tentang eksperimen ini.
+  observation_accuracy_validator_email_with_gratitude: Dengan terima kasih,
+  observation_accuracy_validator_email_the_inaturalist_team: Tim iNaturalist
   observation_added_to_the_project: "Pengamatan yang ditambahkan ke proyek \"%{project}\""
   observation_aggregation: Kumpulan Pengamatan
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3258,6 +3341,7 @@ id:
   organism_is_wild: Organisme ini liar
   organisms: Organisme
   original: Asli
+  original_flag: Tanda asli
   originally_flagged_by: Aslinya ditandai oleh
   originally_imported_from_url_html: "Aslinya diimpor dari <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL halaman asli untuk foto ini."
@@ -3744,6 +3828,7 @@ id:
     north_korea: Korea Utara
     northern_cyprus: Siprus Utara
     norway: Norwegia
+    oceania: Oseania
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -5969,10 +6054,10 @@ id:
           figure_alt_text: Peta Terdekat yang Diharapkan dan Jangkauan Takson dibandingkan
           combining_these_maps_produces: |
             Menggabungkan peta-peta ini menghasilkan 3 jenis sel:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Keberadaan Benar:
-          true_presences_definition: Area di mana Peta Terdekat yang Diharapkan dan Jangkauan Takson memprediksi bahwa takson tersebut ada
+          true_presences_definition2: Area di mana Peta Terlihat Di Sekitar dan Jangkauan Takson memprediksi bahwa takson tersebut ada
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Keberadaan Salah:

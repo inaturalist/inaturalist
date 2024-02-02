@@ -549,7 +549,7 @@ zh-CN:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: 应用程序
-  apply_app_owner: 申请
+  apply_app_owner: 应用
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: 申请
@@ -557,7 +557,7 @@ zh-CN:
   apply_to_create_applications_title: 申请创建应用
   apply_to_selected: 申请选择
   apply_captive_cultivated: "符合饲育 / 栽培"
-  apply_fields: 申请字段
+  apply_fields: 应用字段
   apply_geoprivacy: 应用位置隐私
   apply_darr: "申请 &darr;"
   apply_establishment_means_to_descendant_places: "将定殖途径应用于下属的地点"
@@ -730,7 +730,7 @@ zh-CN:
   batch_edit: 批量编辑
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
-  batch_operations: 批操作
+  batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成为第一个收藏此观察的人！
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
@@ -750,7 +750,7 @@ zh-CN:
   block: 屏蔽
   blocking_description: 屏蔽可以阻止您与其他用户之间的任何通信。它适用于其他用户可能危及您安全的情况，如存心骚扰或其他辱骂行为。
   block_removed: 封禁已移除
-  blocked_users: 封禁的用户
+  blocked_users: 已屏蔽用户
   blog_widget: 博客小部件
   blue_butterfly_etc: "蓝色、蝴蝶等"
   body: 身体
@@ -1275,7 +1275,7 @@ zh-CN:
   custom_project_was_successfully_created: 已成功创建定制项目。
   custom_project_was_successfully_updated: 已成功更新自定义项目。
   customize_location: 自定义位置
-  darr_apply_darr: "&darr; 申请 &darr;"
+  darr_apply_darr: "&darr; 应用 &darr;"
   daily_users: 每日用户
   danger_zone: 危险操作区
   dashboard: 仪表板
@@ -1514,6 +1514,7 @@ zh-CN:
   downstream_coverage_rank: 覆盖层级下限
   downstream_coverage_colon_rank: "下游分类层级：%{rank}"
   downstream_deviations: 下游偏离
+  downstream_deviations_for_taxon: "%{taxon}的下游偏移"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: 被标记的下游分类群
@@ -1594,6 +1595,7 @@ zh-CN:
   editing_taxon: 编辑 %{taxon}
   editing_taxon_link: 正在编辑分类链接
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分类群名称「%{name}」
+  editing_taxon_range_for_taxon_html: 修改%{taxon}的分类单元范围
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
@@ -1605,6 +1607,8 @@ zh-CN:
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: 亲爱的%{user}，
   email_description: 您的电子邮件不会显示给其他iNaturalist用户
+  email_conf_required_after_grace_period: |
+    在%{requirement_date}之前需要邮件验证，而您在截止日期之前未完成认证。请重设密码以登录您的账号。
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
@@ -1659,6 +1663,7 @@ zh-CN:
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
+  examples_of_data_use_by_network_members: 网络成员使用数据的实例
   examples_of_ranking_organizations: 排名机构的例子
   expected_nearby: 预料在附近
   explore: 探索
@@ -1858,6 +1863,8 @@ zh-CN:
   generate_your_year_in_review_caps: 生成您的%{year}年年度回顾
   generating_mobile_archive: "生成移动存档"
   Genus: 类
+  geomodel_expected_nearby_label_is_derived: |
+    "预料在附近"标签来自地理位置模型。<a href="%{url}">在这里了解更多关于地理位置模型的情况</a>。
   geoprivacy: 位置隐私
   geoprivacy_is_obscured: 地理信息隐私权为模糊处理
   geoprivacy_is_obscured_desc: 观察者选择遮盖坐标
@@ -1917,6 +1924,8 @@ zh-CN:
   header_your_projects: 您的项目
   header_your_profile: 你的个人资料
   heads_up: 小心
+  heads_up_there_are_other_draft_taxon_changes_html:
+    other: "<strong>注意：</strong>还有关于同一个分类群的%{count}个分类群变化草案。"
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
   heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
@@ -2766,7 +2775,7 @@ zh-CN:
   new_updates_in_the_last_24_hours_from: "来自%{site_name}的近24小时新更新"
   new_users: 新用户
   new_users_in_year: "在 %{year} 年的新用户"
-  new_users_w_7_obs: 新用户w/ 7观察
+  new_users_w_7_obs: 有不少于7个观察的新用户
   newly_added: 新添加
   newly_added_species: 新添加的物种
   newly_observed_species: 最近被观察到的物种：
@@ -2906,6 +2915,13 @@ zh-CN:
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
+  observation_accuracy_validator_email_subject: "您会帮助我们估计iNaturalist 观察的准确度吗？"
+  observation_accuracy_validator_email_will_you_help_us: |
+    您是否会帮助我们进行一次实验，以估计iNaturalist 观察的准确度？
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    我们十分感激您在 iNaturalist 上帮助鉴定，也十分感谢您参与本次研究。请先阅读<a href="%{url}">这篇博客</a>，了解有关本次实验的常见问题。
+  observation_accuracy_validator_email_with_gratitude: "此致  \n敬礼，"
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist 团队
   observation_added_to_the_project: "添加观察到项目“%{project}”"
   observation_aggregation: 观察聚合
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3154,6 +3170,7 @@ zh-CN:
   organism_is_wild: 生物是野生的
   organisms: 有机体
   original: 原文
+  original_flag: 原始标记
   originally_flagged_by: 最初标记来自于
   originally_imported_from_url_html: "最初导入来自于<a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "本图片的原始页面URL。"
@@ -3193,9 +3210,9 @@ zh-CN:
   overlapping_downstream_taxon_frameworks_html: "重复的下游物种分类框架数量：%{count}"
   owner: 所有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
-  parent: 父
+  parent: 上级
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
-  parent_name: 父名称
+  parent_name: 上级名称
   parental_consent:
     must_specify_email: 您必须指定一个电子邮件地址
     invalid_email: 无效的电子邮件格式
@@ -4074,7 +4091,7 @@ zh-CN:
   remove_photo: 移除照片
   remove_place: 移除地点
   remove_range: 移除范围
-  remove_relationship: 移除关联
+  remove_relationship: 删除关系
   remove_relationship_caps: 移除关系
   remove_relationship_question: 是否移除关系？
   remove_section: 移除章节
@@ -4279,7 +4296,7 @@ zh-CN:
   show_no_annotation: 显示“无批注”
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
-  show_relative_proportions_of_all_observations: 显示所有观察的相关尺寸
+  show_relative_proportions_of_all_observations: 显示所有观察的相对比例
   #Label for a button to show the running total of an accumulation chart
   show_running_total: 显示运行总计
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
@@ -4963,7 +4980,7 @@ zh-CN:
   trip_target_list_info: '本目标清单所涵盖的任何物种，如果在本次旅行的半径和持续时间内未被观察到，将被认为不出现。<a href="/pages/trips">了解更多细节</a>。'
   #Noun
   trust: 信任
-  trusted: 受信
+  trusted: 信任
   trusted_project?: 可信任的项目？
   trust_this_person_with_your_private_coordinates: 信任此人并向其显示您的隐藏坐标
   trust_this_project_with_your_private_coordinates?: 信任此项目并向其显示您的隐藏坐标吗？
@@ -5735,10 +5752,9 @@ zh-CN:
           figure_alt_text: 预料在附近地图和分类单元范围将进行相互比较
           combining_these_maps_produces: |
             将这些地图重合，会得到三种不同的单元地块：
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             真产地：
-          true_presences_definition: 预料在附近地图和分类分布同时预测该分类所在的位置
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             假产地：
@@ -6602,19 +6618,19 @@ zh-CN:
         med_ttid: 中位数TTID
         new_users_desc: 于此日注册
         obs_1_day: "观察（1天）"
-        obs_1_day_desc: "在同一天内创建的观察"
+        obs_1_day_desc: "在当天创建的观察"
         obs_cid_d_desc: 在此前7天内创建，并有一个社群鉴定
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: 观察被社群鉴定到属一级
         obs_cid_d_to_genus_desc: 在此前7天内创建，并且社群鉴定到属或更低层级
-        obs_desc: 在过去7天创建
+        obs_desc: 在此前7天内创建
         obs_id_d_desc: 在此前7天内创建，并且拥有鉴定（可以是观察者的）
         observations_1_week_moving_window: 观察记录 (一周移动视窗)
         observers_desc: 此日添加了观察记录
         other_desc_html: 通过由<a href="%{url}">开发者</a>制作的其他应用程序创建
         recent_desc: 在过去7天注册
         recent_w_0_obs: 最近，0个观察
-        recent_w_0_obs_desc: 在7天前注册，并添加了0个观察
+        recent_w_0_obs_desc: 在此前7天内注册，并添加了0个观察
         recent_w_7_obs: 最近，不少于7个观察
         recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
         time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
@@ -6779,6 +6795,8 @@ zh-CN:
           请注意，分类单元页面将显示此分类单元及其后代的照片。然而，为这个分类选择的照片将首先显示。第一张照片将是整个网站使用的默认图片。
         rare_desc: 最少观察到受威胁的分类群
         rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>中观察到最少的受威胁的分类群
+        site_curators_disabled_wikipedia_html: |
+          站点馆长临时关闭显示<a href="%{url}">来自维基百科的这一内容</a>。你可以通过编辑维基百科页面来让其符合对该分类单元的描述，或者对这一分类单元进行标记，吸引站点馆主来处置。
         trending_desc: 上个月观察到最多的分类群
         trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
         wanted_desc: 此分类中尚未观察到的物种。
@@ -7382,7 +7400,7 @@ zh-CN:
         latitude: 纬度
         longitude: 经度
         name: 名称
-        parent_id: 父
+        parent_id: 上级
         place_type: 地点类型
         prefers_check_lists: 是否允许检查列表？
       site:
@@ -7417,7 +7435,7 @@ zh-CN:
         name: 名称
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: 名称提供方
-        parent_id: 父ID
+        parent_id: 上级ID
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: 照片被锁定？

@@ -248,6 +248,7 @@ it:
   active_taxon_status: Attivo
   active_users: Utenti attivi
   activity: Attività
+  activity_on_a_flag_for_x: Attività su un contrassegno per %{x}
   adapted_by_name_from_a_work_by_original: "Adattato da %{name}, su un lavoro di %{original}"
   add: Aggiungi
   add_a_batch_of_observations: Aggiungi un Gruppo di Osservazioni
@@ -1874,6 +1875,7 @@ it:
     Contrassegno per l'Utente: %{title}
   flag_it!: Segnala!
   flag_marked_as_resolved_html: '<span class="meta">Segnalazione segnata come</span> <strong>risolta.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Contrassegno segnato come</span> <strong>irrisolto.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Oggetto
   flag_reason: "&ldquo;Sto contrassegnando questo %{record} perché"
@@ -1909,6 +1911,8 @@ it:
   #Adjective, as in a fluid layout of images
   fluid: fluido
   follow: Segui
+  #Text for a button to follow updates on an observation
+  follow_observation: Segui osservazione
   follow_receive_updates_about_new_observations: Segui (ricevi aggiornamenti sulle nuove osservazioni)
   #Text for a button to follow updates from a specific user
   follow_user: "Segui %{user}"
@@ -3049,6 +3053,87 @@ it:
     Le coordinate pubbliche sono quelle di un punto casuale all'interno di 0,2 gradi di latitudine/longitudine dalla cella che contiene le coordinate reali.
   observation: Osservazione
   observation_: osservazione
+  observation_accuracy_experiment_the_sample_for: "Il campione per questo esperimento non è stato ancora generato"
+  observation_accuracy_experiment_our_accuracy_estimate: "La nostra stima di accuratezza risultante da questo esperimento è %{percent} corretta."
+  observation_accuracy_experiment_our_goak: "Il nostro obiettivo per l'Accuratezza stimata (Corretta) e la Precisione del sottogruppo Livello Ricerca è superiore al 95% (linea tratteggiata)"
+  observation_accuracy_experiment_precision_results: "Risultati della Precisione per sottoinsieme"
+  observation_accuracy_experiment_taxon_rank_level: "Livello Rango del Taxon"
+  observation_accuracy_experiment_taxon_observations_count: "Conteggio Osservazioni Taxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nome Taxon Iconico"
+  observation_accuracy_experiment_continent: "Continente"
+  observation_accuracy_experiment_year: "Anno"
+  observation_accuracy_experiment_quality_grade: "Grado di Qualità"
+  observation_accuracy_experiment_show_frequency: "mostra frequenza"
+  observation_accuracy_experiment_click_on_bars: "Clicca sulle barre per esplorare i sottoinsiemi"
+  observation_accuracy_experiment_accuracy_results: "Risultati di Accuratezza per sottoinsieme"
+  observation_accuracy_experiment_as_observations: "Poiché le osservazioni di questo campione sono convalidate, la percentuale incerta diminuirà e la percentuale corretta ed errata aumenterà."
+  observation_accuracy_experiment_experiment_still: "Esperimento ancora in corso. Le statistiche si aggiorneranno ogni giorno fino alla scadenza per la convalida dei campioni il %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Esperimento Precisione Osservazione"
+  observation_accuracy_experiment_validators: "Validatori:"
+  observation_accuracy_experiment_show_additional_validators: "(mostra validatori aggiuntivi)"
+  observation_accuracy_experiment_hide_additional_validators: "(nascondi validatori aggiuntivi)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validatori aggiuntivi)"
+  observation_accuracy_experiment_research_grade_results: "Risultati Livello Ricerca"
+  observation_accuracy_experiment_verifiable_results: "Risultati Verificabili"
+  observation_accuracy_experiment_all_results: "Tutti i risultati"
+  observation_accuracy_experiment_methods: "Metodi"
+  observation_accuracy_experiment_step_1: "Passo 1: Generazione del Campione e Assegnazione"
+  observation_accuracy_experiment_from_the: "Dal database iNaturalist di osservazioni (A), abbiamo generato un campione casuale (B). I sottocampioni sono stati assegnati ai validatori candidati in base ai criteri descritti di seguito. Abbiamo mirato ad assegnare ogni osservazione campione a più validatori candidati ( \"Ridondanza Validatore Target\" )."
+  observation_accuracy_experiment_sample_generated: "Campione generato: %{date}"
+  observation_accuracy_experiment_sample_size: "Dimensione del campione: %{number}"
+  observation_accuracy_experiment_target_validator: "Ridondanza Validatore Target: %{number}"
+  observation_accuracy_experiment_number_of: "Numero di validatori candidati: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Dimensione media del sottocampione per candidato validatore: %{number}"
+  observation_accuracy_experiment_mean_number: "Numero medio di validatori per osservazione del campione: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criteri del validatore candidato"
+  observation_accuracy_experiment_if_an_identifier: "Se un identificatore aveva fatto almeno 3 identificazioni di miglioramento su un taxon, li abbiamo considerati qualificati per convalidare quel taxon. Le identificazioni di miglioramento sono i primi suggerimenti di un taxon che la comunità successivamente accetta."
+  observation_accuracy_experiment_for_example: "Ad esempio, l'identificatore 1 aggiunge una ID di A ad un'osservazione. Se l'Identificatore 2 aggiunge successivamente una ID iniziale di B, l'Identificatore 1 su A diventa una ID di miglioramento. Se l'identificatore 3 aggiunge successivamente una ID di supporto a B, l'identificatore 2 su B diventa una ID di miglioramento."
+  observation_accuracy_experiment_we_contacted: "Abbiamo contattato i validatori candidati e abbiamo chiesto loro di aggiungere identificazioni ai loro sottocampioni. Il grafico a destra raggruppa l'osservazione del campione con il numero di validatori."
+  observation_accuracy_experiment_number_percent_of: "Numero di validatori partecipanti: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Percentuale del campione convalidato: %{percent}"
+  observation_accuracy_experiment_we_scored: "Abbiamo valutato le osservazioni nel campione come Corrette, Incerte o Incorrette confrontando le identificazioni del validatore con il taxon di ogni osservazione del campione. Identificazioni corrispondenti o di più dettaglio per il taxon di osservazione del campione sono state segnate come Corrette. Le identificazioni più grossolane non concordate sono state segnate come Incerte poichè erano scenari in cui più validatori non erano d'accordo. Le identificazioni più grossolane o le identificazioni su rami diversi sono state classificate come Errate."
+  observation_accuracy_experiment_correct: "Corrette"
+  observation_accuracy_experiment_uncertain: "Incerte"
+  observation_accuracy_experiment_step_4: "Fase 4: Calcolo di Accuratezza e Precisione"
+  observation_accuracy_experiment_accuracy: "Accuratezza"
+  observation_accuracy_experiment_we_calculated: "Abbiamo calcolato l'accuratezza come la percentuale corretta per l'intero campione e sottoinsiemi, come il sottoinsieme Livello Ricerca. Abbiamo anche calcolato la percentuale incerta e la percentuale non corretta. Nell'esempio a destra, la percentuale corretta sarebbe 83, la percentuale incerta sarebbe 6 e la percentuale errata sarebbe 11."
+  observation_accuracy_experiment_precision: "Precisione"
+  observation_accuracy_experiment_if_every_sample: "Se ogni osservazione di esempio fosse in un taxon grossolano come il Regno, l'accuratezza del set di dati iNaturalist potrebbe essere molto elevata, ma la precisione potrebbe essere troppo bassa per rendere il set di dati molto utile. Per stimare la precisione, abbiamo contato il numero dei discendenti delle foglie nella tassonomia iNaturalist per ogni taxon associato ad ogni osservazione del campione. Abbiamo calcolato la precisione come 1 diviso per il numero di discendenti di foglie. Se il taxon era un taxon delle foglie la precisione è del 100%. Abbiamo ignorato i ranghi sotto le specie nel calcolo di precisione."
+  observation_accuracy_experiment_in_the_example: "Nella figura di esempio a destra la precisione media di tre osservazioni del campione sarebbe del 51%."
+  observation_accuracy_validator_email_subject: "Ci aiuterai a stimare la precisione delle osservazioni di iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Ci aiuterai con un esperimento per stimare la precisione delle osservazioni di iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifica tutte le osservazioni nel link qui sotto con la massima precisione possibile, anche se sono di Livello Ricerca, e anche se la tua migliore ID è ad un livello tassonomico superiore (anche Regno). </li>
+    <li>Se vedete il popup “Potentziale Disaccordo”…
+    <ul>
+    <li>e siete sicuri che è un ID errata fare clic sul pulsante arancione,</li>
+    <li>o se non sei sicuro al di là della tua ID, clicca sul pulsante verde</li>
+    </ul>
+    </li>
+    <li>Fai questo entro il <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ecco il sottoinsieme <a href="%{sample_url}">di %{num_obs} osservazioni</a>
+    che pensiamo tu possa identificare in base alla tua attività su iNat. <b>Sei pregato di aggiungere
+    la miglior ID possibile per ciascuna delle osservazioni entro il %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Calcoleremo la precisione confrontando la tuo ID con il Taxon di Osservazione. Puoi saltare le osservazioni dove
+    hai precedentemente aggiunto una ID se tale ID è ancora rilevante. Per saperne di più su come conteggiare accordi e disaccordi, continuare a leggere.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Le identificazioni pari al (A), o più precise del (B), Taxon d'Osservazione, saranno considerate come Accordi.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Le identificazioni gemelle (C), o più grossolane, del Taxon d'Osservazione, in cui selezioni 'No, ma…'
+    nella finestra di 'Disaccordo potenziale' (D), saranno contate come Disaccordi.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Le identificazioni più grossolane del Taxon d'Osservazione, in cui selezioni 'Non lo so, ma…' alla
+    finestra di 'Disaccordo potenziale' (E), saranno contate come Incerte.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Ti siamo davvero grati per il tuo aiuto come identificatore su iNaturalist, e ti ringraziamo
+    molto per aver partecipato a questo studio. Ti preghiamo di leggere <a href="%{url}">questo
+    post del blog</a>, se vuoi saperne di più su questo esperimento.
+  observation_accuracy_validator_email_with_gratitude: Con gratitudine,
+  observation_accuracy_validator_email_the_inaturalist_team: Il Team di iNaturalist
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3299,6 +3384,7 @@ it:
   organism_is_wild: L'organismo è selvatico
   organisms: Organismi
   original: Originale
+  original_flag: Contrassegno originale
   originally_flagged_by: Originariamente segnalata da
   originally_imported_from_url_html: "Originariamente importati da <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL della pagina originale per questa foto."
@@ -3765,6 +3851,7 @@ it:
     north_korea: Corea del Nord
     northern_cyprus: Cipro del Nord
     norway: Norvegia
+    oceania: Oceania
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4299,6 +4386,14 @@ it:
   rotate_left: Ruota a sinistra
   rotate_right: Ruota a destra
   row_singular_or_plural: Riga
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Stai testando la disposizione da destra verso sinistra? Puoi anche utilizzare il parametro test=rtl URL. Nota che non tutte le pagine sono state convertite a questo layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Aderito al test del layout da destra verso sinistra
   rules_and_formatting: "Regole & Formattazione"
   rules_for_adding_observations: Regole per l'aggiunta di osservazioni
   rules_for_becoming_a_member: Regole per diventare un Membro
@@ -5186,6 +5281,10 @@ it:
   unknown: Sconosciuto
   unknown_error: Errore sconosciuto
   unknown_rank: '(Rango Sconosciuto)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Smetti di seguire osservazione
+  #Text for a button to stop following updates from a user
+  unfollow_user: Smetti di seguire utente
   unlink_your_google_account: Scollega il tuo account Google
   unlink_your_flickr_account: "Scollega il tuo Account Flickr"
   unmute: Riattiva
@@ -5994,10 +6093,9 @@ it:
           figure_alt_text: La mappa delle Attese nelle Vicinanze e l'Areale del Taxon sono confrontate
           combining_these_maps_produces: |
             La combinazione di queste mappe produce 3 tipi di celle:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Presenze Vere:
-          true_presences_definition: Aree in cui sia la mappa delle Attese nelle Vicinanze che l'Areale del Taxon prevedono che il taxon sia presente
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             False Presenze:

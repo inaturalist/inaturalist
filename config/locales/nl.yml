@@ -188,7 +188,7 @@ nl:
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
   about_place: "Over %{place}"
-  about_places: Over plaatsen
+  about_places: Over Gebieden
   about_taxon_ranges: Over de verspreidingen van het taxon
   about_taxon_ranges_desc: |
     De verspreiding van een taxon geeft de wereldwijde verspreiding van een taxon weer. Taxon verspreidingsgebieden zijn
@@ -325,7 +325,7 @@ nl:
   add_muted_users: Gedempte gebruikers toevoegen
   add_new_lexicon: Nieuw lexicon toevoegen
   add_new_photos_by_their_ids: Nieuwe foto's op basis van hun Flickr-ID's toevoegen (moet Creative Commons zijn!)
-  add_new_place: Nieuwe plaats toevoegen
+  add_new_place: Nieuwe Gebied toevoegen
   add_new_rule: Nieuwe regel toevoegen
   add_new_source: "Nieuwe bron toevoegen..."
   add_new_taxon_name: Nieuwe taxonnaam toevoegen
@@ -343,7 +343,7 @@ nl:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Voeg er nu één toe
-  add_place: Plaats toevoegen
+  add_place: Gebied toevoegen
   add_alive_or_dead_alive_annotation: 'Aantekening "Levend of dood: levend" toevoegen'
   add_alive_or_dead_cannot_be_determined_annotation: 'Aantekening "Levend of dood: kan niet worden vastgesteld" toevoegen'
   add_alive_or_dead_dead_annotation: 'Aantekening "Levend of dood: dood" toevoegen'
@@ -441,7 +441,7 @@ nl:
   all_names: Alle namen
   all_observations: Alle waarnemingen
   all_photos: Alle foto's
-  all_places: "Alle plaatsen"
+  all_places: "Alle Gebieden"
   all_projects: Alle projecten
   all_rank_added_to_the_database:
     phylum: Alle stammen (phyla) toegevoegd aan de database
@@ -639,7 +639,7 @@ nl:
     de vervaging van waarnemingen van dit taxon en taxa erbinnen veranderen.
   are_you_sure_delete_post: Weet je zeker dat je dit bericht wilt verwijderen?
   are_you_sure_delete_taxon_move_associates: "Weet je zeker dat je %{taxonname} (%{taxonid}) wilt verwijderen en alle verwante items wilt verplaatsen?"
-  are_you_sure_delete_this_place: Weet je zeker dat je deze plaats wilt verwijderen?
+  are_you_sure_delete_this_place: Weet je zeker dat je dit gebied wilt verwijderen?
   are_you_sure_leave_this_project: Weet je zeker dat je dit project wilt verlaten?
   are_you_sure_merge_these_places: Weet je zeker dat je deze plaatsen wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
   are_you_sure_remove_photo: "Weet je zeker dat je deze foto wilt verwijderen?"
@@ -2685,8 +2685,8 @@ nl:
       gbif_network: GBIF netwerk
       gbif_network_description2: Gegevens van musea en andere aanbieders van verspreidingsgegevens geleverd door de Global Biodiversity Information Facility
       observations: Waarnemingen
-      place_boundary: Plaats grens
-      checklist_places: Checklist plaatsen
+      place_boundary: Gebiedsgrens
+      checklist_places: Checklist gebieden
       checklist_places_description: Plaatsen waar dit taxon in de lijst is opgenomen
       range: Verspreiding
   map_tooltip: Kaartweergave tonen
@@ -3112,6 +3112,26 @@ nl:
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
   observation: Waarneming
   observation_: waarneming
+  observation_accuracy_experiment_continent: "Continent"
+  observation_accuracy_experiment_year: "Jaar"
+  observation_accuracy_experiment_quality_grade: "Kwaliteitsklasse"
+  observation_accuracy_experiment_show_frequency: "toon frequentie"
+  observation_accuracy_experiment_verifiable_results: "Verifieerbare resultaten"
+  observation_accuracy_experiment_all_results: "Alle resultaten"
+  observation_accuracy_experiment_methods: "Methoden"
+  observation_accuracy_experiment_uncertain: "Onzeker"
+  observation_accuracy_experiment_accuracy: "Nauwkeurigheid"
+  observation_accuracy_experiment_precision: "Precisie"
+  observation_accuracy_validator_email_subject: "Wil je ons helpen om de nauwkeurigheid van iNaturalist waarnemingen in te schatten?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Wil je ons helpen met een experiment om de nauwkeurigheid van iNaturalist waarnemingen in te schatten?
+  observation_accuracy_validator_email_we_will_calculate: |
+    We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
+    je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Voor meer over hoe we overeenkomsten en meningsverschillen gaan tellen, lees verder.
+  observation_accuracy_validator_email_ids_equal_to: |
+    'Determinaties gelijk aan (A) of fijner dan (B) zal het Waargenomen Taxon worden geteld als Overeenkomst.
+  observation_accuracy_validator_email_with_gratitude: Met dankbaarheid,
+  observation_accuracy_validator_email_the_inaturalist_team: Het iNaturalist Team
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3853,6 +3873,7 @@ nl:
     north_korea: Noord-Korea
     northern_cyprus: Noord-Cyprus
     norway: Noorwegen
+    oceania: Oceanië
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4403,6 +4424,10 @@ nl:
   rotate_left: Linksom draaien
   rotate_right: Rechtsom draaien
   row_singular_or_plural: Rij(en)
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Deelgenomen aan de rechter-naar-links lay-out test
   rules_and_formatting: "Regels & Opmaak"
   rules_for_adding_observations: Regels voor toevoegen waarnemingen
   rules_for_becoming_a_member: Voorwaarden om lid te kunnen worden
@@ -6164,7 +6189,6 @@ nl:
           figure_alt_text: De 'In de buurt verwacht'-kaart en het verspreiding van het taxon worden vergeleken
           combining_these_maps_produces: |
             Het combineren van deze kaarten levert 3 soorten cellen:
-          true_presences_definition: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het verspreiding van het taxon voorspelt dat het taxon voorkomt
           false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
           false_absences_definition: Gebieden waar alleen de verspreiding van het taxon aanwezig is
           evaluation_statistics_for_taxon: Evaluatie statistieken van %{taxon}
@@ -7317,6 +7341,17 @@ nl:
         stats_generation_schedule: Statistieken worden elke zondag in december en op 1 januari gegenereerd
         store_prompt: |
           Wil je je iNat trots overal laten zien? Check de iNat winkel!
+        sunburst_desc_html: |
+          Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
+          van de hiërarchie staat centraal, beginnend met "Leven" en eindigend
+          met soorten aan de buitenranden. De grootte van elke boog is evenredig
+          naar het aantal waarnemingen van dat taxon en de kleuren
+          komen ongeveer overeen met onze gebruikelijke "iconische" taxonkleuren (groen voor planten,
+          oranje voor insecten, blauw voor de meeste andere dieren, enz.), dus als je
+          veel groen ziet, betekent dit dat je veel planten hebt waargenomen.
+          <strong>Klik op een boog om dat taxon in het midden te plaatsen</strong> en
+          de onderliggende taxa eromheen of <strong>klik op het midden om terug omhoog te gaan in
+          de hiërarchie</strong>.
         translators_title: Vertalers
         translators_desc: |
           Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} & %{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze

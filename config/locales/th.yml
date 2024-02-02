@@ -101,7 +101,7 @@ th:
   a_default_taxon_name_will_automatically_created: |
     ชื่อตามลำดับอนุกรมวิธานจะถูกสร้างขึ้นมาโดยอัตโนมัติจากชื่อวิทยาศาสตร์ของสิ่งมีชีวิตในลำดับอนุกรมวิธานดังกล่าว
     เมื่อบันทึกชื่อตามอนุกรมวิธานใหม่นี้ ผู้ใช้สามารถเพิ่มชื่ออื่น ๆ ได้ที่นี่ (ชื่อสามัญ ชื่อวิทยาศาสตร์เดิมที่ถูกยกเลิก ฯลฯ)
-  a_flag_for_x: "ติดธงสำหรับ %{x}"
+  a_flag_for_x: "รายงานสำหรับ %{x}"
   a_member_of_taxon_html: "สมาชิกของ%{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -185,7 +185,7 @@ th:
   accuracy_of_the_coordinates: |
     ความแม่นยำของพิกัดแสดงเป็นหน่วยเมตร สามารถแก้ไขโดยคลิกลิงก์ "แก้ไข" ด้านบนหรือคลิกบนแผนที่แล้วลากออก โดยพยายามลากวงกลมให้ครอบคลุมตำแหน่งการสังเกตที่คุณแน่ใจ
   #Noun, as in "Ken-ichi's action was not acceptable"
-  action: ปฏิบัติการ
+  action: การกระทำ
   actions: การดำเนินการทั้งหมด
   active: กำลังดำเนินการ
   #Status of a complete set that is available for use
@@ -225,7 +225,7 @@ th:
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
-  add_another_flag: ติดธงเพิ่ม
+  add_another_flag: เพิ่มอีกรายงาน
   add_another_photo: เพิ่มภาพถ่ายอีกใบ
   add_another_section: เพิ่มส่วนอื่น ๆ
   add_another_subscription: เพิ่มคำอธิบายตัวกรอง
@@ -283,6 +283,13 @@ th:
   add_life_stage_larva_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวอ่อน"'
   add_life_stage_juvenile_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: วัยอ่อน"'
   add_life_stage_egg_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ไข่"'
+  add_evidence_of_presence_organism_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ตัวสิ่งมีชีวิต"'
+  add_evidence_of_presence_feather_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ขนนก"'
+  add_evidence_of_presence_gall_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ปุ่มปมในพืช"'
+  add_evidence_of_presence_scat_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: มูลสัตว์"'
+  add_evidence_of_presence_track_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: รอยตามทาง"'
+  add_evidence_of_presence_bone_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: กระดูก"'
+  add_evidence_of_presence_molt_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: คราบ"'
   #As in a Taxon Framework Relationship
   add_relationship: 'เพิ่มความสัมพันธ์'
   #As in a Guide Section
@@ -338,6 +345,7 @@ th:
   agree_: เห็นด้วย
   agree?: เห็นด้วย
   agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
+  agree_with_observation_taxon: เห็นด้วยกับหน่วยอนุกรมวิธานของการสังเกต
   agreeing: กำลังยืนยัน...
   aka: เป็นที่รู้จักกันในชื่อ
   #Noun, title of a popup alerting you to something
@@ -444,6 +452,7 @@ th:
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
   amphibians: สัตว์สะเทินน้ำสะเทินบก
   analyze_ids: วิเคราะห์การจำแนก
+  ancestor_taxon: หน่วยอนุกรมวิธานบรรพบุรุษ
   and_other_taxa: "&amp; หน่วยอนุกรมวิธานอื่น ๆ"
   android: แอนดรอยด์
   animals: สัตว์
@@ -564,11 +573,13 @@ th:
     แน่ใจหรือไม่ว่าต้องการลบการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "แน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการตรวจสอบของ %{place}?"
   associated_observations: การสังเกตที่เกี่ยวข้อง
+  attention: โปรดทราบ
   you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
   you_sure_delete_taxon_from_list?: "แน่ใจหรือไม่ว่าต้องการลบ %{taxon} ออกจากรายการ?"
   asc: น้อยไปมาก
   ascending: น้อยไปมาก
   assessment: การประเมินผล
+  assessments: การประเมิน
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -583,7 +594,9 @@ th:
   attribution_uploaded_by_user: "%{attribution} อัปโหลดโดย %{user}"
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
+    natureserve: NatureServe
     cites: CITES
+  authorize: อนุญาต
   automatic_short: อัตโนมัติ
   automatically_add_observations_to_this_project: เพิ่มการสังเกตเข้าโครงการนี้อัตโนมัติ
   automatically_update_my_content_for_taxon_changes: อัปเดตเนื้อหาของฉันอัตโนมัติสำหรับการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
@@ -884,6 +897,8 @@ th:
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
     แก้ไขสถานที่ที่สร้างโดยผู้ใช้งานและอัปโหลดไฟล์ KML ที่ใหญ่กว่า 1 MB (แต่เล็กกว่า 5 MB)
+  #Header
+  curator_application_what_curators_cannot_do: สิ่งที่ผู้ดูแลทำไม่ได้
   curators: ผู้ดูแล
   curator_identification: การจำแนกโดย Curator
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
@@ -1110,6 +1125,7 @@ th:
   featured: แนะนำ
   fields: ข้อมูลเสริม
   fields_: ข้อมูลเสริม
+  fields_merged: ข้อมูลเสริมถูกรวม
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   #The name of a computer file
   filename: ชื่อไฟล์
@@ -1166,6 +1182,8 @@ th:
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
   follow: ติดตาม
+  #Text for a button to follow updates on an observation
+  follow_observation: ติดตามการสังเกต
   follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
   #Text for a button to follow updates from a specific user
   follow_user: "ติดตาม %{user}"
@@ -1211,6 +1229,7 @@ th:
   go_back: ย้อนกลับ
   going_to_your_observations: กำลังไปที่การสังเกตของคุณ...
   grid: ตาราง
+  grouping: การจัดกลุ่ม
   guides: คู่มือสำรวจ
   guide_was_successfully_published: เผยแพร่คู่มือสำเร็จแล้ว
   guidelines: ข้อแนะนำ
@@ -1368,13 +1387,14 @@ th:
     albanian: ภาษาแอลเบเนีย
     arabic: ภาษาอาหรับ
     armenian: ภาษาอาร์เมเนีย
+    basque: ภาษาบาสก์
     belarusian: ภาษาเบลารุส
     bengali: ภาษาเบงกาลี
     bulgarian: ภาษาบัลแกเรีย
     catalan: ภาษากาตาลา
     cebuano: ภาษาเซบัวโน
     chinese_simplified: ภาษาจีน (ตัวย่อ)
-    chinese_traditional: ภาษาจีน (ดั้งเดิม)
+    chinese_traditional: ภาษาจีน (ตัวเต็ม)
     creole_french: ภาษาครีโอล (ฝรั่งเศส)
     creole_portuguese: ภาษาครีโอล (โปรตุเกส)
     croatian: ภาษาโครเอเชีย
@@ -1482,12 +1502,13 @@ th:
     es-CO: ภาษาสเปน (โคลอมเบีย)
     es-MX: ภาษาสเปน (เม็กซิโก)
     et: ภาษาเอสโตเนีย
-    eu: ภาษาบาสก์
+    eu: บาสก์
     fi: ภาษาฟินแลนด์
     fr: ภาษาฝรั่งเศส
     fr-CA: ภาษาฝรั่งเศส (แคนาดา)
     gl: ภาษากาลิเซีย
     he: ภาษาฮีบรู
+    hr: ภาษาโครเอเชีย
     id: ภาษาอินโดนีเซีย
     it: ภาษาอิตาลี
     ja: ภาษาญี่ปุ่น
@@ -1505,12 +1526,13 @@ th:
     ru: ภาษารัสเซีย
     sk: ภาษาสโลวัก
     sl: ภาษาสโลวีเนีย
+    sr: ภาษาเซอร์เบีย
     sv: ภาษาสวีเดน
     th: ภาษาไทย
     tr: ภาษาตุรกี
     uk: ภาษายูเครน
     zh-CN: ภาษาจีน (ตัวย่อ)
-    zh-TW: ภาษาจีน (ดั้งเดิม)
+    zh-TW: ภาษาจีน (ตัวเต็ม)
   locality_notes: หมายเหตุตำแหน่ง
   localized_species_accounts: บัญชีชนิดพันธุ์เฉพาะถิ่น
   location: ตำแหน่ง
@@ -1533,6 +1555,8 @@ th:
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
   lowest_rank: ลำดับต่ำสุด
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   #Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
   make_curator: ตั้งเป็นผู้ดูแล
@@ -1544,7 +1568,7 @@ th:
   manage_your_projects: จัดการโครงการของคุณ
   manage_your_relationships: จัดการความสัมพันธ์ของคุณ
   managers: ผู้จัดการ
-  managers_can_do: ผู้จัดการสามารถทำได้ทุกอย่างเช่นเดียวกับผู้ดูแล รวมถึงการแก้ไขการตั้งค่าและการเขียนโพสต์วารสารโครงการ
+  managers_can_do: ผู้จัดการสามารถทำได้ทุกอย่างเช่นเดียวกับผู้ดูแล รวมถึงแก้ไขการตั้งค่าและเขียนโพสต์วารสารโครงการได้
   map: แผนที่
   map_legend: คำอธิบายสัญลักษณ์
   map_of_observations: แผนที่แสดงพิกัดการสังเกต
@@ -1840,6 +1864,8 @@ th:
     present: ปรากฏ
     common: พบทั่วไป
     uncommon: พบไม่บ่อย
+    irregular: ไม่แน่นอน
+    absent: ไม่ปรากฏ
   of_this_taxon: ของหน่วยฯ นี้
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "ปรับเวลา"
@@ -1969,41 +1995,56 @@ th:
   places_name:
     africa: แอฟริกา
     american_samoa: อเมริกันซามัว
+    argentina: อาร์เจนตินา
     asia: เอเชีย
+    austria: ออสเตรีย
     azerbaijan: อาเซอร์ไบจาน
     bangladesh: บังกลาเทศ
     bhutan: ภูฏาน
     british_indian_ocean_territory: บริติชอินเดียนโอเชียนเทร์ริทอรี
+    british_virgin_islands: หมู่เกาะบริติชเวอร์จิน
     brunei: บรูไน
     cambodia: กัมพูชา
     cameroon: แคเมอรูน
     central_african_republic: สาธารณรัฐแอฟริกากลาง
     central_america: อเมริกากลาง
     china: จีน
+    croatia: โครเอเชีย
     czech_republic: สาธารณรัฐเช็ก
+    dominican_republic: สาธารณรัฐโดมินิกัน
     east_timor: ติมอร์ตะวันออก
     ecuador: เอกวาดอร์
     el_salvador: เอลซัลวาดอร์
     equatorial_guinea: อิเควทอเรียลกินี
+    estonia: เอสโตเนีย
     europe: ยุโรป
+    faroe_islands: หมู่เกาะแฟโร
     fiji: ฟิจิ
     french_southern_territories: เฟรนช์เซาเทิร์นเทร์ริทอรีส์
     georgia: จอร์เจีย
     germany: เยอรมนี
     hong_kong: ฮ่องกง
+    iceland: ไอซ์แลนด์
     india: อินเดีย
     indonesia: อินโดนีเซีย
+    israel: อิสราเอล
+    italy: อิตาลี
     jamaica: จาเมกา
     japan: ญี่ปุ่น
     jordan: จอร์แดน
     kazakhstan: คาซัคสถาน
     korea: เกาหลี
+    kyrgyzstan: คีร์กีซสถาน
     laos: ลาว
+    lithuania: ลิทัวเนีย
+    luxembourg: ลักเซมเบิร์ก
+    macao: มาเก๊า
     malaysia: มาเลเซีย
     mongolia: มองโกเลีย
     morocco: โมร็อกโก
     myanmar: เมียนมา
     nepal: เนปาล
+    netherlands: เนเธอร์แลนด์
     norfolk_island: เกาะนอร์ฟอล์ก
     north_africa: แอฟริกาเหนือ
     north_america: อเมริกาเหนือ
@@ -2019,6 +2060,7 @@ th:
     russia: รัสเซีย
     samoa: ซามัว
     saudi_arabia: ซาอุดิอาระเบีย
+    serbia: เซอร์เบีย
     singapore: สิงคโปร์
     slovakia: สโลวาเกีย
     south_africa: แอฟริกาใต้
@@ -2026,6 +2068,7 @@ th:
     south_georgia_and_the_south_sandwich_islands: เกาะเซาท์จอร์เจียและหมู่เกาะเซาท์แซนด์วิช
     south_korea: เกาหลีใต้
     sri_lanka: ศรีลังกา
+    sweden: สวีเดน
     taiwan: ไต้หวัน
     thailand: ไทย
     trinidad_and_tobago: ตรินิแดดและโตเบโก
@@ -2035,7 +2078,9 @@ th:
     united_kingdom: สหราชอาณาจักร
     united_states: สหรัฐอเมริกา
     united_states_minor_outlying_islands: เกาะเล็กรอบนอกของสหรัฐอเมริกา
+    united_states_virgin_islands: หมู่เกาะเวอร์จินของสหรัฐ
     vietnam: เวียดนาม
+    virgin_islands: หมู่เกาะเวอร์จิน
     west_africa: แอฟริกาตะวันตก
     zambia: แซมเบีย
   places_of_interest: สถานที่น่าสนใจ
@@ -2666,6 +2711,8 @@ th:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_yekaterinburg: เวลาเยคาเตรินบุร์ก
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: เวลาบริสเบน
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_melbourne: เวลาเมลเบิร์น
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_perth: เวลาเพิร์ธ
@@ -2745,6 +2792,8 @@ th:
   unknown: ไม่ทราบ
   unknown_error: ข้อผิดพลาดที่ไม่รู้จัก
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: เลิกติดตามการสังเกต
   unpublish: เลิกเผยแพร่
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
@@ -3041,6 +3090,7 @@ th:
         date_added_newest: วันที่เพิ่ม ใหม่สุดไปเก่าสุด
         date_added_oldest: วันที่เพิ่ม เก่าสุดไปใหม่สุด
         show: แสดง
+        simplified_tree: แผนภูมิต้นไม้อย่างง่าย
         full_taxonomy: อนุกรมวิธานแบบเต็ม
     lists:
       edit:
@@ -3218,6 +3268,13 @@ th:
           รู้หรือไม่ว่า %{site_name} มีผู้แปลภาษาไม่น้อยกว่า %{x_people} คน? นี่คือเหล่านักแปลที่ยอดเยี่ยมที่ได้เพิ่มคำแปลในปีนี้พร้อมกับจำนวนคำที่พวกเขาแปลใน%{website_link_tag}เว็บไซต์%{link_tag_end} ในแอป iNaturalist ของ %{iphone_link_tag}iPhone%{link_tag_end} และ %{android_link_tag}Android%{link_tag_end} และใน %{seek_link_tag}Seek%{link_tag_end} คุณสามารถดูรายชื่อผู้แปลทั้งหมดสำหรับทุกภาษา รวมถึงผู้แปลในปีก่อน ๆ และผู้แปลจาก Translatewiki ใน%{view_all_web_link_tag}เว็บไซต์%{link_tag_end}และ %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories ของเรา
     taxa:
       show:
+        about_regional_names_desc: |
+          <p>
+          ในบางสถานที่ (เช่น ประเทศ) อาจมีชื่อเพิ่มเติม เนื่องจากแต่ละประเทศหรือภูมิภาคอาจใช้ชื่อสามัญในภาษาเดียวกันต่างกันไป เช่น เม็กซิโกและคอสตาริกาอาจมีชื่อภาษาสเปนต่างกันสำหรับชนิดเดียวกัน
+          </p>
+          <p>
+          ตารางต่อไปนี้แสดงรายชื่อที่ถูกเพิ่มและเรียงลำดับความสำคัญในแต่ละสถานที่ หากมีการเพิ่มชื่อภาษาสเปนสองชื่อในประเทศเม็กซิโก ชื่อที่อยู่ในรายการแรกจะแสดงขึ้นมาถ้าคุณต้องการดูชื่อภาษาสเปนที่เพิ่มในประเทศเม็กซิโก
+          </p>
         about_conservation_status_desc: |
           สถานะการอนุรักษ์แสดงถึงระดับความเสี่ยงต่อการสูญพันธุ์ของสิ่งมีชีวิตแต่ละกลุ่ม
         about_establishment_desc: |
@@ -3539,6 +3596,11 @@ th:
           attributes:
             value:
               dna_only_atcg: "สำหรับ DNA จะต้องมีอักษร A T C หรือ G เท่านั้น"
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: มีขนาดใหญ่เกินไปจึงแก้ไขไม่ได้
+              is_too_large_to_import: มีขนาดใหญ่เกินไปจึงนำเข้าไม่ได้
         taxon_name:
           attributes:
             lexicon:

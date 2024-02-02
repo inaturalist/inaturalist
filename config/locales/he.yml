@@ -147,6 +147,11 @@ he:
     two: "%{count} בני אדם"
     many: "%{count} בני אדם"
     other: "%{count} בני אדם"
+  x_people_html:
+    one: 'אדם <span class="count">%{count}</span>'
+    two: '<span class="count">%{count}</span> א.נשים'
+    many: '<span class="count">%{count}</span> א.נשים'
+    other: '<span class="count">%{count}</span> א.נשים'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} א.נשים</strong> עזרו ל%{user} עם <strong>%{y} זיהויים</strong>"
   x_photos:
     one: "תמונה אחת"
@@ -335,6 +340,7 @@ he:
   active_taxon_status: פעיל
   active_users: משתמשות פעילות
   activity: פעילות
+  activity_on_a_flag_for_x: פעילות על סימון עבור %{x}
   adapted_by_name_from_a_work_by_original: "עוּבד על־ידי %{name} מעבודה של %{original}"
   add: הוספה
   add_a_batch_of_observations: הוספת תצפיות מרובות
@@ -475,6 +481,8 @@ he:
   added_by: נוסף על־ידי
   added_by_user_on_date_html: "נוסף על־ידי %{user} בתאריך %{date}"
   added_on_datetime: "נוסף בתאריך %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: התפקיד נוסף
   added_to_favorites_html: |
     נוסף ל<a href="%{url}">מועדפים</a>
   adding: "מוסיף..."
@@ -488,6 +496,7 @@ he:
   agree_: הסכמה
   agree?: מסכים/ה?
   agree_with_current_taxon: הסכמה עם הטקסון הנוכחי
+  agree_with_observation_taxon: הסכמה עם טקסון התצפית
   agreeing: מסכים...
   aka: כינוי
   #Noun, title of a popup alerting you to something
@@ -498,6 +507,7 @@ he:
   all_comments: כל התגובות
   all_flags_must_be_resolved: כל הדגלים צריכים להיפתר
   all_life: כל החיים
+  all_media_must_be_unhidden: על כלל המדיה להיות לא מוסתרת
   all_names: כל השמות
   all_observations: כל התצפיות
   all_photos: כל התמונות
@@ -782,6 +792,7 @@ he:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     האם ברצונך למחוק את התצפית הזאת מהפרויקט "%{project}"?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "האם ברצונך להסיר את הטקסון הזה מרשימת המינים של %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: האם ברצונך לסמן את המשתמש.ת כמפיצ.ת ספאם?
   associated_observations: תצפיות משויכות
   associated_taxa: טקסונים משויכים
   attention: לתשומת לבך
@@ -1131,6 +1142,8 @@ he:
     מודל עיבוד התמונה הנוכחי מכיר טקסון זה, כך שייתכן כי הוא יכלל בתוצאות המוצעות עם התגית "דומה ויזואלית".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: ממתין
+  computer_vision_model_pending_desc2: |
+    מודל הראייה הממוחשבת הנוכחי לא מכיר את הטקסון הזה. לכן, אמנם יתכן שהוא יכלל בהצעות אוטומטיות עם תווית "צפוי בסביבה", אך לא תהיה לו תווית "דומה חזותית". אמנם הדרישות להכללת מודלים משתנות בין מודל למודל, אך ההכללה לרוב מבוססת על מספר תצפיות, לכן כדי להגדיל את הסיכוי שהטקסון ייכלל באימון המודל הבא, יש להוסיף או לזהות תצפיות נוספות של אותו הטקסון.
   concept_status: מצב הקונספט
   confidential: חסוי
   configure: הגדרה
@@ -1248,10 +1261,12 @@ he:
     cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
     dead: היצור מת או מראה שימנים של מוות מיידי
     feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
+    female: ממצאים מעידים על כך שיצורים רבים מסוגלים לייצר ביציות לשימוש ברבייה מינית
     flower_budding: רואים ניצני פרחים אך סגורים
     flowering: פרחים נראים לעין, פתוחים, ועוד מחוברים לצמח
     fruiting: פירות נראים ועוד מחוברים לצמח
     gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
+    male: ממצאים מעידים על כך שיצורים רבים מסוגלים לייצר זרע לשימוש ברבייה מינית
     molt: נשל או שלד חיצוני
     no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
     organism: אורגניזם שלם או חלק ממנו
@@ -1844,6 +1859,7 @@ he:
   exit_full_screen: "יציאה ממסך מלא"
   examples_of_data_use_by_network_members: דוגמאות לשימוש במידע ע"י חברי הרשת העולמית של iNaturalist
   examples_of_ranking_organizations: דומגאות לארגונים מדרגים
+  expected_nearby: צפוי בסביבה
   explore: גלו את העולם
   export: ייצוא
   export_observations: ייצוא תצפיות
@@ -1964,6 +1980,7 @@ he:
     סימון למשתמש: %{title}
   flag_it!: סמנ.י אותו!
   flag_marked_as_resolved_html: '<span class="meta">סימון סומן כ</span> <strong>נפתר.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">הסימון מוגדר</span> <strong>לא פתור.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: אובייקט
   flag_reason: "&ldquo;אני מסמנ.מ את %{record} זה כי"
@@ -1999,6 +2016,8 @@ he:
   #Adjective, as in a fluid layout of images
   fluid: מתגמש
   follow: לעקוב
+  #Text for a button to follow updates on an observation
+  follow_observation: לעקוב אחרי תצפית זו
   follow_receive_updates_about_new_observations: לעקוב (לקבלת עדכונים על תצפיות חדשות)
   #Text for a button to follow updates from a specific user
   follow_user: "לעקוב אחרי %{user}"
@@ -2046,6 +2065,8 @@ he:
   generate_your_year_in_review_caps: ליצירת סיכום השנה שלך ל-%{year}
   generating_mobile_archive: "מייצר ארכיון נייד"
   Genus: סוג
+  geomodel_expected_nearby_label_is_derived: |
+    התווית "צפוי בסביבה" נגזרת מהגיאו-מודל. <a href="%{url}">למדו עוד על הגיאו-מודל כאן</a>.
   geoprivacy: מיקום פרטי
   geoprivacy_is_obscured: מיקום פרטי מוסתר
   geoprivacy_is_obscured_desc: הצופה בחר להסתיר מיקום.
@@ -2134,6 +2155,10 @@ he:
   #Verb, usually a button to hide an interface element
   hide: הסתרה
   hide_content: הסתרת תוכן
+  hide_desc: |
+    הסתרת תוכן תסיר אותה מצפייה ע"י הקהילה, אך א.נשים עדיין יוכלו לראות שמשהו הוסתר, ואוצרי האתר ומחבר.ת התוכן יוכלו לראות את התוכן המוסתר. זיהויים מוסתרים לא יתרמו לטקסון הקהילתי של תצפית.
+  hide_desc_staff_can_unhide: |
+    רק צוות האתר יכול לחשוף תוכן לאחר שהוסתר, לכן יש להשתמש בזה רק במקרים של הפרות ברורות של הנחיות הקהילה.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: הסתרת "ללא תוויות"
@@ -2191,6 +2216,10 @@ he:
   #Notification when an identification has been deleted
   identification_deleted: הזיהוי נמחק.
   identification_saved: "זיהוי נשמר!"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: הזיהוי הוסתר
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: בוטלה הסתרת הזיהוי
   #Notification when an identification has been updated
   identification_updated: זיהוי עודכן!
   identification_user_short: מזהה משתמש.ת
@@ -2257,6 +2286,7 @@ he:
   include_places: כולל מקומות
   include_projects: כולל פרויקטים
   include_suggestions_not_seen_nearby: כולל הצעות שלא נראו בקרבת מקום
+  include_suggestions_not_expected_nearby: לכלול הצעות שאינן צפויות בסביבה
   include_taxa: כולל טקסונים
   include_users: כולל הא.נשים
   including: כולל
@@ -2326,6 +2356,7 @@ he:
   journal: יומן
   journal_archives_for: ארכיון יומן של
   journal_post: פוסט ביומן
+  journal_post_: פוסט ביומן
   journal_post_deleted: הפוסט נמחק.
   journal_posts: פוסטים ביומן
   jpg_png_or_gif: "JPG, PNG או GIF"
@@ -2587,6 +2618,7 @@ he:
     es: ספרדית
     es-AR: ספרדית (ארגנטינה)
     es-CO: ספרדית (קולומביאנית)
+    es-CR: ספרדית (קוסטה ריקה)
     es-MX: ספרדית (מקסיקו)
     et: אסטונית
     eu: באסקית
@@ -2776,6 +2808,10 @@ he:
   moderation_history_for_user_html: היסטוריית הניהול עבור %{user}
   moderation_history_desc_html: |
     זה כולל פעולות תיווך (למשל הסתרה או ביטול הסתרה של תגובות), הערות, וסימונים על כל מה נוצר על ידי יוזר זה מלבד טקסונים. זה <strong>גלוי רק לאוצרות.ים</strong> ו<strong>ואוצרות.ים לא יכולות.ים לצפות בהיסטוריה של עצמן.ם</strong>, כך שהערות על יוזר לעולם לא צריכות להיות גלויות בפניו.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: הסתרה
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: ביטול השעיה
   moderator_note_desc: |
     הערות מנהל.ת הן רשומה של תגובות מנהל.ת או חששות מבוססי-ראיות אודות יוזר מסוים, למשל אם הוא חשבון בדוי פוטנציאלי. נא לא להכניס דעות אישיות או שמועות אודות היוזר.
   #Person who executed a moderator action or flagged something
@@ -3120,6 +3156,33 @@ he:
     קואורדינטות גלויות מוצגות כנקודה אקראית בתוך תא של 0.2x0.2 מעלות אורך/רוחב שמכיל את הקואורדינטות האמיתיות
   observation: תצפית
   observation_: תצפית
+  observation_accuracy_validator_email_subject: "האם תעזרו לנו להעריך את הדיוק של תצפיות iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    האם תעזרו לנו בניסוי להעריך את הדיוק של תצפיות iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>יש לזהות את כלל התצפיות בקישור להלן הכי מדויק שאת.ה יכול.ה, גם אם הן בדרגת מחקר, וגם אם הזיהוי הכי מדויק שלך הוא ברמה טקסונומית גבוהה יותר (אפילו ממלכה). </li>
+    <li>במידה וייפתח חלון "חילוקי דעות פוטנציאליים"…
+    <ul>
+    <li>ואת.ה בטוח.ה שהוא זוהה באופן שגוי, יש ללחוץ על הכפתור הכתום,</li>
+    <li>או אם אינך בטוח.ה מעבר לזיהוי שלך, יש ללחוץ על הכפתור הירוק</li>
+    </ul>
+    </li>
+    <li>יש לבצע זאת עד <b>%{validator_deadline_date}</b></li>
+    </ol>
+    הנה <a href="%{sample_url}">תת-ערכה של %{num_obs} התצפיות</a> שלדעתנו תוכל.י לזהות לפי הפעילות שלך ב-iNaturalist. <b>נא להוסיף את הזיהוי המדויק ביותר שאת.ה יכול.ה לכל אחת מהתצפיות עד לתאריך %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    נחשב את הדיוק באמצעות השוואת הזיהוי שלך לטקסון התצפית. באפשרותך לדלג על תצפיות אשר כבר הוספת עליהן זיהוי, במידה והזיהוי ההוא עוד רלוונטי. למידע נוסף על אופן ספירת ההסכמות וחילוקי הדעות, המשיכו לקרוא.
+  observation_accuracy_validator_email_ids_equal_to: |
+    זיהויים השווים ל-(A) או מדויקים יותר מ-(B) טקסון התצפית ייספרו כהסכמות.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    זיהויים שהם בענפים שונים (C) או שהם גסים יותר מטקסון התצפית איפה שאת.ה בוחר.ת 'לא, אבל…' לדיאלוג 'חילוקי דעות פוטנציאליים' (D) ייספרו כחילוקי דעות.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    זיהויים שהם גסים יותר מטקסון התצפית בהם בחרת 'אני לא יודע.ת אבל…' לדיאלוג 'חילוקי דעות פוטנציאלי' (E) ייספרו כלא וודאיים.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    אנחנו מוקירים לך תודה על עזרתך כמזהה ב-iNaturalist, ומודים לך שהשתתפת במחקר זה. נא לקרוא את <a href="%{url}">פוסט הבלוג הזה</a> לענות על שאלות נפוצות אודות ניסוי זה.
+  observation_accuracy_validator_email_with_gratitude: בהוקרה,
+  observation_accuracy_validator_email_the_inaturalist_team: צוות iNaturalist
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
   observation_aggregation: צבירת תצפית
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3254,6 +3317,7 @@ he:
   observations_widget: וידג'ט תצפיות
   observations_with_this_field: תצפיות עם שדה זה
   observations_with_this_field_and_value: תצפיות עם שדה וערך זה
+  observations_without_this_field: תצפיות ללא שדה זה
   observations_without_media: תצפיות ללא תמונה/מדיה
   observationcounts_refreshed: מספר התצפיות רוענן
   observed: נצפה
@@ -3368,6 +3432,7 @@ he:
   organism_is_wild: פרט בבר
   organisms: אורגניזמים
   original: מקור
+  original_flag: סימון מקורי
   originally_flagged_by: סומן במקור על ידי
   originally_imported_from_url_html: "מיובא במקור מ<a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "קישור מקורי עבור תמונה זו."
@@ -3453,8 +3518,12 @@ he:
   photo_credits: קרדיטים לתמונה
   photo_deleted: תמונה נמחקה
   photo_destroyed_because_it_was_deleted_from: "תמונה הושמדה בגלל שהיא נמחקה מאתר חיצוני או של%{site_name} לא קיימות יותר הרשאות צפייה"
+  #Message displayed after a photo has been hidden
+  photo_hidden: התמונה הוסתרה
   photo_licensing: רישוי תמונות
   photo_type: סוג תמונה
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: בוטלה הסתרת התמונה
   photo_urls_repaired: URL של התמונה תוקן
   photos_chosen_for_this_taxon: תמונות שנבחרו לטקסון זה
   photos_from: תמונות מ
@@ -4321,6 +4390,8 @@ he:
   remove_tags: הסרת תגיות
   removed: הוסר
   removed_project_user: הסרת משתמש פרוייקט
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: התפקיד הוסר
   removing: "מתבצעת הסרה..."
   reorder_by_taxonomy: סדר מחדש לפי טקסונומיה
   repair_broken_urls: תקן URLים שבורים
@@ -4377,6 +4448,14 @@ he:
   rotate_left: סיבוב לשמאל
   rotate_right: סיבוב לימין
   row_singular_or_plural: שורה/ות
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    לנסות פריסה מימין לשמאל? באפשרותך להשתמש גם בפרמטר test=rtl. יש לציין כי לא כל הדפים הומרו לפריסה מימין לשמאל.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: הצטרפת למבחן פריסה מימין לשמאל
   rules_and_formatting: "כללים ופורמטים"
   rules_for_adding_observations: כללים להוספת תצפיות
   rules_for_becoming_a_member: כללים להצטרפות
@@ -4504,6 +4583,8 @@ he:
   show_keyboard_shortcuts: הצגת קיצורי-מקלדת
   show_less: להציג פחות
   show_more: להציג עוד
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: הצגת אפשרויות התחברות נוספות
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: הצגת "ללא תוויות"
@@ -5288,6 +5369,10 @@ he:
   unknown: לא ידוע
   unknown_error: שגיאה לא ידועה
   unknown_rank: '(דירוג לא ידוע)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: ביטול מעקב אחר התצפית
+  #Text for a button to stop following updates from a user
+  unfollow_user: ביטול מעקב אחר המשתמש.ת
   unlink_your_google_account: ניתוק חשבון גוגל
   unlink_your_flickr_account: "ניתוק חשבון פליקר"
   unmute: ביטול השתקה
@@ -5937,6 +6022,8 @@ he:
     announcements:
       locales_desc: |
         יש להקליק תוך כדי הקשת CMD או SHIFT לבחירה מרובה. אי-בחירה תציג את ההודעות עבור כל היוזרים ללא תלות במיקום. בחירת שפה ללא אזור *לא* תכוון למיקומים עם אזורים, למשל אם תבחר.י "en" זה לא יופיע עבור א.נשים שבחרו "en-US". אם ברצונך לכוון לשניהם, יש לבחור בשניהם. אם ברצונך להציג הודעה בפני כל חברות וחברי אתר, יש להשאיר את זה ריק.
+      clients_desc: |
+        לבחירה מרובה יש להקליק בעכבר תוך לחיצת מקש SHIFT או CMD. אי-בחירה תציג את ההודעה לכל המשתמשים בלי קשר ללקוח.
     content_freeze:
       content_freeze: הקפאת תוכן
       during_this_time: |
@@ -6000,6 +6087,77 @@ he:
           התוכן הניתן לסימון הוא תכונת הטקסט העיקרי של האובייקט שסומן בזמן יצירת הסימון. רק אוצרות.ים והצוות יכולים לראות תוכן זה. רק הצוות יכול לראות את זה עבור הודעות.
         flags_that_should_not_be_resolved_desc_html: |
           נא לפתור סימוני <code>ספאם</code> ו<code>הפרת זכויות יוצרים</code> רק במידה והתוכן אינו ספאם או הפרת זכויות יוצרים, בהתאמה.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          חיזוי גיאו-מודל עבור %{taxon}
+        the_geo_model_makes_predictions: |
+          הגיאו-מודל מייצר חיזוי של הימצאות והיעדרות מינים במרחב. הוא משמש ליישום תווית "צפוי בסביבה" לצד הצעות ולשקלל הצעות אלו לפי מיקום התצפיות.
+        the_geo_model_is_trained: |
+          בדומה למודל ראייה ממוחשבת, הגיאו-מודל "לומד" מתצפיות iNaturalist עבור אותו סט של מינים שיש להם יותר ממאה תמונות. הגיאו-מודל אינו מייצר חיזוי מושלם. ניתן לקרוא עוד אודות בניית הגיאו-מודל <a href="%{url}">כאן</a>.
+        nearby_map:
+          expected_nearby_map: מפת "צפוי בסביבה"
+          we_use_this_map: |
+            מפה זו משמשת ליישום תווית "צפוי בסביבה" לפי מיקום התצפית.
+          for_example: |
+            למשל, תצפית של לטאה במרכז ארה"ב יכולה לקבל תווית "צפוי בסביבה" עבור הצעת <i>Sceloporus consobrinus</i> אבל לא <i>Sceloporus occidentalis</i> על בסיס מפות ה"צפוי בסביבה" השונות של שני המינים.
+          you_can_think: |
+            אפשר לחשוב על מפת "צפוי בסביבה" כהערכה האם המין נוכח במקום כלשהו בתוך התא או נעדר ממנו לחלוטין.
+          figure_alt_text: הגיאו-מודל מיישם את התווית "צפוי בסביבה"
+        unthresholded_map:
+          figure_alt_text: הגיאו-מודל משקלל תוצאות ראייה ממוחשבת
+        range_comparison:
+          expected_nearby_vs_taxon_range: צפוי בסיבה לעומת תפוצת הטקסון
+          this_map_shows: |
+            מפה זו מציגה את תפוצת הטקסון עבור מין זה בחפיפה עם מפת "צפוי בסביבה" המשמשת להערכת הגיאו-מודל.
+          by_combining: |
+            באמצעות איחוד מפת "צפוי בסביבה" ותפוצת הטקסון, נחשב סטטיסטיקות להערכת הצלחת הביצוע של הגיאו-מודל.
+          figure_alt_text: מתבצעת השוואה בין מפת "צפוי בסביבה" לבין תפוצת הטקסון
+          combining_these_maps_produces: |
+            איחוד של מפות אלו מייצר שלושה סוגי תאים:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            נוכחות אמיתית:
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            נוכחות שקרית:
+          false_presences_definition: אזורים בהם מפת "צפוי בסביבה" בלבד חוזה את קיום הטקסון
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            היעדרות שקרית:
+          false_absences_definition: אזורים בהם רק תפוצת הטקסון נוכחת
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            דיוק:
+          precision_description: אחוז מפת "צפוי בסביבה" שהיא נוכחות אמיתית
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            נוכחות אמיתית / (נוכחות אמיתית + נוכחות שקרית) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            רגישות:
+          recall_description: אחוז תפוצת הטקסון שהיא נוכחות אמיתית
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            נוכחות אמיתית / (נוכחות אמיתית + היעדרות שקרית) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: הממוצע (ההרמוני) של דיוק ורגישות
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 x נוכחות אמיתית / (2 x נוכחות אמיתית + נוכחות שקרית + היעדרות שקרית) = %{f1}
+          perfect_overlap: |
+            חפיפה מושלמת תביא לדיוק, רגישות ו-F1 בערך של 1. העדר חפיפה מוחלט יביא לדיוק, רגישות ו-F1 בערך של 0.
     guides:
       index:
         deprecated_banner: |
@@ -6694,6 +6852,8 @@ he:
           במידה וסיבת העזיבה היחידה שלך היא למנוע מאוצרות ואוצרי פרויקטים לצפות בקואורדינטות המוסתרות שלך.
       edit:
         admins_must_be_existing_members: על האדמיניות.ים להיות חברות.ים קיימות.ים בפרויקט.
+        admins_can_only_be_added_after_creation: |
+          ניתן להוסיף אדמינים רק לאחר יצירת הפרויקט.
         aggregation_pending: הצבירה ממתינה
         new_place_desc_html: |
           יש לנסות לעבור על <a href="%{places_url}" target="_blank">המקומות הקיימים שלנו</a> ולוודא שכתבת נכון את השם של המקום. אם אינך מוצא.ת את המקום הרצוי בכלל, יש לשקול <a href="%{new_place_url}" target="_blank">יצירת מקום חדש</a>, אבל נא לוודא שאינך פשוט משכפל.ת מקום קיים.
@@ -6807,6 +6967,8 @@ he:
         display_project_name: מחיקת שם הפרויקט
         do_you_need_features_from_traditional: |
           האם את.ה צריכ.ה מאפיינים מפרויקטים בסיסיים כגון גישה לקואורדינטות אמיתיות, שדות תצפית מותאמים אישית, או הוספת תצפיות בודדות שלא ניתנות לסינון אוטומטי?
+        do_you_need_features_from_traditional2: |
+          האם את.ה צריכ.ה מאפיינים מפרויקטים בסיסיים כגון שדות תצפית מותאמים אישית, או הוספת תצפיות בודדות שלא ניתנות לסינון אוטומטי?
         duplicate_project: שכפול פרויקט
         include_annotated_observations: |
           לכלול רק תצפיות עם תווית של תכונה מסוימת (למשל שלב חיים), או תכונה מסוימת וערך (למשל שלב חיים = בוגר). קיימת הגבלה של פילטר תווית אחד לפרויקט.
@@ -6982,6 +7144,15 @@ he:
         website_desc_html: |
           נוצרו באמצעות האתרים <a href="https://www.inaturalist.org">iNaturalist</a> או <a href="%{url}">iNaturalist Network</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: הוסיפו גם וגם
+        added_only_identifications: הוסיפו זיהויים בלבד
+        added_only_observations: הוסיפו תצפיות בלבד
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: השלכות רחבות
+        broader_impacts_desc: |
+          שותפים חיצוניים רבים מייבאים תצפיות iNaturalist באופן קבוע כדי לתמוך במדע ובשמירת טבע. התצפיות, הזיהויים ובחירות שלך להשתמש ברשיונות פתוחים מאפשרים לארגונים אלה לספק מידע שימושי אודות המגוון הביולוגי לא.נשים שצריכים אותו מסביב לעולם.
         compare_desc: |
           איך השנה השתוותה לשנים קודמות? עם שלוש שנות שימושאו יותר נוכל להתחיל להשוות נתוני פעילות שנתית. העמודה הירוקה מראה את השנה, העמודה הלבנה האנכית מראה את שנה שעברה, ואזורי הרקע האפורים מראים את השנים הגבוהה והנמוכה, וכן את ממוצע כל השנים. הסטטיסטיקות לא כוללות שנים בהן הספירה הייתה אפס.
         compare_site_desc: |
@@ -7040,6 +7211,8 @@ he:
         stats_generation_schedule: סטטיסטיקות מיוצרות מדי יום ראשון במהלך דצמבר ובראשון בינואר
         store_prompt: |
           רוצה להשוויץ בגאוות ה-iNat שלך בכל מקום? בוא.י לראות את החנות של iNaturalist!
+        sunburst_desc_html: |
+          טקסונים שנצפו מסודרים כתרשים "קרני שמש" היררכי. בסיס ההיררכיה הוא במרכז, החל מ"חיים" וכלה במינים בקצוות החיצוניים. הגודל של כל קשת הוא יחסי למספר התצפיות של אותו הטקסון, והצבעים מתייחסים בגדול לצבעי הטקסונים "האייקוניים" הרגילים שלנו (ירוק לצמחים, כתום לחרקים, כחול לרוב החיות האחרות, וכו'). לכן אם את.ה רואה הרבה ירוק, זה אומר שצפית בהרבה צמחים. <strong>לחצ.י על קשת כדי למקם את אותו הטקסון במרכז</strong> ואת צאצאיו מסביבו, או <strong>לחצ.י על המרכז כדי לחזור מעלה בהיררכיה</strong>.
         translators_title: מתרגמות ומתרגמים
         translators_desc: |
           הידעת ש-iNaturalist תורגם ל-%{x_languages} שפות, כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
@@ -7047,6 +7220,11 @@ he:
           הידעת ש-%{site_name} תורגם כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
         translators_prompt: |
           במידה וברצונך לעזור ולתרגם, %{link_tag} כאן ניתן ללמוד איך%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "בצפייה בפרסום ה-%{count}"
+          two: "צפייה ב-%{count} הפרסומים"
+          many: "צפייה בכל %{count} הפרסומים"
+          other: "צפייה בכל %{count} הפרסומים"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7132,6 +7310,9 @@ he:
     taxon_changes:
       move_children_desc: |
         צאצאים של טקסון הקלט שהם בדרגת סוג או מעליה יועברו לקלט; מינים, תת-מינים, זנים, וכו' יוחלפו לאקוויבלנטים עם שם הסוג או המין החדש.
+      form:
+        move_children_desc2_html: |
+          סימון תיבה זו יעביר את הצאצאים של טקסון הקלט אל טקסון הפלט בשביל החלפות ואיחודי טקסונים במעמד אישור השינוי. אם שינוי זה הוא ברמת סוג או יותר נמוך, הוא יצור החלפות טקסון עבור כל הצאצאים שיש להם שמות שצריכים שינוי. למשל, אם תחליפ.י את המשפחה "Canidae" ב-"Dogidae", זה ישנה את ההורה של הסוג <i>Canis</i> מ-"Canidae" ל-"Dogidae". אם תחליפ.י את הסוג <i>Canis</i> בסוג <i>Dogis</i>, זה יצור ויאשר החלפות טקסון לשינוי <i>Canis lupus</i> אל <i>Dogis lupus</i> ו-<i>Canis lupus</i> ssp. <i>lupus</i> ל-<i>Dogis lupus</i> ssp.<i>lupus</i>. זה עלול ליצור בלגן, לכן יש לפעול בזהירות.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7237,6 +7418,7 @@ he:
           <p>
           אם מישהו מטריד אותך ב%{site_name}, <a href="mailto:%{help_email}"> נא ליידע אותנו</a>. אם זה נחשב הפרה של תנאי השימוש שלנו או התנהגות אחרת שלא הולמת את אתרנו, נבצע חקירה.
           </p>
+        common_scientific_name_display_order: סדר הצגת שם עממי / מדעי
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           במידה ותתחרט.י תמיד אפשר <a href='/users/edit'>לערוך את ההגדרות שלך</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7319,6 +7501,13 @@ he:
         same_day_geoprivacy_protection: הגנת פרטיות המיקום באותו היום
         taxon_change_desc: |
           כאשר טקסונים עוברים איחוד או שינוי שם ב%{site_name}, התצפיות שלך, הטקסונים הרשומים והזיהויים וכו' יתעדכנו באופן אוטומטי בהתאם לטקסונים החדשים, אם השינוי הוא חד-משמעי. במידה ולא תסמן כאן, או אם השינוי אינו חד-משמעי (למשל פיצול), תקבל.י עדכון על השינוי עם קישור לעדכון ידני של התכנים שלך.
+        taxon_name_priorities:
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: הוספת מקום (אופציונלי)
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: זהה להעדפת שפה/מיקום של המשתמש.ת
         this_only_applies_to_traditional_projects: |
           זה נכון רק עבור פרויקטים בסיסיים. אין ביכולתך להוציא תצפיות מאוספים או מפרויקטי מטריה, שהם בעצם חיפושים שמורים. ניתן לקרוא עוד <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">כאן</a>.
       recent:
@@ -7659,9 +7848,11 @@ he:
       AssessmentSection: סעיף הערכה
       Atlas: אטלס
       BlockedUser: משתמש חסום
+      Comment: תגובה
       CompleteSet: סט שלם
       #Noun
       Flag: סימון
+      Identification: זיהוי
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7673,6 +7864,8 @@ he:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: אפליקציה
+      Photo: תמונה
+      Post: פוסט ביומן
       TaxonLink: קישור אודות הטקסון
     attributes:
       announcement:
@@ -7686,6 +7879,7 @@ he:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: להראות למשתמשים לא מאושרים
+        clients: לקוחות
       assessment:
         description: תיאור
       assessment_section:
@@ -7971,6 +8165,10 @@ he:
               only_staff_can_unhide: רק צוות iNaturalist יכול לבטל הסתרת תוכן מוסתר
               staff_cannot_be_suspended: לא ניתן להשהות צוות
             user_id:
+              must_be_a_curator: חייב.ת להיות אוצר.ת
+        moderator_note:
+          attributes:
+            user:
               must_be_a_curator: חייב.ת להיות אוצר.ת
         observation:
           attributes:
@@ -8280,6 +8478,20 @@ he:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: בעלי חיים
+        Actinopterygii: מקריני סנפיר
+        Aves: עופות
+        Reptilia: זוחלים
+        Amphibia: דו-חיים
+        Mammalia: יונקים
+        Arachnida: עכבישנים
+        Insecta: חרקים
+        Plantae: צמחים
+        Fungi: פטריות
+        Protozoa: פרוטוזואה
+        Mollusca: רכיכות
+        Chromista: קרומיסטה
   #Title of a section warning the user about something
   warning_title: אזהרה
   wikimedia: ויקימדיה
