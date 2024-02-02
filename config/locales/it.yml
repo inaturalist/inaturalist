@@ -3094,7 +3094,6 @@ it:
   observation_accuracy_experiment_we_scored: "Abbiamo valutato le osservazioni nel campione come Corrette, Incerte o Incorrette confrontando le identificazioni del validatore con il taxon di ogni osservazione del campione. Identificazioni corrispondenti o di più dettaglio per il taxon di osservazione del campione sono state segnate come Corrette. Le identificazioni più grossolane non concordate sono state segnate come Incerte poichè erano scenari in cui più validatori non erano d'accordo. Le identificazioni più grossolane o le identificazioni su rami diversi sono state classificate come Errate."
   observation_accuracy_experiment_correct: "Corrette"
   observation_accuracy_experiment_uncertain: "Incerte"
-  observation_accuracy_experiment_incorrect: "Incorrette"
   observation_accuracy_experiment_step_4: "Fase 4: Calcolo di Accuratezza e Precisione"
   observation_accuracy_experiment_accuracy: "Accuratezza"
   observation_accuracy_experiment_we_calculated: "Abbiamo calcolato l'accuratezza come la percentuale corretta per l'intero campione e sottoinsiemi, come il sottoinsieme Livello Ricerca. Abbiamo anche calcolato la percentuale incerta e la percentuale non corretta. Nell'esempio a destra, la percentuale corretta sarebbe 83, la percentuale incerta sarebbe 6 e la percentuale errata sarebbe 11."
@@ -6094,10 +6093,9 @@ it:
           figure_alt_text: La mappa delle Attese nelle Vicinanze e l'Areale del Taxon sono confrontate
           combining_these_maps_produces: |
             La combinazione di queste mappe produce 3 tipi di celle:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Presenze Vere:
-          true_presences_definition: Aree in cui sia la mappa delle Attese nelle Vicinanze che l'Areale del Taxon prevedono che il taxon sia presente
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             False Presenze:
