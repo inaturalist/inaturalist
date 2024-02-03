@@ -69,7 +69,7 @@
                 %g.axis
                   %line.dashed-line{x1: "#{95 * 8}", x2: "#{95 * 8}", y1: "-10", y2: "#{30 * 3}"}
               %g.y.axis
-                - %w("correct uncertain incorrect precision).each_with_index do | label, index |
+                - %w(correct uncertain incorrect precision).each_with_index do | label, index |
                   %g.tick{transform: "translate( 0, #{10 + 20 * index} )", style: "opacity: 1;"}
                     %text{dy: ".2em",x: "-70",y: "-2",style: "text-anchor: start; font-size: #{label == "precision" ? 14 : 10}px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}
                       :ruby
