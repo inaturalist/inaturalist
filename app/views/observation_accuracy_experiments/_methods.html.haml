@@ -48,9 +48,15 @@
     =t :observation_accuracy_experiment_mean_number,
       number: @mean_validators_per_sample
     %br
+    :ruby
+      observation_accuracy_experiment_number_percent = if @candidate_validators && @candidate_validators > 0
+        "#{( @experiment.responding_validators / @candidate_validators.to_f * 100 ).round}%"
+      else
+        "0%"
+      end
     =t :observation_accuracy_experiment_number_percent_of,
       number: @experiment.responding_validators,
-      percentage: "#{( @experiment.responding_validators / @candidate_validators.to_f * 100 ).round}%"
+      percentage: observation_accuracy_experiment_number_percent
     %br
     =t :observation_accuracy_experiment_percent_of,
       percent: "#{( @experiment.validated_observations / @experiment.sample_size.to_f * 100 ).round}%"

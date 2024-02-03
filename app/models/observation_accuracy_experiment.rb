@@ -12,6 +12,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   after_create :generate_sample
 
+  validates_presence_of :validator_deadline_date
+  validates_presence_of :sample_generation_date
+  validates_presence_of :assessment_date
+
   def quality_metric_observation_ids( observation_ids, metrics )
     QualityMetric.
       select( :observation_id ).
@@ -679,11 +683,19 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     samples_by_validators = observation_accuracy_validators.joins( :observation_accuracy_samples ).
       group( "observation_accuracy_validators.id" ).count
-    mean_validator_count = samples_by_validators.values.sum / samples_by_validators.count
+    mean_validator_count = begin
+      samples_by_validators.values.sum / samples_by_validators.count
+    rescue ZeroDivisionError
+      0
+    end
 
     validators_by_samples = observation_accuracy_samples.joins( :observation_accuracy_validators ).
       group( "observation_accuracy_samples.id" ).count
-    mean_sample_count = validators_by_samples.values.sum / validators_by_samples.count
+    mean_sample_count = begin
+      validators_by_samples.values.sum / validators_by_samples.count
+    rescue ZeroDivisionError
+      0
+    end
 
     [candidate_validators, mean_validator_count, mean_sample_count]
   end
