@@ -2851,7 +2851,7 @@ zh-CN:
   no_range_data_available: 没有范围数据可用。
   no_recent_activity: 没有最近活跃
   no_relevant_annotations: 没有相关的注释
-  no_reply_yet: 尚无恢复
+  no_reply_yet: 尚无回复
   no_results_found: 没有找到结果
   no_results_for: '没有结果用于'
   no_results_matching: 没有匹配的结果
@@ -2915,6 +2915,30 @@ zh-CN:
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
+  observation_accuracy_experiment_taxon_observations_count: "分类单元观察计数"
+  observation_accuracy_experiment_iconic_taxon_name: "标志性分类单元名称"
+  observation_accuracy_experiment_continent: "大洲"
+  observation_accuracy_experiment_year: "年份"
+  observation_accuracy_experiment_quality_grade: "质量等级"
+  observation_accuracy_experiment_show_frequency: "显示频率"
+  observation_accuracy_experiment_click_on_bars: "点击条形来探索子集。"
+  observation_accuracy_experiment_accuracy_results: "按子集排序的准确度结果"
+  observation_accuracy_experiment_validators: "验证节点："
+  observation_accuracy_experiment_show_additional_validators: "(显示额外的验证节点)"
+  observation_accuracy_experiment_hide_additional_validators: "(隐藏额外的验证节点)"
+  observation_accuracy_experiment_additional_validators: "（%{number}个额外的验证节点）"
+  observation_accuracy_experiment_research_grade_results: "研究级别结果"
+  observation_accuracy_experiment_verifiable_results: "可验证结果"
+  observation_accuracy_experiment_all_results: "所有结果"
+  observation_accuracy_experiment_methods: "方法"
+  observation_accuracy_experiment_sample_generated: "样本生成于：%{date}"
+  observation_accuracy_experiment_sample_size: "样本大小：%{number}"
+  observation_accuracy_experiment_correct: "正确"
+  observation_accuracy_experiment_uncertain: "不确定"
+  observation_accuracy_experiment_incorrect2: "错误"
+  observation_accuracy_experiment_step_4: "第4步：准确度和精确度计算"
+  observation_accuracy_experiment_accuracy: "准确度"
+  observation_accuracy_experiment_precision: "精确度"
   observation_accuracy_validator_email_subject: "您会帮助我们估计iNaturalist 观察的准确度吗？"
   observation_accuracy_validator_email_will_you_help_us: |
     您是否会帮助我们进行一次实验，以估计iNaturalist 观察的准确度？
@@ -3636,6 +3660,7 @@ zh-CN:
     north_korea: 朝鲜
     northern_cyprus: 北塞浦路斯
     norway: 挪威
+    oceania: 大洋洲
     oman: 阿曼
     pakistan: 巴基斯坦
     palau: 帕劳
@@ -4781,7 +4806,7 @@ zh-CN:
   third_person_possessive_singular: "%{object_phrase} 的 %{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
-  this_is_more_convenient_way_find_parent: 这是查找父ID的便捷方法。它是实际存储的父ID。
+  this_is_more_convenient_way_find_parent: 这是查找上级ID的便捷方法。它是实际存储的上级ID。
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     这是查找分类单元ID的便捷方法。这是实际存储的分类单元ID。此搜索仅适用于活跃的分类群。
   this_is_how_taxon_names_will_be_displayed: 这是在整个%{site_name}站点上分类单元名称的显示方式
