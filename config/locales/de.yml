@@ -2995,6 +2995,7 @@ de:
   observation_accuracy_experiment_show_frequency: "zeige Häufigkeit an"
   observation_accuracy_experiment_click_on_bars: "Klicke auf die Balken, um die Untergruppen zu erkunden."
   observation_accuracy_experiment_accuracy_results: "Genauigkeitsergebnisse nach Untergruppen"
+  observation_accuracy_experiment_as_observations: "Während Beobachtungen aus dieser Probe validiert werden, sinkt der Anteil der 'unsicheren' Beobachtungen, während die Anteile von 'korrekt' und 'inkorrekt' zunehmen."
   observation_accuracy_experiment_experiment_still: "Das Experiment ist noch im Gange. Die Statistik wird täglich bis zur Frist für die Validierung der Proben am %{date} aktualisiert"
   observation_accuracy_experiment_observation_accuracy_experiment: "Experiment zur Beobachtungsgenauigkeit"
   observation_accuracy_experiment_validators: "Prüfer:"
@@ -4388,7 +4389,7 @@ de:
   search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr Foto-ID suchen
   search_catalogue_of_life: 'Durchsuche <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Durchsuche Catalogue of Life &raquo;"
-  search_external_name_providers: Durchsuchen von externen Namensprovidern
+  search_external_name_providers: Externe Namensanbieter durchsuchen
   search_for_a_location: Einen Ort suchen
   search_for_species: Suche nach Art
   search_list: Liste durchsuchen
@@ -7145,7 +7146,7 @@ de:
         observation_streaks_color_desc: |
           Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:
         observation_streaks_desc2: |
-          Eine Beobachtungssträhne ist ein Zeitraum, in dem jemand nach draußen gegangen ist und jeden Tag neue, verifizierbare Beobachtungen aufgenommen hat. Hier zeigen wir die längsten solche Strähnen, die in diesem Jahr begannen oder im Gange waren, als diese Statistiken erstellt wurden.
+          Eine Beobachtungssträhne ist ein Zeitraum von mindestens 5 Tagen, in welchem ein Benutzer jeden einzelnen Tag mindestens eine (verifizierbare) Beobachtung gemeldet hat. Hier zeigen wir die längsten Serien, die in diesem Jahr begannen oder bereits im Gange waren, als diese Statistiken erstellt wurden.
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Wiederkehrend
         species_per_year: Arten / Jahr
