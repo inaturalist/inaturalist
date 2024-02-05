@@ -2,7 +2,7 @@ FROM ruby:3.0
 
 ENV RAILS_ENV=development
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip openjdk-17-jdk
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -\
   && apt-get update -qq && apt-get install -qq --no-install-recommends \
@@ -37,9 +37,11 @@ COPY --chown=inaturalist:inaturalist config/smtp.docker.yml /code/config/smtp.ym
 
 RUN npm run webpack
 
+RUN mkdir /code/public/assets
 RUN mkdir /code/public/attachments
+RUN chown inaturalist:inaturalist /code/public/assets
 RUN chown inaturalist:inaturalist /code/public/attachments
 
 EXPOSE 3000
 
-CMD "./docker/init_docker_rails_app.sh"
+CMD "rails s -b 0.0.0.0"

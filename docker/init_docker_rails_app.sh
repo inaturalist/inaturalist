@@ -5,5 +5,3 @@ if [ ! -f "/code/app/assets/javascripts/i18n/translations/en.js" ]; then
 fi
 
 rake assets:precompile
-
-rails s -b 0.0.0.0
