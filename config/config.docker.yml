@@ -82,13 +82,9 @@ base: &base
         secret: 09af09af09af09af09af09af09af09af
 
     google:
-        # This should be a Google API key that can use Google maps
-        # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
-        browser_api_key: 09af09af09af09af09af09af09af09af
-        # client_id and secret should come from a Google OAuth 2.0 client ID
-        # https://console.developers.google.com/apis/credentials
-        client_id: 09af09af09af09af09af09af09af09af
-        secret: 09af09af09af09af09af09af09af09af
+        browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "09af09af09af09af09af09af09af09af" } %>
+        client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "09af09af09af09af09af09af09af09af" } %>
+        secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "09af09af09af09af09af09af09af09af" } %>
 
     metadata_provider:
 
