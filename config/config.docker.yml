@@ -19,8 +19,8 @@ base: &base
 
     rails:
         # Issue {rake secret} to get a new one
-        session_key: _yoursite_session
-        secret: 09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af
+        session_key: _inaturalist_session
+        secret: <%= ENV.fetch("SECRET_KEY_BASE") %>
 
     # google_analytics:
     #     # http://www.google.com/analytics/sign_up.html
@@ -82,9 +82,9 @@ base: &base
         secret: 09af09af09af09af09af09af09af09af
 
     google:
-        browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "09af09af09af09af09af09af09af09af" } %>
-        client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "09af09af09af09af09af09af09af09af" } %>
-        secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "09af09af09af09af09af09af09af09af" } %>
+        browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") %>
+        client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") %>
+        secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") %>
 
     metadata_provider:
 
