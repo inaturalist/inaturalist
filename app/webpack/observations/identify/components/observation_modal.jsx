@@ -843,11 +843,8 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
                 <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`} tabIndex="-1">
-                  <div className="column-header">{ I18n.t( "annotations" ) }</div>
                   <AnnotationsContainer />
-                  <div className="column-header">{ I18n.t( "projects" ) }</div>
                   <ProjectsContainer />
-                  <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
                   <ObservationFieldsContainer />
                 </div>
               ) }

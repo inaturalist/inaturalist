@@ -11,10 +11,11 @@ import { termsForTaxon } from "../ducks/controlled_terms";
 class Annotations extends React.Component {
   constructor( props ) {
     super( props );
-    const { config } = props;
+    const { config, context } = props;
     const currentUser = config && config.currentUser;
+    this.collapsePreference = `prefers_hide_${context}_annotations`;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
+      open: currentUser ? !currentUser[this.collapsePreference] : true
     };
     this.toggleOpenPanel = this.toggleOpenPanel.bind( this );
   }
@@ -23,9 +24,20 @@ class Annotations extends React.Component {
     this.fetchAnnotations( );
   }
 
-  componentDidUpdate( prevProps ) {
+  componentDidUpdate( prevProps, prevState ) {
+    if ( prevState.open === this.state.open ) {
+      this.setOpenStateOnConfigUpdate( );
+    }
     if ( prevProps.open !== this.props.open ) {
       this.fetchAnnotations( );
+    }
+  }
+
+  setOpenStateOnConfigUpdate( ) {
+    const { config } = this.props;
+    if ( config.currentUser
+      && config.currentUser[this.collapsePreference] === this.state.open ) {
+      this.setState( { open: !config.currentUser[this.collapsePreference] } );
     }
   }
 
@@ -36,7 +48,7 @@ class Annotations extends React.Component {
     const loggedIn = config && config.currentUser;
     if ( loggedIn ) {
       updateSession( {
-        prefers_hide_obs_show_annotations: !newOpenState
+        [this.collapsePreference]: !newOpenState
       } );
     }
     this.setState( { open: newOpenState } );
@@ -221,7 +233,6 @@ class Annotations extends React.Component {
       config,
       controlledTerms,
       addAnnotation,
-      collapsible,
       loading
     } = this.props;
     const { open } = this.state;
@@ -382,14 +393,6 @@ class Annotations extends React.Component {
       </table>
     );
 
-    if ( !collapsible ) {
-      return (
-        <div className="Annotations">
-          { table }
-        </div>
-      );
-    }
-
     const count = observationAnnotations.length > 0 ? `(${observationAnnotations.length})` : "";
     return (
       <div className="Annotations collapsible-section">
@@ -426,14 +429,14 @@ Annotations.propTypes = {
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
   updateSession: PropTypes.func.isRequired,
-  collapsible: PropTypes.bool,
+  context: PropTypes.string,
   fetchControlledTerms: PropTypes.func,
   loading: PropTypes.bool,
   open: PropTypes.bool
 };
 
 Annotations.defaultProps = {
-  collapsible: true
+  context: "obs_show"
 };
 
 export default Annotations;

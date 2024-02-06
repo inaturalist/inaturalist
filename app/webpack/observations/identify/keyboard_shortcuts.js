@@ -16,7 +16,10 @@ import {
   showNextPhoto,
   showPrevTab,
   showNextTab,
-  toggleKeyboardShortcuts
+  toggleKeyboardShortcuts,
+  toggleAnnotations,
+  toggleProjects,
+  toggleObservationFields
 } from "./actions";
 import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
@@ -176,6 +179,26 @@ const focusCommentIDInput = ( ) => {
     .focus( );
 };
 
+const focusProjects = ( ) => {
+  setTimeout( ( ) => {
+    $( ".Projects .panel-collapse" )
+      .not( "[aria-expanded=false]" )
+      .find( ".ac-chooser input" )
+      .first( )
+      .focus( );
+  }, 200 );
+};
+
+const focusObservationFields = ( ) => {
+  setTimeout( ( ) => {
+    $( ".ObservationFields .panel-collapse" )
+      .not( "[aria-expanded=false]" )
+      .find( ".ac-chooser input" )
+      .first( )
+      .focus( );
+  }, 200 );
+};
+
 const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "right", showNextObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "left", showPrevObservation, dispatch, { eventType: "keyup" } );
@@ -193,6 +216,9 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "shift+right", showNextTab, dispatch );
   bindShortcut( ["command+up", "alt+up"], increaseBrightness, dispatch );
   bindShortcut( ["command+down", "alt+down"], decreaseBrightness, dispatch );
+  bindShortcut( "shift+a", toggleAnnotations, dispatch );
+  bindShortcut( "shift+p", toggleProjects, dispatch, { callback: focusProjects } );
+  bindShortcut( "shift+f", toggleObservationFields, dispatch, { callback: focusObservationFields } );
   _.forEach( annotationShortcuts, as => {
     bind( as.shortcut, ( ) => {
       dispatch( addAnnotationFromKeyboard( as.term, as.value ) );

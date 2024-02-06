@@ -21,18 +21,17 @@ export function setSubscriptions( subscriptions ) {
 
 export function updateSession( params ) {
   return ( dispatch, getState ) => {
-    const config = getState( ).config;
+    const { config } = getState( );
     if ( !config || !config.currentUser ) { return null; }
-    return inatjs.users.update_session( params ).then( ( ) => {
-      const updatedUser = Object.assign( { }, config.currentUser, params );
-      dispatch( setConfig( { currentUser: updatedUser } ) );
-    } ).catch( e => { } );
+    const updatedUser = Object.assign( { }, config.currentUser, params );
+    dispatch( setConfig( { currentUser: updatedUser } ) );
+    return inatjs.users.update_session( params ).catch( e => { } );
   };
 }
 
 export function leaveTestGroup( group ) {
   return ( dispatch, getState ) => {
-    const config = getState( ).config;
+    const { config } = getState( );
     if ( !config || !config.currentUser ) { return null; }
     const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
     const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );

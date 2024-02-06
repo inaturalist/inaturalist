@@ -79,6 +79,9 @@ class User < ApplicationRecord
   preference :hide_comments_onboarding, default: false
   preference :hide_following_onboarding, default: false
   preference :taxon_page_place_id, :integer
+  preference :hide_identify_annotations, default: false
+  preference :hide_identify_observation_fields, default: false
+  preference :hide_identify_projects, default: false
   preference :hide_obs_show_annotations, default: false
   preference :hide_obs_show_projects, default: false
   preference :hide_obs_show_tags, default: false

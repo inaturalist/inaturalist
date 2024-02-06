@@ -4,6 +4,9 @@ import { handleAPIError } from "../../show/ducks/confirm_modal";
 import util from "../../show/util";
 import { setProjectFieldsModalState } from "../../show/ducks/project_fields_modal";
 
+// eslint-disable-next-line no-unused-vars
+/* global RECENT_OBSERVATION_FIELDS */
+
 let lastAction;
 export function getActionTime( ) {
   const currentTime = new Date( ).getTime( );
@@ -11,7 +14,7 @@ export function getActionTime( ) {
   return currentTime;
 }
 
-export function hasObsAndLoggedIn( state ) {
+function hasObsAndLoggedIn( state ) {
   return (
     state
     && state.config
@@ -22,7 +25,7 @@ export function hasObsAndLoggedIn( state ) {
   );
 }
 
-export function afterAPICall(
+function afterAPICall(
   observation,
   fetchObservation,
   options = { }
@@ -36,10 +39,6 @@ export function afterAPICall(
         )
       );
     }
-    if ( options.callback ) {
-      options.callback( );
-      return;
-    }
     if (
       ( options.actionTime && lastAction !== options.actionTime )
       || !observation
@@ -47,10 +46,13 @@ export function afterAPICall(
       return;
     }
     fetchObservation( );
+    if ( options.callback ) {
+      options.callback( );
+    }
   };
 }
 
-export function callAPI(
+function callAPI(
   observation,
   method,
   payload,
@@ -59,10 +61,7 @@ export function callAPI(
 ) {
   return dispatch => {
     const opts = { ...options };
-    // only need to keep track of the times of non-custom callbacks
-    if ( !options.callback ) {
-      opts.actionTime = getActionTime( );
-    }
+    opts.actionTime = getActionTime( );
     method( payload ).then( ( ) => {
       dispatch( afterAPICall( observation, fetchObservation, opts ) );
     } ).catch( e => {
@@ -72,7 +71,7 @@ export function callAPI(
   };
 }
 
-export function addToProjectSubmit(
+function addToProjectSubmit(
   observation,
   project,
   setAttributes,
@@ -226,11 +225,19 @@ export function addObservationFieldValue(
         value: options.value
       }
     };
+    const callback = ( ) => {
+      const params = testingApiV2 ? { fields: "all" } : { };
+      inatjs.users.recent_observation_fields( params ).then( recentFieldsResponse => {
+        // eslint-disable-next-line no-global-assign
+        RECENT_OBSERVATION_FIELDS = recentFieldsResponse.results;
+      } );
+    };
     dispatch( callAPI(
       observation,
       inatjs.observation_field_values.create,
       payload,
-      fetchObservation
+      fetchObservation,
+      { callback }
     ) );
   };
 }
@@ -287,11 +294,20 @@ export function removeObservationFieldValue(
     const newOfvs = observation.ofvs.map( ofv => (
       ofv.uuid === id ? { ...ofv, api_status: "deleting" } : ofv ) );
     dispatch( setAttributes( { ofvs: newOfvs } ) );
+    const callback = ( ) => {
+      const { testingApiV2 } = state.config;
+      const params = testingApiV2 ? { fields: "all" } : { };
+      inatjs.users.recent_observation_fields( params ).then( recentFieldsResponse => {
+        // eslint-disable-next-line no-global-assign
+        RECENT_OBSERVATION_FIELDS = recentFieldsResponse.results;
+      } );
+    };
     dispatch( callAPI(
       observation,
       inatjs.observation_field_values.delete,
       { id },
-      fetchObservation
+      fetchObservation,
+      { callback }
     ) );
   };
 }

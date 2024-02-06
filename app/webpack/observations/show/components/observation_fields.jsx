@@ -8,7 +8,7 @@ import ObservationFieldInput from "./observation_field_input";
 class ObservationFields extends React.Component {
   constructor( props ) {
     super( props );
-    const { config, observation } = props;
+    const { config, observation, context } = props;
     this.observerPrefersFieldsBy = (
       observation.user
       && observation.user.preferences
@@ -17,10 +17,25 @@ class ObservationFields extends React.Component {
       ? observation.user.preferences.prefers_observation_fields_by
       : "anyone";
     const currentUser = config && config.currentUser;
+    this.collapsePreference = `prefers_hide_${context}_observation_fields`;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_observation_fields : true,
+      open: currentUser ? !currentUser[this.collapsePreference] : true,
       editingFieldValue: null
     };
+  }
+
+  componentDidUpdate( prevProps, prevState ) {
+    if ( prevState.open === this.state.open ) {
+      this.setOpenStateOnConfigUpdate( );
+    }
+  }
+
+  setOpenStateOnConfigUpdate( ) {
+    const { config } = this.props;
+    if ( config.currentUser
+      && config.currentUser[this.collapsePreference] === this.state.open ) {
+      this.setState( { open: !config.currentUser[this.collapsePreference] } );
+    }
   }
 
   render( ) {
@@ -30,7 +45,6 @@ class ObservationFields extends React.Component {
       addObservationFieldValue,
       removeObservationFieldValue,
       updateObservationFieldValue,
-      collapsible,
       updateSession
     } = this.props;
     const {
@@ -120,14 +134,6 @@ class ObservationFields extends React.Component {
       </div>
     );
 
-    if ( !collapsible ) {
-      return (
-        <div className="ObservationFields">
-          { panelContent }
-        </div>
-      );
-    }
-
     const count = sortedFieldValues.length > 0 ? `(${sortedFieldValues.length})` : "";
     return (
       <div className="ObservationFields collapsible-section">
@@ -136,7 +142,7 @@ class ObservationFields extends React.Component {
           onClick={( ) => {
             if ( loggedIn ) {
               updateSession( {
-                prefers_hide_obs_show_observation_fields: open
+                [this.collapsePreference]: open
               } );
             }
             this.setState( { open: !open } );
@@ -147,7 +153,7 @@ class ObservationFields extends React.Component {
           { " " }
           { count }
         </h4>
-        <Panel expanded={open} onToggle={() => {}}>
+        <Panel id="observation-fields-panel" expanded={open} onToggle={() => {}}>
           <Panel.Collapse>{ panelContent }</Panel.Collapse>
         </Panel>
       </div>
@@ -162,11 +168,11 @@ ObservationFields.propTypes = {
   removeObservationFieldValue: PropTypes.func,
   updateObservationFieldValue: PropTypes.func,
   updateSession: PropTypes.func,
-  collapsible: PropTypes.bool
+  context: PropTypes.string
 };
 
 ObservationFields.defaultProps = {
-  collapsible: true
+  context: "obs_show"
 };
 
 export default ObservationFields;

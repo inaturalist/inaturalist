@@ -30,6 +30,7 @@ import {
   updateObservationFieldValue as sharedUpdateObservationFieldValue,
   removeObservationFieldValue as sharedRemoveObservationFieldValue
 } from "../../shared/ducks/observation";
+import { updateSession } from "../../show/ducks/users";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -618,6 +619,9 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
       user: state.config.currentUser,
       api_status: "saving"
     }] );
+    dispatch( updateSession( {
+      prefers_hide_identify_annotations: false
+    } ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
 
     const payload = {
@@ -1180,6 +1184,46 @@ export function togglePlayFirstSound( ) {
     } else {
       player.pause( );
     }
+  };
+}
+
+export function toggleAnnotations( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const { config } = s;
+    if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
+      return;
+    }
+    dispatch( updateSession( {
+      prefers_hide_identify_annotations: !config.currentUser.prefers_hide_identify_annotations
+    } ) );
+  };
+}
+
+
+export function toggleProjects( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const { config } = s;
+    if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
+      return;
+    }
+    dispatch( updateSession( {
+      prefers_hide_identify_projects: !config.currentUser.prefers_hide_identify_projects
+    } ) );
+  };
+}
+
+export function toggleObservationFields( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const { config } = s;
+    if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
+      return;
+    }
+    dispatch( updateSession( {
+      prefers_hide_identify_observation_fields: !config.currentUser.prefers_hide_identify_observation_fields
+    } ) );
   };
 }
 

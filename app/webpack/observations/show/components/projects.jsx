@@ -15,9 +15,11 @@ class Projects extends React.Component {
 
   constructor( props ) {
     super( props );
+    const { context } = props;
     const currentUser = props.config && props.config.currentUser;
+    this.collapsePreference = `prefers_hide_${context}_projects`;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_projects : true
+      open: currentUser ? !currentUser[this.collapsePreference] : true
     };
     this.setUpProjectAutocomplete = this.setUpProjectAutocomplete.bind( this );
   }
@@ -26,8 +28,19 @@ class Projects extends React.Component {
     this.setUpProjectAutocomplete( );
   }
 
-  componentDidUpdate( ) {
+  componentDidUpdate( prevProps, prevState ) {
     this.setUpProjectAutocomplete( );
+    if ( prevState.open === this.state.open ) {
+      this.setOpenStateOnConfigUpdate( );
+    }
+  }
+
+  setOpenStateOnConfigUpdate( ) {
+    const { config } = this.props;
+    if ( config.currentUser
+      && config.currentUser[this.collapsePreference] === this.state.open ) {
+      this.setState( { open: !config.currentUser[this.collapsePreference] } );
+    }
   }
 
   setUpProjectAutocomplete( ) {
@@ -66,7 +79,6 @@ class Projects extends React.Component {
     const {
       observation,
       config,
-      collapsible,
       updateSession
     } = this.props;
     const { open } = this.state;
@@ -138,13 +150,6 @@ class Projects extends React.Component {
         ) ) }
       </div>
     );
-    if ( !collapsible ) {
-      return (
-        <div className="Projects">
-          { panelContent }
-        </div>
-      );
-    }
 
     const count = projectsOrProjObs.length > 0
       ? `(${projectsOrProjObs.length})`
@@ -155,7 +160,7 @@ class Projects extends React.Component {
           className="collapsible"
           onClick={( ) => {
             if ( loggedIn ) {
-              updateSession( { prefers_hide_obs_show_projects: open } );
+              updateSession( { [this.collapsePreference]: open } );
             }
             this.setState( { open: !open } );
           }}
@@ -183,11 +188,11 @@ Projects.propTypes = {
   setErrorModalState: PropTypes.func,
   updateSession: PropTypes.func,
   showProjectFieldsModal: PropTypes.func,
-  collapsible: PropTypes.bool
+  context: PropTypes.string
 };
 
 Projects.defaultProps = {
-  collapsible: true
+  context: "obs_show"
 };
 
 export default Projects;

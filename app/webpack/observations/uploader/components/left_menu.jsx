@@ -155,12 +155,6 @@ class LeftMenu extends SelectionBasedComponent {
               date: dateString
             } )
           }
-          onSelection={
-            dateString => updateSelectedObsCards( {
-              date: dateString,
-              selected_date: dateString
-            } )
-          }
         />
         <div
           className={`input-group${invalidDate ? " has-error" : ""}`}

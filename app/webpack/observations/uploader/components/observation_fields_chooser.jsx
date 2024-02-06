@@ -179,10 +179,6 @@ class LeftMenu extends SelectionBasedComponent {
             : undefined }
           onChange={ dateString =>
             this.props.setState( { observationFieldValue: dateString } ) }
-          onSelection={ dateString =>
-            this.props.setState( { observationFieldValue: dateString,
-              observationFieldSelectedDate: dateString } )
-          }
         />
         <input
           type="text"
