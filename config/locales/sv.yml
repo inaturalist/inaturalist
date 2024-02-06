@@ -3155,6 +3155,57 @@ sv:
     Publika koordinater visas som en slumpmässig punkt inom en 0,2 grader stor lat/long-cell som innehåller de exakta koordinaterna.
   observation: Fynd
   observation_: fynd
+  observation_accuracy_experiment_the_sample_for: "Urvalet för detta experiment har ännu inte genererats"
+  observation_accuracy_experiment_our_accuracy_estimate: "Vår noggrannhetsuppskattning baserat på detta experiment ger %{percent} korrekt."
+  observation_accuracy_experiment_our_goak: "Vårt mål för den uppskattade Noggrannheten (Korrekt) och Precisionen av delmängd med Forskningsklass är högre än 95% (streckad linje)"
+  observation_accuracy_experiment_precision_results: "Precisionsresultat per delmängd"
+  observation_accuracy_experiment_taxon_rank_level: "Nivå för taxonrang"
+  observation_accuracy_experiment_taxon_observations_count: "Fyndantal för taxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Ikoniskt taxonnamn"
+  observation_accuracy_experiment_continent: "Kontinent"
+  observation_accuracy_experiment_year: "År"
+  observation_accuracy_experiment_quality_grade: "Kvalitetsklass"
+  observation_accuracy_experiment_show_frequency: "visa frekvens"
+  observation_accuracy_experiment_click_on_bars: "Klicka på staplar för att utforska delmängderna."
+  observation_accuracy_experiment_accuracy_results: "Noggrannhetsresultat efter delmängd"
+  observation_accuracy_experiment_as_observations: "Eftersom fynd från detta urval verifieras, kommer andelen osäkra att minska och andelen korrekta och felaktiga att öka."
+  observation_accuracy_experiment_experiment_still: "Experimentet pågår fortfarande. Statistik uppdateras dagligen fram till deadline för verifiering av prover den %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Fyndnoggrannhetsexperiment"
+  observation_accuracy_experiment_validators: "Verifierare:"
+  observation_accuracy_experiment_show_additional_validators: "(visa ytterligare verifierare)"
+  observation_accuracy_experiment_hide_additional_validators: "(dölj ytterligare verifierare)"
+  observation_accuracy_experiment_additional_validators: "(%{number} ytterligare verifierare)"
+  observation_accuracy_experiment_abstract: "Sammanfattning: Vi genererade ett urval av fynd den %{sample_generation_date} och samordnade ett team av verifierare för att bedöma deras noggrannhet till %{deadline_date}. Alla resultat som visas nedan uppvisar egenskaper hos provfynden vid tidpunkten då provet genererades (till exempel Forskningsklass eller inte). Provfynden noggrannhet bedömdes den %{assessment_date}. Se fliken metoder för mer information."
+  observation_accuracy_experiment_research_grade_results: "Resultat för Forskningsklass"
+  observation_accuracy_experiment_verifiable_results: "Verifierbara resultat"
+  observation_accuracy_experiment_all_results: "Alla resultat"
+  observation_accuracy_experiment_methods: "Metoder"
+  observation_accuracy_experiment_step_1: "Steg 1: Provgenerering och Tilldelning"
+  observation_accuracy_experiment_from_the: "Från iNaturalist-databasen med fynd (A), genererade vi ett slumpmässigt urval (B). Delprover tilldelades potentiella verifierare baserat på de kriterier som beskrivs nedan. Vi försökte tilldela varje provfynd till flera potentiella verifierare ( \"Målverifierarredundans\" )."
+  observation_accuracy_experiment_sample_generated: "Genererat prov: %{date}"
+  observation_accuracy_experiment_sample_size: "Provstorlek: %{number}"
+  observation_accuracy_experiment_target_validator: "Målverifierarredundans: %{number}"
+  observation_accuracy_experiment_number_of: "Antal potentiella verifierare: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Delprovs medelstorlek per potentiell verifierare: %{number}"
+  observation_accuracy_experiment_mean_number: "Medelantal verifierare per provfynd: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kriterier för potentiella verifierare:"
+  observation_accuracy_experiment_if_an_identifier: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon, ansåg vi att de var kvalificerade att verifiera detta taxon. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
+  observation_accuracy_experiment_for_example: "Till exempel, Bestämmare 1 lägger till en bestämning av A till ett fynd. Om Bestämmare 2 sedan lägger till en ledande bestämning av B, blir Bestämmare 1's bestämning av A en förbättrande bestämning. Om Bestämmare 3 sedan lägger till en stödjande bestämning till B, blir Bestämmare 2's bestämning en förbättrande bestämning."
+  observation_accuracy_experiment_step_2: "Steg 2: Provverifiering"
+  observation_accuracy_experiment_we_contacted: "Vi kontaktade potentiella verifierare och bad dem att lägga till bestämningar till sina delprover. Grafen till höger grupperar provfynd efter antalet verifierare."
+  observation_accuracy_experiment_number_percent_of: "Antal medverkande verifierare: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Procent verifierade prover: %{percent}"
+  observation_accuracy_experiment_step_3: "Steg 3: Poängsättning av provfynd från verifieringar"
+  observation_accuracy_experiment_we_scored: "Vi räknade fynd i urvalet som korrekta, osäkra eller felaktiga genom att jämföra verifierarnas bestämningar med varje provfynds taxon. Bestämningar som matchade provets fyndaxon, eller exaktare, räknades som korrekt. Icke-oeniga bestämningar till högre nivå räknades som osäkra, liksom fall där flera verifierare var oense. Oense bestämningar till högre nivå eller bestämningar till olika grenar räknades som felaktiga."
+  observation_accuracy_experiment_correct: "Korrekt"
+  observation_accuracy_experiment_uncertain: "Osäker"
+  observation_accuracy_experiment_incorrect2: "Felaktig"
+  observation_accuracy_experiment_step_4: "Steg 4: Beräkning av noggrannhet och precision"
+  observation_accuracy_experiment_accuracy: "Noggrannhet"
+  observation_accuracy_experiment_we_calculated: "Vi beräknade Noggrannhet som andelen korrekta för hela urvalet inklusive delprover såsom Forskningsklass-delprovet. Vi beräknade också andelen osäkra och felaktiga. I exempelfiguren till höger, skulle andelen korrekta vara 83 %, andelen osäkra 6 och andelen felaktiga 11."
+  observation_accuracy_experiment_precision: "Precision"
+  observation_accuracy_experiment_if_every_sample: "Om varje provfynd var på en hög nivå såsom rike, skulle noggrannheten i iNaturalists dataset kunna vara mycket hög, men precisionen kanske var för låg för att göra dataset särskilt användbart. För att uppskatta precision, räknade vi antalet underliggande ändtaxa i iNaturalists taxonomi för varje taxon kopplat till varje provfynd. Vi beräknade precision såsom 1 dividerat med antalet ändtaxa. Om taxonet var ett ändtaxa blev precisionen 100%. Vi ignorerade ranger under art i precisionsberäkningen."
+  observation_accuracy_experiment_in_the_example: "I exempelfiguren till höger skulle medelprecisionen av tre provfynd bli 51 %."
   observation_accuracy_validator_email_subject: "Kan du tänka dig att hjälpa oss uppskatta fynds träffsäkerhet på iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us: |
     Kan du tänka dig att hjälpa oss med ett experiment för att uppskatta fynds träffsäkerhet på iNaturalist?
@@ -3933,6 +3984,7 @@ sv:
     north_korea: Nordkorea
     northern_cyprus: Nordcypern
     norway: Norge
+    oceania: Oceanien
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -6282,6 +6334,7 @@ sv:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Sann förekomst:
+          true_presences_definition2: Områden där både Förväntad i närheten-kartan och Taxonutbredningen förutspår att ett taxon finns
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Falsk förekomst:
