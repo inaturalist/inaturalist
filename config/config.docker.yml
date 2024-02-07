@@ -14,7 +14,7 @@ base: &base
 
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
-        REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
+        REST_AUTH_SITE_KEY: <%= ENV.fetch("SECRET_DEVISE_PEPPER") { "09af09af09af09af09af09af09af09af09af09af" } %>
         REST_AUTH_DIGEST_STRETCHES: 10
 
     rails:
@@ -49,7 +49,7 @@ base: &base
     s3_public_region: us-east-1
     s3_public_bucket: staticdev-public
 
-    memcached: memcached
+    memcached: <%= ENV.fetch("INAT_MEMCACHED_HOSTNAME") { "memcached" } %>
 
     # Key for spam filtering with akismet. See http://akismet.com/development/api/
     rakismet:
