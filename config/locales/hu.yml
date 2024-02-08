@@ -2317,7 +2317,7 @@ hu:
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Elrejtés
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Felfüggesztés Feloldása
+  moderator_actions_unhide: Felfüggesztés feloldása
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderátor / Megjelölő
   mollusks: puhatestűek
@@ -2613,7 +2613,7 @@ hu:
   observation_accuracy_experiment_the_sample_for: "A minta erre a kísérletre még nem készült el"
   observation_accuracy_experiment_our_accuracy_estimate: "A pontosság becslése erről a kísérletről %{percent} helyes."
   observation_accuracy_experiment_taxon_rank_level: "Taxon rangjának a szintje"
-  observation_accuracy_experiment_iconic_taxon_name: "Ikonnal rendelkező taxon neve"
+  observation_accuracy_experiment_iconic_taxon_name: "Taxon neve"
   observation_accuracy_experiment_continent: "Földrész"
   observation_accuracy_experiment_year: "Év"
   observation_accuracy_experiment_quality_grade: "Minőségi szint"
@@ -5618,7 +5618,7 @@ hu:
     taxon_changes:
       form:
         move_children_desc2_html: |
-          Ha ezt a kockát kipipálod a bementi taxon minden gyereke áthelyeződik a kimeneti taxon alá Taxoncsere és Taxonegyesítés esetén ha ez a művelet végrehajtódik. Ha ez a változás nemzetség szintjén történik vagy alatta akkor Taxoncserét hoz létre minden leszármazottra ha ezeknek a neve meg kell változzon. Például ha felcseréled a Canidae családot Dogidae-ra, akkor ez megváltoztatja a <i>Canis</i> nemzetség szülejét Canidae-ról Dogidae-ra. Ha felcseréled a <i>Canis</i> nemzetséget a <i>Dogis</i> nemzetségre, ez létrehoz és végrehajt Taxoncseréket, hogy megváltoztassa a <i>Canis lupus</i>t <i>Dogis lupus</i>ra és a <i>Canis lupus</i> ssp. <i>lupus</i>t <i>Dogis lupus</i> ssp.
+          E négyzet bejelölésével a bementi taxon minden gyermeke áthelyeződik a kimeneti taxon alá Taxoncsere és Taxonegyesítés esetén, amikor ez a művelet végrehajtódik. Ha ez a változás nemzetség szintjén vagy azalatt történik, akkor Taxoncserét hoz létre minden olyan leszármazottra, amelyek neve változásra szorul. Például ha felcseréled a Canidae családot Dogidae-ra, akkor ez megváltoztatja a <i>Canis</i> nemzetség szülőjét Canidae-ról Dogidae-ra. Ha felcseréled a <i>Canis</i> nemzetséget a <i>Dogis</i> nemzetségre, ez létrehoz és végrehajt Taxoncseréket és megváltoztatja a <i>Canis lupus</i>t <i>Dogis lupus</i>ra és a <i>Canis lupus</i> ssp. <i>lupus</i>t <i>Dogis lupus</i> ssp.
           <i>lupus</i>ra. Ez jó nagy felfordulást okozhat, úgyhogy óvatosan használd.
     taxon_names:
       form:
