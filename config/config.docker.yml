@@ -66,9 +66,9 @@ base: &base
     
     x_sendfile_header: X-Accel-Redirect
     
-    # flickr:
-    #    key:
-    #    shared_secret:
+    flickr:
+        key: flickr-key
+        shared_secret: flickr-share-secret
     
     # rakismet:
     #    key:
