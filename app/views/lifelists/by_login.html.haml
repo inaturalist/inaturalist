@@ -41,7 +41,10 @@
       }
     };
     var INITIAL_PLACE = #{ @place ? { id: @place.id, display_name: @place.display_name }.to_json.html_safe : "null" };
-  = javascript_include_tag "lifelists-show-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/user-text-webpack"
+  = javascript_include_tag "webpack/lifelists-show-webpack"
 
 #app
   #initial-loading.text-center

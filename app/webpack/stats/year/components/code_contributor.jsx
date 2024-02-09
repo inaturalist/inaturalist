@@ -25,7 +25,7 @@ class CodeContributor extends React.Component {
     const { expanded } = this.state;
     const pullRequestsToDisplay = expanded
       ? userData.pullRequests
-      : _.slice( userData.pullRequests, 0, 5 );
+      : _.slice( userData.pullRequests, 0, 3 );
     const morePullRequestsToShow = pullRequestsToDisplay.length < userData.pullRequests.length;
     return (
       <div className="CodeContribitor stacked flex-row">
@@ -45,7 +45,7 @@ class CodeContributor extends React.Component {
           <ul>
             { pullRequestsToDisplay.map( pr => (
               <li key={pr.html_url}>
-                <a href={pr.html_url}>{ pr.title }</a>
+                <a href={pr.html_url}>{ pr.title.replace( /^[^A-z]+/, "" ) }</a>
               </li>
             ) ) }
           </ul>

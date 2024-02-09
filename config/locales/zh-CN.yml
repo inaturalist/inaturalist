@@ -7,15 +7,17 @@ zh-CN:
   x_comments_html:
     other: '<span class="count">%{count}</span> 评论'
   x_faves:
-    other: '%{count} 次喜爱'
+    other: '%{count} 次收藏'
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span>个标记已解决"
   x_identifications:
     other: '%{count} 次鉴定'
   x_identifications_html:
-    other: '<span class="count">%{count}</span> 个标识'
+    other: '<span class="count">%{count}</span> 个鉴定'
   x_identifications_:
     other: '%{count} 次鉴定'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span>个鉴定'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -25,9 +27,9 @@ zh-CN:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} 个物种为首次观察到"
+    other: "%{count}个分类单元为首次观察到"
   x_journal_posts_html:
-    other: '<span class="count">%{count}</span>个日记帖子'
+    other: '<span class="count">%{count}</span>个日记'
   x_matching_taxa:
     other: '%{count} 个匹配的分类群'
   x_matching_taxa_html:
@@ -46,16 +48,20 @@ zh-CN:
     other: "%{count} 次观察"
   x_observations_html:
     other: "<span class='count'>%{count}</span> 次观察"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> 次观察"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
   x_observers_html:
-    other: '<span class="count">%{count}</span> 观察者'
+    other: '<span class="count">%{count}</span>个观察者'
   x_others:
     other: "%{count}个其他的"
   x_people:
     other: "%{count} 人"
+  x_people_html:
+    other: '<span class="count">%{count}</span>人'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 人</strong> 用 <strong>%{y} 个鉴定</strong>帮助了 %{user}"
   x_photos:
     other: "%{count} 张照片"
@@ -65,12 +71,14 @@ zh-CN:
     other: '%{count} 个新用户'
   x_species:
     other: '%{count} 种物种'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> 种物种"
   x_species_html:
     other: "<span class='count'>%{count}</span> 种物种"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} 种物种</a>"
   x_suggestions_filtered_by_colon:
-    other: "%{count}个建议过滤者："
+    other: "经以下过滤器给出%{count}个建议："
   x_taxa:
     other: "%{count} 个分类单元"
   x_taxa_observed_html:
@@ -120,7 +128,7 @@ zh-CN:
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: 关于
   about_charts: 关于图表
-  about_community_taxa: 关于社区分类群
+  about_community_taxa: 关于社群分类群
   about_complete_taxa: 关于比较分类群
   about_conservation_status: 保护状态
   about_editing_observation_fields: 关于编辑观察字段
@@ -135,7 +143,7 @@ zh-CN:
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
   about_place: "关于%{place}"
-  about_places: 关于地点
+  about_places: 关于地方
   about_taxon_ranges: 关于分类阶元的范围
   about_taxon_ranges_desc: |
     分类单位范围指的是一个分类阶元内的生物在全球范围内的分布。分类单位范围通常来自于世界自然保护联盟的红色名录。
@@ -196,8 +204,8 @@ zh-CN:
   account: 账户
   account_creation: 创建账户
   account_settings: 账户设置
-  accept_community_identifications: 接受来自社区的鉴定
-  accuracy: 准确性
+  accept_community_identifications: 接受来自社群的鉴定
+  accuracy: 准确度
   accuracy_meters: 精确度（米）
   accuracy_of_the_coordinates: |
     坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使您能保证自己在圈内的某个位置。
@@ -206,11 +214,11 @@ zh-CN:
   actions: 操作
   active: 激活
   #Status of a complete set that is available for use
-  active_complete_set_status: 有效的
+  active_complete_set_status: 有效
   #Status of a taxon that is available for use on iNat
-  active_taxon_status: 有效的
+  active_taxon_status: 有效
   active_users: 活跃用户
-  activity: 活跃
+  activity: 动态
   adapted_by_name_from_a_work_by_original: "改编自由 %{original} 创作的作品 %{name}"
   add: 添加
   add_a_batch_of_observations: 新增一批观察记录
@@ -248,7 +256,7 @@ zh-CN:
   add_another_subscription: 添加其他订阅
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: 添加优点
-  add_batch: 添加批量
+  add_batch: 批量添加
   add_blocked_users: 添加被屏蔽的用户
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: 添加粗体文本
@@ -268,7 +276,7 @@ zh-CN:
   add_muted_users: 添加被禁言的用户
   add_new_lexicon: 添加新的专属词汇
   add_new_photos_by_their_ids: 通过他们的Flickr ID添加新的照片（必须是知识共享授权！）
-  add_new_place: 添加一处新的地点
+  add_new_place: 添加一处新的地方
   add_new_rule: 添加一条新规则
   add_new_source: "添加新的来源……"
   add_new_taxon_name: 添加一个新分类名称
@@ -301,7 +309,7 @@ zh-CN:
   add_life_stage_pupa_annotation: '添加“生命阶段：蛹”注释'
   add_life_stage_nymph_annotation: '添加“生活期：若虫”注解'
   add_life_stage_larva_annotation: '添加“生活期：幼虫”注解'
-  add_life_stage_juvenile_annotation: '添加“生命阶段：青少年”注释'
+  add_life_stage_juvenile_annotation: '添加“生命阶段：幼期”注释'
   add_life_stage_egg_annotation: '为“生命阶段：卵”添加注释'
   add_evidence_of_presence_organism_annotation: '添加“出现记录的证据：生物”的注释'
   add_evidence_of_presence_feather_annotation: '添加“出现记录的证据：羽毛”的注释'
@@ -329,7 +337,7 @@ zh-CN:
   add_to_a_scheme: 添加到计划
   add_to_a_project: 添加至一个项目
   add_to_calendar: 添加至日历
-  add_to_checklist: 添加至检查表
+  add_to_checklist: 添加至监视列表
   add_to_favorites: 添加至收藏夹
   add_to_list: 添加至列表
   add_to_project: 添加至项目
@@ -355,6 +363,8 @@ zh-CN:
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
   added_on_datetime: "添加于 %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: 添加职位
   added_to_favorites_html: |
     已添加至<a href="%{url}">收藏夹</a>
   adding: "正在添加……"
@@ -466,7 +476,7 @@ zh-CN:
   all_updates: 所有更新
   allow_curator_access: 允许馆长访问
   allow_project_curators_to_view_your_private_coordinates: 允许项目馆长查看您的私人坐标信息
-  allowed_establish_means_values: 被允许的建立手段值
+  allowed_establish_means_values: 被允许的定殖途径值
   allowed_html: 允许的HTML
   allowed_occurrence_status_values: 被允许的发生状态值
   allowed_values: 允许的值
@@ -493,33 +503,33 @@ zh-CN:
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any: 任何
+  any: 全部
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_: 任何
+  any_: 全部
   #Label for an option to show content with any annotation attribute
-  any_annotation_attribute: 任何
+  any_annotation_attribute: 全部
   #Label for an option to show content with any annotation value
-  any_annotation_value: 任何
+  any_annotation_value: 全部
   #Label for an option to show content from any date
-  any_date: 任何
+  any_date: 全部
   #Label for an option to show content with any establishment means
-  any_establishment: 任意
+  any_establishment: 全部
   #Label for an option to show content with any license
   any_license: 任意授权
   #Label for an option to show content with photos, sounds, or neither
-  any_media: 任何
+  any_media: 全部
   #Label for an option to show content from any project
-  any_project: 任何
+  any_project: 全部
   #Label for an option to show content with any quality grade
-  any_quality_grade: 任意
+  any_quality_grade: 全部
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: 任意
+  any_reviewed: 全部
   #Label for an option to show/include content by any user
-  any_user: 任意
+  any_user: 全部
   anyone: 任何人
   app_owner_application_explanation_required: |
     您必须更详细地解释您想要构建什么。
@@ -539,18 +549,18 @@ zh-CN:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: 应用程序
-  apply_app_owner: 申请
+  apply_app_owner: 应用
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: 申请
   apply_to_be_an_app_owner: 申请成为应用程序所有者
   apply_to_create_applications_title: 申请创建应用
   apply_to_selected: 申请选择
-  apply_captive_cultivated: "应用俘虏 / 耕作"
-  apply_fields: 申请字段
+  apply_captive_cultivated: "符合饲育 / 栽培"
+  apply_fields: 应用字段
   apply_geoprivacy: 应用位置隐私
   apply_darr: "申请 &darr;"
-  apply_establishment_means_to_descendant_places: "将建立手段应用于后裔的地点"
+  apply_establishment_means_to_descendant_places: "将定殖途径应用于下属的地点"
   apply_these_settings_to_all: 将这些设置应用于下面所有的观察记录
   appropriate?: 适当么？
   arachnids: 蛛形纲
@@ -614,7 +624,7 @@ zh-CN:
   are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
   are_you_sure_you_want_to_delete_this_taxon_change: 您确定要删除此分类单元更改么？
   are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
-  are_you_sure_you_want_to_remove_curator: 您确定要移除 %{user} 的管理员身份吗？
+  are_you_sure_you_want_to_remove_curator: 您确定要移除作为馆长的 %{user} 么？
   are_you_sure_you_want_to_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
   are_you_sure_you_want_to_remove_manager: 您确定要移除作为经理的 %{user} 么？
   are_you_sure_you_want_to_remove_spammer: |
@@ -624,12 +634,13 @@ zh-CN:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     您确定要从%{project}中移除这条观察记录吗？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您确定要从%{place}的名录中移除这个分类单元吗？"
+  are_you_sure_you_want_to_flag_as_spammer: 您确定要将此用户标记为垃圾邮件发送者？
   associated_observations: 相关观察
   associated_taxa: 相关分类群
   attention: 关注
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: "您确定要从列表中移除%{taxon}吗？"
-  asc: 升
+  asc: 升序
   ascending: 升序
   assessment: 评定
   assessment_has_benn_completed: 评定已完成
@@ -646,7 +657,7 @@ zh-CN:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
   atom: 原子
-  attached_taxon: 附加分类单元
+  attached_taxon: 下属分类单元
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 属性
@@ -672,7 +683,7 @@ zh-CN:
   authorize_permissions_from_provider: "来自%{provider}的授权权限"
   automatic_short: 自动
   automatically_add_observations_to_this_project: 自动添加观察至此项目
-  automatically_update_my_content_for_taxon_changes: 自动更新我的内容，以为分类单元更改
+  automatically_update_my_content_for_taxon_changes: 在分类单元更改时自动更新我的内容
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
   avg: 平均值
@@ -686,7 +697,7 @@ zh-CN:
   back_to_observation: 回到观察
   back_to_observation_fields: 回到观察字段
   back_to_people: 回到人们
-  back_to_places: 回到地点
+  back_to_places: 回到地方
   back_to_possessive_user_profile: "回到 %{possuser} 的详细信息"
   back_to_post: '&laquo; 回到发布'
   back_to_projects: 回到项目
@@ -714,12 +725,12 @@ zh-CN:
     other: |
       根据这些 ID中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的 ID <strong>无意中产生分歧</strong> 。
   based_on_the_evidence_can_id_be_improved: |
-    基于现有证据, 社区身份证还能被确认或改进吗？
+    基于现有证据, 社区鉴定能否被确认或仍需改进？
   batch: 批
   batch_edit: 批量编辑
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
-  batch_operations: 批操作
+  batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成为第一个收藏此观察的人！
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
@@ -736,13 +747,11 @@ zh-CN:
   bioblitz: 生物限时寻
   birds: 鸟
   birthday: 生日
-  black: 黑色
   block: 屏蔽
   blocking_description: 屏蔽可以阻止您与其他用户之间的任何通信。它适用于其他用户可能危及您安全的情况，如存心骚扰或其他辱骂行为。
   block_removed: 封禁已移除
-  blocked_users: 封禁的用户
+  blocked_users: 已屏蔽用户
   blog_widget: 博客小部件
-  blue: 蓝色
   blue_butterfly_etc: "蓝色、蝴蝶等"
   body: 身体
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -756,7 +765,6 @@ zh-CN:
   #shown
   breadcrumbs_description: "这将取代h1和默认调用行为，因此如果它们对此项目很重要，请确保包含它们，并记住最大宽度允许值为950px"
   brief_caption: 简要描述
-  brown: 棕色
   browse: 浏览
   browse_all_projects: 浏览所有项目
   browse_all_species: 浏览所有物种
@@ -773,15 +781,15 @@ zh-CN:
   calendars_only_show_x_observations_at_time: 日历每次只显示%{x}个观察
   callback_url: 回调 URL
   cancel: 取消
-  cant_edit_or_delete_hidden_content: 您不能编辑或删除被站点管理员隐藏的内容
+  cant_edit_or_delete_hidden_content: 您不能编辑或删除被站点馆长隐藏的内容
   cant_flag_an_object_that_doesnt_exist: 无法给不存在的对象进行标注
   cant_merge_a_taxon_with_itself: 不能将分类单元合并到它本身。
   captive: 捕获
-  captive_cultivated: 捕获的 / 种植的
+  captive_cultivated: 饲育的 / 栽培的
   captive_observations: 圈养生物观察记录
   card: 卡
-  casual: 非正式的
-  casual_: 非正式的
+  casual: 非正式
+  casual_: 非正式
   casual_tooltip_html: '“隐藏”观测缺少媒体、位置或日期，或由于其他原因不符合“研究”或“需要ID”质量等级的要求。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级</a>'
   categories: 分类
   cc_0_description: "该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。"
@@ -860,14 +868,14 @@ zh-CN:
     名录必须属于某一个地点。要创建一个新名录，请访问该地点的默认名录，并点击“创建新名录”的链接。
   check_list_place: "%{place} 监视列表"
   check_list_updated: 监视列表已更新！
-  check_lists_for: "用于%{place}的其他检查表"
+  check_lists_for: "用于%{place}的其他监视列表"
   check_out_the_inat_store: 去iNaturalist商店看看
   check_out_what_the_observation: 检查您要鉴定的观察记录外形。
   check_this_box_if_html: |
     如果您想要为已上传的内容使用 <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>知识共享许可（署名-非商业性）</a>，请勾选此项。 这意味着只要保持诚信且不将作品用于商业用途，任何人都可以复制和重复使用您的照片和/或观察记录，而无需请求许可。 您可以稍后选择一个不同的许可证或删除许可证，但这是与研究人员分享的最佳许可证。
-  checklist: 检查表
+  checklist: 监视列表
   choose_a_field: 选择字段
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
@@ -883,7 +891,7 @@ zh-CN:
   choose_tags: 选择标签
   choose_taxon: 选择一个分类单元
   choose_what_kind_of_change_youre_creating: "选择您正在创建什么类型的更新。"
-  cid_d_to_genus: CID'd至类
+  cid_d_to_genus: 被社群鉴定到至属一级
   citation: 引用
   classification: 分类
   clear: 清除
@@ -931,12 +939,12 @@ zh-CN:
   community: 社区
   community_curated: 社区策划
   community_guidelines: 社群指引
-  community_id_heading: 社群ID
-  community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
-  community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
-  community_id_is_precise: 社区分类单元是精确的
+  community_id_heading: 社群鉴定
+  community_id_at_species_or_lower?: 社群鉴定是否到种一级或更低？
+  community_id_at_species_level_or_lower: 被社群鉴定确定到“种”或更低层级
+  community_id_is_precise: 社群分类单元是精确的
   community_moderation_settings: 社群管制设置
-  community_supported_id: 社区支持的ID么？
+  community_supported_id: 是社群支持的分类单元吗？
   compare: 比较
   compare_with: 比较
   comparing: 比较
@@ -963,6 +971,8 @@ zh-CN:
     当前的计算机视觉模型包含这个分类阶元，所以它可能是包含在“视觉相似”标签的自动建议中。
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 待确认
+  computer_vision_model_pending_desc2: |
+    当前的计算机视觉模型不了解该分类单元，因此虽然它可能包含在带有“预期在附近”标签的自动建议中，但它不会具有“视觉相似”标签。虽然模型包含的要求随模型的不同而变化，但通常是基于观察数量的，因此为了增加在下一次模型训练期间纳入该分类单元的机会，请添加或鉴定该分类单元的更多观察。
   concept_status: 概念状态
   confidential: 机密
   configure: 配置
@@ -1019,23 +1029,23 @@ zh-CN:
   contributors_to_project: "贡献至 %{project}"
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_sex: 任意
+    any_sex: 全部
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_plant_phenology: 任意
+    any_plant_phenology: 全部
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_life_stage: 任意
+    any_life_stage: 全部
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_alive_or_dead: 任意
+    any_alive_or_dead: 全部
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_evidence_of_presence: 任意
+    any_evidence_of_presence: 全部
     sex: 性别
     male: 雄性
     female: 雌性
     plant_phenology: 植物物候学
     budding: 发芽
-    flower_budding: 花芽
-    flowering: 开花
-    fruiting: 果实
+    flower_budding: 花芽阶段
+    flowering: 开花阶段
+    fruiting: 附果阶段
     life_stage: 生命阶段
     adult: 成体
     teneral: 幼体
@@ -1069,13 +1079,17 @@ zh-CN:
     molt: 蜕皮
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
+    bone: |
+      主体仅剩内生骨殖的遗骸；总体完整但有部分骨质暴露的生物应标为“生物”。
     cannot_be_determined: 无法根据已提供的证据确认。
     dead: 生物已经死亡或有死亡征兆
     feather: 一根或多根不附于生物身上的羽毛
+    female: 证据表明该生物能够产生用于有性生殖的卵子
     flower_budding: 花苞可见但未绽放
     flowering: 花朵可见，已绽放，并且仍然连接在植株上
     fruiting: 果实可见并仍连接在植株上
     gall: 植物因受病原刺激或虫害而出现的局部增生
+    male: 证据表明该生物能够产生用于有性生殖的精子
     molt: 蜕下的皮或外骨骼
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
     organism: 整个或部分生物体
@@ -1090,7 +1104,7 @@ zh-CN:
   #permission to see the "true" or "hidden" coordinates for observations in a
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
-  coords_viewable_for_proj_label: 仅适用于 w/ 完整坐标
+  coords_viewable_for_proj_label: 仅适用于有完整坐标的
   copy: 复制
   copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
   copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
@@ -1125,9 +1139,9 @@ zh-CN:
   couldnt_find_a_user_matching_x_param: "找不到符合%{id}的用户"
   couldnt_find_that_taxon: 找不到这个分类单元。
   create: 创建
-  create_a_guide: 创建指导
+  create_a_guide: 创建指南
   create_a_new_field: 创建一个新字段
-  create_a_new_place: 创建一个新地点
+  create_a_new_place: 创建一个新地方
   create_a_new_taxon: 创建一个新分类单元
   create_a_query: 创建查询
   create_an_account: 创建一个账户
@@ -1136,7 +1150,7 @@ zh-CN:
   create_new_taxon: 创建一个新分类单元
   create_observations: 创建观察
   created: 已创建
-  created_by: 创建由
+  created_by: 创建者
   created_by_user_on_date: 由%{user}于%{date}创建
   created_on: 创建于
   creative_commons_flickr_tagged: 知识共享Flickr照片已标记
@@ -1146,21 +1160,21 @@ zh-CN:
   csv: CSV
   csv_file: CSV文件
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
-  cumulative_ids: "累计ID：%{count}个，共%{total}个"
+  cumulative_ids: "累计鉴定数：%{count}个，共%{total}个"
   curate_observations: 助理观察
   curate_taxa: 助理分类群
   curate_user: 策展用户
   curating: 助理
   curation: 管理
-  curator: 管理员
+  curator: 馆长
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
-    iNaturalist网站管理员是官方授信的志愿者，有编辑iNaturalist分类学系统和修改用户内容的权限。网站管理员对iNaturalist十分重要，他们保持网站分类系统的及时更新，用户发言的合适与文明。想了解成为管理员意味着什么，请参阅以下内容，如果您也想成为管理员，请仔细浏览<a href="/pages/curator+guide" target="_blank">管理员指南</a>，然后填写本页面的申请。
+    iNaturalist网站馆长是官方授信的志愿者，有编辑iNaturalist分类学系统和修改用户内容的权限。网站馆长对iNaturalist十分重要，他们保持网站分类系统的及时更新，用户发言的合适与文明。想了解成为馆长意味着什么，请参阅以下内容，如果您也想成为馆长，请仔细浏览<a href="/pages/curator+guide" target="_blank">馆长指南</a>，然后填写本页面的申请。
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
-    您需要解释为什么要成为管理员
+    您需要解释为什么要成为馆长
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html: 为什么你想成为管理员？
+  curator_application_fields_explanation_html: 为什么你想成为馆长？
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     如果你想要编辑常用名，请为你想更改的内容提供一两个例子
@@ -1170,9 +1184,9 @@ zh-CN:
     种情况下会做些什么。
   #Header
   curator_application_how_curators_lose_their_powers: |
-    什么会导致管理员失去管理权力
+    什么会导致馆长失去管理权力
   curator_application_how_curators_lose_their_powers_desc: |
-    iNat 管理员可能被取消管理权如果他们经常：
+    iNat馆长可能被取消管理权，如果他们屡次出现下列情况：
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -1183,10 +1197,12 @@ zh-CN:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     他们自己未能表现出适当的行为。
+  curator_application_inelligible_error2: |
+    若要申请成为站点馆长，您必须有一个注册满60天或更长时间的帐户，至少添加了 5 个标记， 并为任何人的观察、包括您自己的观察添加了100个改进中的鉴定。
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success: 管理员申请已提交
+  curator_application_success: 馆长申请已提交
   #Header
-  curator_application_what_curators_can_do: 管理员可以做什么
+  curator_application_what_curators_can_do: 馆长可以做什么
   curator_application_what_curators_can_do_hide_comments_html: |
     对违反了 <a
     href="/pages/community+guidelines" target="_blank">社区
@@ -1196,8 +1212,19 @@ zh-CN:
   #can..."
   curator_application_what_curators_can_do_resolve_flags_html: |
     解决在此分类群的 <a href="/flags" target="_blank">标记</a>和用户内容。
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    创建和编辑维基页面，诸如<a href="/pages/help"
+    target="_blank">iNaturalist答疑页面</a>。
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    编辑社区管理的地方并上传大于 1 MB (但小于 5 MB)的 KML 文件。
   #Header
-  curator_application_what_curators_cannot_do: 管理员不能做什么
+  curator_application_what_curators_cannot_do: 馆长不能做什么
   #Description of the fact that a curator cannot change certain attributes of
   #observations any more than anyone else can; part of a list of things
   #curators can do, so you might imagine it is preceded with "Curators
@@ -1221,10 +1248,10 @@ zh-CN:
   curator_application_what_curators_cannot_do_read_messages_html: |
     直接读取其他人发送的消息。
   #Title of a page where people apply to become a curator
-  curator_application_title: 申请管理员
+  curator_application_title: 申请馆长
   #Header followed by a list
   curator_application_you_should_apply_if: |
-    当符合以下条件，您将有资格申请成为管理员：
+    当符合以下条件，您将有资格申请成为馆长：
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     您已经持续数月添加鉴定和（或）观察记录并将继续这么做。
   curator_application_you_should_apply_if_you_have_added_flags: |
@@ -1233,6 +1260,10 @@ zh-CN:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
     您愿意并有能力定期开展管理工作。如果您只想添加几个分类阶元，请直接在更高级别的分类阶元添加标记并请求现有的管理者来添加这些分类阶元。
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    您可以在 iNaturalist 上塑造适当的行为并遵守社群准则。 在策展权力的同时，我们还期望您成为 iNaturalist 的模范用户。
   curators_changed_for_x_html: "为%{x}工作的馆长已更改"
   curators: 馆长
   curators_can_remove_observations_from: 馆长可以从项目中删除观察结果，并将其标识与项目特定视图的观察结果一起显示。馆长也可以看到这个项目中私人贡献者和匿名贡献者的真实地理位置。
@@ -1244,8 +1275,8 @@ zh-CN:
   custom_project_was_successfully_created: 已成功创建定制项目。
   custom_project_was_successfully_updated: 已成功更新自定义项目。
   customize_location: 自定义位置
-  darr_apply_darr: "&darr; 申请 &darr;"
-  daily_users: 日常用户
+  darr_apply_darr: "&darr; 应用 &darr;"
+  daily_users: 每日用户
   danger_zone: 危险操作区
   dashboard: 仪表板
   data_deficient: 数据有缺陷
@@ -1254,7 +1285,7 @@ zh-CN:
   data_used: "使用资料："
   datatype: 数据类型
   date_: 日期
-  date_added: 日期已加入
+  date_added: 添加日期
   date_authorized: 授权日期
   date_created: 创建日期
   date_format:
@@ -1321,6 +1352,8 @@ zh-CN:
   default_search_place_description: |
     这会是您在探索和鉴定中的默认搜索地点。
   default_sound_license: 默认声音协议
+  default_time_zone_desc: |
+    这是默认时区。保存时将根据观察所在位置分配最后时区。
   defaults_to_your_name_or_username: 默认为您的名字或用户名
   defines_a_taxon_framework_for: 定义用于%{taxon_name}的物种分类框架
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: 根据来源 %{source} 来定义 %{taxon} 的分类群框架
@@ -1337,7 +1370,7 @@ zh-CN:
   delete_range: 删除分布范围
   delete_selected: 删除所选
   delete_taxon_and_merge_most_data_html: |
-    删除<i>%{taxon}</i>，并将其数据合并到另一个分类单元。这个工具是用于<strong>移除重复的分类单元</strong>的。如果您要移除某个同物异名，请创建一个分类交换组。<strong>请谨慎操作！</strong>删除分类单元的后果可能十分严重。请仔细阅读<a href="%{curator_url}">《巡视员工作指南》</a>中的具体内容。
+    删除<i>%{taxon}</i>，并将其数据合并到另一个分类单元。这个工具是用于<strong>移除重复的分类单元</strong>的。如果您要移除某个同物异名，请创建一个分类交换组。<strong>请谨慎操作！</strong>删除分类单元的后果可能十分严重。请仔细阅读<a href="%{curator_url}">馆长指南</a>中的具体内容。
   delete_user: 删除用户
   delete_your_account: 删除您的账户
   deleted_synonyms: 删除异名
@@ -1346,7 +1379,7 @@ zh-CN:
   deleting: 删除中……
   deleting_verb: 删除中
   deny: 拒绝
-  desc: 描述
+  desc: 降序
   descending: 降序
   describe_purpose: 描述此项目的目的。
   describe_your_interest_in_nature: 描述您在自然中的兴趣！
@@ -1357,7 +1390,7 @@ zh-CN:
   description_tags_more: "描述、标签以及更多"
   desription: 描述
   destination: 目标地点
-  destroy: 破坏
+  destroy: 删除
   details: 详情
   deviation: 偏离
   devise:
@@ -1402,13 +1435,20 @@ zh-CN:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: 确认说明
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: 电子邮箱更改请求
       reset_password_instructions:
         subject: '重设密码的说明'
+  devise_confirmation_instructions_if_you_did_not: |
+    如果你没有试图注册%{site_name}账号，请无视这条邮件。
   devise_confirmation_instructions_please_click: |
     请点击下面的链接来确认您的电子邮件地址：
   devise_confirmation_instructions_resend_instructions: |
     您必须有一个可用的电子邮件地址才能使用iNaturalist。当您注册账户时，您应该已经收到了一封确认电子邮件，其中包含一个链接，您可以点击该链接来确认您的电子邮件地址是否有效。
   devise_confirmation_instructions_send_confirmation_email: 发送确认电子邮件
+  devise_email_changed_you_requested: 您请求将邮箱地址从%{old_email}改变为%{new_email}。
   devise_email_changed_you_will_receive: |
     您将在新地址收到一封电子邮件以确认更改，但我们希望通过您的旧地址通知您，以防其他人访问您的帐户并在您不知情的情况下尝试更改帐户。 如果您并非故意更改您的电子邮件地址，请立即将此电子邮件转发至 help@inaturalist.org 以便我们进行调查。
   devise_reset_password_instructions_hello_email: 您好 %{email}
@@ -1471,8 +1511,13 @@ zh-CN:
   download_csv: 下载CSV
   download_csv_template: 下载CSV模板
   download_kml: 下载KML
-  downstream_coverage_rank: 下游覆盖率等级
+  downstream_coverage_rank: 覆盖层级下限
+  downstream_coverage_colon_rank: "下游分类层级：%{rank}"
   downstream_deviations: 下游偏离
+  downstream_deviations_for_taxon: "%{taxon}的下游偏移"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: 被标记的下游分类群
   #Noun, as in a journal post that has not been published
   draft: 草稿
   #Noun, as in a journal post that has not been published
@@ -1484,6 +1529,10 @@ zh-CN:
   #Noun, as in journal posts that has not been published
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: 绘制圆形边界
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: 绘制矩形边界
   drawings: 绘画
   duplicate_verb: 复制
   duration_value: "持续时间：%{duration}分钟"
@@ -1491,7 +1540,7 @@ zh-CN:
   earliest_added: 最早添加
   edit: 编辑
   #Title of the moderation note editor
-  edit_moderator_note: 编辑版主注释
+  edit_moderator_note: 编辑版主批注
   edit_a_batch_of_observations: 批量编辑观察记录
   edit_account_settings_and_profile: "编辑账户设置和详细信息"
   edit_assessment: 编辑评估
@@ -1500,6 +1549,7 @@ zh-CN:
   edit_body: 编辑正文
   edit_comment: 编辑您的评论
   edit_complete_set_for_taxon_in_place_html: "编辑 %{taxon} 在 %{place} 的完整名录集"
+  edit_conservation_status: 编辑保护状态
   edit_custom_project_fields: 编辑自定义项目字段
   edit_field: 编辑字段
   edit_license: 编辑许可协议
@@ -1545,33 +1595,20 @@ zh-CN:
   editing_taxon: 编辑 %{taxon}
   editing_taxon_link: 正在编辑分类链接
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分类群名称「%{name}」
+  editing_taxon_range_for_taxon_html: 修改%{taxon}的分类单元范围
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
-  email_description: 您的电子邮件不会显示给其他iNaturalist用户
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
-  email_conf_banner_email_delivered_click_link: |
-    确认电子邮件已发送。请点击电子邮件中的链接。
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: 在 %{date} 之前确认您的 %{site_name} 电子邮件地址 #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    请在今天确认您的电子邮件地址，以确保您可以继续访问您的账户。 %{site_name} 以及移动应用程序 iNaturalist 和 Seek by iNaturalist，通过分享对生物多样性的观察，将人们与自然和彼此联系起来。感谢您成为 iNaturalist 社区的一员！
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    从 %{requirement_date} 开始，我们将要求所有账户都使用经过验证的电子邮件地址。 现在请花一点时间确认一下。
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    如果您有任何疑问，请参阅 <a href="%{faq_url}">FAQs</a>。 感谢您抽出时间与大自然和 %{site_name} 联系。
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: 账户详情
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 亲爱的%{user}，
+  email_description: 您的电子邮件不会显示给其他iNaturalist用户
+  email_conf_required_after_grace_period: |
+    在%{requirement_date}之前需要邮件验证，而您在截止日期之前未完成认证。请重设密码以登录您的账号。
   email_copyright2: "&copy; %{year} iNaturalist，保留所有权利"
   email_notifications: 电子邮件通知
   embed: '已嵌入'
@@ -1584,36 +1621,39 @@ zh-CN:
   end: 结束
   end_date_time: 结束日期/时间
   endangered: 濒危
-  endemic: 地方性
+  endemic: 特有
   endemic_to_x: "%{x}的特有种"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: 生命大百科
   eol_collection_url: "EOL收藏URL"
   error_updating_photo: "上传图片时出错：%{photo_errors}"
   establishment:
-    endemic: 特产
+    endemic: 特有
     establishment: 确立
-    introduced: 引进
+    introduced: 外来
     invasive: 攻击性
     managed: 管理
     native: 本地
     naturalised: 归化
-  establishment_means: 建立手段
+  establishment_means: 定殖途径
   establishment_means_describes_how: |
     确立意思是描述如何在一个地区建立分类单元。
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
   establishment_means_descriptions:
+    native: 在这个区域演化而来或通过非人为手段抵达的情况
     endemic: 本土物种，且无其他地区记录
+    introduced: 通过人类活动途径到达此地区的情况
   event_in_progress: 正在进行中的活动
   event_stats: 活动统计
   event_url: 活动URL
   events_only: 仅活动
   everyone: 任何人
-  everyone_: 大家
-  everyone_journal_posts: 每个人的日志
+  everyone_: 所有人
+  everyone_journal_posts: 每个人的日记
   everywhere: 任意地方
   exact: 准确
   exact_date: 具体日期
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 精密排名
   except: 除外
   exclude_places: 排除地点
@@ -1623,6 +1663,7 @@ zh-CN:
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
+  examples_of_data_use_by_network_members: 网络成员使用数据的实例
   examples_of_ranking_organizations: 排名机构的例子
   expected_nearby: 预料在附近
   explore: 探索
@@ -1646,10 +1687,10 @@ zh-CN:
   failed_to_unlink_your_account: 取消您的帐户链接失败
   'false': '否'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves: 喜爱
+  faves: 收藏数
   Family: 家庭
   favorite_taxa: 已收藏的分类单元
-  favorites: "喜爱"
+  favorites: "收藏夹"
   feature_this_project_: "突出此项目"
   featured: 特色
   #Title for a button or section describing the "featured" status of a project
@@ -1664,7 +1705,7 @@ zh-CN:
     <strong>请注意：</strong>如果您要创建一个新字段，请检查是否其他人已经创建过，以避免重复。
   fields: 字段
   fields_: 字段
-  fields_can_only_be_edited_by_the_people_who: 字段只能由创建者和站点巡视员编辑
+  fields_can_only_be_edited_by_the_people_who: 字段只能由创建者和站点馆长编辑
   fields_merged: 字段已合并
   file: 文件
   file_size: 文件大小
@@ -1674,7 +1715,7 @@ zh-CN:
   #The name of a computer file
   filename: 文件名
   filter: 过滤器
-  filter_by_curator_identification: 按巡视员的鉴定进行筛选
+  filter_by_curator_identification: 按馆长的鉴定进行筛选
   filter_by_place: 按地点筛选
   filter_by_taxon: 按分类单元过滤
   filter_by_place_taxon_and_color: 按地点、分类单元和颜色标注进行筛选
@@ -1683,10 +1724,11 @@ zh-CN:
   filters: 过滤器
   find: 查找
   find_a_guide: 查找一个指南
-  find_a_place: 找到一个地点
+  find_a_post: 查找帖子
+  find_a_place: 找到一个地方
   find_guides: 查找指南
   find_posts_for: "搜索相关帖子：%{journal_name}"
-  find_new_place_to_explore: 去探索新的地点！
+  find_new_place_to_explore: 去探索新的地方！
   find_observations: 寻找观察
   find_photos: 查找照片
   find_places: 找到地点
@@ -1705,8 +1747,8 @@ zh-CN:
   flag: 标记
   flag_as_inappropriate: 标记不当内容
   flag_an_item: 标记一个项目
-  flag_as_spammer: 标记为破坏者
-  flag_as_non_spammer: 标记为非破坏者
+  flag_as_spammer: 标记为骚扰用户
+  flag_as_non_spammer: 标记为非骚扰用户
   #Label for the date/time when a flag was created
   flag_created: 标记已创建
   flag_deleted: 标记已删除
@@ -1754,10 +1796,10 @@ zh-CN:
   flag_this_sound: 标记此声音
   flagged_: 已标记
   flagged_for_curation: 已标记管理
-  flagged_taxon: 已标记生物分类群
+  flagged_taxon: 标记的分类单元
   flagged_thing_explanation: "用户已标记此 %{thing} 因为"
   flagging_desc: |
-    标记是用来引起网站负责人志愿者的注意的。
+    标记是用来引起网站馆长志愿者的注意的。
     请不要标记一些您可以通过鉴定、资料品质估计、或是与内容建立人互相讨论来解决的问题。
   flagger: 标记者
   flags: 标记
@@ -1778,21 +1820,24 @@ zh-CN:
   #Adjective, as in a fluid layout of images
   fluid: 液体
   follow: 关注
+  #Text for a button to follow updates on an observation
+  follow_observation: 关注观察
   follow_receive_updates_about_new_observations: 关注（接收有关新观察的更新）
+  #Text for a button to follow updates from a specific user
   follow_user: "关注%{user}"
   followers: 关注者
   following: 关注中
   following_x_people:
     other: '关注 %{count} 人'
   for_a_taxon: 用于一个分类
-  formatting: 格式化
+  formatting: 格式设置
   forgot_your_password: 忘记密码？
   forum: 论坛
   forum_categories:
     bug_reports: 报告错误
     feature_requests: 功能​​​​​​​​​​​请求
     forum_feedback: 论坛反馈
-    forum_moderation: 论坛管理员
+    forum_moderation: 论坛版主
     nature_talk: 自然讨论
     news_and_updates: 最新消息和更新
     tutorials: 教程
@@ -1814,15 +1859,19 @@ zh-CN:
   generate_taxonomic_tags_for_flickr: 为您的Flickr照片生成分类学标签
   generate_widget: 生成小部件
   generate_your_stats: 生成您的统计
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: 生成您的%{year}年年度回顾
   generating_mobile_archive: "生成移动存档"
   Genus: 类
+  geomodel_expected_nearby_label_is_derived: |
+    "预料在附近"标签来自地理位置模型。<a href="%{url}">在这里了解更多关于地理位置模型的情况</a>。
   geoprivacy: 位置隐私
   geoprivacy_is_obscured: 地理信息隐私权为模糊处理
-  geoprivacy_is_obscured_desc: 观察者选择模糊坐标
+  geoprivacy_is_obscured_desc: 观察者选择遮盖坐标
   geoprivacy_is_private: 位置隐私为私有
   geoprivacy_is_private_desc: 观察者选择隐藏坐标。
   georeferenced: 有地理参考么？
-  get_started: 入门
+  get_started: 开始
   getting_started_guide: 入门指导
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
@@ -1842,12 +1891,11 @@ zh-CN:
   graft: 移植
   graft_taxon: 转移 %{taxon}
   grafting_attemps_to_insert_this_taxon: 嫁接试图将该分类单元插入我们的分类树中，找到一个现有的父分类单元或创建所有必要的中间分类单元，以便将其附加到现有的更高级别分类单元中。
-  grant_role: "%{grant} %{role}角色"
   grid: 网格
-  grid_layout: 网格布局
-  grid_tooltip: 显示网格预览
+  grid_layout: 缩略图布局
+  grid_tooltip: 显示缩略图预览
   group: 组
-  grouping: 正在分组
+  grouping: 分组
   guides: 指南
   guide_compiled_by: 此指南由下列用户编辑
   guide_deleted: 指南已删除
@@ -1858,8 +1906,8 @@ zh-CN:
   guide_was_successfully_updated: 指南已成功更新。
   guidelines: 指南
   has_already_been_flagged_by: 已被标记，标记者
-  has_id_supported_by_two_or_more: 由两个或以上ID所支持
-  has_one_or_more_faves: 有一个或更多喜爱
+  has_id_supported_by_two_or_more: 由不少于两个鉴定结果所支持
+  has_one_or_more_faves: 有一个或多个收藏
   has_photo: 有照片
   has_photos: 有照片
   has_photo_and_sound: 有照片和声音
@@ -1876,6 +1924,8 @@ zh-CN:
   header_your_projects: 您的项目
   header_your_profile: 你的个人资料
   heads_up: 小心
+  heads_up_there_are_other_draft_taxon_changes_html:
+    other: "<strong>注意：</strong>还有关于同一个分类群的%{count}个分类群变化草案。"
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
   heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
@@ -1891,7 +1941,9 @@ zh-CN:
   hide: 隐藏
   hide_content: 隐藏内容
   hide_desc: |
-    隐藏的内容无法被公众查看，但人们仍然能看到有东西被隐藏，且网站管理员和内容作者仍然可以看到被隐藏的内容。通常这会被应用到文字内容，举个例子，如果您选择隐藏一个鉴定，这个鉴定仍然可以显示但鉴定者的备注内容将会被隐藏。仅有网站的工作人员可以解除隐藏，所以当您使用这个功能的时候请深思熟虑，最好仅将其用在非常令人反感的内容上。
+    隐藏的内容无法被公众查看，但人们仍然能看到有东西被隐藏，且网站馆长和内容作者仍然可以看到被隐藏的内容。被隐藏的鉴定将不会影响该观察的社群鉴定。
+  hide_desc_staff_can_unhide: |
+    只有网站员工才能在隐藏后取消隐藏内容，所以只有在明显违反社区指导规则的情况下才使用它。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
@@ -1899,12 +1951,18 @@ zh-CN:
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
   high: 高
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: 最高等级
   highlights_and_stats_from_year_on_site: "来自 %{site} 在 %{year} 年的要点与统计数据"
-  history: 历史
+  history: 历史记录
   home: 首页
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "要调整的小时："
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    然而，它没有重新使用的许可，也不会与执行许可选择的数据存储库共享。
   however_there_were_some_issues: "然而，这里有一些问题：%{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -1918,13 +1976,13 @@ zh-CN:
   id_categories:
     tooltips:
       leading: |
-        分类单元来自社区分类单元。这种认同更有可能产生正确的结果。
+        分类单元来自社区分类单元。这一鉴定更有可能产生正确的结果。
       improving: |
-        此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。
+        此分类单元被社群所采纳的第一个提议。这有助于完善社区分类单元。
       maverick: |
         分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
-  id_withdrawn: ID撤回
-  ids_by_taxon: ID（按分类单元排序）
+  id_withdrawn: 鉴定撤回
+  ids_by_taxon: 鉴定（按分类单元排序）
   identify: 鉴定
   identify_observations: "对观察记录进行鉴定"
   identify_observations_by_these_users: 鉴定这些用户的观察结果
@@ -1934,20 +1992,28 @@ zh-CN:
   #Notification when an identification has been deleted
   identification_deleted: 身份验证已删除。
   identification_saved: "身份验证已保存！"
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: 鉴定已隐藏
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: 识别已取消隐藏
   #Notification when an identification has been updated
   identification_updated: 鉴定已更新！
   identification_user_short: 鉴别用户
   #Notification when an identification has been withdrawn
-  identification_withdrawn: 身份验证已放弃。
+  identification_withdrawn: 鉴定已撤回。
   identifications: 鉴定
   inaturalist_global_year_in_review: "iNaturalist 全球 %{year} 年度回顾"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist是一个基于美国的独立的501(c)(3)、免税、非营利组织(税号: 92-1296468)。
   computer_vision_suggestion: 电脑视觉建议
-  identifiers: 标识符
+  computer_vision_suggestion_desc: |
+    计算机视觉是训练计算机识别图像特征的过程。 我们提供的工具使用基于社区照片训练的计算机视觉模型来提供识别建议，如自动填空和比较功能。此标签表示有人利用这些工具进行了一次鉴定。
+  identifiers: 鉴定者
   identotron: 鉴定器
   identotron_for: Identotron 为
   identotron_help: Identotron帮助
-  ids: "ID"
-  ids_made_for_others: 由其他人做出的ID
+  ids: "鉴定"
+  ids_made_for_others: 为其他人做出的鉴定
   if_for_some_reason_a_user_doesnt_agree: |
     如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
@@ -1987,14 +2053,14 @@ zh-CN:
   include_places: 包含的地点
   include_projects: 包含的项目
   include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
-  include_suggestions_not_expected_nearby: 包括不在预料附近范围内的建议
+  include_suggestions_not_expected_nearby: 包括不在预料在附近范围内的建议
   include_taxa: 包含分类
   include_users: 包含用户
   including: 包括
   increase_brightness: 增加亮度
   in_progress: 进行中
   in_the_past: 在过去
-  in_the_past_week: 在上周
+  in_the_past_week: 一周内
   inactive: 不活跃
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
@@ -2023,8 +2089,8 @@ zh-CN:
   internal_server_error: 内部服务器错误
   internal_taxon_including_descendants: 内部分类(包括派生)
   internal_taxon_rank: 内部分类等级
-  introduced: 引进
-  introduced_in_place: "在%{place}中引进"
+  introduced: 外来
+  introduced_in_place: "在%{place}系外来种"
   invitation: 引诱
   invite: 邀请
   invite_people: 邀请人们
@@ -2057,8 +2123,9 @@ zh-CN:
   journal: 日记
   journal_archives_for: 日记存档，用于
   journal_post: 日记发布
-  journal_post_deleted: 日记帖子已删除。
-  journal_posts: 日记帖子
+  journal_post_: 日记
+  journal_post_deleted: 日记已删除。
+  journal_posts: 日记
   jpg_png_or_gif: "JPG、PNG或GIF"
   jump_to_letter: 跳转至信件
   just_a_reminder: 提醒一下，您可能已经向项目馆长授予了查看此项目中私人观察者的地理位置的权限。
@@ -2080,6 +2147,7 @@ zh-CN:
   #the same as you move from one observation to another
   lock_zoom_level: 锁定缩放等级
   language_slash_locale: 本地语言
+  language_slash_locale_description: 根据您的本地语言设置您的语言和日期格式偏好设置。更改将在页面刷新后生效。
   language_slash_type: 语言/种类
   #Large photo size
   large: 大
@@ -2101,11 +2169,12 @@ zh-CN:
   leaderboard_for_x: "用于 %{x} 的排行榜"
   leaderboards: 排行榜
   leaderboard_most:
-    species_in_year: 在 %{year}记录的最多物种
-    observations_in_month_year: 在%{month_year} 中记录到最多的观察记录
-    observations_in_year: 在%{year} 中记录到最多的观察记录
-    identifications_in_month_year: 在%{month_year} 做出的最多的鉴定
-    identifications_in_year: 在%{year} 中做出的最多的鉴定
+    species_in_month_year: 在%{month_year}记录到最多的物种
+    species_in_year: 在%{year}年记录到最多的物种
+    observations_in_month_year: 在%{month_year} 记录到最多的观察
+    observations_in_year: 在%{year}年记录到最多的观察
+    identifications_in_month_year: 在%{month_year}做出了最多的鉴定
+    identifications_in_year: 在%{year}年做出了最多的鉴定
   leading: 领先的意见
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
@@ -2122,10 +2191,13 @@ zh-CN:
     看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
+  lexicon_cannot_contain_words: "不能包含下列词汇：%{words}"
   lexicons:
     afrikaans: 南非语
     alabama: 阿拉巴马州语
     albanian: 阿尔巴尼亚语
+    aou_4_letter_codes: AOU 4字母代码
+    aou_6_letter_codes: AOU 4字母代码
     arabic: 阿拉伯语
     armenian: 亚美尼亚语
     asturian: 阿斯图里亚斯语
@@ -2226,9 +2298,11 @@ zh-CN:
     tsonga: 聪加语
     tswana: 茨瓦纳语
     turkish: 土耳其语
+    u_s_d_a_symbol: 美国法律协会（U.S.D.A.）符号
     ukrainian: 乌克兰语
     uyghur: 维吾尔语
     venda: 文达语
+    vermont_flora_codes: '《佛蒙特植物志》代码'
     vietnamese: 越南语
     visayan: 维萨扬文
     waray_waray: 瓦瑞瓦瑞语
@@ -2236,6 +2310,8 @@ zh-CN:
     zapoteco: 萨波特科语
     zulu: 祖鲁语
   less: 更少
+  #Button show less text
+  less__context_text: 收起
   licensed_site_photos: "已授权的 %{site_name} 照片"
   license: 许可协议
   licensing: 授权协议
@@ -2267,6 +2343,10 @@ zh-CN:
     taxonomic: 分类学
     photo: 照片
   list_was_successfully_created: 已成功创建列表。
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}、%{two}，和%{three}"
+  list_with_two_items: "%{one} 和 %{two}"
   listed_taxa: 列举的分类群
   listed_taxon: 列举的分类单元
   listed_taxon_updated: 列举的分类已更新
@@ -2385,18 +2465,20 @@ zh-CN:
   looks_like_no_species_in_guide: 似乎你的指南里目前还没有物种呢。
   lookup: 查找
   low: 低
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: 最低级
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
-  make_admin: 做为管理员
+  make_admin: 设为超管
   #Header for main content section of the project detail page when editing custom project data.
   main_content: 主内容
   #Stub text for the main content section when editing custom project data
   main_content_description: 主要的內容在此
   make_a_new_place: 做出一个新地点
   make_a_taxon_swap_instead?: 改用TaxonSwap吗？
-  make_curator: 指定馆长
-  make_manager: 指定管理员
+  make_curator: 设为馆长
+  make_manager: 设为管理员
   make_sure_the_default_photo_looks_good: 确保默认照片在大尺寸上看起来不错。
   make_this_your_default_license: "将其作为您的默认 %{type} 许可协议"
   make_this_the_primary_listing: "将其作为主要列表"
@@ -2407,7 +2489,7 @@ zh-CN:
   manage_your_relationships: 管理您的关联
   manager: 经理
   managers: 经理
-  managers_can_do: 管理者可以完成馆长可以完成的任何工作，也可以编辑项目设置并编写项目日志文章。
+  managers_can_do: 管理员可以完成管理员可以完成的任何工作，也可以编辑项目设置并编写项目日志文章。
   managing_projects: 管理项目
   map: 地图
   map_legend: 地图图例
@@ -2419,9 +2501,10 @@ zh-CN:
       every_publicly_visible_observation: 任何在iNaturalist网络中创建的公开可见的观察
       featured_observations: 特色观察
       gbif_network: GBIF网络
+      gbif_network_description2: 来自博物馆及其他由Global Biodiversity Informatics Facility指派的发现提供方的记录
       observations: 观察
       place_boundary: 地区边界
-      checklist_places: 检查表地点
+      checklist_places: 监视列表地点
       checklist_places_description: 此分类单元列出的地点
       range: 范围
   map_tooltip: 显示地图预览
@@ -2432,7 +2515,10 @@ zh-CN:
   mark_all_as_reviewed: 全部标记为已复核
   mark_all_as_unreviewed: 全部标记为未复核
   matching_species_will_shown_up_here: 匹配的物种将出现在这里。如果%{place}有一个物种，地图将显示出一个范围。
-  maverick: 未烙印动物
+  maverick: 小众的意见
+  maximum_positional_accuracy: 最大位置精度
+  maximum_positional_accuracy_including_unknown: |
+    最大位置精度，包括没有位置精确度的观察
   media: 媒体
   #Used to join media types required by a project, e.g. photos *and* sounds.
   #If a single word won't work, a symbol like "+" would be fine.
@@ -2474,6 +2560,11 @@ zh-CN:
     请注意那些向您索取样品或隐藏数据的请求。如果有人想要获取样本，尝试要求查看他们的许可证来验证他们的身份。
   messages_new_correspondent_personal: |
     不要向您不信任的人泄露您的个人信息。
+  messages_new_correspondent_actions_html: |
+    如果您怀疑此人违反了我们的 <a href="%{tos_url}"
+    target="_blank">使用条款</a> 或没有按照我们 <a
+    href="%{guidelines_url}" target="_blank">社区准则</a>行事， 请
+    在下方标记此消息。
   minimum_positional_accuracy: 最小位置精度
   misidentifications: 错误识别
   misleading_or_illegal_content_html: |
@@ -2482,8 +2573,16 @@ zh-CN:
   missing_date: 缺少日期
   mobile: 移动
   moderation_history_for_user_html: '%{user} 的管理历史记录'
+  moderation_history_desc_html: |
+    这包括版主行为（如隐藏或解除隐藏评论）、批注、标记用户除分类群以外创建的任何内容。这<strong>仅对管理员可见</strong>，而且<strong>管理员也不能看到其个人自身的历史</strong>，因此对他人的标记对其本人而言将永不可见。
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: 隐藏
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: 解封
+  moderator_note_desc: |
+    版主批注是版主针对某一用户、基于证据的关注所做出的响应记录，比如判断其是否可能是马甲账号。请不要包含对用户的个人成见或道听途说。
   #Person who executed a moderator action or flagged something
-  moderator_or_flagger: 调解者/标记者
+  moderator_or_flagger: 版主/标记者
   mollusks: 软体动物
   momentjs:
     shortRelativeTime:
@@ -2559,18 +2658,23 @@ zh-CN:
   most_agree: 多数同意
   most_browser_print_pdf: "注意：大多数浏览器都有打印为PDF的选项"
   most_disagree: 多数不同意
-  most_comments_and_faves: 最多评论和喜爱
+  most_comments_and_faves: 最多评论和收藏
   most_observations: 最多观察
   most_recent_observation_by_date_observed: 按最近可查观察日期排序的最近观察结果
   most_species: 最多物种
   most_observed_species: 最多观察的物种
-  most_observed_introduced_species: 最多观察的引进物种
+  most_observed_introduced_species: 最多观察的外来种
   most_observed_threatened_species: 最多观察的受威胁物种
   move_input_children_to_output?: 移动子项至输出？
   multiple: 多重
   multiple_select_option: '-- 多重 --'
   multiple_taxa_for_taxon_change: "复合分类单元（交换/合并输入，分别输出）"
   multiple_taxon_ids_separated_by_commas: '以逗号分隔的多个分类单元ID，例如：123654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: 必须从属于项目%{project}
+  must_be_in_taxon: 必须从属于分类%{taxon}
+  must_be_not_in_taxon: 必须不属于分类%{taxon}
   must_be_not_observed_by_user: 必须不是 %{user} 所观察
   must_be_not_observed_in_place: 必须不是在 %{place} 被观察到
   must_be_observed_after: 必须在 %{operand} 之后被观察
@@ -2618,19 +2722,28 @@ zh-CN:
   near_threatened: 近危
   nearby_observations_: 附近观察
   needs_id: 待鉴定
-  needs_id_: 需要ID
+  needs_id_: 待鉴定
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
-  needs_to_be_identified: 需要被鉴定
+  needs_id_tooltip_html: '“需要鉴定”观察含有媒体、地点和日期，但仍需要社区对确切鉴定结果的共识。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级的信息</a>'
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>作为国际iNaturalist网络的一员，聚焦于芬兰的生物多样性和人群之中。您想将账号所属从<strong>%{inat_site_name}</strong>变更为<strong>iNaturalist Suomi</strong>，并和当地学术机构分享数据吗？
   network_affiliation_prompt_from_other_site_html: |
     您想要把您的从属关系从 <strong>%{other_site_name}</strong> 更改为 <strong>%{site_name}</strong> 吗？
+  #Column header in a table listing iNaturalist Network members
+  network_member: 网络成员
   new: 新增
-  new_and_noteworthy: 新闻与显著内容
+  new_and_noteworthy: 新闻与重大事件
   new_announcement: 新公告
+  new_application: 新建应用
   new_assessment: 新评估
-  new_check_list: 新检查表
-  new_check_list_for: "为 %{place} 创建一个新检查表&raquo;"
+  new_check_list: 新监视列表
+  new_check_list_for: "为 %{place} 创建一个新监视列表&raquo;"
   new_check_list_record: "如果您想将此列表标记为详尽，请创建它，添加分类群，然后对其进行编辑，您可以选择在此处将其标记为详尽。"
-  new_comment_on_a_parent_by_user_link: 由 %{user_link} 在 @vow_or_con{vow:an|a} %{parent} 做出的新评论
+  new_comment_on_a_parent_by_user_link: '%{user_link}对%{parent}作出新评论'
+  new_conservation_status: 添加保护状态
   new_flag_for: 新标记用于
   new_guide: 新指南
   new_journal_post: 新日志
@@ -2662,7 +2775,7 @@ zh-CN:
   new_updates_in_the_last_24_hours_from: "来自%{site_name}的近24小时新更新"
   new_users: 新用户
   new_users_in_year: "在 %{year} 年的新用户"
-  new_users_w_7_obs: 新用户w/ 7观察
+  new_users_w_7_obs: 有不少于7个观察的新用户
   newly_added: 新添加
   newly_added_species: 新添加的物种
   newly_observed_species: 最近被观察到的物种：
@@ -2677,6 +2790,8 @@ zh-CN:
   next_tab: 下一标签
   next_taxon_short: 下一个
   'no': '否'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: 尚无新的应用
   no_assessments_have_been_added_to_this_project_yet: 此项目尚未添加任何评估。
   no_but_it_is_a_member_of_taxon: "不，但它是%{taxon}的成员之一"
   no_comments_yet: 尚无评论。
@@ -2690,8 +2805,8 @@ zh-CN:
   no_identifications_added:
     current_user: 您还没有向任何人的观察记录做过鉴定。
     user: "%{user}还没有对别人的观察添加过身份验证。"
-  no_ids: "ID 数量"
-  no_ids_have_been_suggested_yet: 没有建议ID
+  no_ids: "鉴定数量"
+  no_ids_have_been_suggested_yet: 没有建议鉴定
   no_interaction_data_available: 没有可用的交互数据
   no_its_as_good_as_it_can_be: 不，它已经足够好了
   no_favorites_added:
@@ -2714,9 +2829,10 @@ zh-CN:
   no_more_taxa_to_load: 没有更多要加载的分类！
   no_more_results_found: 找不到更多结果
   no_new_messages: 没有新消息
+  no_new_parent_specified: 未指定新的父项
   no_observations: 没有观察
   no_observations_from_this_place_yet: 尚无来自此地区的观察。
-  no_observations_matching_those_ids: 尚无匹配此ID的观察。
+  no_observations_matching_those_ids: 尚无匹配此鉴定的观察。
   no_observations_submitted: "没有提交观察！"
   no_observations_yet: 尚无观察
   no_one_has_added_any: 目前还没人为此地点添加任何记录
@@ -2731,6 +2847,7 @@ zh-CN:
   no_project_to_admin_current_user: "您不管理任何项目"
   no_project_to_admin_login: "%{login}不管理任何项目"
   no_projects_yet: 尚无项目
+  no_attached_range: 没有附加范围
   no_range_data_available: 没有范围数据可用。
   no_recent_activity: 没有最近活跃
   no_relevant_annotations: 没有相关的注释
@@ -2745,6 +2862,8 @@ zh-CN:
   no_species_on_this_list_for_owner: |
     您可以使用右边的“添加到您的列表”工具开始添加物种。
   no_subject_parens: "（无主题）"
+  no_such_wiki_page: 没有这样的页面。
+  no_such_wiki_page_html: 该页面不存在。你是否想 <a href="%{new_url}">创建它</a>？
   no_suggestions_available: 没有可用建议
   no_summary_from_wikipedia: 没有来自维基百科的概要
   no_summary_has_been_set: 尚无描述。
@@ -2756,7 +2875,7 @@ zh-CN:
   no_taxonomic_changes_match_those_criteria: 没有分类学的改变符合这些标准
   no_users_found_with_those_filters: 没有找到符合过滤规则的用户
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
-  noble_curators: "%{site}的博物馆长"
+  noble_curators: "%{site}的知名馆长"
   non_human?: 非人类？
   none: 无
   none_found: 未找到
@@ -2764,12 +2883,14 @@ zh-CN:
   not_atlased: 没有地图集
   not_completed: 未完成
   not_confident: 我们没有足够的信心来提出建议。
-  not_confident_top_suggestions: 我们没有足够的信心对此物种做出鉴定，但这是我们的10个最佳建议。
+  not_confident_top_suggestions: 我们没有足够的信心给出推荐鉴定，但这是我们的最佳建议
   not_covered_by_any_taxon_frameworks: 没有被任何分类单元所覆盖
   not_evaluated: 未评估
   not_findig_what_you_want: 找不到您想找的东西么？
   not_finding_place_you_want?: 找不到您想去的地点么？
   not_found: 未找到
+  #Filter for observations not in a particular place
+  not_in_place: 未处于位置
   not_linked_flickr: "您的%{site_name}账户并未链接至您的Flickr账户"
   not_on_this_list: 不在此列表中。
   not_recorded: 未记录
@@ -2786,14 +2907,21 @@ zh-CN:
   number_of_observers: "观察者人数"
   number_selected: "# 已选择"
   obs: 观察
-  obs_cid_d: 观察CID'd
-  obs_id_d: 观察ID'd
+  obs_cid_d: 得到社群鉴定的观察
+  obs_id_d: 被鉴定的观察
   obscured: 已遮盖
   obscured_or_private: 已掩盖或私有
   obscured_description: |
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
+  observation_accuracy_validator_email_subject: "您会帮助我们估计iNaturalist 观察的准确度吗？"
+  observation_accuracy_validator_email_will_you_help_us: |
+    您是否会帮助我们进行一次实验，以估计iNaturalist 观察的准确度？
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    我们十分感激您在 iNaturalist 上帮助鉴定，也十分感谢您参与本次研究。请先阅读<a href="%{url}">这篇博客</a>，了解有关本次实验的常见问题。
+  observation_accuracy_validator_email_with_gratitude: "此致  \n敬礼，"
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist 团队
   observation_added_to_the_project: "添加观察到项目“%{project}”"
   observation_aggregation: 观察聚合
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2812,6 +2940,10 @@ zh-CN:
   observation_brief_something_on_day_at_time: "在 %{day} %{time} 所记录的某些生物"
   observation_brief_something_on_day_at_time_by_user: "在 %{day} %{time}由 %{user}所记录的某些生物"
   observation_brief_something_on_day_by_user: "在 %{day}由 %{user}所记录的某些生物"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "%{year}年%{month}的记录"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "%{year}年%{month}用户%{user}的记录"
   observation_brief_something_by_user: "由%{user}所记录的一些生物"
   observation_brief_something_from_place: "来自 %{place} 的内容"
   observation_brief_something_from_place_by_user: "由使用者 %{user} 在 %{place} 所记录的内容"
@@ -2819,10 +2951,18 @@ zh-CN:
   observation_brief_something_from_place_on_day_by_user: "由使用者 %{user} 于%{day} 在 %{place} 所记录的内容"
   observation_brief_something_from_place_on_day_at_time: "于%{day} %{time} 在 %{place} 所记录的内容"
   observation_brief_something_from_place_on_day_at_time_by_user: "由 %{user} 于 %{day} %{time} 在 %{place} 所记录的内容"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{year}年%{month}在%{place}的记录"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "%{year}年%{month}由%{user}在%{place}的记录"
   observation_brief_taxon_on_day: "在 %{day} 所记录的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所记录的 %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "由 %{user} 于 %{day} %{time} 所记录的%{taxon}"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所记录的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{year}年%{month}的%{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{year}年%{month}由%{user}记录的%{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "来自 %{place} 的 %{taxon}"
   observation_brief_taxon_from_place_by_user: "由 %{user} 在 %{place} 所记录的 %{taxon}"
@@ -2830,20 +2970,30 @@ zh-CN:
   observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 于 %{day} 在 %{place} 所记录的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所记录的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 于 %{day} %{time} 在 %{place} 所记录的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{year}年%{month}在%{place}记录的%{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{year}年%{month}由%{user}在%{place}记录的%{taxon}"
   observations_by_category: "按分类排序观察"
-  observations_by_app: 通过应用观察
-  observations_by_rank: 按等级排序观察
+  observations_by_app: 观察，按应用分类
+  observations_by_rank: 观察，按分类级别分类
   observations_by_user_on_date: "由 %{user} 于 %{date} 进行观察"
   observations_by_you: "您的观察"
-  observations_by_you_on_date: "由您于 %{date} 的观察"
-  observation_calendar_for: "由 %{user} 于 %{year} 的观察日历"
+  observations_by_you_on_date: "您于%{date}的观察"
+  observation_calendar_for: "%{user}于%{year} 年的观察日历"
   #The limit is currently 20
   observations_can_only_have_n_photos: 观察记录只能有 %{limit} 张照片
   observation_curation: 观察策展
   observation_date: 日期
   observation_date?: 日期？
+  #Basic observation export fields
+  observation_export_column_type_basic: 基本
+  #Geographic observation export fields
+  observation_export_column_type_geo: 地理定位
   #Taxon-related observation export fields
   observation_export_column_type_taxon: 分类阶元
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: 分类单元额外值
   observation_field: 观察字段
   observation_field_details: 观察地区详情
   observation_field_type_text: 文本
@@ -2856,7 +3006,7 @@ zh-CN:
   observation_fields: 观察字段
   observation_fields_are_additional: 观察字段是可被添加到观察中的附加数据字段。
   observation_fields_by_preferences_description: |
-    观察字段有点像标签，不过任何人都可以默认地将它们添加到您的观察中。如果您希望只有您可以做到这一点，或者只有网站策展人，请改变此设置。
+    观察字段有点像标签，不过任何人都可以默认地将它们添加到您的观察中。如果您希望只有您或者只有网站馆长能做到这一点，请改变此设置。
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     例如：2019-10-29 13:12:21
@@ -2895,6 +3045,7 @@ zh-CN:
   observations_removed_from_the_project: "从项目“%{project}”中移除的观察"
   observations_saved: 观察报告已保存！
   observations_specifying_this_field: 指定此字段的观察
+  observations_specifying_this_field_with_value: 包含观察字段“%{value}”的观察
   observations_text_search_warning: |
     当与其他过滤器结合使用时，文本搜索可能产生怪异结果。如果您希望查找特定物种的观察，请使用分类过滤器。
   observations_this_year_vs_last_year: 今年的观察 vs 去年的观察
@@ -2905,6 +3056,7 @@ zh-CN:
   observations_widget: 观察小窗口
   observations_with_this_field: 有此字段的观察
   observations_with_this_field_and_value: 有此字段和此值的观察
+  observations_without_this_field: 无此字段的观察
   observations_without_media: 包含/不包含媒体的观察
   observationcounts_refreshed: 观察计数已刷新
   observed: 观察日期
@@ -2912,6 +3064,10 @@ zh-CN:
   observed_on: 观察于
   observer: 观察者
   observers: 观察者
+  observer_prefers_addition_to_traditional_projects_joined: |
+    观察者只允许别人将他们的观察添加到他们已经加入的项目中。
+  observer_prefers_no_traditional_project_addition: |
+    观察者不允许其他人把其观察记录添加到项目中。
   observer_short: 观察者
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
@@ -2922,14 +3078,14 @@ zh-CN:
     irregular: 存在不可预测，包含流浪生物。可能会在某些年份很常见而另一些年份不存在
     present: 在此区域发生
     uncommon: 定期发生，但数量较少，需要仔细寻找正确栖息地
-  occurrence_status_establishment_means: 发生状况，建立手段
+  occurrence_status_establishment_means: 发生状况，定殖途径
   occurrence_status_levels:
     present: 现存
     common: 普通
     uncommon: 罕见
     irregular: 无规律
     doubtful: 可疑
-    absent: 缺席
+    absent: 不存在
   of_places: 地点
   of_this_taxon: 属于此分类单元
   offensive_inappropriate: 冒犯性的/不恰当的
@@ -2964,17 +3120,21 @@ zh-CN:
     youve_got_updates_panel_body_p1: 随时关注以下更新...
     youve_got_updates_panel_body_p2: |
       <ul>
-         <li> <strong>您的内容：</strong>您的观察活动，例如来自%{site_name}社区的评论、标识或faves。当有人将您的观察结果添加到项目中，或使用其它字段对其进行注释时，您也会收到更新。</li>
-         <li> <strong>用户：</strong>您关注的人的新观察记录或日记帖子。</li>
-         <li> <strong>生物、项目和地点：</strong>来自您订阅的特定生物或地点的新观察结果。 您还可以加入项目，以便在发布项目日记帐帖子时进行更新。</li>
+         <li> <strong>您的内容：</strong>您的观察活动，例如来自%{site_name}社区的评论、鉴定或喜爱。当有人将您的观察结果添加到项目中，或使用其它字段对其进行注释时，您也会收到更新。</li>
+         <li> <strong>用户：</strong>您关注的人的新观察记录或日记。</li>
+         <li> <strong>生物、项目和地点：</strong>来自您订阅的特定生物或地点的新观察结果。 您还可以加入项目，以便在发布项目日记时进行更新。</li>
          <li> <strong>您参与的讨论：</strong>在其他人的内容中评论或添加标识会自动为您订阅此内容的任何新活动。使用“管理您的订阅”工具来停止接收更新。</li>
       </ul>
   one_by_one: "一个接一个"
-  one_of_your_lists: "您的列表中的一个..."
-  only_a_project_manager_can_add: 只有项目经理可以添加项目馆长状态
-  only_administrators_may_access_that_page: 只有管理员可以访问该页面
-  only_an_admin_can_remove_project_users: 只有管理员才能删除项目用户
-  only_curators_can_add_edit_scientific_names: 只有馆长可以添加/编辑科学名称。
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "以下之一必须为“是”："
+  one_of_your_lists: "您的列表之一..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    一个或多个输入分类群与超过 1000 个观察结果相关联，所以可能需要一些时间才能处理。 您确定此分类单元更改是必要的吗？请牢记分类单元更改不能撤消。
+  only_a_project_manager_can_add: 只有项目管理员可以添加项目馆长状态
+  only_administrators_may_access_that_page: 只有超管可以访问该页面
+  only_an_admin_can_remove_project_users: 只有超管才能删除项目用户
+  only_curators_can_add_edit_scientific_names: 只有馆长可以添加/编辑学名。
   only_curators_can_access_that_page: 只有馆长可以访问该页面。
   only_files_with_10000_rows_at_a_time: 一次只能处理10000行的文件，请
   only_one_coordinate_system_per_file: |
@@ -2984,36 +3144,39 @@ zh-CN:
   only_show_active_taxa: 只显示活跃的分类群
   only_show_events_that_last_less_than_2_weeks: 只显示最近不到2周内的活动
   only_show_for_species_subspecies_varieties_etc: 只显示种、亚种、变种等。
-  only_show_taxa_fom_this_list: "只显示此清单中的分类群"
-  only_showing_taxa_from: 只显示此清单中的分类群
+  only_show_taxa_fom_this_list: "只显示此列表中的分类群"
+  only_showing_taxa_from: 只显示此列表中的分类群
   only_staff_can_edit_large_places: 仅有网站工作人员可以编辑非常大的地点
   only_staff_can_edit_standard_places: 只有网站工作人员可以编辑标准层次中的地点
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   only_the_project_admin_can_delete_this_project: 只有项目管理员才能删除此项目。
   only_view_nearby_suggestions: 只查看附近的建议
   only_you: 只有您
+  #Geoprivacy status in which no privacy has been applied
   open: 打开
-  open_: 打开
+  #Geoprivacy status in which no privacy has been applied
+  open_: 公开
   open_description: "任何人可以查看观察，除非分类受到威胁。"
   open_street_map: 开放式街道地图
   optional: 可选
+  options: 选项
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
-  orange: 橙色
   order: 排序
   order_by: 排序方式：
   organism_is_wild: 生物是野生的
   organisms: 有机体
   original: 原文
+  original_flag: 原始标记
   originally_flagged_by: 最初标记来自于
   originally_imported_from_url_html: "最初导入来自于<a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "本图片的原始页面URL。"
   original_rights_holder: 原始版权持有者
   original_url_for_this_map: 本地图的原始URL
-  organism_appears_captive_cultivated: 生物似乎是被驯养/栽培
+  organism_appears_captive_cultivated: 生物似乎是被饲育/栽培的
   other: 其他
   other_animals: 其他动物
   other_lexicons: 其他辞典
@@ -3047,9 +3210,9 @@ zh-CN:
   overlapping_downstream_taxon_frameworks_html: "重复的下游物种分类框架数量：%{count}"
   owner: 所有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
-  parent: 父
+  parent: 上级
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
-  parent_name: 父名称
+  parent_name: 上级名称
   parental_consent:
     must_specify_email: 您必须指定一个电子邮件地址
     invalid_email: 无效的电子邮件格式
@@ -3057,6 +3220,7 @@ zh-CN:
   password_confirmation: '密码确认'
   password_change_description: 更改密码后，您的所有设备将从 iNaturalist 登出。
   password_change_logout_warning: 更改密码后，您的账号将被登出，请用新的密码重新登陆。
+  password_change_observations_warning: 您还将从iNaturalist 移动应用以及代表您发布到 iNaturalist 的其他应用或网站中登出。 请确保您已经上传任何待处理的观察记录才能这样做。 任何未上传的观察记录都将丢失。
   paste: 粘贴
   paste_in_a_bunch_of_names: 粘贴一系列名字，每行一个，然后点击按钮！
   people: 成员
@@ -3071,15 +3235,15 @@ zh-CN:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: 已由%{user_link}将<strong>ID</strong>加入至一个%{observation_link}
+      with_observation: '%{user_link}已为%{observation_link}添加了一个<strong>鉴定</strong>'
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
       without_observation: 添加了一个<strong>ID</strong>
     post: 制作了一个%{post_link}
     comment:
-      with_by: 由 %{by_link} 评论于 @vow_or_con{vow:an|a} %{comment_subject_link}
-      without_by: 评论于@vow_or_con{vow:an|a} %{comment_subject_link}
+      with_by: '%{by_link}对%{comment_subject_link}发布了评论'
+      without_by: 对%{comment_subject_link}发布了评论
   per_day: 每天
   per_month: 每月
   per_week: 每周
@@ -3092,8 +3256,12 @@ zh-CN:
   photo_credits: 照片出处
   photo_deleted: 照片已删除
   photo_destroyed_because_it_was_deleted_from: "图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限"
+  #Message displayed after a photo has been hidden
+  photo_hidden: 照片已隐藏
   photo_licensing: 照片许可协议
   photo_type: 照片类型
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: 照片已取消隐藏
   photo_urls_repaired: 修复的照片URL
   photos_chosen_for_this_taxon: 为此分类单元选择的照片
   photos_from: 照片来自
@@ -3110,12 +3278,36 @@ zh-CN:
     original: 原始
   photos_updated: 照片已更新。
   pi_consent_desc_title: 关于个人信息
+  pi_consent_desc_html: |
+    <p>
+    我们存储用户名和电子邮件地址等个人信息以管理本网站上的帐户，并遵守隐私法律，我们需要您选中此框以表明您同意对个人信息的这种使用。 要详细了解我们收集哪些信息以及我们如何使用这些信息，请参阅我们的<a href='%{privacy_url}' target='_blank'>隐私政策</a>和<a href='%{terms_url}' target='_blank'>使用条款</a>。 
+    </p>
+    <p>
+    如果不存储个人信息，就无法拥有 iNaturalist 帐户，因此撤销此同意的唯一方法是删除您的帐户。
+    </p>
   pi_consent_label: |
     我同意允许 iNaturalist 储存、处理关于我的有限个人信息，以便管理我的账号。
   pi_consent_child_label: |
     我同意允许 iNaturalist 储存、处理关于我子女的有限个人信息，以便管理我子女的账号。
+  data_transfer_consent_desc_title: 关于个人信息传输协议
+  data_transfer_consent_desc_html: |
+    <p>
+    有些数据隐私法，如欧洲联盟的《一般数据保护条例》（GPD）， 如果认为对个人信息的法律保护不充分，则要求明确同意将个人信息从其管辖区转移到其他管辖区。 截止到<a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020年</a>，欧洲联盟不再认为美国是为个人信息提供适当法律保护的管辖区。 特别是因为美国政府有可能对进入美国的数据进行监测。 其他法域可能也有同样的意见。
+    </p>
+    <p>
+    使用 iNaturalist 需要存储您的电子邮件地址等个人信息，所有iNaturalist 数据都存储在美国， 而且我们不能确定你在使用iNaturalist时拥有什么法律管辖权， 为了遵守诸如《通用数据保护条例》（GDPR）之类的隐私法， 您必须承认您理解并接受这种风险，并同意将您的个人信息传输到 iNaturalist 在美国的服务器。
+    </p>
+    <p>
+    要更多地了解我们收集的信息以及我们如何使用这些信息，请参阅我们的<a href='%{privacy_url}' target='_blank'>隐私政策</a>和我们的<a href='%{terms_url}' target='_blank'>使用条款</a>。 
+    </p>
+    <p>
+    如果不存储个人信息，就无法开设iNaturalist 账户。 所以撤销此同意的唯一方法是删除您的帐户。
+    </p>
+  data_transfer_consent_label: |
+    我同意将我的个人信息移交给美国
+  data_transfer_consent_child_label: |
+    我同意将我的孩子的个人信息移交给美国
   pin_verb: 置顶
-  pink: 粉色
   pinned_locations_desc: |
     将坐标、精度、地理定位和局部注释结合起来以供以后使用。
   place: 地方
@@ -3184,7 +3376,7 @@ zh-CN:
       land_feature: 地貌
       Local_Administrative_Area: 本地行政区域
       local_administrative_area: 本地行政区域
-      Local_Authority: 地方政权
+      Local_Authority: 地方行政区域
       local_authority: 地方政权
       Miscellaneous: 杂项
       miscellaneous: 杂项
@@ -3254,7 +3446,7 @@ zh-CN:
       village_block: 乡村街区
       Zone: 地区
       zone: 地带
-  place_guess: 地方猜想
+  place_guess: 地点猜测
   place_imported: 地点已导入！
   place_must_have_a_boundary_defined: 地点必须定义边界。
   place_name: 地名
@@ -3533,9 +3725,25 @@ zh-CN:
     zimbabwe: 津巴布韦
   places_of_interest: 名胜古迹
   places_merged_successfully: 地点已成功合并！
+  places_warning_look_for_existing2_html: |
+    寻找<a href="/search?source[]=places">现存地方</a>以确定你没有创建重复地方。我们已经设置了所有大洲和国家以及很多政治边界的地方。
+  places_warning_please_keep_in_mind: |
+    请铭记下列限制：
+  places_warning_projects_can_have_multiple_places: |
+    如果你希望创建一个项目边界，项目可以由多个地方组合而成。举例而言，如果你想做一个覆盖新西兰和澳大利亚的项目，你可以就把这两个地方的需求合并起来，而不是创建一个新地方。
+  places_warning_new_places_are_slow_html: |
+    新地方是iNat网站速度降低的最大原因之一，因此<strong>请考虑不要创建新的地方</strong>。仅包括几千个观察的小地方通常是没问题的，但如果你创建了一个包含大量观察的新地方，你将拖累到其他人访问iNat的速度。以下是一些备选方法：
+  places_warning_editing_places_is_slow: |
+    编辑地方边界是iNat网站速度降低的最大原因之一。如果您可以避开它，就请不要添加、更改或移除地方边界，除非它是绝对必要的。
+  places_warning_quota: |
+    您每天只能创建三个地方。
+  places_warning_the_future: |
+    出于效能考虑， 鉴于iNat目前的增长速度，我们必须对今后增加地方的条件进行限制。
   plants: 植物
+  play_first_sound: 播放第一个声音
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
   please_allow_a_few_weeks_for_external_sites: 请耐心等待几周，来让其他网站同步对这个观察的更改 #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: 请从您的家长处获得许可
   #Title to a section warning a user to exercise caution
   please_be_careful!: 请小心！
   please_complete_the_following_to_add_project: |
@@ -3554,6 +3762,10 @@ zh-CN:
   post_from_your_journal_html: 来自<a href="%{url}">您的日记</a>的帖子
   post_published: 贴子已发布！
   posted_by: 发帖人：
+  #Shows the date a journal post was published
+  posted_on_date_html: 发布于%{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: 由%{user}发布于%{date}
   posts: 帖子
   potential_disagreement: 潜在争论
   powered_by: 驱动方
@@ -3577,7 +3789,7 @@ zh-CN:
   privacy: 隐私政策
   private: 私有
   private_: 私有
-  private_description: "坐标已从地图中完全隐藏，真坐标只对您和您添加观察的项目的馆长可见。带私有坐标的观察仍将被使用以验证地点核对表。"
+  private_description: "坐标已从地图中完全隐藏，真坐标只对您和您添加观察的项目的管理员可见。带私有坐标的观察仍将被使用以验证地点核对表。"
   probably_spam: 可能是垃圾邮件
   proceed: 已处理
   processing: 处理中
@@ -3588,7 +3800,7 @@ zh-CN:
     为防止在 %{site_name} 上出现垃圾邮件，使用者的个人档案仅在使用者有贡献出数个研究等级的观察后才会公开可见。
   project: 项目
   project_admins:
-    other: 项目管理员
+    other: 项目超管
   project_aggregator_filter_error: |
     项目不能启用自动观察聚合，除非项目与中等大小的地点相关联，或者只允许对特定的分类群或在清单中的分类群进行观察
   project_assessments: 项目评估
@@ -3597,16 +3809,18 @@ zh-CN:
     您可以通过信任成员来查看隐藏的观察坐标。
   project_coordinate_access_disabled_until_datetime: |
     您将无法访问隐藏坐标，直到 %{datetime}
+  project_coordinate_access_warning: |
+    坐标访问对科学家而言是重要的，但也可能被偷猎者所滥用。在信任这个项目前一定要确定所有项目馆长可信。
   project_cover: 项目封面
   project_created_on: 于%{date}创建此项目
-  project_curator_id: 项目馆长ID
+  project_curator_id: 项目馆长鉴定
   project_curator_tools: 项目馆长工具
   project_curators: 项目馆长
   project_group_label: 组
   project_group_description: 将此项目分组至
   project_home: 项目首页
   project_icon: 项目图标
-  project_journal: 项目日志
+  project_journal: 项目日记
   project_id_or_url_slug: 项目ID或URL条，例如 333 或 my-project
   project_list: 项目列表
   project_list_defaults:
@@ -3624,6 +3838,8 @@ zh-CN:
   project_settings: 项目设置
   project_start_time_datetime: "开始时间：%{datetime}"
   project_that_does_not_contain_these_observations: 没有包括这些观察记录的项目
+  project_type_description: |
+    目前正在对一系列物种评估进行协作评估，这些评估通常是为了衡量保育的重要性。
   project_user_cannot_be_found: 找不到项目用户
   project_user_was_invalid: "项目用户无效：%{project_user}"
   project_was_successfully_created: 已成功创建项目。
@@ -3635,31 +3851,43 @@ zh-CN:
   #@vow_or_con should work on %{place}
   projects_from_place: "来自%{place}的项目"
   #"admins" is equivalent to "administrates"
-  projects_user_admins: 项目管理员 %{user}
+  projects_user_admins: 项目超管%{user}
   projects_you_admin: 您管理的项目
-  proposed_taxa_that_contradict_the_community_id: 与社区ID相冲突的待定分类单元
-  proposed_taxa_that_support_the_community_id: 支持社区ID的待定分类群
+  proposed_taxa_that_contradict_the_community_id: 与社群鉴定相冲突的待定分类群
+  proposed_taxa_that_support_the_community_id: 支持社区鉴定的待定分类群
   protozoans: 原生动物
   provider_authorizations: 提供方授权
+  provider_without_email_error_apple: |
+    苹果没有为该帐户提供电子邮箱地址，而这一地址是必要的。 请在本网站上创建一个帐户，而不是通过苹果账号注册。
+  provider_without_email_error_flickr: |
+    Flickr没有为该帐户提供电子邮箱地址，而这一地址是必要的。 请在本网站上创建一个帐户，而不是通过Flickr账号注册。
+  provider_without_email_error_generic: |
+    该服务没有为该帐户提供电子邮箱地址，而这一地址是必要的。 请在本网站上创建一个帐户，而不是通过第三方账号注册。
+  provider_without_email_error_google_oauth2: |
+    谷歌没有为该帐户提供电子邮箱地址，而这一地址是必要的。 请在本网站上创建一个帐户，而不是通过谷歌账号注册。
   public_domain: 公有领域
   publish: 发布
-  purple: 紫色
   quality_grade: 质量等级
   quality_grade_: 质量等级
   quality_grade_colon: "质量等级："
   queued: 已入队列
   query: 查询
   radius: 半径（m）
+  radius_km: 半径（km）
   radius_value: "半径（m）： %{radius}"
   random: 随机
   range: 范围
-  rank: 排名
-  rank_position: 分类阶层
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  rank: 分类阶层
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
+  rank_position: 排名
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
   ranks:
-    stateofmatter: 事件的国家
+    stateofmatter: 物态
     kingdom: 界
     x_kingdoms:
       other: 界
@@ -3801,7 +4029,7 @@ zh-CN:
   receive_project_journal_notifications?: 接收项目日记通知吗？
   receive_updates_from_this_project: 从此项目接收更新
   recent: 最近
-  recent_evidence_of_organism: 生物的最新证据
+  recent_evidence_of_organism: 近期的生物证据
   recent_exports: 最近导出
   recent_new_users: 最近的新用户
   recent_observations: 最新观察
@@ -3810,7 +4038,7 @@ zh-CN:
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "由 %{login} 做出的最新观察（Atom）"
   recent_observations_by: "由 %{login} 做出的最新观察"
-  recently_active: 最近的活动
+  recently_active: 最近活动
   recently_added: 最近添加
   recently_created: 最近创建
   recently_finished: 最近完成
@@ -3818,7 +4046,6 @@ zh-CN:
   recently_resolved: 最近已解决
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: 记录
-  red: 红色
   redo_search_in_map: 在地图中重新搜索
   redo_search_in_map_area: 在地图区域上重新搜索
   refresh: 刷新
@@ -3864,7 +4091,7 @@ zh-CN:
   remove_photo: 移除照片
   remove_place: 移除地点
   remove_range: 移除范围
-  remove_relationship: 移除关联
+  remove_relationship: 删除关系
   remove_relationship_caps: 移除关系
   remove_relationship_question: 是否移除关系？
   remove_section: 移除章节
@@ -3872,6 +4099,8 @@ zh-CN:
   remove_tags: 移除标签
   removed: 已移除
   removed_project_user: 已移除项目用户
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: 删除职位
   removing: "正在移除……"
   reorder_by_taxonomy: 按分类法重新排序
   repair_broken_urls: 修复损毁 URL
@@ -3890,9 +4119,15 @@ zh-CN:
   research_: 研究
   research_grade: 研究级别
   research_grade_short_html: "研<span class='full'>究</span>级<span class='full'>别</span>"
-  research_grade_tooltip_html: '“研究等级观察含有媒体、地点、日期和社区对确切鉴定结果（通常是在物种一级）的共识。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级</a>'
-  research_grade_observations_have: '达到“研究级别”的观察须具备观察日期、照片、坐标，以及由社区支持的鉴定结果。点击查看数据质量评估标准。'
+  research_grade_tooltip_html: '“研究等级”观察含有多媒体资料、时间、地点，并且社群对鉴定结果（通常在物种一级）已经达成共识。 <a href="https://www.inaturalist.org/pages/help#quality">了解关于质量等级的更多信息</a>'
+  research_grade_observations_have: '达到“研究级别”的观察须具备观察日期、照片、坐标，以及由社群支持的鉴定结果。点击查看数据质量评估标准。'
   research_grade_qualification: 研究级资质
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: 重新发送并登出
+  resend_confirmation_email: 重新发送确认邮件
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: 重设
   reset_filters_short: 重设
   reset_brightness: 重新设定亮度
   reset_search_filters: 重置搜索过滤器
@@ -3905,29 +4140,43 @@ zh-CN:
   restart: 重启
   restore: 恢复
   restoring: 正在恢复...
+  result_window_too_large_error: |
+    每个页面的结果数量不能超过10000个。尝试应用过滤器来减少结果数量。
   review_all: 复核全部
+  review_identifications_of_taxon_html: |
+    评估<span class="sciname">%{taxon}</span>%{taxon_id}的鉴定
   reviewed: 已复核
   revoke: 撤销
   revoke_caps: 取消
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "收回 %{site_name}的权限?"
+  revoke_privacy_consent_warning: "撤销此同意的唯一方法是删除您的帐户和所有相关数据。"
   rg_observations: RG观察
   role: 角色
   rotate_left: 向左旋转
   rotate_right: 向右旋转
   row_singular_or_plural: 行
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    要测试从右向左布局？你还可以使用test=rtl URL参数。注意不是所有页面都已经被改为从右向左布局。
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: 加入从右向左布局测试
   rules_and_formatting: "规则和格式"
   rules_for_adding_observations: 添加观察的规则
   rules_for_becoming_a_member: 成为成员的规则
   rules_types:
-    must_be_captive: 必须是圈养或是栽培的
+    must_be_captive: 必须是饲育或栽培的
     must_be_georeferenced: 必须有地理参考
     must_be_identified: 必须被认证
     must_be_on_list: 必须在清单上
     must_be_observed_in_place: 必须在原地观察
     must_be_in: 必须在分类群中
     must_be_coordinates_shareable_by_project_curators: 观察者必须允许项目馆长查看坐标。
+    must_be_verifiable: 必须可被验证
     must_be_wild: 必须是野生的
   running_total: 运行总计
   said: 说
@@ -3946,7 +4195,7 @@ zh-CN:
   save_identification: 保存鉴定
   save_observation: 保存观察
   save_photos: 保存照片
-  save_place: 保存地点
+  save_place: 保存地方
   save_settings_caps: 保存设置
   save_trip: 保存旅行
   saved: 已提交
@@ -4014,6 +4263,10 @@ zh-CN:
   selected_taxon: 已选择的分类单元
   select_this_taxon: 选择此分类单元
   send: 发送
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: 发送并登出
+  send_confirmation_email: 发送确认邮件
   send_me_reset_password_instructions: 向我发送有关重置密码的说明
   sending: 正在发送...
   #Label for messages you've sent
@@ -4023,6 +4276,7 @@ zh-CN:
   set_license: 设置许可协议
   settings: 设置
   share: 分享
+  share_caps: 分享
   share_colon: "分享："
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   short_or_abbreviated_title_for_display: 在空间有限的区域显示简短或缩写的标题。 最多10个字符。
@@ -4030,6 +4284,8 @@ zh-CN:
   show_active_and_inactive_taxa: 显示有效和无效的分类群
   show_hidden_content: 显示隐藏内容
   show_history_by_this_user: 显示此用户的历史记录
+  show_history_for_this_kind_of_action: 显示此类动作的历史
+  show_history_for_this_record: 显示该记录的历史
   show_keyboard_shortcuts: 显示键盘快捷键
   show_less: 显示更少
   show_more: 显示更多
@@ -4040,7 +4296,7 @@ zh-CN:
   show_no_annotation: 显示“无批注”
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
-  show_relative_proportions_of_all_observations: 显示所有观察的相关尺寸
+  show_relative_proportions_of_all_observations: 显示所有观察的相对比例
   #Label for a button to show the running total of an accumulation chart
   show_running_total: 显示运行总计
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
@@ -4067,22 +4323,54 @@ zh-CN:
   #Journal post formatting option
   simple: 简单
   single_observation: 单一观察
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}的%{year}年度回顾"
   sizes: 尺寸
   skip_to_next_page: "跳至下一页"
   small: 小
   site_admin_tools: 网站管理工具
   #People who administrate a particular iNaturalist Network partner
-  site_admins: 站点管理员
+  site_admins: 网站超管
   site_name_place: "地点%{site_name}"
   site_observations_export_from_date: "于%{date}导出的%{site_name}观察"
-  site_site_admin: "%{site_name} 网站管理员"
+  site_site_admin: "%{site_name} 网站超管"
   site_staff: "%{site_name} 人员"
   site_stats: 网站统计
   site_taxon_page: "%{site_name}分类单元页"
+  sites_affiliation_about_desc_html: |
+    如果您的组织有兴趣加入iNaturalist网络，您可以在%{start_tag_join}这里%{end_tag_join}找到更多详情。
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist厄瓜多尔%{end_tag_ecuador}将数据提供给厄瓜多尔国家生物多样性数据库（BNDB），这是包含科研数据和公民科学数据的大型储存站点。其目的是整合现有知识和数据，为加深世论对厄瓜多尔植物志和动物志的了解做出帮助。
+  sites_affiliation_examples_mexico_nbis_html: |
+    墨西哥的%{start_tag_naturalista}iNaturalista%{end_tag_naturalista}观察将和eBird一起被提供给国家生物多样性信息系统（隶属于国家生物多样性委员会CONABIO）。大家可以在%{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}上同时找到科学界和公民科学的观察记录。
+  sites_affiliation_examples_portugal_atlas_html: |
+    葡萄牙的iNaturalist网络成员%{start_tag_portugal}BioDiversity4All%{end_tag_portugal}会将记录到的数据分享给《葡萄牙候鸟地图集》、《葡萄牙哺乳动物地图集》等一系列葡萄牙科研期刊。
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    自动隐藏坐标(因“分类群地理隐私”而遮挡或私有化位置)
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist 自动隐藏某些物种的坐标，以保护这些物种免受扰动、收集或偷猎。 如果观测坐标只是自动隐藏以保护物种，iNaturalist会对来自其所属国家的网络成员分享所有观察的真实坐标。
+  sites_affiliation_more_email_addresses: |
+    电子邮件地址仅为与网站相关的通信目的与网络成员共享。
+  sites_affiliation_more_twice_per_year: |
+    iNaturalist每年两次将相关账号的邮箱地址和一些隐藏的坐标（即被设置公开遮挡或私有的坐标）分享给iNaturalist网络成员，以将iNaturalist数据提供给相关区域的研究、保护和管理机构使用。两种不同的坐标隐藏方式会通过不同的方法进行分享，请参见下文的描述。
+  sites_affiliation_more_user_hidden_coordinates: |
+    用户隐藏坐标(因为“地理隐私”设置而变得模糊或私有)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    由用户意见进行坐标隐藏的观察通过一种更为有限和特别的方式进行分享。通过和网络站点向关联，inNaturalist将会和站点超管分享被您设置或是因分类群位置隐私而被自动设置为已遮盖或是私有的的观察的精确坐标。这会让您的观测对当地的物种保护工作产生更大的价值。
+  sites_affiliation_overview_current_member_list_html: |
+    你可以在%{start_tag_network}iNaturalist网络%{end_tag_network}查看当前的成员列表。
+  sites_affiliation_overview_in_order_to_advance: |
+    为了促进各自地区的研究和保护，网络成员可以得到iNaturalist所分享的数据。 它们有责任评估数据请求的有效性和适当性及其潜在后果； 也有责任以书面表态形式确保此种数据的安全性，不以任何方式公开。 或共享或超出原定目的地进行使用；他们会记录所有共享的实例以及相关的结果、结果或预期用途；并每年一次地向iNaturalist报告。
+  sites_affiliation_overview_when_you_affiliate: |
+    当您与 iNaturalist 网络成员关联时， 您的电子邮件地址和您已遮盖或设为私有的真实位置就会与网络成员共享。 这将让你的观察能更好地对对当地的保护工作产生价值。 如果您生活在或经常访问一个属于某网络成员的区域，鼓励您关联这一网络成员，以便于数据共享。
+  sites_affiliation_title: 了解更多关于网络关联的信息
   sites_network_agreements_html: |
     为了支持用户使用 iNaturalist 平台，iNaturalist 已经与这些地区的组织达成了正式协议。
     <strong>如果您的组织有兴趣加入 iNaturalist 网络，您可以在%{start_tag_join}这里%{end_tag_join}了解更多细节。
     </strong>
+  sites_network_consists_of: "iNaturalist网络由以下几个组织组成："
+  sites_network_your_username: |
+    您的用户名和密码适用于所有iNaturalist Network的网站。 如果您选择加入一个网络站点， 支持每个站点的本地机构也可以访问您的电子邮件地址(仅与您进行有关站点活动的联系)和访问您在公开场合下选择隐藏或私有的真实坐标。
   some_agree: 部分同意
   some_observations_are_missing_media_or_identifications: |
     有些观察缺少媒体（照片/音频）或鉴定
@@ -4095,7 +4383,7 @@ zh-CN:
   some_of_those_photos_couldnt_be_saved: "某些照片无法保存：%{error}"
   some_other_reason: 您可以在下方说明其他一些原因。
   duplicate_observation_flag_warning: |
-    请让观察者解决重复观察而不是添加一个标记，因为网站管理员不能删除观察。
+    请让观察者解决重复观察而不是添加一个标记，因为网站馆长不能删除观察。
   some_rights_reserved: 保留部分权利
   something: 某生物
   something_: 一些事
@@ -4152,7 +4440,7 @@ zh-CN:
     nzbrn_mammals: NZBRN哺乳类
     nzbrn_plants: NZBRN植物
     nzbrn_other: NZBRN其他
-    catalogue_of_life_2012_annual_checklist: '生命目录：2012年度检查表'
+    catalogue_of_life_2012_annual_checklist: '生命目录：2012年度监视列表'
     catalogue_of_life_2013_annual_checklist: '生命目录：2013年度清单'
   source_eg:
     title: '例如：Snakes: The Evolution of Mystery in Nature'
@@ -4184,7 +4472,7 @@ zh-CN:
   standard: 标准
   start: 开始
   start_a_new_project: 开始一个新项目
-  start_a_project: 启动一个计划
+  start_a_project: 发起一个项目
   start_date_time: 开始日期/时间
   start_one: 开始一个
   start_one_now: 马上开始吧！
@@ -4195,6 +4483,10 @@ zh-CN:
   stats: 统计
   stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   status: 状态
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>状态来自于更高级别的分类单元</strong>%{taxon}
   status_globally: '全球 %{status}'
   status_in_place: '在 %{place} 为 %{status}'
   stay_and_try_again: 停留并重试
@@ -4213,12 +4505,12 @@ zh-CN:
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
   subject_affecting_stuff_html: "%{subject} 正在影响 %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} 承诺 %{thing} 做 %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} 提交了涉及%{stuff}的%{thing}"
   submission_model: 提交模式
   submission_model_description: 谁可以添加观察至您的项目？
   submit_observations:
     other: 提交 %{count} 个观察
-  submitted: 提交于
+  submitted: 提交日期
   subscribe_to_a_taxon: 订阅分类单元
   subscribe_to_a_place: 订阅地点
   subscribe_to_comments_on_this_flag_html: "%{tag_start}订阅%{tag_end} 关于此标记的评论"
@@ -4228,6 +4520,7 @@ zh-CN:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}订阅%{tag_end}对此分类阶元合并的评论"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}订阅%{tag_end}对此分类阶元拆分的评论"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}订阅%{tag_end}对此分类阶元剔除的评论"
+  subscribe_to_observations_from_this_place_html: <a>订阅</a>此处的观察
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
   subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
   subscribe_to_this: 订阅此
@@ -4239,10 +4532,14 @@ zh-CN:
   suggest_an_identification: 建议一次鉴定
   suggest_or_require_that: 建议或要求贡献者在将观察添加到项目中时填写这些字段。
   suggestions: 建议
+  suitable_for_the_global_biodiversity_information_facility: 适用于全球生物多样性信息设施（GBIF）
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: 适合维基百科和其他维基百科基金会项目
   summary: 摘要
   supporting: 支持
   suspend_user: 停用用户
+  suspend_user_html: 停用%{user}
+  suspend_user_reason_instructions_html: |
+    解释一下为什么您要停用这个账户，并标注出其违反的%{link_start_tag}社区指导规则%{link_end_tag}条款。请不要添加个人成见。
   sw_lat: 西南纬度
   sw_lon: 西南经度
   sync: 同步
@@ -4256,15 +4553,19 @@ zh-CN:
   tags: 标签
   tags_are_a_way: '标签是一种组织您的观察的方式。例如，您可以将所有潮池观察点标记为“tidepools”，便于以后查找。'
   take_me_flickr!: 是的，带我去Flickr！
+  target_list_alert: 您确定要观察目标列表所涵盖的所有物种吗？ 请记住，您没有观察到的目标列表所包含的任何东西都会被解释为缺失，因此确认您的目标列表准确地反映了您试图发现的物种是非常重要的。
+  target_list_warning: 请记住，目标列表中包含的任何您在活动范围和周期之内没有观察到的东西都会被解释为缺失。 您的目标列表准确地反映了您试图发现的物种是非常重要的。如果您没有尝试发现您的目标列表中所包含的所有物种， 请删除它。
   task_deleted: 任务已删除
   taxa: 分类单元
+  taxa_show_obs_photo_search_tip: |
+    提示：如果您想要从特定观察中选择照片，请在搜索字段中输入观察记录的ID。
   taxa_with_unknown_relationships: 含有未知关系的分类
   taxa_info: 分类群信息
   taxa_needing_curation: 需要策展的分类群
   taxa_observed: 观察到的分类群
   taxa_to_include: 包含的分类群
   taxon: 类群
-  taxon_autocomplete_placeholder: 鸟、君主等
+  taxon_autocomplete_placeholder: 鸟、黑脉金斑蝶等
   taxon_geoprivacy: 分类地理敏感信息
   taxon_is_a_rank: "%{taxon}是一个%{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
@@ -4298,12 +4599,20 @@ zh-CN:
   taxon_is_kingdom_of_life_with_x_observations:
     other: "%{taxon}属于生物界，共有%{count}次观察"
   taxon_is_threatened_coordinates_hidden: 分类单元为受到威胁状态，默认隐藏坐标
+  taxon_is_threatened_coordinates_hidden_desc: |
+    由于一个鉴定中所建议的分类单元，或者鉴定中所建议的任何分类单元之一数量极少和/或受到威胁，此观察记录的位置已被隐藏。
   taxon_is_threatened_coordinates_obscured: 分类单元为受到威胁状态，默认隐藏坐标
+  taxon_is_threatened_coordinates_obscured_desc: |
+    由于一个鉴定中所建议的分类单元，或者鉴定中所建议的任何分类单元之一数量极少和/或受到威胁，此观察记录的位置已被遮盖。
   taxonomy: 分类学
   taxon_assessments_are: |
     分类评估是评估物种现状的文档，通常是其保护状况。
     例如，一个区域保护组织可能会利用它们来组织信息并调查关于该地区几个受威胁的分类群状况的反馈。
+  taxon_change_commit_may_still_be_processing: |
+    分类单元更改提交可能仍在处理中，因此请注意一些记录尚未被更新
+  taxon_change_must_be_committed_to_update_records: 必须提交分类单元更改才能更新记录
   taxon_change_title_taxon_drop: 分类学剔除 %{id}
+  taxon_change_title_taxon_merge: 分类学合并 %{id}
   taxon_change_title_taxon_split: 分类的拆分 %{id}
   taxon_change_title_taxon_stage: 分类的阶段 %{id}
   taxon_change_title_taxon_swap: 分类学交换 %{id}
@@ -4319,20 +4628,46 @@ zh-CN:
     overlays: 覆盖图
   taxon_changes: 分类单元更改
   taxon_colors: 分类单元颜色
-  taxon_curators: 物种馆长
+  taxon_curators: 分类单元馆长
   taxon_framework_complete: "完成：是"
   taxon_framework_deviations_with_count_html: "偏移: %{count}"
   taxon_framework_relationships_with_count_html: "分类单元框架关系: %{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "被标记的已覆盖分类群：%{count}"
   taxon_framework_notes: 分类单元注释
+  taxon_framework_relationship: 分类单元框架关系
+  taxon_framework_relationship_number: "分类单元框架关系%{number}"
+  taxon_framework_relationship_unknown_count_html: "关系不明计数：%{count}"
   taxon_framework_relationships: 分类阶元框架关系
+  taxon_framework_taxon: 分类单元框架分类
+  taxon_history_notice: 历史功能是2022年2月引入的，因此在此时之前没有历史记录。
   taxon_merge: 分类单元合并
   taxon_name: 分类单元名称
   taxon_name_must_match_an_existing_taxon_in_our_database: 分类单元名称必须与我们数据库中的现有分类单元匹配
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a>，观察者是
   taxon_observed_by_user: "%{taxon}，由 %{user} 观察到"
   taxon_photos_updated: 分类单元照片已上传！
   taxon_range: 分类单元范围
   taxon_range_created_notice: 分类单元范围已成功创建。请等几分钟它就会出现在地图上。
+  taxon_range_for_taxon_html: '%{taxon}的分类群范围'
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: 这是否是国际自然保护联盟（IUCN）红色列表范围图，如果不是的话，为什么？
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: 这是国际自然保护联盟（IUCN）的红色列表范围图
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: 这不是国际自然保护联盟（IUCN）的红色列表范围图，因为该地图不匹配
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: 这不是国际自然保护联盟（IUCN）的红色列表范围图，因为这个分类单元不在IUCN的红色列表中
+  taxon_range_guidelines_each_taxon_can_have: 每个分类单元只能有一个分类单元范围。分类单元范围必须代表全球分布。
+  taxon_range_guidelines_if_you_are_not_uploading: "如果你没在上传国际自然保护联盟（IUCN）红色清单范围地图，这应该是由于："
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: 国际自然保护联盟红色名录范围图与此分类单元不匹配
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    例如，你手动缩小了它的范围，以反映在国际自然保护联盟（IUCN）红色清单上没有代表的分类分割，或者IUCN红色清单范围地图有重大错误，使其无法显示。
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: 此分类单元不在国际自然保护联盟（IUCN）红色列表内
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    例如，这个分类单元与国际自然保护联盟（IUCN）红色清单上的另一个分类单元相混合，所以你已经手动将它剥离，或者该分类单元缺少IUCN红色清单评估和范围图。
+  taxon_range_guidelines_please_provide_details: |
+    请使用描述来解释地图是如何生成的，并链接到任何相关的标记和分类分割上。 或讨论说明为什么要修改已发布的国际自然保护联盟红色列表范围。
+  taxon_range_guidelines_learn_more_about_taxon_ranges: 了解更多关于分类单元范围的信息
   taxon_range_updated_notice: 分类单元范围已成功更新。请等待几分钟就会在地图上显示更改。
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: 分类单元级别
   taxon_removed_from_list: 分类单元已从列表中移除
   taxon_scheme: 分类单元方案
@@ -4384,10 +4719,10 @@ zh-CN:
   that_was_the_last_observation_matching_the_current_filters: 这是当前过滤器所匹配的最后一个观察。
   thats_not_a_real_date: 那不是一个正确的日期！
   the_admin_is_the_person_who: |
-    管理员是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
+    超管是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
   the_below_items_are_needed_to_achieve: |
-    下列项目需要达到<span className="bold">研究等级：</span>
-  the_community_id_requires_at_least_two_identifications: 社区ID至少需要两个标识。
+    要达到<span className="bold">研究等级</span>需要下列项目：
+  the_community_id_requires_at_least_two_identifications: 社群分类需要至少两个鉴定。
   the_community_must_feel_that: |
     社区必须认为此社区ID是最好的，它可以基于如下证据
   the_following_observations_could: "无法将以下观察添加到%{link}"
@@ -4395,6 +4730,8 @@ zh-CN:
   the_identotron_is_a_tool_to: |
     Identotron 是一个使用%{site_name}的检索表数据来帮助您鉴定观察记录的工具.  在给出一个上级分类单元和地点(比如印度的哺乳动物)后, %{site_name} 会寻找检索表中于此地点的匹配项, 类似于一个全球动态数据指南. 目前大部分检索表都在完善中, 但如果一个检索表足够全面, 即列出在一个地点的 <em>所有</em> 分类单元, Identotron 将会显示一个通知.
   the_name_of_the_taxon_including_space: 分类单元名称，包括物种和亚种的空间。
+  the_name_of_the_taxon_dashes: 分类单元名称，空格替换为短横线。
+  the_name_of_the_taxon_underscores: 分类单元名称，空格替换为下划线。
   the_observation_was_already_added_to_that_project: 观察已被添加到该项目中。
   the_people_of_inat: "%{site_name}的人"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4426,8 +4763,10 @@ zh-CN:
   there_were_some_problems_with_fields: "以下字段存在问题："
   there_were_some_problems_with_these_files: "这些档案出现了一些问题："
   theres_something_wrong_with_taxon_framework_relationship: 这里有些问题-我们无法确定任何内部和外部分类群之间的关系
+  therefore_committing_additional_taxon_changes: 因此，在进行分类群交换后再进行分类单元调整是没有必要的。
+  therefore_committing_taxon_changes: 因此，在进行祖先改变之后再进行分类单元调整是没有必要的。
   these_are_items_people_on: |
-    这些是被网站上的人们标记为待处理的项目。垃圾信息评论应被删除，并且应该暂停发布垃圾信息的用户（转到他们的个人资料页面，并点击右下角的“暂停用户”以阻止他们登录）。其他被标记的项目只有当其明显令人厌恶、不合法时才应被删除。粗鲁，有冒犯性的语言等应该报以礼貌的评论。多次违规者应被报告给网站管理员或发送至%{email}
+    这些是被网站上的人们标记为待处理的项目。垃圾信息评论应被删除，并且应该暂停发布垃圾信息的用户（转到他们的个人资料页面，并点击右下角的“暂停用户”以阻止他们登录）。其他被标记的项目只有当其明显令人厌恶、不合法时才应被删除。粗鲁，有冒犯性的语言等应该报以礼貌的评论。多次违规者应被报告给网站超管或发送至%{email}
   these_are_taxa_that: |
     这些是由于某些原因，%{site} 网站不能自动加入到我们的分类树中的分类群。您可以通过编辑分类单元并选择一个父记录加入它们。例如现代人的父分类是人属。您也可能希望检查同义词分类群并合并它们。
   these_folks_kindly_volunteer_to: 这些热心的志愿者帮助维护我们的分类并处理其他问题。
@@ -4445,6 +4784,7 @@ zh-CN:
   this_is_more_convenient_way_find_parent: 这是查找父ID的便捷方法。它是实际存储的父ID。
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     这是查找分类单元ID的便捷方法。这是实际存储的分类单元ID。此搜索仅适用于活跃的分类群。
+  this_is_how_taxon_names_will_be_displayed: 这是在整个%{site_name}站点上分类单元名称的显示方式
   this_is_taking_forever: 无响应。请稍后再试。
   this_is_the_primary_listing: 这是主要列表
   this_is_your_observation: 这是您的观察记录
@@ -4459,7 +4799,7 @@ zh-CN:
   this_observation_is_research_grade: 此观察达到了研究级！
   this_observation_was_created_using: "此观察的创建使用了："
   this_photo_is_already_associated: 此照片已与您的某个观察相关联。
-  this_place_has_no_check_list: "此低点没有监视列表。"
+  this_place_has_no_check_list: "该地点没有监视列表。"
   this_taxon_change_has_been_commited: |
     <strong>此分类单元更改已经提交！</strong>请不要编辑分类群。可以编辑其他字段。
   this_taxon_concept_is_inactive: 此分类单元概念已不活跃
@@ -4476,12 +4816,25 @@ zh-CN:
     如果这是您的账户，并且您认为这样做是错误的，请<a href="mailto:%{email}">联络我们</a>。
   this_will_add_listed_taxa: 这将添加从观察中列出的分类单元。这可能需要一段时间，所以请谨慎，请尽量在较小的清单上使用
   this_will_refresh_listed_taxa: 这将刷新从观察中列出的分类单元。这可能需要一段时间，所以请谨慎，请尽量在较小的清单上使用
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    这会让iNaturalist在您再次授权之前无法再以您的名义访问这一账号。您可能还需要更改外部站点的设置才能完全避免访问。
+  #Application is an app or service the user has authorized to access their
+  #iNat account
+  this_will_sign_you_out_current_session: 这将使您在这个应用程序上退出当前会话。
   this_will_try_to_add_tags_to_your_flickr: 这将尝试为您的Flickr照片添加标签。要继续吗？
   this_year: 今年
   those_observations_no_longer_exist: 这些观察已不存在。
   threatened: 受到威胁
   time_: 时间
   time_ago: "%{time}前"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: 欧洲中部时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: 南非时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: 东非时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: 阿根廷时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: 哥伦比亚时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4499,13 +4852,99 @@ zh-CN:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: 秘鲁时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: 太平洋时间（美国和加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: 中部时间(墨西哥)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: 东部时间(美国和加拿大)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: 亚利桑那时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: 大陆智利时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: 巴西利亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: 太平洋时间(墨西哥)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: 阿拉伯标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_bangkok: 中南半岛时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: 香港时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: 西印度尼西亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: 以色列标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: 印度标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: 克拉斯诺亚尔斯克时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: 中国标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: 新加坡标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: 台湾时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: 日本标准时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: 叶卡捷琳堡时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: 阿德莱德时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: 布里斯班时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: 墨尔本时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: 珀斯时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: 悉尼时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: 国际协调时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: 欧洲中部时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_athens: 欧洲东部时间
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: 东欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_istanbul: 土耳其时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: 东欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: 西欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: 西欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: 莫斯科时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: 东欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: 中欧时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: 萨摩亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: 新西兰时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: 夏威夷-阿留申时间：
   #As in the title of a book or a blog post
   title: 标题
   title_and_description: "标题和描述"
@@ -4521,13 +4960,18 @@ zh-CN:
   top_contributors: 顶尖贡献者
   top_identifier_caps: 最多鉴定记录的用户
   top_identifiers: 最佳鉴定者们
-  top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
+  top_identifiers_of_taxon: '%{taxon}的顶尖鉴定者'
   top_observer_caps: 最多观察记录的用户
   top_observers: 最多观察者
+  tos_privacy_guidelines_label: |
+    我同意<a href="/terms" target="_blank">使用条款</a>和<a href="/privacy" target="_blank">隐私政策</a>，我也阅读了<a href="/pages/community+guidelines" target="_blank">社区指导规则</a>。
   total: 总计
   totals: 总计
+  total_ids_on_input_taxon: "输入分类的鉴定总数："
   total_members: 成员总数
   total_observations: 总计观察
+  total_observations_caps: 观察记录总数
+  total_species_observed_caps: 总共被观察到的物种
   total_unique_observers: 总计独立观察者
   translated_languages: 翻译的语言
   'true': '是'
@@ -4536,7 +4980,7 @@ zh-CN:
   trip_target_list_info: '本目标清单所涵盖的任何物种，如果在本次旅行的半径和持续时间内未被观察到，将被认为不出现。<a href="/pages/trips">了解更多细节</a>。'
   #Noun
   trust: 信任
-  trusted: 受信
+  trusted: 信任
   trusted_project?: 可信任的项目？
   trust_this_person_with_your_private_coordinates: 信任此人并向其显示您的隐藏坐标
   trust_this_project_with_your_private_coordinates?: 信任此项目并向其显示您的隐藏坐标吗？
@@ -4554,7 +4998,8 @@ zh-CN:
   type_species_name: "输入物种名称"
   type_taxon_name: "输入分类名称"
   uicn_red_list_status: "IUCN红色名录状态："
-  umbrella_projects: 雨伞项目
+  umbrella_projects: 伞形项目
+  unable_to_save_comment: 对不起，我们无法保存这一评论。
   unblock: 解封
   unclassified: 未分类
   ungrafted_taxa: 未分类的分类群
@@ -4562,11 +5007,14 @@ zh-CN:
   unhide_desc: |
     取消隐藏将会导致此內容让任何人可见，而管理者仍可在之后选择继续隐藏。
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
-  unique_observers: 唯一观察者
+  unique_observers: 独立观察者
   unknown: 未知
   unknown_error: 未知错误
   unknown_rank: '（未知排名）'
-  unfollow: 不关注
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: 取消关注观察
+  #Text for a button to stop following updates from a user
+  unfollow_user: 取消关注用户
   unlink_your_google_account: 取消链接您的Google账户
   unlink_your_flickr_account: "取消连接至您的 Flickr 账号"
   unmute: 取消禁言
@@ -4581,6 +5029,9 @@ zh-CN:
   unsubscribe: 取消订阅
   unsubscribe_from_emails_like_this: 取消订阅此类邮件
   unsuspend_user: 停用用户
+  unsuspend_user_html: 解除停用%{user}
+  unsuspend_user_reason_instructions: |
+    请解释您为什么要解除停用此用户。
   upcoming_bioblitzes: 即将到来的bioblitzes
   update: 更新
   update_existing_observations_with_new_license: 更新现有的观察为新选择的许可协议
@@ -4598,7 +5049,7 @@ zh-CN:
   update_your_content: 更新您的内容
   update_with_eol_content: 使用EOL内容进行更新
   update_with_site_content: "使用%{site_name}内容进行更新"
-  updated: 已更新
+  updated: 已更新于
   updated_by: 更新者
   updated_by_user_on_date_html: 由 %{user} 于 %{date} 更新
   updated_daily: 每日更新
@@ -4630,9 +5081,10 @@ zh-CN:
       upload_failed: 上传失败。
   uploading_num_of_count_photos:
     other: 正在上传 %{num} 张照片，共 %{count} 张...
+  url_for_your_app_outside_of_inaturalist: 您在 iNaturalist 之外的应用程序的 URL
   url_identifier_of_a_project_derived_from: "由同一外部资源衍生出来的URL/项目标识符"
   url_of_this_taxon_on_the_source_website: 此分类在来源网站上的URL
-  usage_stats: 用法状态
+  usage_stats: 使用状态
   use_name_as_a_placeholder: |
     使用<span class='ac-placeholder'>"%{name}"</span>作为一个占位符
   use_this_form_to_create_a_new: |
@@ -4649,12 +5101,12 @@ zh-CN:
   user1_and_user2_faved_this_observation: "%{user1} 和 %{user2} 收藏了此观察"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}和 %{x_others} 收藏了此观察"
   user_added_a_comment_html: "%{user} 添加了一条评论"
-  user_added_a_fave_html: "%{user} 添加为喜爱"
+  user_added_a_fave_html: "%{user} 加入收藏夹"
   user_added_a_flag_html: "%{user} 添加了一个标记"
   #@gender operates on %{x}
   user_added_a_x: "%{user} 添加了一个 %{x}"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至%{by}的%{noun}"
   #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
   #@gender operates on %{x}
@@ -4677,6 +5129,7 @@ zh-CN:
   user_added_an_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
   user_added_x_observations_html: "%{user}添加了%{x}个观察"
   user_already_authenticated: 用户已通过身份验证
+  user_already_app_owner: 用户已经是应用程序所有者
   user_autocomplete_placeholder: 柯达、西蒙123等
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -4690,7 +5143,7 @@ zh-CN:
   user_faved_this_observation: "%{user} 收藏了此观察"
   user_flagged_as_a_non_spammer_html: "%{user} 被标记为非垃圾邮件发送者"
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
-  user_has_opted_out_of_community_id: 用户已选择退出社区ID
+  user_has_opted_out_of_community_id: 用户已选择退出社区分类单元
   user_hasnt_joined_any_projects: "%{user} 还未加入任何项目"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 个鉴定</strong>帮助到了 <strong>%{x} 个人</strong>"
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'
@@ -4699,15 +5152,20 @@ zh-CN:
   user_invited_you_to_join_this_project_on_date_html: "%{user}邀请您于%{date}加入此项目"
   user_is_a_naturalist: "%{user}是一个自然主义者！"
   user_is_now_the_admin_for_project_html: |
-    <strong>%{user}</strong> 现在是 %{project} 的管理员了
+    <strong>%{user}</strong> 现在是 %{project} 的超管了
   user_is_now_a_manager_for_project_html: |
-    <strong>%{user}</strong> 现在是 %{project} 的总管理员
+    <strong>%{user}</strong> 现在是 %{project} 的管理员
   user_is_now_a_curator_for_project_html: |
-    <strong>%{user}</strong> 现在是 %{project} 的负责人
+    <strong>%{user}</strong> 现在是 %{project} 的馆长
   user_muted: 用户已禁言
   user_observed_on_on_date_in_place: |
-    %{user} 于 %{date} 在 %{place} 上观察到一个
-  user_suggested_an_id: "%{user}建议了一个ID"
+    %{user}于%{date}在%{place}观察到一个
+  user_suggested_an_id: "%{user}提出了一个鉴定"
+  user_trusts_this_project_for_none: 用户不信任该项目，因此不会向该项目展示隐藏坐标。
+  user_trusts_this_project_for_any: |
+    用户信任这个项目，对该项目开放因为各种原因而被遮盖的地理坐标。
+  user_trusts_this_project_for_taxon: |
+    用户部分信任这个项目，仅对其开放因分类群受到威胁而遭到遮盖的地理坐标。
   user_trusts_you_with_their_private_coordinates: "%{user} 信任您的并向您公开隐藏坐标"
   user_trusts_you_with_their_private_coordinates_desc: |
     此观察者信任您的并向您公开其所有的隐藏坐标
@@ -4718,12 +5176,34 @@ zh-CN:
   username_or_user_id: 用户名或用户ID
   users: 用户
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
+  users_edit_resend_confirmation_prompt_html: |
+    在您重新发送确认邮件后， 您将被登出，并在您点击电子邮件中的链接之前再也无法登陆，因此<strong>一定要确保您输入了正确的电子邮件地址</strong>。
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    请确保您的邮箱地址是正确的。我们发送验证邮件的地址是：
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    如果您没能收到邮件，以下是一些小提示：
+    </p>
+    <ul>
+    <li><p>检查您的垃圾邮箱</p></li>
+    <li><p>检查您设置的任何可能导致邮件被移出收件箱的过滤器</p></li>
+    </ul>
+    <p>
+    如果您还是无法收到验证邮件，请通过<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>联系我们，让我们来帮助您。
+    </p>
   users_favorites: "%{user}的收藏夹"
   users_highlights_and_stats_from_year_on_site: "来自%{site}在%{year}年的%{user}的要点与统计数据"
-  users_id: "%{user} 的ID"
+  users_id: "%{user} 的鉴定"
+  users_identifications: "%{user}的鉴定"
+  users_journal: "%{user}的日记"
   users_latest_observations_on_site: "%{user}在%{site}上的最近观察"
+  users_lists: "%{user}的列表"
   users_profile: "%{user}的详细信息"
   users_projects: "%{user}的项目"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user}的%{year}年度%{site}回顾"
   valid_options_are: 有效选项是
   value: 值
   values: 值
@@ -4731,20 +5211,32 @@ zh-CN:
   verifiable_observations_by_observation_date: 观察日期可核实的观察结果
   view: 查看
   view_all: 查看全部
+  view_all_caps: 查看全部
+  view_all_fields: 查看所有字段
   view_all_flags: 查看所有标记
   view_all_members: 查看所有成员
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    other: "查看全部%{count}个"
   view_all_observations: 查看所有观察
   view_all_photocount_photos: "查看所有 %{photo_count} 张照片"
   view_assessment: 查看评估
-  view_check_list_page: 查看检查表页面
+  view_check_list_page: 查看监视列表页面
   view_contributions: 查看贡献
   view_details: 查看详情
+  view_dynamic_lifelist_: 查看动态生命列表
   view_field_options: 查看字段选项
   view_flag: 查看标记
   view_flags: 查看标记
   view_flags_for_x_html: "查看 %{x} 的标记"
   view_full_observation: 查看完整观察
   view_full_size_photo: 查看全尺寸照片
+  view_inaturalist_global_year_in_review: 查看iNaturalist的%{year}年全球回顾
+  view_inaturalist_global_year_in_review_caps: 查看iNaturalist的%{year}年全球回顾
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: 查看%{site}的%{year}年度回顾
+  view_site_year_in_review_caps: 查看%{site}的%{year}年度回顾
   view_journal: 查看日记
   view_leaderboard_from_last_month: 查看上个月的排行榜
   view_leaderboard_from_last_year: 查看上个月的排行榜
@@ -4789,6 +5281,8 @@ zh-CN:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>查看您的仪表板</a> 获取更多更新"
   view_your_inbox: 查看您的收件箱
   view_your_observations: 查看您的观察
+  view_your_personal_year_in_review: "查看你的个人%{year}年度回顾"
+  view_your_personal_year_in_review_caps: "查看你的个人%{year}年度回顾"
   view_yours: 查看您的
   view_all_of_your_observations_from_x: "从 %{x} 查看您所有的观察"
   video_tutorials: 视频教程
@@ -4800,7 +5294,9 @@ zh-CN:
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
-  was_it_captive_cultivated?: "被俘虏/培养了吗？"
+  was_it_captive_cultivated?: "是被饲育/栽培的吗？"
+  we_also_support2: |
+    我们还支持从 <a href="http://flickr.com">Flickr</a>和 <a href="http://photos.google.com">Google 照片</a> 中导入照片。
   we_can_only_understand_csv_in: 我们只能解析此种格式的CSV文件
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_couldnt_find_a_user_with_that_activation_code: "我们找不到具有该激活码的用户。您可能已经激活了自己的帐户，请尝试登录。"
@@ -4818,6 +5314,16 @@ zh-CN:
   welcome_to_inat: "欢迎来到%{site_name}！"
   welcome_to_guides: "欢迎来到%{site_name}指南！"
   welcome_to_x_project: "欢迎来到 %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 我们非常确定它属于这个属
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 我们非常确定它属于这个科
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 我们非常确定它属于这个目
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 我们非常确定它属于这个亚科
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 我们非常确定它属于这个总科
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -4839,7 +5345,6 @@ zh-CN:
   where_were_they?: 他们在哪里？
   where_were_you?: 您在哪里？
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
-  white: 白色
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: 你为什么要做此修改？（可选）
   why_are_you_making_this_change_cite_source_required: 你为什么要做此修改？如果可能的话，请解释原因并附上依据。（必须）
@@ -4848,7 +5353,7 @@ zh-CN:
   who_can_add_observations_to_this_project?: 谁可以添加观察至此项目？
   who_can_see_the_coordinates: 谁可以查看坐标
   who_can_see_the_coordinates_observer: 观察者
-  who_can_see_the_coordinates_projects: 以下项目的管理员
+  who_can_see_the_coordinates_projects: 以下项目的馆长
   who_can_see_the_coordinates_trusted: 观察者通过展示他们的隐藏坐标所信任的人
   who_helped_user_the_most: "谁最常帮助%{user}"
   who_user_helped_the_most: "%{user}最常帮助谁"
@@ -4862,12 +5367,14 @@ zh-CN:
     资料来源：维基百科"%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     此文章使用源自维基百科条目<a href="%{url}">"%{title}"</a>中的内容，该基于<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">创用 CC 姓名标示协议-相同方式分享 3.0 未本地化</a>授权条款所释出。该内容可能已从原始内容中去除，但还未有更改或扩充的內容。
-  with: 带
+  with: 和
+  #Filter for observations not in a particular taxon
+  without_taxon: 不在分类单元中
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
-  withdraw: 放弃
+  withdraw: 撤回
   #Loading status while an identification is being withdrawn
-  withdrawing: 正在放弃...
+  withdrawing: 正在撤回...
   with_errors: 带错误
   worldwide: 世界各地
   wondering_what_to_do_next: 这里有一些后续步骤，可以帮助您观察与认识大自然
@@ -4878,10 +5385,10 @@ zh-CN:
   x_does_not_exist: "“%{x}”不存在"
   x_flagged: "%{x}已标记"
   x_flagged_as_flag: "%{x}已标记为%{flag}"
-  x_journal: "%{user}的杂志"
-  x_journal_archives_for_y: "%{user}的杂志 • 存档用于"
-  x_journal_middot: "%{user}的杂志 •"
-  x_journal_new_post: "%{user}的杂志 • 新刊文"
+  x_journal: "%{user}的日记"
+  x_journal_archives_for_y: "%{user}的日记 • 用于存档"
+  x_journal_middot: "%{user}的日记 •"
+  x_journal_new_post: "%{user}的日记• 新帖"
   x_observations_failed:
     other: "%{count} 次观察已失败"
   x_of_y: "%{y}的%{x}"
@@ -4889,9 +5396,9 @@ zh-CN:
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x}/%{y}"
   x_of_count_confirmed:
-    other: "%{count} 中的 %{x} 已被确认"
+    other: "%{count}中的%{x}个已被确认"
   x_of_count_observed:
-    other: "%{count} 中的 %{x} 已被确认"
+    other: "%{count}中的%{x}个已被观察到"
   x_of_y_people_over_two_thirds_agree_it_is: "在%{y}人中，有%{x}人（超过2/3）同意这个"
   x_is_the_root_of_the_tree: "%{rank} %{name} 是树状图的根目录"
   x_project_journal: "%{project}的%{name}"
@@ -4902,10 +5409,11 @@ zh-CN:
   x_wrote_a_new_post_html: "%{x}写了一个新帖子"
   x_wrote_y_new_posts_html: "%{x}写了%{y}篇新贴子"
   year: 年
-  year_in_review: "%{year}年中的复核"
+  year_in_review: "%{year}年的年度回顾"
+  year_in_review2: "%{year}年年度回顾"
+  year_in_review_caps: "%{year}年年度回顾"
   year_month: 年/月
   year_on_site: "%{site} %{year}一年"
-  yellow: 黄色
   'yes': "是"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -4924,10 +5432,62 @@ zh-CN:
   yesterday: 昨天
   yir_code_contributors_desc_html: |
     我们的 <a href="%{url}">软件</a> 几乎都是开源的，这意味着任何人都可以贡献自己的力量。以下是今年自愿提供代码的人员。谢谢你们，编码员们！
+  yir_donate_banner_inaturalist_in_year: "%{year}年的iNaturalist："
+  yir_donate_banner_reaching_millions: 和千百万人联结。了解生物多样性。全球合作。
+  #"You" is singular
+  yir_donate_banner_all_thanks: 感谢像您这样的人！
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist正因有您这样的人才能蓬勃发展！
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: 您今年帮助iNaturalist蓬勃发展，谢谢您！
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist 需要您的支持
+  yir_email_because_of_you: |
+    因为你们，今年有关生物多样性的数据比去年多。 年度回顾是我们为你通过iNaturalist为生物多样性做的一切而奉献给你的礼物。
+  yir_email_log_in_to_generate: |
+    登录来生成您的个人年度回顾吧！
+  yir_email_of_your_observations:
+    other: 在你的总共%{count}个观察中，你知道有多少个是在%{year}年得到的吗？
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    您的%{year}年iNaturalist年度回顾——生物多样性带您过大年
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist团队
+  yir_email_the_year_isnt_over: |
+    这一年尚未结束，发布旧的观察也永远不晚。在您分享了更多的观察之后，请务必在您的年度回顾下方点击“重新生成统计数据”按钮，以查看数据更新。
+  yir_email_what_else_will_you_observe_caps: 你还会观察什么？
+  yir_email_what_new_to_you: |
+    您今年观察到了什么新的物种？有多少人帮助了您进行鉴定（以及您又帮助了多少人）？
+  yir_email_with_gratitude: "此致  \n敬礼，"
+  yir_email_year_on_inaturalist_globally_caps: "INATURALIST全球%{year}年度回顾"
+  yir_email_you_are_part_of_something: |
+    您是伟大事业的一部分！ 每个发布观察结果、添加标识并传播 iNaturalist 信息的人都会对生物多样性产生影响。 通过我们的集体努力，我们正在以前所未有的规模提供生物多样性数据和见解。 感谢您成为 iNaturalist 社区的一员！
+  yir_email_you_make_a_difference: |
+    您通过 iNaturist 为生物多样性做出了贡献。 感谢您所做的一切！
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    你收到这一份邮件是因为你与https://www.inaturalist.org/people/%{username}相关联的%{email}于%{created_date}注册了一个iNaturalist账号。
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    你收到这一份邮件是因为你与<a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people%{username}</a>相关联的%{email}于%{created_date}注册了一个iNaturalist账号。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    你的账号已经和%{site_name}（%{site_url}）相关联。
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    您的账号已经和<a href="%{site_url}">%{site_name}</a>相关联。
+  yir_generating_and_sharing: |
+    以前所未有的规模和速度生成和分享高影响力的生物多样性数据会增加成本
+  yir_millions_of_people_used_inaturalist: |
+    数以百万计的人今年使用 iNaturalist 和Seek by iNaturalist 来与大自然连接
+  yir_monthly_supporters_random_selection: |
+    这里随机选择一些每月进行捐赠的iNat的英雄社区成员。
   yir_thank_your_for_being_generous2: |
     感谢您抽出宝贵的时间关注我们，也感谢您慷慨地分享专业知识与提供捐助！iNaturalist 是一个非营利的公益组织。这个项目依赖的是许多补助和捐助，包括来自社区极小一部分人的捐赠。我们非常感谢月捐人们，可持续的捐赠帮助我们规划 iNaturalist 的未来。
+  yir_your_gift_sustains: |
+    你的馈赠使这个项目能够在全球范围内产生深远的个人和生态影响
   you: 您
   you_: 您
   you_appear_offline_try_again: |
@@ -4936,9 +5496,9 @@ zh-CN:
     您是站点馆长，这意味着您自愿帮助我们管理数据和监控内容。请不要觉得您有必要去处理所有这些问题，只要您有时间检查其中的一些问题，我们已经非常感谢您的帮助。如果您对管理的内容有任何疑问或不想成为馆长，请通过%{email}与我们联系
   you_are_now_following_x: "您正在关注%{friend_user}。"
   you_are_now_the_admin_for_project_html: |
-    <strong>您</strong> 现在是 %{project} 的总管理员了
+    <strong>您</strong> 现在是 %{project} 的超管了
   you_are_now_a_curator_for_project_html: |
-    <strong>您</strong> 现在是 %{project} 的负责人了
+    <strong>您</strong> 现在是 %{project} 的馆长了
   you_are_now_a_manager_for_project_html: |
     <strong>您</strong> 现在是 %{project} 的管理员了
   you_are_not_editing_any_guides_add_one_html: |
@@ -4960,9 +5520,11 @@ zh-CN:
   you_arent_a_member_of_that_project: 您不是那个项目的成员。
   you_arent_following_that_person: "您尚未关注那个人。"
   you_can_accept_invitations: 您可以在这里接受邀请
-  you_can_choose_observations_associated: 您可以选择与此刊物帖子相关联的观察结果。
+  you_can_choose_observations_associated: 您可以选择与此日记相关联的观察结果。
   you_can_edit_this_default_check_list_because: |
-    您可以编辑这个默认的检查列表，因为您是一位管理员，但真的不应该需要这样做。
+    您可以编辑这个默认的检查列表，因为您是一位超管，但真的不应该需要这样做。
+  you_can_only_destroy_taxa_you_created2: |
+    您只能删除您创建的与分类单元更改、标识或其他内容无关的分类群。
   you_can_only_block_three_users: 您只可以封禁3位用户
   you_can_show_the_boundary_of: 如果地点有边界，您可以在项目页面上显示地点的边界。
   you_cant_compare_a_list_with_nothing: 您必须选择一些东西来与清单进行比较！
@@ -4973,7 +5535,10 @@ zh-CN:
   you_cant_leave_a_project_you_created: 您不能离开您创建的项目。
   you_cant_merge_standard_places: 您不能合并标准位置
   you_cant_rotate_photos_hostde_outside: "您无法轮播在%{site_name}之外托管的照片。"
+  you_cannot_delete_taxa_involved_in_taxon_changes: 您不能删除正涉及分类单元更改或被包含在正涉及分类群更改的分类群中的分类单元
   you_curate_a_project_that_contains_this_observation: 您管理了一个包含此观察记录的项目
+  you_curate_a_project_that_contains_this_observation_desc: |
+    如果您是项目的馆长，而一个用户选择向项目管理员分享被遮盖的观察坐标，那么您将能看到这些被遮盖的坐标。
   you_didnt_select_any_observations: 您没有选择任何观察。
   you_didnt_select_any_photos_to_tag: 您没有选择任何照片至标签！
   you_dont_have_permission_to_do_that: 您没有权限做那件事。
@@ -4982,8 +5547,9 @@ zh-CN:
   you_dont_have_permission_to_edit_that_taxon: |
     您无权编辑该分类单元。请联系其中一个分类的馆长或标记分类单元以请求更改。
   you_dont_have_permission_to_edit_those_photos: 您没有权限编辑这些照片。
-  you_faved_this: 您喜欢了这个！
+  you_faved_this: 您收藏了这个！
   you_have_left_x_project: "您已离开%{project}"
+  you_have_not_confirmed_your_email_address: 您还没有确认您的电子邮件地址！
   you_havent_linked_your_inaturalist_google_account: "您尚未连接您的%{site_name}账户和您的Google账户"
   you_joined_this_project: 您加入了这个项目！
   you_must_be_a_member_of_this_project_to_do_that: 您必须是此项目的成员才能
@@ -4995,6 +5561,10 @@ zh-CN:
   you_must_specify_and_confirm_a_new_password: 您必须指定一个新密码并确认它。
   you_need_to_have_linked_flickr_account: 您需要连接一个Flickr账户才能标记您的照片。
   you_need_to_select_some_observations_first: 您首先需要选择一些观察。
+  you_retain_full_copyright: "除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。"
+  you_retain_full_copyright_over_your_content: "除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。"
+  you_should_delete_this_taxon_change: |
+    您可能应该删除这个分类单元更改，或者至少和作出过其他更改的个人联系以取得某种解决方案。
   you_sure_delete_asset?: 您确定要删除此优点吗？
   you_sure_delete_check_list: "您确定要删除这个列表么？一些人可能把大量的工作投入在它身上..."
   you_sure_delete_comment?: 您确定要删除此评论吗？
@@ -5010,6 +5580,8 @@ zh-CN:
   your_account_has_been_activated: 您的账户已被激活！
   your_account_has_been_verified: "您的%{site_name}账号已通过验证！请登录以继续操作。"
   your_activation_code_was_missing: "找不到您的激活码。请使用您邮箱中的URL链接。"
+  #Title for a list of 3rd party applications you control
+  your_applications: 您的应用
   your_browser_does_not_support_the_audio_element: 您的浏览器不支持音频元素。
   your_comment_was_saved: 您的内容已保存
   your_content: 您的内容
@@ -5021,9 +5593,9 @@ zh-CN:
   your_flickr_photos_have_been_tagged: 您的Flickr照片已被标记！
   your_hard_drive: 您的硬盘驱动器
   your_home: 您的主页
-  your_id: 您的ID
+  your_id: 您的鉴定
   your_identification: 您的鉴定
-  your_membership: 您的成员
+  your_membership: 您的成员资格
   your_name_was_saved: 您的名字已保存。
   your_observations: 您的观察
   your_observations_couldnt_be_added_to_that_project: "您的观察无法加入此项目：%{errors}"
@@ -5051,6 +5623,16 @@ zh-CN:
     announcements:
       locales_desc: |
         CMD-或SHIFT-单击来选择多个。假如都不选择，将显示所有用户的通知，无论语言环境如何。选择不属于特定地区的语言环境将*不会*选出具有特定地区的语言环境，例如，如果你选择en，它将不会显示给选择en-US的人。如果要同时选择这二者，请同时选择它们。如果您想为网站的所有成员显示告示，请将其留空。
+      clients_desc: |
+        按住CMD-或SHIFT-点击以同时选中多个。如果存在任何未被选择的项目，都会在所有客户端上向所有用户显示通知。
+    content_freeze:
+      content_freeze: 内容冻结
+      during_this_time: |
+        在内容冻结期间，不能创建、销毁或修改某些类型的内容。
+      this_functionality_will_return: |
+        一旦内容冻结结束，这些功能将立即恢复。
+      we_expect_this_functionality_will_return_by_date: |
+        我们预计这些功能将于%{date}恢复。
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5065,19 +5647,163 @@ zh-CN:
             如果可以，请阅读我们的<a href="%{url}">教师指南</a>获得与学生使用%{site_name}的提示。
     donate:
       donate_short_desc: "立即捐款显示您的支持！"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>您可以<u>双倍</u>或者<u>三倍</u>赋予你的捐助！感谢戈登与贝蒂·摩尔基金会，在2023年12月31日之前所有月度、季度和年度重复捐助都将翻三倍，而一次性捐助则将翻倍。</strong>
+        </p>
+        <p class="lead">
+        iNaturalist是全球最大的生物多样性社群之一。感谢您成为它的一员！
+        </p>
+        <p class="lead">
+        如果你信任这个为自然爱好者分享知识和生成不可替代的生物多样性数据的全球性社群，请考虑一次性地或重复地在线提供捐助，或者<a href="https://www.inaturalist.org/pages/giving">查看其他捐助方式</a>。
+        </p>
+        <p class="lead">
+        您的捐助对社群日益扩大的iNaturalist至关重要，这能帮助我们改进我们精确识别物种的技术和引入新的特性，以支持我们的服务器和员工。
+        </p>
+        <p class="text-muted">
+        iNaturalist是一个设立于美国的独立501(c)(3)、免税、非盈利组织（税号：92-1296468）。
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+         <strong>iNaturalist 是世界上致力于探索生物多样性的最大社区之一。谢谢您的加入！</strong>
+        </p>
+        <p class="lead">
+         如果你相信这个全球性的自然爱好者社区有能力分享知识和产生不可替代的生物多样性数据，请考虑在网上一次性或重复赠捐赠, 或在<a
+        href="https://www.inaturalist.org/pages/giving">使用其他方式捐助</a>。
+        </p>
+        <p class="lead">
+         您的捐款将帮助iNaturalist的社群发展，有助于从推进计算机视觉和实现新功能来支持我们的服务器和员工。
+        </p>
+        <p class="text-muted">
+        INaturalist是一个位于美国的独立501(c)(3)、免税、非盈利组织。(税号: 94-1156258)。
+        </p>
       post_donate_social_media_text: 我支持iNaturalist，因为…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成为iNaturalist 的月捐支持者
+        become_a_monthly_supporter_of_inaturalist_caps: 成为INATURALIST的月度支持者
+        desc_moore_html: |
+          <p class="lead">
+          <strong>您可以<u>三倍</u>赋予你的捐助！感谢戈登与贝蒂·摩尔基金会，在2023年12月31日之前所有月度、季度和年度重复捐助都将翻三倍，而一次性捐助则将翻倍。</strong>
+          </p>
+          <p class="lead">
+          iNaturalist是全球最大的生物多样性社群之一。感谢您成为它的一员！
+          </p>
+          <p class="lead">
+          如果你喜爱iNaturalist，请考虑成为一名月度捐助人。重复性捐助能通过可预测的现金流帮助iNaturalist继续扩大我们的基础建设和员工规模。而且您的月度捐助的效果会是捐助金的三倍！您还可以在你的个人简介页面中显示您的月度捐助人身份。
+          </p>
+          <p class="lead">
+          您的慈善捐助对社群日益扩大的iNaturalist至关重要，这能帮助我们改进我们精确识别物种的技术和引入新的特性，以支持我们的服务器和员工。您还可以进行<a href="%{donate_url}">一次性捐助</a>或<a href="https://www.inaturalist.org/pages/giving">探索其他捐助方式</a>。
+          </p>
+          <p class="text-muted">
+          iNaturalist是一个设立于美国的独立501(c)(3)、免税、非盈利组织（税号：92-1296468）。
+          </p>
+        desc3_html: |
+          <p class="lead">
+           <strong>iNaturalist 是世界上致力于探索生物多样性的最大社区之一。谢谢您的加入！</strong>
+          </p>
+          <p class="lead">
+          我们希望 iNaturalist 保持免费开放, 但系统开发却需要资金。如果您喜欢 iNaturalist, 请考虑成为请考虑成为每月的支持者。定期捐助有助于确保iNaturalist能够通过提供可预测的收入继续扩大其基础设施和员工规模。您也可以选择在您的个人档案展示您的每月捐赠状况。
+          </p>
+          <p class="lead">
+           您的捐款将帮助iNaturalist的社群发展，有助于从推进计算机视觉和实现新功能来支持我们的服务器和员工。如果您想进行一次性捐助， 请 <a href="%{donate_url}">点击这里</a>。
+          </p>
+          <p class="text-muted">
+          INaturalist是一个位于美国的独立501(c)(3)、免税、非盈利组织。(税号: 94-1156258)。
+          </p>
+        thank_you_for_being_a_monthly_supporter: 感谢您成为每月支持者！
+        thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
+      temporarily_unavailable: |
+        感谢您有兴趣支持iNaturalist！因我站正在更新捐助系统，捐助iNaturalist当前不可用。请过一阵再来。
     geo_model:
       explain:
+        geomodel_predictions_of_taxon: |
+          %{taxon}的位置模型预测
+        the_geo_model_makes_predictions: |
+          位置模型用于预测物种在何处存在以及在何处不存在。
+          基于观察的所在位置，我们使用位置模型来赋予鉴定建议中的“预料在附近”标签，并调整鉴定建议的权重。
+        the_geo_model_is_trained: |
+          像计算机视觉模型一样，位置模型是利用iNaturalist的观察进行训练的，建成一个物种的训练集需要略微超过100张照片。 位置模型无法进行做完美的预测。您可以<a href="%{url}">在这里</a>阅读更多关于位置模型是如何制作的信息。
         nearby_map:
           expected_nearby_map: 预料的附近地图
+          we_use_this_map: |
+            基于观察的所在位置，我们使用这个地图来赋予鉴定建议中的“预料在附近”标签。
+          for_example: |
+            举例而言，一项定位在美国中部的蜥蜴的观察，<i>Sceloporus consobrinus</i>建议会带有“预料在附近”标记，而<i>Sceloporus occidentalis</i>则不会，这是基于二者各自的预料在附近地图。
+          you_can_think: |
+            你可以将预料在附近地图理解为对一个物种在网格坐标内的某个地方存在还是完全不存在的估计。
+          figure_alt_text: 位置模型适用于预料在附近标签
+        unthresholded_map:
+          unthresholded_map: 无阈值地图
+          we_use_the_unthresholded_map: |
+            在提出建议时，我们使用无阈值地图按地点对计算机视觉分数进行加权。
+          for_example: |
+            举例而言，相比于无阈值地图而言，一项定位在美国中部的蜥蜴观察所得到的<i>Sceloporus consobrinus</i>建议权重会比<i>Sceloporus occidentalis</i>来得更高，尽管两者外形相似。
+          you_can_think: |
+            你可以把无阈值地图视为一个物种在地理网格内发生的相对概率。
+          figure_alt_text: 经位置模型加权的计算机视觉结果
+        range_comparison:
+          expected_nearby_vs_taxon_range: 预料在附近vs分类单元范围
+          this_map_shows: |
+            这张地图显示了这个物种的分类单元范围与我们用来评估地理模型的预料在附近地图的重叠情况。
+          this_gridded_version: |
+            坐标化版本的分类单元范围数据是模型在训练和标点时所采用的范围，其分辨率和预料在附近地图一致。我们只在该物种的训练数据与范围数据达到90%匹配的前提下才会使用分类单元范围数据。
+          by_combining: |
+            通过将预料在附近地图和分类单元范围合并，我们将评估统计数字，并估计位置模型的表现水平。
+          figure_alt_text: 预料在附近地图和分类单元范围将进行相互比较
+          combining_these_maps_produces: |
+            将这些地图重合，会得到三种不同的单元地块：
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            真产地：
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            假产地：
+          false_presences_definition: 仅有预料在附近地图预测该分类所在的位置
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            假非产地：
+          false_absences_definition: 仅有分类分布存在的位置
+          evaluation_statistics_for_taxon: '%{taxon}的评估统计数据'
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            精确率：
+          precision_description: 真产地占预料在附近地图的面积比例
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            真产地/（真产地+假产地）= %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            召回率：
+          recall_description: 分类分布占真产地的面积比例
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            真产地/（真产地+假非产地）= %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1：
+          f1_description: 精确率和召回率的平均值（调和平均数）。
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 x 真产地 / （2 x 真产地 + 假产地 + 假非产地）= %{f1}
+          perfect_overlap: |
+            完美的重叠将得到精确率、召回率和F1为1的评估。没有重叠将意味着精确率、召回率和F1为0。
     guides:
       index:
+        deprecated_banner: |
+          请注意，自2019年1月起，指南特性的情况将“维持不变”；我们没有计划删除它，但也没有计划进一步开发了。
         funding_html: |
           指南开发的资金由<a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>提供
         welcome_message_html: |
-          指南可帮助您了解世界各地的生物多样性。无论您是探索Serengeti还是仅仅是当地的公园（可能是Serengeti），指南都可以帮助您了解我们这个星球上令人惊叹的生物多样性。
+          指南可帮助您了解世界各地的生物多样性。无论您是在探索塞伦盖蒂国家公园还是仅是当地的公园（也可能就是塞伦盖蒂），指南都可以帮助您了解我们这个星球上令人惊叹的生物多样性。
       edit:
         add_eol_content: |
           将EOL内容作为批次添加到选定的分类单元。这可能需要一些时间，所以请耐心等待。
@@ -5149,12 +5875,12 @@ zh-CN:
         请<strong>不要启用离线移动下载，除非您确实打算使用它们。</strong>它们会对我们的系统造成相当大的负担。
         </p>
       pdf_layouts:
-        grid: 网格
+        grid: 缩略图
         book: 图书
         journal: 期刊
       pdf_layout_notes:
         grid: |
-          单个图像的网格，没有描述
+          单个图像的缩略图，没有描述
         journal: |
           拆分页面，物种信息在左侧，用于注释的地方在右侧。物种信息将被截断以适应页面。
         book: |
@@ -5188,6 +5914,14 @@ zh-CN:
       total_observations: 观察总数
       filter_by: 筛选条件
       filtered_by: 根据此条件筛选
+      apply_filters_to_export: 将过滤器应用到导出
+      restrict_to_leaf_taxa: 仅限终止节点
+      restrict_to_taxon: 仅限于%{taxon}
+      restrict_to_taxa_observed_in_place: 仅限于在%{place}观察到的分类群
+      exporting_all_x_taxa:
+        other: 输出%{count}个分类单元
+      exporting_x_taxa:
+        other: 输出%{count}个分类单元
       no_observations_found_in_place: 在 %{place} 没有发现任何观察。
       no_observations_found_within_this_taxon_in_place: 在 %{place} 中没有发现包含在该分类单元中的观察。
       no_species_found_within_this_taxon_in_place: 在 %{place} 没有发现包含在该分类单元中的物种。
@@ -5197,15 +5931,18 @@ zh-CN:
       no_unobserved_species_within_this_taxon_in_place: 此分类单元在%{place} 没有未被观察到的物种。
       reset_place_filter: 重置位置过滤器
       all_observations_in_this_taxon: 此分类单元中的所有观察
+      observations_of_exactly_this_taxon: 此分类单元的观察
+      focus_tree_on_this_taxon: 将分类树聚焦在这个分类单元上
+      expand_all_nodes_in_this_branch: 展开此分支中的所有节点
       collapse_this_branch: 折叠此分支
       dropdowns:
         sort: 排序
         taxonomic: 物种分类
         name: 名称
-        most_observed: 观察次数最多的
-        least_observed: 最少观察
-        date_added_newest: 添加日期，从最新到最旧的排序方式
-        date_added_oldest: 添加日期，从最早到最新的排序方式
+        most_observed: 观察最多
+        least_observed: 观察最少
+        date_added_newest: 添加日期，从最新到最旧
+        date_added_oldest: 添加日期，从最旧到最新
         ancestry: 祖先
         show: 显示
         children: 子元素
@@ -5255,14 +5992,14 @@ zh-CN:
           more_about_application: 更多有关 %{application}
     observations:
       community_id:
-        agreement: 协议
+        agreement: 同意
         algorithm_summary: 算法摘要
-        ancestor_disagreements: 祖先不一致
-        below_cutoff: 低于截止
+        ancestor_disagreements: 祖先意见分歧
+        below_cutoff: 低于阈值
         cumulative_count: 累计
-        disagreement: 不一致
+        disagreement: 不同意
         disagreement_count: 分歧统计
-        identification_count: 识别计数
+        identification_count: 鉴定次数
         score: 分数
         explanation: |
           <p>
@@ -5277,7 +6014,7 @@ zh-CN:
           您的鉴定 (<span class="bold">%{taxon_name}</span>) 与社区鉴定不匹配
       copy_tip: "通过复制此观察的日期，地点，照片和观察字段来添加新观察。"
       captive_help_html: |
-        生物被<strong>栽培</strong>或被<strong>圈养</strong>？例如，它是在<strong>花园，动物园，水族馆</strong>还是由于其他原因<strong>因为人类希望它在那里所以才会出现</strong>？ 所有对生物的观察都是受欢迎的，但我们想弄清楚其中哪些不是野生/天然生长的。
+        生物被<strong>栽培</strong>或被<strong>饲育</strong>？例如，它是在<strong>花园，动物园，水族馆</strong>还是由于其他原因<strong>因为人类希望它在那里所以才会出现</strong>？ 所有对生物的观察都是受欢迎的，但我们想弄清楚其中哪些不是野生/天然生长的。
       compare:
         about_missing_taxa: 关于缺少的分类
         about_total_taxa: "关于全部分类"
@@ -5295,6 +6032,11 @@ zh-CN:
         interval_limit_warning_month: 仅显示100年的时间
         interval_limit_warning_year: 仅显示100年的时间
         some_queries_missing_taxa: 有些查询缺少分类资料
+        some_queries_missing_taxa_desc: |
+          我们只能在每次查询中加载500个被观察最多的分类群，因此如果在查询中有更多的分类群的话，它们将要么无法显示，要么出现在其他被查询中并标记为“？”。试着缩小查询范围，将结果项数控制在500个或以下，以优化对比结果。
+        taxa_not_observed_in_all_queries: 在所有查询中都未能观察到的分类群
+        taxa_observed_in_all_queries: 在所有查询中观察到的分类群
+        taxa_observed_in_only_one_query: 只在一个查询中观察到分类群
         total_taxa: 全部分类群
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: 垂直
@@ -5310,10 +6052,19 @@ zh-CN:
         x_total:
           #Count of how many taxa are present in an observation search
           other: "总计 %{count}"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count}独特"
       export:
         choose_columns_desc: 选择您想要导出的列
+        create_a_query_desc_html: |
+          像在网站上的其他地方一样创建观察查询。您还可以从网站的其他部分剪切和粘贴观察的URL。您的查询<strong>最多将返回200,000条结果</strong>。
+        export_in_progress_notice_html: |
+          您有一个<a href="%{url}">在进行中的导出</a>。您将需要等待它完成才能开始下一项导出。
         ident_by_user_desc_html: |
           用于当前由%{user}做出鉴定的列
+        limit_alert: 您的导出太大了。更改您的过滤器，直到观察数小于200,000条。
         query_placeholder: "选择下面的查询参数或粘贴观察的URL"
         taxon_extras_help_html: "注意：这些列会减慢导出数据的生成速度"
         geo_help_html: |
@@ -5346,14 +6097,18 @@ zh-CN:
         place_guess: 由观察者输入的所在地描述
         latitude: 公开可见纬度
         longitude: 公开可见经度
-        positional_accuracy: "协调精度（是的，是的，准确性 != 精度，名称选择不当）"
+        positional_accuracy: "坐标精度（对，对，准确性 != 精度，名称选择不当）"
         private_latitude: "私人纬度，如果观察是私密或模糊的，则设置此项"
         private_longitude: "私人经度，如果观察是私密或模糊的，则设置此项"
         geoprivacy: "观察者是否选择匿名或隐藏坐标"
+        taxon_geoprivacy: "基于当前鉴定的分类群的保护状态而适用的最保守的位置隐私。"
         coordinates_obscured: "坐标是否被隐藏，无论这是由于地理位置隐私保护或是由于该分类单元的生存受到威胁，"
         out_of_range: 此观察是否在分类单元的已知范围之外
         user_id: 用于观察者的唯一标识符
         user_login: 观察者的用户名
+        user_name: |
+          观察者名称，通常用于在本站内的传播。
+          是一个可选字段，可以是一个化名。
         created_at: 日期时间观察已创建
         updated_at: 日期时间观察最近已更新
         quality_grade: 此观察的质量等级。有关此含义的详细信息，请参阅“帮助”部分
@@ -5370,6 +6125,8 @@ zh-CN:
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
         unreview_all_tooltip: "移除本页所有观察的已审核状态"
+        too_many_results_desc: |
+          页数乘以每页结果数的积不能超过10,000。尝试应用过滤器来减少结果数量，或标记观察为“已复核”并使用"查看更多"按钮而非换页。
       import:
         coordinate_systems_help: |
           %{site_name}可接受多种不同坐标系的坐标系统，因此当您用并非纬度/经度的系统提供坐标时，我们需要知道您正在使用哪个坐标系，以便正确解析坐标。请确保您已为您的数据选择了正确的坐标系，否则记录的位置可能会与正确位置偏离很远。如果您的坐标来自GPS装置，请检查其设置以获取其正在使用的坐标系的名称。请注意，我们不会存储自定义坐标，只存储它们的纬度/经度转换结果。
@@ -5379,33 +6136,88 @@ zh-CN:
           地理位置隐私这一列必须为英文，要么值为空，要么值为“obscured”或“private”
         project_csv_template_notice_html: |
           这是一个用于此项目的模板文件，它可能帮助您了解CSV文件的结构。<a href="%{url}">下载模板</a>
+        soundcloud_notice_html: |
+          2018年，Soundcloud更改了他们的 API ，使我们无法做到与您的 Soundcloud 帐户建立新的连接。 如果他们恢复此功能，我们可以恢复连接帐户到 SoundCloud 。同时，您可以使用<a href="/observations/upload">上传功能</a>直接上传声音文件。
       show:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
+        ancestor_disagreements_desc2: |
+          鉴定为上级分类单元、但不同意本种鉴定的个数（即“我认为它是这个属的，但它不是该种”）。
         community_taxon_desc_html: |
           <p class="ui">
-          社区分类单元（或社区标识）表示%{site_name}社区认为在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会尝试<strong>选择超过2/3标识符的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是一个kingsnake，我认为它是响尾蛇，所以iNat选择能够包含所有蛇的亚目Serpentes）。该算法也略微支持异议，因为我们发现反对者通常是正确的。
+          社区分类单元（或社区鉴定）代表%{site_name}社区所认为的在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会<strong>选择超过2/3鉴定者同意的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是眼镜王蛇，我认为它是响尾蛇，于是iNat会选择能够包含所有蛇的蛇亚目Serpentes）。该算法也略微支持少数意见，因为我们发现反对者经常是正确的。
           </p>
           <p class="ui">
-          社区分类单元是我们在与数据合作伙伴共享观察时使用的分类单元，将相同分类单元的观察链接在网站上，更新您的生活列表等。如果由于某种原因您不同意社区分类单元，您可以拒绝它，这意味着您的ID只能用于链接到其他观察，更新生物清单等。这也意味着只有当社区同意<em>您</em>时，您的观察才能被评为研究级别。如果您不喜欢社区分类群的整体想法，可以通过<a href="/users/edit" target="_blank">修改设置</a>来完全退出。
+          社区分类单元是我们在与数据合作伙伴共享观察时使用的分类单元，将相同分类单元的观察链接在网站上，更新您的生活列表等。如果由于某种原因您不同意社区分类单元，您可以拒绝它，这意味着您的鉴定只能用于链接到其他观察，更新生物清单等，而不会被社区鉴定。这也意味着只有当社区同意<em>您</em>的鉴定时，您的观察才能被评为研究级别。如果您不喜欢社区分类单元的整体想法，可以通过<a href="/users/edit" target="_blank">修改设置</a>来完全退出。
           </p>
           <p class="ui">
-          <strong>算法：</strong>对于所有已识别的分类群和包含它们的分类群（例如，属<i>Homo</i>包含<i>Homo sapiens</i>），将每个分类作为该分类单元的累计ID数量超过累积ID的总和，在该分类单元的第一个ID之后添加的更保守的ID数量，以及完全不同的ID数量（即，不包含分类单元的分类单元的ID得分）。对于分数超过2/3且至少有2个标识的已识别分类群，请选择排名最低的分类单元。
+          <strong>算法：</strong>对于所有已识别的分类群和包含它们的分类群（例如，人属<i>Homo</i>包含智人<i>Homo sapiens</i>），打分方式是计算每个鉴定提议的“同意”（即鉴定总数中支持这一分类单元提议的总数）和“不同意”（即与被打分的鉴定结果完全不同的鉴定），以及“祖先不同意”（即不支持被打分的鉴定结果的精细鉴定分类）的比值。对于分数超过2/3且至少有2个鉴定的已识别分类群，将选择分类级别最低的分类单元。
           </p>
         cumulative_count_desc: '单个分类单元及其所有后代的标识号'
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
         data_quality_assessment_desc3_html: |
-          出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确性、精确性、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
+          出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确度、精度、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
+        quality_assessment_help2_html: |
+          <p>
+          数据质量是对观察准确性的评估。所有的观察在最初都被定为<strong>“非正式”</strong>级别，需要满足下列条件才会变为<strong>“待鉴定”</strong>级别：
+          </p>
+          <ul>
+          <li>观察<strong>拥有日期</strong></li>
+          <li>观察<strong>存在地理定位</strong>（即包含经纬度坐标）</li>
+          <li>观察<strong>有照片或声音</strong></li>
+          <li>观察<strong>不是人类</strong></li>
+          </ul>
+          <p>
+          观察需要满足以下条件才会变为<strong>“研究级别”</strong>：
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>社群的鉴定共识达到种或更低级别</strong>，换句话说，当2/3的鉴定者同意某一个分类单元（如果社区投票同意这一社区分类单元不能被进一步改进，这涉及到亚科或更低层级）
+          </li>
+          </ul>
+          <p>
+          如果不满足上述条件，或是社区同意下列事项，就会变为<strong>“非正式”</strong>级别：
+          </p>
+          <ul>
+          <li>
+          <strong>地点看起来不准确</strong>（例如大海中间的猴子观察，办公楼里的河马观察，等等）
+          </li>
+          <li>
+          <strong>生物体看起来不是自然/野生的</strong>（例如是被人类或外星智慧生命体所饲育或栽培的）
+          </li>
+          <li>
+          观察<strong>没有呈现出关于生物体的证据</strong>，比如不包括生物体的浪花、岩石、地貌的图片，等等。
+          </li>
+          <li>
+          观察<strong>没有呈现出晚近时期（约100年内）的生物体的证据</strong>（例如化石；不过脚印、粪石、枯叶是可以接受的）
+          </li>
+          <li>
+          观察不再需要鉴定，<em>而</em>既有的社区鉴定只到科或更高层级
+          </li>
+          <li>
+          观察者选择不接受社区鉴定，而社区鉴定到的分类单元和观察者的鉴定不属于分类单元上下级关系。
+          </li>
+          </ul>
+          <p>
+          如果这还不够复杂的话，还存在这样的情况会由系统做出投票：
+          </p>
+          <ul>
+          <li>
+          系统会自动投票决定某一观察系非野生/自然状态，如果在附近最小的县/州/国家级别范围内有至少十个同属或更低级别的同类观察，而其中不低于80%的观察已经被标记为非野生/非自然的。
+          </li>
+          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
+        observer_does_not_allow_observation_fields: 观察者不允许添加额外的观察字段
+        observer_only_allows_curators_to_add_fields: 观察者只允许站点馆长添加观察字段
       user_stats:
         user_stats_desc: |
           用户统计已限于根据观察计数或物种计数最多500条，因此总共列出的人时常略多于500个，这是因为两个列表可能不包含相同用户。标记“*”的值意味着它未出现在那个统计数据的前500名。
@@ -5420,6 +6232,9 @@ zh-CN:
         </ol>
       dna_help: |
         要启用BOLD DNA条形码匹配功能，请确保您的字段名称包括文字“COI”、“COX1”、“ITS”或“matK,”对应这一字段目标的基因。
+      merge:
+        warning_html: |
+          请尊重其他人的数据，并且<strong>在合并之前与观察字段的创建者交谈</strong>。该工具将破坏正在合并的观察字段并将所有运用该字段的观察结果移动到其持有人。<strong>此操作无法撤消</strong>，因此请小心。
     emailer:
       bulk_import_success:
         success_message: |
@@ -5432,6 +6247,11 @@ zh-CN:
         requirements_have_changed: |-
           此项目对观察的要求近期发生改变：
         subject: '%{project} 的项目观察要求已更改'
+        wondering_what_this_means_html: |
+          想知道什么是“位置隐私”吗？
+          <a href="%{url}">读读我们的文档吧</a>。
+        you_can_change_html: |-
+          你可以在<a href="%{url}">项目主页</a>改变你的偏好或退出项目。
       observations_export_notification:
         your_observations_export_is_ready_html: |
           您的观察导出准备就绪。这封电子邮件带有附件，或者您也可以<a href="%{url}">下载您的导出结果</a>。
@@ -5475,10 +6295,14 @@ zh-CN:
         message: |
           您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
     photos:
+      forbidden_notice_html: |
+        我们现在没有访问这些照片的权限。 您可能需要在您的<a href="/users/edit">设置</a> 选项中断开连接并重连才能授予我们额外的权限。
       show:
         view_original_html: |
           您可以在<a href="%{url}">％{url}</a>上查看原文。如果此照片侵犯了版权，请将版权侵权标记保留为未解决。
     places:
+      kml_field_desc3: |
+        地图边界的KML格式文件。您可以使用谷歌地图、谷歌地球或大部分GIS应用来创建这样的文件。必须包括至少1个多边形，不大于1MB（站点馆长不大于5MB），区域面积小于700,000平方公里（大概就是索马里或者得克萨斯州的大小）。
       edit:
         complex_boundary_note_html: |
           此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
@@ -5497,6 +6321,8 @@ zh-CN:
       umbrella: 雨伞
       tracks_multiple_projects: 追踪多个项目
       projects_included: 包含的项目
+      collection_and_umbrellas_do_not_support: |
+        集合和伞形项目目前不支持访问隐藏坐标。
       curator_coordinate_access_desc_html: |
         请注意，<strong>项目馆长可以将任何观察添加到他们的项目中</strong>，除非您已在<a href="/users/edit">帐户设置</a>中选择退出。只有在您准许项目馆长查看您添加到此项目中的任何观察的私人坐标时，再选中此选项。如果您不希望授予他们此权限，您仍然可以对各个观察逐一授予对私人坐标的访问权限。
       confirm_leave:
@@ -5511,13 +6337,15 @@ zh-CN:
         remove_observations_label: |
           从该项目中删除所有观察
         remove_observations_desc_html: |
-          请注意，除非您更改<a href="/users/edit">帐户设置</a>，否则项目管理员仍可以将观察结果添加到项目中。
+          请注意，除非您更改<a href="/users/edit">帐户设置</a>，否则项目馆长仍可以将观察结果添加到项目中。
         revoke_observations_label: |
           将您的观察留在此项目中，但阻止馆长查看其私人坐标
         revoke_observations_desc: |
           如果您离开的唯一原因是阻止项目馆长查看您的私人坐标。
       edit:
-        admins_must_be_existing_members: 管理员必须是项目的现有成员。
+        admins_must_be_existing_members: 超管必须是项目的现有成员。
+        admins_can_only_be_added_after_creation: |
+          超管只能在项目创建后添加。
         aggregation_pending: 聚合待定
         new_place_desc_html: |
           尝试浏览<a href="%{places_url}" target="_blank">我们现有的地点</a>，并确保您获得正确的地点名称。如果您找不到所需的地点，请考虑<a href="%{new_place_url}" target="_blank">创建新地点</a>，但请确保您不仅仅是复制了现有的地点。
@@ -5525,7 +6353,9 @@ zh-CN:
           <p>
           bioblitz是一个活动，参与者试图在一段时间内观察尽可能多的物种。这是一种向人们介绍生物多样性同时收集有价值数据的有趣方式。
           </p>
-        change_admin_desc: 选择一位项目馆长作为新管理员。
+        change_admin_desc: 选择一位项目馆长作为新超管。
+        change_owner_alert: |
+          这将取消您删除此项目或再次转移所有权的能力。您想要继续吗？
         cover_desc: "可选的横幅图片，将显示在项目页面的顶部。宽度必须是950px，高度必须低于400px。"
         custom_project_fields_means: "自定义项目标志，添加一些内容，及编辑CSS。"
         end_time_desc: "bioblitz的结束时间。不得晚于开始时间一年以上"
@@ -5539,7 +6369,7 @@ zh-CN:
         #Label for button to make another user the owner of a project
         make_owner: 设为所有者
         no_curators: |
-          这里没有项目馆长。如果您希望分配新人作为管理员，他必须首先加入此项目，并且您必须将其提拔为馆长。
+          这里没有项目馆长。如果您希望分配新人作为超管，他必须首先加入此项目，并且您必须将其提拔为馆长。
         observation_aggregation_desc_html: |
           <p class="description">
           观察聚合将根据项目规则自动为项目添加合适的观察。由于一次无法从项目中删除许多观察，这可能存在危险，因此请确保您已选择了所需的地点和分类规则，否则最终您可能不得不手动删除大量不合适的观察。
@@ -5570,6 +6400,7 @@ zh-CN:
           </p>
         rules:
           captive: 被驯服/培养
+          coordinates_shareable_by_project_curators: 有可由项目馆长查看的坐标
           georeferenced: 有坐标
           has_a_photo: 有一个照片
           has_a_sound: 有一段声音
@@ -5584,6 +6415,12 @@ zh-CN:
         submission_models:
           any: 任何人
           curators: 项目馆长
+        trust_allow_members_to_trust: |-
+          允许成员信任这一项目并对其开放隐藏坐标
+        trust_help_desc: |-
+          如果您想要访问被遮盖的观察的隐藏坐标，此选项将允许加入此项目的人员信任项目管理员，让项目超管有权访问这些隐藏坐标。项目成员将能够授予访问该项目中出现的任何观察结果的隐藏坐标的权限，或者仅允许访问由于受到威胁的类群而被遮挡的观察结果。
+        trust_help_notification2: |-
+          但是，在您每次更改项目观察要求时，都会通知所有信任的项目成员，以便他们可以根据新要求重新评估是否要继续信任您。 更改观察要求后，您对隐藏坐标的访问权限将被撤销一周，以便成员有时间执行此操作。
         trusted_project_means: |
           信任项目意味着项目管理者可以添加项目资产和自定义项目属性（例如标题HTML，CSS）。访问自定义项目属性意味着项目管理者有可能会添加恶意Javascript，因此请只信任具有负责任和技术能力的管理者的项目。
         you_can_preview: |
@@ -5609,9 +6446,13 @@ zh-CN:
         a_project_allows_you_to_gather: |
           集合项目允许您使用核心iNaturalist搜索工具收集和可视化观察。这消除了手动添加观察的需要，因为将自动包含满足项目设置的参数的所有内容。
         an_umbrella_project_can_be_used_to: |
-          伞项目可用于比较两个或多个集合或传统项目的统计数据。在将它们添加到伞项目之前，其他项目需要存在。您可以在一个保护伞下包含数百个项目。伞项目不能包含其他伞项目。
+          伞形项目可用于比较两个或多个集合或传统项目的统计数据。在将它们添加到伞形项目之前，其他项目需要存在。您可以在一个伞形项目下容纳数百个项目。伞形项目不能包含其他伞形项目。
+        are_you_ready_to_duplicate: |
+          您是否准备离开这一复制项目页面？ 请注意项目图标和横幅将不会被复制，需要重新上传到重复的项目。
         are_you_sure_you_want_to_delete: 您确定要删除这个项目么？
-        can_be_included_in_multiple: 可以包含在多个雨伞项目中
+        can_be_included_in_multiple: 可以包含在多个伞形项目中
+        check_the_box_to_include_member_observations: |
+          选中下面的框，项目将仅包含已加入此项目的用户所做的观察。使用上面的排除用户过滤器来排除特定用户的观察，包括项目所有者和超管。
         click_through_to_individual_projects: 单个项目的点击次数
         collection_projects: 收藏项目
         collection_project_features: "收藏项目功能："
@@ -5622,6 +6463,8 @@ zh-CN:
         display_project_name: 显示项目名称
         do_you_need_features_from_traditional: |
           您是否需要传统项目中的功能，例如访问真实坐标，自定义观察字段或添加无法自动过滤的单个观察？
+        do_you_need_features_from_traditional2: |
+          您是否需要传统项目中的功能，如自定义观察字段或添加无法自动过滤的单个观察？
         duplicate_project: 复制项目
         include_annotated_observations: |
           只包含注明特定属性(如生命阶段)或特定的属性和内容（如 生命阶段 = 成体）。
@@ -5629,12 +6472,12 @@ zh-CN:
         leaderboards_among_individuals: <strong>个人</strong>之间的排行榜
         leaderboards_among_projects_and_bioblitzes: |
           <strong>项目和bioblitzes</strong>中的排行榜
-        multiple_project_administrators: 多重项目管理员
+        multiple_project_administrators: 多重项目超管
         name_placeholder: 芝加哥的鸟、神奇的蜻蜓等
         no_need_to_rely_on_manual_addition: |
           无需依靠手动添加观察结果或依靠聚合器来对观测结果进行索引
         note_these_users_will_be_able_to_edit: |
-          注意：这些用户将能够编辑所有项目详细信息，包括管理员。
+          注意：这些用户将能够编辑所有项目详细信息，包括超管。
         note_you_can_delete_the_time: |
           （注意：如果您希望包含一整天，您可以删除时区和精确时间。）
         note_about_unselected_filters: |
@@ -5647,6 +6490,7 @@ zh-CN:
           请指定对要添加到此项目的观察记录的要求。
         project_background_color: 项目摘要背景颜色
         project_background_color_help: 确保选择足够深的颜色，以使叠加于其上的白色文本清晰可辨。
+        project_banner: 项目横幅(PNG 或 JPG)
         project_banner_help: 可选的横幅图片。理想尺寸为760px×320px。
         project_details: 项目详情
         project_icon: 项目图标（PNG、JPG或GIF）
@@ -5658,7 +6502,7 @@ zh-CN:
           简要说明您的项目。大约前200个字符将显示在项目主屏幕横幅的右侧，因此首先放入最好的东西！
         project_summary_placeholder: 探索和追踪金门公园的鸟类......
         select_native_to_include: |
-          如选择“原产”，您的项目中将只包含在某地区被标注为“原产”的分类群。选择“引入”则您的项目中只会包含在某地区被标注为“引进”的分类群。
+          如选择“原产”，您的项目中将只包含在某地区被标注为“原产”的分类群。选择“外来”则您的项目中只会包含在某地区被标注为“外来”的分类群。
         select_quality_grade: |
           选择至少一个质量等级。每个质量等级可以在我们的 <a href="%{url}">常见问题页面</a> 上找到更多解释。
         show_projects_as_flags: 在地图中以标志显示项目
@@ -5667,14 +6511,18 @@ zh-CN:
           您可以选择多个物种(或其它分类单元)、位置、日期或其他条件来自动包含某些观察。
         start_and_end_times_for_bioblitzes: 用于bioblitz的开始和结束时间
         traditional_projects_cannot_be_copied: 传统项目无法复制
-        umbrella_project_features: "雨伞项目功能："
+        trusting_members_will_be_notified: |
+          您已更改项目要求或启用用户信任。 这将通知任何已经信任项目并对其开放了隐藏坐标的项目成员，以便他们有机会决定是否仍然要信任该项目（考虑到新的要求）。
+        umbrella_project_features: "伞形项目功能："
         unique_url_for_outreach: 用于拓展的唯一URL
+        use_this_for_a_time_limited_event: |
+          将其用于限时活动、生物风暴或季节性项目。 选择单个日期、日期范围或必须在一年中的哪些月份进行观察（无论年份）。 如果使用“日期范围”部分，请确保选择了正确的时间和时区，或者删除时间/时区文本以包含全天任何时间进行的观察。 如果您只想将项目限制为一个日期，则可以将开始日期或结束日期留空。
         users_can_follow_your_project: 用户可以通过期刊帖子关注您的项目以获取更新
         use_this_link_to_create_html: |
           使用<a href="%{url}">此链接</a>创建传统项目。
-        visual_comparison_of_data_among: 对同一雨伞内项目的可视化数据比较
+        visual_comparison_of_data_among: 对同一伞内项目的可视化数据比较
         we_have_redesigned_projects: |
-          我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞项目，它们共享以下功能：
+          我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞形项目，它们共享以下功能：
         welcome_to_projects: 欢迎来到项目！
         you_can_learn_more_html: |
           您可以在<a href="https://www.inaturalist.org/pages/managing-projects">这里</a>了解更多关于管理项目
@@ -5734,6 +6582,15 @@ zh-CN:
           此项目尚未定义任何观察要求。项目需要选择一个或个更多分类单元(如：鸟类，针叶树）、地点(如：巴西、黄石)、用户，和/或开始显示观察结果的日期。
       updates_desc: |
         在您的控制面板与每日更新邮件中接收有关此项目的更新。
+    search:
+      index:
+        no_taxa_options: "您有下列几个选项："
+        no_taxa_add_a_flag: 添加标记到更高层次的分类单元
+        no_taxa_add_a_flag_desc: |
+          例如含有一种物种的属。 如果志愿馆长有时间，并且它与我们的分类学政策相匹配，将会添加分类单元。
+        no_taxa_forum: 联系论坛
+        no_taxa_forum_desc_html: |
+          有很多志愿者馆长在跟踪%{link_start_tag}论坛%{link_end_tag}上的信息。
     shared:
       blocked:
         youve_been_blocked: 您已被封禁
@@ -5744,48 +6601,61 @@ zh-CN:
           您已经屏蔽了此资源的所有者，这阻止了您的使用与他们沟通。此页面上的大多数交互特性将不能工作。
       spam:
         message_for_owner_and_curators_html: |
-          此记录已被标示为破坏并且不再公开可见。您可以看见它是因为您创建了它，或您是网站的监护人。如果您认为这是错误，请<a href="mailto:%{email}">联络我们</a>。
+          此记录已被标示为破坏并且不再公开可见。您可以看见它是因为您创建了它，或您是网站的馆长。如果您认为这是错误，请<a href="mailto:%{email}">联络我们</a>。
         this_has_been_flagged_as_spam: 这已经被标记为垃圾信息
       not_found:
         sorry_that_doesnt_exist: 抱歉，它不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     stats:
       index:
-        active_desc: 过去30天创建的ID、观察、评论或帖子
+        active_desc: 此前30天内创建过鉴定、观察、评论或帖子
         android_desc_html: 通过<a href="%{url}">iNaturalist Android应用</a>创建
         avg_ttcid: 平均TTCID
         avg_ttid: 平均TTID
-        identifiers_desc: 在这一天为其他人的观察添加了一个ID
+        identifiers_desc: 此日为其他人的观察添加了一个鉴定
         iphone_desc_html: 通过<a href="%{url}">iNaturalist iPhone应用</a>创建
-        med_ttcid: 医学TTCID
-        med_ttid: 医学TTID
-        new_users_desc: 今天就注册吧
+        med_ttcid: 中位数TTCID
+        med_ttid: 中位数TTID
+        new_users_desc: 于此日注册
         obs_1_day: "观察（1天）"
-        obs_1_day_desc: "在同一天内创建的观察"
-        obs_cid_d_desc: 在过去7天创建，并有一个社群ID
+        obs_1_day_desc: "在当天创建的观察"
+        obs_cid_d_desc: 在此前7天内创建，并有一个社群鉴定
         #Short for "observations community-identified to genus"
-        obs_cid_d_to_genus: 观察CID'd至类
-        obs_cid_d_to_genus_desc: 在7天前创建，并且社区ID属于或低于属级别
-        obs_desc: 在过去7天创建
-        obs_id_d_desc: 在过去7天创建，并且有ID（可以是观察者的）
+        obs_cid_d_to_genus: 观察被社群鉴定到属一级
+        obs_cid_d_to_genus_desc: 在此前7天内创建，并且社群鉴定到属或更低层级
+        obs_desc: 在此前7天内创建
+        obs_id_d_desc: 在此前7天内创建，并且拥有鉴定（可以是观察者的）
         observations_1_week_moving_window: 观察记录 (一周移动视窗)
-        observers_desc: 在此日期添加了观察记录
+        observers_desc: 此日添加了观察记录
         other_desc_html: 通过由<a href="%{url}">开发者</a>制作的其他应用程序创建
         recent_desc: 在过去7天注册
-        recent_w_0_obs: 最近w/ 0观察
-        recent_w_0_obs_desc: 在7天前注册，并添加了0个观察
-        recent_w_7_obs: 最近w/ >= 7观察
-        recent_w_7_obs_desc: 在7天前注册，并添加了>=7个观察
-        time_to_id_desc: ID的时间（小时，1周移动窗口）
-        TTCID: TTCID
-        TTCID_desc: 从与社区分类匹配的其他人那里获得身份证明的时间。
-        TTID: TTID
+        recent_w_0_obs: 最近，0个观察
+        recent_w_0_obs_desc: 在此前7天内注册，并添加了0个观察
+        recent_w_7_obs: 最近，不少于7个观察
+        recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
+        time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
+        TTCID: 社群鉴定所需时间
+        TTCID_desc: 从与社群分类单元匹配的其他人那里获得鉴定的时间。
+        TTID: 鉴定所需时间
         TTID_desc: 从别人那里接收鉴定的时间
         TTID_note: |
           这些统计数据是针对一周前创建的观察制作的，这意味着它会在一周以上的时间内遗漏添加到观察值中的标识，从而使得统计数据看起来比现在再次计算它们时更低，但它们仍然应该提供一个体面的衡量标准，指出社区在一周内确定的窗口速度。请注意，这些统计数据仅适用于带照片的观察。
         website_desc_html: |
           通过<a href="https://www.inaturalist.org">iNaturalist</a>或<a href="%{url}">iNaturalist网络</a>网站创建
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: 两者均添加
+        added_only_identifications: 只添加鉴定
+        added_only_observations: 只添加观察
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: 更广泛的影响
+        broader_impacts_desc: |
+          一些外部合作伙伴定期导入 iNaturist 观察结果以支持科学和保护活动。 您的观察、识别和开放许可选择使这些组织能够向世界各地有需要的人们提供有用的生物多样性信息。
+        compare_desc: |
+          今年与往年相比如何？ 使用三年或更长时间后，我们可以开始比较年度活动指标。 绿色条显示今年，白色垂直条显示去年，灰色背景区域显示最低和最高年份，以及所有年份的平均值。 统计数据不包括计数为零的年份。
+        compare_site_desc: |
+          今年与前几年相比有何不同？ 绿色条展示了今年，白色条显示了去年，灰色背景面积显示了最低和最高年份，以及所有年份的平均数。
         compared_to_previous_years: 与往年相比
         donate_title: "特别感谢我们所有的支持者"
         donate_desc2_html: |
@@ -5796,8 +6666,22 @@ zh-CN:
         inaturalist_network_desc: |
           查看iNaturalist Network成员的年评。
         include_usa: 包括美国
+        growth_by_country_desc_html: |
+          增长发生在哪里？ 这张地图和图表试图按国家进行细分，结果证明这很复杂，因为各国的增长可能非常不平衡。 在这里，我们选择忽略美国并默认使用对数刻度来强调其他国家/地区之间的差异。 如果一个国家/地区颜色为黑色，则意味着该国家/地区没有显着贡献百分比，或者今年没有增长，或者今年没有比去年更多的观察结果（将鼠标悬停在某个国家/地区上可以查看更多详细信息）。 <strong>“占总增长的百分比”</strong>表示全球增长有多少来自特定国家/地区，例如 如果2018年有20个观察，2017年有10个观察，那就是10个增长观察，如果其中5个观察来自贝宁，那么贝宁贡献了总增长的50%。 <strong>“增长百分比”</strong>是指该国今年的观察数量占该国去年观察数量的百分比，因此，如果老挝去年有 10 个观察，但今年有 20 个，则结果为 100% 增长，如果去年为 0，今年为 1，那就是无限%增长。
         growth_by_country_title: 按国家/地区显示增长
+        growth_in_year_obs: "%{year}年增长率（观察）"
         growth_title: 增长
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "太低：%{low_value}（%{low_desc}），太小以至于无法显示"
+        new_species_desc: |
+          今年首次在 %{site_name} 上观察到的物种。
+          显示<a href="%{url}">上%{y}个物种中的%{x}个</a>。
+        new_species_desc_html: |
+          今年首次添加的物种。
+          点击月份可查看该月添加的新物种。
+          您还可以查看物种总计，或移动时间回溯滑块以查看其他新观察到的物种。 此图表显示了按月份上传（而不是观察）到%{site_name}的拥有可验证观测的物种。它不包括更高或更低级别的分类群，因此被识别为哺乳动物的观察值不计算在内，而北极狼<i>Canis lupus</i> ssp. <i>arctos</i>的观察值会仅被算作狼<i>Canis lupus</i>。
         new_species_per_year: 新物种/年
         new_species_per_year_by_date_added: 按添加日期
         new_species_per_year_by_date_observed: 按观察日期
@@ -5806,29 +6690,43 @@ zh-CN:
         one_time: 一次性
         percent_growth_in_year: "% 增长在%{year}"
         percent_of_total_growth: "% 总增长"
+        publications_desc_short_html: |
+          点击花图以获取更多关于数字和颜色意思的信息。影响数据和表图由<a href="https://www.altmetric.com">Altmetec</a>提供。有关数据使用的信息由<a href="https://www.gbif.org/">全球生物多样性信息设施（GBIF）</a>的伙伴提供。
         observations_per_year: 观察记录 / 年
         observations_per_year_by_date_added: 根据添加日期
         observations_per_year_by_date_observed: 按观察日期
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
-        observation_streaks: 观察记录的规则
+        observation_streaks: 连续观察记录
         observation_streaks_color_desc: |
           颜色表示在对数比例尺上的天数：
+        observation_streaks_desc2: |
+          连续观察记录是指观察者在一段不少于5天时间里每天走出室外记录新的、可核实的观察结果。这里是我们展示的是今年或者在这些统计数据产生时正在进行的最长的连续观察记录（对个人观察者而言我们还包括了截止到本年为止的连续观察记录）。
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: 定期
         species_per_year: 物种/年
         species_per_year_by_date_added: 按添加日期
         species_per_year_by_date_observed: 按观察日期排序
+        stats_generated_datetime: 统计数据生成于%{datetime}
+        stats_generation_schedule: 统计数据将在12月份的每个星期天和1月1日生成。
+        store_prompt: |
+          想要在任何地方展示您的 iNat 自豪感吗？来看看iNat商店吧！
         sunburst_desc_html: |
           观察到的分类群被安排为分层的“森伯斯特”图。层次结构的基础位于中心，从“生命”开始，到外边缘的物种结束。每个弧的大小与该分类单元的观察数量成正比，颜色大略地对应于我们通常的“标志性”分类颜色（植物为绿色，昆虫为橙色，大多数其他动物为蓝色等），所以如果您看到很多绿色，这意味着您观察了很多植物。<strong>点击圆弧以将该分类单元放置在中心</strong>及其周围的子项，或<strong>单击中心以向上移动层次结构</strong>。
         translators_title: 翻译人员
+        translators_desc: |
+          你知不知道iNaturalist已经被翻译成了%{x_languages}，而这几乎完全是由%{x_people}翻译的，其中一些人甚至不使用iNat？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
+        translators_desc_for_site: |
+          你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
         translators_prompt: |
-          如果您想要帮助翻译， %{link_tag}点此学习%{link_tag_end}。
+          如果您想要帮助翻译， %{link_tag}点此了解更多%{link_tag_end}。
+        view_all_publications_count_caps2:
+          other: "查看%{count}个出版物"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
           给更高级别的类单位添加保护状态会影响该类群中所有物种的观察。请不要给类群添加含有没有状态的物种，因为这将不正确地掩盖这些物种的观察坐标。
         complete_desc_html: |
-          “完整”的分类单元包含符合iNaturalist的分类策略的<em>所有</em>已知的后代分类群，无论它们是否被观察到。目前只有站点管理员才能完成分类。
+          “完整”的分类单元包含符合iNaturalist的分类策略的<em>所有</em>已知的后代分类群，无论它们是否被观察到。目前只有站点超管才能宣称某个分类群业已完整。
         complete_rank_desc_html: |
           该分类单元完成的等级，例如，如果这个家族包含其所有属，但不包括其所有物种，那么这将被设定为“属”。物种是默认的。
       show:
@@ -5852,13 +6750,15 @@ zh-CN:
         about_conservation_status_desc: |
           保护状况总结了一组生物灭绝的风险。
         about_establishment_desc: |
-          “建立手段”描述物种如何到达目前发生的地点。引入意味着它是因为人类活动而到达的，而本地意味着它是在没有人类帮助的情况下到达的。特定物种只发生在特定的地点，而不是其他地点。
+          “定殖途径”描述物种如何到达目前发生的地点。外来意味着它是因为人类活动而到达的，而原生意味着它是在没有人类帮助的情况下到达的。特有物种只发生在特定的地点，其他地点均不存。
         about_taxon_curators_desc: |
           这些人管理包含此分类单元的分类树的一部分。如果您想进行更改，请标记此分类或联系其中一个人。
         charts_help_seasonality: |
           此图表显示按月分组的此分类单元的观察数量。请记住，这些是观察的数量，因此它们受到观察生物体的时间和人们懒得观察它们的影响。因此，一只鸟可能在五月似乎非常活跃，但这也可能是由于5月份有更多人观看，他们在后来的几个月里往往会忽视这一物种。同样，如果你在6月看到的蜻蜓比1月份更多，这可能是因为我们在北半球观察的人数多于南半球，而不是因为蜻蜓在6月更活跃，所以在考虑这些图表时请查看地图。当“可验证”和“研究级”观察数量之间的观察数量较少和/或存在较大差异时，对这些图表持怀疑态度总是一个好主意。
         charts_help_history: |
           该图表显示了过去十年中该分类单位的观察数量。同样，它受到观察人数的偏倚，但它会向你显示观察中不寻常的峰值，如果观察者数量增加，它看起来是平的还是减少，这可能表明丰度的变化。
+        charts_help_other: |
+          我们还展示观察注释的季节性图示。注释是使用受控术语将元数据添加到观测中的一种方式，比如观察中的植物是处于开花阶段还是挂果阶段。
         charts_help_relative_observations: |
           将频率显示为所有观察的相对比例有助于平滑场地整体增长的影响。例如，如果网站正在增长，因为我们每过一年就会得到更多的观察结果，我们会对任何单独的分类单元进行更多的观察，这并没有告诉您是否有更多的分类单元要观察，只是有更多的人观察它。显示相对比例意味着如果总共有100个观察值但是对该分类单元进行了20次观察，则该比例为0.2（20/100）。如果人们观察到明年的2000次观察和400次该分类单位的观察，则该比例仍为0.2（400/2000）。当一个区域中的观察者很少，或者很少观察到的分类群时，这会导致一些异常情况，但总数也是如此。
         complete_taxon_desc: |
@@ -5870,7 +6770,7 @@ zh-CN:
           "Alive or Dead=Alive": 活体
           "Alive or Dead=Dead": 死亡
           "Plant Phenology=Budding": 发芽
-          "Plant Phenology=Flower Budding": 花芽
+          "Plant Phenology=Flower Budding": 花芽阶段
           "Plant Phenology=Flowering": 开花
           "Plant Phenology=Fruiting": 结果
           "Plant Phenology=No Evidence of Flowering": 没有开花迹象
@@ -5882,6 +6782,9 @@ zh-CN:
           "Life Stage=Pupa": 蛹
           "Life Stage=Subimago": 亚成虫
           "Life Stage=Teneral": 成熟前期
+          "Sex=Cannot Be Determined": 无法确定
+          "Sex=Female": 雌性
+          "Sex=Male": 雄性
           unannotated: 没有注释
         max_photos_desc: |
           一个分类群最多只能拥有 %{max} 张照片，您需要移除现有照片来增加别的照片。
@@ -5892,6 +6795,8 @@ zh-CN:
           请注意，分类单元页面将显示此分类单元及其后代的照片。然而，为这个分类选择的照片将首先显示。第一张照片将是整个网站使用的默认图片。
         rare_desc: 最少观察到受威胁的分类群
         rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>中观察到最少的受威胁的分类群
+        site_curators_disabled_wikipedia_html: |
+          站点馆长临时关闭显示<a href="%{url}">来自维基百科的这一内容</a>。你可以通过编辑维基百科页面来让其符合对该分类单元的描述，或者对这一分类单元进行标记，吸引站点馆主来处置。
         trending_desc: 上个月观察到最多的分类群
         trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
         wanted_desc: 此分类中尚未观察到的物种。
@@ -5938,16 +6843,21 @@ zh-CN:
         you_may_want_to_update: 您可能想要更新与这些分类群相关的一些内容。
         cannot_update_your_content: "%{site_name}无法自动更新您的内容以进行此更改。"
         new_project_admin_html: |
-          想知道您为什么现在成为这个项目的管理员了么？之前的所有者分配您作为新管理员，或者他删除了其账户，并因为您是一位项目经理或网站馆长，从而%{site_name}分配给您。如果您不希望成为项目管理员，请联络<a href="mailto:%{help_email}">%{help_email}</a>
+          想知道您为什么现在成为这个项目的管理员了么？要么是此前的所有者确立您作为新超管，要么是此前的所有者删除了账户，而您是一位项目馆管理员或网站馆长，因此%{site_name}将权限分配给了您。如果您不希望成为项目超管，请联络<a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
-          只是提醒一下，项目馆长可以查看您添加至此项目的观察中私有和被掩盖的坐标。
+          只是提醒一下，项目管理员可以查看您添加至此项目的观察中私有和被掩盖的坐标。
       delete:
         by_deleting_your_account_you_will_remove: |
           通过删除您的帐号，您将会删除
+        caching: |
+          如果您删除您的账号是为了删除一些您的内容，但在此后仍在地图或者其他地方看到了这些内容，请记住地图数据在数据删除后仍可能被缓存最多1天，删除本平台上的数据也不会影响到其它站点和平台（如GBIF）上存在的拷贝。
         x_observations_html:
           other: |
             <strong class="count">%{count} 个观察</strong>，为含有
             <strong class="count">%{helpers_count} 名人们</strong>以鉴定协助您的成果
+        x_projects_html:
+          other: |
+            <strong class="count">%{count}项目</strong>没有其他的经办人或管理员能成为新的所有者
         x_identifications_html:
           other: |
             您在其他 <strong class="count">%{helpees_count} 个人</strong>的观察中的 <strong class="count">%{count} 个鉴定</strong>，似乎会影响到这些观察的品质
@@ -5955,12 +6865,41 @@ zh-CN:
           other: 您已添加了 <strong class="count">%{count} 条评论</strong>
         furthermore_cannot_undo_html: |
           此外， <strong>此操作无法撤销。</strong> 即使您稍后更改您的主意，您也将无法回复任何内容。
+        settings_and_mute_html: |
+          如果这个站点产生了太多的提示，请考虑<a href="/users/edit">修改设置</a>以筛出一部分提示，或是停止接收来自我站的邮件。如果您在网站上和某个特定的人物发生了矛盾，请考虑<a href="/users/edit">屏蔽他们</a>而非删除自己的账号。
+        still_want_to_delete_html: |
+          如果您仍然确定要删除您的帐户。 在下面的表格中输入<code>%{confirmation_code}</code> 并点击按钮来删除您的帐户和所有数据。
+        type_confirmation_code: 输入%{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: |
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
         about_third_party_tracking: 关于第三方的追踪
+        blocking_desc_html: |
+          <p>
+          屏蔽某人会阻止他们向您发送消息、评论您的观察结果、鉴定您的观察结果以及以其他方式在 %{site_name} 上与您互动。 它还会从您的搜索结果中删除他们的观察结果，并从他们的搜索结果中删除您的观察结果。 然而，这并不会让他们看不见你。 他们仍然可以找到您的观察结果并查看您的个人资料，只是无法与您互动。
+          </p>
+          <p>
+          屏蔽适用于以下情况：您与某人无法相处，尽管您尽了最大努力以文明方式解决争端，但他们也不肯放过您。 这不是一种躲避他人的方式，也无法防止您不信任其观点的人识别您的身份，也不是选择退出社区鉴定（还有另一种设置）。因此，屏蔽是双向的：如果你屏蔽某人，他们就无法与你互动，但你也无法与他们互动。如果你滥用它来阻止别人鉴定你的观察结果，你也会阻止你自己鉴定他们的观察结果。
+          </p>
+          <p>
+          您只能屏蔽三个人。 我们认为这是一个合理的数字，可以容纳需要屏蔽的人，同时防止滥用屏蔽。 如果您觉得需要屏蔽更多人，请<a href="mailto:%{help_email}">发邮件联系我们</a>。
+          </p>
+          <p>
+          如果有人在 %{site_name} 上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。 如果这违反了我们的使用条款或代表了我们认为不适合我们网站的其他行为，我们将进行调查。
+          </p>
+        common_scientific_name_display_order: 俗名/学名显示顺序
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。网络站点由当地的科研机构所支持，他们和iNaturalist签署了协议以支持当地对生物多样性数据的运用。他们有权限获得本国之内为保护濒危物种而对一般用户自动遮盖了的真实坐标。
+          </p>
+          <p>
+          你的用户名和密码在所有iNaturalist网络的站点上均适用。如果你选择参与一个网络站点，运营这一站点的当地机构将获得您的email地址（仅用于就站点活动联系您）并获得为保护濒危物种而对一般用户自动遮盖或设置私有的真实坐标。
+          </p>
+          <p>
+          备注：在拥有超过1000个观察的情况下，请不要为了测试而随便改变您的参与站点。
+          </p>
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
         monthly_supporter_desc_html: |
@@ -5983,7 +6922,7 @@ zh-CN:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: 站内消息
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_journal_posts: 项目日记帖子
+        notification_preferences_project_journal_posts: 项目日记
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: 当一个项目添加了您的观察
         #Checkbox label for user preference about what to receive in the daily
@@ -5994,27 +6933,90 @@ zh-CN:
         notification_preferences_taxon_changes: 物种分类变更
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: 我关注的人的观察记录
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: 我订阅的分类群或地方的观察
         place_preference_changed_notice_html: |
           地点参数设置已更改。如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
         project_addition_preferences:
-          any: 任何
+          any: 全部
           joined: 您加入的项目
           none: "没有，只有您可以将您的观察添加到项目中"
         prefers_community_taxa_desc: |
           %{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。
+        prefers_coordinate_interpolation_protection_desc: |
+          当您将观察的地理位置设置为“隐藏”或“私有”时，同一天内您所有其他的观测也将应用同样的地理位置隐私设置，使其他人更难基于同一时间内您的观察来猜测真正的坐标。
+        prefers_no_tracking_label: 不要使用第三方服务收集稳定性和使用数据
+        prefers_no_tracking_label_desc_we_use: |
+          我们使用多种第三方服务来监测我们软件的稳定性以及诊断缺陷和问题。这些第三方包括
+        prefers_no_tracking_label_desc_we_use_google_html: 谷歌（<a href="https://analytics.google.com">Google Analytics</a>，<a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>）
+        prefers_no_tracking_label_desc_info_we_share: |
+          我们可能与这些第三方分享的信息包括：
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP地址（可被用于定位到城市一级分辨率的地理坐标，以及在不同的网站和服务之间对你进行追踪；应当注意我们启用了Google Analytics的<a href="https://support.google.com/analytics/answer/2763052">IP匿名化</a>功能；Firebase Crashlytics则可能暂时性地<a href="https://firebase.google.com/support/privacy">存储IP地址</a>）
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          浏览器的详细信息，例如制作商、型号和版本
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          崩溃详情，比如哪一行代码导致崩溃了
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          设备详细信息，例如移动电话的制作商和款式
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>这些第三方服务</strong>为我们以相对较少的员工维持 iNaturalist 的稳定性和可用性<strong>提供了巨大的价值</strong>。 在移动设备上，我们几乎没有其他方法可以深入了解正在发生的问题，因为软件运行在我们无法控制的设备上。 有时，我们甚至没有意识到此类问题的发生，直到我们在这些服务提供的数据中看到它们。<strong> 通过分享此信息，您将帮助我们为您和整个 iNaturalist 社区提供服务。</strong>
+        prefers_no_tracking_label_desc_limits: |
+          请注意，这个选项仅适用于我们向这些公司明确发送的分析和崩溃数据。 所有iNaturalist 服务器都由Microsoft提供和托管，所有iNaturalist 图像都由Amazon 托管，几乎所有iNaturalist 地图都由Google提供服务。 这意味着每次您都会在 iNaturalist 上看到观察结果， 您正在连接到这些公司提供的服务，并且暴露您的IP地址。 至少在 iPhone 应用程序中，我们使用 Apple 的地图)。 如果没有这些公司提供的服务，可能就不会有iNaturalist 。 并且，我们可以限制您在使用 iNat 时与他们共享的数据的数量和类型。 我们不能完全停止数据流动。
         project_settings_desc: |
           记住，这不会给项目提供访问您私有坐标或向您发送更新的权限。为了获得这些权限，您必须加入项目，或在个案中授予他们权限。
+        same_day_geoprivacy_protection: 当天的位置隐私保护
         taxon_change_desc: |
           当在%{site_name}上合并或重命名分类单元时，如果更改是明确的，您的观察、列出的分类单元、标识等将自动更新为新的分类单元。如果您选择退出或更改不明确（例如拆分），您将收到有关更改链接到工具的更新，如果您愿意，可以使用该工具手动更新您的内容。
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: 添加通用名词汇表
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: 添加地方 (可选)
+          common_name_lexicon_display_order: 通用名词汇表显示顺序
+          common_name_lexicons: 通用名词汇表
+          common_name_lexicons_description: 默认情况下，通用名以您的帐户语言/本地化语言显示。 要想查看其他通用名词汇表中的名称， 或为了排列具体地点（如英语（澳大利亚）或西班牙语（哥斯达黎加）所使用的通用名的优先顺序，可增加通用名词汇表。 一次最多可显示3个通用名。 如果您选择的词汇表中没有物种所对应的通用名，它将从显示中省略。
+          for_multiple_common_name_lexicons_drag_and_drop: 对于多个通用名词汇表的情况，请拖动下面的设置以自定义显示它们的顺序。
+          same_as_locale: 与区域设置相同
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: 与用户语言/区域设置相同
+          select_a_lexicon: 选择词汇表
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: 已经添加了最多3个通用名词汇表。
+        this_only_applies_to_traditional_projects: |
+          这只适用于过去的项目。您不能将观察排除在收藏或总括项目之外，这些项目基本上都是已保存的搜索。您可以<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">点击这里</a>阅读更多。
       recent:
         about_recent_users: 关于
+        definitions_html: <dl><dt>疑似骚扰账号</dt><dd>用户可能是骚扰账号，这意味着他们没有观察和坚定，但是却有个人简介。</dd><dt>自动标记骚扰账号</dt><dd>被系统自动标记的骚扰账号。</dd><dt>手动标记骚扰账号</dt><dd>被站点管理员手动标记的骚扰账号。</dd><dt>假阳性</dt><dd>被标记为骚扰账号，但被发现不是，因此标记被站点管理员去除。</dd></dl>
+        recent_users_desc_html: |
+          <p>
+          我们欢迎新用户，但同时也会防范骚扰账户。希望此工具会对以上两种情况都有所帮助。我们使用<a
+          href="https://akismet.com/">Akismet</a>自动标记了很多骚扰账户，但 Akismet 并非完美，因此若您想花几分钟来决定来将新账号标记为骚扰或非骚扰用户，这会很有帮助。
+          </p>
       show:
+        take_a_moment_to_review_html: '花一点时间来阅读 <a href="%{link}">我们的指导规则</a>。'
         this_user_was_banned: 此用户已被停用
         favorites_list_prompt_html: |
-          想要展示您喜爱的类群？ %{link_start_tag}创建一个名为 "喜爱" 的
-          列表%{link_end_tag} ，对应的新增观察将出现在这个列表中。
+          想展示您最喜爱的分类群吗？%{link_start_tag}创建一个
+          列表%{link_end_tag}，标题为 "收藏夹"，最近添加的内容
+          将出现在此空间中。
     user_parents:
       confirm:
+        thanks_donor_html: |
+          <p>
+          感谢您成为 iNaturalist 的捐款者！我们会使用您现有的捐款来确认您的身份，而您不需要再做进一步动作。<strong>您孩子的账号现已启用。</strong>
+          </p>
+          <p>
+          请通过点击菜单上的“iNaturalist”按钮，再点击页面底端的“以 iNaturalist 登入“来登录您孩子的 Seek app。
+          </p>
+          <p>
+          您的孩子将能够使用Seek 将观察上传到他们的 iNaturalist 账号，并可以在 iNaturalist.org 上看到它们。
+          </p>
         thanks_for_creating_a_minor_account: 感谢您创建一个副账户！
         we_will_send_you_an_email: |
           在您孩子的账号启用后我们将会发送一封电子邮件。
@@ -6030,12 +7032,24 @@ zh-CN:
         step1_desc: |
           为了遵守隐私条例， 我们需要父母或法定监护人同意才能为13岁以下的儿童创建帐户。 如果您想要您的孩子使用 iNaturalist，您必须提供给我们的一些身份和联系信息。
         step2_title: 通过信用卡来确认您的身份
+        step2_desc: |
+          要证明你是一名成年人，我们需要您使用信用卡对iNaturalist进行不少于1美元的象征性捐款。这是能允许我们在遵守隐私法律的情况下实现身份识别的冒犯性最低的手段。请确保您所使用的邮箱地址和您在之前步骤中输入的“父母邮箱”地址相同。
         step3_title: 等待用于确认的电子邮件
+        step3_desc: |
+          一旦我们将捐助所用的邮箱地址和您在“父母邮箱”项目中所输入的地址实现匹配，我们就将激活孩子的账号并向父母邮箱发送包含登录指引的邮件。这可能需要最多24小时。
         step3_donor_title: 您孩子的账号已经被激活
+        step3_donor_desc: |
+          因为你是一个 iNaturalist 捐赠者，我们可以用您现有的捐赠来验证您的身份。
     welcome:
       index:
         connect_with_nature: 连接自然
         explore_and_share: 探索并分享您对自然世界的观察。
+        observations_to_date:
+          other: "至今观察"
+        species_observed:
+          other: "观察到的物种"
+        people_signed_up:
+          other: "注册人数"
         how_it_works: 它是如何工作的
         record_your_observations: 记录您的观察
         share_with_fellow_naturalists: 与自然学家分享
@@ -6107,11 +7121,15 @@ zh-CN:
       7: 六
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%Y-%m-%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short_with_year: '%Y %b %d'
+      compact: "%b %e"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y年 %b %-d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -6186,10 +7204,24 @@ zh-CN:
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
       delimiter: ','
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}千"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}百万"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}十亿"
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: 十亿
           million: 百万
@@ -6197,9 +7229,11 @@ zh-CN:
           thousand: 千
           trillion: 万亿
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
+        format: '%n %u'
         units:
           byte:
             other: 字节
@@ -6218,9 +7252,13 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y年%b%d日 %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      long: '%Y年%d%B日 %I:%M %p'
+      long: '%Y年%B%d日 %p %I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日 %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%I:%M %p"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      observed_at: '%I:%M %p %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -6228,21 +7266,44 @@ zh-CN:
     pm: 下午
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: 公告
       AssessmentSection: 评定章节
       Atlas: 地图集
+      BlockedUser: 已屏蔽用户
+      Comment: 评论
       CompleteSet: 完整集
       #Noun
       Flag: 标记
+      Identification: 鉴定
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: 版主操作
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: 版主批注
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: 应用
+      Photo: 照片
+      Post: 日记
       TaxonLink: 分类单元链接
     attributes:
       announcement:
         created_at: 创建于
         updated_at: 更新于
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: 站点鉴定
         #Preference for an announcement that is only shown to staff
         prefers_target_staff: 目标工作人员 (用于测试)
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: 针对未确认电子邮件地址的用户
+        clients: 客户端
       assessment:
         description: 描述
       assessment_section:
@@ -6271,7 +7332,7 @@ zh-CN:
         published_at: 出版物
       listed_taxon:
         occurrence_status_level: 出现状态级别
-        establishment_means: 建立手段
+        establishment_means: 定殖途径
       message:
         subject: 主题
         body: 正文
@@ -6296,6 +7357,11 @@ zh-CN:
         #Inputs to an export task, e.g. the query and the columns
         inputs: 输入
       oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: 回退URL
+        #Unique identifier for an application
+        uid: 鉴定
         #Noun, secret associated with an application, sort of like the application's password
         secret: 密钥
         #Adjective, whether or not this application can keep its secret
@@ -6334,9 +7400,9 @@ zh-CN:
         latitude: 纬度
         longitude: 经度
         name: 名称
-        parent_id: 父
+        parent_id: 上级
         place_type: 地点类型
-        prefers_check_lists: 允许检查清单？
+        prefers_check_lists: 是否允许检查列表？
       site:
         logo: 标志
         logo_email_banner: Email 横幅
@@ -6349,19 +7415,32 @@ zh-CN:
         ancestry: 祖先
         auto_description: 自动描述
         auto_photos: 自动照片
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: 完整序列
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: 保护状况
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: 推荐
         #ID of the iconic taxon this taxon belongs to
         iconic_taxon_id: 标志性分类阶元 ID
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: 活跃的？
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: 标志性的？
         locked: 已锁定
         name: 名称
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: 名称提供方
-        parent_id: 父ID
+        parent_id: 上级ID
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: 照片被锁定？
         rank: 分类阶层
+        rank_level: 等级级别
         source_id: 来源ID
         source_identifier: 来源标识符
         source_url: 来源URL
@@ -6389,6 +7468,8 @@ zh-CN:
         short_title: 短标题
         #Taxon this link is associated with
         taxon: 分类阶元
+        #Place this link is associated with
+        place: 地方
         #Controls whether the taxon link is visible for descendants of this
         #taxon
         show_for_descendent_taxa: 显示子分类群
@@ -6443,6 +7524,16 @@ zh-CN:
         header:
           other: '%{count} 个错误禁止了储存此%{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: 必须对指定的位置有效
         application:
           attributes:
             redirect_uri:
@@ -6459,6 +7550,9 @@ zh-CN:
               prefers_no_comments: 已禁用评论
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                不能涉及重复的观察或照片； 只有观察者才可以删除重复，所以请直接用评论提出这些问题
             user_id:
               already_flagged: "已标记该项目"
         guide:
@@ -6475,8 +7569,13 @@ zh-CN:
               not_supported_for_this_kind_of_content: 不支持此类内容
             base:
               only_staff_can_unhide: 只有工作人员才能解除隐藏内容
+              staff_cannot_be_suspended: 员工不能被停用
             user_id:
-              must_be_a_curator: 必须是管理者
+              must_be_a_curator: 必须是管理员
+        moderator_note:
+          attributes:
+            user:
+              must_be_a_curator: 必须是馆长
         observation:
           attributes:
             base:
@@ -6484,6 +7583,8 @@ zh-CN:
             observed_on:
               cannot_be_greater_than_date_created: |
                 不能大于观察被添加的日期
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: 必须在过去130年内
         observation_field_value:
           attributes:
             value:
@@ -6514,6 +7615,7 @@ zh-CN:
               cannot_be_blank: 不能为空
               invalid_point: 有一个无效的点，例如：经度大于180°或纬度小于-90°
               must_have_more_than_three_points: 必须超过 3 个点
+              polygon_with_fewer_than_four_points: 有一个少于4个点的多边形
         post:
           attributes:
             parent:
@@ -6523,7 +7625,7 @@ zh-CN:
               prefers_no_comments: 不允许新评论
             user:
               must_be_on_site_long_enough: |
-                必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
+                必须已经注册超过24小时才能发布。我们有大量的骚扰用户，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
         project_observation:
           attributes:
             base:
@@ -6540,6 +7642,11 @@ zh-CN:
                 必须在 %{time} 之后被观察
               must_be_observed_before: |
                 必须在 %{time} 之前被观察
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: 观察没有用于投票的日期
+              no_votable_coordinates: 观察没有用于投票的坐标
         taxon:
           attributes:
             rank:
@@ -6569,10 +7676,13 @@ zh-CN:
               should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
               should_be_in_english: 应为英文
             name:
+              already_exists: 这个分类群已经存在于这个词汇表
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 不能匹配指定此词汇的物种名
               must_match_the_taxon_if_valid: |
                 如果这是一个有效的学名那它一定符合分类群名称
+              bad_format: |
+                只能包含标准的拉丁字符、连字符、空格和×；注意不允许存在假定的分类单元和栽培品种
             audit_comment:
               needs_to_be_at_least_10_characters: 请输入不少于10个字的内容
         taxon_photo:
@@ -6607,35 +7717,198 @@ zh-CN:
               belongs_to_an_existing_user: |
                 如果您有帐户，请在继续之前签名，或使用不同的电子邮件地址。
   doorkeeper:
+    scopes:
+      write: |
+        代表您创建、更新和删除您的观察、鉴定和其他内容，访问您的隐藏坐标和您在本站可以访问的任何其他信息。
+      login: |
+        访问与登录到第三方服务相关的信息，例如与您的账户相关的电子邮件地址、用户名、名称以及用户图标。
+      account_delete: |
+        根据您的意愿删除您的账户。
     errors:
       messages:
+        #Common error messages
+        invalid_request: '请求缺少必要参数，包括不受支持的参数值，或者格式不正确。'
         invalid_redirect_uri: '包含的跳转 URI 无效。'
+        unauthorized_client: '客户端无权使用此方法执行此请求。'
         access_denied: '资源所有者或授权服务器拒绝了此请求。'
         invalid_scope: '请求的范围无效、未知或格式不正确。'
+        server_error: '授权服务器遇到了意外情况，无法完成请求。'
+        temporarily_unavailable: '由于暂时性过载或维护，授权服务器当前无法处理请求。'
+        #Configuration error messages
+        credential_flow_not_configured: '由于未配置 Doorkeeper.configure.resource_owner_from_credentials，资源所有者密码凭据流失败。'
+        resource_owner_authenticator_not_configured: '资源所有者查找失败，原因是未配置 Doorkeeper.configure.resource_owner_authenticator。'
+        #Access grant errors
+        unsupported_response_type: '授权服务器不支持此响应类型。'
+        #Access token errors
+        invalid_client: '客户端身份验证失败，原因是未知客户端、未包含客户端身份验证或者不受支持的身份验证方法。'
+        invalid_grant: '提供的授权无效、已过期或者已被撤销，与授权请求中使用的重定向 URI 不匹配，或者颁发给其他客户端。'
+        unsupported_grant_type: '授权服务器不支持此授权类型。'
         #Password Access token errors
         invalid_resource_owner: '提供的资源拥有人账户无效或无法找到'
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: '应用已创建。'
+        destroy:
+          #Application as in a software application
+          notice: '应用已删除。'
+        update:
+          #Application as in a software application
+          notice: '应用已更新。'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: '应用已撤销。'
   i18n:
     inflections:
       "@vow_or_con":
         vow: 元音
         con: 辅音
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: 男
         f: 女
         "n": neuter
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+      "@iconic_taxon":
+        Animalia: 动物
+        Actinopterygii: 鱼类
+        Aves: 鸟类
+        Reptilia: 爬行类
+        Amphibia: 两栖类
+        Mammalia: 哺乳类
+        Arachnida: 蛛形纲
+        Insecta: 昆虫
+        Plantae: 植物
+        Fungi: 真菌
+        Protozoa: 原生动物
+        Mollusca: 软体动物
+        Chromista: 假菌
   #Title of a section warning the user about something
   warning_title: 警告
+  wikimedia: Wikimedia
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 上一页"
     next_label: "下一页 &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "你将不再关注或信任%{user}"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: 从Z到A
   zoom_in: 放大
   zoom_out: 缩小
   zoom_photo: 缩放照片

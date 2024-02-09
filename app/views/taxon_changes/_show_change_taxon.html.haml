@@ -79,11 +79,10 @@
           = t("change_types.replaced_with")
         - when "TaxonDrop"
           = t("change_types.dropped")
-        - when "TaxonDrop"
+        - when "TaxonStage"
           = t("change_types.staged")
       %td
         %ul.change_taxon
-          - unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage"
-            - for change_taxon in taxon_change.output_taxa
-              %li
-                = render partial: "taxon_changes/change_taxon", object: change_taxon, locals: { taxon_change: taxon_change, show_change_links: show_change_links, show_atlas_alert: true }
+          - for change_taxon in taxon_change.output_taxa
+            %li
+              = render partial: "taxon_changes/change_taxon", object: change_taxon, locals: { taxon_change: taxon_change, show_change_links: show_change_links, show_atlas_alert: true }

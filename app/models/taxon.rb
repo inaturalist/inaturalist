@@ -156,7 +156,8 @@ class Taxon < ApplicationRecord
     observations: { notification: "new_observations", include_owner: false }
   }
 
-  NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT = 200_000
+  NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON = 200_000
+  NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_COMMIT_TAXON_CHANGES = 75_000
   NUM_OBSERVATIONS_TRIGGERING_WARNING = 1000
 
   NAME_PROVIDER_TITLES = {
@@ -391,7 +392,7 @@ class Taxon < ApplicationRecord
 
   # Names we don't use when trying to extract a taxon from text because they
   # usually map to the wrong thing. Also including all place names for
-  # state-level places and above that are also taoxn names, since they often get
+  # state-level places and above that are also taxon names, since they often get
   # used in photo tags
   months_to_days = I18N_SUPPORTED_LOCALES.map do | locale |
     [
@@ -1342,7 +1343,7 @@ class Taxon < ApplicationRecord
   def observose_branch?
     return false unless observations_count
 
-    observations_count > NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
+    observations_count > NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON
   end
 
   def observose_warning_branch?
@@ -1642,6 +1643,14 @@ class Taxon < ApplicationRecord
 
   def descendant_of?( taxon )
     ancestor_ids.include?( taxon.id )
+  end
+
+  def in_same_branch_of?( taxon )
+    return true if taxon.id == id
+
+    return true if ancestor_of?( taxon )
+
+    descendant_of?( taxon )
   end
 
   def descendant_conditions
@@ -2577,9 +2586,9 @@ class Taxon < ApplicationRecord
       if taxon_ids.length === 1
         # index this taxon in a delayed job with a unique hash, as its possible
         # there's already a job for this taxon, preventing extra indexing
-        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
-          unique_hash: { "Taxon::elastic_index": taxon_ids[0] }).
-          elastic_index!(ids: taxon_ids)
+        Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+          unique_hash: { "Taxon::elastic_index": taxon_ids[0] } ).
+          elastic_index!( ids: taxon_ids )
       else
         Taxon.elastic_index!( ids: taxon_ids )
       end

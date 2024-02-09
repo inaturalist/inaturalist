@@ -122,7 +122,9 @@ $flowedDim: 150px;
   }
 }
 .ObservationsGridItem .caption {
-  height: 85px;
+  display: flex;
+  flex-direction: column;
+  min-height: 85px;
   padding: 12px;
 }
 .ObservationsGridItem .title {
@@ -133,7 +135,7 @@ $flowedDim: 150px;
 .ObservationsGridItem .UserImage {
   position: absolute;
   right: 10px;
-  bottom: 75px;
+  top: 101px;
 }
 
 .ObservationsGridItem .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
@@ -157,15 +159,17 @@ $flowedDim: 150px;
 }
 
 .ObservationsGridItem .controls {
-  position: absolute;
   left: 10px;
   right: 10px;
   bottom: 10px;
 }
 
 .ObservationsGridItem .SplitTaxon {
-  overflow: hidden;
   width: 100%;
+}
+
+.ObservationsGridItem .caption .SplitTaxon {
+  flex: 1;
 }
 
 .ObservationsGridItem .reviewed-notice {

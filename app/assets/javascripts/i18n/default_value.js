@@ -17,7 +17,12 @@
         // Missing translation
         break;
       }
-      if ( typeof candidate === "string" ) {
+      if (
+        // found a regular string
+        typeof candidate === "string"
+        // found a plural
+        || candidate.one
+      ) {
         // translation found
         translation = candidate;
         break;

@@ -302,6 +302,74 @@ describe User do
       end
     end
 
+    describe "syncs place_id to taxon_name_priorities for admins" do
+      let( :admin_user ) { make_admin }
+      let( :non_admin_user ) { User.make! }
+      let( :place ) { make_place_with_geom }
+      let( :alt_place ) { make_place_with_geom }
+
+      it "does not yet add a taxon_name_priorities for non-admins" do
+        expect( non_admin_user.taxon_name_priorities.length ).to eq 0
+        non_admin_user.update( place: place )
+        expect( non_admin_user.taxon_name_priorities.length ).to eq 0
+      end
+
+      it "adds a taxon_name_priority when none exists" do
+        expect( admin_user.taxon_name_priorities.length ).to eq 0
+        admin_user.update( place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+      end
+
+      it "does not add a taxon_name_priority when one exists with a lexicon" do
+        admin_user.taxon_name_priorities.create( lexicon: "en", place: alt_place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq alt_place.id
+        admin_user.update( place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq alt_place.id
+      end
+
+      it "sets place_id for taxon_name_priorities when lexicon is nil" do
+        admin_user.taxon_name_priorities.create( lexicon: nil, place: alt_place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq alt_place.id
+        admin_user.update( place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+      end
+
+      it "removes taxon_name_priorities when place_id is set to nil" do
+        admin_user.update( place: place )
+        admin_user.taxon_name_priorities.delete_all
+        admin_user.taxon_name_priorities.create( lexicon: nil, place: place )
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        admin_user.update( place: nil )
+        expect( admin_user.taxon_name_priorities.length ).to eq 0
+      end
+
+      it "does not remove taxon_name_priorities when the lexicon isn't nil" do
+        admin_user.update( place: place )
+        admin_user.taxon_name_priorities.delete_all
+        admin_user.taxon_name_priorities.create( lexicon: "en", place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+        admin_user.update( place: nil )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+      end
+
+    end
+
   end
 
   #
@@ -994,6 +1062,22 @@ describe User do
       o.vote_by voter: keeper, vote: true
       o.vote_by voter: reject, vote: true
       expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
+    end
+
+    describe "user_parents" do
+      it "should merge user_parents where this user is the child" do
+        up = UserParent.make!( user: reject )
+        keeper.merge( reject )
+        expect( keeper.user_parent ).not_to be_nil
+        expect( keeper.user_parent.id ).to eq up.id
+      end
+
+      it "should merge user_parents where this user is the parent" do
+        up = UserParent.make!( parent_user: reject )
+        keeper.merge( reject )
+        expect( keeper.parentages ).not_to be_empty
+        expect( keeper.parentages.first.id ).to eq up.id
+      end
     end
   end
 

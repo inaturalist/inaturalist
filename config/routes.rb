@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
   get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
 
-  get "/independence", to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
+  get "/independence",
+    to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
 
   resources :controlled_terms
@@ -128,6 +129,11 @@ Rails.application.routes.draw do
     member do
       get :merge
       put :merge, to: "observation_fields#merge_field"
+    end
+  end
+  resources :observation_accuracy_experiments, only: [:show] do
+    member do
+      get "get_more_validators"
     end
   end
   get "/" => "welcome#index"
@@ -700,7 +706,7 @@ Rails.application.routes.draw do
   end
   resources :moderator_actions, only: [:create] do
     member do
-      get :resource_url, constraints: lambda {|req| req.format == :json }
+      get :resource_url, constraints: ->( req ) { req.format == :json }
     end
   end
 

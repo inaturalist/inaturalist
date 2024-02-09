@@ -1,0 +1,96 @@
+  h1 {
+    font: 24px sans-serif;
+  }
+
+  .sampleSize {
+    display: none;
+  }
+
+  #additional-validators {
+    color: #337ab7;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #additional-validators:hover {
+    text-decoration: none;
+  }
+
+  #hide_validators{
+    display: none;
+    color: #337ab7;
+    cursor: pointer;
+  }
+
+  .validators {
+    fill: #F9DD8F;
+  }
+  .validators:hover {
+    fill: #B29A5B;
+  }
+  .correct {
+    fill: lightgreen;
+  }
+  .uncertain {
+    fill: lightgray;
+  }
+  .incorrect {
+    fill: pink;
+  }
+  .precision {
+    fill: lightblue;
+  }
+
+  .pre.precision:hover {
+    fill: blue;
+  }
+
+  .acc.correct:hover {
+    fill: green;
+  }
+  
+  .acc.uncertain:hover {
+    fill: gray;
+  }
+  
+  .acc.incorrect:hover {
+    fill: red;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+  
+  .dashed-line {
+    stroke-dasharray: 5, 5;
+  }
+
+  .barplot-container {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  /* Custom tooltip styles */
+  #tooltip {
+    position: fixed;
+    background: #fff; /* White background */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 3px;
+    padding: 8px;
+    position: absolute;
+    display: none;
+    font: 10px sans-serif;
+    color: #333; /* Dark text color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }

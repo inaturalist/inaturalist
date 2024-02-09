@@ -35,11 +35,18 @@ es-CR:
     organism: Organismo total o parcial
     scat: Materia fecal (no egagrópilas de búho u otra materia regurgitada)
     track: Impresión en suelo o nieve hecha por el organismo
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: 'Estimado/a %{user}:'
   #The name of a computer file
   filename: Nombre de archivo
   flag_for_place_title_html: |
     Marca para Lugar: %{title}
   flag_this_place: Marcar este lugar
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERAR SU %{year} RESUMEN DEL AÑO
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist es una organización sin fines de lucro independiente y exenta de impuestos bajo el régimen fiscal 501(c)(3), con sede en los Estados Unidos de América (id. tributaria: 92-1296468).
   leaderboard_most:
     species_in_month_year: La mayoría de las especies en %{month_year}
     species_in_year: La mayoría de las especies en %{year}
@@ -60,6 +67,7 @@ es-CR:
   suspend_user_reason_instructions_html: |
     Explicá por qué suspendés esta cuenta y citá cualquier violación de las
     Directrices de la comunidad (%{link_start_tag}Community Guidelines%{link_end_tag} ). Por favor abstenete de añadir opiniones personales.
+  unsubscribe_from_emails_like_this: Darse de baja de correos como este.
   unsuspend_user_html: Anular suspensión de %{user}
   unsuspend_user_reason_instructions: |
     Por favor, explicá por qué se anula la suspensión de este usuario.
@@ -82,6 +90,48 @@ es-CR:
     <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
     la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
     </p>
+  view_inaturalist_global_year_in_review_caps: VER EL RESUMEN GLOBAL DE INATURALIST DEL AÑO %{year}
+  year_in_review_caps: "RESUMEN DEL AÑO %{year}"
+  yir_email_because_of_you: |
+    Gracias a ustedes, hay más datos sobre la biodiversidad este año que el año pasado. El Resumen del Año es nuestro agradecimiento por todo lo que han hecho por la biodiversidad a través de iNaturalist.
+  yir_email_log_in_to_generate: |
+    ¡Inicia sesión para generar tu resumen anual personal y descúbrelo!
+  yir_email_of_your_observations:
+    one: De tus %{count} observaciones, ¿sabés cuántas se hicieron en %{year}?
+    other: De tus %{count} observaciones, ¿sabés cuántas se hicieron en %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Tu resumen anual de iNaturalist %{year} - celebra tu año con la biodiversidad
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: El equipo de iNaturalist
+  yir_email_the_year_isnt_over: |
+    El año aún no ha terminado y nunca es tarde para publicar observaciones antiguas. Después de compartir más observaciones, asegúrate de seleccionar "Regenerar estadísticas" en la parte inferior de tu Resumen anual para ver las actualizaciones.
+  yir_email_what_else_will_you_observe_caps: '¿QUÉ MÁS OBSERVARÁS?'
+  yir_email_what_new_to_you: |
+    ¿Cuáles especies nuevas registraste este año? ¿Cuántas personas te ayudaron con identificaciones (y cuántas ayudaste tú)?
+  yir_email_with_gratitude: Con gratitud,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} EN INATURALIST GLOBALMENTE"
+  yir_email_you_are_part_of_something: |
+    ¡Sos parte de algo grande! Cada persona que comparte observaciones, añade identificaciones y corre la voz sobre iNaturalist marca la diferencia para la biodiversidad. Con nuestros esfuerzos colectivos, estamos logrando que los datos y el conocimiento sobre la biodiversidad estén disponibles a una escala sin precedentes. ¡Gracias por ser parte de la comunidad de iNaturalist!
+  yir_email_you_make_a_difference: |
+    Con iNaturalist, marcas la diferencia para la biodiversidad. ¡Gracias por todo lo que haces!"
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Ha recibido este mensaje porque %{email} se ha asociado con
+    https://www.inaturalist.org/people/%{username}, una cuenta de iNaturalist creada el %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Ha recibido este mensaje porque %{email} se ha asociado con
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    una cuenta de iNaturalist creada el %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Tu cuenta está afiliada con %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Tu cuenta está afiliada con <a href="%{site_url}">%{site_name}</a>.
   views:
     donate:
       temporarily_unavailable: |

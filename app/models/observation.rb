@@ -153,20 +153,20 @@ class Observation < ApplicationRecord
   end
   PREFERRED_LICENSES = [CC_BY, CC_BY_NC, CC0]
   CSV_COLUMNS = [
-    "id", 
+    "id",
     "species_guess",
-    "scientific_name", 
-    "common_name", 
+    "scientific_name",
+    "common_name",
     "iconic_taxon_name",
     "taxon_id",
     "num_identification_agreements",
     "num_identification_disagreements",
     "observed_on_string",
-    "observed_on", 
+    "observed_on",
     "time_observed_at",
     "time_zone",
     "place_guess",
-    "latitude", 
+    "latitude",
     "longitude",
     "positional_accuracy",
     "private_place_guess",
@@ -178,14 +178,14 @@ class Observation < ApplicationRecord
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
-    "user_id", 
+    "user_id",
     "user_login",
     "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
     "license",
-    "url", 
+    "url",
     "image_url",
     "sound_url",
     "tag_list",
@@ -194,19 +194,19 @@ class Observation < ApplicationRecord
     "captive_cultivated"
   ]
   BASIC_COLUMNS = [
-    "id", 
+    "id",
     "observed_on_string",
-    "observed_on", 
+    "observed_on",
     "time_observed_at",
     "time_zone",
-    "user_id", 
+    "user_id",
     "user_login",
     "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
     "license",
-    "url", 
+    "url",
     "image_url",
     "sound_url",
     "tag_list",
@@ -218,7 +218,7 @@ class Observation < ApplicationRecord
   ]
   GEO_COLUMNS = [
     "place_guess",
-    "latitude", 
+    "latitude",
     "longitude",
     "positional_accuracy",
     "private_place_guess",
@@ -239,8 +239,8 @@ class Observation < ApplicationRecord
   ]
   TAXON_COLUMNS = [
     "species_guess",
-    "scientific_name", 
-    "common_name", 
+    "scientific_name",
+    "common_name",
     "iconic_taxon_name",
     "taxon_id"
   ]
@@ -267,8 +267,10 @@ class Observation < ApplicationRecord
     subspecies
     variety
     form
-  ).map{|r| "taxon_#{r}_name"}.compact
-  ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
+  ).map {| r | "taxon_#{r}_name" }.compact
+  ALL_EXPORT_COLUMNS = (
+    CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS
+  ).uniq
   WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
   ALLOWED_DESCRIPTION_TAGS = %w(
     a
@@ -759,10 +761,13 @@ class Observation < ApplicationRecord
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
-      { identifications: :stored_preferences },
-      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
+      { identifications: [:stored_preferences, :moderator_actions] },
+      { photos: [:flags, :user, :file_extension, :file_prefix, :moderator_actions] },
+      { sounds: [:flags, :moderator_actions] },
       :stored_preferences, :flags, :quality_metrics,
-      :votes_for ]
+      :votes_for,
+      :taggings
+    ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
       preloads.delete(:iconic_taxon)
@@ -2113,10 +2118,10 @@ class Observation < ApplicationRecord
   end
 
   def set_taxon_geoprivacy
-    taxon_ids = if identifications.loaded? 
-      identifications.select{|i| i.current? }.map(&:taxon_id)
+    taxon_ids = if identifications.loaded?
+      identifications.select( &:current? ).reject( &:hidden? ).map( &:taxon_id )
     else
-      identifications.current.pluck(:taxon_id)
+      identifications.current.reject( &:hidden? ).pluck( :taxon_id )
     end
     self.taxon_geoprivacy = Taxon.max_geoprivacy(
       taxon_ids,
@@ -2124,7 +2129,7 @@ class Observation < ApplicationRecord
       longitude: private_longitude.blank? ? longitude : private_longitude
     )
   end
-  
+
   def single_taxon_for_name(name)
     Taxon.single_taxon_for_name(name)
   end
@@ -2396,13 +2401,21 @@ class Observation < ApplicationRecord
   def scientific_name
     taxon.scientific_name.name if taxon && taxon.scientific_name
   end
-  
-  def common_name(options = {})
+
+  def common_name( options = {} )
     options[:locale] ||= localize_locale
     options[:place] ||= localize_place
-    taxon.common_name(options).name if taxon && taxon.common_name(options)
+    name_from_taxon_names = taxon&.common_name( options )&.name
+    return name_from_taxon_names if name_from_taxon_names
+    return unless taxon&.is_iconic? || taxon&.root?
+
+    I18n.t(
+      taxon.name.parameterize.underscore,
+      scope: :all_taxa,
+      locale: options[:locale] || user.try( :locale )
+    )
   end
-  
+
   def url
     uri
   end
@@ -2707,58 +2720,67 @@ class Observation < ApplicationRecord
   end
 
   {
-    0     => "Undefined", 
-    2     => "Street Segment", 
-    4     => "Street", 
-    5     => "Intersection", 
-    6     => "Street", 
-    7     => "Town", 
-    8     => "State", 
-    9     => "County",
-    10    => "Local Administrative Area",
-    12    => "Country",
-    13    => "Island",
-    14    => "Airport",
-    15    => "Drainage",
-    16    => "Land Feature",
-    17    => "Miscellaneous",
-    18    => "Nationality",
-    19    => "Supername",
-    20    => "Point of Interest",
-    21    => "Region",
-    24    => "Colloquial",
-    25    => "Zone",
-    26    => "Historical State",
-    27    => "Historical County",
-    29    => "Continent",
-    33    => "Estate",
-    35    => "Historical Town",
-    36    => "Aggregate",
-    100   => "Open Space",
-    101   => "Territory"
-  }.each do |code, type|
+    0 => "Undefined",
+    2 => "Street Segment",
+    4 => "Street",
+    5 => "Intersection",
+    6 => "Street",
+    7 => "Town",
+    8 => "State",
+    9 => "County",
+    10 => "Local Administrative Area",
+    12 => "Country",
+    13 => "Island",
+    14 => "Airport",
+    15 => "Drainage",
+    16 => "Land Feature",
+    17 => "Miscellaneous",
+    18 => "Nationality",
+    19 => "Supername",
+    20 => "Point of Interest",
+    21 => "Region",
+    24 => "Colloquial",
+    25 => "Zone",
+    26 => "Historical State",
+    27 => "Historical County",
+    29 => "Continent",
+    33 => "Estate",
+    35 => "Historical Town",
+    36 => "Aggregate",
+    100 => "Open Space",
+    101 => "Territory"
+  }.each do | code, type |
     define_method "place_#{type.underscore}" do
-      public_places.detect{|p| p.place_type == code}
+      # first attempt to match a place based on `place_type`
+      place_by_place_type = public_places.detect {| p | p.place_type == code }
+      return place_by_place_type if place_by_place_type
+
+      # fallback to matching a place with a corresponding admin_level
+      type_constant = type.parameterize.underscore.upcase
+      admin_level = "Place::#{type_constant}_LEVEL".safe_constantize
+      return if admin_level.nil?
+
+      public_places.detect {| p | p.admin_level == admin_level }
     end
     define_method "place_#{type.underscore}_name" do
-      send("place_#{type.underscore}").try(:name)
+      send( "place_#{type.underscore}" ).try( :name )
     end
   end
 
   # Actually referring to Place::STATE_LEVEL seems to cause trouble here
-  [10, 20].each do |admin_level|
-    define_method "place_admin#{admin_level/10}" do
-      public_places.detect{|p| p.admin_level == admin_level}
+  [10, 20].each do | admin_level |
+    define_method "place_admin#{admin_level / 10}" do
+      public_places.detect {| p | p.admin_level == admin_level }
     end
-    define_method "place_admin#{admin_level/10}_name" do
-      send( "place_admin#{admin_level/10}" ).try(:name)
+    define_method "place_admin#{admin_level / 10}_name" do
+      send( "place_admin#{admin_level / 10}" ).try( :name )
     end
   end
 
   def taxon_and_ancestors
     taxon ? taxon.self_and_ancestors.to_a : []
   end
-  
+
   def mobile?
     return false unless user_agent
     MOBILE_APP_USER_AGENT_PATTERNS.each do |pattern|

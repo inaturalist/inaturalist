@@ -24,6 +24,9 @@ it:
   x_identifications_:
     one: '1 identificazione'
     other: '%{count} identificazioni'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICAZIONE'
+    other: '<span class="count">%{count}</span> IDENTIFICAZIONI'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ it:
   x_observations_html:
     one: "<span class='count'>1</span> osservazione"
     other: "<span class='count'>%{count}</span> osservazioni"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OSSERVAZIONE"
+    other: "<span class='count'>%{count}</span> OSSERVAZIONI"
   x_observations_link_html:
     one: "<a href='%{url}'>1 osservazione</a>"
     other: "<a href='%{url}'>%{count} osservazioni</a>"
@@ -83,6 +89,9 @@ it:
   x_people:
     one: "%{count} persona"
     other: "%{count} persone"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persona'
+    other: '<span class="count">%{count}</span> persone'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>"
   x_photos:
     one: "1 foto"
@@ -96,6 +105,9 @@ it:
   x_species:
     one: '1 specie'
     other: '%{count} specie'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> SPECIE"
+    other: "<span class='count'>%{count}</span> SPECIE"
   x_species_html:
     one: "<span class='count'>1</span> specie"
     other: "<span class='count'>%{count}</span> specie"
@@ -236,6 +248,7 @@ it:
   active_taxon_status: Attivo
   active_users: Utenti attivi
   activity: Attività
+  activity_on_a_flag_for_x: Attività su un contrassegno per %{x}
   adapted_by_name_from_a_work_by_original: "Adattato da %{name}, su un lavoro di %{original}"
   add: Aggiungi
   add_a_batch_of_observations: Aggiungi un Gruppo di Osservazioni
@@ -379,6 +392,8 @@ it:
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
   added_on_datetime: "Aggiunta il %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Ruolo aggiunto
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
@@ -664,6 +679,7 @@ it:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Sei sicuro di voler rimuovere questa osservazione da %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Sei sicuro di voler rimuovere questo taxon dalla checklist di %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Sei sicuro di voler segnalare questo utente come spammer?
   associated_observations: Osservazioni associate
   associated_taxa: Taxa associati
   attention: Attenzione
@@ -786,13 +802,11 @@ it:
   bioblitz: Bioblitz
   birds: uccelli
   birthday: Compleanno
-  black: nero
   block: Blocca
   blocking_description: Il blocco impedisce qualsiasi comunicazione tra te e un altro utente. E 'per le situazioni in cui un altro utente può mettere a rischio la tua sicurezza come stalking o altri comportamenti abusivi.
   block_removed: Blocco rimosso
   blocked_users: Utenti bloccati
   blog_widget: Widget del Blog
-  blue: blu
   blue_butterfly_etc: "blu, farfalla, etc."
   body: Corpo del messaggio
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -806,7 +820,6 @@ it:
   #shown
   breadcrumbs_description: "Questa azione rimpiazzerà l'h1 e le istruzioni di default; assicuratevi di includerle se sono importanti per il progetto e ricordatevi che la larghezza massima autorizzata è di 950px"
   brief_caption: Breve didascalia
-  brown: marrone
   browse: Esplora
   browse_all_projects: Esplora tutti i progetti
   browse_all_species: Esplora tutte le specie
@@ -1020,8 +1033,8 @@ it:
     Il Modello di Visione Computerizzata corrente conosce questo taxon, quindi potrebbe esser incluso nei suggerimenti automatizzati con l'etichetta "Visivamente Simile".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: In sospeso
-  computer_vision_model_pending_desc: |
-    Il Modello di Visione Computerizzata corrente non conosce questotaxon, quindi mentre potrebbe esser incluso nei suggerimenti automatici con l'etichetta "Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Mentre i requisiti per l'inclusione del modello cambiano ad ogni modello, generalmente l'inclusione si basa sul numero di osservazioni, così per aumentare le possibilità che questo taxon sia incluso durante l'addestramento del modello successivo, aggiungi o identifica più osservazioni di questo taxon.
+  computer_vision_model_pending_desc2: |
+    Il Modello di Visione Informatica attuale non conosce questo taxon, quindi, sebbene potrebbe essere incluso nei suggerimenti automatizzti con l'etichetta "Previsto Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Sebbene i requisiti per l'inclusione del modello cambiano con ogni modello, generalmente, l'inclusione, si basa sul numero di osservazioni, così da incrementare le possibilità che questo taxon sia incluso durante il prossimo addestramento del modello, e da aggiungere o identificare ulteriori osservazioni di tale taxon.
   concept_status: Stato del concetto
   confidential: Confidenziale
   configure: Configura
@@ -1139,10 +1152,12 @@ it:
     cannot_be_determined: Non può essere determinato in base alle prove fornite
     dead: L'organismo è morto o mostra segni di morte imminente
     feather: Una o più piume non attaccate a un organismo
+    female: Le prove indicano che l'organismo può produrre ovuli per la riproduzione sessuale
     flower_budding: I boccioli di fiore sono visibili ma non aperti
     flowering: Fiori visibili, aperti, ed ancora attaccati alla pianta
     fruiting: Frutti visibili ed ancora attaccati alla pianta
     gall: Escrescenza deformata del tessuto vegetale causata da un organismo parassitario
+    male: Le prove indicano che l'organismo può produrre sperma per la riproduzione sessuale
     molt: Pelle o esoscheletro scartati
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     organism: Organismo intero o parziale
@@ -1673,50 +1688,13 @@ it:
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
-  email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
-  email_conf_banner_email_delivered_click_link: |
-    Email di conferma consegnata. Clicca sul link nell'email.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Aggiungi <code>%{email}</code> alla tua lista di contatti e <a href="%{url}">richiedi un'altra email di conferma</a>.</strong> Se il tuo provider di posta elettronica ha bloccato l'email di conferma, questo potrebbe convincerli che vuoi realmente ricevere e-mail da noi.
-  email_conf_banner_check_your_spam_folder_html: <strong>Controlla la tua cartella spam</strong>
-  email_conf_banner_contact_us_html: Ancora non funziona? Mandaci un'email a %{email} così possiamo aiutarti.
-  email_conf_banner_please_click: |
-    Sei pregato di cliccare il link nella tua email per confermare il tuo indirizzo email.
-  email_conf_banner_search_for_emails_html: <strong>Cerca email da <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Ti abbiamo inviato un'email di conferma il %{date}. Se non l'hai ricevuto, ecco alcune cose che puoi fare:
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Caro %{user},
+  email_description: La tua email non è condivisa con altri utenti su iNaturalist
   email_conf_required_after_grace_period: |
     La conferma della mail è richiesta a partire dal %{requirement_date} e tu non hai confermato il tuo indirizzo mail entro il termine. Per favore resetta la password per accedere al tuo account.
-  email_conf_faq_html: |
-    Se hai domande, ti preghiamo di fare riferimento a queste <a href="%{url}">Domande Frequenti</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Per favore conferma il tuo indirizzo email%{link_end_tag}</strong>. Tutti gli utenti devono confermare il loro indirizzo email entro il %{date}. Dopo tale data chiunque non abbia confermato il proprio indirizzo email non potrà accedere a meno che non abbia reimpostato la propria password. Per confermare il tuo indirizzo email, vai alle impostazioni del tuo account %{link_start_tag}%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Conferma il tuo indirizzo email di %{site_name}, entro il %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Sei pregato di confermare il tuo indirizzo email oggi, per assicurarti di poter continuare ad
-    accedere al tuo profilo. %{site_name} e le app mobili
-    di iNaturalist e Seek by iNaturalist, connettono le persone alla natura e tra
-    loro, condividendo osservazioni sulla biodiversità. Grazie per aver preso parte
-    alla community di iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Richiederemo degli indirizzi email verificati a tutti i profili a partire dal
-    %{requirement_date}. Sei pregato di prenderti un momento per confermarlo adesso.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Se hai domande, sei pregato di fare riferimento alle
-    <a href="%{faq_url}">FAQ</a>. Grazie per aver dedicato del tempo a connetterti
-    con la natura e con %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Dettagli del Profilo
   email_copyright2: "&copy; %{year} iNaturalist, tutti i diritti riservati"
   email_notifications: Notifiche Email
   embed: 'Incorpora'
@@ -1764,6 +1742,7 @@ it:
   everywhere: ovunque
   exact: Esatto
   exact_date: Data esatta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rank esatto
   except: eccetto
   exclude_places: Escludi Luoghi
@@ -1896,6 +1875,7 @@ it:
     Contrassegno per l'Utente: %{title}
   flag_it!: Segnala!
   flag_marked_as_resolved_html: '<span class="meta">Segnalazione segnata come</span> <strong>risolta.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Contrassegno segnato come</span> <strong>irrisolto.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Oggetto
   flag_reason: "&ldquo;Sto contrassegnando questo %{record} perché"
@@ -1931,7 +1911,10 @@ it:
   #Adjective, as in a fluid layout of images
   fluid: fluido
   follow: Segui
+  #Text for a button to follow updates on an observation
+  follow_observation: Segui osservazione
   follow_receive_updates_about_new_observations: Segui (ricevi aggiornamenti sulle nuove osservazioni)
+  #Text for a button to follow updates from a specific user
   follow_user: "Segui %{user}"
   followers: Seguaci
   following: Seguito
@@ -1969,6 +1952,8 @@ it:
   generate_taxonomic_tags_for_flickr: Genera etichette tassonomiche dalle tue foto Flickr.
   generate_widget: Genera il Widget
   generate_your_stats: Genera le tue Statistiche
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERA LA TUA RASSEGNA DELL'ANNO %{year}
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
   geomodel_expected_nearby_label_is_derived: |
@@ -2000,7 +1985,6 @@ it:
   graft: Innesta
   graft_taxon: Innesta %{taxon}
   grafting_attemps_to_insert_this_taxon: L'innesto prova a inserire il taxon nel nostro albero tassonomico, cercando di trovare un taxon parentale o creando tutti i necessari taxa intermedi al fine di collegarlo ad un taxon esistente di livello superiore
-  grant_role: "%{grant} %{role} ruolo"
   grid: Griglia
   grid_layout: Layout a griglia
   grid_tooltip: Mostra la visualizzazione a griglia
@@ -2076,6 +2060,8 @@ it:
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
   high: Superiore
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Il rango più alto
   highlights_and_stats_from_year_on_site: "Sintesi e statistiche dal %{year} su %{site}"
   history: Cronologia
@@ -2135,6 +2121,8 @@ it:
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle imposte e senza scopo di lucro, con sede negli Stati Uniti d'America (Tax ID: 92-1296468).
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -2179,7 +2167,7 @@ it:
   import_sections: Importa sezioni
   import_tags_from_csv: Importare i tag da file CSV
   importing: "Importazione in corso..."
-  improving: Di affinamento
+  improving: Affinamento
   in_n: "in %{n}"
   in_place_x: in %{place}
   #As in a reason to flag something
@@ -2261,6 +2249,7 @@ it:
   journal: Diario
   journal_archives_for: Archivi dei diari per
   journal_post: Post del diario
+  journal_post_: post del diario
   journal_post_deleted: Post del diario cancellato.
   journal_posts: Post del diario
   jpg_png_or_gif: "JPG, PNG o GIF"
@@ -2603,6 +2592,8 @@ it:
   looks_like_no_species_in_guide: Sembra che tu non abbia ancora alcuna specie nella tua guida.
   lookup: Cerca
   low: Inferiore
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Il rango più basso
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2868,7 +2859,6 @@ it:
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_id_tooltip_html: 'Le osservazioni di livello "Serve ID" hanno contenuto multimediale, una posizione e una data, ma richiedono ancora un consenso della comunità su una precisa identificazione. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
-  needs_to_be_identified: Ha bisogno essere identificato
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account da <strong>%{inat_site_name}</strong> verso <strong>%{site_name}</strong> e condividere i dati con le istituzioni locali?
@@ -3063,6 +3053,87 @@ it:
     Le coordinate pubbliche sono quelle di un punto casuale all'interno di 0,2 gradi di latitudine/longitudine dalla cella che contiene le coordinate reali.
   observation: Osservazione
   observation_: osservazione
+  observation_accuracy_experiment_the_sample_for: "Il campione per questo esperimento non è stato ancora generato"
+  observation_accuracy_experiment_our_accuracy_estimate: "La nostra stima di accuratezza risultante da questo esperimento è %{percent} corretta."
+  observation_accuracy_experiment_our_goak: "Il nostro obiettivo per l'Accuratezza stimata (Corretta) e la Precisione del sottogruppo Livello Ricerca è superiore al 95% (linea tratteggiata)"
+  observation_accuracy_experiment_precision_results: "Risultati della Precisione per sottoinsieme"
+  observation_accuracy_experiment_taxon_rank_level: "Livello Rango del Taxon"
+  observation_accuracy_experiment_taxon_observations_count: "Conteggio Osservazioni Taxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nome Taxon Iconico"
+  observation_accuracy_experiment_continent: "Continente"
+  observation_accuracy_experiment_year: "Anno"
+  observation_accuracy_experiment_quality_grade: "Grado di Qualità"
+  observation_accuracy_experiment_show_frequency: "mostra frequenza"
+  observation_accuracy_experiment_click_on_bars: "Clicca sulle barre per esplorare i sottoinsiemi"
+  observation_accuracy_experiment_accuracy_results: "Risultati di Accuratezza per sottoinsieme"
+  observation_accuracy_experiment_as_observations: "Poiché le osservazioni di questo campione sono convalidate, la percentuale incerta diminuirà e la percentuale corretta ed errata aumenterà."
+  observation_accuracy_experiment_experiment_still: "Esperimento ancora in corso. Le statistiche si aggiorneranno ogni giorno fino alla scadenza per la convalida dei campioni il %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Esperimento Precisione Osservazione"
+  observation_accuracy_experiment_validators: "Validatori:"
+  observation_accuracy_experiment_show_additional_validators: "(mostra validatori aggiuntivi)"
+  observation_accuracy_experiment_hide_additional_validators: "(nascondi validatori aggiuntivi)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validatori aggiuntivi)"
+  observation_accuracy_experiment_research_grade_results: "Risultati Livello Ricerca"
+  observation_accuracy_experiment_verifiable_results: "Risultati Verificabili"
+  observation_accuracy_experiment_all_results: "Tutti i risultati"
+  observation_accuracy_experiment_methods: "Metodi"
+  observation_accuracy_experiment_step_1: "Passo 1: Generazione del Campione e Assegnazione"
+  observation_accuracy_experiment_from_the: "Dal database iNaturalist di osservazioni (A), abbiamo generato un campione casuale (B). I sottocampioni sono stati assegnati ai validatori candidati in base ai criteri descritti di seguito. Abbiamo mirato ad assegnare ogni osservazione campione a più validatori candidati ( \"Ridondanza Validatore Target\" )."
+  observation_accuracy_experiment_sample_generated: "Campione generato: %{date}"
+  observation_accuracy_experiment_sample_size: "Dimensione del campione: %{number}"
+  observation_accuracy_experiment_target_validator: "Ridondanza Validatore Target: %{number}"
+  observation_accuracy_experiment_number_of: "Numero di validatori candidati: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Dimensione media del sottocampione per candidato validatore: %{number}"
+  observation_accuracy_experiment_mean_number: "Numero medio di validatori per osservazione del campione: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criteri del validatore candidato"
+  observation_accuracy_experiment_if_an_identifier: "Se un identificatore aveva fatto almeno 3 identificazioni di miglioramento su un taxon, li abbiamo considerati qualificati per convalidare quel taxon. Le identificazioni di miglioramento sono i primi suggerimenti di un taxon che la comunità successivamente accetta."
+  observation_accuracy_experiment_for_example: "Ad esempio, l'identificatore 1 aggiunge una ID di A ad un'osservazione. Se l'Identificatore 2 aggiunge successivamente una ID iniziale di B, l'Identificatore 1 su A diventa una ID di miglioramento. Se l'identificatore 3 aggiunge successivamente una ID di supporto a B, l'identificatore 2 su B diventa una ID di miglioramento."
+  observation_accuracy_experiment_we_contacted: "Abbiamo contattato i validatori candidati e abbiamo chiesto loro di aggiungere identificazioni ai loro sottocampioni. Il grafico a destra raggruppa l'osservazione del campione con il numero di validatori."
+  observation_accuracy_experiment_number_percent_of: "Numero di validatori partecipanti: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Percentuale del campione convalidato: %{percent}"
+  observation_accuracy_experiment_we_scored: "Abbiamo valutato le osservazioni nel campione come Corrette, Incerte o Incorrette confrontando le identificazioni del validatore con il taxon di ogni osservazione del campione. Identificazioni corrispondenti o di più dettaglio per il taxon di osservazione del campione sono state segnate come Corrette. Le identificazioni più grossolane non concordate sono state segnate come Incerte poichè erano scenari in cui più validatori non erano d'accordo. Le identificazioni più grossolane o le identificazioni su rami diversi sono state classificate come Errate."
+  observation_accuracy_experiment_correct: "Corrette"
+  observation_accuracy_experiment_uncertain: "Incerte"
+  observation_accuracy_experiment_step_4: "Fase 4: Calcolo di Accuratezza e Precisione"
+  observation_accuracy_experiment_accuracy: "Accuratezza"
+  observation_accuracy_experiment_we_calculated: "Abbiamo calcolato l'accuratezza come la percentuale corretta per l'intero campione e sottoinsiemi, come il sottoinsieme Livello Ricerca. Abbiamo anche calcolato la percentuale incerta e la percentuale non corretta. Nell'esempio a destra, la percentuale corretta sarebbe 83, la percentuale incerta sarebbe 6 e la percentuale errata sarebbe 11."
+  observation_accuracy_experiment_precision: "Precisione"
+  observation_accuracy_experiment_if_every_sample: "Se ogni osservazione di esempio fosse in un taxon grossolano come il Regno, l'accuratezza del set di dati iNaturalist potrebbe essere molto elevata, ma la precisione potrebbe essere troppo bassa per rendere il set di dati molto utile. Per stimare la precisione, abbiamo contato il numero dei discendenti delle foglie nella tassonomia iNaturalist per ogni taxon associato ad ogni osservazione del campione. Abbiamo calcolato la precisione come 1 diviso per il numero di discendenti di foglie. Se il taxon era un taxon delle foglie la precisione è del 100%. Abbiamo ignorato i ranghi sotto le specie nel calcolo di precisione."
+  observation_accuracy_experiment_in_the_example: "Nella figura di esempio a destra la precisione media di tre osservazioni del campione sarebbe del 51%."
+  observation_accuracy_validator_email_subject: "Ci aiuterai a stimare la precisione delle osservazioni di iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Ci aiuterai con un esperimento per stimare la precisione delle osservazioni di iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifica tutte le osservazioni nel link qui sotto con la massima precisione possibile, anche se sono di Livello Ricerca, e anche se la tua migliore ID è ad un livello tassonomico superiore (anche Regno). </li>
+    <li>Se vedete il popup “Potentziale Disaccordo”…
+    <ul>
+    <li>e siete sicuri che è un ID errata fare clic sul pulsante arancione,</li>
+    <li>o se non sei sicuro al di là della tua ID, clicca sul pulsante verde</li>
+    </ul>
+    </li>
+    <li>Fai questo entro il <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ecco il sottoinsieme <a href="%{sample_url}">di %{num_obs} osservazioni</a>
+    che pensiamo tu possa identificare in base alla tua attività su iNat. <b>Sei pregato di aggiungere
+    la miglior ID possibile per ciascuna delle osservazioni entro il %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Calcoleremo la precisione confrontando la tuo ID con il Taxon di Osservazione. Puoi saltare le osservazioni dove
+    hai precedentemente aggiunto una ID se tale ID è ancora rilevante. Per saperne di più su come conteggiare accordi e disaccordi, continuare a leggere.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Le identificazioni pari al (A), o più precise del (B), Taxon d'Osservazione, saranno considerate come Accordi.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Le identificazioni gemelle (C), o più grossolane, del Taxon d'Osservazione, in cui selezioni 'No, ma…'
+    nella finestra di 'Disaccordo potenziale' (D), saranno contate come Disaccordi.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Le identificazioni più grossolane del Taxon d'Osservazione, in cui selezioni 'Non lo so, ma…' alla
+    finestra di 'Disaccordo potenziale' (E), saranno contate come Incerte.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Ti siamo davvero grati per il tuo aiuto come identificatore su iNaturalist, e ti ringraziamo
+    molto per aver partecipato a questo studio. Ti preghiamo di leggere <a href="%{url}">questo
+    post del blog</a>, se vuoi saperne di più su questo esperimento.
+  observation_accuracy_validator_email_with_gratitude: Con gratitudine,
+  observation_accuracy_validator_email_the_inaturalist_team: Il Team di iNaturalist
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3199,6 +3270,7 @@ it:
   observations_widget: Widget delle osservazioni
   observations_with_this_field: Osservazioni con questo campo
   observations_with_this_field_and_value: Osservazioni con questo stesso campo e valore
+  observations_without_this_field: Osservazioni senza questo campo
   observations_without_media: Osservazioni senza contenuti multimediali
   observationcounts_refreshed: Conteggio delle osservazioni aggiornato
   observed: Osservata
@@ -3294,7 +3366,9 @@ it:
   only_the_project_admin_can_delete_this_project: Solo l'amministratore del progetto può cancellare questo progetto.
   only_view_nearby_suggestions: Visualizza solo i suggerimenti nelle vicinanze
   only_you: Solo tu
+  #Geoprivacy status in which no privacy has been applied
   open: pubblica
+  #Geoprivacy status in which no privacy has been applied
   open_: Aperta
   open_description: "Tutti possono vedere le coordinate, a meno che il taxon non sia minacciato."
   open_street_map: OpenStreetMap
@@ -3305,12 +3379,12 @@ it:
   #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o scegli da taxa di livello superiore"
-  orange: arancione
   order: Ordina
   order_by: Ordina per
   organism_is_wild: L'organismo è selvatico
   organisms: Organismi
   original: Originale
+  original_flag: Contrassegno originale
   originally_flagged_by: Originariamente segnalata da
   originally_imported_from_url_html: "Originariamente importati da <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL della pagina originale per questa foto."
@@ -3448,7 +3522,6 @@ it:
   data_transfer_consent_child_label: |
     Acconsento al trasferimento delle informazioni personali di mia/o figlia/o negli Stati Uniti d'America
   pin_verb: Memorizza
-  pink: rosa
   pinned_locations_desc: |
     Memorizza questa combinazione di coordinate, accuratezza, geoprivacy, e note della località per usarle successivamente.
   place: Luogo
@@ -3778,6 +3851,7 @@ it:
     north_korea: Corea del Nord
     northern_cyprus: Cipro del Nord
     norway: Norvegia
+    oceania: Oceania
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4014,7 +4088,6 @@ it:
     Google non ha fornito un indirizzo email per quell'account, che è obbligatorio. Crea un account su questo sito invece di accedere tramite Google.
   public_domain: Pubblico dominio
   publish: Pubblica
-  purple: viola
   quality_grade: Qualità
   quality_grade_: Grado di qualità
   quality_grade_colon: "Qualità:"
@@ -4025,7 +4098,11 @@ it:
   radius_value: "Raggio (m): %{radius}"
   random: Casuale
   range: Intervallo
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rango
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4197,7 +4274,6 @@ it:
   recently_resolved: Recentemente risolti
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Registro
-  red: rosso
   redo_search_in_map: Ripeti la ricerca nella mappa
   redo_search_in_map_area: Ripeti la ricerca nell'area di mappa
   refresh: Aggiorna
@@ -4252,6 +4328,8 @@ it:
   remove_tags: Rimuovi i tag
   removed: Rimosso
   removed_project_user: Utente del progetto rimosso
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Ruolo rimosso
   removing: "Rimozione in corso..."
   reorder_by_taxonomy: Riordina per tassonomia
   repair_broken_urls: Ripara URL danneggiati
@@ -4308,6 +4386,14 @@ it:
   rotate_left: Ruota a sinistra
   rotate_right: Ruota a destra
   row_singular_or_plural: Riga
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Stai testando la disposizione da destra verso sinistra? Puoi anche utilizzare il parametro test=rtl URL. Nota che non tutte le pagine sono state convertite a questo layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Aderito al test del layout da destra verso sinistra
   rules_and_formatting: "Regole & Formattazione"
   rules_for_adding_observations: Regole per l'aggiunta di osservazioni
   rules_for_becoming_a_member: Regole per diventare un Membro
@@ -4694,7 +4780,7 @@ it:
   suitable_for_the_global_biodiversity_information_facility: Adatto per il Global Biodiversity Information Facility
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adatto per Wikipedia e altri progetti della Wikimedia Foundation
   summary: Riassunto
-  supporting: Sostenitori
+  supporting: Di conferma
   suspend_user: Sospendi utente
   suspend_user_html: Sospendi %{user}
   suspend_user_reason_instructions_html: |
@@ -4845,6 +4931,7 @@ it:
     Per favore utilizza la descrizione per spiegare come la mappa è stata derivata e i link ad eventuali flag rilevanti, suddivisioni tassonomiche, o altre discussioni, o sui motivi per cui l'areale della lista rossa IUCN pubblicato richiedeva modifiche.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Scopri di più sugli areali dei taxa
   taxon_range_updated_notice: L'areale del taxon è stato aggiornato con successo. Attendi qualche minuto affinché le modifiche compaiano sulla mappa.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Ranghi del taxon
   taxon_removed_from_list: Taxon rimosso dalla lista.
   taxon_scheme: Classificazione del taxon
@@ -5194,7 +5281,10 @@ it:
   unknown: Sconosciuto
   unknown_error: Errore sconosciuto
   unknown_rank: '(Rango Sconosciuto)'
-  unfollow: Smetti di seguire
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Smetti di seguire osservazione
+  #Text for a button to stop following updates from a user
+  unfollow_user: Smetti di seguire utente
   unlink_your_google_account: Scollega il tuo account Google
   unlink_your_flickr_account: "Scollega il tuo Account Flickr"
   unmute: Riattiva
@@ -5554,7 +5644,6 @@ it:
   where_were_they?: Dove erano?
   where_were_you?: Tu dov'eri?
   which_projects_can_add_your_observations?: Quali progetti tradizionali possono aggiungere le tue osservazioni?
-  white: bianco
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Perché stai effettuando questa modifica? (facoltativo)
   why_are_you_making_this_change_cite_source_required: Perché stai effettuando questa modifica? Ti preghiamo di spiegarcelo, citando, se possibile, una fonte. (Obbligatorio)
@@ -5626,9 +5715,9 @@ it:
   year: Anno
   year_in_review: "Rassegna Anno %{year}"
   year_in_review2: "Rassegna dell'Anno %{year}"
+  year_in_review_caps: "RASSEGNA DELL'ANNO %{year}"
   year_month: anno/mese
   year_on_site: "Anno su %{site} %{year}"
-  yellow: giallo
   'yes': "Sì"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5657,6 +5746,43 @@ it:
   yir_donate_banner_you_helped_inaturalist_thrive: Hai aiutato iNaturalist a prosperare quest'anno. Grazie!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Ha Bisogno del Tuo Supporto
+  yir_email_because_of_you: |
+    Grazie a voi, quest'anno abbiamo raccolto molti più dati sulla biodiversità rispetto all'anno scorso. La Rassegna dell'Anno è il nostro dono per te, per tutto ciò che hai fatto per la biodiversità, tramite iNaturalist.
+  yir_email_log_in_to_generate: |
+    Per scoprirlo, accedi per generare la tua rassegna personale dell'anno!
+  yir_email_of_your_observations:
+    one: Della tua %{count} osservazione, sai quante ne hai fatte nel %{year}?
+    other: Delle tue %{count} osservazioni, sai quante ne hai fatte nel %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    La tua Rassegna dell'Anno %{year} di iNaturalist: celebra il tuo anno con la biodiversità.
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Il Team di iNaturalist
+  yir_email_the_year_isnt_over: |
+    L'anno non è ancora finito e non è mai troppo tardi per pubblicare vecchie osservazioni. Dopo averne condivise di più, assicurati di selezionare "Rigenera le statistiche" in fondo alla tua Rassegna dell'Anno, per visualizzare gli aggiornamenti.
+  yir_email_what_else_will_you_observe_caps: CHE ALTRO OSSERVERAI?
+  yir_email_what_new_to_you: |
+    Quali specie a te nuove hai registrato quest'anno? Quante persone ti hanno aiutato con le identificazioni (e quante ne hai aiutate)?
+  yir_email_with_gratitude: Con gratitudine,
+  yir_email_year_on_inaturalist_globally_caps: "%{year}, GLOBALMENTE, SU INATURALIST"
+  yir_email_you_are_part_of_something: |
+    Fai parte di qualcosa di grande! Chiunque pubblichi osservazioni, aggiungi identificazioni e diffonda la parola su iNaturalist, fa la differenza per la biodiversità. Tramite i nostri sforzi collettivi, stiamo rendendo disponibili dati e dettagli sulla biodiversità, su una scala senza precedenti. Grazie per essere parte della community di iNaturalist!
+  yir_email_you_make_a_difference: |
+    Fai la differenza per la biodiversità con iNaturalist. Grazie per tutto ciò che fai!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Hai ricevuto quest'email perché "%{email}" è associata a https://www.inaturalist.org/people/%{username}, un profilo di iNaturalist creato il %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Hai ricevuto quest'email perché "%{email}" è associata a <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>, un profilo di iNaturalist creato il %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Il tuo profilo è affiliato a %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Il tuo profilo è affiliato a <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generare e condividere dati sulla biodiversità ad alto impatto a questa scala e velocità senza precedenti ha costi sempre maggiori
   yir_millions_of_people_used_inaturalist: |
@@ -5676,7 +5802,7 @@ it:
   you_appear_offline_try_again: |
     Sembra che tu sia offline. Prova di nuovo quando sarai connesso ad Internet.
   youre_a_site_curator_which_means: |
-    Sei un curatore del sito, ciò significa che ti sei offerto di aiutare per aiutarci a revisionare i dati e monitorare i contenuti. Per favore non sentirti obbligato ad affrontare tutti i problemi, ma se hai tempo per controllarne qualcuno, non apprezzeremo tutto l'aiuto che puoi darci. Se hai domande sulle revisione dei contenuti o non vuoi più essere curatore, contattaci attraverso %{email}
+    Sei un curatore del sito, ciò significa che ti sei offerto di aiutare per aiutarci a revisionare i dati e monitorare i contenuti. Per favore non sentirti obbligato ad affrontare tutti i problemi, ma se hai tempo per controllarne qualcuno, noi apprezzeremo tutto l'aiuto che puoi darci. Se hai domande sulle revisione dei contenuti o non vuoi più essere curatore, contattaci attraverso %{email}
   you_are_now_following_x: "Ora stai seguendo %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>you</strong> sono ora amministratori di %{project}
@@ -5807,6 +5933,8 @@ it:
     announcements:
       locales_desc: |
         CMD- o SHIFT-click per selezione multipla. Non selezionando niente verranno mostrate le notizie relative e tutti gli utenti indipendentemente dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito, lascia vuoto.
+      clients_desc: |
+        Fai click tenendo premuto CMD o SHIFT per selezionarne di più. Non selezionare nulla mostrerà l'annuncio a tutti gli utenti, indipendentemente dal client.
     content_freeze:
       content_freeze: Blocco Contenuti
       during_this_time: |
@@ -5965,10 +6093,9 @@ it:
           figure_alt_text: La mappa delle Attese nelle Vicinanze e l'Areale del Taxon sono confrontate
           combining_these_maps_produces: |
             La combinazione di queste mappe produce 3 tipi di celle:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Presenze Vere:
-          true_presences_definition: Aree in cui sia la mappa delle Attese nelle Vicinanze che l'Areale del Taxon prevedono che il taxon sia presente
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             False Presenze:
@@ -6701,6 +6828,8 @@ it:
           Se l'unica ragione per cui tu stai abbandonando il progetto è la volontà di impedire ai curatori di vedere le coordinate nascoste.
       edit:
         admins_must_be_existing_members: Gli amministratori devono essere membri esistenti del progetto.
+        admins_can_only_be_added_after_creation: |
+          Gli amministratori possono essere aggiunti soltanto dopo la creazione del progetto.
         aggregation_pending: In attesa di Aggregazione
         new_place_desc_html: |
           Cerca nei
@@ -6822,6 +6951,8 @@ it:
         display_project_name: Visualizza il nome del Progetto
         do_you_need_features_from_traditional: |
           Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?
+        do_you_need_features_from_traditional2: |
+          Hai bisogno di funzionalità dei progetti tradizionali, come campi di osservazione personalizzati, o l'aggiunta di singole osservazioni che non possono essere filtrate automaticamente?
         duplicate_project: Duplica progetto
         include_annotated_observations: |
           Includi solo le osservazioni annotate con un particolare attributo (ad es. stadio di vita),
@@ -7009,6 +7140,15 @@ it:
           Create tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a>
           o quelli del <a href="%{url}">Network di iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Aggiunte entrambe
+        added_only_identifications: Sole identificazioni aggiunte
+        added_only_observations: Sole osservazioni aggiunte
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Impatti Più Ampi
+        broader_impacts_desc: |
+          Svariati partner esterni importano regolarmente le osservazioni di iNaturalist per supportare la scienza e la conservazione. Le tue osservazioni, identificazioni e scelte di licenza aperta consentono a tali organizzazioni di fornire utili informazioni sulla biodiversità, alle persone che le necessitano in tutto il mondo.
         compare_desc: |
           Come è quest'anno in confronto ai tuoi anni precedenti? Con tre anni o più di utilizzo possiamo iniziare a confrontare le statistiche di attività annuali.
         compare_site_desc: |
@@ -7078,13 +7218,13 @@ it:
         store_prompt: |
           Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!
         sunburst_desc_html: |
-          Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia on "Organismo" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.
+          Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia da "Organismo" e finisce con le specie ai margini. La dimensione di ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.
           <strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.
         translators_title: Traduttori
         translators_desc: |
           Sapevi che iNaturalist è stato tradotto in %{x_languages},
           quasi interamente da %{x_people}, alcune delle quali addirittura non usano iNat? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,
-          con il numero di parolo che hanno tradotto per
+          con il numero di parole che hanno tradotto per
           %{website_link_tag}il sito web%{link_tag_end}, le nostre app
           %{iphone_link_tag}iPhone%{link_tag_end} e
           %{android_link_tag}Android%{link_tag_end}, e
@@ -7096,7 +7236,7 @@ it:
         translators_desc_for_site: |
           Sapevi che %{site_name} è stato tradotto quasi interamente da
           %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,
-          con il numero di parolo che hanno tradotto per
+          con il numero di parole che hanno tradotto per
           %{website_link_tag}il sito web%{link_tag_end}, le nostre app
           %{iphone_link_tag}iPhone%{link_tag_end} e
           %{android_link_tag}Android%{link_tag_end}, e
@@ -7107,6 +7247,9 @@ it:
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VISUALIZZA %{count} PUBBLICAZIONE"
+          other: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7286,6 +7429,7 @@ it:
           </p>
           <p>Se qualcuno ti sta molestando o stalkerando su %{site_name}, <a href="mailto:%{help_email}">sei pregato di farcelo sapere</a>. Se questo rappresenta una violazione dei nostri Termini d'Uso o rappresenta altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
           </p>
+        common_scientific_name_display_order: Ordine di Visualizzazione del Nome Comune / Scientifico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7376,6 +7520,26 @@ it:
         same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
         taxon_change_desc: |
           Quando dei taxa sono uniti o rinominati su %{site_name}, le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai un aggiornamento sulla modifica, con un link ad uno strumento che potrai usare per aggiornare manualmente il tuo contenuto.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Aggiungi il lessico di un nome comune
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Aggiungi un luogo (facoltativo)
+          common_name_lexicon_display_order: Ordine di Visualizzazione Lessico del Nome Comune
+          common_name_lexicons: Lessici del Nome Comune
+          common_name_lexicons_description: Di default, i nomi comuni sono mostrati nella lingua/locale del tuo profilo. Per visualizzare i nomi in altri lessici, o per dare priorità ai nomi utilizzati in luoghi specifici (come inglese (Australia) o spagnolo (Costa Rica)), aggiungi i lessici dei nomi comuni. Un massimo di 3 nomi comuni è visualizzabile in una volta. Se non esiste alcun nome comune per un lessico scelto, sarà omesso dalla visualizzazione.
+          for_multiple_common_name_lexicons_drag_and_drop: Per svariati lessici dei nomi comuni, trascina e rilascia le seguenti impostazioni per personalizzarne l'ordine di visualizzazione.
+          same_as_locale: Come il locale
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Come le preferenze linguistiche/locali dell'utente
+          select_a_lexicon: Seleziona un lessico
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Il massimo di 3 lessici di nomi comuni è stato già aggiunto
         this_only_applies_to_traditional_projects: |
           Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
       recent:
@@ -7695,6 +7859,7 @@ it:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applicazione
       Photo: Foto
+      Post: Post del Diario
       TaxonLink: Link del Taxon
     attributes:
       announcement:
@@ -7708,6 +7873,7 @@ it:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Utenti di destinazione non confermati
+        clients: Client
       assessment:
         description: Descrizione
       assessment_section:
@@ -7938,6 +8104,16 @@ it:
           one: "1 errore impedisce di salvare questo %{model}"
           other: '%{count} errori impediscono di salvare questo %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: dev'essere valido per il posizionamento specificato
         application:
           attributes:
             redirect_uri:
@@ -8293,6 +8469,20 @@ it:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Uccelli
+        Reptilia: Rettili
+        Amphibia: Anfibi
+        Mammalia: Mammiferi
+        Arachnida: Aracnidi
+        Insecta: Insetti
+        Plantae: Piante
+        Fungi: Funghi
+        Protozoa: Protozoi
+        Mollusca: Molluschi
+        Chromista: Cromisti
   #Title of a section warning the user about something
   warning_title: Avvertenza
   wikimedia: Wikimedia

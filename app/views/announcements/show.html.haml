@@ -1,21 +1,43 @@
-- content_for(:title) do
+- content_for :title do
   =strip_tags t( :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id )
+- content_for :extracss do
+  :css
+    .table th {
+      white-space: nowrap;
+    }
+    .table td {
+      width: 100%;
+    }
+- content_for :extrajs do
+  :javascript
+    window.addEventListener( "DOMContentLoaded", function( ) {
+      var iframe = $( "#announcement iframe" ).get( 0 );
+      if ( iframe ) {
+        $( iframe ).height( iframe.contentWindow.document.body.scrollHeight );
+      }
+    } );
 .container
   .row
     .col-xs-12
       %span.breadcrumbs
         = link_to t(:back), announcements_path, class: "back crumb"
       %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
-      %table.table.table-bordered
-        - %w(created_at updated_at placement start end site_ids locales prefers_target_staff prefers_target_unconfirmed_users).each do |a|
+      %table#announcement.table.table-bordered
+        - %w(created_at updated_at placement clients start end site_ids locales dismissible? prefers_target_staff prefers_target_unconfirmed_users).each do |a|
           %tr
             %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
             %td= @announcement.send( a )
         %tr
           %th=t :body
-          - width = @announcement.placement === "users/dashboard#sidebar" ? "360px" : "100%"
+          - width = @announcement.placement == "users/dashboard#sidebar" ? "360px" : "100%"
           %td
-            %div{style: "width: #{width};"}= raw @announcement.body
+            - if @announcement.placement =~ /^mobile/
+              %iframe{src: url_for( body: true ), style: "width: 100%; border: 0;"}
+              %p Preview is in an iframe because mobile announcements do not get any extra styling like web announcements.
+              %p
+                = link_to "View in new window", url_for( body: true ), class: "readmore"
+            - else
+              %div{style: "width: #{width};"}= raw @announcement.body
         %tr
           %th=t :dismissed_by
           %td

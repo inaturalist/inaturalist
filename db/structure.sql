@@ -9,7 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -322,7 +321,8 @@ CREATE TABLE public.announcements (
     updated_at timestamp without time zone,
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
-    dismissible boolean DEFAULT false
+    dismissible boolean DEFAULT false,
+    clients text[] DEFAULT '{}'::text[]
 );
 
 
@@ -2567,6 +2567,139 @@ CREATE SEQUENCE public.oauth_applications_id_seq
 --
 
 ALTER SEQUENCE public.oauth_applications_id_seq OWNED BY public.oauth_applications.id;
+
+
+--
+-- Name: observation_accuracy_experiments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_experiments (
+    id bigint NOT NULL,
+    sample_size integer,
+    taxon_id integer,
+    validator_redundancy_factor integer,
+    improving_id_threshold integer,
+    recent_window character varying,
+    sample_generation_date timestamp without time zone,
+    validator_contact_date timestamp without time zone,
+    validator_deadline_date timestamp without time zone,
+    assessment_date timestamp without time zone,
+    responding_validators integer DEFAULT 0,
+    validated_observations integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    version character varying
+);
+
+
+--
+-- Name: observation_accuracy_experiments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_experiments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_experiments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_experiments_id_seq OWNED BY public.observation_accuracy_experiments.id;
+
+
+--
+-- Name: observation_accuracy_samples; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    observation_id integer,
+    taxon_id integer,
+    quality_grade character varying,
+    year integer,
+    iconic_taxon_name character varying,
+    continent character varying,
+    taxon_observations_count integer,
+    taxon_rank_level integer,
+    descendant_count integer,
+    correct integer,
+    reviewers integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    sounds_only boolean,
+    has_cid boolean,
+    captive boolean,
+    no_evidence boolean,
+    other_dqa_issue boolean
+);
+
+
+--
+-- Name: observation_accuracy_samples_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_samples_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_samples_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_samples_id_seq OWNED BY public.observation_accuracy_samples.id;
+
+
+--
+-- Name: observation_accuracy_samples_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples_validators (
+    observation_accuracy_sample_id bigint NOT NULL,
+    observation_accuracy_validator_id bigint NOT NULL
+);
+
+
+--
+-- Name: observation_accuracy_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_validators (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    user_id integer,
+    email_date timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    validation_count integer
+);
+
+
+--
+-- Name: observation_accuracy_validators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_validators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_validators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_validators_id_seq OWNED BY public.observation_accuracy_validators.id;
 
 
 --
@@ -5345,6 +5478,42 @@ ALTER SEQUENCE public.wiki_pages_id_seq OWNED BY public.wiki_pages.id;
 
 
 --
+-- Name: year_statistic_localized_shareable_images; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.year_statistic_localized_shareable_images (
+    id bigint NOT NULL,
+    year_statistic_id integer NOT NULL,
+    locale character varying NOT NULL,
+    shareable_image_file_name character varying,
+    shareable_image_content_type character varying,
+    shareable_image_file_size bigint,
+    shareable_image_updated_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: year_statistic_localized_shareable_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.year_statistic_localized_shareable_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: year_statistic_localized_shareable_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.year_statistic_localized_shareable_images_id_seq OWNED BY public.year_statistic_localized_shareable_images.id;
+
+
+--
 -- Name: year_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5817,6 +5986,27 @@ ALTER TABLE ONLY public.oauth_applications ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: observation_accuracy_experiments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_experiments ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_experiments_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_samples id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_samples ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_samples_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_validators id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_validators ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_validators_id_seq'::regclass);
+
+
+--
 -- Name: observation_field_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6276,6 +6466,13 @@ ALTER TABLE ONLY public.wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.wiki_pages ALTER COLUMN id SET DEFAULT nextval('public.wiki_pages_id_seq'::regclass);
+
+
+--
+-- Name: year_statistic_localized_shareable_images id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.year_statistic_localized_shareable_images ALTER COLUMN id SET DEFAULT nextval('public.year_statistic_localized_shareable_images_id_seq'::regclass);
 
 
 --
@@ -6787,6 +6984,30 @@ ALTER TABLE ONLY public.oauth_access_tokens
 
 ALTER TABLE ONLY public.oauth_applications
     ADD CONSTRAINT oauth_applications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_experiments observation_accuracy_experiments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_experiments
+    ADD CONSTRAINT observation_accuracy_experiments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_samples observation_accuracy_samples_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_samples
+    ADD CONSTRAINT observation_accuracy_samples_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_validators observation_accuracy_validators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_validators
+    ADD CONSTRAINT observation_accuracy_validators_pkey PRIMARY KEY (id);
 
 
 --
@@ -7323,6 +7544,14 @@ ALTER TABLE ONLY public.wiki_page_versions
 
 ALTER TABLE ONLY public.wiki_pages
     ADD CONSTRAINT wiki_pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: year_statistic_localized_shareable_images year_statistic_localized_shareable_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.year_statistic_localized_shareable_images
+    ADD CONSTRAINT year_statistic_localized_shareable_images_pkey PRIMARY KEY (id);
 
 
 --
@@ -8286,6 +8515,27 @@ CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING bt
 
 
 --
+-- Name: index_oa_samples_oa_validators; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_samples_oa_validators ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_sample_id, observation_accuracy_validator_id);
+
+
+--
+-- Name: index_oa_validators_oa_samples; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_validators_oa_samples ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_validator_id, observation_accuracy_sample_id);
+
+
+--
+-- Name: index_oas_on_oae_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oas_on_oae_id ON public.observation_accuracy_samples USING btree (observation_accuracy_experiment_id);
+
+
+--
 -- Name: index_oauth_access_grants_on_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8325,6 +8575,20 @@ CREATE INDEX index_oauth_applications_on_owner_id_and_owner_type ON public.oauth
 --
 
 CREATE UNIQUE INDEX index_oauth_applications_on_uid ON public.oauth_applications USING btree (uid);
+
+
+--
+-- Name: index_oav_on_oae_id_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_oav_on_oae_id_uid ON public.observation_accuracy_validators USING btree (user_id, observation_accuracy_experiment_id);
+
+
+--
+-- Name: index_observation_accuracy_samples_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_accuracy_samples_on_observation_id ON public.observation_accuracy_samples USING btree (observation_id);
 
 
 --
@@ -9854,6 +10118,13 @@ CREATE UNIQUE INDEX index_wiki_pages_on_path ON public.wiki_pages USING btree (p
 
 
 --
+-- Name: index_year_statistic_localized_shareable_images_on_ys_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_year_statistic_localized_shareable_images_on_ys_id ON public.year_statistic_localized_shareable_images USING btree (year_statistic_id);
+
+
+--
 -- Name: index_year_statistics_on_site_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10385,6 +10656,18 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230504154236'),
 ('20230504154248'),
 ('20230504154302'),
-('20230907210748');
+('20230907210748'),
+('20231017190352'),
+('20231025144604'),
+('20240109034635'),
+('20240109035846'),
+('20240109035854'),
+('20240110183622'),
+('20240114022417'),
+('20240124195720'),
+('20240124195743'),
+('20240124195835'),
+('20240124214427'),
+('20240124214436');
 
 

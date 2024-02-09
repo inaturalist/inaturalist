@@ -32,6 +32,7 @@ module Inaturalist
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join( "config", "locales", "**", "*.{yml}" )]
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
@@ -77,7 +78,7 @@ module Inaturalist
 
     config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
 
-    config.action_controller.asset_host = proc do |path, request|
+    config.action_controller.asset_host = proc do | _path, request |
       if Rails.env.production? && request && request.controller_instance
         site = request.controller_instance.instance_variable_get( "@site" )
         site && site.url
@@ -169,10 +170,10 @@ USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care
 INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
 OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
-# flickr api keys - these need to be set before Flickraw gets included
-FlickRaw.api_key = CONFIG.flickr.key
-FlickRaw.shared_secret = CONFIG.flickr.shared_secret
-FlickRaw.check_certificate = false
+# flickr api keys - these need to be set before Flickr gets included
+Flickr.api_key = CONFIG.flickr.key
+Flickr.shared_secret = CONFIG.flickr.shared_secret
+Flickr.check_certificate = false
 
 # force encoding
 Encoding.default_internal = Encoding::UTF_8

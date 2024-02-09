@@ -402,12 +402,12 @@ class LocalPhoto < Photo
     o
   end
 
-  def to_tags(options = {})
+  def to_tags( options = {} )
     tags = []
     if !metadata.blank? && !metadata[:dc].blank?
-      tags += [metadata[:dc][:subject]].flatten.reject(&:blank?).map(&:strip)
+      tags += [metadata[:dc][:subject]].flatten.reject( &:blank? ).map( &:strip )
       if options[:with_title] && !metadata[:dc][:title].blank?
-        tags += [metadata[:dc][:title]].flatten.reject(&:blank?).map(&:strip)
+        tags += [metadata[:dc][:title]].flatten.reject( &:blank? ).map( &:strip )
       end
     end
     if options[:with_file_name] && file.file? && !file.original_filename.blank?
@@ -415,18 +415,21 @@ class LocalPhoto < Photo
       # or numbers). Ignore the last since it's almost always a file extension
       # Note that I'm trying to handle unicode characters here, but there's
       # still a high chance of encoding weirdness happening
-      words = file.original_filename.scan(/[\p{L}\p{M}\'\’]+/)
-      words = words.reject do |word|
+      words = file.original_filename.scan( /[\p{L}\p{M}'\’]+/ ).map( &:downcase ).uniq
+      words = words.reject do | word |
         word.size < 4 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
       end
       # Collect all combinations of these words from 1-word combinations up to
-      # the combination that includes all words. Note that a combination
-      # preserves order, unlike permutations
-      tags += ( 1..words.size ).map {|i|
-        words.combination( i ).to_a.map{|c| c.join( " " ) }
-      }.flatten
+      # 3-word combinations (median word length for taxon names is 2, avg
+      # ~1.72, though the avg varies between lexicons, so a max of 3 should
+      # cover most cases). Note that a combination preserves order, unlike
+      # permutations
+      max_combos = [words.size, 3].min
+      tags += ( 1..max_combos ).map do | combo_size |
+        words.combination( combo_size ).to_a.map {| combo | combo.join( " " ) }
+      end.flatten
     end
-    tags
+    tags.uniq
   end
 
   def to_taxa(options = {})

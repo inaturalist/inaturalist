@@ -29,13 +29,22 @@ describe ControlledTerm do
                                             .through(:controlled_term_taxa).source :taxon
   end
 
+  it "validates labels" do
+    expect( ControlledTerm.new ).not_to be_valid
+    invalid_label = ControlledTermLabel.new
+    expect( invalid_label ).not_to be_valid
+    expect( ControlledTerm.new( labels: [invalid_label] ) ).not_to be_valid
+    valid_label = ControlledTermLabel.new( label: "foo", definition: "bar" )
+    expect( valid_label ).to be_valid
+    expect( ControlledTerm.new( labels: [valid_label] ) ).to be_valid
+  end
 
   describe "values" do
     it "returns all values for a term" do
-      atr = ControlledTerm.make!
-      ControlledTermValue.make!(controlled_attribute: atr)
-      ControlledTermValue.make!(controlled_attribute: atr)
-      expect(atr.values.count).to eq 2
+      atr = make_controlled_term_with_label
+      make_controlled_value_with_label( nil, atr )
+      make_controlled_value_with_label( nil, atr )
+      expect( atr.values.count ).to eq 2
     end
   end
 
@@ -47,7 +56,7 @@ describe ControlledTerm do
   
     describe "for_taxon" do
       it "returns terms for taxa and their ancestors" do
-        ControlledTerm.make!
+        make_controlled_term_with_label
         [mammalia, primates, plantae].each do |t|
           ControlledTermTaxon.make!( taxon: t )
         end
@@ -85,7 +94,7 @@ describe ControlledTerm do
         expect( animalia_ct.applicable_to_taxon( mammalia ) ).to be false
       end
       it "should be true for any taxon if the term has no associated taxa" do
-        ct = ControlledTerm.make!
+        ct = make_controlled_term_with_label
         expect( ct.applicable_to_taxon( mammalia ) ).to be true
       end
     end
@@ -93,10 +102,10 @@ describe ControlledTerm do
 
   describe "unassigned_values" do
     it "returns an array of value terms not associated with an attribute" do
-      atr = ControlledTerm.make!
-      val = ControlledTerm.make!(is_value: true)
-      ControlledTermValue.make!(controlled_attribute: atr, controlled_value: val)
-      unassigned = ControlledTerm.make!(is_value: true)
+      atr = make_controlled_term_with_label
+      val = make_controlled_term_with_label( nil, is_value: true )
+      ControlledTermValue.make!( controlled_attribute: atr, controlled_value: val )
+      unassigned = make_controlled_term_with_label( nil, is_value: true )
       expect(ControlledTerm.unassigned_values.count).to eq 1
       expect(ControlledTerm.unassigned_values.first).to eq unassigned
     end

@@ -1,7 +1,7 @@
-/* global _ */
-
 $( function ( ) {
   $( "#post_body" ).textcompleteUsers( );
+  var initialTitle = $( "#post_title" ).val( );
+  var initialBody = $( "#post_body" ).val( );
 
   // used to keep track of when the delete button was clicked. Clicking `delete`
   // will cause the page location to be changed without submitting the form, but
@@ -23,7 +23,10 @@ $( function ( ) {
     if ( $( ".post_form" ).data( "submitted" ) || DELETE_CLICKED ) {
       return null;
     }
-    return ( !_.isEmpty( $( "#post_title" ).val( ) )
-      || !_.isEmpty( $( "#post_body" ).val( ) ) ) ? true : null;
+    if ( $( "#post_title" ).val( ) !== initialTitle
+      || $( "#post_body" ).val( ) !== initialBody ) {
+      return true;
+    }
+    return null;
   };
 } );

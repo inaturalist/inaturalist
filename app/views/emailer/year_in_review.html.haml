@@ -1,0 +1,76 @@
+- base_utm_params = { utm_medium: "email", utm_campaign: "#{@year}-year-in-review" }
+- content_for( :title ) { @i18n.t :yir_email_subject, year: @year }
+- content_for( :extracss ) do
+  :css
+    h1 {
+      border-top: 3px solid #74ac00;
+      border-bottom: 3px solid #74ac00;
+      font-size: 100%;
+      text-align: center;
+      padding: 10px 0;
+      letter-spacing: 0.3em;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 125%;
+      margin-top: 40px;
+    }
+    .btn {
+      margin: 30px auto 60px;
+      max-width: 320px;
+      text-align: center;
+      display: block;
+    }
+    p small {
+      color: #ddd;
+    }
+    #header-image {
+      width: 100%;
+      margin: 0px auto;
+      display: block;
+    }
+    .content {
+      padding-top: 0px;
+    }
+= link_to year_stats_url( base_utm_params.merge( utm_content: "header-img", year: @year ) ) do
+  = image_tag image_url( "yir-email-header.png", host: Site.default.url ), id: "header-image"
+
+%h1=@i18n.t :year_in_review_caps, year: @year
+
+%p=@i18n.t :email_dear_user, user: @user.published_name, vow_or_con: @user.published_name[0].downcase
+
+%p=@i18n.t :yir_email_because_of_you
+
+%p=@i18n.t :yir_email_of_your_observations, count: number_with_delimiter( @user.observations_count ), year: @year
+
+%p=@i18n.t :yir_email_what_new_to_you
+
+%p=@i18n.t :yir_email_log_in_to_generate
+
+%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( base_utm_params.merge( utm_content: "generate-btn-1", year: @year ) ), class: "btn btn-primary"
+
+%h2=@i18n.t :yir_email_year_on_inaturalist_globally_caps, year: @year
+
+%p=@i18n.t :yir_email_you_are_part_of_something
+
+- if @shareable_image_url
+  %p.bleed{ style: "margin-top: 40px" }
+    = link_to year_stats_url( base_utm_params.merge( utm_content: "global-shareable", year: @year ) ) do
+      = image_tag image_url( @shareable_image_url, host: Site.default.url )
+
+%p= link_to @i18n.t( :view_inaturalist_global_year_in_review_caps, year: @year ), year_stats_url( base_utm_params.merge( utm_content: "global-btn", year: @year ) ), class: "btn btn-default"
+
+%h2=@i18n.t :yir_email_what_else_will_you_observe_caps
+
+%p=@i18n.t :yir_email_the_year_isnt_over
+
+%p=@i18n.t :yir_email_you_make_a_difference
+
+%p=@i18n.t :yir_email_with_gratitude
+
+%p=@i18n.t :yir_email_the_inaturalist_team
+
+%p= link_to @i18n.t( :generate_your_year_in_review_caps, year: @year ), your_year_stats_url( base_utm_params.merge( utm_content: "generate-btn-2", year: @year ) ), class: "btn btn-primary"
+

@@ -13,10 +13,18 @@ class ProjectListing extends React.Component {
   }
 
   settingsMenu( obj ) {
+    const {
+      config,
+      observation,
+      updateCuratorAccess,
+      joinProject,
+      removeFromProject,
+      showProjectFieldsModal
+    } = this.props;
     const isProjectObservation = !!obj.uuid;
-    const currentUser = this.props.config && this.props.config.currentUser;
+    const currentUser = config && config.currentUser;
     const menuItems = [];
-    if ( isProjectObservation && currentUser.id === this.props.observation.user.id ) {
+    if ( isProjectObservation && currentUser.id === observation.user.id ) {
       const allowsAccess = obj.preferences && obj.preferences.allows_curator_coordinate_access;
       menuItems.push( (
         <div key={`project-allow-${obj.project.id}`} className="allow">
@@ -25,7 +33,7 @@ class ProjectListing extends React.Component {
             defaultChecked={allowsAccess}
             id={`project-allow-input-${obj.project.id}`}
             onClick={( ) => {
-              this.props.updateCuratorAccess( obj, allowsAccess ? 0 : 1 );
+              updateCuratorAccess( obj, allowsAccess ? 0 : 1 );
             }}
           />
           <label htmlFor={`project-allow-input-${obj.project.id}`}>
@@ -101,11 +109,11 @@ class ProjectListing extends React.Component {
           id="grouping-control"
           onSelect={key => {
             if ( key === "join" ) {
-              this.props.joinProject( obj.project );
+              joinProject( obj.project );
             } else if ( key === "delete" ) {
-              this.props.removeFromProject( obj.project );
+              removeFromProject( obj.project );
             } else if ( key === "edit-project-observation-fields" ) {
-              this.props.showProjectFieldsModal( obj.project );
+              showProjectFieldsModal( obj.project );
             }
           }}
         >
@@ -131,7 +139,6 @@ class ProjectListing extends React.Component {
     const { fieldsPanelOpen } = this.state;
     const { project } = displayObject;
     const isProjectObservation = !!displayObject.uuid;
-    // const observation = this.props.observation;
     const viewerIsObserver = config && config.currentUser
       && config.currentUser.id === observation.user.id;
     const viewerIsAdder = isProjectObservation && config && config.currentUser
@@ -230,7 +237,9 @@ class ProjectListing extends React.Component {
             : ""
           }
         </div>
-        { observationFields }
+        <div className="projectObservationFields">
+          { observationFields }
+        </div>
       </div>
     );
   }

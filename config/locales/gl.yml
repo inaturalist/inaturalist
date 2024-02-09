@@ -741,11 +741,9 @@ gl:
   bioblitz: Bioblitz
   birds: Aves
   birthday: Data de nacemento
-  black: negro
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios Bloqueados
   blog_widget: Widget do blog
-  blue: azul
   blue_butterfly_etc: "azul, bolboreta, etc."
   body: Corpo
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -759,7 +757,6 @@ gl:
   #shown
   breadcrumbs_description: "Isto substituirá o h1 e os axustes por defecto da acción; asegúrate de incluír os que sexan importantes para este proxecto."
   brief_caption: Lenda breve
-  brown: marrón
   browse: Navega pola taxonomía
   browse_all_projects: Procurar todos os proxectos
   browse_all_species: Examinar todas as especies
@@ -956,8 +953,6 @@ gl:
     O Modelo de Visión Computerizada actual recoñece este taxon, así que poderá ser incluído en suxestións automatizadas cá etiqueta "Visualmente Semellante".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendente
-  computer_vision_model_pending_desc: |
-    O Modelo de Visión Computerizada actual non recoñece este taxon, así que mesmo que poida ser incluído en suxestións automáticas cá etiqueta "Á Volta", pode que non teña a etiqueta "Visualmente Semellante". Aínda que os requisitos para a inclusión no modelo cambian con cada actualización do modelo, xeralmente a inserción está baseada no número de observacións. Para que este taxon sexa incluído durante o adestramento do seguinte modelo, engade ou identifica máis observacións deste taxon.
   concept_status: Concepto da situación
   configure: Configurar
   configure_a_widget_to_show: Configura o widget para mostrar as observacións de %{site_name} no teu sitio web ou blog. Tamén podes incluír o estilo CSS na <code><head></code> do teu código HTML. Podes modificar o CSS libremente.
@@ -1534,8 +1529,8 @@ gl:
   either_that_user_doesnt_exist_or: "Ese usuario non existe ou xa o estás seguindo."
   eligible_for_research_grade: Candidato ao Grao de Investigación
   email: Correo
-  email_description: O teu enderezo de email non é compartido con outros usuarios en iNaturalist
   email_address_for_comments_and_other_feedback: Enderezo de correo electrónico para comentarios e outras notificacións
+  email_description: O teu enderezo de email non é compartido con outros usuarios en iNaturalist
   email_notifications: Notificacións por Email
   embed: 'Introducir:'
   embed_place_widget: Introducir un widget de lugar
@@ -1577,6 +1572,7 @@ gl:
   everywhere: En todas partes
   exact: Exacta
   exact_date: Data Exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rango exacto
   except: Agás
   exclude_places: Excluír Lugares
@@ -1734,6 +1730,7 @@ gl:
   fluid: Fluída
   follow: Seguir
   follow_receive_updates_about_new_observations: Seguir (recebe novidades sobre novas observacións)
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir a %{user}"
   followers: Seguidores
   following: Seguindo
@@ -1796,7 +1793,6 @@ gl:
   graft: Introducir
   graft_taxon: Enxertar %{taxon}
   grafting_attemps_to_insert_this_taxon: Por engadir referímonos a introducir este taxón na nosa árbore taxonómica, atopar un taxón pai existente ou crear todos os taxóns necesarios no medio co fin de incorporalo a un taxón do máis alto nivel existente.
-  grant_role: "Se %{grant} o permiso de %{role}"
   grid: Cuadrícula
   grid_layout: Deseño en Cuadrícula
   grid_tooltip: Mostrar a vista de cuadrícula
@@ -1851,6 +1847,8 @@ gl:
   hide_running_total: Ocultar Total Acumulado
   hide_uncountable_species: Ocultar Especies Incontables
   high: Alto
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Rango máis alto
   highlights_and_stats_from_year_on_site: "Destacados e estatísticas do %{year} en %{site}"
   history: Histórico
@@ -2252,6 +2250,8 @@ gl:
   looks_like_no_species_in_guide: Parece que aínda non tes especies na túa guía.
   lookup: Procurar
   low: Baixo
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Rango máis baixo
   make_admin: Tornar administrador
   #Header for main content section of the project detail page when editing custom project data.
@@ -2473,7 +2473,6 @@ gl:
   needs_id_: Precisa identificación
   needs_id_expandable_html: "<span class='full'>Precisa </span>identificación"
   needs_id_tooltip_html: 'As observacións "Necesita ID" teñen medios, localización e data, pero aínda lles falta o consenso da comunidade nunha identificación.<a href="https://www.inaturalist.org/pages/help#quality"> Sabe máis sobre os graos de calidade</a>'
-  needs_to_be_identified: Necesita ser identificado
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte da Rede internacional iNaturalist, enfócase na biodiversidade e na xente de %{place}. ¿Gustaríache cambiar a afiliación da túa conta de <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong> e compartir dados con institucións locais?
@@ -2852,7 +2851,9 @@ gl:
   only_the_project_admin_can_delete_this_project: Só o administrador do proxecto pode eliminar este proxecto.
   only_view_nearby_suggestions: Ver só suxestións das proximidades
   only_you: Só ti
+  #Geoprivacy status in which no privacy has been applied
   open: Transparente
+  #Geoprivacy status in which no privacy has been applied
   open_: Aberto
   open_description: "Todo o mundo pode ver as coordenadas a menos que o taxón estea en perigo."
   open_street_map: OpenStreetMap
@@ -2862,7 +2863,6 @@ gl:
   #sign in with Apple OR Google
   or_all_caps: OU
   or_choose_high_level_taxa: "... Ou selecciona dalgúns taxóns de alto nivel"
-  orange: Laranxa
   order: Orde
   order_by: Ordenar por
   organism_is_wild: O organismo é silvestre
@@ -2971,7 +2971,6 @@ gl:
   pi_consent_child_label: |
     Consinto permitir que iNaturalist almacene e procese tipos de información persoal limitados sobre meu fillo ou miña filla para xestionar a súa conta
   pin_verb: Fixar
-  pink: Rosa
   pinned_locations_desc: |
     Fixar esta combinación de coordenadas, precisión, xeoprivacidade e notas de localidade para empregalas máis tarde.
   place: Lugar
@@ -3520,7 +3519,6 @@ gl:
   provider_authorizations: Autorizacións de provedores
   public_domain: Dominio Público
   publish: Publicar
-  purple: Púrpura
   quality_grade: Grao de calidade
   quality_grade_: Grao de Calidade
   quality_grade_colon: "Grao de calidade:"
@@ -3530,7 +3528,11 @@ gl:
   radius_value: "Raio (m): %{radius}"
   random: Aleatorio
   range: Rango
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rango
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3698,7 +3700,6 @@ gl:
   recently_finished: Rematados Recentemente
   recently_observed: Observados recentemente
   recently_resolved: Resoltos recentemente
-  red: vermello
   redo_search_in_map: Refacer busca no mapa
   redo_search_in_map_area: Volve realizar a procura na área do mapa
   refresh: Refrescar
@@ -4231,6 +4232,7 @@ gl:
   taxon_range: Rango de taxón
   taxon_range_created_notice: O rango de taxon creouse correctamente. Por favor, agarde uns intres para que apareza nos mapas.
   taxon_range_updated_notice: O rango de taxon actualizouse correctamente. Por favor, agarde uns intres para que as mudanzas aparezan en los mapas.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Rangos Taxonómicos
   taxon_removed_from_list: Especie ou grupo eliminado da lista.
   taxon_scheme: Esquema de taxonomía
@@ -4448,7 +4450,6 @@ gl:
   unknown: Descoñecido
   unknown_error: Erro descoñecido
   unknown_rank: '(Clasificación descoñecida)'
-  unfollow: Deixar de Seguir
   unlink_your_google_account: Desvincula A Túa Conta De Google
   unlink_your_flickr_account: "Desvincula A Túa Conta De Flickr"
   unmute: Desactivar Silenciamento
@@ -4723,7 +4724,6 @@ gl:
   where_were_they?: <em>Onde se atopaban?
   where_were_you?: <em>Onde</em> estabas ti?
   which_projects_can_add_your_observations?: '¿Que proxectos tradicionais poden engadir as túas observacións?'
-  white: Branco
   why_you_can_see_the_coordinates: Porqué Podes Ver As Coordenadas
   who_can_add_observation_fields_to_my_obs: '¿Quen pode engadir campos de observación ás miñas observacións?'
   who_can_add_observations_to_this_project?: '¿Quen pode engadir observacións a este proxecto?'
@@ -4790,7 +4790,6 @@ gl:
   year_in_review: "Resumo do Ano %{year}"
   year_month: ano/mes
   year_on_site: "O Ano %{year} de %{site}"
-  yellow: Amarelo
   'yes': "Si"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5927,8 +5926,6 @@ gl:
         stats_generated_datetime: Estatísticas xeradas no %{datetime}
         store_prompt: |
           ¿Queres amosar o teu orgullo iNat onde queira que vaias? ¡Entra na Tenda iNat!
-        sunburst_desc_html: |
-          Taxons observados como un diagrama xerárquico "sunburst". A base da xerarquía está no centro, comezando con "Vida" e rematando con especies nos cantos exteriores. O tamaño de cada arco é proporcional ó número de observacións dese taxon, e as cores máis ou menos corresponden ás nosas  cores taxonómicas "icónicas" usuais (verde para plantas, laranxa para insectos, azul para a maioría do resto dos animais, etc.), así que se estás vendo moito verde, significa que observaches moitas plantas. <strong>Preme nun arco para colocar ese taxon no centro</strong> e ós seus fillos ó seu redor, ou <strong>preme o centro para subir na xerarquía</strong>.
         translators_title: Tradutores
         translators_desc: |
           ¿Sabías que iNaturalist foi traducido a %{x_languages}, case enteiramente por %{x_people}, algúns deles nen sequera empregan iNat? Aquí están tódolos incribles tradutores que engadiron traduccións este ano, xunto có número de palabras que traduciron para o %{website_link_tag}sitio web%{link_tag_end}, as nosas aplicacións para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}. Podes ver toda a xente que contribuíu con traduccións, incluíndo anos pasados e amigos de Translatewiki, nos nosos repositorios de códigos da %{view_all_web_link_tag}web%{link_tag_end} e%{view_all_mobile_link_tag}mobiles%{link_tag_end}.

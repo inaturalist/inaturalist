@@ -2,6 +2,7 @@
 @import "../../shared/activity_item";
 @import "../../shared/annotations";
 @import "../../shared/observation_fields";
+@import "../../shared/observation_projects";
 @import "../../shared/quality_metrics";
 @import "../../shared/record_chooser_popover";
 @import "../../shared/taxon_autocomplete";
@@ -61,11 +62,11 @@ body > [role="dialog"] .ObservationModal {
       font-weight: bold;
     }
     .SplitTaxon {
-      margin-right: 80px;
+      margin-inline-end: 80px;
     }
     .quality_grade {
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
     }
     .SplitTaxon.taxon {
       & > .display-name, .display-names {
@@ -215,6 +216,40 @@ body > [role="dialog"] .ObservationModal {
       position: relaitve;
       top: -20px;
       background-color: deeppink;
+    }
+
+    .collapsible-section {
+      margin-bottom: 20px;
+      .panel {
+        background: none;
+        border: 0;
+        margin: 0;
+        box-shadow: none;
+      }
+      .panel-body {
+        padding: 0;
+      }
+      .add {
+        float: right;
+        font-size: 14px;
+        color: $bootstrap-link-color;
+        cursor: pointer;
+      }
+      & + .collapsible-section {
+        border-top: 1px solid $border-grey;
+      }
+      h3, h4 {
+        margin-top: 15px;
+        &.collapsible {
+          i.fa {
+            color: $inat-green;
+            margin-inline-end: 5px;
+          }
+          &.collapsible {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 
@@ -454,10 +489,13 @@ body > [role="dialog"] .ObservationModal {
       padding: 20px;
     }
   }
+  .inat-tab.annotations-tab > div:last-child {
+    padding-bottom: 50px;
+  }
 
   .column-header {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
     .header-text {
       color: black;
@@ -466,6 +504,11 @@ body > [role="dialog"] .ObservationModal {
     i {
       color: $inat-green;
     }
+  }
+
+  .inat-tab.annotations-tab div + .column-header {
+    padding-top: 15px;
+    border-top: 1px solid $border-grey;
   }
 
   .obs-media .column-header {
@@ -647,6 +690,9 @@ body > [role="dialog"] .ObservationModal {
   .QualityMetrics table {
     margin-top: 0px;
   }
+  .Projects {
+    margin-bottom: 20px;
+  }
   .user-link {
     color: black;
   }
@@ -743,7 +789,7 @@ body > [role="dialog"] .ObservationModal {
     position: absolute;
     top: 50%;
     margin-top: -70px;
-    right: 10px;
+    inset-inline-end: 10px;
     .btn-group-vertical {
       margin-bottom: 10px;
     }

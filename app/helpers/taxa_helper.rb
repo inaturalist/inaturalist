@@ -145,9 +145,10 @@ module TaxaHelper
     return tn.name if tn.is_scientific_names?
     capitalize_name( tn.name )
   end
-  
-  def common_taxon_name(taxon, options = {})
+
+  def common_taxon_name( taxon, options = {} )
     return nil if taxon.blank?
+
     user = if options[:user]
       options[:user]
     else
@@ -156,10 +157,42 @@ module TaxaHelper
     site = options[:site] || @site
     TaxonName.choose_common_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names,
-      place: options[:place] || user.try(:place) || site.try(:place),
-      locale: options[:locale] || user.try(:locale) || site.try(:locale),
+      place: options[:place] || user.try( :place ) || site.try( :place ),
+      locale: options[:locale] || user.try( :locale ) || site.try( :locale ),
       user: user
     )
+  end
+
+  def common_taxon_names( taxon, options = {} )
+    return [] if taxon.blank?
+
+    user = options[:user]
+    unless user&.taxon_name_priorities&.any?
+      if ( common_name = common_taxon_name( taxon, options ).try( :name ) )
+        return [common_name]
+      end
+      return [] unless taxon.is_iconic? || taxon.root?
+
+      locale = options[:locale] || user&.try( :locale ) || @site&.try( :locale )
+      translated_name = I18n.t(
+        taxon.name.parameterize.underscore,
+        scope: :all_taxa,
+        locale: locale
+      )
+      return [translated_name] if translated_name
+
+      return []
+    end
+
+    user.taxon_name_priorities.sort_by( &:position ).map do | tnp |
+      TaxonName.choose_common_name(
+        @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names,
+        place: tnp.place,
+        lexicon: tnp.lexicon,
+        locale: tnp.lexicon ? nil : ( user.try( :locale ) || site.try( :locale ) ),
+        user: user
+      ).try( :name )
+    end.uniq.compact
   end
 
   def capitalize_piece( piece )

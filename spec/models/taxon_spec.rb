@@ -1375,15 +1375,15 @@ describe Taxon, "editable_by?" do
     Taxon.make!
   end
   it "should be editable by admins if class" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).to be_protected_attributes_editable_by( admin )
   end
   it "should be editable by curators if below threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON - 10 )
     expect( t ).to be_protected_attributes_editable_by( curator )
   end
   it "should not be editable by curators if above threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do

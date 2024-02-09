@@ -8,8 +8,8 @@ Announcement.blueprint do
   placement { "users/dashboard#sidebar" }
 end
 Annotation.blueprint do
-  controlled_attribute { ControlledTerm.make! }
-  controlled_value { ControlledTerm.make! }
+  controlled_attribute { make_controlled_term_with_label }
+  controlled_value { make_controlled_value_with_label( nil, controlled_attribute ) }
   resource { Observation.make! }
 end
 
@@ -77,13 +77,13 @@ ControlledTermLabel.blueprint do
 end
 
 ControlledTermTaxon.blueprint do
-  controlled_term { ControlledTerm.make! }
+  controlled_term { make_controlled_term_with_label }
   taxon { Taxon.make! }
 end
 
 ControlledTermValue.blueprint do
-  controlled_attribute { ControlledTerm.make! }
-  controlled_value { ControlledTerm.make!(is_value: true) }
+  controlled_attribute { make_controlled_term_with_label }
+  controlled_value { ControlledTerm.make( is_value: true ) }
 end
 
 DataPartner.blueprint do

@@ -354,11 +354,16 @@ fr-CA:
     <a href="/observations/import?project_id=%{project_id}#csv_import">téléverseur par lot</a>
   email: Courriel
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Cher/chère %{user},
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
@@ -448,12 +453,34 @@ fr-CA:
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques pour les téléversements séparés
   username_or_email: Nom d’utilisateur ou courriel
+  view_inaturalist_global_year_in_review_caps: VOIR LA RÉTROSPECTIVE DE L'ANNÉE %{year} DE LA COMMUNAUTÉ MONDIALE D'INATURALIST
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse courriel.
   website: Site Web
   x_blog: "Blogue de %{x}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  year_in_review_caps: "RÉTROSPECTIVE DE L'ANNÉE %{year}"
+  yir_email_because_of_you: |
+    Grâce à vous, il y a plus de données sur la biodiversité cette année que l’an passé. Nous vous invitons à examiner la Rétrospective de l’année; c’est notre façon de vous remercier pour tout ce que vous avez fait pour la biodiversité par l’entremise d’iNaturalist.
+  yir_email_log_in_to_generate: |
+    Pour le savoir, connectez-vous pour obtenir votre rétrospective personnelle de l’année!
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Votre Rétrospective de l’année %{year} dans iNaturalist – célébrez la biodiversité
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: L'équipe iNaturalist
+  yir_email_the_year_isnt_over: |
+    L’année n’est pas finie, et il n’est jamais trop tard pour téléverser vos vieilles observations. Quand vous les aurez enregistrées, cliquez sur ‘Regénérer les statistiques’ au bas de votre Rétrospective de l’année pour voir les mises à jour.
+  yir_email_what_else_will_you_observe_caps: QUOI D’AUTRE ALLEZ-VOUS OBSERVER?
+  yir_email_what_new_to_you: |
+    Lesquelles des espèces que vous avez observées étaient nouvelles pour vous? Combien de personnes vous ont aidé avec les identifications (et combien en avez-vous aidées)?
+  yir_email_with_gratitude: Avec toute notre gratitude,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} SUR INATURALIST À L’ÉCHELLE MONDIALE"
+  yir_email_you_are_part_of_something: |
+    Vous faites partie de quelque chose de grand! Chaque personne qui enregistre des observations, qui ajoute des identifications et qui fait connaître iNaturalist a une incidence sur la biodiversité. Grâce à nos efforts collectifs, nous rendons les données et les nouvelles connaissances sur la biodiversité accessibles à une échelle sans précédent. Merci de faire partie de la communauté iNaturalist!
+  yir_email_you_make_a_difference: |
+    En utilisant iNaturalist, vous agissez concrètement en faveur de la biodiversité. Merci de tout ce que vous faites!
   youre_a_site_curator_which_means: |
     Vous êtes un responsable de l’organisation du site, ce qui veut dire que vous vous êtes porté volontaire pour aider
     à organiser nos données et à contrôler le contenu. Ne vous sentez pas obligé

@@ -12,7 +12,9 @@
     var EXPECTED_NEARBY_FIGURE_URL = "#{ asset_path( "geo_model/expected_nearby_figure.png" ) }";
     var WEIGHTING_FIGURE_URL = "#{ asset_path( "geo_model/weighting_figure.png" ) }";
     var RANGE_COMPARISON_FIGURE_URL = "#{ asset_path( "geo_model/range_comparison_figure.png" ) }";
-  = javascript_include_tag "geo-model-explain-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/geo-model-explain-webpack"
 #app
   #initial-loading.text-center
     .loading_spinner

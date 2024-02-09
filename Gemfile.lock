@@ -364,9 +364,7 @@ GEM
     faraday-retry (1.0.3)
     fastimage (2.2.5)
     ffi (1.15.4)
-    flickraw (0.9.10)
-    flickraw-cached (20120701)
-      flickraw (>= 0.9)
+    flickr (2.1.0)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     georuby (2.5.2)
@@ -433,7 +431,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.5)
-    mini_portile2 (2.8.4)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -452,13 +450,13 @@ GEM
     net-ssh (6.1.0)
     netrc (0.11.0)
     newrelic_rpm (8.3.0)
-    nio4r (2.5.9)
-    nokogiri (1.15.4)
+    nio4r (2.7.0)
+    nokogiri (1.16.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.15.4-x86_64-darwin)
+    nokogiri (1.16.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.4-x86_64-linux)
+    nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
@@ -510,9 +508,9 @@ GEM
     patron (0.13.3)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (5.6.7)
+    puma (5.6.8)
       nio4r (~> 2.0)
-    racc (1.7.1)
+    racc (1.7.3)
     rack (2.2.8)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -701,6 +699,7 @@ GEM
     unicode-display_width (2.1.0)
     utf8-cleaner (1.0.0)
       activesupport
+    vcr (6.2.0)
     version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -783,7 +782,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fastimage
-  flickraw-cached
+  flickr
   friendly_id
   gdata!
   georuby
@@ -850,6 +849,7 @@ DEPENDENCIES
   terrapin
   uglifier
   utf8-cleaner
+  vcr
   watu_table_builder
   webmock
   whenever

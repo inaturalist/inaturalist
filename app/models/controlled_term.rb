@@ -29,6 +29,9 @@ class ControlledTerm < ApplicationRecord
     through: :controlled_term_taxa,
     source: :taxon
 
+  validates_associated :labels
+  validates :labels, presence: true
+
   after_commit :index_attributes
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }

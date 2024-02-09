@@ -376,6 +376,7 @@ mr:
   all_comments: सर्व टिप्पण्या
   all_flags_must_be_resolved: सर्व ध्वजांचे निराकरण करणे आवश्यक आहे
   all_life: सर्व जीवन
+  all_media_must_be_unhidden: सर्व मीडिया उघड केला पाहिजे
   all_names: सर्व नावे
   all_observations: सर्व निरीक्षणे
   all_photos: सर्व फोटोज
@@ -397,6 +398,7 @@ mr:
     family: डेटाबेसमध्ये सर्व कुळे जोडली गेली
     subfamily: डेटाबेसमध्ये सर्व उपकुळे जोडली गेली
     tribe: डेटाबेसमध्ये सर्व कुळे जोडली गेली
+    subgenus: डेटाबेसमध्ये सर्व उपगण जोडले गेले
     species: डेटाबेसमध्ये सर्व जाती जोडल्या गेल्या
     subspecies: डेटाबेसमध्ये सर्व उपजाती जोडल्या गेल्या
   all_rights_reserved: सर्व हक्क राखीव
@@ -418,7 +420,23 @@ mr:
   all_taxa_in_this_guide: ह्या मार्गदर्शकातली सर्व वर्गीकरणे
   all_taxonomic_groups: "&laquo; वर्गीकरणातील सर्व समूह"
   all_updates: सर्व अद्यतने
+  allowed_values: चालणाऱ्या संख्या
+  almost_there_: होत आलंय...
+  alphabetical: वर्णक्रमानुसार
+  alphabetical_order: वर्णक्रमानुसार
   already_have_an_account_log_in_html: याआधीच खाते आहे? <strong>लॉग इन करा</strong>
+  amphibians: उभयचर
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: अनपेक्षित मतभेदांचं विश्लेषण
+  android: अँड्रॉईड
+  animals: प्राणी
+  annotation: खूण
+  annotations: खुणा
+  announcement_was_successfully_created: घोषणा यशस्वीरित्या तयार केली गेली.
+  announcement_was_successfully_updated: घोषणा यशस्वीरित्या बदलली गेली.
+  announcements: घोषणा
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
@@ -441,6 +459,8 @@ mr:
   any_license: कोणतेही
   #Label for an option to show content with photos, sounds, or neither
   any_media: कोणतेही
+  #Label for an option to show content from any project
+  any_project: कोणतेही
   #Label for an option to show content with any quality grade
   any_quality_grade: कोणतेही
   #Label for an option to show observation with any reviewed status, i.e. both
@@ -456,19 +476,33 @@ mr:
   #curator
   apply_curator: लागू करा
   apply_to_be_an_app_owner: अॅप मालक होण्यासाठी अर्ज करा
+  arachnids: अष्टपाद
   are_you_sure?: नक्की ?
   are_you_sure_no_undo: तुमचं नक्की आहे? हे पूर्ववत केले जाऊ शकत नाही.
   are_you_sure_delete_conservation_status: |
     तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
   are_you_sure_delete_post: आपण खरंच ही टिप्पणी हटवू इच्छिता?
+  are_you_sure_delete_this_place: तुम्हाला हे ठिकाण नक्की खोडून टाकायचे आहे ना?
+  are_you_sure_leave_this_project: तुम्हाला नक्की प्रकल्प सोडायचा आहे ?
+  are_you_sure_merge_these_places: तुम्हाला हि ठिकाणे नक्की एकत्र करायची आहेत ना? ती परत विलग करता येणार नाहीत.
+  are_you_sure_remove_photo: "तुम्हाला नक्की हे छायाचित्र काढून टाकायचे आहे ना?"
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, ने अपलोड केले %{user}"
+  birds: पक्षी
   birthday: जन्मतारीख
   block: प्रतिबंध
   blocking_description: अवरोधित केल्याने तुमचा आणि दुसर्‍या वापरकर्त्यामधील कोणताही संवाद प्रतिबंधित होतो. काही विशिष्ट परिस्थितींमध्ये, जसे की तुमच्या व्यवहारांवर कोणी पाळत ठेऊन आढळल्यास किंवा तुमच्याबरोबर कोणी गैरवर्तन करीत असल्यास, तुमची सुरक्षितता लक्षात घेता, अशा प्रकारचा प्रतिबंध लावता येऊ शकतो.
+  blue_butterfly_etc: "निळे, फुलपाखरू, इत्यादी"
+  by_everyone: सर्वांनी
+  by_user: "%{user} ने"
+  by_you: तुम्ही
   calendar: दिनदर्शिका
+  change_group: गट बदल
+  change_types:
+    change_types: बदलाचा प्रकार
+    split: विभाजन
   #Plural noun, as in changes to a taxon record over time
   changes: बदल
   check_this_box_if_html: |
@@ -570,37 +604,6 @@ mr:
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
   email: ई-मेल
-  email_conf_banner_email_delivered_click_link: |
-    पुष्टीकरण ईमेल पाठवली आहे. कृपया ईमेलमधील लिंकवर क्लिक करा.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>तुमच्या संपर्कांच्या सूचीमध्ये <code>%{email}</code> जोडा आणि
-    <a href="%{url}">दुसऱ्या पुष्टीकरण ईमेलची विनंती करा</a>.</strong> जर तुमच्या ईमेल
-    प्रदात्याने पुष्टीकरण ईमेल अवरोधित केले असेल, तर कदाचित हे त्यांना पटवून देईल की तुम्हाला खरोखरच आमच्याकडून ईमेल हवा आहे.
-  email_conf_banner_check_your_spam_folder_html: <strong>तुमचे स्पॅम फोल्डर तपासा</strong>
-  email_conf_banner_contact_us_html: अद्याप काम करत नाही? आम्हाला %{email} वर ईमेल करा जेणेकरून आम्ही तुम्हाला मदत करू शकू.
-  email_conf_banner_please_click: |
-    तुमच्या ईमेल पत्त्याची पुष्टी करण्यासाठी कृपया तुमच्या ईमेलवर प्राप्त झालेल्या लिंकवर क्लिक करा.
-  email_conf_banner_search_for_emails_html: <strong>कडून आलेले ईमेल शोधा<code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    आम्ही आपल्याला %{date} रोजी पुष्टीकरण ईमेल पाठवले. आपल्याला जर ते मिळाले नसेल, तर आपण पुढील गोष्टी करू शकता:
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: तुमच्या %{site_name} ईमेल पत्त्याची %{date} पूर्वी खात्री करा #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    आपले खाते नियमित चालू ठेवण्यासाठी कृपया आजच आपल्या ईमेल पत्त्याची पुष्टी करा. %{site_name} आणि मोबाइल अॅप्स iNaturalist आणि Seek द्वारा iNaturalist च्यायोगे आपापसांत जैवविविधतेची निरीक्षणे शेअर करून लोकांना निसर्गाशी आणि परस्परांशी जोडतात. iNaturalist समुदायात सहभागी असल्याबद्दल धन्यवाद!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    आम्हाला सर्व खात्यांसाठी सत्यापित ईमेल पत्ते आवश्यक असतील सदर तारखेपासून %{requirement_date}. कृपया आपल्या खात्याची पुष्टी करण्यासाठी थोडासा वेळ काढा.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    आपल्याला काही प्रश्न असल्यास, कृपया पहा <a href="%{faq_url}">FAQ</a>. निसर्गासह आणि %{site_name} सह संपर्कात राहण्यासाठी वेळ दिल्याबद्दल धन्यवाद.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: अकाउंटची माहिती
   email_copyright2: "&copy; %{year} iNaturalist, सर्व हक्क राखीव"
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
@@ -613,6 +616,9 @@ mr:
   find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
   forum: मंच
   from_flickr_etc: फ्लिकर वरून इ.
+  geomodel_expected_nearby_label_is_derived: |
+    "अपेक्षित जवळपास" तर्क जिओमॉडेलवरून घेतला आहे.
+    <a href="%{url}">येथे जिओमॉडेलबद्दल अधिक जाणून घ्या</a>.
   grid: ओळखलेली निरीक्षणे
   guides: मार्गदर्शक
   help: मदत
@@ -745,6 +751,8 @@ mr:
   new_conservation_status: नवीन संवर्धन स्थिती
   #Filter for observations not in a particular place
   not_in_place: याठिकाणी नाही
+  observation_accuracy_validator_email_ids_sibling_to: |
+    वेगवेगळ्या शाखांवरील आयडी (C) किंवा टॅक्सनपेक्षा कमी दर्जाचे निरीक्षण जेथे तुम्ही 'नाही, पण...'' निवडता ते 'संभाव्य असहमत' संवाद (D) असहमती म्हणून गणले जाईल.
   #Basic observation export fields
   observation_export_column_type_basic: सामान्य
   #Geographic observation export fields
@@ -1126,30 +1134,6 @@ mr:
         </p>
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist_caps: iNaturalist चे मासिक सहाय्यक व्हा
-        desc_moore_html: |
-          <p class="lead">
-          <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
-          जैवविविधता शोधत आहे. त्याचा भाग झाल्याबद्दल धन्यवाद!</strong>
-          </p>
-          <p class="lead">
-          आम्हाला iNaturalist वापरण्यासाठी मुक्त ठेवायचे आहे, परंतु ते विनामूल्य नाही
-          ऑपरेट तुम्हाला iNaturalist आवडत असल्यास, कृपया मासिक बनण्याचा विचार करा
-          समर्थक आवर्ती भेटवस्तू iNaturalist सुरू ठेवू शकतात याची खात्री करण्यात मदत करतात
-          अंदाजे प्रदान करून त्याच्या पायाभूत सुविधा आणि कर्मचारी मोजण्यासाठी
-          महसूल तुम्ही तुमची मासिक समर्थक स्थिती दर्शविण्यासाठी देखील निवडू शकता
-          आपले वापरकर्ता प्रोफाइल.
-          </p>
-          <p class="lead">
-          तुमच्या धर्मादाय देणग्या iNaturalist ला समुदाय म्हणून मदत करण्यास मदत करतात
-          संगणकाची दृष्टी विकसित करून आणि नवीन वैशिष्ट्ये लागू करण्यापासून वाढते
-          आमच्या सर्व्हर आणि कर्मचार्‍यांना समर्थन देण्यासाठी. आपण देण्यास प्राधान्य दिल्यास ए
-          एक-वेळ देणगी, कृपया <a href="%{donate_url}">येथे क्लिक करा</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist एक स्वतंत्र 501(c)(3), कर-सवलत,
-          युनायटेड स्टेट्स मध्ये स्थित गैर-नफा संस्था
-          अमेरिका (कर आयडी: ९२-१२९६४६८).
-          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist हा समर्पित जगातील सर्वात मोठ्या समुदायांपैकी एक आहे
@@ -1275,6 +1259,9 @@ mr:
         observation_streaks_desc2: |
           एखादी निरीक्षणाची मालिका म्हणजे कमीतकमी पाच दिवसांचा कालावधी जेव्हा एखादा निरीक्षक बाहेर पडला आणि त्याने दररोज नवीन, सत्यापित निरीक्षणे केली. आम्ही इथे या वर्षात सुरू झालेल्या किंवा जेव्हा ही आकडेवारी तयार केली गेली तेव्हा प्रगतीपथावर होत्या अशा प्रदीर्घ मालिका दर्शवित आहोत (वैयक्तिक वापरकर्त्यांसाठी, आम्ही या वर्षाअखेरीस समाप्त झालेल्या मालिकांचा देखील समावेश करीत आहोत).
         stats_generation_schedule: डिसेंबरमध्ये दर रविवारी आणि १ जानेवारीला आकडेवारी तयार केली जाईल.
+        view_all_publications_count_caps2:
+          one: "%{count} प्रकाशन पहा"
+          other: "सर्व %{count} प्रकाशने पहा"
     taxa:
       show:
         frequency:
@@ -1284,6 +1271,7 @@ mr:
           "Life Stage=Pupa": कोष
     users:
       edit:
+        common_scientific_name_display_order: सामान्य / वैज्ञानिक नाव दर्शनीय क्रम
         monthly_supporter_desc_html: |
           iNaturalist मासिक समर्थक स्वयंचलित मासिक योगदान देतात
           समर्थन करण्यासाठी iNaturalist ला (युनायटेड स्टेट्स IRS EIN 92-1296468)

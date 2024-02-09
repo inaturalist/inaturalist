@@ -325,26 +325,32 @@ class TaxonName < ApplicationRecord
       place_names = []
       exact_place_names = []
     end
-    locale = options[:locale]
-    locale = options[:user].try( :locale ) if locale.blank?
-    locale = options[:site].try( :locale ) if locale.blank?
-    locale = I18n.locale if locale.blank?
-    language_name = language_for_locale( locale )
-    locale_names = common_names.select {| n | n.localizable_lexicon == language_name }
+    if options[:lexicon]
+      lexicon_names = common_names.select { |n| n.parameterized_lexicon == options[:lexicon] }
+      lexicon_and_place_names = place_names.select { |n| n.parameterized_lexicon == options[:lexicon] }
+      exact_lexicon_and_place_names = exact_place_names.select { |n| n.parameterized_lexicon == options[:lexicon] }
+    else
+      locale = options[:locale]
+      locale = options[:user].try( :locale ) if locale.blank?
+      locale = options[:site].try( :locale ) if locale.blank?
+      locale = I18n.locale if locale.blank?
+      language_name = language_for_locale( locale )
+      lexicon_names = common_names.select { |n| n.localizable_lexicon == language_name }
 
-    # We want Maori names to show up in New Zealand even for English speakers,
-    # but we don't want North American English names to show in Mexcio
-    locale_and_place_names = place_names.select {| n | n.localizable_lexicon == language_name }
-    exact_locale_and_place_names = exact_place_names.select {| n | n.localizable_lexicon == language_name }
+      # We want Maori names to show up in New Zealand even for English speakers,
+      # but we don't want North American English names to show in Mexcio
+      lexicon_and_place_names = place_names.select { |n| n.localizable_lexicon == language_name }
+      exact_lexicon_and_place_names = exact_place_names.select { |n| n.localizable_lexicon == language_name }
+    end
 
-    if exact_locale_and_place_names.length.positive?
-      exact_locale_and_place_names.first
-    elsif exact_place_names.length.positive?
+    if exact_lexicon_and_place_names.length.positive?
+      exact_lexicon_and_place_names.first
+    elsif exact_place_names.length.positive? && !options[:lexicon]
       exact_place_names.first
-    elsif locale_and_place_names.length.positive?
-      locale_and_place_names.first
-    elsif locale_names.length.positive?
-      locale_names.first
+    elsif lexicon_and_place_names.length.positive?
+      lexicon_and_place_names.first
+    elsif lexicon_names.length.positive?
+      lexicon_names.first
     end
   end
 

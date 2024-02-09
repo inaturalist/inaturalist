@@ -63,10 +63,18 @@ class Projects extends React.Component {
   }
 
   render( ) {
-    const { observation, config } = this.props;
+    const {
+      observation,
+      config,
+      collapsible,
+      updateSession
+    } = this.props;
+    const { open } = this.state;
     const loggedIn = config && config.currentUser;
 
-    const projectsOrProjObs = observation.non_traditional_projects || [];
+    const projectsOrProjObs = observation.non_traditional_projects
+      ? _.cloneDeep( observation.non_traditional_projects )
+      : [];
     _.each( observation.project_observations, po => {
       // trying to avoid duplicate project listing. This can happen for formerly
       // traditional projects that have been turned into collection projects
@@ -117,42 +125,48 @@ class Projects extends React.Component {
         </form>
       );
     }
+
+    const panelContent = (
+      <div>
+        { addProjectInput }
+        { _.sortBy( projectsOrProjObs, po => po.project.title ).map( obj => (
+          <ProjectListing
+            key={obj.project.id}
+            displayObject={obj}
+            {...this.props}
+          />
+        ) ) }
+      </div>
+    );
+    if ( !collapsible ) {
+      return (
+        <div className="Projects">
+          { panelContent }
+        </div>
+      );
+    }
+
     const count = projectsOrProjObs.length > 0
       ? `(${projectsOrProjObs.length})`
       : "";
-    const sectionOpen = this.state.open;
     return (
       <div className="Projects collapsible-section">
-        <button
-          type="button"
-          className="btn btn-nostyle"
+        <h4
+          className="collapsible"
           onClick={( ) => {
             if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_projects: sectionOpen } );
+              updateSession( { prefers_hide_obs_show_projects: open } );
             }
-            this.setState( { open: !sectionOpen } );
+            this.setState( { open: !open } );
           }}
         >
-          <h4 className="collapsible">
-            <i className={`fa fa-chevron-circle-${this.state.open ? "down" : "right"}`} />
-            { I18n.t( "projects" ) }
-            { " " }
-            { count }
-          </h4>
-        </button>
-        <Panel id="projects-panel" expanded={this.state.open} onToggle={() => null}>
-          <Panel.Collapse>
-            <Panel.Body>
-              { addProjectInput }
-              { projectsOrProjObs.map( obj => (
-                <ProjectListing
-                  key={obj.project.id}
-                  displayObject={obj}
-                  {...this.props}
-                />
-              ) ) }
-            </Panel.Body>
-          </Panel.Collapse>
+          <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
+          { I18n.t( "projects" ) }
+          { " " }
+          { count }
+        </h4>
+        <Panel id="projects-panel" expanded={open} onToggle={() => null}>
+          <Panel.Collapse>{ panelContent }</Panel.Collapse>
         </Panel>
       </div>
     );
@@ -168,7 +182,12 @@ Projects.propTypes = {
   observation: PropTypes.object,
   setErrorModalState: PropTypes.func,
   updateSession: PropTypes.func,
-  showProjectFieldsModal: PropTypes.func
+  showProjectFieldsModal: PropTypes.func,
+  collapsible: PropTypes.bool
+};
+
+Projects.defaultProps = {
+  collapsible: true
 };
 
 export default Projects;

@@ -20,7 +20,15 @@ class AnnouncementsController < ApplicationController
     @announcements = @announcements.where( placement: @placement ) unless @placement.blank?
   end
 
-  def show; end
+  def show
+    respond_to do | format |
+      format.html do
+        if params[:body]
+          return render html: "<html><body style='margin: 0'>#{@announcement.body}</body></html>".html_safe
+        end
+      end
+    end
+  end
 
   def new
     @announcement = Announcement.new
