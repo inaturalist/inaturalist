@@ -32,6 +32,7 @@ RUN npm install
 
 COPY --chown=inaturalist:inaturalist config/config.docker.yml /code/config/config.yml
 COPY --chown=inaturalist:inaturalist config/database.docker.yml /code/config/database.yml
+COPY --chown=inaturalist:inaturalist config/s3.docker.yml /code/config/s3.yml
 COPY --chown=inaturalist:inaturalist config/secrets.docker.yml /code/config/secrets.yml
 COPY --chown=inaturalist:inaturalist config/smtp.docker.yml /code/config/smtp.yml
 

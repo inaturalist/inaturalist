@@ -1,0 +1,3 @@
+access_key_id: <%= ENV.fetch("INAT_AWS_ACCESS_KEY") %>
+secret_access_key: <%= ENV.fetch("INAT_AWS_SECRET_ACCESS_KEY") %>
+cloudfront_distribution: <%= ENV.fetch("INAT_AWS_CLOUDFRONT_DISTRIBUTION") %>

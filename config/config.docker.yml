@@ -1,164 +1,135 @@
-# Example services and site config. Keys in all caps are globally scoped
-# You must replace these values with ones tailored to your own site.
-# For external services, follow the link in the note to go to the signup
-# page for the service.
-
 base: &base
 
-    priority_zones:
-      - US
-      - Arizona
-      - Indiana
-      - Hawaii
-      - Alaska
-
     rest_auth:
-        # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: <%= ENV.fetch("SECRET_DEVISE_PEPPER") { "09af09af09af09af09af09af09af09af09af09af" } %>
         REST_AUTH_DIGEST_STRETCHES: 10
 
     rails:
-        # Issue {rake secret} to get a new one
         session_key: _inaturalist_session
         secret: <%= ENV.fetch("SECRET_KEY_BASE") { "09af09af09af09af09af09af09af09af" } %>
 
-    # google_analytics:
-    #     # http://www.google.com/analytics/sign_up.html
-    #     tracker_id: UA-090909-9
-    #     domain_name: yoursite.org
+    # ubio:
+    #    key:
 
-    ubio:
-        # http://www.ubio.org/index.php?pagename=form
-        key: 09af09af09af09af09af09af09af09af09af09af
+    # yahoo_dev_network:
+    #    app_id:
 
     tile_servers:
-        # EXPERIMENTAL: These endpoints should return map tiles when hit with
-        # requests like /{Z}/{X}/{Y}.png.
-        # See http://bitbucket.org/springmeyer/tilelite/
-        observations: 'http://localhost:8000'
-        tilestache: 'http://localhost:8080'
         elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
+    #    observations: http://www.inaturalist.org/observations/tiles
+    #    tilestache: http://geo.inaturalist.org
+    #    tilestache_public_path: /home/inaturalist/deployment/TileStache/public
 
-    google_webmaster:
-        verification: abiglongkey
+    # facebook:
+    #    namespace:
+    #    app_id: 
+    #    app_secret:
+    #    admin_ids:
 
-    s3_bucket: staticdev.inaturalist.org
-    s3_protocol: https
-    s3_region: us-east-1
-    s3_public_host: staticdev-public.s3.amazonaws.com
-    s3_public_region: us-east-1
-    s3_public_bucket: staticdev-public
+    # twitter:
+    #    key:
+    #    secret:
+    #    username:
+    
+    # apple:
+    #    app_id:
+    #    client_id:
+    #    team_id:
+    #    key_id:
+    #    pem:
+
+    s3_bucket: <%= ENV.fetch("INAT_AWS_DOMAIN") { "staticdev.inaturalist.org" } %>
+    s3_protocol: <%= ENV.fetch("INAT_AWS_PROTOCOL") { "https" } %>
+    s3_region: <%= ENV.fetch("INAT_AWS_REGION") { "us-east-1" } %>
+    s3_public_host: <%= ENV.fetch("INAT_AWS_OPENDATA_DOMAIN") { "staticdev-public.s3.amazonaws.com" } %>
+    s3_public_region: <%= ENV.fetch("INAT_AWS_OPENDATA_REGION") { "us-east-1" } %>
+    s3_public_bucket: <%= ENV.fetch("INAT_AWS_OPENDATA_BUCKET") { "staticdev-public" } %>
 
     memcached: <%= ENV.fetch("INAT_MEMCACHED_HOSTNAME") { "memcached" } %>
 
-    # Key for spam filtering with akismet. See http://akismet.com/development/api/
-    rakismet:
-      key: abc123
-      site_url: http://www.yoursite.com
+    elasticsearch_hosts:
+        - http://<%= ENV.fetch("INAT_ES_HOST") { "es" } %>:9200
 
-    # facebook:
-    #     namespace: appname # your facebook app's namespace, used for open graph tags
-
-    # twitter:
-    #     key: 09af09af09af09af09af09af09af09af09af09af
-    #     secret: 09af09af09af09af09af09af09af09af09af09af
-    #     username: your_twitter_username
-
-    # cloudmade:
-    #     key: 09af09af09af09af09af09af09af09af09af09af
-
-    # bing:
-    #     # http://www.bingmapsportal.com/
-    #     key: 09af09af09af09af09af09af09af09af09af09af
-
-    flickr:
-        # http://www.flickr.com/services/api/keys/apply/
-        key: 09af09af09af09af09af09af09af09af
-        shared_secret: 09af09af09af09af
-
-    soundcloud:
-        # http://soundcloud.com/you/apps/new
-        client_id: 09af09af09af09af09af09af09af09af
-        secret: 09af09af09af09af09af09af09af09af
+    node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://localhost:4000/v1" } %>
 
     google:
         browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "09af09af09af09af09af09af09af09af" } %>
         client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "09af09af09af09af09af09af09af09af" } %>
         secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "09af09af09af09af09af09af09af09af" } %>
 
-    metadata_provider:
+    # bing:
+    #    key:
 
-    creator:
-
-    # natureserve:
-    #     key: 0x0x0x0x0x0x0x0x
-
-    # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
-    x_sendfile_header: 'X-Sendfile'
-
-    # # GBIF login credentials. Currently only used in 
-    # # tools/gbif_observation_links.rb, so only useful if you send data 
-    # # to GBIF
-    # gbif:
-    #     username: yourusername
-    #     password: yourpassword
-    #     notification_address: you@you.com
+    # soundcloud:
+    #    client_id:
+    #    secret:
     
-    # Elastic search for search indexing, other performance improvements
-    # ES also runs a syncing service on port 9300 by default. You want to use 
-    # the API port. See 
-    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
-    # for more details
-    elasticsearch_host: http://<%= ENV.fetch("INAT_ES_HOST") { "es" } %>:9200
+    x_sendfile_header: X-Accel-Redirect
+    
+    # flickr:
+    #    key:
+    #    shared_secret:
+    
+    # rakismet:
+    #    key:
+    #    site_url:
+    
+    # gbif:
+    #    username:
+    #    password:
+    #    notification_address:
+    
+    # orcid:
+    #    client_id:
+    #    client_secret:
+    
+    # donorbox:
+    #    email:
+    #    key: 
 
-    # An instance of https://github.com/inaturalist/iNaturalistAPI, the
-    # same code running at CONFIG.tile_servers.elasticsearch
-    node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://api:4000/v1" } %>
+    # crowdin:
+    #    projects:
+    #        web:
+    #            identifier:
+    #            key:
+    #        mobile:
+    #            identifier:
+    #            key:
+    #        seek:
+    #            identifier:
+    #            key:
 
-    # The secrets used to sign the JWT for authenticated requests to the
-    # iNaturalistAPI. These need to be same as in the API's config.js.
+    # sendgrid:
+    #    api_key:
+    #    validation_api_key:
+    #    # Unsubscribe groups configured on Sendgrid
+    #    asm_group_ids:
+    #        # Transactional emails
+    #        default: 25993
+    #        # Emails about your account
+    #        account: 26500
+    #        # Donation campaigns
+    #        donation: 19306
+    #        # News about iNat
+    #        news: 19705
+    #        # Emails to existing donors
+    #        donors: 28967
+    #        # Emails about legacy giving
+    #        legacy_giving: 34067
+    #        # Emails about accuracy experiments
+    #        accuracy: 35930
+    #    primary_ip_pool:
+    #    alternate_ip_pool:
+
     jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "secret" } %>
     jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "application_secret" } %>
 
-    # # Path to the CA .crt file
-    # ca_file: "/path/to/certs/ca-bundle.crt"
-    # # Path to the certificates directory
-    # ca_path: "/path/to/certs/"
+    # banned_emails:
 
-    # # Options for interacting with orcid.org
-    # orcid:
-    #     client_id: YOUR_CLIENT_ID
-    #     client_secret: YOUR_CLIENT_SECRET
-
-    # # Options for interacting with donorbox.org donation platform
-    # donorbox:
-    #     email: you@domain.com
-    #     key: YOUR_DONORBOX_KEY
-
-
-    # Options for interacting with crowdin.com translation projects
-    # crowdin:
-    #     projects:
-    #         web:
-    #             identifier: inaturalistweb
-    #             key: 1234
-    #         mobile:
-    #             identifier: inaturalistios
-    #             key: 5678
-    #         seek:
-    #             identifier: seek
-    #             key: 4321
-
-    # Sendgrid-specific options if using sendgrid.com to send email
-    sendgrid:
-        api_key: some-api-key
-        # Unsubscribe groups configured on Sendgrid
-        asm_group_ids:
-            # The unsubscribe group used as a default for all emails sent from
-            # the web app
-            default: 1234
-            help_email: help@inaturalist.org
-
+    # aggregator_exception_project_ids:
+    
+    # allowed_email_recipient_patterns:
+    
 development:
     <<: *base
 
