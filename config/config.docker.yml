@@ -45,7 +45,7 @@ base: &base
     s3_public_region: <%= ENV.fetch("INAT_AWS_OPENDATA_REGION") { "us-east-1" } %>
     s3_public_bucket: <%= ENV.fetch("INAT_AWS_OPENDATA_BUCKET") { "staticdev-public" } %>
 
-    memcached: <%= ENV.fetch("INAT_MEMCACHED_HOSTNAME") { "memcached" } %>
+    memcached: <%= ENV.fetch("INAT_MEMCACHED_HOST") { "memcached" } %>
 
     elasticsearch_hosts:
         - http://<%= ENV.fetch("INAT_ES_HOST") { "es" } %>:9200
