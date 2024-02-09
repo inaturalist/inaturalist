@@ -5,7 +5,7 @@ import _ from "lodash";
 import util from "../models/util";
 import { objectToComparable } from "../../../shared/util";
 import PhotoMarkerOverlayView from "./photo_marker_overlay_view";
-import GooglePlacesSearchBox from "./google_places_search_box";
+import GooglePlacesAutocomplete from "./google_places_autocomplete";
 
 let lastCenterChange = new Date().getTime();
 
@@ -134,8 +134,11 @@ class LocationChooserMap extends React.Component {
     this.moveCircle( latLng, radius, { geocode: true } );
   }
 
-  handlePlacesChanged( input, places ) {
+  handlePlacesChanged( input, place ) {
     const { updateState } = this.props;
+    if ( _.isEmpty( place ) ) {
+      return;
+    }
     let searchQuery;
     let lat;
     let lng;
@@ -158,35 +161,12 @@ class LocationChooserMap extends React.Component {
     }
     let notes;
     let radius;
-    let viewport;
-    if ( places.length > 0 ) {
-      const { geometry } = places[0];
-      ( { viewport } = geometry );
-      lat = lat || geometry.location.lat( );
-      lng = lng || geometry.location.lng( );
-      // Set the locality notes using political entity names and omitting
-      // street-level information
-      const storeStreetAddress = false; // disabling until we figure out what we really want
-      if (
-        storeStreetAddress
-        && places[0].address_components
-        && places[0].address_components.length > 0
-      ) {
-        const goodTypes = ["political", "neighborhood"];
-        const goodComponents = _.filter(
-          places[0].address_components,
-          p => _.intersection( p.types, goodTypes ).length > 0
-        );
-        notes = goodComponents
-          .map( p => ( p.short_name || p.long_name ) )
-          .join( ", " );
-        if ( places[0].name && !places[0].name.match( /^\d+/ ) ) {
-          notes = `${places[0].name}, ${notes}`;
-        }
-      } else {
-        notes = places[0].formatted_address;
-      }
-    }
+
+    const { geometry } = place;
+    const { viewport } = geometry;
+    lat = lat || geometry.location.lat( );
+    lng = lng || geometry.location.lng( );
+    notes = place.formatted_address;
     if ( typeof ( google ) !== "undefined" ) {
       if ( viewport && !searchedForCoord ) {
         // radius is the largest distance from geom center to one of the bounds corners
@@ -243,10 +223,7 @@ class LocationChooserMap extends React.Component {
       lng,
       obsCard: currentCard,
       obsCards,
-      radius,
-      show,
-      center,
-      fitCurrentCircle
+      radius
     } = this.props;
 
     // Determine if we should re-render the overlays
@@ -446,7 +423,7 @@ class LocationChooserMap extends React.Component {
     return (
       <div className="LocationChooserMap map">
         <div className="map-inner" />
-        <GooglePlacesSearchBox
+        <GooglePlacesAutocomplete
           bounds={bounds}
           onPlacesChanged={this.handlePlacesChanged}
         />

@@ -1,4 +1,8 @@
 fr-CA:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} changement"
+    other: "%{count} changements"
   x_comments:
     one: '%{count} commentaire'
     other: '%{count} commentaires'
@@ -47,6 +51,9 @@ fr-CA:
   x_misidentifications_of_this_species:
     one: "%{count} mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} mauvaise identification d'une espèce dans ce genre"
+    other: "%{count} mauvaises identifications d'espèces dans ce genre"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -104,8 +111,54 @@ fr-CA:
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> observation de qualité recherche"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au rang de l'espèce ou à un rang inférieur"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche identifiées au rang de l'espèce ou à un rang inférieur"
+  x_sounds:
+    one: "%{count} son"
+    other: "%{count} sons"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> taxon modifié"
+    other: "<span class='count'>%{count}</span> taxons modifiés"
+  x_taxa_matching_current_filters:
+    one: "%{count} taxon correspondant aux filtres choisis"
+    other: "%{count} taxons correspondant aux filtres choisis"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> modification de taxon ajoutée"
+    other: "<span class='count'>%{count}</span> modifications de taxon ajoutées"
   _100_day_trends: Tendances de 100 jours
+  _percent_ID_d: "% ayant reçu une identification"
   a_community_for_naturalist: Une communauté pour naturalistes
+  a_default_taxon_name_will_automatically_created: |
+    Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut « nom scientifique » de ce taxon. Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms vernaculaires, noms scientifiques obsolètes, etc.).
+  a_flag_for_x: "un signalement pour %{x}"
+  a_member_of_taxon_html: "un membre des %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "De A à Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|une} %{resource}"
   about: À propos
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
@@ -301,11 +354,16 @@ fr-CA:
     <a href="/observations/import?project_id=%{project_id}#csv_import">téléverseur par lot</a>
   email: Courriel
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Cher/chère %{user},
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
@@ -395,12 +453,34 @@ fr-CA:
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques pour les téléversements séparés
   username_or_email: Nom d’utilisateur ou courriel
+  view_inaturalist_global_year_in_review_caps: VOIR LA RÉTROSPECTIVE DE L'ANNÉE %{year} DE LA COMMUNAUTÉ MONDIALE D'INATURALIST
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse courriel.
   website: Site Web
   x_blog: "Blogue de %{x}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  year_in_review_caps: "RÉTROSPECTIVE DE L'ANNÉE %{year}"
+  yir_email_because_of_you: |
+    Grâce à vous, il y a plus de données sur la biodiversité cette année que l’an passé. Nous vous invitons à examiner la Rétrospective de l’année; c’est notre façon de vous remercier pour tout ce que vous avez fait pour la biodiversité par l’entremise d’iNaturalist.
+  yir_email_log_in_to_generate: |
+    Pour le savoir, connectez-vous pour obtenir votre rétrospective personnelle de l’année!
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Votre Rétrospective de l’année %{year} dans iNaturalist – célébrez la biodiversité
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: L'équipe iNaturalist
+  yir_email_the_year_isnt_over: |
+    L’année n’est pas finie, et il n’est jamais trop tard pour téléverser vos vieilles observations. Quand vous les aurez enregistrées, cliquez sur ‘Regénérer les statistiques’ au bas de votre Rétrospective de l’année pour voir les mises à jour.
+  yir_email_what_else_will_you_observe_caps: QUOI D’AUTRE ALLEZ-VOUS OBSERVER?
+  yir_email_what_new_to_you: |
+    Lesquelles des espèces que vous avez observées étaient nouvelles pour vous? Combien de personnes vous ont aidé avec les identifications (et combien en avez-vous aidées)?
+  yir_email_with_gratitude: Avec toute notre gratitude,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} SUR INATURALIST À L’ÉCHELLE MONDIALE"
+  yir_email_you_are_part_of_something: |
+    Vous faites partie de quelque chose de grand! Chaque personne qui enregistre des observations, qui ajoute des identifications et qui fait connaître iNaturalist a une incidence sur la biodiversité. Grâce à nos efforts collectifs, nous rendons les données et les nouvelles connaissances sur la biodiversité accessibles à une échelle sans précédent. Merci de faire partie de la communauté iNaturalist!
+  yir_email_you_make_a_difference: |
+    En utilisant iNaturalist, vous agissez concrètement en faveur de la biodiversité. Merci de tout ce que vous faites!
   youre_a_site_curator_which_means: |
     Vous êtes un responsable de l’organisation du site, ce qui veut dire que vous vous êtes porté volontaire pour aider
     à organiser nos données et à contrôler le contenu. Ne vous sentez pas obligé

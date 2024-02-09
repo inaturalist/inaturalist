@@ -317,11 +317,13 @@ class PlacesController < ApplicationController
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
     @q = sanitize_query( @q.to_s.sanitize_encoding )
-    site_place = @site.place if @site
+    if @site && params[:restrict_to_site_place] != "false"
+      site_place = @site.place
+    end
     params[:per_page] ||= 30
     if @q.blank?
       scope = if site_place
-        Place.where( site_place.child_conditions )
+        Place.children_of( site_place )
       else
         Place.where( "place_type = ?", Place::CONTINENT ).order( "updated_at desc" )
       end

@@ -183,7 +183,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     }
   }
   #TaxaTree, #TaxaList, .ObservationsGrid, .ObservationsTab, .SpeciesGrid {
-    height: 100%;
     overflow: auto;
     overscroll-behavior-y: contain;
   }
@@ -614,7 +613,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     padding-right: 5px;
     padding-bottom: 5px;
     min-width: 160px;
-    max-width: 300px;
+    max-width: 33.3%;
     margin-right: 0;
     .thumbnail {
       padding: 0;
@@ -627,7 +626,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         width: 100%;
         line-height: 30px;
         padding: 0 9px;
-        margin-top: -30px;
+        top: 180px;
         a {
           color: white;
         }
@@ -641,13 +640,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         font-size: 16px;
       }
       .caption {
-        height: 58px;
         .SplitTaxon > .display-name, .display-names,
         .SplitTaxon > .secondary-name, .secondary-names {
           display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
         }
       }
       &.TaxonThumbnail .photo {

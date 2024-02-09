@@ -172,7 +172,7 @@ class NewSpecies extends React.Component {
           { showAccumulation ? (
             <button
               type="button"
-              className="btn btn-sm btn-default"
+              className="btn btn-sm btn-dark"
               onClick={( ) => this.setState( { showAccumulation: false } )}
             >
               { I18n.t( "hide_running_total" ) }
@@ -180,7 +180,7 @@ class NewSpecies extends React.Component {
           ) : (
             <button
               type="button"
-              className="btn btn-sm btn-default"
+              className="btn btn-sm btn-dark"
               onClick={( ) => this.setState( { showAccumulation: true } )}
             >
               { I18n.t( "show_running_total" ) }

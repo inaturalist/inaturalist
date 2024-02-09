@@ -9,6 +9,16 @@ import UserImage from "../../../shared/components/user_image";
 import { termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
+  constructor( props ) {
+    super( props );
+    const { config } = props;
+    const currentUser = config && config.currentUser;
+    this.state = {
+      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
+    };
+    this.toggleOpenPanel = this.toggleOpenPanel.bind( this );
+  }
+
   componentDidMount( ) {
     this.fetchAnnotations( );
   }
@@ -19,23 +29,24 @@ class Annotations extends React.Component {
     }
   }
 
-  fetchAnnotations( ) {
-    const {
-      fetchControlledTerms,
-      open: isOpen,
-      updateSession,
-      config,
-      collapsible
-    } = this.props;
-    if ( collapsible && this.loggedIn
-      // if user closes the panel, set in preferences that they prefer to hide the panel
-      // if user opens the panel, set in preferences that they don't prefer to hide the panel
-      // only update if the current user setting is different from the new panel state
-      && ( config.currentUser.prefers_hide_obs_show_annotations !== !isOpen )
-    ) {
-      updateSession( { prefers_hide_obs_show_annotations: !isOpen } );
+  toggleOpenPanel( ) {
+    const { config, updateSession } = this.props;
+    const { open } = this.state;
+    const newOpenState = !open;
+    const loggedIn = config && config.currentUser;
+    if ( loggedIn ) {
+      updateSession( {
+        prefers_hide_obs_show_annotations: !newOpenState
+      } );
     }
-    if ( isOpen ) {
+    this.setState( { open: newOpenState } );
+    this.fetchAnnotations( newOpenState );
+  }
+
+  fetchAnnotations( force = false ) {
+    const { fetchControlledTerms } = this.props;
+    const { open } = this.state;
+    if ( ( force || open ) && fetchControlledTerms ) {
       fetchControlledTerms( );
     }
   }
@@ -211,10 +222,9 @@ class Annotations extends React.Component {
       controlledTerms,
       addAnnotation,
       collapsible,
-      loading,
-      open: isOpen,
-      showAnnotationsPanel
+      loading
     } = this.props;
+    const { open } = this.state;
     const observationAnnotations = observation.annotations || [];
     const availableControlledTerms = termsForTaxon(
       controlledTerms,
@@ -386,16 +396,16 @@ class Annotations extends React.Component {
         <h4 className="collapsible">
           <button
             type="button"
-            onClick={( ) => showAnnotationsPanel( !isOpen )}
+            onClick={this.toggleOpenPanel}
             className="btn btn-nostyle"
           >
-            <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
+            <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
             { I18n.t( "annotations" ) }
             { " " }
             { count }
           </button>
         </h4>
-        <Panel expanded={isOpen} onToggle={() => {}}>
+        <Panel expanded={open} onToggle={() => {}}>
           <Panel.Collapse>
             {!availableControlledTerms || availableControlledTerms.length === 0
               ? emptyState
@@ -419,8 +429,7 @@ Annotations.propTypes = {
   collapsible: PropTypes.bool,
   fetchControlledTerms: PropTypes.func,
   loading: PropTypes.bool,
-  open: PropTypes.bool,
-  showAnnotationsPanel: PropTypes.func
+  open: PropTypes.bool
 };
 
 Annotations.defaultProps = {

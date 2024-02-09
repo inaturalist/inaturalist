@@ -284,13 +284,10 @@ oc:
   before_importing_photos: abans d’importar de fòtos
   bg_color: Color de fons
   birds: ausèls
-  black: negre
   blog_widget: Widget de blog
-  blue: blau
   blue_butterfly_etc: "blau, parpalhòl, etc."
   body: Còs
   breadcrumbs: Pista de navigacion
-  brown: brun
   browse: Percórrer
   browse_all_projects: Explorar totes los projèctes
   browse_all_species: Percórrer totas las espècias
@@ -529,6 +526,7 @@ oc:
   everyone: tot lo monde
   everywhere: pertot
   exact_date: Data exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Reng exacte
   existing_flags: Bandièras existentas
   exit_full_screen: "Sortir del mòde ecran complet"
@@ -579,6 +577,7 @@ oc:
   flickr_tags: Balisas Flickr
   #Adjective, as in a fluid layout of images
   fluid: fluida
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
   following: seguiment
   for_a_taxon: per un taxon
@@ -735,6 +734,8 @@ oc:
   longitude: Longitud
   lookup: Recèrca
   low: bas
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Rend lo mai bas
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contengut principal
@@ -834,10 +835,10 @@ oc:
     observe_panel_title: Començam per publicar qualques observacions
     follow_panel_title_global: Seguir qualques naturalistas actius
     updates_by_you_panel_title: Aqueste onglet es un mejan rapid de filtrar unicament las mesas a jorn de vòstre contengut.
+  #Geoprivacy status in which no privacy has been applied
   open: dobrir
   optional: facultatiu
   or: o
-  orange: irange
   order: Òrdre
   order_by: 'Triar per :'
   organisms: Organismes
@@ -859,7 +860,6 @@ oc:
     small: pichon
     medium: mejan
     large: grand
-  pink: ròse
   place: Luòc
   place_geo:
     geo_planet_place_types:
@@ -981,10 +981,10 @@ oc:
   protozoans: protozoaris
   public_domain: Domeni public
   publish: Publicar
-  purple: porpra
   quality_grade: Gras de qualitat
   quality_grade_colon: "Gras de qualitat :"
   range: Interval
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Reng
   ranks:
     kingdom: règne
@@ -1013,7 +1013,6 @@ oc:
     form: forma
   ray_finned_fishes: peisses amb nadarèlas raionadas
   reason: Motiu
-  red: roge
   redo_search_in_map_area: Refar la recèrca dins la region cartografica
   refresh: Refrescar
   remember_me: Se remembrar de ieu

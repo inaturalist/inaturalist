@@ -885,11 +885,9 @@ be:
   bioblitz: Біябліц
   birds: птушкі
   birthday: Дзень нараджэння
-  black: чорны
   block_removed: Блок зняты
   blocked_users: Заблакаваныя карыстальнікі
   blog_widget: Віджэт блога
-  blue: блакітны
   blue_butterfly_etc: "блакітны, матылёк і г.д."
   body: Тэкст
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -903,7 +901,6 @@ be:
   #shown
   breadcrumbs_description: "Гэта заменіць тэгі h1 і заклікі да дзеяння па змаўчанні, таму не забудзьцеся ўключыць іх, калі яны важныя для гэтага праекта, і памятайце, што максімальна дазволеная шырыня - 950 пікс."
   brief_caption: Кароткі загаловак
-  brown: карычневы
   browse: Пргаляд
   browse_all_projects: Праглядзець усе праекты
   browse_all_species: Праглядзець усе віды
@@ -1106,12 +1103,6 @@ be:
     уключаны ў аўтаматызаваныя прапановы з пазнакай "Візуальна падобны".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Чакае
-  computer_vision_model_pending_desc: |
-    Цяперашняя мадэль кампутарнага зроку не ведае пра гэты таксон, таму пакуль
-    ён можа быць уключаны ў аўтаматызаваныя прапановы з пазнакай "Побач" і
-    не будзе мець пазнакі "Візуальна падобны". Хаця патрабаванні да ўключэння мадэлі мяняюцца у залежнасці ад мадэлі, як правіла, даданне заснавана на колькасці назіранняў. Таму, каб павялічыць верагоднасць таго, што гэты таксон будзе 
-    дададзены падчас наступнага мадэльнага навучання, дадайце або вызначце больш назіранняў
-    гэтага таксона.
   concept_status: Статус канцэпцыі
   confidential: Канфідэнцыйна
   configure: Наладзіць
@@ -1729,8 +1720,8 @@ be:
   either_that_user_doesnt_exist_or: "Або такі карыстальнік не існуе, або вы ўжо падпісаны на яго."
   eligible_for_research_grade: Прыдатнае для узроўня якасці "Даследванне"
   email: Эл. пошта
-  email_description: Вашая э-пошта не бачная іншым карыстальнікам iNaturalist
   email_address_for_comments_and_other_feedback: Адрас электроннай пошты для каментараў і іншых водгукаў
+  email_description: Вашая э-пошта не бачная іншым карыстальнікам iNaturalist
   email_notifications: Апавяшчэнні па электроннай пошце
   embed: 'Убудаваць'
   embed_place_widget: Убудаваць віджэт месца
@@ -1774,6 +1765,7 @@ be:
   everywhere: усюды
   exact: Дакладна
   exact_date: Дакладная дата
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Дакладны ранг
   except: акрамя
   exclude_places: Выключыць месцы
@@ -1938,6 +1930,7 @@ be:
   fluid: адаптыўны
   follow: Падпісацца
   follow_receive_updates_about_new_observations: Падпісацца (атрымліваць аднаўленні пра новыя назіранні)
+  #Text for a button to follow updates from a specific user
   follow_user: "Падпісацца на %{user}"
   followers: Падпіснікі
   following: Падпіскі
@@ -2008,7 +2001,6 @@ be:
   graft: Прышчэпка
   graft_taxon: Прышчапіць %{taxon}
   grafting_attemps_to_insert_this_taxon: Прышчапленне спрабуе ўставіць гэты таксон у нашае таксанамічнае дрэва, шукаючы бацькоўскі таксон або ствараючы ўсе неабходныя прамежкавыя таксоны для таго каб дастасаваць яго да існуючага таксона вышэйшага ўзроўню.
-  grant_role: "%{grant} ролю %{role}"
   grid: Сетка
   grid_layout: Размяшчэнне па сетцы
   grid_tooltip: Паказаць у выглядзе сеткі
@@ -2071,8 +2063,6 @@ be:
   #Verb, usually a button to hide an interface element
   hide: Не паказваць
   hide_content: Не паказваць кантэнт
-  hide_desc: |
-    Схаванне кантэнту выдаліць яго з агульнага прагляду, але карыстальнікі па-ранейшаму змогуць бачыць, што нешта было схавана, а куратары сайта і аўтар кантэнту па-ранейшаму змогуць бачыць схаваны кантэнт. Як правіла, гэта датычыцца толькі пісьмовага зместу, напрыклад, калі схаваць змест вызначальніка, вызначэнне па-ранейшаму будзе бачная, але заўвагі вызначальніка будуць схаваныя. Вы не зможаце гэта адмяніць, і толькі супрацоўнікі сайта могуць паказваць кантэнт, калі ён быў схаваны, таму будзьце асцярожныя і выкарыстоўвайце гэта толькі для вельмі непрыемнага кантэнту.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не паказваць "Без анатацый"
@@ -2080,6 +2070,8 @@ be:
   hide_running_total: Не паказваць выніковую суму
   hide_uncountable_species: Схаваць віды, якія немагчыма падлічыць
   high: Найвышэйшы
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Найвышэйшы ранг
   highlights_and_stats_from_year_on_site: "Асноўныя моманты і статыстыка з %{year} на %{site}"
   history: Гісторыя
@@ -2111,8 +2103,6 @@ be:
   #Notification when an identification has been deleted
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Тэкст вызначэння паказаны
   #Notification when an identification has been updated
   identification_updated: Вызначэнне абноўлена!
   identification_user_short: Вызн. карыстальнік
@@ -2524,6 +2514,8 @@ be:
   looks_like_no_species_in_guide: Здаецца, у вашым даведніку яшчэ няма відаў.
   lookup: Пошук
   low: Ніжэйшы
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Ніжэйшы ранг
   make_admin: Зрабіць адміністратарам
   #Header for main content section of the project detail page when editing custom project data.
@@ -2756,7 +2748,6 @@ be:
   needs_id_: Патрабуе вызначэння
   needs_id_expandable_html: "<span class='full'>Патрабуецца </span>ідэнтыфікацыя"
   needs_id_tooltip_html: 'Назіранні з узроўнем "Патрабуе вызначэння" маюць медыяфайлы, месцазнаходжанне і дату, але ўсё яшчэ патрабуюць пагаднення супольнасці адносна дакладнага вызначэння. <a href="https://www.inaturalist.org/pages/help#quality">Даведацца больш пра ўзровень</a>'
-  needs_to_be_identified: Патрабуе вызначэння
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, частка міжнароднай сеткі iNaturalist, арыентавана на біяразнастайнасць і людзей у %{place}. Вы жадаеце змяніць прыналежнасць вашага ўліковага запісу з <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> і абагульняць дадзеныя з мясцовымі ўстановамі?
@@ -3160,7 +3151,9 @@ be:
   only_the_project_admin_can_delete_this_project: Толькі адміністратар праекта можа выдаліць гэты праект.
   only_view_nearby_suggestions: Праглядзець толькі прапановы паблізу
   only_you: Толькі вы
+  #Geoprivacy status in which no privacy has been applied
   open: адкрыць
+  #Geoprivacy status in which no privacy has been applied
   open_: Адкрыць
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap
@@ -3171,7 +3164,6 @@ be:
   #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або выбраць з некаторых таксонаў вышэйшага рангу"
-  orange: аранжавы
   order: Сартаваць
   order_by: Упарадкаваць па
   organism_is_wild: Арганізм з'яўляецца дзікім
@@ -3306,7 +3298,6 @@ be:
   data_transfer_consent_child_label: |
     Я даю згоду на перадачу асабістай інфармацыі майго дзіцяці ў Злучаныя Штаты Амерыкі
   pin_verb: Замацаваць
-  pink: ружовы
   pinned_locations_desc: |
     Замацуйце гэтую камбінацыю каардынатаў, дакладнасці, геапрывязкі і нататак аб мясцовасці для наступнага выкарыстання.
   place: Месца
@@ -3795,7 +3786,6 @@ be:
   provider_authorizations: Аўтарызацыі правайдэра
   public_domain: Здабытак грамадства
   publish: Апублікаваць
-  purple: фіялетавы
   quality_grade: Якасць
   quality_grade_: Якасць
   quality_grade_colon: "Якасць:"
@@ -4190,7 +4180,6 @@ be:
   widget: Віджэт
   year: Год
   year_month: год/месяц
-  yellow: жоўты
   'yes': "Так"
   yes_i_want_to_join: Так, я хачу далучыцца
   yes_license_my_childs_observations: Так, ліцэнзаваць фатаграфіі, гукі і назіранні майго дзіцяці каб навукоўцы маглі выкарыстоўваць гэтыя дадзеныя (рэкамендавана).

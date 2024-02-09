@@ -58,7 +58,7 @@ if ( !_.isEmpty( SITE ) ) {
 }
 
 if ( !_.isEmpty( PREFERRED_PLACE ) ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );

@@ -42,6 +42,16 @@ describe QualityMetric do
       expect(o.quality_grade).to eq Observation::CASUAL
     end
 
+    it "should update observation quality_grade on spammer observations" do
+      o = make_research_grade_observation
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      # mark the user as a spammer
+      o.user.add_flag( flag: Flag::SPAM )
+      QualityMetric.make!( observation: o, metric: QualityMetric::METRICS.first, agree: false )
+      o.reload
+      expect( o.quality_grade ).to eq Observation::CASUAL
+    end
+
     describe "elastic index" do
       it "should get the updated quality_grade" do
         o = without_delay { make_research_grade_observation }

@@ -1,305 +1,370 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import TaxonMap from "../../../observations/identify/components/taxon_map";
 
-/* global h3 */
-/* global chroma */
-/* global TAXON_RAW_ENV_DATA */
-/* global PRESENCE_ABSENCE_DATA */
-/* global TAXON_RANGE_DATA */
 /* global GEO_MODEL_TAXON */
-/* global TILESERVER_PREFIX */
+/* global GEO_MODEL_BOUNDS */
+/* global EXPECTED_NEARBY_FIGURE_URL */
+/* global WEIGHTING_FIGURE_URL */
+/* global RANGE_COMPARISON_FIGURE_URL */
+
+const urlParams = new URLSearchParams( window.location.search );
+
+const NEARBY_COLOR = urlParams.get( "nearby_color" ) || "#007DFF";
+const NEARBY_OPACITY = urlParams.get( "nearby_opacity" ) || 0.4;
+const RANGE_COLOR = urlParams.get( "range_color" ) || "#FF5EB0";
+const RANGE_OPACITY = urlParams.get( "range_opacity" ) || 0.4;
+const OVERLAP_COLOR = urlParams.get( "overlap_color" ) || "#5A57D1";
+const OVERLAP_OPACITY = urlParams.get( "overlap_opacity" ) || 0.8;
+
+const baseMapStyle = [
+  {
+    stylers: [
+      { lightness: 50 },
+      { saturation: -100 }
+    ]
+  }, {
+    elementType: "geometry",
+    stylers: [{ color: "#f5f5f5" }]
+  }, {
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#616161" }]
+  }, {
+    elementType: "labels.text.stroke",
+    stylers: [{ color: "#f5f5f5" }]
+  }, {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [{ color: "#d9d9d9" }]
+  }, {
+    featureType: "water",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#9e9e9e" }]
+  }
+];
 
 class App extends React.Component {
   constructor( ) {
     super( );
     this.map = null;
-    this.infoWindow = new google.maps.InfoWindow( );
-    this.mapLayers = { };
     this.setLayer = this.setLayer.bind( this );
-    this.toggleObservationsLayer = this.toggleObservationsLayer.bind( this );
-    this.setInfoWindow = this.setInfoWindow.bind( this );
+    this.state = {
+      selectedLayerIndex: null
+    };
   }
 
   componentDidMount( ) {
-    const { taxon } = this.props;
-    this.map = new google.maps.Map( document.getElementById( "map" ), {
-      zoom: 2,
-      center: { lat: 25, lng: 0 },
-      mapTypeId: "terrain"
+    this.map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
+    this.map.setOptions( {
+      styles: baseMapStyle,
+      minZoom: 2,
+      mapTypeControl: false
     } );
+    this.setState( { layer: "expectedNearbyLayer" } );
+    if ( GEO_MODEL_BOUNDS && GEO_MODEL_BOUNDS.total_bounds ) {
+      const {
+        nelat, nelng, swlat, swlng
+      } = GEO_MODEL_BOUNDS.total_bounds;
+      this.map.fitBounds( new google.maps.LatLngBounds(
+        new google.maps.LatLng( swlat, swlng ),
+        new google.maps.LatLng( nelat, nelng )
+      ) );
+    }
+  }
 
-    const colorScale = chroma.scale( "YlGnBu" ).gamma( 0.35 );
-    this.map.setOptions( { styles: this.baseMapStyle( ) } );
-
-    const allData = {
-      rawEnvData: _.mapValues( TAXON_RAW_ENV_DATA, v => ( {
-        value: v,
-        color: colorScale( v ).hex( )
-      } ) ),
-      presenceAbsence: _.mapValues( PRESENCE_ABSENCE_DATA, v => ( {
-        value: v,
-        color: colorScale( v ).hex( )
-      } ) ),
-      taxonRange: _.mapValues( TAXON_RANGE_DATA, v => ( {
-        value: v,
-        color: "#ff5eb0"
-      } ) ),
-      rangeComparison: this.rangeComparisonData( TAXON_RAW_ENV_DATA, TAXON_RANGE_DATA )
-    };
-    _.each( allData, ( data, key ) => {
-      const drawLayer = new google.maps.Data( );
-      drawLayer.setStyle( this.cellStyle );
-      drawLayer.addGeoJson( this.geoJSONFromData( data, key ) );
-      drawLayer.addListener( "click", this.setInfoWindow );
-      this.mapLayers[key] = drawLayer;
-      drawLayer.setMap( this.map );
-    } );
-
-    this.observationsLayer = new google.maps.ImageMapType( {
-      getTileUrl: ( coord, zoom ) => (
-        `${TILESERVER_PREFIX}/grid/${zoom}/${coord.x}/${coord.y}.png?verifiable=true&style=geotilegrid&tile_size=256&color=%23FF4500&taxon_id=${taxon.id}`
-      ),
-      tileSize: new google.maps.Size( 256, 256 )
-    } );
-
-    this.setLayer( "rawEnvData" );
+  componentDidUpdate( prevProps, prevState ) {
+    const { layer } = this.state;
+    if ( prevState.layer !== layer ) {
+      this.setLayer( layer );
+    }
   }
 
   setLayer( selectLayer ) {
-    this.infoWindow.close( );
-    _.each( this.mapLayers, ( layer, key ) => {
-      layer.setMap( key === selectLayer ? this.map : null );
-    } );
-  }
-
-  setInfoWindow( o ) {
-    this.infoWindow.close( );
-    const centroid = o.feature.getProperty( "centroid" );
-    this.infoWindow.setPosition( { lat: centroid[0], lng: centroid[1] } );
-    this.infoWindow.setContent( o.feature.getProperty( "popupContent" ) );
-    this.infoWindow.open( { map: this.map } );
-  }
-
-  toggleObservationsLayer( ) {
-    if ( this.map.overlayMapTypes.getAt( 0 ) ) {
-      this.map.overlayMapTypes.removeAt( 0 );
-    } else {
-      this.map.overlayMapTypes.setAt( 0, this.observationsLayer );
+    const { taxon } = this.props;
+    if ( this.state.selectedLayerIndex ) {
+      this.map.overlayMapTypes.setAt( this.state.selectedLayerIndex - 1, null );
     }
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  rangeComparisonData( taxonRawEnvData, rangeData ) {
-    const colorScale = chroma.scale( ["#74AC00", "#B0FF5E", "#FF5EB0"] ).mode( "lrgb" );
-    const comparisonData = { };
-    _.each( taxonRawEnvData, ( value, cellKey ) => {
-      let compareValue = null;
-      if ( value >= GEO_MODEL_TAXON.threshold ) {
-        if ( rangeData[cellKey] ) {
-          compareValue = 0.5;
-        } else {
-          compareValue = 0;
-        }
-      } else if ( rangeData[cellKey] ) {
-        compareValue = 1;
-      }
-      if ( !_.isNull( compareValue ) ) {
-        comparisonData[cellKey] = {
-          color: colorScale( compareValue ).hex( ),
-          value: compareValue
-        };
-      }
-    } );
-    _.each( rangeData, ( value, cellKey ) => {
-      if ( !comparisonData[cellKey] && !taxonRawEnvData[cellKey] ) {
-        comparisonData[cellKey] = {
-          color: colorScale( 1 ).hex( ),
-          value: 1
-        };
-      }
-    } );
-    return comparisonData;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  cellStyle( o ) {
-    return {
-      strokeColor: o.getProperty( "color" ),
-      strokeOpacity: 0.2,
-      strokeWeight: 1,
-      fillColor: o.getProperty( "color" ),
-      fillOpacity: 0.7
+    const layerOptions = {
+      taxon: {
+        id: taxon.id
+      },
+      noOverlayControl: true,
+      layerID: 1
     };
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  geoJSONFromData( data, key ) {
-    const geoJSON = {
-      type: "FeatureCollection",
-      features: []
-    };
-    _.each( data, ( cellData, h3Index ) => {
-      const hexBoundary = h3.cellToBoundary( h3Index );
-      const latlng = h3.cellToLatLng( h3Index );
-      if ( key === "rawEnvData" && cellData.value < GEO_MODEL_TAXON.threshold ) {
-        return;
-      }
-      const popupData = {
-        Cell: h3Index,
-        Lat: latlng[0],
-        Lng: latlng[1],
-        Value: cellData.value
-      };
-      hexBoundary.reverse( );
-      const geoJSONCoords = _.map( hexBoundary, arr => arr.reverse( ) );
-      geoJSONCoords.push( hexBoundary[0] );
-      const polygon = {
-        type: "Feature",
-        properties: {
-          color: cellData.color,
-          centroid: h3.cellToLatLng( h3Index ),
-          popupContent: _.map( popupData, ( v, k ) => ( `${k}:${v}` ) ).join( "<br/>" )
-        },
-        geometry: {
-          type: "Polygon",
-          coordinates: [geoJSONCoords]
-        }
-      };
-      geoJSON.features.push( polygon );
-    } );
-    return geoJSON;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  baseMapStyle( ) {
-    return [
-      {
-        elementType: "geometry",
-        stylers: [{ color: "#f5f5f5" }]
-      }, {
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#616161" }]
-      }, {
-        elementType: "labels.text.stroke",
-        stylers: [{ color: "#f5f5f5" }]
-      }, {
-        featureType: "administrative.land_parcel",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#bdbdbd" }]
-      }, {
-        featureType: "poi",
-        elementType: "geometry",
-        stylers: [{ color: "#eeeeee" }]
-      }, {
-        featureType: "poi",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#757575" }]
-      }, {
-        featureType: "poi.park",
-        elementType: "geometry",
-        stylers: [{ color: "#e5e5e5" }]
-      }, {
-        featureType: "poi.park",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#9e9e9e" }]
-      }, {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [{ color: "#ffffff" }]
-      }, {
-        featureType: "road.arterial",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#757575" }]
-      }, {
-        featureType: "road.highway",
-        elementType: "geometry",
-        stylers: [{ color: "#dadada" }]
-      }, {
-        featureType: "road.highway",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#616161" }]
-      }, {
-        featureType: "road.local",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#9e9e9e" }]
-      }, {
-        featureType: "transit.line",
-        elementType: "geometry",
-        stylers: [{ color: "#e5e5e5" }]
-      }, {
-        featureType: "transit.station",
-        elementType: "geometry",
-        stylers: [{ color: "#eeeeee" }]
-      }, {
-        featureType: "water",
-        elementType: "geometry",
-        stylers: [{ color: "#d9d9d9" }]
-      }, {
-        featureType: "water",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#9e9e9e" }]
-      }
-    ];
+    if ( selectLayer === "expectedNearbyLayer" ) {
+      this.state.selectedLayerIndex = this.map.addTaxonGeomodelLayer( {
+        ...layerOptions,
+        thresholded: true
+      } );
+    } else if ( selectLayer === "unthresholdedLayer" ) {
+      this.state.selectedLayerIndex = this.map.addTaxonGeomodelLayer( layerOptions );
+    } else if ( selectLayer === "expectedNearbyVsTaxonRangeLayer" ) {
+      this.state.selectedLayerIndex = this.map.addTaxonGeomodelComparisonLayer( layerOptions );
+    }
   }
 
   render( ) {
-    const { taxon } = this.props;
+    const { taxon, config } = this.props;
     const buttons = [];
     buttons.push( (
       <button
+        className={`btn btn-default${this.state.layer === "expectedNearbyLayer" ? " active" : ""}`}
         type="button"
-        key="rawEnvData"
-        onClick={( ) => this.setLayer( "rawEnvData" )}
+        key="expectedNearbyLayer"
+        onClick={( ) => this.setState( { layer: "expectedNearbyLayer" } )}
       >
-        Raw Env
+        { I18n.t( "views.geo_model.explain.nearby_map.expected_nearby_map" ) }
       </button>
     ) );
     buttons.push( (
       <button
+        className={`btn btn-default${this.state.layer === "unthresholdedLayer" ? " active" : ""}`}
         type="button"
-        key="presenceAbsence"
-        onClick={( ) => this.setLayer( "presenceAbsence" )}
+        key="unthresholdedLayer"
+        onClick={( ) => this.setState( { layer: "unthresholdedLayer" } )}
       >
-        Presence Absence
+        { I18n.t( "views.geo_model.explain.unthresholded_map.unthresholded_map" ) }
       </button>
     ) );
-    if ( !_.isEmpty( TAXON_RANGE_DATA ) ) {
+    // if the taxon has a recall value, then it was assessed against a taxon range,
+    // and it will have a taxon range comparison layer to render
+    if ( GEO_MODEL_TAXON.recall ) {
       buttons.push( (
         <button
+          className={`btn btn-default${this.state.layer === "expectedNearbyVsTaxonRangeLayer" ? " active" : ""}`}
           type="button"
-          key="taxonRange"
-          onClick={( ) => this.setLayer( "taxonRange" )}
+          key="expectedNearbyVsTaxonRangeLayer"
+          onClick={( ) => this.setState( { layer: "expectedNearbyVsTaxonRangeLayer" } )}
         >
-          Taxon Range
-        </button>
-      ) );
-      buttons.push( (
-        <button
-          type="button"
-          key="rangeComparison"
-          onClick={( ) => this.setLayer( "rangeComparison" )}
-        >
-          Range Comparison
+          { I18n.t( "views.geo_model.explain.range_comparison.expected_nearby_vs_taxon_range" ) }
         </button>
       ) );
     }
-    buttons.push( (
-      <button
-        type="button"
-        key="observations"
-        onClick={( ) => this.toggleObservationsLayer( )}
-      >
-        Toggle Observations
-      </button>
-    ) );
+
+    let tabDescription;
+    if ( this.state.layer === "unthresholdedLayer" ) {
+      tabDescription = (
+        <div>
+          <p>
+            { I18n.t( "views.geo_model.explain.unthresholded_map.we_use_the_unthresholded_map" ) }
+          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.geo_model.explain.unthresholded_map.for_example" )
+            }}
+          />
+          <p className="figure">
+            <img
+              alt={I18n.t( "views.geo_model.explain.unthresholded_map.figure_alt_text" )}
+              src={WEIGHTING_FIGURE_URL}
+            />
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.unthresholded_map.you_can_think" ) }
+          </p>
+        </div>
+      );
+    } else if ( this.state.layer === "expectedNearbyLayer" ) {
+      tabDescription = (
+        <div>
+          <p>
+            { I18n.t( "views.geo_model.explain.nearby_map.we_use_this_map" ) }
+          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.geo_model.explain.nearby_map.for_example" )
+            }}
+          />
+          <p className="figure">
+            <img
+              alt={I18n.t( "views.geo_model.explain.nearby_map.figure_alt_text" )}
+              src={EXPECTED_NEARBY_FIGURE_URL}
+            />
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.nearby_map.you_can_think" ) }
+          </p>
+        </div>
+      );
+    } else if ( this.state.layer === "expectedNearbyVsTaxonRangeLayer" ) {
+      const precision = _.round( GEO_MODEL_TAXON.precision, 2 );
+      const recall = _.round( GEO_MODEL_TAXON.recall, 2 );
+      const f1 = _.round( GEO_MODEL_TAXON.f1, 2 );
+      tabDescription = (
+        <div>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.this_map_shows" ) }
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.this_gridded_version" ) }
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.by_combining" ) }
+          </p>
+          <p className="figure comparison">
+            <img
+              alt={I18n.t( "views.geo_model.explain.range_comparison.figure_alt_text" )}
+              src={RANGE_COMPARISON_FIGURE_URL}
+            />
+          </p>
+          <p>
+            { I18n.t( "views.geo_model.explain.range_comparison.combining_these_maps_produces" ) }
+          </p>
+          <div className="row color-legend">
+            <div className="col-xs-12">
+              <div className="color-box" style={{ backgroundColor: NEARBY_COLOR, opacity: NEARBY_OPACITY }} />
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.false_presences_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.false_presences_definition" ) }
+            </div>
+          </div>
+          <div className="row color-legend">
+            <div className="col-xs-12">
+              <div className="color-box" style={{ backgroundColor: RANGE_COLOR, opacity: RANGE_OPACITY }} />
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.false_absences_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.false_absences_definition" ) }
+            </div>
+          </div>
+          <div className="row color-legend">
+            <div className="col-xs-12">
+              <div className="color-box" style={{ backgroundColor: OVERLAP_COLOR, opacity: OVERLAP_OPACITY }} />
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.true_presences_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.true_presences_definition2" ) }
+            </div>
+          </div>
+          <div className="row">
+            <div
+              className="col-xs-12 evaluation-header"
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.geo_model.explain.range_comparison.evaluation_statistics_for_taxon", {
+                  taxon: ReactDOMServer.renderToString(
+                    <SplitTaxon
+                      taxon={taxon}
+                      user={config.currentUser}
+                      url={`/taxa/${taxon.id}`}
+                    />
+                  )
+                } )
+              }}
+            />
+          </div>
+          <div className="row stat-description">
+            <div className="col-xs-12">
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.precision_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.precision_description" ) }
+              <br />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.geo_model.explain.range_comparison.precision_equation", {
+                    precision: ReactDOMServer.renderToString( <span className="strong-label">{precision}</span> )
+                  } )
+                }}
+              />
+            </div>
+          </div>
+          <div className="row stat-description">
+            <div className="col-xs-12">
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.recall_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.recall_description" ) }
+              <br />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.geo_model.explain.range_comparison.recall_equation", {
+                    recall: ReactDOMServer.renderToString( <span className="strong-label">{recall}</span> )
+                  } )
+                }}
+              />
+            </div>
+          </div>
+          <div className="row stat-description">
+            <div className="col-xs-12">
+              <span className="strong-label">
+                { I18n.t( "views.geo_model.explain.range_comparison.f1_colon" ) }
+              </span>
+              { I18n.t( "views.geo_model.explain.range_comparison.f1_description" ) }
+              <br />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.geo_model.explain.range_comparison.f1_equation", {
+                    f1: ReactDOMServer.renderToString( <span className="strong-label">{f1}</span> )
+                  } )
+                }}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              { I18n.t( "views.geo_model.explain.range_comparison.perfect_overlap" ) }
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div id="TaxonGeoExplain" className="container">
-        <h2>{ taxon.name }</h2>
-        <div id="map" />
-        <div id="controls">
-          { buttons }
+        <h1
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.geo_model.explain.geomodel_predictions_of_taxon", {
+              taxon: ReactDOMServer.renderToString(
+                <SplitTaxon
+                  taxon={taxon}
+                  user={config.currentUser}
+                  url={`/taxa/${taxon.id}`}
+                />
+              )
+            } )
+          }}
+        />
+        <p>
+          { I18n.t( "views.geo_model.explain.the_geo_model_makes_predictions" ) }
+        </p>
+        <p dangerouslySetInnerHTML={{
+          __html: I18n.t( "views.geo_model.explain.the_geo_model_is_trained", { url: "/posts/84677" } )
+        }}
+        />
+        <TaxonMap
+          placement="taxa-show"
+          showAllLayer={false}
+          taxonLayers={[{
+            taxon,
+            observationLayers: [{
+              label: I18n.t( "verifiable_observations" ),
+              verifiable: true,
+              disabled: true,
+              layerID: 101
+            }],
+            ranges: {
+              disabled: true,
+              layerID: 100
+            }
+          }]}
+          gestureHandling="auto"
+          mapType={google.maps.MapTypeId.TERRAIN}
+          showLegend
+        />
+        <div className="container">
+          <div className="row">
+            <div id="controls" className="btn-group">
+              { buttons }
+            </div>
+          </div>
+        </div>
+        <div className="tab-description">
+          { tabDescription }
         </div>
       </div>
     );

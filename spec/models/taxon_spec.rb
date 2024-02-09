@@ -377,6 +377,16 @@ describe Taxon, "updating" do
     expect( t.updater ).to be_blank
   end
 
+  it "should queue an update_stats_for_observations_of task even if one already exists" do
+    t = Taxon.make!( is_active: true )
+    t.update( is_active: false )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 1
+    t.update( is_active: true )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 2
+    t.update( is_active: false )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 3
+  end
+
   describe "reindexing identifications" do
     elastic_models( Identification )
     it "should happen when the rank_level changes" do
@@ -1365,15 +1375,15 @@ describe Taxon, "editable_by?" do
     Taxon.make!
   end
   it "should be editable by admins if class" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).to be_protected_attributes_editable_by( admin )
   end
   it "should be editable by curators if below threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON - 10 )
     expect( t ).to be_protected_attributes_editable_by( curator )
   end
   it "should not be editable by curators if above threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do

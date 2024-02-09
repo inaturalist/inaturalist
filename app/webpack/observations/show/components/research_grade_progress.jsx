@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-/* global OUTLINK_SITE_ICONS */
+/* global OUTLINK_SITES */
 
 class ResearchGradeProgress extends React.Component {
   constructor( ) {
@@ -56,12 +56,14 @@ class ResearchGradeProgress extends React.Component {
         remainingCriteria.rank_or_needs_id = true;
       }
     }
+    remainingCriteria["hidden-media"] = _.some( _.flatten( [observation.photos, observation.sounds] ), "hidden" );
     remainingCriteria = _.pickBy( remainingCriteria, bool => ( bool === true ) );
-    const sortedCriteria = _.sortBy(
-      _.map( remainingCriteria, ( bool, type ) => ( { type, bool } ) ), c => (
-        this.criteriaOrder[c.type]
-      )
-    );
+    const sortedCriteria = _.sortBy( _.map(
+      remainingCriteria,
+      ( bool, type ) => ( { type, bool } )
+    ), c => (
+      this.criteriaOrder[c.type]
+    ) );
     return (
       <ul className="remaining">
         { _.map( sortedCriteria, c => {
@@ -145,6 +147,10 @@ class ResearchGradeProgress extends React.Component {
               icon = "fa-flag danger";
               label = I18n.t( "all_flags_must_be_resolved" );
               break;
+            case "hidden-media":
+              icon = "fa-eye-slash danger";
+              label = I18n.t( "all_media_must_be_unhidden" );
+              break;
             default:
               return null;
           }
@@ -217,7 +223,7 @@ class ResearchGradeProgress extends React.Component {
             <div className="outlink" key={`outlink-${ol.source}`}>
               <a href={ol.url}>
                 <div className="squareIcon">
-                  <img alt={ol.source} src={OUTLINK_SITE_ICONS[ol.source]} />
+                  <img alt={ol.source} src={OUTLINK_SITES[ol.source].icon} />
                 </div>
                 <div className="title">{ ol.source }</div>
               </a>

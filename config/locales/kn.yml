@@ -672,12 +672,10 @@ kn:
   bioblitz: ಬಯೋಬ್ಲಿಟ್ಜ್
   birds: ಹಕ್ಕಿಗಳು
   birthday: ಜನ್ಮದಿನ
-  black: ಕಪ್ಪು
   block: ನಿರ್ಬಂಧಿಸಿ
   block_removed: ನಿರ್ಬಂಧ ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   blocked_users: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
   blog_widget: ಬ್ಲಾಗ್ ವಿಜೆಟ್
-  blue: ನೀಲಿ
   blue_butterfly_etc: "ನೀಲಿ, ಚಿಟ್ಟೆ, ಇತ್ಯಾದಿ."
   body: ಪೂರ್ಣಪಾಠ
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -686,7 +684,6 @@ kn:
   bold_text: ದಪ್ಪಕ್ಷರ
   breadcrumbs: ಬ್ರೆಡ್‍ಕ್ರಂಬ್‍ಗಳು
   brief_caption: ಸಂಕ್ಷಿಪ್ತ ಶೀರ್ಷಿಕೆ
-  brown: ಕಂದು
   browse: ಬ್ರೌಸ್‌ಮಾಡಿ
   browse_all_projects: ಎಲ್ಲಾ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ
   browse_all_species: ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ
@@ -1278,6 +1275,8 @@ kn:
   #short as possible
   donate: ದೇಣಿಗೆ ನೀಡಿ
   donate_again_today_caps: ಇಂದು ಮತ್ತೊಮ್ಮೆ ದೇಣಿಗೆ ನೀಡಿ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: iNaturalist ಗೆ ದೇಣಿಗೆ ನೀಡಿ
   done: ಸಂಪನ್ನವಾಗಿದೆ
   dont_have_an_account_sign_up_html: ಖಾತೆ ಇಲ್ಲವೇ? <strong>ನೋಂದಾಯಿಸಿಕೊಳ್ಳಿ.</strong>
   dont_use_double_quotes: ಇಮ್ಮಡಿ ಉದ್ಧರಣ ಚಿನ್ಹೆಗಳನ್ನು ಇನ್ನೆಲ್ಲಿಯೂ ಬಳಸಬೇಡಿ
@@ -1363,8 +1362,8 @@ kn:
   either_that_user_doesnt_exist_or: "ಆ ಬಳಕೆದಾರರು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ ಅಥವಾ ನೀವು ಅವರನ್ನು ಈಗಾಗಲೇ ಅನುಸರಿಸುತ್ತಿರುವಿರಿ."
   eligible_for_research_grade: ಸಂಶೋಧನಾ ದರ್ಜೆಗೆ ಅರ್ಹವಾಗಿದೆ
   email: ಮಿಂಚೆ
-  email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_address_for_comments_and_other_feedback: ಪ್ರತಿಕ್ರಿಯೆ ಮತ್ತು ಅಭಿಪ್ರಾಯಗಳಿಗಾಗಿ ಮಿಂಚೆ ವಿಳಾಸ
+  email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_notifications: ಮಿಂಚೆ ಅಧಿಸೂಚನೆಗಳು
   embed: 'ಅಡಕಗೊಳಿಸಿ'
   embed_place_widget: ಸ್ಥಳ ವಿಜೆಟ್ ಅನ್ನು ಅಡಕಗೊಳಿಸಿ
@@ -1405,6 +1404,7 @@ kn:
   everywhere: ಎಲ್ಲೆಲ್ಲಿಯೂ
   exact: ನಿಖರವಾದ
   exact_date: ನಿಖರವಾದ ದಿನಾಂಕ
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: ಕರಾರುವಾಕ್ಕಾದ ಶ್ರೇಣಿ
   except: ಹೊರತು
   exclude_places: ಸ್ಥಳಗಳನ್ನು ಹೊರತುಪಡಿಸಿ
@@ -1500,6 +1500,7 @@ kn:
   flickr_tags: ಫ್ಲಿಕರ್ ಟ್ಯಾಗ್‍ಗಳು
   follow: ಅನುಸರಿಸಿ
   follow_receive_updates_about_new_observations: ಅನುಸರಿಸಿ ( ಹೊಸ ವೀಕ್ಷಣೆಗಳ ಬಗ್ಗೆ ನವೀಕರಣಗಳನ್ನು ಪಡೆಯಿರಿ)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} ಅವರನ್ನು ಅನುಸರಿಸಿ"
   followers: ಹಿಂಬಾಲಕರು
   following: ಅನುಸರಿಸಲಾಗುತ್ತಿದೆ
@@ -1608,6 +1609,8 @@ kn:
   hide_running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ
   hide_uncountable_species: ಎಣಿಸಲಾಗದ ಪ್ರಭೇದಗಳನ್ನು ಮರೆಮಾಡಿ
   high: ಉನ್ನತ
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: ಅತ್ಯುನ್ನತ ಶ್ರೇಣಿ
   highlights_and_stats_from_year_on_site: "%{year} ನಲ್ಲಿ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   history: ಇತಿಹಾಸ
@@ -1744,6 +1747,7 @@ kn:
   journal: ನಿಯತಕಾಲಿಕೆ
   journal_archives_for: ಇದಕ್ಕಾಗಿ ನಿಯತಕಾಲಿಕೆ ಸಂಗ್ರಹಣೆಗಳು
   journal_post: ನಿಯತಕಾಲಿಕೆಯ ಲೇಖನ
+  journal_post_: ನಿಯತಕಾಲಿಕೆಯ ಲೇಖನ
   journal_post_deleted: ನಿಯತಕಾಲಿಕೆ ಪೋಸ್ಟ್ ಅಳಿಸಲಾಗಿದೆ.
   journal_posts: ನಿಯತಕಾಲಿಕೆಯ ಲೇಖನಗಳು
   jpg_png_or_gif: "JPG, PNG, or GIF"
@@ -1830,6 +1834,7 @@ kn:
     davawenyo: ದಾವಾವೆನ್ಯೋ
     dutch: ಡಚ್
     english: ಇಂಗ್ಲಿಷ್
+    esperanto: ಎಸ್ಪೆರಾಂಟೋ
     estonian: ಎಸ್ಟೋನಿಯನ್
     faroese: ಫಾರೋಸೀ
     finnish: ಫಿನ್ನಿಷ್
@@ -2031,6 +2036,8 @@ kn:
   looks_like_no_species_in_guide: ನಿಮ್ಮ ಕೈಪಿಡಿಯಲ್ಲಿ ಇನ್ನೂ ಯಾವುದೇ ಪ್ರಭೇಧ ಇರುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.
   lookup: ಹುಡುಕಿ
   low: ಕೆಳಹಂತ
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: ಕೆಳಹಂತದ ದರ್ಜೆ
   make_admin: ನಿರ್ವಾಹಕರನ್ನಾಗಿ ಮಾಡಿ
   #Header for main content section of the project detail page when editing custom project data.
@@ -2118,6 +2125,8 @@ kn:
   missing_date: ಕಾಣೆಯಾದ ದಿನಾಂಕ
   mobile: ಮೊಬೈಲ್
   moderation_history_for_user_html: '%{user} ಅವರ ಸಂಭಾಳಕೆಯ ಇತಿಹಾಸ'
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: ಮರೆಮಾಡಿ
   mollusks: ಮೃದ್ವಂಗಿಗಳು
   momentjs:
     shortRelativeTime:
@@ -2252,7 +2261,6 @@ kn:
   needs_id_: ID ಅಗತ್ಯವಿದೆ
   needs_id_expandable_html: "ID<span class='full'>ಅಗತ್ಯವಿದೆ</span>"
   needs_id_tooltip_html: '"ID ಅಗತ್ಯವಿದೆ" ವೀಕ್ಷಣೆಗಳು ಮಾಧ್ಯಮ, ಸ್ಥಳ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಹೊಂದಿರುತ್ತವೆ, ಆದರೆ ನಿಖರವಾದ ಗುರುತಿಸುವಿಕೆಗೆ ಇನ್ನೂ ಸಮುದಾಯದ ಒಮ್ಮತದ ಅಗತ್ಯವಿರುತ್ತದೆ. <a href="https://www.inaturalist.org/pages/help#quality">ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ</a>'
-  needs_to_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
   #Column header in a table listing iNaturalist Network members
   network_member: ಜಾಲದ ಸದಸ್ಯರು
   new: ಹೊಸತು
@@ -2610,7 +2618,9 @@ kn:
   only_the_project_admin_can_delete_this_project: ಈ ಪ್ರಾಯೋಜನೆಯನ್ನು ಪ್ರಾಯೋಜನೆಯ ನಿರ್ವಾಹಕರು ಮಾತ್ರ ಅಳಿಸಬಹುದು.
   only_view_nearby_suggestions: ಸಮೀಪದ ಸಲಹೆಗಳನ್ನು ಮಾತ್ರ ವೀಕ್ಷಿಸಿ
   only_you: ನೀವು ಮಾತ್ರ
+  #Geoprivacy status in which no privacy has been applied
   open: ತೆರೆಯಿರಿ
+  #Geoprivacy status in which no privacy has been applied
   open_: ತೆರೆಯಿರಿ
   open_description: "ಜೀವಿವರ್ಗ ಅಪಾಯದಂಚಿನಲ್ಲಿ ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಎಲ್ಲರೂ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಬಹುದು."
   open_street_map: OpenStreetMap
@@ -2621,7 +2631,6 @@ kn:
   #sign in with Apple OR Google
   or_all_caps: ಅಥವಾ
   or_choose_high_level_taxa: "... ಅಥವಾ ಕೆಲವು ಉನ್ನತ-ಮಟ್ಟದ ಜೀವಿವರ್ಗಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ"
-  orange: ಕಿತ್ತಳೆ
   order: ಗಣ
   organism_is_wild: ಜೀವಿಯು ವನ್ಯಜೀವಿಯಾಗಿದೆ
   organisms: ಜೀವಿಗಳು
@@ -2723,7 +2732,6 @@ kn:
   pi_consent_child_label: |
     ನನ್ನ ಕಂದನ ಖಾತೆ ನಿರ್ವಹಣೆ ಸಲುವಾಗಿ ನನ್ನ ಕಂದನ ಬಗೆಗಿನ ಸೀಮಿತವಾದ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು iNaturalist ಗೆ ಸಂಗ್ರಹಿಸುವುದಕ್ಕೆ ಮತ್ತು ಸಂಸ್ಕರಿಸುವುದಕ್ಕೆ ನಾನು ಸಮ್ಮತಿ ನೀಡುತ್ತೇನೆ.
   pin_verb: ಪಿನ್ ಮಾಡಿ
-  pink: ಗುಲಾಬಿ
   pinned_locations_desc: |
     ಆನಂತರದ ಬಳಕೆಗಾಗಿ ನಿರ್ದೇಶಾಂಕಗಳು, ನಿಖರತೆ, ಭೂಗೌಪ್ಯತೆ ಮತ್ತು ಸ್ಥಳದ ಟಿಪ್ಪಣಿಗಳ ಸಂಯೋಜನೆಯನ್ನು ಪಿನ್ ಮಾಡಿ.
   place: ಸ್ಥಳ
@@ -3258,7 +3266,6 @@ kn:
   provider_authorizations: ಪೂರೈಕೆದಾರರ ದೃಢೀಕರಣಗಳು
   public_domain: ಸಾರ್ವಜನಿಕ ಡೊಮೈನ್
   publish: ಪ್ರಕಟಿಸಿ
-  purple: ನೇರಳೆ
   quality_grade: ಗುಣಮಟ್ಟದ ದರ್ಜೆ
   quality_grade_: ಗುಣಮಟ್ಟದ ದರ್ಜೆ
   quality_grade_colon: "ಗುಣಮಟ್ಟದ ದರ್ಜೆ:"
@@ -3268,7 +3275,11 @@ kn:
   radius_km: ತ್ರಿಜ್ಯ (km)
   radius_value: "ತ್ರಿಜ್ಯ (m):%{radius}"
   range: ವ್ಯಾಪ್ತಿ
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ಶ್ರೇಣಿ
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: ಶ್ರೇಣಿ
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3427,12 +3438,12 @@ kn:
   recently_resolved: ಇತ್ತೀಚೆಗೆ ಪರಿಹರಿಸಿದ್ದು
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: ದಾಖಲೆ
-  red: ಕೆಂಪು
   redo_search_in_map: ಭೂಪಟದಲ್ಲಿ ಹುಡುಕಾಟವನ್ನು ಮತ್ತೆ ಮಾಡಿ
   redo_search_in_map_area: ಭೂಪಟದ ಪ್ರದೇಶದಲ್ಲಿ ಹುಡುಕಾಟವನ್ನು ಮತ್ತೆ ಮಾಡಿ
   refresh: ಹೊಸತಾಗಿಸಿ
   refreshing: ಹೊಸತಾಗಿಸುತ್ತಿದೆ
   regenerate_stats: ಅಂಕಿಅಂಶಗಳನ್ನು ಮರುರಚಿಸಿ
+  regional_names: ದೇಶೀಯ ಹೆಸರುಗಳು
   register_for_this_event_at_x_html: "ಈ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ %{x} ನಲ್ಲಿ ನೋಂದಣಿಯಾಗಿರಿ"
   reject?: ತಿರಸ್ಕರಿಸಬೇಕೆ?
   relative_observations: ಸಂಬಂಧಿತ ವೀಕ್ಷಣೆಗಳು
@@ -3645,6 +3656,8 @@ kn:
   show_keyboard_shortcuts: ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‍ಕಟ್‍ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_less: ಕಡಿಮೆ ತೋರಿಸಿ
   show_more: ಇನ್ನಷ್ಟು ತೋರಿಸಿ
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: ಹೆಚ್ಚಿನ ಲಾಗಿನ್ ಆಯ್ಕೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"ಕಿರು ಟಿಪ್ಪಣಿಗಳಿಲ್ಲ" ವನ್ನು ಪ್ರದರ್ಶಿಸಿ'
@@ -3972,6 +3985,7 @@ kn:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: ಈ ಜೀವಿವರ್ಗ IUCN ಕೆಂಪುಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ
   taxon_range_guidelines_learn_more_about_taxon_ranges: ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
   taxon_range_updated_notice: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ. ಅದು ಭೂಪಟದ ಮೇಲೆ ಪ್ರದರ್ಶಿತವಾಗಲು ದಯವಿಟ್ಟು ಕೆಲವು ನಿಮಿಷಗಳ ಸಮಯ ನೀಡಿ.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಗಳು
   taxon_removed_from_list: ಪಟ್ಟಿಯಿಂದ ಜೀವಿವರ್ಗವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.
   taxon_scheme: ಜೀವಿವರ್ಗದ ಕಾರ್ಯಯೋಜನೆ
@@ -4254,7 +4268,6 @@ kn:
   unknown: ಅಪರಿಚಿತ
   unknown_error: ಅಪರಿಚಿತ ದೋಷ
   unknown_rank: '(ಅಪರಿಚಿತ ಶ್ರೇಣಿ)'
-  unfollow: ಅನುಸರಣೆ ನಿಲ್ಲಿಸಿ
   unlink_your_google_account: ನಿಮ್ಮ Google ಖಾತೆಯ ಜೋಡಣೆ ತೆಗೆದುಹಾಕಿ
   unlink_your_flickr_account: "ನಿಮ್ಮ Flickr ಖಾತೆಯ ಜೋಡಣೆ ತೆಗೆದುಹಾಕಿ"
   unmute: ಮೌನ ರದ್ದುಗೊಳಿಸಿ
@@ -4520,7 +4533,6 @@ kn:
   where_were_they?: ಅವು ಎಲ್ಲಿದ್ದವು?
   where_were_you?: ನೀವು ಎಲ್ಲಿದ್ದಿರಿ?
   which_projects_can_add_your_observations?: ಯಾವ ಸಾಂಪ್ರದಾಯಿಕ ಪ್ರಾಯೋಜನೆಗಳು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಬಹುದು?
-  white: ಬಿಳಿ
   why_you_can_see_the_coordinates: ನಿಮಗೆ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಏಕೆ ಸಾಧ್ಯವಾಗುತ್ತಿದೆ
   who_can_add_observation_fields_to_my_obs: ನನ್ನ ವೀಕ್ಷಣೆಗಳಿಗೆ ಯಾರು ವೀಕ್ಷಣೆ ಆವರಣಗಳನ್ನು ಸೇರಿಸಬಹುದು?
   who_can_add_observations_to_this_project?: ಈ ಪ್ರಾಯೋಜನೆಗೆ ಯಾರು ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಬಹುದು?
@@ -4582,7 +4594,6 @@ kn:
   year_in_review2: "ಪರಿಶೀಲನೆಯಲ್ಲಿರುವ ವರ್ಷ %{year}"
   year_month: ವರ್ಷ/ತಿಂಗಳು
   year_on_site: "%{site} %{year} ರಲ್ಲಿ ವರ್ಷ"
-  yellow: ಹಳದಿ
   'yes': "ಹೌದು"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5502,9 +5513,17 @@ kn:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%b %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - ಜನವರಿ
@@ -5637,9 +5656,17 @@ kn:
     am: am
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %d, %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
@@ -5651,6 +5678,8 @@ kn:
       AssessmentSection: ಮೌಲ್ಯಮಾಪನ ವಿಭಾಗ
       Atlas: ಭೂಪಟ
       BlockedUser: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
+      Comment: ಅಭಿಪ್ರಾಯ
+      Identification: ಗುರುತಿಸುವಿಕೆ
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -5659,6 +5688,7 @@ kn:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: ಮಾಡರೇಟರ್ ಟಿಪ್ಪಣಿ
+      Photo: ಚಿತ್ರ
       TaxonLink: ಜೀವಿವರ್ಗದ ಲಿಂಕ್
     attributes:
       announcement:
@@ -5779,6 +5809,7 @@ kn:
         name_provider: ನಾಮಾವಳಿ ಪೂರೈಕೆದಾರರು
         position: ಸ್ಥಾನ
         source_url: ಮೂಲ URL
+        audit_comment: ಟಿಪ್ಪಣಿ
       user:
         email: ಮಿಂಚೆ
         login: ಬಳಕೆದಾರರ ಹೆಸರು
@@ -5947,6 +5978,8 @@ kn:
                 ಈ ಪದಕೋಶಕ್ಕೆ ಪ್ರಭೇದವೊಂದರ ವೈಜ್ಞಾನಿಕ ಹೆಸರನ್ನು ಹೋಲಿಕೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ
               must_match_the_taxon_if_valid: |
                 ಇದು ಸರಿಯಾದ ವೈಜ್ಞಾನಿಕ ಹೆಸರಾಗಿದ್ದಲ್ಲಿ ಜೀವಿವರ್ಗದ ಹೆಸರಿನೊಂದಿಗೆ ಹೋಲಿಕೆಯಾಗಲೇಬೇಕು
+            audit_comment:
+              needs_to_be_at_least_10_characters: ಕನಿಷ್ಟ 10 ಅಕ್ಷರಗಳಿರಬೇಕು
         taxon_photo:
           attributes:
             taxon:

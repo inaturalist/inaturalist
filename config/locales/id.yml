@@ -16,6 +16,8 @@ id:
     other: '<span class="count">%{count}</span> identifikasi'
   x_identifications_:
     other: '%{count} identifikasi'
+  x_identifications_caps_html:
+    other: '<span class="count">%{count}</span> IDENTIFIKASI'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -46,6 +48,8 @@ id:
     other: "%{count} Pengamatan"
   x_observations_html:
     other: "<span class='count'>%{count}</span> pengamatan"
+  x_observations_caps_html:
+    other: "<span class='count'>%{count}</span> PENGAMATAN"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} pengamatan</a>"
   x_observations_reviewed_html:
@@ -56,6 +60,8 @@ id:
     other: "%{count} lainnya"
   x_people:
     other: "%{count} orang"
+  x_people_html:
+    other: '<span class="count">%{count}</span> orang'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} orang</strong> telah membantu %{user} dengan <strong>%{y} ID</strong>"
   x_photos:
     other: "%{count} foto"
@@ -65,6 +71,8 @@ id:
     other: '%{count} Pengguna Baru'
   x_species:
     other: '%{count} Spesies'
+  x_species_caps_html:
+    other: "<span class='count'>%{count}</span> SPESIES"
   x_species_html:
     other: "<span class='count'>%{count}</span> spesies"
   x_species_link_html:
@@ -215,6 +223,7 @@ id:
   active_taxon_status: Aktif
   active_users: Pengguna Aktif
   activity: Aktivitas
+  activity_on_a_flag_for_x: Aktivitas pada tanda untuk %{x}
   adapted_by_name_from_a_work_by_original: "Diadaptasi oleh %{name} dari sebuah karya oleh %{original}"
   add: Tambahkan
   add_a_batch_of_observations: Tambahkan Sejumlah Pengamatan
@@ -354,6 +363,8 @@ id:
   added_by: Ditambahkan oleh
   added_by_user_on_date_html: "Ditambahkan oleh %{user} pada %{date}"
   added_on_datetime: "Ditambahkan pada %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Peran ditambahkan
   added_to_favorites_html: |
     Ditambahkan ke <a href="%{url}">favorit</a>
   adding: "Menambahkan..."
@@ -378,6 +389,7 @@ id:
   all_comments: Semua komentar
   all_flags_must_be_resolved: Seluruh tanda harus diselesaikan
   all_life: Semua kehidupan
+  all_media_must_be_unhidden: Semua media harus ditampilkan
   all_names: Semua Nama
   all_observations: Semua pengamatan
   all_photos: Semua foto
@@ -621,6 +633,7 @@ id:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Apakah Anda yakin Anda ingin menghapus pengamatan ini dari %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Apakah Anda yakin ingin menghapus takson ini dari daftar centang %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Apakah Anda yakin ingin menandai pengguna ini sebagai spammer?
   associated_observations: Pengamatan terkait
   associated_taxa: Taksa yang terkait
   attention: Perhatian
@@ -732,13 +745,11 @@ id:
   bioblitz: Bioblitz
   birds: Burung
   birthday: Ulang Tahun
-  black: Hitam
   block: Blokir
   blocking_description: Pemblokiran akan mencegah komunikasi Anda dengan pengguna lain. Pendekatan ini bisa dipakai untuk situasi di mana pengguna lain membahayakan keselamatan Anda, seperti stalking atau perilaku-perilaku lain yang tidak diinginkan.
   block_removed: Blokiran dihapus
   blocked_users: Pengguna Yang Diblokir
   blog_widget: Widget blog
-  blue: Biru
   blue_butterfly_etc: "biru, kupu-kupu, dll."
   body: Isi
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -752,7 +763,6 @@ id:
   #shown
   breadcrumbs_description: "Ini akan menggantikan h1 dan mengatur standar panggilan untuk bertindak, jadi pastikan untuk menyertakan mereka jika mereka penting untuk proyek ini dan ingat lebar maksimal yang diperbolehkan adalah 950px"
   brief_caption: Keterangan singkat
-  brown: cokelat
   browse: Telusuri
   browse_all_projects: Telusuri Semua Proyek
   browse_all_species: Telusuri Semua Spesies
@@ -822,7 +832,7 @@ id:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: pisahkan dari
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: pisahkan menjadi
+    split_into: dipisahkan menjadi
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: dilebur menjadi
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -966,8 +976,8 @@ id:
     Model Penglihatan Komputer yang sekarang dapat mengenali takson ini, jadi takson ini mungkin sudah dimasukkan ke dalam rekomendasi otomatis dengan label "Serupa Secara Visual"
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Belum bisa
-  computer_vision_model_pending_desc: |
-    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Sekitaran", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
+  computer_vision_model_pending_desc2: |
+    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Terlihat di Sekitar", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
   concept_status: Status Konsep
   confidential: Rahasia
   configure: Pengaturan
@@ -1085,10 +1095,12 @@ id:
     cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
     dead: Organisme telah mati atau memperlihatkan tanda-tanda akan mati
     feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
+    female: Bukti menunjukkan bahwa organismenya bisa menghasilkan telur untuk digunakan dalam reproduksi seksual
     flower_budding: Kuncup bunga terlihat namun tidak terbuka
     flowering: Bunga terlihat, terbuka, dan tetap menempel ke tanaman
     fruiting: Buah terlihat dan masih menempel ke tanaman
     gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
+    male: Bukti menunjukkan bahwa organismenya bisa menghasilkan sperma untuk digunakan dalam reproduksi seksual
     molt: Kulit yang dibuang atau eksoskeleton
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
     organism: Organisme penuh atau sebagian
@@ -1468,7 +1480,7 @@ id:
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: Petunjuk konfirmasi
+        subject: Konfirmasi alamat email Anda
       email_changed:
         #Subject of an email sent when you try to change the email address
         #associated with your account
@@ -1476,7 +1488,7 @@ id:
       reset_password_instructions:
         subject: 'Petunjuk pengaturan ulang kata sandi'
   devise_confirmation_instructions_if_you_did_not: |
-    Jika Anda tidak mendaftar untuk akun @vow_or_con{vow:an|a} %{site_name}, harap mengabaikan email ini.
+    Jika Anda tidak mendaftar untuk akun %{site_name}, abaikan email ini.
   devise_confirmation_instructions_please_click: |
     Silahkan klik tautan di bawah ini untuk mengonfirmasi alamat email Anda:
   devise_confirmation_instructions_resend_instructions: |
@@ -1576,7 +1588,7 @@ id:
   #Title of the moderation note editor
   edit_moderator_note: Edit Catatan Moderator
   edit_a_batch_of_observations: Ubah Sejumlah Pengamatan
-  edit_account_settings_and_profile: "Rubah pengaturan akun &amp; profil"
+  edit_account_settings_and_profile: "Ubah pengaturan akun &amp; profil"
   edit_assessment: Ubah Penilaian
   edit_atlas: Ubah Atlas
   edit_atlas_for_taxon_html: Ubah Atlas untuk %{taxon}
@@ -1636,46 +1648,13 @@ id:
   either_that_user_doesnt_exist_or: "Entah pengguna tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk Kelas Riset
   email: Email
-  email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_address_for_comments_and_other_feedback: Alamat email untuk komentar dan umpan balik lainnya
-  email_conf_banner_email_delivered_click_link: |
-    Email konfirmasi sudah dikirim. Klik tautan pada email-nya.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Tambahkan <code>%{email}</code> ke daftar kontak Anda dan
-    <a href="%{url}">minta email konfirmasi lagi</a>.</strong> Jika penyedia email 
-    Anda memblokir email konfirmasi, hal ini mungkin akan meyakinkan mereka 
-    bahwa Anda ingin sebuah email dari kami.
-  email_conf_banner_check_your_spam_folder_html: <strong>Cek folder spam Anda</strong>
-  email_conf_banner_contact_us_html: Masih belum berhasil? Kirim email ke kami di %{email} supaya kami bisa menolong Anda.
-  email_conf_banner_please_click: |
-    Silakan klik tautan di email Anda untuk mengkonfirmasi alamat email Anda.
-  email_conf_banner_search_for_emails_html: <strong>Cari email dari <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Kami sudah mengirimkan email konfirmasi pada tanggal %{date}. Jika Anda belum menerimanya, di sini ada beberapa hal yang bisa Anda lakukan:
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Halo %{user},
+  email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_conf_required_after_grace_period: |
     Konfiirmasi email diwajibkan sejak %{requirement_date} dan Anda belum mengonfirmasi alamat email Anda sebelum tanggal pemberlakuan aturan ini. Harap mengatur ulang kata sandi Anda sebelum mengakses akun Anda.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Hatap mengonfirmasi alamat email Anda%{link_end_tag}</strong>.
-    Semua pengguna harus mengonfirmasi email mereka sebelum %{date}. Setelah tanggal tersebut, semua orang yang belum mengonfirmasi alamat email mereka tidak akan bisa masuk kecuali mereka mengatur ulang kata sandi mereka. Untuk mengonfirmasi alamat email Anda,
-    pergi ke %{link_start_tag}pengaturan akun%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Konfirmasi alamat email %{site_name} Anda sebelum %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Harap mengonfirmasi alamat email Anda hari ini untuk memastikan bahwa Anda bisa mengakses akun Anda ke depannya. %{site_name}, aplikasi mobile iNaturalist, dan Seek by iNaturalist menghubungkan orang-orang dengan alam dan sesama dengan membagikan pengamatan-pengamatan keanekaragaman hayati. Terima kasih telah menjadi bagian dari komunitas iNaturalist!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Kami mewajibkan verifikasi alamat email mulai %{requirement_date}. Mohon luangkan waktu untuk mengonfirmasinya sekarang.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Jika Anda mempunyai pertanyaan, silakan membaca <a href="%{faq_url}">FAQ</a>. Terima kasih telah meluangkan waktu untuk terhubung dengan alam dan juga %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Detail akun
   email_copyright2: "&copy; %{year} iNaturalist, hak cipta dilindungi undang-undang"
   email_notifications: Notifikasi Email
   embed: 'Tanamkan'
@@ -1723,6 +1702,7 @@ id:
   everywhere: di mana saja
   exact: Pasti
   exact_date: Tanggal Pasti
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tingkat Pasti
   except: kecuali
   exclude_places: Tempat Yang Dikecualikan
@@ -1734,6 +1714,7 @@ id:
   exit_full_screen: "Keluar Dari Layar Penuh"
   examples_of_data_use_by_network_members: Contoh Penggunaan Data Oleh Anggota Jaringan
   examples_of_ranking_organizations: Contoh Organisasi Penggolongan
+  expected_nearby: Terlihat Di Sekitar
   explore: Jelajah
   export: Ekspor
   export_observations: Ekspor Pengamatan
@@ -1855,6 +1836,7 @@ id:
     Tanda untuk Pengguna: %{title}
   flag_it!: Tandai ini!
   flag_marked_as_resolved_html: '<span class="meta">Tanda dianggap</span> <strong>sudah diselesaikan.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Tanda ditandai sebagai</span> <strong>belum selesai</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Benda
   flag_reason: "&ldquo;Saya menandai %{record} ini karena"
@@ -1892,7 +1874,10 @@ id:
   #Adjective, as in a fluid layout of images
   fluid: mengalir
   follow: Ikuti
+  #Text for a button to follow updates on an observation
+  follow_observation: Ikuti pengamatan ini
   follow_receive_updates_about_new_observations: Ikuti (dapatkan informasi terbaru tentang pengamatan baru)
+  #Text for a button to follow updates from a specific user
   follow_user: "Ikuti %{user}"
   followers: Pengikut
   following: Mengikuti
@@ -1928,8 +1913,13 @@ id:
   generate_taxonomic_tags_for_flickr: Hasilkan label taksonomi untuk foto Flickr Anda.
   generate_widget: Buat Widget
   generate_your_stats: Buat Statistik Anda
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: BUAT ULASAN TAHUN %{year} KAMU
   generating_mobile_archive: "Buat arsip ponsel"
   Genus: Genus
+  geomodel_expected_nearby_label_is_derived: |
+    Label "Perkiraan Terdekat" berasal dari Geomodel.
+    <a href="%{url}">Pelajari lebih lanjut tentang Geomodel di sini</a>.
   geoprivacy: Geoprivasi
   geoprivacy_is_obscured: Geoprivasi dikaburkan
   geoprivacy_is_obscured_desc: Pengamat telah memilih untuk mengkaburkan koordinatnya.
@@ -1956,7 +1946,6 @@ id:
   graft: Cangkok
   graft_taxon: Cangkok %{taxon}
   grafting_attemps_to_insert_this_taxon: Mencangkok merupakan upaya untuk memasukkan takson ini ke pohon taksonomi kami, menemukan takson induk yang ada, atau menciptakan taksa apapun di antaranya yang diperlukan untuk menempelkannya ke tingkat takson yang lebih tinggi yang sudah ada.
-  grant_role: "%{grant} peran %{role}"
   grid: Grid
   grid_layout: Tata Letak Grid
   grid_tooltip: Tampilkan tampilan grid
@@ -2017,7 +2006,9 @@ id:
   hide: Sembunyi
   hide_content: Sembunyikan konten
   hide_desc: |
-    Menyembunyikan konten akan menghapusnya dari tampilan publik, tetapi orang-orang tetap bisa melihat bahwa ada sesuatu yang disembunyikan, sedangkan kurator situs serta penulis konten masih bisa melihat konten yang disembunyikan. Secara umum, ini hanya diterapkan untuk konten tertulis, contohnya jika kamu menyembunyikan identifikasi, identifikasinya akan tetap terlihat, namun kata-kata pengidentifikasi akan disembunyikan. Kamu tidak bisa membalikkan keadaan ini, dan hanya staf situs yang bisa menampilkan kembali jika konten sudah telanjur disembunyikan, jadi berhati-hatilah dan gunakan fitur ini hanya untuk konten yang kurang baik untuk dilihat.
+    Menyembunyikan konten akan menghapusnya dari tampilan publik, tetapi orang-orang masih bisa melihat bahwa ada konten yang disembunyikan. Kurator situs serta penulis kontennya masih bisa melihat konten yang disembunyikan. Identifikasi yang disembunyikan tidak akan berkontribusi kepada pengamatan Takson Komunitas.
+  hide_desc_staff_can_unhide: |
+    Hanya staf situs yang bisa menampilkan kontennya kembali setelah disembunyikan, jadi harap gunakan fitur ini untuk pelanggaran Pedoman Komunitas yang jelas.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Sembunyikan "Tanpa Catatan"
@@ -2025,6 +2016,8 @@ id:
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
   high: Tinggi
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Tingkat tertinggi
   highlights_and_stats_from_year_on_site: "Sorotan dan statistik pada %{year} di %{site}"
   history: Sejarah
@@ -2074,8 +2067,10 @@ id:
   #Notification when an identification has been deleted
   identification_deleted: Identifikasi telah dihapus.
   identification_saved: "Identifikasi telah disimpan!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Teks identifikasi ditampilkan kembali
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikasi disembunyikan
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Teks identifikasi ditampilkan kembali
   #Notification when an identification has been updated
   identification_updated: Identifikasi telah diperbarui!
   identification_user_short: Pengguna identifikasi
@@ -2083,55 +2078,8 @@ id:
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
-  independence_email_subject: "Mengepakkan Sayap Kami: iNaturalist Sekarang Menjadi Perusahaan Nirlaba Independen"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Halo %{name},
-  independence_email_body_exciting_news: |
-    Tim iNaturalist memiliki kabar baik! Kami dengan senang hati ingin membagikan bahwa karena dukungan dari komunitas yang hebat ini, iNaturalist sekarang beroperasi sebagai organisasi nirlaba 501(c)(3) independen yang berbasis di Amerika Serikat.
-  independence_email_body_since_launching: |
-    Sejak peluncuran pada 2008, tim dan organisasi iNaturalist terus berkembang, dan kami sangat senang dengan pencapaian ini. iNaturalist dimulai sebagai sebuah proyek S2 di Universitas Kalifornia, Berkeley, kemudian menjadi PT, sebelum bergabung dengan Akademi Sains Kalifornia pada 2014. Pada 2017, iNaturalist menjadi inisiatif bersama dengan Akademi Sains Kalifornia dan Perkumpulan National Geographic. Sekarang, iNaturalist telah menjadi organisasi independen.
-  independence_email_body_over_the_past: |
-    Selama 15 tahun terakhir, kontribusi yang luar biasa dari komunitas ini telah membuat iNaturalist menjadi salah satu platform alam paling berpengaruh di dunia.
-  independence_email_body_so_far: "Sejauh ini, komunitas iNaturalist telah:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Menghasilkan lebih dari 146.000.000 pengamatan yang terverifikasi (bertambah sekitar 1 juta setiap minggunya!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Bertumbuh menjadi 2,7 juta kontributor
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Mengamati lebih dari 430.000 spesies
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Dikutip lebih dari 3.500 kali <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">melalui Fasilitas Informasi Keanekaragaman Hayati Global</a>
-  independence_email_body_we_thank: |
-    Kami berterima kasih kepada California Academy of Sciences and the National Geographic
-    Society karena telah memelihara iNaturalist selama ia bertumbuh secara drastis dalam 9 tahun ke belakang. Kami berutang banyak kepada mitra-mitra ini untuk investasi, dukungan, dan pelayanan mereka. Kami berharap untuk bisa berkolaborasi dengan kedua organisasi ini di masa yang akan datang.
-  independence_email_body_the_way_html: |
-    <strong>Cara Anda menggunakan iNaturalist tidak akan berubah.</strong> iNaturalist dan Seek akan terus membantu Anda secara cuma-cuma untuk mengidentifikasi keanekaragaman hayati dan membangun hubungan Anda dengan dunia alam. Struktur organisasi yang baru ini akan mengizinkan kami untuk mendukung iNaturalist di tahun-tahun yang akan datang supaya komunitasnya bisa memperluas pengetahuan kolektif kita tentang keanekaragaman hayati ke depannya. Kami akan terus bermitra dengan organisasi-organisasi di seluruh dunia untuk mendukung Jaringan iNaturalist.
-  independence_email_body_questions_html: |
-    Anda bisa <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">membaca lebih lanjut di blog</a> dan mengecek <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Pertanyaan Yang Sering Ditanyakan</a> (dalam bahasa Inggris). <a
-    href="https://www.inaturalist.org/pages/terms">Syarat dan Ketentuan Penggunaan</a> dan <a
-    href="https://www.inaturalist.org/pages/privacy">Kebijakan Privasi</a> telah diperbarui supaya mencerminkan organisasi yang baru.
-  independence_email_body_thank_you: Terima kasih sudah menjadi bagian dari komunitas ini.
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Terus maju,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>Tim Pengurus iNaturalist</strong>
-  independence_email_body_ps: |
-    Catatan - Kami akan segera mengumumkan sumbangan yang sangat dermawan yang memberikan iNaturalist independen batu loncatan. Dukungan finansial dari komunitas iNaturalist telah membuat perkembangan ini menjadi mungkin dan akan menjadi vital untuk ketahanan kami untuk jangka panjang. Sumbangan Anda akan ikut meramaikan pencapaian yang membanggakan ini dan mengamankan masa depan iNaturalist. Terima kasih!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Sumbang sekarang
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist adalah organisasi nirlaba independen bebas pajak 501(c)(3) berbasis di Amerika Serikat (ID Pajak: 92-1296468).
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2191,6 +2139,7 @@ id:
   include_places: Sertakan Tempat
   include_projects: Sertakan Proyek
   include_suggestions_not_seen_nearby: Sertakan rekomendasi spesies yang tidak ditemukan di daerah sekitar
+  include_suggestions_not_expected_nearby: Sertakan usulan yang tidak ditemukan di sekitar
   include_taxa: Sertakan Taksa
   include_users: Sertakan Pengguna
   including: termasuk
@@ -2259,6 +2208,7 @@ id:
   journal: Jurnal
   journal_archives_for: Arsip jurnal untuk
   journal_post: Posting jurnal
+  journal_post_: posting jurnal
   journal_post_deleted: Posting jurnal dihapus.
   journal_posts: Posting Jurnal
   jpg_png_or_gif: "JPG, PNG, atau GIF"
@@ -2601,6 +2551,8 @@ id:
   looks_like_no_species_in_guide: Sepertinya Anda belum memiliki spesies apapun pada panduan Anda.
   lookup: Cari
   low: Rendah
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: TIngkat Terendah
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2709,6 +2661,10 @@ id:
   moderation_history_for_user_html: Riwayat moderasi untuk %{user}
   moderation_history_desc_html: |
     Ini termasuk tindakan moderator (seperti menyembunyikan atau menampilkan komentar), catatan, dan semua tanda yang diberikan pengguna ini kepada apapun kecuali taksa. Ini <strong>hanya dapat dilihat oleh kurator</strong> dan <strong>kurator tidak dapat melihat riwayatnya sendiri</strong>, jadi catatan tentang seseorang seharusnya tidak dapat dilihat oleh orang itu sendiri.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Sembunyikan
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Batalkan penangguhan
   moderator_note_desc: |
     Catatan moderator adalah catatan yang mengandung respons moderasi atau perhatian yang berbasis fakta tentang seorang pengguna, seperti ketika mereka mungkin adalah akun buzzer. Jangan memasukkan pendapat pribadi atau gosip tentang pengguna tersebut.
   #Person who executed a moderator action or flagged something
@@ -2857,7 +2813,6 @@ id:
   needs_id_: Perlu ID
   needs_id_expandable_html: "<span class='full'>Perlu </span>ID"
   needs_id_tooltip_html: 'Pengamatan yang "Memerlukan ID" memiliki media, lokasi, dan tanggal, tetapi masih membutuhkan konsensus supaya menjadi identifikasi yang tepat. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
-  needs_to_be_identified: Perlu diidentifikasi
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, bagian dari Jaringan iNaturalist
@@ -3056,6 +3011,87 @@ id:
     Koordinat publik yang ditampilkan sebagai titik acak dalam jangkauan 0.2 derajat lin/buj yang memiliki koordinat sebenarnya.
   observation: Pengamatan
   observation_: pengamatan
+  observation_accuracy_experiment_the_sample_for: "Sampel untuk eksperimen ini belum dibuat"
+  observation_accuracy_experiment_our_accuracy_estimate: "Akurasi dari eksperimen ini diperkirakan sebesar %{percent}."
+  observation_accuracy_experiment_our_goak: "Target kami untuk Akurasi dan Presisi subset Kelas Riset lebih besar dari 95% (garis putus-putus)"
+  observation_accuracy_experiment_precision_results: "Hasil presisi berdasarkan subset"
+  observation_accuracy_experiment_taxon_rank_level: "Tingkat Kategori Takson"
+  observation_accuracy_experiment_taxon_observations_count: "Jumlah Pengamatan Takson"
+  observation_accuracy_experiment_iconic_taxon_name: "Nama Ikonik Takson"
+  observation_accuracy_experiment_continent: "Benua"
+  observation_accuracy_experiment_year: "Tahun"
+  observation_accuracy_experiment_quality_grade: "Tingkat Kualitas"
+  observation_accuracy_experiment_show_frequency: "tampilkan frekuensi"
+  observation_accuracy_experiment_click_on_bars: "Klik batangnya untuk melihat subset-subsetnya."
+  observation_accuracy_experiment_accuracy_results: "Hasil akurasi berdasarkan subset"
+  observation_accuracy_experiment_as_observations: "Karena pengamatan dari sampel ini sudah divalidasi, persentase ketidakpastian akan menurun dan persentase sampel benar dan salah akan meningkat."
+  observation_accuracy_experiment_experiment_still: "Eksperimen masih berlangsung. Statistik akan diperbarui setiap hari hingga tenggat waktu validasi sampel pada %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Eksperimen Akurasi Pengamatan"
+  observation_accuracy_experiment_validators: "Validator:"
+  observation_accuracy_experiment_show_additional_validators: "(tampilkan validator tambahan)"
+  observation_accuracy_experiment_hide_additional_validators: "(sembunyikan validator tambahan)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validator tambahan)"
+  observation_accuracy_experiment_abstract: "Abstrak: Kami mengumpulkan sampel pengamatan pada %{sample_generation_date} dan berkoordinasi dengan tim validator untuk menilai akurasinya sebelum %{deadline_date}. Semua hasil di bawah ini menunjukkan ciri-ciri pengamatan-pengamatan sampel pada waktu sampelnya dibuat (contohnya Kelas Riset atau bukan). Akurasi pengamatan-pengamatan sampel dinilai pada %{assessment_date}. Lihat tab metode untuk detail lebih lanjut."
+  observation_accuracy_experiment_research_grade_results: "Hasil Kelas Riset"
+  observation_accuracy_experiment_verifiable_results: "Hasil yang Dapat Diverifikasi"
+  observation_accuracy_experiment_all_results: "Semua Hasil"
+  observation_accuracy_experiment_methods: "Metode"
+  observation_accuracy_experiment_step_1: "Langkah 1: Pembuatan serta Pelabelan Sampel"
+  observation_accuracy_experiment_from_the: "Dari basis data pengamatan iNaturalist (A), kami membuat sampel acak (B). Subsampel diberikan kepada kandidat validator berdasarkan kriteria yang dijelaskan di bawah ini. Kami ingin menugaskan setiap pengamatan sampel ke beberapa kandidat validator (\"Redundansi validator target\")."
+  observation_accuracy_experiment_sample_generated: "Sampel dibuat pada: %{date}"
+  observation_accuracy_experiment_sample_size: "Jumlah sampel: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundansi validator target: %{number}"
+  observation_accuracy_experiment_number_of: "Jumlah validator kandidat: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Rerata jumlah subsampel per kandidat validator: %{number}"
+  observation_accuracy_experiment_mean_number: "Rerata jumlah validator per pengamatan sampel: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kriteria kandidat validator"
+  observation_accuracy_experiment_if_an_identifier: "Jika seorang pengidentifikasi telah membuat setidaknya 3 identifikasi pengembang untuk suatu takson, kami menganggap identifikasi-identifikasi ini cukup untuk memvalidasi takson tersebut. Identifikasi pengembang ini adalah usulan takson pertama yang kemudian disetujui oleh komunitas."
+  observation_accuracy_experiment_for_example: "Sebagai contoh, Pengidentifikasi 1 menambahkan ID A untuk suatu pengamatan. Jika Pengidentifikasi 2 kemudian menambahkan ID pemimpin B, ID A dari Pengidentifikasi 1 menjadi ID pengembang. Jika Pengidentifikasi 3 kemudian menambahkan ID pendukung untuk B, ID Pengidentifikasi 2 pada B menjadi ID pengembang."
+  observation_accuracy_experiment_step_2: "Langkah 2: Validasi sampel"
+  observation_accuracy_experiment_we_contacted: "Kami menghubungi kandidat validator dan meminta mereka untuk menambahkan identifikasi untuk subsampel mereka. Grafik di kanan mengelompokkan pengamatan sampel berdasarkan jumlah validator."
+  observation_accuracy_experiment_number_percent_of: "Jumlah validator yang ikut: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Jumlah sampel yang divalidasi: %{percent}"
+  observation_accuracy_experiment_step_3: "Langkah 3: Menilai pengamatan sampel dari validasi"
+  observation_accuracy_experiment_we_scored: "Kami memberikan penilaian Benar, Tidak Pasti, atau Salah pada pengamatan-pengamatan sampelnya dengan membandingkan identifikasi dari validator dengan takson dari setiap pengamatan sampelnya. Identifikasi yang sesuai atau lebih spesifik dari takson pengamatan sampel dinilai sebagai Benar. Identifikasi yang kurang spesifik dan tidak ada keberatan dinilai sebagai Tidak Pasti, sama juga halnya seperti skenario-skenario di mana validator-validator saling tidak setuju. Identifikasi yang kurang spesifik dan ada yang tidak setuju atau identifikasi yang ada pada cabang yang berbeda dinilai sebagai Salah."
+  observation_accuracy_experiment_correct: "Benar"
+  observation_accuracy_experiment_uncertain: "Tidak pasti"
+  observation_accuracy_experiment_incorrect2: "Salah"
+  observation_accuracy_experiment_step_4: "Langkah 4: Perhitungan Akurasi dan Presisi"
+  observation_accuracy_experiment_accuracy: "Akurasi"
+  observation_accuracy_experiment_we_calculated: "Kami menghitung akurasi sebagai persentase benar dari keseluruhan sampel beserta subsetnya seperti subset Kelas Riset. Kami juga menghitung persentase Tidak Pasti serta persentasi Salah. Pada gambar contoh di kanan, persentase benar adalah 83, persentase tidak pasti adalah 6, dan persentase salah adalah 11."
+  observation_accuracy_experiment_precision: "Presisi"
+  observation_accuracy_experiment_if_every_sample: "Jika setiap pengamatan sampel berada pada takson yang kurang spesifik, seperti kingdom, akurasi iNaturalist dataset mungkin menjadi tinggi, tapi presisinya mungkin menjadi sangat rendah sehingga datasetnya kurang berguna. Untuk memperkirakan presisi, kami menghitung jumlah keturunan daun (ujung) pada taksonomi iNaturalist untuk masing-masing takson yang diasosiasikan dengan masing-masing pengamatan sampel. Perhitungan presisi kami adalah 1 dibagi jumlah keturunan daun. Jika taksonnya merupakan takson daun, presisinya 100%. Kami mengabaikan kategori-kategori di bawah spesies di dalam perhitungan presisi ini."
+  observation_accuracy_experiment_in_the_example: "Pada gambar contoh di kanan, rerata presisi dari tiga pengamatan sampel adalah 51%."
+  observation_accuracy_validator_email_subject: "Bisakah kamu membantu kami mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Bisakah kamu membantu kami dalam sebuah eksperimen untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
+    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
+    <ul>
+    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
+    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
+    </ul>
+    </li>
+    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
+    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Kami akan menghitung akurasi dengan membandingkan ID kamu dengan Takson Pengamatan. 
+    Kamu bisa melewati pengamatan-pengamatan yang IDnya sudah ditambahkan jika IDnya masih relevan. Untuk selebihnya tentang bagaimana kita menghitung kesepakatan dan ketidaksepakatan, teruslah membaca.
+  observation_accuracy_validator_email_ids_equal_to: |
+    ID yang sama dengan (A) atau lebih rinci dari (B), Takson Pengamatannya akan dihitung sebagai Kesepakatan.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID yang berada pada cabang (C) yang berbeda atau kurang spesifik dari Takson Pengamatan yang kamu pilih 'Tidak, tapi…' untuk dialog (D) 'Potensi Ketidaksetujuan' akan dihitung sebagai Ketidaksetujuan.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID yang kurang spesifik dari Takson Pengamatan yang kamu pilih 'Saya tidak tahu, tapi…' untuk dialog (E) 'Potensi Ketidaksetujuan' akan dihitung sebagai Tidak Pasti.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Kami berterima kasih atas bantuanmu sebagai pengidentifikasi, dan terima kasih 
+    banyak atas partisipasimu dalam penelitian ini. Silakan membaca <a href="%{url}">postingan blog ini</a> untuk mencari jawaban dari pertanyaan-pertanyaan umum tentang eksperimen ini.
+  observation_accuracy_validator_email_with_gratitude: Dengan terima kasih,
+  observation_accuracy_validator_email_the_inaturalist_team: Tim iNaturalist
   observation_added_to_the_project: "Pengamatan yang ditambahkan ke proyek \"%{project}\""
   observation_aggregation: Kumpulan Pengamatan
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3191,6 +3227,7 @@ id:
   observations_widget: Widget Pengamatan
   observations_with_this_field: Pengamatan dengan bidang ini
   observations_with_this_field_and_value: Pengamatan dengan bidang dan nilai ini
+  observations_without_this_field: Pengamatan tanpa bidang ini
   observations_without_media: Pengamatan Tanpa Media
   observationcounts_refreshed: Jumlah pengamatan diperbarui
   observed: Diamati
@@ -3286,7 +3323,9 @@ id:
   only_the_project_admin_can_delete_this_project: Hanya pengelola proyek yang dapat menghapus proyek ini.
   only_view_nearby_suggestions: Hanya tampilkan rekomendasi yang ditemui di sekitar
   only_you: Hanya Anda
+  #Geoprivacy status in which no privacy has been applied
   open: terbuka
+  #Geoprivacy status in which no privacy has been applied
   open_: Buka
   open_description: "Semua orang dapat melihat koordinatnya kecuali takson yang terancam."
   open_street_map: OpenStreetMap
@@ -3297,12 +3336,12 @@ id:
   #sign in with Apple OR Google
   or_all_caps: ATAU
   or_choose_high_level_taxa: "... atau memilih dari beberapa taksa tingkat tinggi"
-  orange: jingga
   order: Urut
   order_by: Urut berdasarkan
   organism_is_wild: Organisme ini liar
   organisms: Organisme
   original: Asli
+  original_flag: Tanda asli
   originally_flagged_by: Aslinya ditandai oleh
   originally_imported_from_url_html: "Aslinya diimpor dari <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL halaman asli untuk foto ini."
@@ -3388,8 +3427,12 @@ id:
   photo_credits: Kredit Foto
   photo_deleted: Foto dihapus
   photo_destroyed_because_it_was_deleted_from: "Foto dihancurkan dikarenakan foto tersebut dihapus dari situs eksternal atau %{site_name} tidak lagi memiliki izin untuk melihatnya"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Gambar disembunyikan
   photo_licensing: Lisensi Foto
   photo_type: Jenis foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Gambar ditampilkan kembali
   photo_urls_repaired: URL foto diperbaiki
   photos_chosen_for_this_taxon: Foto yang dipilih untuk takson ini
   photos_from: Foto dari
@@ -3457,7 +3500,6 @@ id:
   data_transfer_consent_child_label: |
     Saya mengizinkan pengiriman informasi pribadi anak saya saya ke Amerika Serikat
   pin_verb: Pin
-  pink: merah muda
   pinned_locations_desc: |
     Sematkan pin pada catatan koordinat, akurasi, geoprivasi, dan localitas untuk digunakan nanti.
   place: Tempat
@@ -3786,6 +3828,7 @@ id:
     north_korea: Korea Utara
     northern_cyprus: Siprus Utara
     norway: Norwegia
+    oceania: Oseania
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4019,7 +4062,6 @@ id:
     Google tidak menyediakan alamat email untuk akun tersebut, tetapi kami memerlukannya. Harap membuat sebuah akun pada situs ini alih-alih masuk via Google.
   public_domain: Domain Umum
   publish: Terbitkan
-  purple: ungu
   quality_grade: Tingkat kualitas
   quality_grade_: Tingkat Kualitas
   quality_grade_colon: "Tingkat kualitas:"
@@ -4030,7 +4072,11 @@ id:
   radius_value: "Radius (m): %{radius}"
   random: Acak
   range: Jangkauan
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Tingkat
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Tingkat
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4195,7 +4241,6 @@ id:
   recently_resolved: Baru Dibereskan
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Catatan
-  red: merah
   redo_search_in_map: Ulangi pencarian di peta
   redo_search_in_map_area: Ulangi pencarian dalam area peta
   refresh: Segarkan
@@ -4249,6 +4294,8 @@ id:
   remove_tags: Hapus label
   removed: Dihapus
   removed_project_user: Hapus pengguna proyek
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Peran dihapus
   removing: "Menghapus..."
   reorder_by_taxonomy: Urutkan kembali berdasarkan taksonomi
   repair_broken_urls: Perbaiki URL yang rusak
@@ -4305,6 +4352,14 @@ id:
   rotate_left: Putar ke Kiri
   rotate_right: Putar ke Kanan
   row_singular_or_plural: Baris
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Uji tampilan kanan ke kiri? Anda juga bisa menggunakan param URL test=rtl. Harap diperhatikan bahwa masih ada beberapa halaman yang belum dikonversi ke tampilan kanan ke kiri
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Bergabung uji tampilan kanan ke kiri
   rules_and_formatting: "Aturan & Format"
   rules_for_adding_observations: Aturan untuk Penambahan Pengamatan
   rules_for_becoming_a_member: Aturan untuk Menjadi Anggota
@@ -4510,6 +4565,8 @@ id:
   sites_affiliation_overview_you_can_continue_html: |
     Anda bisa melanjutkan dengan masuk melalui iNaturalist.org atau melalui situs jaringanmu. Semua data Anda akan disimpan di tempat yang sama dan Anda dapat terus berinteraksi dengan komunitas iNaturalist internasional yang lebih luas, tidak peduli apa afiliasi Anda. Setiap akun iNaturalist hanya dapat diafiliasikan dengan satu Anggota Jaringan. Anda dapat mempertimbangkan kembali atau mengganti afiliasi Anda di %{start_tag_settings}pengaturan akun%{end_tag_settings}.
   sites_affiliation_title: Pelajari Lebih Lanjut Tentang Afiliasi Jaringan
+  sites_network_agreements_html: |
+    iNaturalist memiliki persetujuan formal dengan organisasi-organisasi di masing-masing wilayah ini untuk mendukung penggunaan platform iNaturalist. <strong>Jika organisasi Anda tertarik untuk bergabung dengan Jaringan iNaturalist, Anda bisa mendapatkan informasi lebih lanjut di %{start_tag_join}sini%{end_tag_join}.</strong>
   sites_network_consists_of: "Jaringan iNaturalist terdiri dari beberapa organisasi:"
   sites_network_inaturalist_network_collection: |
     Jaringan iNaturalist adalah kumpulan situs web terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist secara global. Jaringan situs didukung oleh institusi-institusi lokal yang mempromosikan penggunaan lokal dan memfasilitasi penggunaan data dari iNaturalist untuk kebaikan keanekaragaman hayati lokal. Mereka memiliki akses ke koordinat yang tepat dari negara masing-masing yang terkaburkan secara otomatis dari publik untuk melindungi spesies yang terancam punah dengan baik.
@@ -4816,6 +4873,7 @@ id:
     Harap menggunakan kolom deskripsi untuk menjelaskan dari mana petanya berasal dan menghubungkan tanda-tanda yang relevan, pemisahan taksonomi, dan diskusi-diskusi lainnya tentang mengapa jangkauan Daftar Merah IUCN yang diterbitkan memerlukan perubahan.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Pelajari lebih lanjut tentang jangkauan takson
   taxon_range_updated_notice: Jangkauan takson sukses diperbarui. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Tingkat Takson
   taxon_removed_from_list: Takson dihapus dari daftar.
   taxon_scheme: Skema takson
@@ -5169,7 +5227,10 @@ id:
   unknown: Tidak diketahui
   unknown_error: Eror tidak diketahui
   unknown_rank: '(Peringkat Tidak Diketahui)'
-  unfollow: Berhenti Ikuti
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Berhenti mengikuti pengamatan ini
+  #Text for a button to stop following updates from a user
+  unfollow_user: Berhenti mengikuti pengguna
   unlink_your_google_account: Putuskan Akun Google Anda
   unlink_your_flickr_account: "Putuskan Akun Flickr Anda"
   unmute: Bunyikan
@@ -5519,7 +5580,6 @@ id:
   where_were_they?: Di manakah mereka?
   where_were_you?: Di manakah Anda?
   which_projects_can_add_your_observations?: Proyek tradisional manakah yang dapat menambahkan pengamatan Anda?
-  white: putih
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
   why_are_you_making_this_change_cite_source_required: Mengapa Anda membuat perubahan ini? Tolong jelaskan dan sertakan sebuah sumber jika ada. (Wajib)
@@ -5587,9 +5647,9 @@ id:
   year: Tahun
   year_in_review: "Melihat Kembali Tahun %{year}"
   year_in_review2: "Kilas Balik Satu Tahun %{year}"
+  year_in_review_caps: "ULASAN TAHUN %{year}"
   year_month: tahun/bulan
   year_on_site: "Tahun Di %{site} %{year}"
-  yellow: kuning
   'yes': "Ya"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5620,12 +5680,63 @@ id:
   yir_donate_banner_you_helped_inaturalist_thrive: Anda telah membantu perkembangan iNaturalist tahun ini. Terima kasih!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Membutuhkan Dukunganmu
+  yir_email_because_of_you: |
+    Karena kamu, ada lebih banyak data tentang keanekaragaman hayati tahun ini dibandingkan tahun lalu. Ulasan Tahun ini adalah hadiah kami untuk semua yang telah Anda lakukan untuk keanekaragaman hayati melalui iNaturalist.
+  yir_email_log_in_to_generate: |
+    Masuk untuk membuat ulasan tahun pribadimu dan melihatnya!
+  yir_email_of_your_observations:
+    other: Dari %{count} pengamatan Anda, apakah Anda tahu berapa yang dibuat pada %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ulasan Tahun iNaturalist %{year} Anda — rayakan tahun Anda dengan keanekaragaman hayati
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Tim iNaturalist
+  yir_email_the_year_isnt_over: |
+    Tahun ini belum berakhir, dan tidak ada kata terlambat untuk 
+    mengunggah pengamatan lama. Setelah kamu lebih banyak 
+    pengamatan, pastikan Anda memilih "Perbarui Statistik" di bawah 
+    Ulasan Tahun Anda untuk melihat perubahannya.
+  yir_email_what_else_will_you_observe_caps: APA LAGI YANG AKAN ANDA AMATI?
+  yir_email_what_new_to_you: |
+    Spesies baru apa yang Anda catat tahun ini? Berapa banyak orang yang menolong 
+    Anda untuk mengidentifikasi spesies (dan berapa banyak yang Anda tolong)?
+  yir_email_with_gratitude: Dengan ucapan syukur,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} DI INATURALIST GLOBAL"
+  yir_email_you_are_part_of_something: |
+    Anda adalah bagian dari sesuatu yang besar! Setiap orang yang mengunggah pengamatan, 
+    menambahkan identifikasi, dan menyebarkan kabar tentang iNaturalist telah membuat sebuah 
+    perubahan untuk keanekaragaman hayati. Melalui usaha kita bersama, kita sedang membuat 
+    data keanekaragaman hayati menjadi tersedia dalam skala yang belum pernah terpikirkan. 
+    Terima kasih telah menjadi bagian dari komunitas iNaturalist!
+  yir_email_you_make_a_difference: |
+    Anda sedang membuat sebuah perubahan untuk keanekaragaman hayati 
+    melalui iNaturalist. Terima kasih untuk semua hal yang sudah Anda buat!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Anda menerima email ini karena %{email} terhubung dengan 
+    https://www.inaturalist.org/people/%{username}, akun iNaturalist
+    yang dibuat pada %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Anda menerima email ini karena %{email} terhubung dengan 
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>, 
+    akun iNaturalist yang dibuat pada %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Akun Anda terhubung dengan %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Akun Anda terhubung dengan <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Menghasilkan dan membagikan data keanekaragaman hayati dengan skala dan kecepatan yang tidak pernah terbayangkan sebelumnya telah meningkatkan biaya-biaya
   yir_millions_of_people_used_inaturalist: |
     Jutaan orang menggunakan iNaturalist dan Seek oleh iNaturalist tahun ini untuk bisa terhubung dengan alam
   yir_monthly_supporters_random_selection: |
     Inilah beberapa pilihan acak berisi anggota-anggota komunitas iNat berjiwa pahlawan yang berdonasi setiap bulannya.
+  yir_thank_your_for_being_generous2: |
+    Terima kasih karena telah berbaik hati memberikan waktu, perhatian, dan donasi kalian! iNaturalist merupakan organisasi nirlaba yang bertujuan untuk kemaslahatan publik. Program ini bergantung pada hibah-hibah dan donasi, termasuk hadiah-hadiah dari sebagian kecil dari komunitas. Kami sangat berterima kasih khususnya untuk Pendukung Bulanan karena pemberian tiap bulannya telah menolong kami untuk bisa membuat rencana untuk ke depannya.
   yir_your_gift_sustains: |
     Hadiah Anda menyokong program ini untuk menjangkau secara global dan berdampak besar baik untuk individu maupun ekologi
   you: Anda
@@ -5765,6 +5876,8 @@ id:
     announcements:
       locales_desc: |
         Klik CMD atau SHIFT untuk memilih beberapa. Tidak memilih apapun akan menampilkan pengumuman untuk semua pengguna tanpa memandang daerahnya. Memilih sebuah bahasa tanpa daerahnya *tidak* akan menargetkan bahasa yang memiliki daerah. Contohnya, jika Anda memilih en, hal ini tidak akan ditampilkan untuk orang yang telah memilih en-US. Jika Anda ingin menargetkan keduanya, pilihlah dua-duanya. JIka Anda hanya ingin mengumumkan kepada semua anggota dari suatu situs, biarkan kosong saja.
+      clients_desc: |
+        Klik-CMD atau Klik-Shift untuk memilih lebih dari satu. Jika Anda tidak memilih, pengumuman akan dikirimkan ke semua pengguna tanpa memandang kliennya.
     content_freeze:
       content_freeze: Pembekuan Konten
       during_this_time: |
@@ -5787,10 +5900,95 @@ id:
             Jika ya, silakan membaca <a href="%{url}">Panduan Guru</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
     donate:
       donate_short_desc: "Donasi sekarang untuk memberikan dukungan!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Dapatkan hadiah <u>dua</u> atau <u>tiga</u> kali lipat untuk Anda! Terima kasih kepada
+        Gordon and Betty Moore Foundation, semua donasi bulanan, kuartalan, dan
+        donasi berulang tahunan akan dilipatgandakan dan donasi satu kali akan
+        dua kali lipat hingga 31 Desember 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist adalah salah satu komunitas terbesar di dunia yang didedikasikan untuk
+        keanekaragaman hayati. Terima kasih telah menjadi bagian darinya!
+        </p>
+        <p class="lead">
+        Jika Anda percaya pada kekuatan komunitas global pecinta alam ini
+        pecinta alam global ini untuk berbagi pengetahuan dan menghasilkan keanekaragaman hayati yang tak tergantikan
+        keanekaragaman hayati yang tak ternilai harganya, mohon pertimbangkan untuk memberikan hadiah satu kali atau berulang secara online, atau
+        jelajahi <a href="https://www.inaturalist.org/pages/giving">cara lain
+        cara lain untuk memberi</a>.
+        </p>
+        <p class="lead">
+        Donasi Anda sangat penting bagi iNaturalist seiring dengan pertumbuhan komunitas kami, mulai dari
+        meningkatkan teknologi kami untuk mengidentifikasi spesies secara akurat dan
+        mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami.
+        </p>
+        <p class="text-muted">
+        iNaturalist adalah organisasi nirlaba 501(c)(3) independen, bebas pajak, dan nirlaba
+        nirlaba, bebas pajak, dan berbasis di Amerika Serikat (Tax ID:
+        92-1296468).
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
+        </p>
+        <p class="lead"> Jika Anda percaya akan kekuatan komunitas global pecinta alam untuk membagikan ilmu dan menghasilkan data keanekaragaman hayati yang tak tergantikan, pikirkan untuk memberikan hadiah daring sekali atau beberapa kali, atau lihat <a
+        href="https://www.inaturalist.org/pages/giving">cara-cara lainnya untuk memberi</a>.
+        </p>
+        <p class="lead">
+        Donasi Anda menolong iNaturalist seiring bertumbuhnya komunitas, dari memajukan penglihatan komputer serta mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami.
+        </p>
+        <p class="text-muted">
+        iNaturalist adalah sebuah organisasi 501(c)(3) nirlaba independen yang tidak dipajaki yang berbasis di Amerika Serikat (ID Pajak: 94-1156258).
+        </p>
       post_donate_social_media_text: Saya mendukung iNaturalist karena...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: MENJADI PENDUKUNG BULANAN INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Dapatkan hadiah <u>tiga kali lipat</u> unuk Anda! Terima kasih kepada Gordon dan Betty
+          Moore Foundation, semua donasi Pendukung Bulanan akan
+          dilipatgandakan tiga kali lipat hingga 31 Desember 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist adalah salah satu komunitas terbesar di dunia yang didedikasikan untuk
+          mengeksplorasi keanekaragaman hayati. Terima kasih telah menjadi bagian darinya!
+          </p>
+          <p class="lead">
+          Jika Anda menyukai iNaturalist, mohon pertimbangkan untuk menjadi
+          Pendukung Bulanan. Hadiah berulang membantu memastikan bahwa iNaturalist dapat
+          terus meningkatkan infrastruktur dan staf kami dengan menyediakan
+          pendapatan yang dapat diprediksi. Dan hadiah bulanan Anda memiliki dampak tiga kali lipat!
+          Anda juga dapat memilih untuk menampilkan status Pendukung Bulanan Anda di
+          Anda di profil pengguna.
+          </p>
+          <p class="lead">
+          Donasi amal Anda membantu mendukung iNaturalist sebagai
+          komunitas tumbuh, dari memajukan visi komputer dan mengimplementasikan
+          fitur-fitur baru hingga mendukung server dan staf kami. Anda juga dapat
+          memberikan <a href="%{donate_url}">donasi satu kali</a> dan jelajahi
+          <a href="https://www.inaturalist.org/pages/giving">cara lain untuk
+          berdonasi</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist adalah organisasi independen 501(c)(3), bebas pajak,
+          organisasi nirlaba yang berbasis di Amerika Serikat
+          Amerika Serikat (ID Pajak: 92-1296468).
+          </p>
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
+          </p>
+          <p class="lead"> 
+          Kami ingin tetap menjaga iNaturalist sebagai platform gratis, namun operasinya tidaklah gratis. Jika Anda mencintai iNaturalist, pikirkan untuk menjadi pendukung bulanan. Hadiah berulang akan membantu memastikan iNaturalist dapat melanjutkan perluasan infrastruktur dan stafnya dengan menyediakan pemasukan yang dapat diprediksi. Anda juga bisa memilih untuk menunjukkan status pendukung bulanan Anda pada profil pengguna Anda.
+          </p>
+          <p class="lead">
+          Donasi sosial Anda menolong iNaturalist seiring bertumbuhnya komunitas, dari memajukan penglihatan komputer serta mengimplementasikan fitur-fitur baru hingga mendukung server dan staf kami. Jika Anda lebih memilih untuk memberikan donasi satu kali saja, silakan <a href="%{donate_url}">klik di sini</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist adalah sebuah organisasi 501(c)(3) nirlaba independen yang tidak dipajaki yang berbasis di Amerika Serikat.
+          </p>
         thank_you_for_being_a_monthly_supporter: Terima kasih sudah menjadi Pendukung Bulanan!
         thank_you_for_being_a_monthly_supporter_caps: TERIMA KASIH SUDAH MENJADI PENDUKUNG BULANAN!
       temporarily_unavailable: |
@@ -5801,6 +5999,107 @@ id:
           Konten yang ditandai adalah atribut teks utama dari obyek yang ditandai pada saat tanda dibuat. Hanya kurator dan staf yang dapat melihat ini. Hanya staf yang dapat melihat pesan-pesan yang ditandai.
         flags_that_should_not_be_resolved_desc_html: |
           Harap mencabut tanda <code>spam</code> dan <code>pelanggaran hak cipta</code> hanya jika kontennya bukan merupakan spam atau bukan merupakan pelanggaran hak cipta.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Prediksi Geomodel %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodel membuat prediksi tentang di mana spesies muncul dan di mana mereka tidak ada.
+          Kami menggunakan Geomodel untuk menerapkan label "Diperkirakan Ada di Sekitar" bersama dengan saran dan untuk membobotkan saran-saran ini berdasarkan lokasi pengamatan.
+        the_geo_model_is_trained: |
+          Seperti Model Visi Komputer, Geomodel dilatih berdasarkan pengamatan iNaturalis
+          untuk set spesies yang sama dengan sekitar lebih dari 100 foto. Geomodel tidak
+          membuat prediksi yang sempurna. Anda dapat membaca lebih lanjut tentang bagaimana Geomodel dibuat
+          <a href="%{url}">di sini</a>.
+        nearby_map:
+          expected_nearby_map: Peta Terlihat Di Sekitar
+          we_use_this_map: |
+            Kami menggunakan peta ini untuk menerapkan label Terdekat yang Diharapkan pada saran berdasarkan
+            lokasi pengamatan.
+          for_example: |
+            Sebagai contoh, pengamatan seekor kadal di pusat Amerika Serikat mungkin
+            memiliki label Diharapkan Terdekat yang diterapkan pada saran <i>Sceloporus consobrinus</i>
+            tetapi tidak untuk <i>Sceloporus occidentalis</i> berdasarkan Peta Ekspektasi Terdekat masing-masing.
+          you_can_think: |
+            Anda dapat menganggap Peta Terdekat yang Diharapkan sebagai perkiraan apakah spesies
+            ada di suatu tempat di dalam sel kisi atau sama sekali tidak ada.
+          figure_alt_text: Geomodel menerapkan label Ekspektasi Terdekat
+        unthresholded_map:
+          unthresholded_map: Peta Tanpa Ambang
+          we_use_the_unthresholded_map: |
+            Kami menggunakan Peta Tanpa Ambang Batas untuk memberi bobot skor visi komputer berdasarkan lokasi saat
+            menawarkan saran.
+          for_example: |
+            Sebagai contoh, pengamatan terhadap seekor kadal di pusat Amerika Serikat mungkin
+            memiliki saran dari <i>Sceloporus consobrinus</i> yang lebih berbobot daripada saran
+            dari <i>Sceloporus occidentalis</i> berdasarkan perbandingan Peta Tanpa Ambang Batas, meskipun
+            secara visual mirip.
+          you_can_think: |
+            Anda dapat menganggap Peta Tanpa Ambang Batas sebagai probabilitas relatif bahwa suatu spesies
+            terjadi dalam sel kisi.
+          figure_alt_text: Geomodel membobotkan hasil Visi Komputer
+        range_comparison:
+          expected_nearby_vs_taxon_range: Terlihat Di Sekitar vs Jangkauan Takson
+          this_map_shows: |
+            Peta ini menunjukkan Kisaran Takson untuk spesies ini yang tumpang tindih dengan Peta Terdekat yang Diharapkan
+            yang kami gunakan untuk mengevaluasi Geomodel.
+          this_gridded_version: |
+            Versi kisi-kisi dari Kisaran Takson ini adalah cuplikan yang diambil ketika model
+            dilatih dan di-grid pada resolusi yang sama dengan Peta Terdekat yang Diharapkan. Kami hanya
+            menggunakan Rentang Takson di mana setidaknya 90% dari data pelatihan untuk spesies tersebut
+            berada di dalam Rentang Takson untuk mengontrol kesalahan dalam Rentang Takson.
+          by_combining: |
+            Dengan menggabungkan Peta Terdekat yang Diharapkan dengan Jangkauan Takson, kami menghitung statistik
+            untuk memperkirakan seberapa baik kinerja Geomodel.
+          figure_alt_text: Peta Terdekat yang Diharapkan dan Jangkauan Takson dibandingkan
+          combining_these_maps_produces: |
+            Menggabungkan peta-peta ini menghasilkan 3 jenis sel:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Keberadaan Benar:
+          true_presences_definition2: Area di mana Peta Terlihat Di Sekitar dan Jangkauan Takson memprediksi bahwa takson tersebut ada
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Keberadaan Salah:
+          false_presences_definition: Area di mana hanya Peta Terdekat yang memprediksi keberadaan takson
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Ketidakberadaan Salah:
+          false_absences_definition: Area yang hanya memiliki Rentang Takson
+          evaluation_statistics_for_taxon: Statistik evaluasi untuk %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precision:
+          precision_description: Fraksi Peta Terdekat yang Diharapkan yang Benar-Benar Ada
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Kehadiran Benar / (Kehadiran Benar + Kehadiran Salah) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Recall:
+          recall_description: Fraksi dari Rentang Takson yang Benar-Benar Ada
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Kehadiran Benar / (Kehadiran Benar + Ketidakhadiran Salah) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Rata-rata (harmonik) Precision dan Recall
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Kehadiran Benar / (2 × Kehadiran Benar + Kehadiran Salah + Ketidakhadiran Salah) = %{f1}
+          perfect_overlap: |
+            Tumpang tindih sempurna akan dievaluasi dengan Precision, Recall, dan F1 sebesar 1. Tidak ada tumpang tindih
+            akan dievaluasi dengan Precision, Recall, dan F1 sebesar 0.
     guides:
       index:
         deprecated_banner: |
@@ -6215,6 +6514,74 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
+        quality_assessment_help2_html: |
+          <p>
+          Penilaian kualitas data merupakan ringkasan dari akurasi sebuah pengamatan. 
+          Semua pengamatan dimulai dengan tingkat <strong>"kasual"</strong> dan menjadi
+          <strong>"memerlukan ID"</strong> saat
+          </p>
+
+          <ul>
+          <li>pengamatan <strong>memiliki tanggal</strong></li>
+          <li>pengamatan <strong>memiliki referensi geografis</strong> (memiliki koordinat lin/buj)</li>
+          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
+          <li>pengamatan <strong>bukan tentang manusia</strong></li>
+          </ul>
+          <p>
+          Pengamatan menjadi <strong>"tingkat riset"</strong> ketika
+          </p>
+          <ul>
+          <li>
+          <strong>community %{site_name} setuju dengan ID tingkat spesies ke 
+          bawah</strong>, yaitu saat 2/3 pengidentifikasi setuju dengan suatu
+          takson (jika komunitas telah setuju bahwa Takson Komunitas tidak bisa
+          ditingkatkan lagi, ini merujuk kepada ID tingkat subfamili ke bawah)
+          </li>
+          </ul>
+          <p>
+          Pengamatan akan kembali ke <strong>"kasual"</strong> jika kondisi di atas tidak terpenuhi atau komunitas setuju bahwa
+          </p>
+          <ul>
+          <li>
+          <strong>lokasinya tidak terlihat
+          akurat</strong> (misalkan monyet di tengah laut,
+          hippo di kantor, dll.)
+          </li>
+          <li>
+          <strong>organismenya tidak liar/alami</strong> (ditangkar atau dibudidayakan 
+          oleh manusia atau alien yang cerdas)
+          </li>
+          <li>
+          pengamatannya <strong>tidak menunjukkan bukti dari suatu
+          organisme</strong>, seperti gambar air, batu
+          atau pemandangan yang tidak memiliki organisme
+          </li>
+          <li>
+          pengamatannya <strong>tidak menunjukkan bukti organisme yang masih baru 
+          (~100 tahun)</strong> (seperti fosil, tetapi jejak, tahi, dan daun mati
+          masih ok)
+          </li>
+          <li>
+          pengamatan tidak memerlukan ID lagi <em>dan</em> ID komunitas setingkat famili ke atas
+          </li>
+          <li>
+          pengamat telah memilih untuk tidak memakai ID komunitas dan 
+          takson ID komunitas bukan merupakan nenek moyang atau keturunan 
+          dari takson yang terkait dengan ID pengamat
+          </li>
+          </ul>
+          <p>
+          Dan kalau ini masih belum terasa rumit, masih ada situasi tertentu yang memberikan hak suara untuk sistem:
+          </p>
+          <ul>
+          <li>
+          Sistem akan menyatakan bahwa pengamatannya tidak liar/alami
+          jika ada setidaknya 10 pengamatan lain dari suatu genus atau 
+          tingkat di bawahnya di wilayah administratif setingkat desa, provinsi, 
+          atau negara yang mengandung pengamatan ini dan 80% pengamatannya 
+          atau lebih telah ditandai tidak liar/alami.
+          </li>
+          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
@@ -6418,6 +6785,8 @@ id:
           Jika satu-satunya alasan Anda meninggalkan proyek ini adalah untuk menghentikan kurator proyek dari melihat koordinat tersembunyi Anda.
       edit:
         admins_must_be_existing_members: Pengelola harus merupakan anggota yang masih ada di dalam proyek.
+        admins_can_only_be_added_after_creation: |
+          Admin hanya bisa ditambahkan setelah proyek dibuat.
         aggregation_pending: Pengumpulan tertunda
         new_place_desc_html: |
           Coba lihat dulu <a href="%{places_url}" target="_blank">tempat-tempat yang sudah ada</a> dan pastikan Anda memasukkan nama tempatnya dengan benar. Jika Anda benar-benar tidak bisa menemukan tempat yang Anda inginkan, Anda boleh <a href="%{new_place_url}" target="_blank">membuat tempat baru</a>, tetapi tolong pastikan Anda tidak sedang membuat duplikat dari tempat yang sudah ada.
@@ -6535,6 +6904,8 @@ id:
         display_project_name: Hapus nama proyek
         do_you_need_features_from_traditional: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti akses menuju koordinat sesungguhnya, kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
+        do_you_need_features_from_traditional2: |
+          Apakah Anda memerlukan fitur dari proyek tradisional, seperti kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         duplicate_project: Gandakan Proyek
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
@@ -6713,12 +7084,27 @@ id:
           Dibuat melalui <a href="https://www.inaturalist.org">iNaturalist</a>
           atau situs web <a href="%{url}">Jaringan iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Menambahkan Keduanya
+        added_only_identifications: Menambahkan Identifikasi Saja
+        added_only_observations: Menambahkan Pengamatan Saja
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Pengaruh Lebih Luas
+        broader_impacts_desc: |
+          Beberapa rekan sering mengimpor pengamatan iNaturalist untuk 
+          mendukung ilmu pengetahuan dan konservasi. Pengamatan, identifikasi, 
+          dan penggunaan lisensi terbuka mengizinkan organisasi-organisasi 
+          tersebut untuk menyediakan informasi biodiversitas yang berguna untuk 
+          orang-orang yang membutuhkannya di seluruh dunia.
         compare_desc: |
           Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Dengan penggunaan selama tiga tahun atau lebih, kami bisa memulai untuk membandingkan metrik aktivitas tahunan. Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun. Statistik tidak menyertakan tahun di mana semua hitungan berjumlah nol.
         compare_site_desc: |
           Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun.
         compared_to_previous_years: Bandingkan Dengan Tahun Lalu
         donate_title: "Terima Kasih Khususnya Kepada Semua Pendukung Kami"
+        donate_desc2_html: |
+          Terima kasih telah memberikan waktu, perhatian, keahlian, dan donasi Anda! iNaturalist adalah organisasi nirlaba 501(c)3 yang berbasis di Amerika Serikat. iNaturalist didukung oleh <a href="%{team_url}">tim kecil</a> yang melakukan semua desain dan pengembangan perangkat lunak untuk web, mobile, dan <a href="%{seek_url}">Seek oleh iNaturalist</a>, yang juga mengelola bantuan untuk komunitas, kolaborasi, dan integrasi yang menjaga semuanya untuk bisa berjalan (juga berkembang dengan cepat!). Programnya bergantung kepada berbagai hibah serta donasi, termasuk hadiah amal dari sebagian kecil kontributor. Kami sangat berterima kasih kepada Pendukung Bulanan yang hadiah berkalanya telah menolong kami untuk merancang rencana ke depan. Anda dapat menyumbang melalui berbagai mata uang yang berbeda untuk mendukung operasi inti iNaturalist. Terima kasih semuanya untuk bagian kalian dalam membuat tahun %{year} tahun terbesar iNaturalist hingga kini!
         donors: Penyumbang
         donors_guide_label_our_goal_is_1000: Tujuan kami adalah 1.000 penyumbang rutin per bulan
         inaturalist_network: Jaringan iNaturalist
@@ -6780,6 +7166,8 @@ id:
           Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
+        view_all_publications_count_caps2:
+          other: "LIHAT %{count} PUBLIKASI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -6802,6 +7190,21 @@ id:
           </p>
           <p>
           Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna. Namanya diurutkan berdasarkan prioritas global di dalam masing-masing bahasa / jenis.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Nama dapat ditambahkan ke tempat-tempat (biasanya berupa negara) saat
+          negara-negara atau wilayah yang berbeda menggunakan nama umum yang
+          berbeda untuk bahasa yang sama. Contohnya, Meksiko dan Kosta Rika dapat
+          menggunakan nama yang berbeda dalam bahasa Spanyol untuk spesies yang
+          sama.
+          </p>
+          <p>
+          Tabel ini menunjukkan nama-nama apa saja yang sudah ditambahkan ke
+          tempat apa, dan diurutkan berdasarkan prioritas untuk masing-masing tempat.
+          Jika ada dua nama dalam bahasa Spanyol yang ditambahkan untuk Meksiko,
+          nama pertama dalam daftar akan ditampilkan jika Anda memilih untuk melihat
+          nama dalam bahasa Spanyol untuk daerah Meksiko.
           </p>
         about_conservation_status_desc: |
           Status konservasi merangkum risiko kepunahan untuk sekelompok organisme.
@@ -6860,8 +7263,8 @@ id:
       move_children_desc: |
         Anak-anak takson input yang berupa genus atau lebih kasar lagi akan dipindahkan ke output; spesies, subspesies, varietas, dll. akan diganti dengan sejenisnya dengan nama genus atau spesies baru.
       form:
-        move_children_desc_html: |
-          Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan ketika perubahan diterapkan. Jika ini berubah menjadi genus atau lebih bawah, ini akan membuat Penggantian Takson untuk semua turunan yang memiliki perubahan nama yang tersirat. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat sedikit kekacauan, jadi gunakanlah dengan bijak.
+        move_children_desc2_html: |
+          Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan Takson ketika perubahannya diterapkan. Jika ini perubahan genus atau tingkat yang lebih rendah, ini akan membuat Penggantian Takson untuk semua turunan dengan nama yang harus diubah juga. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat kekacauan, jadi gunakanlah dengan bijak.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6951,6 +7354,7 @@ id:
           <p>
           Jika seseorang mengganggu atau melakukan stalking kepada Anda di %{site_name}, <a href="mailto:%{help_email}">beritahu kami</a>. Jika hal itu merupakan pelanggaran Syarat dan Ketentuan Penggunaan kami atau merupakan perilaku yang kami anggap tidak pantas untuk situs kami, kami akan menyelidikinya.
           </p>
+        common_scientific_name_display_order: Urutan Penampilan Nama Umum / Ilmiah
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -6965,6 +7369,16 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        monthly_supporter_desc_html: |
+          Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
+          ke iNaturalist (United States IRS EIN 92-1296468) untuk mendukung 
+          operasi nirlaba iNaturalist dan situs-situs Jaringan iNaturalist.
+          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
+          Saat kami sudah mendapatkan dukungan Anda, Anda akan bisa mengecek kotak 
+          ini untuk menampilkan status ini di profil Anda. Catatan: alamat email Anda
+          di Donorbox dan iNaturalist harus sama supaya kita bisa mengonfirmasi bahwa
+          Anda adalah Pendukung Bulanan. Jika mereka berbeda, ubah salah satu supaya 
+          sama dengan yang lain.
         muting_desc_html: |
           <p>
           Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.
@@ -7031,6 +7445,26 @@ id:
         same_day_geoprivacy_protection: Perlindungan geoprivasi di hari yang sama
         taxon_change_desc: |
           Saat taxa dilebur atau dinamakan ulang di %{site_name}, pengamatan, taksa terdaftar, identifikasi, dll. milik Anda akan secara otomatis diubah menjadi taksa baru jika perubahannya tidak ambigu. Jika Anda memilih untuk tidak diberi kabar atau perubahannya ambigu (seperti pemisahan), Anda akan menerima kabar tentang perubahan yang terhubung dengan suatu alat yang dapat Anda gunakan untuk memperbarui secara manual konten Anda jika Anda menginginkannya.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Tambahkan kosakata nama umum
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Tambahkan tempat (opsional)
+          common_name_lexicon_display_order: Urutan Penampilan Kosakata Nama Umum
+          common_name_lexicons: Kosakata Nama Umum
+          common_name_lexicons_description: Menurut pengaturan standar, nama umum ditampilkan berdasarkan bahasa/daerah akun Anda. Untuk melihat nama-nama pada kosakata lain, atau untuk memprioritaskan nama-nama yang digunakan pada tempat-tempat tertentu (seperti Inggris (Australia) atau Spanyol (Kosta Rika)), tambahkan kosakata nama umum. Maksimal 3 nama umum yang bisa ditampilkan dalam suatu waktu. Jika tidak ada nama umum yang tersedia untuk kosakata yang Anda pilih, nama umumnya tidak akan diikutsertakan ke dalam tampilan.
+          for_multiple_common_name_lexicons_drag_and_drop: Untuk memilih beberapa kosakata nama umum, geser dan lepas pengaturan-pengaturan di bawah ini untuk mengatur urutan penampilan nama-namanya.
+          same_as_locale: Sama seperti daerah
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Sama seperti pilihan bahasa pengguna/daerah
+          select_a_lexicon: Pilih kosakata
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Sebanyak 3 kosakata nama umum (maksimal) sudah ditambahkan
         this_only_applies_to_traditional_projects: |
           Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang intinya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">di sini</a>.
       recent:
@@ -7313,9 +7747,11 @@ id:
       AssessmentSection: Bagian Penilaian
       Atlas: Atlas
       BlockedUser: Pengguna Diblokir
+      Comment: Komentar
       CompleteSet: Set Komplet
       #Noun
       Flag: Tanda
+      Identification: Identifikasi
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7327,6 +7763,8 @@ id:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikasi
+      Photo: Foto
+      Post: Pos Jurnal
       TaxonLink: Tautan Takson
     attributes:
       announcement:
@@ -7340,6 +7778,7 @@ id:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Target pengguna yang belum dikonfirmasi
+        clients: Klien
       assessment:
         description: Deskripsi
       assessment_section:
@@ -7561,6 +8000,16 @@ id:
         header:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: harus valid untuk penempatan yang tertera
         application:
           attributes:
             redirect_uri:
@@ -7599,11 +8048,10 @@ id:
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
               must_be_a_curator: harus merupakan kurator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Impor untuk pengguna Mushroom Observer itu sedang berjalan atau diantrekan untuk impor"
-              api_key_missing: "Kunci API Mushroom Observer tidak ditemukan"
+            user:
+              must_be_a_curator: harus merupakan kurator
         observation:
           attributes:
             base:
@@ -7738,6 +8186,12 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
+              user_cannot_be_staff2: |
+                Anda tidak bisa memblokir staf. Staf iNat harus bisa 
+                berkomunikasi dengan semua orang di iNat, memiliki akses
+                ke semua data di iNat, dan menjadi mediator sengketa teratas, 
+                jadi memblokir staf tidak akan bisa mencegah mereka untuk 
+                menghubungi Anda.
         user_parent:
           attributes:
             email:
@@ -7910,6 +8364,20 @@ id:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Aktinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amfibia
+        Mammalia: Mamalia
+        Arachnida: Araknida
+        Insecta: Insekta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
+        Mollusca: Moluska
+        Chromista: Kromista
   #Title of a section warning the user about something
   warning_title: Peringatan
   wikimedia: Wikimedia

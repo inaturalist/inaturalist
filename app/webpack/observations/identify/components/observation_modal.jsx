@@ -18,6 +18,7 @@ import SuggestionsContainer from "../containers/suggestions_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
+import ProjectsContainer from "../containers/projects_container";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
@@ -410,7 +411,7 @@ class ObservationModal extends React.Component {
                 key={`keyboard-shortcuts-${shortcut.keys.join( "-" )}`}
               >
                 <td>
-                  <span dangerouslySetInnerHTML={{ __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) }} />
+                  <span dangerouslySetInnerHTML={{ __html: shortcut.keys.map( k => `<kbd>${k}</kbd>` ).join( " + " ) }} />
                 </td>
                 <td>{ shortcut.label }</td>
               </tr>
@@ -558,11 +559,11 @@ class ObservationModal extends React.Component {
                                             key={`keyboard-shortcuts-${labelKey}`}
                                           >
                                             <td>
-                                              <code>{ shortcut.keys[0] }</code>
+                                              <kbd>{ shortcut.keys[0] }</kbd>
                                               { " " }
                                               { I18n.t( "then_keybord_sequence" ) }
                                               { " " }
-                                              <code>{ shortcut.keys[1] }</code>
+                                              <kbd>{ shortcut.keys[1] }</kbd>
                                             </td>
                                             <td>
                                               {
@@ -844,6 +845,8 @@ class ObservationModal extends React.Component {
                 <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`} tabIndex="-1">
                   <div className="column-header">{ I18n.t( "annotations" ) }</div>
                   <AnnotationsContainer />
+                  <div className="column-header">{ I18n.t( "projects" ) }</div>
+                  <ProjectsContainer />
                   <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
                   <ObservationFieldsContainer />
                 </div>

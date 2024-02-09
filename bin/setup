@@ -32,7 +32,7 @@ chdir APP_ROOT do
   puts "\n== Creating Template Database =="
   if system "command -v createdb > /dev/null"
     if USING_DOCKER
-      puts "docker.compose.override.yml exists, assuming you're using Docker and the template db already exists"
+      puts "docker-compose.override.yml exists, assuming you're using Docker and the template db already exists"
     else
       system "createdb template_postgis", exception: true
       system "psql -d template_postgis -c 'create extension postgis'", exception: true

@@ -21,6 +21,15 @@ import {
   resetSubscriptions,
   setSubscriptions
 } from "../../show/ducks/subscriptions";
+import { setConfirmModalState } from "../../show/ducks/confirm_modal";
+import {
+  addToProject as sharedAddToProject,
+  removeFromProject as sharedRemoveFromProject,
+  joinProject as sharedJoinProject,
+  addObservationFieldValue as sharedAddObservationFieldValue,
+  updateObservationFieldValue as sharedUpdateObservationFieldValue,
+  removeObservationFieldValue as sharedRemoveObservationFieldValue
+} from "../../shared/ducks/observation";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -458,7 +467,7 @@ function showNextObservation( ) {
       nextObservation = currentObservation.observation || observations.results[0];
     }
     if ( nextObservation ) {
-      dispatch( setControlledTermsForTaxon( nextObservation.taoxn ) );
+      dispatch( setControlledTermsForTaxon( nextObservation.taxon ) );
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
     } else {
@@ -482,7 +491,7 @@ function showPrevObservation( ) {
     prevIndex -= 1;
     const prevObservation = observations.results[prevIndex];
     if ( prevObservation ) {
-      dispatch( setControlledTermsForTaxon( prevObservation.taoxn ) );
+      dispatch( setControlledTermsForTaxon( prevObservation.taxon ) );
       dispatch( showCurrentObservation( prevObservation ) );
       dispatch( fetchCurrentObservation( prevObservation ) );
     }
@@ -967,71 +976,101 @@ export function showNextTab( ) {
   };
 }
 
+export function addToProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedAddToProject(
+      state.currentObservation.observation,
+      project,
+      updateCurrentObservation,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
+  };
+}
+
+export function removeFromProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedRemoveFromProject(
+      state.currentObservation.observation,
+      project,
+      updateCurrentObservation,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
+  };
+}
+
+export function confirmRemoveFromProject( project ) {
+  return dispatch => {
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "are_you_sure_you_want_to_remove_this_observation_from_project", { project: project.title } ),
+      confirmText: I18n.t( "yes" ),
+      onConfirm: ( ) => {
+        dispatch( removeFromProject( project ) );
+      }
+    } ) );
+  };
+}
+
+export function joinProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedJoinProject(
+      state.currentObservation.observation,
+      project,
+      updateCurrentObservation,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
+  };
+}
+
 export function addObservationFieldValue( options ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !options.observationField ) { return; }
-    const newOfvs = _.clone( state.currentObservation.observation.ofvs );
-    newOfvs.unshift( {
-      datatype: options.observationField.datatype,
-      name: options.observationField.name,
-      value: options.value,
-      observation_field: options.observationField,
-      api_status: "saving",
-      taxon: options.taxon
-    } );
-    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
-    const payload = {
-      observation_field_value: {
-        observation_field_id: options.observationField.id,
-        observation_id: state.config.testingApiV2
-          ? state.currentObservation.observation.uuid
-          : state.currentObservation.observation.id,
-        value: options.value
-      }
-    };
-    iNaturalistJS.observation_field_values.create( payload )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+    dispatch( sharedAddObservationFieldValue(
+      state.currentObservation.observation,
+      updateCurrentObservation,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      },
+      options
+    ) );
   };
 }
 
 export function updateObservationFieldValue( id, options ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !options.observationField ) { return; }
-    const newOfvs = state.currentObservation.observation.ofvs.map( ofv => (
-      ofv.uuid === id ? {
-        datatype: options.observationField.datatype,
-        name: options.observationField.name,
-        value: options.value,
-        observation_field: options.observationField,
-        api_status: "saving",
-        taxon: options.taxon
-      } : ofv ) );
-    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
-    const payload = {
-      uuid: id,
-      observation_field_value: {
-        observation_field_id: options.observationField.id,
-        observation_id: state.config.testingApiV2
-          ? state.currentObservation.observation.uuid
-          : state.currentObservation.observation.id,
-        value: options.value
-      }
-    };
-    iNaturalistJS.observation_field_values.update( payload )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+    dispatch( sharedUpdateObservationFieldValue(
+      state.currentObservation.observation,
+      id,
+      updateCurrentObservation,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      },
+      options
+    ) );
   };
 }
 
 export function removeObservationFieldValue( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const newOfvs = state.currentObservation.observation.ofvs.map( ofv => (
-      ofv.uuid === id ? Object.assign( { }, ofv, { api_status: "deleting" } ) : ofv ) );
-    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
-    iNaturalistJS.observation_field_values.delete( { id } )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+    dispatch( sharedRemoveObservationFieldValue(
+      state.currentObservation.observation,
+      id,
+      updateCurrentObservation,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
   };
 }
 

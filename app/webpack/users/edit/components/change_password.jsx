@@ -49,8 +49,8 @@ class ChangePassword extends Component {
 
     return (
       <div className="settings-item">
-        {/* Change this into a button since using onClick? */}
-        <label
+        <button
+          type="button"
           className="inverse-toggle collapsible"
           htmlFor="user_password"
           onClick={( ) => {
@@ -59,7 +59,7 @@ class ChangePassword extends Component {
         >
           {`${I18n.t( "change_password" )} `}
           <i className={`fa fa-caret-${showPasswordForm ? "down" : "right"}`} aria-hidden="true" />
-        </label>
+        </button>
         <div className={showPasswordForm ? null : "collapse"}>
           <form id="user_password">
             <div className="form-group">

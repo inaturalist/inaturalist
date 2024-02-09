@@ -25,6 +25,10 @@ Paperclip.interpolates( "root_url" ) do | _attachment, _style |
   UrlHelper.root_url.chomp( "/" )
 end
 
+Paperclip.interpolates( "locale" ) do | attachment, _style |
+  attachment&.instance&.locale || ":locale"
+end
+
 Paperclip::UploadedFileAdapter.content_type_detector = InatContentTypeDetector
 Paperclip::UriAdapter.register
 Paperclip::DataUriAdapter.register

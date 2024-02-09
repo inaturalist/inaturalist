@@ -21,7 +21,6 @@ const HiglightsCarousel = ( {
   const photosPerSlide = 4;
   const columnWidth = 3;
   const thumbnailHeight = 200;
-  const thumbnailTruncation = 27;
   const keyBase = _.snakeCase( title );
   if ( !taxa && !observations ) {
     return (
@@ -38,14 +37,13 @@ const HiglightsCarousel = ( {
     const chunkedTaxa = _.chunk( taxa, photosPerSlide );
     items = (
       _.map( chunkedTaxa, ( chunk, i ) => (
-        <Row key={`${keyBase}-${i}`}>
+        <Row key={`${keyBase}-${i}`} className="d-flex">
           {
             chunk.map( taxon => (
-              <Col xs={ columnWidth } key={ `${keyBase}-item-${taxon.id}` }>
+              <Col xs={ columnWidth } key={ `${keyBase}-item-${taxon.id}` } className="d-flex">
                 <TaxonThumbnail
                   taxon={ taxon }
                   height={ thumbnailHeight }
-                  truncate={ thumbnailTruncation }
                   onClick={ e => {
                     if ( !showNewTaxon ) return true;
                     if ( e.metaKey || e.ctrlKey ) return true;
@@ -66,7 +64,7 @@ const HiglightsCarousel = ( {
   } else {
     items = (
       _.map( _.chunk( _.uniqBy( observations, o => o.id ), photosPerSlide ), ( chunk, i ) => (
-        <Row key={`${keyBase}-${i}`}>
+        <Row key={`${keyBase}-${i}`} className="d-flex">
           {
             chunk.map( obs => (
               <Col xs={columnWidth} key={`${keyBase}-item-${obs.id}`}>

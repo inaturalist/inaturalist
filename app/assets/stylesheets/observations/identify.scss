@@ -11,6 +11,7 @@
 @import "../shared/loading_spinner";
 @import "../shared/disagreement_alert";
 @import "../shared/flash_message";
+@import "../shared/modals";
 @import "../users/user_popover";
 @import "identify/blind";
 @import "identify/suggestions";
@@ -268,13 +269,16 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   }
 }
 
-.image-size-large {
+#Identify .ObservationsGrid.image-size-large {
   .ObservationsGridItem,
   .ObservationsGridItem .media {
     width: 220px;
   }
   .ObservationsGridItem .media {
     height: 220px;
+  }
+  .ObservationsGridItem .UserImage {
+    top: 190px;
   }
 }
 
@@ -321,4 +325,8 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
       }
     }
   }
+}
+
+body>[role="dialog"] .modal-backdrop {
+  z-index: 1050;
 }

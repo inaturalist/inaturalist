@@ -355,11 +355,9 @@ sk:
   bg_color: Farba pozadia
   birds: vtáky
   birthday: Narodeniny
-  black: čierna
   block_removed: Zablokovanie zrušené
   blocked_users: Blokovaní používatelia
   blog_widget: Zásuvný modul pre blog
-  blue: modrá
   blue_butterfly_etc: "modrý, motýľ atď."
   body: Telo
   breadcrumbs: Strúhanka
@@ -369,7 +367,6 @@ sk:
   #shown
   breadcrumbs_description: "Toto nahradí h1 a základné nastavenie výziev, preto ich pridajte, ak sú pre tento projekt dôležité, a nezabudnite, že maximálna povolená veľkosť je 950px"
   brief_caption: Stručný opis
-  brown: hnedá
   browse: Prehliadať
   browse_all_projects: Prehliadať všetky projekty
   browse_all_species: Prehliadať všetky druhy
@@ -867,6 +864,7 @@ sk:
   everywhere: všade
   exact: Presný
   exact_date: Presný dátum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Presné poradie
   except: okrem
   exclusion_filters: Vylučovacie filtre
@@ -976,6 +974,7 @@ sk:
   fluid: premenlivé
   follow: Sledovať
   follow_receive_updates_about_new_observations: Sledujte (dostanete informácie o nových pozorovaniach)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sledovať %{user}"
   followers: Sledovatelia
   following: Sledovať
@@ -1025,7 +1024,6 @@ sk:
   got_your_data_somewhere_else?: Máte svoje údaje niekde inde? Dokážeme vám pomôcť.
   graft: Pripojiť
   grafting_attemps_to_insert_this_taxon: Cieľom pripojenia je vložiť tento taxón do nášho taxonomického stromu, nájdenie existujúceho  hlavného taxónu alebo vytvorenie všetkých nutných pomocných taxónov pre pripojenie k existujúcemu taxónu vyššej úrovne.
-  grant_role: "%{grant} %{role} funkcia"
   grid: Mriežka
   grid_layout: Rozloženie mriežky
   grid_tooltip: Zobraziť pohľad s mriežkou
@@ -1060,14 +1058,10 @@ sk:
   hex_color_eg: Farba hex, napr. 65644F
   hi_user: "Ahoj %{user}"
   hide_content: Skryť obsah
-  hide_desc: |
-    Skrytím obsahu ho odstránite z verejného zobrazenia, ale ľudia budú stále
-    vidieť, že niečo bolo skryté, a kurátori stránok a autor
-    obsahu bude naďalej môcť vidieť skrytý obsah. Všeobecne platí, že sa to
-    vzťahuje iba na písomný obsah, napr. ak skryjete obsah
-    identifikácie, identifikácia je stále viditeľná, ale poznámky identifikátora sú skryté. Nemôžete to vrátiť späť a iba pracovníci stránok môžu skryť obsah, keď bude skrytý, takže buďte opatrní a používajte ho iba pri obsahu, ktorý je nevhodný.
   hide_uncountable_species: Skryť nespočítateľné druhy
   high: Vysoká
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Najvyššie poradie
   highlights_and_stats_from_year_on_site: "Najvýznamnejšie udalosti a štatistiky z roku %{year} v %{site}"
   history: História
@@ -1369,6 +1363,8 @@ sk:
   looks_like_no_species_in_guide: Vyzerá to, že vo svojom sprievodcovi nemáte ešte žiadny druh.
   lookup: Vyhľadať
   low: Nízka
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Najnižšia hodnosť
   make_admin: Vytvoriť admina
   #Header for main content section of the project detail page when editing custom project data.
@@ -1510,7 +1506,6 @@ sk:
   needs_id: nutné ID
   needs_id_: Nutné ID
   needs_id_expandable_html: "<span class='full'>Potrebuje </span>ID"
-  needs_to_be_identified: Musí byť identifikovaný
   new_and_noteworthy: Nové a pozoruhodné
   new_announcement: Nové oznámenie
   new_assessment: Nové hodnotenie
@@ -1767,14 +1762,15 @@ sk:
   only_staff_can_edit_large_places: Iba personál stránky môže upravovať veľmi veľké miesta
   only_staff_can_edit_standard_places: Iba personál stránky môže upraviť miesta v štandardnej hierarchii
   only_you: Iba vy
+  #Geoprivacy status in which no privacy has been applied
   open: otvorený
+  #Geoprivacy status in which no privacy has been applied
   open_: Otvorený
   optional: voliteľný
   or: alebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: ALEBO
-  orange: oranžový
   order: Zoradiť
   order_by: Zoradiť podľa
   organism_is_wild: Organizmus žije vo voľnej prírode
@@ -1855,7 +1851,6 @@ sk:
   photos_updated: Fotky boli aktualizované.
   pi_consent_desc_title: O osobných údajoch
   pin_verb: Pripnúť
-  pink: ružový
   pinned_locations_desc: |
     Pripnite túto kombináciu súradníc, presnosti, geografické dôvernosti a poznámky k miestam pre neskoršie použitie.
   place: Miesto
@@ -2268,7 +2263,6 @@ sk:
   provider_authorizations: Autorizácia poskytovateľa
   public_domain: Voľné dielo
   publish: Publikovať
-  purple: fialová
   quality_grade: Úroveň kvality
   quality_grade_: Úroveň kvality
   quality_grade_colon: "Úroveň kvality:"
@@ -2278,7 +2272,11 @@ sk:
   radius_value: "Polomer (m): %{radius}"
   random: Náhodný
   range: Rozsah
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikácia
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikácia
   ranks:
     stateofmatter: Stav veci
@@ -2343,7 +2341,6 @@ sk:
   recently_finished: Nedávno dokončené
   recently_observed: Nedávno pozorované
   recently_resolved: Nedávno vyriešené
-  red: červený
   redo_search_in_map: Opakovať hľadanie v mape
   redo_search_in_map_area: Opakovať hľadanie v časti mapy
   refresh: Obnoviť
@@ -2724,6 +2721,7 @@ sk:
   taxon_range: Rozsah taxónu
   taxon_range_created_notice: Rozsah taxónu bol úspešne vytvorený. Počkajte prosím pár minút, než sa objaví na mapách.
   taxon_range_updated_notice: Rozsah taxónu bol úspešne aktualizovaný. Počkajte prosím pár minut, než sa objaví na mapách.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Poradie taxónu
   taxon_removed_from_list: Taxón bol odstránený zo zoznamu.
   taxon_scheme: Plán taxónu
@@ -2835,7 +2833,6 @@ sk:
   unknown: Neznámy
   unknown_error: Neznáma chyba
   unknown_rank: '(Neznáme zaradenie)'
-  unfollow: Prestať sledovať
   unlink_your_google_account: Zrušiť pripojenie vášho účtu Google
   unmute: Zapnúť zvuk
   updates_notification_email_subject: "%{prefix} Nové aktualizácie %{date}"

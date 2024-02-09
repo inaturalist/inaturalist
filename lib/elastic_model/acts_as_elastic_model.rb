@@ -17,7 +17,8 @@ module ActsAsElasticModel
     end
 
     # set the index name based on the environment, useful for specs
-    index_name [ (Rails.env.prod_dev? ? "production" : Rails.env), model_name.collection ].join('_')
+    index_prefix = ENV.fetch("INAT_ES_INDEX_PREFIX") { (Rails.env.prod_dev? ? "production" : Rails.env) }
+    index_name [ index_prefix, model_name.collection ].join('_')
 
     after_commit on: [:create, :update] do
       unless respond_to?(:skip_indexing) && skip_indexing
@@ -118,8 +119,7 @@ module ActsAsElasticModel
             queue: queue
           ).elastic_index!( options.merge(
             ids: result_ids,
-            indexed_before: 5.minutes.from_now.strftime("%FT%T"),
-            wait_for_index_refresh: true
+            indexed_before: 5.minutes.from_now.strftime("%FT%T")
           ) )
         end
         # now we can preload all associations needed for efficient indexing

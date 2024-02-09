@@ -87,7 +87,7 @@ const MoreFromUser = ( {
           </div>
         </h3>
       </Col>
-      <div className="list">
+      <div className="list d-flex">
         { observations.map( o => {
           let taxonJSX = I18n.t( "unknown" );
           if ( o.taxon && o.taxon !== null ) {
@@ -99,8 +99,8 @@ const MoreFromUser = ( {
             ? o.taxon.iconic_taxon_name.toLowerCase( )
             : "unknown";
           return (
-            <Col xs={2} key={`more-obs-${o.uuid}`}>
-              <div className="obs">
+            <Col xs={2} key={`more-obs-${o.uuid}`} className="d-flex">
+              <div className="obs d-flex flex-column">
                 <div className="photo">
                   <a
                     href={`/observations/${o.id}`}

@@ -3,10 +3,10 @@ import Projects from "../components/projects";
 import {
   addToProject,
   confirmRemoveFromProject,
+  joinProject,
   removeObservationFieldValue,
   updateObservationFieldValue
 } from "../ducks/observation";
-import { joinProject } from "../ducks/projects";
 import { updateCuratorAccess } from "../ducks/project_observations";
 import { updateSession } from "../ducks/users";
 import { setProjectFieldsModalState } from "../ducks/project_fields_modal";

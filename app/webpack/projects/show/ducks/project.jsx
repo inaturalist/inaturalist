@@ -17,6 +17,7 @@ const TAXON_FIELDS = {
   rank_level: true,
   iconic_taxon_name: true,
   preferred_common_name: true,
+  preferred_common_names: true,
   is_active: true,
   extinct: true,
   ancestor_ids: true,
@@ -28,6 +29,13 @@ const TAXON_FIELDS = {
 const SPECIES_COUNTS_FIELDS = {
   count: true,
   taxon: TAXON_FIELDS
+};
+
+const USER_FIELDS = {
+  id: true,
+  login: true,
+  name: true,
+  icon_url: true
 };
 
 const OBSERVATION_FIELDS = {
@@ -53,7 +61,8 @@ const OBSERVATION_FIELDS = {
     id: true,
     uuid: true,
     url: true,
-    license_code: true
+    license_code: true,
+    original_dimensions: "all"
   },
   taxon: {
     id: true,
@@ -62,15 +71,11 @@ const OBSERVATION_FIELDS = {
     iconic_taxon_name: true,
     is_active: true,
     preferred_common_name: true,
+    preferred_common_names: true,
     rank: true,
     rank_level: true
   },
-  user: {
-    id: true,
-    login: true,
-    name: true,
-    icon_url: true
-  }
+  user: USER_FIELDS
 };
 
 export default function reducer( state = { }, action ) {
@@ -113,10 +118,18 @@ export function setAttributes( attributes ) {
 
 export function fetchMembers( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    const params = { id: state.project.id, per_page: 100, order_by: "login" };
-    if ( state.config.currentUser ) {
+    const { project, config } = getState( );
+    const { testingApiV2 } = config;
+    const params = {
+      id: project.id,
+      per_page: 100,
+      order_by: "login"
+    };
+    if ( config.currentUser ) {
       params.ttl = -1;
+    }
+    if ( testingApiV2 ) {
+      params.fields = { user: USER_FIELDS };
     }
     return inatjs.projects.members( params ).then( response => {
       dispatch( setAttributes( {
@@ -129,8 +142,13 @@ export function fetchMembers( ) {
 
 export function fetchCurrentProjectUser( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
-    return inatjs.projects.membership( { id: project.id } )
+    const { project, config } = getState( );
+    const { testingApiV2 } = config;
+    const params = { id: project.id };
+    if ( testingApiV2 ) {
+      params.fields = "all";
+    }
+    return inatjs.projects.membership( params )
       .then( response => {
         if ( response.results[0] ) {
           dispatch( setAttributes( { currentProjectUser: response.results[0] } ) );
@@ -235,7 +253,7 @@ export function infiniteScrollObservations( previousScrollIndex, nextScrollIndex
     const { testingApiV2 } = config;
     const total = project.filtered_observations.total_results;
     const loaded = project.filtered_observations.results.length;
-    if ( previousScrollIndex >= total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
+    if ( previousScrollIndex >= total || nextScrollIndex <= loaded || previousScrollIndex > 500 ) {
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
       return null;
     }
@@ -263,14 +281,14 @@ export function infiniteScrollObservations( previousScrollIndex, nextScrollIndex
   };
 }
 
-export function infiniteScrollSpecies( nextScrollIndex ) {
+export function infiniteScrollSpecies( previousScrollIndex, nextScrollIndex ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project || !project.species_loaded ) { return null; }
     const { testingApiV2 } = config;
     const total = project.species.total_results;
     const loaded = project.species.results.length;
-    if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
+    if ( previousScrollIndex >= total || nextScrollIndex <= loaded || previousScrollIndex > 500 ) {
       dispatch( setConfig( { speciesScrollIndex: nextScrollIndex } ) );
       return null;
     }
@@ -747,8 +765,16 @@ export function deleteFlag( id ) {
 }
 
 export function updateProjectUser( projectUser ) {
-  return dispatch => {
-    inatjs.project_users.update( { id: projectUser.id, project_user: projectUser } )
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
+    const params = {
+      id: projectUser.id,
+      project_user: projectUser
+    };
+    if ( config.testingApiV2 ) {
+      params.project_user = _.omit( params.project_user, "id" );
+    }
+    inatjs.project_users.update( params )
       .then( ( ) => dispatch( fetchCurrentProjectUser( ) ) )
       .catch( e => alert( e ) );
   };

@@ -14,12 +14,14 @@ class EmailSuppression < ApplicationRecord
   SPAM_REPORTS = "spam_reports"
   TRANSACTIONAL_EMAILS = "transactional_emails"
   UNSUBSCRIBES = "unsubscribes"
+  ACCURACY_EXPERIMENT_EMAILS = "accuracy_experiment_emails"
 
   SUPRESSION_TYPES = [
     ACCOUNT_EMAILS,
     DONATION_EMAILS,
     NEWS_EMAILS,
     TRANSACTIONAL_EMAILS,
+    ACCURACY_EXPERIMENT_EMAILS,
     BOUNCES,
     BLOCKS,
     INVALID_EMAILS,
@@ -31,7 +33,8 @@ class EmailSuppression < ApplicationRecord
     ACCOUNT_EMAILS,
     DONATION_EMAILS,
     NEWS_EMAILS,
-    TRANSACTIONAL_EMAILS
+    TRANSACTIONAL_EMAILS,
+    ACCURACY_EXPERIMENT_EMAILS
   ].freeze
 
   SENDGRID_REST_OPTS = { Authorization: "Bearer #{CONFIG&.sendgrid&.api_key}" }.freeze

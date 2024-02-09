@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
   get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
 
-  get "/independence", to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
+  get "/independence",
+    to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
 
   resources :controlled_terms
@@ -123,11 +124,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :observation_field_values, only: [:create, :update, :destroy, :index]
+  resources :observation_field_values, only: [:create, :update, :destroy]
   resources :observation_fields do
     member do
       get :merge
       put :merge, to: "observation_fields#merge_field"
+    end
+  end
+  resources :observation_accuracy_experiments, only: [:show] do
+    member do
+      get "get_more_validators"
     end
   end
   get "/" => "welcome#index"
@@ -235,6 +241,7 @@ Rails.application.routes.draw do
     end
     member do
       put :rotate
+      get :hide
     end
   end
 
@@ -421,6 +428,9 @@ Rails.application.routes.draw do
   post "check_lists/:id/add_taxon_batch" => "check_lists#add_taxon_batch", :as => :check_list_add_taxon_batch,
     :constraints => { id: /\d+([\w\-%]*)/ }
   resources :comments, constraints: { id: id_param_pattern } do
+    member do
+      get "hide"
+    end
     resources :flags
   end
   get "comments/user/:login" => "comments#user", :as => :comments_by_login,
@@ -694,7 +704,11 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  resources :moderator_actions, only: [:create]
+  resources :moderator_actions, only: [:create] do
+    member do
+      get :resource_url, constraints: ->( req ) { req.format == :json }
+    end
+  end
 
   resource :lifelists, only: [] do
     collection do

@@ -4,7 +4,7 @@
   "description": "iNaturalist npm package for managing node dependencies.",
   "scripts": {
     "webpack": "webpack --config config/webpack.config.js",
-    "webpack-watch": "webpack watch --config config/webpack.config.js"
+    "webpack-watch": "NODE_ENV=development webpack watch --config config/webpack.config.js --mode=development"
   },
   "dependencies": {
     "@formatjs/intl-locale": "^2.4.19",
@@ -15,16 +15,18 @@
     "acorn": ">=6.4.1",
     "acorn-to-esprima": "^2.0.8",
     "billboard.js": "^3.7.4",
+    "chroma-js": "^2.4.2",
     "color-convert": "^1.9.3",
     "core-js": "^3.29.0",
     "cross-fetch": "^3.1.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "d3": "7",
     "d3-svg-legend": "github:inaturalist/d3-legend#d3-v7",
     "d3-v6-tip": "^1.0.9",
     "debug": "^2.6.9",
     "EasyZoom": "github:inaturalist/EasyZoom#click-toggle",
     "es6-promise-pool": "^2.5.0",
+    "h3-js": "^4.1.0",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
     "inaturalistjs": "github:inaturalist/inaturalistjs",

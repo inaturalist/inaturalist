@@ -265,6 +265,7 @@ class User < ApplicationRecord
   after_save :destroy_messages_by_suspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
+  after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
   after_create :set_uri
@@ -402,7 +403,7 @@ class User < ApplicationRecord
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
-  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-09-01" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2023-09-06 12:00" )
 
   # Override of method from devise to implement some custom restrictions like
   # parent/child permission and gradual confirmation requirement rollout
@@ -411,9 +412,11 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
+    return true if anonymous?
+
     # Temporary state to allow existing users to sign in. Probably redundant
     # with the next grandparent exception
-    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    return true if confirmation_sent_at.blank? && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME
 
     # Temporary state to allow existing users to sign in
     return true if allowed_unconfirmed_grace_period?
@@ -422,11 +425,16 @@ class User < ApplicationRecord
   end
 
   def allowed_unconfirmed_grace_period?
-    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    Time.now < EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   def unconfirmed_grace_period_expired?
-    created_at < EMAIL_CONFIRMATION_RELEASE_DATE && Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATE
+    Time.now >= EMAIL_CONFIRMATION_REQUIREMENT_DATETIME &&
+      !confirmed? &&
+      created_at &&
+      created_at < EMAIL_CONFIRMATION_RELEASE_DATE
   end
 
   # Devise override for message to show the user when they can't log in b/c
@@ -435,7 +443,7 @@ class User < ApplicationRecord
     if unconfirmed_grace_period_expired?
       return I18n.t(
         :email_conf_required_after_grace_period,
-        requirement_date: I18n.l( EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :long )
+        requirement_date: I18n.l( EMAIL_CONFIRMATION_REQUIREMENT_DATETIME.to_date, format: :long )
       )
     end
 
@@ -699,9 +707,12 @@ class User < ApplicationRecord
     Observation.elastic_index!(ids: Observation.by(self).pluck(:id), wait_for_index_refresh: true)
   end
 
-  def merge(reject)
+  def merge( reject )
     raise "Can't merge a user with itself" if reject.id == id
-    reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    reject.friendships.where( friend_id: id ).each( &:destroy )
+    # update this has_one relationship on user_parent
+    UserParent.where( user_id: reject.id ).update_all( user_id: id )
 
     # Conditions should match index_votes_on_unique_obs_fave
     reject.votes
@@ -803,7 +814,8 @@ class User < ApplicationRecord
       EmailSuppression::ACCOUNT_EMAILS,
       EmailSuppression::DONATION_EMAILS,
       EmailSuppression::NEWS_EMAILS,
-      EmailSuppression::TRANSACTIONAL_EMAILS
+      EmailSuppression::TRANSACTIONAL_EMAILS,
+      EmailSuppression::ACCURACY_EXPERIMENT_EMAILS
     ].reject {| i | ( suppressed_groups.include? i ) }
     return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
       email, unsuppressed_groups ).first
@@ -937,17 +949,16 @@ class User < ApplicationRecord
   # all occur within a transaction. This method tries to circumvent some of
   # that madness by assigning communal assets to new users and pre-destroying
   # some associates
-  def sane_destroy(options = {})
+  def sane_destroy( options = {} )
     start_log_timer "sane_destroy user #{id}"
     taxon_ids = []
-    if response = INatAPIService.get("/observations/taxonomy", {user_id: id})
-      taxon_ids = response.results.map{|a| a["id"]}
+    if response = INatAPIService.get( "/observations/taxonomy", { user_id: id } )
+      taxon_ids = response.results.map {| a | a["id"] }
     end
-    project_ids = self.project_ids
 
     # delete lists without triggering most of the callbacks
-    lists.where("type = 'List' OR type IS NULL").find_each do |l|
-      l.listed_taxa.find_each do |lt|
+    lists.where( "type = 'List' OR type IS NULL" ).find_each do | l |
+      l.listed_taxa.find_each do | lt |
         lt.skip_sync_with_parent = true
         lt.skip_update_cache_columns = true
         lt.destroy
@@ -955,9 +966,9 @@ class User < ApplicationRecord
       l.destroy
     end
 
-    User.preload_associations(self, [ :stored_preferences, :roles, :flags ])
+    User.preload_associations( self, [:stored_preferences, :roles, :flags] )
     # delete observations without onerous callbacks
-    observations.includes([
+    observations.includes( [
       { user: :stored_preferences },
       :votes_for,
       :flags,
@@ -980,65 +991,70 @@ class User < ApplicationRecord
       :taxon,
       :quality_metrics,
       :sounds
-    ]).find_each(batch_size: 100) do |o|
+    ] ).find_each( batch_size: 100 ) do | o |
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
       o.bulk_delete = true
-      o.comments.each{ |c| c.bulk_delete = true }
-      o.annotations.each{ |a| a.bulk_delete = true }
+      o.comments.each {| c | c.bulk_delete = true }
+      o.annotations.each {| a | a.bulk_delete = true }
       o.destroy
     end
 
-    identification_observation_ids = Identification.where(user_id: id).
-      select(:observation_id).distinct.pluck(:observation_id)
-    comment_observation_ids = Comment.where(user_id: id, parent_type: "Observation").
-      select(:parent_id).distinct.pluck(:parent_id)
-    annotation_observation_ids = Annotation.where(user_id: id, resource_type: "Observation").
-      select(:resource_id).distinct.pluck(:resource_id)
-    unique_obs_ids = ( identification_observation_ids + comment_observation_ids +
-      annotation_observation_ids ).uniq
+    identification_ids = Identification.where( user_id: id ).pluck( :id )
+    identification_ids.in_groups_of( 100, false ) do | batch_ids |
+      identifications_batch = Identification.where( id: batch_ids ).
+        includes(
+          [
+            :observation,
+            :taxon,
+            :user,
+            :flags,
+            :moderator_actions
+          ]
+        )
+      obs_ids = identifications_batch.map( &:observation_id )
+      identifications_batch.each do | i |
+        i.observation.skip_indexing = true
+        i.observation.bulk_delete = true
+        i.bulk_delete = true
+        i.destroy
+      end
 
-    identifications.includes([
-      :observation,
-      :taxon,
-      :user,
-      :flags
-    ]).find_each(batch_size: 100) do |i|
-      i.observation.skip_indexing = true
-      i.observation.bulk_delete = true
-      i.bulk_delete = true
-      i.destroy
-    end
-
-    identification_observation_ids.in_groups_of(100, false) do |obs_ids|
-      Observation.where(id: obs_ids).includes(
+      Observation.where( id: obs_ids ).includes(
         { user: :stored_preferences },
         :votes_for,
         :flags,
         :taxon,
-        { photos: :flags },
-        { identifications: [ :taxon, { user: :flags } ] },
+        { photos: [:flags, :moderator_actions] },
+        { sounds: [:flags, :moderator_actions] },
+        { identifications: [:taxon, { user: :flags }, :moderator_actions] },
         :quality_metrics
-      ).each do |o|
+      ).each do | o |
         Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
         o.update_stats
       end
       Identification.elastic_index!(
-        scope: Identification.where(observation_id: obs_ids),
-        wait_for_index_refresh: true
+        scope: Identification.where( observation_id: obs_ids )
       )
+      Observation.elastic_index!( ids: obs_ids )
     end
 
-    comments.find_each(batch_size: 100) do |c|
+    comment_observation_ids = Comment.where( user_id: id, parent_type: "Observation" ).
+      select( :parent_id ).distinct.pluck( :parent_id )
+    comments.find_each( batch_size: 100 ) do | c |
       c.bulk_delete = true
       c.destroy
     end
+    Observation.elastic_index!( ids: comment_observation_ids )
 
-    annotations.includes(:votes_for).find_each(batch_size: 100) do |a|
-      a.votes_for.each{ |v| v.bulk_delete = true }
+    annotation_observation_ids = Annotation.where( user_id: id, resource_type: "Observation" ).
+      select( :resource_id ).distinct.pluck( :resource_id )
+    annotations.includes( :votes_for ).find_each( batch_size: 100 ) do | a |
+      a.votes_for.each {| v | v.bulk_delete = true }
       a.bulk_delete = true
       a.destroy
     end
+    Observation.elastic_index!( ids: annotation_observation_ids )
 
     # transition ownership of projects with observations, delete the rest
     Project.where( user_id: id ).find_each do | p |
@@ -1052,14 +1068,12 @@ class User < ApplicationRecord
       end
     end
 
-    Observation.elastic_index!(ids: unique_obs_ids, wait_for_index_refresh: true )
-
     # delete the user
     destroy
 
     # refresh check lists with relevant taxa
-    taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
+    taxon_ids.in_groups_of( 100 ) do | group |
+      CheckList.delay( priority: OPTIONAL_PRIORITY, queue: "slow" ).refresh( taxa: group.compact )
     end
 
     end_log_timer
@@ -1559,6 +1573,19 @@ class User < ApplicationRecord
 
   def anonymous?
     id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
+  end
+
+  # TODO: remove the is_admin? requirement once multiple common names is available for all users
+  def update_taxon_name_priorities
+    return unless saved_change_to_place_id?
+    return unless is_admin?
+    return unless taxon_name_priorities.length == 0 ||
+      ( taxon_name_priorities.length == 1 && taxon_name_priorities[0].lexicon.nil? )
+    taxon_name_priorities.delete_all
+    if place_id && place_id != 0
+      taxon_name_priorities.create( lexicon: nil, place_id: place_id )
+    end
+    save
   end
 
   # this method will look at all this users photos and create separate delayed jobs

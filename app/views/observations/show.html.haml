@@ -59,6 +59,7 @@
         trusted_user_ids: current_user.friendships.where( "trust" ).pluck(:friend_id),
         testGroups: current_user.test_groups_array
       }.merge( session.to_h.select{ |k, v| k.match( /^prefers_vision/ ) } )
+  = render partial: "shared/outlink_sites_js"
   :javascript
     var INITIAL_OBSERVATION_ID = "#{@observation.id}";
     var INITIAL_OBSERVATION_UUID = "#{@observation.uuid}";
@@ -82,14 +83,12 @@
     };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
       only: [ :id ], include: { default_name: { only: [ :name ] } } ).html_safe : "{ }" };
-    var OUTLINK_SITE_ICONS = _.assign( {
-      "Atlas of Living Australia": "#{ asset_url( "sites/ala.png" ) }",
-      "Calflora": "#{ asset_url( "sites/calflora.png" ) }",
-      "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
-      "GloBI": "#{ asset_url( "sites/globi.png" ) }",
-      "EDDMapS": "#{ asset_url( "sites/eddmaps.png" ) }",
-    }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = dp.logo&.url; memo}.to_json.html_safe} );
-  = javascript_include_tag "observations-show-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-dropzone-webpack"
+  = javascript_include_tag "webpack/react-image-gallery-webpack"
+  = javascript_include_tag "webpack/user-text-webpack"
+  = javascript_include_tag "webpack/observations-show-webpack"
 
 #app
   #initial-loading.text-center

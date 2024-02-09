@@ -7,8 +7,17 @@ class Announcement < ApplicationRecord
     welcome/index
     mobile/home
   ).freeze
+  CLIENTS = {
+    "mobile/home" => %w(
+      inat-ios
+      inat-android
+      seek
+      inatrn
+    )
+  }.freeze
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
+  validate :valid_placement_clients
 
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
@@ -22,6 +31,15 @@ class Announcement < ApplicationRecord
   }
 
   before_save :compact_locales
+  before_validation :compact_clients
+
+  def valid_placement_clients
+    if clients.any? do |client|
+      !Announcement::CLIENTS[placement] || !Announcement::CLIENTS[placement].include?( client )
+    end
+      errors.add( :clients, :must_be_valid_for_specified_placement )
+    end
+  end
 
   def session_key
     "user-seen-ann-#{id}"
@@ -29,6 +47,10 @@ class Announcement < ApplicationRecord
 
   def compact_locales
     self.locales = ( locales || [] ).reject( &:blank? ).compact
+  end
+
+  def compact_clients
+    self.clients = ( clients || [] ).reject( &:blank? ).compact
   end
 
   def dismissed_by?( user )
@@ -40,10 +62,10 @@ class Announcement < ApplicationRecord
   end
 
   def targeted_to_user?( user )
+    return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
     if prefers_target_unconfirmed_users
-      return !user.confirmed?
+      return user && !user.confirmed?
     end
-
     true
   end
 

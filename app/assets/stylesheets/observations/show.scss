@@ -6,6 +6,7 @@
 @import "../shared/loading_spinner";
 @import "../shared/modals";
 @import "../shared/observation_fields";
+@import "../shared/observation_projects";
 @import "../shared/quality_metrics";
 @import "../shared/split_taxon";
 @import "../shared/user_with_icon";
@@ -34,7 +35,7 @@
     [class*="header_"] {
       margin: 0 10px;
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
     }
     width: 100%;
     img {
@@ -70,6 +71,19 @@
         }
       }
     }
+  }
+}
+
+[dir = "rtl"] #lightboxBackdrop {
+  button[class*="left"] {
+    left: unset;
+    right: 0;
+    transform: rotate(180deg)
+  }
+  button[class*="right"] {
+    right: unset;
+    left: 0;
+    transform: rotate(180deg)
   }
 }
 
@@ -202,7 +216,7 @@ a.UserImage,
   }
   display: inline-block;
   border-radius: 120px;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   min-width: 40px;
   width: 48px;
   height: 48px;
@@ -223,8 +237,7 @@ a.UserImage,
   border: 1px solid $border-grey;
   padding: 1px;
   display: inline-block;
-  margin-right: 5px;
-  float: left;
+  margin-inline-end: 5px;
   img {
     width: 40px;
     height: 40px;
@@ -327,6 +340,7 @@ a.UserImage,
           &.center {
             display: table-cell;
           }
+          cursor: auto;
         }
         .image-gallery-slides img {
           max-height: 420px;
@@ -344,7 +358,10 @@ a.UserImage,
           .sound-container {
             position: absolute;
             width: 100%;
-            top: 50%; 
+            top: 50%;
+            .captions {
+              margin-top: 10px;
+            }
           }
           .sound-container.sound-container-soundcloud {
             margin-top: -81px;
@@ -366,6 +383,13 @@ a.UserImage,
             bottom: 0;
             pointer-events: none;
             padding: 6px;
+            & > .hidden-media {
+              position: absolute;
+              width: 100%;
+              .captions {
+                margin-top: 10px;
+              }
+            }
           }
           .image-gallery-image {
             position: relative;
@@ -383,6 +407,11 @@ a.UserImage,
               display: inline-block;
               padding: 5px 9px;
               pointer-events: auto;
+              .btn:hover, .fa:hover {
+                text-decoration: none;
+                opacity: 0.8;
+                color: inherit;
+              }
             }
             .fa.license {
               vertical-align: middle;
@@ -396,10 +425,10 @@ a.UserImage,
             .badge {
               background: white;
               color: rgba(0,0,0,.75);
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
             .btn-nostyle {
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
           }
         }
@@ -431,7 +460,7 @@ a.UserImage,
                   border: 2px solid $inat-green;
                 }
                 & + .image-gallery-thumbnail {
-                  margin-left: 4px;
+                  margin-inline-start: 4px;
                 }
                 .loading_spinner {
                   margin-left: 0;
@@ -505,7 +534,7 @@ a.UserImage,
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     border: 1px solid $border-grey;
-    margin-left: 60px;
+    margin-inline-start: 60px;
     margin-bottom: 15px;
     ul.nav-tabs {
       background-color: #f5f5f5;
@@ -582,7 +611,7 @@ a.UserImage,
     }
   }
   .opposite_activity {
-    & > .row > .col-xs-12 > div {
+    & > .row .col-xs-12 > div {
       margin-bottom: 15px;
     }
     h4 {
@@ -596,7 +625,6 @@ a.UserImage,
     display: inline-block;
     width: 100%;
     margin-bottom: 15px;
-    white-space: nowrap;
     & > div {
       display: inline-block;
     }
@@ -610,7 +638,7 @@ a.UserImage,
       }
       .display-names, a.display-name, .noname {
         font-size: 32px;
-        line-height: 36px;
+        line-height: 40px;
         color: #000;
         white-space: normal;
       }
@@ -625,10 +653,6 @@ a.UserImage,
   .FollowButton {
     float: right;
     line-height: 32px;
-    .unfollow {
-      color: #468cc7;
-      margin-left: 5px;
-    }
     .dropdown-menu {
       min-width: 220px;
     }
@@ -661,6 +685,12 @@ a.UserImage,
   }
 }
 
+[dir = "rtl"] #ObservationShow {
+  .FollowButton {
+    float: left;
+  }
+}
+
 .more_from > .container > .row > .col-xs-12 {
   padding: 0;
 }
@@ -669,11 +699,28 @@ a.UserImage,
   padding: 0;
 }
 
+.hidden-media {
+  text-align: center;
+  .hidden-status {
+    color: #333;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .reveal-hidden {
+    display: block;
+    color: #333;
+    pointer-events: auto;
+    display: block;
+    margin: 0px auto;
+    margin-top: 9px;
+  }
+}
+
 h3, h4 {
   &.collapsible {
     i.fa {
       color: $inat-green;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
     &.collapsible {
       cursor: pointer;
@@ -685,7 +732,7 @@ h3, h4 {
   i.fa-star, i.fa-star-o {
     font-size: 16px;
     color: $inat-green;
-    margin-right: 8px;
+    margin-inline-end: 8px;
     &:hover {
       cursor: pointer;
     }
@@ -698,69 +745,6 @@ h3, h4 {
   .user a,
   .others {
     font-weight: 700;
-  }
-}
-
-.Projects {
-  .projectEntry, .project, .projectFields {
-    display: inline-block;
-    width: 100%;
-  }
-  .project .squareIcon {
-    margin-right: 8px;
-  }
-  .projectEntry + .projectEntry {
-    margin-top: 15px;
-  }
-  .panel {
-    margin-top: 10px;
-  }
-  .info {
-    float: left;
-    width: 80%;
-    .fieldLink {
-      color: $other-link-color;
-      cursor: pointer;
-      .fa {
-        font-size: 12px;
-      }
-    }
-  }
-  .title {
-    font-size: 16px;
-  }
-  .control-group {
-    float: right;
-    .btn-group button .fa {
-      color: $text-grey;
-    }
-  }
-  button.dropdown-toggle {
-    border: none;
-    background: inherit !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    &:hover {
-      border: none;
-      background: inherit;
-    }
-    padding: 0;
-    line-height: 0px;
-  }
-  .dropdown {
-    .allow {
-      display: inline-block;
-      padding: 10px 20px 3px 20px;
-      input[type="checkbox"] {
-        margin-right: 5px;
-      }
-      .text-muted {
-        margin-top: 5px;
-      }
-      label {
-        font-weight: normal;
-      }
-    }
   }
 }
 
@@ -834,7 +818,8 @@ time {
     }
     .details_menu {
       .dropdown-toggle {
-        margin: 0px 0px 2px 12px;
+        margin-inline: 12px 0px;
+        margin-block: 0px 2px;
         padding: 0;
         border: none;
         background: inherit;
@@ -891,7 +876,7 @@ time {
     }
   }
   .standard {
-    padding-right: 15px;
+    padding-inline-end: 15px;
   }
   .top_info,
   .places,
@@ -906,7 +891,7 @@ time {
       display: block;
       float: left;
       min-width: 110px;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
   .links {
@@ -936,8 +921,8 @@ time {
         margin-bottom: 10px;
         i {
           position: absolute;
-          left: 0;
-          margin-right: 3px;
+          inset-inline-start: 0;
+          margin-inline-end: 3px;
           color: $inat-green;
           &.fa { top: 3px; }
           &.icon-person { top: -2px; }
@@ -954,11 +939,20 @@ time {
   }
 }
 
+[dir = "rtl"] .MapDetails{
+  .top_info {
+    .info {
+      float: right;
+    }
+  }
+
+  .standard, .community{
+    float: right;
+  }
+}
+
 .Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
   border-top: 1px solid $border-grey;
-}
-.top-row .Projects {
-  border-top: none;
 }
 
 .collapsible-section {
@@ -996,7 +990,7 @@ time {
     }
     .glyphicon {
       top: 3px;
-      margin-left: 5px;
+      margin-inline-start: 5px;
       color: #b2b2b2;
     }
     .glyphicon-remove-circle {
@@ -1036,15 +1030,15 @@ time {
     position: absolute;
     content: " ";
     display: block;
-    border-left: $activity-line-width solid $border-grey;
+    border-inline-start: $activity-line-width solid $border-grey;
     width: $activity-line-width;
     height: 100%;
-    left: 24px;
+    inset-inline-start: 24px;
     top: 0;
     z-index: 0;
   }
   .comment_id {
-    margin-left: 60px;
+    margin-inline-start: 60px;
   }
   .review {
     float: right;
@@ -1059,6 +1053,20 @@ time {
   .ac-select-thumb i {
     vertical-align: auto;
     line-height: 31px;
+  }
+}
+
+[dir="rtl"] .bootstrap .Activity {
+  > .icon {
+    float: right;
+  }
+  .review{
+    float:left;
+    input {
+      position: relative;
+      top: 2px;
+      right: -5px;
+    }
   }
 }
 
@@ -1087,16 +1095,16 @@ time {
     text-align: center;
     .separators {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       width: 100%;
       .left, .right {
         margin: 0;
       }
       .left {
-        padding-left: 38px;
+        padding-inline-start: 38px;
       }
       .right {
-        padding-right: 38px;
+        padding-inline-end: 38px;
       }
       .separator {
         display: inline-block;
@@ -1222,6 +1230,28 @@ time {
   }
 }
 
+[dir="rtl"] .ResearchGradeProgress{
+  .graphic{
+    .checks{
+      .check{
+        &.casual {
+          float: right;
+        }
+        &.research {
+          float: left;
+        }
+      }
+    }
+  }
+  ul.remaining {
+    li {
+      .reason_icon {
+        float: right;
+      }
+    }
+  }
+}
+
 .MoreFromUser {
   display: inline-block;
   padding-bottom: 30px;
@@ -1242,7 +1272,6 @@ time {
     }
   }
   .list {
-    display: inline-block;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -1254,10 +1283,10 @@ time {
   }
   .obs {
     width: 100%;
-    display: inline-block;
     vertical-align: top;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
+    background: #fff;
   }
   .photo {
     width: 100%;
@@ -1288,24 +1317,28 @@ time {
 
   }
   .caption {
-    background: #fff;
     padding: 8px;
     min-height: 56px;
-    text-align: left;
+    text-align: start;
     .SplitTaxon .display-name {
       color: #000;
     }
     .SplitTaxon > .display-name, .display-names,
     .SplitTaxon > .secondary-name, .secondary-names {
       display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
   }
   .view {
     font-weight: 700;
-    margin-right: 5px;
+    margin-inline-end: 5px;
+  }
+}
+
+[dir = "rtl"] .MoreFromUser{
+  h3 {
+    .links {
+      float: left;
+    }
   }
 }
 
@@ -1354,6 +1387,15 @@ time {
     }
   }
 }
+
+[dir = "rtl"] .ObservationsHighlight {
+  h3 {
+    a {
+      float: left;
+    }
+  }
+}
+
 .obs-highlight-link {
   .SplitTaxon {
     & > .display-name, .display-names,
@@ -1388,9 +1430,9 @@ time {
     display: inline-block;
     margin-bottom: 15px;
     .UserWithIcon {
-      padding-right: 15px;
+      padding-inline-end: 15px;
       .icon {
-        margin-right: 5px;
+        margin-inline-end:  5px;
       }
       .title {
         font-size: 14px;
@@ -1406,7 +1448,7 @@ time {
         margin-top: 4px;
         i {
           font-size: 12px;
-          margin-right: 3px;
+          margin-inline-end: 3px;
         }
       }
     }
@@ -1467,9 +1509,6 @@ time {
     .taxon {
       font-size: 16px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
       margin-bottom: 5px;
@@ -1596,6 +1635,14 @@ time {
       .separator {
         margin: 0px 5px;
       }
+    }
+  }
+}
+
+[dir="rtl"] .CommunityIdentification {
+  .info {
+    .photo{
+      float: left;
     }
   }
 }
@@ -1903,7 +1950,7 @@ time {
   }
 }
 
-.LicensingModal.modal, .CommunityIDModal.modal, .ProjectFieldsModal.modal {
+.LicensingModal.modal, .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
     height: 85%;
@@ -1998,7 +2045,6 @@ time {
         }
         .display-name {
           font-size: 13px;
-          white-space: nowrap;
         }
         &.score {
           white-space: nowrap;
@@ -2033,7 +2079,7 @@ time {
   .badge {
     min-width: 24px;
   }
-  margin-left: 10px;
+  margin-inline-start: 10px;
   cursor: pointer;
   vertical-align: text-bottom;
 }
@@ -2133,7 +2179,7 @@ time {
     .application {
       img {
         max-height: 14px;
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
       .name {
         vertical-align: middle;
@@ -2144,14 +2190,13 @@ time {
 
 .PreviousNextButtons {
   float: right;
+  display: flex;
   margin-top: 23px;
   .previous {
-    float: left;
-    padding-right: 3px;
+    padding-inline-end: 3px
   }
   .next {
-    float: left;
-    padding-left: 2px;
+    padding-inline-start: 2px
   }
   .previous, .next {
     display: inline-block;
@@ -2167,7 +2212,7 @@ time {
       cursor: not-allowed;
     }
     &:not(:first-child) {
-      margin-left: 8px;
+      margin-inline-start: 8px;
     }
     .fa {
       font-size: 14px;
@@ -2176,90 +2221,16 @@ time {
   }
 }
 
+[dir="rtl"] .PreviousNextButtons {
+  float: left;
+}
+
 .box.opt-out {
   background: #f8f8f8;
   margin: 30px 0px 27px 0px;
   font-size: 16px;
   button {
     margin-left: 10px;
-  }
-}
-
-.ProjectFieldsModal.modal {
-  .modal-dialog {
-    width: 600px;
-    min-width: 400px;
-    .modal-content {
-      padding-bottom: 120px;
-    }
-  }
-  .modal-header {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    background: #337ab7;
-    .modal-title {
-      color: white;
-    }
-    .close {
-      color: white;
-      opacity: 0.6;
-      text-shadow: 0 1px 0 #333333;
-      &:hover {
-        color: white;
-        opacity: 1;
-      }
-    }
-  }
-  .modal-body {
-    .intro {
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    .observation-field {
-      position: relative;
-      margin-bottom: 10px;
-      &.editing {
-        background: inherit;
-        padding: 0;
-        button {
-          background-color: #5cb85c;
-          border-color: #4cae4c;
-          &:hover {
-            color: white;
-            background-color: #449d44;
-            border-color: #398439;
-          }
-        }
-      }
-      &:not(.dna-field) {
-        button.standalone {
-          position: absolute;
-          top: 34px;
-          right: 0px;
-        }
-      }
-      &:not(:first-child) {
-        margin-top: 20px;
-      }
-      .form-group {
-        margin-bottom: 0px;
-      }
-      .field-name {
-        font-weight: 600;
-        font-size: 15px;
-        margin: 0px 0px 4px 0px;
-        .required {
-          margin-left: 5px;
-        }
-      }
-      .btn.standalone {
-        margin: 0;
-      }
-      .help-block {
-        margin-top: 8px;
-        margin-bottom: 0px;
-      }
-    }
   }
 }
 
@@ -2275,7 +2246,7 @@ time {
       position: absolute;
       font-size: 14px;
       bottom: -6px;
-      right: -9px;
+      inset-inline-end: -9px;
       background: white;
       padding: 1px 2px;
       border-radius: 40px;
@@ -2357,14 +2328,15 @@ body > [role="dialog"] .easyzoom > a > img {
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding: 2px 0px 1px 10px;
+  padding-block: 2px 1px;
+  padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
   z-index: 1;
-  margin-right: 20px;
+  margin-inline-end: 20px;
   // added
-  margin-left: 10px;
+  margin-inline-start: 10px;
   vertical-align: text-bottom;
 }
 .quality_grade:after {
@@ -2373,9 +2345,9 @@ body > [role="dialog"] .easyzoom > a > img {
   display: block;
   bottom: 0;
   border: 10px solid $border-grey;
-  border-right-width: 5px;
-  border-right-color: transparent;
-  right: -15px;
+  border-inline-end-width: 5px;
+  border-inline-end-color: transparent;
+  inset-inline-end: -15px;
   z-index: -1;
 }
 .quality_grade.needs_id {
@@ -2384,7 +2356,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.needs_id:after {
   border-color: $needs-id-yellow;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 .quality_grade.research {
   background-color: $inat-green;
@@ -2439,6 +2411,12 @@ body > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.image-gallery-image .loading_spinner {
+  width: 80px;
+  height: 80px;
+  border-width: 15px;
+}
+
 .observations.infowindow .observation {
   width: 245px;
 }
@@ -2452,6 +2430,12 @@ body > [role="dialog"] .easyzoom > a > img {
         display: inline;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery-slide .image-gallery-description {
+    font-size: 1em;
   }
 }
 

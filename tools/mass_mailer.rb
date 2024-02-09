@@ -17,6 +17,12 @@ require "optimist"
       # Mail es and es-MX users the independence mailer (but not es-AR)
       bundle exec rails r tools/mass_mailer.rb independence --locales es es-MX
 
+      # Mail everyone other than French and Spanish users, including es-MX, fr-CA, etc., but
+      # force them all to get the English version (e.g. if you already emailed es and fr
+      # users and you know none of the other languages are full translated, so you just want
+      # to send pure English to everyone else)
+      bunble exec rails r tools/mass_mailer.rb independence --exclude-locales es fr --force-locale en
+
     Usage:
       bundle exec rails r tools/mass_mailer.rb <mailer_method> [options]
 
@@ -35,8 +41,15 @@ require "optimist"
   opt :skip_recent, "Skip users created in the last month", type: :boolean
   opt :locale, "Locale to filter users by. Matches sublocales, so `es` will match `es-MX`", type: :string
   opt :locales, "Exact locales to filter users by (not wildcard matches)", type: :strings
+  opt :exclude_locales, "Locale patterns to exclude", type: :strings
   opt :skip_sendgrid_validation, "Skip Sendgrid email validation", type: :boolean
   opt :include_risky, "Send to addresses Sendgrid considers Risky", type: :boolean
+  opt :min_risky_score, "Miniumum score required to send to Risky addresses. Value btwn 0 and 1", type: :float
+  opt :force_locale, "Force the email to send in this locale", type: :string
+  opt :min_obs, "Only email users w/ at least this many obs", type: :integer
+  opt :min_obs_this_year, "Only email users w/ at least this many obs observed this year", type: :integer
+  opt :min_last_active, "Only email users active since at least this date (YYYY-MM-DD)", type: :string
+  opt :only_translated, "Only deliver mail if all strings are translated", type: :boolean
 end
 
 mailer_method = ARGV.shift
@@ -49,11 +62,19 @@ unless Emailer.method_defined?( mailer_method )
   Optimist.die "#{Emailer.name}##{mailer_method} is not defined"
 end
 
-if Emailer.instance_method( mailer_method ).arity != 1
+unless [1, -2].include?( Emailer.instance_method( mailer_method ).arity )
   Optimist.die <<~ERROR
     #{Emailer.name}##{mailer_method} requires more than one argument. This
      script only works with mailer methods that accept a user as the only
-     argument
+     argument, or mailer methods that accept a user as fixed argument and an
+     optional second `options` argument.
+  ERROR
+end
+
+if @opts.force_locale && Emailer.instance_method( mailer_method ).arity != -2
+  Optimist.die <<~ERROR
+    #{Emailer.name}##{mailer_method} does not accept a second `options`
+     argument so force_locale will not work.
   ERROR
 end
 
@@ -77,13 +98,20 @@ if @opts.locale && @opts.locales
   Optimist.die "You can't specify a locale and locales. Choose one."
 end
 
-def sendgrid_validation_verdict( email )
+if @opts.include_risky && @opts.min_risky_score
+  Optimist.die "You can't use include_risky and min_risky_score. Choose one."
+end
+
+def sendgrid_validation( email )
   errors = [
-    Timeout::Error,
+    Net::OpenTimeout,
+    RestClient::BadGateway,
+    RestClient::Exceptions::ReadTimeout,
+    RestClient::GatewayTimeout,
+    RestClient::InternalServerError,
     RestClient::ServiceUnavailable,
     RestClient::TooManyRequests,
-    RestClient::BadGateway,
-    RestClient::InternalServerError
+    Timeout::Error
   ]
   response = begin
     try_and_try_again( errors, exponential_backoff: true, sleep: 3 ) do
@@ -97,7 +125,7 @@ def sendgrid_validation_verdict( email )
     return "Failed"
   end
   json = JSON.parse( response )
-  json["result"]["verdict"]
+  json["result"]
 end
 
 test_users = @opts.users.to_s.split( "," )
@@ -107,7 +135,10 @@ if test_users.size.positive?
     if identifier.to_i.positive?
       identifier
     else
-      User.find_by_login( identifier ).id
+      test_user = User.find_by_login( identifier )
+      raise "Could not find user: #{identifier}" unless test_user
+
+      test_user.id
     end
   end
   scope = scope.where( id: test_user_ids )
@@ -126,6 +157,12 @@ else
     # Don't email users who signed up in the last month
     scope = scope.where( "users.created_at < ?", 1.month.ago )
   end
+  if @opts.min_obs
+    scope = scope.where( "users.observations_count >= ?", @opts.min_obs )
+  end
+  if @opts.min_last_active
+    scope = scope.where( "users.last_active >= ?", @opts.min_last_active )
+  end
 end
 
 if @opts.english
@@ -138,11 +175,22 @@ elsif @opts.locales
   scope = scope.where( "locale IN (?)", @opts.locales )
 end
 
+if @opts.exclude_locales
+  puts "@opts.exclude_locales: #{@opts.exclude_locales.inspect}" if @opts.debug
+  @opts.exclude_locales.each do | excluded_locale |
+    scope = scope.where( "locale NOT LIKE ?", "#{excluded_locale}%" )
+  end
+end
+
+puts "scope: #{scope.to_sql}" if @opts.debug
+
 @start = Time.now
 @emailed = 0
 @failed = 0
 @failures_by_user_id = {}
+@failures_by_locale = {}
 @sendgrid_risky = 0
+@sendgrid_risky_approved = 0
 @sendgrid_invalid = 0
 @sendgrid_failed = 0
 @sendgrid_valid = 0
@@ -166,7 +214,9 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
   process_emailed = 0
   process_failed = 0
   process_failures_by_user_id = {}
+  process_failures_by_locale = {}
   sendgrid_risky = 0
+  sendgrid_risky_approved = 0
   sendgrid_invalid = 0
   sendgrid_failed = 0
   sendgrid_valid = 0
@@ -205,7 +255,8 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     end
 
     unless @opts.skip_sendgrid_validation
-      verdict = sendgrid_validation_verdict( recipient.email )
+      result = sendgrid_validation( recipient.email )
+      verdict = result["verdict"]
       case verdict
       when "Valid"
         sendgrid_valid += 1
@@ -217,18 +268,61 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
         sendgrid_failed += 1
       end
       acceptable_verdits = %w(Valid)
-      acceptable_verdits << "Risky" if @opts.include_risky
+      above_risky_threshold = (
+        @opts.min_risky_score &&
+        verdict == "Risky" &&
+        result["score"] >= @opts.min_risky_score
+      )
+      if @opts.include_risky || above_risky_threshold
+        acceptable_verdits << "Risky"
+        sendgrid_risky_approved += 1
+      end
       unless acceptable_verdits.include?( verdict )
-        puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict}" if debug
+        if debug
+          puts "[DEBUG] Sendgrid validation failed for #{recipient.email}: #{verdict} (score: #{result['score']})"
+        end
         next
       end
+    end
+
+    if @opts.min_obs_this_year
+      obs_count = Observation.elastic_query(
+        user_id: recipient.id,
+        verifiable: true,
+        year: Date.today.year,
+        size: 0
+      ).total_entries
+      next if obs_count < @opts.min_obs_this_year
     end
 
     puts "[DEBUG] Emailing recipient: #{recipient}" if debug
 
     begin
-      Emailer.send( mailer_method, recipient ).deliver_now unless dry
+      message = if Emailer.instance_method( mailer_method ).arity == -2
+        Emailer.send( mailer_method, recipient, {
+          force_locale: @opts.force_locale,
+          raise_on_missing_translations: @opts.only_translated
+        } )
+      else
+        Emailer.send( mailer_method, recipient )
+      end
+      if dry
+        # We may need to explicitly call these to trigger rendering
+        message.subject
+        message.body
+      else
+        message.deliver_now
+      end
       process_emailed += 1
+    rescue I18n::MissingTranslationData, ActionView::Template::Error => e
+      raise e unless e.message =~ /Translation missing/
+
+      if debug
+        puts "Translation failed: #{e}"
+      end
+      locale = e.message[/Translation missing: (.+?)\./, 1]
+      process_failed += 1
+      process_failures_by_locale[locale] = e
     rescue StandardError => e
       if debug
         puts "Caught error: #{e}"
@@ -244,7 +338,9 @@ results = Parallel.map( 0...num_processes, in_processes: num_processes ) do | pr
     emailed: process_emailed,
     failed: process_failed,
     failures_by_user_id: process_failures_by_user_id,
+    failures_by_locale: process_failures_by_locale,
     sendgrid_risky: sendgrid_risky,
+    sendgrid_risky_approved: sendgrid_risky_approved,
     sendgrid_invalid: sendgrid_invalid,
     sendgrid_failed: sendgrid_failed,
     sendgrid_valid: sendgrid_valid,
@@ -262,20 +358,32 @@ results.each do | result |
   @emailed += result[:emailed]
   @failed += result[:failed]
   @sendgrid_risky += result[:sendgrid_risky]
+  @sendgrid_risky_approved += result[:sendgrid_risky_approved]
   @sendgrid_invalid += result[:sendgrid_invalid]
   @sendgrid_failed += result[:sendgrid_failed]
   @sendgrid_valid += result[:sendgrid_valid]
   @failures_by_user_id = @failures_by_user_id.merge( result[:failures_by_user_id] )
+  @failures_by_locale = @failures_by_locale.merge( result[:failures_by_locale] )
 end
 
 puts
 puts "#{@emailed} users emailed, #{@failed} failed in #{Time.now - @start}s"
-puts "Sendgrid validation: #{@sendgrid_valid} valid, #{@sendgrid_risky} risky, #{@sendgrid_invalid} invalid, " \
+puts "Sendgrid validation: #{@sendgrid_valid} valid, " \
+  "#{@sendgrid_risky} risky (#{@sendgrid_risky_approved} approved), " \
+  "#{@sendgrid_invalid} invalid, " \
   "#{@sendgrid_failed} failed"
 unless @failures_by_user_id.blank?
   puts "Failure user IDs: #{@failures_by_user_id.keys.join( ', ' )}"
   puts "First 5 failures:"
   @failures_by_user_id.to_a[0..5].each do | _user_id, error |
+    puts error
+    puts
+  end
+end
+unless @failures_by_locale.blank?
+  puts "Failure locales: #{@failures_by_locale.keys.sort.join( ', ' )}"
+  puts "First 5 failures:"
+  @failures_by_locale.to_a[0..5].each do | _locale, error |
     puts error
     puts
   end

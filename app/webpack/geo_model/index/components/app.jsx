@@ -18,12 +18,12 @@ class App extends React.Component {
           <thead>
             <tr>
               <th onClick={( ) => setOrderBy( "id", "asc" )}>
-                ID
+                { I18n.t( "taxon_id" ) }
                 { order === "id::asc" && ( <i className="fa fa-caret-up" /> ) }
                 { order === "id::desc" && ( <i className="fa fa-caret-down" /> ) }
               </th>
               <th onClick={( ) => setOrderBy( "name", "asc" )}>
-                Name
+                { I18n.t( "taxon_name" ) }
                 { order === "name::asc" && ( <i className="fa fa-caret-up" /> ) }
                 { order === "name::desc" && ( <i className="fa fa-caret-down" /> ) }
               </th>

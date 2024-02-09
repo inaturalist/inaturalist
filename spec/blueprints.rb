@@ -8,8 +8,8 @@ Announcement.blueprint do
   placement { "users/dashboard#sidebar" }
 end
 Annotation.blueprint do
-  controlled_attribute { ControlledTerm.make! }
-  controlled_value { ControlledTerm.make! }
+  controlled_attribute { make_controlled_term_with_label }
+  controlled_value { make_controlled_value_with_label( nil, controlled_attribute ) }
   resource { Observation.make! }
 end
 
@@ -77,13 +77,13 @@ ControlledTermLabel.blueprint do
 end
 
 ControlledTermTaxon.blueprint do
-  controlled_term { ControlledTerm.make! }
+  controlled_term { make_controlled_term_with_label }
   taxon { Taxon.make! }
 end
 
 ControlledTermValue.blueprint do
-  controlled_attribute { ControlledTerm.make! }
-  controlled_value { ControlledTerm.make!(is_value: true) }
+  controlled_attribute { make_controlled_term_with_label }
+  controlled_value { ControlledTerm.make( is_value: true ) }
 end
 
 DataPartner.blueprint do
@@ -197,6 +197,13 @@ LocalPhoto.blueprint do
   }
 end
 
+LocalSound.blueprint do
+  user { User.make }
+  file_content_type { "audio/mp4" }
+  file_file_name    { "foo.m4a" }
+  file_updated_at   { Time.now }
+end
+
 Message.blueprint do
   from_user { User.make! }
   to_user { User.make! }
@@ -215,10 +222,6 @@ ModeratorNote.blueprint do
   user { make_curator }
   body { Faker::Lorem.paragraph }
   subject_user { User.make! }
-end
-
-MushroomObserverImportFlowTask.blueprint do
-  user { User.make! }
 end
 
 OauthApplication.blueprint do

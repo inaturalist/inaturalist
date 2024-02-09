@@ -180,6 +180,13 @@ class Annotation < ApplicationRecord
     controlled_value.try(:label)
   end
 
+  def deleteable_by?( target_user )
+    return true if user == target_user
+    return true if resource&.user == target_user
+
+    false
+  end
+
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
     [taxon_ids].flatten.each do |taxon_id|
       Annotation.reassess_annotations_for_taxon_id( taxon_id )
@@ -215,7 +222,6 @@ class Annotation < ApplicationRecord
       # if any of them added errors, the annotation is no longer valid and should be destroyed
       a.destroy if a.errors.any?
     end
-    
   end
 
   def self.reassess_annotations_for_attribute_id( attribute_id )
@@ -223,5 +229,4 @@ class Annotation < ApplicationRecord
       a.destroy unless a.valid?
     end
   end
-
 end

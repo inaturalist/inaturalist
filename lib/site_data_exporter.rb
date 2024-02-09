@@ -109,7 +109,32 @@ class SiteDataExporter
       user_id
       updater_id
       uuid
+    ),
+    observation_photos: %w(
+      observation_id
+      photo_id
+      photo.uuid
+      photo.user_id
+      photo.medium_url
+      photo.license_url
+      photo.attribution_name
+      photo.created_at
+    ),
+    observation_sounds: %w(
+      observation_id
+      sound_id
+      sound.uuid
+      sound.user_id
+      sound.url
+      sound.license_url
+      sound.attribution_name
+      sound.created_at
     )
+  }.freeze
+
+  ASSOC_REQUIRED_ATTRIBUTES = {
+    observation_photos: "photo",
+    observation_sounds: "sound"
   }.freeze
 
   def initialize( site, options = {} )
@@ -438,10 +463,14 @@ class SiteDataExporter
           observations,
           [
             :user,
-            { taxon: :taxon_names },
+            { taxon: { taxon_names: :place_taxon_names } },
             { identifications: [:stored_preferences] },
-            { photos: [:flags, :file_prefix, :file_extension, :user] },
-            :sounds,
+            { photos: [
+              :flags, :file_prefix, :file_extension, :user, :moderator_actions
+            ] },
+            { sounds: [
+              :flags, :moderator_actions, :user
+            ] },
             :quality_metrics,
             { observations_places: :place },
             {
@@ -484,7 +513,22 @@ class SiteDataExporter
           CSV.open( assoc_csv_paths[association], "a" ) do | csv |
             observations.each do | o |
               o.send( association ).each do | associate |
-                csv << cols.map {| col | associate.send( col ) }
+                # skip associates that lack a required attribute,
+                # e.g. an observation_photo without a photo
+                if ASSOC_REQUIRED_ATTRIBUTES[association] &&
+                    !associate.send( ASSOC_REQUIRED_ATTRIBUTES[association] )
+                  if @options[:debug]
+                    msg = "Skipping #{association} #{associate} due to "
+                    msg += "missing #{ASSOC_REQUIRED_ATTRIBUTES[association]}"
+                    puts msg
+                  end
+                  next
+                end
+                # add the specified attributes of the associate as columns to its CSV file
+                csv << cols.map do | col |
+                  # allow dot-notation in column names, while still using the safer `send` method
+                  col.split( "." ).inject( associate, :send ) rescue nil
+                end
               end
             end
           end

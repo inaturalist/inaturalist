@@ -40,19 +40,20 @@ If you've found a problem in the code, please supply detailed reproduction condi
 
 ## Finding Issues to Work On
 
-* Check out some of the [issues labeled "easy"](https://github.com/inaturalist/inaturalist/issues?q=is%3Aopen+is%3Aissue+label%3Aeasy)
+* Choose an issue from our [Web Project](https://github.com/orgs/inaturalist/projects/3), where we've prioritized some of our many issues. It also includes issues for our [API](https://github.com/inaturalist/iNaturalistAPI)
+* You can also peruse our all of our [issues](https://github.com/inaturalist/inaturalist/issues)
 * Avoid issues without labels. That generally means a member of iNat staff hasn't reviewed it and we may not be interested in the proposed change, or the issue hasn't been specified to the point where it can be implemented
 
 ## Working on an Issue
 
-1. Leave a comment on the issue saying you're working on it
+1. Leave a comment on the issue saying you're working on it. iNat staff will try to assign you when we know you're working on it. If we don't see a PR from you in a few weeks, we will probably unassign you
 1. Fork the repo, and make an issue-specific branch in your fork that starts with the issue number followed by some descriptive, hyphen-separated text. For example, if the issue is number 1234 with a title like "Flagging a message blocks recipient from viewing it again," you should make a branch like `1234-message-flagging`
 1. Work on your changes
 1. When you're done, issue a pull request to the main branch in the [inaturalist repo](https://github.com/inaturalist/inaturalist). iNat staff will review it when we have time
 
 # Reporting Security Issues
 
-You should report security issues that require confidential communication to [help+security@inaturalist.org](mailto:help+security@inaturalist.org). We do not offer any rewards or bounties for reporting security issues. Our heartfelt thanks to everyone who has reported issues, including (but not limited to):
+You should report security issues that require confidential communication to [help+security@inaturalist.org](mailto:help+security@inaturalist.org). We do not offer any rewards or bounties for reporting security issues, though we may offer to list your name and URL here if we act on your report. Our heartfelt thanks to everyone who has reported issues, including (but not limited to):
 
 * [Sohail Ahmed](https://www.linkedin.com/in/sohail-ahmed-755776184/)
 * [Abdul Wahab](https://twitter.com/BugHunt25657683)

@@ -1,0 +1,54 @@
+- content_for( :title ) do
+  = @title = @item.hidden? ? t( :unhide_content ) : t( :hide_content )
+
+- content_for( :extracss ) do
+  = stylesheet_link_tag "moderator_actions/hide_content"
+
+- content_for( :extrajs ) do
+  = javascript_include_tag "jquery/plugins/jqModal"
+
+- placeholder_text = @item.hidden? ?                 |
+  t( :please_explain_why_you_want_to_unhide_this ) : |
+  t( :please_explain_why_you_want_to_hide_this )     |
+
+.bootstrap
+  %h2= @title
+  - case @item.class.base_class.name
+  - when "Comment"
+    = t( :user_wrote_html, user: "@#{@item.user.login}", url: person_by_login_path( @item.user.login ) )
+    %blockquote
+      = @item.body
+  - when "Photo"
+    - if @item.hidden?
+      %blockquote
+        = link_to t( :photo_by_id_attribution, id: @item.id, attribution: @item.attribution ), photo_url( @item )
+        - popover_content = render( partial: "moderator_actions/popover", locals: { item: @item.becomes( Photo ) } ).to_str
+        %p
+          %span.content-hidden{ data: {
+            content: popover_content,
+            placement: "top",
+            toggle:"popover"
+          } }
+            %i.fa.fa-eye-slash.content-hidden
+            = t :content_hidden
+    - else
+      %p
+        = image_tag @item.medium_url, class: "item-to-hide"
+  = form_for( ModeratorAction.new( resource: @item ) ) do |f|
+    .form-group
+      = f.text_area :reason, required: true, class: "form-control",
+        minlength: ModeratorAction::MINIMUM_REASON_LENGTH,
+        maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH,
+        placeholder: placeholder_text
+    = f.hidden_field :action, value: @item.hidden? ? ModeratorAction::UNHIDE : ModeratorAction::HIDE
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :resource_id, value: @item.id
+    = f.hidden_field :resource_type, value: @item.class.base_class.name
+    - if @item.hidden?
+      .text.text-muted
+        = t( :unhide_desc )
+    - else
+      .text.text-muted
+        %p= t( :hide_desc )
+        %p= t( :hide_desc_staff_can_unhide )
+    = f.submit t( @item.hidden? ? :unhide_content : :hide_content ), class: "default button submit-flag-button"

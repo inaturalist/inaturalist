@@ -235,6 +235,7 @@ ko:
   agree_: 동의
   agree?: 동의하십니까?
   agree_with_current_taxon: 현재 분류군에 동의
+  agree_with_observation_taxon: 관찰 및 동정에 동의하기
   agreeing: 동의 중...
   aka: 다른 말로
   #Noun, title of a popup alerting you to something
@@ -433,16 +434,13 @@ ko:
   bioblitz: 바이오블릿츠
   birds: 조류
   birthday: 생일
-  black: 검정
   block_removed: 차단 제거됨
   blocked_users: 차단된 사용자
   blog_widget: 블로그 위젯
-  blue: 파랑
   blue_butterfly_etc: "파랑, 나비 등."
   body: 본문
   breadcrumbs: 빵 부스러기
   brief_caption: 간결한 캡션
-  brown: 갈색
   browse: 찾아보기
   browse_all_projects: 모든 프로젝트 찾아보기
   browse_all_species: 모든 종 찾아보기
@@ -917,8 +915,13 @@ ko:
     managed: 관리됨
     native: 토착종
     naturalised: 토착화됨
+  establishment_means: 상태
   establishment_means_describes_how: |
     확립은 이 분류군이 어떻게 이 지역에 서식하게 되었는지를 뜻한다. Darwincore를 통해<ahref="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a> 확인할 수 있다.
+  establishment_means_descriptions:
+    native: 이 지역에서 진화한 종이거나 인간의 활동으로 유입되지 않은 종입니다
+    endemic: 이 지역의 토착종이고 지역 외 다른 곳에서는 발견되지 않습니다
+    introduced: 인간의 활동 혹은 인위적인 수단을 통해 이 지역에 유입되었습니다
   event_in_progress: 진행 중인 이벤트
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
@@ -929,6 +932,7 @@ ko:
   everywhere: 모든 곳
   exact: 정확하게
   exact_date: 정확한 날짜
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 정확한 랭크
   exclusion_filters: 제외 필터
   existing_flags: 기존 플래그
@@ -1024,6 +1028,7 @@ ko:
   #Adjective, as in a fluid layout of images
   fluid: 유체
   follow: 팔로우
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} 팔로우"
   followers: 팔로어
   following: 팔로잉
@@ -1100,6 +1105,8 @@ ko:
   hide_content: 내용 숨기기
   hide_uncountable_species: 셀 수 없는 종을 숨기기
   high: 높음
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: 가장 높은 랭크
   history: 역사
   home: 처음으로
@@ -1139,6 +1146,7 @@ ko:
   improving: 개선 중
   #Label for messages you've received
   inbox: 받은 쪽지함
+  increase_brightness: 밝기 늘리기
   in_progress: 진행 중
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
@@ -1422,7 +1430,6 @@ ko:
   nearby_observations_: 근처에서 관찰된 생물
   needs_id: 동정 필요 등급
   needs_id_: 동정 필요 등급
-  needs_to_be_identified: 동정 필요
   new_and_noteworthy: 새롭고 주목할 만한 사항
   new_announcement: 새로운 알림
   new_assessment: 새로운 평가
@@ -1589,6 +1596,22 @@ ko:
   observer: 관찰자
   observers: 관찰자
   observer_short: 관찰자
+  occurence_status_describes_how: '서식 현황은 특정 지역에서 이 분류군이 얼마나 흔한지 또는 희귀한지를 설명합니다. 용어에 대한 자세한 내용은 <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">DarwinCore를 참조하세요.</a>.'
+  occurrence_status: 지역 서식 현황
+  occurrence_status_descriptions:
+    absent: 해당 지역에서 서식하지 않습니다
+    common: 이 지역에서 흔히 발견됩니다
+    doubtful: 해당 지역에서의 발견 및 서식이 추정되지만 증거가 불확실합니다
+    irregular: 어떤 해에는 흔하고 어떤 해에는 없을수도 있는 등 예측이 불가능하게 발견되며, 지역에 우연찮게 들어온 길 잃은 떠돌이 개체 발견 등을 포함합니다
+    present: 이 지역에서 확실하게 서식이 확인됩니다
+    uncommon: 주기적으로 발견되지만, 적거나 한정된 지역에서 발견되며 해당 지역에 이 생물의 적절한 서식지가 존재하는지 주의깊게 살펴봐야 합니다
+  occurrence_status_levels:
+    present: 서식 및 번식함
+    common: 자주 발견됨
+    uncommon: 제한적으로 서식
+    irregular: 불규칙하게 확인됨
+    doubtful: 서식이 불확실함
+    absent: 서식하지 않음
   of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
   official_blog: 공식 블로그
@@ -1607,7 +1630,9 @@ ko:
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
   only_show_for_species_subspecies_varieties_etc: 종, 아종, 변종 만 보기
   only_you: 나만
+  #Geoprivacy status in which no privacy has been applied
   open: 공개
+  #Geoprivacy status in which no privacy has been applied
   open_: 공개
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
@@ -1672,7 +1697,6 @@ ko:
   photos_updated: 사진 업데이트됨
   pi_consent_desc_title: 개인 정보에 관해
   pin_verb: 저장
-  pink: 핑크
   place: 장소
   place_autocomplete_placeholder: 자이언 국립공원, 마이애미, 등등
   place_deleted: 장소 삭제됨.
@@ -2009,13 +2033,16 @@ ko:
   projects: 프로젝트
   projects_you_admin: 관리하는 프로젝트
   public_domain: 퍼블릭 도메인
-  purple: 보라
   quality_grade: 품질 등급
   quality_grade_: 품질 등급
   quality_grade_colon: "품질 등급:"
   query: 쿼리
   range: 범위
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 순위
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: 순위
   ranks:
     kingdom: Kingdom
@@ -2166,6 +2193,7 @@ ko:
   sign_out: 로그아웃
   sign_up: 가입하기
   similar_species: 비슷한 종
+  similar_taxa: 비슷한 분류군
   sizes: 크기
   small: 작게
   site_admin_tools: 사이트 관리자 도구
@@ -2231,6 +2259,7 @@ ko:
   taxonomy: 분류
   taxon_deleted: 분류군이 삭제되었습니다.
   taxon_colors: 분류 색
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: 분류학적 위치
   taxon_name_was_deleted: 분류군 이름이 삭제되었습니다.
   taxon_name_was_successfully_updated: 분류군 이름이 성공적으로 수정되었습니다.
@@ -2266,7 +2295,6 @@ ko:
   unblock: 차단 해제
   unknown: 알 수 없음
   unknown_error: 알 수 없는 오류
-  unfollow: 팔로우 해제
   unlink_your_google_account: 구글 계정의 연결을 끊습니다
   unmute: 알림 제외를 해제
   unsubscribe: 알림 해제
@@ -2370,7 +2398,6 @@ ko:
   when_did_you_see_them?: <em>언제</em> 그것을 봤나요?
   where: 위치
   which_projects_can_add_your_observations?: 내 관찰을 추가할 수 있는 전통적인 프로젝트는 무엇입니까?
-  white: 흰색
   why_you_can_see_the_coordinates: 좌표를 볼 수 있는 이유
   who_can_add_observations_to_this_project?: 이 프로젝트에 관찰을 추가할 수 있는 사람은 누구입니까?
   widget: 위젯
@@ -2384,7 +2411,6 @@ ko:
   x_journal_new_post: "%{user}님의 저널 • 새 게시물"
   year: 년
   year_month: 년/월
-  yellow: 노랑
   'yes': "예"
   yesterday: 어제
   you: 나
@@ -2638,6 +2664,8 @@ ko:
       7: 토
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y년 %B'
     month_names:
       - 
@@ -2687,6 +2715,10 @@ ko:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%Y년 %B %d일"
   activerecord:
     models:
       TaxonLink: 분류 링크
@@ -2698,6 +2730,9 @@ ko:
       conservation_status:
         status: 상태
         description: 설명
+      listed_taxon:
+        occurrence_status_level: 이 지역에서
+        establishment_means: 서식 상태
       observation:
         observed_on: 관찰된 날짜
       post:

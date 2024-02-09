@@ -70,7 +70,7 @@ body > div > .popover {
     position: relative;
     .legend-left {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
     }
     &.for_taxon {
       .legend-left {
@@ -78,16 +78,16 @@ body > div > .popover {
       }
     }
     .legend-right {
-      margin-left: 18px;
+      margin-inline-start: 18px;
     }
     &.with-legend-mark {
       .legend-right {
-        margin-left: 33px;
+        margin-inline-start: 33px;
       }
     }
     .legend-mark {
       display: inline-block;
-      margin-left: 5px;
+      margin-inline-start: 5px;
       vertical-align: top;
       width: 12px;
       height: 12px;

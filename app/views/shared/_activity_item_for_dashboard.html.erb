@@ -10,7 +10,7 @@
   elsif item.respond_to?(:user)
     item.user
   end
-  return unless user
+  return unless user || item.is_a?( Flag )
   edit_url = case item.class.name
   when "Comment" then edit_comment_path(item)
   when "Identification" then edit_identification_path(item)
@@ -32,24 +32,26 @@
   </div>
   <div class="timeline-panel">
     <div class="timeline-heading">
-      <h2 class="timeline-title">  
+      <h2 class="timeline-title">
         <span class="time">
           <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
         </span>
-        <span style="font-weight:normal; color:gray">
-          <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
-          <%- if item.is_a? Identification %>
-            <%=t :user_added_an_identification_html, user: title %>
-          <% elsif item.is_a? Flag %>
-            <%=t :user_added_a_flag_html, user: title %>
-          <% elsif item.is_a? ObservationFieldValue %>
-            <%=t :user_added_an_observation_field_value_html, user: title %>
-          <% elsif item.is_a? ActsAsVotable::Vote %>
-            <%=t :user_added_a_fave_html, user: title %>
-          <% else %>
-            <%=t :user_added_a_comment_html, user: title %>
-          <%- end -%>
-        </span>
+        <%- unless user.blank? || ( item.is_a?( Flag ) && item.resolver && user == item.resolver ) -%>
+          <span style="font-weight:normal; color:gray">
+            <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
+            <%- if item.is_a? Identification %>
+              <%=t :user_added_an_identification_html, user: title %>
+            <% elsif item.is_a? Flag %>
+              <%=t :user_added_a_flag_html, user: title %>
+            <% elsif item.is_a? ObservationFieldValue %>
+              <%=t :user_added_an_observation_field_value_html, user: title %>
+            <% elsif item.is_a? ActsAsVotable::Vote %>
+              <%=t :user_added_a_fave_html, user: title %>
+            <% else %>
+              <%=t :user_added_a_comment_html, user: title %>
+            <%- end -%>
+          </span>
+        <%- end -%>
       </h2>
     </div>
     <div class="timeline-body">
@@ -64,10 +66,19 @@
       <% elsif item.is_a? Flag %>
         <div class="stacked body">
           <div class="stacked">
-            <span class="meta"><%= t :originally_flagged_by %></span>
-            <%= link_to_user item.user %>: "<%= item.flag %>"
+            <%- if item.user -%>
+              <span class="meta"><%= t :originally_flagged_by %></span>
+              <%= link_to_user item.user %>: "<%= item.flag %>"
+            <%- else -%>
+              <span class="meta"><%= t :original_flag %></span>
+              "<%= item.flag %>"
+            <%- end -%>
           </div>
-          <%= t(:flag_marked_as_resolved_html).html_safe %>
+          <%- if item.resolved? -%>
+            <%= t(:flag_marked_as_resolved_html).html_safe %>
+          <%- else -%>
+            <%= t(:flag_marked_as_unresolved_html).html_safe %>
+          <%- end -%>
           <% unless item.comment.blank? %>
             <%-
               username = if (u = item.resolver)

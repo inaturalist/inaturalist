@@ -24,6 +24,9 @@ da:
   x_identifications_:
     one: '1 Identifikation'
     other: '%{count} Identifikationer'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFIKATION'
+    other: '<span class="count">%{count}</span> IDENTIFIKATIONER'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ da:
   x_observations_html:
     one: "<span class='count'>1</span> observation"
     other: "<span class='count'>%{count}</span> observationer"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONER"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observation</a>"
     other: "<a href='%{url}'>%{count} observationer</a>"
@@ -83,6 +89,9 @@ da:
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> personer'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
@@ -96,6 +105,9 @@ da:
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTER"
   x_species_html:
     one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
@@ -185,7 +197,7 @@ da:
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
   about_trips_html: |
-    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din målliste, som du var i stand til at observere inden for søgeområdet og intervallet tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur' for at generere en tabel over tilstedeværende-fraværende registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
+    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværelse-fravær kriterium ved at føje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværelse-fravær data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt ifm. videnskabelige analyser såsom udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur føjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på mållisten, som kunne observeres inden for søgeområdet og intervallet tolkes som tilstedeværelse. Derimod tolkes arter, som ikke kunne observere, som fravær. Klik på 'Tabellér tilstedeværelse-fravær data fra tur' for at generere en tabel over tilstedeværelse-fravær registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Læs mere</a></p>
   about_trusting_projects: Om Tillid til Projekter
   about_trusting_projects_options_any: Alle dine observationer i dette projekt
   about_trusting_projects_options_any_desc: |-
@@ -241,6 +253,7 @@ da:
   active_taxon_status: Aktiv
   active_users: Aktive brugere
   activity: Aktivitet
+  activity_on_a_flag_for_x: Aktivitet på et flag for %{x}
   adapted_by_name_from_a_work_by_original: "Tilpasset efter %{name} fra et værk af %{original}"
   add: Tilføj
   add_a_batch_of_observations: Tilføj et bundt observationer
@@ -384,6 +397,8 @@ da:
   added_by: Tilføjet af
   added_by_user_on_date_html: "Tilføjet af %{user} den %{date}"
   added_on_datetime: "Tilføjet %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rolle tilføjet
   added_to_favorites_html: |
     Tilføjet til <a href="%{url}">favoritter</a>
   adding: "Tilføjer..."
@@ -408,6 +423,7 @@ da:
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
   all_life: Alt liv
+  all_media_must_be_unhidden: Alle medier skal være gjort synlige
   all_names: Alle navne
   all_observations: Alle observationer
   all_photos: Alle fotos
@@ -677,6 +693,7 @@ da:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
+  are_you_sure_you_want_to_flag_as_spammer: Sikker på, at denne bruger skal markeres som spammer?
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
   attention: Bemærk
@@ -797,13 +814,11 @@ da:
   bioblitz: Bioblitz
   birds: fugle
   birthday: Fødselsdag
-  black: sort
   block: Blokering
   blocking_description: Blokering forhindrer enhver kommunikation med en anden bruger i situationer, hvor vedkommende kan kompromittere din sikkerhed, såsom stalking eller anden krænkende adfærd.
   block_removed: Blokering fjernet
   blocked_users: Blokerede brugere
   blog_widget: Blog-widget
-  blue: blå
   blue_butterfly_etc: "blå, sommerfugl, etc."
   body: Indhold
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -817,7 +832,6 @@ da:
   #shown
   breadcrumbs_description: "Dette vil erstatte h1 og vil som standard kræve handling, så sørg for at medtage dem, hvis de er vigtige for dette projekt, og husk det maksimale tilladte er 950px"
   brief_caption: Kort billedtekst
-  brown: brun
   browse: Gennemse
   browse_all_projects: Gennemse alle projekter
   browse_all_species: Gennemse alle arter
@@ -871,9 +885,9 @@ da:
     drop: Takson-konceptet er helt ugyldigt, og er opretholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt koncept for frigivelse som en del af en ændringsgruppe
   change_geoprivacy: 'Ændr geofortrolighed'
-  change_group: Ændre gruppe
+  change_group: Ændringsgruppe
   change_icon: Skift ikon
-  change_password: Ændre adgangskode
+  change_password: Skift adgangskode
   #Message shown after you change your email address
   change_to_email_requested_html: Skift til <strong>%{email}</strong> anmodet. Tjek denne e-mailadresse mhp. at bekræfte skiftet.
   change_types:
@@ -903,7 +917,7 @@ da:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} vil blive erstattet af %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} blev sammenlagt i %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bliver sammenlagt i %{output_taxon}"
-  change_your_password: Ændre din adgangskode
+  change_your_password: Skift din adgangskode
   #Plural noun, as in changes to a taxon record over time
   changes: Ændringer
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -1039,9 +1053,12 @@ da:
     Den nuværende Computer Vision Model kender til denne takson, så den inkluderes muligvis i automatiserede forslag med "Visuelt lignende"-etiketten.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Afventende
-  computer_vision_model_pending_desc: |
-    Den nuværende Computer Vision Model kender ikke til denne takson, så mens den måske inkluderes i automatiserede forslag med etiketten "Nærliggende", vil den ikke have etiketten "Visuelt lignende". Selvom kravene til modelinkludering ændrer sig for hver model, er inkludering generelt baseret på
-    antal observationer, så for at forøge denne taksons chance for inkludering under den næste modeloptræning, så tilføj eller identificér flere observationer
+  computer_vision_model_pending_desc2: |
+    Den nuværende Computer Vision Model kender ikke til denne takson, så selvom
+    den kan være inkluderet i automatiserede forslag med etiketten "Forventet i nærheden", vil
+    den ikke have etiketten "Visuelt Lignende". Mens kravene til
+    modelinklusion ændres med hver model, er inklusion generelt baseret på
+    observationsantal, så for at øge inklusionschancen for denne takson under næste modeltræning, tilføj eller identificér da flere observationer
     af denne takson.
   concept_status: Koncept status
   confidential: Fortrolig
@@ -1166,10 +1183,12 @@ da:
     cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
     dead: Organisme død eller viser tegn på forestående død
     feather: En eller flere fjer ikke fastgjort til en organisme
+    female: Bevis indikerer, at organismen kan producere æg til brug i seksuel reproduktion
     flower_budding: Blomsterknopper er synlige, men ikke åbne
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
     gall: Deform udvækst af plantevæv forårsaget af parasitisk organisme
+    male: Bevis indikerer, at organismen kan producere sæd til brug i seksuel reproduktion
     molt: Afstødt hud eller exoskelet
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     organism: Hel eller partiel organisme
@@ -1720,49 +1739,14 @@ da:
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
-  email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
-  email_conf_banner_email_delivered_click_link: |
-    Bekræftelsesmail leveret. Klik på linket i e-mailen.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Føj <code>%{email}</code> til din kontaktliste og
-    <a href="%{url}">anmod om en ny bekræftelsesmail</a>.</strong> Blokerer e-mailudbyderen bekræftelsesmailen, kan dette muligvis overbevise dem om, at
-    du rent faktisk ønsker e-mails fra os.
-  email_conf_banner_check_your_spam_folder_html: <strong>Tjek spammappen</strong>
-  email_conf_banner_contact_us_html: Fungerer stadig ikke? E-mail os via %{email} så vi kan hjælpe dig.
-  email_conf_banner_please_click: |
-    Klik på linket i e-mailen for at bekræfte din e-mailadresse.
-  email_conf_banner_search_for_emails_html: <strong>Søg efter e-mails fra <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Vi sendte dig en bekræftelsesmail d. %{date}. Er den ikke
-    modtaget, så er her nogle ting, du kan gøre:
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kære %{user},
+  email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_conf_required_after_grace_period: |
     Bekræftelse af e-mailadresse blev obligatorisk pr. %{requirement_date} og din blev ikke bekræftet inden skæringsdatoen. Nulstil din adgangskode
     for at tilgå kontoen.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
-    Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
-    dato vil brugere med ubekræftede e-mailadresser være ude af stand til at
-    logge ind, medmindre de nulstiller deres adgangskode. Gå til %{link_start_tag}kontoindstillingerne%{link_end_tag} for at bekræfte din e-mailadresse.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekræft din %{site_name} e-mailadresse før %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Bekræft din e-mailadresse i dag for at sikre fortsat adgang til din konto. %{site_name} og mobil-appsne
-    iNaturalist og Seek by iNaturalist forbinder folk med naturen og hinanden ved at dele biodiversitetsobservationer. Tak for din deltagelse i iNaturalist-fællesskabet!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Fra og med %{requirement_date} kræver vi bekræftede e-mailadresser for alle konti. Brug et øjeblik på at bekræfte den nu.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Ved evt. spørgsmål henvises til vores <a href="%{faq_url}">FAQ</a>. Tak fordi du tager dig tiden til at connecte med naturen og med %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Kontooplysninger
   email_copyright2: "&copy; %{year} iNaturalist, alle rettigheder forbeholdes"
   email_notifications: E-mailnotifikationer
   embed: 'Integrér'
@@ -1810,6 +1794,7 @@ da:
   everywhere: overalt
   exact: Præcis
   exact_date: Eksakt dato
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Eksakt række
   except: bort set fra
   exclude_places: Ekskludér steder
@@ -1821,6 +1806,7 @@ da:
   exit_full_screen: "Afslut fuld skærm"
   examples_of_data_use_by_network_members: Eksempler på Dataanvendelse af netværksmedlemmer
   examples_of_ranking_organizations: Eksempler på naturbeskyttelsesorganisationer
+  expected_nearby: Forventet i nærheden
   explore: Udforsk
   export: Eksportér
   export_observations: Eksportér observationer
@@ -1941,6 +1927,7 @@ da:
     Markér til Bruger: %{title}
   flag_it!: Markér den!
   flag_marked_as_resolved_html: '<span class="meta">Markér som</span> <strong>resolved.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Flagmarkeret som</span> <strong>uløst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Jeg markerer denne %{record} fordi"
@@ -1978,7 +1965,10 @@ da:
   #Adjective, as in a fluid layout of images
   fluid: flydende
   follow: Følg
+  #Text for a button to follow updates on an observation
+  follow_observation: Følg observation
   follow_receive_updates_about_new_observations: Følg (modtag opdateringer om nye observationer)
+  #Text for a button to follow updates from a specific user
   follow_user: "Følg %{user}"
   followers: Følgere
   following: Følger
@@ -2017,8 +2007,13 @@ da:
   generate_taxonomic_tags_for_flickr: Generér taksonomiske tags til dine Flickr-fotos.
   generate_widget: Generér widget
   generate_your_stats: Generér dine statistikker
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERER DIT %{year}-ÅRS TILBAGEBLIK
   generating_mobile_archive: "Genererer mobil arkiv"
   Genus: Slægt
+  geomodel_expected_nearby_label_is_derived: |
+    Etiketten "Forventet i nærheden" stammer fra Geomodellen.
+    <a href="%{url}">Læs mere om Geomodellen her</a>.
   geoprivacy: geofortrolighed
   geoprivacy_is_obscured: Geofortrolighed er sløret
   geoprivacy_is_obscured_desc: Observatør har valgt at sløre koordinaterne.
@@ -2045,7 +2040,6 @@ da:
   graft: Pode
   graft_taxon: Podet %{taxon}
   grafting_attemps_to_insert_this_taxon: Podning forsøger at indsætte denne takson i vores taksonomiske træ, finde et eksisterende overordnet takson eller opret alle de nødvendige mellemliggende taksa for at vedhæfte det til et eksisterende højere takson niveau.
-  grant_role: "%{grant} %{role} rolle"
   grid: Gitter
   grid_layout: Gittervisning
   grid_tooltip: Vis gittervisning
@@ -2118,7 +2112,9 @@ da:
   hide: Skjul
   hide_content: Skjul indhold
   hide_desc: |
-    Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.
+    Skjulning af indhold fjerner det fra offentligt skue, men folk vil stadig kunne se, at noget er blevet skjult, ligesom webstedskuratorer og indholdsforfatteren stadig vil kunne se det skjulte indhold. Skjulte identifikationer vil ikke bidrage en observations Fællesskabs Takson.
+  hide_desc_staff_can_unhide: |
+    Kun webstedspersonale kan gøre indhold synligt igen, efter det har været skjult, så brug kun denne ved klare overtrædelser af Fællesskabsretningslinjer.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen annotation"
@@ -2126,6 +2122,8 @@ da:
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
   high: Høj
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Højeste rang
   highlights_and_stats_from_year_on_site: "Højdepunkter og statistikker fra %{year} på %{site}"
   history: Historik
@@ -2176,8 +2174,10 @@ da:
   #Notification when an identification has been deleted
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Identifikationstekst gjort synlig
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikation skjult
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identifikation gjort synlig
   #Notification when an identification has been updated
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
@@ -2185,75 +2185,9 @@ da:
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
   inaturalist_global_year_in_review: "iNaturalists globale %{year} år i gennemgang"
-  independence_email_subject: "Spreder vores vinger: iNaturalist er nu en uafhængig nonprofitorganisation"
-  #Introductory line in an email. "Dear" doesn't have to be translated
-  #literally. Please just choose something that's conventional in your
-  #language.
-  independence_email_body_dear: Kære %{name},
-  independence_email_body_exciting_news: |
-    iNaturalist-teamet har spændende nyheder! Vi glade for at dele, at takket være
-    støtten fra dette storartede fællesskab, fungerer iNaturalist nu som
-    en uafhængig 501(c)(3) non-profitorganisation baseret i USA.
-  independence_email_body_since_launching: |
-    Siden lanceringen i 2008 har iNaturalist-teamet og -organisationen
-    udviklet sig, og vi er begejstrede for denne næste milepæl. iNaturalist begyndte
-    som master's-projekt på University of California, Berkeley, blev er
-    LLC, dernæst blev California Academy of Sciences involveret i 2014. I 2017 blev
-    iNaturalist et fællesinitiativ med California Academy of
-    Sciences og National Geographic Society. Nu er iNaturalist så en
-    uafhængig organisation.
-  independence_email_body_over_the_past: |
-    I løbet af de seneste 15 år har de utrolige bidrag fra fællesskabet
-    gjort iNaturalist til en af verdens mest indflydelsesrige naturplatforme.
-  independence_email_body_so_far: "Indtil videre har iNaturalist-fællesskabet:"
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_created: Oprettet flere end 146.000.000 verificerbare observationer (tilføjer omkring 1 million om ugen!)
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_grown: Vokset til 2,7 millioner bidragsydere
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_observed: Observeret flere end 430.000 arter
-  #Item in a list beginning with "So far, the iNaturalist community has:"
-  independence_email_body_cited_html: |
-    Blev nævnt flere end 3.500 gange
-    <a href="https://www.gbif.org/dataset/50c9509d-22c7-4a22-a47d-8c48425ef4a7">via Global Biodiversity Information Facility</a>
-  independence_email_body_we_thank: |
-    Vi takker California Academy of Sciences og National Geographic
-    Society for inkubationen af iNaturalist, da det voksede drastisk i løbet af de seneste 9 år. Vi skylder disse partnere umådelig stor taknemmelighed for deres investeringer, støtte og forvaltning. Vi ser frem til at samarbejde med begge organisationer i fremtiden.
-  independence_email_body_the_way_html: |
-    <strong>Måden iNaturalist opleves på vil ikke ændre sig.</strong>
-    iNaturalist og Seek vil fortsat frit hjælpe dig med at identificere
-    biodiversitet og opbygge din egen forbindelse til den naturlige verden. Denne nye organisationsstruktur vil tillade os at understøtte iNaturalist i årevis i takt med at iNaturalist-fællesskabet udvider vores kollektive viden om
-    biodiversitet langt ind i fremtiden. Vi vil fortsætte samarbejdet med
-    organisationer verden over for at støtte iNaturalist Network.
-  independence_email_body_questions_html: |
-    Du kan <a
-    href="https://www.inaturalist.org/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit">læse
-    mere på bloggen</a> samt tjekke <a
-    href="https://www.inaturalist.org/pages/spinoff_faq">Ofte Stillede Spørgsmål (FAQ)</a> (på engelsk). Vores <a
-    href="https://www.inaturalist.org/pages/terms">Vilkår for Brug</a> og <a
-    href="https://www.inaturalist.org/pages/privacy">Fortrolighedspolitik</a> er
-    blevet opdateret for at afspejle den nye organisationsform.
-  independence_email_body_thank_you: Tak fordi du er en del af dette fællesskab!
-  #Signature section of an email. "Onward" is a bit unconventional in
-  #English, so feel free to translate as "Sincerely" or whatever seems
-  #appropriate in your language. Note that these are proper names of people
-  #on iNat staff.
-  independence_email_body_signature_html: |
-    Så fremad,<br/>
-    <br/>
-    <strong>Scott Loarie</strong><br/>
-    <strong>Ken-ichi Ueda</strong><br/>
-    <strong>Carrie Seltzer</strong><br/>
-    <br/>
-    <strong>iNaturalist Ledelsesteam</strong>
-  independence_email_body_ps: |
-    P.S. — Vi annoncerer snart et generøst tilskud, der vil give iNaturalist som 
-    uafhængig en solid start. Den økonomiske støtte fra
-    iNaturalist-fællesskabet gjorde vores udvikling mulig og vil være afgørende for
-    langsigtet bæredygtighed. Din donation nu vil fejre denne spændende
-    milepæl og yderligere sikre iNaturalists fremtid. Tak!
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Donér nu
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profit organisation
+    baseret i USA (Skatte-ID: 92-1296468).
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -2310,6 +2244,7 @@ da:
   include_places: Inkludér steder
   include_projects: Inkludér projekter
   include_suggestions_not_seen_nearby: Medtag forslag for ikke set i nærheden
+  include_suggestions_not_expected_nearby: Medtag forslag ikke forventet i nærheden
   include_taxa: Inkludér taksa
   include_users: Inkludér brugere
   including: inklusiv
@@ -2380,6 +2315,7 @@ da:
   journal: Journal
   journal_archives_for: Journal arkiveres til
   journal_post: Journalindlæg
+  journal_post_: journalindlæg
   journal_post_deleted: Journalindlæg slettet.
   journal_posts: Journalindlæg
   jpg_png_or_gif: "JPG, PNG, eller GIF"
@@ -2722,6 +2658,8 @@ da:
   looks_like_no_species_in_guide: Det ser ud som om du ikke har nogen arter i din guide endnu.
   lookup: Slå op
   low: lav
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Laveste rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2838,6 +2776,10 @@ da:
     <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
     deres egen historik</strong>, så notater om en person bør aldrig være synlige
     for den pågældende person.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Skjul
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unhide: Ophæv udelukkelse
   moderator_note_desc: |
     Moderatornotater er optegnelser over moderationssvar eller evidensbaserede tvivl om en bruger, såsom om der er tale om en mulig fiktiv konto. Inkludér venligst ikke personlige meninger eller rygter om brugeren.
   #Person who executed a moderator action or flagged something
@@ -2987,7 +2929,6 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_id_tooltip_html: 'Observationstypen "Behøver ID" har medier, placering og dato, men mangler fortsat fællesskabskonsensus ift. en præcis identifikation. <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
-  needs_to_be_identified: Behøver en identifikation
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
@@ -3186,6 +3127,90 @@ da:
     Offentlige koordinater vist som et tilfældigt punkt inden for 0,2 længde- og breddegrad af feltet, som indeholder de korrekte koordinater.
   observation: Observation
   observation_: observation
+  observation_accuracy_experiment_the_sample_for: "Prøven til dette eksperiment er endnu ikke genereret"
+  observation_accuracy_experiment_our_accuracy_estimate: "Vores nøjagtighedsskøn som følge af dette eksperiment er %{percent} korrekt."
+  observation_accuracy_experiment_our_goak: "Vores mål for anslået Nøjagtighed (Korrekt) og Præcision af Forskningskvalitet-undergruppen er større end 95% (stiplet linje)"
+  observation_accuracy_experiment_precision_results: "Præcisionsresultater pr. undergruppe"
+  observation_accuracy_experiment_taxon_rank_level: "Taksonrangeringsniveau"
+  observation_accuracy_experiment_taxon_observations_count: "Taksonobservationsantal"
+  observation_accuracy_experiment_iconic_taxon_name: "Ikonisk Taksonnavn"
+  observation_accuracy_experiment_continent: "Kontinent"
+  observation_accuracy_experiment_year: "År"
+  observation_accuracy_experiment_quality_grade: "Kvalitetsklasse"
+  observation_accuracy_experiment_show_frequency: "vis frekvens"
+  observation_accuracy_experiment_click_on_bars: "Klik på bjælker for at udforske undergrupper."
+  observation_accuracy_experiment_accuracy_results: "Præcisionsresultater pr. undergruppe"
+  observation_accuracy_experiment_as_observations: "Når observationer fra denne prøve efterhånden bekræftes, vil usikkerhedsprocentdelen falde, og procenterne for korrekt og ukorrekt vil stige."
+  observation_accuracy_experiment_experiment_still: "Eksperiment stadig i gang. Statistik opdateres dagligt indtil prøvebekræftelsesdeadlinen pr. %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Observationsnøjagtighedseksperiment"
+  observation_accuracy_experiment_validators: "Validatorer:"
+  observation_accuracy_experiment_show_additional_validators: "(vis yderligere validatorer)"
+  observation_accuracy_experiment_hide_additional_validators: "(skjul yderligere validatorer)"
+  observation_accuracy_experiment_additional_validators: "(%{number} yderligere validatorer)"
+  observation_accuracy_experiment_abstract: "Resumé: Vi genererede en prøve af observationer d. %{sample_generation_date} og koordinerede et team af validatorer til at vurdere deres nøjagtighed inden d. %{deadline_date}. Alle nedenstående resultater viser karakteristika for prøveobservationerne på tidspunktet for prøvens generering (f.eks. Forskningskvalitet/-klasse eller ej). Nøjagtigheden af prøveobservationer blev vurderet d. %{assessment_date}. Se fanen Metoder for flere detaljer."
+  observation_accuracy_experiment_research_grade_results: "Resultater af Forskningskvalitet"
+  observation_accuracy_experiment_verifiable_results: "Verificerbare resultater"
+  observation_accuracy_experiment_all_results: "Alle resultater"
+  observation_accuracy_experiment_methods: "Metoder"
+  observation_accuracy_experiment_step_1: "Trin 1: Prøvegenerering og -fordeling"
+  observation_accuracy_experiment_from_the: "Fra iNaturalist-databasen af observationer (A) genererede vi en tilfældig prøve (B). Delprøver blev tildelt kandidatvalidatorer baseret på de nedenfor beskrevne kriterier. Vores mål var at tildele hver prøveobservation til flere kandidatvalidatorer ( \"Målvalidatorredundans\" )."
+  observation_accuracy_experiment_sample_generated: "Prøve genereret: %{date}"
+  observation_accuracy_experiment_sample_size: "Prøvestørrelse: %{number}"
+  observation_accuracy_experiment_target_validator: "Målvalidatorredundans: %{number}"
+  observation_accuracy_experiment_number_of: "Antal kandidatvalidatorer: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Gns. delprøvestørrelse pr. kandidatvalidator: %{number}"
+  observation_accuracy_experiment_mean_number: "Gns. antal validatorer pr. prøveobservation: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Validatorkandidatkriterier"
+  observation_accuracy_experiment_if_an_identifier: "Havde en identifikator foretaget mindst 3 forbedrende identifikationer af en takson, betragtede vi dem som kvalificerede til at validere den takson. Forbedring af identifikationer er det første forslag til en takson, som fællesskabet efterfølgende er enig i."
+  observation_accuracy_experiment_for_example: "Identifikator 1 føjer f.eks. et ID af A til en observation. Føjer Identifikator 2 senere et førende ID til B, bliver Identifikator 1-ID'et på A et forbedret ID. Føjer Identifikator 3 senere et understøttende ID til B, bliver Identifikator 2-ID'et på B et forbedrende ID."
+  observation_accuracy_experiment_step_2: "Trin 2: Bekræftelse af prøver"
+  observation_accuracy_experiment_we_contacted: "Vi kontaktede kandidatvalidatorer og bad dem føje identifikationer til deres delprøver. Grafen til højre grupperer prøveobservation efter antallet af validatorer."
+  observation_accuracy_experiment_number_percent_of: "Antal deltagende validatorer: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Procent af prøve bekræftet: %{percent}"
+  observation_accuracy_experiment_step_3: "Trin 3: Scoretildeling af prøveobservationer fra godkendelser"
+  observation_accuracy_experiment_we_scored: "Vi scoretildelte observationer i prøven som Korrekt, Usikker eller Forkert ved at sammenligne validatoridentifikationer med de enkelte prøveobservationers takson. Identifikationer, som matchede eller var finere end prøvens observationstakson, blev scoret som Korrekt. Ikke-uenige, grovere identifikationer blev scoret som Usikker ligesom scenarier, hvor flere validatorer var uenige. Uenige, grovere identifikationer eller identifikationer på forskellige grene blev scoret som Forkert."
+  observation_accuracy_experiment_correct: "Korrekt"
+  observation_accuracy_experiment_uncertain: "Usikker"
+  observation_accuracy_experiment_step_4: "Trin 4: Nøjagtigheds- og præcisionsberegning"
+  observation_accuracy_experiment_accuracy: "Nøjagtighed"
+  observation_accuracy_experiment_we_calculated: "Vi beregnede Nøjagtighed som procent korrekte for hele prøven samt delsæt, såsom Forskningskvalitetdelmængden. Vi beregnede også procentdelen Usikker og procentuel Ukorrekt. I eksemplet til højre ville procentsatsen Korrekt være 83, procentsatsen Usikker ville være 6, og procentsatsen Ukorrekt ville være 11."
+  observation_accuracy_experiment_precision: "Præcision"
+  observation_accuracy_experiment_if_every_sample: "Var hver prøveobservation på en grov takson, såsom rige, ville nøjagtigheden af iNaturalist-datasættet kunne være meget høj, men præcisionen kunne være for lav til at gøre datasættet specielt nyttigt. For at anslå præcisionen har vi talt antallet af bladefterkommere i iNaturalist-taksonomien for hver takson for hver prøveobservation. Vi beregnede præcision som 1 divideret med antallet af bladefterkommere. Var taksonen en bladtakson, er præcisionen 100%. Vi ignorerede rangeringer under arter i præcisionsberegningen."
+  observation_accuracy_experiment_in_the_example: "I eksemplet til højre, ville den gns. præcision af tre prøveobservationer være 51%."
+  observation_accuracy_validator_email_subject: "Vil du hjælpe os med at vurdere korrektheden af iNaturalist-observationer?"
+  observation_accuracy_validator_email_will_you_help_us: |
+    Vil du hjælpe os et eksperiment til vurdering af korrektheden af iNaturalist-observationer?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (endda kongerige). </li>
+    <li>Vises en “Potentiel uenighed”-pop op…,
+    <ul>
+    <li>og du er sikker på, at det er en fejlidentifikation, klik på den orange knap,</li>
+    <li>eller hvis du er usikker udover dit ID, klik på den grønne knap</li>
+    </ul>
+    </li>
+    <li>Gør dette senest <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Her er <a href="%{sample_url}">delmængden af %{num_obs} observationer</a>,
+    som vi tror, at du kan identificere baseret på din aktivitet på iNat. <b>Tilføj 
+    dit mest præcise ID til hver af observationerne senest %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vi beregner nøjagtigheden ved at sammenligne dit ID med observationstaksonen. Observationer, hvor du
+    tidligere har tilføjet et ID, der fortsat har relevans, kan overspringes. Læs videre for mere information om, hvordan vi tæller enigheder og uenigheder.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Er ID'er lig med (A) eller finere end (B), medregnes Observationstaksonen som Enigheder.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID'er på forskellige grene (C) eller grovere end Observationstakson, hvor du vælger 'Nej,
+    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Uenigheder.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID'er grovere end Observationstakson, hvor du vælger 'Jeg ved det ikke,
+    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Usikker.
+  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Vi er så taknemmelige for din hjælp som identifikator på iNaturalist og takker 
+    meget for din deltagelse i denne undersøgelse. Læs <a href="%{url}">dette 
+    blogindlæg</a> for svar på hyppige spørgsmål omkring dette eksperiment.
+  observation_accuracy_validator_email_with_gratitude: Med taknemmelighed
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3329,6 +3354,7 @@ da:
   observations_widget: Observations widget
   observations_with_this_field: Observationer med dette felt
   observations_with_this_field_and_value: Observationer med dette felt og værdi
+  observations_without_this_field: Observationer uden dette felt
   observations_without_media: Observationer uden media
   observationcounts_refreshed: Observations antal genopfrisket
   observed: Observeret
@@ -3426,7 +3452,9 @@ da:
   only_the_project_admin_can_delete_this_project: Kun projektadministratoren kan slette dette projekt.
   only_view_nearby_suggestions: Vis kun forslag set i nærheden
   only_you: Kun dig
+  #Geoprivacy status in which no privacy has been applied
   open: åben
+  #Geoprivacy status in which no privacy has been applied
   open_: Åben
   open_description: "Alle kan se koordinaterne, medmindre taksonen er truet."
   open_street_map: OpenStreetMap
@@ -3437,12 +3465,12 @@ da:
   #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
-  orange: orange
   order: Orden
   order_by: Sorteret efter
   organism_is_wild: Organisme er vild
   organisms: Organismer
   original: Oprindelig
+  original_flag: Oprindeligt flag
   originally_flagged_by: Oprindeligt markeret af
   originally_imported_from_url_html: "Oprindeligt importeret fra <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Oprindelig side URL for dette foto."
@@ -3528,8 +3556,12 @@ da:
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
   photo_destroyed_because_it_was_deleted_from: "Foto ødelagt fordi det blev slettet fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at se det"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto skjult
   photo_licensing: Fotolicens
   photo_type: Foto type
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto vises igen
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
@@ -3581,7 +3613,6 @@ da:
   data_transfer_consent_child_label: |
     Jeg giver samtykke til, at mit barns personlige oplysninger overføres til USA
   pin_verb: Gem
-  pink: lyserød
   pinned_locations_desc: |
     Gem denne kombination af koordinater, geofortrolighed og stedbeskrivelser til senere brug.
   place: Sted
@@ -3914,6 +3945,7 @@ da:
     north_korea: Nordkorea
     northern_cyprus: Nordcypern
     norway: Norge
+    oceania: Oceanien
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4169,7 +4201,6 @@ da:
     via Google.
   public_domain: Offentlig ejendom
   publish: Offentliggør
-  purple: lilla
   quality_grade: Kvalitetsklasse
   quality_grade_: Kvalitetsklasse
   quality_grade_colon: "Kvalitetsklasse:"
@@ -4180,7 +4211,11 @@ da:
   radius_value: "Radius (m):%{radius}"
   random: Tilfældig
   range: Område
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4352,7 +4387,6 @@ da:
   recently_resolved: Nyligt løst
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Optegnelse
-  red: rød
   redo_search_in_map: Gentag søgning på kort
   redo_search_in_map_area: Gentag søgning på kortområde
   refresh: Opdatér
@@ -4407,6 +4441,8 @@ da:
   remove_tags: Fjern tags
   removed: Fjernet
   removed_project_user: Fjernet projektbruger
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rolle fjernet
   removing: "Fjerner..."
   reorder_by_taxonomy: Sortér efter taksonomi
   repair_broken_urls: Reparér ødelagte URLs
@@ -4464,6 +4500,15 @@ da:
   rotate_left: Rotér til venstre
   rotate_right: Rotér til højre
   row_singular_or_plural: Række(r)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Test højre-til-venstre layout? Du kan også bruge test=rtl URL param. Bemærk,
+    at ikke alle sider er konverteret til højre-til-venstre layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Tilmeldt højre-til-venstre layouttest
   rules_and_formatting: "Regler og formatering"
   rules_for_adding_observations: Regler for tilføjelse af observationer
   rules_for_becoming_a_member: Regler for medlemsskab
@@ -4912,8 +4957,8 @@ da:
   tags: Tags
   tags_are_a_way: 'Tags er en måde hvorpå du organisere dine observationer. Du kan for eksempel tagge alle dine tidevandssøer observationer med "tidevandssøer", for at gøre det nemmere at finde dem senere.'
   take_me_flickr!: Ja, før mig til Flickr!
-  target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt, at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
-  target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
+  target_list_alert: Sikker på, at du forsøgte at observere alle arter på mållisten? Husk, at alt indeholdt på din målliste, som ikke blev observeret, tolkes som fravær, så det er meget vigtigt, at mållisten nøjagtigt afspejler det sæt arter, der blev forsøgt registreret
+  target_list_warning: Husk, at alt dækket af mållisten, som ikke blev observeret inden for denne rejses radius og varighed, tolkes som et fravær. Det er meget vigtigt, at mållisten afspejler præcis de arter, som blev forsøgt observeret. Forsøgte du ikke at observere en art på din målliste, eller alle arter dækket af en gruppe på din målliste, så fjern den venligst.
   task_deleted: Opgave slettet
   taxa: Taksa
   taxa_show_obs_photo_search_tip: |
@@ -5054,6 +5099,7 @@ da:
     om, hvorfor den publicerede IUCN-rødlisteudbredelse krævede ændringer.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Få mere at vide om taksonudbredelser
   taxon_range_updated_notice: Taksonområdet blev opdateret. Ændringerne vises på kortet om få minutter.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksonrangeringer
   taxon_removed_from_list: Takson fjernet fra liste.
   taxon_scheme: Taksonordning
@@ -5388,7 +5434,7 @@ da:
   'true': 'Sandt'
   trending: Tendenser
   trends: Tendenser
-  trip_target_list_info: 'Dette er et ikke overlappende sæt af det groveste taxa på din målliste. Alle taksa repræsenteret af slørede observationer er ekskluderet.'
+  trip_target_list_info: 'Enhver art indeholdt på denne målliste, som ikke blev observeret inden for denne rejses radius og varighed, tolkes som fravær. <a href="/pages/trips">Læs mere</a>.'
   #Noun
   trust: Hav tillid til
   trusted: Betroet
@@ -5422,7 +5468,10 @@ da:
   unknown: Ukendt
   unknown_error: Ukendt fejl
   unknown_rank: '(Ukendt rang)'
-  unfollow: Følg ikke længere
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Følg ikke længere observation
+  #Text for a button to stop following updates from a user
+  unfollow_user: Følg ikke længere bruger
   unlink_your_google_account: Frakobl din Google konto
   unlink_your_flickr_account: "Fjern din Flickr-konto"
   unmute: Tænd
@@ -5787,7 +5836,6 @@ da:
   where_were_they?: Hvor var de?
   where_were_you?: Hvor observerede du den?
   which_projects_can_add_your_observations?: Hvilke traditionelle projekter kan tilføje dine observationer?
-  white: hvid
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Hvorfor foretages denne ændring? (valgfrit)
   why_are_you_making_this_change_cite_source_required: Hvorfor foretages denne ændring? Forklar venligst og angiv om muligt en kilde. (Obligatorisk)
@@ -5858,9 +5906,9 @@ da:
   year: År
   year_in_review: "År i tilbageblik %{year}"
   year_in_review2: "År i gennemgang %{year}"
+  year_in_review_caps: "ÅR I TILBAGEBLIK %{year}"
   year_month: år/måned
   year_on_site: "Året på %{site} %{year}"
-  yellow: gul
   'yes': "Ja"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5891,6 +5939,57 @@ da:
   yir_donate_banner_you_helped_inaturalist_thrive: Du hjalp iNaturalist med at trives i år. Tak!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behøver din støtte
+  yir_email_because_of_you: |
+    På grund af jer, er der flere data om biodiversitet i år end sidste
+    år. Året i tilbageblik er vores gave til jer for alt dét, I har
+    gjort for biodiversitet gennem iNaturalist.
+  yir_email_log_in_to_generate: |
+    Log ind for at generere et personligt år i tilbageblik for at se det!
+  yir_email_of_your_observations:
+    one: Af din %{count} observation, ved du, om den blev lavet i %{year}?
+    other: Af dine %{count} observationer, ved du, hvor mange der blev lavet i %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Dit %{year} iNaturalist-år i tilbageblik — fejr dit år med biodiversitet
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist-teamet
+  yir_email_the_year_isnt_over: |
+    Året er ikke omme endnu, og det er aldrig for sent at poste ældre
+    observationer. Efter at have delt flere observationer, vælg “Regenerér statistikker” i bunden af Året i tilbageblik for at se
+    opdateringerne.
+  yir_email_what_else_will_you_observe_caps: HVAD ANDET VIL DU OBSERVERE?
+  yir_email_what_new_to_you: |
+    Hvilke for dig nye arter registrerede du i år? Hvor mange personer hjalp
+    dig med identifikationer (og hvor mange hjalp du)?
+  yir_email_with_gratitude: Med taknemmelighed
+  yir_email_year_on_inaturalist_globally_caps: "%{year} PÅ INATURALIST GLOBALT"
+  yir_email_you_are_part_of_something: |
+    Du er en del af noget stort! Enhver person, der indsender observationer, tilføjer
+    identifikationer og spreder budskabet om iNaturalist gør en
+    forskel for biodiversitet. Gennem vores kollektive indsats gør vi
+    biodiversitetsdata og indsigter tilgængelige i et hidtil uset
+    omfang. Tak fordi du er en del af iNaturalist-fællesskabet!
+  yir_email_you_make_a_difference: |
+    Du gør en forskel for biodiversitet gennem iNaturalist. Tak for
+    alt det, du gør!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Du har modtaget denne e-mail, da %{email} er tilknyttet
+    https://www.inaturalist.org/people/%{username}, en iNaturalist-konto
+    oprettet d. %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Du har modtaget denne e-mail, da %{email} er tilknyttet
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    en iNaturalist konto oprettet d. %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Din konto er tilknyttet %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Din konto er tilknyttet <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Generering og deling af højeffekts biodiversitetsdata i denne hidtil usete
     skala og hastighed har stigende omkostninger
@@ -6051,6 +6150,9 @@ da:
         CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
         vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
         til alle medlemmer af en side, skal du bare lade dette stå tomt.
+      clients_desc: |
+        Vælg flere med klik + CMD eller SHIFT. Vælges ingen, vises
+        bekendtgørelsen til alle brugere uanset klient.
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
@@ -6077,6 +6179,25 @@ da:
             tips til at bruge %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Du kan <u>fordoble</u> eller <u>tredoble</u> din gave! Takket være
+        Gordon og Betty Moore Foundation, tredobles fortløbende månedlige, kvartalsvise og årlige donationer — mens engangsdonationer
+        fordoblet — til og med 31. december 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist er et af verdens største fællesskaber dedikeret til
+        biodiversitet. Tak fordi du er en del af det!
+        </p>
+        <p class="lead">
+        Såfremt du tror på styrken i dette globale fællesskab af naturelskere til at dele viden og generere uerstattelige biodiversitetsdata, overvej da en engangs eller løbende gave online, eller udforsk <a href="https://www.inaturalist.org/pages/giving">andre måder at give på</a>.
+        </p>
+        <p class="lead">
+        Din donation er essentiel for iNaturalist, efterhånden som fællesskabet vokser, fra at forbedre vores teknologi til præcis identifikation af arter og implementere nye funktioner til støtte for vores servere og personale.
+        </p>
+        <p class="text-muted">
+        iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profitorganisation baseret i USA (Skatte-ID: 92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist er et af verdens største fællesskaber dedikeret til udforskningen af biodiversitet. Tak fordi du er en del af det!</strong>
@@ -6095,6 +6216,27 @@ da:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLIV EN INATURALIST MÅNEDLIG SUPPORTER
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Du kan <u>tredoble</u> din gave! Takket være
+          Gordon og Betty Moore Foundation, tredobles alle Månedlig Supporter-donationer til og med 31. december 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist er et af verdens største fællesskaber dedikeret til
+          biodiversitet. Tak fordi du er en del af det!
+          </p>
+          <p class="lead">
+          Synes du om iNaturalist, overvej da at blive Månedlig Supporter. Løbende gaver medvirker til at sikre, at iNaturalist fortsat kan skalere sin infrastruktur og personale via en forudsigelig indtjening. Månedlige gaver har desuden tredobbelt effekt! Du kan også vælge at vise din Månedlig Supporter-status på brugerprofilen.
+          </p>
+          <p class="lead">
+          Dine velgørende donationer hjælper med at støtte iNaturalist, mens
+          fællesskabet vokser, fra at fremme computervision og implementering
+          nye funktioner til at støtte vores servere og personale. Du kan også
+          give en <a href="%{donate_url}">engangsdonation</a> samt udforske <a href="https://www.inaturalist.org/pages/giving">andre måder at give på</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profitorganisation baseret i USA (Skatte-ID: 92-1296468).
+          </p>
         desc3_html: |
           <p class="lead">
           <strong>iNaturalist er et af verdens største fællesskaber dedikeret til
@@ -6129,6 +6271,106 @@ da:
           Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
           markér kun hvis indholdet ikke er spam eller ikke er en krænkelse af
           ophavsret.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Geomodelforudsigelser for %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodellen foretager forudsigelser om, hvor arter forekommer, og hvor de er fraværende.
+          Vi bruger Geomodellen til at tilføje etiketten "Forventet i nærheden" sammen med forslag, samt
+          til vægtning af disse forslag baseret på observationsplaceringen.
+        the_geo_model_is_trained: |
+          Som med Computervisionsmodellen, er Geomodellen trænet med iNaturalist-observationer
+          for det samme sæt arter med omkring 100 fotos. Geomodellen
+          foretager ikke perfekte forudsigelser. Læs evt. mere om, hvordan Geomodellen er lavet
+          <a href="%{url}">hér</a>.
+        nearby_map:
+          expected_nearby_map: Forventet i nærheden-kort
+          we_use_this_map: |
+            Vi bruger dette kort til at føje etiketten Forventede i nærheden til forslag baseret på
+            observationsplaceringen.
+          for_example: |
+            Eksempelvis kan en observation af et firben i central-USA 
+            have etiketten Forventet i nærheden føjet til et forslag af <i>Sceloporus consobrinus</i>,
+            men ikke <i>Sceloporus occidentalis</i>, baseret på deres respektive Forventet i nærheden-kort.
+          you_can_think: |
+            Man kan tænke på Forventet i nærheden-kortet som et skøn over, hvorvidt arten
+            er til stede et eller andet sted i gittercellen, eller er helt fraværende.
+          figure_alt_text: Geomodellen tilføjer etiketten Forventet i nærheden
+        unthresholded_map:
+          unthresholded_map: Uafgrænset-kort
+          we_use_the_unthresholded_map: |
+            Vi bruger Uafgrænset-kortet til at vægte computervisionsscorer efter placering, når
+            forslag tilbydes.
+          for_example: |
+            Eksempelvis kan en observation af et firben i central-USA måske
+            få forslaget <i>Sceloporus consobrinus</i> vægtet mere end forslaget
+            <i>Sceloporus occidentalis</i> baseret på sammenligning af Uafgrænset-kortene til trods for
+            visuel lighed.
+          you_can_think: |
+            Man kan tænke på det Uafgrænset-kortet som den relative sandsynlighed for, at en art
+            forekommer i en gittercelle.
+          figure_alt_text: Geomodellen vægter Computervisionsresultater
+        range_comparison:
+          expected_nearby_vs_taxon_range: Forventet i nærheden kontra Taksonudbredelse
+          this_map_shows: |
+            Dette kort viser Taksonudbredelsen for denne art overlapper det Uafgrænset-kort,
+            som vi bruger til at evaluere Geomodellen.
+          this_gridded_version: |
+            Gitterversionen af Taksonudbredelsen er et øjebliksbillede taget da modellen blev
+            trænet og gitteroverlejret i samme opløsning som Forventet i nærheden-kortet. Vi bruger kun
+            Taksonudbredelser, hvor mindst 90% af træningsdataene for den pågældende art
+            falder ind under Taksonudbredelse til at tjekke for fejl i Taksonudbredelser.
+          by_combining: |
+            Ved at kombinere Forventet i nærheden-kort til Taksonudbredelse, beregner vi statistik
+            for at vurdere, hvor god Geomodellens ydelse er.
+          figure_alt_text: Forventet i nærheden-kortet og Taksonudbredelse sammenlignes
+          combining_these_maps_produces: |
+            Kombination af disse kort producerer 3 typer af celler:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Sand tilstedeværelse:
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falsk tilstedeværelse:
+          false_presences_definition: Områder, hvor kun Forventet i nærheden-kortet forudsiger, at taksonen forefindes
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falsk fravær:
+          false_absences_definition: Områder, hvor kun Taksonudbredelsen er til stede
+          evaluation_statistics_for_taxon: Evalueringsstatistik for %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Præcision:
+          precision_description: Den brøkdel af Forventet i nærheden-kortet, der er Sand tilstedeværelse
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Sand tilstedeværelse / (Sand tilstedeværelse + Falsk tilstedeværelse) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Sammenfaldsrate (Recall):
+          recall_description: Den brøkdel af Taksonudbredelsen, der er Sand tilstedeværelse
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Sand tilstedeværelse / (Sand tilstedeværelse + Falsk fravær) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Gennemsnittet (harmonisk middel) af Præcision og Sammenfaldsrate
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Sand tilstedeværelse / (2 × Sand tilstedeværelse + Falsk tilstedeværelse + Falsk fravær) = %{f1}
+          perfect_overlap: |
+            En perfekt overlapning ville modsvare en Præcision, Sammenfaldsrate og F1 på 1. Ingen overlapning ville modsvare en Præcision, Sammenfaldsrate og F1 på 0.
     guides:
       index:
         deprecated_banner: |
@@ -6978,6 +7220,8 @@ da:
           Hvis den eneste grund til, at du smutter, er at stoppe projekt kuratorer fra at se dine skjulte koordinater.
       edit:
         admins_must_be_existing_members: Admins skal være eksisterende projektmedlemmer.
+        admins_can_only_be_added_after_creation: |
+          Admins kan først tilføjes efter projektoprettelsen.
         aggregation_pending: Sammenlægning afventer
         new_place_desc_html: |
           Prøv at se
@@ -7121,6 +7365,9 @@ da:
         display_project_name: Vis projektnavn
         do_you_need_features_from_traditional: |
           Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
+        do_you_need_features_from_traditional2: |
+          Brug for funktioner fra traditionelle projekter, såsom tilpassede observationsfelter,
+          eller tilføjelse af individuelle observationer, som ikke automatisk kan filtreres?
         duplicate_project: Duplikér Projekt
         include_annotated_observations: |
           Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
@@ -7331,6 +7578,18 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a>-websteder
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Tilføjet begge
+        added_only_identifications: Tilføjet kun identifikationer
+        added_only_observations: Tilføjet kun observationer
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Bredere indvirkninger
+        broader_impacts_desc: |
+          Adskillige eksterne partnere importerer jævnligt iNaturalist-observationer til
+          støtte for videnskab og bevaring. Dine observationer, identifikationer,
+          og åbne licensvalg tillader disse organisationer at give nyttige
+          biodiversitetsoplysninger til folk rundt om i verden, som behøver dem.
         compare_desc: |
           Hvordan var i år sammenlignet med tidligere år? Med minimum tre års brug
           kan vi begynde at sammenligne årlige aktivitetsmålinger. Den grønne bjælke viser dette år, den hvide lodrette bjælke viser sidste år, og de grå baggrundsområder viser de laveste og højeste år, samt gennemsnittet for
@@ -7435,14 +7694,12 @@ da:
         store_prompt: |
           Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!
         sunburst_desc_html: |
-          Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
-          af hierarkiet er i centrum, begyndende med "liv" og slutter
+          Observeret taksa arrangeret som hierarkisk "solstråle"-diagram. Bunden
+          af hierarkiet er i centrum, begyndende med "Liv" og sluttende
           med arter ved yderkanterne. Størrelsen af hver "bue" er proportional
-          med antallet af observationer af den pågældende takson og farver
-          svarer groft til vores sædvanlige "ikoniske" taksonfarver (grøn til planter,
-          orange til insekter, blå for de fleste andre dyr osv.), så hvis du er
-          ser meget grønt, det betyder at du har observeret mange planter.
-          <strong> Klik på en "bue" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.
+          med antallet af observationer af den pågældende takson, og farverne
+          svarer i grove træk til vores sædvanlige "ikoniske" taksonfarver (grøn til planter, orange til insekter, blå for de fleste andre dyr mv.), så ses meget grønt, det betyder, at du har observeret mange planter.
+          <strong> Klik på en "bue" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at gå opad i hierarkiet igen </strong>.
         translators_title: Oversættere
         translators_desc: |
           Vidste du, at iNaturalist er blevet oversat til %{x_languages} næsten
@@ -7471,6 +7728,9 @@ da:
           %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
         translators_prompt: |
           Vil du hjælpe med at oversætte, %{link_tag}så tjek info hér%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VIS %{count} PUBLIKATION"
+          other: "VIS ALLE %{count} PUBLIKATIONER"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7601,16 +7861,16 @@ da:
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
       form:
-        move_children_desc_html: |
-          Ved at tjekke denne boks flyttes underordnede i input taksonet til
-          output takson for skifte og fusioner, når denne ændring er udført. Hvis
-          denne ændres til slægt eller lavere, det vil resultere i takson skifte for alle
-          efterkommere, der har en underforstået navneændring. For eksempel, hvis du flytter
-          familien Canidae ind i Dogidae, ændrer det slægtens overordnede
-          <i>Canis</i> fra Canidae til Dogidae. 
-          Hvis du flytter slægten <i>Canis</i> ind i slægten <i>Dogis</i>, vil det udløse og udføre et takson skifte <i>Canis lupus</i> til <i>Dogis lupus</i> og
+        move_children_desc2_html: |
+          Markering dette afkrydsningsfelt flytter underordnede til input taksonet til
+          output taksonet for Taksonombytninger og Taksonfletninger, når denne ændring er udført. Er
+          dette en ændring til slægt eller lavere, vil det resultere i Taksonombytninger for alle
+          efterkommere med navne, som kræver ændring. Flyttes f.eks.
+          familien Canidae til Dogidae, ændrer det slægtens overordnede
+          <i>Canis</i> fra Canidae til Dogidae.
+          Flyttes slægten <i>Canis</i> til slægten <i>Dogis</i>, udløses og udføres en Taksonombytning fra <i>Canis lupus</i> til <i>Dogis lupus</i> og
           <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.
-          <i>lupus</i>. Dette kan medføre et værre roderi, så gør det med omtanke.
+          <i>lupus</i>. Dette kan medføre et værre rod, så brug muligheden med omtanke.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7733,6 +7993,7 @@ da:
           Chikanerer eller stalker nogen dig på %{site_name},
           <a href="mailto:%{help_email}">så lad os vide det</a>. Udgør dette en overtrædelse af vores Vilkår for brug eller anden adfærd, som vi anser for upassende på vores websted, vil vi undersøge sagen.
           </p>
+        common_scientific_name_display_order: Visningsrækkefølge for Almindeligt/Videnskabeligt navn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
@@ -7852,6 +8113,26 @@ da:
           Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
           taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
           tvetydig (f.eks ved en deling), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge til manuelt at opdatere dit indhold.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Tilføj et leksikon for almindelige navne
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Tilføj et sted (valgfrit)
+          common_name_lexicon_display_order: Visningsrækkefølge i leksikon for almindelige navne
+          common_name_lexicons: Leksika for almindelige navne
+          common_name_lexicons_description: Som standard vises almindelige navne på kontosproget/jf. landestandarden. For at se navne i andre leksika, eller prioritere navne anvendt på bestemte steder (såsom engelsk (Australien) eller spansk (Costa Rica)), tilføj leksika for almindelige navne. Et maksimum på 3 almindelige navne kan vises ad gangen. Findes et almindeligt navn ikke for et valgt leksikon, udelades det fra visningen.
+          for_multiple_common_name_lexicons_drag_and_drop: For flere leksika for almindelige navne, træk og slip indstillingerne nedenfor for at tilpasse visningsrækkefølgen.
+          same_as_locale: Samme som landestandard
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Samme som brugersprog-/landestandardpræference
+          select_a_lexicon: Vælg et leksikon
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: De maksimalt 3 leksika for almindelige navne er allerede tilføjet
         this_only_applies_to_traditional_projects: |
           Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
           fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
@@ -8165,9 +8446,11 @@ da:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       BlockedUser: Blokeret bruger
+      Comment: Kommentar
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
+      Identification: Identifikation
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -8179,6 +8462,8 @@ da:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
+      Photo: Foto
+      Post: Journalindlæg
       TaxonLink: Takson link
     attributes:
       announcement:
@@ -8192,6 +8477,7 @@ da:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
+        clients: Kunder
       assessment:
         description: Beskrivelse
       assessment_section:
@@ -8423,6 +8709,16 @@ da:
           one: "En fejl forhindrede denne %{model} i at blive gemt"
           other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this texxt, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: skal være gyldig for angivet placering
         application:
           attributes:
             redirect_uri:
@@ -8462,11 +8758,10 @@ da:
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import for denne Mushroom Observer-bruger kører eller er sat i kø til import"
-              api_key_missing: "Champignonobservator API-nøgle mangler"
+            user:
+              must_be_a_curator: skal være kurator
         observation:
           attributes:
             base:
@@ -8786,6 +9081,20 @@ da:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Dyr
+        Actinopterygii: Strålefinnede fisk (Actinopterygii)
+        Aves: Fugle (Aves)
+        Reptilia: Krybdyr (Reptilia)
+        Amphibia: Padder (Amphibia)
+        Mammalia: Pattedyr (Mammalia)
+        Arachnida: Spindlere (Arachnida)
+        Insecta: Insekter (Insecta)
+        Plantae: Planter (Plantae)
+        Fungi: Svampe (Fungi)
+        Protozoa: Protozoer (Protozoa)
+        Mollusca: Bløddyr (Mollusca)
+        Chromista: Chromista ("planteagtige")
   #Title of a section warning the user about something
   warning_title: Advarsel
   wikimedia: Wikimedia

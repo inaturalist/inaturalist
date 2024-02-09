@@ -145,7 +145,7 @@ module ObservationSearch
         api_params.delete(:taxon_ids)
       end
       unless api_params[:min_id].blank?
-        api_params[:id_above] = api_params[:min_id]
+        api_params[:id_above] = api_params[:min_id] - 1
         api_params.delete(:min_id)
       end
       api_params.delete(:partial)

@@ -12,13 +12,12 @@ $label-start: 7px;
   .ac {
     min-width: 370px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     cursor: pointer;
     width: 100%;
 
     .ac-label {
-      // width: 100%;
       flex: 2;
     }
   }
@@ -72,29 +71,25 @@ $label-start: 7px;
   cursor: default;
 }
 .ui-autocomplete .ac.ac-message {
-  height: 36px;
+  min-height: 36px;
 }
 .ui-autocomplete .ac-thumb {
   width: $img-width + $img-margin * 2;
-  display: block;
+  justify-content: center;
   text-align: center;
-  vertical-align: top;
 }
 .ui-autocomplete .ac-thumb,
 .ui-autocomplete .ac-label,
 .ui-autocomplete .ac-view {
-  vertical-align: middle;
-}
+  display: flex;
+  align-items: center;
+ }
 
 .ui-autocomplete .ac-message .ac-thumb {
   width: $img-width + $img-margin * 2;
 }
 .ui-autocomplete .ac-view {
-  padding: 0 10px;
-  height: $img-width + $img-margin * 2;
   background: white;
-  display: flex;
-  align-items: center;
 }
 .ui-autocomplete .ac-thumb img {
   width: $img-width;
@@ -105,9 +100,6 @@ $label-start: 7px;
 .ui-autocomplete .ac-message .ac-thumb img {
   width: 30px;
   height: 30px;
-}
-.ui-autocomplete .ac-message .ac-thumb .glyphicon {
-  top: 2px;
 }
 .ui-autocomplete .ac-result {
   list-style: none;
@@ -150,7 +142,7 @@ $label-start: 7px;
   background: #F2F2F2;
 }
 .ac-result .ac-label {
-  padding: 2px 0 0 $label-start;
+  padding: 3px 0 3px $label-start;
   line-height: 18px;
 }
 
@@ -159,10 +151,6 @@ $label-start: 7px;
   line-height: 18px;
 }
 
-.ac-result.taxon .ac-label {
-  display: inline-block;
-  overflow: hidden;
-}
 .ui-autocomplete .identification .ac-label {
   display: inline-block;
 }
@@ -175,7 +163,6 @@ $label-start: 7px;
 }
 .ui-autocomplete .ac-message .ac-label .title {
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .ui-autocomplete .ac-placeholder {
@@ -184,16 +171,13 @@ $label-start: 7px;
 .ui-autocomplete .ac-label .title, .ui-autocomplete .ac-label .chooseritem {
   font-size: 1.1em;
   display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 .ui-autocomplete .ac-label .subtitle {
   font-size: 0.9em;
   display: block;
   color: #727272;
   line-height: 14px;
-  margin: 1px 0 3px;
+  margin-top: 1px;
 }
 .ui-widget-content .ui-state-focus {
   border: none;
@@ -204,13 +188,12 @@ $label-start: 7px;
   }
 }
 .ui-autocomplete .ac-result .ac a {
-  padding: 0px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
 }
 .buttonrow .ac-chooser {
   display: inline-block;
-}
-.ac-chooser {
-  white-space: nowrap;
 }
 .ac-chooser .species_guess.ui-autocomplete-input {
   width: 190px;

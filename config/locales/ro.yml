@@ -1,8 +1,139 @@
 ro:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} modificare"
+    few: "%{count} modificări"
+    other: "%{count} modificări"
+  x_journal_posts_html:
+    one: '<span class="număr">%{count}</span> postare jurnal'
+    few: '<span class="număr">%{count}</span> postări jurnal'
+    other: '<span class="număr">%{count}</span> postări jurnal'
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observat"
     few: "<span class='count'>%{count}</span>taxoni observați"
     other: "<span class='count'>%{count}</span> taxon observat"
+  _100_day_trends: Tendințe pe 100 de zile
+  _percent_ID_d: "% ID"
+  a_community_for_naturalist: O comunitate pentru naturaliști
+  a_default_taxon_name_will_automatically_created: |
+    Un nume implicit de taxon va fi creat automat din atributul științific al acestui taxon.
+    Când ai salvat acest taxon nou, vei putea adăuga alte nume aici (nume comune, nume științifice învechite etc.).
+  a_flag_for_x: "un steag pentru %{x}"
+  a_member_of_taxon_html: "un membru al %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A la Z"
+  about: Despre
+  about_charts: Despre Diagrame
+  about_complete_taxa: Despre taxoni compleți
+  about_conservation_status: Despre starea de conservare
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Despre mijloacele de stabilire
+  about_license_options: Despre opțiunile de licențe
+  about_licenses: Despre licențe
+  #Header for a section describing taxon names
+  about_names: Despre nume
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Despre %{place}"
+  about_places: Despre Locuri
+  about_the_network: Despre rețea
+  about_this_bioblitz: Despre acest bioblitz
+  about_this_map: Despre această hartă
+  about_this_project: Despre acest proiect
+  about_trusting_projects: Despre încrederea în proiecte
+  about_trusting_projects_options_any: Toate observațiile tale în acest proiect
+  account: Cont
+  account_creation: Cont creat
+  account_settings: Setări cont
+  accept_community_identifications: Acceptă identificările comunității
+  accuracy: Precizie
+  accuracy_meters: Precizie (metri)
+  accuracy_of_the_coordinates: |
+    Precizia coordonatelor în metri. Poți edita acest lucru făcând clic pe linkul "editare" 
+    de mai sus sau făcând clic pe marcajul hărții și trăgând mânerele. Încearcă
+    să faci cercul suficient de mare încât să fii sigur că ai fost undeva înăuntrul lui.
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: Acțiune
+  actions: Acțiuni
+  active: Activ
+  #Status of a complete set that is available for use
+  active_complete_set_status: Activ
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Activ
+  active_users: Utilizatori activi
+  activity: Activitate
+  adapted_by_name_from_a_work_by_original: "Adaptat de %{name} dintr-o lucrare de %{original}"
+  add: Adaugă
+  add_a_comment: Adaugă un comentariu
+  add_a_field: Adaugă un câmp
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Adaugă un link
+  add_a_name: Adaugă un nume
+  add_a_note: Adaugă o notă
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Adaugă o listă numerotată
+  add_a_single_observation: Adaugă o singură observație.
+  add_a_taxon: Adaugă un taxon
+  add_an_assessment: Adaugă o evaluare
+  add_an_identification: Adaugă o identificare
+  add_an_observation: Adaugă o observație
+  add_batch: Adaugă lot
+  add_blocked_users: Adaugă utilizatori blocați
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Adaugă text îngroșat
+  add_comment: Adaugă un comentariu
+  add_editor: Adaugă editor
+  add_link: Adaugă un link
+  add_id: Adaugă ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Adaugă text italic
+  add_muted_users: Adaugă utilizatori dezactivați
+  add_new_rule: Adaugă o regulă nouă
+  add_new_source: "Adaugă sursă nouă..."
+  add_observations: Adaugă observații
+  #Prompt to add a new journal post
+  add_one: Adaugă unul!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Adaugă una acum
+  add_place: Adaugă locație
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Adaugă relație'
+  #As in a Guide Section
+  add_section: Adaugă secțiune
+  add_to_a_project: Adaugă la un proiect
+  add_to_project: Adaugă la proiect
+  add_to_your_list: Adaugă la lista ta
+  added: Adăugat
+  added!: Adăugat!
+  added_by: Adăugat de
+  added_by_user_on_date_html: "Adăugat de %{user} la data de %{date}"
+  added_on_datetime: "Adăugat la %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rol adăugat
+  adding: "Se adaugă..."
+  admin: Admin
+  agree_: Acceptă
+  agree?: De acord?
+  agree_with_current_taxon: Acceptă taxonul curent
+  agree_with_observation_taxon: De acord cu taxonul observat
+  aka: alias
+  #Noun, title of a popup alerting you to something
+  alert: Alertă
+  all: Toate
+  #Title for a list of all 3rd party applications
+  all_applications: Toate aplicaţiile
+  all_comments: Toate comentariile
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vom calcula acuratețea prin compararea identificări tale cu taxonul observației. Poți sări peste observațiile unde
+    ai adăugat anterior un ID dacă acel ID este în continuare relevant. Pentru mai multe detalii cu privire la modul în care vom calcula acordurile și dezacordurile, continuați să citiți.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: S-a alăturat testului de aspect dreapta-stânga
   number:
     format:
       significant: false

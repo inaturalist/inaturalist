@@ -354,10 +354,7 @@ eo:
   bioblitz: Biofulmado
   birds: birdoj
   birthday: Naskiĝtago
-  black: nigra
-  blue: blua
   blue_butterfly_etc: "blua, papilio, ktp."
-  brown: bruna
   browse: Foliumi
   by_user: "Far %{user}"
   by_you: De vi
@@ -700,6 +697,7 @@ eo:
   flickr_style: Flickr-stila
   flickr_tags: Etikedoj ĉe Flickr
   follow: Aboni
+  #Text for a button to follow updates from a specific user
   follow_user: "Aboni uzanton %{user}"
   followers: Abonantoj
   following: Abonante
@@ -759,8 +757,6 @@ eo:
   #Notification when an identification has been updated
   identification_updated: Identigo aktualiĝis!
   identifications: Identigoj
-  #Label for a button that links to the iNat donation web page
-  independence_email_body_donate_now: Donacu nun
   identifiers: Identigistoj
   ids: "Identigoj"
   ids_made_for_others: Identigoj por aliuloj
@@ -1029,13 +1025,14 @@ eo:
   official_blog: Oficiala Rettaglibro
   ok: "Bone"
   only_you: Nur vi
+  #Geoprivacy status in which no privacy has been applied
   open: malfermi
+  #Geoprivacy status in which no privacy has been applied
   open_: Malfermi
   or: aŭ
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: AŬ
-  orange: oranĝkolora
   order: Ordo
   order_by: Ordigi laŭ
   organisms: Organismoj
@@ -1072,7 +1069,6 @@ eo:
     Mi konsentas permesi iNaturalist stoki kaj prilabori limigitajn specojn de
     personaj informoj pri mia infano por administri la konton de mia infano
   pin_verb: Alpingli
-  pink: roza
   place: Loko
   place_geo:
     geo_planet_place_types:
@@ -1422,12 +1418,15 @@ eo:
   protozoans: protozooj
   public_domain: Publika Havaĵo
   publish: Publikigi
-  purple: purpura
   query: Informpeto
   radius: Radiuso (m)
   radius_value: "Radiuso (m): %{radius}"
   random: Hazarda
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rango
   ranks:
     kingdom: Regno
@@ -1470,7 +1469,6 @@ eo:
   recently_active: Ĵus Aktiva
   recently_created: Lastatempe Kreita
   recently_finished: Ĵus Finita
-  red: ruĝa
   refresh: Refreŝigi
   refreshing: refreŝiganta
   reject?: Ĉu malakcepti?
@@ -1759,7 +1757,6 @@ eo:
   where: Kie
   where_were_they?: Kie ili estis?
   where_were_you?: Kie vi estis?
-  white: blanka
   wikipedia_attribution_cc_by_sa_3: |
     Fonto: Vikipedio, „%{title}”, %{url}, CC BY-SA 3.0
   with: kun
@@ -1776,7 +1773,6 @@ eo:
   x_project_stats: "Statistiko pri %{project}"
   year: Jaro
   year_month: jaro/monato
-  yellow: flava
   'yes': "Jes"
   yes_find_them!: "Jes, trovu ilin!"
   yes_i_want_to_join: Jes, mi volas aniĝi

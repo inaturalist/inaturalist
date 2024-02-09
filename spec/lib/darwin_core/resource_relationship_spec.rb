@@ -21,7 +21,7 @@ describe DarwinCore::ResourceRelationship do
   end
 
   it "should set resourceID to the URI of the observation" do
-    expect( ofv.resourceID ).to eq FakeView.observation_url( ofv.observation_id )
+    expect( ofv.resourceID ).to eq ofv.observation.uri
   end
 
   it "should set relationshipOfResourceID to the URI of the observation field" do

@@ -267,33 +267,20 @@ describe ObservationFieldValue do
 
   describe "annotation_attribute_and_value" do
     before( :all ) do
-      @alive_or_dead = ControlledTerm.make!( active: true )
-      ControlledTermLabel.make!( controlled_term: @alive_or_dead, label: "Alive or Dead" )
-      @alive = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @alive, label: "Alive")
-      @dead = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @dead, label: "Dead" )
-      @cannot_be_determined = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @cannot_be_determined, label: "Cannot Be Determined" )
-      @alive_or_dead.controlled_term_values.create( controlled_value: @alive )
-      @alive_or_dead.controlled_term_values.create( controlled_value: @dead )
-      @alive_or_dead.controlled_term_values.create( controlled_value: @cannot_be_determined )
+      @alive_or_dead = make_controlled_term_with_label( "Alive or Dead", active: true)
+      @alive = make_controlled_value_with_label( "Alive", @alive_or_dead )
+      @dead = make_controlled_value_with_label( "Dead", @alive_or_dead )
+      @cannot_be_determined = make_controlled_value_with_label( "Cannot Be Determined", @alive_or_dead )
       @dead_or_alive_field = ObservationField.make!( name: "Dead or alive", allowed_values: "dead|alive|moribund|not sure" )
-      @evidence = ControlledTerm.make!( active: true )
-      ControlledTermLabel.make!( controlled_term: @evidence, label: "Evidence of Presence" )
-      # @dead = ControlledTerm.make!( is_value: true, active: true )
-      # ControlledTermLabel.make!( controlled_term: @dead, label: "Dead" )
-      @track = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @track, label: "Track" )
-      @scat = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @scat, label: "Scat" )
-      @feather = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @feather, label: "Feather" )
-      @molt = ControlledTerm.make!( is_value: true, active: true )
-      ControlledTermLabel.make!( controlled_term: @molt, label: "Molt" )
+      @evidence = make_controlled_term_with_label( "Evidence of Presence", active: true )
+      @track = make_controlled_value_with_label( "Track", @evidence )
+      @scat = make_controlled_value_with_label( "Scat", @evidence )
+      @feather = make_controlled_value_with_label( "Feather", @evidence )
+      @molt = make_controlled_value_with_label( "Molt", @evidence )
       @evidence_field = ObservationField.make!(
-          name: "Animal Sign and Song",
-          allowed_values: "None Recorded|Tracks|Scat|Remains|Call/Song|Evidence of Feeding|Evidence of Egg Laying|Smell|Scratching/Scent Post|Nest|Burrow/Den|Web|Fur/Feathers|Shell/Exoskeleton|Shed skin|Window print"
+        name: "Animal Sign and Song",
+        allowed_values: "None Recorded|Tracks|Scat|Remains|Call/Song|Evidence of Feeding|Evidence of Egg Laying|" \
+          "Smell|Scratching/Scent Post|Nest|Burrow/Den|Web|Fur/Feathers|Shell/Exoskeleton|Shed skin|Window print"
       )
     end
 

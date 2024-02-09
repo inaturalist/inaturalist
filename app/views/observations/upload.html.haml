@@ -10,7 +10,7 @@
   = stylesheet_link_tag "font-awesome"
   = stylesheet_link_tag "bootstrap"
   = stylesheet_link_tag "observations/uploader"
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
 #app
 = google_maps_js libraries: %w(places geometry drawing)
 - content_for :delayed_js do
@@ -23,5 +23,9 @@
   = javascript_include_tag "jquery/plugins/inat/taxon_autocomplete"
   = javascript_include_tag "jquery/plugins/inat/project_autocomplete"
   = javascript_include_tag "jquery/plugins/inat/observation_field_autocomplete"
-  = javascript_include_tag "observations-uploader-webpack"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-dnd-webpack"
+  = javascript_include_tag "webpack/react-dropzone-webpack"
+  = javascript_include_tag "webpack/observations-uploader-webpack"
   = javascript_include_tag "bootstrap.min"

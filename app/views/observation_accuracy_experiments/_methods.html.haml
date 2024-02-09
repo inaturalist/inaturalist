@@ -1,0 +1,137 @@
+
+.row
+  .col-xs-12
+    %h2
+      =t :observation_accuracy_experiment_step_1
+    %p
+      =t :observation_accuracy_experiment_from_the
+.row
+  .col-xs-12
+    .container2
+      %img{
+        src: "https://static.inaturalist.org/wiki_page_attachments/3715-original.png",
+        style: "width:500px;float: left;clear: left;margin: 0 30px 30px 0"
+      }
+      =t :observation_accuracy_experiment_sample_generated, date: l( @experiment.sample_generation_date.to_date, format: :long )
+      %br
+      =t :observation_accuracy_experiment_sample_size, number: @experiment.sample_size
+      %br
+      =t :observation_accuracy_experiment_target_validator, number: @experiment.validator_redundancy_factor
+      %br
+      =t :observation_accuracy_experiment_number_of, number: @candidate_validators
+      %br
+      =t :observation_accuracy_experiment_mean_subsample, number: @mean_sample_count
+      %br
+      =t :observation_accuracy_experiment_mean_number, number: @mean_validator_count
+      %div{style: "clear: both;"}
+.row
+  .col-xs-12
+    %h3
+      =t :observation_accuracy_experiment_validator_candidate
+    .container2
+      %img{
+        src: "https://static.inaturalist.org/wiki_page_attachments/3708-original.png",
+        style: "width:500px;float: right;clear: right;margin: 0px 40px 0px 60px"
+      }
+      %p
+        =t :observation_accuracy_experiment_if_an_identifier
+      %p
+        =t :observation_accuracy_experiment_for_example
+      %div{style: "clear: both;"}
+.row
+  .col-xs-12
+    %h2
+      =t :observation_accuracy_experiment_step_2
+.row
+  .col-xs-6
+    %p= t( :observation_accuracy_experiment_we_contacted )
+    =t :observation_accuracy_experiment_mean_number,
+      number: @mean_validators_per_sample
+    %br
+    :ruby
+      observation_accuracy_experiment_number_percent = if @candidate_validators && @candidate_validators > 0
+        "#{( @experiment.responding_validators / @candidate_validators.to_f * 100 ).round}%"
+      else
+        "0%"
+      end
+    =t :observation_accuracy_experiment_number_percent_of,
+      number: @experiment.responding_validators,
+      percentage: observation_accuracy_experiment_number_percent
+    %br
+    =t :observation_accuracy_experiment_percent_of,
+      percent: "#{( @experiment.validated_observations / @experiment.sample_size.to_f * 100 ).round}%"
+  .col-xs-6
+    .barplot-container
+      - scale_factor = @validators_per_sample_ylim / 100 
+      %svg{ width: "#{50 + 54 * @validators_per_sample.count}", height: "150" }
+        %g{ transform: "translate(40,10)" }
+          %g.y.axis
+            - (0..5).each do |tick_value|
+              - tick_position = tick_value * 20
+              %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
+                %line{ x2: "-6", y2: "0" }
+                %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{( 100 - tick_value * 20 ) * scale_factor}
+            %path.domain{ d: "M-6,0H0V100H-6" }
+            %text{ transform: "rotate(-90)", y: "6", dy: ".71em", style: "text-anchor: end;"}= t(:frequency) 
+          %g.x.axis{ transform: "translate( 0, 100 )" }
+            - @validators_per_sample.keys.each_with_index do | label, index |
+              %g.tick{transform: "translate( #{35 + 54 * index}, 0 )", style: "opacity: 1;"}
+                %line{y2: "6", x2: "0"}
+                %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= label
+          - @validators_per_sample.values.each_with_index do |values, index|
+            %a{href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.join( "," ) ) : "#"}
+              %rect{
+                class: "validators",
+                x: "#{10 + 54 * index}",
+                width: "50",
+                y: "#{100 - values.count / scale_factor}",
+                height: "#{values.count / scale_factor}",
+                onmousemove: "showTooltip( evt, '#{values.count}' );",
+                onmouseout: "hideTooltip();"
+              }
+.row
+  .col-xs-12
+    %h2
+      =t :observation_accuracy_experiment_step_3
+    %p
+      =t :observation_accuracy_experiment_we_scored
+    %div
+      %div{style: "position: relative; float: left; margin-right: 10px; text-align: center;"}
+        %img{src: "https://static.inaturalist.org/wiki_page_attachments/3710-original.png", style: "height:130px;"}
+        %span{style: "position: absolute; top: 0%; left: 0%; background-color: #A8CE90; padding: 3px;"}
+          =t( :observation_accuracy_experiment_correct )
+      %div{style: "position: relative; float: left; margin-right: 10px; text-align: center;"}
+        %img{src: "https://static.inaturalist.org/wiki_page_attachments/3711-original.png", style: "height:130px;"}
+        %span{style: "position: absolute; top: 0%; left: 0%; background-color: lightgray; padding: 3px;"}
+          =t( :observation_accuracy_experiment_uncertain )
+      %div{style: "position: relative; float: left; text-align: center;"}
+        %img{src: "https://static.inaturalist.org/wiki_page_attachments/3712-original.png", style: "height:130px;"}
+        %div{style: "position: absolute; top: 0%; left: 0%; background-color: pink; padding: 3px;"}
+          =t( :observation_accuracy_experiment_incorrect2 )
+.row
+  .col-xs-12
+    %h2
+      =t :observation_accuracy_experiment_step_4
+    %h3
+      =t :observation_accuracy_experiment_accuracy
+    .container2
+      %img{
+        src: "https://static.inaturalist.org/wiki_page_attachments/3718-original.png",
+        style: "width:400px;float: right;clear: right;margin: 0px 40px 40px 60px"
+      }
+      %p
+        =t :observation_accuracy_experiment_we_calculated
+      %div{style: "clear: both;"}
+    %h3
+      =t :observation_accuracy_experiment_precision
+    .container2
+      %img{
+        src: "https://static.inaturalist.org/wiki_page_attachments/3714-original.png",
+        style: "width:400px;float: right;clear: right;margin: 0px 40px 40px 60px"
+      }
+      %p
+        =t :observation_accuracy_experiment_if_every_sample
+      %p
+        =t :observation_accuracy_experiment_in_the_example 
+      %div{style: "clear: both;"}
+#tooltip

@@ -14,30 +14,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
-      @font-face {
-        font-family: Whitney;
-        src: url('<%= asset_url "fonts/Whitney-Book-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: bold;
-        src: url('<%= asset_url "fonts/Whitney-Medium-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: 100;
-        src: url('<%= asset_url "fonts/Whitney-Light-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: 600;
-        src: url('<%= asset_url "fonts/Whitney-Semibold-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: 800;
-        src: url('<%= asset_url "fonts/Whitney-Bold-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
+      <%= render partial: "emailer/fonts", formats: [:css] %>
       #outlook a{padding:0;}
       .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
       .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}

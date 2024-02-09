@@ -14,18 +14,8 @@ module Shared
       locale = @site.locale if @site && locale.blank?
       locale = locale_from_header if locale.blank?
       locale = I18n.default_locale if locale.blank?
-      if locale =~ /-[a-z]/
-        pieces = locale.split( "-" )
-        locale = "#{pieces[0].downcase}-#{pieces[1].upcase}"
-      end
-      I18n.locale = locale
-      if I18n.locale.to_s == "iw"
-        I18n.locale = I18n.locale.to_s.sub( "iw", "he" ).to_sym
-      end
-      unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-        I18n.locale = I18n.default_locale
-      end
-      @rtl = params[:test] == "rtl" && ["ar", "fa", "he"].include?( I18n.locale.to_s )
+      I18n.locale = normalize_locale( locale )
+      @rtl = params[:test] == "rtl" || current_user&.in_test_group?( "rtl" )
       true
     end
 

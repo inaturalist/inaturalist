@@ -857,11 +857,9 @@ uk:
   bioblitz: Біобліц
   birds: птахи
   birthday: День народження
-  black: чорний
   block_removed: Блокування знято
   blocked_users: Заблоковані користувачі
   blog_widget: Віджет у блозі
-  blue: синій
   blue_butterfly_etc: "синій, метелик, тощо"
   body: Текст
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -875,7 +873,6 @@ uk:
   #shown
   breadcrumbs_description: "Це замінить присутні за замовчуванням h1 та заклики до дії. Якщо вони важливі для цього проекту, упевніться, що ви їх включили і пам'ятайте, що максимально дозволена ширина складає 950 пікселів"
   brief_caption: Короткий заголовок
-  brown: коричневий
   browse: Переглянути
   browse_all_projects: Переглянути всі проєкти
   browse_all_species: Переглянути всі види
@@ -1067,8 +1064,6 @@ uk:
     доданий до автоматичних пропозицій з міткою "Візуально схожі на "...
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Очікує на підтвердження
-  computer_vision_model_pending_desc: |
-    Поточна модель комп'ютерного бачення не знає про цей таксон, тож пори те, що його може бути додано до автоматичних пропозицій з позначкою "Неподалік", він не матиме позначки "Візуально подібні". Хоча вимоги щодо включення змінюються від моделі до моделі, включення опирається на кількість спостережень, тож шанс, що цей таксон буде включено, зростатиме з додаванням нових спостережені та визначень та подальшому тренуванні моделей.
   concept_status: Статус концепції
   configure: Налаштувати
   configure_a_widget_to_show: Налаштуйте віджет, щоб показати %{site_name} спостережень на вашому сайті або блозі. Можливо, вам доведеться включити вбудований CSS у <code>&lt;head&gt;</code> вашого HTML. Ви можете вільно переписувати CSS.
@@ -1648,8 +1643,8 @@ uk:
   either_that_user_doesnt_exist_or: "Таких користувачів не існує, або ви вже слідкуєте за ними."
   eligible_for_research_grade: Придатне для дослідницького рівня
   email: Ел. пошта
-  email_description: Ваша електронна пошта не доступна іншим користувачам iNaturalist
   email_address_for_comments_and_other_feedback: Адреси ел. пошти для коментарів та інших відгуків
+  email_description: Ваша електронна пошта не доступна іншим користувачам iNaturalist
   email_notifications: Сповіщення ел. поштою
   embed: 'Вставити'
   embed_place_widget: Вставити віджет місця
@@ -1691,6 +1686,7 @@ uk:
   everywhere: всюди
   exact: Точна
   exact_date: Точна дата
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точний ранг
   except: окрім
   exclude_places: Виключити місця
@@ -1850,6 +1846,7 @@ uk:
   fluid: адаптивний
   follow: Підписатися
   follow_receive_updates_about_new_observations: Підписатися (отримувати оновлення про нові спостереження)
+  #Text for a button to follow updates from a specific user
   follow_user: "Підписатися на користувача %{user}"
   followers: Підписники
   following: Підписки
@@ -1918,7 +1915,6 @@ uk:
   graft: Прищеплення
   graft_taxon: Прищепити %{taxon}
   grafting_attemps_to_insert_this_taxon: Прищеплення — це спроба приєднати цей таксон до нашого систематичного дерева, знайти існуючий батьківський таксон або створити всі необхідні проміжні таксони, щоби приєднати його до існуючого таксону вищого рівня.
-  grant_role: "%{grant} %{role} роль"
   grid: Сітка
   grid_layout: Сітка розмітки
   grid_tooltip: Показати сітку
@@ -1966,15 +1962,6 @@ uk:
   #Verb, usually a button to hide an interface element
   hide: Приховати
   hide_content: Приховати вміст
-  hide_desc: |
-    Приховування матеріалів вилучить їх з публічного перегляду, але люди все одно будуть
-    у змозі побачити, що щось було приховане; куратори сайту і автор
-    матеріалів, як і раніше, зможуть бачити прихований вміст. Як правило, ця опція
-    застосовується лише до текстових матеріалів, тобто, якщо ви приховали вміст
-    визначення, ID все ще буде видно, але
-    зауваження того, хто визначив, будуть приховані. Ви не зможете відмінити цю дію і тільки працівники сайту зможуть після цього відмінити
-    приховання. Тому будьте обережні і використовуйте цю можливість тільки для дуже
-    недоречних матеріалів.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Сховати дані, для яких "Немає приміток"
@@ -1982,6 +1969,8 @@ uk:
   hide_running_total: Приховати поточний доробок
   hide_uncountable_species: Приховати незлічувані види
   high: Вищий
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Найвищий ранг
   highlights_and_stats_from_year_on_site: "Яскраві події та статистика року %{year} на сайті %{site}"
   history: Історія
@@ -2393,6 +2382,8 @@ uk:
   looks_like_no_species_in_guide: Схоже, у вашому посібнику ще немає жодного виду.
   lookup: Шукати
   low: Нижчий
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Найнижчий ранг
   make_admin: Зробити адміністратором
   #Header for main content section of the project detail page when editing custom project data.
@@ -2619,7 +2610,6 @@ uk:
   needs_id_: Потребує визначення
   needs_id_expandable_html: "<span class='full'>Потребує </span>визначення"
   needs_id_tooltip_html: 'Спостереження, позначені як такі, що "Потребують визначення" мають медіафайли, дату, але потребують консенсусу спільноти щодо їхнього точного визначення. <a href="https://www.inaturalist.org/pages/help#quality">Дізнатися більше про рівні якості</a>'
-  needs_to_be_identified: Має бути визначене
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, частина міжнародної Мережі iNaturalist, зосереджений на біорізноманітті та людях регіону %{place}. Чи бажаєте ви змінити приналежність вашого облікового запису з <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> і ділитися даними з локальними інститутами?
@@ -3003,7 +2993,9 @@ uk:
   only_the_project_admin_can_delete_this_project: Цей проєкт може видалити лише адміністратор проєкту.
   only_view_nearby_suggestions: Дивитися лише пропозиції поблизу
   only_you: Лише ви
+  #Geoprivacy status in which no privacy has been applied
   open: відкриті
+  #Geoprivacy status in which no privacy has been applied
   open_: Відкриті
   open_description: "Координати може бачити будь-хто, у разі якщо таксон не знаходиться під загрозою."
   open_street_map: OpenStreetMap
@@ -3013,7 +3005,6 @@ uk:
   #sign in with Apple OR Google
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або оберіть з таксонів вищого рангу"
-  orange: помаранчевий
   order: Сортувати
   order_by: Сортувати за
   organism_is_wild: Організм є диким
@@ -3150,7 +3141,6 @@ uk:
   data_transfer_consent_child_label: |
     Я згоден, що особисту інформацію моєї дитини буде передано до Сполучених Штатів Америки
   pin_verb: Закріпити
-  pink: рожевий
   pinned_locations_desc: |
     Закріпити це поєднання координат, точності, налаштувань приватності місцеперебування та заміток щодо місцеперебування для подальшого використання.
   place: Місце
@@ -3707,7 +3697,6 @@ uk:
   provider_authorizations: Авторизація провайдера
   public_domain: Публічний домен
   publish: Опублікувати
-  purple: фіолетовий
   quality_grade: Рівень якості
   quality_grade_: Рівень якості
   quality_grade_colon: "Рівень якості"
@@ -3717,7 +3706,11 @@ uk:
   radius_value: "Радіус (м): %{radius}"
   random: Випадково
   range: Проміжок
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3899,7 +3892,6 @@ uk:
   recently_finished: Нещодавно завершені
   recently_observed: Нещодавно спостережені
   recently_resolved: Нещодавно вирішені
-  red: червоний
   redo_search_in_map: Повторити пошук на мапі
   redo_search_in_map_area: Повторити пошук в області на мапі
   refresh: Оновити
@@ -4470,6 +4462,7 @@ uk:
   taxon_range: Область поширення таксону
   taxon_range_created_notice: Область поширення таксону було успішно створено. За декілька хвилин він з'явиться на картах.
   taxon_range_updated_notice: Область поширення таксону було успішно оновлено. За декілька хвилин він з'явиться на картах.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Ранги таксону
   taxon_removed_from_list: Таксон видалено зі списку.
   taxon_scheme: Схема таксону
@@ -4700,7 +4693,6 @@ uk:
   unknown: Невідомий
   unknown_error: Невідома помилка
   unknown_rank: '(Невідомий ранг)'
-  unfollow: Не стежити
   unlink_your_google_account: Від'єднати свій обліковий запис Google
   unlink_your_flickr_account: "Від'єднати свій обліковий запис Flickr"
   unmute: Скасувати ігнорування
@@ -4986,7 +4978,6 @@ uk:
   where_were_they?: Де вони були?
   where_were_you?: Де ви були?
   which_projects_can_add_your_observations?: Які традиційні проєкти можуть додавати ваші спостереження?
-  white: білий
   why_you_can_see_the_coordinates: Чому ви можете бачити координати
   who_can_add_observation_fields_to_my_obs: Хто може додавати поля спостереження до моїх спостережень?
   who_can_add_observations_to_this_project?: Хто може додавати спостереження до цього проєкту?
@@ -5058,7 +5049,6 @@ uk:
   year_in_review: "Рік огляду %{year}"
   year_month: рік/місяць
   year_on_site: "Рік на %{site} %{year}"
-  yellow: жовтий
   'yes': "Так"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -6333,17 +6323,6 @@ uk:
         stats_generated_datetime: Статистика розрахована %{datetime}
         store_prompt: |
           Хочете всюди демонструвати свою гордість iNat? Зазирніть у наш iNat-магазин!
-        sunburst_desc_html: |
-          Спостережені таксони розташовані у вигляді ієрархічної "сонячної" діаграми. Основа
-          ієрархії знаходиться в центрі, починаючи з "Життя" і закінчуючи
-          видами на зовнішніх краях. Розмір кожної дуги пропорційний
-          числу спостережень цього таксону, а кольори більш-менщ
-          відповідають звичним "знаковим" кольорам таксонів (зелений для рослин,
-          помаранчевий для комах, синій для більшості інших тварин тощо), таким чином, якщо ви
-          бачите багато зеленого, це означає, що ви спостерігали багато рослин.
-          <strong> Натисніть на дузі , щоб розмістити таксон в центрі, </strong> а
-          його дочірні таксони навколо нього, або <strong> натисніть на центр, аби повернутися назад
-          у ієрархії </strong>.
         translators_title: Перекладачі
         translators_desc: |
           Чи знали ви, що iNaturalist був перекладений %{x_languages},
@@ -6444,9 +6423,6 @@ uk:
     taxon_changes:
       move_children_desc: |
         Нащадків вхідного таксону на рівні роду або вище буде перенесено до оновленого таксону; види, підвиди, різновиди, тощо будуть замінені на еквіваленти з новою родовою або видовою назвою.
-      form:
-        move_children_desc_html: |
-          Якщо встановити цей прапорець, нащадків вхідного таксону буде переміщено до оновленого таксону для заміни чи злиття, коли ця зміна буде здійснена. Якщо ця зміна стосується роду або таксону нижчого рівня, це призведе до таксономічних замін для усіх нащадків, які мають у собі назву, що підлягає зміні. Наприклад, якщо змінити назву родини Canidae на Dogidae, це змінить батьківський таксон роду <i>Canis</i> з Canidae на Dogidae. Якщо змінити назву роду <i>Canis</i> на <i>Dogis</i>, це призведе до створення і здійснення таксономічних замін, які замінять <i>Canis lupus</i> на <i>Dogis lupus</i> та <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Це може спричинити неабиякий безлад, тому користуйтеся цим інструментом з обережністю.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -6777,9 +6753,17 @@ uk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d %B %Y'
     month_names:
       - 
       - січня
@@ -6944,9 +6928,17 @@ uk:
     am: дп
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d %b %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d %B %Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%d %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: пп
@@ -7147,11 +7139,6 @@ uk:
           attributes:
             user_id:
               must_be_a_curator: має бути куратором
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Імпорт для користувача Mushroom Observer запущений або поставлений в чергу для імпорту"
-              api_key_missing: "Відсутній ключ Mushroom Observer API"
         observation:
           attributes:
             base:

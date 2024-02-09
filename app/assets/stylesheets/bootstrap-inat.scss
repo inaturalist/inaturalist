@@ -52,7 +52,7 @@ a:hover img { opacity: 1;}
 .ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
 input.chooser {width: auto;}
 .thumbnail.borderless { padding: 0; overflow:hidden;}
-.overlaycontrol ul { list-style: none; margin: 0 0 5px 0; text-align: left; padding: 0;}
+.overlaycontrol ul { list-style: none; margin: 0 0 5px 0; text-align: start; padding: 0;}
 .overlaycontrol li { line-height: 1; }
 .gmapv3control ul.inat-overlay li { padding-top: 5px; }
 .gmapv3control ul.inat-overlay li.for_taxon {
@@ -114,6 +114,21 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
 .item_user {float: left;margin-right: 10px;}
 .item_content {float: left; }
 .comment_activity_item { margin-bottom: 20px; }
+.comment_activity_item .item_user .no-usericon {
+  display: block;
+  height: 10px;
+}
+.comment_activity_item .meta .content-hidden, .item_content .content-hidden {
+  cursor: pointer;
+}
+.comment_activity_item .meta .content-hidden {
+  i.fa {
+    margin-left: 10px;
+  }
+}
+.moderator-action-popover {
+  color: #333;
+}
 #pageheader h2 {margin: 0;}
 blockquote { font-size: 14px; }
 blockquote p {margin-bottom: inherit;}

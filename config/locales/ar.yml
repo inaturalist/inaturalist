@@ -367,11 +367,9 @@ ar:
   bioblitz: بيوبليتز
   birds: طيور
   birthday: عيد الميلاد
-  black: أسود
   block_removed: تمت إزالة الحظر
   blocked_users: المستخدمون المحظورون
   blog_widget: أداة المدونة
-  blue: أزرق
   blue_butterfly_etc: "أزرق، فراشة، إلخ."
   body: جسم
   breadcrumbs: ممر التصفح
@@ -381,7 +379,6 @@ ar:
   #shown
   breadcrumbs_description: "سيحل هذا محل h1 والعبارات التي تحث المستخدم على اتخاذ إجراء; لذا تأكد من تضمينها إذا كانت مهمة لهذا المشروع وتذكر أن الحد الأقصى المسموح به للعرض هو 950 بكسل"
   brief_caption: شرح موجز
-  brown: بني
   browse: تصفح
   browse_all_projects: تصفح جميع المشاريع
   browse_all_species: تصفح جميع الأنواع
@@ -920,6 +917,7 @@ ar:
   everywhere: في كل مكان
   exact: دقيق
   exact_date: التاريخ المحدد
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: الترتيب الدقيق
   except: إلا
   exclusion_filters: مرشحات الاستبعاد
@@ -1035,6 +1033,7 @@ ar:
   fluid: مائع
   follow: تابع
   follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات الجديدة)
+  #Text for a button to follow updates from a specific user
   follow_user: "اتبع %{user}"
   followers: متابعون
   following: التالي
@@ -1086,7 +1085,6 @@ ar:
   got_your_data_somewhere_else?: هل حصلت على بياناتك في مكان آخر؟ نستطيع المساعدة.
   graft: تطعيم
   grafting_attemps_to_insert_this_taxon: محاولات تطعيم لإدراج هذا الصنف في شجرة التصنيف لدينا، والعثور على الأصنوفة الأم القائمة أو إنشاء كل الضروري بين الأصناف لإرفاقها إلى أصناف قائمة في مستوى أعلى.
-  grant_role: "دور %{grant} %{role}"
   grid: شبكة
   grid_layout: تصميم الشبكة
   grid_tooltip: إظهار عرض الشبكة
@@ -1122,19 +1120,12 @@ ar:
   hex_color_eg: لون Hex، على سبيل المثال 65644F
   hi_user: "مرحبا %{user}"
   hide_content: إخفاء المحتوى
-  hide_desc: |
-    سيؤدي إخفاء المحتوى إلى إزالته من العرض العام، ولكن سيظل الأشخاص 
-    قادرين على رؤية إخفاء شيء ما، وسيظل بإمكان منسقي المواقع ومؤلف
-    المحتوى رؤية المحتوى المخفي، بشكل عام، لا
-    ينطبق هذا إلا على المحتوى المكتوب، على سبيل المثال إذا قمت بإخفاء محتوى التعريف،
-    فسيظل التعريف مرئيا ولكن ملاحظات
-    المعرف تكون مخفية، لا يمكنك التراجع عن ذلك، ولا يمكن إلا لموظفي الموقع إظهار
-    المحتوى بمجرد إخفائه؛ لذا كن حذرا واستخدم هذا فقط 
-    للمحتوى غير المرغوب فيه للغاية.
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: أعلى رتبة
   highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{year} في %{site}"
   history: التاريخ
@@ -1476,6 +1467,8 @@ ar:
   looks_like_no_species_in_guide: يبدو أنه ليست لديك أنواع في دليلك حتى الآن.
   lookup: ابحث عن
   low: منخفضة
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: أدنى رتبة
   make_admin: اصنع إداري
   #Header for main content section of the project detail page when editing custom project data.
@@ -1628,7 +1621,6 @@ ar:
   needs_id: يحتاج معرفا
   needs_id_: يحتاج معرفا
   needs_id_expandable_html: "<span class='full'>يحتاج </span>معرفا"
-  needs_to_be_identified: ينبغي تحديدها
   new_and_noteworthy: جديد وجدير بالملاحظة
   new_announcement: إعلان جديد
   new_assessment: تقييم جديد
@@ -1939,7 +1931,9 @@ ar:
   only_the_owner_of_this_list_can_do_that: يمكن  لمالك هذه القائمة فقط القيام بذلك، لا تكن شريرا.
   only_the_project_admin_can_delete_this_project: يستطيع إداري المشروع فقط حذف هذا المشروع.
   only_you: أنت فقط
+  #Geoprivacy status in which no privacy has been applied
   open: فتح
+  #Geoprivacy status in which no privacy has been applied
   open_: فتح
   open_description: "يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة."
   open_street_map: خريطة الشارع المفتوحة
@@ -1949,7 +1943,6 @@ ar:
   #sign in with Apple OR Google
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
-  orange: برتقالي
   order: الترتيب
   order_by: ترتيب حسب
   organism_is_wild: الكائنات برية
@@ -2036,7 +2029,6 @@ ar:
     أوافق على السماح لإيناتوراليست بتخزين ومعالجة أنواع محدودة من
     المعلومات الشخصية حول طفلي من أجل إدارة حساب طفلي
   pin_verb: تثبيت
-  pink: زهري
   pinned_locations_desc: |
     تثبيت هذه المجموعة من الإحداثيات والدقة والخصوصية الجغرافية وملاحظات المكان لاستخدامها لاحقا.
   place: مكان
@@ -2521,7 +2513,6 @@ ar:
   provider_authorizations: تصاريح الموفر
   public_domain: ملكية عامة
   publish: نشر
-  purple: أرجواني
   quality_grade: درجة الجودة
   quality_grade_: درجة الجودة
   quality_grade_colon: "درجة الجودة:"
@@ -2531,7 +2522,11 @@ ar:
   radius_value: "نصف القطر (م): %{radius}"
   random: عشوائي
   range: النطاق
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: المرتبة
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: المرتبة
   ranks:
     stateofmatter: حالة من المسألة
@@ -2598,7 +2593,6 @@ ar:
   recently_finished: تم الانتهاء مؤخرا
   recently_observed: لُوحِظ مؤخرا
   recently_resolved: حُلَّ مؤخرا
-  red: أحمر
   redo_search_in_map: إعادة البحث في الخريطة
   redo_search_in_map_area: إعادة البحث في منطقة الخريطة
   refresh: تحديث
@@ -3027,6 +3021,7 @@ ar:
   taxon_range: نطاق الأصنوفة
   taxon_range_created_notice: تم إنشاء نطاق الأصنوفة بنجاح، يُرجَى الانتظار لبضع دقائق ليظهر على الخرائط.
   taxon_range_updated_notice: تم تحديث نطاق الأصنوفة بنجاح، يُرجَى الانتظار لبضع دقائق لتظهر التغييرات على الخرائط.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: رتب الأصنوفة
   taxon_removed_from_list: أُزِيلت الأصنوفة من القائمة
   taxon_scheme: مخطط الأصنوفة
@@ -3232,7 +3227,6 @@ ar:
   unknown: غير معروف
   unknown_error: خطأ غير معروف
   unknown_rank: '(رتبة غير معروفة)'
-  unfollow: إلغاء المتابعة
   unlink_your_google_account: إلغاء ربط حسابك في جوجل
   unmute: تنشيط الصوت
   updates_notification_email_subject: "%{prefix}  تحديثات جديدة %{date}"
@@ -3471,7 +3465,6 @@ ar:
   where_were_they?: أين كانوا؟
   where_were_you?: أين كنت؟
   which_projects_can_add_your_observations?: ما هي المشاريع التقليدية التي يمكنها إضافة ملاحظاتك؟
-  white: أبيض
   why_you_can_see_the_coordinates: لماذا يمكنك مشاهدة الإحداثيات
   who_can_add_observations_to_this_project?: من يمكنه إضافة ملاحظات إلى هذا المشروع؟
   who_can_see_the_coordinates: من يستطيع أن يرى الإحداثيات
@@ -3528,7 +3521,6 @@ ar:
   year_in_review: "السنة قيد المراجعة %{year}"
   year_month: سنة/شهر
   year_on_site: "السنة في %{site} %{year}"
-  yellow: أصفر
   'yes': "نعم"
   yes_find_them!: "نعم، اعثر عليهم!"
   yes_i_want_to_join: نعم، أريد الانضمام
@@ -4743,17 +4735,6 @@ ar:
         obs_in_year: الملاحظات في %{year}
         percent_growth_in_year: "% النمو في %{year}"
         percent_of_total_growth: "للنمو الإجمالي"
-        sunburst_desc_html: |
-          أصناف ملاحظة رُتِّبت كرسم "سونبورست" الهرمي، قاعدة 
-          التسلسل الهرمي في المركز، تبدأ من "الحياة" وتنتهي 
-          مع الأنواع على الحواف الخارجية، حجم كل قوس يتناسب 
-          مع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء 
-          تتوافق مع ألوان الأصناف المعتادة لدينا "iconic" (الأخضر للنباتات 
-          والبرتقالي للحشرات والأزرق لمعظم الحيوانات الأخرى، وما إلى ذلك); لذلك إذا كنت " 
-          ترى الكثير من الأخضر: هذا يعني أنك لاحظت الكثير من النباتات. 
-          <strong> انقر على القوس لوضع هذه الأصنوفة في المركز</strong> 
-          وأطفالها حولها، أو <strong> انقر على المركز لنقل وإرجاع 
-          التسلسل الهرمي </strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -4772,6 +4753,33 @@ ar:
           كل أجناسها ولكن ليس كل أنواعها، هذا سيتم تعيينه إلى "جنس". 
           الافتراضي هو النوع.
       show:
+        about_names_desc: |
+          <p>
+          معظم فئات الكائنات الحية لها "أسماء مشتركة"
+          \ باللغات المنطوقة، وعادة ما تكون هذه الأسماء يمكن التعرف عليها، وسهلة التنطق،
+          ومستقرة مع مرور الوقت، ولكن العديد من الكائنات الحية لديها عدة
+          أسماء مختلفة في أماكن مختلفة، حتى في نفس اللغة، والتي يمكن أن تجعل
+          من الصعب التواصل عن هذه الكائنات دون ارتباك،
+          ويعالج العلماء هذه المشكلة باستخدام "اسم علمي" واحد
+          لكل فئة من الكائنات الحية التي تتوافق مع قواعد
+          \ <a href="https://ar.wikipedia.org/wiki/تسمية_ثنائية">التسميات البيولوجية</a>،
+          ولكن هذه الأسماء تميل إلى أن تكون على أساس اللاتينية، لغة لا أحد
+          \ يتحدث بها; لذلك فهي ليست بارزة كأسماء شائعة للكثير منن
+          الاشخاص، ويمكن للأسماء العلمية أن تعكس أيضا وضع تصنيف الكائن الحي;
+          حتى يمكن أن تتغير عندما يطور العلماء
+          نظريات أكثر دقة حول العلاقات التطورية بين
+          الكائنات الحية المختلفة، مما يقلل من جدواها في
+          التواصل، حتى بين الأشخاص الذين يعرفون الأسماء العلمية.
+          </p>
+          <p>
+          يقول القول المأثور القديم: "تتغير الأسماء الشائعة من مكان
+          لآخر، وتتغير الأسماء العلمية من وقت لآخر".
+          </p>
+          <p>
+          نحاول معالجة أوجه القصور هذه من خلال عرض كل من
+          الأسماء الشائعة والعلمية حيثما أمكن، واختيار الأسماء الشائعة
+          استنادا إلى اللغة والتفضيلات الجغرافية للمشاهد.
+          </p>
         about_conservation_status_desc: |
           يلخص وضع الحفظ خطر الانقراض بالنسبة لمجموعة من الكائنات الحية.
         about_establishment_desc: |
@@ -4857,18 +4865,6 @@ ar:
         سيتم نقل الأطفال من المدخلات المدخلة التي هي أجناس أو خشن إلى
         الإخراج والأنواع والأنواع الفرعية والأصناف وما إلى ذلك سيتم تبديلها إلى
         مكافئات مع اسم جنس أو نوع جديد.
-      form:
-        move_children_desc_html: |
-          سيؤدي تحديد هذا المربع إلى نقل أطفال الأصنوفة المدخلة إلى 
-          أصنوفة الإخراج المقايضات و تدمج عند تنفيذ هذا التغيير، إذا كان 
-          هذا التغيير لجنس أو أقل، فسيؤدي ذلك إلى إنشاء مقايضات أصناف لجميع 
-          الأحفاد الذين تغير اسمهم الضمني، على سبيل المثال ، إذا قمت بتبديل 
-          عائلة الكلبيات إلى Dogidae، فهذا يغير أصل الجنس
-          <i>Canis</i> من كلبيات إلى Dogidae، إذا قمت بتبديل جنس
-          <i>Canis</i> إلى الجنس <i>Dogis</i>، فسوف ينشئ ويلتزم
-          يمقايضات أصناف لتغيير <i>Canis lupus</i> إلى <i>Dogis lupus</i> و
-          <i>Canis lupus</i> ssp، <i>lupus</i> إلى <i>Dogis lupus</i> ssp.
-          <i>lupus</i> هذا يمكن أن يسبب فوضى; لذلك استخدم بعناية.
     taxon_links:
       form:
         name_with_rank_desc: |

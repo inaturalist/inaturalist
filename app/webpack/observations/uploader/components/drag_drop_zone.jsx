@@ -353,6 +353,9 @@ class DragDropZone extends Component {
                   <div id="imageGridObs" className="obs">
                     { _.map( obsPositions, ( cardID, position ) => {
                       const obsCard = obsCards[cardID];
+                      if ( !obsCard ) {
+                        return;
+                      }
                       return (
                         <div className="card-and-inserts" key={`card-and-inserts-${obsCard.id}`}>
                           <InsertionDropTarget

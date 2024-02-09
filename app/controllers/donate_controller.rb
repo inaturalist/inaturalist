@@ -7,6 +7,8 @@ class DonateController < ApplicationController
     @footless = true
     @no_footer_gap = true
     @shareable_image_url = helpers.image_url( "donate-banner.png" )
+    @moore_start_date = DateTime.parse( "2023-09-13T03:00:00-07:00" )
+    @moore_end_date = DateTime.parse( "2024-01-01T00:00:00-07:00" )
   end
 
   def index
@@ -35,9 +37,12 @@ class DonateController < ApplicationController
       nil
     end
     utm_source ||= URI.parse( Site.default.domain )&.host || Site.default.domain
+    default_site_uri = URI.parse( Site.default.url )
     if Site.default && @site && @site.id != Site.default.id
       {
-        host: Site.default.domain,
+        protocol: default_site_uri.scheme,
+        host: default_site_uri.host,
+        port: default_site_uri.port,
         utm_source: utm_source,
         redirect: true
       }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
@@ -46,7 +51,9 @@ class DonateController < ApplicationController
       # params from the URL of the parent window, and will ignore them all if
       # utm_source isn't set
       {
-        host: Site.default.domain,
+        protocol: default_site_uri.scheme,
+        host: default_site_uri.host,
+        port: default_site_uri.port,
         utm_source: utm_source,
         utm_medium: "web",
         redirect: true
