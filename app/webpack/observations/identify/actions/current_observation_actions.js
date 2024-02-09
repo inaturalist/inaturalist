@@ -1187,43 +1187,33 @@ export function togglePlayFirstSound( ) {
   };
 }
 
-export function toggleAnnotations( ) {
+export function addProjects( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const { config } = s;
     if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
       return;
     }
-    dispatch( updateSession( {
-      prefers_hide_identify_annotations: !config.currentUser.prefers_hide_identify_annotations
-    } ) );
+    if ( config.currentUser.prefers_hide_identify_projects ) {
+      dispatch( updateSession( {
+        prefers_hide_identify_projects: false
+      } ) );
+    }
   };
 }
 
-
-export function toggleProjects( ) {
+export function addObservationFields( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const { config } = s;
     if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
       return;
     }
-    dispatch( updateSession( {
-      prefers_hide_identify_projects: !config.currentUser.prefers_hide_identify_projects
-    } ) );
-  };
-}
-
-export function toggleObservationFields( ) {
-  return ( dispatch, getState ) => {
-    const s = getState( );
-    const { config } = s;
-    if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
-      return;
+    if ( config.currentUser.prefers_hide_identify_observation_fields ) {
+      dispatch( updateSession( {
+        prefers_hide_identify_observation_fields: false
+      } ) );
     }
-    dispatch( updateSession( {
-      prefers_hide_identify_observation_fields: !config.currentUser.prefers_hide_identify_observation_fields
-    } ) );
   };
 }
 

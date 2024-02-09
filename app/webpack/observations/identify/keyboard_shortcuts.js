@@ -17,9 +17,8 @@ import {
   showPrevTab,
   showNextTab,
   toggleKeyboardShortcuts,
-  toggleAnnotations,
-  toggleProjects,
-  toggleObservationFields
+  addProjects,
+  addObservationFields
 } from "./actions";
 import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
@@ -216,9 +215,8 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "shift+right", showNextTab, dispatch );
   bindShortcut( ["command+up", "alt+up"], increaseBrightness, dispatch );
   bindShortcut( ["command+down", "alt+down"], decreaseBrightness, dispatch );
-  bindShortcut( "shift+a", toggleAnnotations, dispatch );
-  bindShortcut( "shift+p", toggleProjects, dispatch, { callback: focusProjects } );
-  bindShortcut( "shift+f", toggleObservationFields, dispatch, { callback: focusObservationFields } );
+  bindShortcut( "shift+p", addProjects, dispatch, { callback: focusProjects } );
+  bindShortcut( "shift+f", addObservationFields, dispatch, { callback: focusObservationFields } );
   _.forEach( annotationShortcuts, as => {
     bind( as.shortcut, ( ) => {
       dispatch( addAnnotationFromKeyboard( as.term, as.value ) );
