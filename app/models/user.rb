@@ -403,7 +403,7 @@ class User < ApplicationRecord
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
-  EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2023-09-06 12:00" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATETIME = DateTime.parse( "2025-01-01 12:00" )
 
   # Override of method from devise to implement some custom restrictions like
   # parent/child permission and gradual confirmation requirement rollout
