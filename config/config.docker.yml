@@ -1,18 +1,18 @@
 base: &base
 
     rest_auth:
-        REST_AUTH_SITE_KEY: <%= ENV.fetch("SECRET_DEVISE_PEPPER") { "09af09af09af09af09af09af09af09af09af09af" } %>
+        REST_AUTH_SITE_KEY: <%= ENV.fetch("INAT_SECRET_DEVISE_PEPPER") %>
         REST_AUTH_DIGEST_STRETCHES: 10
 
     rails:
         session_key: _inaturalist_session
-        secret: <%= ENV.fetch("SECRET_KEY_BASE") { "09af09af09af09af09af09af09af09af" } %>
+        secret: <%= ENV.fetch("INAT_SECRET_KEY_BASE") %>
 
-    # ubio:
-    #    key:
+    ubio:
+        key: <%= ENV.fetch("INAT_UBIO_KEY") %>
 
-    # yahoo_dev_network:
-    #    app_id:
+    yahoo_dev_network:
+        app_id: <%= ENV.fetch("INAT_YAHOO_APP_ID") %>
 
     tile_servers:
         elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
@@ -20,24 +20,36 @@ base: &base
     #    tilestache: http://geo.inaturalist.org
     #    tilestache_public_path: /home/inaturalist/deployment/TileStache/public
 
-    # facebook:
-    #    namespace:
-    #    app_id: 
-    #    app_secret:
-    #    admin_ids:
+    facebook:
+        namespace: <%= ENV.fetch("INAT_FACEBOOK_NAMESPACE") %>
+        app_id: <%= ENV.fetch("INAT_FACEBOOK_APP_ID") %>
+        app_secret: <%= ENV.fetch("INAT_FACEBOOK_APP_SECRET") %>
+        admin_ids: <%= ENV.fetch("INAT_FACEBOOK_ADMIN_IDS") %> 
 
-    # twitter:
-    #    key:
-    #    secret:
-    #    username:
+    twitter:
+        key: <%= ENV.fetch("INAT_TWITTER_KEY") %>
+        secret: <%= ENV.fetch("INAT_TWITTER_SECRET") %>
     
-    # apple:
-    #    app_id:
-    #    client_id:
-    #    team_id:
-    #    key_id:
-    #    pem:
-
+    apple:
+        app_id: <%= ENV.fetch("INAT_APPLE_APP_ID") %>
+        client_id: <%= ENV.fetch("INAT_APPLE_CLIENT_ID") %>
+        team_id: <%= ENV.fetch("INAT_APPLE_TEAM_ID") %>
+        key_id: <%= ENV.fetch("INAT_APPLE_KEY_ID") %>
+        pem: <%= ENV.fetch("INAT_APPLE_PEM") %>
+        applinks:
+            org.inaturalist.iNaturalistMobile:
+                - /users/sign_in?confirmed=true
+        applinks2:
+            - bundle_ids:
+                - org.inaturalist.iNaturalistMobile
+              components:
+                - path: /users/sign_in
+                  query:
+                    confirmed: "true"
+                  comment: Allow app to handle newly-confirmed users
+                - path: /observations/$(digit)*
+                  comment: Allow app to handle observation detail URLs
+    
     s3_bucket: <%= ENV.fetch("INAT_AWS_DOMAIN") { "staticdev.inaturalist.org" } %>
     s3_protocol: <%= ENV.fetch("INAT_AWS_PROTOCOL") { "https" } %>
     s3_region: <%= ENV.fetch("INAT_AWS_REGION") { "us-east-1" } %>
@@ -53,82 +65,105 @@ base: &base
     node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://localhost:4000/v1" } %>
 
     google:
-        browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "09af09af09af09af09af09af09af09af" } %>
-        client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "09af09af09af09af09af09af09af09af" } %>
-        secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "09af09af09af09af09af09af09af09af" } %>
+        browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") %>
+        client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") %>
+        secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") %>
 
-    # bing:
-    #    key:
+    bing:
+        key: <%= ENV.fetch("INAT_BING_KEY") %>
 
-    # soundcloud:
-    #    client_id:
-    #    secret:
+    soundcloud:
+        client_id: <%= ENV.fetch("INAT_SOUNDCLOUD_CLIENT_ID") %>
+        secret: <%= ENV.fetch("INAT_SOUNDCLOUD_SECRET") %>
     
     x_sendfile_header: X-Accel-Redirect
     
     flickr:
-        key: flickr-key
-        shared_secret: flickr-share-secret
+        key: <%= ENV.fetch("INAT_FLICKR_KEY") %>
+        shared_secret: <%= ENV.fetch("INAT_FLICKR_SHARED_SECRET") %>
     
-    # rakismet:
-    #    key:
-    #    site_url:
+    rakismet:
+        key: <%= ENV.fetch("INAT_RAKISMET_KEY") %>
+        site_url: https://www.inaturalist.org
     
-    # gbif:
-    #    username:
-    #    password:
-    #    notification_address:
+    gbif:
+        username: <%= ENV.fetch("INAT_GBIF_USERNAME") %>
+        password: <%= ENV.fetch("INAT_GBIF_PASSWORD") %>
+        notification_address: <%= ENV.fetch("INAT_GBIF_NOTIFICATION_ADDRESS") %>
     
-    # orcid:
-    #    client_id:
-    #    client_secret:
+    orcid:
+        client_id: <%= ENV.fetch("INAT_ORCID_CLIENT_ID") %>
+        client_secret: <%= ENV.fetch("INAT_ORCID_CLIENT_SECRET") %>
     
-    # donorbox:
-    #    email:
-    #    key: 
+    donorbox:
+        email: <%= ENV.fetch("INAT_DONORBOX_EMAIL") %>
+        key: <%= ENV.fetch("INAT_DONORBOX_KEY") %>
 
-    # crowdin:
-    #    projects:
-    #        web:
-    #            identifier:
-    #            key:
-    #        mobile:
-    #            identifier:
-    #            key:
-    #        seek:
-    #            identifier:
-    #            key:
+    crowdin:
+        projects:
+            web:
+                identifier: inaturalistweb
+                key: <%= ENV.fetch("INAT_CROWDIN_WEB_KEY") %>
+            mobile:
+                identifier: inaturalistweb
+                key: <%= ENV.fetch("INAT_CROWDIN_MOBILE_KEY") %>
+            seek:
+                identifier: inaturalistweb
+                key: <%= ENV.fetch("INAT_CROWDIN_SEEK_KEY") %>
 
-    # sendgrid:
-    #    api_key:
-    #    validation_api_key:
-    #    # Unsubscribe groups configured on Sendgrid
-    #    asm_group_ids:
-    #        # Transactional emails
-    #        default: 25993
-    #        # Emails about your account
-    #        account: 26500
-    #        # Donation campaigns
-    #        donation: 19306
-    #        # News about iNat
-    #        news: 19705
-    #        # Emails to existing donors
-    #        donors: 28967
-    #        # Emails about legacy giving
-    #        legacy_giving: 34067
-    #        # Emails about accuracy experiments
-    #        accuracy: 35930
-    #    primary_ip_pool:
-    #    alternate_ip_pool:
+    sendgrid:
+        api_key: <%= ENV.fetch("INAT_SENDGRID_API_KEY") %>
+        validation_api_key: <%= ENV.fetch("INAT_SENDGRID_VALIDATION_API_KEY") %>
+        # Unsubscribe groups configured on Sendgrid
+        asm_group_ids:
+            # Transactional emails
+            default: 25993
+            # Emails about your account
+            account: 26500
+            # Donation campaigns
+            donation: 19306
+            # News about iNat
+            news: 19705
+            # Emails to existing donors
+            donors: 28967
+            # Emails about legacy giving
+            legacy_giving: 34067
+            # Emails about accuracy experiments
+            accuracy: 35930
+        primary_ip_pool: ip_pool_1
+        alternate_ip_pool: ip_pool_2
 
-    jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "secret" } %>
-    jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "application_secret" } %>
+    jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") %>
+    jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") %>
 
-    # banned_emails:
+    banned_emails:
+        - novartismails.com
+        - ibmmails.com
+        - dupontmails.com
+        - shoprtr.com
+        - adsagency.net
+        - hubspotmails.com
+        - temasekmail.com
+        - dailysocialpro.com
+        - poczta.pl
+        - mailclubs.info
+        - osmom.justdied.com
+        - interia.pl
+        - o2.pl
+        - wordpressmails.com
+        - hotspotmails.com
+        - proconzon.com
+        - postfreeth.com
+        - waymymails.com
+        - jelly-life.com
+        - jokermails.com
+        - yourmailhost.com
 
-    # aggregator_exception_project_ids:
-    
-    # allowed_email_recipient_patterns:
+    aggregator_exception_project_ids:
+        - 12302
+
+    allowed_email_recipient_patterns:
+        - "@inaturalist.org$"
     
 development:
     <<: *base
