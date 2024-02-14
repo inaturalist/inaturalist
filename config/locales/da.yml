@@ -3140,7 +3140,7 @@ da:
   observation_accuracy_experiment_show_frequency: "vis frekvens"
   observation_accuracy_experiment_click_on_bars: "Klik på bjælker for at udforske undergrupper."
   observation_accuracy_experiment_accuracy_results: "Præcisionsresultater pr. undergruppe"
-  observation_accuracy_experiment_as_observations: "Når observationer fra denne prøve efterhånden bekræftes, vil usikkerhedsprocentdelen falde, og procenterne for korrekt og ukorrekt vil stige."
+  observation_accuracy_experiment_as_observations: "Efterhånden som observationer fra denne prøve valideres, vil usikkerhedsprocentdelen falde og procenterne for korrekt og ukorrekt vil stige."
   observation_accuracy_experiment_experiment_still: "Eksperiment stadig i gang. Statistik opdateres dagligt indtil prøvebekræftelsesdeadlinen pr. %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Observationsnøjagtighedseksperiment"
   observation_accuracy_experiment_validators: "Validatorer:"
@@ -3171,6 +3171,7 @@ da:
   observation_accuracy_experiment_we_scored: "Vi scoretildelte observationer i prøven som Korrekt, Usikker eller Forkert ved at sammenligne validatoridentifikationer med de enkelte prøveobservationers takson. Identifikationer, som matchede eller var finere end prøvens observationstakson, blev scoret som Korrekt. Ikke-uenige, grovere identifikationer blev scoret som Usikker ligesom scenarier, hvor flere validatorer var uenige. Uenige, grovere identifikationer eller identifikationer på forskellige grene blev scoret som Forkert."
   observation_accuracy_experiment_correct: "Korrekt"
   observation_accuracy_experiment_uncertain: "Usikker"
+  observation_accuracy_experiment_incorrect2: "Ukorrekt"
   observation_accuracy_experiment_step_4: "Trin 4: Nøjagtigheds- og præcisionsberegning"
   observation_accuracy_experiment_accuracy: "Nøjagtighed"
   observation_accuracy_experiment_we_calculated: "Vi beregnede Nøjagtighed som procent korrekte for hele prøven samt delsæt, såsom Forskningskvalitetdelmængden. Vi beregnede også procentdelen Usikker og procentuel Ukorrekt. I eksemplet til højre ville procentsatsen Korrekt være 83, procentsatsen Usikker ville være 6, og procentsatsen Ukorrekt ville være 11."
@@ -6330,6 +6331,7 @@ da:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Sand tilstedeværelse:
+          true_presences_definition2: Områder, hvor både det forventede nærhedskort og taksonområdet forudsiger, at taksonen eksisterer
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Falsk tilstedeværelse:

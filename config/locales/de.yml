@@ -1268,7 +1268,7 @@ de:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Von der Community erstellte Gebiete bearbeiten und KML-Dateien hochladen, die größer als 1 MB sind (aber kleiner als 5 MB).
+    Von Benutzern erstellte Gebiete bearbeiten und KML-Dateien hochladen, die größer als 1 MB sind (aber kleiner als 5 MB).
   #Header
   curator_application_what_curators_cannot_do: Was Kuratoren nicht tun können
   #Description of the fact that a curator cannot change certain attributes of
@@ -2995,7 +2995,7 @@ de:
   observation_accuracy_experiment_show_frequency: "zeige Häufigkeit an"
   observation_accuracy_experiment_click_on_bars: "Klicke auf die Balken, um die Untergruppen zu erkunden."
   observation_accuracy_experiment_accuracy_results: "Genauigkeitsergebnisse nach Untergruppen"
-  observation_accuracy_experiment_as_observations: "Während Beobachtungen aus dieser Probe validiert werden, sinkt der Anteil der 'unsicheren', während die Anteile von 'korrekt' und 'inkorrekt' zunehmen."
+  observation_accuracy_experiment_as_observations: "Während Beobachtungen aus dieser Probe validiert werden, sinkt der Anteil der 'unsicheren' Beobachtungen, während die Anteile von 'korrekt' und 'inkorrekt' zunehmen."
   observation_accuracy_experiment_experiment_still: "Das Experiment ist noch im Gange. Die Statistik wird täglich bis zur Frist für die Validierung der Proben am %{date} aktualisiert"
   observation_accuracy_experiment_observation_accuracy_experiment: "Experiment zur Beobachtungsgenauigkeit"
   observation_accuracy_experiment_validators: "Prüfer:"
@@ -3026,6 +3026,7 @@ de:
   observation_accuracy_experiment_we_scored: "Wir haben der Beobachtungen der Stichprobe als korrekt, unsicher oder inkorrekt eingestuft, indem wir die Prüfer-IDs mit dem Beobachtungstaxon jeder Probe verglichen. Bestimmungen, die mit der Stichprobe übereinstimmten, oder sie verbesserten, wurden als korrekt eingestuft. Nicht-widersprechende, höherrangige IDs wurden als unsicher eingestuft, ebenso wie Situationen, bei denen mehrere Prüfer sich nicht einig waren. Widersprüche wurden als inkorrekt eingestuft."
   observation_accuracy_experiment_correct: "Korrekt"
   observation_accuracy_experiment_uncertain: "Unsicher"
+  observation_accuracy_experiment_incorrect2: "Inkorrekt"
   observation_accuracy_experiment_step_4: "Schritt 4: Berechnung von Genauigkeit und Präzision"
   observation_accuracy_experiment_accuracy: "Genauigkeit"
   observation_accuracy_experiment_we_calculated: "Wir berechneten die Genauigkeit als den Prozentsatz an korrekten Beobachtungen, sowohl für die gesamte Stichprobe als auch für die Teilmengen der Beobachtungen mit Forschungsqualität. Wir berechneten auch den Prozentsatz für unsicher und inkorrekt. Im rechten Beispiel wären 83& der Beobachtungen korrekt, 6% unsicher und der 11% inkorrekt."
@@ -4388,7 +4389,7 @@ de:
   search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr Foto-ID suchen
   search_catalogue_of_life: 'Durchsuche <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Durchsuche Catalogue of Life &raquo;"
-  search_external_name_providers: Durchsuchen von externen Namensprovidern
+  search_external_name_providers: Externe Namensanbieter durchsuchen
   search_for_a_location: Einen Ort suchen
   search_for_species: Suche nach Art
   search_list: Liste durchsuchen
@@ -6019,6 +6020,7 @@ de:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Wahre Anwesenheiten:
+          true_presences_definition2: Gebiete, in denen sowohl die Karte zum erwarteten Vorkommen als auch die tatsächlichen Verbreitungsdaten vorhersagen, dass das Taxon dort vorkommt
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Falsche Anwesenheiten:
@@ -7144,7 +7146,7 @@ de:
         observation_streaks_color_desc: |
           Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:
         observation_streaks_desc2: |
-          Eine Beobachtungssträhne ist ein Zeitraum, in dem jemand nach draußen gegangen ist und jeden Tag neue, verifizierbare Beobachtungen aufgenommen hat. Hier zeigen wir die längsten solche Strähnen, die in diesem Jahr begannen oder im Gange waren, als diese Statistiken erstellt wurden.
+          Eine Beobachtungssträhne ist ein Zeitraum von mindestens 5 Tagen, in welchem ein Benutzer jeden einzelnen Tag mindestens eine (verifizierbare) Beobachtung gemeldet hat. Hier zeigen wir die längsten Serien, die in diesem Jahr begannen oder bereits im Gange waren, als diese Statistiken erstellt wurden.
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Wiederkehrend
         species_per_year: Arten / Jahr

@@ -261,6 +261,9 @@ th:
   add_observations: เพิ่มการสังเกต
   add_observations_by_checking_off: เพิ่มข้อสังเกตโดยการตรวจสอบสายพันธุ์จากรายการ
   add_observations_project: เพิ่มการสังเกตในโครงการนี้
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>เพิ่ม</span><span>การสังเกต</span>"
   #Prompt to add a new journal post
   add_one: เพิ่มอีก
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -1333,7 +1336,9 @@ th:
   it_can_now_be_used_for_research: สามารถนำไปใช้ในการวิจัยและแสดงบนหน้าเว็บอื่น ๆ ได้
   jobs: ตำแหน่งงาน
   join: เข้าร่วม
+  join_and_add_an_observation_to_project_html: เข้าร่วมและเพิ่มการสังเกตไปที่ %{project}
   join_project: เข้าร่วมโครงการนี้
+  join_the_largest_group_of_naturalists_in_the_world: เข้าร่วมชุมชนนักธรรมชาติวิทยาที่ใหญ่ที่สุดในโลก!
   join_this_project: เข้าร่วมโครงการนี้
   joined_projects: โครงการที่คุณเข้าร่วม
   joined_with_date: "เข้าร่วม: %{date}"
@@ -1995,6 +2000,7 @@ th:
   places_name:
     africa: แอฟริกา
     american_samoa: อเมริกันซามัว
+    antarctica: แอนตาร์กติกา
     argentina: อาร์เจนตินา
     asia: เอเชีย
     austria: ออสเตรีย
@@ -2051,6 +2057,7 @@ th:
     north_korea: เกาหลีเหนือ
     northern_cyprus: ไซปรัสเหนือ
     norway: นอร์เวย์
+    oceania: โอเชียเนีย
     pakistan: ปากีสถาน
     panama: ปานามา
     peru: เปรู

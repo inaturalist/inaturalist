@@ -3099,7 +3099,6 @@ fr:
   observation_accuracy_experiment_show_frequency: "afficher la fréquence"
   observation_accuracy_experiment_click_on_bars: "Cliquez sur les barres pour explorer les sous-ensembles."
   observation_accuracy_experiment_accuracy_results: "Résultats de l'exactitude par sous-ensemble"
-  observation_accuracy_experiment_as_observations: "Comme les observations de cet échantillon sont validées, le pourcentage d'incertitude diminuera et le pourcentage correct et incorrect augmentera."
   observation_accuracy_experiment_experiment_still: "Expérience toujours en cours. Les statistiques seront mises à jour quotidiennement jusqu'à la date limite de validation des échantillons le %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Expérience d'exactitude d'observation"
   observation_accuracy_experiment_validators: "Validateurs :"
@@ -3126,6 +3125,7 @@ fr:
   observation_accuracy_experiment_step_3: "Étape 3 : Évaluation des observations d'un échantillon à partir des validations"
   observation_accuracy_experiment_correct: "Correct"
   observation_accuracy_experiment_uncertain: "Incertain"
+  observation_accuracy_experiment_incorrect2: "Incorrect"
   observation_accuracy_experiment_step_4: "Étape 4 : Calcul de l'exactitude et de la précision"
   observation_accuracy_experiment_accuracy: "Exactitude"
   observation_accuracy_experiment_precision: "Précision"
@@ -6147,6 +6147,7 @@ fr:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Vraies présences :
+          true_presences_definition2: Zones où la carte de présence attendue à proximité et l'aire de répartition prédisent toutes les deux la présence du taxon
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Fausses présences :
