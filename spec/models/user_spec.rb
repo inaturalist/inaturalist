@@ -1525,6 +1525,21 @@ describe User do
       User.create_from_omniauth( auth_info )
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
     end
+
+    describe "with oauth_application" do
+      it "should not set oauth_application_id for untrusted applications" do
+        oauth_application = OauthApplication.make!( trusted: false )
+        u = User.create_from_omniauth( auth_info, oauth_application )
+        expect( u.oauth_application_id ).to be_nil
+      end
+
+      it "should set oauth_application_id for trusted applications" do
+        oauth_application = OauthApplication.make!( trusted: true )
+        u = User.create_from_omniauth( auth_info, oauth_application )
+        expect( u.oauth_application_id ).to eq oauth_application.id
+      end
+    end
+
     describe "with an email in the name field" do
       let(:auth_info) { {
         "info" => {

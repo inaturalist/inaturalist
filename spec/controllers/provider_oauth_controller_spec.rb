@@ -35,6 +35,13 @@ describe ProviderOauthController do
         expect( User.find_by_email( google_response[:email] ) ).not_to be_blank
       end
 
+      it "should set oauth_application_id" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, format: :json, params: assertion_params
+        user = User.find_by_email( google_response[:email] )
+        expect( user.oauth_application_id ).to eq client.id
+      end
+
       it "should not return a token for a new user" do
         expect( User.find_by_email( google_response[:email] ) ).to be_blank
         post :assertion, format: :json, params: assertion_params
@@ -156,8 +163,6 @@ describe ProviderOauthController do
           expect( response_json["error"] ).to eq "unauthorized_client"
         end
       end
-
-
     end
 
     describe "without an email address" do

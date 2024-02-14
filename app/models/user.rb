@@ -864,7 +864,7 @@ class User < ApplicationRecord
   # create a user using 3rd party provider credentials (via omniauth)
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
-  def self.create_from_omniauth(auth_info)
+  def self.create_from_omniauth(auth_info, oauth_application = nil)
     email = auth_info["info"].try(:[], "email")
     email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
@@ -891,6 +891,9 @@ class User < ApplicationRecord
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
+    if oauth_application.try( :trusted? )
+      u.oauth_application_id = oauth_application.id
+    end
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e

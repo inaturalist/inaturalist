@@ -26,9 +26,9 @@ class ProviderOauthController < ApplicationController
       Timeout.timeout( 10 ) do
         case assertion_type
         when /google/
-          oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
+          oauth_access_token_from_google_token( client, params[:assertion] )
         when /apple/
-          oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
+          oauth_access_token_from_apple_assertion( client, params[:assertion] )
         else
           raise INat::Auth::BadAssertionTypeError
         end
@@ -104,8 +104,7 @@ class ProviderOauthController < ApplicationController
 
   private
 
-  def oauth_access_token_from_google_token( client_id, provider_token )
-    client = Doorkeeper::Application.find_by_uid( client_id )
+  def oauth_access_token_from_google_token( client, provider_token )
     user = if ( pa = ProviderAuthorization.where( provider_name: "google_oauth2", token: provider_token ).first )
       pa.user
     end
@@ -142,7 +141,7 @@ class ProviderOauthController < ApplicationController
             "token" => provider_token
           }
         }
-        user = User.create_from_omniauth( auth_info )
+        user = User.create_from_omniauth( auth_info, client )
         raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
       end
       user
@@ -155,19 +154,7 @@ class ProviderOauthController < ApplicationController
     assertion_access_token_for_client_and_user( client, user )
   end
 
-  def oauth_access_token_from_apple_assertion( client_id, assertion )
-    client = Doorkeeper::Application.find_by_uid( client_id )
-    if client.blank?
-      error_message = "Client does not exist for Apple assertion: #{client_id}"
-      Rails.logger.error = error_message
-      LogStasher.write_hash(
-        error_message: error_message,
-        request: request,
-        session: session,
-        user: current_user
-      )
-      return
-    end
+  def oauth_access_token_from_apple_assertion( client, assertion )
     # Note that the assertion we are expecting from our own iPhone app is a JSON
     # string that contains the identity token as well as name details that are
     # (apprently) only available to the app
@@ -253,7 +240,7 @@ class ProviderOauthController < ApplicationController
           "verified" => id_token_conents["email_verified"] == "true"
         }
       }
-      user = User.create_from_omniauth( auth_info )
+      user = User.create_from_omniauth( auth_info, client )
       raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
     end
     return nil unless user&.persisted?
