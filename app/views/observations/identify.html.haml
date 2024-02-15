@@ -12,9 +12,9 @@
       CURRENT_USER.prefers_identify_side_bar = #{logged_in? && current_user.prefers_identify_side_bar};
       CURRENT_USER.preferred_identify_image_size = #{logged_in? && current_user.preferred_identify_image_size ? current_user.preferred_identify_image_size.inspect.html_safe : "null"};
       CURRENT_USER.curator_projects = #{current_user.project_users.curator_privilege.includes(:project).map{|pu| { id: pu.project_id, slug: pu.project.slug } }.to_json.html_safe};
-      CURRENT_USER.prefers_hide_obs_show_annotations = #{logged_in? && current_user.prefers_hide_obs_show_annotations};
-      CURRENT_USER.prefers_hide_obs_show_projects = #{logged_in? && current_user.prefers_hide_obs_show_projects};
-      CURRENT_USER.prefers_hide_obs_show_observation_fields = #{logged_in? && current_user.prefers_hide_obs_show_observation_fields};
+      CURRENT_USER.prefers_hide_identify_annotations = #{logged_in? && current_user.prefers_hide_identify_annotations};
+      CURRENT_USER.prefers_hide_identify_projects = #{logged_in? && current_user.prefers_hide_identify_projects};
+      CURRENT_USER.prefers_hide_identify_observation_fields = #{logged_in? && current_user.prefers_hide_identify_observation_fields};
     }
   = javascript_include_tag "webpack/runtime-webpack"
   = javascript_include_tag "webpack/react-main-webpack"

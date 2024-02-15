@@ -269,13 +269,6 @@ class ObservationFieldInput extends React.Component {
             this.setState( { observationFieldValue: dateString } );
             this.onChangeHandler( dateString );
           }}
-          onSelection={dateString => {
-            this.setState( {
-              observationFieldValue: dateString,
-              observationFieldSelectedDate: dateString
-            } );
-            this.onChangeHandler( dateString );
-          }}
         />
         <input
           type="text"

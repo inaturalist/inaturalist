@@ -11,8 +11,8 @@ function mapStateToProps( state ) {
   return {
     observation: state.currentObservation.observation,
     config: state.config,
-    collapsible: false,
-    placeholder: I18n.t( "add_a_field" )
+    placeholder: I18n.t( "add_a_field" ),
+    context: "identify"
   };
 }
 

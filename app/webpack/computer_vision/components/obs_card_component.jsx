@@ -123,9 +123,6 @@ class ObsCardComponent extends Component {
             }
             timeZone={obsCard.time_zone}
             onChange={dateString => updateObsCard( { date: dateString } )}
-            onSelection={
-              dateString => updateObsCard( { date: dateString, selected_date: dateString } )
-            }
           />
           <div
             className={`input-group${invalidDate ? " has-error" : ""}`}
