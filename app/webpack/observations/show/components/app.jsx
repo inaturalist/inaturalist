@@ -405,6 +405,7 @@ const App = ( {
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
       <ModeratorActionModalContainer />
+      <InteractionModalContainer />
       {
         config && config.currentUser
         && (

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :observed_interactions
   resources :moderator_notes
   resources :data_partners
   resources :saved_locations

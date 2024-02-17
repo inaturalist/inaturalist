@@ -332,6 +332,9 @@ class Observation < ApplicationRecord
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
 
+  has_many :observed_interactions, dependent: :destroy, as: :subject_observation
+  has_many :observed_interactions, dependent: :destroy, as: :object_observation
+
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
 
   accepts_nested_attributes_for :observation_field_values, 

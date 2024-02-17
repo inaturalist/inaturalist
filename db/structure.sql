@@ -9,6 +9,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -2679,7 +2680,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer
+    validation_count integer DEFAULT 0
 );
 
 
@@ -3206,6 +3207,39 @@ CREATE TABLE public.observations_posts (
     observation_id integer NOT NULL,
     post_id integer NOT NULL
 );
+
+
+--
+-- Name: observed_interactions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observed_interactions (
+    id bigint NOT NULL,
+    subject_observation_id integer,
+    object_observation_id integer,
+    user_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: observed_interactions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observed_interactions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observed_interactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observed_interactions_id_seq OWNED BY public.observed_interactions.id;
 
 
 --
@@ -6056,6 +6090,13 @@ ALTER TABLE ONLY public.observations ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: observed_interactions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observed_interactions ALTER COLUMN id SET DEFAULT nextval('public.observed_interactions_id_seq'::regclass);
+
+
+--
 -- Name: passwords id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7064,6 +7105,14 @@ ALTER TABLE ONLY public.observations
 
 ALTER TABLE ONLY public.observation_sounds
     ADD CONSTRAINT observations_sounds_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observed_interactions observed_interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observed_interactions
+    ADD CONSTRAINT observed_interactions_pkey PRIMARY KEY (id);
 
 
 --
@@ -10668,6 +10717,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124195743'),
 ('20240124195835'),
 ('20240124214427'),
-('20240124214436');
+('20240124214436'),
+('20240217194043');
 
 

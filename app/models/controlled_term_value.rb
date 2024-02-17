@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ControlledTermValue < ApplicationRecord
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
