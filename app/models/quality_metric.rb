@@ -50,7 +50,7 @@ class QualityMetric < ApplicationRecord
 
     if ( o = Observation.find_by_id( observation_id ) )
       o.skip_quality_metrics = true
-      o.wait_for_index_refresh ||= !wait_for_index_refresh.nil?
+      o.wait_for_index_refresh ||= !wait_for_obs_index_refresh.nil?
       o.save
     end
     true
