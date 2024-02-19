@@ -24,6 +24,8 @@ module INatAPIService
     "d2",
     "day",
     "endemic",
+    "expansive_term_value_id",
+    "expansive_without_term_value_id",
     "featured_observation_id",
     "geo",
     "geoprivacy",
