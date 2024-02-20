@@ -1,0 +1,3 @@
+.nested-fields
+  = f.text_field :controlled_attribute_id, value: @controlled_attribute.id
+  = f.select :controlled_value_id, options_for_select( @controlled_values.map {|cv| [cv.label, cv.id]} )

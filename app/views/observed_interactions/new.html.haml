@@ -1,0 +1,30 @@
+%h2 New interaction
+
+%ol
+  %li
+    %p Subject and object taxa should be visible in both observations
+  %li
+    %p Subject should be identifiable in subject observation
+  %li
+    %p Object should be identifiable in object observation
+
+
+= form_for @observed_interaction, builder: BootstrapFormBuilder do | f |
+  .row
+    .col-xs-4
+      = f.text_field :subject_observation_id
+      .observations.mini
+        = render "observations/observation_component", observation: @observed_interaction.subject_observation
+    .col-xs-4
+      .annotations
+        = f.fields_for :annotations do | anno_builder |
+          = render "observed_interactions/annotation_fields", f: anno_builder
+        = link_to_add_association "Add annotation", f, :annotations
+    .col-xs-4
+      %label Observations made on same day by same person
+      - @object_candidates.each_with_index do | observation, idx |
+        %label{ style: "display: flex" }
+          = f.radio_button :object_observation_id, observation.id, label: false, checked: idx == 0
+          .observations.mini
+            = render "observations/observation_component", observation: observation
+  = f.submit t(:save), class: "btn btn-primary"

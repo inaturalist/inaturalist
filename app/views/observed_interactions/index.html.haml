@@ -1,0 +1,29 @@
+.row
+  .col-xs-12
+    %h1
+      Interactions for
+      = @observation.to_plain_s
+- for interaction in @observed_interactions
+  .row
+    .col-xs-4
+      .observations.mini
+        = render "observations/observation_component", observation: interaction.subject_observation
+    .col-xs-4
+      %table.table
+        %thead
+          %tr
+            %th Value
+            %th Added by
+            %th Score
+        %tbody
+          - for annotation in interaction.annotations
+            %tr
+              %td= annotation.controlled_value.label
+              %td= annotation.user
+              %td= annotation.vote_score
+    .col-xs-4
+      .observations.mini
+        = render "observations/observation_component", observation: interaction.object_observation
+.row
+  .col-xs-12
+    = link_to "New Interaction", new_observation_interaction_path( @observation ), class: "btn btn-primary"

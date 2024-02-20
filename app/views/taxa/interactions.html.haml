@@ -1,0 +1,37 @@
+%h1
+  Interations for 
+  = @taxon
+
+%h2 As Subject
+%table.table
+  %thead
+    %tr
+      %th{ style: "width: 40%" } Subject
+      %th Interaction
+      %th{ style: "width: 40%" } Object
+      %th Times observed
+  %tbody
+    - for key, count in @subject_interaction_counts
+      - interaction, subject_taxon_id, object_taxon_id = key
+      %tr
+        %td.taxon_links= render "shared/taxon", taxon: Taxon.find_by_id( subject_taxon_id ), link_url: interactions_taxon_path( subject_taxon_id )
+        %td= interaction
+        %td.taxon_links= render "shared/taxon", taxon: Taxon.find_by_id( object_taxon_id ), link_url: interactions_taxon_path( object_taxon_id )
+        %td= count
+
+%h2 As Object
+%table.table
+  %thead
+    %tr
+      %th{ style: "width: 40%" } Subject
+      %th Interaction
+      %th{ style: "width: 40%" } Object
+      %th Times observed
+  %tbody
+    - for key, count in @object_interaction_counts
+      - interaction, subject_taxon_id, object_taxon_id = key
+      %tr
+        %td.taxon_links= render "shared/taxon", taxon: Taxon.find_by_id( subject_taxon_id ), link_url: interactions_taxon_path( subject_taxon_id )
+        %td= interaction
+        %td.taxon_links= render "shared/taxon", taxon: Taxon.find_by_id( object_taxon_id ), link_url: interactions_taxon_path( object_taxon_id )
+        %td= count

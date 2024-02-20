@@ -5,9 +5,14 @@ class ObservedInteraction < ApplicationRecord
   belongs_to :object_observation, class_name: "Observation"
   belongs_to :user
   has_many :annotations, as: :resource, dependent: :destroy, inverse_of: :resource
-  validates :subject_observation_id, uniqueness: { scope: :object_observation_id }
+
+  validates :subject_observation_id, presence: true
+  validates :object_observation_id, presence: true
+  validates :object_observation_id, uniqueness: { scope: :subject_observation_id }
   validates :annotations, presence: true
   validate :observation_cannot_interact_with_self
+
+  accepts_nested_attributes_for :annotations
 
   def to_s
     "<ObservedInteraction #{id} #{to_plain_s}"

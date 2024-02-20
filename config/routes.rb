@@ -263,6 +263,7 @@ Rails.application.routes.draw do
   end
   resources :observations, constraints: { id: id_param_pattern } do
     resources :flags
+    resources :interactions, controller: :observed_interactions
     get "fields", as: "extra_fields"
     get "community_taxon_summary"
     collection do
@@ -458,6 +459,7 @@ Rails.application.routes.draw do
       get "show_google"
       get "taxobox"
       get "history"
+      get "interactions"
     end
     collection do
       get "synonyms"

@@ -34,11 +34,31 @@ class TaxaController < ApplicationController
     :flickr_photos_tagged, :synonyms]
   before_action :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
-  before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
-    :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
-    :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
-    :history]
+  before_action :load_taxon, only: [
+    :browse_photos,
+    :children,
+    :describe,
+    :destroy,
+    :edit,
+    :edit_colors,
+    :graft,
+    :history,
+    :interactions,
+    :links,
+    :map_layers,
+    :merge,
+    :photos,
+    :range,
+    :refresh_wikipedia_summary,
+    :schemes,
+    :set_photos,
+    :taxobox,
+    :taxonomy_details,
+    :tip,
+    :update,
+    :update_colors,
+    :update_photos
+  ]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -1214,6 +1234,38 @@ class TaxaController < ApplicationController
     @audits = audit_scope.order( "created_at desc" )
     @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
     render layout: "bootstrap-container"
+  end
+
+  def interactions
+    @subject_interaction_counts = ObservedInteraction.
+      joins(
+        subject_observation: :taxon,
+        annotations: { controlled_value: :labels },
+        object_observation: :taxon
+      ).
+      where( "taxa.id = ? OR (#{Taxon.send( :sanitize_sql, @taxon.descendant_conditions.to_sql )})", @taxon.id ).
+      group(
+        "controlled_term_labels.label",
+        "observations.taxon_id",
+        "object_observations_observed_interactions.taxon_id"
+      ).
+      count
+    @object_interaction_counts = ObservedInteraction.
+      joins(
+        object_observation: :taxon,
+        annotations: { controlled_value: :labels },
+        subject_observation: :taxon
+      ).
+      where( "taxa.id = ? OR (#{Taxon.send( :sanitize_sql, @taxon.descendant_conditions.to_sql )})", @taxon.id ).
+      group(
+        "controlled_term_labels.label",
+        "subject_observations_observed_interactions.taxon_id",
+        "observations.taxon_id"
+      ).
+      count
+    respond_to do | format |
+      format.html { render layout: "bootstrap-container" }
+    end
   end
 
   private

@@ -9,6 +9,15 @@ unless Rails.env.development?
 end
 
 opts = Optimist.options do
+  banner <<-HELP
+    Import taxa from production given taxon IDs
+
+    Usage:
+
+      rails runner tools/development_tools/import_taxon_from_production.rb -i 1 2 3
+
+    Options:
+  HELP
   opt :taxon_id, "Taxon ID(s) from iNaturalist", type: :integers, short: "-i", required: true
 end
 

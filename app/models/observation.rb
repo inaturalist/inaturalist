@@ -332,8 +332,14 @@ class Observation < ApplicationRecord
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
 
-  has_many :observed_interactions, dependent: :destroy, as: :subject_observation
-  has_many :observed_interactions, dependent: :destroy, as: :object_observation
+  has_many :observed_interactions,
+    dependent: :destroy,
+    inverse_of: :subject_observation,
+    foreign_key: "subject_observation_id"
+  has_many :observed_interactions_as_object,
+    class_name: "ObservedInteraction",
+    dependent: :destroy,
+    foreign_key: "object_observation_id"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
 

@@ -130,9 +130,8 @@ class Annotation < ApplicationRecord
   end
 
   def taxon
-    return unless resource.is_a?( Observation )
-
-    resource.taxon
+    return resource.taxon if resource.is_a?( Observation )
+    return resource.subject_observation.taxon if resource.is_a?( ObservedInteraction )
   end
 
   def vote_score
