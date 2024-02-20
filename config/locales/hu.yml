@@ -194,6 +194,10 @@ hu:
   about_this_project: Erről a projektről
   about_trusting_projects: A projektekmegbízhatóságáról
   about_trusting_projects_options_any: Az összes megfigyelésed ebben a projektben
+  about_trusting_projects_options_any_desc: |-
+    Ez magában foglalja azokat a megfigyeléseket is, ahol a pozíció láthatóságánál a „kitakart” vagy „rejtett” opciót választottad, például a saját hátsó kertedből származó megfigyeléseket, vagy azokat is, amelyeket nem szeretnél, hogy mások ismerjenek.
+  about_trusting_projects_overview: |-
+    A rejtett koordinátáidhoz való hozzáférést biztosítva lehetővé teszed a projekt kurátorai számára, hogy lássák a megfigyeléseid valódi, ki nem takart helyét ebben a projektben. Ez rendkívül fontos olyan helyzetekben, amikor a kutatóknak szükségük van a pontos koordinátákra az elemzéshez és döntéshozatalhoz.
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -1445,7 +1449,7 @@ hu:
   editing_x_in_y: "%{x} szerkesztése itt: %{y}"
   editors: Szerkesztők
   either_that_user_doesnt_exist_or: "Vagy nem létezik az a felhasználó vagy már követed őt."
-  eligible_for_research_grade: Kutatásiszint-potenciál
+  eligible_for_research_grade: Tudományosszint-potenciál
   email: Email
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
@@ -2412,7 +2416,7 @@ hu:
   must_be_observed_after: '%{operand} utáni megfigyelés'
   must_be_observed_before: '%{operand} előtti megfigyelés'
   must_be_observed_by_user: '%{user} általi megfigyelések'
-  must_be_observed_in_place: 'itteni megfigyelések: %{place}'
+  must_be_observed_in_place: 'megfigyelések helye: %{place}'
   must_be_less_than_x_MB: "Kisebbnek kell lennie mint %{x} MB"
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   must_have_photos: kép szükséges
@@ -3462,7 +3466,7 @@ hu:
   profile: Profil
   profile_picture: Profilkép
   profile_visibility_desc: |
-    Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos kutatási szintű megfigyelést tett közzé.
+    Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos tudományos szintű megfigyelést tett közzé.
   project: Projekt
   project_admins:
     one: Projekt admin
@@ -3730,8 +3734,8 @@ hu:
   required: kötelező
   required_: Kötelező
   required_field: kötelező adat
-  research: kutatási
-  research_: Kutatási
+  research: tudományos
+  research_: Tudományos
   research_grade: Tudományos szintű
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
   research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelések médiaanyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel rendelkeznek (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
@@ -5164,7 +5168,7 @@ hu:
           <a
           rel="nofollow noreferrer noopener"
           href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          A GBIF átveszi a legtöbb kutatási szintű, licencelt megfigyeléseinket, és remek exportfunkcióval rendelkezik. A GBIF exportálás <a href="https://www.doi.org/">DOI</a> azonosítót is tartalmaz, amire az exportált adatok alapján végzett kutatásokban hivatkozhatsz. Ez nagyon nagy segítséget nyújt számunkra azzal, hogy nyomon követhetjük az iNat-adatok felhasználását.
+          A GBIF átveszi a legtöbb tudományos szintű, licencelt megfigyeléseinket, és remek exportfunkcióval rendelkezik. A GBIF exportálás <a href="https://www.doi.org/">DOI</a> azonosítót is tartalmaz, amire az exportált adatok alapján végzett kutatásokban hivatkozhatsz. Ez nagyon nagy segítséget nyújt számunkra azzal, hogy nyomon követhetjük az iNat-adatok felhasználását.
           </p>
           </li>
           <li>
@@ -5259,7 +5263,7 @@ hu:
           <li>a megfigyelés tárgya <strong>nem ember</strong></li>
           </ul>
           <p>
-          A megfigyelés <strong>"kutatási szintű"</strong>-re emelkedik, ha:
+          A megfigyelés <strong>"tudományos szintű"</strong>-re emelkedik, ha:
           </p>
           <ul>
           <li>
