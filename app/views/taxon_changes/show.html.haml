@@ -77,7 +77,7 @@
         = image_tag "spinner.gif", :class => "spinner"
         .analysis
           =t( :total_ids_on_input_taxon )
-          =link_to 0, "#", target: "_blank", class: "analysis_input"
+          =link_to 0, "#", target: "_blank", class: "analysis_input", rel: "noopener noreferrer"
           %table.analysis
             %tr.headers
               %td= t(:no_ids)

@@ -104,6 +104,7 @@ class SplitTaxon extends React.Component {
           href={url}
           onClick={onClick}
           target={target}
+          rel={target === "_blank" ? "noopener noreferrer" : null}
         >
           { I18n.t( "unknown" ) }
         </LinkElement>
@@ -137,6 +138,7 @@ class SplitTaxon extends React.Component {
         href={url}
         onClick={onClick}
         target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : null}
       >
         { I18n.t( "unknown" ) }
       </LinkElement>
@@ -182,6 +184,7 @@ class SplitTaxon extends React.Component {
             href={url}
             target={target}
             onClick={onClick}
+            rel={target === "_blank" ? "noopener noreferrer" : null}
           >
             {comNames}
           </LinkElement>
@@ -220,6 +223,7 @@ class SplitTaxon extends React.Component {
         href={url}
         target={target}
         onClick={onClick}
+        rel={target === "_blank" ? "noopener noreferrer" : null}
       >
         { this.truncateText( commonName ) }
       </LinkElement>
@@ -283,6 +287,7 @@ class SplitTaxon extends React.Component {
           href={url}
           onClick={onClick}
           target={target}
+          rel={target === "_blank" ? "noopener noreferrer" : null}
         >
           { !noRank && (
             <span className="rank">
@@ -301,6 +306,7 @@ class SplitTaxon extends React.Component {
         href={url}
         onClick={onClick}
         target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : null}
       >
         { this.truncateText( name ) }
       </LinkElement>
@@ -317,6 +323,7 @@ class SplitTaxon extends React.Component {
         <a
           href={`/taxon_changes?taxon_id=${taxon.id}`}
           target={target}
+          rel={target === "_blank" ? "noopener noreferrer" : null}
         >
           <i className="fa fa-exclamation-circle" />
           { " " }
@@ -395,6 +402,7 @@ class SplitTaxon extends React.Component {
           href={url}
           className="direct-link"
           key={`${this.keyBase}-linkIcon`}
+          rel={target === "_blank" ? "noopener noreferrer" : null}
         >
           <i className="icon-link" />
         </a>

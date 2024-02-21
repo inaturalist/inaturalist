@@ -206,7 +206,7 @@
                   .stacked.description
                     .text-muted
                       = t(description)
-                      = link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank"
+                      = link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank", rel: "noopener noreferrer"
 #addtags.modal.fade
   .modal-dialog{role: 'document'}
     .modal-content

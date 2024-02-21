@@ -68,7 +68,7 @@
         = image_tag "spinner.gif", class: "spinner"
         .analysis
           = t( :total_ids_on_input_taxon )
-          = link_to 0, "#", target: "_blank", class: "analysis_input"
+          = link_to 0, "#", target: "_blank", class: "analysis_input", rel: "noopener noreferrer"
           %table.analysis
             %tr.headers
               %td= t( :no_ids )
@@ -90,7 +90,7 @@
         = link_to_function t( :browse_all_species ), "$( '#taxonchooser' ).jqmShow();"
         .description.stacked
           = t :this_is_a_more_convenient_way_to_find_a_taxon_id
-        = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank"
+        = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank", rel: "noopener noreferrer"
 
     - if taxon_change.new_record? || taxon_change_type == "TaxonSplit" || taxon_change_type == "TaxonMerge" || taxon_change_type == "TaxonSwap"
       %fieldset#multiple_taxa.last.column.span-12
@@ -133,7 +133,7 @@
           #new_taxon_change_taxa
           %span.add_taxon_link.inlineblock
             = link_to_function t( :add_a_taxon ), "addTaxonChangeTaxonField( '#{ escape_javascript( tct_form_fields ) }' )"
-          = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank"
+          = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank", rel: "noopener noreferrer"
   .column.span-24#move-children
     %fieldset
       %legend=t :options

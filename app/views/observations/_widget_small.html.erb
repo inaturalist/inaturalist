@@ -21,7 +21,7 @@
         :size => %w(square small medium).include?(params[:img_size]) ? params[:img_size] : "square"
       }
     -%>
-    <%= link_to observation_url(observation), :class => "inat-observation-image", :target => (target ? "_blank" : nil) do %>
+    <%= link_to observation_url(observation), :class => "inat-observation-image", :target => (target ? "_blank" : nil), rel: (target == "blank" ? "noopener noreferrer" : nil) do %>
       <% if obs_img_url = observation_image_url(observation, obs_img_opts) -%>
         <%= image_tag obs_img_url, img_opts %>
       <% else %>

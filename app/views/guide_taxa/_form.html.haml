@@ -27,7 +27,7 @@
         = f.text_field :taxon_id, :placeholder => t(:start_typing_taxon_name), :class => "form-control"
         - unless f.object.taxon_id.blank?
           .upstacked
-            = link_to t(:view_taxon), taxon_path(f.object.taxon_id), :target => "_blank", :class => "readmore"
+            = link_to t(:view_taxon), taxon_path(f.object.taxon_id), :target => "_blank", :class => "readmore", rel: "noopener noreferrer"
   #guide_photos_row.row.stacked
     .col-xs-12
       %h3=t :photos
