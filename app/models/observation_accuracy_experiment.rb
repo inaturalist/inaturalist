@@ -300,7 +300,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         transform_values {| s | s.map( &:observation_id ) }
 
       puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
-      identifiers_by_taxon_and_continent = @experiment.get_candidate_identifiers_by_taxon_and_continent(
+      identifiers_by_taxon_and_continent = get_candidate_identifiers_by_taxon_and_continent(
         observation_ids_grouped_by_taxon_and_continent,
         top_iders.first( 50 ).to_h
       )
