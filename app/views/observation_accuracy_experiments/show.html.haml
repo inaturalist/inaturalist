@@ -118,7 +118,23 @@
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
-                %h5=t "observation_accuracy_experiment_#{key.gsub(" ","_")}".to_sym
+                %h5
+                  :ruby
+                    chart_title = case key
+                    when "quality_grade"
+                      t :observation_accuracy_experiment_quality_grade
+                    when "continent"
+                      t :observation_accuracy_experiment_continent
+                    when "year"
+                      t :observation_accuracy_experiment_year
+                    when "iconic_taxon_name"
+                      t :observation_accuracy_experiment_iconic_taxon_name
+                    when "taxon_observations_count"
+                      t :observation_accuracy_experiment_taxon_observations_count
+                    when "taxon_rank_level"
+                      t :observation_accuracy_experiment_taxon_rank_level
+                    end
+                  = chart_title
                 %svg{width: "#{50 + 54 * barplot_data.count}", height: "150"}
                   %g{transform: "translate( 40, 10 )"}
                     %g.y.axis
@@ -139,22 +155,54 @@
                       - barplot_data.keys.each_with_index do | label, index |
                         %g.tick{transform: "translate( #{35 + 54 * index},0 )", style: "opacity: 1;"}
                           %line{y2: "6", x2: "0"}
-                          - if key == "taxon_rank_level"
-                            - rank = get_rank_and_parent( label )                            
-                            - if rank.length == 2
-                              - lab = "#{t( "ranks.#{rank[0]}" )[0..1].capitalize}.-#{t( "ranks.#{rank[1]}" )[0..1].capitalize}"
-                            - else
-                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "..." )
-                          - elsif key == "continent"
-                            - if label == "none"
-                              - lab = truncate( t( label ), length: 8, omission: "..." )
-                            - else
-                              - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "..." )
-                          - elsif key == "quality_grade"
-                            - lab = truncate( t( label ), length: 8, omission: "..." )
-                          -else
-                            - lab = label
-                          %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
+                          %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}
+                            :ruby
+                              bar_label = case key
+                              when "taxon_rank_level"
+                                case get_rank_and_parent( label )
+                                when "stateofmatter"
+                                  truncate( t( "ranks.stateofmatter", default: "" ), length: 8, omission: "..." )
+                                when "phylum_kingdom"
+                                  "#{t( "ranks.phylum" )[0..1].capitalize}.-#{t( "ranks.kingdom" )[0..1].capitalize}"
+                                when "class_phylum"
+                                  "#{t( "ranks.class" )[0..1].capitalize}.-#{t( "ranks.phylum" )[0..1].capitalize}"
+                                when "order_class"
+                                  "#{t( "ranks.order" )[0..1].capitalize}.-#{t( "ranks.class" )[0..1].capitalize}"
+                                when "family_order"
+                                  "#{t( "ranks.family" )[0..1].capitalize}.-#{t( "ranks.order" )[0..1].capitalize}"
+                                when "genus_family"
+                                  "#{t( "ranks.genus" )[0..1].capitalize}.-#{t( "ranks.family" )[0..1].capitalize}"
+                                when "species_genus"
+                                  "#{t( "ranks.species" )[0..1].capitalize}.-#{t( "ranks.genus" )[0..1].capitalize}"
+                                when "species"
+                                  truncate( t( "ranks.species", default: "" ), length: 8, omission: "..." )
+                                when "subspecies"
+                                  truncate( t( "ranks.subspecies", default: "" ), length: 8, omission: "..." )
+                                end
+                              when "continent"
+                                continent_label = case label
+                                when "Africa"
+                                  t( "places_name.africa" )
+                                when "Asia"
+                                  t( "places_name.asia" )
+                                when "Europe"
+                                  t( "places_name.europe" )
+                                when "North America"
+                                  t( "places_name.north_america" )
+                                when "Oceania"
+                                  t( "places_name.oceania" )
+                                when "South America"
+                                  t( "places_name.south_america" )
+                                when "none" 
+                                  t :none
+                                end
+                                truncate( continent_label, length: 8, omission: "..." )
+                              when "quality_grade"
+                                truncate( t( label ), length: 8, omission: "..." )
+                              else
+                                label
+                              end
+                            = bar_label
                     - barplot_data.values.each_with_index do | group, index |
                       - accumulated_height = 0
                       - group.each_with_index do | item, sub_index |
@@ -181,7 +229,23 @@
             - scale_factor = @ylims[key.to_sym] / 100
             - if scale_factor > 0
               .barplot-container
-                %h5=t "observation_accuracy_experiment_#{key.gsub(" ","_")}".to_sym
+                %h5
+                  :ruby
+                    precision_chart_title = case key
+                    when "quality_grade"
+                      t :observation_accuracy_experiment_quality_grade
+                    when "continent"
+                      t :observation_accuracy_experiment_continent
+                    when "year"
+                      t :observation_accuracy_experiment_year
+                    when "iconic_taxon_name"
+                      t :observation_accuracy_experiment_iconic_taxon_name
+                    when "taxon_observations_count"
+                      t :observation_accuracy_experiment_taxon_observations_count
+                    when "taxon_rank_level"
+                      t :observation_accuracy_experiment_taxon_rank_level
+                    end
+                  = precision_chart_title
                 %svg{width: "#{50 + 54 * precision_bar.count}", height: "150"}
                   %g{transform: "translate( 40, 10 )"}
                     %g.y.axis
@@ -195,22 +259,54 @@
                       - precision_bar.keys.each_with_index do | label, index |
                         %g.tick{transform: "translate( #{35 + 54 * index},0 )", style: "opacity: 1;"}
                           %line{y2: "6", x2: "0"}
-                          - if key == "taxon_rank_level"
-                            - rank = get_rank_and_parent( label )                            
-                            - if rank.length == 2
-                              - lab = "#{t( "ranks.#{rank[0]}" )[0..1].capitalize}.-#{t( "ranks.#{rank[1]}" )[0..1].capitalize}"
-                            - else
-                              - lab = truncate( t( "ranks.#{rank[0]}", default: "" ), length: 8, omission: "..." )
-                          - elsif key == "continent"
-                            - if label == "none"
-                              - lab = truncate( t( label ), length: 8, omission: "..." )
-                            - else
-                              - lab = truncate( t( "places_name.#{label.gsub( " ","_" ).downcase}" ), length: 8, omission: "..." )
-                          - elsif key == "quality_grade"
-                            - lab = truncate( t( label ), length: 8, omission: "..." )
-                          -else
-                            - lab = label
-                          %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= lab
+                          %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}
+                            :ruby
+                              bar_label = case key
+                              when "taxon_rank_level"
+                                case get_rank_and_parent( label )
+                                when "stateofmatter"
+                                  truncate( t( "ranks.stateofmatter", default: "" ), length: 8, omission: "..." )
+                                when "phylum_kingdom"
+                                  "#{t( "ranks.phylum" )[0..1].capitalize}.-#{t( "ranks.kingdom" )[0..1].capitalize}"
+                                when "class_phylum"
+                                  "#{t( "ranks.class" )[0..1].capitalize}.-#{t( "ranks.phylum" )[0..1].capitalize}"
+                                when "order_class"
+                                  "#{t( "ranks.order" )[0..1].capitalize}.-#{t( "ranks.class" )[0..1].capitalize}"
+                                when "family_order"
+                                  "#{t( "ranks.family" )[0..1].capitalize}.-#{t( "ranks.order" )[0..1].capitalize}"
+                                when "genus_family"
+                                  "#{t( "ranks.genus" )[0..1].capitalize}.-#{t( "ranks.family" )[0..1].capitalize}"
+                                when "species_genus"
+                                  "#{t( "ranks.species" )[0..1].capitalize}.-#{t( "ranks.genus" )[0..1].capitalize}"
+                                when "species"
+                                  truncate( t( "ranks.species", default: "" ), length: 8, omission: "..." )
+                                when "subspecies"
+                                  truncate( t( "ranks.subspecies", default: "" ), length: 8, omission: "..." )
+                                end
+                              when "continent"
+                                continent_label = case label
+                                when "Africa"
+                                  t( "places_name.africa" )
+                                when "Asia"
+                                  t( "places_name.asia" )
+                                when "Europe"
+                                  t( "places_name.europe" )
+                                when "North America"
+                                  t( "places_name.north_america" )
+                                when "Oceania"
+                                  t( "places_name.oceania" )
+                                when "South America"
+                                  t( "places_name.south_america" )
+                                when "none"
+                                  t :none
+                                end
+                                truncate( continent_label, length: 8, omission: "..." )
+                              when "quality_grade"
+                                truncate( t( label ), length: 8, omission: "..." )
+                              else
+                                label
+                              end
+                            = bar_label
                     - precision_bar.values.each_with_index do | value, index |
                       %rect{
                         class: "pre precision",

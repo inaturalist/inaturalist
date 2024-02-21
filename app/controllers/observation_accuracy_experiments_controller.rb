@@ -13,14 +13,11 @@ class ObservationAccuracyExperimentsController < ApplicationController
     ranks = Taxon::RANK_FOR_RANK_LEVEL
     case rank_level
     when 5, 10, 100
-      # For 5, 10, and 100, return the value directly
-      value = ranks[rank_level]
-      [value]
+      ranks[rank_level]
     else
-      # For other values, find the matching rank and its parent rank
       matching_rank = ranks.keys.find {| k | k <= rank_level }
       child_rank = ranks[matching_rank - 10]
-      [child_rank, ranks[matching_rank]]
+      [child_rank, ranks[matching_rank]].join( "_" )
     end
   end
 
