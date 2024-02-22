@@ -8,11 +8,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
   attribute :validator_redundancy_factor, :integer, default: 5
   attribute :improving_id_threshold, :integer, default: 3
   attribute :recent_window, :string, default: 1.year.ago.strftime( "%Y-%m-%d" )
+  attribute :validator_deadline_date, :string, default: 1.week.from_now.strftime( "%Y-%m-%d" )
+  attribute :version, :string
   attribute :taxon_id, :integer
   attribute :consider_location, :boolean, default: false
   attribute :generate_sample_now, :boolean, default: false
 
   after_create :generate_sample_if_requested
+
+  validates_presence_of :validator_deadline_date
+  validates_presence_of :version
 
   def generate_sample_if_requested
     generate_sample( consider_location: consider_location ) if generate_sample_now
@@ -460,15 +465,63 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Sample generated in #{duration} seconds."
   end
 
-  def contact_validators( validator_deadline_date: 1.week.from_now.strftime( "%Y-%m-%d" ) )
+  def observation_accuracy_validator_contact( validator )
+    return false unless ( user = User.where( id: validator.user_id ).first )
+
+    admin = User.where( email: "admin@inaturalist.org" ).first
+    obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
+    num_obs = obs_ids.count
+    sample_url = FakeView.
+      identify_observations_url(
+        place_id: "any",
+        reviewed: "any",
+        quality_grade: "needs_id,research,casual",
+        id: obs_ids.join( "," )
+      )
+    experiment_url = FakeView.observation_accuracy_experiment_url( self )
+    delimited_num_obs = ApplicationController.helpers.number_with_delimiter( num_obs )
+    subject = I18n.t( :observation_accuracy_validator_email_subject2, version: version )
+    message_body = <<~HTML
+      <p>#{I18n.t( :email_dear_user, user: user.published_name, vow_or_con: user.published_name[0].downcase )}</p>
+      <p>#{I18n.t( :observation_accuracy_validator_email_will_you_help_us2_html, version: version, url: experiment_url )}</p>
+      <p>#{I18n.t( :observation_accuracy_validator_email_if_so2_html,
+        num_obs: delimited_num_obs, sample_url: sample_url,
+        validator_deadline_date: I18n.localize( validator_deadline_date.to_date, format: :long ) )}</p>
+      <p>#{I18n.t( :observation_accuracy_validator_email_we_will_calculate )}</p>
+      <img src="https://static.inaturalist.org/wiki_page_attachments/3697-original.png" width="100%" />
+      <p>#{I18n.t( :observation_accuracy_validator_email_ids_equal_to )}</p>
+      <img src="https://static.inaturalist.org/wiki_page_attachments/3675-original.png" width="100%" />
+      <p>#{I18n.t( :observation_accuracy_validator_email_ids_sibling_to )}</p>
+      <img src="https://static.inaturalist.org/wiki_page_attachments/3674-original.png" width="100%" />
+      <p>#{I18n.t( :observation_accuracy_validator_email_ids_coarser_than )}</p>
+      <img src="https://static.inaturalist.org/wiki_page_attachments/3673-original.png" width="100%" />
+      <p>#{I18n.t( :observation_accuracy_validator_email_we_are_so_grateful2_html, url: experiment_url )}</p>
+      <p>#{I18n.t( :observation_accuracy_validator_email_with_gratitude )}</p>
+      <p>#{I18n.t( :observation_accuracy_validator_email_the_inaturalist_team )}</p>
+    HTML
+
+    message = Message.new(
+      user_id: validator.user_id,
+      from_user_id: admin.id,
+      to_user_id: validator.user_id,
+      subject: subject,
+      body: message_body
+    )
+    if message.save
+      true
+    else
+      false
+    end
+  end
+
+  def contact_validators
     observation_accuracy_validators.each do | validator |
-      if Emailer.observation_accuracy_validator_contact( validator, validator_deadline_date ).deliver_now
+      if observation_accuracy_validator_contact( validator, validator_deadline_date )
         validator.email_date = Time.now
         validator.save!
       end
     end
     self.validator_contact_date = Time.now
-    self.validator_deadline_date = validator_deadline_date
     save!
   end
 
