@@ -20,7 +20,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   validates_presence_of :version
 
   def generate_sample_if_requested
-    generate_sample( consider_location: consider_location ) if generate_sample_now
+    generate_sample if generate_sample_now
   end
 
   def quality_metric_observation_ids( observation_ids, metrics )
@@ -146,7 +146,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_candidate_identifiers_by_taxon_and_continent( observation_ids_grouped_by_taxon_and_continent, top_50_iders )
-    continents = Place.where( admin_level: -10 ).map( &:id )
+    continents = Place.where( admin_level: Place::CONTINENT_LEVEL ).map( &:id )
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h.invert
     root_id = Taxon::LIFE.id
     identifiers_by_taxon_and_continent = {}
@@ -293,7 +293,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def distribute_to_validators( samples, consider_location: true )
+  def distribute_to_validators( samples )
     puts "Divide up the sample among identifiers"
     puts "with a validator redundancy factor of #{validator_redundancy_factor}..."
     puts "Fetch the top IDers..."
@@ -350,7 +350,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def generate_sample( consider_location: false )
+  def generate_sample
     last_obs = Observation.last
     return nil if last_obs.nil?
 
@@ -455,7 +455,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     samples = ObservationAccuracySample.create!( obs_data )
 
-    distribute_to_validators( samples.select {| a | a.no_evidence == false }, consider_location: consider_location )
+    distribute_to_validators( samples.select {| a | a.no_evidence == false } )
 
     self.sample_generation_date = Time.now
     save!
@@ -468,7 +468,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def observation_accuracy_validator_contact( validator )
     return false unless ( user = User.where( id: validator.user_id ).first )
 
-    admin = User.where( email: "admin@inaturalist.org" ).first
+    return false unless ( admin = User.where( email: CONFIG.admin_user_email ).first )
+
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
     num_obs = obs_ids.count
     sample_url = FakeView.
