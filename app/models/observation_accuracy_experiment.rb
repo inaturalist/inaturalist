@@ -478,7 +478,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         quality_grade: "needs_id,research,casual",
         id: obs_ids.join( "," )
       )
-    experiment_url = FakeView.observation_accuracy_experiment_url( self )
+    experiment_url = FakeView.observation_accuracy_experiment_url( self, params: { tab: "methods" } )
     delimited_num_obs = ApplicationController.helpers.number_with_delimiter( num_obs )
     subject = I18n.t( :observation_accuracy_validator_email_subject2, version: version )
     message_body = <<~HTML
@@ -516,7 +516,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def contact_validators
     observation_accuracy_validators.each do | validator |
-      if observation_accuracy_validator_contact( validator, validator_deadline_date )
+      if observation_accuracy_validator_contact( validator )
         validator.email_date = Time.now
         validator.save!
       end

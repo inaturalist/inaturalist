@@ -3382,6 +3382,7 @@ en:
   observation_accuracy_experiment_quality_grade: "Quality Grade"
   observation_accuracy_experiment_show_frequency: "show frequency"
   observation_accuracy_experiment_click_on_bars: "Click on bars to explore subsets."
+  observation_accuracy_experiment_bars_will: "Bars will be clickable after the deadline for validating samples has passed."
   observation_accuracy_experiment_accuracy_results: "Accuracy results by subset"
   observation_accuracy_experiment_as_observations: "As observations from this sample are validated, the uncertain percentage will decrease and the percentage correct and incorrect will increase."
   observation_accuracy_experiment_experiment_still: "Experiment still in progress. Stats will update daily until deadline for validating samples on %{date}"
@@ -3437,23 +3438,17 @@ en:
      </li>
      <li>Do this by <b>%{validator_deadline_date}</b></li>
     </ol>
-    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>
-    that we think you can identify based on your activity on iNat. <b>Please add
-    the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
+    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a> that we think you can identify based on your activity on iNat. <b>Please add the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
-    We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where
-    you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
+    We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
   observation_accuracy_validator_email_ids_equal_to: |
     IDs equal to (A) or finer than (B) the Observation Taxon will be counted as Agreements.
   observation_accuracy_validator_email_ids_sibling_to: |
-    IDs on different branches (C) or coarser than the Observation Taxon where you choose 'No,
-    but…' to the 'Potential Disagreement' dialog (D) will be counted as Disagreements.
+    IDs on different branches (C) or coarser than the Observation Taxon where you choose "No, but…" to the 'Potential Disagreement' dialog (D) will be counted as Disagreements.
   observation_accuracy_validator_email_ids_coarser_than: |
-    IDs coarser than the Observation Taxon where you choose 'I don’t know but…' to
-    the 'Potential Disagreement' dialog (E) will be counted as Uncertain.
+    IDs coarser than the Observation Taxon where you choose "I don’t know but…"" to the "Potential Disagreement" dialog (E) will be counted as Uncertain.
   observation_accuracy_validator_email_we_are_so_grateful2_html: |
-    We're so grateful for your help as an identifier on iNaturalist, and thank you
-    very much for participating in this study. Please read <a href="%{url}">the methods</a> to learn more about the experiment design.
+    We're so grateful for your help as an identifier on iNaturalist, and thank you very much for participating in this study. Please read <a href="%{url}">the methods</a> to learn more about the experiment design.
   observation_accuracy_validator_email_with_gratitude: With gratitude,
   observation_accuracy_validator_email_the_inaturalist_team: The iNaturalist Team
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
