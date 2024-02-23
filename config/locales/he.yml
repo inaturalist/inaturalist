@@ -3156,31 +3156,8 @@ he:
     קואורדינטות גלויות מוצגות כנקודה אקראית בתוך תא של 0.2x0.2 מעלות אורך/רוחב שמכיל את הקואורדינטות האמיתיות
   observation: תצפית
   observation_: תצפית
-  observation_accuracy_validator_email_subject: "האם תעזרו לנו להעריך את הדיוק של תצפיות iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    האם תעזרו לנו בניסוי להעריך את הדיוק של תצפיות iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>יש לזהות את כלל התצפיות בקישור להלן הכי מדויק שאת.ה יכול.ה, גם אם הן בדרגת מחקר, וגם אם הזיהוי הכי מדויק שלך הוא ברמה טקסונומית גבוהה יותר (אפילו ממלכה). </li>
-    <li>במידה וייפתח חלון "חילוקי דעות פוטנציאליים"…
-    <ul>
-    <li>ואת.ה בטוח.ה שהוא זוהה באופן שגוי, יש ללחוץ על הכפתור הכתום,</li>
-    <li>או אם אינך בטוח.ה מעבר לזיהוי שלך, יש ללחוץ על הכפתור הירוק</li>
-    </ul>
-    </li>
-    <li>יש לבצע זאת עד <b>%{validator_deadline_date}</b></li>
-    </ol>
-    הנה <a href="%{sample_url}">תת-ערכה של %{num_obs} התצפיות</a> שלדעתנו תוכל.י לזהות לפי הפעילות שלך ב-iNaturalist. <b>נא להוסיף את הזיהוי המדויק ביותר שאת.ה יכול.ה לכל אחת מהתצפיות עד לתאריך %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    נחשב את הדיוק באמצעות השוואת הזיהוי שלך לטקסון התצפית. באפשרותך לדלג על תצפיות אשר כבר הוספת עליהן זיהוי, במידה והזיהוי ההוא עוד רלוונטי. למידע נוסף על אופן ספירת ההסכמות וחילוקי הדעות, המשיכו לקרוא.
   observation_accuracy_validator_email_ids_equal_to: |
     זיהויים השווים ל-(A) או מדויקים יותר מ-(B) טקסון התצפית ייספרו כהסכמות.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    זיהויים שהם בענפים שונים (C) או שהם גסים יותר מטקסון התצפית איפה שאת.ה בוחר.ת 'לא, אבל…' לדיאלוג 'חילוקי דעות פוטנציאליים' (D) ייספרו כחילוקי דעות.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    זיהויים שהם גסים יותר מטקסון התצפית בהם בחרת 'אני לא יודע.ת אבל…' לדיאלוג 'חילוקי דעות פוטנציאלי' (E) ייספרו כלא וודאיים.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    אנחנו מוקירים לך תודה על עזרתך כמזהה ב-iNaturalist, ומודים לך שהשתתפת במחקר זה. נא לקרוא את <a href="%{url}">פוסט הבלוג הזה</a> לענות על שאלות נפוצות אודות ניסוי זה.
   observation_accuracy_validator_email_with_gratitude: בהוקרה,
   observation_accuracy_validator_email_the_inaturalist_team: צוות iNaturalist
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
