@@ -3172,19 +3172,8 @@ pt-BR:
   observation_accuracy_experiment_precision: "Precisão"
   observation_accuracy_experiment_if_every_sample: "Se toda observação da amostra estivesse em um táxon mais grosseiro tal como reino, a exatidão do conjunto de dados do iNaturalis seria alta, mas a precisão poderia ser muito baixa para ser útil. Para estimar a precisão, computamos o número de \"folhas descendentes\" na taxonomia do iNaturalist para cada observação da amostra. A precisão é calculada como o inverso do número de \"folhas descendentes\". Se o taxon for um taxon \"folha\", a precisão é 100%"
   observation_accuracy_experiment_in_the_example: "No exemplo à direita, a precisão média de três observações da amostra seria de 51%."
-  observation_accuracy_validator_email_subject: "Você nos ajudaria a avaliar a precisão das observações do iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Você nos ajudaria em um experimento para avaliar a precisão das observações do iNaturalist?
   observation_accuracy_validator_email_ids_equal_to: |
     Para IDs iguais a (A) ou melhores que (B) o Táxon de Observação serão contados como Concordantes.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    IDs em ramos diferentes (C) ou mais grosseiro que o Táxon da Observação onde você escolher 'Não,
-    mas…' para o "Desacordo Potencial" (D) serão contados como Desacordos.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    IDs mais grosseiras que o Táxon da Observação onde você selecionar 'Eu não sei, mas…' para
-    a opção 'Possível Desacordo' (E) serão computados como Incertezas.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Somos muito gratos pela sua ajuda como um identificador do iNaturalist, e lhe agradecemos muito por participar deste estudo. Por favor, leia <a href="%{url}">este post no blog</a> para respostas a perguntas frequentes sobre este experimento.
   observation_accuracy_validator_email_with_gratitude: Com gratidão,
   observation_accuracy_validator_email_the_inaturalist_team: A equipe iNaturalist
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
