@@ -3082,33 +3082,8 @@ es:
     Las coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales sólo son visibles para ti y los curadores de los proyectos a los que se agrega la observación.
   observation: Observación
   observation_: observación
-  observation_accuracy_validator_email_subject: "¿Nos ayudará a calcular la precisión de las observaciones de iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    ¿Nos ayudará a calcular la precisión de las observaciones de iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifica todas las observaciones en el enlace abajo tan finamente como puedas, incluso si tienen el Grado de Investigación, y incluso si su ID más fino tiene un nível taxonómico más alto (incluso del reino)</li>
-    <li>Si ve la ventana emergente "Desacuerdo Potencial"...
-    <ul>
-    <li>y está confidente que haya identificado incorrectamente, teclea el botón naranjo,</li>
-    <li>o no estás cierto más allá de su ID, teclea el botón verde.</li>
-    </ul>
-    </li>
-    <li>Hazlo antes de <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Aquí esta el <a href="%{sample_url}">subgrupo de %{num_obs} observaciones</a>
-    que creemos que puede identificar indicado de su actividad en iNat. <b>Por favor, añada
-    el ID más fino que puedas a cada uno de las observaciones antes de %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    Calculemos la precisión comparando tu ID con el Taxón de Observación. Puedes omitir las observaciones donde previamente has añadido un ID, si es que ese ID sigue siendo relevante. Para más información sobre cómo contaremos acuerdos y desacuerdos, sigue leyendo.
   observation_accuracy_validator_email_ids_equal_to: |
     Los IDs iguales (A) o más finos que (B) el taxón de observación serán marcados como Acuerdos.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    Los ID en ramas diferentes (C) o más gruesas que el Taxón de Observación donde elige "No, pero..." al diálogo de "Desacuerdo Potencial" serán marcados como Desacuerdos.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    Los ID más gruesos que el Taxón de Observación donde usted elige "No yo sé pero..." al diálogo de "Desacuerdo Potencial" (E) serán marcados como Inciertos.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Estamos muy agradecidos por su ayuda como identificador en iNaturalist, y le agradecemos mucho por su participación en este estudio. Por favor, lee <a href="%{url}">este mensaje del blog</a> para responder a las preguntas más comunes de este experimento.
   observation_accuracy_validator_email_with_gratitude: Con gratitud,
   observation_accuracy_validator_email_the_inaturalist_team: El equipo de iNaturalist
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
