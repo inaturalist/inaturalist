@@ -22,7 +22,7 @@
       .col-xs-12
         -if @experiment.assessment_date
           %h4= l( @experiment.assessment_date.to_date, format: :long )
-        -if @experiment.responding_validators > 0
+        -if @experiment.responding_validators > 0 && @experiment.validator_deadline_date < Time.now
           %p
             =t :observation_accuracy_experiment_validators
             - @validators << {name: "", id: 0} if ( @experiment.responding_validators > 20 )
@@ -57,7 +57,7 @@
         .col-xs-12
           %p
             - if @experiment.validator_deadline_date > Time.now
-              =t :observation_accuracy_experiment_as_observations2
+              =t :observation_accuracy_experiment_as_observations
             - else
               =t :observation_accuracy_experiment_our_accuracy_estimate, percent: "#{@stats[:correct].round}%"
             - if @tab == "research_grade_results"
@@ -108,6 +108,9 @@
           %p
             - if @explorable
               =t( :observation_accuracy_experiment_click_on_bars )
+              ="&nbsp;".html_safe
+            - else
+              =t( :observation_accuracy_experiment_bars_will )
               ="&nbsp;".html_safe
             %span.sampleSize=t :observation_accuracy_experiment_sample_size, number: @stats[:sample_size]
         .col-md-2.text-end

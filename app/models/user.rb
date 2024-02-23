@@ -817,8 +817,7 @@ class User < ApplicationRecord
       EmailSuppression::ACCOUNT_EMAILS,
       EmailSuppression::DONATION_EMAILS,
       EmailSuppression::NEWS_EMAILS,
-      EmailSuppression::TRANSACTIONAL_EMAILS,
-      EmailSuppression::ACCURACY_EXPERIMENT_EMAILS
+      EmailSuppression::TRANSACTIONAL_EMAILS
     ].reject {| i | ( suppressed_groups.include? i ) }
     return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
       email, unsuppressed_groups ).first

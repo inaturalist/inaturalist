@@ -196,32 +196,6 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def observation_accuracy_validator_contact( validator, validator_deadline_date )
-    return unless ( @user = User.where( id: validator.user_id ).first )
-
-    return if @user&.email&.blank?
-
-    return if @user.email_suppressed_in_group?( EmailSuppression::ACCURACY_EXPERIMENT_EMAILS )
-
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.accuracy
-    obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
-    @num_obs = obs_ids.count
-    @sample_url = FakeView.
-      identify_observations_url(
-        place_id: "any",
-        reviewed: "any",
-        quality_grade: "needs_id,research,casual",
-        id: obs_ids.join( "," )
-      )
-    @blog_url = FakeView.site_post_url( 88_501 )
-    @validator_deadline_date = validator_deadline_date
-    mail_with_defaults(
-      subject: [
-        :observation_accuracy_validator_email_subject
-      ]
-    )
-  end
-
   def curator_application( user, application )
     set_site
     opts = set_site_specific_opts
