@@ -3020,32 +3020,8 @@ nb:
   observation_accuracy_experiment_accuracy: "Nøyaktighet"
   observation_accuracy_experiment_we_calculated: "Vi beregna Nøyaktighet som prosent korrekt for hele utvalget i tillegg til undergruppene som Forskningsgrad-undergruppa. Vi beregna også prosent Usikker og prosent Feil. I eksempelfiguren til høyre, ville korrekt-prosenten være 83, usikker-prosenten vil være 6, og feil-prosenten vil være 11."
   observation_accuracy_experiment_precision: "Presisjon"
-  observation_accuracy_validator_email_subject: "Vil du hjelpe oss med å anslå nøyaktigheten til iNaturalist-observasjoner?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Vil du hjelpe oss med et eksperiment for å anslå nøyaktigheten til iNaturalist-observasjoner?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifiser alle observasjonene i lenka nedenfor så presist som du klarer, selv hvis de er av forskningskvalitet, og selv hvis din mest presise ID er på et høyere taksonomisk nivå (til og med rike).
-    </li>
-    <li>Hvis du ser "Potensiell uenighet" dukke opp…
-    <ul>
-    <li>og du er sikker på at den er feilidentifisert, klikk på den oransje knappen,</li>
-    <li>eller hvis du er usikker utover din ID, klikk på den grønne knappen</li>
-    </ul>
-    </li>
-    <li>Gjør dette innen <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Her er den <a href="%{sample_url}">andelen av %{num_obs} observasjoner</a>som vi tror du kan identifisere basert på din aktivitet på iNat. <b>Vennligst legg til den mest presise ID-en du klarer til hver av observasjonene innen %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    Vi vil beregne nøyaktigheta ved å sammenligne din ID til observasjonstaksonet. Du kan hoppe over observasjoner hvor du tidligere har lagt til en ID dersom den ID-en fortsatt er relevant. For mere om hvordan vi vil telle enigheter og uenigheter, fortsett å les.
   observation_accuracy_validator_email_ids_equal_to: |
     ID-er som er lik (A) eller mer presise enn (B) observasjonstaksonet vil telles som enigheter.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    ID-er på andre grener (C) eller videre enn observasjonstaksonet hvor du velger 'Nei, men…' på 'Potensiell uenighet"-dialogen (D) vil telles som uenigheter.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    ID-er som er videre enn observasjonstaksonet der du velger 'Jeg vet ikke, men…' på 'Potensiell uenighet'-dialogen (E) vil telles som usikker.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Vi er veldig takknemlige for din hjelp som en artsbestemmer på iNaturalist, og tusen takk for at du deltok i denne studien. Vennligst les <a href="%{url}">dette blogginnlegget</a> for å få svar på vanlige spørsmål rundt dette eksperimentet.
   observation_accuracy_validator_email_with_gratitude: Stort takk,
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Observasjon lagt til i prosjektet \"%{project}\""
