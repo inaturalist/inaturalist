@@ -23,7 +23,7 @@
     -%>
     <tr class="inat-observation">
       <td class="inat-observation-image" valign="top" align="center">
-        <%= link_to observation_url(observation), :target => (target == "blank" ? "_blank" : nil) do %>
+        <%= link_to observation_url(observation), :target => (target == "blank" ? "_blank" : nil), rel: (target == "blank" ? "noopener noreferrer" : nil) do %>
           <% if obs_img_url = observation_image_url(observation) -%>
             <%= image_tag obs_img_url, img_opts %>
           <% else %>
@@ -36,11 +36,11 @@
         <% end %>
       </td>
       <td class="inat-observation-body" valign="top">
-        <%= link_to (observation.species_guess.blank? ? t(:something_) : observation.species_guess), observation_url(observation), :target => (target == "blank" ? "_blank" : nil) %>
+        <%= link_to (observation.species_guess.blank? ? t(:something_) : observation.species_guess), observation_url(observation), :target => (target == "blank" ? "_blank" : nil), rel: (target == "blank" ? "noopener noreferrer" : nil) %>
         <div class="inat-meta">
           <% if show_user -%>
             <span class="inat-label"><%=t :observer %>: </span>
-            <span class="inat-value"><%= link_to observation.user.login, observations_by_login_url(observation.user.login), :target => (target == "blank" ? "_blank" : nil) %></span><br/>
+            <span class="inat-value"><%= link_to observation.user.login, observations_by_login_url(observation.user.login), :target => (target == "blank" ? "_blank" : nil), rel: (target == "blank" ? "noopener noreferrer" : nil) %></span><br/>
           <% end -%>
           <% unless observation.observed_on.blank? -%>
             <span class="inat-label"><%=t :observation_date %>: </span>

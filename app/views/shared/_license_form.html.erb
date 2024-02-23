@@ -32,7 +32,7 @@
           </div>
         <% end -%>
         <%=t description %>
-        <%= link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank" %>
+        <%= link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
       </div>
     </div>
   <% end %>

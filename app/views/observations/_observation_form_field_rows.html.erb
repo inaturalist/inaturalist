@@ -27,7 +27,7 @@
           <div class="clear notice existing_obs_notice">
             <%= image_tag existing_observation_photo.photo.thumb_url %>
             <strong><%=t :heads_up %>:</strong> this photo is already associated with an
-            <%= link_to "existing observation", existing_observation_photo.observation, :class => "readmore", :target => "_blank" %>
+            <%= link_to "existing observation", existing_observation_photo.observation, :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
           </div>
         <% end -%>
       <% end -%>

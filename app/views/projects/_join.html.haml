@@ -4,7 +4,7 @@
 - unless @project.description.blank?
   %h3= t(:about_this_project)
   .description
-    = truncate_with_more formatted_user_text(@project.description).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500
+    = truncate_with_more formatted_user_text(@project.description).gsub(/\<a /, '<a target="_blank" rel="noopener noreferrer" ').html_safe, :length => 500
 %h3= t(:project_curators)
 .clear
   - @project_curators.each do |project_curator|
@@ -19,7 +19,7 @@
 - unless @project.terms.blank?
   %h3= t(:terms)
   .stacked.description
-    = truncate_with_more formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500
+    = truncate_with_more formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" rel="noopener noreferrer" ').html_safe, :length => 500
 - unless @project.project_user_rules.blank?
   %h3= t(:rules_for_becoming_a_member)
   %ul.stacked

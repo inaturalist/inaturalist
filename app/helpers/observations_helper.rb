@@ -53,12 +53,12 @@ module ObservationsHelper
       display_lon = observation.private_longitude
     end
     
-    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank")
-    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank")
-    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank")
+    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank", rel: "noopener noreferrer")
+    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank", rel: "noopener noreferrer")
+    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank", rel: "noopener noreferrer")
     osm_coords_url = "http://www.openstreetmap.org/?mlat=#{display_lat}&mlon=#{display_lon}"
     osm_coords_url += "&zoom=#{observation.map_scale}" unless observation.map_scale.blank?
-    osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank")
+    osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank", rel: "noopener noreferrer")
     
     if coordinate_truncation = options[:truncate_coordinates]
       coordinate_truncation = 6 unless coordinate_truncation.is_a?(Integer)

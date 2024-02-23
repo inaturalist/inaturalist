@@ -25,7 +25,7 @@ const SideBar = ( { blind, hidden, setSideBarHidden } ) => (
           "Identify" tool that hides the opinions of the iNaturalist community.
           Please be aware that your identifications will be shared with the
           observers and the broader
-          community. <a href="/pages/identification_quality_experiment" target="_blank">
+          community. <a href="/pages/identification_quality_experiment" target="_blank" rel="noopener noreferrer">
             Click here
           </a> to learn more about the study.
         </p>

@@ -80,7 +80,7 @@ const Identifications = ( {
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
-                window.open( url, "_blank" );
+                window.open( url, "_blank", "noopener,noreferrer" );
               } : null}
               margin={{ left: 60 }}
             />

@@ -277,6 +277,6 @@ export function fetchLastObservation( ) {
 export function openObservationsSearch( params ) {
   return ( dispatch, getState ) => {
     const searchParams = Object.assign( { }, defaultObservationParams( getState( ) ), params );
-    window.open( `/observations?${stringify( searchParams )}`, "_blank" );
+    window.open( `/observations?${stringify( searchParams )}`, "_blank", "noopener,noreferrer" );
   };
 }

@@ -46,6 +46,7 @@ const ActivityItemMenu = ( {
             href={`/identifications/${item.uuid}/edit`}
             onClick={onEdit}
             target={linkTarget}
+            rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
           >
             { editing ? I18n.t( "stop_editing" ) : I18n.t( "edit" ) }
           </MenuItem>
@@ -119,6 +120,7 @@ const ActivityItemMenu = ( {
           <a
             href={`/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}`}
             target={linkTarget}
+            rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
           >
             <i className="fa fa-arrow-circle-o-right" />
             <span className="menu-item-label">{ I18n.t( "you_" ) }</span>
@@ -132,6 +134,7 @@ const ActivityItemMenu = ( {
           <a
             href={`/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}`}
             target={linkTarget}
+            rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
           >
             <i className="fa fa-arrow-circle-o-right" />
             <span className="menu-item-label">{ item.user.login }</span>
@@ -144,6 +147,7 @@ const ActivityItemMenu = ( {
         <a
           href={`/observations?taxon_id=${item.taxon.id}`}
           target={linkTarget}
+          rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
         >
           <i className="fa fa-arrow-circle-o-right" />
           <span className="menu-item-label">{ I18n.t( "everyone_" ) }</span>
@@ -172,6 +176,7 @@ const ActivityItemMenu = ( {
             <a
               href={`/observations/identify?taxon_id=${item.taxon.id}`}
               target={linkTarget}
+              rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
             >
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "of_this_taxon" ) }</span>
@@ -181,6 +186,7 @@ const ActivityItemMenu = ( {
             <a
               href={`/observations/identify?user_id=${item.user.login}`}
               target={linkTarget}
+              rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
             >
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "by_user", { user: item.user.login } ) }</span>
@@ -198,6 +204,7 @@ const ActivityItemMenu = ( {
         href={`/comments/${item.uuid}/edit`}
         onClick={onEdit}
         target={linkTarget}
+        rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
       >
         { editing ? I18n.t( "stop_editing" ) : I18n.t( "edit" ) }
       </MenuItem>
@@ -289,7 +296,7 @@ const ActivityItemMenu = ( {
     }
     menuItems.push( (
       <li key={`comment-delete-${item.uuid}`} className="search">
-        <a href="/relationships" target="_blank">
+        <a href="/relationships" target="_blank" rel="noopener noreferrer">
           <i className="icon-people" />
           { I18n.t( "manage_your_relationships" ) }
         </a>
@@ -305,15 +312,15 @@ const ActivityItemMenu = ( {
             if ( key === "flag" ) {
               setFlaggingModalState( { item, show: true } );
             } else if ( key === "view-flags-for-comment" ) {
-              window.open( `/comments/${item.uuid}/flags`, "_blank" );
+              window.open( `/comments/${item.uuid}/flags`, "_blank", "noopener,noreferrer" );
             } else if ( key === "view-flags-for-identification" ) {
-              window.open( `/identifications/${item.uuid}/flags`, "_blank" );
+              window.open( `/identifications/${item.uuid}/flags`, "_blank", "noopener,noreferrer" );
             } else if ( key === "add-trust" ) {
               trustUser( item.user );
             } else if ( key === "remove-trust" ) {
               untrustUser( item.user );
             } else if ( key === "manage-relationships" ) {
-              window.open( "/relationships", "_blank" );
+              window.open( "/relationships", "_blank", "noopener,noreferrer" );
             } else if ( key === "withdraw" ) {
               withdrawID( item.uuid );
             } else if ( key === "restore" ) {

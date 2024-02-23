@@ -56,7 +56,7 @@ const QualityGradePieChart = ( { project } ) => {
         donutWidth={ 20 }
         onClick={( _clickEvent, d ) => {
           const url = `/observations?project_id=${project.id}&quality_grade=${d.data.enLabel}&verifiable=any`;
-          window.open( url, "_blank" );
+          window.open( url, "_blank", "noopener,noreferrer" );
         }}
       />
     </div>

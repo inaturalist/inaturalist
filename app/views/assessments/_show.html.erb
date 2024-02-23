@@ -2,7 +2,7 @@
   <% content_for(:extrajs) do %>
     <script>
       $(document).ready(function(){
-         $('a.edit-button').attr('target', '_blank');
+         $('a.edit-button').attr('target', '_blank').attr( "rel", "noopener noreferrer" );
       });
     </script>
   <% end %>

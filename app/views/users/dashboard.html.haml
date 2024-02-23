@@ -53,7 +53,7 @@
                     = link_to observations_path, class: "btn btn-primary btn-md" do
                       = t :browse_observations
                       %span.glyphicon.glyphicon-chevron-right
-                    = link_to @site.getting_started_url, target: "_blank" do
+                    = link_to @site.getting_started_url, target: "_blank", rel: "noopener noreferrer" do
                       %span.glyphicon.glyphicon-info-sign
                       = t :getting_started_guide
               - if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]

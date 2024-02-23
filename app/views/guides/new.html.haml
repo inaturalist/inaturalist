@@ -12,7 +12,7 @@
         - unless @guide.source_url.blank?
           = f.hidden_field :source_url
           = f.form_field :source_url do
-            = link_to @guide.source_url, @guide.source_url, :target => "_blank"
+            = link_to @guide.source_url, @guide.source_url, :target => "_blank", rel: "noopener noreferrer"
         = f.submit t(:save_and_add_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:saving)}
         = link_to t(:cancel), guides_path, :class => "btn btn-default"
     .col-md-3
