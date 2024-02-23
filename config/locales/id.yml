@@ -3063,34 +3063,8 @@ id:
   observation_accuracy_experiment_precision: "Presisi"
   observation_accuracy_experiment_if_every_sample: "Jika setiap pengamatan sampel berada pada takson yang kurang spesifik, seperti kingdom, akurasi iNaturalist dataset mungkin menjadi tinggi, tapi presisinya mungkin menjadi sangat rendah sehingga datasetnya kurang berguna. Untuk memperkirakan presisi, kami menghitung jumlah keturunan daun (ujung) pada taksonomi iNaturalist untuk masing-masing takson yang diasosiasikan dengan masing-masing pengamatan sampel. Perhitungan presisi kami adalah 1 dibagi jumlah keturunan daun. Jika taksonnya merupakan takson daun, presisinya 100%. Kami mengabaikan kategori-kategori di bawah spesies di dalam perhitungan presisi ini."
   observation_accuracy_experiment_in_the_example: "Pada gambar contoh di kanan, rerata presisi dari tiga pengamatan sampel adalah 51%."
-  observation_accuracy_validator_email_subject: "Bisakah kamu membantu kami mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Bisakah kamu membantu kami dalam sebuah eksperimen untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
-    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
-    <ul>
-    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
-    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
-    </ul>
-    </li>
-    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
-    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    Kami akan menghitung akurasi dengan membandingkan ID kamu dengan Takson Pengamatan. 
-    Kamu bisa melewati pengamatan-pengamatan yang IDnya sudah ditambahkan jika IDnya masih relevan. Untuk selebihnya tentang bagaimana kita menghitung kesepakatan dan ketidaksepakatan, teruslah membaca.
   observation_accuracy_validator_email_ids_equal_to: |
     ID yang sama dengan (A) atau lebih rinci dari (B), Takson Pengamatannya akan dihitung sebagai Kesepakatan.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    ID yang berada pada cabang (C) yang berbeda atau kurang spesifik dari Takson Pengamatan yang kamu pilih 'Tidak, tapi…' untuk dialog (D) 'Potensi Ketidaksetujuan' akan dihitung sebagai Ketidaksetujuan.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    ID yang kurang spesifik dari Takson Pengamatan yang kamu pilih 'Saya tidak tahu, tapi…' untuk dialog (E) 'Potensi Ketidaksetujuan' akan dihitung sebagai Tidak Pasti.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Kami berterima kasih atas bantuanmu sebagai pengidentifikasi, dan terima kasih 
-    banyak atas partisipasimu dalam penelitian ini. Silakan membaca <a href="%{url}">postingan blog ini</a> untuk mencari jawaban dari pertanyaan-pertanyaan umum tentang eksperimen ini.
   observation_accuracy_validator_email_with_gratitude: Dengan terima kasih,
   observation_accuracy_validator_email_the_inaturalist_team: Tim iNaturalist
   observation_added_to_the_project: "Pengamatan yang ditambahkan ke proyek \"%{project}\""
