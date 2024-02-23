@@ -3034,30 +3034,8 @@ de:
   observation_accuracy_experiment_precision: "Präzision"
   observation_accuracy_experiment_if_every_sample: "Wäre jede Beobachtung der Stichprobe nur auf einem höheren Rang, wie z.B. Reich, bestimmt, wäre die Genauigkeit des iNaturalist-Datensatzes zwar sehr hoch, aber die Präzision könnte zu niedrig sein, um einen aussagekräftigen Datensatz zu haben. Um die Präzision abzuschätzen, haben wir für jede Beobachtung die Anzahl der niedrigeren Taxon-Rangstufen für jedes Taxon gezählt. Wir kalkulierten dabei die Präzision als 1 geteilt durch die Anzahl der nachfolgenden Rangstufen. Wenn das Taxon ein End-Taxon ist, beträgt die Genauigkeit 100% (Ränge unterhalb des Artniveaus werden für die Berechnung ignoriert)."
   observation_accuracy_experiment_in_the_example: "Im rechten Beispiel würde die durchschnittliche Präzision der drei Stichprobenbeobachtungen 51 % betragen."
-  observation_accuracy_validator_email_subject: "Möchtest du uns dabei helfen, die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Möchtest du uns bei einem Experiment unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol><li>Bestimme alle Beobachtungen im unten angegebenen Link so genau wie möglich, auch wenn sie bereits Forschungsqualität besitzen, und auch wenn deine genaueste ID nur auf höherer taxonomischer Ebene möglich ist (sogar 'Reich'). </li>
-    <li>Wenn sich das "Besteht Einwand...?" Pop-up Fenster öffnet… 
-    <ul>
-    <li>und du dir sicher bist dass die Beobachtung falsch bestimmt wurde, klicke die orangene Option,</li>
-    <li>oder wenn du unsicher bist, wähle die grüne Option</li>
-    </ul>
-    </li>
-    <li>Bitte die Bestimmungen bist zum <b>%{validator_deadline_date}</b> abschließen</li>
-    </ol>
-    Hier ist deine<a href="%{sample_url}"><a href="%{sample_url}">Auswahl von %{num_obs} Beobachtungen</a>, von der wir aufgrund deiner iNat-Aktivität vermuten, dass du sie identifizieren könntest. <b>Bitte deine genauestmögliche ID bis zum %{validator_deadline_date} abgeben</b> . 
-  observation_accuracy_validator_email_we_will_calculate: |
-    Wir berechnen die Genauigkeit, indem wir deine Bestimmung mit dem Beobachtungstaxon vergleichen. Du kannst Beobachtungen überspringen, bei denen du zuvor bereits eine ID hinzugefügt hast - es sei denn du möchtest dieses ID nun revidieren. Lies weiter, wenn du mehr darüber erfahren möchtest, wie wir Zustimmungen und Widersprüche evaluieren werden.
   observation_accuracy_validator_email_ids_equal_to: |
     Bestimmungen, die dem Beobachtungstaxon entsprechen (A) oder genauer sind (B), werden als Zustimmung gezählt.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    IDs auf abweichenden Stammbaum-Ästen (C) oder höher als das Beobachtungstaxon UND bei denen in der Dialog-Box ein Widerspruch (D) ausgedrückt wurde, werden als Nichtübereinstimmung gezählt.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    IDs höher als das Beobachtungstaxon, bei denen du im "Widerspruchs-Dialog" (E) die Option 'kein Veto...' gewählt hast, werden als 'unsicher' gewertet.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Wir sind sehr dankbar für deine Bestimmungs-Hilfe auf iNaturalist und vielen Dank für die Teilnahme an dieser Studie. <a href="%{url}">In diesem Blog-Beitrag</a> kannst du Antworten zu häufig gestellten Fragen dieses Experiments finden.
   observation_accuracy_validator_email_with_gratitude: In Dankbarkeit,
   observation_accuracy_validator_email_the_inaturalist_team: das Team von iNaturalist
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
