@@ -72,8 +72,13 @@ class ProviderAuthorizationsController < ApplicationController
       end
     end
 
-    if ( @provider_authorization = ProviderAuthorization.find_from_omniauth( auth_info ) )
-      update_existing_provider_authorization( auth_info )
+    if ( existing_authorization = ProviderAuthorization.find_from_omniauth( auth_info ) )
+      if logged_in? && existing_authorization.user != current_user
+        flash[:alert] = t( :that_account_is_already_connected )
+      else
+        @provider_authorization = existing_authorization
+        update_existing_provider_authorization( auth_info )
+      end
     else
       create_provider_authorization( auth_info )
       return redirect_back_or_default @landing_path || home_url
