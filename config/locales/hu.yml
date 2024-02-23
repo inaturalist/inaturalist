@@ -2638,17 +2638,8 @@ hu:
   observation_accuracy_experiment_uncertain: "Bizonytalan"
   observation_accuracy_experiment_accuracy: "Pontosság"
   observation_accuracy_experiment_precision: "Pontosság"
-  observation_accuracy_validator_email_subject: "Segítesz nekünk megmérni az iNaturalist-megfigyelések pontosságát?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Segítesz nekünk egy kísérletben, amelynek célja az iNaturalist-megfigyelések pontosságának mérése?
-  observation_accuracy_validator_email_we_will_calculate: |
-    A pontosságot az azonosításod és a megfigyelési taxon összehasonlításával állapítjuk meg. Ha a saját korábbi azonosításod az adott megfigyelésen pontos, kihagyhatod azt. Alább további részleteket olvashatsz arról, hogy miként vesszük figyelembe az egyetértéseket és a konfliktusokat.
   observation_accuracy_validator_email_ids_equal_to: |
     A megfigyelési taxonnal megegyező (A) vagy annál szűkebb (B) meghatározásokat egyetértésként regisztráljuk.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    A megfigyelési taxonnál magasabb szintű meghatározást, amelynél a "Lehetséges konfliktus" (E) panelen a "Nem tudom, de..." opciót választod, bizonytalanként regisztráljuk.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Nagyon hálásak vagyunk az azonosításaidért és köszönjük, hogy részt veszel ebben a kísérletben. <a href="%{url}">Ebből a blogbejegyzésből</a> többet is megtudhatsz erről a kísérletről.
   observation_accuracy_validator_email_with_gratitude: Köszönettel,
   observation_accuracy_validator_email_the_inaturalist_team: Az iNaturalist csapata
   observation_added_to_the_project: "A megfigyelést hozzáadták a \"%{project}\" projekthez"
