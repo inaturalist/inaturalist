@@ -3179,38 +3179,8 @@ da:
   observation_accuracy_experiment_precision: "Præcision"
   observation_accuracy_experiment_if_every_sample: "Var hver prøveobservation på en grov takson, såsom rige, ville nøjagtigheden af iNaturalist-datasættet kunne være meget høj, men præcisionen kunne være for lav til at gøre datasættet specielt nyttigt. For at anslå præcisionen har vi talt antallet af bladefterkommere i iNaturalist-taksonomien for hver takson for hver prøveobservation. Vi beregnede præcision som 1 divideret med antallet af bladefterkommere. Var taksonen en bladtakson, er præcisionen 100%. Vi ignorerede rangeringer under arter i præcisionsberegningen."
   observation_accuracy_experiment_in_the_example: "I eksemplet til højre, ville den gns. præcision af tre prøveobservationer være 51%."
-  observation_accuracy_validator_email_subject: "Vil du hjælpe os med at vurdere korrektheden af iNaturalist-observationer?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Vil du hjælpe os et eksperiment til vurdering af korrektheden af iNaturalist-observationer?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (endda kongerige). </li>
-    <li>Vises en “Potentiel uenighed”-pop op…,
-    <ul>
-    <li>og du er sikker på, at det er en fejlidentifikation, klik på den orange knap,</li>
-    <li>eller hvis du er usikker udover dit ID, klik på den grønne knap</li>
-    </ul>
-    </li>
-    <li>Gør dette senest <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Her er <a href="%{sample_url}">delmængden af %{num_obs} observationer</a>,
-    som vi tror, at du kan identificere baseret på din aktivitet på iNat. <b>Tilføj 
-    dit mest præcise ID til hver af observationerne senest %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    Vi beregner nøjagtigheden ved at sammenligne dit ID med observationstaksonen. Observationer, hvor du
-    tidligere har tilføjet et ID, der fortsat har relevans, kan overspringes. Læs videre for mere information om, hvordan vi tæller enigheder og uenigheder.
   observation_accuracy_validator_email_ids_equal_to: |
     Er ID'er lig med (A) eller finere end (B), medregnes Observationstaksonen som Enigheder.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    ID'er på forskellige grene (C) eller grovere end Observationstakson, hvor du vælger 'Nej,
-    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Uenigheder.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    ID'er grovere end Observationstakson, hvor du vælger 'Jeg ved det ikke,
-    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Usikker.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Vi er så taknemmelige for din hjælp som identifikator på iNaturalist og takker 
-    meget for din deltagelse i denne undersøgelse. Læs <a href="%{url}">dette 
-    blogindlæg</a> for svar på hyppige spørgsmål omkring dette eksperiment.
   observation_accuracy_validator_email_with_gratitude: Med taknemmelighed
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
