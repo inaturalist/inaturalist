@@ -3130,31 +3130,8 @@ fr:
   observation_accuracy_experiment_step_4: "Étape 4 : Calcul de l'exactitude et de la précision"
   observation_accuracy_experiment_accuracy: "Exactitude"
   observation_accuracy_experiment_precision: "Précision"
-  observation_accuracy_validator_email_subject: "Accepteriez-vous de nous aider pour estimer la précision des observations d'iNaturalist ?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Accepteriez-vous de nous aider avec une expérience pour estimer la précision des observations d'iNaturalist ?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifiez toutes les observations en suivant le lien ci-dessous, aussi finement que possible, même si elles sont déjà au Niveau de Recherche, et même si votre identification la plus fine est à un niveau taxonomique plus élevé (même royaume). </li>
-    <li>Si vous voyez apparaître la fenêtre "Désaccord potentiel"…
-    <ul>
-    <li>et que vous êtes certain qu'il s'agit d'une mauvaise identification, cliquez sur le bouton orange,</li>
-    <li>ou bien, si vous n'êtes pas certain de votre identification, cliquez sur le bouton vert</li>
-    </ul>
-    </li>
-    <li>Merci de faire ceci avant le <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Voici le <a href="%{sample_url}">sous ensemble de %{num_obs} observations</a>
-    que nous pensons que vous pouvez identifier, sur la base de votre activité sur iNat. <b>Merci d'ajouter l'identification la plus fine possible pour chacune des observations avant le %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_ids_equal_to: |
     Les identifiants égaux à (A) ou plus fins que (B) le taxon d’observation seront comptés comme des Accords.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    Les IDs sur des branches différentes (C) ou moins précis que le Taxon d'Observation où vous choisissez 'Non,
-    mais…' dans la boîte de dialogue 'Désaccord potentiel' (D) seront considérés comme des Désaccords.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    Les ID moins précis que le Taxon d'Observation pour lesquels vous choisissez "Je ne sais pas mais..." dans la boîte de dialogue "Désaccord potentiel" (E) seront comptés comme incertains.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Nous vous sommes très reconnaissants pour votre aide en tant d'identifieur sur iNaturalist, et nous vous remercions pour votre participation à cette étude. Vous pouvez lire <a href="%{url}">ce post de blog</a> qui répond aux questions les plus fréquentes au sujet de cette expérience.
   observation_accuracy_validator_email_with_gratitude: Avec nos remerciements,
   observation_accuracy_validator_email_the_inaturalist_team: L'équipe iNaturalist
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
