@@ -3104,38 +3104,8 @@ it:
   observation_accuracy_experiment_precision: "Precisione"
   observation_accuracy_experiment_if_every_sample: "Se ogni osservazione di esempio fosse in un taxon grossolano come il Regno, l'accuratezza del set di dati iNaturalist potrebbe essere molto elevata, ma la precisione potrebbe essere troppo bassa per rendere il set di dati molto utile. Per stimare la precisione, abbiamo contato il numero dei discendenti delle foglie nella tassonomia iNaturalist per ogni taxon associato ad ogni osservazione del campione. Abbiamo calcolato la precisione come 1 diviso per il numero di discendenti di foglie. Se il taxon era un taxon delle foglie la precisione è del 100%. Abbiamo ignorato i ranghi sotto le specie nel calcolo di precisione."
   observation_accuracy_experiment_in_the_example: "Nella figura di esempio a destra la precisione media di tre osservazioni del campione sarebbe del 51%."
-  observation_accuracy_validator_email_subject: "Ci aiuterai a stimare la precisione delle osservazioni di iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Ci aiuterai con un esperimento per stimare la precisione delle osservazioni di iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifica tutte le osservazioni nel link qui sotto con la massima precisione possibile, anche se sono di Livello Ricerca, e anche se la tua migliore ID è ad un livello tassonomico superiore (anche Regno). </li>
-    <li>Se vedete il popup “Potentziale Disaccordo”…
-    <ul>
-    <li>e siete sicuri che è un ID errata fare clic sul pulsante arancione,</li>
-    <li>o se non sei sicuro al di là della tua ID, clicca sul pulsante verde</li>
-    </ul>
-    </li>
-    <li>Fai questo entro il <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Ecco il sottoinsieme <a href="%{sample_url}">di %{num_obs} osservazioni</a>
-    che pensiamo tu possa identificare in base alla tua attività su iNat. <b>Sei pregato di aggiungere
-    la miglior ID possibile per ciascuna delle osservazioni entro il %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    Calcoleremo la precisione confrontando la tuo ID con il Taxon di Osservazione. Puoi saltare le osservazioni dove
-    hai precedentemente aggiunto una ID se tale ID è ancora rilevante. Per saperne di più su come conteggiare accordi e disaccordi, continuare a leggere.
   observation_accuracy_validator_email_ids_equal_to: |
     Le identificazioni pari al (A), o più precise del (B), Taxon d'Osservazione, saranno considerate come Accordi.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    Le identificazioni gemelle (C), o più grossolane, del Taxon d'Osservazione, in cui selezioni 'No, ma…'
-    nella finestra di 'Disaccordo potenziale' (D), saranno contate come Disaccordi.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    Le identificazioni più grossolane del Taxon d'Osservazione, in cui selezioni 'Non lo so, ma…' alla
-    finestra di 'Disaccordo potenziale' (E), saranno contate come Incerte.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Ti siamo davvero grati per il tuo aiuto come identificatore su iNaturalist, e ti ringraziamo
-    molto per aver partecipato a questo studio. Ti preghiamo di leggere <a href="%{url}">questo
-    post del blog</a>, se vuoi saperne di più su questo esperimento.
   observation_accuracy_validator_email_with_gratitude: Con gratitudine,
   observation_accuracy_validator_email_the_inaturalist_team: Il Team di iNaturalist
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
