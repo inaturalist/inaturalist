@@ -3168,6 +3168,7 @@ sv:
   observation_accuracy_experiment_quality_grade: "Kvalitetsklass"
   observation_accuracy_experiment_show_frequency: "visa frekvens"
   observation_accuracy_experiment_click_on_bars: "Klicka på staplar för att utforska delmängderna."
+  observation_accuracy_experiment_bars_will: "Staplar kommer vara klickbara efter deadline för att verifiera prover har passerats."
   observation_accuracy_experiment_accuracy_results: "Noggrannhetsresultat efter delmängd"
   observation_accuracy_experiment_as_observations: "Eftersom fynd från detta urval verifieras, kommer andelen osäkra att minska och andelen korrekta och felaktiga att öka."
   observation_accuracy_experiment_experiment_still: "Experimentet pågår fortfarande. Statistik uppdateras dagligen fram till deadline för verifiering av prover den %{date}"
@@ -3191,6 +3192,7 @@ sv:
   observation_accuracy_experiment_mean_number: "Medelantal verifierare per provfynd: %{number}"
   observation_accuracy_experiment_validator_candidate: "Kriterier för potentiella verifierare:"
   observation_accuracy_experiment_if_an_identifier: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon, ansåg vi att de var kvalificerade att verifiera detta taxon. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
+  observation_accuracy_experiment_if_an_identifier_continent: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon på en kontinent, ansåg vi att de var kvalificerade att verifiera detta taxon inom denna kontinent. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
   observation_accuracy_experiment_for_example: "Till exempel, Bestämmare 1 lägger till en bestämning av A till ett fynd. Om Bestämmare 2 sedan lägger till en ledande bestämning av B, blir Bestämmare 1's bestämning av A en förbättrande bestämning. Om Bestämmare 3 sedan lägger till en stödjande bestämning till B, blir Bestämmare 2's bestämning en förbättrande bestämning."
   observation_accuracy_experiment_step_2: "Steg 2: Provverifiering"
   observation_accuracy_experiment_we_contacted: "Vi kontaktade potentiella verifierare och bad dem att lägga till bestämningar till sina delprover. Grafen till höger grupperar provfynd efter antalet verifierare."
@@ -3207,8 +3209,37 @@ sv:
   observation_accuracy_experiment_precision: "Precision"
   observation_accuracy_experiment_if_every_sample: "Om varje provfynd var på en hög nivå såsom rike, skulle noggrannheten i iNaturalists dataset kunna vara mycket hög, men precisionen kanske var för låg för att göra dataset särskilt användbart. För att uppskatta precision, räknade vi antalet underliggande ändtaxa i iNaturalists taxonomi för varje taxon kopplat till varje provfynd. Vi beräknade precision såsom 1 dividerat med antalet ändtaxa. Om taxonet var ett ändtaxa blev precisionen 100%. Vi ignorerade ranger under art i precisionsberäkningen."
   observation_accuracy_experiment_in_the_example: "I exempelfiguren till höger skulle medelprecisionen av tre provfynd bli 51 %."
+  observation_accuracy_validator_email_subject2: "Kan du tänka dig att hjälpa oss med Experiment %{version} för att uppskatta noggrannheten för iNaturalist-fynd?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Kan du tänka dig att hjälpa oss med ett <a href="%{url}">experiment (version %{version})</a> för att uppskatta noggrannheten för iNaturalist-fynd?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Bestäm alla fynd i länken nedan så bra du kan, även om de har Forskningsklass, till oc med om din bästa bestämning är på en högre taxonomisk nivå (även rike). </li>
+    <li>Om du ser “Möjlig meningsskiljaktighet” poppa upp…
+    <ul>
+    <li>och du är säker på att det är felbestämt, klicka på den orangea knappen,</li>
+    <li>eller om du är osäker på något exaktare än din egen bestämning, klicka på den gröna knappen</li>
+    </ul>
+    </li>
+    <li>Gör detta till <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Här är den <a href="%{sample_url}">delmängd %{num_obs} fynd</a>
+    som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till
+    den bästa bestämning du kan för varje fynd till %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
+    du bestämt tidigare om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
   observation_accuracy_validator_email_ids_equal_to: |
     För bestämningar lika med (A) eller exaktare än (B) kommer fyndets taxon att räknas som Överensstämmer.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Bestämningar på olika grenar (C) eller mindre exakt än fyndets taxon där du väljer 'Nej, men…' vid 'Möjlig meningsskiljaktighet'-frågan (D) kommer att räknas som Meningsskiljaktigheter.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Bestämningar som är mindre exakta än fyndets taxon där du väljer "Jag vet inte men…" ur
+    dialogrutan "Möjlig meningsskiljaktighet" (E) kommer att räknas som Osäkra.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Vi är verkligen tacksamma för din hjälp som artbestämmare på iNaturalist,
+    och stort tack för att du deltagit i denna studie. Läs <a href="%{url}">metoderna</a>
+    för att lära dig mer om experimentets utformning.
   observation_accuracy_validator_email_with_gratitude: Stort tack,
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
