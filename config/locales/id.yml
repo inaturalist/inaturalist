@@ -3024,6 +3024,7 @@ id:
   observation_accuracy_experiment_quality_grade: "Tingkat Kualitas"
   observation_accuracy_experiment_show_frequency: "tampilkan frekuensi"
   observation_accuracy_experiment_click_on_bars: "Klik batangnya untuk melihat subset-subsetnya."
+  observation_accuracy_experiment_bars_will: "Batang bisa diklik setelah tenggat waktu untuk validasi sampel."
   observation_accuracy_experiment_accuracy_results: "Hasil akurasi berdasarkan subset"
   observation_accuracy_experiment_as_observations: "Karena pengamatan dari sampel ini sudah divalidasi, persentase ketidakpastian akan menurun dan persentase sampel benar dan salah akan meningkat."
   observation_accuracy_experiment_experiment_still: "Eksperimen masih berlangsung. Statistik akan diperbarui setiap hari hingga tenggat waktu validasi sampel pada %{date}"
@@ -3047,6 +3048,7 @@ id:
   observation_accuracy_experiment_mean_number: "Rerata jumlah validator per pengamatan sampel: %{number}"
   observation_accuracy_experiment_validator_candidate: "Kriteria kandidat validator"
   observation_accuracy_experiment_if_an_identifier: "Jika seorang pengidentifikasi telah membuat setidaknya 3 identifikasi pengembang untuk suatu takson, kami menganggap identifikasi-identifikasi ini cukup untuk memvalidasi takson tersebut. Identifikasi pengembang ini adalah usulan takson pertama yang kemudian disetujui oleh komunitas."
+  observation_accuracy_experiment_if_an_identifier_continent: "Jika seorang pengidentifikasi telah membuat setidaknya 3 identifikasi pengembang pada suatu takson di suatu benua, kami menganggapnya lulus untuk memvalidasi takson di dalam benua tersebut. Identifikasi pengembang adalah saran pertama untuk suatu takson yang disetujui komunitas."
   observation_accuracy_experiment_for_example: "Sebagai contoh, Pengidentifikasi 1 menambahkan ID A untuk suatu pengamatan. Jika Pengidentifikasi 2 kemudian menambahkan ID pemimpin B, ID A dari Pengidentifikasi 1 menjadi ID pengembang. Jika Pengidentifikasi 3 kemudian menambahkan ID pendukung untuk B, ID Pengidentifikasi 2 pada B menjadi ID pengembang."
   observation_accuracy_experiment_step_2: "Langkah 2: Validasi sampel"
   observation_accuracy_experiment_we_contacted: "Kami menghubungi kandidat validator dan meminta mereka untuk menambahkan identifikasi untuk subsampel mereka. Grafik di kanan mengelompokkan pengamatan sampel berdasarkan jumlah validator."
@@ -3063,8 +3065,33 @@ id:
   observation_accuracy_experiment_precision: "Presisi"
   observation_accuracy_experiment_if_every_sample: "Jika setiap pengamatan sampel berada pada takson yang kurang spesifik, seperti kingdom, akurasi iNaturalist dataset mungkin menjadi tinggi, tapi presisinya mungkin menjadi sangat rendah sehingga datasetnya kurang berguna. Untuk memperkirakan presisi, kami menghitung jumlah keturunan daun (ujung) pada taksonomi iNaturalist untuk masing-masing takson yang diasosiasikan dengan masing-masing pengamatan sampel. Perhitungan presisi kami adalah 1 dibagi jumlah keturunan daun. Jika taksonnya merupakan takson daun, presisinya 100%. Kami mengabaikan kategori-kategori di bawah spesies di dalam perhitungan presisi ini."
   observation_accuracy_experiment_in_the_example: "Pada gambar contoh di kanan, rerata presisi dari tiga pengamatan sampel adalah 51%."
+  observation_accuracy_validator_email_subject2: "Bisakah kamu membantu kami dalam Eksperimen %{version} untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Bisakah kamu membantu kami dengan <a href="%{url}">eksperimen (versi %{version})</a> untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
+    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
+    <ul>
+    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
+    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
+    </ul>
+    </li>
+    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
+    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Kami akan menghitung akurasinya dengan membandingkan ID Anda dengan Takson Pengamatan. Anda bisa melewati pengamatan-pengamatan yang sudah Anda tambahkan ID sebelumnya jika ID tersebut masih relevan. Untuk lebih banyak info mengenai bagaimana kami menghitung kesetujuan dan ketidaksetujuan, teruslah membaca.
   observation_accuracy_validator_email_ids_equal_to: |
     ID yang sama dengan (A) atau lebih rinci dari (B), Takson Pengamatannya akan dihitung sebagai Kesepakatan.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID pada cabang (C) yang berbeda atau kurang spesifik dari Takson Pengamatan yang kamu pilih "Tidak, tetapi…" untuk dialog (D) 'Potensi Ketidaksetujuan' akan dihitung sebagai Ketidaksetujuan.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID yang kurang spesifik dari Takson Pengamatan yang kamu pilih "Saya tidak tahu, tapi…" untuk dialog (E) "Potensi Ketidaksetujuan" akan dihitung sebagai Tidak Pasti.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Kami berterima kasih atas bantuanmu sebagai pengidentifikasi di iNaturalist, dan terima kasih 
+    banyak atas partisipasimu dalam penelitian ini. Silakan membaca <a href="%{url}">metode-metodenya</a> jika kamu tertarik untuk mengetahui lebih lanjut mengenai desain eksperimen ini.
   observation_accuracy_validator_email_with_gratitude: Dengan terima kasih,
   observation_accuracy_validator_email_the_inaturalist_team: Tim iNaturalist
   observation_added_to_the_project: "Pengamatan yang ditambahkan ke proyek \"%{project}\""
