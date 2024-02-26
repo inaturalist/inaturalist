@@ -2014,6 +2014,7 @@ en:
   extinct_in_the_wild: Extinct in the Wild
   extra_properties: Extra Properties
   evidence_of_organism: Evidence of organism
+  evidence_related_to_single_subject: Evidence related to a single subject
   facebook: Facebook
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
@@ -7433,7 +7434,7 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
             observations start as <strong>"casual"</strong> grade, and become
@@ -7467,8 +7468,7 @@ en:
               hippos in office buildings, etc.)
             </li>
             <li>
-              the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
-              or intelligent space aliens)
+              the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans)
             </li>
             <li>
               the observation <strong>doesn't present evidence of an
@@ -7479,6 +7479,11 @@ en:
               the observation <strong>doesn't present recent (~100 years) evidence of
               the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
               are ok)
+            </li>
+            <li>
+              the observation <strong>doesn't present evidence related to one subject</strong>
+               (e.g. it has four photos of unrelated organisms. A photo showing habitat of the
+               observation’s subject is OK.)
             </li>
             <li>
               the observation no longer needs an ID <em>and</em> the community ID is at family or above
