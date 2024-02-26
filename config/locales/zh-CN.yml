@@ -283,6 +283,7 @@ zh-CN:
   add_notes_about_this_taxon: 添加有关在此地点的此分类单元的注释，例如它何地何时发生。
   add_obs_from_a_link: "从列表添加观察：%{link}"
   add_obs_from_a_list: 从列表中添加观察
+  add_observation_fields: 添加观察字段
   add_observations: 添加观察
   add_observations_by_checking_off: 通过检查来自列表的物种来添加观察。
   add_observations_project: 在该项目中添加观察
@@ -7694,6 +7695,8 @@ zh-CN:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
+              should_match_english_translation: |
+                应该是英语，但当前它和%{suggested_locale}翻译的“%{suggested}”相匹配。如果你确定的话，使用“%{suggested}”，它会被在你使用你的语言浏览网站时被翻译。
               should_be_in_english: 应为英文
             name:
               already_exists: 这个分类群已经存在于这个词汇表
