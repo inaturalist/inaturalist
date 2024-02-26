@@ -36,6 +36,15 @@ const ActivityItemMenu = ( {
   );
   const viewerIsAdmin = loggedInUser && loggedInUser.roles
     && loggedInUser.roles.indexOf( "admin" ) >= 0;
+  const latestModeratorAction = _.first(
+    _.orderBy( item.moderator_actions || [], ["created_at", "desc"] )
+  );
+  const currentUserIsHidingCurator = latestModeratorAction
+    && latestModeratorAction.action === "hide"
+    && viewerIsCurator
+    && latestModeratorAction.user
+    && loggedInUser.id === latestModeratorAction.user.id;
+
   if ( isID ) {
     if ( viewerIsActor ) {
       if ( !item.hidden ) {
@@ -90,7 +99,7 @@ const ActivityItemMenu = ( {
           </MenuItem>
         ) );
       }
-      if ( viewerIsAdmin && item.hidden ) {
+      if ( ( viewerIsAdmin || currentUserIsHidingCurator ) && item.hidden ) {
         menuItems.push( (
           <MenuItem
             key={`identification-unhide-${item.uuid}`}
@@ -237,7 +246,7 @@ const ActivityItemMenu = ( {
         </MenuItem>
       ) );
     }
-    if ( viewerIsAdmin && item.hidden ) {
+    if ( ( viewerIsAdmin || currentUserIsHidingCurator ) && item.hidden ) {
       menuItems.push( (
         <MenuItem
           key={`comment-unhide-${item.uuid}`}

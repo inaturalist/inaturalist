@@ -62,7 +62,7 @@
                 &mdash;
                 =t :removed
             = surround "[", "]" do
-              =t "moderator_actions_#{record.action}"
+              =t "moderator_actions_#{record.action}#{record.action === "unhide" ? 2 : ''}"
         %td
           - if record.user_id == 0 && record.is_a?( Flag )
             = @site.site_name_short

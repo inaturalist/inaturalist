@@ -23,6 +23,72 @@ describe ModeratorAction do
       end
     end
 
+    describe "UNHIDE" do
+      it "admins can unhide" do
+        u = make_admin
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: u, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be false
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be false
+      end
+
+      it "normal users cannot unhide" do
+        u = make_admin
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: User.make!, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be true
+      end
+
+      it "curators who hid the content can unhide" do
+        u = make_curator
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: u, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be false
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be false
+      end
+
+      it "curators who didnt hide the content cannot unhide" do
+        u = make_curator
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: make_curator, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be true
+      end
+    end
+
     describe "SUSPEND" do
       it "should not be possible for a comment" do
         expect(

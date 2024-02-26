@@ -3010,11 +3010,11 @@ en:
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
-  moderator_actions_unhide: Unhide
+  moderator_actions_unhide2: Unhide
   # Action a moderator can take to suspend a user; verb
-  moderator_actions_unhide: Suspend
+  moderator_actions_suspend: Suspend
   # Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Unsuspend
+  moderator_actions_unsuspend: Unsuspend
   moderator_note_desc: |
     Moderator notes are records of moderation responses or evidence-based
     concerns about a user, such as whether they are a possible sockpuppet
@@ -9636,7 +9636,8 @@ en:
             action:
               not_supported_for_this_kind_of_content: is not supported for this kind of content
             base:
-              only_staff_can_unhide: Only staff can unhide hidden content
+              only_staff_and_hiding_curators_can_unhide:
+                Only staff and curators who hide content can unhide it
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator

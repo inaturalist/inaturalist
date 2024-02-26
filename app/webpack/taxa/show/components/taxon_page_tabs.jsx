@@ -298,6 +298,7 @@ class TaxonPageTabs extends React.Component {
             id="status-tab"
           >
             <StatusTab
+              currentUser={currentUser}
               taxon={taxon}
               statuses={taxon.conservationStatuses}
               listedTaxaCount={taxon.listed_taxa_count}
