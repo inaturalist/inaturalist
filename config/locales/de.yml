@@ -1727,6 +1727,7 @@ de:
   extinct_in_the_wild: in der Natur ausgestorben
   extra_properties: Extra Eigenschaften
   evidence_of_organism: Hinweis auf einen Organismus?
+  evidence_related_to_single_subject: Alle Nachweise beziehen sich auf den gleichen Organismus
   facebook: Facebook
   failed_to_find_your_location: Dein Standort konnte nicht gefunden werden.
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
@@ -2642,6 +2643,12 @@ de:
     ihren eigenen Verlauf nicht ansehen</strong>, also sollten Notizen über eine Person niemals für diese Person sichtbar sein sein.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verbergen
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Sichtbar machen
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Sperren
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Entsperren
   moderator_note_desc: |
     Moderator-Anmerkungen sind Aufzeichnungen von Moderationsantworten oder evidenzbasierten
     Bedenken über einen Benutzer, zum Beispiel, ob es sich um ein mögliches Zweit-Konto
@@ -3010,7 +3017,6 @@ de:
   observation_accuracy_experiment_all_results: "Alle Ergebnisse"
   observation_accuracy_experiment_methods: "Methoden"
   observation_accuracy_experiment_step_1: "Schritt 1: Erstellung der Stichproben und Zuordnung"
-  observation_accuracy_experiment_from_the: "Aus den Beobachtungen der iNaturalist-Datenbank (A) haben wir eine zufällige Stichprobe (B) erzeugt. Teilmengen dieser Proben wurden dann den Prüfern zugeordnet, basierend auf den unten beschriebenen Kriterien. Wir haben uns zum Ziel gesetzt, jede Beobachtung mehreren Prüfern zuzuweisen (\"Target validator redundancy\")."
   observation_accuracy_experiment_sample_generated: "Stichprobe erstellt: %{date}"
   observation_accuracy_experiment_sample_size: "Stichprobengröße: %{number}"
   observation_accuracy_experiment_target_validator: "Target validator redundancy: %{number}"
@@ -6484,22 +6490,22 @@ de:
           die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
           Beobachtung im Projekt zu sehen und impliziert, dass du
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
-        quality_assessment_help2_html: |
-          <p> Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
+        quality_assessment_help3_html: |
+          <p>Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
           </p>
 
           <ul>
-           <li>die Beobachtung <strong>ein Datum</strong> hat</li>
-           <li>die Beobachtung <strong>georeferenziert</strong> ist (d.h. Lat/Lon-Koordinaten enthält)</li>
-           <li>die Beobachtung <strong>Bilder oder Tonaufnahmen</strong> enthält</li>
-           <li>die Beobachtung <strong>nicht die ID 'Mensch'</strong> (Homo sapiens) hat</li>
+          <li>die Beobachtung <strong>ein Datum hat</strong></li>
+          <li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. Lat/Lon-Koordinaten enthält)</li>
+          <li>die Beobachtung <strong>Bilder oder Tonaufnahmen enthält</strong></li>
+          <li>die Beobachtung <strong>nicht die ID 'Mensch' (Homo sapiens) hat</strong></li>
           </ul>
           <p>
-          Beobachtungen erreichen <strong>"Forschungsqualität"</strong> wenn
+          Beobachtungen erreichen <strong>"Forschungsqualität"</strong>, wenn
           </p>
           <ul>
           <li>
-          die %{site_name} <strong>iNat-Community der Bestimmung (ID) auf (Unter-)Artniveau</strong> zustimmt, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
+          die %{site_name}<strong>-Community der Bestimmung (ID) auf (Unter-)Artniveau zustimmt</strong>, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
           </li>
           </ul>
           <p>
@@ -6507,30 +6513,33 @@ de:
           </p>
           <ul>
           <li>
-          der <strong>Standort als nicht korrekt</strong> erscheint (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
+          der <strong>Standort als nicht korrekt erscheint</strong> (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
           </li>
           <li>
-          der <strong>Organismus nicht wild/verwildert</strong> ist (z.B. kultiviert oder in Haltung von Menschen oder auch von intelligenten Außerirdischen)
+          der Organismus <strong>nicht wild/verwildert ist</strong> (z.B. angepflanzt oder in menschlicher Haltung)
           </li>
           <li>
-          die Beobachtung <strong>keine Hinweise auf einen Organismus</strong> zeigt, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
+          die Beobachtung <strong>keine Hinweise auf einen Organismus zeigt</strong>, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
           </li>
           <li>
-          die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus</strong> aufweist (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
+          die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus aufweist</strong> (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
           </li>
           <li>
-          die Beobachtung keine genauere ID erlaubt <em>und</em> die Community-ID auf Familienniveau oder höher ist
+          die Beobachtung <strong>nicht nur Fotos in Bezug auf ein bestimmtes Subjekt enthält</strong> (z.B. unterschiedliche Arten in den einzelnen Fotos einer Beobachtung. Unterstützende Habitataufnamen assoziiert mit einer Art sind aber in Ordnung)
           </li>
           <li>
-          der Beobachter <strong>aus der "Community-ID" ausgetreten</strong> ist und die Community dem vom Beobachter bestimmten Taxon widerspricht
+          die Beobachtung markiert wurde als 'ID bereits so gut wie möglich' <em>und</em> die Community-ID auf Familenniveau oder höher ist
+          </li>
+          <li>
+          der Beobachter aus der "Community-ID" ausgetreten ist und die Community mehrheitlich dem vom Beobachter bestimmten Taxon widerspricht
           </li>
           </ul>
           <p>
-          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System mitbestimmen darf:
+          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System ein Wörtchen mitreden darf:
           </p>
           <ul>
           <li>
-          Das System wird eine Beobachtung automatisch als nicht wild/verwildert kennzeichnen, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als nicht wild/verwildert markiert wurden.
+          Das System ist so eingestellt, dass eine Beobachtung automatisch als nicht wild/verwildert eingestuft wird, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als nicht wild/verwildert markiert wurden.
           </li>
           </ul>
         score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
@@ -8081,7 +8090,7 @@ de:
             action:
               not_supported_for_this_kind_of_content: wird für diese Art von Inhalten nicht unterstützt
             base:
-              only_staff_can_unhide: Nur Administratoren können versteckte Inhalte wieder sichtbar machen
+              only_staff_and_hiding_curators_can_unhide: Nur Administratoren und Kuratoren, die den Inhalt ausblendeten, können ihn wieder sichtbar machen
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
