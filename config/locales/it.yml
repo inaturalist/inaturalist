@@ -2708,8 +2708,6 @@ it:
     a quella persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Nascondi
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Annulla sospensione
   moderator_note_desc: |
     Le note dei moderatori sono registrazioni di risposte di moderazione o di preoccupazioni
     basate su prove circa un utente, ad esempio se sono un possibile account sockpuppet. Si prega di non includere le opinioni personali o dicerie sull'utente.
@@ -3079,7 +3077,6 @@ it:
   observation_accuracy_experiment_all_results: "Tutti i risultati"
   observation_accuracy_experiment_methods: "Metodi"
   observation_accuracy_experiment_step_1: "Passo 1: Generazione del Campione e Assegnazione"
-  observation_accuracy_experiment_from_the: "Dal database iNaturalist di osservazioni (A), abbiamo generato un campione casuale (B). I sottocampioni sono stati assegnati ai validatori candidati in base ai criteri descritti di seguito. Abbiamo mirato ad assegnare ogni osservazione campione a più validatori candidati ( \"Ridondanza Validatore Target\" )."
   observation_accuracy_experiment_sample_generated: "Campione generato: %{date}"
   observation_accuracy_experiment_sample_size: "Dimensione del campione: %{number}"
   observation_accuracy_experiment_target_validator: "Ridondanza Validatore Target: %{number}"
@@ -6550,56 +6547,6 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help2_html: |
-          <p>
-          La valutazione della qualità dei dati è una sintesi dell'accuratezza di un'osservazione. Tutte le osservazioni iniziano come grado <strong>"Informale"</strong> e diventano <strong>"Ha bisogno di ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>l'osservazione <strong>ha una data</strong></li>
-          <li>l'osservazione <strong>è georeferenziata</strong> (cioè ha coordinate latitudine/longitudine)</li>
-          <li>l'osservazione <strong>ha foto o suoni</strong></li>
-          <li>l'osservazione <strong>non riguarda un essere umano</strong></li>
-          </ul>
-          <p>
-          Le osservazioni diventano <strong>"Livello Ricerca"</strong> quando
-          </p>
-          <ul>
-          <li>
-          la comunità %{site_name} <strong>è d'accordo sull'ID a livello di specie o inferiore</strong>, cioè quando più di 2/3 degli identificatori concordano su un taxon (se la comunità ha votato che il Taxon comunitario non può essere migliorato, questo ritorna all'ID di livello sottofamiglia o inferiore)
-          </li>
-          </ul>
-          <p>
-          Le osservazioni torneranno a essere <strong>"Informale"</strong> se le condizioni di cui sopra non vengono soddisfatte o se la community è d'accordo che
-          </p>
-          <ul>
-          <li>
-          la <strong>posizione non sembra accurata</strong> (ad esempio scimmie in mezzo all'oceano, ippopotami negli edifici per uffici, ecc.)
-          </li>
-          <li>
-          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio in cattività o coltivato dall'uomo o alieni spaziali intelligenti)
-          </li>
-          <li>
-          l'osservazione <strong>non presenta evidenza di un organismo</strong>, ad es. immagini di giochi d'acqua, rocce, paesaggi che non includono l'organismo, ecc.
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove recenti (~100 anni) della presenza dell'organismo</strong> (ad esempio fossili, ma tracce, escrementi e foglie morte sono ok)
-          </li>
-          <li>
-          l'osservazione non necessita più di una ID <em>e</em> l'ID della comunità è pari al livello Famiglia o superiore
-          </li>
-          <li>
-          l'osservatore ha rinunciato all'ID della comunità e l'ID del taxon della comunità non è un antenato o un discendente del taxon associato all'ID dell'osservatore
-          </li>
-          </ul>
-          <p>
-          E se ciò non fosse abbastanza complicato, ci sono anche situazioni in cui il sistema ottiene un voto:
-          </p>
-          <ul>
-          <li>
-          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se ci sono almeno altre 10 osservazioni a livello di genere o inferiore nel più piccolo luogo equivalente a una contea, uno stato o un paese che contiene questa osservazione, e l'80% o più di tali osservazioni sono state contrassegnate come non selvatiche/naturalizzate.
-          </li>
-          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
@@ -8123,7 +8070,6 @@ it:
             action:
               not_supported_for_this_kind_of_content: non è supportato per questo tipo di contenuto
             base:
-              only_staff_can_unhide: Solo lo staff può mostrare nuovamente i contenuti nascosti
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
