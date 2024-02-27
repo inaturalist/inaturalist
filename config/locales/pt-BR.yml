@@ -2781,8 +2781,6 @@ pt-BR:
     Isto inclui ações de moderadores (por exemplo, ocultar ou exibir comentários), notas, e sinalizações em tudo que este usuário criou além de táxons. Isso é <strong>visível apenas para os curadores</strong> e <strong>curadores não podem ver seu próprio histórico</strong>, então notas sobre uma pessoa nunca devem ser visíveis para essa pessoa.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Remover Suspensão
   moderator_note_desc: |
     Notas do moderador são registros de respostas de moderação ou preocupações baseadas em provas sobre um usuário, como, por exemplo, se ele é uma possível conta com identidade falsa. Por favor, não inclua opiniões pessoais ou boatos sobre o usuário.
   #Person who executed a moderator action or flagged something
@@ -3149,7 +3147,6 @@ pt-BR:
   observation_accuracy_experiment_all_results: "Todos os Resultados"
   observation_accuracy_experiment_methods: "Métodos"
   observation_accuracy_experiment_step_1: "Passo 1: Geração de Amostragem e Atribuição"
-  observation_accuracy_experiment_from_the: "A partir da base de dados de observações do iNaturalist (A) foi gerada uma amostra aleatória (B). Subamostras foram atribuídas a validadores candidatos com base nos critérios descritos abaixo. O objetivo era o de atribuir cada amostra de observação a múltiplos validadores candidatos ( \"Redundancia de Validadores Alvos\" )."
   observation_accuracy_experiment_sample_generated: "Amostra gerada em: %{date}"
   observation_accuracy_experiment_sample_size: "Tamanho da amostra: %{number}"
   observation_accuracy_experiment_target_validator: "Redundância de validadores alvo: %{number}"
@@ -6714,74 +6711,6 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |
-          <p>
-          A avaliação da qualidade dos dados é um resumo da precisão de uma observação. Todos
-          as observações começam como grau <strong>"casual"</strong> e tornam-se
-          <strong>"precisa de ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>a observação <strong>tem datação</strong></li>
-          <li>a observação <strong>é georreferenciada</strong> (ou seja, tem coordenadas lat/lon)</li>
-          <li>a observação <strong>tem fotos ou sons</strong></li>
-          <li>a observação <strong>não é de um ser humano</strong></li>
-          </ul>
-          <p>
-          As observações se tornam <strong>"grau de pesquisa"</strong> quando
-          </p>
-          <ul>
-          <li>
-          a comunidade <strong>%{site_name} concorda com o ID de nível de espécie ou
-          inferior</strong>, ou seja, quando mais de 2/3 dos identificadores concordam com um
-          táxon (se a comunidade votou que o táxon comunitário não pode
-          não pode ser melhorado, isso reverte para ID de nível de subfamília ou inferior)
-          </li>
-          </ul>
-          <p>
-          As observações serão revertidas para <strong>"casual"</strong> se as condições acima não forem atendidas ou se a comunidade concordar
-          </p>
-          <ul>
-          <li>
-          o <strong>local não parece
-          preciso</strong> (por exemplo, macacos no meio do oceano,
-          hipopótamos em edifícios de escritórios, etc.)
-          </li>
-          <li>
-          o <strong>organismo não é selvagem/natural</strong> (por exemplo, cativo ou cultivado por humanos
-          ou alienígenas espaciais inteligentes)
-          </li>
-          <li>
-          a observação <strong>não apresenta evidência de um
-          organismo</strong>, por ex. imagens de características da água,
-          rochas, paisagens que não incluem o organismo, etc.
-          </li>
-          <li>
-          a observação <strong>não apresenta evidências recentes (~100 anos) do
-          organismo</strong> (por exemplo, fósseis. Rastros, fezes e folhas mortas
-          estão OK)
-          </li>
-          <li>
-          a observação não precisa mais de um ID <em>e</em> o ID da comunidade é família ou superior
-          </li>
-          <li>
-          o observador optou por não receber o ID da comunidade e o ID da comunidade
-          não é um ancestral ou descendente do táxon associado
-          com o ID sugerido pelo observador
-          </li>
-          </ul>
-          <p>
-          E se isso não fosse complicado o suficiente, também há situações em que o sistema atua:
-          </p>
-          <ul>
-          <li>
-          O sistema considera que a observação não é selvagem/natural
-          se houver pelo menos 10 outras observações de um gênero ou inferior em
-          um local equivalente ou menor que um condado, estado ou país que
-          contém esta observação e 80% ou mais dessas observações
-          foram marcados como cultivado/em cativeiro.
-          </li>
-          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.
@@ -8430,7 +8359,6 @@ pt-BR:
             action:
               not_supported_for_this_kind_of_content: não é suportado para este tipo de conteúdo
             base:
-              only_staff_can_unhide: Somente funcionários do site podem reexibir conteúdo oculto
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
