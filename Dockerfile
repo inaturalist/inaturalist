@@ -30,6 +30,7 @@ RUN rm -rf node_modules
 
 RUN npm install
 
+COPY --chown=inaturalist:inaturalist docker/init_docker_rails_app.sh /code/init_docker_rails_app.sh
 COPY --chown=inaturalist:inaturalist config/config.docker.yml /code/config/config.yml
 COPY --chown=inaturalist:inaturalist config/database.docker.yml /code/config/database.yml
 COPY --chown=inaturalist:inaturalist config/s3.docker.yml /code/config/s3.yml
