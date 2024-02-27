@@ -2807,8 +2807,6 @@ sv:
     för den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Dölj
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -3183,7 +3181,7 @@ sv:
   observation_accuracy_experiment_all_results: "Alla resultat"
   observation_accuracy_experiment_methods: "Metoder"
   observation_accuracy_experiment_step_1: "Steg 1: Provgenerering och Tilldelning"
-  observation_accuracy_experiment_from_the: "Från iNaturalist-databasen med fynd (A), genererade vi ett slumpmässigt urval (B). Delprover tilldelades potentiella verifierare baserat på de kriterier som beskrivs nedan. Vi försökte tilldela varje provfynd till flera potentiella verifierare ( \"Målverifierarredundans\" )."
+  observation_accuracy_experiment_from_the2: "Från iNaturalists fynddatabas (A), genererade vi ett slumpmässigt urval (B). Delprover tilldelades potentiella verifierare (C) baserat på de kriterier som beskrivs nedan. Vi försökte tilldela varje provfynd till flera potentiella verifierare ( \"Målverifierarredundans\" )."
   observation_accuracy_experiment_sample_generated: "Genererat prov: %{date}"
   observation_accuracy_experiment_sample_size: "Provstorlek: %{number}"
   observation_accuracy_experiment_target_validator: "Målverifierarredundans: %{number}"
@@ -6830,73 +6828,6 @@ sv:
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
         join_project_desc_html: |
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
-        quality_assessment_help2_html: |
-          <p>
-          Bedömningen av datakvaliteten är en sammanfattning av ett fynds korrekthet. Alla
-          fynd börjar som <strong>"grund"</strong>klass, och blir
-          <strong>"behöver bestämning"</strong> när
-          </p>
-
-          <ul>
-          <li>fyndet<strong>har ett datum</strong></li>
-          <li>fyndet<strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
-          <li>fyndet<strong>har bilder eller ljud</strong></li>
-          <li>fyndet<strong>inte är en människa</strong></li>
-          </ul>
-          <p>
-          fynd får <strong>"forskningsklass"</strong> när
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>communityn håller med om bestämning till artnivå eller
-          lägre</strong>, dvs när fler än 2/3 av bestämmarna är överens om ett
-          taxon (om communityn har röstat om att Community-bestämningen inte längre kan
-          förbättras, återgår den till underfamiljsbestämning eller lägre)
-          </li>
-          </ul>
-          <p>
-          Fynd återgår till <strong>"grund"</strong> om ovanstående villkor inte är uppfyllda
-          eller communityn håller med om att
-          </p>
-          <ul>
-          <li>
-           <strong>platsen ser inte
-          rätt ut</strong> (t.ex. apor mitt i havet,
-          flodhästar i kontorsbyggnader, etc.)
-          </li>
-          <li>
-          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människan
-          eller intelligenta rymdvarelser)
-          </li>
-          <li>
-          fyndet <strong>inte utgör stöd för en
-          organism</strong>, t.ex. bilder av vattensamlingar,
-          klippor, landskap som inte inkluderar organismen, etc.
-          </li>
-          <li>
-          fyndet <strong>utgör inte stöd för organismern i modern tid (~100 år)</strong> (t.ex. fossil, men spår, avföring och döda blad
-          är okej)
-          </li>
-          <li>
-          fyndet behöver inte längre bestämmas <em>och</em> community-bestämningen är till familj eller högre
-          </li>
-          <li>
-          observatören har valt bort community-bestämning samt community-
-          bestämningens taxon är inte en förfader eller ättling till det taxon
-          observatören bestämt
-          </ul>
-          <p>
-          Och om det inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
-          </p>
-          <ul>
-          <li>
-          Systemet kommer att rösta för att fyndet inte är vilt/naturaliserat
-          om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta län-, stat-, eller landmotsvarighet till plats som
-          innehåller detta fynd samt att 80% eller fler av dessa fynd
-          har markerats som inte vilt/naturaliserat.
-          </li>
-          </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
         observation_flagged_notice_html: |
           Detta fynd har flaggats som spam och är inte längre offentligt synlig. Du kan se den eftersom du skapade den, eller är en webbplatsförvaltare. Om du tror att detta är ett misstag, vänligen
@@ -8505,7 +8436,6 @@ sv:
             action:
               not_supported_for_this_kind_of_content: stöds inte för denna typ av innehåll
             base:
-              only_staff_can_unhide: Endast personal kan synliggöra dolt innehåll
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
