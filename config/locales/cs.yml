@@ -2913,8 +2913,6 @@ cs:
     Patří sem akce moderátora (např. skrývání nebo rušení skrývání komentářů), poznámky a příznaky u všeho, co tento uživatel vytvořil, kromě taxonů. Toto je <strong>viditelné pouze pro kurátory</strong> a <strong>kurátoři nemohou prohlížet svou vlastní historii</strong>, takže poznámky o dané osobě by nikdy neměly být viditelné pro tuto osobu.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skrýt
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Obnovit
   moderator_note_desc: |
     Moderátorské poznámky jsou záznamy o reakcích moderátorů nebo o obavách ohledně uživatele, například o tom, zda se nejedná o falešný účet. Neuvádějte prosím osobní názory nebo pomluvy o uživateli.
   #Person who executed a moderator action or flagged something
@@ -8510,7 +8508,6 @@ cs:
             action:
               not_supported_for_this_kind_of_content: není podporováno pro tento druh obsahu
             base:
-              only_staff_can_unhide: Pouze personál může odkrýt skrytý obsah
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
