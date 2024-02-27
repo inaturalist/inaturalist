@@ -2664,8 +2664,6 @@ id:
     Ini termasuk tindakan moderator (seperti menyembunyikan atau menampilkan komentar), catatan, dan semua tanda yang diberikan pengguna ini kepada apapun kecuali taksa. Ini <strong>hanya dapat dilihat oleh kurator</strong> dan <strong>kurator tidak dapat melihat riwayatnya sendiri</strong>, jadi catatan tentang seseorang seharusnya tidak dapat dilihat oleh orang itu sendiri.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Sembunyikan
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Batalkan penangguhan
   moderator_note_desc: |
     Catatan moderator adalah catatan yang mengandung respons moderasi atau perhatian yang berbasis fakta tentang seorang pengguna, seperti ketika mereka mungkin adalah akun buzzer. Jangan memasukkan pendapat pribadi atau gosip tentang pengguna tersebut.
   #Person who executed a moderator action or flagged something
@@ -3039,7 +3037,7 @@ id:
   observation_accuracy_experiment_all_results: "Semua Hasil"
   observation_accuracy_experiment_methods: "Metode"
   observation_accuracy_experiment_step_1: "Langkah 1: Pembuatan serta Pelabelan Sampel"
-  observation_accuracy_experiment_from_the: "Dari basis data pengamatan iNaturalist (A), kami membuat sampel acak (B). Subsampel diberikan kepada kandidat validator berdasarkan kriteria yang dijelaskan di bawah ini. Kami ingin menugaskan setiap pengamatan sampel ke beberapa kandidat validator (\"Redundansi validator target\")."
+  observation_accuracy_experiment_from_the2: "Dari basis data pengamatan iNaturalist (A), kami membuat sampel acak (B). Subsampel diberikan kepada kandidat validator (C) berdasarkan kriteria yang dijelaskan di bawah ini. Kami ingin menugaskan setiap pengamatan sampel ke beberapa kandidat validator (\"Redundansi validator target\")."
   observation_accuracy_experiment_sample_generated: "Sampel dibuat pada: %{date}"
   observation_accuracy_experiment_sample_size: "Jumlah sampel: %{number}"
   observation_accuracy_experiment_target_validator: "Redundansi validator target: %{number}"
@@ -6516,74 +6514,6 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
-        quality_assessment_help2_html: |
-          <p>
-          Penilaian kualitas data merupakan ringkasan dari akurasi sebuah pengamatan. 
-          Semua pengamatan dimulai dengan tingkat <strong>"kasual"</strong> dan menjadi
-          <strong>"memerlukan ID"</strong> saat
-          </p>
-
-          <ul>
-          <li>pengamatan <strong>memiliki tanggal</strong></li>
-          <li>pengamatan <strong>memiliki referensi geografis</strong> (memiliki koordinat lin/buj)</li>
-          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
-          <li>pengamatan <strong>bukan tentang manusia</strong></li>
-          </ul>
-          <p>
-          Pengamatan menjadi <strong>"tingkat riset"</strong> ketika
-          </p>
-          <ul>
-          <li>
-          <strong>community %{site_name} setuju dengan ID tingkat spesies ke 
-          bawah</strong>, yaitu saat 2/3 pengidentifikasi setuju dengan suatu
-          takson (jika komunitas telah setuju bahwa Takson Komunitas tidak bisa
-          ditingkatkan lagi, ini merujuk kepada ID tingkat subfamili ke bawah)
-          </li>
-          </ul>
-          <p>
-          Pengamatan akan kembali ke <strong>"kasual"</strong> jika kondisi di atas tidak terpenuhi atau komunitas setuju bahwa
-          </p>
-          <ul>
-          <li>
-          <strong>lokasinya tidak terlihat
-          akurat</strong> (misalkan monyet di tengah laut,
-          hippo di kantor, dll.)
-          </li>
-          <li>
-          <strong>organismenya tidak liar/alami</strong> (ditangkar atau dibudidayakan 
-          oleh manusia atau alien yang cerdas)
-          </li>
-          <li>
-          pengamatannya <strong>tidak menunjukkan bukti dari suatu
-          organisme</strong>, seperti gambar air, batu
-          atau pemandangan yang tidak memiliki organisme
-          </li>
-          <li>
-          pengamatannya <strong>tidak menunjukkan bukti organisme yang masih baru 
-          (~100 tahun)</strong> (seperti fosil, tetapi jejak, tahi, dan daun mati
-          masih ok)
-          </li>
-          <li>
-          pengamatan tidak memerlukan ID lagi <em>dan</em> ID komunitas setingkat famili ke atas
-          </li>
-          <li>
-          pengamat telah memilih untuk tidak memakai ID komunitas dan 
-          takson ID komunitas bukan merupakan nenek moyang atau keturunan 
-          dari takson yang terkait dengan ID pengamat
-          </li>
-          </ul>
-          <p>
-          Dan kalau ini masih belum terasa rumit, masih ada situasi tertentu yang memberikan hak suara untuk sistem:
-          </p>
-          <ul>
-          <li>
-          Sistem akan menyatakan bahwa pengamatannya tidak liar/alami
-          jika ada setidaknya 10 pengamatan lain dari suatu genus atau 
-          tingkat di bawahnya di wilayah administratif setingkat desa, provinsi, 
-          atau negara yang mengandung pengamatan ini dan 80% pengamatannya 
-          atau lebih telah ditandai tidak liar/alami.
-          </li>
-          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
@@ -8046,7 +7976,6 @@ id:
             action:
               not_supported_for_this_kind_of_content: tidak didukung untuk konten jenis ini
             base:
-              only_staff_can_unhide: Hanya staf yang dapat menampilkan kembali konten yang disembunyikan
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
               must_be_a_curator: harus merupakan kurator
