@@ -2657,8 +2657,6 @@ nb:
     Dette inkluderer moderatorhandlinger (f.eks. skjuling og visning av kommentarer), notater, og markeringer på alt denne brukeren har skapt bortsett fra taksa. Dette er <strong>kun synlig for kuratorer</strong> og <strong>kurator kan ikke se deres egen historikk</strong>, så notater om en person skal aldri være synlige for den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Opphev utestenging
   moderator_note_desc: |
     Moderatornotater er dokumentasjon av moderasjonssvar eller bevisbaserte bekymringer rundt en bruker, sånn som om de kan være en dobbeltkonto. Vennligst ikke inkluder personlige meninger eller rykter om brukeren.
   #Person who executed a moderator action or flagged something
@@ -7563,7 +7561,6 @@ nb:
             action:
               not_supported_for_this_kind_of_content: støttes ikke for denne typen innhold
             base:
-              only_staff_can_unhide: Kun personalet kan synliggjøre skjult innhold
               staff_cannot_be_suspended: Personale kan ikke suspenderes
             user_id:
               must_be_a_curator: må være en kurator
