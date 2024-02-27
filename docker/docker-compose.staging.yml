@@ -17,7 +17,7 @@ services:
 
   rails:
     container_name: rails
-    image: rails:1.0
+    image: inaturalist/inaturalist:latest
     environment:
       RAILS_ENV: development
       INAT_DB_HOST: pg
@@ -29,10 +29,14 @@ services:
     extra_hosts:
       - "pg:CHANGE_ME"
       - "es:CHANGE_ME"
+    volumes:
+      - rails_attachments_data:/code/public/attachments
+    command: >
+      /bin/sh -c "/code/init_docker_rails_app.sh" 
 
   api:
     container_name: api
-    image: api:1.0
+    image: inaturalist/inaturalistapi:latest
     environment:
       NODE_ENV: development
       INAT_DB_HOST: pg
@@ -42,7 +46,7 @@ services:
       INAT_ES_HOST: es
       INAT_ES_INDEX_PREFIX: production
       INAT_REDIS_HOST: redis
-      INAT_WEB_HOST: host.docker.internal
+      INAT_RAILS_URL: http://host.docker.internal:3000
     ports:
       - 4000:4000
     extra_hosts:
