@@ -750,7 +750,7 @@ zh-CN:
   birthday: 生日
   block: 屏蔽
   blocking_description: 屏蔽可以阻止您与其他用户之间的任何通信。它适用于其他用户可能危及您安全的情况，如存心骚扰或其他辱骂行为。
-  block_removed: 封禁已移除
+  block_removed: 屏蔽已移除
   blocked_users: 已屏蔽用户
   blog_widget: 博客小部件
   blue_butterfly_etc: "蓝色、蝴蝶等"
@@ -1680,6 +1680,7 @@ zh-CN:
   extinct_in_the_wild: 野外灭绝
   extra_properties: 额外属性
   evidence_of_organism: 生物证据
+  evidence_related_to_single_subject: 与单一主体有关的证据
   facebook: 脸书
   failed_to_find_your_location: 无法找到您的位置。
   failed_to_repair_photo: "修复照片失败：%{errors}"
@@ -1785,6 +1786,7 @@ zh-CN:
     标记此用户：%{title}
   flag_it!: 标记它！
   flag_marked_as_resolved_html: '<span class="meta">将其标记为</span><strong>已解决。</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">标记为</span><strong>未解决。</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 项目
   flag_reason: "&ldquo;我正在标记这个%{record}，因为"
@@ -2483,6 +2485,7 @@ zh-CN:
   make_sure_the_default_photo_looks_good: 确保默认照片在大尺寸上看起来不错。
   make_this_your_default_license: "将其作为您的默认 %{type} 许可协议"
   make_this_the_primary_listing: "将其作为主要列表"
+  make_your_app_confidential: 如果您想要安全地存储您的应用，即不出现在可公开获取且可反编译的二进制文件中，可以让你的应用实现保密。 如果不是这种情况并且您计划使用PKCE流，则请取消选中此复选框。
   mammals: 哺乳类
   manage_all_your_subscriptions: 管理所有订阅者
   manage_names: 管理名称
@@ -2578,8 +2581,12 @@ zh-CN:
     这包括版主行为（如隐藏或解除隐藏评论）、批注、标记用户除分类群以外创建的任何内容。这<strong>仅对管理员可见</strong>，而且<strong>管理员也不能看到其个人自身的历史</strong>，因此对他人的标记对其本人而言将永不可见。
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: 隐藏
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: 取消隐藏
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: 停用
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: 解封
+  moderator_actions_unsuspend: 解封
   moderator_note_desc: |
     版主批注是版主针对某一用户、基于证据的关注所做出的响应记录，比如判断其是否可能是马甲账号。请不要包含对用户的个人成见或道听途说。
   #Person who executed a moderator action or flagged something
@@ -2916,6 +2923,9 @@ zh-CN:
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
+  observation_accuracy_experiment_our_accuracy_estimate: "我们从该实验中得到的估计结果是准确度为%{percent}。"
+  observation_accuracy_experiment_precision_results: "按子集排序的精度结果"
+  observation_accuracy_experiment_taxon_rank_level: "分类级别"
   observation_accuracy_experiment_taxon_observations_count: "分类单元观察计数"
   observation_accuracy_experiment_iconic_taxon_name: "标志性分类单元名称"
   observation_accuracy_experiment_continent: "大洲"
@@ -2924,6 +2934,8 @@ zh-CN:
   observation_accuracy_experiment_show_frequency: "显示频率"
   observation_accuracy_experiment_click_on_bars: "点击条形来探索子集。"
   observation_accuracy_experiment_accuracy_results: "按子集排序的准确度结果"
+  observation_accuracy_experiment_experiment_still: "实验仍在进行中。我们会每天更新直到达到验证样本的截止日期%{date}。"
+  observation_accuracy_experiment_observation_accuracy_experiment: "观察精确度测试"
   observation_accuracy_experiment_validators: "验证节点："
   observation_accuracy_experiment_show_additional_validators: "(显示额外的验证节点)"
   observation_accuracy_experiment_hide_additional_validators: "(隐藏额外的验证节点)"
@@ -2932,14 +2944,41 @@ zh-CN:
   observation_accuracy_experiment_verifiable_results: "可验证结果"
   observation_accuracy_experiment_all_results: "所有结果"
   observation_accuracy_experiment_methods: "方法"
+  observation_accuracy_experiment_step_1: "第1步：采样生成和分配"
+  observation_accuracy_experiment_from_the2: "我们从iNaturalist观察数据库(A)生成了一个随机样本(B)。 根据以下标准将次样品分配给候选验证人（C）。 我们的目的是将每个样本观察分配给多个候选验证人 ( \"目标验证人冗余\" )。"
   observation_accuracy_experiment_sample_generated: "样本生成于：%{date}"
   observation_accuracy_experiment_sample_size: "样本大小：%{number}"
+  observation_accuracy_experiment_target_validator: "目标验证人冗余度：%{number}"
+  observation_accuracy_experiment_number_of: "候选验证人人数：%{number}"
+  observation_accuracy_experiment_mean_subsample: "每个候选验证人的平均子样本规模：%{number}"
+  observation_accuracy_experiment_mean_number: "每个观察的平均验证人数量：%{number}"
+  observation_accuracy_experiment_validator_candidate: "候选验证人评判"
+  observation_accuracy_experiment_if_an_identifier: "如果一个鉴定者对一个分类单元进行了至少三次正在改进的鉴定，我们即认为他们有资格验证该分类单元。 正在改进的鉴定指的是由社群鉴定所认同的排行第一的分类建议。"
+  observation_accuracy_experiment_if_an_identifier_continent: "如果一个鉴定者对某大洲的一个分类单元进行了至少三次正在改进的鉴定，我们即认为他们有资格验证该大洲的这一分类单元。 正在改进的鉴定指的是由社群鉴定所认同的排行第一的分类建议。"
+  observation_accuracy_experiment_for_example: "例如，鉴定者1在一项观察记录中添加了鉴定A。 如果鉴定者2稍后添加领先意见鉴定B，鉴定者1的鉴定就会变成一个正在改进的鉴定。 如果鉴定者3稍后又添加了一个支持B意见的鉴定，则鉴定者2的鉴定B也将成为一个正在改进的鉴定。"
+  observation_accuracy_experiment_we_contacted: "我们联系候选验证人，请他们对其子样本集进行鉴定。 右边的图形按验证人数编组样本观察。"
+  observation_accuracy_experiment_number_percent_of: "参与的验证人数量：%{number}（%{percentage}）"
+  observation_accuracy_experiment_we_scored: "我们将样本中的观察分为正确、不确定或不正确，方法是将验证人的身份识别与每个样本观察的分类单元进行比较。 匹配或进一步精确于观察分类单元的鉴定被评为正确。 不一致的粗略识别被评为不确定，多个验证者不同意的情况也是如此。不同意子分类单元的粗略识别或识别为不同分支被评为不正确。"
   observation_accuracy_experiment_correct: "正确"
   observation_accuracy_experiment_uncertain: "不确定"
   observation_accuracy_experiment_incorrect2: "错误"
   observation_accuracy_experiment_step_4: "第4步：准确度和精确度计算"
   observation_accuracy_experiment_accuracy: "准确度"
   observation_accuracy_experiment_precision: "精确度"
+  observation_accuracy_experiment_in_the_example: "在右侧的示例中，三个样本观察的平均精确度为51%。"
+  observation_accuracy_validator_email_subject2: "您是否会帮助我们进行实验%{version}，以估计iNaturalist观察的准确度？"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    您是否会帮助我们进行一次<a href="%{url}">实验（版本%{version}）</a>，以估计iNaturalist观察的准确度？
+  observation_accuracy_validator_email_we_will_calculate: |
+    我们将通过将您的鉴定结果与观察分类单元进行比较来计算精度。您可以跳过您以前添加过鉴定的观察，如果这一观察仍然相关的话。 要查看我们是如何计算协议和分歧的更多信息，请继续阅读。
+  observation_accuracy_validator_email_ids_equal_to: |
+    相当于(A)或低于(B)观察分类单元的鉴定将被视为“同意”。
+  observation_accuracy_validator_email_ids_sibling_to: |
+    鉴定为不同的分类单元（C），或者是在您鉴定为其上级分类单元，但又选择了“不，但是……”选项的“潜在不同意”的情况（D）将被视为“不同意”。
+  observation_accuracy_validator_email_ids_coarser_than: |
+    您鉴定为其上级分类单元，但又选择了“我不知道，但是……”选项的“潜在不同意”情况（E）将被视为“不确定”。
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    我们十分感激您在 iNaturalist 上帮助鉴定，也十分感谢您参与本次研究。请先阅读<a href="%{url}">方法</a>以了解有关实验设计的更多问题。
   observation_accuracy_validator_email_with_gratitude: "此致  \n敬礼，"
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist 团队
   observation_added_to_the_project: "添加观察到项目“%{project}”"
@@ -3746,6 +3785,8 @@ zh-CN:
     zimbabwe: 津巴布韦
   places_of_interest: 名胜古迹
   places_merged_successfully: 地点已成功合并！
+  places_warning_export_complex_boundary_html: |
+    如果您在尝试从一个复杂的边界中导出观察，请考虑<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">转而从GBIF下载它们</a>，在那里你可以手动绘制边界；或者你通过iNat已有的地方或者勾选框先进行导出，然后再自行筛选数据。
   places_warning_look_for_existing2_html: |
     寻找<a href="/search?source[]=places">现存地方</a>以确定你没有创建重复地方。我们已经设置了所有大洲和国家以及很多政治边界的地方。
   places_warning_please_keep_in_mind: |
@@ -4390,6 +4431,8 @@ zh-CN:
     <strong>如果您的组织有兴趣加入 iNaturalist 网络，您可以在%{start_tag_join}这里%{end_tag_join}了解更多细节。
     </strong>
   sites_network_consists_of: "iNaturalist网络由以下几个组织组成："
+  sites_network_inaturalist_network_collection: |
+    iNaturalist 网络是与全球 iNaturalist 社区完全连接的本地化网站的集合。 网络站点由当地机构支持，促进当地使用并促进 iNaturist 数据的使用，以造福当地生物多样性。 他们可以获取其地理区域内的真实坐标，这些坐标会自动从公众视野中隐藏起来，以便更好地保护受威胁物种。
   sites_network_your_username: |
     您的用户名和密码适用于所有iNaturalist Network的网站。 如果您选择加入一个网络站点， 支持每个站点的本地机构也可以访问您的电子邮件地址(仅与您进行有关站点活动的联系)和访问您在公开场合下选择隐藏或私有的真实坐标。
   some_agree: 部分同意
@@ -4730,6 +4773,7 @@ zh-CN:
   text_editing_controls: 文本编辑控制
   thanks!: 谢谢 ！
   thanks_from_all_of_us_here_at: 社区对您表示感谢！来自大家的
+  that_account_is_already_connected: 该帐户已经连接到另一个用户
   that_photo_doesnt_exist: 该照片不存在。
   that_observation_doesnt_exist: 该观察不存在。
   that_observation_doesnt_have_any_photos: "该观察没有任何照片。"
@@ -5156,7 +5200,7 @@ zh-CN:
   #not the place. Gender for all variables is not known..
   user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
     %{user} 认为这是一个 %{taxon} 在 %{place} 的完整列表
-  user_blocked: 用户已封禁
+  user_blocked: 用户已屏蔽
   user_commented: "%{user} 已评论"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意先前更精确的识别"
@@ -5546,7 +5590,7 @@ zh-CN:
     您可以编辑这个默认的检查列表，因为您是一位超管，但真的不应该需要这样做。
   you_can_only_destroy_taxa_you_created2: |
     您只能删除您创建的与分类单元更改、标识或其他内容无关的分类群。
-  you_can_only_block_three_users: 您只可以封禁3位用户
+  you_can_only_block_three_users: 您只可以屏蔽3位用户
   you_can_show_the_boundary_of: 如果地点有边界，您可以在项目页面上显示地点的边界。
   you_cant_compare_a_list_with_nothing: 您必须选择一些东西来与清单进行比较！
   you_cant_delete_a_project_list: "您不能删除一个项目清单"
@@ -5776,6 +5820,7 @@ zh-CN:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             真产地：
+          true_presences_definition2: 预料在附近地图和分类分布同时预测该分类所在的位置
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             假产地：
@@ -6185,55 +6230,6 @@ zh-CN:
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
-        quality_assessment_help2_html: |
-          <p>
-          数据质量是对观察准确性的评估。所有的观察在最初都被定为<strong>“非正式”</strong>级别，需要满足下列条件才会变为<strong>“待鉴定”</strong>级别：
-          </p>
-          <ul>
-          <li>观察<strong>拥有日期</strong></li>
-          <li>观察<strong>存在地理定位</strong>（即包含经纬度坐标）</li>
-          <li>观察<strong>有照片或声音</strong></li>
-          <li>观察<strong>不是人类</strong></li>
-          </ul>
-          <p>
-          观察需要满足以下条件才会变为<strong>“研究级别”</strong>：
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>社群的鉴定共识达到种或更低级别</strong>，换句话说，当2/3的鉴定者同意某一个分类单元（如果社区投票同意这一社区分类单元不能被进一步改进，这涉及到亚科或更低层级）
-          </li>
-          </ul>
-          <p>
-          如果不满足上述条件，或是社区同意下列事项，就会变为<strong>“非正式”</strong>级别：
-          </p>
-          <ul>
-          <li>
-          <strong>地点看起来不准确</strong>（例如大海中间的猴子观察，办公楼里的河马观察，等等）
-          </li>
-          <li>
-          <strong>生物体看起来不是自然/野生的</strong>（例如是被人类或外星智慧生命体所饲育或栽培的）
-          </li>
-          <li>
-          观察<strong>没有呈现出关于生物体的证据</strong>，比如不包括生物体的浪花、岩石、地貌的图片，等等。
-          </li>
-          <li>
-          观察<strong>没有呈现出晚近时期（约100年内）的生物体的证据</strong>（例如化石；不过脚印、粪石、枯叶是可以接受的）
-          </li>
-          <li>
-          观察不再需要鉴定，<em>而</em>既有的社区鉴定只到科或更高层级
-          </li>
-          <li>
-          观察者选择不接受社区鉴定，而社区鉴定到的分类单元和观察者的鉴定不属于分类单元上下级关系。
-          </li>
-          </ul>
-          <p>
-          如果这还不够复杂的话，还存在这样的情况会由系统做出投票：
-          </p>
-          <ul>
-          <li>
-          系统会自动投票决定某一观察系非野生/自然状态，如果在附近最小的县/州/国家级别范围内有至少十个同属或更低级别的同类观察，而其中不低于80%的观察已经被标记为非野生/非自然的。
-          </li>
-          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
@@ -6614,10 +6610,10 @@ zh-CN:
           有很多志愿者馆长在跟踪%{link_start_tag}论坛%{link_end_tag}上的信息。
     shared:
       blocked:
-        youve_been_blocked: 您已被封禁
+        youve_been_blocked: 您已被屏蔽
         youve_been_blocked_desc: |
           这个资源的所有者屏蔽了您，这导致您无法联系他们。这个页面上所有的交互特性将不会工作。
-        youve_blocked: 您已封禁该人
+        youve_blocked: 您已屏蔽该人
         youve_blocked_desc: |
           您已经屏蔽了此资源的所有者，这阻止了您的使用与他们沟通。此页面上的大多数交互特性将不能工作。
       spam:
@@ -7589,7 +7585,7 @@ zh-CN:
             action:
               not_supported_for_this_kind_of_content: 不支持此类内容
             base:
-              only_staff_can_unhide: 只有工作人员才能解除隐藏内容
+              only_staff_and_hiding_curators_can_unhide: 只有员工和隐藏内容的馆长才能取消隐藏
               staff_cannot_be_suspended: 员工不能被停用
             user_id:
               must_be_a_curator: 必须是管理员
