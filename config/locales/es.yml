@@ -2736,8 +2736,6 @@ es:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Anular suspensión
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -6561,73 +6559,6 @@ es:
           que violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto los curadores podrán ver las coordenadas ocultas de esta o cualquier observación en el proyecto y esto implica que estás de acuerdo con los <a href="%{url}" target="_blank">términos </a>del proyecto.
-        quality_assessment_help2_html: |
-          <p>
-          La evaluación de la calidad de la data es un resumen de la exactitud de una
-          observación. Todas las observaciones empiezan al grado <strong>"casual"
-          </strong>, y se convierten en <strong>"necesita ID"</strong> cuando
-          </p>
-          <ul>
-          <li>la observación <strong>tiene una fecha</strong></li>
-          <li>la observación <strong>está georeferenciada</strong> (i.e. tiene coordinadas de la longitud y latitud)</li>
-          <li>la observación <strong>tiene fotos o ruidos</strong></li>
-          <li>la observación <strong>no se hizo por un humano</strong></li>
-          </ul>
-          <p>
-          Observaciones se pertenecen al <strong>"grado de investigación"</strong> cuando
-          </p>
-          <ul>
-          <li>
-          la comunidad de %{site_name} <strong> se acuerdan en un ID del nível de especie o
-          menos</strong>, i.e. cuando más de dos tercios de identificadores se acuerdan en
-          un taxón (si ha votado la comunidad que el Taxón de la Comunidad no se puedan
-          mejorar, vuelve al ID de la subfamilia o menos).
-          </li>
-          </ul>
-          <p>
-          Observaciones volverán al grado <strong>"casual"</strong> si las condicciones de abajo no se cubren o la comunidad está de acuerdo que
-          </p>
-          <ul>
-          <li>
-          la <strong>ubación no parece
-          preciso</strong> (por ejemplo, monos en el centro del oceano,
-          hipopótamos en oficinas, ecétera)
-          </li>
-          <li>
-          el <strong>organismo no es salvaje/naturalizado</strong> (por ejemplo captivo o cultivado por humanos
-          o extraterrestres inteligentes)
-          </li>
-          <li>
-          la observación <strong>no proviene evidencia de organismos</strong>,
-          por ejemplo imágenes de agua, piedras, paisajes
-          que no incluyen al organismo, ecétera.
-          </li>
-          <li>
-          la observación <strong>no proviene evidencia reciente (cerca de 100 años) del
-          organismo</strong> (por ejemplo fósiles, sino rutas, excrementos y
-          hojas muertas son permitidas)
-          </li>
-          <li>
-          la observación desde ahora no necesita un ID <em>y</em> la ID de la comunidad se pertence
-          al nível de la familia o abaja
-          </li>
-          <li>
-          el observador no participa en el ID de la comunidad y el taxón del ID de la comunidad
-          y no es antepasado o descendente del taxón asociado con el ID del observador
-          </li>
-          </ul>
-          <p>
-          Y, si esto no era tan complicado, hay situaciones en los que el sistema tienen un voto:
-          </p>
-          <ul>
-          <li>
-          El sistema votará que la observación no es salvaje/naturalizada
-          si hay al menos 10 otras observaciones de un género o menor en
-          el lugar equivalente a la provincia, región or país que contiene
-          esta observación o al menos un 80 por ciento de aquellas observaciones
-          se han hizo marcados como no salvajes/naturalizados.
-          </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -8190,7 +8121,6 @@ es:
             action:
               not_supported_for_this_kind_of_content: no se admite para este tipo de contenido
             base:
-              only_staff_can_unhide: Solo el personal puede hacer visible el contenido oculto
               staff_cannot_be_suspended: No se puede suspender a miembros del personal
             user_id:
               must_be_a_curator: Debe ser un supervisor
