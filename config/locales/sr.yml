@@ -2138,8 +2138,6 @@ sr:
   mobile: Mobilni
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Sakrij
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Ukloni suspenziju
   mollusks: mekušci
   momentjs:
     shortRelativeTime:
@@ -4793,58 +4791,6 @@ sr:
         identification_count_desc: 'broj identifikacija određenog taksona'
         flagged_photos_desc_html: |
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
-        quality_assessment_help2_html: |
-          <p>
-          Procena kvaliteta podataka je indikator tačnosti opservacije. Sve opservacije isprva imaju <strong>"neobavezno"</strong> ocenu, i postaju
-          <strong>"potreban ID"</strong> kada
-          </p>
-
-          <ul>
-          <li>opservacija <strong>ima datum</strong></li>
-          <li>opservacija <strong>je georeferencirana</strong> (tj. ima gš/gd koordinate)</li>
-          <li>opservacija <strong>ima fotografije ili zvuke</strong></li>
-          <li>opservacija <strong>nije ljudske jedinke</strong></li>
-          </ul>
-          <p>
-          Opservacije postaju <strong>"istraživački nivo"</strong> kada se
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>zajednica složi oko ID-ja na nivou vrste ili niže</strong>, tj. kada se više od 2/3 identifikatora složi oko konkretnog taksona (ako je zajednica glasala da se dat takson zajednice ne može dalje unaprediti, tada je moguće i na nivou potporodice ili niže)
-          </li>
-          </ul>
-          <p>
-          Opservacija se vraća na <strong>"neobavezno"</strong> ako gorenavedeni uslovi nisu ispunjeni ili dok se zajednica ne složi
-          </p>
-          <ul>
-          <li>
-          <strong>lokacija ne deluje tačna</strong> (npr. majmuni u sred okeana,
-          nosorozi u poslovnim zgradama, etc.)
-          </li>
-          <li>
-          <strong>organizam nije u divljini/naturalizovan</strong> (npr. u zatočeništvu ili kultivisan od strane ljudi ili inteligentnih vanzemaljaca)
-          </li>
-          <li>
-          opservacija <strong>ne pruža dokaz prisustva organizma</strong>, npr. fotografije vode, stena, pejzaža na kojima organizam nije prisutan
-          </li>
-          <li>
-          opservacija <strong>ne pruža skorašnji (~100 godina) dokaz prisustva organizma</strong> (npr. fosili; ali su otisci, izmet, uvenuli listovi takođe prihvatljivi)
-          </li>
-          <li>
-          opservaciji nije više potreban ID <em>i</em> ID zajednice je na nivou porodice ili iznad
-          </li>
-          <li>
-          posmatrač je isključio opciju ID zajednice i takson ID-ja zajednice nije predak ni potomak taksona datog ID-jem posmatrača 
-          </li>
-          </ul>
-          <p>
-          Ako to nije dovoljno komplikovano, postoje situacije gde sistem automatski dodeljuje glas:
-          </p>
-          <ul>
-          <li>
-          Sistem će označiti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem geografskom području (okrug, zemlja, država) u kojoj se mesto gde je opservacija zabeležena nalazi i 80% ili više tih opservacija su označene da nisu u divljini/naturalizovane.
-          </li>
-          </ul>
         score_desc: "rezultat = kumulativni brojač / (kumulativni brojač + brojač neslaganja + broj neslaganja oko pretka )"
         observation_flagged_notice_html: |
           Ova opservacija je označena kao nepoželjan sadržaj i više nije javno vidljiva. Tebi je vidljiva jer si je ti napravio/la ili si kustos sajta. Ako misliš da je u pitanju greška, <a href="mailto:%{help_email}" class="contact">kontaktiraj nas</a>. <a href="/observations/%{observation_id}/flags">Upravljaj prijavama</a>
@@ -5838,7 +5784,6 @@ sr:
             action:
               not_supported_for_this_kind_of_content: nije podržan za ovakav sadržaj
             base:
-              only_staff_can_unhide: Samo osoblje može da otkrije sakriven sadržaj
               staff_cannot_be_suspended: Osoblje ne može biti suspendovano
             user_id:
               must_be_a_curator: mora biti kustos
