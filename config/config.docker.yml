@@ -79,7 +79,7 @@ base: &base
     x_sendfile_header: X-Accel-Redirect
     
     flickr:
-        key: <%= ENV.fetch("INAT_FLICKR_KEY") %>
+        key: <%= ENV.fetch("INAT_FLICKR_KEY") { "INAT_FLICKR_KEY" } %>
         shared_secret: <%= ENV.fetch("INAT_FLICKR_SHARED_SECRET") { "INAT_FLICKR_SHARED_SECRET" } %>
     
     rakismet:
