@@ -1,9 +1,9 @@
 
 ---
-  user_name: <%= ENV.fetch("INAT_SMPT_USER_NAME") %>
-  password: <%= ENV.fetch("INAT_SMPT_PASSWORD") %>
-  domain: <%= ENV.fetch("INAT_SMPT_DOMAIN") %>
-  address: <%= ENV.fetch("INAT_SMPT_ADDRESS") %>
-  port: <%= ENV.fetch("INAT_SMPT_PORT") %>
+  user_name: <%= ENV.fetch("INAT_SMTP_USER_NAME") %>
+  password: <%= ENV.fetch("INAT_SMTP_PASSWORD") %>
+  domain: <%= ENV.fetch("INAT_SMTP_DOMAIN") %>
+  address: <%= ENV.fetch("INAT_SMTP_ADDRESS") %>
+  port: <%= ENV.fetch("INAT_SMTP_PORT") %>
   authentication: :plain
   enable_starttls_auto: true
