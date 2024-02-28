@@ -1840,6 +1840,7 @@ sv:
   extinct_in_the_wild: Utdöd i vilt tillstånd
   extra_properties: Ytterligare egenskaper
   evidence_of_organism: Belägg för organism
+  evidence_related_to_single_subject: Stöd kopplat till ett enstaka område
   facebook: Facebook
   failed_to_find_your_location: Kunde inte att hitta din position.
   failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
@@ -2807,6 +2808,12 @@ sv:
     för den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Dölj
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Ta fram
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Stäng av
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -5141,6 +5148,7 @@ sv:
   text_editing_controls: Textredigeringskontroller
   thanks!: Tack!
   thanks_from_all_of_us_here_at: Tack från alla här på
+  that_account_is_already_connected: Det kontot är redan kopplat till en annan användare
   that_photo_doesnt_exist: Den bilden finns inte.
   that_observation_doesnt_exist: Det fyndet finns inte.
   that_observation_doesnt_have_any_photos: "Det fyndet har inga bilder."
@@ -6828,6 +6836,79 @@ sv:
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
         join_project_desc_html: |
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
+        quality_assessment_help3_html: |
+          <p>
+          Bedömningen av datakvaliteten är en sammanfattning av ett fynds noggrannhet. Alla
+          fynd börjar som <strong>"grund"</strong>klass, och
+          <strong>"behöver bestämmas"</strong> när
+          </p>
+
+          <ul>
+          <li>fyndet <strong>har ett datum</strong></li>
+          <li>fyndet <strong>är geopositionerat</strong> (dvs har lat/long-koordinater)</li>
+          <li>fyndet <strong>har bild eller ljud</strong></li>
+          <li>fyndet <strong>inte är en människa</strong></li>
+          </ul>
+          <p>
+          fynd får <strong>"forskningsklass"</strong> när
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>communityn håller med om bestämning till artnivå eller
+          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna är överens om ett
+          taxon (om communityn har röstat att communityn-taxonet inte kan förbättras,
+          återgår det till underfamiljsbestämning eller lägre)
+          </li>
+          </ul>
+          <p>
+          Fynd återgår till <strong>"grund"</strong>klass om ovanstående villkor inte är uppfyllda
+          eller communityn är överens
+          </p>
+          <ul>
+          <li>
+           <strong>platsen inte verkar vara
+          korrekt</strong> (t.ex. apor mitt i havet,
+          flodhästar i kontorsbyggnader, etc.)
+          </li>
+          <li>
+          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad)
+          </li>
+          <li>
+          fyndet är <strong>inte ett tecken på en
+          organism</strong>, t.ex. bilder av vattenmassor,
+          klippor, landskap som inte inkluderar organismen, etc.
+          </li>
+          <li>
+          fyndet <strong>utgör inte nutida (~100 år) stöd för
+          organismen</strong> (t.ex. fossil, men spår, avföring och döda blad
+          är ok)
+          </li>
+          <li>
+          fyndet <strong>utgör inte stöd för en enstaka sak</strong>
+          (t.ex. det finns fyra bilder på orelaterade organismer. En bild som visar livsmiljön för
+          fyndets subjekt är OK.
+          </li>
+          <li>
+          fyndet inte längre behöver bestämmas <em>och</em> community-bestämningen är till familj eller högre
+          </li>
+          <li>
+          observatören har valt bort community-bestämning och communityns
+          taxonbestämning inte är över- eller underliggande det taxon som är kopplat
+          till observatörens bestämning
+          </li>
+          </ul>
+          <p>
+          Och om detta inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
+          </p>
+          <ul>
+          <li>
+          Systemet kommer att rösta att fyndet inte är vilt/naturaliserat
+          om det finns minst 10 andra fynd av ett släkte eller lägre i
+          det minsta motsvarighet till län, stat, eller land som
+          innehåller detta fynd och 80% eller fler av dessa fynd
+          har markerats som inte vilda/naturaliserade.
+          </li>
+          </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
         observation_flagged_notice_html: |
           Detta fynd har flaggats som spam och är inte längre offentligt synlig. Du kan se den eftersom du skapade den, eller är en webbplatsförvaltare. Om du tror att detta är ett misstag, vänligen
@@ -8436,6 +8517,7 @@ sv:
             action:
               not_supported_for_this_kind_of_content: stöds inte för denna typ av innehåll
             base:
+              only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
