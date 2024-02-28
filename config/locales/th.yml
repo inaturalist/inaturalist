@@ -1757,7 +1757,7 @@ th:
   no_project_to_admin_current_user: "คุณไม่ได้เป็นแอดมินโครงการใด ๆ"
   no_project_to_admin_login: "%{login} ไม่ได้เป็นแอดมินโครงการใด ๆ"
   no_relevant_annotations: ไม่มีหมายเหตุที่เกี่ยวข้อง
-  no_species_have_been_listed: ไม่มีชนิดที่ถูกจัดรายการสำหรับสถานที่นี้!
+  no_species_have_been_listed: ไม่มีรายการชนิดสำหรับสถานที่นี้!
   no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
   no_species_on_this_list_for_owner: |
     คุณสามารถเริ่มต้นเพิ่มชนิดไปที่รายการโดยใช้เครื่องมือ "เพิ่มไปที่รายการของคุณ" ทางด้านขวา
@@ -1948,6 +1948,7 @@ th:
   photo: รูปถ่าย
   photo_deleted: ลบรูปแล้ว
   photo_licensing: สัญญาอนุญาตรูปถ่าย
+  photos_of_taxon_html: "รูปถ่ายของ%{taxon}"
   photos_or_sounds: รูปถ่ายหรือเสียง
   photos_or_sounds?: รูปถ่ายหรือเสียง?
   photos_size:
