@@ -27,6 +27,8 @@ module Logstasher
 
   def self.ip_from_request_env( request_env )
     # try a few params for IP. Proxies will shuffle around requester IP
+    # we use first HTTP_X_FORWARDED_ORIGINAL_FOR which is set by our nginx proxy
+    # with the real client IP, in "client browser --> node --> rails" scenario
     %w(HTTP_X_FORWARDED_ORIGINAL_FOR HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
       return request_env[param] unless request_env[param].blank?
     end
