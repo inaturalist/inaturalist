@@ -2736,8 +2736,6 @@ es:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Anular suspensión
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -3082,33 +3080,8 @@ es:
     Las coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales sólo son visibles para ti y los curadores de los proyectos a los que se agrega la observación.
   observation: Observación
   observation_: observación
-  observation_accuracy_validator_email_subject: "¿Nos ayudará a calcular la precisión de las observaciones de iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    ¿Nos ayudará a calcular la precisión de las observaciones de iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifica todas las observaciones en el enlace abajo tan finamente como puedas, incluso si tienen el Grado de Investigación, y incluso si su ID más fino tiene un nível taxonómico más alto (incluso del reino)</li>
-    <li>Si ve la ventana emergente "Desacuerdo Potencial"...
-    <ul>
-    <li>y está confidente que haya identificado incorrectamente, teclea el botón naranjo,</li>
-    <li>o no estás cierto más allá de su ID, teclea el botón verde.</li>
-    </ul>
-    </li>
-    <li>Hazlo antes de <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Aquí esta el <a href="%{sample_url}">subgrupo de %{num_obs} observaciones</a>
-    que creemos que puede identificar indicado de su actividad en iNat. <b>Por favor, añada
-    el ID más fino que puedas a cada uno de las observaciones antes de %{validator_deadline_date}</b>.
-  observation_accuracy_validator_email_we_will_calculate: |
-    Calculemos la precisión comparando tu ID con el Taxón de Observación. Puedes omitir las observaciones donde previamente has añadido un ID, si es que ese ID sigue siendo relevante. Para más información sobre cómo contaremos acuerdos y desacuerdos, sigue leyendo.
   observation_accuracy_validator_email_ids_equal_to: |
     Los IDs iguales (A) o más finos que (B) el taxón de observación serán marcados como Acuerdos.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    Los ID en ramas diferentes (C) o más gruesas que el Taxón de Observación donde elige "No, pero..." al diálogo de "Desacuerdo Potencial" serán marcados como Desacuerdos.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    Los ID más gruesos que el Taxón de Observación donde usted elige "No yo sé pero..." al diálogo de "Desacuerdo Potencial" (E) serán marcados como Inciertos.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Estamos muy agradecidos por su ayuda como identificador en iNaturalist, y le agradecemos mucho por su participación en este estudio. Por favor, lee <a href="%{url}">este mensaje del blog</a> para responder a las preguntas más comunes de este experimento.
   observation_accuracy_validator_email_with_gratitude: Con gratitud,
   observation_accuracy_validator_email_the_inaturalist_team: El equipo de iNaturalist
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
@@ -6586,73 +6559,6 @@ es:
           que violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto los curadores podrán ver las coordenadas ocultas de esta o cualquier observación en el proyecto y esto implica que estás de acuerdo con los <a href="%{url}" target="_blank">términos </a>del proyecto.
-        quality_assessment_help2_html: |
-          <p>
-          La evaluación de la calidad de la data es un resumen de la exactitud de una
-          observación. Todas las observaciones empiezan al grado <strong>"casual"
-          </strong>, y se convierten en <strong>"necesita ID"</strong> cuando
-          </p>
-          <ul>
-          <li>la observación <strong>tiene una fecha</strong></li>
-          <li>la observación <strong>está georeferenciada</strong> (i.e. tiene coordinadas de la longitud y latitud)</li>
-          <li>la observación <strong>tiene fotos o ruidos</strong></li>
-          <li>la observación <strong>no se hizo por un humano</strong></li>
-          </ul>
-          <p>
-          Observaciones se pertenecen al <strong>"grado de investigación"</strong> cuando
-          </p>
-          <ul>
-          <li>
-          la comunidad de %{site_name} <strong> se acuerdan en un ID del nível de especie o
-          menos</strong>, i.e. cuando más de dos tercios de identificadores se acuerdan en
-          un taxón (si ha votado la comunidad que el Taxón de la Comunidad no se puedan
-          mejorar, vuelve al ID de la subfamilia o menos).
-          </li>
-          </ul>
-          <p>
-          Observaciones volverán al grado <strong>"casual"</strong> si las condicciones de abajo no se cubren o la comunidad está de acuerdo que
-          </p>
-          <ul>
-          <li>
-          la <strong>ubación no parece
-          preciso</strong> (por ejemplo, monos en el centro del oceano,
-          hipopótamos en oficinas, ecétera)
-          </li>
-          <li>
-          el <strong>organismo no es salvaje/naturalizado</strong> (por ejemplo captivo o cultivado por humanos
-          o extraterrestres inteligentes)
-          </li>
-          <li>
-          la observación <strong>no proviene evidencia de organismos</strong>,
-          por ejemplo imágenes de agua, piedras, paisajes
-          que no incluyen al organismo, ecétera.
-          </li>
-          <li>
-          la observación <strong>no proviene evidencia reciente (cerca de 100 años) del
-          organismo</strong> (por ejemplo fósiles, sino rutas, excrementos y
-          hojas muertas son permitidas)
-          </li>
-          <li>
-          la observación desde ahora no necesita un ID <em>y</em> la ID de la comunidad se pertence
-          al nível de la familia o abaja
-          </li>
-          <li>
-          el observador no participa en el ID de la comunidad y el taxón del ID de la comunidad
-          y no es antepasado o descendente del taxón asociado con el ID del observador
-          </li>
-          </ul>
-          <p>
-          Y, si esto no era tan complicado, hay situaciones en los que el sistema tienen un voto:
-          </p>
-          <ul>
-          <li>
-          El sistema votará que la observación no es salvaje/naturalizada
-          si hay al menos 10 otras observaciones de un género o menor en
-          el lugar equivalente a la provincia, región or país que contiene
-          esta observación o al menos un 80 por ciento de aquellas observaciones
-          se han hizo marcados como no salvajes/naturalizados.
-          </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -8215,7 +8121,6 @@ es:
             action:
               not_supported_for_this_kind_of_content: no se admite para este tipo de contenido
             base:
-              only_staff_can_unhide: Solo el personal puede hacer visible el contenido oculto
               staff_cannot_be_suspended: No se puede suspender a miembros del personal
             user_id:
               must_be_a_curator: Debe ser un supervisor

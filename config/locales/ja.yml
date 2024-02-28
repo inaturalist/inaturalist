@@ -2626,8 +2626,6 @@ ja:
     これには、モデレーターの操作（コメントの非表示や非表示解除など）、メモ、このユーザーが作成した分類群以外のすべてのフラグが含まれます。この履歴は<strong>キュレーターにのみ表示</strong>され、<strong>キュレーターは自分の履歴を見ることができません</strong>。
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: 非表示
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: 凍結解除
   moderator_note_desc: |
     モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがソックパペット・アカウントの可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
   #Person who executed a moderator action or flagged something
@@ -2930,27 +2928,8 @@ ja:
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
   observation: 観察記録
   observation_: 観察記録
-  observation_accuracy_validator_email_subject: "iNaturalistの観察記録の精度を推定するのを手伝っていただけませんか？"
-  observation_accuracy_validator_email_will_you_help_us: |
-    iNaturalistの観察記録の精度を推定する実験に協力していただけませんか？
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>以下のリンクにある観察記録は、たとえそれが研究グレードであっても、またあなたの最も細かい同定がより高い分類学的レベルであっても、できる限り細かく同定してください（界レベルであっても）。</li>
-    <li>もしあなたが "Potential Disagreement "のポップアップを見て…
-    <ul>
-    <li>それが間違った同定だと確信が持てたらオレンジのボタンを、</li>
-    <li>同定以上の情報が不明な場合は緑色のボタンをクリックしてください。</li>
-    </ul>
-    </li>
-    <li><b>%{validator_deadline_date}</b>までにこれを行う</li>
-    </ol>
-    ここに、iNatでのあなたの活動に基づいて同定できると思われる<a href="%{sample_url}">%{num_obs}件の観察記録のサブセット</a>があります。<b>%{validator_deadline_date}までに、それぞれの観察記録にできるだけ細かい同定を付けてください。</b>
-  observation_accuracy_validator_email_we_will_calculate: |
-    私たちは、あなたの同定と観察記録の分類群を比較して精度を計算します。もしその同定がまだ適切であれば、以前に同定を追加した観察記録をスキップすることができます。一致と不一致をどのようにカウントするかについては、このまま読み進めてください。
   observation_accuracy_validator_email_ids_equal_to: |
     観察記録と同じ (A) か、それよりも細かい同定 (B) は「同意」としてカウントされます。
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    iNaturalistの同定者としてご協力いただき、この研究にご参加いただき本当にありがとうございます。この実験に関するよくある質問については、<a href="%{url}">こちらの記事</a>をご覧ください。
   observation_accuracy_validator_email_with_gratitude: 感謝の気持ちを込めて、
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalistチーム
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
@@ -5828,56 +5807,6 @@ ja:
         data_quality_assessment_desc3_html: |
           品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
         identification_count_desc: '単一の分類群に対する同定の件数'
-        quality_assessment_help2_html: |
-          <p>
-          データ品質評価は、観察記録の正確さの要約である。すべての観察記録は<strong>「カジュアル」</strong>グレードとして開始され、以下の場合に<strong>「要同定」</strong>となります。
-          </p>
-
-          <ul>
-          <li>観察記録に <strong>日付がある</strong></li>
-          <li>観察記録が <strong>ジオリファレンスされている</strong>（つまり緯度経度座標を持っている）</li>
-          <li>観察記録に <strong>写真か音声がある</strong></li>
-          <li>観察記録が <strong>人間ではない</strong></li>
-          </ul>
-          <p>
-          観察記録が<strong>「研究用」</strong>になるのは以下の場合です
-          </p>
-          <ul>
-          <li>
-          %{site_name} の<strong>コミュニティが種レベルの同定またはそれ以下の同定に同意している場合</strong>、すなわち同定の2/3以上が分類群に同意している場合（コミュニティがコミュニティ分類群の改善が不可能であると投票した場合、これは亜科レベルの同定またはそれ以下の同定に戻ります）
-          </li>
-          </ul>
-          <p>
-          上記の条件が満たされない場合、またはコミュニティが同意しない場合、観察記録は<strong>「カジュアル」</strong>に戻ります
-          </p>
-          <ul>
-          <li>
-          <strong>場所が不正確</strong>（例：海の真ん中に猿、オフィスビルにカバなど）
-          </li>
-          <li>
-          <strong>生物が野生／帰化していない</strong>（例：人類または知的宇宙人によって捕獲または培養されたもの）
-          </li>
-          <li>
-          観察記録に<strong>生物の証拠がない</strong>。例えば、水辺、岩、風景などの画像に生物が含まれていない場合など。
-          </li>
-          <li>
-          観察記録が、<strong>その生物の最近（～100年）の証拠を示していない</strong>（例：化石、しかし足跡、糞、枯葉はOK）
-          </li>
-          <li>
-          観察記録が同定を必要としなくなり、<em>かつ</em>コミュニティIDが科以上である。
-          </li>
-          <li>
-          観察者がコミュニティIDから脱退しており、コミュニティIDの分類群が観察者の同定に関連する分類群の祖先でも子孫でもない場合
-          </li>
-          </ul>
-          <p>
-          また、これでもまだ複雑でないというなら、システムが投票を得る状況もあります：
-          </p>
-          <ul>
-          <li>
-          この観察記録を含む最小の郡、州、または国に相当する場所に、同じ属またはそれ以下の観察記録が少なくとも10個以上あり、それらの観察記録の80％以上が野生化／帰化していないとマークされている場合、システムはその観察記録を野生化／帰化していないと投票します。
-          </li>
-          </ul>
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
         observation_flagged_notice_html: |
           この観察記録はスパムとしてフラグが立てられ、公開されていません。あなたが見ることができるのは、あなたが作成したか、あなたがサイトのキュレーターだからです。これが間違いであると思われる場合は、<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。
@@ -6859,7 +6788,6 @@ ja:
             action:
               not_supported_for_this_kind_of_content: この種のコンテンツには対応していません
             base:
-              only_staff_can_unhide: サイトスタッフのみが非表示にされた内容を再度表示できます。
               staff_cannot_be_suspended: スタッフは利用停止できません
             user_id:
               must_be_a_curator: キュレーターである必要があります

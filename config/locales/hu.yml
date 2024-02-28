@@ -194,6 +194,10 @@ hu:
   about_this_project: Erről a projektről
   about_trusting_projects: A projektekmegbízhatóságáról
   about_trusting_projects_options_any: Az összes megfigyelésed ebben a projektben
+  about_trusting_projects_options_any_desc: |-
+    Ez magában foglalja azokat a megfigyeléseket is, ahol a pozíció láthatóságánál a „kitakart” vagy „rejtett” opciót választottad, például a saját hátsó kertedből származó megfigyeléseket, vagy azokat is, amelyeket nem szeretnél, hogy mások ismerjenek.
+  about_trusting_projects_overview: |-
+    A rejtett koordinátáidhoz való hozzáférést biztosítva lehetővé teszed a projekt kurátorai számára, hogy lássák a megfigyeléseid valódi, ki nem takart helyét ebben a projektben. Ez rendkívül fontos olyan helyzetekben, amikor a kutatóknak szükségük van a pontos koordinátákra az elemzéshez és döntéshozatalhoz.
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -1445,7 +1449,7 @@ hu:
   editing_x_in_y: "%{x} szerkesztése itt: %{y}"
   editors: Szerkesztők
   either_that_user_doesnt_exist_or: "Vagy nem létezik az a felhasználó vagy már követed őt."
-  eligible_for_research_grade: Kutatásiszint-potenciál
+  eligible_for_research_grade: Tudományosszint-potenciál
   email: Email
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
@@ -2316,8 +2320,6 @@ hu:
   moderation_history_for_user_html: '%{user} felhasználó moderálási előzményei'
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Elrejtés
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Felfüggesztés feloldása
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderátor / Megjelölő
   mollusks: puhatestűek
@@ -2412,7 +2414,7 @@ hu:
   must_be_observed_after: '%{operand} utáni megfigyelés'
   must_be_observed_before: '%{operand} előtti megfigyelés'
   must_be_observed_by_user: '%{user} általi megfigyelések'
-  must_be_observed_in_place: 'itteni megfigyelések: %{place}'
+  must_be_observed_in_place: 'megfigyelések helye: %{place}'
   must_be_less_than_x_MB: "Kisebbnek kell lennie mint %{x} MB"
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   must_have_photos: kép szükséges
@@ -2634,17 +2636,8 @@ hu:
   observation_accuracy_experiment_uncertain: "Bizonytalan"
   observation_accuracy_experiment_accuracy: "Pontosság"
   observation_accuracy_experiment_precision: "Pontosság"
-  observation_accuracy_validator_email_subject: "Segítesz nekünk megmérni az iNaturalist-megfigyelések pontosságát?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Segítesz nekünk egy kísérletben, amelynek célja az iNaturalist-megfigyelések pontosságának mérése?
-  observation_accuracy_validator_email_we_will_calculate: |
-    A pontosságot az azonosításod és a megfigyelési taxon összehasonlításával állapítjuk meg. Ha a saját korábbi azonosításod az adott megfigyelésen pontos, kihagyhatod azt. Alább további részleteket olvashatsz arról, hogy miként vesszük figyelembe az egyetértéseket és a konfliktusokat.
   observation_accuracy_validator_email_ids_equal_to: |
     A megfigyelési taxonnal megegyező (A) vagy annál szűkebb (B) meghatározásokat egyetértésként regisztráljuk.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    A megfigyelési taxonnál magasabb szintű meghatározást, amelynél a "Lehetséges konfliktus" (E) panelen a "Nem tudom, de..." opciót választod, bizonytalanként regisztráljuk.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Nagyon hálásak vagyunk az azonosításaidért és köszönjük, hogy részt veszel ebben a kísérletben. <a href="%{url}">Ebből a blogbejegyzésből</a> többet is megtudhatsz erről a kísérletről.
   observation_accuracy_validator_email_with_gratitude: Köszönettel,
   observation_accuracy_validator_email_the_inaturalist_team: Az iNaturalist csapata
   observation_added_to_the_project: "A megfigyelést hozzáadták a \"%{project}\" projekthez"
@@ -3462,7 +3455,7 @@ hu:
   profile: Profil
   profile_picture: Profilkép
   profile_visibility_desc: |
-    Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos kutatási szintű megfigyelést tett közzé.
+    Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos tudományos szintű megfigyelést tett közzé.
   project: Projekt
   project_admins:
     one: Projekt admin
@@ -3730,8 +3723,8 @@ hu:
   required: kötelező
   required_: Kötelező
   required_field: kötelező adat
-  research: kutatási
-  research_: Kutatási
+  research: tudományos
+  research_: Tudományos
   research_grade: Tudományos szintű
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
   research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelések médiaanyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel rendelkeznek (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
@@ -5164,7 +5157,7 @@ hu:
           <a
           rel="nofollow noreferrer noopener"
           href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          A GBIF átveszi a legtöbb kutatási szintű, licencelt megfigyeléseinket, és remek exportfunkcióval rendelkezik. A GBIF exportálás <a href="https://www.doi.org/">DOI</a> azonosítót is tartalmaz, amire az exportált adatok alapján végzett kutatásokban hivatkozhatsz. Ez nagyon nagy segítséget nyújt számunkra azzal, hogy nyomon követhetjük az iNat-adatok felhasználását.
+          A GBIF átveszi a legtöbb tudományos szintű, licencelt megfigyeléseinket, és remek exportfunkcióval rendelkezik. A GBIF exportálás <a href="https://www.doi.org/">DOI</a> azonosítót is tartalmaz, amire az exportált adatok alapján végzett kutatásokban hivatkozhatsz. Ez nagyon nagy segítséget nyújt számunkra azzal, hogy nyomon követhetjük az iNat-adatok felhasználását.
           </p>
           </li>
           <li>
@@ -5248,55 +5241,6 @@ hu:
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
-        quality_assessment_help2_html: |
-          <p>
-          Az adatminőségi kiértékelés a megfigyelés pontosságát összegzi. Minden megfigyelés <strong>"hobbiszintű"</strong>-ről indul, majd <strong>"meghatározásra vár"</strong>-ra vált, ha teljesülnek az alábbi feltételek:
-          </p>
-          <ul>
-          <li>a megfigyelésnek <strong>van dátuma</strong></li>
-          <li>a megfigyelésnek vannak <strong>helyi koordinátái</strong> (szélességi és hosszúsági kör)</li>
-          <li>a megfigyeléshez tartozik <strong>kép és/vagy hang</strong></li>
-          <li>a megfigyelés tárgya <strong>nem ember</strong></li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"kutatási szintű"</strong>-re emelkedik, ha:
-          </p>
-          <ul>
-          <li>
-          az %{site_name} <strong>közössége egyetértésre jut faji szinten, vagy az alatt</strong>, vagy is ha a meghatározók több, mint kétharmada egyetért a taxonban. (Ha a közösség szerint a közösségi taxon nem javítható tovább, akkor a taxon alcsalád-szintűre vagy az alattira vált.
-          </li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"hobbiszintű"</strong>-re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért a következőkben:
-          </p>
-          <ul>
-          <li>
-          a <strong>hely nem tűnik pontosnak</strong> (például majom van az ócián közepén, vagy víziló egy irodaközpontban)
-          </li>
-          <li>
-          az <strong>élőlény nem vadon vagy természetben fordul elő</strong> (például emberi kultiváció vagy fogvatartás eredménye)
-          </li>
-          <li>
-          a megfigyelés <strong>nem szolgál bizonyítékul az élőlényről</strong>, például az élőlényt nem tartalmazó képek vízfelszínről, sziklákról, tájakról.
-          </li>
-          <li>
-          a megfigyelés <strong>túl régi (100 évnél régebbi) bizonyítékkal szolgál</strong> (például fosszíliák, viszont elfogadhatóak nyomok, ürülék, száradt levél)
-          </li>
-          <li>
-          a megfigyelésnek már nincs szüksége meghatározásra <em>és</em> a közösségi meghatározás családszintű vagy afeletti
-          </li>
-          <li>
-          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi taxon nem a felmenője vagy gyermeke a megfigyelő által kiválasztott taxonnak
-          </li>
-          </ul>
-          <p>
-          Ha ez még mindig nem lenne elég bonyolult:
-          </p>
-          <ul>
-          <li>
-          Bizonyos esetekben a rendszer automatikusan "nem vadonélő" szavazattal látja el a megfigyelést, ha az adott nemzetségnek vagy az alatt van legalább 10 egyéb megfigyelése az adott régióban/államban/országban, és ezen megfigyelések legalább 80 százaléka nem vadonélőként van megjelölve.
-          </li>
-          </ul>
         score_desc: "pontszám = összesített szám / (összesített szám + egyetnemértések száma + felmenői egyetnemértések)"
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
@@ -6193,7 +6137,6 @@ hu:
         moderator_action:
           attributes:
             base:
-              only_staff_can_unhide: Csak a személyzet jeleníthet meg rejtett tartalmat
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
             user_id:
               must_be_a_curator: kurátor kell legyen

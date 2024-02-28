@@ -268,6 +268,7 @@ nl:
   active_taxon_status: Actief
   active_users: Actieve gebruikers
   activity: Activiteit
+  activity_on_a_flag_for_x: Activiteit op een melding voor %{x}
   adapted_by_name_from_a_work_by_original: "Aangepast door %{name} van een werk van %{original}"
   add: Toevoegen
   add_a_batch_of_observations: Verzameling waarnemingen toevoegen
@@ -332,6 +333,7 @@ nl:
   add_notes_about_this_taxon: Notities over dit taxon op deze plaats toevoegen, bijv. waar en wanneer het voorkomt.
   add_obs_from_a_link: "Voeg Wrn uit lijst: %{link} toe"
   add_obs_from_a_list: Voeg waarnemingen toe van een lijst
+  add_observation_fields: Voeg waarnemingsvelden toe
   add_observations: Waarnemingen toevoegen
   add_observations_by_checking_off: Voeg waarnemingen toe door soorten van een lijst af te vinken
   add_observations_project: Voeg waarnemingen toe aan dit project
@@ -1824,6 +1826,7 @@ nl:
   extinct_in_the_wild: Uitgestorven in het Wild
   extra_properties: Extra eigenschappen
   evidence_of_organism: Bewijs van organisme
+  evidence_related_to_single_subject: Bewijs gerelateerd aan één onderwerp
   facebook: Facebook
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
@@ -1929,6 +1932,7 @@ nl:
     Melding voor gebruiker: %{title}
   flag_it!: Melden!
   flag_marked_as_resolved_html: '<span class="meta">Melding gemakrkeerd als</span> <strong>opgelost.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Melding gemarkeerd als</span> <strong>onopgelost.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Object
   flag_reason: "&ldquo;Ik meld @gender{n:dit|deze} %{record} omdat"
@@ -2065,7 +2069,7 @@ nl:
   has_sound: Heeft een geluidsopname
   has_sounds: Heeft geluiden
   hasnt_contributed_any_observations: heeft geen waarnemingen bijgedragen tot dit project.
-  header_your_observations: Jouw waarnemingen
+  header_your_observations: Mijn Waarnemingen
   header_your_calendar: Jouw kalender
   header_your_favorites: Jouw favorieten
   header_your_lists: Jouw lijsten
@@ -2763,8 +2767,12 @@ nl:
     hun eigen geschiedenis niet inzien</strong>, notities over een persoon mogen dus nooit zichtbaar zijn voor die persoon.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verbergen
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Zichtbaar maken
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Opschorten
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Haal schorsing weg
+  moderator_actions_unsuspend: Schorsing opheffen
   moderator_note_desc: |
     Moderatornotities zijn records van moderatie antwoorden of op bewijs gebaseerde
     zorgen over een gebruiker, zoals of het een mogelijk sockpuppet
@@ -3112,25 +3120,58 @@ nl:
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
   observation: Waarneming
   observation_: waarneming
+  observation_accuracy_experiment_the_sample_for: "De steekproef voor dit experiment is nog niet gegenereerd"
+  observation_accuracy_experiment_our_accuracy_estimate: "Onze nauwkeurigheidsschatting als gevolg van dit experiment is %{percent} correct."
+  observation_accuracy_experiment_our_goak: "Ons doel voor de geschatte nauwkeurigheid (Correct) en nauwkeurigheid van de subset Onderzoekskwaliteit is groter dan 95% (stippellijn)"
+  observation_accuracy_experiment_precision_results: "Nauwkeurigheidsresultaten per subset"
+  observation_accuracy_experiment_taxon_rank_level: "Taxon Rang niveau"
+  observation_accuracy_experiment_taxon_observations_count: "Aantal Taxon Waarnemingen"
+  observation_accuracy_experiment_iconic_taxon_name: "Iconisch Taxon Naam"
   observation_accuracy_experiment_continent: "Continent"
   observation_accuracy_experiment_year: "Jaar"
   observation_accuracy_experiment_quality_grade: "Kwaliteitsklasse"
   observation_accuracy_experiment_show_frequency: "toon frequentie"
+  observation_accuracy_experiment_click_on_bars: "Klik op ballken om de subsets te verkennen."
+  observation_accuracy_experiment_bars_will: "Balken kunnen worden aangeklikt als de deadline voor het valideren van monsters is verstreken."
+  observation_accuracy_experiment_accuracy_results: "Nauwkeurigheidsresultaten per subset"
   observation_accuracy_experiment_as_observations: "Als de waarnemingen uit deze steekproef worden gevalideerd, zal het onzekerheids percentage dalen en zal het percentage correcte en incorrecte toenemen."
+  observation_accuracy_experiment_experiment_still: "Experiment nog in uitvoering. Statistieken worden dagelijks bijgewerkt tot de deadline voor het valideren van steekproeven op %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Nauwkeurigheid van Waarnemingen Experiment"
+  observation_accuracy_experiment_validators: "Validatoren:"
+  observation_accuracy_experiment_show_additional_validators: "(toon extra validatoren)"
+  observation_accuracy_experiment_hide_additional_validators: "(verberg extra validatoren)"
+  observation_accuracy_experiment_additional_validators: "(%{number} aanvullende validatoren)"
+  observation_accuracy_experiment_abstract: "Samenvatting: We hebben een steekproef van waarnemingen op %{sample_generation_date} gegenereerd en een team van validatoren samengesteld om hun nauwkeurigheid voor %{deadline_date} te beoordelen. Alle resultaten hieronder tonen kenmerken van de waarnemingen uit de steekproef op het moment dat de steekproef werd gegenereerd (bijvoorbeeld Onderzoekskwaliteit of niet). De nauwkeurigheid van de steekproefwaarnemingen is beoordeeld op %{assessment_date}. Zie het tabblad methoden voor meer details."
+  observation_accuracy_experiment_research_grade_results: "Onderzoekskwaliteit resultaten"
   observation_accuracy_experiment_verifiable_results: "Verifieerbare resultaten"
   observation_accuracy_experiment_all_results: "Alle resultaten"
   observation_accuracy_experiment_methods: "Methoden"
+  observation_accuracy_experiment_step_1: "Stap 1: Steekproef Generatie en Toewijzing"
+  observation_accuracy_experiment_from_the2: "Uit de iNaturalist database van waarnemingen (A) hebben we een willekeurige steekproef (B) gegenereerd. Substeekproeven werden toegewezen aan kandidaat-validatoren (C) op basis van onderstaande criteria. Het doel was om elke steekproefwaarneming toe te wijzen aan meerdere kandidaat-validatoren (\"Doel-validator redundance\" )."
+  observation_accuracy_experiment_number_of: "Aantal kandidaatvalidatoren: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criteria voor een kandidaat-validator"
+  observation_accuracy_experiment_if_an_identifier: "Als een determineerder ten minste 3 verbeterende determinaties had gemaakt op een taxon, hebben we overwogen dat ze gekwalificeerd waren om dat taxon te valideren. Het verbeteren van de determinaties is de eerste suggestie van een taxon waarmee de gemeenschap het vervolgens eens is."
+  observation_accuracy_experiment_if_an_identifier_continent: "Als een determineerder ten minste 3 verbeterende determinaties had gemaakt op een taxon op een continent, hebben we overwogen dat ze gekwalificeerd waren om dat taxon te valideren op dat continent. Het verbeteren van de determinaties is de eerste suggestie van een taxon waarmee de gemeenschap het vervolgens eens is."
+  observation_accuracy_experiment_step_2: "Stap 2: Steekproeven valideren"
+  observation_accuracy_experiment_number_percent_of: "Aantal deelnemende validatoren: %{number} (%{percentage})"
+  observation_accuracy_experiment_correct: "Juist"
   observation_accuracy_experiment_uncertain: "Onzeker"
+  observation_accuracy_experiment_incorrect2: "Onjuist"
+  observation_accuracy_experiment_step_4: "Step 4: Accuracy en Precision berekening"
   observation_accuracy_experiment_accuracy: "Nauwkeurigheid"
+  observation_accuracy_experiment_we_calculated: "We hebben Nauwkeurigheid berekend als het percentage corrrect voor de hele steekproef en als subsets zoals de onderzoekskwaliteitsubset. We hebben ook het percentage onzeker en het procent onjuist berekend. In het voorbeeldfiguur rechts zou het percentage juist zijn aan 83, het percentage onzeker zou 6 zijn en het percentage incorrect zou 11 zijn."
   observation_accuracy_experiment_precision: "Precisie"
-  observation_accuracy_validator_email_subject: "Wil je ons helpen om de nauwkeurigheid van iNaturalist waarnemingen in te schatten?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Wil je ons helpen met een experiment om de nauwkeurigheid van iNaturalist waarnemingen in te schatten?
+  observation_accuracy_experiment_in_the_example: "In het voorbeeldfiguur rechts zou de gemiddelde precisie van drie steekproeven 51 procent bedragen."
+  observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
   observation_accuracy_validator_email_we_will_calculate: |
     We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
-    je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Voor meer over hoe we overeenkomsten en meningsverschillen gaan tellen, lees verder.
+    je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
   observation_accuracy_validator_email_ids_equal_to: |
     'Determinaties gelijk aan (A) of fijner dan (B) zal het Waargenomen Taxon worden geteld als Overeenkomst.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    We zijn zo dankbaar voor jouw hulp als een determineerder op iNaturalist en bedanken je zeer voor je deelname aan deze studie. Lees <a href="%{url}">de methoden</a> om meer te leren over het ontwerp van het experiment.
   observation_accuracy_validator_email_with_gratitude: Met dankbaarheid,
   observation_accuracy_validator_email_the_inaturalist_team: Het iNaturalist Team
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
@@ -5038,6 +5079,7 @@ nl:
   text_editing_controls: Tekstbewerkings-elementen
   thanks!: Bedankt!
   thanks_from_all_of_us_here_at: Bedankt van ons allemaal hier bij
+  that_account_is_already_connected: Dat account is al gekoppeld aan een andere gebruiker
   that_photo_doesnt_exist: Die foto bestaat niet.
   that_observation_doesnt_exist: Die waarneming bestaat niet.
   that_observation_doesnt_have_any_photos: "Die waarneming bevat geen foto's."
@@ -6686,59 +6728,6 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help2_html: |
-          <p>
-          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle
-          waarnemingen beginnen als <strong>"onvolledig"</strong> en kunnen
-          <strong>"ID nodig"</strong> worden als 
-          </p>
-
-          <ul>
-          <li>de waarneming <strong>een datum heeft</strong></li>
-          <li>de waarneming <strong>een locatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-          <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
-          <li>de waarneming <strong>geen mens is</strong></li>
-          </ul>
-          <p>
-          Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-          </p>
-          <ul>
-          <li>
-          de %{site_name} <strong>de gebruikers van iNaturalist een determinatie overeenkomen op soortsniveau of lager</strong>, dwz dat meer dan 2/3 van de determinaties hetzelfde taxon betreft (als de gemeenschap heeft gestemd dat het gemeenschapstaxon niet verder verbeterd kan worden gaat het terug op onderfamilie niveau of hoger)
-          </li>
-          </ul>
-          <p>
-          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap ermee instemt.
-          </p>
-          <ul>
-          <li>
-          de <strong>lokatie niet nauwkeurig lijkt</strong> (bijv. apen in het midden van de oceaan, nijlpaarden in een kantoor, etc.)
-          </li>
-          <li>
-          het <strong>organisme is niet wild/verwilderd</strong> (dwz gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
-          </li>
-          <li>
-          de waarneming <strong>geen bewijs van het organisme toont</strong>, bijv. plaatjes van waterkenmerken, rotsen, landschappen dat geen organisme bevat, etc.
-          </li>
-          <li>
-          de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme toont</strong> (zoals bijvoorbeeld fossielen, maar sporen, poep en dood blad zijn wel goed)
-          </li>
-          <li>
-          de waarneming niet langer een ID nodig heeft <em>en</em> het gemeenschapsID is op familie niveau of hoger
-          </li>
-          <li>
-          de waarnemer heeft het gemeenschapsID uitgezet en het gemeenschapsID taxon is geen voorouder of afstammeling van het taxon geassocieerd met het waarnemersID
-          </li>
-          </ul>
-          <p>
-          En alsof dat niet moeilijk genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
-          </p>
-          <ul>
-          <li>
-          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er tenminste 10
-          andere waarnemingen zijn van een genus of lager in de kleinste gemeente, provincie- of land-equivalente plaats dat deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/verwilderd.
-          </li>
-          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
@@ -8340,7 +8329,7 @@ nl:
             action:
               not_supported_for_this_kind_of_content: wordt niet ondersteund voor dit soort inhoud
             base:
-              only_staff_can_unhide: Alleen de staf kan verborgen inhoud weer laten tonen
+              only_staff_and_hiding_curators_can_unhide: Alleen medewerkers en curatoren die inhoud verbergen kunnen deze weer zichtbaar maken
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn

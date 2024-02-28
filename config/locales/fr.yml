@@ -317,6 +317,7 @@ fr:
   add_notes_about_this_taxon: Ajouter des notes sur ce taxon à cet endroit, par ex. où et quand on le rencontre.
   add_obs_from_a_link: "Ajouter des observations à partir de la liste: %{link}"
   add_obs_from_a_list: Ajouter des observations à partir d’une liste
+  add_observation_fields: Ajouter des champs d’observation
   add_observations: Ajouter des observations
   add_observations_by_checking_off: Ajouter des observations en cochant les espèces dans une liste.
   add_observations_project: Ajouter des observations à ce projet
@@ -2743,8 +2744,6 @@ fr:
     par cette personne.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Masquer
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Retirer la suspension
   moderator_note_desc: |
     Les notes du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
   #Person who executed a moderator action or flagged something
@@ -3111,7 +3110,6 @@ fr:
   observation_accuracy_experiment_all_results: "Tous les résultats"
   observation_accuracy_experiment_methods: "Méthodes"
   observation_accuracy_experiment_step_1: "Étape 1 : Génération et Affectation des Échantillons"
-  observation_accuracy_experiment_from_the: "À partir de la base de données des observations iNaturalist (A), nous avons généré un échantillon aléatoire (B). Des sous-échantillons ont été attribués aux validateurs candidats en fonction des critères décrits ci-dessous. Nous avons cherché à assigner chaque exemple d'observation à plusieurs validateurs candidats (\"Redondance du validateur cible\")."
   observation_accuracy_experiment_sample_generated: "Échantillon généré le : %{date}"
   observation_accuracy_experiment_sample_size: "Taille de l'échantillon : %{number}"
   observation_accuracy_experiment_target_validator: "Redondance du validateur cible : %{number}"
@@ -3129,31 +3127,8 @@ fr:
   observation_accuracy_experiment_step_4: "Étape 4 : Calcul de l'exactitude et de la précision"
   observation_accuracy_experiment_accuracy: "Exactitude"
   observation_accuracy_experiment_precision: "Précision"
-  observation_accuracy_validator_email_subject: "Accepteriez-vous de nous aider pour estimer la précision des observations d'iNaturalist ?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Accepteriez-vous de nous aider avec une expérience pour estimer la précision des observations d'iNaturalist ?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifiez toutes les observations en suivant le lien ci-dessous, aussi finement que possible, même si elles sont déjà au Niveau de Recherche, et même si votre identification la plus fine est à un niveau taxonomique plus élevé (même royaume). </li>
-    <li>Si vous voyez apparaître la fenêtre "Désaccord potentiel"…
-    <ul>
-    <li>et que vous êtes certain qu'il s'agit d'une mauvaise identification, cliquez sur le bouton orange,</li>
-    <li>ou bien, si vous n'êtes pas certain de votre identification, cliquez sur le bouton vert</li>
-    </ul>
-    </li>
-    <li>Merci de faire ceci avant le <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Voici le <a href="%{sample_url}">sous ensemble de %{num_obs} observations</a>
-    que nous pensons que vous pouvez identifier, sur la base de votre activité sur iNat. <b>Merci d'ajouter l'identification la plus fine possible pour chacune des observations avant le %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_ids_equal_to: |
     Les identifiants égaux à (A) ou plus fins que (B) le taxon d’observation seront comptés comme des Accords.
-  observation_accuracy_validator_email_ids_sibling_to: |
-    Les IDs sur des branches différentes (C) ou moins précis que le Taxon d'Observation où vous choisissez 'Non,
-    mais…' dans la boîte de dialogue 'Désaccord potentiel' (D) seront considérés comme des Désaccords.
-  observation_accuracy_validator_email_ids_coarser_than: |
-    Les ID moins précis que le Taxon d'Observation pour lesquels vous choisissez "Je ne sais pas mais..." dans la boîte de dialogue "Désaccord potentiel" (E) seront comptés comme incertains.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Nous vous sommes très reconnaissants pour votre aide en tant d'identifieur sur iNaturalist, et nous vous remercions pour votre participation à cette étude. Vous pouvez lire <a href="%{url}">ce post de blog</a> qui répond aux questions les plus fréquentes au sujet de cette expérience.
   observation_accuracy_validator_email_with_gratitude: Avec nos remerciements,
   observation_accuracy_validator_email_the_inaturalist_team: L'équipe iNaturalist
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
@@ -6725,36 +6700,6 @@ fr:
           Rejoindre le projet permettra aux responsables du projet de voir les coordonnées masquées de cette observation ou de toute
           autre observation incluse dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
-        quality_assessment_help2_html: |
-          <p>L'évaluation de la qualité des données est un résumé de la qualité d'une observation. Toutes les observations sont d'abord <strong>« informelles » </strong> et passent à <strong>« Nécessite une ID »</strong> quand :
-          </p>
-
-          <ul>
-          	<li>L'observation a une <strong>date</strong>;</li>
-          	<li>L'observation est <strong>géolocalisée</strong> (c'est-à-dire qu'elle possède des coordonnées de latitude et longitude);</li>
-          	<li>L'observation comporte <strong>des photos ou des enregistrements audios</strong>;</li>
-          	<li>L'observation ne concerne pas un <strong>être humain</strong>.</li>
-          </ul>
-          <p>Les observations atteignent le <strong>« niveau de recherche »</strong> quand :
-          </p>
-          <ul>
-          	<li>La communauté %{site_name} s'accorde sur l'identification de l'espèce ou d'un taxon inférieur, c'est-à-dire lorsque plus des deux tiers des identificateurs sont d'accord sur un taxon (si la communauté a voté que le taxon de la communauté ne peut plus être amélioré, le niveau repasse à la sous-famille ou inférieur).</li>
-          </ul>
-          <p>Les observations redeviennent <strong>« informelles »</strong> si les conditions ci-dessus ne sont pas remplies ou si la communauté s'accorde sur le fait que :
-          </p>
-          <ul>
-          	<li>La <strong>localisation ne semble pas exacte</strong> (par exemple, des singes dans l'océan, des hippopotames dans un immeuble de bureaux);</li>
-          	<li>L'organisme n'est pas <strong>sauvage/naturalisé</strong> (par exemple, l'organisme est captif ou cultivé par des êtres humains ou extraterrestres);</li>
-          	<li>L'observation ne présente pas de <strong>preuve d'existence de l'organisme</strong>, par exemple photos d'étendues d'eau, de rochers, de paysages qui n'incluent pas l'organisme, etc. ;</li>
-          	<li>L'observation ne présente pas de <strong>preuve récente (~100 ans) de l'existence de l'organisme</strong> (par exemple, des fossiles ; en revanche, les empreintes, les excréments et les feuilles mortes sont des preuves d'existence acceptables) ;</li>
-          	<li>L'observation n'a plus besoin d'une identification <em>et</em> l'identification de la communauté est au niveau de la famille ou supérieur;</li>
-          	<li>L'observateur ou l'observatrice a refusé l'identification de la communauté et le taxon de l'identification de la communauté n'est ni un parent ni un descendant du taxon associé à l'identification.</li>
-          </ul>
-          <p>Et, comme si cela ne suffisait pas, il y a aussi des situations dans lesquelles le système a un avis :
-          </p>
-          <ul>
-          	<li>Le système considère que l'observation ne concerne pas un organisme <strong>sauvage/naturalisé</strong> s'il y a au moins 10 autres observations du genre ou d'un taxon inférieur dans la région ou, à défaut, l'État ou le pays et qu'au moins 80 % de ces organismes ont été marqués comme non sauvages/non naturalisés.</li>
-          </ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
           Cette observation a été marquée comme pourriel et n’est plus
@@ -8551,7 +8496,6 @@ fr:
             action:
               not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
             base:
-              only_staff_can_unhide: Seuls les membres de l'équipe peuvent réafficher un contenu masqué
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable

@@ -319,6 +319,7 @@ de:
   add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon an diesem Ort hinzu, z.B. wo und wann es auftritt.
   add_obs_from_a_link: "Beobachtungen aus Liste %{link} hinzufügen"
   add_obs_from_a_list: Beobachtungen aus einer Liste hinzufügen
+  add_observation_fields: Beobachtungsfelder hinzufügen
   add_observations: Beobachtung(en) hinzufügen
   add_observations_by_checking_off: Füge Beobachtungen durch das Auswählen von Arten aus einer Liste hinzu.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
@@ -1726,6 +1727,7 @@ de:
   extinct_in_the_wild: in der Natur ausgestorben
   extra_properties: Extra Eigenschaften
   evidence_of_organism: Hinweis auf einen Organismus?
+  evidence_related_to_single_subject: Alle Nachweise beziehen sich auf den gleichen Organismus
   facebook: Facebook
   failed_to_find_your_location: Dein Standort konnte nicht gefunden werden.
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
@@ -2641,6 +2643,12 @@ de:
     ihren eigenen Verlauf nicht ansehen</strong>, also sollten Notizen über eine Person niemals für diese Person sichtbar sein sein.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verbergen
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Sichtbar machen
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Sperren
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Entsperren
   moderator_note_desc: |
     Moderator-Anmerkungen sind Aufzeichnungen von Moderationsantworten oder evidenzbasierten
     Bedenken über einen Benutzer, zum Beispiel, ob es sich um ein mögliches Zweit-Konto
@@ -2994,6 +3002,7 @@ de:
   observation_accuracy_experiment_quality_grade: "Qualitätsstufe"
   observation_accuracy_experiment_show_frequency: "zeige Häufigkeit an"
   observation_accuracy_experiment_click_on_bars: "Klicke auf die Balken, um die Untergruppen zu erkunden."
+  observation_accuracy_experiment_bars_will: "Die Balken werden nach Ablauf der Validierungs-Frist anklickbar sein."
   observation_accuracy_experiment_accuracy_results: "Genauigkeitsergebnisse nach Untergruppen"
   observation_accuracy_experiment_as_observations: "Während Beobachtungen aus dieser Probe validiert werden, sinkt der Anteil der 'unsicheren' Beobachtungen, während die Anteile von 'korrekt' und 'inkorrekt' zunehmen."
   observation_accuracy_experiment_experiment_still: "Das Experiment ist noch im Gange. Die Statistik wird täglich bis zur Frist für die Validierung der Proben am %{date} aktualisiert"
@@ -3008,7 +3017,7 @@ de:
   observation_accuracy_experiment_all_results: "Alle Ergebnisse"
   observation_accuracy_experiment_methods: "Methoden"
   observation_accuracy_experiment_step_1: "Schritt 1: Erstellung der Stichproben und Zuordnung"
-  observation_accuracy_experiment_from_the: "Aus den Beobachtungen der iNaturalist-Datenbank (A) haben wir eine zufällige Stichprobe (B) erzeugt. Teilmengen dieser Proben wurden dann den Prüfern zugeordnet, basierend auf den unten beschriebenen Kriterien. Wir haben uns zum Ziel gesetzt, jede Beobachtung mehreren Prüfern zuzuweisen (\"Target validator redundancy\")."
+  observation_accuracy_experiment_from_the2: "Aus den Beobachtungen der iNaturalist-Datenbank (A) haben wir eine zufällige Stichprobe (B) erzeugt. Teilmengen dieser Proben wurden dann den Prüfern zugeordnet (C), basierend auf den unten beschriebenen Kriterien. Wir haben uns zum Ziel gesetzt, jede Beobachtung mehreren Prüfern zuzuweisen (\"Target validator redundancy\")."
   observation_accuracy_experiment_sample_generated: "Stichprobe erstellt: %{date}"
   observation_accuracy_experiment_sample_size: "Stichprobengröße: %{number}"
   observation_accuracy_experiment_target_validator: "Target validator redundancy: %{number}"
@@ -3017,6 +3026,7 @@ de:
   observation_accuracy_experiment_mean_number: "Mittelwert der Prüfer pro Beobachtung: %{number}"
   observation_accuracy_experiment_validator_candidate: "Kriterien an die Prüfer"
   observation_accuracy_experiment_if_an_identifier: "Wenn Bestimmer mindestens 3 Identifikationen (Verbesserung) für ein Taxon gemacht haben, hielten wir sie für qualifiziert, dieses Taxon zu validieren. Der Status 'Verbesserung' bei einer Bestimmung wird für die erste Bestimmung eines Taxon vergeben, welcher andere Bestimmer in weiterer Folge zugestimmt haben."
+  observation_accuracy_experiment_if_an_identifier_continent: "Wenn Bestimmer mindestens 3 Identifikationen (Verbesserung) für ein Taxon auf einem bestimmten Kontinent gemacht haben, hielten wir sie für qualifiziert, dieses Taxon innerhalb ihres Kontinents zu validieren. Der Status 'Verbesserung' bei einer Bestimmung wird für die erste Bestimmung eines Taxon vergeben, welcher andere Bestimmer in weiterer Folge zugestimmt haben."
   observation_accuracy_experiment_for_example: "Zum Beispiel fügt Bestimmer 1 einer Beobachtung die ID 'A' hinzu. Wenn Bestimmer 2 später eine verfeinerte, initiative ID 'B' hinzufügt, wird die ID 'A' von Bestimmer 1 zu einer 'Verbesserung'. Wenn Bestimmer 3 später eine unterstützende ID von 'B' hinzufügt, wird nun die ID 'B' von Bestimmer 2 zu einer 'Verbesserung'."
   observation_accuracy_experiment_step_2: "Schritt 2: Stichproben validieren"
   observation_accuracy_experiment_we_contacted: "Wir haben die Prüfer kontaktiert und sie gebeten, für ihre jeweiligen Teilproben Bestimmungen abzugeben. Der Graph rechts gruppiert Beobachtungen nach der Anzahl der Prüfer."
@@ -3033,9 +3043,9 @@ de:
   observation_accuracy_experiment_precision: "Präzision"
   observation_accuracy_experiment_if_every_sample: "Wäre jede Beobachtung der Stichprobe nur auf einem höheren Rang, wie z.B. Reich, bestimmt, wäre die Genauigkeit des iNaturalist-Datensatzes zwar sehr hoch, aber die Präzision könnte zu niedrig sein, um einen aussagekräftigen Datensatz zu haben. Um die Präzision abzuschätzen, haben wir für jede Beobachtung die Anzahl der niedrigeren Taxon-Rangstufen für jedes Taxon gezählt. Wir kalkulierten dabei die Präzision als 1 geteilt durch die Anzahl der nachfolgenden Rangstufen. Wenn das Taxon ein End-Taxon ist, beträgt die Genauigkeit 100% (Ränge unterhalb des Artniveaus werden für die Berechnung ignoriert)."
   observation_accuracy_experiment_in_the_example: "Im rechten Beispiel würde die durchschnittliche Präzision der drei Stichprobenbeobachtungen 51 % betragen."
-  observation_accuracy_validator_email_subject: "Möchtest du uns dabei helfen, die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Möchtest du uns bei einem Experiment unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
+  observation_accuracy_validator_email_subject2: "Möchtest du uns bei Experiment %{version} unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Möchtest du uns bei einem <a href="%{url}">Experiment (Version %{version})</a> unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
   observation_accuracy_validator_email_if_so2_html: |
     <ol><li>Bestimme alle Beobachtungen im unten angegebenen Link so genau wie möglich, auch wenn sie bereits Forschungsqualität besitzen, und auch wenn deine genaueste ID nur auf höherer taxonomischer Ebene möglich ist (sogar 'Reich'). </li>
     <li>Wenn sich das "Besteht Einwand...?" Pop-up Fenster öffnet… 
@@ -3044,9 +3054,9 @@ de:
     <li>oder wenn du unsicher bist, wähle die grüne Option</li>
     </ul>
     </li>
-    <li>Bitte die Bestimmungen bist zum <b>%{validator_deadline_date}</b> abschließen</li>
+    <li>Bitte die Bestimmungen bis zum <b>%{validator_deadline_date}</b> abschließen</li>
     </ol>
-    Hier ist deine<a href="%{sample_url}"><a href="%{sample_url}">Auswahl von %{num_obs} Beobachtungen</a>, von der wir aufgrund deiner iNat-Aktivität vermuten, dass du sie identifizieren könntest. <b>Bitte deine genauestmögliche ID bis zum %{validator_deadline_date} abgeben</b> . 
+    Hier ist deine <a href="%{sample_url}"><a href="%{sample_url}">Auswahl von %{num_obs} Beobachtungen</a>, von der wir aufgrund deiner iNat-Aktivität vermuten, dass du sie identifizieren könntest. <b>Bitte deine genauestmögliche ID bis zum %{validator_deadline_date} abgeben</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Wir berechnen die Genauigkeit, indem wir deine Bestimmung mit dem Beobachtungstaxon vergleichen. Du kannst Beobachtungen überspringen, bei denen du zuvor bereits eine ID hinzugefügt hast - es sei denn du möchtest dieses ID nun revidieren. Lies weiter, wenn du mehr darüber erfahren möchtest, wie wir Zustimmungen und Widersprüche evaluieren werden.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -3055,8 +3065,8 @@ de:
     IDs auf abweichenden Stammbaum-Ästen (C) oder höher als das Beobachtungstaxon UND bei denen in der Dialog-Box ein Widerspruch (D) ausgedrückt wurde, werden als Nichtübereinstimmung gezählt.
   observation_accuracy_validator_email_ids_coarser_than: |
     IDs höher als das Beobachtungstaxon, bei denen du im "Widerspruchs-Dialog" (E) die Option 'kein Veto...' gewählt hast, werden als 'unsicher' gewertet.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Wir sind sehr dankbar für deine Bestimmungs-Hilfe auf iNaturalist und vielen Dank für die Teilnahme an dieser Studie. <a href="%{url}">In diesem Blog-Beitrag</a> kannst du Antworten zu häufig gestellten Fragen dieses Experiments finden.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Wir sind sehr dankbar für deine Bestimmungs-Hilfe auf iNaturalist und vielen Dank für die Teilnahme an dieser Studie. Mehr über die Methoden zu diesem Experiment kannst du <a href="%{url}">hier</a> erfahren.
   observation_accuracy_validator_email_with_gratitude: In Dankbarkeit,
   observation_accuracy_validator_email_the_inaturalist_team: das Team von iNaturalist
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
@@ -6481,22 +6491,22 @@ de:
           die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
           Beobachtung im Projekt zu sehen und impliziert, dass du
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
-        quality_assessment_help2_html: |
-          <p> Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
+        quality_assessment_help3_html: |
+          <p>Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
           </p>
 
           <ul>
-           <li>die Beobachtung <strong>ein Datum</strong> hat</li>
-           <li>die Beobachtung <strong>georeferenziert</strong> ist (d.h. Lat/Lon-Koordinaten enthält)</li>
-           <li>die Beobachtung <strong>Bilder oder Tonaufnahmen</strong> enthält</li>
-           <li>die Beobachtung <strong>nicht die ID 'Mensch'</strong> (Homo sapiens) hat</li>
+          <li>die Beobachtung <strong>ein Datum hat</strong></li>
+          <li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. Lat/Lon-Koordinaten enthält)</li>
+          <li>die Beobachtung <strong>Bilder oder Tonaufnahmen enthält</strong></li>
+          <li>die Beobachtung <strong>nicht die ID 'Mensch' (Homo sapiens) hat</strong></li>
           </ul>
           <p>
-          Beobachtungen erreichen <strong>"Forschungsqualität"</strong> wenn
+          Beobachtungen erreichen <strong>"Forschungsqualität"</strong>, wenn
           </p>
           <ul>
           <li>
-          die %{site_name} <strong>iNat-Community der Bestimmung (ID) auf (Unter-)Artniveau</strong> zustimmt, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
+          die %{site_name}<strong>-Community der Bestimmung (ID) auf (Unter-)Artniveau zustimmt</strong>, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
           </li>
           </ul>
           <p>
@@ -6504,30 +6514,33 @@ de:
           </p>
           <ul>
           <li>
-          der <strong>Standort als nicht korrekt</strong> erscheint (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
+          der <strong>Standort als nicht korrekt erscheint</strong> (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
           </li>
           <li>
-          der <strong>Organismus nicht wild/verwildert</strong> ist (z.B. kultiviert oder in Haltung von Menschen oder auch von intelligenten Außerirdischen)
+          der Organismus <strong>nicht wild/verwildert ist</strong> (z.B. angepflanzt oder in menschlicher Haltung)
           </li>
           <li>
-          die Beobachtung <strong>keine Hinweise auf einen Organismus</strong> zeigt, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
+          die Beobachtung <strong>keine Hinweise auf einen Organismus zeigt</strong>, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
           </li>
           <li>
-          die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus</strong> aufweist (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
+          die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus aufweist</strong> (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
           </li>
           <li>
-          die Beobachtung keine genauere ID erlaubt <em>und</em> die Community-ID auf Familienniveau oder höher ist
+          die Beobachtung <strong>nicht nur Fotos in Bezug auf ein bestimmtes Subjekt enthält</strong> (z.B. unterschiedliche Arten in den einzelnen Fotos einer Beobachtung. Unterstützende Habitataufnamen assoziiert mit einer Art sind aber in Ordnung)
           </li>
           <li>
-          der Beobachter <strong>aus der "Community-ID" ausgetreten</strong> ist und die Community dem vom Beobachter bestimmten Taxon widerspricht
+          die Beobachtung markiert wurde als 'ID bereits so gut wie möglich' <em>und</em> die Community-ID auf Familenniveau oder höher ist
+          </li>
+          <li>
+          der Beobachter aus der "Community-ID" ausgetreten ist und die Community mehrheitlich dem vom Beobachter bestimmten Taxon widerspricht
           </li>
           </ul>
           <p>
-          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System mitbestimmen darf:
+          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System ein Wörtchen mitreden darf:
           </p>
           <ul>
           <li>
-          Das System wird eine Beobachtung automatisch als nicht wild/verwildert kennzeichnen, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als nicht wild/verwildert markiert wurden.
+          Das System ist so eingestellt, dass eine Beobachtung automatisch als nicht wild/verwildert eingestuft wird, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als nicht wild/verwildert markiert wurden.
           </li>
           </ul>
         score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
@@ -8078,7 +8091,7 @@ de:
             action:
               not_supported_for_this_kind_of_content: wird für diese Art von Inhalten nicht unterstützt
             base:
-              only_staff_can_unhide: Nur Administratoren können versteckte Inhalte wieder sichtbar machen
+              only_staff_and_hiding_curators_can_unhide: Nur Administratoren und Kuratoren, die den Inhalt ausblendeten, können ihn wieder sichtbar machen
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein

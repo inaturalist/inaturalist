@@ -318,6 +318,7 @@ da:
   add_notes_about_this_taxon: Tilføj her note om denne takson, f.eks. hvor og hvornår den forekommer.
   add_obs_from_a_link: "Tilføj observationer fra liste: %{link}"
   add_obs_from_a_list: Tilføj observationer fra en liste
+  add_observation_fields: Tilføj Observationsfelter
   add_observations: Tilføj observationer
   add_observations_by_checking_off: Tilføj observationer ved at afkrydse arter på en liste.
   add_observations_project: Tilføj observationer til dette projekt
@@ -1822,6 +1823,7 @@ da:
   extinct_in_the_wild: Uddøde i naturen
   extra_properties: Ekstra egenskaber
   evidence_of_organism: Bevis for organisme
+  evidence_related_to_single_subject: Bevis relateret til ét enkelt emne
   facebook: Facebook
   failed_to_find_your_location: Kunne ikke finde din placering.
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
@@ -2778,8 +2780,12 @@ da:
     for den pågældende person.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Gør synlig
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspendér
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Ophæv udelukkelse
+  moderator_actions_unsuspend: Fjern suspendering
   moderator_note_desc: |
     Moderatornotater er optegnelser over moderationssvar eller evidensbaserede tvivl om en bruger, såsom om der er tale om en mulig fiktiv konto. Inkludér venligst ikke personlige meninger eller rygter om brugeren.
   #Person who executed a moderator action or flagged something
@@ -3139,6 +3145,7 @@ da:
   observation_accuracy_experiment_quality_grade: "Kvalitetsklasse"
   observation_accuracy_experiment_show_frequency: "vis frekvens"
   observation_accuracy_experiment_click_on_bars: "Klik på bjælker for at udforske undergrupper."
+  observation_accuracy_experiment_bars_will: "Bjælker vil være klikbare efter fristen for validering af prøver er udløbet."
   observation_accuracy_experiment_accuracy_results: "Præcisionsresultater pr. undergruppe"
   observation_accuracy_experiment_as_observations: "Efterhånden som observationer fra denne prøve valideres, vil usikkerhedsprocentdelen falde og procenterne for korrekt og ukorrekt vil stige."
   observation_accuracy_experiment_experiment_still: "Eksperiment stadig i gang. Statistik opdateres dagligt indtil prøvebekræftelsesdeadlinen pr. %{date}"
@@ -3153,7 +3160,7 @@ da:
   observation_accuracy_experiment_all_results: "Alle resultater"
   observation_accuracy_experiment_methods: "Metoder"
   observation_accuracy_experiment_step_1: "Trin 1: Prøvegenerering og -fordeling"
-  observation_accuracy_experiment_from_the: "Fra iNaturalist-databasen af observationer (A) genererede vi en tilfældig prøve (B). Delprøver blev tildelt kandidatvalidatorer baseret på de nedenfor beskrevne kriterier. Vores mål var at tildele hver prøveobservation til flere kandidatvalidatorer ( \"Målvalidatorredundans\" )."
+  observation_accuracy_experiment_from_the2: "Fra iNaturalist-databasen over observationer (A) genererede vi en tilfældig prøve (B). Delprøver blev tildelt kandidatvalidatorer (C) baseret på nedenstående kriterier. Vores mål var at tildele hver prøveobservation til flere kandidatvalidatorer ( \"Target validator redundancy\" )."
   observation_accuracy_experiment_sample_generated: "Prøve genereret: %{date}"
   observation_accuracy_experiment_sample_size: "Prøvestørrelse: %{number}"
   observation_accuracy_experiment_target_validator: "Målvalidatorredundans: %{number}"
@@ -3162,6 +3169,7 @@ da:
   observation_accuracy_experiment_mean_number: "Gns. antal validatorer pr. prøveobservation: %{number}"
   observation_accuracy_experiment_validator_candidate: "Validatorkandidatkriterier"
   observation_accuracy_experiment_if_an_identifier: "Havde en identifikator foretaget mindst 3 forbedrende identifikationer af en takson, betragtede vi dem som kvalificerede til at validere den takson. Forbedring af identifikationer er det første forslag til en takson, som fællesskabet efterfølgende er enig i."
+  observation_accuracy_experiment_if_an_identifier_continent: "Havde en identifikator foretaget mindst 3 forbedrende identifikationer af en takson, betragtede vi vedkommende som kvalificeret til at validere taksonen. Forbedring af identifikationer er det første forslag til en takson, som fællesskabet efterfølgende er enig i."
   observation_accuracy_experiment_for_example: "Identifikator 1 føjer f.eks. et ID af A til en observation. Føjer Identifikator 2 senere et førende ID til B, bliver Identifikator 1-ID'et på A et forbedret ID. Føjer Identifikator 3 senere et understøttende ID til B, bliver Identifikator 2-ID'et på B et forbedrende ID."
   observation_accuracy_experiment_step_2: "Trin 2: Bekræftelse af prøver"
   observation_accuracy_experiment_we_contacted: "Vi kontaktede kandidatvalidatorer og bad dem føje identifikationer til deres delprøver. Grafen til højre grupperer prøveobservation efter antallet af validatorer."
@@ -3178,9 +3186,9 @@ da:
   observation_accuracy_experiment_precision: "Præcision"
   observation_accuracy_experiment_if_every_sample: "Var hver prøveobservation på en grov takson, såsom rige, ville nøjagtigheden af iNaturalist-datasættet kunne være meget høj, men præcisionen kunne være for lav til at gøre datasættet specielt nyttigt. For at anslå præcisionen har vi talt antallet af bladefterkommere i iNaturalist-taksonomien for hver takson for hver prøveobservation. Vi beregnede præcision som 1 divideret med antallet af bladefterkommere. Var taksonen en bladtakson, er præcisionen 100%. Vi ignorerede rangeringer under arter i præcisionsberegningen."
   observation_accuracy_experiment_in_the_example: "I eksemplet til højre, ville den gns. præcision af tre prøveobservationer være 51%."
-  observation_accuracy_validator_email_subject: "Vil du hjælpe os med at vurdere korrektheden af iNaturalist-observationer?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Vil du hjælpe os et eksperiment til vurdering af korrektheden af iNaturalist-observationer?
+  observation_accuracy_validator_email_subject2: "Vil du hjælpe os med Eksperiment %{version} til vurdering af korrektheden af iNaturalist-observationer?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Vil du hjælpe os med et <a href="%{url}">eksperiment %{version}</a> til vurdering af korrektheden af iNaturalist-observationer?
   observation_accuracy_validator_email_if_so2_html: |
     <ol>
     <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (endda kongerige). </li>
@@ -3196,20 +3204,19 @@ da:
     som vi tror, at du kan identificere baseret på din aktivitet på iNat. <b>Tilføj 
     dit mest præcise ID til hver af observationerne senest %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
-    Vi beregner nøjagtigheden ved at sammenligne dit ID med observationstaksonen. Observationer, hvor du
+    Vi vil beregne nøjagtigheden ved at sammenligne dit ID med Observationstaksonen. Observationer, hvor du
     tidligere har tilføjet et ID, der fortsat har relevans, kan overspringes. Læs videre for mere information om, hvordan vi tæller enigheder og uenigheder.
   observation_accuracy_validator_email_ids_equal_to: |
     Er ID'er lig med (A) eller finere end (B), medregnes Observationstaksonen som Enigheder.
   observation_accuracy_validator_email_ids_sibling_to: |
-    ID'er på forskellige grene (C) eller grovere end Observationstakson, hvor du vælger 'Nej,
-    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Uenigheder.
+    ID'er på forskellige grene (C) eller grovere end Observationstakson, hvor du vælger "Nej,
+    men…" til dialogen 'Potentiel uenighed' (D) vil blive talt som Uenigheder.
   observation_accuracy_validator_email_ids_coarser_than: |
-    ID'er grovere end Observationstakson, hvor du vælger 'Jeg ved det ikke,
-    men…' til dialogen 'Potentiel uenighed' (D) vil blive talt som Usikker.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    Vi er så taknemmelige for din hjælp som identifikator på iNaturalist og takker 
-    meget for din deltagelse i denne undersøgelse. Læs <a href="%{url}">dette 
-    blogindlæg</a> for svar på hyppige spørgsmål omkring dette eksperiment.
+    ID'er grovere end Observationstakson, hvor du vælger "Jeg ved det ikke,
+    men…" i dialogen "Potentiel uenighed" (E) vil blive talt som Usikker.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Vi er så taknemmelige for din hjælp som identifikator på iNaturalist og takker dig
+    meget for at deltage i denne undersøgelse. Læs endelig <a href="%{url}">metoderne</a>, for at vide mere om dette eksperiment.
   observation_accuracy_validator_email_with_gratitude: Med taknemmelighed
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
@@ -5143,6 +5150,7 @@ da:
   text_editing_controls: Tekstredigeringskontroller
   thanks!: Tak!
   thanks_from_all_of_us_here_at: Tak fra alle os her hos
+  that_account_is_already_connected: Denne konto er allerede tilknyttet en anden bruger
   that_photo_doesnt_exist: Dette foto eksisterer ikke.
   that_observation_doesnt_exist: Denne observation eksisterer ikke
   that_observation_doesnt_have_any_photos: "Denne observation har ikke nogle foto´s."
@@ -6897,69 +6905,76 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
-          Datakvalitetsvurderingen er en opsummering af en observations nøjagtighed. Alle observationer starter som <strong>"uformel"</strong> klasse og bliver
+          Datakvalitetsvurderingen er en opsummering af en observations nøjagtighed. Alle
+          observationer starter med klassen/kvaliteten <strong>"uformel"</strong> og bliver
           <strong>"behøver ID"</strong>, når
           </p>
 
           <ul>
           <li>observationen <strong>har en dato</strong></li>
-          <li>observationen <strong>er georefereret</strong> (dvs. har bredde-/længdekoordinater)</li>
-          <li>observationen <strong>har fotos eller lyde</strong></li>
-          <li>observationen <strong>ikke er af/fra et menneske</strong></li>
+          <li>observationen <strong>er georefereret</strong> (dvs. har lgd.-/brd.-koordinater)</li>
+          <li>observationen <strong>har billeder eller lyde</strong></li>
+          <li>observationen <strong>er ikke af et menneske</strong></li>
           </ul>
           <p>
-          Observationer opnår <strong>"forskningskvalitet"</strong>, når
+          Observationer bliver <strong>"forskningskvalitet"</strong>, når
           </p>
           <ul>
           <li>
-          %{site_name}-<strong>fællesskabet er enige om arts-niveau ID eller
+          %{site_name} <strong>fællesskabet er enige om artsniveau-ID eller
           lavere</strong>, altså når flere end 2/3 af identifikatorerne er enige om en
-          takson (har en fællesskabsafstemning afgjort, at Fællesskabstaksonen ikke længere kan forbedres, vender denne tilbage til underfamilieniveau eller lavere)
+          takson (afgør fællesskabsafstemningen, at Community Taxon ikke 
+          længere kan forbedres, vender dette tilbage til underfamilieniveau eller lavere)
           </li>
           </ul>
           <p>
-          Observationer vender tilbage til <strong>"uformel"</strong>, såfremt ovenstående betingelser ikke er opfyldt, eller fællesskabet er enigt
+          Observationer vil vende tilbage til <strong>"uformel"</strong>, hvis ovenstående betingelser ikke er opfyldt, eller fællesskabet er enige om, at
           </p>
           <ul>
           <li>
-          <strong>placeringen ikke virker
+          <strong>placeringen ikke virker 
           præcis</strong>(f.eks. aber midt i havet,
           flodheste i kontorbygninger mv.)
           </li>
           <li>
-          <strong>organismen er ikke vild/naturaliseret</strong> (f.eks. fanget eller dyrket af mennesker
-          eller intelligente rumvæsener)
+          <strong>organismen er ikke vild/naturaliseret</strong> (f.eks. fanget eller dyrket af mennesker)
           </li>
           <li>
-          observationen <strong>ikke fremviser bevis for en
-          organisme</strong>, f.eks. fotos af vandelementer,
-          klipper, landskaber, som ikke indeholder organismen mv.
+          observationen <strong>ikke præsenterer bevis for en
+          organisme</strong>, f.eks. billeder af vandelementer,
+          klipper, landskaber, som ikke inkluderer organismen mv.
           </li>
           <li>
-          observationen <strong>ikke fremviser nyere (~100 år) beviser for
-          organismen</strong>(f.eks. fossiler, dog er spor, afføring og døde blade
+          observationen <strong>ikke præsenterer nyere (~100 år) beviser for
+          organismen</strong>(f.eks. er fossiler, undtagen spor, afføring og døde blade
           OK)
           </li>
           <li>
-          observationen ikke længere behøver et ID <em>og</em> fællesskabs-ID'et er på familie eller derover
+          observationen <strong>ikke præsenterer beviser relateret til ét emne</strong>
+          (den har f.eks. fire fotos af ubeslægtede organismer. Et foto, der viser levested for
+          observationens emne er OK.)
           </li>
           <li>
-          observatøren har fravalgt fællesskabs-ID'et og fællesskab-ID taksonen ikke er en forfader eller efterkommer af taksonen associeret
+          observationen behøver ikke længere et id <em>og</em> fællesskabs-ID'et er på niveauet familie eller derover
+          </li>
+          <li>
+          observatøren har fravalgt fællesskabs-ID'et og fællesskabs-
+          ID taksonen er ikke en forfader eller efterkommer af taksonen associeret
           med observatørens ID
           </li>
           </ul>
           <p>
-          Og hvis det ikke var kompliceret nok, så er der også situationer, hvor systemet får en stemme:
+          Og som om det ikke er kompliceret nok, så er der også situationer, hvor systemet får en stemme:
           </p>
           <ul>
           <li>
           Systemet vil stemme, at observationen ikke er vild/naturaliseret,
           hvis der er mindst 10 andre observationer af en slægt eller lavere i
-          det mindste amts-, stat- eller landækvivalente sted
-          indeholdende denne observation og 80% eller flere af disse observationer
-          er blevet markeret som ikke-vilde/-naturaliserede.
+          det mindste amts-, stat- eller land-ækvivalente sted, der
+          indeholder denne observation og 80% eller flere af disse observationer,
+          er blevet markeret som ikke vilde/naturaliserede.
           </li>
           </ul>
         score_desc: "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
@@ -8756,7 +8771,7 @@ da:
             action:
               not_supported_for_this_kind_of_content: ikke understøttet for denne indholdstype
             base:
-              only_staff_can_unhide: Kun personalet kan gøre skjult indhold synligt
+              only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator

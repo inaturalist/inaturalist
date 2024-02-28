@@ -329,6 +329,7 @@ sv:
   add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna fyndplats, t.ex. var och när det påträffas.
   add_obs_from_a_link: "Lägg till obs från lista: %{link}"
   add_obs_from_a_list: Lägg till obs från en lista
+  add_observation_fields: Lägg till observationsfält
   add_observations: Lägg till fynd
   add_observations_by_checking_off: Lägg till fynd genom att markera arter i en lista.
   add_observations_project: Lägg till fynd till detta projekt
@@ -1839,6 +1840,7 @@ sv:
   extinct_in_the_wild: Utdöd i vilt tillstånd
   extra_properties: Ytterligare egenskaper
   evidence_of_organism: Belägg för organism
+  evidence_related_to_single_subject: Stöd kopplat till ett enstaka område
   facebook: Facebook
   failed_to_find_your_location: Kunde inte att hitta din position.
   failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
@@ -2806,8 +2808,12 @@ sv:
     för den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Dölj
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Ta fram
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Stäng av
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Återaktivera
+  moderator_actions_unsuspend: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -3167,6 +3173,7 @@ sv:
   observation_accuracy_experiment_quality_grade: "Kvalitetsklass"
   observation_accuracy_experiment_show_frequency: "visa frekvens"
   observation_accuracy_experiment_click_on_bars: "Klicka på staplar för att utforska delmängderna."
+  observation_accuracy_experiment_bars_will: "Staplar kommer vara klickbara efter deadline för att verifiera prover har passerats."
   observation_accuracy_experiment_accuracy_results: "Noggrannhetsresultat efter delmängd"
   observation_accuracy_experiment_as_observations: "Eftersom fynd från detta urval verifieras, kommer andelen osäkra att minska och andelen korrekta och felaktiga att öka."
   observation_accuracy_experiment_experiment_still: "Experimentet pågår fortfarande. Statistik uppdateras dagligen fram till deadline för verifiering av prover den %{date}"
@@ -3181,7 +3188,7 @@ sv:
   observation_accuracy_experiment_all_results: "Alla resultat"
   observation_accuracy_experiment_methods: "Metoder"
   observation_accuracy_experiment_step_1: "Steg 1: Provgenerering och Tilldelning"
-  observation_accuracy_experiment_from_the: "Från iNaturalist-databasen med fynd (A), genererade vi ett slumpmässigt urval (B). Delprover tilldelades potentiella verifierare baserat på de kriterier som beskrivs nedan. Vi försökte tilldela varje provfynd till flera potentiella verifierare ( \"Målverifierarredundans\" )."
+  observation_accuracy_experiment_from_the2: "Från iNaturalists fynddatabas (A), genererade vi ett slumpmässigt urval (B). Delprover tilldelades potentiella verifierare (C) baserat på de kriterier som beskrivs nedan. Vi försökte tilldela varje provfynd till flera potentiella verifierare ( \"Målverifierarredundans\" )."
   observation_accuracy_experiment_sample_generated: "Genererat prov: %{date}"
   observation_accuracy_experiment_sample_size: "Provstorlek: %{number}"
   observation_accuracy_experiment_target_validator: "Målverifierarredundans: %{number}"
@@ -3190,6 +3197,7 @@ sv:
   observation_accuracy_experiment_mean_number: "Medelantal verifierare per provfynd: %{number}"
   observation_accuracy_experiment_validator_candidate: "Kriterier för potentiella verifierare:"
   observation_accuracy_experiment_if_an_identifier: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon, ansåg vi att de var kvalificerade att verifiera detta taxon. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
+  observation_accuracy_experiment_if_an_identifier_continent: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon på en kontinent, ansåg vi att de var kvalificerade att verifiera detta taxon inom denna kontinent. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
   observation_accuracy_experiment_for_example: "Till exempel, Bestämmare 1 lägger till en bestämning av A till ett fynd. Om Bestämmare 2 sedan lägger till en ledande bestämning av B, blir Bestämmare 1's bestämning av A en förbättrande bestämning. Om Bestämmare 3 sedan lägger till en stödjande bestämning till B, blir Bestämmare 2's bestämning en förbättrande bestämning."
   observation_accuracy_experiment_step_2: "Steg 2: Provverifiering"
   observation_accuracy_experiment_we_contacted: "Vi kontaktade potentiella verifierare och bad dem att lägga till bestämningar till sina delprover. Grafen till höger grupperar provfynd efter antalet verifierare."
@@ -3206,37 +3214,37 @@ sv:
   observation_accuracy_experiment_precision: "Precision"
   observation_accuracy_experiment_if_every_sample: "Om varje provfynd var på en hög nivå såsom rike, skulle noggrannheten i iNaturalists dataset kunna vara mycket hög, men precisionen kanske var för låg för att göra dataset särskilt användbart. För att uppskatta precision, räknade vi antalet underliggande ändtaxa i iNaturalists taxonomi för varje taxon kopplat till varje provfynd. Vi beräknade precision såsom 1 dividerat med antalet ändtaxa. Om taxonet var ett ändtaxa blev precisionen 100%. Vi ignorerade ranger under art i precisionsberäkningen."
   observation_accuracy_experiment_in_the_example: "I exempelfiguren till höger skulle medelprecisionen av tre provfynd bli 51 %."
-  observation_accuracy_validator_email_subject: "Kan du tänka dig att hjälpa oss uppskatta fynds träffsäkerhet på iNaturalist?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Kan du tänka dig att hjälpa oss med ett experiment för att uppskatta fynds träffsäkerhet på iNaturalist?
+  observation_accuracy_validator_email_subject2: "Kan du tänka dig att hjälpa oss med Experiment %{version} för att uppskatta noggrannheten för iNaturalist-fynd?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Kan du tänka dig att hjälpa oss med ett <a href="%{url}">experiment (version %{version})</a> för att uppskatta noggrannheten för iNaturalist-fynd?
   observation_accuracy_validator_email_if_so2_html: |
     <ol>
-    <li>Bestäm alla fynd i länken nedan så exakt du kan, även om de har forskningsklass, och även om din mest exakta bestämning är på en högre taxonomisk nivå (även rike). </li>
+    <li>Bestäm alla fynd i länken nedan så bra du kan, även om de har Forskningsklass, till oc med om din bästa bestämning är på en högre taxonomisk nivå (även rike). </li>
     <li>Om du ser “Möjlig meningsskiljaktighet” poppa upp…
     <ul>
     <li>och du är säker på att det är felbestämt, klicka på den orangea knappen,</li>
-    <li>eller om du är osäker på din bestämning, klicka på den gröna knappen</li>
+    <li>eller om du är osäker på något exaktare än din egen bestämning, klicka på den gröna knappen</li>
     </ul>
     </li>
     <li>Gör detta till <b>%{validator_deadline_date}</b></li>
     </ol>
-    Här är den <a href="%{sample_url}">delmängd av %{num_obs} fynd</a>
+    Här är den <a href="%{sample_url}">delmängd %{num_obs} fynd</a>
     som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till
-    den exaktaste bestämning du kan för varje fynd till %{validator_deadline_date}</b>.
+    den bästa bestämning du kan för varje fynd till %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
-    du bestämt innan om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
+    du bestämt tidigare om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
   observation_accuracy_validator_email_ids_equal_to: |
     För bestämningar lika med (A) eller exaktare än (B) kommer fyndets taxon att räknas som Överensstämmer.
   observation_accuracy_validator_email_ids_sibling_to: |
-    Bestämningar på olika grenar eller mindre exakt än fyndets taxon där du väljer 'Nej, men…' vid 'Möjlig meningsskiljaktighet'-frågan (D) kommer att räknas som Meningsskiljaktigheter.
+    Bestämningar på olika grenar (C) eller mindre exakt än fyndets taxon där du väljer 'Nej, men…' vid 'Möjlig meningsskiljaktighet'-frågan (D) kommer att räknas som Meningsskiljaktigheter.
   observation_accuracy_validator_email_ids_coarser_than: |
-    Bestämningar mindre exakta än fyndets taxon där du väljer "Jag vet inte men…" för
-    dialogrutan "Möjlig meningsskiljaktighet" (E) kommer att räknas som Osäker.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
+    Bestämningar som är mindre exakta än fyndets taxon där du väljer "Jag vet inte men…" ur
+    dialogrutan "Möjlig meningsskiljaktighet" (E) kommer att räknas som Osäkra.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
     Vi är verkligen tacksamma för din hjälp som artbestämmare på iNaturalist,
-    och stort tack för att du deltagit i denna studie. Läs <a href="%{url}">detta
-    blogginlägg</a> för svar på vanliga frågor om experimentet.
+    och stort tack för att du deltagit i denna studie. Läs <a href="%{url}">metoderna</a>
+    för att lära dig mer om experimentets utformning.
   observation_accuracy_validator_email_with_gratitude: Stort tack,
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
@@ -5140,6 +5148,7 @@ sv:
   text_editing_controls: Textredigeringskontroller
   thanks!: Tack!
   thanks_from_all_of_us_here_at: Tack från alla här på
+  that_account_is_already_connected: Det kontot är redan kopplat till en annan användare
   that_photo_doesnt_exist: Den bilden finns inte.
   that_observation_doesnt_exist: Det fyndet finns inte.
   that_observation_doesnt_have_any_photos: "Det fyndet har inga bilder."
@@ -6827,18 +6836,18 @@ sv:
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
         join_project_desc_html: |
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
-          Bedömningen av datakvaliteten är en sammanfattning av ett fynds korrekthet. Alla
-          fynd börjar som <strong>"grund"</strong>klass, och blir
-          <strong>"behöver bestämning"</strong> när
+          Bedömningen av datakvaliteten är en sammanfattning av ett fynds noggrannhet. Alla
+          fynd börjar som <strong>"grund"</strong>klass, och
+          <strong>"behöver bestämmas"</strong> när
           </p>
 
           <ul>
-          <li>fyndet<strong>har ett datum</strong></li>
-          <li>fyndet<strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
-          <li>fyndet<strong>har bilder eller ljud</strong></li>
-          <li>fyndet<strong>inte är en människa</strong></li>
+          <li>fyndet <strong>har ett datum</strong></li>
+          <li>fyndet <strong>är geopositionerat</strong> (dvs har lat/long-koordinater)</li>
+          <li>fyndet <strong>har bild eller ljud</strong></li>
+          <li>fyndet <strong>inte är en människa</strong></li>
           </ul>
           <p>
           fynd får <strong>"forskningsklass"</strong> när
@@ -6846,52 +6855,58 @@ sv:
           <ul>
           <li>
           %{site_name} <strong>communityn håller med om bestämning till artnivå eller
-          lägre</strong>, dvs när fler än 2/3 av bestämmarna är överens om ett
-          taxon (om communityn har röstat om att Community-bestämningen inte längre kan
-          förbättras, återgår den till underfamiljsbestämning eller lägre)
+          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna är överens om ett
+          taxon (om communityn har röstat att communityn-taxonet inte kan förbättras,
+          återgår det till underfamiljsbestämning eller lägre)
           </li>
           </ul>
           <p>
-          Fynd återgår till <strong>"grund"</strong> om ovanstående villkor inte är uppfyllda
-          eller communityn håller med om att
+          Fynd återgår till <strong>"grund"</strong>klass om ovanstående villkor inte är uppfyllda
+          eller communityn är överens
           </p>
           <ul>
           <li>
-           <strong>platsen ser inte
-          rätt ut</strong> (t.ex. apor mitt i havet,
+           <strong>platsen inte verkar vara
+          korrekt</strong> (t.ex. apor mitt i havet,
           flodhästar i kontorsbyggnader, etc.)
           </li>
           <li>
-          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människan
-          eller intelligenta rymdvarelser)
+          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad)
           </li>
           <li>
-          fyndet <strong>inte utgör stöd för en
-          organism</strong>, t.ex. bilder av vattensamlingar,
+          fyndet är <strong>inte ett tecken på en
+          organism</strong>, t.ex. bilder av vattenmassor,
           klippor, landskap som inte inkluderar organismen, etc.
           </li>
           <li>
-          fyndet <strong>utgör inte stöd för organismern i modern tid (~100 år)</strong> (t.ex. fossil, men spår, avföring och döda blad
-          är okej)
+          fyndet <strong>utgör inte nutida (~100 år) stöd för
+          organismen</strong> (t.ex. fossil, men spår, avföring och döda blad
+          är ok)
           </li>
           <li>
-          fyndet behöver inte längre bestämmas <em>och</em> community-bestämningen är till familj eller högre
+          fyndet <strong>utgör inte stöd för en enstaka sak</strong>
+          (t.ex. det finns fyra bilder på orelaterade organismer. En bild som visar livsmiljön för
+          fyndets subjekt är OK.
           </li>
           <li>
-          observatören har valt bort community-bestämning samt community-
-          bestämningens taxon är inte en förfader eller ättling till det taxon
-          observatören bestämt
+          fyndet inte längre behöver bestämmas <em>och</em> community-bestämningen är till familj eller högre
+          </li>
+          <li>
+          observatören har valt bort community-bestämning och communityns
+          taxonbestämning inte är över- eller underliggande det taxon som är kopplat
+          till observatörens bestämning
+          </li>
           </ul>
           <p>
-          Och om det inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
+          Och om detta inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
           </p>
           <ul>
           <li>
-          Systemet kommer att rösta för att fyndet inte är vilt/naturaliserat
+          Systemet kommer att rösta att fyndet inte är vilt/naturaliserat
           om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta län-, stat-, eller landmotsvarighet till plats som
-          innehåller detta fynd samt att 80% eller fler av dessa fynd
-          har markerats som inte vilt/naturaliserat.
+          det minsta motsvarighet till län, stat, eller land som
+          innehåller detta fynd och 80% eller fler av dessa fynd
+          har markerats som inte vilda/naturaliserade.
           </li>
           </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
@@ -8502,7 +8517,7 @@ sv:
             action:
               not_supported_for_this_kind_of_content: stöds inte för denna typ av innehåll
             base:
-              only_staff_can_unhide: Endast personal kan synliggöra dolt innehåll
+              only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare

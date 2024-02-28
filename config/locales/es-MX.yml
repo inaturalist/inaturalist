@@ -2748,8 +2748,6 @@ es-MX:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Recuperar cuenta
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencia acerca de un usuario, tales como si son una posible cuenta marioneta. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -8113,7 +8111,6 @@ es-MX:
             action:
               not_supported_for_this_kind_of_content: no soporta este tipo de contenido
             base:
-              only_staff_can_unhide: Sólo el staff puede mostrar contenido oculto
               staff_cannot_be_suspended: El staff no puede ser suspendido
             user_id:
               must_be_a_curator: debes ser un curador
