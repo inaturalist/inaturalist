@@ -1837,6 +1837,9 @@ class Observation < ApplicationRecord
           if (
             i.disagreement? &&
             i.previous_observation_taxon &&
+            # if all ids of/descending from previous_observation_taxon have been withdrawn, treat
+            # the ancestor id as a non-disagreement
+            working_idents.any? {| j | j.taxon.self_and_ancestor_ids.include?( i.previous_observation_taxon.id ) } &&
             ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
           )
 

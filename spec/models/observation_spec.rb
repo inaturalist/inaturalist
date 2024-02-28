@@ -1299,6 +1299,41 @@ describe Observation do
         @o.reload
         expect( @o.community_taxon ).to eq @f
       end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw s2.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        i2 = Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        i2.update_attribute( :current, false )
+        i2.reload
+        expect( i2.current ).to eq false
+        @o.reload
+        @o.set_community_taxon( force: true )
+
+        expect( @o.community_taxon ).to eq @g2
+      end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        @o.reload
+        @o.set_community_taxon( force: true )
+
+        expect( @o.community_taxon ).to eq @f
+      end
     end
   end
 
@@ -1460,13 +1495,44 @@ describe Observation do
       end
 
       it "resets after hiding identifications" do
-        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
         i2 = Identification.make!( observation: @o, taxon: @s2 )
         @o = Observation.find( @o.id )
         expect( @o.taxon ).to eq @g1
         ModeratorAction.make!( resource: i2, action: ModeratorAction::HIDE )
         @o = Observation.find( @o.id )
         expect( @o.taxon ).to eq @s1
+      end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw s2.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        i2 = Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        i2.update_attribute( :current, false )
+        i2.reload
+        expect( i2.current ).to eq false
+        @o.reload
+
+        expect( @o.taxon ).to eq @g2
+      end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        @o.reload
+
+        expect( @o.taxon ).to eq @f
       end
     end
   end
@@ -2028,13 +2094,12 @@ describe Observation, "sound_url" do
 
   it "should not return hidden sounds" do
     sound = LocalSound.make!( user: observation.user )
-    os = ObservationSound.make!( observation: observation, sound: sound )
+    ObservationSound.make!( observation: observation, sound: sound )
     ModeratorAction.make!( resource: sound, action: "hide" )
     expect( sound.hidden? ).to be true
     expect( observation.sound_url ).to be_nil
   end
 end
-
 
 def setup_test_case_taxonomy
   # Tree:
