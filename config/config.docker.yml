@@ -36,26 +36,15 @@ base: &base
         team_id: <%= ENV.fetch("INAT_APPLE_TEAM_ID") { "INAT_APPLE_TEAM_ID" } %>
         key_id: <%= ENV.fetch("INAT_APPLE_KEY_ID") { "INAT_APPLE_KEY_ID" } %>
         pem: <%= ENV.fetch("INAT_APPLE_PEM") { "INAT_APPLE_PEM" } %>
-        applinks:
-            org.inaturalist.iNaturalistMobile:
-                - /users/sign_in?confirmed=true
-        applinks2:
-            - bundle_ids:
-                - org.inaturalist.iNaturalistMobile
-              components:
-                - path: /users/sign_in
-                  query:
-                    confirmed: "true"
-                  comment: Allow app to handle newly-confirmed users
-                - path: /observations/$(digit)*
-                  comment: Allow app to handle observation detail URLs
+        applinks: <%= ENV.fetch("INAT_APPLINKS") { {} } %>
+        applinks2: <%= ENV.fetch("INAT_APPLINKS2") { {} } %>
     
-    s3_bucket: <%= ENV.fetch("INAT_AWS_DOMAIN") { "staticdev.inaturalist.org" } %>
-    s3_protocol: <%= ENV.fetch("INAT_AWS_PROTOCOL") { "https" } %>
-    s3_region: <%= ENV.fetch("INAT_AWS_REGION") { "us-east-1" } %>
-    s3_public_host: <%= ENV.fetch("INAT_AWS_OPENDATA_DOMAIN") { "staticdev-public.s3.amazonaws.com" } %>
-    s3_public_region: <%= ENV.fetch("INAT_AWS_OPENDATA_REGION") { "us-east-1" } %>
-    s3_public_bucket: <%= ENV.fetch("INAT_AWS_OPENDATA_BUCKET") { "staticdev-public" } %>
+    s3_bucket: <%= ENV.fetch("INAT_AWS_DOMAIN") { "INAT_AWS_DOMAIN" } %>
+    s3_protocol: <%= ENV.fetch("INAT_AWS_PROTOCOL") { "INAT_AWS_PROTOCOL" } %>
+    s3_region: <%= ENV.fetch("INAT_AWS_REGION") { "INAT_AWS_REGION" } %>
+    s3_public_host: <%= ENV.fetch("INAT_AWS_OPENDATA_DOMAIN") { "INAT_AWS_OPENDATA_DOMAIN" } %>
+    s3_public_region: <%= ENV.fetch("INAT_AWS_OPENDATA_REGION") { "INAT_AWS_OPENDATA_REGION" } %>
+    s3_public_bucket: <%= ENV.fetch("INAT_AWS_OPENDATA_BUCKET") { "INAT_AWS_OPENDATA_BUCKET" } %>
 
     memcached: <%= ENV.fetch("INAT_MEMCACHED_HOST") { "memcached" } %>
 
@@ -114,56 +103,18 @@ base: &base
     sendgrid:
         api_key: <%= ENV.fetch("INAT_SENDGRID_API_KEY") { "INAT_SENDGRID_API_KEY" } %>
         validation_api_key: <%= ENV.fetch("INAT_SENDGRID_VALIDATION_API_KEY") { "INAT_SENDGRID_VALIDATION_API_KEY" } %>
-        # Unsubscribe groups configured on Sendgrid
-        asm_group_ids:
-            # Transactional emails
-            default: 25993
-            # Emails about your account
-            account: 26500
-            # Donation campaigns
-            donation: 19306
-            # News about iNat
-            news: 19705
-            # Emails to existing donors
-            donors: 28967
-            # Emails about legacy giving
-            legacy_giving: 34067
-            # Emails about accuracy experiments
-            accuracy: 35930
-        primary_ip_pool: ip_pool_1
-        alternate_ip_pool: ip_pool_2
+        asm_group_ids: <%= ENV.fetch("INAT_SENDGRID_ASM_GROUP_IDS") { {} } %>            
+        primary_ip_pool: <%= ENV.fetch("INAT_SENDGRID_PRIMARY_IP_POOL") { "INAT_SENDGRID_PRIMARY_IP_POOL" } %>
+        alternate_ip_pool: <%= ENV.fetch("INAT_SENDGRID_ALTERNATE_IP_POOL") { "INAT_SENDGRID_ALTERNATE_IP_POOL" } %>
 
     jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "INAT_JWT_SECRET" } %>
     jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "INAT_JWT_APPLICATION_SECRET" } %>
 
-    banned_emails:
-        - novartismails.com
-        - ibmmails.com
-        - dupontmails.com
-        - shoprtr.com
-        - adsagency.net
-        - hubspotmails.com
-        - temasekmail.com
-        - dailysocialpro.com
-        - poczta.pl
-        - mailclubs.info
-        - osmom.justdied.com
-        - interia.pl
-        - o2.pl
-        - wordpressmails.com
-        - hotspotmails.com
-        - proconzon.com
-        - postfreeth.com
-        - waymymails.com
-        - jelly-life.com
-        - jokermails.com
-        - yourmailhost.com
+    banned_emails: <%= ENV.fetch("INAT_BANNED_EMAILS") { ["INAT_BANNED_EMAILS"] } %>
 
-    aggregator_exception_project_ids:
-        - 12302
+    aggregator_exception_project_ids: <%= ENV.fetch("INAT_AGGREGATOR_EXCEPTION_PROJECT_IDS") { ["INAT_AGGREGATOR_EXCEPTION_PROJECT_IDS"] } %>
 
-    allowed_email_recipient_patterns:
-        - "@inaturalist.org$"
+    allowed_email_recipient_patterns: <%= ENV.fetch("INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS") { ["INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS"] } %>
     
 development:
     <<: *base
