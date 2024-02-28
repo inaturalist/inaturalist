@@ -4,6 +4,7 @@ module Ambidextrous
   IPHONE_APP_USER_AGENT_PATTERN = /#{IPHONE_APP_USER_AGENT_PATTERN_1}|#{IPHONE_APP_USER_AGENT_PATTERN_2}/
   IPHONE_APP_USER_AGENT_PATTERNS = [IPHONE_APP_USER_AGENT_PATTERN, IPHONE_APP_USER_AGENT_PATTERN_2]
   ANDROID_APP_USER_AGENT_PATTERN = /^iNaturalist\/\d+.+Android/i
+  INATRN_APP_USER_AGENT_PATTERN = /^iNaturalistRN/
   MOBILE_APP_USER_AGENT_PATTERNS = [IPHONE_APP_USER_AGENT_PATTERNS, ANDROID_APP_USER_AGENT_PATTERN].flatten
 
   FISHTAGGER_APP_USER_AGENT_PATTERN = /fishtagger/i
@@ -31,21 +32,28 @@ module Ambidextrous
     return false if is_inaturalistjs_request?
     !(request.user_agent =~ ANDROID_APP_USER_AGENT_PATTERN).nil?
   end
-  
+
   def is_iphone_app?
     return false if is_inaturalistjs_request?
     !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN).nil? ||
       !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN_2).nil?
   end
-  
+
   def is_iphone_app_2?
     return false if is_inaturalistjs_request?
     !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN_2).nil?
   end
-  
+
+  def is_inatrn_app?
+    return false if is_inaturalistjs_request?
+
+    !( request.user_agent =~ INATRN_APP_USER_AGENT_PATTERN ).nil?
+  end
+
   def is_mobile_app?
     return false if is_inaturalistjs_request?
-    is_android_app? || is_iphone_app?
+
+    is_android_app? || is_iphone_app? || inatrn_app?
   end
 
   # haml agreesively removes whitespace in ugly mode. This forces it to look the way you meant it to look
