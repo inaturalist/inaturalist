@@ -9,12 +9,13 @@ module Logstasher
     "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
     "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
     "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
-    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT"
+    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT",
+    "HTTP_X_FORWARDED_ORIGINAL_FOR"
   ].freeze
 
   IP_PARAMS = [
     "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_X_FORWARDED_FOR", "REMOTE_ADDR",
-    "SERVER_ADDR", "clientip"
+    "SERVER_ADDR", "clientip", "HTTP_X_FORWARDED_ORIGINAL_FOR"
   ].freeze
 
   def self.logger
@@ -26,7 +27,7 @@ module Logstasher
 
   def self.ip_from_request_env( request_env )
     # try a few params for IP. Proxies will shuffle around requester IP
-    %w(HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
+    %w(HTTP_X_FORWARDED_ORIGINAL_FOR HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
       return request_env[param] unless request_env[param].blank?
     end
     nil
