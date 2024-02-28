@@ -53,7 +53,7 @@ module Ambidextrous
   def is_mobile_app?
     return false if is_inaturalistjs_request?
 
-    is_android_app? || is_iphone_app? || inatrn_app?
+    is_android_app? || is_iphone_app? || is_inatrn_app?
   end
 
   # haml agreesively removes whitespace in ugly mode. This forces it to look the way you meant it to look
