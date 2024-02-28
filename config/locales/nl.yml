@@ -268,6 +268,7 @@ nl:
   active_taxon_status: Actief
   active_users: Actieve gebruikers
   activity: Activiteit
+  activity_on_a_flag_for_x: Activiteit op een melding voor %{x}
   adapted_by_name_from_a_work_by_original: "Aangepast door %{name} van een werk van %{original}"
   add: Toevoegen
   add_a_batch_of_observations: Verzameling waarnemingen toevoegen
@@ -1931,6 +1932,7 @@ nl:
     Melding voor gebruiker: %{title}
   flag_it!: Melden!
   flag_marked_as_resolved_html: '<span class="meta">Melding gemakrkeerd als</span> <strong>opgelost.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Melding gemarkeerd als</span> <strong>onopgelost.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Object
   flag_reason: "&ldquo;Ik meld @gender{n:dit|deze} %{record} omdat"
@@ -3145,12 +3147,27 @@ nl:
   observation_accuracy_experiment_all_results: "Alle resultaten"
   observation_accuracy_experiment_methods: "Methoden"
   observation_accuracy_experiment_step_1: "Stap 1: Steekproef Generatie en Toewijzing"
+  observation_accuracy_experiment_from_the2: "Uit de iNaturalist database van waarnemingen (A) hebben we een willekeurige steekproef (B) gegenereerd. Substeekproeven werden toegewezen aan kandidaat-validatoren (C) op basis van onderstaande criteria. Het doel was om elke steekproefwaarneming toe te wijzen aan meerdere kandidaat-validatoren (\"Doel-validator redundance\" )."
   observation_accuracy_experiment_number_of: "Aantal kandidaatvalidatoren: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criteria voor een kandidaat-validator"
+  observation_accuracy_experiment_if_an_identifier: "Als een determineerder ten minste 3 verbeterende determinaties had gemaakt op een taxon, hebben we overwogen dat ze gekwalificeerd waren om dat taxon te valideren. Het verbeteren van de determinaties is de eerste suggestie van een taxon waarmee de gemeenschap het vervolgens eens is."
+  observation_accuracy_experiment_if_an_identifier_continent: "Als een determineerder ten minste 3 verbeterende determinaties had gemaakt op een taxon op een continent, hebben we overwogen dat ze gekwalificeerd waren om dat taxon te valideren op dat continent. Het verbeteren van de determinaties is de eerste suggestie van een taxon waarmee de gemeenschap het vervolgens eens is."
   observation_accuracy_experiment_step_2: "Stap 2: Steekproeven valideren"
   observation_accuracy_experiment_number_percent_of: "Aantal deelnemende validatoren: %{number} (%{percentage})"
+  observation_accuracy_experiment_correct: "Juist"
   observation_accuracy_experiment_uncertain: "Onzeker"
+  observation_accuracy_experiment_incorrect2: "Onjuist"
+  observation_accuracy_experiment_step_4: "Step 4: Accuracy en Precision berekening"
   observation_accuracy_experiment_accuracy: "Nauwkeurigheid"
+  observation_accuracy_experiment_we_calculated: "We hebben Nauwkeurigheid berekend als het percentage corrrect voor de hele steekproef en als subsets zoals de onderzoekskwaliteitsubset. We hebben ook het percentage onzeker en het procent onjuist berekend. In het voorbeeldfiguur rechts zou het percentage juist zijn aan 83, het percentage onzeker zou 6 zijn en het percentage incorrect zou 11 zijn."
   observation_accuracy_experiment_precision: "Precisie"
+  observation_accuracy_experiment_in_the_example: "In het voorbeeldfiguur rechts zou de gemiddelde precisie van drie steekproeven 51 procent bedragen."
+  observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
+  observation_accuracy_validator_email_we_will_calculate: |
+    We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
+    je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
   observation_accuracy_validator_email_ids_equal_to: |
     'Determinaties gelijk aan (A) of fijner dan (B) zal het Waargenomen Taxon worden geteld als Overeenkomst.
   observation_accuracy_validator_email_we_are_so_grateful2_html: |
