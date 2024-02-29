@@ -1797,6 +1797,7 @@ fr:
   extinct_in_the_wild: Disparue à l’état sauvage
   extra_properties: Propriétés supplémentaires
   evidence_of_organism: Preuve de l’organisme
+  evidence_related_to_single_subject: Preuve liée à un seul sujet
   facebook: Facebook
   failed_to_find_your_location: Échec à la localisation de votre position.
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
@@ -2744,6 +2745,12 @@ fr:
     par cette personne.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Masquer
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Afficher
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspendre
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Lever la suspension
   moderator_note_desc: |
     Les notes du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
   #Person who executed a moderator action or flagged something
@@ -4981,6 +4988,7 @@ fr:
   text_editing_controls: Contrôles de modification de texte
   thanks!: Merci !
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
+  that_account_is_already_connected: Ce compte est déjà associé à un autre utilisateur
   that_photo_doesnt_exist: Cette photo n’existe pas.
   that_observation_doesnt_exist: Cette observation n’existe pas.
   that_observation_doesnt_have_any_photos: "Cette observation n’a aucune photo."
@@ -8496,6 +8504,7 @@ fr:
             action:
               not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
             base:
+              only_staff_and_hiding_curators_can_unhide: Seuls le personnel et les superviseurs qui masquent du contenu peuvent l'afficher à nouveau
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
