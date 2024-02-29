@@ -2139,7 +2139,7 @@ th:
     title: "รายการตรวจสอบของ %{owner_name}"
     description: รายการชนิดสำหรับ %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    ผู้ดูแลเพิ่มการสังเกตบางอันของคุณไปที่โครงการ <a href="%{url}">%{project}</a>
+    ผู้ดูแลเพิ่มการสังเกตของคุณไปที่โครงการ <a href="%{url}">%{project}</a>
   project_members_only: สมาชิกโครงการเท่านั้น
   project_requirements: ข้อกำหนดโครงการ
   project_rules: กฎของโครงการ
@@ -2393,6 +2393,7 @@ th:
   save_place: บันทึกสถานที่
   save_settings_caps: บันทึกการตั้งค่า
   saved: บันทึกแล้ว
+  saving: "บันทึก..."
   saving_num_of_count_observations:
     other: กำลังบันทึก %{num} จาก %{count} การสังเกต...
   scale_colon: "มาตราส่วน:"
