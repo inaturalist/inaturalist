@@ -55,8 +55,6 @@ module Logstasher
     payload[:x_via] = request.headers["X-Via"]
     payload[:ssl] = request.ssl?.to_s
     payload[:bot] = Logstasher.user_agent_a_bot?( request.user_agent )
-    # this can be overwritten by merging Logstasher.payload_from_user
-    payload[:logged_in] = false
     payload[:i18n_locale] = I18n.locale.to_s.downcase
     payload[:http_locale_matches_i18n] = payload[:i18n_locale] == payload[:http_languages]
     payload[:http_lang_matches_i18n] = payload[:i18n_locale] &&
@@ -101,6 +99,8 @@ module Logstasher
       end
       hash.delete( :user )
     end
+    # set default value to logged_in if no value was set
+    hash[:logged_in] = false if hash[:logged_in].nil?
     hash
   end
 
