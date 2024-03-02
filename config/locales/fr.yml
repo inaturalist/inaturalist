@@ -3105,6 +3105,7 @@ fr:
   observation_accuracy_experiment_show_frequency: "afficher la fréquence"
   observation_accuracy_experiment_click_on_bars: "Cliquez sur les barres pour explorer les sous-ensembles."
   observation_accuracy_experiment_accuracy_results: "Résultats de l'exactitude par sous-ensemble"
+  observation_accuracy_experiment_as_observations: "Au fur et à mesure que les observations de cet échantillon seront validées, le pourcentage d'incertitude diminuera et le pourcentage correct et incorrect augmentera."
   observation_accuracy_experiment_experiment_still: "Expérience toujours en cours. Les statistiques seront mises à jour quotidiennement jusqu'à la date limite de validation des échantillons le %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Expérience d'exactitude d'observation"
   observation_accuracy_experiment_validators: "Validateurs :"
@@ -3117,6 +3118,7 @@ fr:
   observation_accuracy_experiment_all_results: "Tous les résultats"
   observation_accuracy_experiment_methods: "Méthodes"
   observation_accuracy_experiment_step_1: "Étape 1 : Génération et Affectation des Échantillons"
+  observation_accuracy_experiment_from_the2: "À partir de la base de données d’observations iNaturalist (A), nous avons généré un échantillon aléatoire (B). Des sous-échantillons ont été attribués aux validateurs candidats (C) en fonction des critères décrits ci-dessous. Nous avons choisi d'assigner chaque observation test à plusieurs validateurs candidats (\"Redondance du validateur cible\")."
   observation_accuracy_experiment_sample_generated: "Échantillon généré le : %{date}"
   observation_accuracy_experiment_sample_size: "Taille de l'échantillon : %{number}"
   observation_accuracy_experiment_target_validator: "Redondance du validateur cible : %{number}"
@@ -3136,6 +3138,8 @@ fr:
   observation_accuracy_experiment_precision: "Précision"
   observation_accuracy_validator_email_ids_equal_to: |
     Les identifiants égaux à (A) ou plus fins que (B) le taxon d’observation seront comptés comme des Accords.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Nous vous sommes très reconnaissants pour votre aide en tant d'identifieur sur iNaturalist, et nous vous remercions pour votre participation à cette étude. Vous pouvez lire <a href="%{url}">les méthodes</a> pour en savoir plus au sujet de cette expérience.
   observation_accuracy_validator_email_with_gratitude: Avec nos remerciements,
   observation_accuracy_validator_email_the_inaturalist_team: L'équipe iNaturalist
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
@@ -5441,7 +5445,7 @@ fr:
     %{user} pense qu'il s'agit d'une liste complète de %{taxon} dans %{place}
   user_blocked: Utilisateur bloqué
   user_commented: "%{user} a commenté"
-  user_disagrees_this_is_taxon: "%{user} ne pense pas que ce soit %{taxon}"
+  user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_an_observation_by_you: "%{user} a ajouté une de vos observations à ses favoris"
   user_faved_this_observation: "%{user} a mis cette observation en favori"
