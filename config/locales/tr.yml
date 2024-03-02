@@ -327,6 +327,7 @@ tr:
   add_notes_about_this_taxon: Bu konumdaki sınıf hakkında, örneğin nerede ve ne zaman görüldüğü gibi notlar ekle.
   add_obs_from_a_link: "Şu listeden gözlem ekle: %{link}"
   add_obs_from_a_list: Bir Listeden Gözlem Ekle
+  add_observation_fields: Gözlem Alanları Ekle
   add_observations: Gözlem Ekle
   add_observations_by_checking_off: Listedeki türleri işaretleyerek gözlem ekle.
   add_observations_project: Bu Projeye Gözlem Ekle
@@ -1902,6 +1903,8 @@ tr:
   #Adjective, as in a fluid layout of images
   fluid: kayma
   follow: Takip Et
+  #Text for a button to follow updates on an observation
+  follow_observation: Gözlemi takip et
   follow_receive_updates_about_new_observations: Takip et (yeni gözlemler ile ilgili güncelleme al)
   #Text for a button to follow updates from a specific user
   follow_user: "%{user} kullanıcısını takip et"
@@ -3028,6 +3031,10 @@ tr:
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
   observation: Gözlem
   observation_: gözlem
+  observation_accuracy_experiment_continent: "Kıta"
+  observation_accuracy_experiment_year: "Yıl"
+  observation_accuracy_experiment_show_frequency: "sıklığı göster"
+  observation_accuracy_experiment_all_results: "Tüm Sonuçlar"
   observation_added_to_the_project: "Gözlem \"%{project}\" projesine eklendi"
   observation_aggregation: Gözlem yığınlama
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3741,6 +3748,7 @@ tr:
     north_korea: Kuzey Kore
     northern_cyprus: Kuzey Kıbrıs
     norway: Norveç
+    oceania: Okyanusya
     oman: Umman
     pakistan: Pakistan
     palau: Palau
@@ -5148,6 +5156,10 @@ tr:
   unknown: Bilinmeyen
   unknown_error: Bilinmeyen hata
   unknown_rank: '(Bilinmeyen Düzey)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Gözlemi takipten çık
+  #Text for a button to stop following updates from a user
+  unfollow_user: Kullanıcıyı takipten çık
   unlink_your_google_account: Google Hesabının Bağlantısını Kaldır
   unlink_your_flickr_account: "Flickr Hesabının Bağlantısını Kaldır"
   unmute: Sessizden Çıkart
