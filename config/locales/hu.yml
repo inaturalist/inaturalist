@@ -284,6 +284,7 @@ hu:
   add_notes_about_this_taxon: Hozz létre megjegyzést e taxonról ezen a helyen, pl. hol és mikor található.
   add_obs_from_a_link: "Megf. hozzáadása listából: %{link}"
   add_obs_from_a_list: Megfigy. hozzáadás listából
+  add_observation_fields: Adatmezők hozzáadása
   add_observations: Megfigyelés hozzáadása
   add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
   add_observations_project: Megfigyelések hozzáadása ehhez a projekthez
@@ -341,6 +342,9 @@ hu:
   add_to_list: Hozzáadás listához
   add_to_project: Hozzáadás a projekthez
   add_to_your_list: Hozzáadás a listádhoz
+  add_your_email_to_get: |
+    Add meg az email címedet, hogy közösségi visszajelzést kaphass a megfigyelésedről.
+    Ha ezt inkább nem osztanád meg, akkor kérünk látogass vissza hamarosan!
   add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
@@ -783,6 +787,8 @@ hu:
   change_group: Csoport módosítása
   change_icon: Ikon módosítása
   change_password: Jelszó módosítása
+  #Message shown after you change your email address
+  change_to_email_requested_html: Változtatást kérelmeztél erre <strong>%{email}</strong>. Nézd meg az üzeneteidet azon a címen hogy megerősítsd a változtatást.
   change_types:
     activated_soon: hamarosan aktiválva
     change_types: Típusok módosítása
@@ -1274,6 +1280,11 @@ hu:
     confirmations:
       confirmed: |
         Az e-mail címed sikeresen megerősítettük. Most már bejelentkezhetsz itt a weboldalon, vagy az iNaturalist és Seek alkalmazásokon keresztül.
+      send_instructions: "Hamarosan kapni fogsz egy levelet arról, hogyan tudod megerősíteni az e-mail címed."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Ha az e-mail címed megtalálható adatbázisunkban, pár percen belül kapni fogsz rá egy levelet, melyben leírjuk, hogyan erősítsd meg az e-mail címed.
     failure:
       already_authenticated: 'Már be vagy jelentkezve.'
       unauthenticated: 'A folytatás előtt be kell jelentkezned.'
@@ -1299,6 +1310,7 @@ hu:
       destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
       signed_up_but_inactive: "Sikeresen feliratkoztál. De sajnos nem léphetsz még be, mivel a fiókod még nem volt aktiválva."
+      signed_up_but_locked: "A regisztráció sikerült, azonban a bejelentkezés még nem lehetséges, mert a fiókod le van zárva."
       signed_up_but_unconfirmed: "Egy megerősítő linket küldtünk a megadott e-mail címre. Kattints az emailben található linkre a fiók aktiválásához."
       updated: 'Fiókod sikeresen frissítve.'
       updated_but_not_signed_in: "A fiókodat sikeresen frissítettük, de mivel megváltozott a jelszavad újból be kell jelentkezned."
@@ -1306,6 +1318,10 @@ hu:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Az email cím megerősítése
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Email cím változtatását kérted
       reset_password_instructions:
         subject: 'Jelszóvisszaállítási utasítások'
   devise_confirmation_instructions_if_you_did_not: |
@@ -1313,6 +1329,9 @@ hu:
   devise_confirmation_instructions_please_click: |
     Kérjük, hogy az emailcím megerősítéséhez kattints az alábbi linkre:
   devise_confirmation_instructions_send_confirmation_email: Megerősítő e-mail küldése
+  devise_email_changed_you_requested: Email cím változtatását kérted %{old_email} címről %{new_email} címre.
+  devise_email_changed_you_will_receive: |
+    Kapni fogsz egy emailt az új címedre hogy megerősítsd a változtatást de a régi címen is akartunk értesíteni abban az esetben, ha valaki más hozzáfért a fiókodhoz és ezt meg akarná változtatni a tudtod nélkül. Ha nem szándékosan változtattad meg az email címedet, kérünk azonnal továbbítsd ezt az emailt a help@inaturalist.org címre, hogy tudjunk intézkedni.
   devise_reset_password_instructions_hello_email: Kedves %{email}!
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ha nem kértél ilyen e-mailt, akkor tárgytalan, vedd figyelmen kívül.
@@ -1367,6 +1386,9 @@ hu:
   drop_it: Ejtsd le
   download: Letöltés
   download_caps: LETÖLTÉS
+  download_bulk_import_template_html: |
+    <a href="%{url}">Séma letöltése</a> a
+    <a href="/observations/import?project_id=%{project_id}#csv_import">tömeges feltöltő</a> használatához
   download_csv: CSV letöltése
   download_csv_template: CSV-sablon letöltése
   download_kml: KML letöltése
@@ -1435,6 +1457,8 @@ hu:
   edited_by_name_some_rights_reserved_html: |
     %{name} módosította, néhány jog fenntartva (%{license})
   editing: Szerkesztés
+  editing_announcement: Közlemény szerkesztése
+  editing_custom_project_fields_for: Saját projektmező szerkesztése
   editing_observation_field: Az adatmezők szerkesztése
   editing_observation_id: "%{obs_id} megfigyelés módosítása"
   editing_observations:
@@ -1451,6 +1475,7 @@ hu:
   either_that_user_doesnt_exist_or: "Vagy nem létezik az a felhasználó vagy már követed őt."
   eligible_for_research_grade: Tudományosszint-potenciál
   email: Email
+  email_address_for_comments_and_other_feedback: Email cím a hozzászólásokhoz és egyéb visszajelzésekhez
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: Kedves %{user},
@@ -1489,6 +1514,7 @@ hu:
     endemic: őshonos és sehol máshol nem fordul elő
     introduced: a területre emberi beavatkozással érkezett
   event_in_progress: Esemény folyamatban
+  event_stats: Esemény-statisztika
   event_url: Esemény URL
   events_only: Csak események
   everyone: mindenki
@@ -1531,6 +1557,7 @@ hu:
   Family: Család
   favorite_taxa: Kedvenc taxonok
   favorites: "Kedvencek"
+  feature_this_project_: "Emeld ki ezt a projektet"
   featured: Kiemelt
   #Title for a button or section describing the "featured" status of a project
   featuring: Kiemelt
@@ -1638,8 +1665,12 @@ hu:
   flags_on_users_content: "%{user} tartalmainak bejelentései"
   flickr_account_information: Flickr fiókod adatai
   flickr_has_no_creative_commons: A Flicker-nek nincsenek Creative-Commons licencű képei erről a helyről.
+  flickr_identity: Flickr azonosító
+  flickr_needs_to_confirm: "A Flickr meg kell erősítse, hogy a fiókodat a %{site_name} laphoz akarod csatlakoztatni."
   flickr_photo: Flickr fotó
   flickr_photos: Flickr fotók
+  flickr_style: Flickr-stílus
+  flickr_tagger: Flickr címkéző
   flickr_tags: Flickr címkék
   fluid_layout: Rugalmas elrendezés
   #Adjective, as in a fluid layout of images
@@ -1660,7 +1691,9 @@ hu:
   forgot_your_password: Elfelejtetted a jelszavadat?
   forum: Fórum
   forum_categories:
+    bug_reports: Hibajelentések
     feature_requests: Funkciójavaslatok
+    forum_feedback: Fórumvisszajelzés
     news_and_updates: Hírek & Újdonságok
     tutorials: Bemutatók
   frequency: Gyakoriság
@@ -2634,6 +2667,7 @@ hu:
   observation_accuracy_experiment_step_3: "3. lépés: A minta megfigyeléseinek pontozása"
   observation_accuracy_experiment_correct: "Helyes"
   observation_accuracy_experiment_uncertain: "Bizonytalan"
+  observation_accuracy_experiment_incorrect2: "Helytelen"
   observation_accuracy_experiment_accuracy: "Pontosság"
   observation_accuracy_experiment_precision: "Pontosság"
   observation_accuracy_validator_email_ids_equal_to: |
@@ -2892,6 +2926,7 @@ hu:
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Szülő neve
   parental_consent:
+    must_specify_email: Meg kell adj egy e-mail címet
     invalid_email: Érvénytelen email formátum
   password: Jelszó
   password_confirmation: 'Jelszó megerősítése'
@@ -3487,6 +3522,14 @@ hu:
   projects_from_place: "Projektek innen: %{place}"
   projects_you_admin: Kezelt projektjeid
   protozoans: protozoa
+  provider_without_email_error_apple: |
+    Az Apple nem adott meg email címet ahhoz a fiókhoz, pedig az szükséges. Kérünk készíts inkább egy fiókot ezen a honlapon, minthogy az Apple-el jelentkezz be.
+  provider_without_email_error_flickr: |
+    A Flickr nem adott meg email címet ahhoz a fiókhoz, pedig az szükséges. Kérünk készíts inkább egy fiókot ezen a honlapon, minthogy a Flickr-el jelentkezz be.
+  provider_without_email_error_generic: |
+    Az a szolgáltatás nem adott meg email címet ahhoz a fiókhoz, pedig az szükséges. Kérünk készíts inkább egy fiókot ezen a honlapon, minthogy egy harmadik fél szolgáltatásával jelentkezz be.
+  provider_without_email_error_google_oauth2: |
+    A Google nem adott meg email címet ahhoz a fiókhoz, pedig az szükséges. Kérünk készíts inkább egy fiókot ezen a honlapon, minthogy a Google-el jelentkezz be.
   public_domain: Közkincs
   publish: Közzététel
   quality_grade: Minőségi szint
@@ -4946,6 +4989,7 @@ hu:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Valós előfordulás
+          true_presences_definition2: Azok a helyek, ahol mind a Közelben előfordulható taxonok térképe és a Taxonintervallum egyaránt megjósolják, hogy a taxon létezik
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Hamis előfordulás
