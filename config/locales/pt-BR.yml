@@ -315,6 +315,7 @@ pt-BR:
   add_notes_about_this_taxon: Adicionar notas sobre este táxon neste local, e.g. onde e quando ele ocorre.
   add_obs_from_a_link: "Adicionar Observação de uma lista: %{link}"
   add_obs_from_a_list: Adicionar Observação de uma lista
+  add_observation_fields: Adicione campos de observação
   add_observations: Adicionar observações
   add_observations_by_checking_off: Adicione observações selecionando espécies de uma lista
   add_observations_project: Adicione observações para este projeto
@@ -1823,6 +1824,7 @@ pt-BR:
   extinct_in_the_wild: Extinto na natureza
   extra_properties: Propriedades extras
   evidence_of_organism: Evidência de organismo
+  evidence_related_to_single_subject: Evidencia relacionada a um único assunto
   facebook: Facebook
   failed_to_find_your_location: Falha ao buscar localização.
   failed_to_repair_photo: "Falha ao reparar a foto:  %{errors}"
@@ -2781,6 +2783,12 @@ pt-BR:
     Isto inclui ações de moderadores (por exemplo, ocultar ou exibir comentários), notas, e sinalizações em tudo que este usuário criou além de táxons. Isso é <strong>visível apenas para os curadores</strong> e <strong>curadores não podem ver seu próprio histórico</strong>, então notas sobre uma pessoa nunca devem ser visíveis para essa pessoa.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Exibir
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspender
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Remover Suspensão
   moderator_note_desc: |
     Notas do moderador são registros de respostas de moderação ou preocupações baseadas em provas sobre um usuário, como, por exemplo, se ele é uma possível conta com identidade falsa. Por favor, não inclua opiniões pessoais ou boatos sobre o usuário.
   #Person who executed a moderator action or flagged something
@@ -3134,7 +3142,9 @@ pt-BR:
   observation_accuracy_experiment_quality_grade: "Grau de Qualidade"
   observation_accuracy_experiment_show_frequency: "mostrar frequência"
   observation_accuracy_experiment_click_on_bars: "Clique nas barras para explorar os subconjuntos."
+  observation_accuracy_experiment_bars_will: "Barras serão clicáveis após o prazo para validação de amostras."
   observation_accuracy_experiment_accuracy_results: "Resultados de precisão por subconjunto"
+  observation_accuracy_experiment_as_observations: "À medida que as observações desta amostra forem validadas, a incerteza em porcentagem diminuirá e a porcentagem correta e incorreta aumentará."
   observation_accuracy_experiment_experiment_still: "Experimento ainda em andamento. Estatísticas serão atualizadas diariamente até o prazo para validação de amostras em %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Experimento de Precisão de Observações"
   observation_accuracy_experiment_validators: "Validadores"
@@ -3155,6 +3165,7 @@ pt-BR:
   observation_accuracy_experiment_mean_number: "Número médio de validadores por amostra de observações: %{number}"
   observation_accuracy_experiment_validator_candidate: "Critério para validador candidato"
   observation_accuracy_experiment_if_an_identifier: "Se um identificador tiver feito pelo menos 3 identificações de melhoria de um táxon, é considerado qualificado para validar esse táxon. Identificação de melhoria é a primeira sugestão de um táxon com o qual a comunidade concorda posteriormente."
+  observation_accuracy_experiment_if_an_identifier_continent: "Se um identificador tiver feito pelo menos 3 identificações de melhoria de um táxon, é considerado qualificado para validar esse táxon. Identificação de melhoria é a primeira sugestão de um táxon com a qual a comunidade concorda posteriormente."
   observation_accuracy_experiment_for_example: "Por exemplo, o identificador 1 identifica uma observação como \"A\". Se mais tarde o identificador 2 identifica em um novo ramo (leading) esta observação como \"B\", a identificação de 1 muda para \"melhorando\". Se posteriormente o identificador 3 concorda com identificador 2 na identificação como \"B\" do identificador 2, esta se torna uma ID grau \"melhorando\"."
   observation_accuracy_experiment_step_2: "Etapa 2: Validação de amostras"
   observation_accuracy_experiment_we_contacted: "Contactamos os candidatos a validadores e solicitamos que identificassem suas subamostras. O gráfico à direita agrupa as observações da amostra por número de validadores"
@@ -3163,14 +3174,38 @@ pt-BR:
   observation_accuracy_experiment_we_scored: "Classificamos observações na amostra como Corretas, Inseguras ou Incorretas, comparando as identificações do validador com o táxon de cada observação. Identificação igual ou mais precisa que o táxon da observação da amostra foi marcada como Correta. Identificações menos precisas sem divergência foram marcadas como Inseguras evidenciando um cenário em que vários validadores discordaram entre si. Desacordo nas identificações ou identificações mais grosseiras em ramos diferentes foram marcadas como Incorretas."
   observation_accuracy_experiment_correct: "Correta"
   observation_accuracy_experiment_uncertain: "Incerta"
+  observation_accuracy_experiment_incorrect2: "Incorreta"
   observation_accuracy_experiment_step_4: "Cálculo de Exatidão e Precisão"
   observation_accuracy_experiment_accuracy: "Exatidão"
   observation_accuracy_experiment_we_calculated: "A Exatidão é calculada como a porcentagem correta para toda a amostra bem como para os subconjuntos tais como o do subconjunto das amostras no grau Nivel de Pesquisa. Também são calculadas as porcentagens para incertas e incorretas. No exemplo à direita, a porcentagem correta seria 83, a porcentagem incerta seria 6 e a porcentagem incorreta seria 11"
   observation_accuracy_experiment_precision: "Precisão"
   observation_accuracy_experiment_if_every_sample: "Se toda observação da amostra estivesse em um táxon mais grosseiro tal como reino, a exatidão do conjunto de dados do iNaturalis seria alta, mas a precisão poderia ser muito baixa para ser útil. Para estimar a precisão, computamos o número de \"folhas descendentes\" na taxonomia do iNaturalist para cada observação da amostra. A precisão é calculada como o inverso do número de \"folhas descendentes\". Se o taxon for um taxon \"folha\", a precisão é 100%"
   observation_accuracy_experiment_in_the_example: "No exemplo à direita, a precisão média de três observações da amostra seria de 51%."
+  observation_accuracy_validator_email_subject2: "Você nos ajudaria em um experimento %{version} para avaliar a precisão das observações do iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Você nos ajudaria em um experimento <a href="%{url}">(versão %{version})</a> para estimar a precisão das observações do iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifique todas as observações no link abaixo com a maior precisão puder, mesmo as de Nivel Pesquisa e mesmo que a ID mais precisa seja de um nível taxonomico alto (mesmo reino). . </li>
+    <li>se abrir uma janela de "Desacordo Potencial"…
+    <ul>
+    <li>e voce tiver confiança de que se trata de uma ID equivocada, clique no botão laranja,</li>
+    <li>ou se voce estiver em dúvida sobre sua ID, clique no botão verde</li>
+    </ul>
+    </li>
+    <li>Faça isto até <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Aqui está o <a href="%{sample_url}">subconjunto de %{num_obs} observations</a> que nós supomos que você pode identificar tomando como base sua atividade no iNat. <b>Por favor faça as suas IDs mais precisas que puder para cada uma das obervações até %{validator_deadline_date}</b>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vamos calcular a exatidão comparando a sua ID com a ID da Observação. Você pode saltar observações para as quais você já sugeriu uma ID se ela ainda for relevante. Para mais informações sobre como vamos computar concordâncias e discordâncias, continue a leitura.
   observation_accuracy_validator_email_ids_equal_to: |
     Para IDs iguais a (A) ou melhores que (B) o Táxon de Observação serão contados como Concordantes.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    IDs em ramos diferentes (C) ou mais grosseiras que o Taxon da Observação em que voce escolheu "não mas..." para o diálogo Desacordo Potencia (D) serão computados como Desacordos
+  observation_accuracy_validator_email_ids_coarser_than: |
+    IDs mais grosseiras que o Táxon da Observação em que você escolheu "Eu não sei, mas... no diálogo "Desacordo Potencial" (E) serão computadas como Incertas
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Estamos muito gratos pela sua ajuda como identificador no iNaturalist, e agradecemos por participar deste estudo. Por favor, leia <a href="%{url}">métodos </a> para saber mais sobre o funcionamento deste experimento.
   observation_accuracy_validator_email_with_gratitude: Com gratidão,
   observation_accuracy_validator_email_the_inaturalist_team: A equipe iNaturalist
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
@@ -5101,6 +5136,7 @@ pt-BR:
   text_editing_controls: Botões de edição de texto
   thanks!: Obrigado!
   thanks_from_all_of_us_here_at: Obrigado por todos nós aqui em
+  that_account_is_already_connected: Esta conta já está conectada a outro usuário
   that_photo_doesnt_exist: Esta foto não existe.
   that_observation_doesnt_exist: Esta observação não existe.
   that_observation_doesnt_have_any_photos: "Esta observação não tem nenhuma foto."
@@ -6230,6 +6266,7 @@ pt-BR:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Presenças Reais
+          true_presences_definition2: Áreas em que o Mapa Esperado nas Proximidades e a Área do Táxon preveem que o táxon exista
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Presenças Falsas
@@ -6711,6 +6748,76 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help3_html: |
+          <p>
+          A avaliação da qualidade dos dados é um resumo da exatidão de uma observação. Todas
+          as observações começam como grau <strong>"casual"</strong> e se tornam
+          <strong>"precisa de ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>a observação <strong>tem uma data</strong></li>
+          <li>a observação <strong>é georreferenciada</strong> (ou seja, tem coordenadas lat/lon)</li>
+          <li>a observação <strong>tem fotos ou sons</strong></li>
+          <li>a observação <strong>não é de um ser humano</strong></li>
+          </ul>
+          <p>
+          As observações tornam-se <strong>"nível de pesquisa"</strong> quando
+          </p>
+          <ul>
+          <li>
+          a comunidade %{site_name} <strong>concorda com a identificação em nível de espécie ou
+          menor</strong>, ou seja, quando mais de 2/3 dos identificadores concordam em um táxon (se a comunidade votou que o táxon comunitário não pode
+          ser melhorado, isso poderá ocorrer em um ID de nível de subfamília ou inferior)
+          </li>
+          </ul>
+          <p>
+          As observações serão revertidas para <strong>"casuais"</strong> se as condições acima não forem atendidas ou se a comunidade concordar
+          </p>
+          <ul>
+          <li>
+          o <strong>local não parece
+          preciso</strong> (por exemplo, macacos no meio do oceano,
+          hipopótamos em edifícios de escritórios, etc.)
+          </li>
+          <li>
+          o <strong>organismo não é selvagem/natural</strong> (por exemplo, cativo ou cultivado por humanos)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidências de um
+          organismo</strong>, por ex. imagens de recursos hídricos,
+          rochas, paisagens que não incluem o organismo, etc.
+          </li>
+          <li>
+          a observação <strong>não apresenta evidências recentes (~100 anos) de
+          o organismo</strong> (por exemplo, fósseis; porém rastros, fezes e folhas mortas
+          são aceitos)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidências relacionadas a um assunto único</strong>
+          (por exemplo, tem quatro fotos de organismos diversos. Uma foto mostrando o habitat do
+          o assunto da observação está OK.)
+          </li>
+          <li>
+          a observação não precisa mais de um ID <em>e</em> o ID da comunidade está no nível família ou acima
+          </li>
+          <li>
+          o observador optou por não receber mais IDs da comunidade e o táxon do ID da comunidade
+           não é ancestral ou descendente do táxon associado ao ID do observador
+          </li>
+          </ul>
+          <p>
+          E se isso não fosse complicado o suficiente, também há situações em que o sistema atua:
+          </p>
+          <ul>
+          <li>
+          O sistema considerará que a observação não é um organismo selvagem/natural
+          se houver pelo menos 10 outras observações do mesmo gênero ou inferior em
+          um dado local equivalente a um condado, estado ou país que
+          contém o mesmo táxon do organismo desta observação e 80% ou mais dessas observações
+          foram marcados como não selvagens/naturais.
+          </li>
+          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.
@@ -8359,6 +8466,7 @@ pt-BR:
             action:
               not_supported_for_this_kind_of_content: não é suportado para este tipo de conteúdo
             base:
+              only_staff_and_hiding_curators_can_unhide: Apenas membros da equipe e coordenadores que ocultam conteúdo podem mostrá-lo
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
