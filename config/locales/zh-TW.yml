@@ -606,6 +606,7 @@ zh-TW:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     您確定要從 %{project} 中移除這筆觀察記錄嗎？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您確定要從%{place}的名錄移除此分類群？"
+  are_you_sure_you_want_to_flag_as_spammer: 您確定要將此使用者標記為垃圾訊息發送者嗎？
   associated_observations: 相關觀察
   associated_taxa: 相關物種分類
   attention: 注意
@@ -1638,6 +1639,9 @@ zh-TW:
     native: 在此地區演化出來，或是透過非人為方式到達
     endemic: 原生物種，並且沒有出現在其它地方
     introduced: 藉由人為活動而抵達此區域
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    估計哪些輸入的分類群 ID 會被哪些輸出的分類群給替換掉，一旦拆分提交完成後，會被簡化為共同的祖先。這可能會需要一點時間來計算。觀察的連結會被截斷成 200 個子集。
   event_in_progress: 進行中的活動
   event_stats: 活動統計資料
   event_url: 活動 URL
