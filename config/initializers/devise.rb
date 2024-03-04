@@ -102,11 +102,11 @@ Devise.setup do | config |
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming his account.
 
-  # Disallow unconfirmed access
-  # Note: in spring of 2022 we are gradually requiring email confirmation by
-  # allowing existing users some time to sign in and manually send themselves
-  # a confirmation email. This is managed in User#active_for_authentication?
-  config.allow_unconfirmed_access_for = 0
+  # Allow unconfirmed access
+  # Note: in spring of 2022 we encouraging email confirmation and also required
+  # new user to have completed email confirmation before logging in. In spring
+  # 2024 we began once again allowing users to login before confirming their email.
+  config.allow_unconfirmed_access_for = 20.years
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
