@@ -299,7 +299,7 @@ class TaxonChange < ApplicationRecord
         ],
         user: [:stored_preferences]
       } ).
-      find_in_batches( batch_size: 100 ) do | batch |
+      find_in_batches_in_subsets( batch_size: 100 ) do | batch |
       batch.each do | observation |
         observation.set_community_taxon
         if observation.changed?
