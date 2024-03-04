@@ -83,6 +83,8 @@ module Logstasher
     if hash.key?( :request )
       if hash[:request].is_a?( ActionDispatch::Request )
         hash.merge!( Logstasher.payload_from_request( hash[:request] ) )
+        # set default value to logged_in if no value was set
+        hash[:logged_in] = false if hash[:logged_in].nil?
       end
       hash.delete( :request )
     end
@@ -99,8 +101,6 @@ module Logstasher
       end
       hash.delete( :user )
     end
-    # set default value to logged_in if no value was set
-    hash[:logged_in] = false if hash[:logged_in].nil?
     hash
   end
 
