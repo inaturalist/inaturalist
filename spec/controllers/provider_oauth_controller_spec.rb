@@ -42,13 +42,13 @@ describe ProviderOauthController do
         expect( user.oauth_application_id ).to eq client.id
       end
 
-      it "should not return a token for a new user" do
+      it "should return a token for a new user" do
         expect( User.find_by_email( google_response[:email] ) ).to be_blank
         post :assertion, format: :json, params: assertion_params
-        expect( response ).not_to be_successful
-        expect( User.find_by_email( google_response[:email] ) ).not_to be_confirmed
-        expect( JSON.parse( response.body )["access_token"] ).to be_blank
-        expect( JSON.parse( response.body )["error"] ).not_to be_blank
+        expect( response ).to be_successful
+        expect( User.find_by_email( google_response[:email] ) ).to be_confirmed
+        expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
+        expect( JSON.parse( response.body )["error"] ).to be_blank
       end
 
       it "should return a token for a confirmed user" do

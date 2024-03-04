@@ -48,12 +48,9 @@ describe OauthTokensController, "with resource owner password credentials" do
 
   describe "for an unconfirmed user" do
     let(:user) { create :user, :as_unconfirmed }
-    it "should return a conventional spec-compliant error response" do
+    it "should not return a conventional spec-compliant error response" do
       post :create, format: :json, params: default_params_for_strategy
-      expect( response.code ).to eq "400"
-      json = JSON.parse( response.body )
-      expect( json["error"] ).to eq "invalid_grant"
-      expect( json["error_description"] ).not_to be_blank
+      expect( response.code ).to eq "200"
     end
   end
 
