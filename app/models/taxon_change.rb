@@ -354,7 +354,8 @@ class TaxonChange < ApplicationRecord
     #     page += 1
     #   end
     elsif reflection.klass == Identification
-      Identification.where( taxon_id: input_taxon_ids, current: true ).find_in_batches do |batch|
+      Identification.where( taxon_id: input_taxon_ids, current: true ).
+        find_in_batches_in_subsets do |batch|
         yield batch
       end
     elsif reflection.klass == ObservationFieldValue
