@@ -45,7 +45,7 @@
   .row
     .col-xs-12
       %form.stacked.form-inline{ method: "get", action: users_admin_path }
-        %input.form-control#id{ name: "q_email", type: "search" }
+        %input.form-control#id{ name: "q_email", type: "search", "data-1p-ignore" => true }
         %input.btn.btn-default{ type: "submit", value: "Search" }
   .row
     .col-xs-8
@@ -376,6 +376,6 @@
         %h3 Merge User
         = form_tag merge_user_path( @display_user ), class: "form", method: :put do
           .form-group
-            = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete"
+            = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete", data: { "1p_ignore" =>  true }
             = hidden_field_tag :reject_user_id
           = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }
