@@ -241,7 +241,12 @@ end
 def enable_elastic_indexing( *args )
   classes = [args].flatten
   classes.each do | klass |
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+    try_and_try_again(
+      [
+        Elasticsearch::Transport::Transport::Errors::Conflict,
+        Faraday::ConnectionFailed
+      ], sleep: 0.1, tries: 20
+    ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
     klass.send :after_save, :elastic_index!
@@ -258,7 +263,12 @@ def disable_elastic_indexing( *args )
     klass.send :skip_callback, :save, :after, :elastic_index!
     klass.send :skip_callback, :destroy, :after, :elastic_delete!
     klass.send :skip_callback, :touch, :after, :elastic_index!
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+    try_and_try_again(
+      [
+        Elasticsearch::Transport::Transport::Errors::Conflict,
+        Faraday::ConnectionFailed
+      ], sleep: 0.1, tries: 20
+    ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
   end

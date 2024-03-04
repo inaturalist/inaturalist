@@ -107,6 +107,7 @@ class Taxon < ApplicationRecord
       indexes :rank, type: "keyword"
       indexes :rank_level, type: "scaled_float", scaling_factor: 100
       indexes :statuses do
+        indexes :id, type: "integer"
         indexes :authority, type: "keyword"
         indexes :geoprivacy, type: "keyword"
         indexes :iucn, type: "byte"
