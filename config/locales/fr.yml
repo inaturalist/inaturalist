@@ -1797,6 +1797,7 @@ fr:
   extinct_in_the_wild: Disparue à l’état sauvage
   extra_properties: Propriétés supplémentaires
   evidence_of_organism: Preuve de l’organisme
+  evidence_related_to_single_subject: Preuve liée à un seul sujet
   facebook: Facebook
   failed_to_find_your_location: Échec à la localisation de votre position.
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
@@ -2108,7 +2109,7 @@ fr:
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   however_you_may_want_to_commit_html: |
     Cependant, vous souhaiterez peut-être commenter les observations avec des désaccords involontaires susmentionnées pour avertir les identifieurs que la portée de %{old_parent} a été réduite.
-  i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
+  i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie de %{taxon}
   icon: Icône
   icon_size: Taille de l’icône
   iconic_taxon: Taxon emblématique
@@ -2744,6 +2745,12 @@ fr:
     par cette personne.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Masquer
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Afficher
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspendre
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Lever la suspension
   moderator_note_desc: |
     Les notes du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
   #Person who executed a moderator action or flagged something
@@ -2965,7 +2972,7 @@ fr:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Aucune application pour l'instant
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore été ajoutée à ce projet.
-  no_but_it_is_a_member_of_taxon: "Non, je ne suis pas d'accord avec l'identification, mais je confirme que ça fait partie des %{taxon}"
+  no_but_it_is_a_member_of_taxon: "Non, mais je confirme que cela fait partie de %{taxon}"
   no_comments_yet: Aucun commentaire jusqu’à présent.
   no_creative_commons_flickr_photos_tagged_x: 'Aucune photo Creative Commons de Flickr n’a été étiquetée « %{x} »'
   no_curators_set: Aucun responsable de l’organisation n’a été défini
@@ -3098,6 +3105,7 @@ fr:
   observation_accuracy_experiment_show_frequency: "afficher la fréquence"
   observation_accuracy_experiment_click_on_bars: "Cliquez sur les barres pour explorer les sous-ensembles."
   observation_accuracy_experiment_accuracy_results: "Résultats de l'exactitude par sous-ensemble"
+  observation_accuracy_experiment_as_observations: "Au fur et à mesure que les observations de cet échantillon seront validées, le pourcentage d'incertitude diminuera et le pourcentage correct et incorrect augmentera."
   observation_accuracy_experiment_experiment_still: "Expérience toujours en cours. Les statistiques seront mises à jour quotidiennement jusqu'à la date limite de validation des échantillons le %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Expérience d'exactitude d'observation"
   observation_accuracy_experiment_validators: "Validateurs :"
@@ -3110,6 +3118,7 @@ fr:
   observation_accuracy_experiment_all_results: "Tous les résultats"
   observation_accuracy_experiment_methods: "Méthodes"
   observation_accuracy_experiment_step_1: "Étape 1 : Génération et Affectation des Échantillons"
+  observation_accuracy_experiment_from_the2: "À partir de la base de données d’observations iNaturalist (A), nous avons généré un échantillon aléatoire (B). Des sous-échantillons ont été attribués aux validateurs candidats (C) en fonction des critères décrits ci-dessous. Nous avons choisi d'assigner chaque observation test à plusieurs validateurs candidats (\"Redondance du validateur cible\")."
   observation_accuracy_experiment_sample_generated: "Échantillon généré le : %{date}"
   observation_accuracy_experiment_sample_size: "Taille de l'échantillon : %{number}"
   observation_accuracy_experiment_target_validator: "Redondance du validateur cible : %{number}"
@@ -3129,6 +3138,8 @@ fr:
   observation_accuracy_experiment_precision: "Précision"
   observation_accuracy_validator_email_ids_equal_to: |
     Les identifiants égaux à (A) ou plus fins que (B) le taxon d’observation seront comptés comme des Accords.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Nous vous sommes très reconnaissants pour votre aide en tant d'identifieur sur iNaturalist, et nous vous remercions pour votre participation à cette étude. Vous pouvez lire <a href="%{url}">les méthodes</a> pour en savoir plus au sujet de cette expérience.
   observation_accuracy_validator_email_with_gratitude: Avec nos remerciements,
   observation_accuracy_validator_email_the_inaturalist_team: L'équipe iNaturalist
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
@@ -4981,6 +4992,7 @@ fr:
   text_editing_controls: Contrôles de modification de texte
   thanks!: Merci !
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
+  that_account_is_already_connected: Ce compte est déjà associé à un autre utilisateur
   that_photo_doesnt_exist: Cette photo n’existe pas.
   that_observation_doesnt_exist: Cette observation n’existe pas.
   that_observation_doesnt_have_any_photos: "Cette observation n’a aucune photo."
@@ -5433,7 +5445,7 @@ fr:
     %{user} pense qu'il s'agit d'une liste complète de %{taxon} dans %{place}
   user_blocked: Utilisateur bloqué
   user_commented: "%{user} a commenté"
-  user_disagrees_this_is_taxon: "%{user} ne pense pas que ce soit %{taxon}"
+  user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_an_observation_by_you: "%{user} a ajouté une de vos observations à ses favoris"
   user_faved_this_observation: "%{user} a mis cette observation en favori"
@@ -8496,6 +8508,7 @@ fr:
             action:
               not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
             base:
+              only_staff_and_hiding_curators_can_unhide: Seuls le personnel et les superviseurs qui masquent du contenu peuvent l'afficher à nouveau
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable

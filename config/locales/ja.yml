@@ -282,6 +282,7 @@ ja:
   add_notes_about_this_taxon: この場所におけるこの分類群についての記述（例：どこで、いつ確認できるのか）
   add_obs_from_a_link: "次のリストから観測記録を追加：%{link}"
   add_obs_from_a_list: リストから観測記録を追加
+  add_observation_fields: 観察記録フィールドを追加
   add_observations: 観察記録を追加
   add_observations_by_checking_off: リストから削除した種に観察記録を追加
   add_observations_project: このプロジェクトに観測記録を追加
@@ -2928,6 +2929,72 @@ ja:
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
   observation: 観察記録
   observation_: 観察記録
+  observation_accuracy_experiment_the_sample_for: "この実験のサンプルはまだ作成されていません"
+  observation_accuracy_experiment_our_accuracy_estimate: "この実験の結果、我々の推定精度は %{percent} 正しかった。"
+  observation_accuracy_experiment_our_goak: "研究グレードのサブセットの推定精度（正答率）と精度の目標は95％以上（破線）。"
+  observation_accuracy_experiment_precision_results: "サブセット別の精度結果"
+  observation_accuracy_experiment_iconic_taxon_name: "象徴的な分類群名"
+  observation_accuracy_experiment_continent: "大陸"
+  observation_accuracy_experiment_year: "年"
+  observation_accuracy_experiment_quality_grade: "データ品質"
+  observation_accuracy_experiment_show_frequency: "表示頻度"
+  observation_accuracy_experiment_click_on_bars: "バーをクリックするとサブセットが表示されます。"
+  observation_accuracy_experiment_bars_will: "バーのクリックは、サンプルの検証期限が過ぎた後に可能になります。"
+  observation_accuracy_experiment_accuracy_results: "サブセット別の精度結果"
+  observation_accuracy_experiment_as_observations: "このサンプルからの観察記録が検証されるにつれて、不確実なパーセンテージは減少し、正答と誤答のパーセンテージが増加します。"
+  observation_accuracy_experiment_experiment_still: "実験はまだ進行中です。%{date} のサンプル検証期限まで、統計は毎日更新されます。"
+  observation_accuracy_experiment_observation_accuracy_experiment: "観察記録の精度実験"
+  observation_accuracy_experiment_validators: "検証者："
+  observation_accuracy_experiment_show_additional_validators: "(追加の検証者を表示)"
+  observation_accuracy_experiment_hide_additional_validators: "(追加の検証者を隠す)"
+  observation_accuracy_experiment_additional_validators: "( %{number} 追加の検証者)"
+  observation_accuracy_experiment_abstract: "概要：我々は %{sample_generation_date} に観察記録のサンプルを生成し、 %{deadline_date} までにその正確性を評価するために検証者のチームを調整しました。以下に示すすべての結果は、サンプルが生成された時点の観察記録の特徴を示しています（たとえば、研究グレードの有無など）。サンプルの観察記録の正確さは、 %{assessment_date} で評価されました。詳細は手法タブを参照してください。"
+  observation_accuracy_experiment_research_grade_results: "研究グレードの結果"
+  observation_accuracy_experiment_verifiable_results: "検証可能な結果"
+  observation_accuracy_experiment_all_results: "全ての結果"
+  observation_accuracy_experiment_methods: "手法"
+  observation_accuracy_experiment_step_1: "ステップ1：サンプルの生成と割り当て"
+  observation_accuracy_experiment_sample_generated: "サンプルの生成： %{date}"
+  observation_accuracy_experiment_sample_size: "サンプルサイズ： %{number}"
+  observation_accuracy_experiment_target_validator: "対象となる検証者の冗長性： %{number}"
+  observation_accuracy_experiment_number_of: "検証者候補の数： %{number}"
+  observation_accuracy_experiment_mean_subsample: "検証者候補ごとの平均サブサンプル・サイズ： %{number}"
+  observation_accuracy_experiment_mean_number: "サンプル観察記録あたりの平均検証者数： %{number}"
+  observation_accuracy_experiment_validator_candidate: "検証者候補の基準"
+  observation_accuracy_experiment_if_an_identifier: "同定されている分類群について少なくとも 3 回同定を改善した場合、その分類群を検証する資格があるとみなしました。改善された同定とは、その分類群について初めて提案され、その後コミュニティが同意したものです。"
+  observation_accuracy_experiment_if_an_identifier_continent: "同定者がある大陸で少なくとも 3 回同定を改善した場合、その大陸内でその分類群を検証する資格があるとみなします。同定の改善とは、その分類群について初めて提案され、その後コミュニティが同意することです。"
+  observation_accuracy_experiment_for_example: "たとえば、同定者1が観察記録にAのIDを追加します。同定者2が後にBの先行IDを追加した場合、Aに関する同定者1のIDは改善IDになります。同定者3が後にBの補助IDを追加した場合、Bに関する同定者2のIDは改善IDになります。"
+  observation_accuracy_experiment_step_2: "ステップ2：サンプルの検証"
+  observation_accuracy_experiment_we_contacted: "検証者候補に連絡し、サブサンプルに同定を追加するよう依頼しました。右のグラフは、サンプル観察記録を検証者の数でグループ分けしたものです。"
+  observation_accuracy_experiment_number_percent_of: "参加した検証者の数： %{number} （%{percentage}）"
+  observation_accuracy_experiment_percent_of: "検証されたサンプルの割合： %{percent}"
+  observation_accuracy_experiment_we_scored: "検証者の同定を各サンプルの観察記録の分類群と比較することで、サンプルの観察記録を「正確」、 「不確実」、「不正確」にスコア付けしました。同定がサンプルの観察記録分類群と一致するか、それよりも細かいものを「正確」としました。複数の検証者が同定に同意しない場合は、「不確実」としました。不一致の粗い同定、または異なる枝での同定は「不正確」としました。"
+  observation_accuracy_experiment_correct: "正確"
+  observation_accuracy_experiment_uncertain: "不確実"
+  observation_accuracy_experiment_incorrect2: "不正解"
+  observation_accuracy_experiment_step_4: "ステップ4：精度と精密度の計算"
+  observation_accuracy_experiment_accuracy: "精度"
+  observation_accuracy_experiment_we_calculated: "精度は、サンプル全体、および研究グレードのサブセットなど一部の正答率を計算しました。また、不確実なパーセンテージと不正確なパーセンテージも計算しました。右図の例では、正答率は83％、不確実率は6％、不正解率は11％となります。"
+  observation_accuracy_experiment_precision: "精密度"
+  observation_accuracy_experiment_if_every_sample: "もし全てのサンプル観察記録が界のような粗い分類群であった場合、iNaturalistデータセットの精度は非常に高いかもしれませんが、精密度が低すぎてデータセットがあまり有用でないかもしれません。精密度を推定するために、各サンプル観察記録に関連する各分類群について、iNaturalistの分類学における葉の子孫の数を数えました。精密度は 1 を葉の子孫の数で割ったものとして計算しました。その分類群が葉の分類群であった場合、精密度は100%となります。精密度の計算では、種以下のランクは無視しました。"
+  observation_accuracy_experiment_in_the_example: "右図の例では、3つのサンプル観察記録の平均精密度は51%になります。"
+  observation_accuracy_validator_email_subject2: "iNaturalistの観察記録の精度を推定するための実験 %{version} にご協力いただけませんか？"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    iNaturalistの観察記録の精度を見積もるための <a href="%{url}">実験（バージョン %{version} ）</a>にご協力いただけませんか？
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>たとえそれが研究グレードであっても、またあなたの最も細かいIDがより高い分類学的レベル（王国であっても）であっても、以下のリンクにあるすべての観察記録をできる限り細かく同定してください。</li>
+    <li>「不一致の可能性」のポップアップが表示されたら...
+    <ul>
+    <li>誤同定だと確信がある場合は、オレンジ色のボタンをクリックしてください、</li>
+    <li>または、自分のIDがわからない場合は、緑色のボタンをクリックしてください。</li>
+    </ul>
+    </li>
+    <li>これを <b>%{validator_deadline_date}</b> までに行ってください。</li>
+    </ol>
+    以下は、iNatでのあなたの活動に基づいて、あなたが同定できると思われる <a href="%{sample_url}"> %{num_obs} の観察記録のサブセット</a> です。<b>それぞれの観察記録に、できる限り細かいIDを %{validator_deadline_date} までに追加してください。</b>
+  observation_accuracy_validator_email_we_will_calculate: |
+    私たちは、あなたの同定と観察記録分類群を比較して精度を計算します。もしその同定がまだ関連していれば、以前に同定を追加した観察記録をスキップすることができます。一致と不一致をどのようにカウントするかについては、このまま読み進めてください。
   observation_accuracy_validator_email_ids_equal_to: |
     観察記録と同じ (A) か、それよりも細かい同定 (B) は「同意」としてカウントされます。
   observation_accuracy_validator_email_with_gratitude: 感謝の気持ちを込めて、
@@ -3584,6 +3651,7 @@ ja:
     north_korea: 北朝鮮
     northern_cyprus: 北キプロス
     norway: ノルウェー
+    oceania: オセアニア
     oman: オマーン
     pakistan: パキスタン
     palau: パラオ

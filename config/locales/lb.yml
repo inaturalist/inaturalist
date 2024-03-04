@@ -1366,6 +1366,10 @@ lb:
   mobile: Mobil
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verstoppen
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Spären
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Entspären
   mollusks: Mollusken
   momentjs:
     shortRelativeTime:
@@ -1562,6 +1566,18 @@ lb:
   obscured: Verschleiert
   observation: Observatioun
   observation_: Observatioun
+  observation_accuracy_experiment_continent: "Kontinent"
+  observation_accuracy_experiment_year: "Joer"
+  observation_accuracy_experiment_all_results: "All d'Resultater"
+  observation_accuracy_experiment_methods: "Methoden"
+  observation_accuracy_experiment_sample_size: "Stéchprouwegréisst: %{number}"
+  observation_accuracy_experiment_correct: "Korrekt"
+  observation_accuracy_experiment_uncertain: "Onsécher"
+  observation_accuracy_experiment_incorrect2: "Inkorrekt"
+  observation_accuracy_experiment_step_4: "Schrëtt 4: Genauegkeet a Prezisioun berechnen"
+  observation_accuracy_experiment_accuracy: "Genauegkeet"
+  observation_accuracy_experiment_precision: "Prezisioun"
+  observation_accuracy_validator_email_the_inaturalist_team: D'iNaturalist-Team
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Observatioune vum %{user}
@@ -1934,6 +1950,7 @@ lb:
     north_america: Nordamerika
     north_korea: Nordkorea
     norway: Norwegen
+    oceania: Ozeanien
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -2378,6 +2395,7 @@ lb:
   text: Text
   thanks!: Merci!
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
+  that_account_is_already_connected: Dëse Kont ass scho mat engem anere Benotzer verbonnen
   that_photo_doesnt_exist: Déi Foto gëtt et net.
   that_observation_doesnt_exist: Déi Observatioun gëtt et net.
   that_observation_doesnt_have_any_photos: "Des Observatioun huet keng Fotoen"
