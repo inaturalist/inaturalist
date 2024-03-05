@@ -33,7 +33,7 @@ class ProjectListing extends React.Component {
             defaultChecked={allowsAccess}
             id={`project-allow-input-${obj.project.id}`}
             onClick={( ) => {
-              updateCuratorAccess( obj, allowsAccess ? 0 : 1 );
+              updateCuratorAccess( obj, allowsAccess ? false : true );
             }}
           />
           <label htmlFor={`project-allow-input-${obj.project.id}`}>

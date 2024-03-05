@@ -369,7 +369,7 @@ class TaxonChange < ApplicationRecord
       scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids )
       # sometimes reflections have custom scopes that need to be applied
       scope = scope.merge( reflection.scope ) if reflection.scope
-      scope.find_in_batches do |batch|
+      scope.find_in_batches_in_subsets do |batch|
         yield batch
       end
     end
