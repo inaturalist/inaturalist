@@ -290,7 +290,7 @@ results_new = {
     inactive: {
         total: ( inactive_users & new_connected_users ).count 
     },
-    total: existing_connected_users.count
+    total: new_connected_users.count
 }
 
 results = {
