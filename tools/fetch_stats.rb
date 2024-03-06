@@ -127,7 +127,7 @@ casual_obs_ios = ( all_obs_ios - power_obs_ios )
 casual_obs_android = ( all_obs_android - power_obs_android )
 casual_obs_seek = ( all_obs_seek - power_obs_seek )
 casual_ids = ( all_ids - power_ids )
-casual_users = ( casual_obs + casual_ids ).uniq
+casual_users = ( all_users - power_users ).uniq
 
 # Get all active users, from database
 all_connected_users = User.where( "last_active >= ?", at_time - NUMBER_OF_DAYS ).pluck( :id )
