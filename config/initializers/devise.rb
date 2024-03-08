@@ -103,10 +103,10 @@ Devise.setup do | config |
   # the user cannot access the website without confirming his account.
 
   # Allow unconfirmed access
-  # Note: in spring of 2022 we encouraging email confirmation and also required
+  # Note: in spring of 2022 we began encouraging email confirmation and also required
   # new user to have completed email confirmation before logging in. In spring
   # 2024 we began once again allowing users to login before confirming their email.
-  config.allow_unconfirmed_access_for = 20.years
+  config.allow_unconfirmed_access_for = nil
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email

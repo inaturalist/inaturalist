@@ -269,8 +269,6 @@ class ProviderOauthController < ApplicationController
     unless user.active_for_authentication?
       raise INat::Auth::SuspendedError if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
-      raise INat::Auth::UnconfirmedAfterGracePeriodError if user.unconfirmed_grace_period_expired?
-      raise INat::Auth::UnconfirmedError unless user.confirmed?
     end
     access_token = Doorkeeper::AccessToken.
       where( application_id: client.id, resource_owner_id: user.id, revoked_at: nil ).
