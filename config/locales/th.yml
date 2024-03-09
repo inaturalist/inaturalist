@@ -1053,6 +1053,7 @@ th:
   edit_your_account_and_profile_html: "แก้ไขบัญชีและโปรไฟล์ของคุณ"
   edit_your_default_settings: "แก้ไขการตั้งค่าเริ่มต้นของคุณ"
   edit_your_identification: แก้ไขการจำแนกของคุณ
+  edit_your_settings_for_this_project: แก้ไขการตั้งค่าของคุณสำหรับโครงการนี้
   edited_by_name_html: "แก้ไขโดย %{name}"
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
@@ -1592,6 +1593,9 @@ th:
   mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ดู
   maverick: ขัดแย้ง
   media: สื่อ
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: และ
   media_type: ประเภทสื่อ
   medium: กลาง
   member_of_the_inaturalist_network_html: |
@@ -1683,6 +1687,7 @@ th:
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: ต้องอยู่ในโครงการ %{project}
+  must_have_sounds: ต้องมีเสียง
   n_ago: "%{n} ที่แล้ว"
   n_people_disagrees: "มี %{amount} คนไม่เห็นด้วย"
   n_person_disagrees: "มี %{amount} คนไม่เห็นด้วย"
@@ -2492,10 +2497,17 @@ th:
   sorting_by: เรียงตาม
   sounds:
     add_media: เพิ่มสื่อ
+    add_sounds: เพิ่มเสียง
+    import_sounds: นำเข้าเสียง
+    listen: ฟัง
     no_photos_sounds: ไม่มีรูปหรือเสียง
     photos_sounds: รูปถ่าย / เสียง
     select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
     selected_sounds: เสียงที่ถูกเลือก
+    sound: เสียง
+    sound_has_been_flagged: เสียงนี้ถูกรายงาน
+    sounds: เสียง
+    your_soundcloud_account: บัญชี SoundCloud ของคุณ
   source: ที่มา
   source_: 'ที่มา:'
   source_wikipedia: "ที่มา: วิกิพีเดีย"
@@ -2934,6 +2946,7 @@ th:
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   visually_similar: รูปคล้ายกัน
   vulnerable: มีแนวโน้มใกล้สูญพันธุ์
+  w_sounds: มีเสียง
   was_it_captive_cultivated?: "ถูกจับมา / เพาะปลูกหรือไม่?"
   we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
   we_have_no_establishment_data_for_this_taxon: "เราไม่มีข้อมูลการตั้งถิ่นฐานสำหรับหน่วยอนุกรมวิธานนี้"
@@ -3204,6 +3217,7 @@ th:
           เลือก "พื้นเมือง" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์พื้นเมือง" ของสถานที่ในโครงการของคุณ เลือก "ต่างถิ่น" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์ต่างถิ่น" ของสถานที่ในโครงการของคุณ
         select_quality_grade: |
           เลือกระดับคุณภาพข้อมูลอย่างน้อยหนึ่งอย่าง อ่านคำอธิบายเพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูลได้ที่หน้า<a href="%{url}">คำถามที่พบบ่อย</a>ของเรา
+        show_projects_as_flags: แสดงป้ายชื่อโครงการบนแผนที่
         specify_project_filters: |
           กำหนดตัวกรองสำหรับการสังเกตที่จะรวมไว้ในโครงการของคุณ โดยเลือกได้หลายชนิด (หรือหน่วยอนุกรมวิธาน) สถานที่ วันที่ หรือเกณฑ์อื่น ๆ สำหรับการสังเกตที่จะรวมเข้าโครงการโดยอัตโนมัติ
         start_and_end_times_for_bioblitzes: กำหนดวัน/เวลาเริ่มต้นและสิ้นสุดได้ (สำหรับกิจกรรม bioblitz)
