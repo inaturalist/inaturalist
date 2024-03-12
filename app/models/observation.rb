@@ -884,7 +884,10 @@ class Observation < ApplicationRecord
     viewer = viewer.is_a?( User ) ? viewer : User.find_by_id( viewer.to_i )
     options[:except] ||= []
     options[:except] += [:user_agent]
-    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
+    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?(
+      viewer,
+      ignore_collection_projects: options[:ignore_collection_projects]
+    )
       options[:except] += [:private_latitude, :private_longitude, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
@@ -1549,7 +1552,7 @@ class Observation < ApplicationRecord
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?( viewer )
+  def coordinates_viewable_by?( viewer, options = { } )
     return true unless coordinates_obscured?
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
@@ -1571,6 +1574,8 @@ class Observation < ApplicationRecord
         return true
       end
     end
+    return false if options[:ignore_collection_projects]
+
     cps = collection_projects( authenticate: viewer ).select do |cp|
       curated_project_ids.include?( cp.id )
     end

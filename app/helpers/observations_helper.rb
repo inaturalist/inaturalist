@@ -45,7 +45,10 @@ module ObservationsHelper
   def observation_place_guess(observation, options = {})
     display_lat = observation.latitude
     display_lon = observation.longitude
-    coordinates_viewable = observation.coordinates_viewable_by?( current_user )
+    coordinates_viewable = observation.coordinates_viewable_by?(
+      current_user,
+      ignore_collection_projects: true
+    )
     display_place_guess = coordinates_viewable ? observation.private_place_guess : observation.place_guess
     display_place_guess = observation.place_guess if display_place_guess.blank?
     if !observation.private_latitude.blank? && coordinates_viewable
@@ -81,7 +84,7 @@ module ObservationsHelper
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
         
-    elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+    elsif !observation.private_latitude.blank? && coordinates_viewable
       link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe

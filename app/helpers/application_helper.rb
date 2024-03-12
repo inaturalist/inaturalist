@@ -780,6 +780,7 @@ module ApplicationHelper
     return if options[:observations].blank?
     options[:observations].collect{ |o|
       o.to_json(:viewer => current_user,
+        :ignore_collection_projects => true,
         :force_coordinate_visibility => @coordinates_viewable,
         :include => [ { :user => { :only => :login },
           :taxon => { :only => [ :id, :name ] } },
