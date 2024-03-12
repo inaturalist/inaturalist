@@ -11,12 +11,12 @@ last_friday = ( Time.now - days_to_subtract.days )
 at_time = last_friday.end_of_day
 
 # Get all connected users, from database
-all_connected_users = User.where( "last_active > ?", at_time - NUMBER_OF_DAYS ).
-  where( "last_active <= ?", at_time ).pluck( :id )
+all_connected_users = User.where( "last_active > ?", at_time.to_date - NUMBER_OF_DAYS ).
+  where( "last_active <= ?", at_time.to_date ).pluck( :id )
 
 # Get all connected users, who joined recently, from database
-new_connected_users = User.where( "last_active > ?", at_time - NUMBER_OF_DAYS ).
-  where( "last_active <= ?", at_time ).
+new_connected_users = User.where( "last_active > ?", at_time.to_date - NUMBER_OF_DAYS ).
+  where( "last_active <= ?", at_time.to_date ).
   where( "DATE(created_at AT TIME ZONE 'UTC') > ?", at_time - NUMBER_OF_DAYS ).
   where( "DATE(created_at AT TIME ZONE 'UTC') <= ?", at_time ).pluck( :id )
 
