@@ -8,14 +8,17 @@ KIBANA_URL = "localhost:9200"
 current_day_of_week = Time.now.wday
 days_to_subtract = ( current_day_of_week - 5 ) % 7
 last_friday = ( Time.now - days_to_subtract.days )
-at_time = last_friday.utc.end_of_day
+at_time = last_friday.end_of_day
 
 # Get all connected users, from database
-all_connected_users = User.where( "last_active >= ?", at_time - NUMBER_OF_DAYS ).pluck( :id )
+all_connected_users = User.where( "last_active > ?", at_time - NUMBER_OF_DAYS ).
+  where( "last_active <= ?", at_time ).pluck( :id )
 
 # Get all connected users, who joined recently, from database
-new_connected_users = User.where( "last_active >= ?", at_time - NUMBER_OF_DAYS ).
-  where( "DATE(created_at AT TIME ZONE 'UTC') >= ?", at_time - NUMBER_OF_DAYS ).pluck( :id )
+new_connected_users = User.where( "last_active > ?", at_time - NUMBER_OF_DAYS ).
+  where( "last_active <= ?", at_time ).
+  where( "DATE(created_at AT TIME ZONE 'UTC') > ?", at_time - NUMBER_OF_DAYS ).
+  where( "DATE(created_at AT TIME ZONE 'UTC') <= ?", at_time ).pluck( :id )
 
 # Get users having submitted observations
 # including the number of observations by application (android, ios, seek, web) for each
