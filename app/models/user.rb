@@ -405,6 +405,8 @@ class User < ApplicationRecord
     child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
   end
 
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+
   # Override of method from devise to implement some custom restrictions like
   # parent/child permission and gradual confirmation requirement rollout
   def active_for_authentication?
