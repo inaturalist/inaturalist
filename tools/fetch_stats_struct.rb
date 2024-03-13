@@ -103,8 +103,8 @@ end
 
 # Get devices used by users from kibana logs between 2 dates
 def users_devices_split_data( start_time, end_time )
-  kibana_es_client = Elasticsearch::Client.new(host: KIBANA_URL)
-  body = { 
+  kibana_es_client = Elasticsearch::Client.new( host: KIBANA_URL )
+  body = {
     size: 0,
     query: {
       bool: {
@@ -153,14 +153,15 @@ def users_devices_split_data( start_time, end_time )
   }
   begin
     kibana_es_client.search(
-      index: 'logs-ruby-logstash-*', 
-      body: body)
+      index: "logs-ruby-logstash-*",
+      body: body
+    )
   rescue Faraday::TimeoutError, Net::ReadTimeout
     retry
   end
 end
 
-# Get devices used by users from kibana logs 
+# Get devices used by users from kibana logs
 # Generate multiple queries (1 by hour of data) to avoid reaching ES max bucket size
 def users_devices_data( at_time )
   devices_data = {}
@@ -168,10 +169,10 @@ def users_devices_data( at_time )
   number_of_hours = number_of_days * 24
 
   total_queries = 0
-  for i in 0..(number_of_hours-1)
-    start_time = at_time - (number_of_hours - i).hour
-    end_time = at_time - (number_of_hours - i - 1).hour
-    puts start_time.to_s + " to " + end_time.to_s
+  ( 0..( number_of_hours - 1 ) ).each do | i |
+    start_time = at_time - ( number_of_hours - i ).hour
+    end_time = at_time - ( number_of_hours - i - 1 ).hour
+    puts "#{start_time} to #{end_time}"
 
     split_data = users_devices_split_data( start_time, end_time )
 
@@ -204,23 +205,23 @@ def users_devices_data( at_time )
       devices_data[u["key"]] = user
     end
 
-    total_queries = devices_data.values.reduce(0) { |total, item| total + item[:total_q_count] }
-    puts "Users = " + devices_data.count.to_s
-    puts "Q Count = " + total_queries.to_s
+    total_queries = devices_data.values.reduce( 0 ) {| total, item | total + item[:total_q_count] }
+    puts "Users = #{devices_data.count}"
+    puts "Q Count = #{total_queries}"
   end
 
   expected_queries = users_devices_coherency_check( at_time )
-  diff_queries = (expected_queries - total_queries) * 100 / expected_queries
-  puts "Queries expected = " + expected_queries.to_s
-  puts "Queries retrieved = " + total_queries.to_s
-  puts "Diff = " + diff_queries.to_s + " %"
+  diff_queries = ( expected_queries - total_queries ) * 100 / expected_queries
+  puts "Queries expected = #{expected_queries}"
+  puts "Queries retrieved = #{total_queries}"
+  puts "Diff = #{diff_queries} %"
 
   devices_data
 end
 
 def users_devices_coherency_check( at_time )
-  kibana_es_client = Elasticsearch::Client.new(host: KIBANA_URL)
-  body = { 
+  kibana_es_client = Elasticsearch::Client.new( host: KIBANA_URL )
+  body = {
     size: 0,
     track_total_hits: true,
     query: {
@@ -254,8 +255,9 @@ def users_devices_coherency_check( at_time )
   }
   begin
     result = kibana_es_client.search(
-      index: 'logs-ruby-logstash-*', 
-      body: body)
+      index: "logs-ruby-logstash-*",
+      body: body
+    )
     result["hits"]["total"]["value"]
   rescue Faraday::TimeoutError, Net::ReadTimeout
     retry
@@ -387,3 +389,108 @@ user_data = user_data.reject {| key, _ | users_to_remove.include? key }
 # user_data.select { |key, user| user[:active] == false && user[:total_q_count] > 0 && user[:web_app_q_count] == 0 && user[:ios_app_q_count] == 0 && user[:android_app_q_count] > 0 && user[:seek_app_q_count] == 0 && user[:other_app_q_count] == 0 }.count
 # Using seek only
 # user_data.select { |key, user| user[:active] == false && user[:total_q_count] > 0 && user[:web_app_q_count] == 0 && user[:ios_app_q_count] == 0 && user[:android_app_q_count] == 0 && user[:seek_app_q_count] > 0 && user[:other_app_q_count] == 0 }.count
+
+def count_active_observers( user_data, type, new_param, power_param )
+  user_data.select do | _, user |
+    total_obs_count = user[:total_obs_count]
+    power_condition = power_param ? total_obs_count >= 10 : ( total_obs_count.positive? && total_obs_count < 10 )
+    power_condition && user[:new] == new_param &&
+      case type
+      when :web_app
+        user[:"#{type}_obs_count"] >=
+          [user[:ios_obs_count], user[:android_obs_count], user[:seek_obs_count], user[:other_obs_count]].max
+      when :ios
+        user[:"#{type}_obs_count"] > user[:web_app_obs_count] &&
+          user[:"#{type}_obs_count"] >= [user[:android_obs_count], user[:seek_obs_count], user[:other_obs_count]].max
+      when :android
+        user[:"#{type}_obs_count"] > user[:web_app_obs_count] &&
+          user[:"#{type}_obs_count"] > user[:ios_obs_count] &&
+          user[:"#{type}_obs_count"] >= [user[:seek_obs_count], user[:other_obs_count]].max
+      when :seek
+        user[:"#{type}_obs_count"] > user[:web_app_obs_count] &&
+          user[:"#{type}_obs_count"] > user[:ios_obs_count] &&
+          user[:"#{type}_obs_count"] > user[:android_obs_count] &&
+          user[:"#{type}_obs_count"] >= user[:other_obs_count]
+      when :other
+        user[:"#{type}_obs_count"] > user[:web_app_obs_count] &&
+          user[:"#{type}_obs_count"] > user[:ios_obs_count] &&
+          user[:"#{type}_obs_count"] > user[:android_obs_count] &&
+          user[:"#{type}_obs_count"] > user[:seek_obs_count]
+      end
+  end.count
+end
+
+def count_iders( user_data, new_param, power_param )
+  user_data.select do | _, user |
+    total_ids_count = user[:total_ids_count]
+    power_condition = power_param ? total_ids_count >= 10 : ( total_ids_count.positive? && total_ids_count < 10 )
+    user[:new] == new_param && user[:total_obs_count].zero? && power_condition
+  end.count
+end
+
+def observer_counts( user_data, observers, new_param, power_param )
+  observers.map {| observer | count_active_observers( user_data, observer, new_param, power_param ) }
+end
+
+def count_lurkers( user_data, type, new_param )
+  user_data.select do | _, user |
+    user[:active] == false && user[:new] == new_param &&
+      case type
+      when :web
+        user[:"#{type}_app_q_count"] >=
+          [user[:ios_app_q_count], user[:android_app_q_count], user[:seek_app_q_count], user[:other_app_q_count]].max
+      when :ios
+        user[:"#{type}_app_q_count"] > user[:web_app_q_count] &&
+          user[:"#{type}_app_q_count"] >=
+            [user[:android_app_q_count], user[:seek_app_q_count], user[:other_app_q_count]].max
+      when :android
+        user[:"#{type}_app_q_count"] > user[:web_app_q_count] &&
+          user[:"#{type}_app_q_count"] > user[:ios_app_q_count] &&
+          user[:"#{type}_app_q_count"] >= [user[:seek_app_q_count], user[:other_app_q_count]].max
+      when :seek
+        user[:"#{type}_app_q_count"] > user[:web_app_q_count] &&
+          user[:"#{type}_app_q_count"] > user[:ios_app_q_count] &&
+          user[:"#{type}_app_q_count"] > user[:android_app_q_count] &&
+          user[:"#{type}_app_q_count"] >= user[:other_app_q_count]
+      when :other
+        user[:"#{type}_app_q_count"] > user[:web_app_q_count] &&
+          user[:"#{type}_app_q_count"] > user[:ios_app_q_count] &&
+          user[:"#{type}_app_q_count"] > user[:android_app_q_count] &&
+          user[:"#{type}_app_q_count"] > user[:seek_app_q_count]
+      end
+  end.count
+end
+
+def lurker_counts( user_data, observers, new_param )
+  observers.map {| observer | count_lurkers( user_data, observer, new_param ) }
+end
+
+def format_for_viz( user_data )
+  observers = %i[web_app ios android seek other]
+  lurkers = %i[web ios android seek other]
+
+  viz_data = { name: "all", children: [] }
+
+  [true, false].each do | new_param |
+    new_children = { name: new_param ? "new" : "existing", children: [] }
+    [true, false].each do | power_param |
+      power_children = { name: power_param ? "power" : "casual", children: [] }
+      observer_counts = observer_counts( user_data, observers, new_param, power_param )
+      result = observers.zip( observer_counts ).
+        map {| name, value | { name: name.to_s == "web_app" ? "web" : name.to_s, value: value } }
+      ider_count = count_iders( user_data, new_param, power_param )
+      result << { name: "ider", value: ider_count }
+      power_children[:children] = result
+
+      new_children[:children] << power_children
+    end
+    lurker_counts = lurker_counts( user_data, lurkers, new_param )
+    lurker_result = lurkers.zip( lurker_counts ).map {| name, value | { name: name.to_s, value: value } }
+    new_children[:children] << { name: "lurker", children: lurker_result }
+    viz_data[:children] << new_children
+  end
+
+  viz_data.to_json
+end
+
+puts format_for_viz( user_data )
