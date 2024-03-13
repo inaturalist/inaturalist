@@ -4,14 +4,14 @@
 
 %p= "Get outside and make your first observation! Try finding these species that are commonly reported from #{@city} in #{@month_name}."
 
-.row
-  - @nearby_species.each do | taxon |
-    .col-md-3.col-sm-3
-      .thumbnail
-        = link_to taxon_url( taxon ) do
-          %div.scaledimg{ style: "background-image: url('#{taxon_image_url( taxon, size: "medium" )}')" }
-        .caption
+%table{ cellpadding: "0", cellspacing: "0", border: "0" }
+  %tr
+    - @nearby_species.each do | taxon |
+      %td
+        .thumbnail
           = link_to taxon_url( taxon ) do
-            = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
-
+            %img.scaledimg{ src: taxon_image_url( taxon, size: "medium" ) }
+          .caption
+            = link_to taxon_url( taxon ) do
+              = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
 = render "footer"
