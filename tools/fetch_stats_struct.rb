@@ -391,7 +391,7 @@ user_data = user_data.reject {| key, _ | users_to_remove.include? key }
 # user_data.select { |key, user| user[:active] == false && user[:total_q_count] > 0 && user[:web_app_q_count] == 0 && user[:ios_app_q_count] == 0 && user[:android_app_q_count] == 0 && user[:seek_app_q_count] > 0 && user[:other_app_q_count] == 0 }.count
 
 def count_active_observers( user_data, type, new_param, power_param )
-  user_data.select do | _, user |
+  users = user_data.select do | _, user |
     total_obs_count = user[:total_obs_count]
     power_condition = power_param ? total_obs_count >= 10 : ( total_obs_count.positive? && total_obs_count < 10 )
     power_condition && user[:new] == new_param &&
@@ -417,7 +417,8 @@ def count_active_observers( user_data, type, new_param, power_param )
           user[:"#{type}_obs_count"] > user[:android_obs_count] &&
           user[:"#{type}_obs_count"] > user[:seek_obs_count]
       end
-  end.count
+  end.keys
+  { count: users.count, sample: users.sample( 10 ) }
 end
 
 def count_iders( user_data, new_param, power_param )
@@ -465,7 +466,15 @@ def lurker_counts( user_data, observers, new_param )
   observers.map {| observer | count_lurkers( user_data, observer, new_param ) }
 end
 
-def format_for_viz( user_data )
+def explore_url( sample, created_d1, created_d2 )
+  "https://www.inaturalist.org/observations?" \
+    "user_id=#{sample.join( ',' )}&" \
+    "created_d1=#{created_d1}&" \
+    "created_d2=#{created_d2}&" \
+    "verifiable=any"
+end
+
+def format_for_viz( user_data, created_d1, created_d2 )
   observers = %i[web_app ios android seek other]
   lurkers = %i[web ios android seek other]
 
@@ -476,8 +485,14 @@ def format_for_viz( user_data )
     [true, false].each do | power_param |
       power_children = { name: power_param ? "power" : "casual", children: [] }
       observer_counts = observer_counts( user_data, observers, new_param, power_param )
-      result = observers.zip( observer_counts ).
-        map {| name, value | { name: name.to_s == "web_app" ? "web" : name.to_s, value: value } }
+      result = []
+      observers.zip( observer_counts ).each do | name, value |
+        result << {
+          name: name.to_s == "web_app" ? "web" : name.to_s,
+          value: value[:count],
+          url: explore_url( value[:sample], created_d1, created_d2 )
+        }
+      end
       ider_count = count_iders( user_data, new_param, power_param )
       result << { name: "ider", value: ider_count }
       power_children[:children] = result
@@ -490,7 +505,10 @@ def format_for_viz( user_data )
     viz_data[:children] << new_children
   end
 
-  viz_data.to_json
+  JSON.generate( viz_data, ascii_only: false )
 end
 
-puts format_for_viz( user_data )
+created_d1 = ( at_time.to_date - NUMBER_OF_DAYS ).strftime( "%Y-%m-%d" )
+created_d2 = ( at_time.to_date ).strftime( "%Y-%m-%d" )
+
+puts format_for_viz( user_data, created_d1, created_d2 )
