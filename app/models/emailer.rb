@@ -293,6 +293,7 @@ class Emailer < ActionMailer::Base
       geoip_latitude, geoip_longitude = geoip_response.results.ll
     end
     @city = geoip_response.results.city
+    current_month = Time.now.month
     species = INatAPIService.
       observations_species_counts( {
         verifiable: true, lat: geoip_latitude, lng: geoip_longitude, month: current_month
@@ -302,13 +303,12 @@ class Emailer < ActionMailer::Base
       species.find {| s | s["taxon"]["iconic_taxon_name"] == iconic_taxon_name }
     end.compact
     @nearby_species = Taxon.find( filtered_species.first( 4 ).map {| t | t["taxon"]["id"] } )
-    current_month = Time.now.month
     @month_name = Date::MONTHNAMES[current_month]
 
     set_locale
     mail( set_site_specific_opts.merge(
       to: user.email,
-      subject: t( :welcome_to_inat, site_name: site_name )
+      subject: "test observer appeal", site_name: site_name
     ) )
     reset_locale
   end

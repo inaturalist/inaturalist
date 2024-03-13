@@ -6,6 +6,6 @@
 
 .row
   - for taxon in @nearby_species
-    = render( partial: 'favorites', locals: { taxon: taxon } )
+    = render( partial: "users/favorites", locals: { taxon: taxon } )
 
-= render 'footer'
+= render "footer"
