@@ -2,10 +2,16 @@
 
 %p= @user.published_name
 
-%p= "get outside an make your first observation! Try finding these species that are commonly reported from #{@city} in #{@month_name}"
+%p= "Get outside and make your first observation! Try finding these species that are commonly reported from #{@city} in #{@month_name}."
 
 .row
-  - for taxon in @nearby_species
-    = render( partial: "users/favorites", locals: { taxon: taxon } )
+  - @nearby_species.each do | taxon |
+    .col-md-3.col-sm-3
+      .thumbnail
+        = link_to taxon_url( taxon ) do
+          %div.scaledimg{ style: "background-image: url('#{taxon_image_url( taxon, size: "medium" )}')" }
+        .caption
+          = link_to taxon_url( taxon ) do
+            = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
 
 = render "footer"
