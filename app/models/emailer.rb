@@ -282,6 +282,37 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def observer_appeal( user )
+    @user = user
+    private_ip_ranges = [IPAddr.new( "10.0.0.0/8" ), IPAddr.new( "172.16.0.0/12" ), IPAddr.new( "192.168.0.0/16" )]
+    last_ip = IPAddr.new( @user.last_ip )
+    return if private_ip_ranges.any? {| range | range.include?( last_ip ) }
+
+    geoip_response = INatAPIService.geoip_lookup( { ip: @user.last_ip } )
+    if geoip_response&.results && geoip_response.results.country && geoip_response.results.ll
+      geoip_latitude, geoip_longitude = geoip_response.results.ll
+    end
+    @city = geoip_response.results.city
+    species = INatAPIService.
+      observations_species_counts( {
+        verifiable: true, lat: geoip_latitude, lng: geoip_longitude, month: current_month
+      } ).results
+    iconic_taxon_names = ["Plantae", "Insecta", "Aves", "Mammalia"]
+    filtered_species = iconic_taxon_names.map do | iconic_taxon_name |
+      species.find {| s | s["taxon"]["iconic_taxon_name"] == iconic_taxon_name }
+    end.compact
+    @nearby_species = Taxon.find( filtered_species.first( 4 ).map {| t | t["taxon"]["id"] } )
+    current_month = Time.now.month
+    @month_name = Date::MONTHNAMES[current_month]
+
+    set_locale
+    mail( set_site_specific_opts.merge(
+      to: user.email,
+      subject: t( :welcome_to_inat, site_name: site_name )
+    ) )
+    reset_locale
+  end
+
   private
 
   def mail_with_defaults( defaults = {} )

@@ -1,0 +1,11 @@
+= render "header"
+
+%p= @user.published_name
+
+%p= "get outside an make your first observation! Try finding these species that are commonly reported from #{@city} in #{@month_name}"
+
+.row
+  - for taxon in @nearby_species
+    = render( partial: 'favorites', locals: { taxon: taxon } )
+
+= render 'footer'
