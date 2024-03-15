@@ -601,7 +601,7 @@ de:
   apply_fields: Felder übernehmen
   apply_geoprivacy: Geo-Privatsphäre anwenden
   apply_darr: "Übernehmen &darr;"
-  apply_establishment_means_to_descendant_places: "Art der Verbreitung auf abstammende Orte anwenden"
+  apply_establishment_means_to_descendant_places: "Die Art der Verbreitung auf alle untergeordneten Gebiete anwenden"
   apply_these_settings_to_all: Diese Einstellungen für alle nachstehenden Beobachtungen übernehmen.
   appropriate?: Geeignet?
   arachnids: Spinnentiere
@@ -1444,8 +1444,7 @@ de:
   devise:
     confirmations:
       confirmed: |
-        Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich
-        jetzt hier auf der Website oder in den iNaturalist- oder Seek-Apps wieder anmelden.
+        Deine E-Mail-Adresse wurde erfolgreich bestätigt.
       send_instructions: "Du solltest in wenigen Minuten eine E-Mail mit einer Beschreibung erhalten, wie du deine E-Mail-Adresse bestätigen kannst."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -6245,12 +6244,9 @@ de:
           gelisteten Taxa ändern, die zu Orten innerhalb dieses Gebiets gehören. Dieser Vorgang könnte
           viel Arbeit zunichte machen.
         description_html: |
-          Dies wird die Art der Verbreitung von <em>allen</em> Auflistungen 
-          dieses Taxons in allen abgeleiteten Orten von
-          <a href="%{place_url}">%{place_name}</a>
-          auf <strong>"%{establishment_means}"</strong> ändern. Nur
-          Kuratoren können dieses Tool verwenden. Die Änderung der Verbreitungsart auf
-          "eingeführt" hat ungefähr denselben Effekt, dabei werden aber bereits existierende Werte nicht geändert, sondern nur leere Werte ausgefüllt.
+          Die Art der Verbreitung dieses Taxons in <em>allen</em> untergeordneten Gebieten von 
+          <a href="%{place_url}">%{place_name}</a> wird auf <strong>"%{establishment_means}"</strong> geändert. Nur Kuratoren können dieses Tool verwenden. Die Änderung der Verbreitungsart auf
+          "eingeführt" hat ungefähr denselben Effekt, dabei werden aber bereits existierende Werte nicht überschrieben, sondern nur leere Werte ausgefüllt.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Titel der Life-Listen können nicht geändert werden
