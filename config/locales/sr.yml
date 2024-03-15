@@ -772,6 +772,7 @@ sr:
   browse_people: Pretraži članove
   browse_projects: Pretraži projekte
   browse_species_that_occur_near_this_observation: Pretraži vrste koje se sreću u blizini ove opservacije.
+  built_with_site_guides_html: "Napravljeno pomoću <a href='%{url}'>%{site_name} Vodiča</a>"
   by_user: "korisnika %{user}"
   by_you: tvoje
   calendar: Kalendar
@@ -1249,8 +1250,6 @@ sr:
   deviation: Devijacija
   devise:
     confirmations:
-      confirmed: |
-        Tvoja imejl adresa je uspešno potvrdđena. Možeš se ulogovati ovde na veb-sajtu ili na iNaturalist ili Seek mobilnim aplikacijama.
       send_instructions: "Za nekoliko minuta ćeš dobiti imejl sa uputstvima kako da potvrdiš imejl adresu."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1459,6 +1458,7 @@ sr:
   extinct: izumro
   extinct_in_the_wild: Izumro u divljini
   evidence_of_organism: Dokaz prisustva organizma
+  evidence_related_to_single_subject: Dokaz se odnosi na jedan organizam
   facebook: Facebook
   failed_to_find_your_location: Nije nađena tvoja lokacija.
   'false': 'Netačno'
@@ -5600,6 +5600,8 @@ sr:
       flag:
         #The reason the item was flagged
         reason: Razlog
+        #The person who resolved the flag
+        resolver_id: Rešilac
         #The kind of flag that was made
         flag: Pritužba
       guide:
