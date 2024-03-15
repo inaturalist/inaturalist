@@ -282,34 +282,81 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def observer_appeal( user )
+  def observer_appeal( user, options = {} )
     @user = user
+
+    # Check if the IP address is private
     private_ip_ranges = [IPAddr.new( "10.0.0.0/8" ), IPAddr.new( "172.16.0.0/12" ), IPAddr.new( "192.168.0.0/16" )]
     last_ip = IPAddr.new( @user.last_ip )
-    return if private_ip_ranges.any? {| range | range.include?( last_ip ) }
+    return false if private_ip_ranges.any? {| range | range.include?( last_ip ) }
 
-    geoip_response = INatAPIService.geoip_lookup( { ip: @user.last_ip } )
-    if geoip_response&.results && geoip_response.results.country && geoip_response.results.ll
+    # Use provided latitude, longitude, and city if available; otherwise, perform GeoIP lookup
+    if options[:latitude] && options[:longitude] && options[:city]
+      geoip_latitude = options[:latitude]
+      geoip_longitude = options[:longitude]
+      @city = options[:city]
+    else
+      geoip_response = INatAPIService.geoip_lookup( { ip: @user.last_ip } )
+      return false unless geoip_response&.results&.country && geoip_response&.results&.ll
+
       geoip_latitude, geoip_longitude = geoip_response.results.ll
+      @city = geoip_response.results.city
     end
-    @city = geoip_response.results.city
+    return false unless geoip_latitude && geoip_longitude && @city
+
+    # Fetch species data
     current_month = Time.now.month
-    species = INatAPIService.
-      observations_species_counts( {
-        verifiable: true, lat: geoip_latitude, lng: geoip_longitude, month: current_month
-      } ).results
+    species = INatAPIService.observations_species_counts( {
+      verifiable: true,
+      lat: geoip_latitude,
+      lng: geoip_longitude,
+      month: current_month,
+      radius: 50
+    } ).results
+
+    # Filter species based on criteria
     iconic_taxon_names = ["Plantae", "Insecta", "Aves", "Mammalia"]
     filtered_species = iconic_taxon_names.map do | iconic_taxon_name |
-      species.find {| s | s["taxon"]["iconic_taxon_name"] == iconic_taxon_name }
+      preferred_species = species.find do | s |
+        s["taxon"]["iconic_taxon_name"] == iconic_taxon_name &&
+          s["taxon"]["rank"] == "species" &&
+          s["taxon"]["preferred_common_name"].present?
+      end
+      preferred_species ||= species.find do | s |
+        s["taxon"]["iconic_taxon_name"] == iconic_taxon_name &&
+          s["taxon"]["rank"] == "species"
+      end
+      preferred_species ||= species.find do | s |
+        s["taxon"]["iconic_taxon_name"] == iconic_taxon_name
+      end
+      preferred_species
     end.compact
+
+    # If there are not enough species, fill in with additional species
+    if species.count > 4 && filtered_species.count < 4
+      species.each do | s |
+        break if filtered_species.length >= 4
+
+        unless filtered_species.any? {| fs | fs["taxon"]["id"] == s["taxon"]["id"] }
+          filtered_species << s
+        end
+      end
+    end
+
+    # Return false if there are not enough filtered species
+    return false if filtered_species.count < 4
+
+    # Fetch nearby species and set month name
     @nearby_species = Taxon.find( filtered_species.first( 4 ).map {| t | t["taxon"]["id"] } )
     @month_name = Date::MONTHNAMES[current_month]
 
+    # Mail settings
     set_locale
-    mail( set_site_specific_opts.merge(
+    mail(
       to: user.email,
-      subject: "test observer appeal", site_name: site_name
-    ) )
+      subject: "Contributing Biodiversity Records with #{site_name}",
+      site_name: site_name
+    )
     reset_locale
   end
 
