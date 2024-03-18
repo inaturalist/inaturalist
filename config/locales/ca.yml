@@ -24,6 +24,9 @@ ca:
   x_identifications_:
     one: '1 identificació'
     other: '%{count} identificacions'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICACIÓ'
+    other: '<span class="count">%{count}</span> IDENTIFICACIONS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
