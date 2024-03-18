@@ -1079,6 +1079,8 @@ th:
   end_date_time: วันที่ / เวลาสิ้นสุด
   endangered: ใกล้สูญพันธุ์
   endemic: เฉพาะถิ่น
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
   establishment:
     endemic: ประจำถิ่นเดียว
     establishment: การตั้งถิ่นฐาน
@@ -1614,6 +1616,8 @@ th:
   mentioned_you_in_an_x_on_noun_by_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดย %{by}"
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดย %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดยคุณ"
+  merge: รวม
+  merge_it_with_another_place: รวมกับอีกสถานที่
   merge_two_places_together: รวมสองสถานที่เข้าด้วยกัน ทุกชนิดในรายการตรวจสอบและข้อมูลทางภูมิศาสตร์จะถูกรวมด้วย
   message: ข้อความ
   message_from_user_at_time: จาก %{user} เมื่อ %{time}
@@ -1761,6 +1765,7 @@ th:
   no_observations_yet: ยังไม่มีการสังเกต
   no_photo: ไม่มีรูปถ่าย
   no_photos: ไม่มีรูปถ่าย
+  no_places_available: ไม่พบสถานที่
   no_post_yet: ยังไม่มีโพสต์!
   no_project_to_admin_current_user: "คุณไม่ได้เป็นแอดมินโครงการใด ๆ"
   no_project_to_admin_login: "%{login} ไม่ได้เป็นแอดมินโครงการใด ๆ"
@@ -2369,7 +2374,7 @@ th:
   research_grade_tooltip_html: 'การสังเกต "ระดับงานวิจัย" ต้องมีสื่อ ตำแหน่ง วันที่ และความเห็นพ้องของชุมชนในการจำแนก (ปกติจะต้องจำแนกที่ระดับชนิด) <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   research_grade_observations_have: 'การสังเกต "ระดับงานวิจัย" ต้องมีวันที่ รูปภาพ พิกัด และการจำแนกชนิดโดยชุมชน คลิกเพื่อดูการประเมินคุณภาพข้อมูล'
   research_grade_qualification: คุณสมบัติระดับงานวิจัย
-  reset_brightness: คืนค่าความสว่าง
+  reset_brightness: ตั้งความสว่างใหม่
   reset_search_filters: ล้างตัวกรอง
   resolved: แก้ไขแล้ว
   resolved_by: แก้ไขโดย
@@ -3108,6 +3113,7 @@ th:
       no_unobserved_species_in_place: ไม่มีชนิดที่ไม่ได้สังเกตใน %{place}
       no_unobserved_species_within_this_taxon: ไม่มีชนิดที่ไม่ได้สังเกตในหน่วยอนุกรมวิธานนี้
       no_unobserved_species_within_this_taxon_in_place: ไม่มีชนิดที่ไม่ได้สังเกตในหน่วยอนุกรมวิธานนี้ใน %{place}
+      reset_place_filter: ล้างตัวกรองสถานที่
       all_observations_in_this_taxon: การสังเกตทั้งหมดในหน่วยอนุกรมวิธานนี้
       dropdowns:
         sort: เรียง
