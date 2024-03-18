@@ -1525,9 +1525,6 @@ nl:
   deviation: Afwijking
   devise:
     confirmations:
-      confirmed: |
-        Jouw e-mailadres is succesvol bevestigd. Je kunt nu inloggen
-        hier op de website of in de iNaturalist of Seek mobiele apps.
       send_instructions: "U ontvangt binnen enkele minuten een e-mail met instructies voor het bevestigen van uw e-mailadres."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -6037,7 +6034,7 @@ nl:
   your_identification: Jouw determinatie
   your_membership: Je lidmaatschap
   your_name_was_saved: Je naam is opgeslagen.
-  your_observations: Jouw waarnemingen
+  your_observations: Mijn Waarnemingen
   your_observations_couldnt_be_added_to_that_project: "Je waarnemingen konden niet toegevoegd worden aan dat project: %{errors}"
   your_photos_have_been_tagged: Je foto's zijn gelabeld!
   your_projects: Je projecten
