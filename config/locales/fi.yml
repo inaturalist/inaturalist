@@ -1407,9 +1407,6 @@ fi:
   deviation: Poikkeama
   devise:
     confirmations:
-      confirmed: |
-        Sähköpostiosoitteesi on vahvistettu onnistuneesti. Voit nyt kirjautua
-        tälle sivustolle sekä iNaturalist- ja Seek-mobiilisovelluksiin.
       send_instructions: "Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.

@@ -1478,9 +1478,6 @@ it:
   deviation: Scostamento
   devise:
     confirmations:
-      confirmed: |
-        Il tuo indirizzo email è stato confermato con successo. Ora puoi accedere
-        qui sul sito web o nelle app per dispositivi mobili iNaturalist o Seek.
       send_instructions: "Entro qualche minuto riceverai un messaggio email con le istruzioni per confermare il tuo indirizzo mail."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
