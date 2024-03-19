@@ -353,6 +353,7 @@ module ObservationSearch
       end
       p[:observed_on_year] ||= p[:year].to_i unless p[:year].blank?
       p[:observed_on_month] ||= p[:month].to_i unless p[:month].blank? || p[:month].is_a?(Array)
+      p[:observed_on_week] ||= p[:week].to_i unless p[:week].blank?
       p[:observed_on_day] ||= p[:day].to_i unless p[:day].blank?
 
       # observation fields
