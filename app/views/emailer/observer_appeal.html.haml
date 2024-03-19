@@ -10,7 +10,7 @@
           %td{ align: "center", style: "padding-bottom: 20px;" }
             = link_to taxon_url(taxon) do
               %div{ style: "width:120px;height:120px;overflow:hidden;border-radius:50%;margin:0 auto;margin-right:10px;background-image:url('#{taxon_image_url(taxon, size: "medium")}');background-size:cover;background-position:center;border: 4px solid #74AC00;" }
-              %p{ style: "margin:0;padding-top:10px; width: 120px; text-align: center; word-wrap: break-word; height: 40px; overflow: hidden;" }
+              %p{ style: "margin:0;padding-top:10px; width: 120px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
                 = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
 
 = render "footer"
