@@ -457,6 +457,7 @@ en:
   add_evidence_of_presence_track_annotation: 'Add "Evidence of Presence: track" annotation'
   add_evidence_of_presence_bone_annotation: 'Add "Evidence of Presence: bone" annotation'
   add_evidence_of_presence_molt_annotation: 'Add "Evidence of Presence: molt" annotation'
+  add_established_not_established: 'Add "Established: not established" annotation'
   # As in a Taxon Framework Relationship
   add_relationship: 'Add relationship'
   # As in a Guide Section
@@ -1313,6 +1314,9 @@ en:
     # Skin or exoskeleton shed by a reptile or arthropod, not a particular
     # plumage in a bird or seasonal hair/fur in a mammal
     molt: Molt
+    established: Established
+    # Organism is not a member of an established population
+    not_established: Not Established
   controlled_term_definitions:
     alive: Organism is living and shows no signs of imminent death
     bone: |
@@ -1329,6 +1333,7 @@ en:
     male: Evidence indicates that organism can produce sperm for use in sexual reproduction
     molt: Discarded skin or exoskeleton
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
+    not_established: Organism belongs to an unestablished population including released/escaped pets, hitch-hikers and vagrants.
     organism: Whole or partial organism
     scat: Fecal matter (not owl pellets or other regurgitated matter)
     teneral: Adult that has recently emerged but has not yet achieved its final adult form
