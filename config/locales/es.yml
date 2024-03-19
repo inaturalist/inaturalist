@@ -5350,29 +5350,29 @@ es:
   user_added_a_fave_html: "%{user} añadió un favorito"
   user_added_a_flag_html: "%{user} añadió una marca"
   #@gender operates on %{x}
-  user_added_a_x: "%{user} añadió una %{x}"
+  user_added_a_x: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x}"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} de %{by}"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_user_html: "%{user} añadió un/a %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} de %{by}"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
+  user_added_a_x_to_noun_by_you_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} tuyo"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
+  user_added_a_x_to_noun_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun}"
   user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
   user_added_an_observation_field_value_html: "%{user} añadió un valor en un campo de observación"
   user_added_an_observation_html: "%{user} añadió una observación"
   #@gender operates on %{x}
-  user_added_an_x: "%{user} añadió un %{x}"
+  user_added_an_x: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x}"
   #@gender operates on %{x}
-  user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} de %{by}"
   #@gender operates on %{x}
-  user_added_an_x_to_noun_by_user_html: "%{user} añadió un/a %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} de %{by}"
   #@gender operates on %{x}
-  user_added_an_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
+  user_added_an_x_to_noun_by_you_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} tuyo"
   #@gender operates on %{x}
-  user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
+  user_added_an_x_to_noun_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun}"
   user_added_x_observations_html: "%{user} agregó %{x} observaciones"
   user_already_authenticated: El usuario ya está verificado
   user_already_app_owner: El usuario ya es dueño de una aplicación
