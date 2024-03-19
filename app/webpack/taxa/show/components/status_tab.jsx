@@ -17,8 +17,13 @@ const StatusTab = ( {
   listedTaxa,
   listedTaxaCount,
   statuses,
-  taxon
+  taxon,
+  currentUser
 } ) => {
+  const isCurator = currentUser && currentUser.roles && (
+    currentUser.roles.indexOf( "curator" ) >= 0
+    || currentUser.roles.indexOf( "admin" ) >= 0
+  );
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -64,6 +69,9 @@ const StatusTab = ( {
                 </span>
               </OverlayTrigger>
             </th>
+            { isCurator && (
+              <th />
+            ) }
           </tr>
         </thead>
         <tbody>
@@ -204,6 +212,13 @@ const StatusTab = ( {
                 <td>
                   { geoprivacy }
                 </td>
+                { isCurator && (
+                  <td>
+                    <a href={`/conservation_statuses/${status.id}/edit`}>
+                      { I18n.t( "edit" ) }
+                    </a>
+                  </td>
+                ) }
               </tr>
             );
           } ) }
@@ -361,7 +376,8 @@ StatusTab.propTypes = {
   statuses: PropTypes.array,
   listedTaxa: PropTypes.array,
   listedTaxaCount: PropTypes.number,
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  currentUser: PropTypes.object
 };
 
 StatusTab.defaultProps = {

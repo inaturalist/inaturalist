@@ -1451,9 +1451,6 @@ es-AR:
   deviation: Desviacion
   devise:
     confirmations:
-      confirmed: |
-        Tu dirección de correo electrónico ha sido confirmada con éxito. Ahora ya podés iniciar sesión
-        aquí en el sitio web o en las aplicaciones móviles iNaturalist o Seek.
       send_instructions: "En breve vas a recibir un correo electrónico con las instrucciones sobre cómo confirmar tu cuenta"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -2684,8 +2681,6 @@ es-AR:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Dejar de suspender
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.

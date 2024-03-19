@@ -199,7 +199,9 @@ const FIELDS = {
       id: true,
       flag: true,
       resolved: true
-    }
+    },
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    hidden: true
   },
   place_guess: true,
   place_ids: true,
@@ -228,7 +230,9 @@ const FIELDS = {
     license_code: true,
     play_local: true,
     url: true,
-    uuid: true
+    uuid: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    hidden: true
   },
   tags: true,
   taxon: TAXON_FIELDS,

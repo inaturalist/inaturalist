@@ -36,7 +36,7 @@
         <label for="<%= input_id %>">
           <%= sound.native_response['title'] %>
         </label>
-        <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.native_page_url, :target => '_blank') %></span>
+        <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.native_page_url, :target => '_blank', rel: "noopener noreferrer") %></span>
       </div>
     <% else %>
       <%- 
@@ -52,7 +52,7 @@
         <label for="<%= input_id %>">
           <%= sound.file_file_name %>
         </label>
-        <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.file.url, :target => '_blank') %></span>
+        <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.file.url, :target => '_blank', rel: "noopener noreferrer") %></span>
       </div>
     <% end %>
   <% end %>

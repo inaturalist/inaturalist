@@ -243,6 +243,7 @@ et:
   active_taxon_status: Aktiivne
   active_users: Aktiivsed kasutajad
   activity: Täiendused
+  activity_on_a_flag_for_x: Tegevused, mis on seotud märkusega asjal %{x}
   adapted_by_name_from_a_work_by_original: "Kohandanud %{name} originaalist, mille tegi %{original}"
   add: Lisa
   add_a_batch_of_observations: Lisa vaatluste komplekt
@@ -383,6 +384,8 @@ et:
   added_by: Lisanud
   added_by_user_on_date_html: "Lisanud %{user} kuupäeval %{date}"
   added_on_datetime: "Lisatud %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Roll lisatud
   added_to_favorites_html: |
     Lisatud <a href="%{url}">lemmikute</a> hulka
   adding: "Lisan..."
@@ -396,6 +399,7 @@ et:
   agree_: Nõustun
   agree?: Nõustud?
   agree_with_current_taxon: Kinnita praegu valitud takson
+  agree_with_observation_taxon: Nõustu vaatluse taksoniga
   agreeing: Kinnitan...
   aka: tuntud ka nimega
   #Noun, title of a popup alerting you to something
@@ -1434,8 +1438,6 @@ et:
   deviation: Kõrvalekalle
   devise:
     confirmations:
-      confirmed: |
-        Sinu e-posti aadress on edukalt kinnitatud. Nüüd saad meie kodulehele või iNaturalist ja Seeki mobiilirakendustesse sisse logida.
       send_instructions: "Saad mõne minuti jooksul e-kirja, milles on juhendid sinu e-posti aadressi kinnitamiseks."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -2630,8 +2632,6 @@ et:
   moderation_history_for_user_html: Kasutaja %{user} modereerimisajalugu
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Peida
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Aktiveeri kasutaja
   mollusks: molluskid
   momentjs:
     shortRelativeTime:
@@ -2933,6 +2933,7 @@ et:
     Avalike koordinaatidena näidatakse juhuslikku punkti 0,2 pikkus/laiuskraadi suurusel alal, kus paikneb tõeline asukoht.
   observation: Vaatlus
   observation_: vaatlus
+  observation_accuracy_experiment_as_observations: "Selle valimi vaatluste kinnitamise käigus väheneb ebamääraste protsent ning õigete ja valede protsent suureneb."
   observation_added_to_the_project: "Vaatlus lisatud projektile \"%{project}\""
   observation_aggregation: Vaatluste koondamine
   #Attributes an observation to a user. %{user} can be a username or a full

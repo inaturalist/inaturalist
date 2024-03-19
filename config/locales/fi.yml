@@ -1407,9 +1407,6 @@ fi:
   deviation: Poikkeama
   devise:
     confirmations:
-      confirmed: |
-        Sähköpostiosoitteesi on vahvistettu onnistuneesti. Voit nyt kirjautua
-        tälle sivustolle sekä iNaturalist- ja Seek-mobiilisovelluksiin.
       send_instructions: "Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -2262,6 +2259,7 @@ fi:
     turkish: Turkki
     ukrainian: Ukraina
     uyghur: Uiguuri
+    vietnamese: Vietnam
     visayan: Visaya
     waray_waray: Waray-waray
   less: Vähemmän
@@ -2527,8 +2525,6 @@ fi:
     kyseiselle henkilölle.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Piilota
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Poista jäädytys
   moderator_note_desc: |
     Valvojan muistiinpanot ovat tietoja moderaatiotoimista tai näyttöön perustuvia huolia käyttäjästä, kuten siitä, onko kyseessä mahdollisesti valehenkilötili. Älä sisällytä käyttäjää koskevia henkilökohtaisia mielipiteitä tai mielipiteitä.
   #Person who executed a moderator action or flagged something
@@ -5077,7 +5073,7 @@ fi:
   yes_for_any_of_my_observations: "Kyllä, kaikkien havaintojen koordinaatit"
   yes_i_want_to_join: Kyllä, haluan liittyä
   yes_license_my_childs_observations: Kyllä, lisensoi lapseni ottamat valokuvat, äänitteet ja havainnot niin että tutkijat voivat käyttää niitä.
-  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi valokuvani, äänittteeni ja havaintoni niin, että niitä voidaan käyttää joustavasti tutkimuksessa (suositeltavaa).
+  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi valokuvani, äänitteeni ja havaintoni niin, että niitä voidaan käyttää joustavasti tutkimuksessa (suositeltavaa).
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
   yir_code_contributors_desc_html: |
@@ -6765,7 +6761,6 @@ fi:
             action:
               not_supported_for_this_kind_of_content: ei ole tuettu tällaista sisältöä
             base:
-              only_staff_can_unhide: Vain ylläpitäjät voivat paljastaa piilotetun sisällön
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori

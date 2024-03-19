@@ -22,6 +22,21 @@
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
+    <% # Bump font size so Safari doesn't auto-zoom on input selection. %>
+    <% if is_inatrn_app? %>
+      <style type="text/css">
+        body,
+        .bootstrap,
+        .bootstrap .form-control {
+          font-size: 16px;
+        }
+      </style>
+    <% end -%>
+    <% if params[:noh1] %>
+      <style type="text/css">
+        h1 { display: none; }
+      </style>
+    <% end -%>
     <%= csrf_meta_tag %>
     <meta name="config:inaturalist_api_url" content="<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>">
     <% if logged_in? -%>

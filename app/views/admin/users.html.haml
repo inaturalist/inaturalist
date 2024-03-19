@@ -29,19 +29,19 @@
               .text-right
                 =label_tag :q_login, "login"
             .col-xs-10
-              =text_field_tag :q_login, @q_login, class: 'form-control'
+              =text_field_tag :q_login, @q_login, class: 'form-control', "data-1p-ignore" => true
           .row
             .col-xs-2
               .text-right
                 =label_tag :q_name, "name"
             .col-xs-10
-              =text_field_tag :q_name, @q_name, class: 'form-control'
+              =text_field_tag :q_name, @q_name, class: 'form-control', "data-1p-ignore" => true
           .row
             .col-xs-2
               .text-right
                 =label_tag :q_email, "email"
             .col-xs-10
-              =text_field_tag :q_email, @q_email, class: 'form-control'
+              =text_field_tag :q_email, @q_email, class: 'form-control', "data-1p-ignore" => true
           .row
             .col-xs-2
               .text-right

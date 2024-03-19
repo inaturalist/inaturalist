@@ -317,7 +317,7 @@ class LeftMenu extends SelectionBasedComponent {
           { observationFieldInput }
         </form>
         <p className="options">
-          <a href="/observation_fields" target="_blank">
+          <a href="/observation_fields" target="_blank" rel="noopener noreferrer">
             { I18n.t( "view_field_options" ) }
             <Glyphicon glyph="new-window" />
           </a>

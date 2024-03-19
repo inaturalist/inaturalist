@@ -68,13 +68,14 @@ module WikiPagesHelper
         <<~HTML
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="#{attachment.wiki_page_attachment.url( :original )}"
           >
             #{image_tag( attachment.wiki_page_attachment.url( :thumb ) )}
           </a>
         HTML
       else
-        "<a target=\"_blank\" href=\"#{attachment.wiki_page_attachment.url( :original )}\">#{t :view}</a>"
+        "<a target=\"_blank\" href=\"#{attachment.wiki_page_attachment.url( :original )}\" rel=\"noopener noreferrer\">#{t :view}</a>"
       end
       html += image_and_content( img.html_safe, image_size: 100,
           class: "stacked wiki_page_attachment" ) do

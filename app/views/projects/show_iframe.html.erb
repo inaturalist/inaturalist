@@ -14,7 +14,7 @@
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
     $(document).ready(function() {
-      $('a').attr('target', '_blank')
+      $('a').attr('target', '_blank').attr( "rel", "noopener noreferrer" )
     })
   </script>
 <%- end -%>

@@ -289,6 +289,7 @@ class QualityMetrics extends React.Component {
     const dateCells = this.voteCellsForMetric( "date", { disableVoting: !observation.observed_on } );
     const evidenceCells = this.voteCellsForMetric( "evidence" );
     const recentCells = this.voteCellsForMetric( "recent" );
+    const subjectCells = this.voteCellsForMetric( "subject" );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
       ? I18n.t( "community_id_is_precise" )
@@ -391,6 +392,14 @@ class QualityMetrics extends React.Component {
               </td>
               <td className="agree">{ recentCells.agreeCell }</td>
               <td className="disagree">{ recentCells.disagreeCell }</td>
+            </tr>
+            <tr className={subjectCells.loading ? "disabled" : ""}>
+              <td className="metric_title">
+                <i className="fa icon-icn-subject" />
+                { I18n.t( "evidence_related_to_single_subject" ) }
+              </td>
+              <td className="agree">{ subjectCells.agreeCell }</td>
+              <td className="disagree">{ subjectCells.disagreeCell }</td>
             </tr>
             <tr>
               <td className="metric_title">

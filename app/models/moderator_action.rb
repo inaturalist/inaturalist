@@ -18,7 +18,7 @@ class ModeratorAction < ApplicationRecord
   belongs_to :resource, polymorphic: true, inverse_of: :moderator_actions
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
-  validate :only_staff_can_unhide, on: :create
+  validate :only_staff_and_hiding_curator_can_unhide, on: :create
   validate :check_accepted_actions, on: :create
   validate :cannot_suspend_staff
 
@@ -26,10 +26,18 @@ class ModeratorAction < ApplicationRecord
   after_save :notify_resource
   after_destroy :notify_resource_on_destroy
 
-  def only_staff_can_unhide
-    return unless user && action == UNHIDE && !user.is_admin?
+  def only_staff_and_hiding_curator_can_unhide
+    return unless user
+    return unless action == UNHIDE
+    return if user.is_admin?
 
-    errors.add( :base, :only_staff_can_unhide )
+    most_recent_moderator_action_on_item = resource.moderator_actions.order( id: :desc ).first
+    # curators that were the most recent to hide the content can also unhide it
+    return if most_recent_moderator_action_on_item &&
+      most_recent_moderator_action_on_item.action == HIDE &&
+      most_recent_moderator_action_on_item.user_id == user.id
+
+    errors.add( :base, :only_staff_and_hiding_curators_can_unhide )
   end
 
   def cannot_suspend_staff

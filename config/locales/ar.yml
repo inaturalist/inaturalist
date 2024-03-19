@@ -1279,6 +1279,7 @@ ar:
   last_active_with_date: "آخر نشاط: %{date}"
   last_confirmed_observation: آخر ملاحظة مؤكدة
   last_observation: الملاحظة الأخيرة
+  last_observation_caps: آخر ملاحظة
   last_seen: آخر ظهور
   last_year: العام الماضي
   lat: دائرة العرض
@@ -1621,6 +1622,7 @@ ar:
   needs_id: يحتاج معرفا
   needs_id_: يحتاج معرفا
   needs_id_expandable_html: "<span class='full'>يحتاج </span>معرفا"
+  needs_id_tooltip_html: 'تحتوي ملاحظات "يحتاج معرفا" على الوسائط والمكان والتاريخ، ولكنها ما تزال تتطلب إجماع المجتمع على التعريف الدقيق. <a href="https://www.inaturalist.org/pages/help#quality">تعرف على المزيد حول درجات الجودة</a>'
   new_and_noteworthy: جديد وجدير بالملاحظة
   new_announcement: إعلان جديد
   new_assessment: تقييم جديد
@@ -2598,6 +2600,7 @@ ar:
   refresh: تحديث
   refreshing: تحديث
   regenerate_stats: إعادة إنشاء الإحصائيات
+  regional_names: الأسماء الإقليمية
   register_for_this_event_at_x_html: "سجل لهذا الحدث في %{x}"
   reject?: رفض؟
   relative_observations: ملاحظات مرتبطة
@@ -2658,6 +2661,7 @@ ar:
   research_: بحث
   research_grade: الصف البحثي
   research_grade_short_html: "ص<span class='full'>ف</span>ب<span class='full'>حثي</span>"
+  research_grade_tooltip_html: 'تحتوي ملاحظات "الدرجة البحثية" على الوسائط والمكان والتاريخ وإجماع المجتمع على التعريف الدقيق (عادة على مستوى الأنواع). <a href="https://www.inaturalist.org/pages/help#quality">تعرف على المزيد حول درجات الجودة</a>'
   research_grade_observations_have: 'ملاحظات "الصف البحثي" لها تاريخ، وصورة، وإحداثيات، ومعرف مدعوم من المجتمع، انقر للاطلاع على تقييم جودة البيانات.'
   research_grade_qualification: مؤهل درجة البحث
   reset_brightness: إعادة ضبط السطوع
@@ -3184,13 +3188,16 @@ ar:
     يعرض هذا الاستعلام عددا كبيرا من الأصناف ليتم عرضه في وقت واحد؛ حاول إضافة المزيد من المرشحات
   tools: الأدوات
   top_contributors: أبرز المساهمين
+  top_identifier_caps: أعلى مُعرِّف
   top_identifiers: أعلى المعرفات
   top_identifiers_of_taxon: أهم معرفات %{taxon}
+  top_observer_caps: أعلى مُلاحِظ
   top_observers: أفضل الملاحظين
   total: إجمالي
   totals: مجموع
   total_members: إجمالي الأعضاء
   total_observations: مجموع الملاحظات
+  total_observations_caps: إجمالي الملاحظات
   total_unique_observers: مجموع المراقبين الفريدين
   translated_languages: اللغات المترجمة
   'true': 'صحيح'
@@ -3348,6 +3355,7 @@ ar:
   users_contributions_to_project_html: مساهمات <a href="%{url}">%{login}</a> في %{project_title}
   users_highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{user} من %{year} في %{site}"
   users_id: "معرف %{user}"
+  users_identifications: "تحديدات %{user}"
   users_latest_observations_on_site: "ملاحظات %{user} الأخيرة على %{site}"
   users_profile: "الملف الشخصي ل%{user}"
   users_projects: "مشاريع %{user}"
@@ -4779,6 +4787,14 @@ ar:
           نحاول معالجة أوجه القصور هذه من خلال عرض كل من
           الأسماء الشائعة والعلمية حيثما أمكن، واختيار الأسماء الشائعة
           استنادا إلى اللغة والتفضيلات الجغرافية للمشاهد.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          يمكن إضافة الأسماء إلى الأماكن (عادة البلدان) في الحالات التي تكون فيها
+          بلدان أو مناطق مختلفة تستخدم أسماء شائعة مختلفة لنفس اللغة. على سبيل المثال، قد يكون الوضع مختلفا بالنسبة للأسماء الإسبانية في المكسيك وكوستاريكا لنفس النوع.
+          </p>
+          <p>
+          يوضح هذا الجدول الأسماء التي تمت إضافتها إلى الأماكن، ويتم سردها حسب الأولوية لكل مكان. إذا كان اسمين للغة الإسبانية تمت إضافتها إلى المكسيك، سيظهر العنصر المدرج أولا إذا كنت تفضل رؤية الأسماء الإسبانية المضافة إلى المكسيك.
           </p>
         about_conservation_status_desc: |
           يلخص وضع الحفظ خطر الانقراض بالنسبة لمجموعة من الكائنات الحية.

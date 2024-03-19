@@ -133,7 +133,7 @@
         <%= f.text_field :zoom_level %>
         <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => @site.name) %>
         <% if @place -%>
-          <%= link_to t(:view_place), @place, :class => "readmore", :target => "_blank" %>
+          <%= link_to t(:view_place), @place, :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
         <% end -%>
         <div class="upstacked stacked">
           <label><%=t :not_finding_place_you_want? %></label>
@@ -205,7 +205,7 @@
             <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => t(:type_place_name), :label => t(:choose_a_place) %>
             <span class="description">
               <%=t :place_must_have_a_boundary_defined %> <%=t :not_finding_place_you_want? %>
-              <%= link_to t(:make_a_new_place), new_place_path, :class => "readmore", :target => "_blank" %>
+              <%= link_to t(:make_a_new_place), new_place_path, :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
             </span>
           </div>
           <div id="taxon_selector">
@@ -247,16 +247,16 @@
         <% end %>
       </ul>
 
-      <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore", :target => "_blank" %>
+      <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
     </fieldset>
 
     <fieldset id="custom_project_fields">
       <legend><%=t :custom_project_fields %></legend>
       <p class="description"><%= t('views.projects.edit.custom_project_fields_means') %></p>
       <% if @project.custom_project -%>
-        <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore", :target => "_blank" %>
+        <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
       <% else %>
-        <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore", :target => "_blank" %>
+        <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore", :target => "_blank", rel: "noopener noreferrer" %>
       <% end -%>
     </fieldset>
 

@@ -1703,8 +1703,7 @@ en:
   devise:
     confirmations:
       confirmed: |
-        Your email address has been successfully confirmed. You can now log
-        in here on the website or in the iNaturalist or Seek mobile apps.
+        Your email address has been successfully confirmed.
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       # Message a user sees when they try to manually trigger email
       # confirmation. This is a feature we'd like to use in the future.
@@ -2019,6 +2018,7 @@ en:
   extinct_in_the_wild: Extinct in the Wild
   extra_properties: Extra Properties
   evidence_of_organism: Evidence of organism
+  evidence_related_to_single_subject: Evidence related to a single subject
   facebook: Facebook
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
@@ -3015,11 +3015,11 @@ en:
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
-  moderator_actions_unhide: Unhide
+  moderator_actions_unhide2: Unhide
   # Action a moderator can take to suspend a user; verb
-  moderator_actions_unhide: Suspend
+  moderator_actions_suspend: Suspend
   # Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Unsuspend
+  moderator_actions_unsuspend: Unsuspend
   moderator_note_desc: |
     Moderator notes are records of moderation responses or evidence-based
     concerns about a user, such as whether they are a possible sockpuppet
@@ -3387,6 +3387,7 @@ en:
   observation_accuracy_experiment_quality_grade: "Quality Grade"
   observation_accuracy_experiment_show_frequency: "show frequency"
   observation_accuracy_experiment_click_on_bars: "Click on bars to explore subsets."
+  observation_accuracy_experiment_bars_will: "Bars will be clickable after the deadline for validating samples has passed."
   observation_accuracy_experiment_accuracy_results: "Accuracy results by subset"
   observation_accuracy_experiment_as_observations: "As observations from this sample are validated, the uncertain percentage will decrease and the percentage correct and incorrect will increase."
   observation_accuracy_experiment_experiment_still: "Experiment still in progress. Stats will update daily until deadline for validating samples on %{date}"
@@ -3401,7 +3402,7 @@ en:
   observation_accuracy_experiment_all_results: "All Results"
   observation_accuracy_experiment_methods: "Methods"
   observation_accuracy_experiment_step_1: "Step 1: Sample Generation and Assignment"
-  observation_accuracy_experiment_from_the: "From the iNaturalist database of observations (A), we generated a random sample (B). Subsamples were assigned to candidate validators based on the criteria described below. We aimed to assign each sample observation to multiple candidate validators ( \"Target validator redundancy\" )."
+  observation_accuracy_experiment_from_the2: "From the iNaturalist database of observations (A), we generated a random sample (B). Subsamples were assigned to candidate validators (C) based on the criteria described below. We aimed to assign each sample observation to multiple candidate validators ( \"Target validator redundancy\" )."
   observation_accuracy_experiment_sample_generated: "Sample generated: %{date}"
   observation_accuracy_experiment_sample_size: "Sample size: %{number}"
   observation_accuracy_experiment_target_validator: "Target validator redundancy: %{number}"
@@ -3410,6 +3411,7 @@ en:
   observation_accuracy_experiment_mean_number: "Mean number of candidate validators per sample observation: %{number}"
   observation_accuracy_experiment_validator_candidate: "Validator candidate criteria"
   observation_accuracy_experiment_if_an_identifier: "If an identifier had made at least 3 improving identifications on a taxon, we considered them qualified to validate that taxon. Improving identifications are the first suggestion of a taxon that the community subsequently agrees with."
+  observation_accuracy_experiment_if_an_identifier_continent: "If an identifier had made at least 3 improving identifications on a taxon in a continent, we considered them qualified to validate that taxon within that continent. Improving identifications are the first suggestion of a taxon that the community subsequently agrees with."
   observation_accuracy_experiment_for_example: "For example, Identifier 1 adds an ID of A to an observation. If Identifier 2 later adds a leading ID of B, Identifier 1's ID on A becomes an improving ID. If Identifier 3 later adds a supporting ID to B, Identifier 2's ID on B becomes an improving ID."
   observation_accuracy_experiment_step_2: "Step 2: Validating samples"
   observation_accuracy_experiment_we_contacted: "We contacted candidate validators and asked them to add identifications to their subsamples. The graph to the right groups sample observation by the number of validators."
@@ -3427,9 +3429,9 @@ en:
   observation_accuracy_experiment_precision: "Precision"
   observation_accuracy_experiment_if_every_sample: "If every sample observation was at a coarse taxon such as kingdom, the accuracy of the iNaturalist dataset might be very high, but the precision might be too low to make the dataset very useful. To estimate precision, we counted the number of leaf descendants in the iNaturalist taxonomy for each taxon associated with each sample observation. We calculated precision as 1 divided by the number of leaf descendants. If the taxon was a leaf taxon the precision is 100%. We ignored ranks below species in the precision calculation."
   observation_accuracy_experiment_in_the_example: "In the example figure to the right the average precision of three sample observations would be 51%."
-  observation_accuracy_validator_email_subject: "Will you help us estimate the accuracy of iNaturalist observations?"
-  observation_accuracy_validator_email_will_you_help_us: |
-    Will you help us with an experiment to estimate the accuracy of iNaturalist observations?
+  observation_accuracy_validator_email_subject2: "Will you help us with Experiment %{version} to estimate the accuracy of iNaturalist observations?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Will you help us with an <a href="%{url}">experiment (version %{version})</a> to estimate the accuracy of iNaturalist observations?
   observation_accuracy_validator_email_if_so2_html: |
     <ol>
     <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom). </li>
@@ -3441,24 +3443,17 @@ en:
      </li>
      <li>Do this by <b>%{validator_deadline_date}</b></li>
     </ol>
-    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>
-    that we think you can identify based on your activity on iNat. <b>Please add
-    the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
+    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a> that we think you can identify based on your activity on iNat. <b>Please add the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
-    We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where
-    you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
+    We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
   observation_accuracy_validator_email_ids_equal_to: |
     IDs equal to (A) or finer than (B) the Observation Taxon will be counted as Agreements.
   observation_accuracy_validator_email_ids_sibling_to: |
-    IDs on different branches (C) or coarser than the Observation Taxon where you choose 'No,
-    but…' to the 'Potential Disagreement' dialog (D) will be counted as Disagreements.
+    IDs on different branches (C) or coarser than the Observation Taxon where you choose "No, but…" to the 'Potential Disagreement' dialog (D) will be counted as Disagreements.
   observation_accuracy_validator_email_ids_coarser_than: |
-    IDs coarser than the Observation Taxon where you choose 'I don’t know but…' to
-    the 'Potential Disagreement' dialog (E) will be counted as Uncertain.
-  observation_accuracy_validator_email_we_are_so_grateful_html: |
-    We're so grateful for your help as an identifier on iNaturalist, and thank you
-    very much for participating in this study. Please read <a href="%{url}">this
-    blog post</a> to answer frequently asked questions about this experiment.
+    IDs coarser than the Observation Taxon where you choose "I don’t know but…"" to the "Potential Disagreement" dialog (E) will be counted as Uncertain.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    We're so grateful for your help as an identifier on iNaturalist, and thank you very much for participating in this study. Please read <a href="%{url}">the methods</a> to learn more about the experiment design.
   observation_accuracy_validator_email_with_gratitude: With gratitude,
   observation_accuracy_validator_email_the_inaturalist_team: The iNaturalist Team
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
@@ -5490,6 +5485,7 @@ en:
   text_editing_controls: Text editing controls
   thanks!: Thanks!
   thanks_from_all_of_us_here_at: Thanks from all of us here at
+  that_account_is_already_connected: That account is already connected to another user
   that_photo_doesnt_exist: That photo doesn't exist.
   that_observation_doesnt_exist: That observation doesn't exist.
   that_observation_doesnt_have_any_photos: "That observation doesn't have any photos."
@@ -7442,7 +7438,7 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
             observations start as <strong>"casual"</strong> grade, and become
@@ -7476,8 +7472,7 @@ en:
               hippos in office buildings, etc.)
             </li>
             <li>
-              the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
-              or intelligent space aliens)
+              the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans)
             </li>
             <li>
               the observation <strong>doesn't present evidence of an
@@ -7488,6 +7483,11 @@ en:
               the observation <strong>doesn't present recent (~100 years) evidence of
               the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
               are ok)
+            </li>
+            <li>
+              the observation <strong>doesn't present evidence related to one subject</strong>
+               (e.g. it has four photos of unrelated organisms. A photo showing habitat of the
+               observation’s subject is OK.)
             </li>
             <li>
               the observation no longer needs an ID <em>and</em> the community ID is at family or above
@@ -9646,7 +9646,8 @@ en:
             action:
               not_supported_for_this_kind_of_content: is not supported for this kind of content
             base:
-              only_staff_can_unhide: Only staff can unhide hidden content
+              only_staff_and_hiding_curators_can_unhide:
+                Only staff and curators who hide content can unhide it
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator

@@ -6,8 +6,8 @@
     %tr
       %th User
       %td
-        = link_to @user.login, person_url( @user ), target: "_blank"
-        = link_to "[curate]", user_detail_admin_url( @user ), target: "_blank"
+        = link_to @user.login, person_url( @user ), target: "_blank", rel: "noopener noreferrer"
+        = link_to "[curate]", user_detail_admin_url( @user ), target: "_blank", rel: "noopener noreferrer"
     %tr
       %th Email address
       %td= @user.email
@@ -16,10 +16,10 @@
       %td=l @user.created_at
     %tr
       %th Observations
-      %td= link_to @user.observations_count, observations_url( user_id: @user.login ), target: "_blank"
+      %td= link_to @user.observations_count, observations_url( user_id: @user.login ), target: "_blank", rel: "noopener noreferrer"
     %tr
       %th Identifications
-      %td= link_to @user.identifications_count, identifications_by_login_url( login: @user.login ), target: "_blank"
+      %td= link_to @user.identifications_count, identifications_by_login_url( login: @user.login ), target: "_blank", rel: "noopener noreferrer"
 
 
 %h2=t "app_owner_application_fields_explanation_html"

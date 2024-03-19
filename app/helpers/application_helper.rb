@@ -780,6 +780,7 @@ module ApplicationHelper
     return if options[:observations].blank?
     options[:observations].collect{ |o|
       o.to_json(:viewer => current_user,
+        :ignore_collection_projects => true,
         :force_coordinate_visibility => @coordinates_viewable,
         :include => [ { :user => { :only => :login },
           :taxon => { :only => [ :id, :name ] } },
@@ -1189,20 +1190,20 @@ module ApplicationHelper
   def activity_snippet(update, notifier, notifier_user, options = {})
     opts = {}
     if update.notification == "activity" && notifier_user
-      notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
+      localized_notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        x: notifier_class_name,
-        gender: notifier_class_name
+        x: localized_notifier_class_name,
+        gender: notifier.class.name.parameterize.downcase
       }
-      key += notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
+      key += localized_notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
       key += '_x_to'
     elsif update.notification == "mention" && notifier_user
       key = "mentioned_you_in"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        x: notifier_class_name
+        x: localized_notifier_class_name
       }
     else
       key = "new_activity_on"

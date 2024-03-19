@@ -24,6 +24,9 @@ ca:
   x_identifications_:
     one: '1 identificació'
     other: '%{count} identificacions'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICACIÓ'
+    other: '<span class="count">%{count}</span> IDENTIFICACIONS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -1453,8 +1456,6 @@ ca:
   deviation: Desviació
   devise:
     confirmations:
-      confirmed: |
-        La seva adreça de correu electrònic a estat correctament confirmada. Ara podeu accedir des d'aquí al lloc web, o a les Apps per a mòbil iNaturalist o Seek.
       send_instructions: "Rebreu un correu electrònic amb instruccions per confirmar la vostra adreça de correu electrònic en pocs minuts."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -7567,7 +7568,6 @@ ca:
             action:
               not_supported_for_this_kind_of_content: no està suportat per aquest tipus de contigut
             base:
-              only_staff_can_unhide: Només el personal pot ocultar i tornar a mostrar el contingut ocult.
               staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor

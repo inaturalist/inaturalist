@@ -194,7 +194,7 @@
         }
         var link = $('<a>'+I18n.t('view')+'</a>').attr('href', '/taxa/'+taxon.id).addClass('small')
         $(link).click(function() {
-          window.open($(this).attr('href'), '_blank')
+          window.open($(this).attr('href'), '_blank', "noopener,noreferrer");
           return false
         })
         $(t).append(' ', link)

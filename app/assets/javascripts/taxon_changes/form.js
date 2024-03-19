@@ -104,14 +104,14 @@ $( function () {
             if ( v.id_count === 0 ) {
               countPiece = "0";
             } else {
-              countPiece = "<a href='" + v.url + "' target='_blank'>" + v.id_count + "</a>";
+              countPiece = "<a href='" + v.url + "' target='_blank' rel='noopener noreferrer'>" + v.id_count + "</a>";
             }
-            var taxonPiece = "<a href='" + v.taxon_url + "' target='_blank'>" + v.name + "</a>";
+            var taxonPiece = "<a href='" + v.taxon_url + "' target='_blank' rel='noopener noreferrer'>" + v.name + "</a>";
             var atlasPiece;
             if ( v.atlas_url === null ) {
               atlasPiece = v.atlas_string;
             } else {
-              atlasPiece = "<a href='" + v.atlas_url + "' target='_blank'>" + v.atlas_string + "</a>";
+              atlasPiece = "<a href='" + v.atlas_url + "' target='_blank' rel='noopener noreferrer'>" + v.atlas_string + "</a>";
             }
             var addedClass;
             if ( v.role === "warning" && v.id_count > 0 ) {

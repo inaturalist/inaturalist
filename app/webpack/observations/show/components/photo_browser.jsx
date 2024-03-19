@@ -110,14 +110,15 @@ class PhotoBrowser extends React.Component {
       setMediaViewerState
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    this.viewerIsObserver = config && config.currentUser
-      && config.currentUser.id === observation.user.id;
-    const viewerIsCurator = config && config.currentUser && (
-      config.currentUser.roles.indexOf( "curator" ) >= 0
-      || config.currentUser.roles.indexOf( "admin" ) >= 0
+    const currentUser = config && config.currentUser;
+    this.viewerIsObserver = currentUser
+      && currentUser.id === observation.user.id;
+    const viewerIsCurator = currentUser && (
+      currentUser.roles.indexOf( "curator" ) >= 0
+      || currentUser.roles.indexOf( "admin" ) >= 0
     );
-    const viewerIsAdmin = config && config.currentUser && (
-      config.currentUser.roles.indexOf( "admin" ) >= 0
+    const viewerIsAdmin = currentUser && (
+      currentUser.roles.indexOf( "admin" ) >= 0
     );
     let mediaViewerIndex = 0;
     const images = observation.photos.map( photo => {
@@ -142,6 +143,14 @@ class PhotoBrowser extends React.Component {
       } else if ( !photo.url ) {
         square = null;
       }
+      const latestModeratorAction = _.first(
+        _.orderBy( photo.moderator_actions || [], ["created_at", "desc"] )
+      );
+      const currentUserIsHidingCurator = latestModeratorAction
+        && latestModeratorAction.action === "hide"
+        && viewerIsCurator
+        && latestModeratorAction.user
+        && currentUser.id === latestModeratorAction.user.id;
       let description;
       if ( photo.id ) {
         description = (
@@ -160,10 +169,13 @@ class PhotoBrowser extends React.Component {
               >
                 <i className="fa fa-flag" />
               </button>
-              { // observers never see hiding, curators do if its unhidden, admins always do
+              {
+                // observers never see the option to hide
+                // curators do if its unhidden or they were the one to hide the content
+                // admins always see the option to hide
                 ( !this.viewerIsObserver && (
                   ( !photo.hidden && viewerIsCurator )
-                  || ( photo.hidden && viewerIsAdmin )
+                  || ( photo.hidden && ( currentUserIsHidingCurator || viewerIsAdmin ) )
                 ) ) && (
                 <button
                   type="button"

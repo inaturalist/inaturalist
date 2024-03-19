@@ -137,7 +137,7 @@ const Observations = ( {
           } else {
             url += "&place_id=any";
           }
-          window.open( url, "_blank" );
+          window.open( url, "_blank", "noopener,noreferrer" );
         }}
       />
       <h3>
@@ -167,7 +167,7 @@ const Observations = ( {
           } else {
             url += "&place_id=any";
           }
-          window.open( url, "_blank" );
+          window.open( url, "_blank", "noopener,noreferrer" );
         }}
       />
       { user ? (

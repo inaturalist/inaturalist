@@ -103,7 +103,7 @@ const LeaderItem = ( {
               return false;
             }}
           >
-            <span className=".visible-xs-inline visible-sm-inline visible-md-inline">
+            <span className="visible-xs-inline visible-sm-inline visible-md-inline">
               { _.truncate( name, { length: 16 } ) }
             </span>
             <span className="visible-lg-inline">{ _.truncate( name, { length: 27 } ) }</span>

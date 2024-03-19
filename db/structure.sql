@@ -2588,7 +2588,8 @@ CREATE TABLE public.observation_accuracy_experiments (
     validated_observations integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    version character varying
+    version character varying,
+    consider_location boolean DEFAULT false
 );
 
 
@@ -10668,6 +10669,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124195743'),
 ('20240124195835'),
 ('20240124214427'),
-('20240124214436');
+('20240124214436'),
+('20240222032444');
 
 

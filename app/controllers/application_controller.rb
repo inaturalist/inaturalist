@@ -608,9 +608,11 @@ class ApplicationController < ActionController::Base
   end
 
   def remove_header_and_footer_for_apps
-    return true unless is_android_app? || is_iphone_app?
+    return true unless is_android_app? || is_iphone_app? || is_inatrn_app?
+
     @headless = true
     @footless = true
+    @responsive = true if is_inatrn_app?
     true
   end
   

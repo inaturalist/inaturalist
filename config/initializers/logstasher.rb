@@ -9,12 +9,13 @@ module Logstasher
     "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
     "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
     "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
-    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT"
+    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT",
+    "HTTP_X_FORWARDED_ORIGINAL_FOR"
   ].freeze
 
   IP_PARAMS = [
     "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_X_FORWARDED_FOR", "REMOTE_ADDR",
-    "SERVER_ADDR", "clientip"
+    "SERVER_ADDR", "clientip", "HTTP_X_FORWARDED_ORIGINAL_FOR"
   ].freeze
 
   def self.logger
@@ -26,7 +27,9 @@ module Logstasher
 
   def self.ip_from_request_env( request_env )
     # try a few params for IP. Proxies will shuffle around requester IP
-    %w(HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
+    # we use first HTTP_X_FORWARDED_ORIGINAL_FOR which is set by our nginx proxy
+    # with the real client IP, in "client browser --> node --> rails" scenario
+    %w(HTTP_X_FORWARDED_ORIGINAL_FOR HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
       return request_env[param] unless request_env[param].blank?
     end
     nil
@@ -52,8 +55,6 @@ module Logstasher
     payload[:x_via] = request.headers["X-Via"]
     payload[:ssl] = request.ssl?.to_s
     payload[:bot] = Logstasher.user_agent_a_bot?( request.user_agent )
-    # this can be overwritten by merging Logstasher.payload_from_user
-    payload[:logged_in] = false
     payload[:i18n_locale] = I18n.locale.to_s.downcase
     payload[:http_locale_matches_i18n] = payload[:i18n_locale] == payload[:http_languages]
     payload[:http_lang_matches_i18n] = payload[:i18n_locale] &&
@@ -82,6 +83,8 @@ module Logstasher
     if hash.key?( :request )
       if hash[:request].is_a?( ActionDispatch::Request )
         hash.merge!( Logstasher.payload_from_request( hash[:request] ) )
+        # set default value to logged_in if no value was set
+        hash[:logged_in] = false if hash[:logged_in].nil?
       end
       hash.delete( :request )
     end

@@ -1,22 +1,11 @@
-name: inaturalist CI
+name: Rails Build and Test
 
 on:
-  push:
-    branches-ignore:
-      - l10n_main
-  pull_request:
+  workflow_call:
 
 jobs:
-  pre_build:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: fkirc/skip-duplicate-actions@master
-        with:
-          github_token: ${{ github.token }}
-          cancel_others: true
-
-  build:
-    needs: pre_build
+  build-and-test:
+    name: Build/Test 
     runs-on: ubuntu-20.04
     services:
       postgres:
@@ -51,7 +40,7 @@ jobs:
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Configure sysctl limits
       run: |
@@ -103,15 +92,3 @@ jobs:
         TRAVIS: true
         TRAVIS_CI: true
         CI: true
-
-  notify:
-    name: Notify Slack
-    needs: build
-    if: ${{ success() || failure() }}
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: iRoachie/slack-github-actions@v2.3.2
-        if: env.SLACK_WEBHOOK_URL != null
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
