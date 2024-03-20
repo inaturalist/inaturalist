@@ -54,50 +54,55 @@ class ObservationAccuracyExperiment < ApplicationRecord
     iders
   end
 
-  def get_improving_identifiers( candidate_iders: nil, taxon_id: nil, place_id: nil, window: nil, page: 1 )
-    params = {
-      category: "improving",
-      per_page: 200,
-      page: page,
-      user_id: candidate_iders,
-      d1: window,
-      taxon_id: taxon_id,
-      place_id: place_id
-    }.compact
-    ids = INatAPIService.get( "/identifications", params )
-    ids&.results&.map {| r | r.dig( "user", "id" ) } || []
+  def get_improving_identifiers( taxon_id: nil, place_id: nil, window: nil )
+    filter = [
+      {
+        bool: {
+          must: [
+            { term: { category: "improving" } }
+          ]
+        }
+      }
+    ]
+    if window
+      filter.unshift(
+        {
+          range: {
+            created_at: {
+              gte: window
+            }
+          }
+        }
+      )
+    end
+    filter.last[:bool][:must] << { term: { "taxon.id": taxon_id } } if taxon_id
+    if place_id
+      filter.last[:bool][:must] << {
+        terms: { "observation.place_ids": Array( place_id ) }
+      }
+    end
+    aggregation = {
+      user_id: {
+        terms: {
+          field: "user.id",
+          size: 10_000_000
+        }
+      }
+    }
+    Identification.elastic_search(
+      size: 0,
+      filters: filter,
+      aggregate: aggregation
+    ).response.aggregations.user_id.buckets
   end
 
-  def get_qualified_candidates( taxon_id: nil, window: nil, top_iders_only: true, place_id: nil )
-    if top_iders_only
-      candidate_top_taxon_iders = fetch_top_iders( window: window, taxon_id: taxon_id, place_id: place_id ).
-        select {| _, v | v >= improving_id_threshold }.keys
-      return [] if candidate_top_taxon_iders.empty?
-
-    else
-      candidate_top_taxon_iders = nil
-    end
-    improving_identifiers = []
-    enough_candidates = false
-    page = 1
-    sorted_frequency_hash = {}
-    until enough_candidates
-      new_values = get_improving_identifiers(
-        candidate_iders: candidate_top_taxon_iders,
-        taxon_id: taxon_id,
-        place_id: place_id,
-        window: window,
-        page: page
-      )
-      break if new_values.empty?
-
-      improving_identifiers.concat( new_values )
-      frequency_hash = improving_identifiers.group_by( &:itself ).transform_values( &:count )
-      sorted_frequency_hash = frequency_hash.sort_by {| _, count | -count }.to_h
-      enough_candidates = sorted_frequency_hash.count > validator_redundancy_factor &&
-        sorted_frequency_hash.values[validator_redundancy_factor - 1] >= improving_id_threshold
-      page += 1
-    end
+  def get_qualified_candidates( taxon_id: nil, window: nil, place_id: nil )
+    ids_data = get_improving_identifiers(
+      taxon_id: taxon_id,
+      place_id: place_id,
+      window: window
+    )
+    sorted_frequency_hash = ids_data.map {| i | [i["key"], i["doc_count"]] }.to_h
     sorted_frequency_hash.select {| _, v | v >= improving_id_threshold }.keys.first( validator_redundancy_factor * 2 )
   end
 
@@ -116,26 +121,15 @@ class ObservationAccuracyExperiment < ApplicationRecord
       else
         recent_qualified_candidates = get_qualified_candidates(
           taxon_id: taxon_id,
-          window: recent_window,
-          top_iders_only: true
+          window: recent_window
         )
         if recent_qualified_candidates.count < validator_redundancy_factor
           top_ider_qualified_candidates = get_qualified_candidates(
             taxon_id: taxon_id,
-            window: nil,
-            top_iders_only: true
+            window: nil
           )
           recent_qualified_candidates = recent_qualified_candidates.
             union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
-        end
-        if recent_qualified_candidates.count < validator_redundancy_factor
-          all_qualified_candidates = get_qualified_candidates(
-            taxon_id: taxon_id,
-            window: nil,
-            top_iders_only: false
-          )
-          recent_qualified_candidates = recent_qualified_candidates.
-            union( all_qualified_candidates ).first( validator_redundancy_factor * 2 )
         end
         recent_qualified_candidates
       end
@@ -350,6 +344,47 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
+  def get_taxon_ids_for_observation_ids( observation_ids )
+    # Build the terms filter for observation ids
+    terms_filter = {
+      terms: {
+        _id: observation_ids
+      }
+    }
+
+    # Perform the Elasticsearch search
+    response = Observation.elastic_search(
+      size: observation_ids.size, # Adjust size based on your data volume
+      filters: terms_filter
+    ).response
+
+    # Extract taxon_ids from the response
+    response.hits.hits.
+      map {| hit | [hit["_source"]["id"], hit["_source"]["place_ids"]] }.to_h
+  end
+
+  def count_descendants( ancestor_id )
+    filters = [
+      { term: { is_active: true } },
+      { term: { ancestor_ids: ancestor_id } },
+      { term: { rank: "species" } }
+    ]
+    search_options = {
+      size: 0,
+      aggs: {
+        filtered_count: {
+          filter: {
+            bool: {
+              must: filters
+            }
+          }
+        }
+      }
+    }
+    response = Taxon.elastic_search( search_options ).response
+    response["aggregations"]["filtered_count"]["doc_count"]
+  end
+
   def generate_sample
     last_obs = Observation.last
     return nil if last_obs.nil?
@@ -381,12 +416,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Fetching continent groupings"
     continent_obs = {}
     continents = Place.where( admin_level: -10 ).map( &:id )
-    o.each_slice( 100 ) do | batch |
-      oo = INatAPIService.observations( id: batch )
-      oo.results.each do | o_api |
-        continent = ( continents & o_api["place_ids"] ).first
-        continent_obs[o_api["id"]] = continent
-      end
+    place_ids = get_taxon_ids_for_observation_ids( o )
+    place_ids.each do | place_id, ids |
+      intersection = ids & continents
+      continent_obs[place_id] = intersection.first if intersection.any?
     end
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 
@@ -394,27 +427,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
     root_id = Taxon::LIFE.id
     taxon_descendant_count = {}
     observations.pluck( :taxon_id ).uniq.each do | obs_taxon_id |
-      obs_taxon_id = root_id if obs_taxon_id.nil?
-      parent = Taxon.find( obs_taxon_id )
-      if parent.rank_level <= 10
-        leaf_descendants = 1
-      else
-        parent_ancestry = if obs_taxon_id == root_id
-          obs_taxon_id.to_s
-        else
-          "#{parent.ancestry}/#{parent.id}"
-        end
-        taxa = Taxon.select( :ancestry, :id ).
-          where(
-            "rank_level >= 10 AND ( ancestry = ? OR ancestry LIKE ( ? ) ) AND is_active = TRUE",
-            parent_ancestry,
-            "#{parent_ancestry}/%"
-          )
-        ancestors = taxa.map {| t | t.ancestry.split( "/" ).map( &:to_i ) }.flatten.uniq
-        taxon_ids = taxa.map( &:id ).uniq
-        leaf_descendants = ( taxon_ids - ancestors ).count
-      end
-      taxon_descendant_count[obs_taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
+      # puts obs_taxon_id
+      # obs_taxon_id = root_id if obs_taxon_id.nil?
+      # if Taxon.find(obs_taxon_id).rank_level <= 10
+      taxon_descendant_count[obs_taxon_id] = 1
+      # else
+      #  sleep( 0.5 )
+      #  leaf_descendants = count_descendants( obs_taxon_id )
+      #  sleep( 0.5 )
+      #  taxon_descendant_count[obs_taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
+      # end
     end
 
     iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
@@ -670,7 +692,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     stats = counts.transform_values do | ids |
       norm = ( total.zero? ? 0 : ids.count / total.to_f * 100 ).round( 2 )
       {
-        ids: ids,
+        ids: ids.first( 500 ),
         height: norm,
         altheight: ids.count
       }
