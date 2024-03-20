@@ -354,6 +354,7 @@ da:
   add_evidence_of_presence_track_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Spor"'
   add_evidence_of_presence_bone_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Knogle"'
   add_evidence_of_presence_molt_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Ham"'
+  add_established_not_established: 'Tilføj "Etableret: Uetableret"-annotation'
   #As in a Taxon Framework Relationship
   add_relationship: 'Tilføj forbindelse'
   #As in a Guide Section
@@ -1177,6 +1178,9 @@ da:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ham
+    established: Etableret
+    #Organism is not a member of an established population
+    not_established: Uetableret
   controlled_term_definitions:
     alive: Organisme lever og viser ingen tegn på forestående død
     bone: |
@@ -1192,6 +1196,7 @@ da:
     male: Bevis indikerer, at organismen kan producere sæd til brug i seksuel reproduktion
     molt: Afstødt hud eller exoskelet
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
+    not_established: Organisme tilhører en uetableret bestand, herunder frigivne/undslupne kæledyr, vandrere og omstrejfere.
     organism: Hel eller partiel organisme
     scat: Fækalt materiale (ikke uglegylp eller andet gylgningsmateriale)
     teneral: Udvokset, der for nylig er kommet frem, men endnu ikke har opnået sin endelige voksne form
