@@ -156,28 +156,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
         recent_qualified_candidates = get_qualified_candidates(
           taxon_id: taxon_id,
           window: recent_window,
-          top_iders_only: true,
           place_id: place_id
         )
         if recent_qualified_candidates.count < validator_redundancy_factor
           top_ider_qualified_candidates = get_qualified_candidates(
             taxon_id: taxon_id,
             window: nil,
-            top_iders_only: true,
             place_id: place_id
           )
           recent_qualified_candidates = recent_qualified_candidates.
             union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
-        end
-        if recent_qualified_candidates.count < validator_redundancy_factor
-          all_qualified_candidates = get_qualified_candidates(
-            taxon_id: taxon_id,
-            window: nil,
-            top_iders_only: false,
-            place_id: place_id
-          )
-          recent_qualified_candidates = recent_qualified_candidates.
-            union( all_qualified_candidates ).first( validator_redundancy_factor * 2 )
         end
         recent_qualified_candidates
       end
@@ -298,7 +286,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         group_by {| sample | [sample.taxon_id, sample.continent] }.
         transform_values {| s | s.map( &:observation_id ) }
 
-      puts "Select identifiers for each taxon represented in the sample (this may take a while)..."
+      puts "Select identifiers for each taxon represented in the sample..."
       identifiers_by_taxon_and_continent = get_candidate_identifiers_by_taxon_and_continent(
         observation_ids_grouped_by_taxon_and_continent,
         top_iders.first( 50 ).to_h
