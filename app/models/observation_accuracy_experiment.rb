@@ -416,10 +416,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Fetching continent groupings"
     continent_obs = {}
     continents = Place.where( admin_level: -10 ).map( &:id )
-    place_ids = get_taxon_ids_for_observation_ids( o )
-    place_ids.each do | place_id, ids |
-      intersection = ids & continents
-      continent_obs[place_id] = intersection.first if intersection.any?
+    place_ids_by_obs_id = get_taxon_ids_for_observation_ids( o )
+    place_ids_by_obs_id.each do | obs_id, place_ids |
+      intersection = place_ids & continents
+      continent_obs[obs_id] = intersection.first if intersection.any?
     end
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 

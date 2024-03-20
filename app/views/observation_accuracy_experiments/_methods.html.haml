@@ -82,7 +82,7 @@
                 %line{y2: "6", x2: "0"}
                 %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= label
           - @validators_per_sample.values.each_with_index do |values, index|
-            %a{href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.join( "," ) ) : "#"}
+            %a{href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.first(500).join( "," ) ) : "#"}
               %rect{
                 class: "validators",
                 x: "#{10 + 54 * index}",
