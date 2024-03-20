@@ -2112,16 +2112,24 @@ class Taxon < ApplicationRecord
     return nil if is_active?
 
     without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
-    synonymous_taxon = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
+    taxon_change_scope = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
       joins( :taxon_change_taxa ).
       where( "taxon_change_taxa.taxon_id = ?", self ).
-      where( "taxon_changes.taxon_id NOT IN (?)", without_taxon_ids ).order( :id ).last.try( :output_taxon )
+      where( "taxon_changes.taxon_id NOT IN (?)", without_taxon_ids )
+    if options[:committed_after]
+      taxon_change_scope = taxon_change_scope.
+        where( "committed_on > ?", options[:committed_after] )
+    end
+    synonymous_taxon = taxon_change_scope.order( :id ).last.try( :output_taxon )
     return synonymous_taxon if synonymous_taxon.blank?
     if synonymous_taxon.is_active? || options[:inactive]
       return synonymous_taxon
     end
 
-    candidates = synonymous_taxon.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
+    candidates = synonymous_taxon.current_synonymous_taxa(
+      without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after]
+    )
     return nil if candidates.size > 1
 
     candidates.first
@@ -2129,7 +2137,12 @@ class Taxon < ApplicationRecord
 
   def current_synonymous_taxa_from_split( options = {} )
     without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
-    last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
+    taxon_change_scope = TaxonSplit.committed.where( taxon_id: id )
+    if options[:committed_after]
+      taxon_change_scope = taxon_change_scope.
+        where( "committed_on > ?", options[:committed_after] )
+    end
+    last_committed_split = taxon_change_scope.order( "taxon_changes.id desc" ).first
     return [] if last_committed_split.blank?
 
     active_output_taxa = last_committed_split.output_taxa.reject do | t |
@@ -2137,24 +2150,39 @@ class Taxon < ApplicationRecord
       t.id == id && !t.is_active?
     end
     active_output_taxa.map do | t |
-      t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
+      if t.is_active?
+        t
+      else
+        t.current_synonymous_taxa(
+          without_taxon_ids: without_taxon_ids,
+          committed_after: options[:committed_after]
+        )
+      end
     end.flatten.uniq
   end
 
   def current_synonymous_taxa( options = {} )
     without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
-    synonymous_taxa = current_synonymous_taxa_from_split( without_taxon_ids: without_taxon_ids )
-    taxon_from_swaps_and_merge = current_synonymous_taxon( without_taxon_ids: without_taxon_ids )
+    synonymous_taxa = current_synonymous_taxa_from_split(
+      without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after]
+    )
+    taxon_from_swaps_and_merge = current_synonymous_taxon(
+      without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after]
+    )
     if taxon_from_swaps_and_merge
       synonymous_taxa << taxon_from_swaps_and_merge
     end
     inactive_synonym_from_swaps_and_merge = current_synonymous_taxon(
       without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after],
       inactive: true
     )
     if inactive_synonym_from_swaps_and_merge
       inactive_synonym_synonyms = inactive_synonym_from_swaps_and_merge.current_synonymous_taxa(
-        without_taxon_ids: without_taxon_ids
+        without_taxon_ids: without_taxon_ids,
+        committed_after: options[:committed_after]
       )
       if inactive_synonym_synonyms
         synonymous_taxa += inactive_synonym_synonyms
