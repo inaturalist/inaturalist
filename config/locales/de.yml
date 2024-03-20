@@ -355,6 +355,7 @@ de:
   add_evidence_of_presence_track_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Spur"'
   add_evidence_of_presence_bone_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Knochen"'
   add_evidence_of_presence_molt_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Häutung"'
+  add_established_not_established: 'Angabe hinzufügen "Etablierung: nicht etabliert"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
   #As in a Guide Section
@@ -1104,6 +1105,9 @@ de:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Häutung
+    established: etabliert
+    #Organism is not a member of an established population
+    not_established: nicht etabliert
   controlled_term_definitions:
     alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahenden Todes
     bone: |
@@ -1119,6 +1123,7 @@ de:
     male: Die Belege deuten darauf hin, dass der Organismus Spermien für die sexuelle Fortpflanzung produzieren kann
     molt: Abgeworfene Haut oder Exoskelett
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
+    not_established: Organismus ist aus einer nicht-etablierten Population, einschließlich blinden Passagieren, Irrgästen oder freilaufenden/entflohenen Haustieren
     organism: Kompletter oder unvollständiger Organismus
     scat: Kot und Losung (keine Gewölle oder andere hervorgewürgte Bestandteile)
     teneral: Ein ausgewachsenes Individuum, das aber noch nicht fertig ausgefärbt ist
