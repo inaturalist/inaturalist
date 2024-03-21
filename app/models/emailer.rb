@@ -306,16 +306,18 @@ class Emailer < ActionMailer::Base
 
     # Fetch species data
     current_month = Time.now.month
+    dangerous_taxa = List::DANGEROUS_TAXA ? List::DANGEROUS_TAXA.listed_taxa.map(&:taxon_id) : nil
     species = INatAPIService.observations_species_counts( {
       verifiable: true,
       lat: geoip_latitude,
       lng: geoip_longitude,
       month: current_month,
-      radius: 50
+      radius: 50,
+      without_taxon_id: dangerous_taxa
     } ).results
 
     # Filter species based on criteria
-    iconic_taxon_names = ["Plantae", "Insecta", "Aves", "Mammalia"]
+    iconic_taxon_names = Taxon::ICONIC_TAXON_NAMES.keys & ["Plantae", "Insecta", "Aves", "Mammalia"]
     filtered_species = iconic_taxon_names.map do | iconic_taxon_name |
       preferred_species = species.find do | s |
         s["taxon"]["iconic_taxon_name"] == iconic_taxon_name &&
@@ -354,7 +356,7 @@ class Emailer < ActionMailer::Base
     set_locale
     mail(
       to: user.email,
-      subject: "Contributing Biodiversity Records with #{site_name}",
+      subject: "Can you find these species and share them on #{site_name}?",
       site_name: site_name
     )
     reset_locale

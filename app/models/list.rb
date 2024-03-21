@@ -21,6 +21,8 @@ class List < ApplicationRecord
   RANK_RULE_OPERATORS = [RANK_RULE_SPECIES, RANK_RULE_SPECIES_OR_LOWER]
   MAX_RELOAD_TRIES = 60
   
+  DANGEROUS_TAXA = List.find_by_title( "Dangerous animals" )
+
   def rank_rule
     if (r = rules.detect{|r| r.operator == 'species?'}) then r.operator
     elsif (r = rules.detect{|r| r.operator == 'species_or_lower?'}) then r.operator
