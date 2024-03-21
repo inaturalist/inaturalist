@@ -306,7 +306,7 @@ class Emailer < ActionMailer::Base
 
     # Fetch species data
     current_month = Time.now.month
-    dangerous_taxa = List::DANGEROUS_TAXA ? List::DANGEROUS_TAXA.listed_taxa.map(&:taxon_id) : nil
+    dangerous_taxa = List::DANGEROUS_TAXA ? List::DANGEROUS_TAXA.listed_taxa.map( &:taxon_id ) : nil
     species = INatAPIService.observations_species_counts( {
       verifiable: true,
       lat: geoip_latitude,
@@ -317,7 +317,7 @@ class Emailer < ActionMailer::Base
     } ).results
 
     # Filter species based on criteria
-    iconic_taxon_names = Taxon::ICONIC_TAXON_NAMES.keys & ["Plantae", "Insecta", "Aves", "Mammalia"]
+    iconic_taxon_names = ["Aves", "Plantae", "Insecta", "Mammalia"]
     filtered_species = iconic_taxon_names.map do | iconic_taxon_name |
       preferred_species = species.find do | s |
         s["taxon"]["iconic_taxon_name"] == iconic_taxon_name &&
@@ -349,7 +349,8 @@ class Emailer < ActionMailer::Base
     return false if filtered_species.count < 4
 
     # Fetch nearby species and set month name
-    @nearby_species = Taxon.find( filtered_species.first( 4 ).map {| t | t["taxon"]["id"] } )
+    filtered_species_ids = filtered_species.first( 4 ).map {| t | t["taxon"]["id"] }
+    @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
     @month_name = Date::MONTHNAMES[current_month]
 
     # Mail settings
