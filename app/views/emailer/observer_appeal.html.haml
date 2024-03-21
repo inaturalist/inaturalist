@@ -10,8 +10,8 @@
           - @nearby_species.each do |taxon|
             %div{ style: "flex: 0 0 auto; width: 200px; margin: 10px; text-align: center;" }
               = link_to taxon_url(taxon) do
-                %div{ style: "width: 120px; height: 120px; overflow: hidden; border-radius: 50%; margin: 0 auto 10px; background-size: cover; background-position: center; border: 4px solid #74AC00;" }
-                  = image_tag taxon_image_url(taxon, size: "medium"), class: 'taxon-image', style: "width: 100%; height: 100%;"
+                %div{ style: "width: 120px; height: 120px; overflow: hidden; border-radius: 50%; margin: 0 auto 10px; background-color: #ffffff; border: 4px solid #74AC00;" }
+                  = image_tag taxon_image_url(taxon, size: "medium"), class: 'taxon-image', style: "width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"
                 %div{ style: "width: 120px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
                   = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
 
