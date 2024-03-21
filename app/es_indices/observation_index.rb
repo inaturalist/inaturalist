@@ -619,6 +619,7 @@ class Observation < ApplicationRecord
     # params to search based on value
     [ { http_param: :rank, es_field: "taxon.rank" },
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
+      { http_param: :observed_on_week, es_field: "observed_on_details.week" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
       { http_param: :day, es_field: "observed_on_details.day" },
