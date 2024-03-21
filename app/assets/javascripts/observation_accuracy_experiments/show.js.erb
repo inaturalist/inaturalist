@@ -18,6 +18,36 @@ function showTooltip( evt, text ) {
 }
 
 $( function () {
+  var tab = $("#tab-container").data("tab");
+  $(".spinner-container").addClass("show");
+  var currentURL = window.location.href;
+  var match = currentURL.match(/\/observation_accuracy_experiments\/(\d+)/);
+  var experimentId = match[1];
+  if (match) {
+    if (tab === "methods") {
+      $.ajax({
+        url: "/observation_accuracy_experiments/" + experimentId + "/get_methods_data",
+        type: "GET",
+        dataType: "html",
+        success: function(data) {
+          $(".spinner-container").removeClass("show");
+          $("#methods").html(data);
+        }
+      });
+    } else {
+      // Call get_results_data instead
+      $.ajax({
+        url: "/observation_accuracy_experiments/" + experimentId + "/get_results_data",
+        type: "GET",
+        dataType: "html",
+        data: { tab: tab }, // Pass the tab value along with the request
+        success: function(data) {
+          $("#methods").html(data);
+        }
+      });
+    }
+  }
+
   $( "#hide_validators" ).hide();
   $( document ).on( "mousemove", ".bar-rect", function ( evt ) {
     showTooltip( evt, $( this ).data( "tooltip-text" ) );
