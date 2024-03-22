@@ -351,26 +351,24 @@ class ObservationAccuracyExperiment < ApplicationRecord
       map {| hit | [hit["_source"]["id"], hit["_source"]["place_ids"]] }.to_h
   end
 
-  def count_descendants( ancestor_id )
-    filters = [
-      { term: { is_active: true } },
-      { term: { ancestor_ids: ancestor_id } },
-      { term: { rank: "species" } }
-    ]
-    search_options = {
-      size: 0,
-      aggs: {
-        filtered_count: {
-          filter: {
-            bool: {
-              must: filters
-            }
-          }
-        }
-      }
-    }
-    response = Taxon.elastic_search( search_options ).response
-    response["aggregations"]["filtered_count"]["doc_count"]
+  def get_continent_obs( oids, continents )
+    batch_size = 500
+    total_elapsed_time = 0
+    observation_continents = []
+    ( 0..oids.length - 1 ).step( batch_size ) do | i |
+      start_time = Time.now
+      observation_ids = oids[i, batch_size]
+      batch_observation_continents = ObservationsPlace.
+        where( observation_id: observation_ids, place_id: continents ).
+        pluck( :observation_id, :place_id )
+      observation_continents.concat( batch_observation_continents )
+      end_time = Time.now
+      elapsed_time = end_time - start_time
+      total_elapsed_time += elapsed_time
+    end
+    puts "Total time: #{total_elapsed_time} seconds"
+    puts "Average time per batch: #{total_elapsed_time / ( oids.length.to_f / batch_size )} seconds"
+    observation_continents.to_h
   end
 
   def generate_sample
@@ -402,29 +400,21 @@ class ObservationAccuracyExperiment < ApplicationRecord
     observations = Observation.includes( :taxon ).find( o )
 
     puts "Fetching continent groupings"
-    continent_obs = {}
     continents = Place.where( admin_level: -10 ).map( &:id )
-    place_ids_by_obs_id = get_taxon_ids_for_observation_ids( o )
-    place_ids_by_obs_id.each do | obs_id, place_ids |
-      intersection = place_ids & continents
-      continent_obs[obs_id] = intersection.first if intersection.any?
-    end
+    continent_obs = get_continent_obs( oids, continents )
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 
     puts "Fetching number of descendants"
+    load "lib/taxonomy_parser.rb"
+    taxonomy_parser = TaxonomyParser.new
     root_id = Taxon::LIFE.id
     taxon_descendant_count = {}
     observations.pluck( :taxon_id ).uniq.each do | obs_taxon_id |
-      # puts obs_taxon_id
-      # obs_taxon_id = root_id if obs_taxon_id.nil?
-      # if Taxon.find(obs_taxon_id).rank_level <= 10
-      taxon_descendant_count[obs_taxon_id] = 1
-      # else
-      #  sleep( 0.5 )
-      #  leaf_descendants = count_descendants( obs_taxon_id )
-      #  sleep( 0.5 )
-      #  taxon_descendant_count[obs_taxon_id] = ( leaf_descendants.zero? ? 1 : leaf_descendants )
-      # end
+      obs_taxon_id = root_id if obs_taxon_id.nil?
+      leaf_count = taxonomy_parser.taxa[obs_taxon_id][:leaf_count]
+      leaf_count = taxonomy_parser.taxa[obs_taxon_id][:children].count if leaf_count.nil?
+      leaf_count = 1 if leaf_count.zero?
+      taxon_descendant_count[obs_taxon_id] = leaf_count
     end
 
     iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
