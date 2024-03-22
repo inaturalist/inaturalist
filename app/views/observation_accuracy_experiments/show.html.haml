@@ -8,6 +8,7 @@
   = stylesheet_link_tag "observation_accuracy_experiments/show"
 .container
   #tab-container{ data: { tab: @tab } }
+  #validator-container{ data: { validator_count: @experiment.responding_validators } }
   .row
     .col-xs-12
       - if @experiment.validator_deadline_date > Time.now

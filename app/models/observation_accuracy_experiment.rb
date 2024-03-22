@@ -409,11 +409,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
     taxonomy_parser = TaxonomyParser.new
     root_id = Taxon::LIFE.id
     taxon_descendant_count = {}
-    observations.pluck( :taxon_id ).uniq.each do | obs_taxon_id |
-      obs_taxon_id = root_id if obs_taxon_id.nil?
-      leaf_count = taxonomy_parser.taxa[obs_taxon_id][:leaf_count]
-      leaf_count = taxonomy_parser.taxa[obs_taxon_id][:children].count if leaf_count.nil?
-      leaf_count = 1 if leaf_count.zero?
+
+    observations.each do | observation |
+      obs_taxon_id = observation.taxon_id || root_id
+      next if taxon_descendant_count[obs_taxon_id]
+
+      if observation.taxon.rank_level <= 10
+        leaf_count = 1
+      else
+        taxon_info = taxonomy_parser.taxa[obs_taxon_id]
+        leaf_count = taxon_info[:leaf_count] || taxon_info[:children].count.nonzero? || 1
+      end
       taxon_descendant_count[obs_taxon_id] = leaf_count
     end
 
