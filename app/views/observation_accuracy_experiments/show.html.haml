@@ -17,7 +17,7 @@
       %h1
         =t :observation_accuracy_experiment_observation_accuracy_experiment
         ="(#{@experiment.version})"
-  - if !@experiment.sample_generation_date
+  - if !@experiment.sample_generation_date || !@experiment.assessment_date
     =t :observation_accuracy_experiment_the_sample_for
   - else
     .row

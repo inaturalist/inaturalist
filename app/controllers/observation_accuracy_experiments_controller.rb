@@ -22,6 +22,8 @@ class ObservationAccuracyExperimentsController < ApplicationController
   end
 
   def get_more_validators
+    return unless @experiment.sample_generation_date && @experiment.assessment_date
+
     @more_validators = @experiment.get_validator_names( limit: 100, offset: 20 )
     respond_to do | format |
       format.html { render partial: "additional_validators", locals: { validators: @more_validators } }
@@ -29,6 +31,8 @@ class ObservationAccuracyExperimentsController < ApplicationController
   end
 
   def get_methods_data
+    return unless @experiment.sample_generation_date && @experiment.assessment_date
+
     set_explorable
     @candidate_validators, @mean_validator_count, @mean_sample_count = @experiment.get_assignment_methods
     @mean_validators_per_sample, @validators_per_sample, @validators_per_sample_ylim = @experiment.get_val_methods
@@ -41,6 +45,8 @@ class ObservationAccuracyExperimentsController < ApplicationController
   end
 
   def get_results_data
+    return unless @experiment.sample_generation_date && @experiment.assessment_date
+
     set_explorable
     tab = params[:tab]
     @stats, @data, @precision_data, @ylims = @experiment.get_results_data( tab )

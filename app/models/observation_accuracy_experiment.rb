@@ -16,7 +16,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   after_create :generate_sample_if_requested
 
-  validates_presence_of :validator_deadline_date
   validates_presence_of :version
 
   def generate_sample_if_requested
@@ -550,6 +549,14 @@ class ObservationAccuracyExperiment < ApplicationRecord
     1 / ( number.zero? ? 1 : number ).to_f
   end
 
+  def clear_experiment_caches
+    ["research_grade_results", "verifiable_results", "rall_results"].each do | tab |
+      Rails.cache.delete( "ObservationAccuracyExperiment::#{id}::get_results_data::#{tab}" )
+    end
+    Rails.cache.delete( "ObservationAccuracyExperiment::#{id}::get_val_methods" )
+    Rails.cache.delete( "ObservationAccuracyExperiment::#{id}::get_assignment_methods" )
+  end
+
   def assess_experiment
     groundtruths = {}
     observation_accuracy_validators.each do | validator |
@@ -610,6 +617,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
     self.responding_validators = responding_validators
     self.validated_observations = validated_observations
     save!
+
+    clear_experiment_caches
   end
 
   def get_sample_for_user_id( user_id )
@@ -858,7 +867,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_results_data( tab )
-    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_results_data::#{tab}", expires_in: 1.day ) do
+    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_results_data::#{tab}", expires_in: 1.month ) do
       stats = get_top_level_stats( tab )
       keys = ["quality_grade", "continent", "year", "iconic_taxon_name", "taxon_observations_count", "taxon_rank_level"]
       keys.delete( "quality_grade" ) if tab == "research_grade_results"
@@ -879,7 +888,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_assignment_methods
-    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_assignment_methods", expires_in: 1.day ) do
+    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_assignment_methods", expires_in: 1.month ) do
       candidate_validators = observation_accuracy_validators.count
 
       samples_by_validators = observation_accuracy_validators.joins( :observation_accuracy_samples ).
@@ -903,7 +912,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_val_methods
-    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_val_methods", expires_in: 1.day ) do
+    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_val_methods", expires_in: 1.month ) do
       mean_validators_per_sample_query = observation_accuracy_samples.
         where( "reviewers IS NOT NULL" ).average( :reviewers )
       mean_validators_per_sample = if mean_validators_per_sample_query.nil?
