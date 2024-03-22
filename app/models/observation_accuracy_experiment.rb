@@ -89,11 +89,18 @@ class ObservationAccuracyExperiment < ApplicationRecord
         }
       }
     }
-    Identification.elastic_search(
-      size: 0,
-      filters: filter,
-      aggregate: aggregation
-    ).response.aggregations.user_id.buckets
+    begin
+      response = Identification.elastic_search(
+        size: 0,
+        filters: filter,
+        aggregate: aggregation
+      ).response.aggregations.user_id.buckets
+    rescue Faraday::ConnectionFailed
+      puts "ConnectionFailed, trying again"
+      sleep( 10 )
+      retry
+    end
+    response
   end
 
   def get_qualified_candidates( taxon_id: nil, window: nil, place_id: nil )
@@ -275,7 +282,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def distribute_to_validators( samples )
+  def distribute_to_validators
+    puts "Distributing among validators"
+    samples = observation_accuracy_samples.where( no_evidence: false )
+
     puts "Divide up the sample among identifiers"
     puts "with a validator redundancy factor of #{validator_redundancy_factor}..."
     puts "Fetch the top IDers..."
@@ -424,6 +434,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       end
       taxon_descendant_count[obs_taxon_id] = leaf_count
     end
+    taxonomy_parser = nil
 
     puts "Fetching DQA"
     iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
@@ -464,10 +475,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
 
     puts "Saving sample"
-    samples = ObservationAccuracySample.create!( obs_data )
-
-    puts "Distributing among validators"
-    distribute_to_validators( samples.select {| a | a.no_evidence == false } )
+    ObservationAccuracySample.create!( obs_data )
 
     self.sample_generation_date = Time.now
     save!
@@ -850,76 +858,82 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_results_data( tab )
-    stats = get_top_level_stats( tab )
-    keys = ["quality_grade", "continent", "year", "iconic_taxon_name", "taxon_observations_count", "taxon_rank_level"]
-    keys.delete( "quality_grade" ) if tab == "research_grade_results"
-    data = keys.each_with_object( {} ) do | key, sub_data |
-      sub_data[key] = get_barplot_data( key, tab )
-    end
-    precision_data = keys.each_with_object( {} ) do | key, sub_data |
-      sub_data[key] = get_precision_barplot_data( key, tab )
-    end
-    ylims = {}
-    data.each do | key, sub_data |
-      max = sub_data.transform_values {| items | items.sum {| item | item[:altheight] } }.values.max
-      ylims[key.to_sym] = ( max.to_f / 100 ).ceil * 100
-    end
+    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_results_data::#{tab}", expires_in: 1.day ) do
+      stats = get_top_level_stats( tab )
+      keys = ["quality_grade", "continent", "year", "iconic_taxon_name", "taxon_observations_count", "taxon_rank_level"]
+      keys.delete( "quality_grade" ) if tab == "research_grade_results"
+      data = keys.each_with_object( {} ) do | key, sub_data |
+        sub_data[key] = get_barplot_data( key, tab )
+      end
+      precision_data = keys.each_with_object( {} ) do | key, sub_data |
+        sub_data[key] = get_precision_barplot_data( key, tab )
+      end
+      ylims = {}
+      data.each do | key, sub_data |
+        max = sub_data.transform_values {| items | items.sum {| item | item[:altheight] } }.values.max
+        ylims[key.to_sym] = ( max.to_f / 100 ).ceil * 100
+      end
 
-    [stats, data, precision_data, ylims]
+      [stats, data, precision_data, ylims]
+    end
   end
 
   def get_assignment_methods
-    candidate_validators = observation_accuracy_validators.count
+    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_assignment_methods", expires_in: 1.day ) do
+      candidate_validators = observation_accuracy_validators.count
 
-    samples_by_validators = observation_accuracy_validators.joins( :observation_accuracy_samples ).
-      group( "observation_accuracy_validators.id" ).count
-    mean_validator_count = begin
-      samples_by_validators.values.sum / samples_by_validators.count
-    rescue ZeroDivisionError
-      0
+      samples_by_validators = observation_accuracy_validators.joins( :observation_accuracy_samples ).
+        group( "observation_accuracy_validators.id" ).count
+      mean_validator_count = begin
+        samples_by_validators.values.sum / samples_by_validators.count
+      rescue ZeroDivisionError
+        0
+      end
+
+      validators_by_samples = observation_accuracy_samples.joins( :observation_accuracy_validators ).
+        group( "observation_accuracy_samples.id" ).count
+      mean_sample_count = begin
+        validators_by_samples.values.sum / validators_by_samples.count
+      rescue ZeroDivisionError
+        0
+      end
+
+      [candidate_validators, mean_validator_count, mean_sample_count]
     end
-
-    validators_by_samples = observation_accuracy_samples.joins( :observation_accuracy_validators ).
-      group( "observation_accuracy_samples.id" ).count
-    mean_sample_count = begin
-      validators_by_samples.values.sum / validators_by_samples.count
-    rescue ZeroDivisionError
-      0
-    end
-
-    [candidate_validators, mean_validator_count, mean_sample_count]
   end
 
   def get_val_methods
-    mean_validators_per_sample_query = observation_accuracy_samples.
-      where( "reviewers IS NOT NULL" ).average( :reviewers )
-    mean_validators_per_sample = if mean_validators_per_sample_query.nil?
-      0
-    else
-      mean_validators_per_sample_query.round
-    end
-
-    grouped_observation_ids = observation_accuracy_samples.
-      group( :reviewers ).pluck( :reviewers, "ARRAY_AGG(observation_id)" )
-    validators_per_sample = { "0": [], "1": [], "2": [], "3-4": [], ">4": [] }
-    grouped_observation_ids.each do | reviewers, observation_ids |
-      case reviewers
-      when 0
-        validators_per_sample[:"0"] = observation_ids
-      when 1
-        validators_per_sample[:"1"] = observation_ids
-      when 2
-        validators_per_sample[:"2"] = observation_ids
-      when 3..4
-        validators_per_sample[:"3-4"] += observation_ids
+    Rails.cache.fetch( "ObservationAccuracyExperiment::#{id}::get_val_methods", expires_in: 1.day ) do
+      mean_validators_per_sample_query = observation_accuracy_samples.
+        where( "reviewers IS NOT NULL" ).average( :reviewers )
+      mean_validators_per_sample = if mean_validators_per_sample_query.nil?
+        0
       else
-        validators_per_sample[:">4"] += observation_ids
+        mean_validators_per_sample_query.round
       end
+
+      grouped_observation_ids = observation_accuracy_samples.
+        group( :reviewers ).pluck( :reviewers, "ARRAY_AGG(observation_id)" )
+      validators_per_sample = { "0": [], "1": [], "2": [], "3-4": [], ">4": [] }
+      grouped_observation_ids.each do | reviewers, observation_ids |
+        case reviewers
+        when 0
+          validators_per_sample[:"0"] = observation_ids
+        when 1
+          validators_per_sample[:"1"] = observation_ids
+        when 2
+          validators_per_sample[:"2"] = observation_ids
+        when 3..4
+          validators_per_sample[:"3-4"] += observation_ids
+        else
+          validators_per_sample[:">4"] += observation_ids
+        end
+      end
+
+      max = validators_per_sample.map {| _, v | v.count }.max
+      validators_per_sample_ylim = ( max.to_f / 100 ).ceil * 100
+
+      [mean_validators_per_sample, validators_per_sample, validators_per_sample_ylim]
     end
-
-    max = validators_per_sample.map {| _, v | v.count }.max
-    validators_per_sample_ylim = ( max.to_f / 100 ).ceil * 100
-
-    [mean_validators_per_sample, validators_per_sample, validators_per_sample_ylim]
   end
 end
