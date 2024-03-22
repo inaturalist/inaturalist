@@ -401,7 +401,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     puts "Fetching continent groupings"
     continents = Place.where( admin_level: -10 ).map( &:id )
-    continent_obs = get_continent_obs( oids, continents )
+    continent_obs = get_continent_obs( o, continents )
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 
     puts "Fetching number of descendants"
