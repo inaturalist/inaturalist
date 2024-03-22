@@ -85,7 +85,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       user_id: {
         terms: {
           field: "user.id",
-          size: 10_000_000
+          size: 1000
         }
       }
     }
@@ -134,7 +134,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         recent_qualified_candidates
       end
       counter += 1
-      puts "Processed #{counter} records of #{denom}" if ( counter % 10 ).zero?
+      puts "Processed #{counter} records of #{denom}" if ( counter % 100 ).zero?
     end
     identifiers_by_taxon_id
   end
@@ -404,17 +404,19 @@ class ObservationAccuracyExperiment < ApplicationRecord
     continent_obs = get_continent_obs( o, continents )
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 
-    puts "Fetching number of descendants"
+    puts "Loading taxonomy"
     load "lib/taxonomy_parser.rb"
     taxonomy_parser = TaxonomyParser.new
     root_id = Taxon::LIFE.id
     taxon_descendant_count = {}
 
+    puts "Fetching number of descendants"
     observations.each do | observation |
       obs_taxon_id = observation.taxon_id || root_id
       next if taxon_descendant_count[obs_taxon_id]
 
-      if observation.taxon.rank_level <= 10
+      obs_taxon = observation.taxon || Taxon::LIFE
+      if obs_taxon.rank_level <= 10
         leaf_count = 1
       else
         taxon_info = taxonomy_parser.taxa[obs_taxon_id]
@@ -423,6 +425,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       taxon_descendant_count[obs_taxon_id] = leaf_count
     end
 
+    puts "Fetching DQA"
     iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
     no_media = Observation.includes( :photos, :sounds ).
       where( id: o ).
@@ -439,6 +442,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     no_evidence = quality_metric_observation_ids( o, ["evidence"] )
     other_dqa_issue = quality_metric_observation_ids( o, ["location", "date", "recent"] )
 
+    puts "Processing sample"
     obs_data = observations.map do | obs |
       {
         observation_accuracy_experiment_id: id,
@@ -459,8 +463,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
       }
     end
 
+    puts "Saving sample"
     samples = ObservationAccuracySample.create!( obs_data )
 
+    puts "Distributing among validators"
     distribute_to_validators( samples.select {| a | a.no_evidence == false } )
 
     self.sample_generation_date = Time.now
