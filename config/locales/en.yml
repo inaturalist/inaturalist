@@ -386,6 +386,8 @@ en:
   add_annotations_for_controlled_attribute:
     sex: Add Annotations for "Sex"
     plant_phenology: Add Annotations for "Plant Phenology"
+    flower_and_fruit_phenology: Add Annotations for "Flower and Fruit Phenology"
+    leaf_phenology: Add Annotations for "Leaf Phenology"
     life_stage: Add Annotations for "Life Stage"
     evidence_of_presence: Add Annotations for "Evidence of Presence"
   add_another_flag: Add Another Flag
@@ -442,6 +444,18 @@ en:
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Add "Plant Phenology: No Evidence of Flowering" annotation'
+  add_flower_and_fruit_phenology_budding_annotation: 'Add "Flower and Fruit Phenology: Budding" annotation'
+  add_flower_and_fruit_phenology_flower_budding_annotation: 'Add "Flower and Fruit Phenology: Flower Budding" annotation'
+  add_flower_and_fruit_phenology_flowering_annotation: 'Add "Flower and Fruit Phenology: Flowering" annotation'
+  add_flower_and_fruit_phenology_fruiting_annotation: 'Add "Flower and Fruit Phenology: Fruiting" annotation'
+  add_flower_and_fruit_phenology_no_evidence_of_flowering_annotation: 'Add "Flower and Fruit Phenology: No Evidence of Flowering" annotation'
+  add_flower_and_fruit_phenology_no_evidence_of_active_flowering_or_fruiting_annotation: 'Add "Flower and Fruit Phenology: No Evidence of Active Flowering or Fruiting" annotation'
+  add_flower_and_fruit_phenology_recently_fallen_or_removed_fruits_annotation: 'Add "Flower and Fruit Phenology: Recently fallen or removed fruits" annotation'
+  add_leaf_phenology_no_evidence_of_leaves_or_needles: 'Add "Leaf Phenology: No evidence of leaves or needles" annotation'
+  add_leaf_phenology_breaking_leaf_or_needle_buds: 'Add "Leaf Phenology: Breaking leaf or needle buds" annotation'
+  add_leaf_phenology_young_leaves_or_needles: 'Add "Leaf Phenology: Young leaves or needles" annotation'
+  add_leaf_phenology_mature_leaves_or_needles: 'Add "Leaf Phenology: Mature leaves or needles" annotation'
+  add_leaf_phenology_senescing_leaves_or_needles: 'Add "Leaf Phenology: Senescing leaves or needles" annotation'
   add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
   add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
   add_life_stage_subimago_annotation: 'Add "Life Stage: subimago" annotation'
@@ -1270,6 +1284,10 @@ en:
     # Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Any
     # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flower_and_fruit_phenology: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaf_phenology: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Any
     # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Any
@@ -1279,16 +1297,25 @@ en:
     male: Male
     female: Female
     plant_phenology: Plant Phenology
+    flower_and_fruit_phenology: Flower and Fruit Phenology
     budding: Budding
     flower_budding: Flower Budding
     flowering: Flowering
     fruiting: Fruiting
+    recently_fallen_or_removed_fruits: Recently Fallen or Removed Fruits
+    leaf_phenology: Leaf Phenology
+    no_evidence_of_leaves_or_needles: No Evidence of Leaves or Needles
+    breaking_leaf_or_needle_buds: Breaking Leaf or Needle Buds
+    young_leaves_or_needles: Young Leaves or Needles
+    mature_leaves_or_needles: Mature Leaves or Needles
+    senescing_leaves_or_needles: Senescing Leaves or Needles
     life_stage: Life Stage
     adult: Adult
     teneral: Teneral
     subimago: Subimago
     pupa: Pupa
     no_evidence_of_flowering: No Evidence of Flowering
+    no_evidence_of_active_flowering_or_fruiting: No Evidence of Active Flowering or Fruiting
     nymph: Nymph
     larva: Larva
     egg: Egg
@@ -1329,10 +1356,18 @@ en:
     female: Evidence indicates that organism can produce ova for use in sexual reproduction
     flower_budding: Flower buds are visible but not open
     flowering: Flowers visible, open, and still attached to the plant
+    flowering2: Flowers visible, open, and still attached to the plant or recently fallen
     fruiting: Fruit visible and still attached to the plant
+    recently_fallen_or_removed_fruits: Fresh fruits no longer attached to the plant
+    breaking_leaf_or_needle_buds: Until a leaf has fully unfolded
+    young_leaves_or_needles: Still expanding and/or not yet mature color/texture
+    mature_leaves_or_needles: Full size and/or mature color/texture
+    senescing_leaves_or_needles: Color change and/or falling leaves
     gall: Deformed plant tissue outgrowth caused by a parasitic organism
     male: Evidence indicates that organism can produce sperm for use in sexual reproduction
     molt: Discarded skin or exoskeleton
+    no_evidence_of_active_flowering_or_fruiting: Media provides no evidence of fresh reproductive
+      structures, i.e. dried structures from past seasons are not fresh
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
     not_established: Organism belongs to an unestablished population including released/escaped pets, hitch-hikers and vagrants.
     organism: Whole or partial organism
@@ -8551,6 +8586,13 @@ en:
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
           "Plant Phenology=No Evidence of Flowering": No Evidence of Flowering
+          "Flower and Fruit Phenology=Budding": Budding
+          "Flower and Fruit Phenology=Flower Budding": Flower Budding
+          "Flower and Fruit Phenology=Flowering": Flowering
+          "Flower and Fruit Phenology=Fruiting": Fruiting
+          "Flower and Fruit Phenology=No Evidence of Flowering": No Evidence of Flowering
+          "Flower and Fruit Phenology=No Evidence of Active Flowering or Fruiting": No Evidence of Active Flowering or Fruiting
+          "Flower and Fruit Phenology=Recently fallen or removed fruits": Recently fallen or removed fruits
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larva

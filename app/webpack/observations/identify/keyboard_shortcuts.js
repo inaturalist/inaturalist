@@ -79,23 +79,55 @@ const annotationShortcuts = [
   // Plant Phenology
   {
     shortcut: "p u",
-    term: "Plant Phenology",
+    term: "Flower and Fruit Phenology",
     value: "Flower Budding"
   },
   {
     shortcut: "p l",
-    term: "Plant Phenology",
+    term: "Flower and Fruit Phenology",
     value: "Flowering"
   },
   {
     shortcut: "p r",
-    term: "Plant Phenology",
+    term: "Flower and Fruit Phenology",
     value: "Fruiting"
   },
   {
     shortcut: "p n",
-    term: "Plant Phenology",
+    term: "Flower and Fruit Phenology",
     value: "No Evidence of Flowering"
+  },
+  {
+    shortcut: "p a",
+    term: "Flower and Fruit Phenology",
+    value: "Recently fallen or removed fruits"
+  },
+
+  // Leaf Phenology
+  {
+    shortcut: "v n",
+    term: "Leaf Phenology",
+    value: "No evidence of leaves or needles"
+  },
+  {
+    shortcut: "v b",
+    term: "Leaf Phenology",
+    value: "Breaking leaf or needle buds"
+  },
+  {
+    shortcut: "v y",
+    term: "Leaf Phenology",
+    value: "Young leaves or needles"
+  },
+  {
+    shortcut: "v m",
+    term: "Leaf Phenology",
+    value: "Mature leaves or needles"
+  },
+  {
+    shortcut: "v s",
+    term: "Leaf Phenology",
+    value: "Senescing leaves or needles"
   },
 
   // Sex

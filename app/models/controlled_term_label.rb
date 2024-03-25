@@ -6,7 +6,6 @@ class ControlledTermLabel < ApplicationRecord
     class_name: "Taxon"
 
   validates :label, presence: true, on: :create
-  validates :definition, presence: true, on: :create
 
   if CONFIG.usingS3
     has_attached_file :icon,

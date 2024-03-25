@@ -245,6 +245,29 @@ function parseRailsErrorsResponse( text ) {
   return railsErrors;
 }
 
+function controlledTermLabel( termLabel ) {
+  const translationLabel = _.snakeCase( termLabel );
+  const defaults = {
+    defaultValue: translationLabel
+  };
+
+  return I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, defaults );
+}
+
+function controlledTermDefinition( termLabel ) {
+  const translationLabel = _.snakeCase( termLabel );
+  const defaults = {
+    defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, {
+      defaultValue: translationLabel
+    } )
+  };
+  if ( translationLabel === "flowering4" ) {
+    return I18n.t( "controlled_term_definitions.flowering2", defaults );
+  }
+
+  return I18n.t( `controlled_term_definitions.${_.snakeCase( translationLabel )}`, defaults );
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -291,6 +314,8 @@ const COLORS = {
 export {
   addImplicitDisagreementsToActivity,
   COLORS,
+  controlledTermDefinition,
+  controlledTermLabel,
   fetch,
   formattedDateTimeInTimeZone,
   inatreact,

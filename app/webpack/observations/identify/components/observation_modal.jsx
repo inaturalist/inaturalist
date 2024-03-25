@@ -529,78 +529,84 @@ class ObservationModal extends React.Component {
             { hideTools ? null : (
               <div className="tools">
                 <div className="keyboard-shortcuts-container">
-                  <Button
-                    bsStyle="link"
-                    className="btn-keyboard-shortcuts"
-                    onClick={e => {
-                      toggleKeyboardShortcuts( keyboardShortcutsShown );
-                      e.preventDefault( );
-                      return false;
-                    }}
-                  >
-                    <i className="fa fa-keyboard-o" />
-                  </Button>
-                  <Overlay
+                  <OverlayTrigger
                     placement="top"
+                    trigger="click"
                     show={keyboardShortcutsShown}
                     container={$( ".ObservationModal" ).get( 0 )}
-                    target={( ) => $( ".keyboard-shortcuts-container > .btn" ).get( 0 )}
+                    rootClose
+                    overlay={(
+                      <Popover
+                        title={I18n.t( "keyboard_shortcuts" )}
+                        id="keyboard-shortcuts-popover"
+                      >
+                        <table>
+                          { annoShortcuts.length === 0 ? defaultShortcutsBody : (
+                            <tbody>
+                              <tr>
+                                <td className="default-shortcuts">
+                                  <table>
+                                    { defaultShortcutsBody }
+                                  </table>
+                                </td>
+                                <td className="anno-shortcuts">
+                                  <table>
+                                    <tbody>
+                                      {
+                                        annoShortcuts.map( shortcut => {
+                                          if ( shortcut.label && !shortcut.attributeLabel ) {
+                                            return this.defaultKeyboardShortcut( shortcut );
+                                          }
+                                          // If you add more controlled terms, you'll need to
+                                          // add keys like
+                                          // add_plant_phenology_flowering_annotation to
+                                          // inaturalist.rake generate_translations_js
+                                          const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
+                                          return (
+                                            <tr
+                                              className="keyboard-shortcuts"
+                                              key={`keyboard-shortcuts-${labelKey}`}
+                                            >
+                                              <td>
+                                                <kbd>{ shortcut.keys[0] }</kbd>
+                                                { " " }
+                                                { I18n.t( "then_keybord_sequence" ) }
+                                                { " " }
+                                                <kbd>{ shortcut.keys[1] }</kbd>
+                                              </td>
+                                              <td>
+                                                {
+                                                  I18n.t( labelKey, {
+                                                    defaultValue: `Add "${shortcut.attributeLabel}: ${shortcut.valueLabel}" annotation`
+                                                  } )
+                                                }
+                                              </td>
+                                            </tr>
+                                          );
+                                        } )
+                                      }
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          ) }
+                        </table>
+                      </Popover>
+                    )}
                   >
-                    <Popover title={I18n.t( "keyboard_shortcuts" )} id="keyboard-shortcuts-popover">
-                      <table>
-                        { annoShortcuts.length === 0 ? defaultShortcutsBody : (
-                          <tbody>
-                            <tr>
-                              <td className="default-shortcuts">
-                                <table>
-                                  { defaultShortcutsBody }
-                                </table>
-                              </td>
-                              <td className="anno-shortcuts">
-                                <table>
-                                  <tbody>
-                                    {
-                                      annoShortcuts.map( shortcut => {
-                                        if ( shortcut.label && !shortcut.attributeLabel ) {
-                                          return this.defaultKeyboardShortcut( shortcut );
-                                        }
-                                        // If you add more controlled terms, you'll need to
-                                        // add keys like
-                                        // add_plant_phenology_flowering_annotation to
-                                        // inaturalist.rake generate_translations_js
-                                        const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
-                                        return (
-                                          <tr
-                                            className="keyboard-shortcuts"
-                                            key={`keyboard-shortcuts-${labelKey}`}
-                                          >
-                                            <td>
-                                              <kbd>{ shortcut.keys[0] }</kbd>
-                                              { " " }
-                                              { I18n.t( "then_keybord_sequence" ) }
-                                              { " " }
-                                              <kbd>{ shortcut.keys[1] }</kbd>
-                                            </td>
-                                            <td>
-                                              {
-                                                I18n.t( labelKey, {
-                                                  defaultValue: `Add "${shortcut.attributeLabel}: ${shortcut.valueLabel}" annotation`
-                                                } )
-                                              }
-                                            </td>
-                                          </tr>
-                                        );
-                                      } )
-                                    }
-                                  </tbody>
-                                </table>
-                              </td>
-                            </tr>
-                          </tbody>
-                        ) }
-                      </table>
-                    </Popover>
-                  </Overlay>
+                    <Button
+                      bsStyle="link"
+                      className="btn-keyboard-shortcuts"
+                      onClick={e => {
+                        toggleKeyboardShortcuts( keyboardShortcutsShown );
+                        e.preventDefault( );
+                        return false;
+                      }}
+                    >
+                      <i className="fa fa-keyboard-o" />
+                    </Button>
+                  </OverlayTrigger>
                 </div>
                 <div className="action-tools">
                   { blind ? null : <div className="btn btn-checkbox"><FavesContainer /></div> }

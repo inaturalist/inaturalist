@@ -1,6 +1,6 @@
-#encoding: utf-8
-class ControlledTerm < ApplicationRecord
+# frozen_string_literal: true
 
+class ControlledTerm < ApplicationRecord
   include ActsAsElasticModel
   # include ActsAsUUIDable
   before_validation :set_uuid
