@@ -261,7 +261,7 @@ function controlledTermDefinition( termLabel ) {
       defaultValue: translationLabel
     } )
   };
-  if ( translationLabel === "flowering4" ) {
+  if ( translationLabel === "flowering2" ) {
     return I18n.t( "controlled_term_definitions.flowering2", defaults );
   }
 
