@@ -134,6 +134,8 @@ Rails.application.routes.draw do
   resources :observation_accuracy_experiments, only: [:show] do
     member do
       get "get_more_validators"
+      get "get_methods_data"
+      get "get_results_data"
     end
   end
   get "/" => "welcome#index"
