@@ -286,7 +286,7 @@ class Emailer < ActionMailer::Base
     @user = user
 
     # Check if the IP address is private
-    private_ip_ranges = [IPAddr.new( "10.0.0.0/8" ), IPAddr.new( "172.16.0.0/12" ), IPAddr.new( "192.168.0.0/16" )]
+    private_ip_ranges = CONFIG.private_ip_ranges.blank? ? [] : CONFIG.private_ip_ranges
     last_ip = IPAddr.new( @user.last_ip )
     return false if private_ip_ranges.any? {| range | range.include?( last_ip ) }
 
@@ -306,14 +306,14 @@ class Emailer < ActionMailer::Base
 
     # Fetch species data
     current_month = Time.now.month
-    dangerous_taxa = List::DANGEROUS_TAXA ? List::DANGEROUS_TAXA.listed_taxa.map( &:taxon_id ) : nil
+    dangerous_taxa = defined?( List::DANGEROUS_TAXA ) ? List::DANGEROUS_TAXA.id : nil
     species = INatAPIService.observations_species_counts( {
       verifiable: true,
       lat: geoip_latitude,
       lng: geoip_longitude,
       month: current_month,
       radius: 50,
-      without_taxon_id: dangerous_taxa
+      not_in_list_id: dangerous_taxa
     } ).results
 
     # Filter species based on criteria
