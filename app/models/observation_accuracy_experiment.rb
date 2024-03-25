@@ -341,25 +341,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def get_taxon_ids_for_observation_ids( observation_ids )
-    # Build the terms filter for observation ids
-    terms_filter = {
-      terms: {
-        _id: observation_ids
-      }
-    }
-
-    # Perform the Elasticsearch search
-    response = Observation.elastic_search(
-      size: observation_ids.size, # Adjust size based on your data volume
-      filters: terms_filter
-    ).response
-
-    # Extract taxon_ids from the response
-    response.hits.hits.
-      map {| hit | [hit["_source"]["id"], hit["_source"]["place_ids"]] }.to_h
-  end
-
   def get_continent_obs( oids, continents )
     batch_size = 500
     total_elapsed_time = 0
@@ -414,7 +395,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
 
     puts "Loading taxonomy"
-    load "lib/taxonomy_parser.rb"
     taxonomy_parser = TaxonomyParser.new
     root_id = Taxon::LIFE.id
     taxon_descendant_count = {}
