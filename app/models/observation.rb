@@ -2495,11 +2495,14 @@ class Observation < ApplicationRecord
         results_remaining = false
         break
       end
-      Observation.preload_associations(observations, [
-        :taxon, :flags, :quality_metrics, :sounds, :votes_for,
-        { identifications: :taxon },
-        { photos: :flags }
-      ])
+      Observation.preload_associations( observations,
+        [
+          :taxon, :flags, :quality_metrics, :sounds, :votes_for,
+          :stored_preferences,
+          { user: :stored_preferences },
+          { identifications: [:moderator_actions, :taxon] },
+          { photos: [:flags, :moderator_actions] }
+        ] )
       changed_ids = []
       observations.each do |o|
         o.set_community_taxon
