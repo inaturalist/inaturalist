@@ -257,6 +257,7 @@ class Identification < ApplicationRecord
     end
     observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.identifications.reload
+    Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
     observation.skip_identification_indexing = true
@@ -291,6 +292,7 @@ class Identification < ApplicationRecord
     end
     observation.skip_identifications = true
     observation.identifications.reload
+    Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
     observation.set_community_taxon
     attrs[:community_taxon] = observation.community_taxon
     observation.update(attrs)

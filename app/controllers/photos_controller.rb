@@ -8,6 +8,8 @@ class PhotosController < ApplicationController
     unless: lambda { authenticated_with_oauth? }
   before_action :return_here, :only => [:show, :invite, :inviter, :fix]
 
+  prepend_around_action :enable_replica, only: [:show]
+
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
   
   def show

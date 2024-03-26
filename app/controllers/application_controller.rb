@@ -349,14 +349,14 @@ class ApplicationController < ActionController::Base
     return unless current_user&.persisted?
 
     request_ip = Logstasher.ip_from_request_env( request.env )
-    # updating last_ip can trigger callbacks, so attept to update via the model first
-    current_user.update( last_ip: request_ip )
 
-    # the remaining columns should be updated even if there are potential validation
+    # updating last_ip can trigger callbacks, so attept to update via the model first.
+    # The remaining columns should be updated even if there are potential validation
     # errors on the user model that would prevent these atttributes from being
     # saved. Update these directly with update_columns
     update_columns = {}
     if request_ip != current_user.last_ip
+      current_user.update( last_ip: request_ip )
       update_columns[:last_ip] = request_ip
     end
     if current_user.subscriptions_suspended_at?

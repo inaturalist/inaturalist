@@ -16,6 +16,8 @@ class GuidesController < ApplicationController
     :edit, :update, :import_taxa, :reorder, :add_color_tags,
     :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv]
 
+  prepend_around_action :enable_replica, only: [:index, :show]
+
   layout "bootstrap"
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}

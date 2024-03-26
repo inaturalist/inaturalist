@@ -16,7 +16,8 @@ class Taxon < ApplicationRecord
       :user,
       :flags,
       :file_extension,
-      :file_prefix
+      :file_prefix,
+      :moderator_actions
     ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do

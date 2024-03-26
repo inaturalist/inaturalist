@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  prepend_around_action :enable_replica, only: [:dashboard_updates, :show]
+  prepend_around_action :enable_replica, only: [:dashboard_updates, :show, :followers]
 
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
@@ -456,7 +456,11 @@ class UsersController < ApplicationController
     taxa = UpdateAction.components_of_class(Taxon, @updates)
     with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
     with_user = UpdateAction.components_with_assoc(:user, @updates)
-    Observation.preload_associations(obs, [:comments, :identifications, :photos])
+    Observation.preload_associations( obs, [
+      :comments,
+      { identifications: :moderator_actions },
+      { photos: [:flags, :moderator_actions] }
+    ] )
     with_taxa += obs.map(&:identifications).flatten
     with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
     Taxon.preload_associations(with_taxa, :taxon)

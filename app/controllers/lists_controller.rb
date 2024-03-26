@@ -15,6 +15,7 @@ class ListsController < ApplicationController
   before_action :load_user_by_login, :only => :by_login
   before_action :admin_required, :only => [:add_from_observations_now, :refresh_now]
   before_action :set_iconic_taxa, :only => [:show]
+  prepend_around_action :enable_replica, only: [:by_login]
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
 

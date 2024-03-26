@@ -1805,7 +1805,7 @@ class Observation < ApplicationRecord
     # work on current identifications
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
-      identifications.current.includes(:taxon)
+      identifications.current.includes( :taxon, :moderator_actions )
     working_idents = ids.select do |i|
       i.taxon.is_active && !i.hidden?
     end.sort_by( &:id )
@@ -2129,7 +2129,7 @@ class Observation < ApplicationRecord
     taxon_ids = if identifications.loaded?
       identifications.select( &:current? ).reject( &:hidden? ).map( &:taxon_id )
     else
-      identifications.current.reject( &:hidden? ).pluck( :taxon_id )
+      identifications.current.includes( :moderator_actions ).reject( &:hidden? ).pluck( :taxon_id )
     end
     self.taxon_geoprivacy = Taxon.max_geoprivacy(
       taxon_ids,

@@ -11,6 +11,8 @@ class StatsController < ApplicationController
     unless: -> { authenticated_with_oauth? }
   before_action :allow_external_iframes, only: [:wed_bioblitz]
 
+  prepend_around_action :enable_replica, only: [:index, :summary]
+
   caches_action :summary, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes

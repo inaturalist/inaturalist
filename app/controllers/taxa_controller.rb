@@ -48,7 +48,9 @@ class TaxaController < ApplicationController
     :tag_flickr_photos_from_observations]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
-  prepend_around_action :enable_replica, only: [:describe, :links, :show]
+  prepend_around_action :enable_replica, only: [
+    :describe, :links, :show, :search, :browse_photos, :schemes, :taxonomy_details
+  ]
 
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
@@ -414,6 +416,10 @@ class TaxaController < ApplicationController
 
     if params[:taxon_id]
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
+      if @taxon
+        @ancestors = @taxon.ancestors
+        Taxon.preload_associations( @ancestors, { taxon_names: :place_taxon_names } )
+      end
     end
     
     if params[:is_active] == "true" || params[:is_active].blank?

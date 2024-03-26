@@ -126,7 +126,7 @@ class String
   # rubocop:enable Naming/PredicateName
 
   def mentioned_users
-    logins = scan( /(\B)@([\\\w][\\\w\-_]*)/ ).flatten
+    logins = scan( /(\B)@([\\\w][\\\w\-_]*)/ ).flatten.filter {| l | !l.blank? }
     return [] if logins.blank?
 
     User.where( login: logins ).limit( 500 )
