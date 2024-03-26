@@ -308,7 +308,7 @@ class Emailer < ActionMailer::Base
 
     # Fetch species data
     current_month = Time.now.month
-    dangerous_taxa = CONFIG.dangeous_taxa_list_id.blank? ? nil : CONFIG.dangeous_taxa_list_id
+    dangerous_taxa = CONFIG.dangerous_taxa_list_id.blank? ? nil : CONFIG.dangerous_taxa_list_id
     species = INatAPIService.observations_species_counts( {
       verifiable: true,
       lat: geoip_latitude,
