@@ -288,7 +288,9 @@ class Emailer < ActionMailer::Base
     # Check if the IP address is private
     private_ip_ranges = CONFIG.private_ip_ranges.blank? ? [] : CONFIG.private_ip_ranges
     last_ip = IPAddr.new( @user.last_ip )
-    return false if private_ip_ranges.any? {| range | range.include?( last_ip ) }
+    return false if private_ip_ranges.
+      map {| ip | IPAddr.new( ip ) }.
+      any? {| range | range.include?( last_ip ) }
 
     # Use provided latitude, longitude, and city if available; otherwise, perform GeoIP lookup
     if options[:latitude] && options[:longitude] && options[:city]
@@ -306,7 +308,7 @@ class Emailer < ActionMailer::Base
 
     # Fetch species data
     current_month = Time.now.month
-    dangerous_taxa = defined?( List::DANGEROUS_TAXA ) ? List::DANGEROUS_TAXA.id : nil
+    dangerous_taxa = CONFIG.dangeous_taxa_list_id.blank? ? nil : CONFIG.dangeous_taxa_list_id
     species = INatAPIService.observations_species_counts( {
       verifiable: true,
       lat: geoip_latitude,
