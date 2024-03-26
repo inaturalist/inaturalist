@@ -7,6 +7,7 @@ import {
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
 import { termsForTaxon } from "../ducks/controlled_terms";
+import { controlledTermDefinition, controlledTermLabel } from "../../../shared/util";
 
 class Annotations extends React.Component {
   constructor( props ) {
@@ -138,11 +139,11 @@ class Annotations extends React.Component {
     );
     const attr = a.controlled_attribute;
     const value = a.controlled_value;
-    const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}` );
-    const attrLabel = I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}` );
-    const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}` );
-    const termDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( term.label )}` );
-    const valueDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( value.label )}` );
+    const termLabel = controlledTermLabel( term.label );
+    const attrLabel = controlledTermLabel( attr.label );
+    const valueLabel = controlledTermLabel( value.label );
+    const termDefinition = controlledTermDefinition( term.label );
+    const valueDefinition = controlledTermDefinition( value.label );
     const termPopover = (
       <Popover
         id={`annotation-popover-${a.uuid}`}
@@ -181,14 +182,15 @@ class Annotations extends React.Component {
             animation={false}
             overlay={termPopover}
           >
-            <div>{ termLabel }</div>
+            <div title={termDefinition}>{ termLabel }</div>
           </OverlayTrigger>
         </td>
         <td className="value">
           <UserImage user={a.user} />
-          <span title={valueDefinition}>
+          <span className="value-label" title={valueDefinition}>
             { valueLabel }
           </span>
+          &nbsp;
           { action }
         </td>
         <td className="agree">
@@ -288,20 +290,20 @@ class Annotations extends React.Component {
       if ( observation.taxon ) {
         availableValues = termsForTaxon( availableValues, observation ? observation.taxon : null );
       }
-      const ctLabel = I18n.t( `controlled_term_labels.${_.snakeCase( ct.label )}`, {
-        defaultValue: ct.label
-      } );
+      const termLabel = controlledTermLabel( ct.label );
+      const termDefinition = controlledTermDefinition( ct.label );
       const termPopover = (
         <Popover
           id={`annotation-popover-${ct.id}`}
           className="AnnotationPopover"
         >
           <div className="contents">
+            { termDefinition && !termDefinition.match( /\[missing/ ) && <p>{ termDefinition }</p> }
             <div className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }</div>
             <div className="search">
               <a href={`/observations?term_id=${ct.id}`}>
                 <i className="fa fa-arrow-circle-o-right" />
-                { I18n.t( "observations_annotated_with_annotation", { annotation: ctLabel } ) }
+                { I18n.t( "observations_annotated_with_annotation", { annotation: termLabel } ) }
               </a>
             </div>
           </div>
@@ -324,7 +326,7 @@ class Annotations extends React.Component {
                 animation={false}
                 overlay={termPopover}
               >
-                <div>{ ctLabel }</div>
+                <div title={termDefinition}>{ termLabel }</div>
               </OverlayTrigger>
             </td>
             <td>
@@ -345,19 +347,9 @@ class Annotations extends React.Component {
                       <MenuItem
                         key={`term-${v.id}`}
                         eventKey={index}
-                        title={
-                          I18n.t( `controlled_term_definitions.${_.snakeCase( v.label )}`, {
-                            defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
-                              defaultValue: v.label
-                            } )
-                          } )
-                        }
+                        title={controlledTermDefinition( v.label )}
                       >
-                        {
-                          I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
-                            defaultValue: v.label
-                          } )
-                        }
+                        {controlledTermLabel( v.label )}
                       </MenuItem>
                     ) )
                   }
