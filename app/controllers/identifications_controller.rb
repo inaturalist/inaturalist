@@ -203,7 +203,7 @@ class IdentificationsController < ApplicationController
             @identification.html = view_context.render_in_format(
               :html, partial: "identifications/identification"
             )
-            respons_methods << :html
+            response_methods << :html
           end
           render json: @identification.to_json(
             methods: response_methods,
