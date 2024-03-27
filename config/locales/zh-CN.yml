@@ -219,6 +219,7 @@ zh-CN:
   active_taxon_status: 有效
   active_users: 活跃用户
   activity: 动态
+  activity_on_a_flag_for_x: 对%{x}的标记动态
   adapted_by_name_from_a_work_by_original: "改编自由 %{original} 创作的作品 %{name}"
   add: 添加
   add_a_batch_of_observations: 新增一批观察记录
@@ -319,6 +320,11 @@ zh-CN:
   add_evidence_of_presence_track_annotation: '添加“出现记录的证据：足迹”的注释'
   add_evidence_of_presence_bone_annotation: '添加“出现记录的证据：骨骼”的注释'
   add_evidence_of_presence_molt_annotation: '添加“出现记录的证据：蜕皮”的注释'
+  add_evidence_of_presence_leafmine_annotation: '添加“出现记录的证据：潜道”的注释'
+  add_evidence_of_presence_hair_annotation: '添加“出现记录的证据：毛发”的注释'
+  add_evidence_of_presence_egg_annotation: '添加“出现记录的证据：卵”的注释'
+  add_evidence_of_presence_construction_annotation: '添加“出现记录的证据：构造物”的注释'
+  add_established_not_established: '增加“建立：未建立”注释'
   #As in a Taxon Framework Relationship
   add_relationship: '添加关系'
   #As in a Guide Section
@@ -1006,8 +1012,14 @@ zh-CN:
   conservation_status_descriptions:
     status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒临灭绝或极度濒危。
     description: 简单描述为什么列出这个。
+    authority: |
+      宣称了这一状态的组织。在添加新机构前，请使用自动填写来选择既有的机构。您如果想把*自己*列为机构的话可以跳过这个部分。
     place: 此状态受限制的地点。
     url: 描述此状态的页面的URL。
+    geoprivacy: |
+      该分类单元观测的默认地理隐私。 请注意，与大陆、国家或州相关的地理隐私状态的优先级高于全球的或较高级别的地方隐私状态。
+    iucn: |
+      等效的 IUCN 红色名录代码。 这不是实际的 IUCN 评估，只是最符合该状态所暗示的坐标泄露威胁的 IUCN 代码。 如果地理隐私为“最不关心”或更低，其优先级将覆盖地理隐私；因此如果您想模糊对该分类单元的观察，请将其设置为“近危”或更高。
   conservation_status_geoprivacy_desc: |
     默认的地理敏感信息应用到该地址的所有观察到的分类上
   contact_support: 联系客服支持
@@ -1079,6 +1091,16 @@ zh-CN:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: 蜕皮
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: 潜道
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: 毛发
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: 构造物
+    #Does the observation belong to a non-established population or not
+    established: 已建立
+    #Organism is not a member of an established population
+    not_established: 未建立
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
     bone: |
@@ -1093,6 +1115,10 @@ zh-CN:
     gall: 植物因受病原刺激或虫害而出现的局部增生
     male: 证据表明该生物能够产生用于有性生殖的精子
     molt: 蜕下的皮或外骨骼
+    leafmine: 在叶片真皮层之间进食的证据
+    hair: 不再连接在其所属的生物体身上的毛发
+    egg: 整个卵或卵的一部分
+    construction: 由动物在其他材料上所创造、制造或挖掘出的东西
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
     organism: 整个或部分生物体
     scat: 排泄物（非鸮类食丸或其它呕吐物）
@@ -5781,6 +5807,10 @@ zh-CN:
         thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
       temporarily_unavailable: |
         感谢您有兴趣支持iNaturalist！因我站正在更新捐助系统，捐助iNaturalist当前不可用。请过一阵再来。
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          只有在信息并非骚扰信息或版权侵犯的情况下，才能解除<code>骚扰</code>和<code>版权侵犯</code>标记。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6262,6 +6292,10 @@ zh-CN:
         taxon_spelling_notice_html: |
           请检查每条记录的拼写。如果您的拼写正确，则在 %{search_taxa_url} 寻找物种。如果名称尚未存在于 %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。如果名称已提供，但被应用到多个有效的分类群的话，尝试使用或多或少只匹配单一分类单元的专用名。
       collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          因为你信任这一项目并对其开放了<a
+          href="%{obs_url}">您的部分观察结果的</a>隐藏坐标，超管现在可以接触到信任之前更多的您所设置的隐藏坐标了。您应当复查超管列表和项目需求，以确保你仍然能信任这一项目并对其开放您的观察：
         #Followed by the project icon and a link to the project
         requirements_have_changed: |-
           此项目对观察的要求近期发生改变：
