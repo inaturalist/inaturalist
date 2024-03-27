@@ -329,6 +329,8 @@ class StatsController < ApplicationController
 
   def user_segments
     segmentation_record = SegmentationStatistic.order( "created_at asc" ).last
+    redirect_to "/" and return unless segmentation_record
+
     @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
     seg = segmentation_record.data
     @segmentation_statistic = { name: "all", children: [] }

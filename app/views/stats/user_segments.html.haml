@@ -1,0 +1,151 @@
+- content_for(:title) do
+  = @title = "Segmentation Statistic"
+- content_for(:extracss) do
+  :css
+    body { font-family: Arial,sans-serif; }
+    .tooltip {
+        position: absolute;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        pointer-events: none;
+        opacity: 0;
+    }
+%script{ src: "https://d3js.org/d3.v4.js" }
+- content_for(:extrajs) do
+  :javascript
+    var STATS_JSON = #{ @segmentation_statistic.to_json.html_safe };
+    $( document ).ready( function() {
+      var data = STATS_JSON;
+      var width = 1000;
+          height = 700;
+      var svg = d3.select( "#user_dataviz" ).append( "svg" )
+        .attr( "viewBox", "0 0 " + width + " " + height )
+        .attr( "preserveAspectRatio", "xMinYMin meet" );
+
+      var root = d3.hierarchy( data ).sum( function( d ){ return d.value } )
+      var sumOfLeaves = root.value;
+      d3.treemap()
+        .size( [width, height] )
+        .paddingTop( 28 )
+        .paddingRight( 7 )
+        .paddingInner( 3 )
+        ( root )
+
+      var color = d3.scaleOrdinal()
+        .domain( ["web", "ios", "android", "seek", "other", "ider"] )
+        .range( ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"] );
+
+      var opacity = d3.scaleLinear()
+        .domain( [10, 30] )
+        .range( [.5, 1] )
+
+      svg
+        .selectAll( "rect" )
+        .data( root.leaves() )
+        .enter()
+        .append( "rect" )
+        .attr( "x", function ( d ) { return d.x0; } )
+        .attr( "y", function ( d ) { return d.y0; } )
+        .attr( "width", function ( d ) { return d.x1 - d.x0; } )
+        .attr( "height", function ( d ) { return d.y1 - d.y0; } )
+        .style( "stroke", "black" )
+        .style( "fill", function( d ){ return color( d.data.name );} )
+        .style("opacity", function( d ){ return opacity( d.data.value ) } )
+        .on( "mouseover", function( d ) {
+          tooltip.style( "opacity", 1 );
+          tooltip.style( "left", ( d3.event.pageX + 10 ) + "px" );
+          tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
+          tooltip.html(
+            "Name: " + d.data.name + "<br/>" + 
+            "Value: " + d.data.value.toLocaleString() + "<br/>" +
+            "Percent: " + ( d.data.value / sumOfLeaves * 100 ).toFixed( 2 ) + "%"
+          );
+        } )
+        .on( "mouseout", function() {
+          tooltip.style( "opacity", 0 );
+        } );
+      
+      var tooltip = d3.select( "body" )
+        .append( "div" )
+        .attr( "class", "tooltip" )
+        .style( "opacity", 0 );
+  
+      svg
+        .selectAll( "text" )
+        .data( root.leaves().filter( function(d) { 
+          return d.data.value > 10000 & d.parent.parent.data.name == "existing";
+        } ) )
+        .enter()
+        .append( "text" )
+        .attr( "x", function( d ){ return d.x0 + 5} )
+        .attr( "y", function( d ){ return d.y0 + 20} )
+        .text( function( d ){ return d.data.name } )
+        .attr( "font-size", "12px" )
+        .attr( "fill", "white" )
+
+      svg
+        .selectAll( "vals" )
+        .data( root.leaves().filter(function( d ) { 
+          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
+        } ) )
+        .enter()
+        .append( "text")
+        .attr( "x", function(d){ return d.x0 + 5} )
+        .attr( "y", function(d){ return d.y0 + 35} )
+        .text( function(d){ return d.data.value.toLocaleString() } )
+        .attr( "font-size", "11px" )
+        .attr( "fill", "white" )
+
+      svg
+        .selectAll( "vals" )
+        .data( root.leaves().filter( function( d ) { 
+          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
+        } ) )
+        .enter()
+        .append( "text" )
+          .attr( "x", function(d){ return d.x0+5} )
+          .attr( "y", function(d){ return d.y0+50} )
+          .text( function(d){ return ( d.data.value / sumOfLeaves * 100 ).toFixed( 2 ) + "%"; } )
+          .attr( "font-size", "11px" )
+          .attr( "fill", "white" )
+          
+      svg
+        .selectAll( "titles")
+        .data( root.descendants().filter( function( d ) {return d.depth==1} ) )
+        .enter()
+        .append( "text" )
+          .attr( "x", function( d ){ return d.x0} )
+          .attr( "y", function( d ){ return d.y0+21} )
+          .text( function( d ){ 
+            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
+            return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
+          } )
+          .attr( "font-size", "15px" )
+          .attr( "fill",  "black" )
+      
+      svg
+        .selectAll( "titles" )
+        .data( root.descendants().filter( function( d ){return d.depth == 2;} ) )
+        .enter()
+        .append( "text" )
+          .attr( "x", function( d ){ return d.x0} )
+          .attr( "y", function( d ){ return d.y0+21} )
+          .text( function( d ){ 
+            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
+            if ( d.value > 10000 ) {
+              return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
+            } else {
+              return d.data.name + ": " + d.value.toLocaleString()
+            }
+          } )
+          .attr( "font-size", "14px" )
+          .attr( "fill",  "black" )
+      } );
+.container-fluid
+  .row
+    .col-xs-12
+      %h1 Logged in User Segments
+      = "30 days period ending on #{@record_date}"
+      #user_dataviz
