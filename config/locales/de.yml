@@ -355,6 +355,10 @@ de:
   add_evidence_of_presence_track_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Spur"'
   add_evidence_of_presence_bone_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Knochen"'
   add_evidence_of_presence_molt_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Häutung"'
+  add_evidence_of_presence_leafmine_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Blattmine"'
+  add_evidence_of_presence_hair_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Haar"'
+  add_evidence_of_presence_egg_annotation: 'Angabe ''Anwesenheitsnachweis: Ei'' hinzufügen'
+  add_evidence_of_presence_construction_annotation: 'Angabe ''Anwesenheitsnachweis: Konstruktion'' hinzufügen'
   add_established_not_established: 'Angabe hinzufügen "Etablierung: nicht etabliert"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
@@ -1106,6 +1110,12 @@ de:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Häutung
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Blattmine
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Haar
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktion
     #Does the observation belong to a non-established population or not
     established: etabliert
     #Organism is not a member of an established population
@@ -1124,6 +1134,10 @@ de:
     gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
     male: Die Belege deuten darauf hin, dass der Organismus Spermien für die sexuelle Fortpflanzung produzieren kann
     molt: Abgeworfene Haut oder Exoskelett
+    leafmine: Fraßspuren innerhalb des Blattgewebes
+    hair: Haare, die nicht mehr mit dem Organismus verbunden sind
+    egg: Ganzes Ei oder ein Teil eines Eis
+    construction: Eine von einem Tier verursachte Konstruktion, die mit oder aus Materialien hergestellt wurde
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
     not_established: Organismus ist aus einer nicht-etablierten Population, einschließlich blinden Passagieren, Irrgästen oder freilaufenden/entflohenen Haustieren
     organism: Kompletter oder unvollständiger Organismus
