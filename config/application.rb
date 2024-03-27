@@ -197,6 +197,7 @@ require "elasticsearch/rails/instrumentation"
 require "inat_api_service"
 require "google_recaptcha"
 require "custom_log_formatter"
+require "taxonomy_parser"
 
 # elasticsearch-model won't load its WillPaginate support unless WillPaginate is
 # loaded before it is. You can do this by specifying will_paginate before

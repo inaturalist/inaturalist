@@ -199,6 +199,26 @@ const annotationShortcuts = [
     shortcut: "e g",
     term: "Evidence of Presence",
     value: "Gall"
+  },
+  {
+    shortcut: "e e",
+    term: "Evidence of Presence",
+    value: "Egg"
+  },
+  {
+    shortcut: "e h",
+    term: "Evidence of Presence",
+    value: "Hair"
+  },
+  {
+    shortcut: "e l",
+    term: "Evidence of Presence",
+    value: "Leafmine"
+  },
+  {
+    shortcut: "e c",
+    term: "Evidence of Presence",
+    value: "Construction"
   }
 ];
 

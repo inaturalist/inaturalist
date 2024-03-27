@@ -31,8 +31,7 @@ services:
       - "es:CHANGE_ME"
     volumes:
       - rails_attachments_data:/code/public/attachments
-    command: >
-      /bin/sh -c "/code/init_docker_rails_app.sh" 
+    command: ["/bin/sh", "-c", "/code/init_docker_rails_app.sh && rails s -b 0.0.0.0"]
 
   api:
     container_name: api

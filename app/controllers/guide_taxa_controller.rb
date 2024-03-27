@@ -8,6 +8,8 @@ class GuideTaxaController < ApplicationController
   end
   layout "bootstrap"
 
+  prepend_around_action :enable_replica, only: [:index, :show]
+
   # GET /guide_taxa
   # GET /guide_taxa.json
   def index

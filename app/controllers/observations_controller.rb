@@ -74,7 +74,7 @@ class ObservationsController < ApplicationController
   before_action :photo_identities_required, :only => [:import_photos]
   before_action :load_prefs, :only => [:index, :project, :by_login]
 
-  prepend_around_action :enable_replica, only: [:by_login, :show, :taxon_summary]
+  prepend_around_action :enable_replica, only: [:index, :by_login, :show, :taxon_summary]
 
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"

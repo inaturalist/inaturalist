@@ -36,6 +36,8 @@ class PlacesController < ApplicationController
   before_action :curator_required, only: [:planner, :merge]
   before_action :check_quota, only: [:create]
 
+  prepend_around_action :enable_replica, only: [:show, :guide, :cached_guide]
+
   QUOTA = 3
 
   # Place names that cause some problem when we show associated Wikipedia

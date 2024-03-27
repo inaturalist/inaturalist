@@ -194,28 +194,24 @@ class Annotation < ApplicationRecord
   end
 
   def self.reassess_annotations_for_taxon_id( taxon )
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    Annotation.
-        joins(
-          controlled_attribute: {
-            controlled_term_taxa: :taxon
-          }
-        ).
-        where( taxon.subtree_conditions ).
-        includes(
-          { resource: :taxon },
-          controlled_value: [
-            :excepted_taxa,
-            :taxa,
-            :controlled_term_taxa
-          ],
-          controlled_attribute: [
-            :excepted_taxa,
-            :taxa,
-            :controlled_term_taxa
-          ]
-        ).
-        find_each do |a|
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    Annotation.joins(
+      controlled_attribute: {
+        controlled_term_taxa: :taxon
+      }
+    ).where( taxon.subtree_conditions ).includes(
+      { resource: :taxon },
+      controlled_value: [
+        :excepted_taxa,
+        :taxa,
+        :controlled_term_taxa
+      ],
+      controlled_attribute: [
+        :excepted_taxa,
+        :taxa,
+        :controlled_term_taxa
+      ]
+    ).find_each do | a |
       # run the validation methods which might be affected by taxon changes
       a.attribute_belongs_to_taxon
       a.value_belongs_to_taxon
@@ -225,7 +221,11 @@ class Annotation < ApplicationRecord
   end
 
   def self.reassess_annotations_for_attribute_id( attribute_id )
-    Annotation.where( controlled_attribute_id: attribute_id ).find_each do |a|
+    Annotation.where( controlled_attribute_id: attribute_id ).includes(
+      { resource: :taxon },
+      :controlled_value,
+      :controlled_attribute
+    ).find_each do | a |
       a.destroy unless a.valid?
     end
   end

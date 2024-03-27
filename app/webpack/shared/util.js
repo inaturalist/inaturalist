@@ -248,7 +248,7 @@ function parseRailsErrorsResponse( text ) {
 function controlledTermLabel( termLabel ) {
   const translationLabel = _.snakeCase( termLabel );
   const defaults = {
-    defaultValue: translationLabel
+    defaultValue: termLabel
   };
 
   return I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, defaults );
@@ -258,7 +258,7 @@ function controlledTermDefinition( termLabel ) {
   const translationLabel = _.snakeCase( termLabel );
   const defaults = {
     defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, {
-      defaultValue: translationLabel
+      defaultValue: termLabel
     } )
   };
   if ( translationLabel === "flowering" ) {

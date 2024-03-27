@@ -471,6 +471,10 @@ en:
   add_evidence_of_presence_track_annotation: 'Add "Evidence of Presence: track" annotation'
   add_evidence_of_presence_bone_annotation: 'Add "Evidence of Presence: bone" annotation'
   add_evidence_of_presence_molt_annotation: 'Add "Evidence of Presence: molt" annotation'
+  add_evidence_of_presence_leafmine_annotation: 'Add "Evidence of Presence: leafmine" annotation'
+  add_evidence_of_presence_hair_annotation: 'Add "Evidence of Presence: hair" annotation'
+  add_evidence_of_presence_egg_annotation: 'Add "Evidence of Presence: egg" annotation'
+  add_evidence_of_presence_construction_annotation: 'Add "Evidence of Presence: construction" annotation'
   add_established_not_established: 'Add "Established: not established" annotation'
   # As in a Taxon Framework Relationship
   add_relationship: 'Add relationship'
@@ -1341,6 +1345,14 @@ en:
     # Skin or exoskeleton shed by a reptile or arthropod, not a particular
     # plumage in a bird or seasonal hair/fur in a mammal
     molt: Molt
+    # Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Leafmine
+    # Evidence of hair no longer attached to the organism from which it originated
+    hair: Hair
+    # Evidence of an egg of an organism
+    egg: Egg
+    # Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construction
     # Does the observation belong to a non-established population or not
     established: Established
     # Organism is not a member of an established population
@@ -1366,9 +1378,13 @@ en:
     gall: Deformed plant tissue outgrowth caused by a parasitic organism
     male: Evidence indicates that organism can produce sperm for use in sexual reproduction
     molt: Discarded skin or exoskeleton
+    leafmine: Evidence of feeding between the dermal layers of a leaf
+    hair: Hair that is no longer attached to the organism from which it originated
+    egg: Whole egg or part of an egg
+    construction: Something created by an animal, made with or excavated from other materials
+    no_evidence_of_flowering: Media provides no evidence of reproductive structures
     no_evidence_of_active_flowering_or_fruiting: Media provides no evidence of fresh reproductive
       structures, i.e. dried structures from past seasons are not fresh
-    no_evidence_of_flowering: Media provides no evidence of reproductive structures
     not_established: Organism belongs to an unestablished population including released/escaped pets, hitch-hikers and vagrants.
     organism: Whole or partial organism
     scat: Fecal matter (not owl pellets or other regurgitated matter)

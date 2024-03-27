@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   before_action :set_homepage_wiki, only: :index
 
+  prepend_around_action :enable_replica, only: [:index]
+
   def index
     respond_to do |format|
       format.html do
