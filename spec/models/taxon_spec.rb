@@ -108,6 +108,11 @@ describe Taxon, "creation" do
     expect( taxon.name ).to eq "× Chitalpa"
   end
 
+  it "should capitalize hybrid names for species rank" do
+    taxon = Taxon.make!( name: "× chitalpa", rank: Taxon::SPECIES )
+    expect( taxon.name ).to eq "× Chitalpa"
+  end
+
   it "should capitalize Foo x Bar style genushybrids correctly" do
     taxon = Taxon.make!( name: "foo × bar", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "Foo × Bar"
