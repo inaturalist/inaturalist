@@ -7,8 +7,9 @@ class StatsController < ApplicationController
     only: [:generate_year],
     if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
-    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
+    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments],
     unless: -> { authenticated_with_oauth? }
+  before_action :admin_required, only: [:user_segments]
   before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   prepend_around_action :enable_replica, only: [:index, :summary]
@@ -324,6 +325,42 @@ class StatsController < ApplicationController
 
   def wed_bioblitz
     render layout: "basic"
+  end
+
+  def user_segments
+    segmentation_record = SegmentationStatistic.order( "created_at asc" ).last
+    @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
+    seg = segmentation_record.data
+    @segmentation_statistic = { name: "all", children: [] }
+    @segmentation_statistic[:children] = seg.except( "all" ).map do | key, value |
+      children = value.except( "total" ).map do | subkey, subvalue |
+        next if subkey.include? "_ids"
+
+        {
+          name: subkey.gsub( "_obs", "" ),
+          children: subvalue.except( "total" ).map do | subsubkey, subsubvalue |
+            {
+              name: subsubkey,
+              value: subsubvalue
+            }
+          end
+        }
+      end.compact
+      children.select {| c | c[:name] == "power" }.
+        first[:children] << { name: "ider", value: value["power_ids"]["total"] }
+      children.select {| c | c[:name] == "casual" }.
+        first[:children] << { name: "ider", value: value["casual_ids"]["total"] }
+      {
+        name: key,
+        children: children
+      }
+    end
+
+    respond_to do | format |
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
   end
 
   private
