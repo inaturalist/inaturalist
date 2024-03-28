@@ -108,27 +108,27 @@ class SegmentationStatistic < ApplicationRecord
       aggregate: agg
     ).response.aggregations.user_id.buckets
 
-    obs_data.each do | u |
-      user = users_data[u["key"]]
-      user ||= default_user( u["key"] )
+    obs_data.each do | user_counts_bucket |
+      user = users_data[user_counts_bucket["key"]]
+      user ||= default_user( user_counts_bucket["key"] )
       user[:active] = true
-      user[:obs] += u["doc_count"]
-      user[:web_obs] += u["doc_count"]
-      u["app_id"]["buckets"].each do | a |
-        app_obs_count = a["doc_count"]
+      user[:obs] += user_counts_bucket["doc_count"]
+      user[:web_obs] += user_counts_bucket["doc_count"]
+      user_counts_bucket["app_id"]["buckets"].each do | user_app_bucket |
+        app_obs_count = user_app_bucket["doc_count"]
         user[:web_obs] -= app_obs_count
-        case a["key"]
-        when 3
+        case user_app_bucket["key"]
+        when OauthApplication.inaturalist_iphone_app&.id
           user[:ios_obs] += app_obs_count
-        when 2
+        when OauthApplication.inaturalist_android_app&.id
           user[:android_obs] += app_obs_count
-        when 333
+        when OauthApplication.seek_app&.id
           user[:seek_obs] += app_obs_count
         else
           user[:other_obs] += app_obs_count
         end
       end
-      users_data[u["key"]] = user
+      users_data[user_counts_bucket["key"]] = user
     end
   end
 
@@ -178,12 +178,12 @@ class SegmentationStatistic < ApplicationRecord
       aggregate: agg
     ).response.aggregations.user_id.buckets
 
-    ids_data.each do | u |
-      user = users_data[u["key"]]
-      user ||= default_user( u["key"] )
+    ids_data.each do | user_counts_bucket |
+      user = users_data[user_counts_bucket["key"]]
+      user ||= default_user( user_counts_bucket["key"] )
       user[:active] = true
-      user[:ids] += u["doc_count"]
-      users_data[u["key"]] = user
+      user[:ids] += user_counts_bucket["doc_count"]
+      users_data[user_counts_bucket["key"]] = user
     end
   end
 
@@ -254,26 +254,26 @@ class SegmentationStatistic < ApplicationRecord
         retry
       end
 
-      kibana_data["aggregations"]["user_id"]["buckets"].each do | u |
-        user = users_data[u["key"]]
-        user ||= default_user( u["key"] )
-        user[:q] += u["doc_count"]
-        user[:web_q] += u["doc_count"]
-        u["app_id"]["buckets"].each do | a |
-          app_q_count = a["doc_count"]
+      kibana_data["aggregations"]["user_id"]["buckets"].each do | user_counts_bucket |
+        user = users_data[user_counts_bucket["key"]]
+        user ||= default_user( user_counts_bucket["key"] )
+        user[:q] += user_counts_bucket["doc_count"]
+        user[:web_q] += user_counts_bucket["doc_count"]
+        user_counts_bucket["app_id"]["buckets"].each do | user_app_bucket |
+          app_q_count = user_app_bucket["doc_count"]
           user[:web_q] -= app_q_count
-          case a["key"]
-          when 3
+          case user_app_bucket["key"]
+          when OauthApplication.inaturalist_iphone_app&.id
             user[:ios_q] += app_q_count
-          when 2
+          when OauthApplication.inaturalist_android_app&.id
             user[:android_q] += app_q_count
-          when 333
+          when OauthApplication.seek_app&.id
             user[:seek_q] += app_q_count
           else
             user[:other_q] += app_q_count
           end
         end
-        users_data[u["key"]] = user
+        users_data[user_counts_bucket["key"]] = user
       end
 
       start_time = end_time
@@ -453,62 +453,6 @@ class SegmentationStatistic < ApplicationRecord
     dau_mau_kibana_data
   end
 
-  module CreatedAtBuckets
-    NEW_ACCOUNT = "New account"
-    EXISTING_ACCOUNT = "Existing account"
-    CREATED_AT_0D_30D = "Before 30 days"
-    CREATED_AT_30D_3M = "From 30 days to 3 months"
-    CREATED_AT_3M_6M = "From 3 months to 6 months"
-    CREATED_AT_6M_1Y = "From 6 months to 1 year"
-    CREATED_AT_1Y_2Y = "From 1 year to 2 years"
-    CREATED_AT_2Y_3Y = "From 2 years to 3 years"
-    CREATED_AT_3Y_4Y = "From 3 years to 4 years"
-    CREATED_AT_4Y_5Y = "From 4 years to 5 years"
-    CREATED_AT_5Y_10Y = "From 5 years to 10 years"
-    CREATED_AT_OVER_10Y = "After 10 years"
-  end
-
-  def self.extract_user_data_by_created_at_bucket( created_at_bucket, user_data )
-    case created_at_bucket
-    when CreatedAtBuckets::NEW_ACCOUNT, CreatedAtBuckets::CREATED_AT_0D_30D
-      user_data.select {| _, user | user[:created_at] >= 0 && user[:created_at] <= 30 }
-    when CreatedAtBuckets::EXISTING_ACCOUNT
-      user_data.select {| _, user | user[:created_at] > 30 }
-    when CreatedAtBuckets::CREATED_AT_30D_3M
-      user_data.select {| _, user | user[:created_at] > 30 && user[:created_at] <= 90 }
-    when CreatedAtBuckets::CREATED_AT_3M_6M
-      user_data.select {| _, user | user[:created_at] > 90 && user[:created_at] <= 180 }
-    when CreatedAtBuckets::CREATED_AT_6M_1Y
-      user_data.select {| _, user | user[:created_at] > 180 && user[:created_at] <= 365 }
-    when CreatedAtBuckets::CREATED_AT_1Y_2Y
-      user_data.select {| _, user | user[:created_at] > 365 && user[:created_at] <= 730 }
-    when CreatedAtBuckets::CREATED_AT_2Y_3Y
-      user_data.select {| _, user | user[:created_at] > 730 && user[:created_at] <= 1095 }
-    when CreatedAtBuckets::CREATED_AT_3Y_4Y
-      user_data.select {| _, user | user[:created_at] > 1095 && user[:created_at] <= 1460 }
-    when CreatedAtBuckets::CREATED_AT_4Y_5Y
-      user_data.select {| _, user | user[:created_at] > 1460 && user[:created_at] <= 1825 }
-    when CreatedAtBuckets::CREATED_AT_5Y_10Y
-      user_data.select {| _, user | user[:created_at] > 1825 && user[:created_at] <= 3650 }
-    when CreatedAtBuckets::CREATED_AT_OVER_10Y
-      user_data.select {| _, user | user[:created_at] > 3650 }
-    else
-      user_data
-    end
-  end
-
-  def self.extract_power_user_data_bucket( user_data )
-    user_data.select {| _, user | user[:obs] >= 10 }
-  end
-
-  def self.extract_casual_user_data_bucket( user_data )
-    user_data.select {| _, user | user[:obs].positive? && user[:obs] < 10 }
-  end
-
-  def self.extract_inactive_user_data_bucket( user_data )
-    user_data.select {| _, user | user[:active] == false }
-  end
-
   def self.calculate_dau_mau( users_from_bucket, dau_mau_kibana_data, label )
     # mau
     mau = users_from_bucket.size
@@ -530,27 +474,87 @@ class SegmentationStatistic < ApplicationRecord
   end
 
   def self.generate_dau_mau_metrics( segmentation_data, dau_mau_kibana_data )
-    all_dau_mau = {
+    {
       all_users: calculate_dau_mau(
-        segmentation_data, dau_mau_kibana_data, "All Users"
+        segmentation_data,
+        dau_mau_kibana_data,
+        "All Users"
       ),
       power_users: calculate_dau_mau(
-        extract_power_user_data_bucket( segmentation_data ), dau_mau_kibana_data, "Power Users"
+        segmentation_data.select {| _, user | user[:obs] >= 10 },
+        dau_mau_kibana_data,
+        "Power Users"
       ),
       casual_users: calculate_dau_mau(
-        extract_casual_user_data_bucket( segmentation_data ), dau_mau_kibana_data, "Casual Users"
+        segmentation_data.select {| _, user | user[:obs].positive? && user[:obs] < 10 },
+        dau_mau_kibana_data,
+        "Casual Users"
       ),
       inactive_users: calculate_dau_mau(
-        extract_inactive_user_data_bucket( segmentation_data ), dau_mau_kibana_data, "Inactive Users"
+        segmentation_data.select {| _, user | user[:active] == false },
+        dau_mau_kibana_data,
+        "Inactive Users"
+      ),
+      new_account: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] >= 0 && user[:created_at] <= 30 },
+        dau_mau_kibana_data,
+        "New account"
+      ),
+      existing_account: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 30 },
+        dau_mau_kibana_data,
+        "Existing account"
+      ),
+      created_at_0d_30d: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] >= 0 && user[:created_at] <= 30 },
+        dau_mau_kibana_data,
+        "Before 30 days"
+      ),
+      created_at_30d_3m: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 30 && user[:created_at] <= 90 },
+        dau_mau_kibana_data,
+        "From 30 days to 3 months"
+      ),
+      created_at_3m_6m: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 90 && user[:created_at] <= 180 },
+        dau_mau_kibana_data,
+        "From 3 months to 6 months"
+      ),
+      created_at_6m_1y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 180 && user[:created_at] <= 365 },
+        dau_mau_kibana_data,
+        "From 6 months to 1 year"
+      ),
+      created_at_1y_2y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 365 && user[:created_at] <= 730 },
+        dau_mau_kibana_data,
+        "From 1 year to 2 years"
+      ),
+      created_at_2y_3y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 730 && user[:created_at] <= 1095 },
+        dau_mau_kibana_data,
+        "From 2 years to 3 years"
+      ),
+      created_at_3y_4y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 1095 && user[:created_at] <= 1460 },
+        dau_mau_kibana_data,
+        "From 3 years to 4 years"
+      ),
+      created_at_4y_5y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 1460 && user[:created_at] <= 1825 },
+        dau_mau_kibana_data,
+        "From 4 years to 5 years"
+      ),
+      created_at_5y_10y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 1825 && user[:created_at] <= 3650 },
+        dau_mau_kibana_data,
+        "From 5 years to 10 years"
+      ),
+      created_at_over_10y: calculate_dau_mau(
+        segmentation_data.select {| _, user | user[:created_at] > 3650 },
+        dau_mau_kibana_data,
+        "After 10 years"
       )
     }
-    CreatedAtBuckets.constants.each do | bucket |
-      all_dau_mau[bucket.downcase] = calculate_dau_mau(
-        extract_user_data_by_created_at_bucket(
-          CreatedAtBuckets.const_get( bucket ), segmentation_data
-        ), dau_mau_kibana_data, CreatedAtBuckets.const_get( bucket ).to_s
-      )
-    end
-    all_dau_mau
   end
 end
