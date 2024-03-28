@@ -10,7 +10,7 @@ class SegmentationStatistic < ApplicationRecord
     end
     sleep 1
     SegmentationStatistic.create!(
-      data: generate_monthly_segmentation_metrics( at_time ),
+      data: generate_segmentation_metrics( at_time ),
       created_at: at_time.beginning_of_day
     )
   end
@@ -19,42 +19,32 @@ class SegmentationStatistic < ApplicationRecord
     SegmentationStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).exists?
   end
 
-  def self.get_viz_stats_for_day( at_time = Time.now )
-    stats = SegmentationStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc )
-    format_for_viz( stats.first.data ) if stats.exists?
-  end
-
   # private
 
-  # Generate monthly metrics
-  def self.generate_monthly_segmentation_metrics( at_time = Time.now )
-    monthly_segmentation_data = generate_monthly_segmentation_data( at_time )
-    generate_main_metrics( monthly_segmentation_data )
+  NUMBER_OF_DAYS = 30
+
+  # Generate metrics
+  def self.generate_segmentation_metrics( at_time = Time.now )
+    segmentation_data = generate_segmentation_data( at_time )
+    dau_mau_kibana_data = generate_dau_mau_kibana_data( at_time )
+    {
+      main_metrics: generate_main_metrics( segmentation_data ),
+      dau_mau_metrics: generate_dau_mau_metrics( segmentation_data, dau_mau_kibana_data )
+    }
   end
 
-  # Generate all the users data for a month
-  def self.generate_monthly_segmentation_data( at_time = Time.now )
-    monthly_segmentation_data = {}
+  # Generate all the users data
+  def self.generate_segmentation_data( at_time = Time.now )
+    segmentation_data = {}
     day = at_time
-    30.times do
-      users_from_obs_data( day, monthly_segmentation_data )
-      users_from_ids_data( day, monthly_segmentation_data )
-      users_from_kibana_data( day, monthly_segmentation_data )
+    NUMBER_OF_DAYS.times do
+      users_from_obs_data( day, segmentation_data )
+      users_from_ids_data( day, segmentation_data )
+      users_from_kibana_data( day, segmentation_data )
       day -= 1.days
     end
-    users_from_db( at_time, monthly_segmentation_data )
-    monthly_segmentation_data
-  end
-
-  # Generate all the users data for a single day
-  def self.generate_daily_segmentation_data( at_time = Time.now )
-    daily_segmentation_data = {}
-    day = at_time
-    users_from_obs_data( day, daily_segmentation_data )
-    users_from_ids_data( day, daily_segmentation_data )
-    users_from_kibana_data( day, daily_segmentation_data )
-    users_from_db( day, daily_segmentation_data )
-    daily_segmentation_data
+    users_from_db( at_time, segmentation_data )
+    segmentation_data
   end
 
   # Default user structure
@@ -310,6 +300,7 @@ class SegmentationStatistic < ApplicationRecord
         next if created_at.nil?
 
         days_since_creation = ( day.to_date - created_at.to_date ).to_i
+        days_since_creation = 0 if days_since_creation.negative?
         user_data[:created_at] = days_since_creation
         if days_since_creation <= 30
           user_data[:new] = true
@@ -432,15 +423,15 @@ class SegmentationStatistic < ApplicationRecord
     }
   end
 
-  def self.generate_main_metrics( monthly_segmentation_data )
+  def self.generate_main_metrics( segmentation_data )
     is_new_condition = ->( user ) { user[:new] }
     metrics = {}
-    metrics[:all] = generate_main_sub_metrics( monthly_segmentation_data )
+    metrics[:all] = generate_main_sub_metrics( segmentation_data )
     metrics[:new] = generate_main_sub_metrics(
-      monthly_segmentation_data.select {| _, user | is_new_condition.call( user ) }
+      segmentation_data.select {| _, user | is_new_condition.call( user ) }
     )
     metrics[:existing] = generate_main_sub_metrics(
-      monthly_segmentation_data.reject {| _, user | is_new_condition.call( user ) }
+      segmentation_data.reject {| _, user | is_new_condition.call( user ) }
     )
     metrics
   end
@@ -449,23 +440,24 @@ class SegmentationStatistic < ApplicationRecord
   # DAU/MAU Metrics
   #
 
-  # Generate all the daily kibana data for a month for DAU/MAU
-  def self.generate_monthly_dau_mau_kibana_data( at_time = Time.now )
-    monthly_dau_mau_kibana_data = []
+  # Generate all the daily kibana data for DAU/MAU
+  def self.generate_dau_mau_kibana_data( at_time = Time.now )
+    dau_mau_kibana_data = []
     day = at_time
-    ( 1..30 ).each do | day_id |
+    ( 1..NUMBER_OF_DAYS ).each do | day_id |
       daily_segmentation_data = {}
       users_from_kibana_data( day, daily_segmentation_data )
-      monthly_dau_mau_kibana_data[day_id - 1] = daily_segmentation_data
+      dau_mau_kibana_data[day_id - 1] = daily_segmentation_data
       day -= 1.days
     end
-    monthly_dau_mau_kibana_data
+    dau_mau_kibana_data
   end
 
   module CreatedAtBuckets
-    CREATED_AT_NEW = "Before 30 days"
-    CREATED_AT_EXISTING = "After 30 days"
-    CREATED_AT_NEW_3M = "From 30 days to 3 months"
+    NEW_ACCOUNT = "New account"
+    EXISTING_ACCOUNT = "Existing account"
+    CREATED_AT_0D_30D = "Before 30 days"
+    CREATED_AT_30D_3M = "From 30 days to 3 months"
     CREATED_AT_3M_6M = "From 3 months to 6 months"
     CREATED_AT_6M_1Y = "From 6 months to 1 year"
     CREATED_AT_1Y_2Y = "From 1 year to 2 years"
@@ -473,16 +465,16 @@ class SegmentationStatistic < ApplicationRecord
     CREATED_AT_3Y_4Y = "From 3 years to 4 years"
     CREATED_AT_4Y_5Y = "From 4 years to 5 years"
     CREATED_AT_5Y_10Y = "From 5 years to 10 years"
-    CREATED_AT_MORE_10Y = "After 10 years"
+    CREATED_AT_OVER_10Y = "After 10 years"
   end
 
   def self.extract_user_data_by_created_at_bucket( created_at_bucket, user_data )
     case created_at_bucket
-    when CreatedAtBuckets::CREATED_AT_NEW
-      user_data.select {| _, user | user[:created_at].positive? && user[:created_at] <= 30 }
-    when CreatedAtBuckets::CREATED_AT_EXISTING
+    when CreatedAtBuckets::NEW_ACCOUNT, CreatedAtBuckets::CREATED_AT_0D_30D
+      user_data.select {| _, user | user[:created_at] >= 0 && user[:created_at] <= 30 }
+    when CreatedAtBuckets::EXISTING_ACCOUNT
       user_data.select {| _, user | user[:created_at] > 30 }
-    when CreatedAtBuckets::CREATED_AT_NEW_3M
+    when CreatedAtBuckets::CREATED_AT_30D_3M
       user_data.select {| _, user | user[:created_at] > 30 && user[:created_at] <= 90 }
     when CreatedAtBuckets::CREATED_AT_3M_6M
       user_data.select {| _, user | user[:created_at] > 90 && user[:created_at] <= 180 }
@@ -498,7 +490,7 @@ class SegmentationStatistic < ApplicationRecord
       user_data.select {| _, user | user[:created_at] > 1460 && user[:created_at] <= 1825 }
     when CreatedAtBuckets::CREATED_AT_5Y_10Y
       user_data.select {| _, user | user[:created_at] > 1825 && user[:created_at] <= 3650 }
-    when CreatedAtBuckets::CREATED_AT_MORE_10Y
+    when CreatedAtBuckets::CREATED_AT_OVER_10Y
       user_data.select {| _, user | user[:created_at] > 3650 }
     else
       user_data
@@ -517,16 +509,16 @@ class SegmentationStatistic < ApplicationRecord
     user_data.select {| _, user | user[:active] == false }
   end
 
-  def self.calculate_dau_mau( monthly_users_from_bucket, monthly_dau_mau_kibana_data, label )
+  def self.calculate_dau_mau( users_from_bucket, dau_mau_kibana_data, label )
     # mau
-    mau = monthly_users_from_bucket.size
+    mau = users_from_bucket.size
     # dau
     daily_users_from_bucket_count = 0
-    monthly_dau_mau_kibana_data.each do | daily_kibana_data |
+    dau_mau_kibana_data.each do | daily_kibana_data |
       daily_users_from_bucket_count +=
-        daily_kibana_data.select {| key, _ | monthly_users_from_bucket.key?( key ) }.count
+        daily_kibana_data.select {| key, _ | users_from_bucket.key?( key ) }.count
     end
-    dau = daily_users_from_bucket_count / monthly_dau_mau_kibana_data.size
+    dau = daily_users_from_bucket_count / dau_mau_kibana_data.size
     # dau/mau
     dau_mau = 100 * dau.to_f / mau
     {
@@ -537,66 +529,28 @@ class SegmentationStatistic < ApplicationRecord
     }
   end
 
-  def self.calculate_all_dau_mau( monthly_segmentation_data, monthly_dau_mau_kibana_data )
+  def self.generate_dau_mau_metrics( segmentation_data, dau_mau_kibana_data )
     all_dau_mau = {
-      ALL_USERS: calculate_dau_mau(
-        monthly_segmentation_data, monthly_dau_mau_kibana_data, "All Users"
+      all_users: calculate_dau_mau(
+        segmentation_data, dau_mau_kibana_data, "All Users"
       ),
-      POWER_USERS: calculate_dau_mau(
-        extract_power_user_data_bucket( monthly_segmentation_data ), monthly_dau_mau_kibana_data, "Power Users"
+      power_users: calculate_dau_mau(
+        extract_power_user_data_bucket( segmentation_data ), dau_mau_kibana_data, "Power Users"
       ),
-      CASUAL_USERS: calculate_dau_mau(
-        extract_casual_user_data_bucket( monthly_segmentation_data ), monthly_dau_mau_kibana_data, "Casual Users"
+      casual_users: calculate_dau_mau(
+        extract_casual_user_data_bucket( segmentation_data ), dau_mau_kibana_data, "Casual Users"
       ),
-      INACTIVE_USERS: calculate_dau_mau(
-        extract_inactive_user_data_bucket( monthly_segmentation_data ), monthly_dau_mau_kibana_data, "Inactive Users"
+      inactive_users: calculate_dau_mau(
+        extract_inactive_user_data_bucket( segmentation_data ), dau_mau_kibana_data, "Inactive Users"
       )
     }
     CreatedAtBuckets.constants.each do | bucket |
-      all_dau_mau[bucket] = calculate_dau_mau(
+      all_dau_mau[bucket.downcase] = calculate_dau_mau(
         extract_user_data_by_created_at_bucket(
-          CreatedAtBuckets.const_get( bucket ), monthly_segmentation_data
-        ), monthly_dau_mau_kibana_data, CreatedAtBuckets.const_get( bucket ).to_s
+          CreatedAtBuckets.const_get( bucket ), segmentation_data
+        ), dau_mau_kibana_data, CreatedAtBuckets.const_get( bucket ).to_s
       )
     end
     all_dau_mau
-  end
-
-  #
-  # Dataviz
-  #
-
-  def self.format_for_viz( metrics )
-    created_at_status = [:new, :existing]
-    user_types = [:power, :casual, :inactive]
-
-    viz_data = {
-      name: "all",
-      children: created_at_status.map do | status |
-        {
-          name: status.to_s,
-          children: format_status_data_for_viz( metrics, status, user_types )
-        }
-      end
-    }
-
-    JSON.generate( viz_data, ascii_only: false )
-  end
-
-  def self.format_status_data_for_viz( metrics, status, user_types )
-    user_types.map do | user_type |
-      if user_type == :inactive
-        children = format_device_data_for_viz( metrics[status][user_type] )
-      else
-        children = format_device_data_for_viz( metrics[status][:"#{user_type}_obs"] )
-        children << { name: "ider", value: metrics[status][:"#{user_type}_ids"][:total] }
-      end
-      { name: user_type, children: children }
-    end
-  end
-
-  def self.format_device_data_for_viz( data )
-    data.except( :total, :other ).
-      map {| device, count | { name: device, value: count } }
   end
 end
