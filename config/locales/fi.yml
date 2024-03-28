@@ -5748,6 +5748,8 @@ fi:
           Jos ainut syy lähtöösi on estää projektin kuraattoreita näkemästä piilotettuja koordinaattejasi.
       edit:
         admins_must_be_existing_members: Vain projektin jäsenistä voidaan tehdä ylläpitäjiä.
+        admins_can_only_be_added_after_creation: |
+          Ylläpitäjiä voi lisätä projektin tallentamisen jälkeen.
         new_place_desc_html: |
           Yritä katsella 
           <a href="%{places_url}" target="_blank">nykyisistä paikoistamme</a> ja varmista, että paikan nimi on oikein. Jos et 
@@ -5905,6 +5907,8 @@ fi:
           Määrittele suodattimet, joilla havainnot valitaan projektiisi. Voit valita useita lajeja tai taksoneita, paikkoja, päivämääriä tai muita kriteereitä. Kriteerit täyttävät havainnot tulevat mukaan projektiin automaattisesti.
         start_and_end_times_for_bioblitzes: Alku- ja loppupäivä/aika (bioblitz-tyyppisiin tapahtumiin)
         traditional_projects_cannot_be_copied: Perinteistä projektia ei voi kopioida
+        trusting_members_will_be_notified: |
+          Olet muuttanut projektin vaatimuksia tai laittanut käyttäjäluottamuksen päälle. Tästä lähtee notifikaatio kaikille niille projektin käyttäjille, jotka ovat jo valinneet luottavansa projektin. Tällöin heillä on mahdollisuus päättää haluavatko he edelleen luottaa projektiin ja sen uusiin vaatimuksiin.
         umbrella_project_features: "Sateenvarjoprojektin ominaisuudet:"
         unique_url_for_outreach: Yksilöllinen www-osoite tiedotusta varten
         use_this_for_a_time_limited_event: |
