@@ -696,6 +696,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :computer_vision_eval, only: :index, controller: :computer_vision_eval do
+    collection do
+      get :index
+    end
+  end
+
   resources :computer_vision_demo_uploads do
     member do
       post :score

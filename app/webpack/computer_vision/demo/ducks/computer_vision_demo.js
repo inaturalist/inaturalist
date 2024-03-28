@@ -2,9 +2,9 @@ import _ from "lodash";
 import fetch from "cross-fetch";
 import moment from "moment-timezone";
 import update from "immutability-helper";
-import DroppedFile from "../../observations/uploader/models/dropped_file";
-import ObsCard from "../../observations/uploader/models/obs_card";
-import { resizeUpload } from "../../shared/util";
+import DroppedFile from "../../../observations/uploader/models/dropped_file";
+import ObsCard from "../../../observations/uploader/models/obs_card";
+import { resizeUpload } from "../../../shared/util";
 
 const RESET_STATE = "computer_vision_demo/RESET_STATE";
 const SET_LOCATION_CHOOSER = "computer_vision_demo/SET_LOCATION_CHOOSER";

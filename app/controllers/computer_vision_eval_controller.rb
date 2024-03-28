@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class ComputerVisionDemoController < ApplicationController
+class ComputerVisionEvalController < ApplicationController
   before_action :authenticate_user!
+  before_action :admin_required
 
   def index
     render layout: "basic"

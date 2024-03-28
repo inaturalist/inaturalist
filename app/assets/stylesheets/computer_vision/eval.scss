@@ -1,0 +1,413 @@
+@import "../shared/split_taxon";
+@import "../colors";
+
+@font-face {
+  font-family: Whitney;
+  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
+}
+
+html, body, #app, .uploader {
+  height: 100%;
+}
+
+body {
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+}
+
+a {
+  color: #4990E2;
+}
+
+.uploader {
+  min-width: 0;
+  margin-top: 0;
+}
+
+.loading_spinner {
+  width: 14px;
+  height: 14px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  border-top: 3px solid #5cb85c;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+.statement, .photo {
+  a {
+    color: #333;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+
+.navbar {
+  position: relative;
+  margin-top: 0;
+}
+.navbar-header {
+  height: auto;
+  .logo {
+    display: inline;
+  }
+  .navbar-brand {
+    height: auto;
+  }
+  .title {
+    display: inline-block;
+    font-size: 20px;
+    margin: 12px 0px;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+    font-weight: 500;
+  }
+}
+.intro {
+  margin: 0px auto;
+  padding: 0px;
+  .start {
+    margin-top: 7%;
+  }
+  .drag_or_choose {
+    h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+    p {
+      padding: 10px 0;
+      margin: 0 0 5px;
+    }
+  }
+}
+
+.main-content {
+  text-align: center;
+  .classify {
+    button {
+      min-width: 150px;
+      div {
+        display: inline-block;
+      }
+    }
+    .try-again {
+      border-top: 1px solid #ccc;
+      max-width: 500px;
+      margin: 0px auto;
+      margin-top: 25px;
+    }
+  }
+}
+.thumbnail {
+  &:hover {
+    .btn-close {
+      display: block;
+    }
+  }
+  position: relative;
+  width: 220px;
+  display: inline-block;
+  text-align: left;
+  .caption {
+    padding: 0 9px;
+    .photo-count {
+      text-align: center;
+    }
+  }
+  .img-container {
+    text-align: center;
+    height: 144px;
+    line-height: 144px;
+    .placeholder .glyphicon {
+      line-height: 144px;
+      font-size: 100px;
+      opacity: 0.07;
+    }
+    .gallery-item > .glyphicon, .gallery-item > .failed > .glyphicon {
+      line-height: 144px;
+      font-size: 40px;
+      opacity: 0.07;
+    }
+    .gallery-item > .failed {
+      width: 180px;
+      line-height: 180px;
+      & > .glyphicon {
+        color: red;
+        opacity: 0.2;
+        line-height: 1;
+      }
+    }
+    img {
+      max-height: 142px;
+      max-width: 180px;
+      width: auto;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.vision-results {
+  text-align: left;
+}
+
+
+.try-again {
+  padding-top: 40px;
+  padding-bottom: 400px;
+  text-align: center;
+  button, .btn-default {
+    margin: 0px 15px;
+  }
+}
+
+
+.tree {
+  padding: 0;
+  list-style: none;
+  position: relative;
+
+  &, & > * ul {
+    padding: 0;
+    list-style: none;
+    position: relative;
+  }
+
+  & > * ul.nested {
+    margin: 0 0 0 1em;
+  }
+
+  ul.nested:before {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-left: 1px solid;
+    color: #aaa;
+  }
+
+  ul.nested li {
+    margin: 0;
+    padding: 0 0 0 1em;
+    line-height: 1.5em;
+    position: relative;
+  }
+
+  ul.nested li:before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 0;
+    border-top: 1px solid;
+    margin-top: -1px;
+    position: absolute;
+    top: .75em;
+    left: 0;
+    color: #aaa;
+  }
+
+  ul.nested li:last-child:before {
+    background: #eee;
+    height: auto;
+    top: .75em;
+    bottom: 0;
+  }
+
+  ul.nested li:last-child {
+    margin-bottom: 10px;
+  }
+
+  .name-row {
+    &.focus {
+      background: #ddd;
+    }
+    .name a {
+      color: #ccc;
+      padding: 0 5px;
+      &:hover {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+    cursor: pointer;
+    display: flex;
+    .name {
+      flex: 2;
+    }
+    .icon-collapse, .icon-expand, .icon-focus {
+      font-size: 12px;
+      line-height: 12px;
+      vertical-align: text-top;
+      color: #ccc;
+      &:hover {
+        color: inherit;
+      }
+    }
+    .icon-collapse + .icon-expand {
+      margin-left: 2px;
+    }
+    .icon-focus {
+      font-size: 10px;
+    }
+    & > .fa-chevron-down {
+      margin-left: 2px;
+    }
+  }
+  .scores {
+    display: flex;
+    padding-right: 10px;
+  }
+}
+
+.settingsButtonWrapper {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 15px;
+}
+
+#SettingsPopover {
+  min-width: 400px;
+  max-width: none;
+}
+
+.btn-close {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 10px;
+  background-color: #555;
+  border: 0;
+  border-radius: 22px;
+  height: 22px;
+  width: 22px;
+  line-height: 18px;
+  text-align: center;
+  vertical-align: middle;
+  display: none;
+  outline: none;
+  padding-top: 2px;
+  right: -6px;
+  top: -6px;
+  &:hover {
+    background-color: red;
+  }
+}
+
+#Taxonomy, #ResultsList {
+  padding: 10px;
+  .score {
+    width: 75px;
+  }
+}
+
+.results {
+  text-align: left;
+}
+
+.results-views {
+  display: flex;
+  flex-direction: column;
+  #ResultsList {
+    .header {
+      display: flex;
+      .spacer {
+        flex: 2;
+      }
+      padding-right: 10px;
+    }
+    .result {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      padding: 7px;
+      &.focus {
+        background: #ddd;
+      }
+      &.common-ancestor {
+        background: rgba(116, 172, 0, 0.2);
+        border: 3px solid #aaa;
+        &.focus {
+          background: rgba(116, 172, 0, 0.3);
+        }
+      }
+      .score {
+        align-self: center;
+      }
+      .photo {
+        margin-right: 10px;
+        a {
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 15px;
+          width: 55px;
+          height: 55px;
+        }
+        img {
+          width: 55px;
+          border-radius: 15px;
+        }
+        i {
+          width: 55px;
+          display: flex;
+          height: 55px;
+          align-items: center;
+          justify-content: center;
+          font-size: 3em;
+        }
+      }
+      .name {
+        display: flex;
+        flex: 2;
+        align-items: center;
+        .sciname.species {
+          font-style: italic;
+        }
+        a, .secondary-names {
+          color: inherit;
+          display: block;
+        }
+        .SplitTaxon {
+          display: block;
+        }
+        a:hover, a:focus {
+          text-decoration: none;
+        }
+        .secondary-names:before, .secondary-names:after {
+          display: none;
+        }
+        .display-name {
+          font-size: 20px;
+          line-height: 22px;
+        }
+        .secondary-name {
+          display: block;
+        }
+        .subtitle {
+          color: $inat-green;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  #Taxonomy {
+    flex-grow: 1;
+  }
+}
+
+@media (min-width: 1400px) {
+  .results-views {
+    flex-direction: row;
+  }
+}
