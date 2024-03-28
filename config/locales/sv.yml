@@ -365,6 +365,11 @@ sv:
   add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
   add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
   add_evidence_of_presence_molt_annotation: 'Lägg till "Stöd för förekomst: ömsskinn/exuvium"-anteckning'
+  add_evidence_of_presence_leafmine_annotation: 'Lägg till "Stöd för förekomst: bladmina"-anteckning'
+  add_evidence_of_presence_hair_annotation: 'Lägg till "Stöd för förekomst: hår"-anteckning'
+  add_evidence_of_presence_egg_annotation: 'Lägg till "Stöd för förekomst: ägg"-anteckning'
+  add_evidence_of_presence_construction_annotation: 'Lägg till "Stöd för förekomst: konstruktion"-anteckning'
+  add_established_not_established: 'Lägg till "Förekomst: ej bofast"-notering'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
   #As in a Guide Section
@@ -1167,6 +1172,7 @@ sv:
     no_evidence_of_flowering: Inga tecken på blomning
     nymph: Nymf
     larva: Larv
+    #Evidence of an egg of an organism
     egg: Ägg
     juvenile: Juvenil
     alive_or_dead: Levande eller död
@@ -1190,6 +1196,16 @@ sv:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ömsskinn/exuvium
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Bladmina
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hår
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktion
+    #Does the observation belong to a non-established population or not
+    established: Bofast
+    #Organism is not a member of an established population
+    not_established: Ej bofast
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
     bone: |
@@ -1204,7 +1220,12 @@ sv:
     gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
     male: Det finns stöd för att organismen kan producera spermier för användning i sexuell fortplantning
     molt: Kvarlämning av skinn eller exoskelett
+    leafmine: Ätspår mellan epidermislagren av ett blad
+    hair: Hår som inte längre är fäst vid den organism som det kommer från
+    egg: Helt ägg eller del av ett ägg
+    construction: Något som skapats av ett djur, gjort med eller grävt ur andra material
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
+    not_established: Organismen tillhör en ej bofast population, inkluderande utsläppta/förrymda husdjur, fripassagerare och kringstrykare.
     organism: Hela eller delar av en organism
     scat: Avföring (inte spybollar eller andra uppstötningar)
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende

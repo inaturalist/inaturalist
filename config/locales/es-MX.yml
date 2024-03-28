@@ -247,6 +247,7 @@ es-MX:
   active_taxon_status: Activo
   active_users: Usuarios Activos
   activity: Actividad
+  activity_on_a_flag_for_x: Actividad en una advertencia para %{x}
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} del trabajo de  %{original}"
   add: Añade
   add_a_batch_of_observations: Añade un grupo de observaciones
@@ -311,6 +312,7 @@ es-MX:
   add_notes_about_this_taxon: Añade notas acerca de esta especie o grupo en este lugar, por ejemplo, dónde y cuándo ocurre.
   add_obs_from_a_link: "Añade observación de la %{link}"
   add_obs_from_a_list: Añade observaciones de una lista
+  add_observation_fields: Añadir campos de observación
   add_observations: Añade observaciones
   add_observations_by_checking_off: Añade observaciones marcando las especies de una lista
   add_observations_project: Añade observaciones a este proyecto
@@ -1137,6 +1139,7 @@ es-MX:
     no_evidence_of_flowering: Sin evidencia de floración
     nymph: Ninfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Huevo
     juvenile: Juvenil
     alive_or_dead: Vivo o muerto
@@ -1502,6 +1505,8 @@ es-MX:
   deviation: Desviacion
   devise:
     confirmations:
+      confirmed: |
+        Tu dirección de correo electrónico ha sido confirmada con éxito.
       send_instructions: "Recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo electrónico en unos minutos."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1796,6 +1801,7 @@ es-MX:
   extinct_in_the_wild: Extinta en vida silvestre
   extra_properties: Propiedades adicionales
   evidence_of_organism: Evidencia de organismo
+  evidence_related_to_single_subject: Evidencia relativa a un solo organismo.
   facebook: Facebook
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
@@ -1903,6 +1909,7 @@ es-MX:
     Mara para el usuario: %{title}
   flag_it!: '¡Manda advertencia!'
   flag_marked_as_resolved_html: '<span class="meta">Advertencia marcada como </span> <strong>resuelta.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Advertencia marcada como</span> <strong>No resuelta</strong>.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objeto
   flag_reason: "&ldquo; Estoy incluyendo una advertencia en este  %{record} porque"
@@ -2745,6 +2752,12 @@ es-MX:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Mostrar
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspender
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Dessuspender
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencia acerca de un usuario, tales como si son una posible cuenta marioneta. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -3091,6 +3104,86 @@ es-MX:
     Las coordenadas públicas se muestran como un punto al azar dentro de 10 km de las coordenadas verdaderas. Las coordenadas verdaderas son visibles para ti y para los curadores de los proyectos a los que añadiste la observación.
   observation: Observación
   observation_: observación
+  observation_accuracy_experiment_the_sample_for: "La muestra de este experimento aún no ha sido generada"
+  observation_accuracy_experiment_our_accuracy_estimate: "Nuestra estimación de precisión resultante de este experimento es correcta %{percent}."
+  observation_accuracy_experiment_our_goak: "Nuestra meta para la precisión estimada (Correcto) y Precisión del subconjunto de Nivel de Investigación es mayor que el 95% (línea discontinua)"
+  observation_accuracy_experiment_precision_results: "Resultados de precisión por subconjunto"
+  observation_accuracy_experiment_taxon_rank_level: "Nivel de rango de taxón"
+  observation_accuracy_experiment_taxon_observations_count: "Número de observaciones taxonómicas"
+  observation_accuracy_experiment_iconic_taxon_name: "Nombre del taxón icónico"
+  observation_accuracy_experiment_continent: "Continente"
+  observation_accuracy_experiment_year: "Año"
+  observation_accuracy_experiment_quality_grade: "Grado de calidad"
+  observation_accuracy_experiment_show_frequency: "mostrar frecuencia"
+  observation_accuracy_experiment_click_on_bars: "Haga clic en las barras para explorar los subconjuntos."
+  observation_accuracy_experiment_bars_will: "Podrán hacer click en las barras después de que haya pasado la fecha límite para validar las muestras."
+  observation_accuracy_experiment_accuracy_results: "Resultados de precisión por subconjunto"
+  observation_accuracy_experiment_as_observations: "A medida que se validan las observaciones de esta muestra, el porcentaje incierto disminuirá y el porcentaje correcto e incorrecto aumentará."
+  observation_accuracy_experiment_experiment_still: "Experimento en progreso. Las estadísticas se actualizarán diariamente hasta la fecha límite para validar muestras en %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experimento de precisión de observación"
+  observation_accuracy_experiment_validators: "Validadores:"
+  observation_accuracy_experiment_show_additional_validators: "(mostrar validadores adicionales)"
+  observation_accuracy_experiment_hide_additional_validators: "(ocultar validadores adicionales)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validadores adicionales)"
+  observation_accuracy_experiment_abstract: "Resumen: Generamos una muestra de observaciones en %{sample_generation_date} y coordinamos un equipo de validadores para evaluar su precisión hasta el %{deadline_date}. Todos los resultados mostrados a continuación muestran características de las observaciones de muestra en el momento en que se generó la muestra (por ejemplo el grado de investigación o no). La precisión de las observaciones de muestra fue evaluada en %{assessment_date}. Vea la pestaña de métodos para más detalles."
+  observation_accuracy_experiment_research_grade_results: "Resultados Grado de Investigación"
+  observation_accuracy_experiment_verifiable_results: "Resultados verificables"
+  observation_accuracy_experiment_all_results: "Todos los resultados"
+  observation_accuracy_experiment_methods: "Métodos"
+  observation_accuracy_experiment_step_1: "Paso 1: Generación de muestra y asignación"
+  observation_accuracy_experiment_from_the2: "Desde la base de datos de observaciones de iNaturalist (A), hemos generado una muestra aleatoria (B). Las muestras fueron asignadas a validadores candidatos (C) basándose en los criterios descritos a continuación. Asignamos cada observación de muestra a varios validadores candidatos ( \"Redundancia del validador objetivo\" )."
+  observation_accuracy_experiment_sample_generated: "Muestras generadas: %{date}"
+  observation_accuracy_experiment_sample_size: "Tamaño de la muestra: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundancia del validador objetivo: %{number}"
+  observation_accuracy_experiment_number_of: "Número de candidatos validadores: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Tamaño medio de la muestra por validador candidato: %{number}"
+  observation_accuracy_experiment_mean_number: "Número medio de validadores por observación de muestra: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criterios del Candidato Validador"
+  observation_accuracy_experiment_if_an_identifier: "Si un identificador había hecho al menos 3 identificaciones mejorando en un taxón, los considerábamos calificados para validar ese taxón. Mejorar la identificación es la primera sugerencia de un taxón con la que posteriormente la comunidad está de acuerdo."
+  observation_accuracy_experiment_if_an_identifier_continent: "Si un identificador había hecho al menos 3 identificaciones de mejorando en un taxón en un continente, los hemos considerado calificados para validar ese taxón dentro de ese continente. Mejorar la identificación es la primera sugerencia de un taxón con la que posteriormente la comunidad está de acuerdo."
+  observation_accuracy_experiment_for_example: "Por ejemplo, Identificador 1 añade un ID de A a una observación. Si el identificador 2 añade más tarde un ID inicial de B, el ID de 1 en A se convierte en un ID mejorador. Si el identificador 3 añade más tarde un ID de soporte a B, el ID de identificador 2 en B se convierte en un ID de mejora."
+  observation_accuracy_experiment_step_2: "Paso 2: Validando muestras"
+  observation_accuracy_experiment_we_contacted: "Nos pusimos en contacto con los candidatos validadores y les pedimos que añadieran identificaciones a sus submuestras. El gráfico a la derecha agrupa la observación de muestra por el número de validadores."
+  observation_accuracy_experiment_number_percent_of: "Número de validadores participantes: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Porcentaje de muestras validadas: %{percent}"
+  observation_accuracy_experiment_step_3: "Paso 3: Analizando las muestras de observaciones de las validaciones"
+  observation_accuracy_experiment_we_scored: "Hemos calificado observaciones en la muestra como Correcta, Incierta o Incorrecta comparando las identificaciones del validador con el taxón de cada observación de muestra. Las identificaciones que coinciden o mejoran el taxón de observación de la muestra fueron marcadas como Correctas. Las identidades más gruesas no discordantes se calificaron como inciertas al igual que los escenarios en los que varios validadores no estaban de acuerdo. Las identidades o identificaciones más gruesas en diferentes ramas se calificaron como incorrectas."
+  observation_accuracy_experiment_correct: "Correcto"
+  observation_accuracy_experiment_uncertain: "Incierto"
+  observation_accuracy_experiment_incorrect2: "Incorrecto"
+  observation_accuracy_experiment_step_4: "Paso 4: Precisión y cálculo de precisión"
+  observation_accuracy_experiment_accuracy: "Precisión"
+  observation_accuracy_experiment_we_calculated: "Hemos calculado la Precisión como el porcentaje correcto para toda la muestra así como subconjuntos como el subconjunto de la categoría Grado de Investigación. También calculamos el porcentaje incierto y el porcentaje Incorrecto. En la figura de ejemplo a la derecha, el porcentaje correcto sería 83, el porcentaje incierto sería 6 y el porcentaje incorrecto sería 11."
+  observation_accuracy_experiment_precision: "Precisión"
+  observation_accuracy_experiment_if_every_sample: "Si cada observación de muestra correspondiera a un taxón grueso como reino, la precisión del conjunto de datos de iNaturalist podría ser muy alta, pero la precisión podría ser demasiado baja para que el conjunto de datos fuera muy útil. Para estimar la precisión, contamos el número de descendientes de hojas en la taxonomía de iNaturalist para cada taxón asociado a cada observación de muestra. Calculamos la precisión como 1 dividido por el número de descendientes de hojas. Si el taxón era un taxón de hoja, la precisión es del 100%. En el cálculo de la precisión ignoramos los rangos por debajo de las especies."
+  observation_accuracy_experiment_in_the_example: "En la cifra de ejemplo a la derecha, la precisión media de tres observaciones de muestra sería del 51%."
+  observation_accuracy_validator_email_subject2: "¿Nos ayudarás con el Experimento %{version} para estimar la precisión de las observaciones de iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    ¿Nos ayudarías con un <a href="%{url}">experimento (versión %{version})</a> para estimar la precisión de las observaciones de iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifica todas las observaciones en el siguiente enlace tan finamente como puedas, incluso si son Grado de Investigación, e incluso si tu mejor ID está en un nivel taxonómico más alto (incluso reino). </li>
+    <li>Si ves la ventana emergente "Desacuerdo Potencial"…
+    <ul>
+    <li>y estás seguro de que es un error de ID hacer clic en el botón naranja,</li>
+    <li>o si no estás seguro más allá de tu ID, haga clic en el botón verde</li>
+    </ul>
+    </li>
+    <li>Hacer esto por <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Aquí está el subconjunto <a href="%{sample_url}">observaciones %{num_obs}</a> que creemos que puede identificar en base a su actividad en iNat. <b>Por favor, añade la mejor ID que puedas a cada una de las observaciones de %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Calcularemos la precisión comparando tu ID con el Taxon de Observación. Puedes omitir observaciones donde hayas añadido previamente un ID si ese ID sigue siendo relevante. Para más información sobre cómo contaremos acuerdos y desacuerdos, siga leyendo.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Los identificadores iguales (A) o más finos que (B) el taxón de observación serán contados como Acuerdos.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    IDs en diferentes ramas (C) o más gruesas que el taxón de observación donde se elige "No, pero…" al diálogo 'Desacuerdo potencial' (D) se contará como desacuerdos.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Los identificadores más gruesos que el Taxón de Observación donde escoge "No sé pero…"" al diálogo "Desacuerdo Potential" (E) se contarán como inciertos.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Estamos muy agradecidos por tu ayuda como identificador en iNaturalist, y muchas gracias por participar en este estudio. Por favor, lee <a href="%{url}">los métodos</a> para aprender más sobre el diseño del experimento.
+  observation_accuracy_validator_email_with_gratitude: Con agradecimiento,
+  observation_accuracy_validator_email_the_inaturalist_team: El equipo de iNaturalist
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregación de observación
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3343,6 +3436,7 @@ es-MX:
   organism_is_wild: El organismo es silvestre
   organisms: Organismos
   original: Original
+  original_flag: Advertencia original
   originally_flagged_by: Originalmente puesta como advertencia por
   originally_imported_from_url_html: "Originalmente importados de <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL de la página original de esta foto"
@@ -3812,6 +3906,7 @@ es-MX:
     north_korea: Corea del Norte
     northern_cyprus: Chipre del norte
     norway: Noruega
+    oceania: Oceanía
     oman: Omán
     pakistan: Pakistán
     palau: Palau
@@ -4953,6 +5048,7 @@ es-MX:
   text_editing_controls: Controles de edición de texto
   thanks!: '¡Gracias!'
   thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
+  that_account_is_already_connected: Esa cuenta ya está conectada a otro usuario
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: "Esa observación no tiene ninguna foto."
@@ -5945,6 +6041,34 @@ es-MX:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para obtener sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>¡Puedes <u>duplicar</u> o <u>triplicar</u> tu regalo! Gracias a la
+        Fundación Gordon y Betty Moore, todas donaciones recurrentes mensuales, cuatrimestrales, y
+         anuales se triplican y las donaciones únicas son
+        dobladas hasta el 31 de diciembre de 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist es una de las comunidades más grandes del mundo dedicada a
+        biodiversidad. ¡Gracias por ser parte de ella!
+        </p>
+        <p class="lead">
+        Si cree en el poder de esta comunidad global de la naturaleza
+        amantes para compartir conocimientos y generar biodiversidad irrecolocable
+        datos, por favor considere un regalo único o recurrente en línea, o
+        explorar <a href="https://www.inaturalist.org/pages/giving">más
+        maneras de dar</a>.
+        </p>
+        <p class="lead">
+        Tu donación es vital para iNaturalist a medida que nuestra comunidad crezca, de
+        mejorando nuestra tecnología para identificar con precisión las especies y
+        implementando nuevas características para apoyar a nuestros servidores y personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist es un 501(c)(3), exento de impuestos, organización sin ánimo de lucro
+        con sede en los Estados Unidos de América (Tax ID:
+        92-1296468).
+        </p>
       donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
@@ -5963,6 +6087,22 @@ es-MX:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértete en un Patrocinador Mensual de iNaturalist.
         become_a_monthly_supporter_of_inaturalist_caps: CONVIÉRTETE EN UN PATROCINADOR MENSUAL DE INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>¡Puedes<u>triplicar</u> tu donativo! Gracias a la Gordon and Betty Moore Foundation, todas los donativos mensuales son tripicadas hasta el 31 de diciembre de 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist es una de las comunidades globales más grandes dedicadas a la exploración de la biodiversidad. ¡Gracias por ser parte!
+          </p>
+          <p class="lead">
+          Si te gusta iNaturalist, por favor consider convertirte en un donador mensual. Los donativos recurrentes ayudan a asegurar que iNaturalista continue a fortalecer la infraestructura y a los empleados proporcinonado entradas económicas predecibles. ¡Tu donativo mensual tiene un triple impacto! También puedes optar por enseñar tu status de Donador mensual en tu perfil.
+          </p>
+          <p class="lead">
+          Tus donaciones apoyan a iNaturalist mientras la comunidad crece, desde mejorar la visión de computadora hasta implementar nuevas funciones para apoyar a los servidores y a los empleados. También puedes escoger una give a <a href="%{donate_url}">donación de una vez</a> y explorar <a href="https://www.inaturalist.org/pages/giving">otras formas de apoyar</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist es una organización independiente 501(c)(3), exenta de impuestos, sin fines de lucro basada en Estados Unidos de America (Tax ID: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: '¡Gracias por ser un Patrocinador Mensual!'
         thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
       temporarily_unavailable: |
@@ -6010,7 +6150,27 @@ es-MX:
           you_can_think: |
             Puedes pensar en el Mapa sin umbral como la probabilidad relativa de que una especie
             ocurra dentro de una célula de cuadrícula.
+          figure_alt_text: El Geomodelo influye en los resultados de la Visión de computadora
         range_comparison:
+          expected_nearby_vs_taxon_range: Esperado en las cercanías vs distribución del taxón
+          this_map_shows: |
+            Este mapa muestra la distribución del taxón para esta especies sobrepuesto con el mapa Esperado en las cercanías que se utiliza para evaluar el Geomodelo.
+          this_gridded_version: |
+            Esta versión cuadriculada de la distribución del taxón es una muestra tomada cuando el modelo fue entrenado y dividido en cuadrículas a la misma resolución del Mapa de Esperado en las cercanías. Solo utilizamos las distribuciones de taxón en los que por lo menos el 90% de los datos de entrenamiento para esa especie cae dentro de la distribución del taxón para controlar por errores en la distribución de taxones.
+          by_combining: |
+            Al combinar el mapa Esperado en las cercanías a la dsitribución del taxón, calculamos las estadísticas
+            para estimar qué tan bien funciona el Geomodelo.
+          figure_alt_text: Se compara el mapa Esperado en las cercanías y las distribución del taxón
+          combining_these_maps_produces: |
+            La combinación de estos mapas produce 3 tipos de células:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Presencias verdaderas:
+          true_presences_definition2: Áreas donde tanto el mapa esperado cercano como el rango de taxón prevén que el taxón existe
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Presencias falsas
+          false_presences_definition: Áreas donde sólo el mapa Esperado en las cercanías predice la existencia del taxón
           #Areas where only the Taxon Range is present
           false_absences_colon: |
             Ausencias falsas
@@ -6034,6 +6194,21 @@ es-MX:
           #False Absences: areas where only the Taxon Range is present
           recall_equation: |
             Presencias verdaderas / (Presencias verdaderas + ausencias Falsas) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: El promedio (media armónica) de precisión y recuperación
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Presencias Verdaderas / (2 × Presencias Verdaderas + Presencias Falsas + Ausencias Falsas) = %{f1}
+          perfect_overlap: |
+            La sobreposición perfecta evaluará con una Precisión, Recuperación y F1 de 1. Ninguna sobreposición
+            evaluará con una Precisión , Recuperación y F1 de 0.
     guides:
       index:
         deprecated_banner: |
@@ -7188,6 +7363,17 @@ es-MX:
         stats_generation_schedule: Las estadísticas se generarán cada domingo en diciembre y el 1 de enero
         store_prompt: |
           ¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!
+        sunburst_desc_html: |
+          Los taxones observados se organizan como un diagrama jerárquico de "estallido del sol". La base
+          de la jerarquía está en el centro, comenzando con "Vida" y terminando
+          con especies en los bordes exteriores. El tamaño de cada arco es proporcional
+          al número de observaciones de ese taxón, y los colores aproximadamente
+          corresponden a nuestros colores de taxón "iconic" (verde para plantas,
+          naranja para insectos, azul para la mayoría de los demás animales, etc.). , así que si eres
+          viendo un montón de verde, eso significa que has observado un montón de plantas.
+          <strong>Haz clic en un arco para colocar ese taxón en el centro</strong> y
+          sus hijos a su alrededor. o <strong>haga clic en el centro para mover hacia arriba
+          la jerarquía</strong>.
         translators_title: Traductores
         translators_desc: |
           ¿Sabías que iNaturalist ha sido traducido a %{x_languages},
@@ -7200,6 +7386,9 @@ es-MX:
           %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
         translators_prompt: |
           Si quieres ayudar a traducir, %{link_tag}aprende cómo%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VER %{count} PUBLICACIÓN"
+          other: "VER LAS %{count} PUBLICACIONES"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7304,6 +7493,14 @@ es-MX:
     taxon_changes:
       move_children_desc: |
         Descendientes del taxón de entrada son géneros o más arriba, serán movidos a la salida; las especies, subespecies, variedades, etc. serán cambiadas a equivalentes con el nuevo género o nombre de la especie.
+      form:
+        move_children_desc2_html: |
+          Al seleccionar esta caja se moverán los descendientes del taxón de entrada para intercambios y fusiones cuando el cambio se compromete. Si el cambio es a un género o menor, creará intercambios de taxón para todos los descendientes que tienen un cambio de nombre implicado. Por ejemplo, si intercambias la familia Canidae a Dogidae, esto cambia el padre del género
+          <i>Canis</i> de Canidae a Dogidae. Si te intercambias el género
+          <i>Canis</i> al género <i>Dogis,</i> creará y comprometerá
+          Intercambios de Taxon Intercambios para modificar <i>Canis lupus</i> a <i>Dogis lupus</i> y
+          <i>Canis lupus </i>ssp. <i>lupus</i> a <i>Dogis lupus</i> ssp.
+          <i>lupus.</i>. Esto puede causar bastante desorden, así que úsalo con cuidado.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7396,6 +7593,7 @@ es-MX:
           Si alguien te está molestando %{site_name},
           <a href="mailto:%{help_email}">contáctanos </a>. Si esto representa una violación a nuestros Términos de Uso o representa comportamiento que consideramos es inapropiado en nuestro sitio, investigaremos.
           </p>
+        common_scientific_name_display_order: Orden para mostrar nombres comúnes / científicos
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si cambias de opinión siempre puedes
           <a href='/users/edit'>editar tus preferencias</a>.
@@ -7414,6 +7612,9 @@ es-MX:
           con otros socios como <a href="http://www.gbif.org/">Global 
           Biodiversity Information Facility</a> (GBIF), una organización intergubernamental internacional, 
           que reúne y distriuye información sobre biodiversidad en todo el mundo.
+        monthly_supporter_desc_html: |
+          Los Patrocinadores mensuales de iNaturalist hacen contribuciones automáticas cada mes que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de iNaturalist y de la Red de iNaturalist.
+          <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en iNaturalist para que podamos confirmar que se ha convertido en un patrocinador mensual.
         muting_desc_html: |
           <p>
           Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -7493,6 +7694,14 @@ es-MX:
           una actualización sobre el cambio con un enlace a una herramienta que puedes usar
           manualmente para actualizar el contenido.
         taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Añadir un léxico de nombres comunes
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Añadir un lugar (opcional)
+          common_name_lexicon_display_order: Orden de visualización del léxicos de nombres comunes
+          common_name_lexicons: Léxicos de nombre comunes
           common_name_lexicons_description: Por defecto, los nombres comunes se muestran en el idioma/idioma de tu cuenta. Para ver nombres en otros léxicos, o priorizar los nombres utilizados en lugares específicos (como Inglés o Español (Costa Rica)), añadir léxicos de nombre común. Se puede mostrar un máximo de 3 nombres comunes a la vez. Si no existe un nombre común para un léxico que ha elegido, se omitirá de la pantalla.
           for_multiple_common_name_lexicons_drag_and_drop: Para varios léxicos de nombre común, arrastre y suelte los ajustes de abajo para personalizar el orden en el que se muestran.
           same_as_locale: Igual que el local
@@ -7650,9 +7859,17 @@ es-MX:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d de %B de %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d de %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d.%b.%Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d de %B de %Y'
     month_names:
       - 
       - enero
@@ -7785,9 +8002,17 @@ es-MX:
     am: am
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d %b %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d de %B de %Y a las %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%d %b. %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: pm
@@ -8108,6 +8333,7 @@ es-MX:
             action:
               not_supported_for_this_kind_of_content: no soporta este tipo de contenido
             base:
+              only_staff_and_hiding_curators_can_unhide: Sólo el personal y los curadores que ocultan el contenido pueden mostrarlo
               staff_cannot_be_suspended: El staff no puede ser suspendido
             user_id:
               must_be_a_curator: debes ser un curador

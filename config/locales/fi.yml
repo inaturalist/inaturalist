@@ -351,6 +351,10 @@ fi:
   add_evidence_of_presence_track_annotation: 'Lisää "Todiste läsnäolosta: jälki" -kommentti'
   add_evidence_of_presence_bone_annotation: 'Lisää "Todiste läsnäolosta: luu" -kommentti'
   add_evidence_of_presence_molt_annotation: 'Lisää "Todiste läsnäolosta: nahka" -kommentti'
+  add_evidence_of_presence_leafmine_annotation: 'Lisää "Todiste läsnäolosta: lehtimiina" -kommentti'
+  add_evidence_of_presence_hair_annotation: 'Lisää "Todiste läsnäolosta: karva" -kommentti'
+  add_evidence_of_presence_egg_annotation: 'Lisää "Todiste läsnäolosta: muna" -kommentti'
+  add_evidence_of_presence_construction_annotation: 'Lisää "Todiste läsnäolosta: rakennelma" -kommentti'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lisää suhde'
   #As in a Guide Section
@@ -1054,6 +1058,7 @@ fi:
     no_evidence_of_flowering: Ei näyttöä kukinnasta
     nymph: Nymfi
     larva: Toukka
+    #Evidence of an egg of an organism
     egg: Muna
     juvenile: Nuori
     alive_or_dead: Elävä vai kuollut
@@ -1077,6 +1082,12 @@ fi:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Nahka
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Lehtimiina
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Karva
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Rakennelma
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
     bone: |
@@ -1089,6 +1100,10 @@ fi:
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
     gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
     molt: Hylätty nahka tai ulkoinen tukiranka
+    leafmine: Todisteet syömisestä lehden sisällä.
+    hair: Karva, joka ei ole enää kiinni eliössä, josta se on peräisin.
+    egg: Kokonainen muna tai munan osa
+    construction: Eläimen luoma, muista materiaaleista tehty tai niistä kaivettu rakennelma.
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
@@ -5733,6 +5748,8 @@ fi:
           Jos ainut syy lähtöösi on estää projektin kuraattoreita näkemästä piilotettuja koordinaattejasi.
       edit:
         admins_must_be_existing_members: Vain projektin jäsenistä voidaan tehdä ylläpitäjiä.
+        admins_can_only_be_added_after_creation: |
+          Ylläpitäjiä voi lisätä projektin tallentamisen jälkeen.
         new_place_desc_html: |
           Yritä katsella 
           <a href="%{places_url}" target="_blank">nykyisistä paikoistamme</a> ja varmista, että paikan nimi on oikein. Jos et 
@@ -5890,6 +5907,8 @@ fi:
           Määrittele suodattimet, joilla havainnot valitaan projektiisi. Voit valita useita lajeja tai taksoneita, paikkoja, päivämääriä tai muita kriteereitä. Kriteerit täyttävät havainnot tulevat mukaan projektiin automaattisesti.
         start_and_end_times_for_bioblitzes: Alku- ja loppupäivä/aika (bioblitz-tyyppisiin tapahtumiin)
         traditional_projects_cannot_be_copied: Perinteistä projektia ei voi kopioida
+        trusting_members_will_be_notified: |
+          Olet muuttanut projektin vaatimuksia tai laittanut käyttäjäluottamuksen päälle. Tästä lähtee notifikaatio kaikille niille projektin käyttäjille, jotka ovat jo valinneet luottavansa projektin. Tällöin heillä on mahdollisuus päättää haluavatko he edelleen luottaa projektiin ja sen uusiin vaatimuksiin.
         umbrella_project_features: "Sateenvarjoprojektin ominaisuudet:"
         unique_url_for_outreach: Yksilöllinen www-osoite tiedotusta varten
         use_this_for_a_time_limited_event: |

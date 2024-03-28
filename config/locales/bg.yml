@@ -849,6 +849,7 @@ bg:
     no_evidence_of_flowering: Няма свидетелства за цъфтене
     nymph: Нимфа
     larva: Ларва
+    #Evidence of an egg of an organism
     egg: Яйце
     juvenile: Млад
     alive_or_dead: Жив или мъртъв
@@ -2378,7 +2379,7 @@ bg:
   observed_on: Наблюдавано на
   observer: Наблюдател
   observers: Наблюдатели
-  observer_short: Налюдател
+  observer_short: Наблюдател
   occurrence_status_establishment_means: срещаемост, начин на заселване
   of_places: места
   of_this_taxon: От този таксон
@@ -4536,6 +4537,8 @@ bg:
           Ако единствената причина да напускате е за да не позволите на кураторите на проекта да видят Вашите поверителни координати.
       edit:
         admins_must_be_existing_members: Администраторите трябва да са текущи членове на проекта.
+        admins_can_only_be_added_after_creation: |
+          Администратори могат да се добавят само след като проектът бъде създаден.
         new_place_desc_html: |
           Разгледайте <a href="%{places_url}" target="_blank">нашите съществуващи места</a> и се уверете, че въвеждате името на мястото правилно. Ако не намирате необходимото място, бихте могли да <a href="%{new_place_url}" target="_blank">създадете ново място</a>, но Ви умоляваме да се уверите, че не дублирате вече съществуващо място.
         bioblitz_desc_html: |
