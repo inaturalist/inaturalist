@@ -1,20 +1,26 @@
 = render "header"
 - user_site = @user.site || Site.default
+
+- if @observation.photos?
+  %div{ style: "float: right; width: 118px; margin: 10px; text-align: center;" }
+    = link_to observation_url( @observation ) do
+      %div{ style: "width:110px; height:110px; overflow:hidden; border-radius:50%; margin: 10px auto; margin-right:10px;background-image:url('#{observation_image_url( @observation, size: "medium" )}'); background-size:cover; background-position:center; border: 4px solid #74AC00;" }
+
 %p= "Hello, #{@user.published_name}!"
 
 - if @set == "research"
   %p
-    | Congratulations on posting
+    = "Congratulations on posting "
     = link_to "a Research Grade observation", observation_url( @observation )
     = " to #{user_site.name}!"
 - else
   %p
-    | Congratulations on posting
+    = "Congratulations on posting "
     = link_to "your first observation", observation_url( @observation )
     = " to #{user_site.name}!"
 
 - if @set == "captive_or_human"
-  %p= "Did you know that observations of wild organisms posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation?"
+  %p= "Did you know that observations of <b>wild organisms</b> posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation?"
   %p= "We hope you'll continue to use #{user_site.name} to explore nature."
   %p= "Can you find one of these wild organisms commonly seen near #{@city} in #{@month_name} and share it as your next observation?"
 - else
@@ -23,11 +29,11 @@
     %p= "Because each #{user_site.name} observation should represent a single species, it won't be eligible to become Research Grade until you split it into separate observations."
   - elsif @set == "error_dqa" || @set == "error_missing"
     %p= "However, there is some key information you can add to make it more likely to get input from the community and be used for science and conservation."
-    %p="Your observation as missing"
+    %p="Your observation is missing:"
     %ul
       - @errors.each do | error |
         %li= @error_mapping[error]
-    %p= "So it won't be eligible to become Research Grade and is less likely to get attention from the #{user_site.name} community"
+    %p= "which prevents it from becoming Research Grade and makes it less likely to get attention from the #{user_site.name} community"
   %p= "Did you know that Research Grade observations posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation."
   - if @set == "error_subject"
     %p= "We hope you'll continue to post to #{user_site.name}. Will you try posting another observation that represents a single species?"

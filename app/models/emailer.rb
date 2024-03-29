@@ -369,7 +369,7 @@ class Emailer < ActionMailer::Base
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
     @month_name = Date::MONTHNAMES[current_month]
     @error_mapping = {
-      "georeferenced" => "An location",
+      "georeferenced" => "A location",
       "observed_on" => "A date",
       "media" => "Evidence (photo or sound)",
       "recent" => "Evidence that is recent (e.g. not a fossil)",
