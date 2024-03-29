@@ -760,7 +760,7 @@ class Taxon < ApplicationRecord
   def self.capitalize_scientific_name( name, rank )
     return name.capitalize if rank.blank?
 
-    if [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
+    if [GENUS, GENUSHYBRID, SPECIES].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
       _full_name, x, genus_name = name.match( /^(x|×)\s+?(.+)/ ).to_a
       "#{x} #{genus_name.capitalize}"
     elsif [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^\w+\s+(x|×)\s+\w+$/
