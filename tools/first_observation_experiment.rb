@@ -115,7 +115,7 @@ users.each do | user |
 end
 
 # Process users_set and update contact_date if necessary
-users_set.first.each do | _, row |
+users_set.each do | _, row |
   next unless row[:group] == "A"
 
   user = User.find_by( id: row[:user_id] )

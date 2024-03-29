@@ -5,12 +5,12 @@
 - if @set == "research"
   %p
     | Congratulations on posting
-    = link_to "a Research Grade observation", observation_url(observation)
+    = link_to "a Research Grade observation", observation_url( @observation )
     = " to #{user_site.name}!"
 - else
   %p
     | Congratulations on posting
-    = link_to "your first observation", observation_url(observation)
+    = link_to "your first observation", observation_url( @observation )
     = " to #{user_site.name}!"
 
 - if @set == "captive_or_human"
