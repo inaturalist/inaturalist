@@ -7,8 +7,9 @@ class StatsController < ApplicationController
     only: [:generate_year],
     if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
-    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
+    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments],
     unless: -> { authenticated_with_oauth? }
+  before_action :admin_required, only: [:user_segments]
   before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   prepend_around_action :enable_replica, only: [:index, :summary]
@@ -324,6 +325,115 @@ class StatsController < ApplicationController
 
   def wed_bioblitz
     render layout: "basic"
+  end
+
+  def user_segments
+    segmentation_record = SegmentationStatistic.order( "created_at asc" ).last
+    redirect_to "/" and return unless segmentation_record
+
+    @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
+
+    # Main metrics
+    seg_main_metrics = segmentation_record.data["main_metrics"]
+    @segmentation_statistic = { name: "all", children: [] }
+    @segmentation_statistic[:children] = seg_main_metrics.except( "all" ).map do | key, value |
+      children = value.except( "total" ).map do | subkey, subvalue |
+        next if subkey.include? "_ids"
+
+        {
+          name: subkey.gsub( "_obs", "" ),
+          children: subvalue.except( "total" ).map do | subsubkey, subsubvalue |
+            {
+              name: subsubkey,
+              value: subsubvalue
+            }
+          end
+        }
+      end.compact
+      children.select {| c | c[:name] == "power" }.
+        first[:children] << { name: "ider", value: value["power_ids"]["total"] }
+      children.select {| c | c[:name] == "casual" }.
+        first[:children] << { name: "ider", value: value["casual_ids"]["total"] }
+      {
+        name: key,
+        children: children
+      }
+    end
+
+    # DAU/MAU
+    seg_dau_mau = segmentation_record.data["dau_mau_metrics"]
+    @segmentation_dau_mau = []
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["all_users"]["label"],
+      value: seg_dau_mau["all_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["power_users"]["label"],
+      value: seg_dau_mau["power_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["casual_users"]["label"],
+      value: seg_dau_mau["casual_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["inactive_users"]["label"],
+      value: seg_dau_mau["inactive_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["new_account"]["label"],
+      value: seg_dau_mau["new_account"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["existing_account"]["label"],
+      value: seg_dau_mau["existing_account"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets = []
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_0d_30d"]["label"],
+      value: seg_dau_mau["created_at_0d_30d"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_30d_3m"]["label"],
+      value: seg_dau_mau["created_at_30d_3m"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_3m_6m"]["label"],
+      value: seg_dau_mau["created_at_3m_6m"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_6m_1y"]["label"],
+      value: seg_dau_mau["created_at_6m_1y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_1y_2y"]["label"],
+      value: seg_dau_mau["created_at_1y_2y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_2y_3y"]["label"],
+      value: seg_dau_mau["created_at_2y_3y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_3y_4y"]["label"],
+      value: seg_dau_mau["created_at_3y_4y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_4y_5y"]["label"],
+      value: seg_dau_mau["created_at_4y_5y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_5y_10y"]["label"],
+      value: seg_dau_mau["created_at_5y_10y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_over_10y"]["label"],
+      value: seg_dau_mau["created_at_over_10y"]["dau_mau"]
+    }
+
+    respond_to do | format |
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
   end
 
   private
