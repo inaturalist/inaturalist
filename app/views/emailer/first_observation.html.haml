@@ -1,15 +1,5 @@
 = render "header"
 - user_site = @user.site || Site.default
-- error_mapping = {
-  "georeferenced" => "An location",
-  "observed_on" => "A date",
-  "media" => "Evidence (photo or sound)",
-  "recent" => "Evidence that is recent (e.g. not a fossil)",
-  "evidence" => "Evidence of a species in the photo or sound",
-  "location" => "An accurate location",
-  "date" => "An accurate date"
-}
-
 %p= "Hello, #{@user.published_name}!"
 
 - if @set == "research"
@@ -30,7 +20,7 @@
     %p="Your observation as missing"
     %ul
       - error.each do | error |
-        %li= error_mapping[error]
+        %li= @error_mapping[error]
     %p= "So it won't be eligible to become Research Grade and is less likely to get attention from the #{user_site.name} community"
   %p= "Did you know that Research Grade observations posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation."
   - if @set == "error_subject"

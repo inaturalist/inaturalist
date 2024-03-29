@@ -368,6 +368,15 @@ class Emailer < ActionMailer::Base
       first( 4 ).map {| t | t["taxon"]["id"] }
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
     @month_name = Date::MONTHNAMES[current_month]
+    @error_mapping = {
+      "georeferenced" => "An location",
+      "observed_on" => "A date",
+      "media" => "Evidence (photo or sound)",
+      "recent" => "Evidence that is recent (e.g. not a fossil)",
+      "evidence" => "Evidence of a species in the photo or sound",
+      "location" => "An accurate location",
+      "date" => "An accurate date"
+    }
 
     # Mail settings
     subject = if options[:set] == "research"
