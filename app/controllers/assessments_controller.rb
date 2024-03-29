@@ -3,7 +3,8 @@ class AssessmentsController < ApplicationController
   before_action :load_assessment, :only => [:edit, :update, :destroy, :show]
   before_action :load_project
   before_action :project_curator_required, :except => [:index, :show, :show_section]
-  before_action :allow_external_iframes, only: [:show]
+
+  allow_external_iframes( only: [:show] )
 
   def new
     @assessment = Assessment.new

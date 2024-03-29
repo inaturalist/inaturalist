@@ -1,8 +1,9 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
   before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
-  before_action :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_action :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
+
+  allow_external_iframes( only: [:stats, :user_stats, :taxa, :map] )
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]

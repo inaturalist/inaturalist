@@ -9,7 +9,8 @@ class StatsController < ApplicationController
   before_action :authenticate_user!,
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
     unless: -> { authenticated_with_oauth? }
-  before_action :allow_external_iframes, only: [:wed_bioblitz]
+
+  allow_external_iframes( only: [:wed_bioblitz] )
 
   prepend_around_action :enable_replica, only: [:index, :summary]
 
