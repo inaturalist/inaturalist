@@ -639,12 +639,13 @@ class Observation < ApplicationRecord
     # own observations
     params_user_ids = [p[:user_id]].flatten.map(&:to_i)
     unless p[:place_id].blank? || p[:place_id] == "any"
+      place_id = p[:place_id].is_a?( String ) ? p[:place_id].split( "," ) : p[:place_id]
       if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
-        search_filters << { terms: { "private_place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "private_place_ids.keyword" => [place_id].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       else
-        search_filters << { terms: { "place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "place_ids.keyword" => [place_id].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       end
