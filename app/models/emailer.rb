@@ -360,21 +360,20 @@ class Emailer < ActionMailer::Base
     filtered_species = get_filtered_species( geoip_latitude, geoip_longitude, current_month )
 
     # Return false if there are not enough filtered species
-    #return false if filtered_species.count < 4
-    
+    return false if filtered_species.count < 4
+
     # Fetch nearby species and set month name
     filtered_species_ids = filtered_species.
       reject {| t | t["taxon"]["id"] == observation.taxon_id }.
       first( 4 ).map {| t | t["taxon"]["id"] }
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
-    @nearby_species = Taxon.first(4)
     @month_name = Date::MONTHNAMES[current_month]
 
     # Mail settings
-    if options[:set] == "research"
-      subject = "Congratulations on posting a Research Grade observation to #{site_name}!"
+    subject = if options[:set] == "research"
+      "Congratulations on posting a Research Grade observation to #{site_name}!"
     else
-      subject = "Congratulations on posting your first observation to #{site_name}!"
+      "Congratulations on posting your first observation to #{site_name}!"
     end
     set_locale
     mail(
