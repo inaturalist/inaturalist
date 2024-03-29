@@ -332,9 +332,11 @@ class StatsController < ApplicationController
     redirect_to "/" and return unless segmentation_record
 
     @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
-    seg = segmentation_record.data["main_metrics"]
+
+    # Main metrics
+    seg_main_metrics = segmentation_record.data["main_metrics"]
     @segmentation_statistic = { name: "all", children: [] }
-    @segmentation_statistic[:children] = seg.except( "all" ).map do | key, value |
+    @segmentation_statistic[:children] = seg_main_metrics.except( "all" ).map do | key, value |
       children = value.except( "total" ).map do | subkey, subvalue |
         next if subkey.include? "_ids"
 
@@ -357,6 +359,75 @@ class StatsController < ApplicationController
         children: children
       }
     end
+
+    # DAU/MAU
+    seg_dau_mau = segmentation_record.data["dau_mau_metrics"]
+    @segmentation_dau_mau = []
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["all_users"]["label"],
+      value: seg_dau_mau["all_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["power_users"]["label"],
+      value: seg_dau_mau["power_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["casual_users"]["label"],
+      value: seg_dau_mau["casual_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["inactive_users"]["label"],
+      value: seg_dau_mau["inactive_users"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["new_account"]["label"],
+      value: seg_dau_mau["new_account"]["dau_mau"]
+    }
+    @segmentation_dau_mau << {
+      label: seg_dau_mau["existing_account"]["label"],
+      value: seg_dau_mau["existing_account"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets = []
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_0d_30d"]["label"],
+      value: seg_dau_mau["created_at_0d_30d"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_30d_3m"]["label"],
+      value: seg_dau_mau["created_at_30d_3m"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_3m_6m"]["label"],
+      value: seg_dau_mau["created_at_3m_6m"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_6m_1y"]["label"],
+      value: seg_dau_mau["created_at_6m_1y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_1y_2y"]["label"],
+      value: seg_dau_mau["created_at_1y_2y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_2y_3y"]["label"],
+      value: seg_dau_mau["created_at_2y_3y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_3y_4y"]["label"],
+      value: seg_dau_mau["created_at_3y_4y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_4y_5y"]["label"],
+      value: seg_dau_mau["created_at_4y_5y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_5y_10y"]["label"],
+      value: seg_dau_mau["created_at_5y_10y"]["dau_mau"]
+    }
+    @segmentation_dau_mau_by_created_at_buckets << {
+      label: seg_dau_mau["created_at_over_10y"]["label"],
+      value: seg_dau_mau["created_at_over_10y"]["dau_mau"]
+    }
 
     respond_to do | format |
       format.html do

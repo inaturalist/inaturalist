@@ -143,9 +143,144 @@
           .attr( "font-size", "14px" )
           .attr( "fill",  "black" )
       } );
+    var STATS_DAU_MAU_JSON = #{ @segmentation_dau_mau.to_json.html_safe };
+    $( document ).ready( function() {
+      var data = STATS_DAU_MAU_JSON;
+      var margin = {top: 20, right: 30, bottom: 40, left: 180};
+      var width = 1000 - margin.left - margin.right;
+          height = 300 - margin.top - margin.bottom;
+
+      var tooltip = d3.select( "body" )
+        .append( "div" )
+        .attr( "class", "tooltip" )
+        .style( "opacity", 0 );
+  
+      var svg = d3.select( "#dau_mau_dataviz" )
+        .append( "svg" )
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+      // Add X axis
+      var x = d3.scaleLinear()
+        .domain([0, 100])
+        .range([ 0, width]);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+          .attr("transform", "translate(-10,0)rotate(-45)")
+          .style("text-anchor", "end");
+
+      // Y axis
+      var y = d3.scaleBand()
+        .range([ 0, height ])
+        .domain(data.map(function(d) { return d.label; }))
+        .padding(.1);
+      svg.append("g")
+        .call(d3.axisLeft(y))
+
+      //Bars
+      svg.selectAll("myRect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", x(0) )
+        .attr("y", function(d) { return y(d.label); })
+        .attr("width", function(d) { return x(d.value); })
+        .attr("height", y.bandwidth() )
+        .attr("fill", "#69b3a2")
+        .on( "mouseover", function( d ) {
+          tooltip.style( "opacity", 1 );
+          tooltip.style( "left", ( d3.event.pageX + 10 ) + "px" );
+          tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
+          tooltip.html(
+            "Group: " + d.label + "<br/>" + 
+            "DAU/MAU: " + d.value.toFixed( 2 ) + "%"
+          );
+        } )
+        .on( "mouseout", function() {
+          tooltip.style( "opacity", 0 );
+        } );
+      } );
+    var STATS_DAU_MAU_CREATED_AT_JSON = #{ @segmentation_dau_mau_by_created_at_buckets.to_json.html_safe };
+    $( document ).ready( function() {
+      var data = STATS_DAU_MAU_CREATED_AT_JSON;
+      var margin = {top: 20, right: 30, bottom: 40, left: 180};
+      var width = 1000 - margin.left - margin.right;
+          height = 500 - margin.top - margin.bottom;
+
+      var tooltip = d3.select( "body" )
+        .append( "div" )
+        .attr( "class", "tooltip" )
+        .style( "opacity", 0 );
+  
+      var svg = d3.select( "#dau_mau_created_at_dataviz" )
+        .append( "svg" )
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+      // Add X axis
+      var x = d3.scaleLinear()
+        .domain([0, 100])
+        .range([ 0, width]);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+          .attr("transform", "translate(-10,0)rotate(-45)")
+          .style("text-anchor", "end");
+
+      // Y axis
+      var y = d3.scaleBand()
+        .range([ 0, height ])
+        .domain(data.map(function(d) { return d.label; }))
+        .padding(.1);
+      svg.append("g")
+        .call(d3.axisLeft(y))
+
+      //Bars
+      svg.selectAll("myRect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", x(0) )
+        .attr("y", function(d) { return y(d.label); })
+        .attr("width", function(d) { return x(d.value); })
+        .attr("height", y.bandwidth() )
+        .attr("fill", "#69b3a2")
+        .on( "mouseover", function( d ) {
+          tooltip.style( "opacity", 1 );
+          tooltip.style( "left", ( d3.event.pageX + 10 ) + "px" );
+          tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
+          tooltip.html(
+            "Group: " + d.label + "<br/>" + 
+            "DAU/MAU: " + d.value.toFixed( 2 ) + "%"
+          );
+        } )
+        .on( "mouseout", function() {
+          tooltip.style( "opacity", 0 );
+        } );
+      } );
+       
 .container-fluid
   .row
     .col-xs-12
       %h1 Logged in User Segments
       = "30 days period ending on #{@record_date}"
       #user_dataviz
+  .row
+    .col-xs-12
+      %h1 DAU/MAU
+      = "30 days period ending on #{@record_date}"
+      #dau_mau_dataviz
+  .row
+    .col-xs-12
+      %h1 DAU/MAU by account creation date
+      = "30 days period ending on #{@record_date}"
+      #dau_mau_created_at_dataviz
