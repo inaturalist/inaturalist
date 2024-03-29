@@ -1977,7 +1977,7 @@ class ObservationsController < ApplicationController
         @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
       end
     else
-      @observation.user_viewed_updates(current_user.id)
+      @observation.user_viewed_updates( current_user.id, wait_for_index_refresh: true )
     end
   end
 

@@ -215,9 +215,10 @@ class UpdateAction < ApplicationRecord
     grouped_updates.sort_by {|key, updates| updates.last.sort_by_date.to_i * -1}
   end
 
-  def self.user_viewed_updates(updates, user_id)
+  def self.user_viewed_updates( updates, user_id, options = {} )
     updates = updates.to_a.compact
     return if updates.blank?
+
     update_script = {
       script: {
         source: "
@@ -233,8 +234,8 @@ class UpdateAction < ApplicationRecord
     }
     UpdateAction.__elasticsearch__.client.bulk(
       index: UpdateAction.index_name,
-      refresh: Rails.env.test?,
-      body: updates.map do |update|
+      refresh: options[:wait_for_index_refresh] ? "wait_for" : Rails.env.test?,
+      body: updates.map do | update |
         [{
           update: {
             _id: update.id,

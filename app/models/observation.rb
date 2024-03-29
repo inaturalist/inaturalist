@@ -3376,9 +3376,9 @@ class Observation < ApplicationRecord
     true
   end
 
-  def user_viewed_updates(user_id)
-    obs_updates = UpdateAction.where(resource: self)
-    UpdateAction.user_viewed_updates(obs_updates, user_id)
+  def user_viewed_updates( user_id, options = {} )
+    obs_updates = UpdateAction.where( resource: self )
+    UpdateAction.user_viewed_updates( obs_updates, user_id, options )
   end
 
   def in_collection_projects?( projects, api_params = {} )
