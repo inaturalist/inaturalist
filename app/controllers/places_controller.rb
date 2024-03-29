@@ -259,16 +259,18 @@ class PlacesController < ApplicationController
       return
     end
 
-    if max_area_km2 && @place.area_km2 > max_area_km2
-      flash[:error] = t( :only_staff_can_edit_large_places )
-      redirect_to place_path( @place )
-      nil
-    end
+    return unless max_area_km2
+    return unless @place.area_km2
+    return if @place.area_km2 <= max_area_km2
+
+    flash[:error] = t( :only_staff_can_edit_large_places )
+    redirect_to place_path( @place )
+    nil
   end
 
   def update
     if @place.update( params[:place] )
-      if max_area_km2 && @place.area_km2 > max_area_km2
+      if max_area_km2 && @place.area_km2 && @place.area_km2 > max_area_km2
         @place.add_custom_error( :place_geometry, :is_too_large_to_edit )
       elsif params[:file]
         assign_geometry_from_file
