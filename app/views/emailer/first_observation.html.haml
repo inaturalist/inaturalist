@@ -20,7 +20,11 @@
     = " to #{user_site.name}!"
 
 - if @set == "captive_or_human"
-  %p= "Did you know that observations of <b>wild organisms</b> posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation?"
+  %p
+    Did you know that observations of
+    %strong
+      wild organisms
+    = "posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation?"
   %p= "We hope you'll continue to use #{user_site.name} to explore nature."
   %p= "Can you find one of these wild organisms commonly seen near #{@city} in #{@month_name} and share it as your next observation?"
 - else
@@ -34,14 +38,14 @@
       - @errors.each do | error |
         %li= @error_mapping[error]
     %p= "which prevents it from becoming Research Grade and makes it less likely to get attention from the #{user_site.name} community"
-  %p= "Did you know that Research Grade observations posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation."
+  %p= "Did you know that Research Grade observations posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation?"
   - if @set == "error_subject"
     %p= "We hope you'll continue to post to #{user_site.name}. Will you try posting another observation that represents a single species?"
   - elsif @set == "error_dqa" || @set == "error_missing"
     %p= "We hope you'll continue to post to #{user_site.name}. Will you try posting another observation that includes the missing pieces described above?"
   - else
     %p= "We hope you'll continue to use #{user_site.name} to contribute to important data for science and conservation!"
-  %p= "Here are some more species commonly seen near #{@city} in #{@month_name} to inspire you."
+  %p= "Here are some more species commonly seen near #{@city} in #{@month_name} to inspire you:"
 %tr
   %td{ valign: "top", class: "bodyContent", "mc:edit": "body_content00", style: "color: #505050; font-family: Helvetica; font-size: 16px; line-height: 150%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; text-align: left;" }
     %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
