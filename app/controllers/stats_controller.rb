@@ -332,7 +332,7 @@ class StatsController < ApplicationController
     redirect_to "/" and return unless segmentation_record
 
     @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
-    seg = segmentation_record.data
+    seg = segmentation_record.data["main_metrics"]
     @segmentation_statistic = { name: "all", children: [] }
     @segmentation_statistic[:children] = seg.except( "all" ).map do | key, value |
       children = value.except( "total" ).map do | subkey, subvalue |
