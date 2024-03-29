@@ -64,7 +64,7 @@ user_ids = Observation.elastic_search(
 ).response.aggregations.distinct_users.buckets.map {| b | b["key"] }
 
 # Query users matching criteria
-users = User.where( id: user_ids ).where( "locale LIKE ? AND observations_count = 1", "en%" )
+users = User.where( id: user_ids ).where( "suspended_at IS NULL AND locale LIKE ? AND observations_count = 1", "en%" )
 
 # Collect user data for the experiment
 users_set = {}
@@ -100,6 +100,8 @@ users.each do | user |
     elsif observation.human? || quality_metric_observation_ids( [observation.id], "wild" ).count == 1
       set = "captive_or_human"
     end
+  elsif !observation.appropriate?
+    set = "copyright"
   end
 
   users_set[user.id] = {
@@ -113,6 +115,8 @@ users.each do | user |
     set: set
   }
 end
+
+project = Project.where( title: "First Observations" ).first
 
 # Process users_set and update contact_date if necessary
 users_set.each do | _, row |
@@ -139,6 +143,14 @@ users_set.each do | _, row |
     set: set,
     errors: errors
   ).deliver_now
+
+  next unless project &&
+    ( ["needs_id", "research"].include? set ) &&
+    user.prefers_project_addition_by == "any" &&
+    ProjectObservation.where( project_id: project.id, observation_id: observation.id ).first.nil?
+
+  po = ProjectObservation.new( project_id: project.id, observation_id: observation.id )
+  po.save!
 end
 
 # Append the new user data to the CSV file

@@ -373,7 +373,7 @@ class Emailer < ActionMailer::Base
       "observed_on" => "A date",
       "media" => "Evidence (photo or sound)",
       "recent" => "Evidence that is recent (e.g. not a fossil)",
-      "evidence" => "Evidence of a species in the photo or sound",
+      "evidence" => "Evidence of a species in the photo (or sound)",
       "location" => "An accurate location",
       "date" => "An accurate date"
     }
