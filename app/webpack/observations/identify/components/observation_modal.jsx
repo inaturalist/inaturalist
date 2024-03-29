@@ -545,6 +545,8 @@ class ObservationModal extends React.Component {
                     show={keyboardShortcutsShown}
                     container={$( ".ObservationModal" ).get( 0 )}
                     target={( ) => $( ".keyboard-shortcuts-container > .btn" ).get( 0 )}
+                    rootClose
+                    onHide={( ) => toggleKeyboardShortcuts( true ) }
                   >
                     <Popover title={I18n.t( "keyboard_shortcuts" )} id="keyboard-shortcuts-popover">
                       <table>

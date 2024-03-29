@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col, Button, Glyphicon } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import ObsCardComponent from "./obs_card_component";
-import SplitTaxon from "../../shared/components/split_taxon";
-import LocationChooser from "../../observations/uploader/components/location_chooser";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import LocationChooser from "../../../observations/uploader/components/location_chooser";
 /* global SITE_ICONS */
 
 class ComputerVisionDemoApp extends Component {

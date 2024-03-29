@@ -83,10 +83,11 @@
           = "Label: #{l.label} (#{l.locale})"
           = button_to "Delete label", l, method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-danger"
         = render partial: "controlled_term_labels/form", locals: { label: l }
-    %br
-    %br
-    %hr
-    .row
-      %h3 Create a New Label
-      = render "controlled_term_labels/form", no_required_fields: true
+    - if @term
+      %br
+      %br
+      %hr
+      .row
+        %h3 Create a New Label
+        = render "controlled_term_labels/form", no_required_fields: true
 

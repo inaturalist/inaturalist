@@ -36,11 +36,16 @@ body > [role="dialog"] .Annotations {
   .attribute {
     font-weight: 700;
     cursor: pointer;
-    white-space: nowrap;
+    min-width: 140px;
   }
   .value {
     white-space: nowrap;
-  }
+    text-indent: -27px;
+    padding-inline-start: 35px;
+    .value-label {
+      white-space: normal;
+    }
+ }
   .UserImage {
     min-width: 22px;
     width: 22px;

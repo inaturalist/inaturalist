@@ -724,6 +724,10 @@ body > [role="dialog"] .ObservationModal {
       padding-left: 20px;
     }
     td { vertical-align: top; }
+    .popover-content {
+      max-height: 475px;
+      overflow-y: auto
+    }
   }
 
   .Faves {

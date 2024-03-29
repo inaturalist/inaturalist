@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment-timezone";
-import TaxonAutocomplete from "../../observations/uploader/components/taxon_autocomplete";
-import DateTimeFieldWrapper from "../../observations/uploader/components/date_time_field_wrapper";
-import util from "../../observations/uploader/models/util";
+import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
+import DateTimeFieldWrapper from "../../../observations/uploader/components/date_time_field_wrapper";
+import util from "../../../observations/uploader/models/util";
+
+/* eslint jsx-a11y/click-events-have-key-events: 0 */
+/* eslint jsx-a11y/no-static-element-interactions: 0 */
+/* eslint react/no-string-refs: 0 */
 
 class ObsCardComponent extends Component {
   constructor( props, context ) {
@@ -33,7 +37,8 @@ class ObsCardComponent extends Component {
     const { obsCard, updateObsCard } = this.props;
     let photo;
     if (
-      !( obsCard.uploadedFile.uploadState === "failed" )
+      obsCard.uploadedFile
+      && !( obsCard.uploadedFile.uploadState === "failed" )
       && (
         ( obsCard.uploadedFile.preview && !obsCard.uploadedFile.photo )
         || ( obsCard.uploadedFile.photo && obsCard.uploadedFile.uploadState !== "failed" )
@@ -65,12 +70,7 @@ class ObsCardComponent extends Component {
       );
     }
 
-    const loadingText = (
-      obsCard.uploadedFile.uploadState === "uploading"
-      || obsCard.uploadedFile.uploadState === "pending"
-    )
-      ? I18n.t( "loading_metadata" )
-      : "\u00a0";
+    const loadingText = "\u00a0";
     const invalidDate = util.dateInvalid( obsCard.date );
     const locationText = obsCard.locality_notes
       || (
@@ -78,7 +78,14 @@ class ObsCardComponent extends Component {
         && `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}`
       );
     return (
-      <div className={`uploadedPhoto thumbnail ${obsCard.visionResults ? "completed" : ""}`}>
+      <div className="uploadedPhoto thumbnail">
+        <button
+          type="button"
+          className="btn-close"
+          onClick={( ) => this.props.resetState( )}
+        >
+          <Glyphicon glyph="remove" />
+        </button>
         <div className="img-container">
           { photo }
         </div>
@@ -92,7 +99,8 @@ class ObsCardComponent extends Component {
             searchExternal
             showPlaceholder
             perPage={6}
-            resetOnChange={false}
+            resetOnChange={true}
+            initialTaxonID={obsCard.taxon ? obsCard.taxon.iconic_taxon_id : null}
             afterSelect={r => {
               if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
                 updateObsCard( {
@@ -103,13 +111,11 @@ class ObsCardComponent extends Component {
               }
             }}
             afterUnselect={( ) => {
-              if ( obsCard.selected_taxon ) {
-                updateObsCard( {
-                  taxon_id: null,
-                  selected_taxon: null,
-                  species_guess: null
-                } );
-              }
+              updateObsCard( {
+                taxon_id: null,
+                selected_taxon: null,
+                species_guess: null
+              } );
             }}
           />
           <DateTimeFieldWrapper
@@ -171,7 +177,8 @@ class ObsCardComponent extends Component {
 ObsCardComponent.propTypes = {
   obsCard: PropTypes.object,
   updateObsCard: PropTypes.func,
-  setLocationChooser: PropTypes.func
+  setLocationChooser: PropTypes.func,
+  resetState: PropTypes.func
 };
 
 export default ObsCardComponent;

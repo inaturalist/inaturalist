@@ -116,6 +116,8 @@ base: &base
 
     allowed_email_recipient_patterns: <%= ENV.fetch("INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS") { ["INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS"] } %>
     
+    admin_user_email: <%= ENV.fetch("INAT_ADMIN_USER_EMAIL") { "INAT_ADMIN_USER_EMAIL" } %>
+
 development:
     <<: *base
 

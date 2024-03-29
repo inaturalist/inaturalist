@@ -530,7 +530,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def clear_experiment_caches
-    ["research_grade_results", "verifiable_results", "rall_results"].each do | tab |
+    ["research_grade_results", "verifiable_results", "all_results"].each do | tab |
       Rails.cache.delete( "ObservationAccuracyExperiment::#{id}::get_results_data::#{tab}" )
     end
     Rails.cache.delete( "ObservationAccuracyExperiment::#{id}::get_val_methods" )
