@@ -55,14 +55,12 @@
   %td{ valign: "top", class: "bodyContent", "mc:edit": "body_content00", style: "color: #505050; font-family: Helvetica; font-size: 16px; line-height: 150%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; text-align: left;" }
     %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
       %tr
-        - @nearby_species.each_slice( 4 ) do |taxon_row|
-          %tr
-            %td{ style: "width: 100%;" }
-              %div{ style: "display: flex; flex-wrap: wrap; justify-content: center;" }
-                - taxon_row.each do | taxon |
-                  = link_to taxon_url( taxon ), style: "margin: 0 10px;" do
-                    %div{ style: "width: 110px; height: 110px; overflow: hidden; border-radius: 50%; margin-right: 10px; background-image: url('#{taxon_image_url( taxon, size: "medium" )}'); background-size: cover; background-position: center; border: 4px solid #74AC00;" }
-                    %p{ style: "margin: 0; padding-top: 10px; width: 110px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
-                      = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
+        %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
+          - @nearby_species.each do |taxon|
+            %div{ style: "width: 118px; margin: 10px; text-align: center;" }
+              = link_to taxon_url( taxon ) do
+                %div{ style: "width:110px; height:110px; overflow:hidden; border-radius:50%; margin:0 auto; margin-right:10px; background-image:url('#{taxon_image_url( taxon, size: "medium" )}'); background-size:cover; background-position:center; border: 4px solid #74AC00;" }
+                %p{ style: "margin:0; padding-top:10px; width: 110px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
+                  = render partial: 'shared/taxon', object: taxon, locals: { include_parens: false, exclude_rank: true, one_name: true }
 
 = render "footer"
