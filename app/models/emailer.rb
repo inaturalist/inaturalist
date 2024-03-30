@@ -380,9 +380,9 @@ class Emailer < ActionMailer::Base
 
     # Mail settings
     subject = if options[:set] == "research"
-      "Congratulations on posting a Research Grade observation to #{site_name}!#{rand( 100_000..999_999 )}"
+      "Congratulations on posting a Research Grade observation to #{site_name}!"
     else
-      "Congratulations on posting your first observation to #{site_name}!#{rand( 100_000..999_999 )}"
+      "Congratulations on posting your first observation to #{site_name}!"
     end
     set_locale
     mail(
