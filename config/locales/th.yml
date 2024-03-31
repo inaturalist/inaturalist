@@ -293,6 +293,7 @@ th:
   add_evidence_of_presence_track_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: รอยตามทาง"'
   add_evidence_of_presence_bone_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: กระดูก"'
   add_evidence_of_presence_molt_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: คราบ"'
+  add_evidence_of_presence_hair_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ขน"'
   #As in a Taxon Framework Relationship
   add_relationship: 'เพิ่มความสัมพันธ์'
   #As in a Guide Section
@@ -838,12 +839,15 @@ th:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: คราบ
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: ขน
   controlled_term_definitions:
     feather: ขนที่หลุดออกจากตัวนก
     flower_budding: เห็นตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
+    hair: เส้นขนที่หลุดจากตัวสัตว์
     no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
