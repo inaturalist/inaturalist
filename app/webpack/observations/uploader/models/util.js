@@ -14,7 +14,9 @@ export const ACCEPTED_FILE_TYPES = [
   "audio/x-mp3",
   "audio/mp4",
   "audio/x-m4a",
-  "audio/amr"
+  "audio/amr",
+  // some mp4 audio files are detected as video/mp4
+  "video/mp4"
 ].join( ", " );
 
 export const MAX_FILE_SIZE = 20971520; // 20 MB in bytes

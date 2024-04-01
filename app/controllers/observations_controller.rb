@@ -125,10 +125,10 @@ class ObservationsController < ApplicationController
       @observations = h[:observations]
     end
     respond_to do |format|
-
       format.html do
         if showing_partial
-          pagination_headers_for(@observations)
+          Observation.preload_for_component( @observations, logged_in: !!current_user )
+          pagination_headers_for( @observations )
           return render_observations_partial(params[:partial])
         end
         # one of the few things we do in Rails. Look up the taxon_name param
@@ -1977,7 +1977,7 @@ class ObservationsController < ApplicationController
         @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
       end
     else
-      @observation.user_viewed_updates(current_user.id)
+      @observation.user_viewed_updates( current_user.id, wait_for_index_refresh: true )
     end
   end
 

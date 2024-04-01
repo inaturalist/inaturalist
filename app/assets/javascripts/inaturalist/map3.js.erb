@@ -154,7 +154,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   // return the observation for futher use
   return observation;
 };
-  
+
 google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
   if (this.observations[observation.id]) {
