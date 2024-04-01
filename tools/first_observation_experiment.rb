@@ -116,8 +116,6 @@ users.each do | user |
   }
 end
 
-project = Project.where( title: "First Observations" ).first
-
 # Process users_set and update contact_date if necessary
 users_set.each do | _, row |
   next unless row[:group] == "A"
@@ -143,14 +141,6 @@ users_set.each do | _, row |
     set: set,
     errors: errors
   ).deliver_now
-
-  next unless project &&
-    ( ["needs_id", "research"].include? set ) &&
-    user.prefers_project_addition_by == "any" &&
-    ProjectObservation.where( project_id: project.id, observation_id: observation.id ).first.nil?
-
-  po = ProjectObservation.new( project_id: project.id, observation_id: observation.id )
-  po.save!
 end
 
 # Append the new user data to the CSV file
