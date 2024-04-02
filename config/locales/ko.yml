@@ -188,11 +188,23 @@ ko:
   add_life_stage_larva_annotation: '성장 단계: 애벌레'
   add_life_stage_juvenile_annotation: '성장 단계: 아성체'
   add_life_stage_egg_annotation: '성장 단계: 알'
+  add_evidence_of_presence_organism_annotation: '이 발견에 "개체를 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_feather_annotation: '이 발견에 "깃털을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_gall_annotation: '이 발견에 "충영을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_scat_annotation: '이 발견에 "배설물을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_track_annotation: '이 발견에 "발자국을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_bone_annotation: '이 발견에 "뼈를 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_molt_annotation: '이 발견에 "허물을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_leafmine_annotation: '이 발견에 "벌레 먹은 잎을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_hair_annotation: '이 발견에 "털을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_egg_annotation: '이 발견에 "알을 발견했다"는 주석을 답니다.'
+  add_evidence_of_presence_construction_annotation: '이 발견에 "구조물을 발견했다"는 주석을 답니다.'
   #As in a Taxon Framework Relationship
   add_relationship: '관계 추가'
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_sex_female_annotation: '성별: 암컷'
   add_sex_male_annotation: '성별: 수컷'
+  add_sex_cannot_be_determined_annotation: '성별: 확인할 수 없음'
   add_some_now: 지금 추가하기
   add_tag: 태그 추가
   add_tags: 태그 추가하기
@@ -635,7 +647,25 @@ ko:
     track: 발자국
     #Endoskeletal remains, like a deer bone
     bone: 뼈
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: 허물
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: 벌레 먹은 잎
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: 털
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: 구조물
   controlled_term_definitions:
+    bone: |
+      주로 내골격 잔류물. 그렇지 않은 경우 부분적인 뼈 노출 포함
+      온전한 상태의 개체에게는 "개체"라는 주석이 달려야 합니다
+    feather: 개체에게서 떨어져 나온 하나 이상의 깃털
+    molt: 탈피로 인해 벗겨저서 버려진 외골격이나 피부
+    leafmine: 잎 표면을 갉아먹은 증거
+    hair: 생물의 몸에서 빠져나온 털
+    egg: 알 전체 혹은 일부분
+    construction: 동물이 다른 물질로 만들어낸 둥지, 댐 등의 구조물 혹은 굴이나 구멍을 파낸 흔적
     organism: 개체의 전체 혹은 일부
     scat: 배설물(펠릿 등 토사물 미포함)
   controls: 제어
@@ -2573,6 +2603,7 @@ ko:
           research: 연구 자료 등급
           "Alive or Dead=Alive": 살아있음
           "Alive or Dead=Dead": 죽음
+          "Life Stage=Egg": 알
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
