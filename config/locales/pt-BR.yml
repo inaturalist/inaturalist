@@ -351,6 +351,9 @@ pt-BR:
   add_evidence_of_presence_track_annotation: 'Adicionar anotação "Evidência de Presença: rastro"'
   add_evidence_of_presence_bone_annotation: 'Adicionar anotação "Evidência de Presença: osso"'
   add_evidence_of_presence_molt_annotation: 'Adicionar anotação "Evidência de Presença: muda"'
+  add_evidence_of_presence_hair_annotation: 'Adicionar anotação "Evidência de Presença: pelo"'
+  add_evidence_of_presence_egg_annotation: 'Adicionar anotação "Evidência de Presença: ovo"'
+  add_established_not_established: 'Adicionar anotação "Estabelecido: não estabelecida"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Adicionar relacionamento'
   #As in a Guide Section
@@ -1147,6 +1150,7 @@ pt-BR:
     no_evidence_of_flowering: Nenhuma evidência de floração
     nymph: Ninfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Ovo
     juvenile: Juvenil
     alive_or_dead: Vivo ou Morto
@@ -1170,6 +1174,12 @@ pt-BR:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Pelos
+    #Does the observation belong to a non-established population or not
+    established: Estabelecida
+    #Organism is not a member of an established population
+    not_established: Não Estabelecida
   controlled_term_definitions:
     alive: O organismo está vivo e não mostra sinais de morte iminente
     bone: |
@@ -1184,7 +1194,11 @@ pt-BR:
     gall: Crescimento anormal deformativo de tecido vegetal causado por parasita
     male: Evidência indica que o organismo pode produzir espermatozoides para utilização na reprodução sexual
     molt: Pele ou exoesqueleto descartados
+    hair: Pelos que não estão ligados ao organismo de origem
+    egg: Ovo inteiro ou parte de um ovo
+    construction: Algo criado por um animal, construído ou escavado a partir de outros materiais
     no_evidence_of_flowering: Os meios de comunicação não dão provas de estruturas reprodutivas
+    not_established: O organismo pertence a uma população não estabelecida, incluindo animais de estimação liberados/fugitivos, vagantes e de ocorrência acidental.
     organism: Organismo inteiro ou parcial
     scat: Matéria fecal (mas não pelotas de coruja ou outra regurgitação)
     teneral: Adulto que emergiu recentemente, mas ainda não atingiu sua forma final de adulto
@@ -1524,6 +1538,8 @@ pt-BR:
   deviation: Desvio
   devise:
     confirmations:
+      confirmed: |
+        Seu endereço de e-mail foi confirmado com sucesso.
       send_instructions: "Em minutos você receberá uma mensagem com instruções sobre como confirmar seu endereço de correio eletrônico."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.

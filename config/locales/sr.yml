@@ -359,6 +359,7 @@ sr:
   add_evidence_of_presence_track_annotation: 'Dodaj pribelešku "Dokaz prisustva: Trag"'
   add_evidence_of_presence_bone_annotation: 'Dodaj pribelešku "Dokaz prisustva: Kost"'
   add_evidence_of_presence_molt_annotation: 'Dodaj pribelešku "Dokaz prisustva: Košuljica"'
+  add_evidence_of_presence_construction_annotation: 'Dodaj pribelešku "Dokaz prisustva: kreacija"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj srodstvo'
   #As in a Guide Section
@@ -983,6 +984,7 @@ sr:
     no_evidence_of_flowering: Nema dokaza cvetanja
     nymph: Nimfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Jaje
     juvenile: Juvenil
     alive_or_dead: Živo ili mrtvo
@@ -1006,6 +1008,8 @@ sr:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Košuljica
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Kreacija
   controlled_term_definitions:
     alive: Organizam je živ i nema naznaka skore smrti
     cannot_be_determined: Ne može se utvrditi iz priloženih dokaza
@@ -1014,6 +1018,7 @@ sr:
     flowering: Cvetovi vidljivi, otvoreni, i još uvek pričvršćeni za biljku
     fruiting: Voćke vidljive i još uvek na biljci
     molt: Odbačena koža ili egzoskelet
+    construction: Nešto što je životinja napravila, koristeći materijal iz okoline
     organism: Ceo ili deo organizma
     track: Otisci organizma na zemlji ili snegu
   controls: Kontrole

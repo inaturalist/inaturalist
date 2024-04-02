@@ -442,6 +442,11 @@ ru:
   add_evidence_of_presence_track_annotation: 'Добавить значение "Доказательство присутствия: след"'
   add_evidence_of_presence_bone_annotation: 'Добавить значение "Доказательство присутствия: кость"'
   add_evidence_of_presence_molt_annotation: 'Добавить значение "Доказательство присутствия: линька"'
+  add_evidence_of_presence_leafmine_annotation: 'Добавить значение "Доказательство присутствия: галл"'
+  add_evidence_of_presence_hair_annotation: 'Добавить значение "Доказательство присутствия: волосы"'
+  add_evidence_of_presence_egg_annotation: 'Добавить значение "Доказательство присутствия: яйцо"'
+  add_evidence_of_presence_construction_annotation: 'Добавить значение "Доказательство присутствия: построение"'
+  add_established_not_established: 'Добавить примечание "Установившаяся: не установившаяся"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Добавить связь'
   #As in a Guide Section
@@ -1245,6 +1250,7 @@ ru:
     no_evidence_of_flowering: Нет доказательств цветения
     nymph: Нимфа
     larva: Личинка
+    #Evidence of an egg of an organism
     egg: Яйцо
     juvenile: Молодой
     alive_or_dead: Живой или Мёртвый
@@ -1268,6 +1274,16 @@ ru:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Линька
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Галл
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Волосы
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Построение
+    #Does the observation belong to a non-established population or not
+    established: Установившаяся
+    #Organism is not a member of an established population
+    not_established: Не установившаяся
   controlled_term_definitions:
     alive: Организм жив и не проявляет признаков неизбежной смерти
     bone: |
@@ -1282,7 +1298,12 @@ ru:
     gall: Уродливый рост ткани растения, вызванный паразитическим организмом
     male: Свидетельства указывают на то, что организм может вырабатывать сперму для использования в половом размножении
     molt: Удалённая кожа или экзоскелет
+    leafmine: Признаки питания между кожными слоями листа
+    hair: Волосы, которые больше не прикреплены к организму, которому они принадлежали
+    egg: Целое яйцо или часть яйца
+    construction: Что-то, созданное животным, изготовленное из других материалов или извлеченное из раскопок
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
+    not_established: Организм принадлежит к неустановленной популяции, включая освобожденных/сбежавших домашних животных, путешествующие и блуждающие виды
     organism: Весь организм или его части
     scat: Фекалии (не погадки совы или другие срыгнутые вещества)
     teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
@@ -3239,6 +3260,7 @@ ru:
   observation_accuracy_experiment_precision: "Точность"
   observation_accuracy_experiment_if_every_sample: "Если бы каждое выборочное наблюдение относилось к самому общему таксону, такому как королевство, точность набора данных iNaturalist могла бы быть очень высокой, но, чтобы сделать набор данных очень полезным, точность должна бы быть низкой. Чтобы оценить точность, мы подсчитали количество потомков листьев в таксономическом дереве iNaturalist для каждого таксона, связанного с каждым образцом наблюдения. Мы рассчитали точность как 1, делённая на количество потомков-листьев. Если таксон является листовым таксоном, точность составляет 100%. При расчете точности мы игнорировали ранги ниже видов."
   observation_accuracy_experiment_in_the_example: "В примере на рисунке справа средняя точность трёх выборок составит 51%."
+  observation_accuracy_validator_email_subject2: "Не поможете ли вы нам с помощью этой версии %{version} эксперимента оценить достоверность наблюдений iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Не поможете ли вы нам в <a href="%{url}">эксперименте (версия %{version})</a> оценить достоверность наблюдений iNaturalist?
   observation_accuracy_validator_email_if_so2_html: |

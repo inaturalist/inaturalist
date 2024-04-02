@@ -83,6 +83,9 @@ lb:
   x_people:
     one: "%{count} Persounen"
     other: "%{count} Persounen"
+  x_people_html:
+    one: '<span class="count">%{count}</span> Persoun'
+    other: '<span class="count">%{count}</span> Persounen'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Leit </strong> hunn dem User %{user} mat <strong>%{y}IDs</strong> gehollef"
   x_photos:
     one: "%{count} Foto"
@@ -215,6 +218,7 @@ lb:
   add_new_rule: Eng nei Reegel derbäisetzen
   add_new_source: "Nei Quell derbäisetzen..."
   add_new_taxon_name: En neien Taxon-Numm derbäisetzen
+  add_observation_fields: Observatiounsfelder derbäisetzen
   add_observations: Observatiounen derbäisetzen
   add_observations_project: Observatioune bei Dëse Projet derbäisetzen
   #Prompt to add a new journal post
@@ -635,6 +639,7 @@ lb:
     adult: Erwuessen
     pupa: Popp
     nymph: Nymph
+    #Evidence of an egg of an organism
     egg: Ee
     juvenile: Juvenil
     alive_or_dead: Lieweg oder Dout
@@ -658,6 +663,16 @@ lb:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Häutung
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Blatminn
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hoer
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktioun
+    #Does the observation belong to a non-established population or not
+    established: Etabléiert
+    #Organism is not a member of an established population
+    not_established: Net etabléiert
   controlled_term_definitions:
     alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
     bone: |
@@ -665,6 +680,9 @@ lb:
     dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
     feather: Eng oder mei Fiederen net um Organismuss hänkent
     molt: Verworfen Haut oder Exoskelet
+    leafmine: Friessspueren tëschent den Hautschichte vun engem Blat
+    hair: Hoer, déi net méi mat hirem Ursprongsorganismus verbonne sinn
+    egg: Ganzt Ee oder Deel vun engem Ee
     organism: Ganzen oder partiellen Organismus
     scat: Fäkal Exkrementer (keen gierkstent Material)
     track: Androck am Buedem oder Schnéi vum Organismus
@@ -778,6 +796,9 @@ lb:
   details: Detailer
   deviation: Deviatioun
   devise:
+    confirmations:
+      confirmed: |
+        Deng E-Mail-Adress gouf confirméiert.
     failure:
       user:
         suspended: Äre Benotzerkont gouf suspendéiert

@@ -369,6 +369,11 @@ nl:
   add_evidence_of_presence_track_annotation: 'Voeg "Bewijs van Aanwezigheid: spoor" aantekening toe'
   add_evidence_of_presence_bone_annotation: 'Voeg "Bewijs van Aanwezigheid: bot" aantekening toe'
   add_evidence_of_presence_molt_annotation: 'Voeg "Bewijs van Aanwezigheid: huid of haar" aantekening toe'
+  add_evidence_of_presence_leafmine_annotation: 'Voeg "Bewijs van Aanwezigheid: bladmijn" aantekening toe'
+  add_evidence_of_presence_hair_annotation: 'Voeg "Bewijs van Aanwezigheid: haar" aantekening toe'
+  add_evidence_of_presence_egg_annotation: 'Voeg "Bewijs van Aanwezigheid: ei" aantekening toe'
+  add_evidence_of_presence_construction_annotation: 'Voeg "Bewijs van Aanwezigheid: bouwwerk" aantekening toe'
+  add_established_not_established: 'Voeg "Gevestigd: niet gevestigd" aantekening toe'
   #As in a Taxon Framework Relationship
   add_relationship: 'Relatie toevoegen'
   #As in a Guide Section
@@ -1160,6 +1165,7 @@ nl:
     no_evidence_of_flowering: Geen bewijs voor bloei
     nymph: Nimf
     larva: Larve
+    #Evidence of an egg of an organism
     egg: Ei
     juvenile: Juveniel
     alive_or_dead: Levend of dood
@@ -1183,6 +1189,16 @@ nl:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Vervellingshuid
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Bladmijn
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Haar
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Bouwwerk
+    #Does the observation belong to a non-established population or not
+    established: Gevestigd
+    #Organism is not a member of an established population
+    not_established: Niet gevestigd
   controlled_term_definitions:
     alive: Organisme leeft en vertoont geen tekenen stervende te zijn
     bone: |
@@ -1197,7 +1213,12 @@ nl:
     gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
     male: Bewijs geeft aan dat organisme sperma kan produceren voor gebruik in seksuele voortplanting
     molt: Afgeworpen huid of exoskelet
+    leafmine: Bewijs van fourageren tussen de dermale lagen van een blad
+    hair: Haar dat niet meer verbonden is aan het organisme waarvan het afkomstig is
+    egg: Heel ei of een deel van een ei
+    construction: Iets gemaakt door een dier, gemaakt met of opgegraven van andere materialen
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
+    not_established: Het organisme behoort tot een ongevestigde populatie, waaronder vrijgelaten/ontsnapte huisdieren, lifters en dwaalgasten
     organism: Heel of gedeeltelijk organisme
     scat: Feces (geen uileballen of andere uitgebraakte dingen)
     teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
@@ -1525,6 +1546,8 @@ nl:
   deviation: Afwijking
   devise:
     confirmations:
+      confirmed: |
+        Jouw e-mailadres is succesvol bevestigd.
       send_instructions: "U ontvangt binnen enkele minuten een e-mail met instructies voor het bevestigen van uw e-mailadres."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1823,7 +1846,7 @@ nl:
   extinct_in_the_wild: Uitgestorven in het Wild
   extra_properties: Extra eigenschappen
   evidence_of_organism: Bewijs van organisme
-  evidence_related_to_single_subject: Bewijs gerelateerd aan één onderwerp
+  evidence_related_to_single_subject: Er is een taxon dat aanwezig is in al het bewijs
   facebook: Facebook
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
@@ -3145,14 +3168,22 @@ nl:
   observation_accuracy_experiment_methods: "Methoden"
   observation_accuracy_experiment_step_1: "Stap 1: Steekproef Generatie en Toewijzing"
   observation_accuracy_experiment_from_the2: "Uit de iNaturalist database van waarnemingen (A) hebben we een willekeurige steekproef (B) gegenereerd. Substeekproeven werden toegewezen aan kandidaat-validatoren (C) op basis van onderstaande criteria. Het doel was om elke steekproefwaarneming toe te wijzen aan meerdere kandidaat-validatoren (\"Doel-validator redundance\" )."
+  observation_accuracy_experiment_sample_generated: "Steekproef gegenereerd: %{date}"
+  observation_accuracy_experiment_sample_size: "Steekproefgrootte: %{number}"
+  observation_accuracy_experiment_target_validator: "Doel validator redundancy: %{number}"
   observation_accuracy_experiment_number_of: "Aantal kandidaatvalidatoren: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Gemiddelde substeekproefgrootte per kandidaat validator: %{number}"
+  observation_accuracy_experiment_mean_number: "Gemiddeld aantal validatoren per steekproefwaarneming: %{number}"
   observation_accuracy_experiment_validator_candidate: "Criteria voor een kandidaat-validator"
   observation_accuracy_experiment_if_an_identifier: "Als een determineerder ten minste 3 verbeterende determinaties had gemaakt op een taxon, hebben we overwogen dat ze gekwalificeerd waren om dat taxon te valideren. Het verbeteren van de determinaties is de eerste suggestie van een taxon waarmee de gemeenschap het vervolgens eens is."
   observation_accuracy_experiment_if_an_identifier_continent: "Als een determineerder ten minste 3 verbeterende determinaties had gemaakt op een taxon op een continent, hebben we overwogen dat ze gekwalificeerd waren om dat taxon te valideren op dat continent. Het verbeteren van de determinaties is de eerste suggestie van een taxon waarmee de gemeenschap het vervolgens eens is."
   observation_accuracy_experiment_for_example: "Determineerder1 voegt bijvoorbeeld een ID A toe aan een waarneming. Als id 2 later een leidende ID van B toevoegt, wordt de determinatie van 1's ID op A een beter ID. Als id 3 later een ondersteunende ID aan B toevoegt, wordt determinatie 2's ID op B een verbeterde ID."
   observation_accuracy_experiment_step_2: "Stap 2: Steekproeven valideren"
+  observation_accuracy_experiment_we_contacted: "We hebben contact opgenomen met kandidaatvalidatoren en hen gevraagd determinaties toe te voegen aan hun substeekproeven. De grafiek rechts groepeert de steekproefwaarneming door het aantal validatoren."
   observation_accuracy_experiment_number_percent_of: "Aantal deelnemende validatoren: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Percentage van de steekproef gevalideerd: %{percent}"
   observation_accuracy_experiment_step_3: "Stap 3: Scoren van steekproef waarnemingen uit validaties"
+  observation_accuracy_experiment_we_scored: "We hebben waarnemingen in de steekproef als Correct, Onzeker of onjuist beoordeeld door de validator determinaties te vergelijken met het taxon van elke steekproef waarneming. Determinaties die overeenkomen met of beter zijn dan het waarnemingstaxon uit de steekproef, zijn als correct beoordeeld Niet-afwijkende spelerdeterminaties werden gescoord als onzeker als scenario's waarbij meerdere validatoren het niet eens waren. Onenigheid van coarser-determinaties of determinaties op verschillende branches werden gescoord als Incorrect."
   observation_accuracy_experiment_correct: "Juist"
   observation_accuracy_experiment_uncertain: "Onzeker"
   observation_accuracy_experiment_incorrect2: "Onjuist"
@@ -3160,15 +3191,32 @@ nl:
   observation_accuracy_experiment_accuracy: "Nauwkeurigheid"
   observation_accuracy_experiment_we_calculated: "We hebben Nauwkeurigheid berekend als het percentage corrrect voor de hele steekproef en als subsets zoals de onderzoekskwaliteitsubset. We hebben ook het percentage onzeker en het procent onjuist berekend. In het voorbeeldfiguur rechts zou het percentage juist zijn aan 83, het percentage onzeker zou 6 zijn en het percentage incorrect zou 11 zijn."
   observation_accuracy_experiment_precision: "Precisie"
+  observation_accuracy_experiment_if_every_sample: "Als elke steekproefwaarneming bij een grof taxon zoals koninkrijk zat, zou de nauwkeurigheid van de iNaturalist dataset wel eens heel hoog kunnen zijn, maar de precisie is misschien te laag om de data zeer nuttig te maken. Om precisie in te schatten, hebben we het aantal blad-nakomelingen in de iNaturalist taxonomie geteld voor elk taxon geassocieerd met elke steekproefwaarneming. We hebben precisie berekend als 1 gedeeld door het aantal blad-nakomelingen. Als het taxon een blad taxon was, is de precisie 100%. We hebben rangen onder het niveau van soorten genegeerd in de precisieberekening."
   observation_accuracy_experiment_in_the_example: "In het voorbeeldfiguur rechts zou de gemiddelde precisie van drie steekproeven 51 procent bedragen."
   observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Determineer alle waarnemingen in de onderstaande link zo nauwkeurig als je kunt, zelfs als ze van onderzoekskwaliteit zijn en zelfs als je beste ID zich op een veel hoger taxonomisch niveau bevindt (zelfs koninkrijk). </li>
+    <li>Als je de “Potential Disagreement” popup ziet…
+    <ul>
+    <li>en je er zeker van bent dat het verkeerd gedetermineerd is, klik dan op de oranje knop,</li>
+    <li>of als je niet zeker bent over je determinatie, klik je op de groene knop</li>
+    </ul>
+    </li>
+    <li>Doe dit voor <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Hier is de <a href="%{sample_url}">subset van %{num_obs} waarnemingen</a> waarvan we denken dat je die kan determineren op basis van je activiteit op iNaturalist. <b>Voeg alsjeblieft vóór %{validator_deadline_date} een zo nauwkeurig mogelijke determinatie toe aan elk van de waarnemingen</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
     je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
   observation_accuracy_validator_email_ids_equal_to: |
     'Determinaties gelijk aan (A) of fijner dan (B) zal het Waargenomen Taxon worden geteld als Overeenkomst.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID's in verschillende takken (C) of minder fijn dan het Waargenomen Taxon als je "Nee, maar…" in het dialoogvenster 'Potential Disagreement' (D) kiest zal worden geteld als Meningsverschillen.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID's minder verfijnd dan het waargenomen Taxon als je kiest voor 'Ik weet het niet maar…' in het 'Potential Disagreement'-dialoogvenster (E) zal worden geteld als onzeker.
   observation_accuracy_validator_email_we_are_so_grateful2_html: |
     We zijn zo dankbaar voor jouw hulp als een determineerder op iNaturalist en bedanken je zeer voor je deelname aan deze studie. Lees <a href="%{url}">de methoden</a> om meer te leren over het ontwerp van het experiment.
   observation_accuracy_validator_email_with_gratitude: Met dankbaarheid,
@@ -3441,6 +3489,7 @@ nl:
   organism_is_wild: Organisme is wild
   organisms: Organismen
   original: Origineel
+  original_flag: Oorspronkelijke vlag
   originally_flagged_by: Oorspronkelijk gemeld door
   originally_imported_from_url_html: "Oorspronkelijk geïmporteerd uit <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Oorspronkelijke pagina-URL voor deze foto."
@@ -4465,6 +4514,11 @@ nl:
   rotate_left: Linksom draaien
   rotate_right: Rechtsom draaien
   row_singular_or_plural: Rij(en)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Wil je de rechts-naar-links lay-out testen? Je kunt ook de test=rtl URL parameter gebruiken. Let op:
+    nog niet alle pagina's zijn geconverteerd naar de rechts-naar-links-lay-out
   #Message displayed when you have joined a test of right-to-left layouts,
   #e.g. for languages like Arabic and Hebrew. Could also be translated
   #as "You have joined..."
@@ -5401,6 +5455,10 @@ nl:
   unknown: Onbekend
   unknown_error: Onbekende fout
   unknown_rank: '(Onbekende Rang)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Deze waarneming ontvolgen
+  #Text for a button to stop following updates from a user
+  unfollow_user: Gebruiker ontvolgen
   unlink_your_google_account: Verbreek de koppeling met je Google-account
   unlink_your_flickr_account: "Verbreek koppeling met je Flickr-account"
   unmute: Niet meer dempen
@@ -6231,6 +6289,7 @@ nl:
           figure_alt_text: De 'In de buurt verwacht'-kaart en het verspreiding van het taxon worden vergeleken
           combining_these_maps_produces: |
             Het combineren van deze kaarten levert 3 soorten cellen:
+          true_presences_definition2: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het verspreiding van het taxon voorspelt dat het taxon voorkomt
           false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
           false_absences_definition: Gebieden waar alleen de verspreiding van het taxon aanwezig is
           evaluation_statistics_for_taxon: Evaluatie statistieken van %{taxon}

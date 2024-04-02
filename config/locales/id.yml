@@ -324,6 +324,11 @@ id:
   add_evidence_of_presence_track_annotation: 'Tambahkan catatan "Bukti Keberadaan: jejak"'
   add_evidence_of_presence_bone_annotation: 'Tambahkan catatan "Bukti Keberadaan: tulang"'
   add_evidence_of_presence_molt_annotation: 'Tambahkan catatan "Bukti Keberadaan: kulit"'
+  add_evidence_of_presence_leafmine_annotation: 'Tambahkan catatan "Bukti Keberadaan: korokan daun"'
+  add_evidence_of_presence_hair_annotation: 'Tambahkan catatan "Bukti Keberadaan: rambut"'
+  add_evidence_of_presence_egg_annotation: 'Tambahkan catatan "Bukti Keberadaan: telur"'
+  add_evidence_of_presence_construction_annotation: 'Tambahkan catatan "Bukti Keberadaan: bangunan"'
+  add_established_not_established: 'Tambahkan anotasi "Menetap: tidak tetap"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Tambahkan hubungan'
   #As in a Guide Section
@@ -1066,6 +1071,7 @@ id:
     no_evidence_of_flowering: Tidak Ada Tanda Berbunga
     nymph: Nimfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Telur
     juvenile: Remaja
     alive_or_dead: Hidup atau Mati
@@ -1089,6 +1095,16 @@ id:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Kulit
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Korokan daun
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Rambut
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Bangunan
+    #Does the observation belong to a non-established population or not
+    established: Tetap
+    #Organism is not a member of an established population
+    not_established: Tidak Tetap
   controlled_term_definitions:
     alive: Organisme hidup dan tidak memperlihatkan tanda-tanda akan mati
     bone: |
@@ -1103,7 +1119,12 @@ id:
     gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
     male: Bukti menunjukkan bahwa organismenya bisa menghasilkan sperma untuk digunakan dalam reproduksi seksual
     molt: Kulit yang dibuang atau eksoskeleton
+    leafmine: Bukti bagian kulit daun yang dimakan
+    hair: Rambut yang jatuh dari organisme asalnya
+    egg: Telur utuh atau bagian dari telur
+    construction: Sesuatu yang dibuat oleh binatang, dibuat dengan atau diambil dari material lain
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
+    not_established: Organisme yang tergolong ke dalam populasi termasuk hewan peliharaan yang dilepaskan/kabur, hewan yang ikut terbawa ke tempat lain, dan pengembara.
     organism: Organisme penuh atau sebagian
     scat: Unsur tinja (bukan pelet burung hantu atau zat muntahan lainnya)
     teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
