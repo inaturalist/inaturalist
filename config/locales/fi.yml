@@ -355,6 +355,7 @@ fi:
   add_evidence_of_presence_hair_annotation: 'Lisää "Todiste läsnäolosta: karva" -kommentti'
   add_evidence_of_presence_egg_annotation: 'Lisää "Todiste läsnäolosta: muna" -kommentti'
   add_evidence_of_presence_construction_annotation: 'Lisää "Todiste läsnäolosta: rakennelma" -kommentti'
+  add_established_not_established: 'Lisää "Vakiintunut: ei vakiintunut" -merkintä'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lisää suhde'
   #As in a Guide Section
@@ -534,6 +535,7 @@ fi:
   alphabetical_order: Aakkosjärjestys
   already_have_an_account_log_in_html: Onko sinulla jo käyttäjätunnus? <strong>Kirjaudu sisään.</strong>
   amphibians: sammakkoeläimet
+  analyze_ids: Analysoi tunnistuksia
   ancestor_taxon: Ylempi taksoni
   and_other_taxa: "&amp; muut taksonit"
   android: Android
@@ -1088,6 +1090,10 @@ fi:
     hair: Karva
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: Rakennelma
+    #Does the observation belong to a non-established population or not
+    established: Vakiintunut
+    #Organism is not a member of an established population
+    not_established: Ei vakiintunut
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
     bone: |
@@ -1105,6 +1111,7 @@ fi:
     egg: Kokonainen muna tai munan osa
     construction: Eläimen luoma, muista materiaaleista tehty tai niistä kaivettu rakennelma.
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
+    not_established: Eliö on osa vakiintumatonta populaatiota kuten karanneet lemmikit, harhailijat.
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
     track: Eliön jälki maassa tai lumessa
@@ -1664,6 +1671,9 @@ fi:
   establishment_means: Lajin alkuperä
   establishment_means_describes_how: |
     Vakiintumistapa kuvaa sitä kuinka taksoni (esim. laji) on vakiintunut alueelle. Katso DarwinCore luokittelu<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisätietoa terminologiasta</a>.
+  establishment_means_descriptions:
+    endemic: kotoperäinen eikä esiinny missään muualla
+    introduced: saapunut alueelle ihmisen toiminnan seurauksena
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     Arvioi, mitkä lähtötaksonin tunnistukset korvataan kohdetaksonin tunnistuksilla
@@ -1703,6 +1713,7 @@ fi:
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
   evidence_of_organism: Näyttö eliöstä
+  evidence_related_to_single_subject: Havainnon dokumentaatio koskee yhtä eliötä
   facebook: Facebook
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
@@ -2193,18 +2204,24 @@ fi:
   lexicon: Sanakirja
   lexicons:
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albania
     aou_4_letter_codes: AOU 4-kirjainkoodit
     aou_6_letter_codes: AOU 6-kirjainkoodit
     arabic: Arabia
     armenian: Armenia
+    asturian: asturia
+    basque: baski
     belarusian: Valkovenäjä
     bengali: Bengali
+    bikol: bikol
     bulgarian: Bulgaria
+    carolinian: karoliini
     catalan: Katalaani
     cebuano: Cebuano
     chinese_simplified: Kiina (yksinkertaistettu)
     chinese_traditional: Kiina (perinteinen)
+    chuvash: tšuvassi
     creole_french: kreoli (Ranska)
     creole_portuguese: kreoli (Portugali)
     croatian: Kroatia
@@ -2216,6 +2233,7 @@ fi:
     esperanto: esperanto
     estonian: Viro
     faroese: Fääri
+    fijian: fidži
     finnish: Suomi
     french: Ranska
     galician: Galicia
@@ -2225,12 +2243,15 @@ fi:
     gujarati: Gujarati
     hawaiian: Havaiji
     hebrew: Heprea
+    herero: herero
     hiligaynon: Hiligaino
+    hill_mari: vuorimari
     hokkien: Hokkien
     hungarian: Unkari
     icelandic: Islanti
     ilokano: Ilokano
     indonesian: Indonesia
+    irish: iiri
     italian: Italia
     japanese: Japani
     kannada: Kannada
@@ -2238,7 +2259,9 @@ fi:
     korean: Korea
     latvian: Latvia
     lithuanian: Liettua
+    lozi: lozi
     luxembourgish: Luksemburgi
+    malagasy: malagassi
     malay: Malaiji
     malayalam: Malajalam
     maltese: Malta
@@ -2277,6 +2300,9 @@ fi:
     vietnamese: Vietnam
     visayan: Visaya
     waray_waray: Waray-waray
+    xhosa: xhosa
+    zapoteco: zapoteekki
+    zulu: zulu
   less: Vähemmän
   #Button show less text
   less__context_text: Vähemmän
@@ -2629,6 +2655,13 @@ fi:
   multiple_select_option: "\n-- useita --"
   multiple_taxa_for_taxon_change: "Useita taksoneja (input vaihdolle/yhdistämiselle ja output jakamiselle)"
   multiple_taxon_ids_separated_by_commas: 'Useiden taksonien IDt erotellaan pilkuilla esim 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: täytyy olla projektissa %{project}
+  must_be_in_taxon: täytyy olla taksonissa %{taxon}
+  must_be_not_in_taxon: ei saa olla taksonissa %{taxon}
+  must_be_not_observed_by_user: ei saa olla käyttäjän %{user} havaitsema
+  must_be_not_observed_in_place: ei saa olla havaittu paikassa %{place}
   must_be_observed_after: tulee olla havaittu %{operand} jälkeen
   must_be_observed_before: tulee olla havaittu ennen %{operand}
   must_be_less_than_x_MB: "On oltava pienempi kuin %{x} MB"
@@ -2749,6 +2782,7 @@ fi:
   no_identifications_added:
     current_user: Et ole lisännyt tunnistuksia kenenkään havaintoihin.
     user: "%{user} ei ole lisännyt tunnistuksia kenenkään havaintoihin."
+  no_ids: "Tunnistusten määrä"
   no_ids_have_been_suggested_yet: Tunnistusta ei ole vielä ehdotettu
   no_its_as_good_as_it_can_be: Ei, se on niin hyvä kuin se voi olla
   no_favorites_added:
@@ -2848,6 +2882,8 @@ fi:
     Julkiset koordinaatit näytetään satunnaisena pisteenä 0,2 asteen lat/lon -solussa, joka sisältää todelliset koordinaatit.
   observation: Havainto
   observation_: havainto
+  observation_accuracy_experiment_year: "Vuosi"
+  observation_accuracy_experiment_all_results: "Kaikki tulokset"
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
   observation_belongs_to_project_requiring_field: |
     Havainto kuuluu projektiin, joka vaatii tätä kenttää. Havainto
