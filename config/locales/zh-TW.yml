@@ -264,6 +264,7 @@ zh-TW:
   add_notes_about_this_taxon: 為此地本物種分類新增註解，例如在何時、何地發生。
   add_obs_from_a_link: "從生物名錄中新增觀察紀錄: %{link}"
   add_obs_from_a_list: 從一個生物名錄中新增觀察紀錄
+  add_observation_fields: 新增觀察欄位
   add_observations: 新增多個觀察紀錄。
   add_observations_by_checking_off: 從生物名錄中挑選物種以新增觀察紀錄。
   add_observations_project: 新增多個觀察紀錄到本專案
@@ -299,6 +300,8 @@ zh-TW:
   add_evidence_of_presence_track_annotation: '新增「出現記錄的證據：足跡」註記'
   add_evidence_of_presence_bone_annotation: '新增「出現記錄的證據：骨頭」註記'
   add_evidence_of_presence_molt_annotation: '新增「出現記錄的證據：蛻皮」註記'
+  add_evidence_of_presence_leafmine_annotation: '新增「出現記錄的證據：潛葉」註記'
+  add_evidence_of_presence_construction_annotation: '新增「出現記錄的證據：構造物」註記'
   #As in a Taxon Framework Relationship
   add_relationship: '添加關聯'
   #As in a Guide Section
@@ -1062,6 +1065,12 @@ zh-TW:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: 蛻皮
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: 潛葉
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: 毛髮
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: 構造物
   controlled_term_definitions:
     alive: 還是活著的生物，而且看不出有立即死亡的徵兆
     bone: |
@@ -1076,6 +1085,8 @@ zh-TW:
     gall: 由寄生生物引發的植物組織變形生長
     male: 證據代表生物體可以產生精子來進行有性生殖
     molt: 蛻下的表皮或外骨骼
+    leafmine: 在葉肉之間取食的證據
+    construction: 由動物建構或挖開其他物質產生的構造物
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
     organism: 整個或部分生物體
     scat: 糞便類（非貓頭鷹的食繭或其他嘔吐物）
@@ -1819,6 +1830,8 @@ zh-TW:
   #Adjective, as in a fluid layout of images
   fluid: 流動
   follow: 追蹤
+  #Text for a button to follow updates on an observation
+  follow_observation: 追蹤此觀察紀錄
   follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
   #Text for a button to follow updates from a specific user
   follow_user: "關注 %{user}"
@@ -3597,6 +3610,10 @@ zh-TW:
   places_merged_successfully: 合併地點成功！
   places_warning_export_complex_boundary_html: |
     如果您嘗試要從一個複雜的區域邊界中匯出觀察紀錄，請考慮從<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF</a>來下載，在 GBIF 網站上您可以繪出任意的邊界，或是使用現有的地點或邊界框來篩選並下載資料。
+  places_warning_look_for_existing2_html: |
+    搜尋<a href="/search?source[]=places">現有的地點</a>以確保您不會重複建立。我們已經建立了各大洲、國家以及大部分行政區域邊界的地點。
+  places_warning_please_keep_in_mind: |
+    請銘記以下限制：
   places_warning_projects_can_have_multiple_places: |
     如果您試著要建立一個地點邊界給某專案使用的話，其實專案可以同時選擇多個地點。舉例來說，如果您想要建立一個專案給紐西蘭和澳洲使用，您可以在專案設定中加入這兩個地點而非建立一個包含兩個國家的地點。
   places_warning_new_places_are_slow_html: |
@@ -6062,6 +6079,8 @@ zh-TW:
         view_original_html: |
           您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
+      kml_field_desc3: |
+        地點邊界的 KML檔。您可以使用 Google 地圖、Google 地球或大多數 GIS 應用程式製作一個。必須至少有一個多邊形，小於 1 MB（網站策展人為 5 MB），且面積小於約 700,000 平方公里（大約相當於索馬利亞或美國德克薩斯州的大小）。
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
@@ -6104,6 +6123,8 @@ zh-TW:
           如果要防止專案策展人查看您的隱藏座標是您留下的唯一原因。
       edit:
         admins_must_be_existing_members: 管理者必須是該專案的現有成員。
+        admins_can_only_be_added_after_creation: |
+          管理員在專案建立後才可以新增。
         aggregation_pending: 等待聚集
         new_place_desc_html: |
           嘗試看看<a href="%{places_url}" target="_blank">我們的現有地點</a>並確認您有獲得正確地點名稱。若您無法找出您所要的地點，可以考慮<a href="%{new_place_url}" target="_blank">創建一個新地點</a>，但請確認不會弄出與現有地點重複的內容。
