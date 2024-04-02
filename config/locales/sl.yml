@@ -2860,11 +2860,6 @@ sl:
   were_pretty_sure_this_is_in_the_subfamily: 'Precej prepričani smo, da spada v to pod-družino:'
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
   were_pretty_sure_this_is_in_the_superfamily: 'Precej prepričani smo, da spada v to nad-družino:'
-  #Falback label for the most probable taxon in the automated suggestions.
-  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
-  #instead. @gender should work here. %{rank} is usually genus or a
-  #higher-level rank like family
-  were_pretty_sure_this_is_in_the_rank: Precej prepričani smo, da pripada
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Žal, uvoz datoteke %{filename} ni uspel."
   what: Kaj
   what_did_you_see: Kaj ste videli?
