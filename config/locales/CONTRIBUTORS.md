@@ -10,6 +10,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ### Arabic (`ar`)
 * [Abdelhak Laloui (Abdelhak_Laloui)](https://crowdin.com/profile/Abdelhak_Laloui)
+* [sam zaa (samzaa1229)](https://crowdin.com/profile/samzaa1229)
 * [yngams (younessmouhid)](https://crowdin.com/profile/younessmouhid)
 
 ### Armenian
@@ -20,6 +21,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Gorka Azkarate Zubiaur (gorkaazk23)](https://crowdin.com/profile/gorkaazk23)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [Mikel Etxeberria (mikeletxeberria)](https://crowdin.com/profile/mikeletxeberria)
+* [pagotxa](https://crowdin.com/profile/pagotxa)
 * [Urdan](https://crowdin.com/profile/Urdan)
 
 ### Belarusian (`be`)
@@ -69,6 +71,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 ### Chinese Traditional (`zh-TW`)
 * [Cheng Te Hsu (chestnut123tw)](https://crowdin.com/profile/chestnut123tw)
 * [Chu Chia Kuo (joker33006)](https://crowdin.com/profile/joker33006)
+* [Fong Helen (Waterbear526)](https://crowdin.com/profile/Waterbear526)
 * [Gary Yeh (klyyeh)](https://crowdin.com/profile/klyyeh)
 * [Lin, Cheng-Tao (mutolisp)](https://crowdin.com/profile/mutolisp)
 * [何郁庭 (a22446810)](https://crowdin.com/profile/a22446810)
@@ -110,6 +113,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Marcel Hospers (marcelhospers)](https://crowdin.com/profile/marcelhospers)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
+* [Robbert van 't Veldt (rvantveldt)](https://crowdin.com/profile/rvantveldt)
 * [Wouter Koch (wouter.koch)](https://crowdin.com/profile/wouter.koch)
 
 ### English, United Kingdom
@@ -140,6 +144,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Esko Piirainen (eopiirai)](https://crowdin.com/profile/eopiirai)
 * [Gearguy](https://crowdin.com/profile/Gearguy)
 * [Hanna Koivula (hkoivula)](https://crowdin.com/profile/hkoivula)
+* [Ilari Rauhala (ilrr)](https://crowdin.com/profile/ilrr)
 * [Jani Järvi (jani.jarvi)](https://crowdin.com/profile/jani.jarvi)
 * [Jani Uusitalo (uusijani)](https://crowdin.com/profile/uusijani)
 * [Janne Uusitalo (janneuu)](https://crowdin.com/profile/janneuu)
@@ -223,6 +228,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [SanguineHermit](https://crowdin.com/profile/SanguineHermit)
 * [Thomas Schreiter (schreiter)](https://crowdin.com/profile/schreiter)
 * [Wongo Gubongo (jokkomat)](https://crowdin.com/profile/jokkomat)
+* [Zakronia](https://crowdin.com/profile/Zakronia)
 * [Zoltán Stekkelpak (stekkelpak)](https://crowdin.com/profile/stekkelpak)
 
 ### Greek (`el`)
@@ -271,7 +277,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [bbernrd](https://crowdin.com/profile/bbernrd)
 * [Claudia (neurojuice)](https://crowdin.com/profile/neurojuice)
 * [Daniele Seglie (danieleseglie)](https://crowdin.com/profile/danieleseglie)
-* [GiorgioHerbie](https://crowdin.com/profile/GiorgioHerbie)
+* [Herbie_23](https://crowdin.com/profile/Herbie_23)
 * [Jeanne Lavoie (JeLa)](https://crowdin.com/profile/JeLa)
 * [Manuel (Mannivu)](https://crowdin.com/profile/Mannivu)
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
@@ -297,6 +303,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ### Kazakh (`kk`)
 * [amirekul](https://crowdin.com/profile/amirekul)
+* [Elmira Mustafa (emirel.kz)](https://crowdin.com/profile/emirel.kz)
 
 ### Korean (`ko`)
 * [cania (cania7842)](https://crowdin.com/profile/cania7842)
@@ -437,6 +444,8 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Tomas V. (TWatz)](https://crowdin.com/profile/TWatz)
 
 ### Slovenian (`sl`)
+* [AJakob](https://crowdin.com/profile/AJakob)
+* [Matej Frančeškin (matej.franceskin)](https://crowdin.com/profile/matej.franceskin)
 * [Žan Rode (zanrode)](https://crowdin.com/profile/zanrode)
 
 ### Spanish (`es`)
