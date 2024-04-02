@@ -71,6 +71,9 @@ ca:
   x_observations_html:
     one: "<span class='count'>1</span> observació"
     other: "<span class='count'>%{count}</span> observacions"
+  x_observations_caps_html:
+    one: "<span class=\"count\">%{count}</span> OBSERVACIÓ"
+    other: "<span class='count'>%{count}</span> OBSERVACIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observació</a>"
     other: "<a href='%{url}'>%{count} observacions</a>"
@@ -102,6 +105,9 @@ ca:
   x_species:
     one: '1 espècie'
     other: '%{count} espècies'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÈCIE"
+    other: "<span class='count'>%{count}</span> ESPÈCIES"
   x_species_html:
     one: "<span class='count'>1</span> espècie"
     other: "<span class='count'>%{count}</span> espècies"
@@ -242,6 +248,7 @@ ca:
   active_taxon_status: Actiu
   active_users: Usuaris Actius
   activity: Activitat
+  activity_on_a_flag_for_x: Activitat en una marca per a %{x}
   adapted_by_name_from_a_work_by_original: "Adaptat per %{name} a partir d'un treball de %{original}"
   add: Afegiu
   add_a_batch_of_observations: Afegiu un grup d'observacions
@@ -306,6 +313,7 @@ ca:
   add_notes_about_this_taxon: Afegiu notes sobre aquest tàxon en aquest lloc, per exemple, on i quan hi és present.
   add_obs_from_a_link: "Afegiu observacions d'una llista %{link}"
   add_obs_from_a_list: Afegiu observacions d'una llista
+  add_observation_fields: Afegeix Camps d'Observació
   add_observations: Afegiu observacions
   add_observations_by_checking_off: Afegiu observacions seleccionant espècies d'una llista.
   add_observations_project: Afegiu observacions a aquest projecte
@@ -382,6 +390,8 @@ ca:
   added_by: Afegit per
   added_by_user_on_date_html: "Afegit per %{user} el %{date}"
   added_on_datetime: "Afegit el %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rol afegit
   added_to_favorites_html: |
     Afegit <a href="%{url}">als preferits</a>
   adding: "Afegint..."
@@ -664,6 +674,7 @@ ca:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Esteu segur que voleu eliminar aquesta observació de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Esteu segur que voleu eliminar aquesta espècie o grup de la llista de comprovació de %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Esteu segur de voler marcar aquest usuari com a spammer?
   associated_observations: Observacions associades
   associated_taxa: Tàxons associats
   attention: Atenció
@@ -1016,6 +1027,8 @@ ca:
     L’actual Model de Visió per Ordinador reconeix aquest tàxon, per tant, podria ser inclòs en suggeriments automatitzats amb l'etiqueta "Visualment similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendent
+  computer_vision_model_pending_desc2: |
+    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper", no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien per a cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon sigui inclòs en el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
   confidential: Confidencial
   configure: Configura
@@ -1457,6 +1470,8 @@ ca:
   deviation: Desviació
   devise:
     confirmations:
+      confirmed: |
+        La teva adreça de correu electrònic s'ha confirmat correctament.
       send_instructions: "Rebreu un correu electrònic amb instruccions per confirmar la vostra adreça de correu electrònic en pocs minuts."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1744,6 +1759,7 @@ ca:
   extinct_in_the_wild: Extingit en estat silvestre
   extra_properties: Propietats extres
   evidence_of_organism: Evidència d'organisme
+  evidence_related_to_single_subject: Evidència relacionada amb un únic individu
   facebook: Facebook
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
@@ -1849,6 +1865,7 @@ ca:
     Marqueu Usuari: %{title}
   flag_it!: Marca’l!
   flag_marked_as_resolved_html: '<span class=meta>Marca com a</span> <strong>resolt.</strong>'
+  flag_marked_as_unresolved_html: '<span class=meta>Marca com a</span> <strong>no resolta.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objecte
   flag_reason: "\"Marco aquest %{record} perquè"
@@ -1885,6 +1902,8 @@ ca:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguiu
+  #Text for a button to follow updates on an observation
+  follow_observation: Segueix l'observació
   follow_receive_updates_about_new_observations: Seguiu (rebeu actualitzacions de les noves observacions)
   #Text for a button to follow updates from a specific user
   follow_user: "Segueix a %{user}"
@@ -1924,6 +1943,8 @@ ca:
   generate_taxonomic_tags_for_flickr: Genera etiquetes taxonòmiques per a les vostres fotos de Flickr.
   generate_widget: Genera el giny
   generate_your_stats: Genereu les vostres estadístiques
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERAR EL TEU RESUM DE L'ANY %{year}
   generating_mobile_archive: "Generant arxiu mòbil"
   Genus: Gènere
   geomodel_expected_nearby_label_is_derived: |
@@ -2217,6 +2238,7 @@ ca:
   journal: Revista
   journal_archives_for: Arxius de revistes de
   journal_post: Article a Revista
+  journal_post_: publicació de diari
   journal_post_deleted: La nota de la Revista s’ha esborrat.
   journal_posts: Article de Revista
   jpg_png_or_gif: "JPG, PNG o GIF"
@@ -2298,11 +2320,14 @@ ca:
     basque: Basc
     belarusian: Bielorús
     bengali: Bengalí
+    bikol: Bicol
     bulgarian: Búlgar
+    carolinian: Carolinià
     catalan: Català
     cebuano: Cebuà
     chinese_simplified: Xinès (simplificat)
     chinese_traditional: Xinès (tradicional)
+    chuvash: Txuvaix
     creole_french: Crioll (francès)
     creole_portuguese: Crioll (portuguès)
     croatian: Croat
@@ -2314,6 +2339,7 @@ ca:
     esperanto: Esperanto
     estonian: Estonià
     faroese: Feroès
+    fijian: Fijià
     finnish: Finès
     french: Francès
     galician: Gallec
@@ -2324,7 +2350,10 @@ ca:
     gujarati: Gujarati
     hawaiian: Hawaià
     hebrew: Hebreu
+    herero: Herero
     hiligaynon: Híligaynon
+    hill_mari: Txeremís
+    hokkien: Hokkien
     hungarian: Hongarès
     icelandic: Islandès
     ilokano: Ilocano
@@ -2372,13 +2401,18 @@ ca:
     tamil: Tàmil
     thai: Tailandès
     tokelauan: Tokelauà
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turc
     u_s_d_a_symbol: Símbol de l'U.S.D.A.
     ukrainian: Ucraïnès
+    uyghur: Uigur
+    venda: Venda
     vermont_flora_codes: Codis de la Flora de Vermont
     vietnamese: Vietnamita
     visayan: Visayà
     waray_waray: Samarà
+    xhosa: Xosa
     zulu: Zulú
   less: Menys
   #Button show less text
@@ -2456,6 +2490,7 @@ ca:
     es: Castellà
     es-AR: Espanyol (Argentina)
     es-CO: Espanyol (Colòmbia)
+    es-CR: Espanyol, Costa Riqueny
     es-MX: Castellà (Mèxic)
     et: Estonià
     eu: Basc
@@ -2470,6 +2505,7 @@ ca:
     it: Italià
     ja: Japonès
     ka: Georgià
+    kk: Kazakh
     kn: Kanarès
     ko: Coreà
     lb: Luxemburguès
@@ -2645,6 +2681,14 @@ ca:
   moderation_history_for_user_html: Història de moderació de %{user}
   moderation_history_desc_html: |
     Això inclou les accions del moderador (com ocultar o mostrar comentaris), notes i marques de qualsevol mena que aquest usuari ha creat i no són tàxons. Això <strong>només és visible als supervisors</strong>, però <strong>els supervisors no poden veure el seu historial</strong>, per tant, les notes sobre una persona mai són visibles per aquesta persona.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Amaga
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Mostra
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspèn
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Deixa de suspendre
   moderator_note_desc: |
     Les notes del moderador són registres de les respostes de moderació o dubtes basades en evidències sobre un usuari, com un possible compte fals. No incloeu opinions personals o impressions sobre l'usuari.
   #Person who executed a moderator action or flagged something
@@ -2989,6 +3033,53 @@ ca:
     Les coordenades públiques es mostren en un punt triat a l'atzar  dins la cel·la  de 0,2 graus de latitud i longitud que conté les coordenades reals.
   observation: Observació
   observation_: observació
+  observation_accuracy_experiment_the_sample_for: "La mostra d'aquest experiment no ha estat generada"
+  observation_accuracy_experiment_our_accuracy_estimate: "La nostra estimació d'exactitud, resultat d'aquest experiment és correcta al %{percent}"
+  observation_accuracy_experiment_our_goak: "El nostre objectiu de l'exactitud (correcta) i precisió estimada del subconjunt del conjunt amb Grau d'Investigació és superior al 95% (línia discontínua)"
+  observation_accuracy_experiment_precision_results: "Resultats de precisió del conjunt"
+  observation_accuracy_experiment_taxon_rank_level: "Nivell de Tàxon"
+  observation_accuracy_experiment_taxon_observations_count: "Compte d'Observacions del Tàxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nom del Tàxon Icònic"
+  observation_accuracy_experiment_continent: "Continent"
+  observation_accuracy_experiment_year: "Any"
+  observation_accuracy_experiment_quality_grade: "Grau de qualitat"
+  observation_accuracy_experiment_show_frequency: "mostra freqüència"
+  observation_accuracy_experiment_click_on_bars: "Clica a les barres per explorar els conjunts."
+  observation_accuracy_experiment_bars_will: "Les barres es podran clicar un cop hagi passat el termini per validar les mostres."
+  observation_accuracy_experiment_accuracy_results: "Resultats d'exactitud del conjunt"
+  observation_accuracy_experiment_as_observations: "A mesura que es validen les observacions d'aquesta mostra, el percentatge d'incertesa disminuirà, i augmentarà el percentatge correcte i l'incorrecte."
+  observation_accuracy_experiment_experiment_still: "L'experiment encara està en curs. Les estadístiques s'actualitzaran diàriament fins a la data límit per validar les mostres el %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experiment d'Exactitud de l'Observació"
+  observation_accuracy_experiment_validators: "Validadors:"
+  observation_accuracy_experiment_show_additional_validators: "(mostra validadors addicionals)"
+  observation_accuracy_experiment_hide_additional_validators: "(amaga validadors addicionals)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validadors addicionals)"
+  observation_accuracy_experiment_abstract: "Resum: Vam generar una mostra d'observacions el %{sample_generation_date} i vam coordinar un equip de validadors per avaluar-ne la precisió el %{deadline_date}. Tots els resultats indicats a continuació mostren les característiques de les observacions de la mostra en el moment en el qual es va generar (per exemple, el grau de recerca o no). La precisió de les observacions de la mostra es va avaluar el %{assessment_date}. Consulteu la pestanya de mètodes per obtenir més detalls."
+  observation_accuracy_experiment_research_grade_results: "Resultats de Grau de Recerca"
+  observation_accuracy_experiment_verifiable_results: "Resultats Verificables"
+  observation_accuracy_experiment_all_results: "Tots els resultats"
+  observation_accuracy_experiment_methods: "Mètodes"
+  observation_accuracy_experiment_step_1: "Pas 1: Generació de la Mostra i Assignació"
+  observation_accuracy_experiment_from_the2: "De la base de dades d'observacions d'iNaturalist (A), vam generar una mostra aleatòria (B). Les submostres es van assignar als validadors candidats (C) d'acord amb els criteris que es descriuen a continuació. L'objectiu és assignar cada observació de mostra a diversos validadors candidats (\"Redundància de validadors objectiu\")."
+  observation_accuracy_experiment_sample_generated: "Mostra generada: %{date}"
+  observation_accuracy_experiment_sample_size: "Grandària de Mostra: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundància de validadors objectiu: %{number}"
+  observation_accuracy_experiment_number_of: "Nombre de validadors candidats: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Mida mitjana de la mostra per cada validador candidat: %{number}"
+  observation_accuracy_experiment_mean_number: "Nombre mitjà de validadors per observació de mostra: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criteri de candidat validador"
+  observation_accuracy_experiment_if_an_identifier: "Si un identificador ha fet almenys 3 identificacions de millora en un tàxon, el consideràvem qualificat per validar aquest tàxon. La millora de les identificacions és el primer suggeriment d'un tàxon amb el qual la comunitat està d'acord posteriorment."
+  observation_accuracy_experiment_if_an_identifier_continent: "Si un identificador ha fet almenys 3 identificacions de millora en un tàxon a un continent, el considerem qualificat per validar aquest tàxon en aquest continent. La millora de les identificacions és el primer suggeriment d'un tàxon amb el qual la comunitat està d'acord posteriorment."
+  observation_accuracy_experiment_for_example: "Per exemple, l'identificador 1 afegeix una ID de A a una observació. Si més tard l'identificador 2 afegeix una ID de B, l'identificador de l'identificador 1 a A es converteix en una millora de ID. Si més tard l'identificador 3 afegeix una ID de suport a B, l'identificador de l'ID 2 a B es converteix en una ID millorada."
+  observation_accuracy_experiment_step_2: "Pas 2: Validació de mostres"
+  observation_accuracy_experiment_we_contacted: "Contactem amb els validadors candidats i els demanem que afegeixin identificacions a les seves submostres. El gràfic de la dreta agrupa la mostra d'observacions pel nombre de validadors."
+  observation_accuracy_experiment_number_percent_of: "Nombre de validadors participants: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Percentatge de la mostra validat: %{percent}"
+  observation_accuracy_experiment_step_3: "Pas 3: Puntuació de la mostra d'observacions a partir de validacions"
+  observation_accuracy_experiment_we_scored: "Puntuem les observacions de la mostra com a correctes, incertes o incorrectes comparant les identificacions del validador amb el tàxon de cada observació de la mostra. Les identificacions que coincideixen o són més acurades que la mostra d'observacions del tàxon es puntuen com a correctes. Les identificacions més imprecises, però no en desacord es puntuen com a Incertes, així com els escenaris en els quals els diversos validadors no estaven d'acord. Les identificacions més imprecises en desacord o les identificacions que les situen a diferents branques es puntuen com a Incorrectes."
+  observation_accuracy_experiment_correct: "Correcte"
+  observation_accuracy_experiment_uncertain: "Incerta"
+  observation_accuracy_experiment_incorrect2: "Incorrecta"
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3704,6 +3795,7 @@ ca:
     north_korea: Corea del Nord
     northern_cyprus: Xipre del nord
     norway: Noruega
+    oceania: Oceania
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4178,6 +4270,8 @@ ca:
   remove_tags: Eliminar etiquetes
   removed: eliminat
   removed_project_user: Usuari eliminat del projecte
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rol eliminat
   removing: "Eliminant..."
   reorder_by_taxonomy: Reordenar per taxonomia
   repair_broken_urls: Repareu URLs trencades
@@ -5558,6 +5652,8 @@ ca:
   yir_donate_banner_you_helped_inaturalist_thrive: Heu ajudat a millorar iNaturalist aquest any. Gràcies!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Necessita el teu Suport
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: L'Equip d'iNaturalist
   yir_generating_and_sharing: |
     Generar i compartir dades sobre biodiversitat d'alt impacte, a aquesta escala i velocitat sense precedents, té un cost creixent
   yir_millions_of_people_used_inaturalist: |
@@ -7238,6 +7334,7 @@ ca:
           quadrillion: mil bilions
           thousand: mil
           trillion: bilió
+          unit: ''
       format:
         precision: 1
         significant: true
@@ -7878,6 +7975,9 @@ ca:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Mollusca: Mol·luscs
+        Chromista: Algues brunes i parents
   #Title of a section warning the user about something
   warning_title: Atenció
   wikimedia: Wikimedia
