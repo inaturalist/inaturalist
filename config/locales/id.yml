@@ -8046,13 +8046,17 @@ id:
               is_too_large_to_edit: terlalu besar untuk diubah
               is_too_large_to_import: terlalu besar untuk diimpor
               contains_too_many_observations: mengandung terlalu banyak pengamatan untuk diimpor
+              cannot_be_blank: tidak boleh kosong
+              invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
+              must_have_more_than_three_points: harus memiliki lebih dari 3 titik
+              polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: tidak boleh kosong
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
-              polygon_with_fewer_than_four_points: memiliki poligon yang titiknya kurang dari 4
+              polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         post:
           attributes:
             parent:
