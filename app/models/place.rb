@@ -447,7 +447,7 @@ class Place < ApplicationRecord
     # run the validations that will eventually be run when this geom is turned into a PlaceGeometry
     # for this place. This will catch additional geom errors before attempting to query the DB
     # for observations in this place, which can cause problems with some invalid geometries
-    stub_place_geometry = PlaceGeometry.new( geom: geom, place: self )
+    stub_place_geometry = PlaceGeometry.new( geom: geom, place: Place.new )
     unless stub_place_geometry.valid?
       add_custom_error( :place_geometry, stub_place_geometry.errors.first.type )
       return false
