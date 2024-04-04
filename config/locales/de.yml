@@ -8152,13 +8152,17 @@ de:
               is_too_large_to_edit: ist zu groß zum Bearbeiten
               is_too_large_to_import: ist zu groß zum importieren
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
+              cannot_be_blank: darf nicht leer sein
+              invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
+              must_have_more_than_three_points: muss mehr als 3 Punkte haben
+              polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: darf nicht leer sein
               invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
               must_have_more_than_three_points: muss mehr als 3 Punkte haben
-              polygon_with_fewer_than_four_points: hat ein Polygon mit weniger als 4 Punkten
+              polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         post:
           attributes:
             parent:
