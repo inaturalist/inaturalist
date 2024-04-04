@@ -9707,13 +9707,17 @@ en:
               is_too_large_to_edit: is too large to edit
               is_too_large_to_import: is too large to import
               contains_too_many_observations: contains too many observations to import
+              cannot_be_blank: cannot be blank
+              invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90
+              must_have_more_than_three_points: must have more than 3 points
+              polygon_with_less_than_four_points: has a polygon with fewer than 4 points
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: cannot be blank
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90
               must_have_more_than_three_points: must have more than 3 points
-              polygon_with_fewer_than_four_points: has a polygon with fewer than 4 points
+              polygon_with_less_than_four_points: has a polygon with fewer than 4 points
         post:
           attributes:
             parent:

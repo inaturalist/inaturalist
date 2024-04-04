@@ -162,7 +162,7 @@ class ModelTaxonomyUpdater
     output_taxonomy_file_path = File.join( @tmpdir, "synonym_taxonomy.csv" )
     @output_taxonomy_file = File.open( output_taxonomy_file_path, "w" )
     columns = %w(
-      parent_id
+      parent_taxon_id
       taxon_id
       rank_level
       leaf_class_id
