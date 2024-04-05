@@ -8834,12 +8834,17 @@ da:
               is_too_large_to_edit: er for stor til at redigere
               is_too_large_to_import: er for stor til import
               contains_too_many_observations: indeholder for mange observationer til import
+              cannot_be_blank: er obligatorisk
+              invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
+              must_have_more_than_three_points: skal have flere end 3 punkter
+              polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: er obligatorisk
               invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
               must_have_more_than_three_points: skal have flere end 3 punkter
+              polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
         post:
           attributes:
             parent:
