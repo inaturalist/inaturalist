@@ -317,7 +317,7 @@ sl:
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dodaj poševno besedilo
   add_muted_users: Dodaj utišane uporabnike
-  add_new_lexicon: Dodaj nov leksikon
+  add_new_lexicon: Dodaj nov slovar
   add_new_photos_by_their_ids: Dodaj nove fotografije po njihovih Flickr IDjih (mora biti Creative Commons!)
   add_new_place: Dodaj nov kraj
   add_new_rule: Dodaj novo pravilo
@@ -1241,7 +1241,7 @@ sl:
   donate_again_caps: DONIRAJTE PONOVNO
   donate_again_today_caps: DONIRAJTE PONOVNO DANES
   #Title for pages and sections that encourage people to donate to iNaturalist
-  donate_to_inaturalist: Donirajte za iNaturalist
+  donate_to_inaturalist: Podprite iNaturalist
   done: Opravljeno
   dont_have_an_account_sign_up_html: Nimate računa? <strong>Registrirajte se.</strong>
   dont_use_double_quotes: Ne uporabljaje navednic nikjer drugje
@@ -1801,7 +1801,7 @@ sl:
     Izgleda, da uporabljate geslo iz starejše verzije tega spletišča.
     Prosimo, ne pozabite <a href="%{url}">spremeniti svojega gesla</a> za novo verzijo.
   let_us_walk_you_through: Naj vas vodimo skozi osnovne funkcije tega spletnega mesta.
-  lexicon: Leksikon
+  lexicon: Slovar
   lexicon_cannot_contain_words: "ne sme vsebovati naslednjih besed: %{words}"
   lexicons:
     afrikaans: Afrikanščina
@@ -1814,17 +1814,17 @@ sl:
     asturian: Asturijščina
     basque: Baskovščina
     belarusian: Beloruščina
-    bengali: Bengalsko
-    bikol: Bikolsko
+    bengali: Bengalščina
+    bikol: Bikolščina
     bulgarian: Bolgarščina
     carolinian: Karolinski
-    catalan: Katalonski
+    catalan: Katalonščina
     cebuano: Cebuanski
     chinese_simplified: Kitajščina (poenostavljena)
     chinese_traditional: Kitajščina (tradicionalno)
     chuvash: Čuvaški
-    creole_french: Kreolščina (Francoščina)
-    creole_portuguese: Kreolski (Portugalski)
+    creole_french: Kreolščina (Francoska)
+    creole_portuguese: Kreolščina (Portugalska)
     croatian: Hrvaščina
     czech: Češčina
     danish: Danščina
@@ -1837,25 +1837,25 @@ sl:
     fijian: Fidžijski
     finnish: Finščina
     french: Francoščina
-    galician: Galicijski
+    galician: Galicijščina
     gela: Gela
-    georgian: Gruzijski
+    georgian: Gruzijščina
     german: Nemščina
-    greek: Grški
-    gujarati: Gudžaratski
-    hawaiian: Havajski
+    greek: Grščina
+    gujarati: Gudžaratščina
+    hawaiian: Havajščina
     hebrew: Hebrejščina
     herero: Hererski
     hiligaynon: Hiligaynon
     hill_mari: Hill Mari
     hodges_number: Hodges Number
     hokkien: Hokkien
-    hungarian: Madžarsko
-    icelandic: Islandski
+    hungarian: Madžarščina
+    icelandic: Islandsščina
     ilokano: Ilokano
-    indonesian: Indonezijski
-    irish: Irski
-    italian: Italijanski
+    indonesian: Indonezijščina
+    irish: Irščina
+    italian: Italijanščina
     japanese: Japonščina
     kannada: Kanareščina
     kazakh: Kazahstanščina
@@ -1891,15 +1891,28 @@ sl:
     scientific_names: Znanstvena imena
     serbian: Srbščina
     shona: Šonščina
+    sinhala: Sinhalščina
     slovak: Slovaščina
     slovenian: Slovenščina
+    sotho: Sotho
     sotho_northern: Sotho (Severni)
     spanish: Španščina
+    swahili: Svahilščina
+    swati: Swati
     swedish: Švedščina
     tagalog: Tagalogščina
     tahitian: Tahitščina
     tamil: Tamilščina
     thai: Tajščina
+    tokelauan: Tokelauan
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
+    turkish: Turščina
+    u_s_d_a_symbol: U.S.D.A. Simbol
+    ukrainian: Ukrajinščina
+    uyghur: Ujgurščina
+    venda: Vendščina
     vermont_flora_codes: Vermont Flora Codes
     vietnamese: Vietnamski
     visayan: Visayan
@@ -2206,6 +2219,9 @@ sl:
   most_observed_introduced_species: Najbolj opazovane vnešene vrste
   most_observed_threatened_species: Najbolj opazovane ogrožene vrste
   multiple_select_option: '-- več --'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: mora biti v projektu %{project}
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "mora imeti ocene kvalitete: %{grades}"
   #Imperative verb, label for a button that lets you mute another user
@@ -2258,7 +2274,7 @@ sl:
   new_flag_for: Nov zaznamek za
   new_guide: Nov vodič
   new_journal_post: Nov vnos v dnevnik
-  new_lexicon: Nov leksikon
+  new_lexicon: Nov slovar
   new_list: Nov seznam
   new_members: "Novi člani"
   new_message: Novo sporočilo
@@ -2495,7 +2511,7 @@ sl:
   original: Izvorno
   other: Drugo
   other_animals: Druge živali
-  other_lexicons: Drugi leksikoni
+  other_lexicons: Drugi slovarji
   other_taxa_commonly_misidentified_as_this_hybrid: Druge vrste pogosto zamenjane s tem hibridom
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Druge vrste pogosto zamenjane s tem hibridom v <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Druge vrste pogosto zamenjane s tem %{rank}
@@ -3119,7 +3135,7 @@ sl:
   #access their iNat account
   revoke_external_application: "Prekliči %{site_name}?"
   revoke_privacy_consent_warning: "Edini način za preklic tega soglasja je da izbrišete vaš račun in vse pripradajoče podatke."
-  rg_observations: RG opazovanja
+  rg_observations: RO opazovanja
   role: Vloga
   rotate_left: Zasukaj v levo
   rotate_right: Zasukaj v desno
@@ -3474,6 +3490,7 @@ sl:
   view_all: Prikaži vse
   view_all_caps: PRIKAŽI VSE
   view_all_observations: Poglej vsa opazovanja
+  view_full_observation: Poglej celotno opazovanje
   view_more: Pokaži več
   view_more_about_x: "Pokaži več o %{x}"
   view_observation: Poglej opazovanje
@@ -3635,9 +3652,15 @@ sl:
   your_recent_projects: Vaši nedavni projekti
   views:
     lifelists:
+      observed_rank: Opazovan %{rank}
+      unobserved_species: Neopazovane vrste
+      all_unobserved_species: Vse neopazovane vrste
+      all_observations: Vsa opazovanja
       total_observations: Vsa opazovanja
       observations_of_exactly_this_taxon: Opazovanja točno tega taksona
       dropdowns:
+        most_observed: Najbolj opazovane
+        least_observed: Najmanj opazovane
         date_added_newest: Datum, od novejšega do starejšega
         date_added_oldest: Datum, od starejšega do novejšega
     observations:
@@ -3741,8 +3764,61 @@ sl:
           "Sex=Female": Samica
           "Sex=Male": Samec
           unannotated: Ni zaznamka
+        photo_chooser_modal_desc: |
+          Povleci fotografije z leve ali povleci fotografije sem za prerazporeditev.
+        photo_chooser_modal_explanation: |
+          Stran taksona bo prikazala fotografije tega takson
+          in njegovih naslednikov. Izbrane fotografije se bodo
+          prikazale najprej in prva fotografija bo privzeta povsod
+          po spletni strani.
+        rare_desc: Najmanj opazovani ogroženi taksoni
+        rare_in_place_desc_html: Najmanj opazovani ogroženi taksoni v <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Kuratorji so začasno iključili prikazovanje <a href="%{url}">te
+          vsebine iz Wikipedije</a>. Lahko pomagate pri urejanju te strani na
+          Wikipediji, da bo primerna za ta takson ali z prijavo tega taksona, da
+          pritegnete pozornost kuratorjev.
+        trending_desc: Najbolj opazovani taksoni v zadnjem mesecu.
+        trending_in_place_desc_html: Najbolj opazovani taksoni v zadnjem mesecu v <a href="%{url}">%{place}</a>
+        wanted_desc: Vrste iz tega taksona, ki še nimajo opazovanj.
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Dodajajte imena, ki so v uporabi. Prosimo, da si ne izmišljate novih imen.</p></li>
+          <li><p>Ne dodajajte podvojenih imen. Npr. ne poimenujte več vrst sokolov "sokol"</p></li>
+          <li><p>Za višjenivojske taksone poskusite uporabiti imena, ki vsebujejo vse naslednike, npr. "čaplje in zavezniki"</p></li>
+          <li>
+          <p>
+          Ne dodajajte informacij, ki niso del imena. Naprimer o temu 
+          kako vi mislite, da bi se moralo ime uporabljati.
+          </p>
+          </li>
+          <li>
+          <p>
+          Imena slovarjev morajo biti v angleščini. Prosimo ne prevajajte imen slovarjev,
+          ker boste s tem onemogočili prikaz prevedenih imen za tiste, ki uporabljajo
+          spletišče v drugih jezikih.
+          </p>
+          </li>
+          <li>
+          <p>
+          Občna imena, ki so povezana z prevedenim jezikom se bodo pojavila
+          kot privzeta imena za ta jezik.
+          <a class="readmore" href="/pages/translate">Več o prevajanju</a>
+          </p>
+          </li>
+          </ul>
     users:
+      delete:
+        type_confirmation_code: Vnesi %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          Za izbris računa morate v obrazec vpisati "%{confirmation_code}"
       edit:
+        common_scientific_name_display_order: Prikazni vrstni red za občno / znanstveno ime
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Če si premislite lahko vedno 
+          <a href='/users/edit'>spremenite svoje nastavitve</a>
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentarji
         #Checkbox label for user preference about what to receive in the daily email update
@@ -3756,12 +3832,25 @@ sl:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Spremembe taksonomije
         taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Dodajte slovar za občna imena
           #optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: Dodaj kraj (neobvezno)
+          common_name_lexicon_display_order: Prikazni vrstni red za slovarje občnih imen
+          common_name_lexicons: Slovarji občnih imen
+          common_name_lexicons_description: "Kot privzeto so občna imena prikazana v jeziku vašega računa. Za pogled imen v drugih jezikih ali za spremembno vrstnega reda uporabljenega v določenih predelih (kot na primer Angleščina (Avstralija) ali Španščina (Costa Rica) dodajte slovarje občnih imen.\nNaenkrat so lahko prikazana največ 3 občna imena. Če občno ime ne obstaja v izbranem slovarju, potem ne bo prikazano."
+          for_multiple_common_name_lexicons_drag_and_drop: Za več slovarjev občnih imen, povleci in spusti nastavitve spodaj za prilagoditev vrstnega reda v katerem so prikazane.
+          same_as_locale: Isto kot sistemska nastavitev
           #used as a form select dropdown option that users can choose instead of a choosing
           #a fixed locale. Choosing this setting will allow the user to see common names in
           #a lexicon matching their account language/locale setting dynamically
           same_as_language_locale_preference: Enako kot uporabnikove jezikovne nastavitve
+          select_a_lexicon: Izberi slovar
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Največ 3 slovarji občnih imen so že bili dodani
       recent:
         about_recent_users: Predstavitev
     user_parents:
@@ -3938,6 +4027,16 @@ sl:
         few: skoraj %{count} leta
         other: skoraj %{count} let
       half_a_minute: pol minute
+      over_x_years:
+        one: več kot %{count} leto
+        two: več kot %{count} leti
+        few: več kot %{count} leta
+        other: več kot %{count} let
+      x_days:
+        one: "%{count} dan"
+        two: '%{count} dneva'
+        few: '%{count} dnevi'
+        other: '%{count} dni'
     countdown_x_days:
       one: DAN
       two: DNEVA
