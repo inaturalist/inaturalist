@@ -421,6 +421,8 @@ sl:
   admin_s: Administrator(ji)
   admin_only: Samo administrator
   admin_tools: Administracijska orodja
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Povezane organizacije
   agree_: Strinjam se
   agree?: Se strinjate?
   agree_with_current_taxon: Strinjam se s trenutnim taksonom
@@ -495,6 +497,8 @@ sl:
   animals: Živali
   annotation: Zaznamek
   annotations: Zaznamki
+  announcement_was_successfully_created: Obvestilo je bilo uspešno ustvarjeno.
+  announcement_was_successfully_updated: Obvestilo je bilo uspešno posodobljeno!
   announcements: Obvestila
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
@@ -582,6 +586,13 @@ sl:
   assessment_x: "%{assessment} ocena"
   assessments: ocene
   associations: Asociacije
+  atlased: Atlasirano
+  atlas_for_taxon_html: Atlas za %{taxon}
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
+  attached_taxon: Priložen takson
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Lastnost
@@ -595,6 +606,10 @@ sl:
     natureserve: NatureServe
     cites: CITIRANJA
   authorize: Odobri
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Preveri pristnost z PKCE
+  authorize_permissions_from_provider: "Avtoriziraj dovoljenja od %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Samodejno dodaj opazovanja temu projektu
   automatically_update_my_content_for_taxon_changes: Samodejno posodobi moje vsebine s spremembami taksonov
@@ -606,10 +621,14 @@ sl:
   back_to_all_species: Nazaj k vsem vrstam
   back_to_editing_observation: Nazaj k urejanju opazovanj
   back_to_friends: Nazaj k prijateljem
+  back_to_flags_html: "&laquo; Nazaj k prijavam"
+  back_to_lists: "Nazaj k %{name} seznamom"
   back_to_observation: Nazaj k opazovanjem
   back_to_observation_fields: Nazaj k opazovalnim poljem
   back_to_people: Nazaj k ljudem
   back_to_places: Nazaj h krajem
+  back_to_possessive_user_profile: "Nazaj k profilu %{possuser}"
+  back_to_post: '&laquo; Nazaj k objavi'
   back_to_projects: Nazaj k projektom
   back_to_suggestions: Nazaj k predlogom
   back_to_taxon: "Nazaj k %{defaulttaxon}"
@@ -630,8 +649,24 @@ sl:
   back_to_your_observations: Nazaj k vašim opazovanjem
   back_to_your_profile: Nazaj k svojemu profilu
   badges: Značke
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Glede na določen %{percent}% teh določitev, predvidevamo, da bo to
+      povzročilo <strong>%{count} neželjeno nestrinjanje</strong> z določitvami %{child}.
+    two: |
+      Glede na določen %{percent}% teh določitev, predvidevamo, da bo to
+      povzročilo <strong>%{count} neželjenima nestrinjanjanjima</strong> z določitvami %{child}.
+    few: |
+      Glede na določen %{percent}% teh določitev, predvidevamo, da bo to
+      povzročilo <strong>%{count} neželjenimi nestrinjanji</strong> z določitvami %{child}.
+    other: |
+      Glede na določen %{percent}% teh določitev, predvidevamo, da bo to
+      povzročilo <strong>%{count} neželjenimi nestrinjanji</strong> z določitvami %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Ali je na podlagi podatkov mogoče potrditi ali še izboljšati ID skupnosti?
+  batch: Serija
+  batch_edit: Urejanje serije
   be_the_first_to_fave_this_observation: Bodite prvi, ki je všečkal to opazovanje!
   become_a_donor_caps: POSTANI DAROVALEC
   become_a_donor_today_caps: POSTANI DAROVALEC DANES
@@ -774,6 +809,8 @@ sl:
   committed_by_user_on_date_html: Ustvaril %{user} %{date}
   #Label for date the taxon change was committed
   committed_on: Ustvarjeno %{date}
+  #Status message while a taxon change is being committed
+  committing: Uveljavljanje ...
   common_name: Obče ime
   community: Skupnost
   community_curated: Kurirano od skupnosti
@@ -786,8 +823,18 @@ sl:
   compare: Primerjaj
   compare_with: Primerjaj z
   comparing: primerjanje
+  compiled_by_name: "Zbrano od %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Zaključen
+  completed: Zaključeno
+  completed_at: Zaključeno
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Je kompleten?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Kompleten</span>
+    seznam za %{taxon}
+  comprehensive_list: Kompleten seznam
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: Model računalniškega vida
@@ -805,6 +852,7 @@ sl:
     z vsakim objavljenim modelom. Na splošno je pomembno število opazovanj, tako
     da za povečanje možnosti, da bo vključen v naslednje učenje modela, dodajaj
     čim več opazovanj in določitev tega taksona.
+  concept_status: Status koncepta
   confidential: Zaupno
   configure: Nastavi
   confirm: Potrdi
@@ -836,6 +884,7 @@ sl:
     Vsebino je skril %{user} %{date} zaradi: "%{reason}"
   content_type: Vrste vsebine
   continue: Nadaljuj
+  continue_to_site: Nadaljuj v %{site_name}
   contributors_to_project: "Sodelavci projekta %{project}"
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -1004,6 +1053,16 @@ sl:
     Pojasniti morate zakaj bi radi postali kurator
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Zakaj bi radi postali kurator?
+  curators: Kuratorji
+  curator_identification: Kuratorjeva določitev
+  current_flags: Trenutne prijave
+  #Label for a custom boundary for an observation search
+  custom_boundary: Meja po meri
+  custom_project_fields: Projektna polja po meri
+  custom_project_was_successfully_created: Dodane prilagoditve projekta
+  custom_project_was_successfully_updated: Posodobljene prilagoditve projekta
+  customize_location: Prilagodi lokacijo
+  darr_apply_darr: "&darr; Uporabi &darr;"
   daily_users: Dnevni uporabniki
   danger_zone: Območje nevarnosti
   dashboard: Nadzorna plošča
@@ -1434,6 +1493,8 @@ sl:
   find_unsuitable_observations: Poišči neprimerna opazovanja
   find_your_current_location: Poišči vašo trenutno lokacijo
   finished: Končano
+  first_inat_observation: "Prvo %{site_name} opazovanje"
+  first_observer: Prvi opazovalec
   #Verb form, as in "Flag this item"
   flag: Označi
   flag_as_inappropriate: Označi kot neprimerno
@@ -1472,6 +1533,8 @@ sl:
   flags_explanation: "Uporabniki %{site_name} označujejo stvari, ki potrebujejo pozornost kuratorjev in administratorjev."
   flags_for_x_html: Oznake za %{x}
   flags_on_users_content: "Oznake na vsebini uporabnika %{user}"
+  #Adjective, as in a fluid layout of images
+  fluid: tekoče
   follow: Sledi
   #Text for a button to follow updates on an observation
   follow_observation: Spremljaj to opazovanje
@@ -1621,6 +1684,10 @@ sl:
   identification_unhidden: Določitev je odkrita
   #Notification when an identification has been updated
   identification_updated: Določitev je posodobljena!
+  #Notification when an identification has been withdrawn
+  identification_withdrawn: Določitev umaknjena.
+  identifications: Določitve
+  inaturalist_global_year_in_review: "iNaturalist globalen povzetek leta %{year}"
   identifiers: Določevalci
   identotron: Identotron
   identotron_for: Identotron za
@@ -1978,19 +2045,19 @@ sl:
   loading_wikipedia_description: "Nalagam opis iz Wikipedije"
   locales_: Področne nastavitve
   locales:
-    ar: Arabski
-    be: Beloruski
-    bg: Bolgarski
-    br: Bretonski
-    ca: Katalonski
-    cs: Češki
-    da: Danski
+    ar: Arabščina
+    be: Beloruščina
+    bg: Bolgarščina
+    br: Bretonščina
+    ca: Katalonščina
+    cs: Češčina
+    da: Danščina
     de: Nemščina
-    el: Grški
-    en: Angleški
-    en-GB: Angleški (VB)
+    el: Grščina
+    en: Angleščina
+    en-GB: Angleščina (VB)
     eo: Esperanto
-    es: Španski
+    es: Španščina
     es-AR: Španščina (Argentina)
     es-CO: Španščina (Kolumbija)
     es-CR: Španščina (Costa Rica)
@@ -2003,12 +2070,37 @@ sl:
     gl: Galicijščina
     he: Hebrejščina
     hr: Hrvaščina
-    hu: Madžarski
-    id: Indonezijski
-    it: Italijanski
+    hu: Madžarščina
+    id: Indonezijščina
+    it: Italijanščina
     ja: Japonščina
-    ka: Gruzijski
+    ka: Gruzijščina
+    kk: Kazahstanščina
+    kn: Kannada
+    ko: Korejščina
+    lb: Luksemburščina
+    lt: Litovščina
+    lv: Latvijščina
+    mi: Maorščina
+    mk: Makedonščina
+    mr: Maratščina
+    nb: Norveščina Bokmål
+    nl: Nizozemščina
+    oc: Okcitanščina
+    pl: Poljščina
+    pt: Portugalščina
     pt-BR: Portugalščina (Brazilija)
+    ru: Ruščina
+    sat: Santali
+    sk: Slovaščina
+    sl: Slovenščina
+    sq: Albanščina
+    sr: Srbščina
+    sv: Švedščina
+    th: Tajščina
+    tr: Turščina
+    uk: Ukrajinščina
+    zh-CN: Kitajščina (poenostavljena)
   location: Lokacija
   location_is_accurate: Lokacija je pravilna
   location_is_exact: Lokacija je natančna
