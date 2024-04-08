@@ -633,7 +633,7 @@ zh-CN:
   are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
   are_you_sure_you_want_to_remove_curator: 您确定要移除作为馆长的 %{user} 么？
   are_you_sure_you_want_to_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
-  are_you_sure_you_want_to_remove_manager: 您确定要移除作为经理的 %{user} 么？
+  are_you_sure_you_want_to_remove_manager: 您确定要移除 %{user} 的管理员身份吗？
   are_you_sure_you_want_to_remove_spammer: |
     您确定您认为此用户可信吗？
     如果如此，他们所有垃圾邮件标志将会被去除。
@@ -1226,6 +1226,10 @@ zh-CN:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     他们自己未能表现出适当的行为。
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    要申请站点馆长，您的账号必须建立满60天，添加了至少5个标记，并且提供过超过100个正在改进的鉴定（包括自己的观察，目前您已添加了%{num_idents}个）。如果您的账号符合这些要求，您可以回到本页面提交申请。
   curator_application_inelligible_error2: |
     若要申请成为站点馆长，您必须有一个注册满60天或更长时间的帐户，至少添加了 5 个标记， 并为任何人的观察、包括您自己的观察添加了100个改进中的鉴定。
   #Message shown when a curator application has been succesfully submitted
@@ -1424,6 +1428,8 @@ zh-CN:
   deviation: 偏离
   devise:
     confirmations:
+      confirmed: |
+        已成功验证您的电子邮箱地址。
       send_instructions: "您将在几分钟内收到一封电子邮件，请按照说明确认您的电子邮件地址。"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1670,6 +1676,10 @@ zh-CN:
     native: 在这个区域演化而来或通过非人为手段抵达的情况
     endemic: 本土物种，且无其他地区记录
     introduced: 通过人类活动途径到达此地区的情况
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    估计哪个输入分类群的鉴定将被输出分类群的鉴定替代，当拆分填好后，这些分类群将被压缩到一个
+    共同的祖先。 这可能需要一段时间进行计算。与观察的链接被截断到200个子集。
   event_in_progress: 正在进行中的活动
   event_stats: 活动统计
   event_url: 活动URL
@@ -1701,6 +1711,8 @@ zh-CN:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: 外部应用程序
+  external_applications_description: |
+    外部应用是指由你允许接入你的iNaturalist账号的第三方软件。通常而言，它能实施你用你的iNaturalist账号所能做到的一切事情，所以在授予许可之前请确保你信任应用的开发者。
   external_taxon_including_children: 外部分类（包含子项）
   extinct: 灭绝
   extinct_in_the_wild: 野外灭绝
@@ -1953,6 +1965,8 @@ zh-CN:
   header_your_projects: 您的项目
   header_your_profile: 你的个人资料
   heads_up: 小心
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>注意：</strong> 此更改所涉及的一个或多个输入分类单元在一个 <a href="%{framework_url}">分类单元框架</a>内。 只有管理该分类单元框架的超管或馆长才可以进行影响到覆盖分类单元的更改。 请联系该分类单元的馆长来执行此更改。
   heads_up_there_are_other_draft_taxon_changes_html:
     other: "<strong>注意：</strong>还有关于同一个分类群的%{count}个分类群变化草案。"
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
@@ -1992,6 +2006,11 @@ zh-CN:
   #not licensed. "It" refers to the observation.
   however_not_licensed: |
     然而，它没有重新使用的许可，也不会与执行许可选择的数据存储库共享。
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    您可以在您的<a class="linky" href="/users/edit#content">帐户设置中</a>更改您的许可证首选项。
   however_there_were_some_issues: "然而，这里有一些问题：%{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2517,8 +2536,8 @@ zh-CN:
   manage_names: 管理名称
   manage_your_projects: 管理您的项目
   manage_your_relationships: 管理您的关联
-  manager: 经理
-  managers: 经理
+  manager: 管理员
+  managers: 管理员
   managers_can_do: 管理员可以完成管理员可以完成的任何工作，也可以编辑项目设置并编写项目日志文章。
   managing_projects: 管理项目
   map: 地图
@@ -2759,6 +2778,9 @@ zh-CN:
   needs_id_: 待鉴定
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
   needs_id_tooltip_html: '“需要鉴定”观察含有媒体、地点和日期，但仍需要社区对确切鉴定结果的共识。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级的信息</a>'
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>作为国际iNaturalist网络的一员，聚焦于%{place}的生物多样性和人群之中。您想将账号所属从<strong>%{inat_site_name}</strong>变更为<strong>%{site_name}</strong>，并和当地学术机构分享数据吗？
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
@@ -2949,7 +2971,9 @@ zh-CN:
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
+  observation_accuracy_experiment_the_sample_for: "此实验的样本尚未生成"
   observation_accuracy_experiment_our_accuracy_estimate: "我们从该实验中得到的估计结果是准确度为%{percent}。"
+  observation_accuracy_experiment_our_goak: "我们对研究等级子集估计准确度(正确)和精度的目标为大于95%(虚线)"
   observation_accuracy_experiment_precision_results: "按子集排序的精度结果"
   observation_accuracy_experiment_taxon_rank_level: "分类级别"
   observation_accuracy_experiment_taxon_observations_count: "分类单元观察计数"
@@ -2959,7 +2983,9 @@ zh-CN:
   observation_accuracy_experiment_quality_grade: "质量等级"
   observation_accuracy_experiment_show_frequency: "显示频率"
   observation_accuracy_experiment_click_on_bars: "点击条形来探索子集。"
+  observation_accuracy_experiment_bars_will: "在验证样品的截止日期过后，将可点击条形按钮。"
   observation_accuracy_experiment_accuracy_results: "按子集排序的准确度结果"
+  observation_accuracy_experiment_as_observations: "随着这个样本中的观察结果得到确认，不确定的百分比将会下降，正确和不正确的百分比将会增加。"
   observation_accuracy_experiment_experiment_still: "实验仍在进行中。我们会每天更新直到达到验证样本的截止日期%{date}。"
   observation_accuracy_experiment_observation_accuracy_experiment: "观察精确度测试"
   observation_accuracy_experiment_validators: "验证节点："
@@ -2993,11 +3019,25 @@ zh-CN:
   observation_accuracy_experiment_incorrect2: "错误"
   observation_accuracy_experiment_step_4: "第4步：准确度和精确度计算"
   observation_accuracy_experiment_accuracy: "准确度"
+  observation_accuracy_experiment_we_calculated: "我们计算准确度是整个样本以及研究等级子集的正确百分比。 我们还计算了不确定百分比和不正确百分比。 在右边的示例数字中，正确的百分比是83。 不明确的百分比是6，而不正确的百分比是11。"
   observation_accuracy_experiment_precision: "精确度"
+  observation_accuracy_experiment_if_every_sample: "如果每个样本观察都处于界这样的粗略分类群，iNaturalist 数据集的准确度可能很高，但精确度可能太低，无法使数据集有价值。 为了估计精确度，我们计算了与每个样本观察相关的每个分类群的 iNaturalist 分类学中叶子后代的数量。 我们计算的精确度为1除以子集后代人数。 如果分类单元是子分类单元，精度为100%。我们忽略了精确计算中低于种一级别的层级。"
   observation_accuracy_experiment_in_the_example: "在右侧的示例中，三个样本观察的平均精确度为51%。"
   observation_accuracy_validator_email_subject2: "您是否会帮助我们进行实验%{version}，以估计iNaturalist观察的准确度？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     您是否会帮助我们进行一次<a href="%{url}">实验（版本%{version}）</a>，以估计iNaturalist观察的准确度？
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>尽可能好地对下列链接中的全部观察结果给出鉴定，即便其已经为研究级别，或者你的最精确的鉴定在更高层级上（甚至是界一级）。</li>
+    <li>如果你看到“可能不同意”弹出……
+    <ul>
+    <li>而你又确定此前它被错误鉴定了，则点击橙色按钮；</li>
+    <li>或者你不确定超出你鉴定层级的情况，则点击绿色按钮</li>
+    </ul>
+    </li>
+    <li>在<b>%{validator_deadline_date}</b>之前完成上述任务</li>
+    </ol>
+    这里是我们根据你在iNat上的活动认为你能够鉴定的<a href="%{sample_url}">观察子集，共%{num_obs}个</a>。<b>请在%{validator_deadline_date}之前为其中的每一个观察添加你精确的鉴定</b>。
   observation_accuracy_validator_email_we_will_calculate: |
     我们将通过将您的鉴定结果与观察分类单元进行比较来计算精度。您可以跳过您以前添加过鉴定的观察，如果这一观察仍然相关的话。 要查看我们是如何计算协议和分歧的更多信息，请继续阅读。
   observation_accuracy_validator_email_ids_equal_to: |
@@ -4454,6 +4494,8 @@ zh-CN:
     为了促进各自地区的研究和保护，网络成员可以得到iNaturalist所分享的数据。 它们有责任评估数据请求的有效性和适当性及其潜在后果； 也有责任以书面表态形式确保此种数据的安全性，不以任何方式公开。 或共享或超出原定目的地进行使用；他们会记录所有共享的实例以及相关的结果、结果或预期用途；并每年一次地向iNaturalist报告。
   sites_affiliation_overview_when_you_affiliate: |
     当您与 iNaturalist 网络成员关联时， 您的电子邮件地址和您已遮盖或设为私有的真实位置就会与网络成员共享。 这将让你的观察能更好地对对当地的保护工作产生价值。 如果您生活在或经常访问一个属于某网络成员的区域，鼓励您关联这一网络成员，以便于数据共享。
+  sites_affiliation_overview_you_can_continue_html: |
+    您可以继续通过 iNaturalist.org 或通过您的网络特定网站登录。 无论您的隶属关系如何，您的所有数据都将托管在同一个地方，您将继续能够与更广泛的国际自然主义社区。 每个 iNaturist 帐户只能隶属于一名网络成员。 您可以通过您的%{start_tag_settings}账户设置%{end_tag_settings}查看或更改您的隶属关系。
   sites_affiliation_title: 了解更多关于网络关联的信息
   sites_network_agreements_html: |
     为了支持用户使用 iNaturalist 平台，iNaturalist 已经与这些地区的组织达成了正式协议。
@@ -4616,6 +4658,9 @@ zh-CN:
   subscribe_to_observations_from_this_place_html: <a>订阅</a>此处的观察
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
   subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
+  subscribe_to_places_help: |
+    订阅控制你在更新和控制面板中看到的东西。
+    例如，您可以订阅一个分类单元以获取关于该分类单元的新的观察信息。 您已自动订阅关于您评论或鉴定过的观察记录的更新。
   subscribe_to_this: 订阅此
   subscribe_to_x_from_this_y_html: |
     从此%{y}<a href="#" onclick="$(this).parents('form:first').submit(); return false;">订阅</a>至%{x}。
@@ -4785,6 +4830,7 @@ zh-CN:
   taxonomic_tags_for_flickr: Flickr的分类学标签
   taxonomy_details: 分类详情
   taxonomy_details_for: 分类细节
+  taxonomy_details_info: '分类学详细信息页面使用分类学框架帮助描述我们的分类学表述。 <a href="/pages/taxon_frameworks">阅读更多</a>。'
   taxonomy_settings: 分类学设置
   teachers_guide: 教师指南
   tell_the_world_a_little_about_yourself: 告诉我们有关您自己
@@ -4838,6 +4884,8 @@ zh-CN:
   the_world_is_full_of_interesting_places: |
     这个世界充满了有趣的地点，每一个地点都又充满了特别而奇妙的生命形态。有些生物在世界的另一侧，而有些就在街边！%{site_name} 让您浏览整个星球上的生物！开始探索吧！
   then_keybord_sequence: 然后
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: 当前可能被削弱的父分类群里没有任何鉴定。
   there_are_x_synonyms_html:
     other: "有 <span class='count'>%{count}</span> 个同义词</span>"
   there_is_no_wikipedia_page_matching: 没有匹配的维基百科页面
@@ -6857,6 +6905,10 @@ zh-CN:
     taxon_changes:
       move_children_desc: |
         因子项为较粗略内容，而被移动到物种、亚种、品种等其他输入物种分类。将被换至同等的新的属或种名。
+      form:
+        move_children_desc2_html: |
+          选中此框将会将输入分类单元的子分类单元移动到用于分类单元交换和分类单元合并的
+          输出分类单元中。 如果这是对属或是更低层级的更改， 它将为所有下层分类单元的学名创建需要更改的分类群互换。 例如，如果你将Canidae科通过交换并入到Dogidae科，就将把<i>Canis</i> 属从Canidae科改为Dogidae科。如果你把<i>Canis</i>属通过交换并入到 <i>Dogis</i>属里，它将创建并提交分类群互换以将<i>Canis lupus</i> 更名为 <i>Dogis lupus</i> ，并将<i>Canis lupus</i> ssp. <i>lubus</i> 更名为 <i>Dogis lupus</i> ssp.<i>lupus</i>。这可能会引起极大混乱，所以请小心使用。
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7664,12 +7716,17 @@ zh-CN:
               is_too_large_to_edit: 太大，无法编辑
               is_too_large_to_import: 太大了，不能导入
               contains_too_many_observations: 导入数据中包含了太多观察
+              cannot_be_blank: 不能为空
+              invalid_point: 有一个无效的点，例如：经度大于180°或纬度小于-90°
+              must_have_more_than_three_points: 必须有超过3个点
+              polygon_with_less_than_four_points: 有一个少于4个点的多边形
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: 不能为空
               invalid_point: 有一个无效的点，例如：经度大于180°或纬度小于-90°
               must_have_more_than_three_points: 必须超过 3 个点
+              polygon_with_less_than_four_points: 有一个少于4个点的多边形
         post:
           attributes:
             parent:
