@@ -612,7 +612,7 @@ class Identification < ApplicationRecord
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       next unless taxon_change.automatable_for_output?( output_taxon.id )
-      ident.observation.skip_update_observations_places = true
+      ident.observation&.skip_update_observations_places = true
       new_ident = Identification.new(
         observation: ident.observation,
         taxon: output_taxon,
@@ -633,22 +633,20 @@ class Identification < ApplicationRecord
       ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
-    unless options[:records]
-      Identification.current.where( "disagreement AND previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
-        ident.skip_observation = true
-        if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
-          ident.update(
-            skip_set_previous_observation_taxon: true,
-            previous_observation_taxon: taxon_change.output_taxon,
-            skip_indexing: true
-          )
-          observation_ids << ident.observation_id
-        elsif taxon_change.is_a?( TaxonSplit )
-          ident.update( disagreement: false, skip_indexing: true )
-          observation_ids << ident.observation_id
-        end
-        ident_ids << ident.id
+    Identification.current.where( "disagreement AND previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
+      ident.skip_observation = true
+      if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
+        ident.update(
+          skip_set_previous_observation_taxon: true,
+          previous_observation_taxon: taxon_change.output_taxon,
+          skip_indexing: true
+        )
+        observation_ids << ident.observation_id
+      elsif taxon_change.is_a?( TaxonSplit )
+        ident.update( disagreement: false, skip_indexing: true )
+        observation_ids << ident.observation_id
       end
+      ident_ids << ident.id
     end
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
@@ -672,6 +670,7 @@ class Identification < ApplicationRecord
         ident_ids += obs.identification_ids
       end
     end
+
     if options[:records]
       Observation.elastic_index!( ids: observation_ids.uniq.compact )
       Identification.elastic_index!(
