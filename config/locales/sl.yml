@@ -1340,7 +1340,12 @@ sl:
   duration_value: "Trajanje: %{duration} minut"
   earliest_added: Najprej dodano
   edit: Uredi
+  edit_assessment: Uredi ocenjevanje
+  edit_atlas: Uredi atlas
+  edit_atlas_for_taxon_html: Uredi atlas za %{taxon}
+  edit_body: Uredi vsebino
   edit_comment: Uredi vaš komentar
+  edit_complete_set_for_taxon_in_place_html: "Uredi celotno množico za %{taxon} v %{place}"
   edit_conservation_status: Uredi status ogroženosti
   edit_custom_project_fields: Uredi projektna polja po meri
   edit_field: Uredi polje
@@ -1361,6 +1366,8 @@ sl:
   edit_taxa: Uredi taksone
   edit_taxon: Uredi takson
   edit_taxon_framework: Uredi taksonski okvir
+  edit_taxon_link: Uredi povezavo do taksona
+  edit_taxon_range: Uredi razpon taksona
   edit_the_observation: Uredi opazovanje
   edit_your_account_and_profile_html: "Uredi svoj račun in profil"
   edit_your_default_settings: "Uredi svoje privzete nastavitve"
@@ -1372,7 +1379,24 @@ sl:
     Urejano od %{name}, nekatere pravice pridržane (%{license})
   editing: Urejanje
   editing_announcement: Urejanje obvestila
+  editing_observation_field: Urejanje polja opazovanja
+  editing_observation_id: "Urejanje opazovanja %{obs_id}"
+  editing_observations:
+    one: 'Urejanje <span class="count">%{count}</span> opazovanja:'
+    two: 'Urejanje <span class="count">%{count}</span> opazovanj:'
+    few: 'Urejanje <span class="count">%{count}</span> opazovanj:'
+    other: 'Urejanje <span class="count">%{count}</span> opazovanj:'
+  editing_project: Urejanje projekta %{project}
+  editing_project_asset: Urejanje projektnega sredstva za
+  editing_subscription_to_x_html: "Urejanje naročnine na %{x}"
+  editing_taxon: Urejanje %{taxon}
+  editing_taxon_link: Urejanje povezave do taksona
+  editing_taxon_name_for_taxon_html: Urejanje imena taksona "%{name}" za %{taxon}
+  editing_taxon_range_for_taxon_html: Urejanje razpona taksona za %{taxon}
+  editing_this: Urejanje %{elem}
+  editing_x_in_y: "Urejanje %{x} v %{y}"
   editors: Uredniki
+  either_that_user_doesnt_exist_or: "Ali ta uporabnik ne obstaja ali pa mu že sledite."
   eligible_for_research_grade: Primerno za raziskovalno oceno
   email: E-naslov
   email_address_for_comments_and_other_feedback: E-naslov za komentarje in ostale odzive
@@ -1380,6 +1404,11 @@ sl:
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: Dragi %{user},
   email_description: Vaš e-naslov se ne deli z ostalimi uporabniki na iNaturalist
+  email_conf_required_after_grace_period: |
+    Potrditev e-poštnega naslova je bila potrebna do %{requirement_date} in 
+    ga niste potrdili pravočasno. Prosimo ponastavite svoje geslo, da bi lahko
+    dostopali do svojega računa.
+  email_copyright2: "&copy; %{year} iNaturalist, vse pravice pridžane"
   email_notifications: Obvestila o e-pošti
   embed: 'Vdelaj'
   encompassing_places: Vključeni kraji
@@ -1612,6 +1641,7 @@ sl:
     Google zemljevidi se niso inicializirali. Lahko, da je dostop blokiran zaradi
     dodatka v brskalniku, požarnega zidu ali vašega internetnega ponudnika.
   got_it!: Razumem!
+  got_your_data_somewhere_else?: Imate podatke nekje drugje? Lahko pomagamo.
   graft: Cepič
   graft_taxon: Cepič %{taxon}
   grafting_attemps_to_insert_this_taxon: Cepljenje poskusi vstaviti ta takson v naše taksonomsko drevo, tako da poišče obstoječi starševski takson ali z ustvarjanjem vseh manjkajočih členov potrebnih za povezavo v obstoječi takson na višjem nivoju.
@@ -1698,6 +1728,7 @@ sl:
   identification_withdrawn: Določitev umaknjena.
   identifications: Določitve
   inaturalist_global_year_in_review: "iNaturalist globalen povzetek leta %{year}"
+  computer_vision_suggestion: Predlog računalniškega vida
   identifiers: Določevalci
   identotron: Identotron
   identotron_for: Identotron za
@@ -2226,11 +2257,34 @@ sl:
   merging: Združevanje
   merging_places: Združevanje krajev
   message: Sporočilo
+  message_deleted: Sporočilo izbrisano
+  message_from_user_at_time: Od %{user} ob %{time}
+  message_from_user_on_date: Od %{user} %{date}
   messages: Sporočila
+  messages_new_correspondent_it_looks_like: |
+    Izgleda, da si še niste dopisovali s to osebo, zato bodite pozorni na 
+    naslednje:
+  messages_new_correspondent_specimens: |
+    Bodite previdni pri prošnjah po primerkih ali skritih podatkih. Poskusite
+    preveriti identiteto osebe, ki vam je prošnjo poslala in če sprašuje po primerkih
+    ali ima potrebna dovoljenja.
+  messages_new_correspondent_personal: |
+    Ne razkrivajte svojih osebnih podatkov osebam, ki jim ne zaupate.
+  messages_new_correspondent_actions_html: |
+    Če sumite, da ta oseba krši <a href="%{tos_url}"
+    target="_blank">pogoje uporabe</a> ali ne deluje v skladu z našimi <a
+    href="%{guidelines_url}" target="_blank">smernicami skupnosti</a>, prosimo
+    prijavite spodnje sporočilo.
+  minimum_positional_accuracy: Najmanjša natančnost lokacije
   misidentifications: Napačne določitve
+  misleading_or_illegal_content_html: |
+    Zavajajoča ali nezakonita vsebina, rasno ali etnično obrekovanje idr.
+    Za več o naši opredelitvi »primernega« glejte
+    <a href="/help#inappropriate">najpogosteje postavljena vprašanja</a>.
   #Label shown when a date has not been entered
   missing_date: Manjka datum
   mobile: Mobilni
+  moderation_history_for_user_html: Zgodovina moderiranja za %{user}
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skrij
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -2321,12 +2375,28 @@ sl:
   most_observed_species: Najbolj opazovane vrste
   most_observed_introduced_species: Najbolj opazovane vnešene vrste
   most_observed_threatened_species: Najbolj opazovane ogrožene vrste
+  multiple: več
   multiple_select_option: '-- več --'
+  multiple_taxa_for_taxon_change: "Več taksonov (vhodni podatki za premik/zlitje, izhodni za razcep)"
+  multiple_taxon_ids_separated_by_commas: 'Več določitev taksonov razmejenih z vejicami'
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: mora biti v projektu %{project}
+  must_be_in_taxon: mora biti v taksonu %{taxon}
+  must_be_not_in_taxon: ne sme biti v taksonu %{taxon}
+  must_be_not_observed_by_user: ne sme biti opazovana od %{user}
+  must_be_not_observed_in_place: ne sme biti opazovana v %{place}
+  must_be_observed_after: mora biti opazovana po %{operand}
+  must_be_observed_before: mora biti opazovana pred %{operand}
+  must_be_observed_by_user: mora biti opazovana od %{user}
+  must_be_observed_in_place: mora biti opazovana v %{place}
+  must_be_less_than_x_MB: "Mora imeti manj od %{x} MB"
+  must_have_observation_field: "mora imeti izponjeno opazovalno polje '%{operand}'"
+  must_have_photos: mora imeti fotografije
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "mora imeti ocene kvalitete: %{grades}"
+  must_have_sounds: mora imeti zvoke
+  must_have_x: "mora imeti %{x}"
   #Imperative verb, label for a button that lets you mute another user
   mute: Utišaj
   #Mute is a noun here
@@ -2466,6 +2536,9 @@ sl:
   no_projects_yet: Še ni projektov
   no_recent_activity: Ni nedavne dejavnosti
   no_relevant_annotations: Ni relevantnih zaznamkov
+  no_species_have_been_listed: Za ta kraj še ni bila izpisana nobena vrsta
+  no_species_on_this_list: Na temu seznamu še ni vrst!
+  no_subject_parens: "(Brez zadeve)"
   non_human?: Ni človek?
   none: Brez
   none_found: Ne obstaja
@@ -2503,6 +2576,7 @@ sl:
   observation_accuracy_experiment_research_grade_results: "Rezultati raziskovalnih ocen"
   observation_accuracy_experiment_all_results: "Vsi rezultati"
   observation_accuracy_experiment_correct: "Pravilno"
+  observation_accuracy_experiment_uncertain: "Negotovo"
   observation_accuracy_experiment_incorrect2: "Nepravilno"
   observation_added_to_the_project: "Opazovanje dodano v projekt \"%{project}\""
   observation_aggregation: Združevanje opazovanj
@@ -2718,12 +2792,22 @@ sl:
     original: izvirno
   photos_updated: Fotografije posodobljene.
   pi_consent_desc_title: O osebnih podatkih
+  pin_verb: Bucika
+  pinned_locations_desc: |
+    Označi to kombinacijo koordinat, natančnosti, geo zasebnosti in lokalitete za kasnejšo uporabo.
+  place: Kraj
   placeholder: Rezervirano mesto
   place_autocomplete_placeholder: Triglavski narodni park, itd.
+  place_create_quota_exceeded: |
+    Presegli ste število krajov, ki jih lahko ustvarite v 24 urah (%{quota})
+  place_deleted: Kraj izbrisan.
   place_geo:
     geo_planet_place_types:
+      Aggregate: Združeno
+      aggregate: združeno
       Airport: Letališče
       airport: letališče
+      Building: Stavba
       building: Stavba
       Canton: Kanton
       canton: kanton
@@ -2741,8 +2825,26 @@ sl:
       country: država
       County: Okrožje
       county: okrožje
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Predstavništvo
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: predstavništvo
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Del departmaja
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: del departmaja
       District: Okraj
       district: okraj
+      Division: Oddelek
+      division: oddelek
+      Drainage: Povodje
+      drainage: povodje
+      Estate: Posestvo
+      estate: posestvo
       Governorate: Guvernorat
       governorate: guvernorat
       Historical_County: Zgodovinsko okrožje
@@ -2751,16 +2853,39 @@ sl:
       historical_state: zgodovinska dežela
       Historical_Town: Zgodovinsko mesto
       historical_town: zgodovinsko mesto
+      Intersection: Križišče
+      intersection: križišče
       Island: Otok
       island: otok
       Land_Feature: Kopenska značilnost
+      land_feature: kopenska značilnost
+      Local_Administrative_Area: Lokalno upravno območje
+      local_administrative_area: lokalno upravno območje
       Local_Authority: Krajevna oblast
       local_authority: krajevna oblast
       Miscellaneous: Razno
       miscellaneous: razno
       Municipality: Občina
+      municipality: občina
+      Nationality: Državljanstvo
+      nationality: državljanstvo
+      Nearby_Building: Bližnja stavba
+      nearby_building: bližnja stavba
+      Nearby_Intersection: Bližnje križišče
+      nearby_intersection: bližnje križišče
       Open_Space: Odprt prostor
       open_space: odprt prostor
+      Parish: Župnija
+      parish: župnija
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefektura
+      prefecture: prefektura
+      Prefecture_City: Mesto prefekture
+      prefecture_city: mesto prefekture
+      Point_of_Interest: Zanimivost
       point_of_interest: zanimivosti
       Postal_Code: Poštna številka
       postal_code: poštna številka
@@ -2776,10 +2901,17 @@ sl:
       shire: okraj
       Sports_Team: Športna ekipa
       sports_team: športna ekipa
+      State: Dežela
+      state: dežela
       Street: Ulica
       street: ulica
+      Street_Segment: Ulični odsek
+      street_segment: ulični odsek
+      Subdivision: Poddelitev
       Suburb: Predmestje
       suburb: predmestje
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: vsota
       Territory: Teritorij
       territory: teritorij
       Time_Zone: Časovni pas
@@ -3072,13 +3204,43 @@ sl:
   posted_on_date_by_user_html: Objavil %{user} %{date}
   powered_by_inaturalist_open_source_software_html: 'Poganja <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist odprtokodna programska oprema</a>'
   press: Mediji
+  previewing: "Predogled..."
+  previous_date_short: Prejšnji
+  prev: Prejšnji
+  previous_observation: Prejšnje opazovanje
+  previous_page: Prejšnja stran
+  previous_page_short: Prejšnji
+  previous_photo: Prejšnja fotografija
+  previous_post_short: Prejšnja
+  previous_tab: Prejšnji zavihek
+  previous_taxon_short: Prejšnji
+  print_verb: Natisni
+  privacy: Zasebnost
+  private: zasebno
+  private_: Zasebno
+  private_description: "Koordinate so popolnoma skrite na javnih zemljevidih, prave koodrinate so vidne samo vam in kuratorjem projektov, ki ste jim dodali opazovanje. Opazovanja s skritimi koodrinatami bodo vseeno uporabljena za verifikacijo seznamov krajev."
+  probably_spam: Verjetno neželena pošta
+  proceed: Nadaljuj
+  processing: Obdelava
+  processing3p: "Obdelava..."
   profile: Profil
   profile_picture: Profilna slika
+  profile_visibility_desc: |
+    Zato, da na %{site_name} ne bi dobivali neželene pošte so uporabniški 
+    profili javno vidni šele ko je uporabnik ustvaril več opazovanj z raziskovalno
+    oceno.
+  project: Projekt
+  project_admins:
+    one: Skrbnik projekta
+    two: Skrbnika projekta
+    few: Skrbniki projekta
+    other: Skrbnikov projekta
   project_journal: Dnevnik projekta
   project_curators_added_some_of_your_observations_html: |
     Kuratorji <a href="%{url}">%{project}</a> so dodali nekaj vaših opazovanj
   project_members_only: Samo člani projekta
   project_membership_model_description: Ali je vaš projekt odprt za vse ali samo za povabljence?
+  project_observations: Opazovanja projekta
   project_requirements: Zahteve projekta
   project_was_successfully_created: Projekt je bil uspešno ustvarjen.
   project_was_successfully_updated: Projekt je bil uspešno posodobljen.
