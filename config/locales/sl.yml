@@ -1411,6 +1411,8 @@ sl:
   email_copyright2: "&copy; %{year} iNaturalist, vse pravice pridžane"
   email_notifications: Obvestila o e-pošti
   embed: 'Vdelaj'
+  enable_offline_access: Omogoči način brez povezave
+  enable_offline_access_for_mobile: Vključi dostop brez povezave za mobilni telefon
   encompassing_places: Vključeni kraji
   end: Do
   end_date_time: Končni datum in čas
@@ -4096,6 +4098,18 @@ sl:
   your_recent_projects: Vaši nedavni projekti
   views:
     guides:
+      mobile_downloads_tip_html: |
+        Ta vodič se lahko prenese v mobilno aplikacijo za uporabo brez povezave.
+      mobile_downloads_help_html: |
+        <p>To bo ustvarilo arhiv za prenos, ki bo vseboval vse podatke in medije,
+        ki so povezani s tem vodičem, tako, da bodo lahko uporabniki mobilne aplikacije
+        pregledovali vsebino vodiča brez spletne povezave. Ustvarjanje bo trajalo nekaj
+        minut, ampak ko boste to možnost enkrat vključili se bo arhiv posodobil po
+        vsaki spremembi vodiča.</p>
+        <p class="alert status">
+        Prosimo, <strong>da ne vključite mobilnih prenosov, če jih ne nameravate uporabljati.</strong>
+        Predstavljajo namreč precejšnje breme za naš sistem.
+        </p>
       pdf_layouts:
         grid: mreža
         book: knjiga
