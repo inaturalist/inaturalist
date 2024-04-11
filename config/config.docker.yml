@@ -11,9 +11,6 @@ base: &base
     ubio:
         key: <%= ENV.fetch("INAT_UBIO_KEY") { "INAT_UBIO_KEY" } %>
 
-    yahoo_dev_network:
-        app_id: <%= ENV.fetch("INAT_YAHOO_APP_ID") { "INAT_YAHOO_APP_ID" } %>
-
     tile_servers:
         elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
     #    observations: http://www.inaturalist.org/observations/tiles
