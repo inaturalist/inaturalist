@@ -162,8 +162,7 @@ class Taxon < ApplicationRecord
 
   NAME_PROVIDER_TITLES = {
     "ColNameProvider" => "Catalogue of Life",
-    "NZORNameProvider" => "New Zealand Organisms Register",
-    "UBioNameProvider" => "uBio"
+    "NZORNameProvider" => "New Zealand Organisms Register"
   }.freeze
 
   RANK_LEVELS = {

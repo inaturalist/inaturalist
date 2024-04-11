@@ -27,10 +27,6 @@ base: &base
     #     tracker_id: UA-090909-9
     #     domain_name: yoursite.org
 
-    ubio:
-        # http://www.ubio.org/index.php?pagename=form
-        key: 09af09af09af09af09af09af09af09af09af09af
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.

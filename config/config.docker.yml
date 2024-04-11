@@ -8,9 +8,6 @@ base: &base
         session_key: _inaturalist_session
         secret: <%= ENV.fetch("INAT_SECRET_KEY_BASE") { "INAT_SECRET_KEY_BASE" } %>
 
-    ubio:
-        key: <%= ENV.fetch("INAT_UBIO_KEY") { "INAT_UBIO_KEY" } %>
-
     yahoo_dev_network:
         app_id: <%= ENV.fetch("INAT_YAHOO_APP_ID") { "INAT_YAHOO_APP_ID" } %>
 
