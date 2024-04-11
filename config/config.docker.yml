@@ -55,9 +55,6 @@ base: &base
         client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "INAT_GOOGLE_CLIENT_ID" } %>
         secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "INAT_GOOGLE_SECRET" } %>
 
-    bing:
-        key: <%= ENV.fetch("INAT_BING_KEY") { "INAT_BING_KEY" } %>
-
     soundcloud:
         client_id: <%= ENV.fetch("INAT_SOUNDCLOUD_CLIENT_ID") { "INAT_SOUNDCLOUD_CLIENT_ID" } %>
         secret: <%= ENV.fetch("INAT_SOUNDCLOUD_SECRET") { "INAT_SOUNDCLOUD_SECRET" } %>
