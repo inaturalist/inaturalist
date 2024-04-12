@@ -18,10 +18,7 @@ base: &base
     #    tilestache_public_path: /home/inaturalist/deployment/TileStache/public
 
     facebook:
-        namespace: <%= ENV.fetch("INAT_FACEBOOK_NAMESPACE") { "INAT_FACEBOOK_NAMESPACE" } %>
-        app_id: <%= ENV.fetch("INAT_FACEBOOK_APP_ID") { "INAT_FACEBOOK_APP_ID" } %>
-        app_secret: <%= ENV.fetch("INAT_FACEBOOK_APP_SECRET") { "INAT_FACEBOOK_APP_SECRET" } %>
-        admin_ids: <%= ENV.fetch("INAT_FACEBOOK_ADMIN_IDS") { "INAT_FACEBOOK_ADMIN_IDS" } %> 
+        namespace: inaturalist
 
     twitter:
         key: <%= ENV.fetch("INAT_TWITTER_KEY") { "INAT_TWITTER_KEY" } %>
