@@ -1,0 +1,6 @@
+- if current_user && !current_user.confirmed?
+  #ConfirmationBanner
+    = raw I18n.t( :please_confirm_that_email_is_the_best_contact_html, email: current_user.email)
+    = succeed "." do
+      %button{ type: "button" }
+        = I18n.t( :click_here_to_resend_a_confirmation_email)

@@ -1111,6 +1111,7 @@ en:
   clear_filters: Clear filters
   clear_search: Clear search
   click_the_map: "<strong>Click the map</strong> to add a location."
+  click_here_to_resend_a_confirmation_email: Click here to resend a confirmation email
   close: Close
   code: Code
   # People who have contributed code to iNat open-source software projects
@@ -4385,9 +4386,13 @@ en:
   please_ask_your_parents_for_permission: Please ask your parents for permission
   # Title to a section warning a user to exercise caution
   please_be_careful!: Please Be Careful!
+  please_click_the_link_sent_to_email_to_confirm_html:
+    Please click the link sent to <span class="email">%{email}</span> to confirm your email address.
   please_complete_the_following_to_add_project: |
     Please complete the following to add this observation to the project:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
+  please_confirm_that_email_is_the_best_contact_html:
+    Please confirm that <span class="email">%{email}</span> is the best way to contact you.
   please_explain_why_you_want_to_hide_this: Please explain why you are hiding this
   please_explain_why_you_want_to_unhide_this: Please explain why are unhiding this
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
