@@ -106,6 +106,8 @@ base: &base
     
     admin_user_email: <%= ENV.fetch("INAT_ADMIN_USER_EMAIL") { "INAT_ADMIN_USER_EMAIL" } %>
 
+    dangerous_taxa_list_id: <%= ENV.fetch("INAT_DANGEROUS_TAXA_LIST_ID") { "INAT_DANGEROUS_TAXA_LIST_ID" } %>
+
 development:
     <<: *base
 
