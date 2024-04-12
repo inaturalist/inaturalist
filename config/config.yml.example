@@ -35,8 +35,6 @@ base: &base
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.
         # See http://bitbucket.org/springmeyer/tilelite/
-        observations: 'http://localhost:8000'
-        tilestache: 'http://localhost:8080'
         elasticsearch: http://localhost:4000/v1
 
     google_webmaster:

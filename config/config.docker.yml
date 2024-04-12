@@ -13,9 +13,6 @@ base: &base
 
     tile_servers:
         elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
-    #    observations: http://www.inaturalist.org/observations/tiles
-    #    tilestache: http://geo.inaturalist.org
-    #    tilestache_public_path: /home/inaturalist/deployment/TileStache/public
 
     facebook:
         namespace: inaturalist
