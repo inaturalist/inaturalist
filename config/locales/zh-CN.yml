@@ -6281,6 +6281,11 @@ zh-CN:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           地理位置隐私这一列必须为英文，要么值为空，要么值为“obscured”或“private”
+        google_photos_notice_html: |
+          2019年，谷歌更改了其API，导致我们无法再获得GPS坐标、许可证信息，以及我们可能用于添加鉴定的几乎一切信息（比如标签）。他们还移除了文字搜索和数字页码。不仅如此，他们还要求所有连接的账号都进行额外许可，而在第三方请求得到用户许可之前，这一第三方必须得到验证。我们正在等待验证通过，但在此之前，你将无法从谷歌上传图片。如果我们得到批准，你将可以上传图片，但这不会包括你在谷歌图片里能看到的任何位置信息或许可证信息。你可以在 <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>阅读到更多有关信息。下载原始图片，并使用<a
+          href="/observations/upload">上传</a>来添加它们是最好的暂时解决方案。
         project_csv_template_notice_html: |
           这是一个用于此项目的模板文件，它可能帮助您了解CSV文件的结构。<a href="%{url}">下载模板</a>
         soundcloud_notice_html: |
