@@ -2910,8 +2910,11 @@ sl:
       Street_Segment: Ulični odsek
       street_segment: ulični odsek
       Subdivision: Poddelitev
+      subdivision: poddelitev
       Suburb: Predmestje
       suburb: predmestje
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Vsota
       #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
       sum: vsota
       Territory: Teritorij
@@ -3206,6 +3209,7 @@ sl:
   posted_on_date_by_user_html: Objavil %{user} %{date}
   powered_by_inaturalist_open_source_software_html: 'Poganja <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist odprtokodna programska oprema</a>'
   press: Mediji
+  preview_observations_with_these_observation_requirements: Predogled opazovanj s temi opazovalnimi kriteriji
   previewing: "Predogled..."
   previous_date_short: Prejšnji
   prev: Prejšnji
@@ -3567,12 +3571,35 @@ sl:
   search_projects: Išči med projekti
   search_species: Poišči vrste
   search_species_: Poišči vrste...
+  search_ubio_raquo: "Išči v uBio &raquo;"
+  search_your_photos: Išči po svojih fotografijah
+  searching: "Iskanje ..."
   seasonality: Sezonskost
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  second_person_possessive_singular: "Vaše %{noun}"
+  see_something_wrong_with_taxon: Ali vidite, da je s tem taksonom kaj narobe? Obvestite kuratorje.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Išči
+  seen_nearby: Videno v bližini
+  seen_one: Ali ste ga opazili?
   select: Izberi
   select_all: Izberi vse
   select_at_least_one: Izberi vsaj enega
   #select_one_or_more_photos: Select One Or More Photos
   select_none: Izberi nič
+  select_observations_to_edit: Izberi opazovanja za urejanje...
+  select_one_of_friends_albums: Izberi en album od %{friend}
+  select_one_of_your_albums: Izberi enega od svojih albumov
+  select_one_or_more_photos: 'Izberi eno ali več fotografij'
+  select_options: Izberi možnosti
+  select_photos_from_your_photo_stream: |
+    Izberite fotografije iz zunanjih spletišč za deljenje fotografij in jih pretvorite v 
+    %{site_name} opazovanja. Mi bomo iz njih vzeli datum, čas in lokacijo, ter
+    poskušali določiti ime vrste iz zaznamkov.
   selected: Izbrano
   selected_photos: Izbrane fotografije
   selected_taxon: Izbran takson
@@ -3637,7 +3664,32 @@ sl:
   similar_taxa: Podobni taksoni
   #Journal post formatting option
   simple: Enostavno
+  single_observation: Samostojno opazovanje
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site} povzetek leta %{year}"
+  sizes: Velikosti
+  skip_to_next_page: "Preskoči na naslednjo stran"
+  small: majhna
+  site_admin_tools: Orodja za spletno administracijo
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Spletni skrbniki
+  site_name_place: "%{site_name} kraj"
+  site_observations_export_from_date: "%{site_name} izvoz opazovanj od %{date}"
+  site_site_admin: "%{site_name} Skrbnik"
+  site_staff: "%{site_name} Osebje"
   site_stats: Statistika spletnega mesta
+  site_taxon_page: "%{site_name} stran taksona"
+  sites_affiliation_about_desc_html: |
+    Če je vaša organizacija zaniteresirana za pridružitev omrežju iNaturalist,
+    lahko najdete več podrobnosti %{start_tag_join}tu%{end_tag_join}.
+  some_agree: nekateri se strinjajo
+  some_observations_are_missing_media_or_identifications: |
+    Nekatera opazovanja nimajo medijev ali določitev
+  some_observations_are_missing_media_or_identifications_desc: |
+    Opazovanja brez medijev ne bodo vidna v iskanjih s privzetimi nastavitvami
+    in tista brez določitev ne bodo vidna strokovnjakom, ki se ukvarjajo z določenimi
+    taksoni. Tudi, če izberete zelo splošno določitev, kot je naprimer "rastlina" pomagate
+    strokovnjakom, da najdejo vaše opazovanje.
   some_observations_failed_to_be_added: Nekatera opazovanja niso mogla biti dodana projektom
   some_rights_reserved: nekatere pravice pridržane
   somewhere_on_earth: nekje na Zemlji
@@ -3801,11 +3853,66 @@ sl:
   task_deleted: Naloga izbrisana
   taxa: Taksoni
   taxon_autocomplete_placeholder: Ptice, mušnice, itd.
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} je %{rank} ptičev z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} ptičev z %{count} opazovanji"
+    few: "%{taxon} je %{rank} ptičev z %{count} opazovanji"
+    other: "%{taxon} je %{rank} ptičev z %{count} opazovanji"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} je %{rank} sesalcev z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} sesalcev z %{count} opazovanji"
+    few: "%{taxon} je %{rank} sesalcev z %{count} opazovanji"
+    other: "%{taxon} je %{rank} sesalcev z %{count} opazovanji"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} je %{rank} plazilcev z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} plazilcev z %{count} opazovanji"
+    few: "%{taxon} je %{rank} plazilcev z %{count} opazovanji"
+    other: "%{taxon} je %{rank} plazilcev z %{count} opazovanji"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} je %{rank} rastlin z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} rastlin z %{count} opazovanji"
+    few: "%{taxon} je %{rank} rastlin z %{count} opazovanji"
+    other: "%{taxon} je %{rank} rastlin z %{count} opazovanji"
   taxon_is_a_rank_of_actinopterygii_with_x_observations:
     one: "%{taxon} je %{rank} žarkoplavutaric z 1 opazovanjem"
     two: "%{taxon} je %{rank} žarkoplavutaric z %{count} opazovanjema"
     few: "%{taxon} je %{rank} žarkoplavutaric z %{count} opazovanji"
     other: "%{taxon} je %{rank} žarkoplavutaric z %{count} opazovanji"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} je %{rank} živali z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} živali z %{count} opazovanji"
+    few: "%{taxon} je %{rank} živali z %{count} opazovanji"
+    other: "%{taxon} je %{rank} živali z %{count} opazovanji"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} je %{rank} žuželk z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} žuželk z %{count} opazovanji"
+    few: "%{taxon} je %{rank} žuželk z %{count} opazovanji"
+    other: "%{taxon} je %{rank} žuželk z %{count} opazovanji"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} je %{rank} pajkovcev z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} pajkovcev z %{count} opazovanji"
+    few: "%{taxon} je %{rank} pajkovcev z %{count} opazovanji"
+    other: "%{taxon} je %{rank} pajkovcev z %{count} opazovanji"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} je %{rank} gliv z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} gliv z %{count} opazovanji"
+    few: "%{taxon} je %{rank} gliv z %{count} opazovanji"
+    other: "%{taxon} je %{rank} gliv z %{count} opazovanji"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} je %{rank} praživali z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} praživali z %{count} opazovanji"
+    few: "%{taxon} je %{rank} praživali z %{count} opazovanji"
+    other: "%{taxon} je %{rank} praživali z %{count} opazovanji"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} je %{rank} mehkužcev z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} mehkužcev z %{count} opazovanji"
+    few: "%{taxon} je %{rank} mehkužcev z %{count} opazovanji"
+    other: "%{taxon} je %{rank} mehkužcev z %{count} opazovanji"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} je %{rank} kromistov z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} kromistov z %{count} opazovanji"
+    few: "%{taxon} je %{rank} kromistov z %{count} opazovanji"
+    other: "%{taxon} je %{rank} kromistov z %{count} opazovanji"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} je kraljestvo življenja z 1 opazovanjem"
     two: "%{taxon} je kraljestvo življenja z %{count} opazovanji"
@@ -3889,6 +3996,11 @@ sl:
     tooltips:
       photo_failed: Nalaganje fotografije ni uspelo
       upload_failed: Nalaganje ni uspelo
+  uploading_num_of_count_photos:
+    one: Nalaganje %{num} fotografije od %{count}...
+    two: Nalaganje %{num} fotografij od %{count}...
+    few: Nalaganje %{num} fotografij od %{count}...
+    other: Nalaganje %{num} fotografij od %{count}...
   usage_stats: Statistika uporabe
   user_added_a_comment_html: "%{user} je dodal komentar"
   user_added_a_fave_html: "%{user} je dal všeček"
@@ -3934,6 +4046,7 @@ sl:
   view_full_observation: Poglej celotno opazovanje
   view_more: Pokaži več
   view_more_about_x: "Pokaži več o %{x}"
+  view_more_observations_from_this_place: Prikaži opazovanja iz tega kraja
   view_observation: Poglej opazovanje
   view_observations: Poglej opazovanja
   view_observations_by_these_users: Prikaži opazovanja teh uporabnikov
