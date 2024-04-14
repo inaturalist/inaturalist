@@ -2928,7 +2928,13 @@ sl:
       Unknown: Neznano
       unknown: neznano
   place_imported: Kraj uvožen!
+  place_name: Ime kraja
+  place_notes: Opombe kraja
+  place_updated: Kraj posodobljen!
+  placement: Umestitev
+  places: Kraji
   places_added_by_members_of_the_community: Kraji, ki so jih dodali člani skupnosti
+  places_maintained_by_site_admins: Kraji vzdrževani od spletnih skrbnikov
   places_name:
     afghanistan: Afganistan
     africa: Afrika
@@ -3241,6 +3247,10 @@ sl:
     two: Skrbnika projekta
     few: Skrbniki projekta
     other: Skrbnikov projekta
+  project_coordinate_access_warning: |
+    Dostop do koordinat je pomemben za znanstvenike, a je lahko tudi zlorabljen
+    od divjih lovcev. Prepričajte se, da lahko zaupate kuratorjem projekta preden
+    zaupate temu projektu.
   project_journal: Dnevnik projekta
   project_curators_added_some_of_your_observations_html: |
     Kuratorji <a href="%{url}">%{project}</a> so dodali nekaj vaših opazovanj
@@ -4052,6 +4062,7 @@ sl:
   view_observations_by_these_users: Prikaži opazovanja teh uporabnikov
   view_observations_of_this_taxon_by: Poglej opazovanja tega taksona od
   view_on: Poglej na
+  view_place: Poglej kraj
   view_projects_from_place: "Poglej projekte v %{place}"
   view_stats: Pokaži statistiko
   view_your_observations: Poglej svoja opazovanja
@@ -4383,6 +4394,43 @@ sl:
           other: "POGLEJ %{count} PUBLIKACIJ"
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          Večina kategorij organizmov ima "občno ime" v pogovornih jezikih.
+          Ta imena so običajno prepoznavna, enostavna za izgovorjavo in
+          stabilna skozi čas, vendar imajo številni organizmi več različnih imen
+          v različnih krajih, tudi v istem jeziku, zaradi česar se je težko brez zmede
+          pogovarjati o njih. Znanstveniki to težavo rešujejo z uporabo enega samega
+          "znanstvenega imena" za vsako kategorijo organizmov, ki ustreza pravilom
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biološke nomenklature</a>.
+          Vendar ta imena ponavadi temeljijo na latinščini, jeziku, ki ga nihče ne
+          govori, zato za mnoge niso tako razumljiva kot običajna ljudska imena.
+          Znanstvena imena lahko odražajo tudi taksonomijo organizma in njegovo
+          umestitev v drevo življenja, tako da se lahko spremenijo, ko znanstveniki razvijejo
+          natančnejše teorije o evolucijskih odnosih med različnimi organizmi, kar spet zmanjša
+          njihovo uporabnost v namene komunikacije.
+          </p>
+          <p>
+          Občna imena se spreminjajo od kraja do kraja, znanstvena pa iz časa v čas."
+          </p>
+          <p>
+          Te pomanjkljivosti poskušamo odpraviti tako, da kjer je le mogoče, prikažemo
+          občno in znanstveno ime in pri tem izberemo občno ime glede na jezikovne in
+          geografske uporabniške nastavitve. Imena so izpisana glede na njihovo
+          globalno prioriteto znotraj vsakega jezika.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Imena so lahko dodana krajem (ponavadi državam), kar je uporabno 
+          v primerih, ko različni kraji uporabljajo različna občna imena v istem jeziku.
+          Naprimer Mehika in Costa Rica lahko uporabljajo različna španska imena
+          za isto vrsto.
+          </p>
+          <p>
+          Ta tabela prikazuje katera imena so bila dodana katerim krajem in so izpisana
+          po prioriteti za vsak kraj. Če sta bile na primer Mehiki dodani dve španski imeni
+          bo prikazana najprej tista, ki je prva na seznamu.
+          </p>
         discoveries_desc: "Najnovejše novo določene vrste v temu taksonu"
         frequency:
           research: Raziskovalna ocena
