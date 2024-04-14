@@ -3549,6 +3549,7 @@ pl:
   resend_confirmation_email: Wyślij ponownie e-mail z potwierdzeniem
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
+  reset_filters_short: Resetuj
   reset_brightness: Resetuj jasność
   reset_search_filters: Resetuj filtry wyszukiwania
   resolved: Rozstrzygnięto
@@ -3560,6 +3561,8 @@ pl:
     Liczba stron razy liczba wyników na stronie nie może przekroczyć 10000. Spróbuj
     zastosować filtry, aby zmniejszyć liczbę wyników.
   review_all: Przejrzyj wszystkie
+  review_identifications_of_taxon_html: |
+    Przejrzyj oznaczenia <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Przejrzane
   revoke_privacy_consent_warning: "Jedynym sposobem na cofnięcie tej zgody jest usunięcie konta i wszystkich powiązanych danych."
   rg_observations: Obserwacje SB
