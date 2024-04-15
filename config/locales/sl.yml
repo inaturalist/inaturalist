@@ -2223,7 +2223,7 @@ sl:
   make_this_your_default_license: "Nastavi licenco %{type} kot privzeto"
   make_this_the_primary_listing: "Napravi to listo primarno"
   mammals: sesalci
-  manage_all_your_subscriptions: Upravljate vse svoje naročnine
+  manage_all_your_subscriptions: Upravljate s svojimi naročninami
   manage_names: Upravljajte z imeni
   manage_your_projects: Upravljaj s svojimi projekti
   manage_your_relationships: Upravljaj svoje zveze
@@ -2631,6 +2631,26 @@ sl:
     Opazovanje pripada projektu, ki zahteva to polje. Opazovanje
     mora biti najprej odstranjeno iz tega projekta, šele nato se lahko izbriše
     vrednost tega polja.
+  observation_brief_something_on_day: "Nekaj dne %{day}"
+  observation_brief_something_on_day_at_time: "Nekaj dne %{day} ob %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Nekaj dne %{day} ob %{time} od %{user}"
+  observation_brief_something_on_day_by_user: "Nekaj dne %{day} od %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Nekaj v %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Nekaj v %{month} %{year} od %{user}"
+  observation_brief_something_by_user: "Nekaj od %{user}"
+  observation_brief_something_from_place: "Nekaj iz %{place}"
+  observation_brief_something_from_place_by_user: "Nekaj iz %{place} od %{user}"
+  observation_brief_something_from_place_on_day: "Nekaj iz %{place} dne %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Nekaj iz %{place} dne %{day} od %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Nekaj iz %{place} dne %{day} ob %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Nekaj iz %{place} dne %{day} ob %{time} od %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Nekaj iz %{place} v %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Nekaj iz %{place} v %{month} %{year} od %{user}"
+  observation_brief_taxon_on_day: "%{taxon} dne %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} dne %{day} ob %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} dne %{day} ob %{time} od %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} dne %{day} od %{user}"
@@ -2709,6 +2729,7 @@ sl:
   observations_w: Opazovanja z
   observations_w_field: Opazovanja z poljem
   observations_was_successfully_updated: Opazovanja uspešno posodobljena.
+  observations_with_this_field_and_value: Opazovanja s tem poljem in vrednostjo
   observations_without_this_field: Opazovanja brez tega polja
   observations_without_media: Opazovanja brez medijev
   observationcounts_refreshed: Število opazovanj je bilo osveženo
@@ -2720,6 +2741,8 @@ sl:
   observer_prefers_addition_to_traditional_projects_joined: |
     Opazovalec dovoljuje dodajanje njihovih opazovanj samo tradicionalnim
     projektom, ki so se jim pridružili.
+  observer_prefers_no_traditional_project_addition: |
+    Opazovalec ne dovoli, da bi drugi dodajali njihova opazovanja tradicionalnim projektom.
   observer_short: Opazovalec
   occurence_status_describes_how: 'Status pojavnosti opisuje kako pogost ali redek je takson v danem območju. Glej DarwinCore za <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">več informacij o terminologiji</a>.'
   occurrence_status: Status pojavnosti
@@ -2748,12 +2771,38 @@ sl:
   offset_time: "Časovni zamik"
   #Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: Zamik
+  old_observation_form: Star obrazec za opazovanja (zastarel)
   ok: "V redu"
   on_caps: "VKLOP"
+  on_day: "dne"
   onboarding:
     observe_panel_title: Začnimo z ustvarjanjem opazovanj
     observe_panel_body_p1_local: Potrebuješ navdih? Tu je nekaj bitij, ki so bila opazovana v bližini...
     observe_panel_body_p1_global: Potrebuješ navdih? Tu je nekaj opazovanih bitij
+    observe_panel_body_p2: Pojdite ven in opazujte posamezen organizem. Izberite nekaj divjega in naredite jasno sliko. Če že imate primerne slike, <a href="%{new_observation_path}">jih dodajte zdaj</a>. Za beleženje opazovanj lahko uporabite tudi %{site_name} mobilne aplikacije.
+    observe_panel_body_p3: Ko boste enkrat delili svoja opazovanja, se vam bodo na tej strani prikazale posodobitve iz skupnosti v obliki komentarjev in določitev. Kdo ve kaj vse ste odkrili!
+    follow_panel_title_local: Spremljajte bližnje naturaliste
+    follow_panel_title_global: Spremljajte aktivne naturaliste
+    follow_panel_body: Če izberete te profile in pritisnete gumb "spremljaj", boste prejemali obvestila, ko bodo objavljali opazovanja
+    following_panel_title: Spremljaj osebe, vrste in kraje
+    following_panel_body: |
+      Na %{site_name} lahko spremljate osebe in njihova opazovanja.
+      Lahko se naročite na določene vrste, da bi bili obveščeni o novih opažanjih.
+      Isto lahko naredite tudi s kraji.
+    comments_panel_title: Vas zanima o čemu se debatira na %{site_name}?
+    comments_panel_body: "<p>%{site_name} je namenjen deljenju in pogovorih o opazovanjih živih bitij. Spodaj so debate, ki potekajo v temu trenutku. (Opomba: Ko prispevate določitve in komentarje se samodejno naročite na posodobitve. To lahko nastavljate v sekciji \"Naročnine\" na desni strani.)</p>"
+    updates_by_you_panel_title: Ta zavihek je hiter način za filtriranje posodobitev samo na vaše vsebine.
+    updates_by_you_panel_body: Vedite, da v zavihku "Vse posodobitve" poleg vaših vsebin vidite tudi vsebine vseh oseb, vrst in krajev, ki jim sledite.
+    youve_got_updates_panel_title: Imate posodobitve!
+    youve_got_updates_panel_body_p1: Bodite na tekočem z posodobitvami naslednjega...
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>Vaše vsebine:</strong> Aktivnosti na vaših opazovanjih, kot so komentarji, določitve ali všečki iz skupnosti %{site_name}. Prejeli boste tudi posodobitve, ki bo kdo dodal vaše opazovanje v projekt ali označil z dodatnimi polji.</li>
+      <li><strong>Osebe:</strong> Nova opazovanja ali dnevniški vnosi oseb, ki jim sledite.</li>
+      <li><strong>Organizmi, Projekti & Kraji:</strong> Nova opazovanja specifičnih organizmov ali krajev na katere ste se naročili.Pridružite se lahko tudi projektom, tako da boste obveščeni, ko objavijo kaj novega.</li>
+      <li><strong>Debat v katerih sodelujete:</strong> Komentiranje ali dodajanje določitev vas bo samodejno naročilo na nove aktivnosti te vsebine. Uporabite orodje 'Upravljanje z naročninami', če ne želite več prejemati obvestil.</li>
+      </ul>
+  one_by_one: "Eden za drugim"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "Eno od naslednjega mora držati:"
   only_view_nearby_suggestions: Prikaži samo bližnje predloge
@@ -3937,6 +3986,11 @@ sl:
   taxon_autocomplete_placeholder: Ptice, mušnice, itd.
   taxon_geoprivacy: Geo zasebnost taksona
   taxon_is_a_rank: "%{taxon} je %{rank}"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} je %{rank} dvoživk z %{count} opazovanjem"
+    two: "%{taxon} je %{rank} dvoživk z %{count} opazovanji"
+    few: "%{taxon} je %{rank} dvoživk z %{count} opazovanji"
+    other: "%{taxon} je %{rank} dvoživk z %{count} opazovanji"
   taxon_is_a_rank_of_aves_with_x_observations:
     one: "%{taxon} je %{rank} ptičev z %{count} opazovanjem"
     two: "%{taxon} je %{rank} ptičev z %{count} opazovanji"
@@ -4112,11 +4166,6 @@ sl:
       remove: Odstrani izbrana opazovanja
       select_all: Izberi vsa opazovanja
       upload_failed: Nalaganje ni uspelo
-  uploading_num_of_count_photos:
-    one: Nalaganje %{num} fotografije od %{count}...
-    two: Nalaganje %{num} fotografij od %{count}...
-    few: Nalaganje %{num} fotografij od %{count}...
-    other: Nalaganje %{num} fotografij od %{count}...
   usage_stats: Statistika uporabe
   user_added_a_comment_html: "%{user} je dodal komentar"
   user_added_a_fave_html: "%{user} je dal všeček"
@@ -4391,16 +4440,51 @@ sl:
       filter_by: Filtriraj po
       observations_of_exactly_this_taxon: Opazovanja točno tega taksona
       dropdowns:
+        sort: Razvrsti
         taxonomic: Taksonomsko
+        name: Ime
         most_observed: Najbolj opazovane
         least_observed: Najmanj opazovane
         date_added_newest: Datum, od novejšega do starejšega
         date_added_oldest: Datum, od starejšega do novejšega
+        ancestry: Predniki
+        show: Prikaži
+        children: Nasledniki
+        simplified_tree: Poenostavljeno drevo
         full_taxonomy: Celotna taksonomija
     messages:
       from: Od
       to: Do
       subject_body: Naslov / Vsebina
+      index:
+        show_messages_from_user: Prikaži sporočila uporabnika %{user}
+        show_messages_to_user: Prikaži sporočila uporabniku %{user}
+        speech_privilege_notice: |
+          Nova sporočila boste lahko pošiljal, ko boste dodali 3 preverljiva 
+          opazovanja ali 3 določitve za druge. Za zdaj lahko berete in odgovarjate
+          na sporočila, ki so vam jih poslali drugi.
+      show:
+        flag_notice_html: |
+          Ta pogovor ste prijavili dne %{date}. Prijava bo ostala tudi, če izbrišete
+          vašo kopijo tega pogovora, zato lahko to mirno naredite, če ga ne 
+          želite več gledati.
+        privacy_notice_html: |
+          Čeprav so sporočila med vami in prejemnikom zasebna, lahko osebje iNaturalist
+          ravno tako vidi ta sporočila in jih tudi bo pregledala, če bodo prijavljena za moderiranje.
+          Če potrebujete resnično zasebno komunikacijo, prosimo uporabite kakšen drug
+          mehanizem, ki podpira močno enkripcijo.
+    oauth:
+      authorizations:
+        new:
+          #Application is an app or service the user is about to
+          #authorize to access their iNat account
+          authorize_application_to_use_your_account?: Dovolite %{application} da uporabi vaš račun?
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          this_application_will_be_able_to_colon: "Ta aplikacija bo lahko:"
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          more_about_application: Več o %{application}
     observations:
       community_id:
         explanation: |
@@ -4416,6 +4500,16 @@ sl:
           vsak vidi, različne predlagane določitve.
           </p>
       compare:
+        about_missing_taxa: O manjkajočih taksonih
+        about_total_taxa: "O vseh taksonih"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Kombinirano
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datumsko polje
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Vodoravno
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Interval
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Navpično
       export:
@@ -4495,6 +4589,8 @@ sl:
         you_can_change_html: |-
           Svoje nastavitve lahko spremenite ali pa lahko zapustite projekt na
           <a href="%{url}">strani projekta</a>.
+      user_parent_confirmation:
+        subject: iNaturalist račun vašega otroka je bil aktiviran
     projects:
       project_type: Tip projekta
       collection: Zbirka
@@ -4511,6 +4607,9 @@ sl:
           Izgleda, da se ta projekt lahko spremeni v nov <a href="%{url}">zbirni projekt</a>.
         rules:
           in_taxon: biti v taksonu
+        submission_models:
+          any: kdor koli
+          curators: kuratorji projekta
         trust_help_notification2: |-
           Kakorkoli, to bo tudi obvestilo vse zaupajoče člane projekta vsakič, ko boste
           spremenili kriterije za opazovanja, tako, da bodo lahko preverili ali vam bodo
@@ -4540,6 +4639,7 @@ sl:
         collection_projects: Zbirni projekti
         collection_project_features: "Lastnosti zbirnih projektov:"
         contain_entire_image_without_cropping: Vključi celotno sliko brez obrezovanja
+        delete_project: Izbriši projekt
         display_project_name: Prikaži ime projekta
         duplicate_project: Podvojite projekt
         multiple_project_administrators: Več administratorjev projekta
@@ -4572,10 +4672,12 @@ sl:
           Izberete lahko več vrst (ali taksonov), krajev, datumov in drugih kriterijev
           za avtomatsko vključitev opazovanj.
         users_can_follow_your_project: Uporabniki lahko sledijo novicam iz vašega projekta preko projektnega dnevnika
+        visual_comparison_of_data_among: Vizualne primerjave podatkov med projekti vključenimi v krovni projekt.
         we_have_redesigned_projects: |
           Projekti avtomatsko vključujejo vsa opazovanja, ki se ujemajo z določenimi 
           kraji, vrstami, uporabniki, kvaliteto in datumi. Izberite med dvemi glavnimi
           tipi: zbirni projekti in krovni projekti, ki si delijo naslednje lastnosti:
+        welcome_to_projects: Dobrodošli v projektih!
         you_can_learn_more_html: |
           Več o upravljanju projektov lahko izveste <a href="https://www.inaturalist.org/pages/managing-projects">tu</a> ali pa preberite zgodovino projektov na <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">našem blogu</a>.
         you_have_not_defined_any_observation_requirements: |
@@ -4583,7 +4685,27 @@ sl:
           več taksonov (npr. ptice, iglavci), krajev (Brazilija, Slovenija), uporabnikov in/ali datumov,
           da bi lahko začeli prikazovati opazovanja.
         errors:
+          name_is_required: Ime projekta je obvezno
+          name_less_than_100_characters: Ime projekta mora imeti manj kot 100 znakov
+          name_already_taken: Ime projekta je že zasedeno
+          cannot_have_more_than_x_project_rules: Ne sme vsebovati več kot %{x} projektnih pravil
           summary_is_required: Besedilo povzetka projekta je obvezno
+      project_location_privacy_notice_html: |
+        <p>
+        Zavedajte se, da bodo lahko kuratorji projekta videli zasebne ali zakrite
+        lokacije vaših opazovanj, v kolikor ne prekličete tega dovoljenja in bodo
+        lahko dodajali vaša opazovanja temu projektu razen, če ne
+        <a href="/users/edit">spremenite vaših nastavitev</a>. Dovoljenja lahko
+        dodate ali prekličete za vsak primer posebej.
+        </p>
+        <p>
+        Če vas skrbi zasebnost lokacij se ne pridružujte projektom, če ne zaupate
+        njihovim kuratorjem.
+        </p>
+      project_user_curator_coordinate_access_labels:
+        observer: Da, ampak samo če sam dodam opazovanje projektu.
+        any: Da, ne glede na to kdo doda opazovanje projektu.
+        none: Ne.
       show:
         are_you_sure_you_want_to_convert: |
           Ali ste prepričani, da želite pretvoriti ta projekt v zbirni projekt?
